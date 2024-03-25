@@ -22,13 +22,10 @@ Coverage _$CoverageFromJson(Map<String, dynamic> json) {
 mixin _$Coverage {
   @JsonKey(unknownEnumValue: R4ResourceType.Coverage)
   R4ResourceType get resourceType => throw _privateConstructorUsedError;
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  int? get dbId => throw _privateConstructorUsedError;
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @JsonKey(name: 'id')
-  String? get fhirId => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
@@ -201,8 +198,7 @@ abstract class $CoverageCopyWith<$Res> {
   $Res call(
       {@JsonKey(unknownEnumValue: R4ResourceType.Coverage)
       R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-      @JsonKey(name: 'id') String? fhirId,
+      String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
@@ -268,8 +264,7 @@ class _$CoverageCopyWithImpl<$Res, $Val extends Coverage>
   @override
   $Res call({
     Object? resourceType = null,
-    Object? dbId = freezed,
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? meta = freezed,
     Object? implicitRules = freezed,
     Object? implicitRulesElement = freezed,
@@ -308,13 +303,9 @@ class _$CoverageCopyWithImpl<$Res, $Val extends Coverage>
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as R4ResourceType,
-      dbId: freezed == dbId
-          ? _value.dbId
-          : dbId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       meta: freezed == meta
           ? _value.meta
@@ -647,8 +638,7 @@ abstract class _$$CoverageImplCopyWith<$Res>
   $Res call(
       {@JsonKey(unknownEnumValue: R4ResourceType.Coverage)
       R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-      @JsonKey(name: 'id') String? fhirId,
+      String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
@@ -728,8 +718,7 @@ class __$$CoverageImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? resourceType = null,
-    Object? dbId = freezed,
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? meta = freezed,
     Object? implicitRules = freezed,
     Object? implicitRulesElement = freezed,
@@ -768,13 +757,9 @@ class __$$CoverageImplCopyWithImpl<$Res>
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as R4ResourceType,
-      dbId: freezed == dbId
-          ? _value.dbId
-          : dbId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       meta: freezed == meta
           ? _value.meta
@@ -914,8 +899,7 @@ class _$CoverageImpl extends _Coverage {
   const _$CoverageImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Coverage)
       this.resourceType = R4ResourceType.Coverage,
-      @JsonKey(includeFromJson: true, includeToJson: false) this.dbId,
-      @JsonKey(name: 'id') this.fhirId,
+      this.id,
       this.meta,
       this.implicitRules,
       @JsonKey(name: '_implicitRules') this.implicitRulesElement,
@@ -964,15 +948,11 @@ class _$CoverageImpl extends _Coverage {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.Coverage)
   final R4ResourceType resourceType;
-  @override
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  final int? dbId;
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
   @override
-  @JsonKey(name: 'id')
-  final String? fhirId;
+  final String? id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
@@ -1258,7 +1238,7 @@ class _$CoverageImpl extends _Coverage {
 
   @override
   String toString() {
-    return 'Coverage(resourceType: $resourceType, dbId: $dbId, fhirId: $fhirId, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, status: $status, statusElement: $statusElement, type: $type, policyHolder: $policyHolder, subscriber: $subscriber, subscriberId: $subscriberId, subscriberIdElement: $subscriberIdElement, beneficiary: $beneficiary, dependent: $dependent, dependentElement: $dependentElement, relationship: $relationship, period: $period, payor: $payor, class_: $class_, order: $order, orderElement: $orderElement, network: $network, networkElement: $networkElement, costToBeneficiary: $costToBeneficiary, subrogation: $subrogation, subrogationElement: $subrogationElement, contract: $contract)';
+    return 'Coverage(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, status: $status, statusElement: $statusElement, type: $type, policyHolder: $policyHolder, subscriber: $subscriber, subscriberId: $subscriberId, subscriberIdElement: $subscriberIdElement, beneficiary: $beneficiary, dependent: $dependent, dependentElement: $dependentElement, relationship: $relationship, period: $period, payor: $payor, class_: $class_, order: $order, orderElement: $orderElement, network: $network, networkElement: $networkElement, costToBeneficiary: $costToBeneficiary, subrogation: $subrogation, subrogationElement: $subrogationElement, contract: $contract)';
   }
 
   @override
@@ -1268,8 +1248,7 @@ class _$CoverageImpl extends _Coverage {
             other is _$CoverageImpl &&
             (identical(other.resourceType, resourceType) ||
                 other.resourceType == resourceType) &&
-            (identical(other.dbId, dbId) || other.dbId == dbId) &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.meta, meta) || other.meta == meta) &&
             (identical(other.implicitRules, implicitRules) ||
                 other.implicitRules == implicitRules) &&
@@ -1331,8 +1310,7 @@ class _$CoverageImpl extends _Coverage {
   int get hashCode => Object.hashAll([
         runtimeType,
         resourceType,
-        dbId,
-        fhirId,
+        id,
         meta,
         implicitRules,
         implicitRulesElement,
@@ -1385,8 +1363,7 @@ abstract class _Coverage extends Coverage {
   const factory _Coverage(
       {@JsonKey(unknownEnumValue: R4ResourceType.Coverage)
       final R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) final int? dbId,
-      @JsonKey(name: 'id') final String? fhirId,
+      final String? id,
       final FhirMeta? meta,
       final FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') final Element? implicitRulesElement,
@@ -1428,14 +1405,10 @@ abstract class _Coverage extends Coverage {
   @JsonKey(unknownEnumValue: R4ResourceType.Coverage)
   R4ResourceType get resourceType;
   @override
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  int? get dbId;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @JsonKey(name: 'id')
-  String? get fhirId;
+  String? get id;
   @override
 
   /// [meta] The metadata about the resource. This is content that is
@@ -1637,8 +1610,7 @@ CoverageClass _$CoverageClassFromJson(Map<String, dynamic> json) {
 mixin _$CoverageClass {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1698,7 +1670,7 @@ abstract class $CoverageClassCopyWith<$Res> {
       _$CoverageClassCopyWithImpl<$Res, CoverageClass>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept type,
@@ -1725,7 +1697,7 @@ class _$CoverageClassCopyWithImpl<$Res, $Val extends CoverageClass>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? type = null,
@@ -1735,9 +1707,9 @@ class _$CoverageClassCopyWithImpl<$Res, $Val extends CoverageClass>
     Object? nameElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -1812,7 +1784,7 @@ abstract class _$$CoverageClassImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept type,
@@ -1840,7 +1812,7 @@ class __$$CoverageClassImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? type = null,
@@ -1850,9 +1822,9 @@ class __$$CoverageClassImplCopyWithImpl<$Res>
     Object? nameElement = freezed,
   }) {
     return _then(_$CoverageClassImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -1890,7 +1862,7 @@ class __$$CoverageClassImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CoverageClassImpl extends _CoverageClass {
   const _$CoverageClassImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required this.type,
@@ -1908,8 +1880,7 @@ class _$CoverageClassImpl extends _CoverageClass {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2000,7 +1971,7 @@ class _$CoverageClassImpl extends _CoverageClass {
 
   @override
   String toString() {
-    return 'CoverageClass(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, value: $value, valueElement: $valueElement, name: $name, nameElement: $nameElement)';
+    return 'CoverageClass(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, value: $value, valueElement: $valueElement, name: $name, nameElement: $nameElement)';
   }
 
   @override
@@ -2008,7 +1979,7 @@ class _$CoverageClassImpl extends _CoverageClass {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CoverageClassImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -2026,7 +1997,7 @@ class _$CoverageClassImpl extends _CoverageClass {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       type,
@@ -2051,7 +2022,7 @@ class _$CoverageClassImpl extends _CoverageClass {
 
 abstract class _CoverageClass extends CoverageClass {
   const factory _CoverageClass(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           required final CodeableConcept type,
@@ -2069,8 +2040,7 @@ abstract class _CoverageClass extends CoverageClass {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -2137,8 +2107,7 @@ CoverageCostToBeneficiary _$CoverageCostToBeneficiaryFromJson(
 mixin _$CoverageCostToBeneficiary {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2191,7 +2160,7 @@ abstract class $CoverageCostToBeneficiaryCopyWith<$Res> {
       _$CoverageCostToBeneficiaryCopyWithImpl<$Res, CoverageCostToBeneficiary>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? type,
@@ -2218,7 +2187,7 @@ class _$CoverageCostToBeneficiaryCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? type = freezed,
@@ -2227,9 +2196,9 @@ class _$CoverageCostToBeneficiaryCopyWithImpl<$Res,
     Object? exception = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -2305,7 +2274,7 @@ abstract class _$$CoverageCostToBeneficiaryImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? type,
@@ -2334,7 +2303,7 @@ class __$$CoverageCostToBeneficiaryImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? type = freezed,
@@ -2343,9 +2312,9 @@ class __$$CoverageCostToBeneficiaryImplCopyWithImpl<$Res>
     Object? exception = freezed,
   }) {
     return _then(_$CoverageCostToBeneficiaryImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -2379,7 +2348,7 @@ class __$$CoverageCostToBeneficiaryImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CoverageCostToBeneficiaryImpl extends _CoverageCostToBeneficiary {
   const _$CoverageCostToBeneficiaryImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.type,
@@ -2397,8 +2366,7 @@ class _$CoverageCostToBeneficiaryImpl extends _CoverageCostToBeneficiary {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2491,7 +2459,7 @@ class _$CoverageCostToBeneficiaryImpl extends _CoverageCostToBeneficiary {
 
   @override
   String toString() {
-    return 'CoverageCostToBeneficiary(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, valueQuantity: $valueQuantity, valueMoney: $valueMoney, exception: $exception)';
+    return 'CoverageCostToBeneficiary(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, valueQuantity: $valueQuantity, valueMoney: $valueMoney, exception: $exception)';
   }
 
   @override
@@ -2499,7 +2467,7 @@ class _$CoverageCostToBeneficiaryImpl extends _CoverageCostToBeneficiary {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CoverageCostToBeneficiaryImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -2517,7 +2485,7 @@ class _$CoverageCostToBeneficiaryImpl extends _CoverageCostToBeneficiary {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       type,
@@ -2542,7 +2510,7 @@ class _$CoverageCostToBeneficiaryImpl extends _CoverageCostToBeneficiary {
 
 abstract class _CoverageCostToBeneficiary extends CoverageCostToBeneficiary {
   const factory _CoverageCostToBeneficiary(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final CodeableConcept? type,
@@ -2559,8 +2527,7 @@ abstract class _CoverageCostToBeneficiary extends CoverageCostToBeneficiary {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -2618,8 +2585,7 @@ CoverageException _$CoverageExceptionFromJson(Map<String, dynamic> json) {
 mixin _$CoverageException {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2665,7 +2631,7 @@ abstract class $CoverageExceptionCopyWith<$Res> {
       _$CoverageExceptionCopyWithImpl<$Res, CoverageException>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept type,
@@ -2688,16 +2654,16 @@ class _$CoverageExceptionCopyWithImpl<$Res, $Val extends CoverageException>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? type = null,
     Object? period = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -2748,7 +2714,7 @@ abstract class _$$CoverageExceptionImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept type,
@@ -2771,16 +2737,16 @@ class __$$CoverageExceptionImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? type = null,
     Object? period = freezed,
   }) {
     return _then(_$CoverageExceptionImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -2806,7 +2772,7 @@ class __$$CoverageExceptionImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CoverageExceptionImpl extends _CoverageException {
   const _$CoverageExceptionImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required this.type,
@@ -2821,8 +2787,7 @@ class _$CoverageExceptionImpl extends _CoverageException {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2896,7 +2861,7 @@ class _$CoverageExceptionImpl extends _CoverageException {
 
   @override
   String toString() {
-    return 'CoverageException(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, period: $period)';
+    return 'CoverageException(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, period: $period)';
   }
 
   @override
@@ -2904,7 +2869,7 @@ class _$CoverageExceptionImpl extends _CoverageException {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CoverageExceptionImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -2917,7 +2882,7 @@ class _$CoverageExceptionImpl extends _CoverageException {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       type,
@@ -2940,7 +2905,7 @@ class _$CoverageExceptionImpl extends _CoverageException {
 
 abstract class _CoverageException extends CoverageException {
   const factory _CoverageException(
-      {@JsonKey(name: 'id') final FhirId? fhirId,
+      {final FhirId? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required final CodeableConcept type,
@@ -2954,8 +2919,7 @@ abstract class _CoverageException extends CoverageException {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -3005,13 +2969,10 @@ CoverageEligibilityRequest _$CoverageEligibilityRequestFromJson(
 mixin _$CoverageEligibilityRequest {
   @JsonKey(unknownEnumValue: R4ResourceType.CoverageEligibilityRequest)
   R4ResourceType get resourceType => throw _privateConstructorUsedError;
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  int? get dbId => throw _privateConstructorUsedError;
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @JsonKey(name: 'id')
-  String? get fhirId => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
@@ -3169,8 +3130,7 @@ abstract class $CoverageEligibilityRequestCopyWith<$Res> {
   $Res call(
       {@JsonKey(unknownEnumValue: R4ResourceType.CoverageEligibilityRequest)
       R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-      @JsonKey(name: 'id') String? fhirId,
+      String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
@@ -3231,8 +3191,7 @@ class _$CoverageEligibilityRequestCopyWithImpl<$Res,
   @override
   $Res call({
     Object? resourceType = null,
-    Object? dbId = freezed,
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? meta = freezed,
     Object? implicitRules = freezed,
     Object? implicitRulesElement = freezed,
@@ -3267,13 +3226,9 @@ class _$CoverageEligibilityRequestCopyWithImpl<$Res,
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as R4ResourceType,
-      dbId: freezed == dbId
-          ? _value.dbId
-          : dbId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       meta: freezed == meta
           ? _value.meta
@@ -3563,8 +3518,7 @@ abstract class _$$CoverageEligibilityRequestImplCopyWith<$Res>
   $Res call(
       {@JsonKey(unknownEnumValue: R4ResourceType.CoverageEligibilityRequest)
       R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-      @JsonKey(name: 'id') String? fhirId,
+      String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
@@ -3638,8 +3592,7 @@ class __$$CoverageEligibilityRequestImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? resourceType = null,
-    Object? dbId = freezed,
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? meta = freezed,
     Object? implicitRules = freezed,
     Object? implicitRulesElement = freezed,
@@ -3674,13 +3627,9 @@ class __$$CoverageEligibilityRequestImplCopyWithImpl<$Res>
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as R4ResourceType,
-      dbId: freezed == dbId
-          ? _value.dbId
-          : dbId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       meta: freezed == meta
           ? _value.meta
@@ -3804,8 +3753,7 @@ class _$CoverageEligibilityRequestImpl extends _CoverageEligibilityRequest {
   const _$CoverageEligibilityRequestImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.CoverageEligibilityRequest)
       this.resourceType = R4ResourceType.CoverageEligibilityRequest,
-      @JsonKey(includeFromJson: true, includeToJson: false) this.dbId,
-      @JsonKey(name: 'id') this.fhirId,
+      this.id,
       this.meta,
       this.implicitRules,
       @JsonKey(name: '_implicitRules') this.implicitRulesElement,
@@ -3852,15 +3800,11 @@ class _$CoverageEligibilityRequestImpl extends _CoverageEligibilityRequest {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.CoverageEligibilityRequest)
   final R4ResourceType resourceType;
-  @override
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  final int? dbId;
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
   @override
-  @JsonKey(name: 'id')
-  final String? fhirId;
+  final String? id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
@@ -4140,7 +4084,7 @@ class _$CoverageEligibilityRequestImpl extends _CoverageEligibilityRequest {
 
   @override
   String toString() {
-    return 'CoverageEligibilityRequest(resourceType: $resourceType, dbId: $dbId, fhirId: $fhirId, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, status: $status, statusElement: $statusElement, priority: $priority, purpose: $purpose, purposeElement: $purposeElement, patient: $patient, servicedDate: $servicedDate, servicedDateElement: $servicedDateElement, servicedPeriod: $servicedPeriod, created: $created, createdElement: $createdElement, enterer: $enterer, provider: $provider, insurer: $insurer, facility: $facility, supportingInfo: $supportingInfo, insurance: $insurance, item: $item)';
+    return 'CoverageEligibilityRequest(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, status: $status, statusElement: $statusElement, priority: $priority, purpose: $purpose, purposeElement: $purposeElement, patient: $patient, servicedDate: $servicedDate, servicedDateElement: $servicedDateElement, servicedPeriod: $servicedPeriod, created: $created, createdElement: $createdElement, enterer: $enterer, provider: $provider, insurer: $insurer, facility: $facility, supportingInfo: $supportingInfo, insurance: $insurance, item: $item)';
   }
 
   @override
@@ -4150,8 +4094,7 @@ class _$CoverageEligibilityRequestImpl extends _CoverageEligibilityRequest {
             other is _$CoverageEligibilityRequestImpl &&
             (identical(other.resourceType, resourceType) ||
                 other.resourceType == resourceType) &&
-            (identical(other.dbId, dbId) || other.dbId == dbId) &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.meta, meta) || other.meta == meta) &&
             (identical(other.implicitRules, implicitRules) ||
                 other.implicitRules == implicitRules) &&
@@ -4206,8 +4149,7 @@ class _$CoverageEligibilityRequestImpl extends _CoverageEligibilityRequest {
   int get hashCode => Object.hashAll([
         runtimeType,
         resourceType,
-        dbId,
-        fhirId,
+        id,
         meta,
         implicitRules,
         implicitRulesElement,
@@ -4257,8 +4199,7 @@ abstract class _CoverageEligibilityRequest extends CoverageEligibilityRequest {
   const factory _CoverageEligibilityRequest(
           {@JsonKey(unknownEnumValue: R4ResourceType.CoverageEligibilityRequest)
           final R4ResourceType resourceType,
-          @JsonKey(includeFromJson: true, includeToJson: false) final int? dbId,
-          @JsonKey(name: 'id') final String? fhirId,
+          final String? id,
           final FhirMeta? meta,
           final FhirUri? implicitRules,
           @JsonKey(name: '_implicitRules') final Element? implicitRulesElement,
@@ -4297,14 +4238,10 @@ abstract class _CoverageEligibilityRequest extends CoverageEligibilityRequest {
   @JsonKey(unknownEnumValue: R4ResourceType.CoverageEligibilityRequest)
   R4ResourceType get resourceType;
   @override
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  int? get dbId;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @JsonKey(name: 'id')
-  String? get fhirId;
+  String? get id;
   @override
 
   /// [meta] The metadata about the resource. This is content that is
@@ -4485,8 +4422,7 @@ CoverageEligibilityRequestSupportingInfo
 mixin _$CoverageEligibilityRequestSupportingInfo {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -4549,7 +4485,7 @@ abstract class $CoverageEligibilityRequestSupportingInfoCopyWith<$Res> {
           CoverageEligibilityRequestSupportingInfo>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirPositiveInt? sequence,
@@ -4578,7 +4514,7 @@ class _$CoverageEligibilityRequestSupportingInfoCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? sequence = freezed,
@@ -4588,9 +4524,9 @@ class _$CoverageEligibilityRequestSupportingInfoCopyWithImpl<$Res,
     Object? appliesToAllElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -4666,7 +4602,7 @@ abstract class _$$CoverageEligibilityRequestSupportingInfoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirPositiveInt? sequence,
@@ -4696,7 +4632,7 @@ class __$$CoverageEligibilityRequestSupportingInfoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? sequence = freezed,
@@ -4706,9 +4642,9 @@ class __$$CoverageEligibilityRequestSupportingInfoImplCopyWithImpl<$Res>
     Object? appliesToAllElement = freezed,
   }) {
     return _then(_$CoverageEligibilityRequestSupportingInfoImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -4747,7 +4683,7 @@ class __$$CoverageEligibilityRequestSupportingInfoImplCopyWithImpl<$Res>
 class _$CoverageEligibilityRequestSupportingInfoImpl
     extends _CoverageEligibilityRequestSupportingInfo {
   const _$CoverageEligibilityRequestSupportingInfoImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.sequence,
@@ -4766,8 +4702,7 @@ class _$CoverageEligibilityRequestSupportingInfoImpl
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -4858,7 +4793,7 @@ class _$CoverageEligibilityRequestSupportingInfoImpl
 
   @override
   String toString() {
-    return 'CoverageEligibilityRequestSupportingInfo(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, sequence: $sequence, sequenceElement: $sequenceElement, information: $information, appliesToAll: $appliesToAll, appliesToAllElement: $appliesToAllElement)';
+    return 'CoverageEligibilityRequestSupportingInfo(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, sequence: $sequence, sequenceElement: $sequenceElement, information: $information, appliesToAll: $appliesToAll, appliesToAllElement: $appliesToAllElement)';
   }
 
   @override
@@ -4866,7 +4801,7 @@ class _$CoverageEligibilityRequestSupportingInfoImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CoverageEligibilityRequestSupportingInfoImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -4887,7 +4822,7 @@ class _$CoverageEligibilityRequestSupportingInfoImpl
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       sequence,
@@ -4916,7 +4851,7 @@ class _$CoverageEligibilityRequestSupportingInfoImpl
 abstract class _CoverageEligibilityRequestSupportingInfo
     extends CoverageEligibilityRequestSupportingInfo {
   const factory _CoverageEligibilityRequestSupportingInfo(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final FhirPositiveInt? sequence,
@@ -4935,8 +4870,7 @@ abstract class _CoverageEligibilityRequestSupportingInfo
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -5004,8 +4938,7 @@ CoverageEligibilityRequestInsurance
 mixin _$CoverageEligibilityRequestInsurance {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -5070,7 +5003,7 @@ abstract class $CoverageEligibilityRequestInsuranceCopyWith<$Res> {
           CoverageEligibilityRequestInsurance>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirBoolean? focal,
@@ -5099,7 +5032,7 @@ class _$CoverageEligibilityRequestInsuranceCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? focal = freezed,
@@ -5109,9 +5042,9 @@ class _$CoverageEligibilityRequestInsuranceCopyWithImpl<$Res,
     Object? businessArrangementElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -5187,7 +5120,7 @@ abstract class _$$CoverageEligibilityRequestInsuranceImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirBoolean? focal,
@@ -5218,7 +5151,7 @@ class __$$CoverageEligibilityRequestInsuranceImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? focal = freezed,
@@ -5228,9 +5161,9 @@ class __$$CoverageEligibilityRequestInsuranceImplCopyWithImpl<$Res>
     Object? businessArrangementElement = freezed,
   }) {
     return _then(_$CoverageEligibilityRequestInsuranceImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -5269,7 +5202,7 @@ class __$$CoverageEligibilityRequestInsuranceImplCopyWithImpl<$Res>
 class _$CoverageEligibilityRequestInsuranceImpl
     extends _CoverageEligibilityRequestInsurance {
   const _$CoverageEligibilityRequestInsuranceImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.focal,
@@ -5288,8 +5221,7 @@ class _$CoverageEligibilityRequestInsuranceImpl
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -5382,7 +5314,7 @@ class _$CoverageEligibilityRequestInsuranceImpl
 
   @override
   String toString() {
-    return 'CoverageEligibilityRequestInsurance(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, focal: $focal, focalElement: $focalElement, coverage: $coverage, businessArrangement: $businessArrangement, businessArrangementElement: $businessArrangementElement)';
+    return 'CoverageEligibilityRequestInsurance(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, focal: $focal, focalElement: $focalElement, coverage: $coverage, businessArrangement: $businessArrangement, businessArrangementElement: $businessArrangementElement)';
   }
 
   @override
@@ -5390,7 +5322,7 @@ class _$CoverageEligibilityRequestInsuranceImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CoverageEligibilityRequestInsuranceImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -5412,7 +5344,7 @@ class _$CoverageEligibilityRequestInsuranceImpl
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       focal,
@@ -5440,7 +5372,7 @@ class _$CoverageEligibilityRequestInsuranceImpl
 abstract class _CoverageEligibilityRequestInsurance
     extends CoverageEligibilityRequestInsurance {
   const factory _CoverageEligibilityRequestInsurance(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final FhirBoolean? focal,
@@ -5460,8 +5392,7 @@ abstract class _CoverageEligibilityRequestInsurance
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -5531,8 +5462,7 @@ CoverageEligibilityRequestItem _$CoverageEligibilityRequestItemFromJson(
 mixin _$CoverageEligibilityRequestItem {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -5616,7 +5546,7 @@ abstract class $CoverageEligibilityRequestItemCopyWith<$Res> {
           CoverageEligibilityRequestItem>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<FhirPositiveInt>? supportingInfoSequence,
@@ -5654,7 +5584,7 @@ class _$CoverageEligibilityRequestItemCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? supportingInfoSequence = freezed,
@@ -5670,9 +5600,9 @@ class _$CoverageEligibilityRequestItemCopyWithImpl<$Res,
     Object? detail = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -5812,7 +5742,7 @@ abstract class _$$CoverageEligibilityRequestItemImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<FhirPositiveInt>? supportingInfoSequence,
@@ -5855,7 +5785,7 @@ class __$$CoverageEligibilityRequestItemImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? supportingInfoSequence = freezed,
@@ -5871,9 +5801,9 @@ class __$$CoverageEligibilityRequestItemImplCopyWithImpl<$Res>
     Object? detail = freezed,
   }) {
     return _then(_$CoverageEligibilityRequestItemImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -5936,7 +5866,7 @@ class __$$CoverageEligibilityRequestItemImplCopyWithImpl<$Res>
 class _$CoverageEligibilityRequestItemImpl
     extends _CoverageEligibilityRequestItem {
   const _$CoverageEligibilityRequestItemImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final List<FhirPositiveInt>? supportingInfoSequence,
@@ -5967,8 +5897,7 @@ class _$CoverageEligibilityRequestItemImpl
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -6133,7 +6062,7 @@ class _$CoverageEligibilityRequestItemImpl
 
   @override
   String toString() {
-    return 'CoverageEligibilityRequestItem(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, supportingInfoSequence: $supportingInfoSequence, supportingInfoSequenceElement: $supportingInfoSequenceElement, category: $category, productOrService: $productOrService, modifier: $modifier, provider: $provider, quantity: $quantity, unitPrice: $unitPrice, facility: $facility, diagnosis: $diagnosis, detail: $detail)';
+    return 'CoverageEligibilityRequestItem(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, supportingInfoSequence: $supportingInfoSequence, supportingInfoSequenceElement: $supportingInfoSequenceElement, category: $category, productOrService: $productOrService, modifier: $modifier, provider: $provider, quantity: $quantity, unitPrice: $unitPrice, facility: $facility, diagnosis: $diagnosis, detail: $detail)';
   }
 
   @override
@@ -6141,7 +6070,7 @@ class _$CoverageEligibilityRequestItemImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CoverageEligibilityRequestItemImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -6173,7 +6102,7 @@ class _$CoverageEligibilityRequestItemImpl
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       const DeepCollectionEquality().hash(_supportingInfoSequence),
@@ -6207,7 +6136,7 @@ class _$CoverageEligibilityRequestItemImpl
 abstract class _CoverageEligibilityRequestItem
     extends CoverageEligibilityRequestItem {
   const factory _CoverageEligibilityRequestItem(
-      {@JsonKey(name: 'id') final FhirId? fhirId,
+      {final FhirId? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final List<FhirPositiveInt>? supportingInfoSequence,
@@ -6231,8 +6160,7 @@ abstract class _CoverageEligibilityRequestItem
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -6325,8 +6253,7 @@ CoverageEligibilityRequestDiagnosis
 mixin _$CoverageEligibilityRequestDiagnosis {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -6378,7 +6305,7 @@ abstract class $CoverageEligibilityRequestDiagnosisCopyWith<$Res> {
           CoverageEligibilityRequestDiagnosis>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? diagnosisCodeableConcept,
@@ -6402,16 +6329,16 @@ class _$CoverageEligibilityRequestDiagnosisCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? diagnosisCodeableConcept = freezed,
     Object? diagnosisReference = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -6468,7 +6395,7 @@ abstract class _$$CoverageEligibilityRequestDiagnosisImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? diagnosisCodeableConcept,
@@ -6493,16 +6420,16 @@ class __$$CoverageEligibilityRequestDiagnosisImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? diagnosisCodeableConcept = freezed,
     Object? diagnosisReference = freezed,
   }) {
     return _then(_$CoverageEligibilityRequestDiagnosisImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -6529,7 +6456,7 @@ class __$$CoverageEligibilityRequestDiagnosisImplCopyWithImpl<$Res>
 class _$CoverageEligibilityRequestDiagnosisImpl
     extends _CoverageEligibilityRequestDiagnosis {
   const _$CoverageEligibilityRequestDiagnosisImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.diagnosisCodeableConcept,
@@ -6545,8 +6472,7 @@ class _$CoverageEligibilityRequestDiagnosisImpl
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -6622,7 +6548,7 @@ class _$CoverageEligibilityRequestDiagnosisImpl
 
   @override
   String toString() {
-    return 'CoverageEligibilityRequestDiagnosis(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, diagnosisCodeableConcept: $diagnosisCodeableConcept, diagnosisReference: $diagnosisReference)';
+    return 'CoverageEligibilityRequestDiagnosis(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, diagnosisCodeableConcept: $diagnosisCodeableConcept, diagnosisReference: $diagnosisReference)';
   }
 
   @override
@@ -6630,7 +6556,7 @@ class _$CoverageEligibilityRequestDiagnosisImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CoverageEligibilityRequestDiagnosisImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -6646,7 +6572,7 @@ class _$CoverageEligibilityRequestDiagnosisImpl
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       diagnosisCodeableConcept,
@@ -6671,7 +6597,7 @@ class _$CoverageEligibilityRequestDiagnosisImpl
 abstract class _CoverageEligibilityRequestDiagnosis
     extends CoverageEligibilityRequestDiagnosis {
   const factory _CoverageEligibilityRequestDiagnosis(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final CodeableConcept? diagnosisCodeableConcept,
@@ -6687,8 +6613,7 @@ abstract class _CoverageEligibilityRequestDiagnosis
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -6741,13 +6666,10 @@ CoverageEligibilityResponse _$CoverageEligibilityResponseFromJson(
 mixin _$CoverageEligibilityResponse {
   @JsonKey(unknownEnumValue: R4ResourceType.CoverageEligibilityResponse)
   R4ResourceType get resourceType => throw _privateConstructorUsedError;
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  int? get dbId => throw _privateConstructorUsedError;
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @JsonKey(name: 'id')
-  String? get fhirId => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
@@ -6918,8 +6840,7 @@ abstract class $CoverageEligibilityResponseCopyWith<$Res> {
   $Res call(
       {@JsonKey(unknownEnumValue: R4ResourceType.CoverageEligibilityResponse)
       R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-      @JsonKey(name: 'id') String? fhirId,
+      String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
@@ -6986,8 +6907,7 @@ class _$CoverageEligibilityResponseCopyWithImpl<$Res,
   @override
   $Res call({
     Object? resourceType = null,
-    Object? dbId = freezed,
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? meta = freezed,
     Object? implicitRules = freezed,
     Object? implicitRulesElement = freezed,
@@ -7026,13 +6946,9 @@ class _$CoverageEligibilityResponseCopyWithImpl<$Res,
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as R4ResourceType,
-      dbId: freezed == dbId
-          ? _value.dbId
-          : dbId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       meta: freezed == meta
           ? _value.meta
@@ -7358,8 +7274,7 @@ abstract class _$$CoverageEligibilityResponseImplCopyWith<$Res>
   $Res call(
       {@JsonKey(unknownEnumValue: R4ResourceType.CoverageEligibilityResponse)
       R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-      @JsonKey(name: 'id') String? fhirId,
+      String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
@@ -7441,8 +7356,7 @@ class __$$CoverageEligibilityResponseImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? resourceType = null,
-    Object? dbId = freezed,
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? meta = freezed,
     Object? implicitRules = freezed,
     Object? implicitRulesElement = freezed,
@@ -7481,13 +7395,9 @@ class __$$CoverageEligibilityResponseImplCopyWithImpl<$Res>
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as R4ResourceType,
-      dbId: freezed == dbId
-          ? _value.dbId
-          : dbId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       meta: freezed == meta
           ? _value.meta
@@ -7627,8 +7537,7 @@ class _$CoverageEligibilityResponseImpl extends _CoverageEligibilityResponse {
   const _$CoverageEligibilityResponseImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.CoverageEligibilityResponse)
       this.resourceType = R4ResourceType.CoverageEligibilityResponse,
-      @JsonKey(includeFromJson: true, includeToJson: false) this.dbId,
-      @JsonKey(name: 'id') this.fhirId,
+      this.id,
       this.meta,
       this.implicitRules,
       @JsonKey(name: '_implicitRules') this.implicitRulesElement,
@@ -7678,15 +7587,11 @@ class _$CoverageEligibilityResponseImpl extends _CoverageEligibilityResponse {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.CoverageEligibilityResponse)
   final R4ResourceType resourceType;
-  @override
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  final int? dbId;
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
   @override
-  @JsonKey(name: 'id')
-  final String? fhirId;
+  final String? id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
@@ -7970,7 +7875,7 @@ class _$CoverageEligibilityResponseImpl extends _CoverageEligibilityResponse {
 
   @override
   String toString() {
-    return 'CoverageEligibilityResponse(resourceType: $resourceType, dbId: $dbId, fhirId: $fhirId, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, status: $status, statusElement: $statusElement, purpose: $purpose, purposeElement: $purposeElement, patient: $patient, servicedDate: $servicedDate, servicedDateElement: $servicedDateElement, servicedPeriod: $servicedPeriod, created: $created, createdElement: $createdElement, requestor: $requestor, request: $request, outcome: $outcome, outcomeElement: $outcomeElement, disposition: $disposition, dispositionElement: $dispositionElement, insurer: $insurer, insurance: $insurance, preAuthRef: $preAuthRef, preAuthRefElement: $preAuthRefElement, form: $form, error: $error)';
+    return 'CoverageEligibilityResponse(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, status: $status, statusElement: $statusElement, purpose: $purpose, purposeElement: $purposeElement, patient: $patient, servicedDate: $servicedDate, servicedDateElement: $servicedDateElement, servicedPeriod: $servicedPeriod, created: $created, createdElement: $createdElement, requestor: $requestor, request: $request, outcome: $outcome, outcomeElement: $outcomeElement, disposition: $disposition, dispositionElement: $dispositionElement, insurer: $insurer, insurance: $insurance, preAuthRef: $preAuthRef, preAuthRefElement: $preAuthRefElement, form: $form, error: $error)';
   }
 
   @override
@@ -7980,8 +7885,7 @@ class _$CoverageEligibilityResponseImpl extends _CoverageEligibilityResponse {
             other is _$CoverageEligibilityResponseImpl &&
             (identical(other.resourceType, resourceType) ||
                 other.resourceType == resourceType) &&
-            (identical(other.dbId, dbId) || other.dbId == dbId) &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.meta, meta) || other.meta == meta) &&
             (identical(other.implicitRules, implicitRules) ||
                 other.implicitRules == implicitRules) &&
@@ -8042,8 +7946,7 @@ class _$CoverageEligibilityResponseImpl extends _CoverageEligibilityResponse {
   int get hashCode => Object.hashAll([
         runtimeType,
         resourceType,
-        dbId,
-        fhirId,
+        id,
         meta,
         implicitRules,
         implicitRulesElement,
@@ -8099,8 +8002,7 @@ abstract class _CoverageEligibilityResponse
           {@JsonKey(
               unknownEnumValue: R4ResourceType.CoverageEligibilityResponse)
           final R4ResourceType resourceType,
-          @JsonKey(includeFromJson: true, includeToJson: false) final int? dbId,
-          @JsonKey(name: 'id') final String? fhirId,
+          final String? id,
           final FhirMeta? meta,
           final FhirUri? implicitRules,
           @JsonKey(name: '_implicitRules') final Element? implicitRulesElement,
@@ -8143,14 +8045,10 @@ abstract class _CoverageEligibilityResponse
   @JsonKey(unknownEnumValue: R4ResourceType.CoverageEligibilityResponse)
   R4ResourceType get resourceType;
   @override
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  int? get dbId;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @JsonKey(name: 'id')
-  String? get fhirId;
+  String? get id;
   @override
 
   /// [meta] The metadata about the resource. This is content that is
@@ -8347,8 +8245,7 @@ CoverageEligibilityResponseInsurance
 mixin _$CoverageEligibilityResponseInsurance {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -8414,7 +8311,7 @@ abstract class $CoverageEligibilityResponseInsuranceCopyWith<$Res> {
           CoverageEligibilityResponseInsurance>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       Reference coverage,
@@ -8442,7 +8339,7 @@ class _$CoverageEligibilityResponseInsuranceCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? coverage = null,
@@ -8452,9 +8349,9 @@ class _$CoverageEligibilityResponseInsuranceCopyWithImpl<$Res,
     Object? item = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -8530,7 +8427,7 @@ abstract class _$$CoverageEligibilityResponseInsuranceImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       Reference coverage,
@@ -8560,7 +8457,7 @@ class __$$CoverageEligibilityResponseInsuranceImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? coverage = null,
@@ -8570,9 +8467,9 @@ class __$$CoverageEligibilityResponseInsuranceImplCopyWithImpl<$Res>
     Object? item = freezed,
   }) {
     return _then(_$CoverageEligibilityResponseInsuranceImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -8611,7 +8508,7 @@ class __$$CoverageEligibilityResponseInsuranceImplCopyWithImpl<$Res>
 class _$CoverageEligibilityResponseInsuranceImpl
     extends _CoverageEligibilityResponseInsurance {
   const _$CoverageEligibilityResponseInsuranceImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required this.coverage,
@@ -8631,8 +8528,7 @@ class _$CoverageEligibilityResponseInsuranceImpl
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -8735,7 +8631,7 @@ class _$CoverageEligibilityResponseInsuranceImpl
 
   @override
   String toString() {
-    return 'CoverageEligibilityResponseInsurance(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, coverage: $coverage, inforce: $inforce, inforceElement: $inforceElement, benefitPeriod: $benefitPeriod, item: $item)';
+    return 'CoverageEligibilityResponseInsurance(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, coverage: $coverage, inforce: $inforce, inforceElement: $inforceElement, benefitPeriod: $benefitPeriod, item: $item)';
   }
 
   @override
@@ -8743,7 +8639,7 @@ class _$CoverageEligibilityResponseInsuranceImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CoverageEligibilityResponseInsuranceImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -8762,7 +8658,7 @@ class _$CoverageEligibilityResponseInsuranceImpl
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       coverage,
@@ -8790,7 +8686,7 @@ class _$CoverageEligibilityResponseInsuranceImpl
 abstract class _CoverageEligibilityResponseInsurance
     extends CoverageEligibilityResponseInsurance {
   const factory _CoverageEligibilityResponseInsurance(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           required final Reference coverage,
@@ -8809,8 +8705,7 @@ abstract class _CoverageEligibilityResponseInsurance
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -8880,8 +8775,7 @@ CoverageEligibilityResponseItem _$CoverageEligibilityResponseItemFromJson(
 mixin _$CoverageEligibilityResponseItem {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -8997,7 +8891,7 @@ abstract class $CoverageEligibilityResponseItemCopyWith<$Res> {
           CoverageEligibilityResponseItem>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? category,
@@ -9048,7 +8942,7 @@ class _$CoverageEligibilityResponseItemCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? category = freezed,
@@ -9072,9 +8966,9 @@ class _$CoverageEligibilityResponseItemCopyWithImpl<$Res,
     Object? authorizationUrlElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -9308,7 +9202,7 @@ abstract class _$$CoverageEligibilityResponseItemImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? category,
@@ -9369,7 +9263,7 @@ class __$$CoverageEligibilityResponseItemImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? category = freezed,
@@ -9393,9 +9287,9 @@ class __$$CoverageEligibilityResponseItemImplCopyWithImpl<$Res>
     Object? authorizationUrlElement = freezed,
   }) {
     return _then(_$CoverageEligibilityResponseItemImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -9490,7 +9384,7 @@ class __$$CoverageEligibilityResponseItemImplCopyWithImpl<$Res>
 class _$CoverageEligibilityResponseItemImpl
     extends _CoverageEligibilityResponseItem {
   const _$CoverageEligibilityResponseItemImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.category,
@@ -9527,8 +9421,7 @@ class _$CoverageEligibilityResponseItemImpl
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -9714,7 +9607,7 @@ class _$CoverageEligibilityResponseItemImpl
 
   @override
   String toString() {
-    return 'CoverageEligibilityResponseItem(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, category: $category, productOrService: $productOrService, modifier: $modifier, provider: $provider, excluded: $excluded, excludedElement: $excludedElement, name: $name, nameElement: $nameElement, description: $description, descriptionElement: $descriptionElement, network: $network, unit: $unit, term: $term, benefit: $benefit, authorizationRequired: $authorizationRequired, authorizationRequiredElement: $authorizationRequiredElement, authorizationSupporting: $authorizationSupporting, authorizationUrl: $authorizationUrl, authorizationUrlElement: $authorizationUrlElement)';
+    return 'CoverageEligibilityResponseItem(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, category: $category, productOrService: $productOrService, modifier: $modifier, provider: $provider, excluded: $excluded, excludedElement: $excludedElement, name: $name, nameElement: $nameElement, description: $description, descriptionElement: $descriptionElement, network: $network, unit: $unit, term: $term, benefit: $benefit, authorizationRequired: $authorizationRequired, authorizationRequiredElement: $authorizationRequiredElement, authorizationSupporting: $authorizationSupporting, authorizationUrl: $authorizationUrl, authorizationUrlElement: $authorizationUrlElement)';
   }
 
   @override
@@ -9722,7 +9615,7 @@ class _$CoverageEligibilityResponseItemImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CoverageEligibilityResponseItemImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -9768,7 +9661,7 @@ class _$CoverageEligibilityResponseItemImpl
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        fhirId,
+        id,
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),
         category,
@@ -9811,7 +9704,7 @@ class _$CoverageEligibilityResponseItemImpl
 abstract class _CoverageEligibilityResponseItem
     extends CoverageEligibilityResponseItem {
   const factory _CoverageEligibilityResponseItem(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final CodeableConcept? category,
@@ -9845,8 +9738,7 @@ abstract class _CoverageEligibilityResponseItem
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -9979,8 +9871,7 @@ CoverageEligibilityResponseBenefit _$CoverageEligibilityResponseBenefitFromJson(
 mixin _$CoverageEligibilityResponseBenefit {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -10065,7 +9956,7 @@ abstract class $CoverageEligibilityResponseBenefitCopyWith<$Res> {
           CoverageEligibilityResponseBenefit>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept type,
@@ -10103,7 +9994,7 @@ class _$CoverageEligibilityResponseBenefitCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? type = null,
@@ -10119,9 +10010,9 @@ class _$CoverageEligibilityResponseBenefitCopyWithImpl<$Res,
     Object? usedMoney = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -10269,7 +10160,7 @@ abstract class _$$CoverageEligibilityResponseBenefitImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept type,
@@ -10313,7 +10204,7 @@ class __$$CoverageEligibilityResponseBenefitImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? type = null,
@@ -10329,9 +10220,9 @@ class __$$CoverageEligibilityResponseBenefitImplCopyWithImpl<$Res>
     Object? usedMoney = freezed,
   }) {
     return _then(_$CoverageEligibilityResponseBenefitImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -10394,7 +10285,7 @@ class __$$CoverageEligibilityResponseBenefitImplCopyWithImpl<$Res>
 class _$CoverageEligibilityResponseBenefitImpl
     extends _CoverageEligibilityResponseBenefit {
   const _$CoverageEligibilityResponseBenefitImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required this.type,
@@ -10419,8 +10310,7 @@ class _$CoverageEligibilityResponseBenefitImpl
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -10539,7 +10429,7 @@ class _$CoverageEligibilityResponseBenefitImpl
 
   @override
   String toString() {
-    return 'CoverageEligibilityResponseBenefit(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, allowedUnsignedInt: $allowedUnsignedInt, allowedUnsignedIntElement: $allowedUnsignedIntElement, allowedString: $allowedString, allowedStringElement: $allowedStringElement, allowedMoney: $allowedMoney, usedUnsignedInt: $usedUnsignedInt, usedUnsignedIntElement: $usedUnsignedIntElement, usedString: $usedString, usedStringElement: $usedStringElement, usedMoney: $usedMoney)';
+    return 'CoverageEligibilityResponseBenefit(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, allowedUnsignedInt: $allowedUnsignedInt, allowedUnsignedIntElement: $allowedUnsignedIntElement, allowedString: $allowedString, allowedStringElement: $allowedStringElement, allowedMoney: $allowedMoney, usedUnsignedInt: $usedUnsignedInt, usedUnsignedIntElement: $usedUnsignedIntElement, usedString: $usedString, usedStringElement: $usedStringElement, usedMoney: $usedMoney)';
   }
 
   @override
@@ -10547,7 +10437,7 @@ class _$CoverageEligibilityResponseBenefitImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CoverageEligibilityResponseBenefitImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -10580,7 +10470,7 @@ class _$CoverageEligibilityResponseBenefitImpl
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       type,
@@ -10614,7 +10504,7 @@ class _$CoverageEligibilityResponseBenefitImpl
 abstract class _CoverageEligibilityResponseBenefit
     extends CoverageEligibilityResponseBenefit {
   const factory _CoverageEligibilityResponseBenefit(
-      {@JsonKey(name: 'id') final FhirId? fhirId,
+      {final FhirId? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required final CodeableConcept type,
@@ -10639,8 +10529,7 @@ abstract class _CoverageEligibilityResponseBenefit
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -10736,8 +10625,7 @@ CoverageEligibilityResponseError _$CoverageEligibilityResponseErrorFromJson(
 mixin _$CoverageEligibilityResponseError {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -10783,7 +10671,7 @@ abstract class $CoverageEligibilityResponseErrorCopyWith<$Res> {
           CoverageEligibilityResponseError>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept code});
@@ -10805,15 +10693,15 @@ class _$CoverageEligibilityResponseErrorCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? code = null,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -10849,7 +10737,7 @@ abstract class _$$CoverageEligibilityResponseErrorImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept code});
@@ -10871,15 +10759,15 @@ class __$$CoverageEligibilityResponseErrorImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? code = null,
   }) {
     return _then(_$CoverageEligibilityResponseErrorImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -10902,7 +10790,7 @@ class __$$CoverageEligibilityResponseErrorImplCopyWithImpl<$Res>
 class _$CoverageEligibilityResponseErrorImpl
     extends _CoverageEligibilityResponseError {
   const _$CoverageEligibilityResponseErrorImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required this.code})
@@ -10917,8 +10805,7 @@ class _$CoverageEligibilityResponseErrorImpl
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -10989,7 +10876,7 @@ class _$CoverageEligibilityResponseErrorImpl
 
   @override
   String toString() {
-    return 'CoverageEligibilityResponseError(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, code: $code)';
+    return 'CoverageEligibilityResponseError(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, code: $code)';
   }
 
   @override
@@ -10997,7 +10884,7 @@ class _$CoverageEligibilityResponseErrorImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CoverageEligibilityResponseErrorImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -11009,7 +10896,7 @@ class _$CoverageEligibilityResponseErrorImpl
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       code);
@@ -11033,7 +10920,7 @@ class _$CoverageEligibilityResponseErrorImpl
 abstract class _CoverageEligibilityResponseError
     extends CoverageEligibilityResponseError {
   const factory _CoverageEligibilityResponseError(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           required final CodeableConcept code}) =
@@ -11048,8 +10935,7 @@ abstract class _CoverageEligibilityResponseError
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -11096,13 +10982,10 @@ EnrollmentRequest _$EnrollmentRequestFromJson(Map<String, dynamic> json) {
 mixin _$EnrollmentRequest {
   @JsonKey(unknownEnumValue: R4ResourceType.EnrollmentRequest)
   R4ResourceType get resourceType => throw _privateConstructorUsedError;
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  int? get dbId => throw _privateConstructorUsedError;
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @JsonKey(name: 'id')
-  String? get fhirId => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
@@ -11211,8 +11094,7 @@ abstract class $EnrollmentRequestCopyWith<$Res> {
   $Res call(
       {@JsonKey(unknownEnumValue: R4ResourceType.EnrollmentRequest)
       R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-      @JsonKey(name: 'id') String? fhirId,
+      String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
@@ -11258,8 +11140,7 @@ class _$EnrollmentRequestCopyWithImpl<$Res, $Val extends EnrollmentRequest>
   @override
   $Res call({
     Object? resourceType = null,
-    Object? dbId = freezed,
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? meta = freezed,
     Object? implicitRules = freezed,
     Object? implicitRulesElement = freezed,
@@ -11284,13 +11165,9 @@ class _$EnrollmentRequestCopyWithImpl<$Res, $Val extends EnrollmentRequest>
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as R4ResourceType,
-      dbId: freezed == dbId
-          ? _value.dbId
-          : dbId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       meta: freezed == meta
           ? _value.meta
@@ -11499,8 +11376,7 @@ abstract class _$$EnrollmentRequestImplCopyWith<$Res>
   $Res call(
       {@JsonKey(unknownEnumValue: R4ResourceType.EnrollmentRequest)
       R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-      @JsonKey(name: 'id') String? fhirId,
+      String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
@@ -11554,8 +11430,7 @@ class __$$EnrollmentRequestImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? resourceType = null,
-    Object? dbId = freezed,
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? meta = freezed,
     Object? implicitRules = freezed,
     Object? implicitRulesElement = freezed,
@@ -11580,13 +11455,9 @@ class __$$EnrollmentRequestImplCopyWithImpl<$Res>
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as R4ResourceType,
-      dbId: freezed == dbId
-          ? _value.dbId
-          : dbId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       meta: freezed == meta
           ? _value.meta
@@ -11670,8 +11541,7 @@ class _$EnrollmentRequestImpl extends _EnrollmentRequest {
   const _$EnrollmentRequestImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.EnrollmentRequest)
       this.resourceType = R4ResourceType.EnrollmentRequest,
-      @JsonKey(includeFromJson: true, includeToJson: false) this.dbId,
-      @JsonKey(name: 'id') this.fhirId,
+      this.id,
       this.meta,
       this.implicitRules,
       @JsonKey(name: '_implicitRules') this.implicitRulesElement,
@@ -11702,15 +11572,11 @@ class _$EnrollmentRequestImpl extends _EnrollmentRequest {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.EnrollmentRequest)
   final R4ResourceType resourceType;
-  @override
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  final int? dbId;
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
   @override
-  @JsonKey(name: 'id')
-  final String? fhirId;
+  final String? id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
@@ -11880,7 +11746,7 @@ class _$EnrollmentRequestImpl extends _EnrollmentRequest {
 
   @override
   String toString() {
-    return 'EnrollmentRequest(resourceType: $resourceType, dbId: $dbId, fhirId: $fhirId, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, status: $status, statusElement: $statusElement, created: $created, createdElement: $createdElement, insurer: $insurer, provider: $provider, candidate: $candidate, coverage: $coverage)';
+    return 'EnrollmentRequest(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, status: $status, statusElement: $statusElement, created: $created, createdElement: $createdElement, insurer: $insurer, provider: $provider, candidate: $candidate, coverage: $coverage)';
   }
 
   @override
@@ -11890,8 +11756,7 @@ class _$EnrollmentRequestImpl extends _EnrollmentRequest {
             other is _$EnrollmentRequestImpl &&
             (identical(other.resourceType, resourceType) ||
                 other.resourceType == resourceType) &&
-            (identical(other.dbId, dbId) || other.dbId == dbId) &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.meta, meta) || other.meta == meta) &&
             (identical(other.implicitRules, implicitRules) ||
                 other.implicitRules == implicitRules) &&
@@ -11930,8 +11795,7 @@ class _$EnrollmentRequestImpl extends _EnrollmentRequest {
   int get hashCode => Object.hashAll([
         runtimeType,
         resourceType,
-        dbId,
-        fhirId,
+        id,
         meta,
         implicitRules,
         implicitRulesElement,
@@ -11971,8 +11835,7 @@ abstract class _EnrollmentRequest extends EnrollmentRequest {
   const factory _EnrollmentRequest(
       {@JsonKey(unknownEnumValue: R4ResourceType.EnrollmentRequest)
       final R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) final int? dbId,
-      @JsonKey(name: 'id') final String? fhirId,
+      final String? id,
       final FhirMeta? meta,
       final FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') final Element? implicitRulesElement,
@@ -12000,14 +11863,10 @@ abstract class _EnrollmentRequest extends EnrollmentRequest {
   @JsonKey(unknownEnumValue: R4ResourceType.EnrollmentRequest)
   R4ResourceType get resourceType;
   @override
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  int? get dbId;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @JsonKey(name: 'id')
-  String? get fhirId;
+  String? get id;
   @override
 
   /// [meta] The metadata about the resource. This is content that is
@@ -12131,13 +11990,10 @@ EnrollmentResponse _$EnrollmentResponseFromJson(Map<String, dynamic> json) {
 mixin _$EnrollmentResponse {
   @JsonKey(unknownEnumValue: R4ResourceType.EnrollmentResponse)
   R4ResourceType get resourceType => throw _privateConstructorUsedError;
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  int? get dbId => throw _privateConstructorUsedError;
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @JsonKey(name: 'id')
-  String? get fhirId => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
@@ -12257,8 +12113,7 @@ abstract class $EnrollmentResponseCopyWith<$Res> {
   $Res call(
       {@JsonKey(unknownEnumValue: R4ResourceType.EnrollmentResponse)
       R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-      @JsonKey(name: 'id') String? fhirId,
+      String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
@@ -12308,8 +12163,7 @@ class _$EnrollmentResponseCopyWithImpl<$Res, $Val extends EnrollmentResponse>
   @override
   $Res call({
     Object? resourceType = null,
-    Object? dbId = freezed,
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? meta = freezed,
     Object? implicitRules = freezed,
     Object? implicitRulesElement = freezed,
@@ -12337,13 +12191,9 @@ class _$EnrollmentResponseCopyWithImpl<$Res, $Val extends EnrollmentResponse>
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as R4ResourceType,
-      dbId: freezed == dbId
-          ? _value.dbId
-          : dbId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       meta: freezed == meta
           ? _value.meta
@@ -12576,8 +12426,7 @@ abstract class _$$EnrollmentResponseImplCopyWith<$Res>
   $Res call(
       {@JsonKey(unknownEnumValue: R4ResourceType.EnrollmentResponse)
       R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-      @JsonKey(name: 'id') String? fhirId,
+      String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
@@ -12636,8 +12485,7 @@ class __$$EnrollmentResponseImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? resourceType = null,
-    Object? dbId = freezed,
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? meta = freezed,
     Object? implicitRules = freezed,
     Object? implicitRulesElement = freezed,
@@ -12665,13 +12513,9 @@ class __$$EnrollmentResponseImplCopyWithImpl<$Res>
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as R4ResourceType,
-      dbId: freezed == dbId
-          ? _value.dbId
-          : dbId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       meta: freezed == meta
           ? _value.meta
@@ -12767,8 +12611,7 @@ class _$EnrollmentResponseImpl extends _EnrollmentResponse {
   const _$EnrollmentResponseImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.EnrollmentResponse)
       this.resourceType = R4ResourceType.EnrollmentResponse,
-      @JsonKey(includeFromJson: true, includeToJson: false) this.dbId,
-      @JsonKey(name: 'id') this.fhirId,
+      this.id,
       this.meta,
       this.implicitRules,
       @JsonKey(name: '_implicitRules') this.implicitRulesElement,
@@ -12802,15 +12645,11 @@ class _$EnrollmentResponseImpl extends _EnrollmentResponse {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.EnrollmentResponse)
   final R4ResourceType resourceType;
-  @override
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  final int? dbId;
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
   @override
-  @JsonKey(name: 'id')
-  final String? fhirId;
+  final String? id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
@@ -12994,7 +12833,7 @@ class _$EnrollmentResponseImpl extends _EnrollmentResponse {
 
   @override
   String toString() {
-    return 'EnrollmentResponse(resourceType: $resourceType, dbId: $dbId, fhirId: $fhirId, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, status: $status, statusElement: $statusElement, request: $request, outcome: $outcome, outcomeElement: $outcomeElement, disposition: $disposition, dispositionElement: $dispositionElement, created: $created, createdElement: $createdElement, organization: $organization, requestProvider: $requestProvider)';
+    return 'EnrollmentResponse(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, status: $status, statusElement: $statusElement, request: $request, outcome: $outcome, outcomeElement: $outcomeElement, disposition: $disposition, dispositionElement: $dispositionElement, created: $created, createdElement: $createdElement, organization: $organization, requestProvider: $requestProvider)';
   }
 
   @override
@@ -13004,8 +12843,7 @@ class _$EnrollmentResponseImpl extends _EnrollmentResponse {
             other is _$EnrollmentResponseImpl &&
             (identical(other.resourceType, resourceType) ||
                 other.resourceType == resourceType) &&
-            (identical(other.dbId, dbId) || other.dbId == dbId) &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.meta, meta) || other.meta == meta) &&
             (identical(other.implicitRules, implicitRules) ||
                 other.implicitRules == implicitRules) &&
@@ -13049,8 +12887,7 @@ class _$EnrollmentResponseImpl extends _EnrollmentResponse {
   int get hashCode => Object.hashAll([
         runtimeType,
         resourceType,
-        dbId,
-        fhirId,
+        id,
         meta,
         implicitRules,
         implicitRulesElement,
@@ -13093,8 +12930,7 @@ abstract class _EnrollmentResponse extends EnrollmentResponse {
   const factory _EnrollmentResponse(
       {@JsonKey(unknownEnumValue: R4ResourceType.EnrollmentResponse)
       final R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) final int? dbId,
-      @JsonKey(name: 'id') final String? fhirId,
+      final String? id,
       final FhirMeta? meta,
       final FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') final Element? implicitRulesElement,
@@ -13125,14 +12961,10 @@ abstract class _EnrollmentResponse extends EnrollmentResponse {
   @JsonKey(unknownEnumValue: R4ResourceType.EnrollmentResponse)
   R4ResourceType get resourceType;
   @override
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  int? get dbId;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @JsonKey(name: 'id')
-  String? get fhirId;
+  String? get id;
   @override
 
   /// [meta] The metadata about the resource. This is content that is

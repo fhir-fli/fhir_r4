@@ -121,11 +121,10 @@ class BiologicallyDerivedProduct with Resource, _$BiologicallyDerivedProduct {
 
     /// [resourceType] This is a BiologicallyDerivedProduct resource
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource.
     ///  Once assigned, this value never changes.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is
     /// maintained by the infrastructure. Changes to the content might not always
@@ -316,7 +315,7 @@ class BiologicallyDerivedProductCollection
   const factory BiologicallyDerivedProductCollection({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -427,7 +426,7 @@ class BiologicallyDerivedProductProcessing
   const factory BiologicallyDerivedProductProcessing({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -540,7 +539,7 @@ class BiologicallyDerivedProductManipulation
   const factory BiologicallyDerivedProductManipulation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -650,7 +649,7 @@ class BiologicallyDerivedProductStorage
   const factory BiologicallyDerivedProductStorage({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -877,11 +876,10 @@ class Device with Resource, _$Device {
 
     /// [resourceType] This is a Device resource
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource.
     ///  Once assigned, this value never changes.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is
     /// maintained by the infrastructure. Changes to the content might not always
@@ -1257,7 +1255,7 @@ class DeviceUdiCarrier with _$DeviceUdiCarrier {
   const factory DeviceUdiCarrier({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1421,7 +1419,7 @@ class DeviceDeviceName with _$DeviceDeviceName {
   const factory DeviceDeviceName({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1539,7 +1537,7 @@ class DeviceSpecialization with _$DeviceSpecialization {
   const factory DeviceSpecialization({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1654,7 +1652,7 @@ class DeviceVersion with _$DeviceVersion {
   const factory DeviceVersion({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1770,7 +1768,7 @@ class DeviceProperty with _$DeviceProperty {
   const factory DeviceProperty({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1960,11 +1958,10 @@ class DeviceMetric with Resource, _$DeviceMetric {
 
     /// [resourceType] This is a DeviceMetric resource
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource.
     ///  Once assigned, this value never changes.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is
     /// maintained by the infrastructure. Changes to the content might not always
@@ -2169,7 +2166,7 @@ class DeviceMetricCalibration with _$DeviceMetricCalibration {
   const factory DeviceMetricCalibration({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -2301,10 +2298,9 @@ class NutritionProduct with Resource, _$NutritionProduct {
   const factory NutritionProduct({
     /// [resourceType] This is a NutritionProduct resource;
     @Default(R4ResourceType.NutritionProduct) R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.;
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.;
     FhirMeta? meta,
@@ -2420,7 +2416,7 @@ class NutritionProductNutrient with _$NutritionProductNutrient {
   const factory NutritionProductNutrient({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
 
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
 
@@ -2496,7 +2492,7 @@ class NutritionProductIngredient with _$NutritionProductIngredient {
   const factory NutritionProductIngredient({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
 
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
 
@@ -2587,7 +2583,7 @@ class NutritionProductCharacteristic with _$NutritionProductCharacteristic {
   const factory NutritionProductCharacteristic({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
 
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -2710,7 +2706,7 @@ class NutritionProductInstance with _$NutritionProductInstance {
   ///
   /// [biologicalSource] An identifier that supports traceability to the biological entity that is the source of biological material in the product.;
   const factory NutritionProductInstance({
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Quantity? quantity,
@@ -2846,8 +2842,7 @@ class Substance with Resource, _$Substance {
     @Default(R4ResourceType.Substance)
     @JsonKey(unknownEnumValue: R4ResourceType.Substance)
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
     @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
@@ -2949,7 +2944,7 @@ class SubstanceInstance with _$SubstanceInstance {
   ///
   /// [quantity] The amount of the substance.
   const factory SubstanceInstance({
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Identifier? identifier,
@@ -3035,7 +3030,7 @@ class SubstanceIngredient with _$SubstanceIngredient {
   /// [substanceReference] Another substance that is a component of this
   ///  substance.
   const factory SubstanceIngredient({
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Ratio? quantity,

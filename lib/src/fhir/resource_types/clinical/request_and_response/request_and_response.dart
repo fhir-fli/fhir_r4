@@ -165,11 +165,10 @@ class Communication with Resource, _$Communication {
 
     /// [resourceType] This is a Communication resource
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource.
     ///  Once assigned, this value never changes.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is
     /// maintained by the infrastructure. Changes to the content might not always
@@ -419,7 +418,7 @@ class CommunicationPayload with _$CommunicationPayload {
   const factory CommunicationPayload({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -643,11 +642,10 @@ class CommunicationRequest with Resource, _$CommunicationRequest {
 
     /// [resourceType] This is a CommunicationRequest resource
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource.
     ///  Once assigned, this value never changes.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is
     /// maintained by the infrastructure. Changes to the content might not always
@@ -895,7 +893,7 @@ class CommunicationRequestPayload with _$CommunicationRequestPayload {
   const factory CommunicationRequestPayload({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1133,11 +1131,10 @@ class DeviceRequest with Resource, _$DeviceRequest {
 
     /// [resourceType] This is a DeviceRequest resource
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource.
     ///  Once assigned, this value never changes.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is
     /// maintained by the infrastructure. Changes to the content might not always
@@ -1405,7 +1402,7 @@ class DeviceRequestParameter with _$DeviceRequestParameter {
   const factory DeviceRequestParameter({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1598,11 +1595,10 @@ class DeviceUseStatement with Resource, _$DeviceUseStatement {
 
     /// [resourceType] This is a DeviceUseStatement resource
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource.
     ///  Once assigned, this value never changes.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is
     /// maintained by the infrastructure. Changes to the content might not always
@@ -1904,11 +1900,10 @@ class GuidanceResponse with Resource, _$GuidanceResponse {
 
     /// [resourceType] This is a GuidanceResponse resource
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource.
     ///  Once assigned, this value never changes.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is
     /// maintained by the infrastructure. Changes to the content might not always
@@ -2202,11 +2197,10 @@ class SupplyDelivery with Resource, _$SupplyDelivery {
 
     /// [resourceType] This is a SupplyDelivery resource
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource.
     ///  Once assigned, this value never changes.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is
     /// maintained by the infrastructure. Changes to the content might not always
@@ -2397,7 +2391,7 @@ class SupplyDeliverySuppliedItem with _$SupplyDeliverySuppliedItem {
   const factory SupplyDeliverySuppliedItem({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -2592,11 +2586,10 @@ class SupplyRequest with Resource, _$SupplyRequest {
 
     /// [resourceType] This is a SupplyRequest resource
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource.
     ///  Once assigned, this value never changes.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is
     /// maintained by the infrastructure. Changes to the content might not always
@@ -2811,7 +2804,7 @@ class SupplyRequestParameter with _$SupplyRequestParameter {
   const factory SupplyRequestParameter({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions

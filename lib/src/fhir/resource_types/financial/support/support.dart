@@ -148,11 +148,10 @@ class Coverage with Resource, _$Coverage {
 
     /// [resourceType] This is a Coverage resource
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource.
     ///  Once assigned, this value never changes.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is
     /// maintained by the infrastructure. Changes to the content might not always
@@ -382,7 +381,7 @@ class CoverageClass with _$CoverageClass {
   const factory CoverageClass({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -506,7 +505,7 @@ class CoverageCostToBeneficiary with _$CoverageCostToBeneficiary {
   const factory CoverageCostToBeneficiary({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -620,7 +619,7 @@ class CoverageException with _$CoverageException {
   const factory CoverageException({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -810,11 +809,10 @@ class CoverageEligibilityRequest with Resource, _$CoverageEligibilityRequest {
 
     /// [resourceType] This is a CoverageEligibilityRequest resource
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource.
     ///  Once assigned, this value never changes.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is
     /// maintained by the infrastructure. Changes to the content might not always
@@ -1030,7 +1028,7 @@ class CoverageEligibilityRequestSupportingInfo
   const factory CoverageEligibilityRequestSupportingInfo({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1146,7 +1144,7 @@ class CoverageEligibilityRequestInsurance
   const factory CoverageEligibilityRequestInsurance({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1279,7 +1277,7 @@ class CoverageEligibilityRequestItem with _$CoverageEligibilityRequestItem {
   const factory CoverageEligibilityRequestItem({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1425,7 +1423,7 @@ class CoverageEligibilityRequestDiagnosis
   const factory CoverageEligibilityRequestDiagnosis({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1605,11 +1603,10 @@ class CoverageEligibilityResponse with Resource, _$CoverageEligibilityResponse {
 
     /// [resourceType] This is a CoverageEligibilityResponse resource
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource.
     ///  Once assigned, this value never changes.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is
     /// maintained by the infrastructure. Changes to the content might not always
@@ -1835,7 +1832,7 @@ class CoverageEligibilityResponseInsurance
   const factory CoverageEligibilityResponseInsurance({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1987,7 +1984,7 @@ class CoverageEligibilityResponseItem with _$CoverageEligibilityResponseItem {
   const factory CoverageEligibilityResponseItem({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -2180,7 +2177,7 @@ class CoverageEligibilityResponseBenefit
   const factory CoverageEligibilityResponseBenefit({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -2303,7 +2300,7 @@ class CoverageEligibilityResponseError with _$CoverageEligibilityResponseError {
   const factory CoverageEligibilityResponseError({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -2440,11 +2437,10 @@ class EnrollmentRequest with Resource, _$EnrollmentRequest {
 
     /// [resourceType] This is a EnrollmentRequest resource
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource.
     ///  Once assigned, this value never changes.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is
     /// maintained by the infrastructure. Changes to the content might not always
@@ -2659,11 +2655,10 @@ class EnrollmentResponse with Resource, _$EnrollmentResponse {
 
     /// [resourceType] This is a EnrollmentResponse resource
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource.
     ///  Once assigned, this value never changes.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is
     /// maintained by the infrastructure. Changes to the content might not always

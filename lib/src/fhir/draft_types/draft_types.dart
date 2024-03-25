@@ -60,7 +60,7 @@ class Population with _$Population {
   const factory Population({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -157,7 +157,7 @@ class ProductShelfLife with _$ProductShelfLife {
   /// [specialPrecautionsForStorage] Special precautions for storage, if any, can be specified using an appropriate controlled vocabulary The controlled term and the controlled term identifier shall be specified.;
   const factory ProductShelfLife({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -299,7 +299,7 @@ class ProdCharacteristic with _$ProdCharacteristic {
   const factory ProdCharacteristic({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -495,7 +495,7 @@ class MarketingStatus with _$MarketingStatus {
   const factory MarketingStatus({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions

@@ -221,11 +221,10 @@ class CapabilityStatement with Resource, _$CapabilityStatement {
 
     /// [resourceType] This is a CapabilityStatement resource
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource.
     ///  Once assigned, this value never changes.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is
     /// maintained by the infrastructure. Changes to the content might not always
@@ -546,7 +545,7 @@ class CapabilityStatementSoftware with _$CapabilityStatementSoftware {
   const factory CapabilityStatementSoftware({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -675,7 +674,7 @@ class CapabilityStatementImplementation
   const factory CapabilityStatementImplementation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -813,7 +812,7 @@ class CapabilityStatementRest with _$CapabilityStatementRest {
   const factory CapabilityStatementRest({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -970,7 +969,7 @@ class CapabilityStatementSecurity with _$CapabilityStatementSecurity {
   const factory CapabilityStatementSecurity({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1181,7 +1180,7 @@ class CapabilityStatementResource with _$CapabilityStatementResource {
   const factory CapabilityStatementResource({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1416,7 +1415,7 @@ class CapabilityStatementInteraction with _$CapabilityStatementInteraction {
   const factory CapabilityStatementInteraction({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1559,7 +1558,7 @@ class CapabilityStatementSearchParam with _$CapabilityStatementSearchParam {
   const factory CapabilityStatementSearchParam({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1711,7 +1710,7 @@ class CapabilityStatementOperation with _$CapabilityStatementOperation {
   const factory CapabilityStatementOperation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1852,7 +1851,7 @@ class CapabilityStatementInteraction1 with _$CapabilityStatementInteraction1 {
   const factory CapabilityStatementInteraction1({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1990,7 +1989,7 @@ class CapabilityStatementMessaging with _$CapabilityStatementMessaging {
   const factory CapabilityStatementMessaging({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -2127,7 +2126,7 @@ class CapabilityStatementEndpoint with _$CapabilityStatementEndpoint {
   const factory CapabilityStatementEndpoint({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -2251,7 +2250,7 @@ class CapabilityStatementSupportedMessage
   const factory CapabilityStatementSupportedMessage({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -2365,7 +2364,7 @@ class CapabilityStatementDocument with _$CapabilityStatementDocument {
   const factory CapabilityStatementDocument({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -2592,11 +2591,10 @@ class CompartmentDefinition with Resource, _$CompartmentDefinition {
 
     /// [resourceType] This is a CompartmentDefinition resource
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource.
     ///  Once assigned, this value never changes.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is
     /// maintained by the infrastructure. Changes to the content might not always
@@ -2844,7 +2842,7 @@ class CompartmentDefinitionResource with _$CompartmentDefinitionResource {
   const factory CompartmentDefinitionResource({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -3079,11 +3077,10 @@ class ExampleScenario with Resource, _$ExampleScenario {
 
     /// [resourceType] This is a ExampleScenario resource
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource.
     ///  Once assigned, this value never changes.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is
     /// maintained by the infrastructure. Changes to the content might not always
@@ -3339,7 +3336,7 @@ class ExampleScenarioActor with _$ExampleScenarioActor {
   const factory ExampleScenarioActor({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -3479,7 +3476,7 @@ class ExampleScenarioInstance with _$ExampleScenarioInstance {
   const factory ExampleScenarioInstance({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -3613,7 +3610,7 @@ class ExampleScenarioVersion with _$ExampleScenarioVersion {
   const factory ExampleScenarioVersion({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -3728,7 +3725,7 @@ class ExampleScenarioContainedInstance with _$ExampleScenarioContainedInstance {
   const factory ExampleScenarioContainedInstance({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -3838,7 +3835,7 @@ class ExampleScenarioProcess with _$ExampleScenarioProcess {
   const factory ExampleScenarioProcess({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -3971,7 +3968,7 @@ class ExampleScenarioStep with _$ExampleScenarioStep {
   const factory ExampleScenarioStep({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -4120,7 +4117,7 @@ class ExampleScenarioOperation with _$ExampleScenarioOperation {
   const factory ExampleScenarioOperation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -4283,7 +4280,7 @@ class ExampleScenarioAlternative with _$ExampleScenarioAlternative {
   const factory ExampleScenarioAlternative({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -4509,11 +4506,10 @@ class GraphDefinition with Resource, _$GraphDefinition {
 
     /// [resourceType] This is a GraphDefinition resource
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource.
     ///  Once assigned, this value never changes.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is
     /// maintained by the infrastructure. Changes to the content might not always
@@ -4771,7 +4767,7 @@ class GraphDefinitionLink with _$GraphDefinitionLink {
   const factory GraphDefinitionLink({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -4918,7 +4914,7 @@ class GraphDefinitionTarget with _$GraphDefinitionTarget {
   const factory GraphDefinitionTarget({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -5059,7 +5055,7 @@ class GraphDefinitionCompartment with _$GraphDefinitionCompartment {
   const factory GraphDefinitionCompartment({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -5332,11 +5328,10 @@ class ImplementationGuide with Resource, _$ImplementationGuide {
 
     /// [resourceType] This is a ImplementationGuide resource
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource.
     ///  Once assigned, this value never changes.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is
     /// maintained by the infrastructure. Changes to the content might not always
@@ -5623,7 +5618,7 @@ class ImplementationGuideDependsOn with _$ImplementationGuideDependsOn {
   const factory ImplementationGuideDependsOn({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -5746,7 +5741,7 @@ class ImplementationGuideGlobal with _$ImplementationGuideGlobal {
   const factory ImplementationGuideGlobal({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -5869,7 +5864,7 @@ class ImplementationGuideDefinition with _$ImplementationGuideDefinition {
   const factory ImplementationGuideDefinition({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -5997,7 +5992,7 @@ class ImplementationGuideGrouping with _$ImplementationGuideGrouping {
   const factory ImplementationGuideGrouping({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -6145,7 +6140,7 @@ class ImplementationGuideResource with _$ImplementationGuideResource {
   const factory ImplementationGuideResource({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -6310,7 +6305,7 @@ class ImplementationGuidePage with _$ImplementationGuidePage {
   const factory ImplementationGuidePage({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -6444,7 +6439,7 @@ class ImplementationGuideParameter with _$ImplementationGuideParameter {
   const factory ImplementationGuideParameter({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -6569,7 +6564,7 @@ class ImplementationGuideTemplate with _$ImplementationGuideTemplate {
   const factory ImplementationGuideTemplate({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -6708,7 +6703,7 @@ class ImplementationGuideManifest with _$ImplementationGuideManifest {
   const factory ImplementationGuideManifest({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -6856,7 +6851,7 @@ class ImplementationGuideResource1 with _$ImplementationGuideResource1 {
   const factory ImplementationGuideResource1({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -6993,7 +6988,7 @@ class ImplementationGuidePage1 with _$ImplementationGuidePage1 {
   const factory ImplementationGuidePage1({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -7259,11 +7254,10 @@ class MessageDefinition with Resource, _$MessageDefinition {
 
     /// [resourceType] This is a MessageDefinition resource
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource.
     ///  Once assigned, this value never changes.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is
     /// maintained by the infrastructure. Changes to the content might not always
@@ -7569,7 +7563,7 @@ class MessageDefinitionFocus with _$MessageDefinitionFocus {
   const factory MessageDefinitionFocus({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -7701,7 +7695,7 @@ class MessageDefinitionAllowedResponse with _$MessageDefinitionAllowedResponse {
   const factory MessageDefinitionAllowedResponse({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -7957,11 +7951,10 @@ class OperationDefinition with Resource, _$OperationDefinition {
 
     /// [resourceType] This is a OperationDefinition resource
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource.
     ///  Once assigned, this value never changes.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is
     /// maintained by the infrastructure. Changes to the content might not always
@@ -8315,7 +8308,7 @@ class OperationDefinitionParameter with _$OperationDefinitionParameter {
   const factory OperationDefinitionParameter({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -8488,7 +8481,7 @@ class OperationDefinitionBinding with _$OperationDefinitionBinding {
   const factory OperationDefinitionBinding({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -8607,7 +8600,7 @@ class OperationDefinitionReferencedFrom
   const factory OperationDefinitionReferencedFrom({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -8712,7 +8705,7 @@ class OperationDefinitionOverload with _$OperationDefinitionOverload {
   const factory OperationDefinitionOverload({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -8993,11 +8986,10 @@ class SearchParameter with Resource, _$SearchParameter {
 
     /// [resourceType] This is a SearchParameter resource
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource.
     ///  Once assigned, this value never changes.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is
     /// maintained by the infrastructure. Changes to the content might not always
@@ -9321,7 +9313,7 @@ class SearchParameterComponent with _$SearchParameterComponent {
   const factory SearchParameterComponent({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -9607,11 +9599,10 @@ class StructureDefinition with Resource, _$StructureDefinition {
 
     /// [resourceType] This is a StructureDefinition resource
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource.
     ///  Once assigned, this value never changes.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is
     /// maintained by the infrastructure. Changes to the content might not always
@@ -9950,7 +9941,7 @@ class StructureDefinitionMapping with _$StructureDefinitionMapping {
   const factory StructureDefinitionMapping({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -10085,7 +10076,7 @@ class StructureDefinitionContext with _$StructureDefinitionContext {
   const factory StructureDefinitionContext({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -10199,7 +10190,7 @@ class StructureDefinitionSnapshot with _$StructureDefinitionSnapshot {
   const factory StructureDefinitionSnapshot({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -10302,7 +10293,7 @@ class StructureDefinitionDifferential with _$StructureDefinitionDifferential {
   const factory StructureDefinitionDifferential({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -10528,11 +10519,10 @@ class StructureMap with Resource, _$StructureMap {
 
     /// [resourceType] This is a StructureMap resource
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource.
     ///  Once assigned, this value never changes.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is
     /// maintained by the infrastructure. Changes to the content might not always
@@ -10798,7 +10788,7 @@ class StructureMapStructure with _$StructureMapStructure {
   const factory StructureMapStructure({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -10939,7 +10929,7 @@ class StructureMapGroup with _$StructureMapGroup {
   const factory StructureMapGroup({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -11084,7 +11074,7 @@ class StructureMapInput with _$StructureMapInput {
   const factory StructureMapInput({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -11220,7 +11210,7 @@ class StructureMapRule with _$StructureMapRule {
   const factory StructureMapRule({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -11575,7 +11565,7 @@ class StructureMapSource with _$StructureMapSource {
   const factory StructureMapSource({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -12031,7 +12021,7 @@ class StructureMapTarget with _$StructureMapTarget {
   const factory StructureMapTarget({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -12192,7 +12182,7 @@ class StructureMapParameter with _$StructureMapParameter {
   const factory StructureMapParameter({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -12326,7 +12316,7 @@ class StructureMapDependent with _$StructureMapDependent {
   const factory StructureMapDependent({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions

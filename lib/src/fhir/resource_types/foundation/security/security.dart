@@ -118,11 +118,10 @@ class AuditEvent with Resource, _$AuditEvent {
 
     /// [resourceType] This is a AuditEvent resource
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource.
     ///  Once assigned, this value never changes.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is
     /// maintained by the infrastructure. Changes to the content might not always
@@ -344,7 +343,7 @@ class AuditEventAgent with _$AuditEventAgent {
   const factory AuditEventAgent({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -509,7 +508,7 @@ class AuditEventNetwork with _$AuditEventNetwork {
   const factory AuditEventNetwork({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -630,7 +629,7 @@ class AuditEventSource with _$AuditEventSource {
   const factory AuditEventSource({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -768,7 +767,7 @@ class AuditEventEntity with _$AuditEventEntity {
   const factory AuditEventEntity({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -916,7 +915,7 @@ class AuditEventDetail with _$AuditEventDetail {
   const factory AuditEventDetail({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1116,11 +1115,10 @@ class Consent with Resource, _$Consent {
 
     /// [resourceType] This is a Consent resource
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource.
     ///  Once assigned, this value never changes.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is
     /// maintained by the infrastructure. Changes to the content might not always
@@ -1329,7 +1327,7 @@ class ConsentPolicy with _$ConsentPolicy {
   const factory ConsentPolicy({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1453,7 +1451,7 @@ class ConsentVerification with _$ConsentVerification {
   const factory ConsentVerification({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1600,7 +1598,7 @@ class ConsentProvision with _$ConsentProvision {
   const factory ConsentProvision({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1750,7 +1748,7 @@ class ConsentActor with _$ConsentActor {
   const factory ConsentActor({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1865,7 +1863,7 @@ class ConsentData with _$ConsentData {
   const factory ConsentData({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -2049,11 +2047,10 @@ class Provenance with Resource, _$Provenance {
 
     /// [resourceType] This is a Provenance resource
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource.
     ///  Once assigned, this value never changes.
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is
     /// maintained by the infrastructure. Changes to the content might not always
@@ -2251,7 +2248,7 @@ class ProvenanceAgent with _$ProvenanceAgent {
   const factory ProvenanceAgent({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -2382,7 +2379,7 @@ class ProvenanceEntity with _$ProvenanceEntity {
   const factory ProvenanceEntity({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions

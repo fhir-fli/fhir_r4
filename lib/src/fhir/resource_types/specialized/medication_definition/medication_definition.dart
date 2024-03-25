@@ -56,10 +56,7 @@ class AdministrableProductDefinition
 
     /// [resourceType] This is a AdministrableProductDefinition resource",
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-
-    /// [id] The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.",
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.;
     FhirMeta? meta,
@@ -176,7 +173,7 @@ class AdministrableProductDefinitionProperty
   /// [status] The status of characteristic e.g. assigned or pending.;
   const factory AdministrableProductDefinitionProperty({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -281,7 +278,7 @@ class AdministrableProductDefinitionRouteOfAdministration
   /// [targetSpecies] A species for which this route applies.;
   const factory AdministrableProductDefinitionRouteOfAdministration({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -373,7 +370,7 @@ class AdministrableProductDefinitionTargetSpecies
   /// [withdrawalPeriod] A species specific time during which consumption of animal product is not appropriate.;
   const factory AdministrableProductDefinitionTargetSpecies({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -452,7 +449,7 @@ class AdministrableProductDefinitionWithdrawalPeriod
   /// [supportingInformationElement] (_supportingInformation): Extensions for supportingInformation;
   const factory AdministrableProductDefinitionWithdrawalPeriod({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -571,10 +568,9 @@ class Ingredient with Resource, _$Ingredient {
   const factory Ingredient({
     /// [resourceType] This is a Ingredient resource;
     @Default(R4ResourceType.Ingredient) R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.;
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.;
     FhirMeta? meta,
@@ -693,7 +689,7 @@ class IngredientManufacturer with _$IngredientManufacturer {
   /// [manufacturer] An organization that manufactures this ingredient.;
   const factory IngredientManufacturer({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -768,7 +764,7 @@ class IngredientSubstance with _$IngredientSubstance {
   /// [strength] The quantity of substance in the unit of presentation, or in the volume (or mass) of the single pharmaceutical product or manufactured item. The allowed repetitions do not represent different strengths, but are different representations - mathematically equivalent - of a single strength.;
   const factory IngredientSubstance({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -861,7 +857,7 @@ class IngredientStrength with _$IngredientStrength {
   /// [referenceStrength] Strength expressed in terms of a reference substance. For when the ingredient strength is additionally expressed as equivalent to the strength of some other closely related substance (e.g. salt vs. base). Reference strength represents the strength (quantitative composition) of the active moiety of the active substance. There are situations when the active substance and active moiety are different, therefore both a strength and a reference strength are needed.;
   const factory IngredientStrength({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -974,7 +970,7 @@ class IngredientReferenceStrength with _$IngredientReferenceStrength {
   /// [country] The country or countries for which the strength range applies.;
   const factory IngredientReferenceStrength({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -1097,10 +1093,9 @@ class ClinicalUseDefinition with Resource, _$ClinicalUseDefinition {
   const factory ClinicalUseDefinition({
     /// [resourceType] This is a ClinicalUseDefinition resource;
     @Default(R4ResourceType.ClinicalUseDefinition) R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.;
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.;
     FhirMeta? meta,
@@ -1224,7 +1219,7 @@ class ClinicalUseDefinitionContraindication
   /// [otherTherapy] Information about the use of the medicinal product in relation to other therapies described as part of the contraindication.;
   const factory ClinicalUseDefinitionContraindication({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -1304,7 +1299,7 @@ class ClinicalUseDefinitionOtherTherapy
   /// [therapy] Reference to a specific medication (active substance, medicinal product or class of products) as part of an indication or contraindication.;
   const factory ClinicalUseDefinitionOtherTherapy({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -1390,7 +1385,7 @@ class ClinicalUseDefinitionIndication with _$ClinicalUseDefinitionIndication {
   /// [otherTherapy] Information about the use of the medicinal product in relation to other therapies described as part of the indication.;
   const factory ClinicalUseDefinitionIndication({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -1488,7 +1483,7 @@ class ClinicalUseDefinitionInteraction with _$ClinicalUseDefinitionInteraction {
   /// [management] Actions for managing the interaction.;
   const factory ClinicalUseDefinitionInteraction({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -1569,7 +1564,7 @@ class ClinicalUseDefinitionInteractant with _$ClinicalUseDefinitionInteractant {
   /// [itemCodeableConcept] The specific medication, food or laboratory test that interacts.;
   const factory ClinicalUseDefinitionInteractant({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -1642,7 +1637,7 @@ class ClinicalUseDefinitionUndesirableEffect
   /// [frequencyOfOccurrence] How often the effect is seen.;
   const factory ClinicalUseDefinitionUndesirableEffect({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -1719,7 +1714,7 @@ class ClinicalUseDefinitionWarning with _$ClinicalUseDefinitionWarning {
   /// [code] A coded or unformatted textual definition of this warning.;
   const factory ClinicalUseDefinitionWarning({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -1825,10 +1820,9 @@ class ManufacturedItemDefinition with Resource, _$ManufacturedItemDefinition {
 
     /// [resourceType] This is a ManufacturedItemDefinition resource;
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.;
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.;
     FhirMeta? meta,
@@ -1949,7 +1943,7 @@ class ManufacturedItemDefinitionProperty
   /// [valueAttachment] A value for the characteristic.;
   const factory ManufacturedItemDefinitionProperty({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -2120,10 +2114,9 @@ class MedicinalProductDefinition with Resource, _$MedicinalProductDefinition {
 
     /// [resourceType] This is a MedicinalProductDefinition resource;
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.;
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.;
     FhirMeta? meta,
@@ -2304,7 +2297,7 @@ class MedicinalProductDefinitionContact
   /// [contact] A product specific contact, person (in a role), or an organization.;
   const factory MedicinalProductDefinitionContact({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -2385,7 +2378,7 @@ class MedicinalProductDefinitionName with _$MedicinalProductDefinitionName {
   /// [countryLanguage] Country and jurisdiction where the name applies, and associated language.;
   const factory MedicinalProductDefinitionName({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -2469,7 +2462,7 @@ class MedicinalProductDefinitionNamePart
   /// [type] Identifying type for this part of the name (e.g. strength part).;
   const factory MedicinalProductDefinitionNamePart({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -2548,7 +2541,7 @@ class MedicinalProductDefinitionCountryLanguage
   /// [language] Language code for this name.;
   const factory MedicinalProductDefinitionCountryLanguage({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -2626,7 +2619,7 @@ class MedicinalProductDefinitionCrossReference
   /// [type] The type of relationship, for instance branded to generic, virtual to actual product, product to development product (investigational), parallel import version.;
   const factory MedicinalProductDefinitionCrossReference({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -2705,7 +2698,7 @@ class MedicinalProductDefinitionOperation
   /// [confidentialityIndicator] Specifies whether this particular business or manufacturing process is considered proprietary or confidential.;
   const factory MedicinalProductDefinitionOperation({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -2797,7 +2790,7 @@ class MedicinalProductDefinitionCharacteristic
   /// [valueAttachment] A value for the characteristic.text.;
   const factory MedicinalProductDefinitionCharacteristic({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -2942,10 +2935,9 @@ class PackagedProductDefinition with Resource, _$PackagedProductDefinition {
 
     /// [resourceType] This is a PackagedProductDefinition resource;
     R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.;
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.;
     FhirMeta? meta,
@@ -3084,7 +3076,7 @@ class PackagedProductDefinitionLegalStatusOfSupply
   /// [jurisdiction] The place where the legal status of supply applies. When not specified, this indicates it is unknown in this context.;
   const factory PackagedProductDefinitionLegalStatusOfSupply({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -3178,7 +3170,7 @@ class PackagedProductDefinitionPackage with _$PackagedProductDefinitionPackage {
   /// [package] Allows containers (and parts of containers) parwithin containers, still a single packaged product.  See also PackagedProductDefinition.package.containedItem.item(PackagedProductDefinition).;
   const factory PackagedProductDefinitionPackage({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -3319,7 +3311,7 @@ class PackagedProductDefinitionShelfLifeStorage
   const factory PackagedProductDefinitionShelfLifeStorage({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -3449,7 +3441,7 @@ class PackagedProductDefinitionProperty
   /// [valueAttachment] A value for the characteristic.;
   const factory PackagedProductDefinitionProperty({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -3541,7 +3533,7 @@ class PackagedProductDefinitionContainedItem
   /// [amount] The number of this type of item within this packaging.;
   const factory PackagedProductDefinitionContainedItem({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -3661,10 +3653,9 @@ class RegulatedAuthorization with Resource, _$RegulatedAuthorization {
   const factory RegulatedAuthorization({
     /// [resourceType] This is a RegulatedAuthorization resource;
     @Default(R4ResourceType.RegulatedAuthorization) R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.;
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.;
     FhirMeta? meta,
@@ -3808,7 +3799,7 @@ class RegulatedAuthorizationCase with _$RegulatedAuthorizationCase {
   /// [application] A regulatory submission from an organization to a regulator, as part of an assessing case. Multiple applications may occur over time, with more or different information to support or modify the submission or the authorization. The applications can be considered as steps within the longer running case or procedure for this authorization process.;
   const factory RegulatedAuthorizationCase({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -3951,10 +3942,9 @@ class SubstanceDefinition with Resource, _$SubstanceDefinition {
   const factory SubstanceDefinition({
     /// [resourceType] This is a SubstanceDefinition resource;
     @Default(R4ResourceType.SubstanceDefinition) R4ResourceType resourceType,
-    @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
 
     /// [id] The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.;
-    @JsonKey(name: 'id') String? fhirId,
+    String? id,
 
     /// [meta] The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.;
     FhirMeta? meta,
@@ -4123,7 +4113,7 @@ class SubstanceDefinitionMoiety with _$SubstanceDefinitionMoiety {
   /// [measurementType] The measurement type of the quantitative value. In capturing the actual relative amounts of substances or molecular fragments it may be necessary to indicate whether the amount refers to, for example, a mole ratio or weight ratio.;
   const factory SubstanceDefinitionMoiety({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -4238,7 +4228,7 @@ class SubstanceDefinitionProperty with _$SubstanceDefinitionProperty {
   /// [valueAttachment] A value for the property.;
   const factory SubstanceDefinitionProperty({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -4330,7 +4320,7 @@ class SubstanceDefinitionMolecularWeight
   /// [amount] Used to capture quantitative values for a variety of elements. If only limits are given, the arithmetic mean would be the average. If only a single definite value for a given element is given, it would be captured in this field.;
   const factory SubstanceDefinitionMolecularWeight({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -4424,7 +4414,7 @@ class SubstanceDefinitionStructure with _$SubstanceDefinitionStructure {
   /// [representation] A depiction of the structure or characterization of the substance.;
   const factory SubstanceDefinitionStructure({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -4527,7 +4517,7 @@ class SubstanceDefinitionRepresentation
   /// [document] An attached file with the structural representation or characterization e.g. a molecular structure graphic of the substance, a JCAMP or AnIML file.;
   const factory SubstanceDefinitionRepresentation({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -4619,7 +4609,7 @@ class SubstanceDefinitionCode with _$SubstanceDefinitionCode {
   /// [source] Supporting literature.;
   const factory SubstanceDefinitionCode({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -4726,7 +4716,7 @@ class SubstanceDefinitionName with _$SubstanceDefinitionName {
   /// [source] Supporting literature.;
   const factory SubstanceDefinitionName({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -4836,7 +4826,7 @@ class SubstanceDefinitionOfficial with _$SubstanceDefinitionOfficial {
   /// [dateElement] (_date): Extensions for date;
   const factory SubstanceDefinitionOfficial({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -4935,7 +4925,7 @@ class SubstanceDefinitionRelationship with _$SubstanceDefinitionRelationship {
   /// [source] Supporting literature.;
   const factory SubstanceDefinitionRelationship({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -5044,7 +5034,7 @@ class SubstanceDefinitionSourceMaterial
   /// [countryOfOrigin] The country or countries where the material is harvested.;
   const factory SubstanceDefinitionSourceMaterial({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    @JsonKey(name: 'id') FhirId? fhirId,
+    FhirId? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,

@@ -8,7 +8,7 @@ part of 'element.dart';
 
 _$ElementImpl _$$ElementImplFromJson(Map<String, dynamic> json) =>
     _$ElementImpl(
-      fhirId: json['id'] as String?,
+      id: json['id'] as String?,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -25,7 +25,7 @@ Map<String, dynamic> _$$ElementImplToJson(_$ElementImpl instance) {
     }
   }
 
-  writeNotNull('id', instance.fhirId);
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('line', instance.line);

@@ -22,13 +22,10 @@ CapabilityStatement _$CapabilityStatementFromJson(Map<String, dynamic> json) {
 mixin _$CapabilityStatement {
   @JsonKey(unknownEnumValue: R4ResourceType.CapabilityStatement)
   R4ResourceType get resourceType => throw _privateConstructorUsedError;
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  int? get dbId => throw _privateConstructorUsedError;
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @JsonKey(name: 'id')
-  String? get fhirId => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
@@ -304,8 +301,7 @@ abstract class $CapabilityStatementCopyWith<$Res> {
   $Res call(
       {@JsonKey(unknownEnumValue: R4ResourceType.CapabilityStatement)
       R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-      @JsonKey(name: 'id') String? fhirId,
+      String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
@@ -392,8 +388,7 @@ class _$CapabilityStatementCopyWithImpl<$Res, $Val extends CapabilityStatement>
   @override
   $Res call({
     Object? resourceType = null,
-    Object? dbId = freezed,
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? meta = freezed,
     Object? implicitRules = freezed,
     Object? implicitRulesElement = freezed,
@@ -450,13 +445,9 @@ class _$CapabilityStatementCopyWithImpl<$Res, $Val extends CapabilityStatement>
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as R4ResourceType,
-      dbId: freezed == dbId
-          ? _value.dbId
-          : dbId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       meta: freezed == meta
           ? _value.meta
@@ -903,8 +894,7 @@ abstract class _$$CapabilityStatementImplCopyWith<$Res>
   $Res call(
       {@JsonKey(unknownEnumValue: R4ResourceType.CapabilityStatement)
       R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-      @JsonKey(name: 'id') String? fhirId,
+      String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
@@ -1008,8 +998,7 @@ class __$$CapabilityStatementImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? resourceType = null,
-    Object? dbId = freezed,
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? meta = freezed,
     Object? implicitRules = freezed,
     Object? implicitRulesElement = freezed,
@@ -1066,13 +1055,9 @@ class __$$CapabilityStatementImplCopyWithImpl<$Res>
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as R4ResourceType,
-      dbId: freezed == dbId
-          ? _value.dbId
-          : dbId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       meta: freezed == meta
           ? _value.meta
@@ -1284,8 +1269,7 @@ class _$CapabilityStatementImpl extends _CapabilityStatement {
   const _$CapabilityStatementImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.CapabilityStatement)
       this.resourceType = R4ResourceType.CapabilityStatement,
-      @JsonKey(includeFromJson: true, includeToJson: false) this.dbId,
-      @JsonKey(name: 'id') this.fhirId,
+      this.id,
       this.meta,
       this.implicitRules,
       @JsonKey(name: '_implicitRules') this.implicitRulesElement,
@@ -1360,15 +1344,11 @@ class _$CapabilityStatementImpl extends _CapabilityStatement {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.CapabilityStatement)
   final R4ResourceType resourceType;
-  @override
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  final int? dbId;
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
   @override
-  @JsonKey(name: 'id')
-  final String? fhirId;
+  final String? id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
@@ -1860,7 +1840,7 @@ class _$CapabilityStatementImpl extends _CapabilityStatement {
 
   @override
   String toString() {
-    return 'CapabilityStatement(resourceType: $resourceType, dbId: $dbId, fhirId: $fhirId, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, version: $version, versionElement: $versionElement, name: $name, nameElement: $nameElement, title: $title, titleElement: $titleElement, status: $status, statusElement: $statusElement, experimental: $experimental, experimentalElement: $experimentalElement, date: $date, dateElement: $dateElement, publisher: $publisher, publisherElement: $publisherElement, contact: $contact, description: $description, descriptionElement: $descriptionElement, useContext: $useContext, jurisdiction: $jurisdiction, purpose: $purpose, purposeElement: $purposeElement, copyright: $copyright, copyrightElement: $copyrightElement, kind: $kind, kindElement: $kindElement, instantiates: $instantiates, imports: $imports, software: $software, implementation: $implementation, fhirVersion: $fhirVersion, fhirVersionElement: $fhirVersionElement, format: $format, formatElement: $formatElement, patchFormat: $patchFormat, patchFormatElement: $patchFormatElement, implementationGuide: $implementationGuide, rest: $rest, messaging: $messaging, document: $document)';
+    return 'CapabilityStatement(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, version: $version, versionElement: $versionElement, name: $name, nameElement: $nameElement, title: $title, titleElement: $titleElement, status: $status, statusElement: $statusElement, experimental: $experimental, experimentalElement: $experimentalElement, date: $date, dateElement: $dateElement, publisher: $publisher, publisherElement: $publisherElement, contact: $contact, description: $description, descriptionElement: $descriptionElement, useContext: $useContext, jurisdiction: $jurisdiction, purpose: $purpose, purposeElement: $purposeElement, copyright: $copyright, copyrightElement: $copyrightElement, kind: $kind, kindElement: $kindElement, instantiates: $instantiates, imports: $imports, software: $software, implementation: $implementation, fhirVersion: $fhirVersion, fhirVersionElement: $fhirVersionElement, format: $format, formatElement: $formatElement, patchFormat: $patchFormat, patchFormatElement: $patchFormatElement, implementationGuide: $implementationGuide, rest: $rest, messaging: $messaging, document: $document)';
   }
 
   @override
@@ -1870,8 +1850,7 @@ class _$CapabilityStatementImpl extends _CapabilityStatement {
             other is _$CapabilityStatementImpl &&
             (identical(other.resourceType, resourceType) ||
                 other.resourceType == resourceType) &&
-            (identical(other.dbId, dbId) || other.dbId == dbId) &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.meta, meta) || other.meta == meta) &&
             (identical(other.implicitRules, implicitRules) ||
                 other.implicitRules == implicitRules) &&
@@ -1964,8 +1943,7 @@ class _$CapabilityStatementImpl extends _CapabilityStatement {
   int get hashCode => Object.hashAll([
         runtimeType,
         resourceType,
-        dbId,
-        fhirId,
+        id,
         meta,
         implicitRules,
         implicitRulesElement,
@@ -2037,8 +2015,7 @@ abstract class _CapabilityStatement extends CapabilityStatement {
   const factory _CapabilityStatement(
       {@JsonKey(unknownEnumValue: R4ResourceType.CapabilityStatement)
       final R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) final int? dbId,
-      @JsonKey(name: 'id') final String? fhirId,
+      final String? id,
       final FhirMeta? meta,
       final FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') final Element? implicitRulesElement,
@@ -2099,14 +2076,10 @@ abstract class _CapabilityStatement extends CapabilityStatement {
   @JsonKey(unknownEnumValue: R4ResourceType.CapabilityStatement)
   R4ResourceType get resourceType;
   @override
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  int? get dbId;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @JsonKey(name: 'id')
-  String? get fhirId;
+  String? get id;
   @override
 
   /// [meta] The metadata about the resource. This is content that is
@@ -2425,8 +2398,7 @@ CapabilityStatementSoftware _$CapabilityStatementSoftwareFromJson(
 mixin _$CapabilityStatementSoftware {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2490,7 +2462,7 @@ abstract class $CapabilityStatementSoftwareCopyWith<$Res> {
           CapabilityStatementSoftware>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? name,
@@ -2519,7 +2491,7 @@ class _$CapabilityStatementSoftwareCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? name = freezed,
@@ -2530,9 +2502,9 @@ class _$CapabilityStatementSoftwareCopyWithImpl<$Res,
     Object? releaseDateElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -2616,7 +2588,7 @@ abstract class _$$CapabilityStatementSoftwareImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? name,
@@ -2647,7 +2619,7 @@ class __$$CapabilityStatementSoftwareImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? name = freezed,
@@ -2658,9 +2630,9 @@ class __$$CapabilityStatementSoftwareImplCopyWithImpl<$Res>
     Object? releaseDateElement = freezed,
   }) {
     return _then(_$CapabilityStatementSoftwareImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -2702,7 +2674,7 @@ class __$$CapabilityStatementSoftwareImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CapabilityStatementSoftwareImpl extends _CapabilityStatementSoftware {
   const _$CapabilityStatementSoftwareImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.name,
@@ -2722,8 +2694,7 @@ class _$CapabilityStatementSoftwareImpl extends _CapabilityStatementSoftware {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2817,7 +2788,7 @@ class _$CapabilityStatementSoftwareImpl extends _CapabilityStatementSoftware {
 
   @override
   String toString() {
-    return 'CapabilityStatementSoftware(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, version: $version, versionElement: $versionElement, releaseDate: $releaseDate, releaseDateElement: $releaseDateElement)';
+    return 'CapabilityStatementSoftware(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, version: $version, versionElement: $versionElement, releaseDate: $releaseDate, releaseDateElement: $releaseDateElement)';
   }
 
   @override
@@ -2825,7 +2796,7 @@ class _$CapabilityStatementSoftwareImpl extends _CapabilityStatementSoftware {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CapabilityStatementSoftwareImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -2846,7 +2817,7 @@ class _$CapabilityStatementSoftwareImpl extends _CapabilityStatementSoftware {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       name,
@@ -2874,7 +2845,7 @@ class _$CapabilityStatementSoftwareImpl extends _CapabilityStatementSoftware {
 abstract class _CapabilityStatementSoftware
     extends CapabilityStatementSoftware {
   const factory _CapabilityStatementSoftware(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final String? name,
@@ -2893,8 +2864,7 @@ abstract class _CapabilityStatementSoftware
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -2964,8 +2934,7 @@ CapabilityStatementImplementation _$CapabilityStatementImplementationFromJson(
 mixin _$CapabilityStatementImplementation {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3027,7 +2996,7 @@ abstract class $CapabilityStatementImplementationCopyWith<$Res> {
           CapabilityStatementImplementation>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? description,
@@ -3055,7 +3024,7 @@ class _$CapabilityStatementImplementationCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? description = freezed,
@@ -3065,9 +3034,9 @@ class _$CapabilityStatementImplementationCopyWithImpl<$Res,
     Object? custodian = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -3147,7 +3116,7 @@ abstract class _$$CapabilityStatementImplementationImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? description,
@@ -3177,7 +3146,7 @@ class __$$CapabilityStatementImplementationImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? description = freezed,
@@ -3187,9 +3156,9 @@ class __$$CapabilityStatementImplementationImplCopyWithImpl<$Res>
     Object? custodian = freezed,
   }) {
     return _then(_$CapabilityStatementImplementationImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -3228,7 +3197,7 @@ class __$$CapabilityStatementImplementationImplCopyWithImpl<$Res>
 class _$CapabilityStatementImplementationImpl
     extends _CapabilityStatementImplementation {
   const _$CapabilityStatementImplementationImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.description,
@@ -3247,8 +3216,7 @@ class _$CapabilityStatementImplementationImpl
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3339,7 +3307,7 @@ class _$CapabilityStatementImplementationImpl
 
   @override
   String toString() {
-    return 'CapabilityStatementImplementation(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, description: $description, descriptionElement: $descriptionElement, url: $url, urlElement: $urlElement, custodian: $custodian)';
+    return 'CapabilityStatementImplementation(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, description: $description, descriptionElement: $descriptionElement, url: $url, urlElement: $urlElement, custodian: $custodian)';
   }
 
   @override
@@ -3347,7 +3315,7 @@ class _$CapabilityStatementImplementationImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CapabilityStatementImplementationImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -3367,7 +3335,7 @@ class _$CapabilityStatementImplementationImpl
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       description,
@@ -3395,7 +3363,7 @@ class _$CapabilityStatementImplementationImpl
 abstract class _CapabilityStatementImplementation
     extends CapabilityStatementImplementation {
   const factory _CapabilityStatementImplementation(
-      {@JsonKey(name: 'id') final FhirId? fhirId,
+      {final FhirId? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final String? description,
@@ -3413,8 +3381,7 @@ abstract class _CapabilityStatementImplementation
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -3482,8 +3449,7 @@ CapabilityStatementRest _$CapabilityStatementRestFromJson(
 mixin _$CapabilityStatementRest {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3571,7 +3537,7 @@ abstract class $CapabilityStatementRestCopyWith<$Res> {
       _$CapabilityStatementRestCopyWithImpl<$Res, CapabilityStatementRest>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? mode,
@@ -3604,7 +3570,7 @@ class _$CapabilityStatementRestCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? mode = freezed,
@@ -3619,9 +3585,9 @@ class _$CapabilityStatementRestCopyWithImpl<$Res,
     Object? compartment = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -3722,7 +3688,7 @@ abstract class _$$CapabilityStatementRestImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? mode,
@@ -3757,7 +3723,7 @@ class __$$CapabilityStatementRestImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? mode = freezed,
@@ -3772,9 +3738,9 @@ class __$$CapabilityStatementRestImplCopyWithImpl<$Res>
     Object? compartment = freezed,
   }) {
     return _then(_$CapabilityStatementRestImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -3832,7 +3798,7 @@ class __$$CapabilityStatementRestImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CapabilityStatementRestImpl extends _CapabilityStatementRest {
   const _$CapabilityStatementRestImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.mode,
@@ -3860,8 +3826,7 @@ class _$CapabilityStatementRestImpl extends _CapabilityStatementRest {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -4033,7 +3998,7 @@ class _$CapabilityStatementRestImpl extends _CapabilityStatementRest {
 
   @override
   String toString() {
-    return 'CapabilityStatementRest(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, mode: $mode, modeElement: $modeElement, documentation: $documentation, documentationElement: $documentationElement, security: $security, resource: $resource, interaction: $interaction, searchParam: $searchParam, operation: $operation, compartment: $compartment)';
+    return 'CapabilityStatementRest(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, mode: $mode, modeElement: $modeElement, documentation: $documentation, documentationElement: $documentationElement, security: $security, resource: $resource, interaction: $interaction, searchParam: $searchParam, operation: $operation, compartment: $compartment)';
   }
 
   @override
@@ -4041,7 +4006,7 @@ class _$CapabilityStatementRestImpl extends _CapabilityStatementRest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CapabilityStatementRestImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -4070,7 +4035,7 @@ class _$CapabilityStatementRestImpl extends _CapabilityStatementRest {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       mode,
@@ -4101,7 +4066,7 @@ class _$CapabilityStatementRestImpl extends _CapabilityStatementRest {
 
 abstract class _CapabilityStatementRest extends CapabilityStatementRest {
   const factory _CapabilityStatementRest(
-      {@JsonKey(name: 'id') final FhirId? fhirId,
+      {final FhirId? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirCode? mode,
@@ -4123,8 +4088,7 @@ abstract class _CapabilityStatementRest extends CapabilityStatementRest {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -4219,8 +4183,7 @@ CapabilityStatementSecurity _$CapabilityStatementSecurityFromJson(
 mixin _$CapabilityStatementSecurity {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -4281,7 +4244,7 @@ abstract class $CapabilityStatementSecurityCopyWith<$Res> {
           CapabilityStatementSecurity>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirBoolean? cors,
@@ -4308,7 +4271,7 @@ class _$CapabilityStatementSecurityCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? cors = freezed,
@@ -4318,9 +4281,9 @@ class _$CapabilityStatementSecurityCopyWithImpl<$Res,
     Object? descriptionElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -4388,7 +4351,7 @@ abstract class _$$CapabilityStatementSecurityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirBoolean? cors,
@@ -4416,7 +4379,7 @@ class __$$CapabilityStatementSecurityImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? cors = freezed,
@@ -4426,9 +4389,9 @@ class __$$CapabilityStatementSecurityImplCopyWithImpl<$Res>
     Object? descriptionElement = freezed,
   }) {
     return _then(_$CapabilityStatementSecurityImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -4466,7 +4429,7 @@ class __$$CapabilityStatementSecurityImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CapabilityStatementSecurityImpl extends _CapabilityStatementSecurity {
   const _$CapabilityStatementSecurityImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.cors,
@@ -4486,8 +4449,7 @@ class _$CapabilityStatementSecurityImpl extends _CapabilityStatementSecurity {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -4587,7 +4549,7 @@ class _$CapabilityStatementSecurityImpl extends _CapabilityStatementSecurity {
 
   @override
   String toString() {
-    return 'CapabilityStatementSecurity(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, cors: $cors, corsElement: $corsElement, service: $service, description: $description, descriptionElement: $descriptionElement)';
+    return 'CapabilityStatementSecurity(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, cors: $cors, corsElement: $corsElement, service: $service, description: $description, descriptionElement: $descriptionElement)';
   }
 
   @override
@@ -4595,7 +4557,7 @@ class _$CapabilityStatementSecurityImpl extends _CapabilityStatementSecurity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CapabilityStatementSecurityImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -4614,7 +4576,7 @@ class _$CapabilityStatementSecurityImpl extends _CapabilityStatementSecurity {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       cors,
@@ -4641,7 +4603,7 @@ class _$CapabilityStatementSecurityImpl extends _CapabilityStatementSecurity {
 abstract class _CapabilityStatementSecurity
     extends CapabilityStatementSecurity {
   const factory _CapabilityStatementSecurity(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final FhirBoolean? cors,
@@ -4659,8 +4621,7 @@ abstract class _CapabilityStatementSecurity
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -4726,8 +4687,7 @@ CapabilityStatementResource _$CapabilityStatementResourceFromJson(
 mixin _$CapabilityStatementResource {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -4907,7 +4867,7 @@ abstract class $CapabilityStatementResourceCopyWith<$Res> {
           CapabilityStatementResource>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? type,
@@ -4966,7 +4926,7 @@ class _$CapabilityStatementResourceCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? type = freezed,
@@ -5000,9 +4960,9 @@ class _$CapabilityStatementResourceCopyWithImpl<$Res,
     Object? operation = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -5250,7 +5210,7 @@ abstract class _$$CapabilityStatementResourceImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? type,
@@ -5317,7 +5277,7 @@ class __$$CapabilityStatementResourceImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? type = freezed,
@@ -5351,9 +5311,9 @@ class __$$CapabilityStatementResourceImplCopyWithImpl<$Res>
     Object? operation = freezed,
   }) {
     return _then(_$CapabilityStatementResourceImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -5487,7 +5447,7 @@ class __$$CapabilityStatementResourceImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CapabilityStatementResourceImpl extends _CapabilityStatementResource {
   const _$CapabilityStatementResourceImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.type,
@@ -5543,8 +5503,7 @@ class _$CapabilityStatementResourceImpl extends _CapabilityStatementResource {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -5879,7 +5838,7 @@ class _$CapabilityStatementResourceImpl extends _CapabilityStatementResource {
 
   @override
   String toString() {
-    return 'CapabilityStatementResource(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, typeElement: $typeElement, profile: $profile, supportedProfile: $supportedProfile, documentation: $documentation, documentationElement: $documentationElement, interaction: $interaction, versioning: $versioning, versioningElement: $versioningElement, readHistory: $readHistory, readHistoryElement: $readHistoryElement, updateCreate: $updateCreate, updateCreateElement: $updateCreateElement, conditionalCreate: $conditionalCreate, conditionalCreateElement: $conditionalCreateElement, conditionalRead: $conditionalRead, conditionalReadElement: $conditionalReadElement, conditionalUpdate: $conditionalUpdate, conditionalUpdateElement: $conditionalUpdateElement, conditionalDelete: $conditionalDelete, conditionalDeleteElement: $conditionalDeleteElement, referencePolicy: $referencePolicy, referencePolicyElement: $referencePolicyElement, searchInclude: $searchInclude, searchIncludeElement: $searchIncludeElement, searchRevInclude: $searchRevInclude, searchRevIncludeElement: $searchRevIncludeElement, searchParam: $searchParam, operation: $operation)';
+    return 'CapabilityStatementResource(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, typeElement: $typeElement, profile: $profile, supportedProfile: $supportedProfile, documentation: $documentation, documentationElement: $documentationElement, interaction: $interaction, versioning: $versioning, versioningElement: $versioningElement, readHistory: $readHistory, readHistoryElement: $readHistoryElement, updateCreate: $updateCreate, updateCreateElement: $updateCreateElement, conditionalCreate: $conditionalCreate, conditionalCreateElement: $conditionalCreateElement, conditionalRead: $conditionalRead, conditionalReadElement: $conditionalReadElement, conditionalUpdate: $conditionalUpdate, conditionalUpdateElement: $conditionalUpdateElement, conditionalDelete: $conditionalDelete, conditionalDeleteElement: $conditionalDeleteElement, referencePolicy: $referencePolicy, referencePolicyElement: $referencePolicyElement, searchInclude: $searchInclude, searchIncludeElement: $searchIncludeElement, searchRevInclude: $searchRevInclude, searchRevIncludeElement: $searchRevIncludeElement, searchParam: $searchParam, operation: $operation)';
   }
 
   @override
@@ -5887,7 +5846,7 @@ class _$CapabilityStatementResourceImpl extends _CapabilityStatementResource {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CapabilityStatementResourceImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -5957,7 +5916,7 @@ class _$CapabilityStatementResourceImpl extends _CapabilityStatementResource {
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        fhirId,
+        id,
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),
         type,
@@ -6009,7 +5968,7 @@ class _$CapabilityStatementResourceImpl extends _CapabilityStatementResource {
 abstract class _CapabilityStatementResource
     extends CapabilityStatementResource {
   const factory _CapabilityStatementResource(
-      {@JsonKey(name: 'id') final FhirId? fhirId,
+      {final FhirId? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirCode? type,
@@ -6057,8 +6016,7 @@ abstract class _CapabilityStatementResource
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -6260,8 +6218,7 @@ CapabilityStatementInteraction _$CapabilityStatementInteractionFromJson(
 mixin _$CapabilityStatementInteraction {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -6321,7 +6278,7 @@ abstract class $CapabilityStatementInteractionCopyWith<$Res> {
           CapabilityStatementInteraction>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? code,
@@ -6347,7 +6304,7 @@ class _$CapabilityStatementInteractionCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? code = freezed,
@@ -6356,9 +6313,9 @@ class _$CapabilityStatementInteractionCopyWithImpl<$Res,
     Object? documentationElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -6422,7 +6379,7 @@ abstract class _$$CapabilityStatementInteractionImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? code,
@@ -6449,7 +6406,7 @@ class __$$CapabilityStatementInteractionImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? code = freezed,
@@ -6458,9 +6415,9 @@ class __$$CapabilityStatementInteractionImplCopyWithImpl<$Res>
     Object? documentationElement = freezed,
   }) {
     return _then(_$CapabilityStatementInteractionImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -6495,7 +6452,7 @@ class __$$CapabilityStatementInteractionImplCopyWithImpl<$Res>
 class _$CapabilityStatementInteractionImpl
     extends _CapabilityStatementInteraction {
   const _$CapabilityStatementInteractionImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.code,
@@ -6513,8 +6470,7 @@ class _$CapabilityStatementInteractionImpl
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -6602,7 +6558,7 @@ class _$CapabilityStatementInteractionImpl
 
   @override
   String toString() {
-    return 'CapabilityStatementInteraction(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, codeElement: $codeElement, documentation: $documentation, documentationElement: $documentationElement)';
+    return 'CapabilityStatementInteraction(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, codeElement: $codeElement, documentation: $documentation, documentationElement: $documentationElement)';
   }
 
   @override
@@ -6610,7 +6566,7 @@ class _$CapabilityStatementInteractionImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CapabilityStatementInteractionImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -6628,7 +6584,7 @@ class _$CapabilityStatementInteractionImpl
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       code,
@@ -6655,7 +6611,7 @@ class _$CapabilityStatementInteractionImpl
 abstract class _CapabilityStatementInteraction
     extends CapabilityStatementInteraction {
   const factory _CapabilityStatementInteraction(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final FhirCode? code,
@@ -6673,8 +6629,7 @@ abstract class _CapabilityStatementInteraction
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -6739,8 +6694,7 @@ CapabilityStatementSearchParam _$CapabilityStatementSearchParamFromJson(
 mixin _$CapabilityStatementSearchParam {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -6810,7 +6764,7 @@ abstract class $CapabilityStatementSearchParamCopyWith<$Res> {
           CapabilityStatementSearchParam>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? name,
@@ -6840,7 +6794,7 @@ class _$CapabilityStatementSearchParamCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? name = freezed,
@@ -6852,9 +6806,9 @@ class _$CapabilityStatementSearchParamCopyWithImpl<$Res,
     Object? documentationElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -6942,7 +6896,7 @@ abstract class _$$CapabilityStatementSearchParamImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? name,
@@ -6974,7 +6928,7 @@ class __$$CapabilityStatementSearchParamImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? name = freezed,
@@ -6986,9 +6940,9 @@ class __$$CapabilityStatementSearchParamImplCopyWithImpl<$Res>
     Object? documentationElement = freezed,
   }) {
     return _then(_$CapabilityStatementSearchParamImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -7035,7 +6989,7 @@ class __$$CapabilityStatementSearchParamImplCopyWithImpl<$Res>
 class _$CapabilityStatementSearchParamImpl
     extends _CapabilityStatementSearchParam {
   const _$CapabilityStatementSearchParamImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.name,
@@ -7056,8 +7010,7 @@ class _$CapabilityStatementSearchParamImpl
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -7158,7 +7111,7 @@ class _$CapabilityStatementSearchParamImpl
 
   @override
   String toString() {
-    return 'CapabilityStatementSearchParam(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, definition: $definition, type: $type, typeElement: $typeElement, documentation: $documentation, documentationElement: $documentationElement)';
+    return 'CapabilityStatementSearchParam(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, definition: $definition, type: $type, typeElement: $typeElement, documentation: $documentation, documentationElement: $documentationElement)';
   }
 
   @override
@@ -7166,7 +7119,7 @@ class _$CapabilityStatementSearchParamImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CapabilityStatementSearchParamImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -7189,7 +7142,7 @@ class _$CapabilityStatementSearchParamImpl
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       name,
@@ -7219,7 +7172,7 @@ class _$CapabilityStatementSearchParamImpl
 abstract class _CapabilityStatementSearchParam
     extends CapabilityStatementSearchParam {
   const factory _CapabilityStatementSearchParam(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final String? name,
@@ -7240,8 +7193,7 @@ abstract class _CapabilityStatementSearchParam
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -7319,8 +7271,7 @@ CapabilityStatementOperation _$CapabilityStatementOperationFromJson(
 mixin _$CapabilityStatementOperation {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -7391,7 +7342,7 @@ abstract class $CapabilityStatementOperationCopyWith<$Res> {
           CapabilityStatementOperation>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? name,
@@ -7418,7 +7369,7 @@ class _$CapabilityStatementOperationCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? name = freezed,
@@ -7428,9 +7379,9 @@ class _$CapabilityStatementOperationCopyWithImpl<$Res,
     Object? documentationElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -7498,7 +7449,7 @@ abstract class _$$CapabilityStatementOperationImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? name,
@@ -7526,7 +7477,7 @@ class __$$CapabilityStatementOperationImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? name = freezed,
@@ -7536,9 +7487,9 @@ class __$$CapabilityStatementOperationImplCopyWithImpl<$Res>
     Object? documentationElement = freezed,
   }) {
     return _then(_$CapabilityStatementOperationImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -7576,7 +7527,7 @@ class __$$CapabilityStatementOperationImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CapabilityStatementOperationImpl extends _CapabilityStatementOperation {
   const _$CapabilityStatementOperationImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.name,
@@ -7595,8 +7546,7 @@ class _$CapabilityStatementOperationImpl extends _CapabilityStatementOperation {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -7696,7 +7646,7 @@ class _$CapabilityStatementOperationImpl extends _CapabilityStatementOperation {
 
   @override
   String toString() {
-    return 'CapabilityStatementOperation(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, definition: $definition, documentation: $documentation, documentationElement: $documentationElement)';
+    return 'CapabilityStatementOperation(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, definition: $definition, documentation: $documentation, documentationElement: $documentationElement)';
   }
 
   @override
@@ -7704,7 +7654,7 @@ class _$CapabilityStatementOperationImpl extends _CapabilityStatementOperation {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CapabilityStatementOperationImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -7724,7 +7674,7 @@ class _$CapabilityStatementOperationImpl extends _CapabilityStatementOperation {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       name,
@@ -7752,7 +7702,7 @@ class _$CapabilityStatementOperationImpl extends _CapabilityStatementOperation {
 abstract class _CapabilityStatementOperation
     extends CapabilityStatementOperation {
   const factory _CapabilityStatementOperation(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final String? name,
@@ -7771,8 +7721,7 @@ abstract class _CapabilityStatementOperation
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -7849,8 +7798,7 @@ CapabilityStatementInteraction1 _$CapabilityStatementInteraction1FromJson(
 mixin _$CapabilityStatementInteraction1 {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -7908,7 +7856,7 @@ abstract class $CapabilityStatementInteraction1CopyWith<$Res> {
           CapabilityStatementInteraction1>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? code,
@@ -7934,7 +7882,7 @@ class _$CapabilityStatementInteraction1CopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? code = freezed,
@@ -7943,9 +7891,9 @@ class _$CapabilityStatementInteraction1CopyWithImpl<$Res,
     Object? documentationElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -8009,7 +7957,7 @@ abstract class _$$CapabilityStatementInteraction1ImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? code,
@@ -8036,7 +7984,7 @@ class __$$CapabilityStatementInteraction1ImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? code = freezed,
@@ -8045,9 +7993,9 @@ class __$$CapabilityStatementInteraction1ImplCopyWithImpl<$Res>
     Object? documentationElement = freezed,
   }) {
     return _then(_$CapabilityStatementInteraction1Impl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -8082,7 +8030,7 @@ class __$$CapabilityStatementInteraction1ImplCopyWithImpl<$Res>
 class _$CapabilityStatementInteraction1Impl
     extends _CapabilityStatementInteraction1 {
   const _$CapabilityStatementInteraction1Impl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.code,
@@ -8100,8 +8048,7 @@ class _$CapabilityStatementInteraction1Impl
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -8187,7 +8134,7 @@ class _$CapabilityStatementInteraction1Impl
 
   @override
   String toString() {
-    return 'CapabilityStatementInteraction1(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, codeElement: $codeElement, documentation: $documentation, documentationElement: $documentationElement)';
+    return 'CapabilityStatementInteraction1(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, codeElement: $codeElement, documentation: $documentation, documentationElement: $documentationElement)';
   }
 
   @override
@@ -8195,7 +8142,7 @@ class _$CapabilityStatementInteraction1Impl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CapabilityStatementInteraction1Impl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -8213,7 +8160,7 @@ class _$CapabilityStatementInteraction1Impl
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       code,
@@ -8240,7 +8187,7 @@ class _$CapabilityStatementInteraction1Impl
 abstract class _CapabilityStatementInteraction1
     extends CapabilityStatementInteraction1 {
   const factory _CapabilityStatementInteraction1(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final FhirCode? code,
@@ -8258,8 +8205,7 @@ abstract class _CapabilityStatementInteraction1
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -8322,8 +8268,7 @@ CapabilityStatementMessaging _$CapabilityStatementMessagingFromJson(
 mixin _$CapabilityStatementMessaging {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -8394,7 +8339,7 @@ abstract class $CapabilityStatementMessagingCopyWith<$Res> {
           CapabilityStatementMessaging>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<CapabilityStatementEndpoint>? endpoint,
@@ -8422,7 +8367,7 @@ class _$CapabilityStatementMessagingCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? endpoint = freezed,
@@ -8433,9 +8378,9 @@ class _$CapabilityStatementMessagingCopyWithImpl<$Res,
     Object? supportedMessage = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -8507,7 +8452,7 @@ abstract class _$$CapabilityStatementMessagingImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<CapabilityStatementEndpoint>? endpoint,
@@ -8536,7 +8481,7 @@ class __$$CapabilityStatementMessagingImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? endpoint = freezed,
@@ -8547,9 +8492,9 @@ class __$$CapabilityStatementMessagingImplCopyWithImpl<$Res>
     Object? supportedMessage = freezed,
   }) {
     return _then(_$CapabilityStatementMessagingImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -8591,7 +8536,7 @@ class __$$CapabilityStatementMessagingImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CapabilityStatementMessagingImpl extends _CapabilityStatementMessaging {
   const _$CapabilityStatementMessagingImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final List<CapabilityStatementEndpoint>? endpoint,
@@ -8613,8 +8558,7 @@ class _$CapabilityStatementMessagingImpl extends _CapabilityStatementMessaging {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -8734,7 +8678,7 @@ class _$CapabilityStatementMessagingImpl extends _CapabilityStatementMessaging {
 
   @override
   String toString() {
-    return 'CapabilityStatementMessaging(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, endpoint: $endpoint, reliableCache: $reliableCache, reliableCacheElement: $reliableCacheElement, documentation: $documentation, documentationElement: $documentationElement, supportedMessage: $supportedMessage)';
+    return 'CapabilityStatementMessaging(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, endpoint: $endpoint, reliableCache: $reliableCache, reliableCacheElement: $reliableCacheElement, documentation: $documentation, documentationElement: $documentationElement, supportedMessage: $supportedMessage)';
   }
 
   @override
@@ -8742,7 +8686,7 @@ class _$CapabilityStatementMessagingImpl extends _CapabilityStatementMessaging {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CapabilityStatementMessagingImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -8764,7 +8708,7 @@ class _$CapabilityStatementMessagingImpl extends _CapabilityStatementMessaging {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       const DeepCollectionEquality().hash(_endpoint),
@@ -8793,7 +8737,7 @@ class _$CapabilityStatementMessagingImpl extends _CapabilityStatementMessaging {
 abstract class _CapabilityStatementMessaging
     extends CapabilityStatementMessaging {
   const factory _CapabilityStatementMessaging(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final List<CapabilityStatementEndpoint>? endpoint,
@@ -8812,8 +8756,7 @@ abstract class _CapabilityStatementMessaging
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -8889,8 +8832,7 @@ CapabilityStatementEndpoint _$CapabilityStatementEndpointFromJson(
 mixin _$CapabilityStatementEndpoint {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -8944,7 +8886,7 @@ abstract class $CapabilityStatementEndpointCopyWith<$Res> {
           CapabilityStatementEndpoint>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       Coding protocol,
@@ -8969,7 +8911,7 @@ class _$CapabilityStatementEndpointCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? protocol = null,
@@ -8977,9 +8919,9 @@ class _$CapabilityStatementEndpointCopyWithImpl<$Res,
     Object? addressElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -9035,7 +8977,7 @@ abstract class _$$CapabilityStatementEndpointImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       Coding protocol,
@@ -9061,7 +9003,7 @@ class __$$CapabilityStatementEndpointImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? protocol = null,
@@ -9069,9 +9011,9 @@ class __$$CapabilityStatementEndpointImplCopyWithImpl<$Res>
     Object? addressElement = freezed,
   }) {
     return _then(_$CapabilityStatementEndpointImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -9101,7 +9043,7 @@ class __$$CapabilityStatementEndpointImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CapabilityStatementEndpointImpl extends _CapabilityStatementEndpoint {
   const _$CapabilityStatementEndpointImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required this.protocol,
@@ -9118,8 +9060,7 @@ class _$CapabilityStatementEndpointImpl extends _CapabilityStatementEndpoint {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -9200,7 +9141,7 @@ class _$CapabilityStatementEndpointImpl extends _CapabilityStatementEndpoint {
 
   @override
   String toString() {
-    return 'CapabilityStatementEndpoint(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, protocol: $protocol, address: $address, addressElement: $addressElement)';
+    return 'CapabilityStatementEndpoint(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, protocol: $protocol, address: $address, addressElement: $addressElement)';
   }
 
   @override
@@ -9208,7 +9149,7 @@ class _$CapabilityStatementEndpointImpl extends _CapabilityStatementEndpoint {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CapabilityStatementEndpointImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -9224,7 +9165,7 @@ class _$CapabilityStatementEndpointImpl extends _CapabilityStatementEndpoint {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       protocol,
@@ -9249,7 +9190,7 @@ class _$CapabilityStatementEndpointImpl extends _CapabilityStatementEndpoint {
 abstract class _CapabilityStatementEndpoint
     extends CapabilityStatementEndpoint {
   const factory _CapabilityStatementEndpoint(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           required final Coding protocol,
@@ -9265,8 +9206,7 @@ abstract class _CapabilityStatementEndpoint
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -9323,8 +9263,7 @@ CapabilityStatementSupportedMessage
 mixin _$CapabilityStatementSupportedMessage {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -9379,7 +9318,7 @@ abstract class $CapabilityStatementSupportedMessageCopyWith<$Res> {
           CapabilityStatementSupportedMessage>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? mode,
@@ -9403,7 +9342,7 @@ class _$CapabilityStatementSupportedMessageCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? mode = freezed,
@@ -9411,9 +9350,9 @@ class _$CapabilityStatementSupportedMessageCopyWithImpl<$Res,
     Object? definition = null,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -9461,7 +9400,7 @@ abstract class _$$CapabilityStatementSupportedMessageImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? mode,
@@ -9485,7 +9424,7 @@ class __$$CapabilityStatementSupportedMessageImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? mode = freezed,
@@ -9493,9 +9432,9 @@ class __$$CapabilityStatementSupportedMessageImplCopyWithImpl<$Res>
     Object? definition = null,
   }) {
     return _then(_$CapabilityStatementSupportedMessageImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -9526,7 +9465,7 @@ class __$$CapabilityStatementSupportedMessageImplCopyWithImpl<$Res>
 class _$CapabilityStatementSupportedMessageImpl
     extends _CapabilityStatementSupportedMessage {
   const _$CapabilityStatementSupportedMessageImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.mode,
@@ -9543,8 +9482,7 @@ class _$CapabilityStatementSupportedMessageImpl
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -9625,7 +9563,7 @@ class _$CapabilityStatementSupportedMessageImpl
 
   @override
   String toString() {
-    return 'CapabilityStatementSupportedMessage(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, mode: $mode, modeElement: $modeElement, definition: $definition)';
+    return 'CapabilityStatementSupportedMessage(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, mode: $mode, modeElement: $modeElement, definition: $definition)';
   }
 
   @override
@@ -9633,7 +9571,7 @@ class _$CapabilityStatementSupportedMessageImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CapabilityStatementSupportedMessageImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -9649,7 +9587,7 @@ class _$CapabilityStatementSupportedMessageImpl
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       mode,
@@ -9675,7 +9613,7 @@ class _$CapabilityStatementSupportedMessageImpl
 abstract class _CapabilityStatementSupportedMessage
     extends CapabilityStatementSupportedMessage {
   const factory _CapabilityStatementSupportedMessage(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final FhirCode? mode,
@@ -9692,8 +9630,7 @@ abstract class _CapabilityStatementSupportedMessage
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -9751,8 +9688,7 @@ CapabilityStatementDocument _$CapabilityStatementDocumentFromJson(
 mixin _$CapabilityStatementDocument {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -9815,7 +9751,7 @@ abstract class $CapabilityStatementDocumentCopyWith<$Res> {
           CapabilityStatementDocument>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? mode,
@@ -9842,7 +9778,7 @@ class _$CapabilityStatementDocumentCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? mode = freezed,
@@ -9852,9 +9788,9 @@ class _$CapabilityStatementDocumentCopyWithImpl<$Res,
     Object? profile = null,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -9922,7 +9858,7 @@ abstract class _$$CapabilityStatementDocumentImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? mode,
@@ -9950,7 +9886,7 @@ class __$$CapabilityStatementDocumentImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? mode = freezed,
@@ -9960,9 +9896,9 @@ class __$$CapabilityStatementDocumentImplCopyWithImpl<$Res>
     Object? profile = null,
   }) {
     return _then(_$CapabilityStatementDocumentImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -10000,7 +9936,7 @@ class __$$CapabilityStatementDocumentImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CapabilityStatementDocumentImpl extends _CapabilityStatementDocument {
   const _$CapabilityStatementDocumentImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.mode,
@@ -10019,8 +9955,7 @@ class _$CapabilityStatementDocumentImpl extends _CapabilityStatementDocument {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -10112,7 +10047,7 @@ class _$CapabilityStatementDocumentImpl extends _CapabilityStatementDocument {
 
   @override
   String toString() {
-    return 'CapabilityStatementDocument(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, mode: $mode, modeElement: $modeElement, documentation: $documentation, documentationElement: $documentationElement, profile: $profile)';
+    return 'CapabilityStatementDocument(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, mode: $mode, modeElement: $modeElement, documentation: $documentation, documentationElement: $documentationElement, profile: $profile)';
   }
 
   @override
@@ -10120,7 +10055,7 @@ class _$CapabilityStatementDocumentImpl extends _CapabilityStatementDocument {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CapabilityStatementDocumentImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -10139,7 +10074,7 @@ class _$CapabilityStatementDocumentImpl extends _CapabilityStatementDocument {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       mode,
@@ -10166,7 +10101,7 @@ class _$CapabilityStatementDocumentImpl extends _CapabilityStatementDocument {
 abstract class _CapabilityStatementDocument
     extends CapabilityStatementDocument {
   const factory _CapabilityStatementDocument(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final FhirCode? mode,
@@ -10184,8 +10119,7 @@ abstract class _CapabilityStatementDocument
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -10253,13 +10187,10 @@ CompartmentDefinition _$CompartmentDefinitionFromJson(
 mixin _$CompartmentDefinition {
   @JsonKey(unknownEnumValue: R4ResourceType.CompartmentDefinition)
   R4ResourceType get resourceType => throw _privateConstructorUsedError;
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  int? get dbId => throw _privateConstructorUsedError;
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @JsonKey(name: 'id')
-  String? get fhirId => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
@@ -10454,8 +10385,7 @@ abstract class $CompartmentDefinitionCopyWith<$Res> {
   $Res call(
       {@JsonKey(unknownEnumValue: R4ResourceType.CompartmentDefinition)
       R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-      @JsonKey(name: 'id') String? fhirId,
+      String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
@@ -10523,8 +10453,7 @@ class _$CompartmentDefinitionCopyWithImpl<$Res,
   @override
   $Res call({
     Object? resourceType = null,
-    Object? dbId = freezed,
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? meta = freezed,
     Object? implicitRules = freezed,
     Object? implicitRulesElement = freezed,
@@ -10565,13 +10494,9 @@ class _$CompartmentDefinitionCopyWithImpl<$Res,
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as R4ResourceType,
-      dbId: freezed == dbId
-          ? _value.dbId
-          : dbId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       meta: freezed == meta
           ? _value.meta
@@ -10905,8 +10830,7 @@ abstract class _$$CompartmentDefinitionImplCopyWith<$Res>
   $Res call(
       {@JsonKey(unknownEnumValue: R4ResourceType.CompartmentDefinition)
       R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-      @JsonKey(name: 'id') String? fhirId,
+      String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
@@ -10987,8 +10911,7 @@ class __$$CompartmentDefinitionImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? resourceType = null,
-    Object? dbId = freezed,
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? meta = freezed,
     Object? implicitRules = freezed,
     Object? implicitRulesElement = freezed,
@@ -11029,13 +10952,9 @@ class __$$CompartmentDefinitionImplCopyWithImpl<$Res>
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as R4ResourceType,
-      dbId: freezed == dbId
-          ? _value.dbId
-          : dbId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       meta: freezed == meta
           ? _value.meta
@@ -11183,8 +11102,7 @@ class _$CompartmentDefinitionImpl extends _CompartmentDefinition {
   const _$CompartmentDefinitionImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.CompartmentDefinition)
       this.resourceType = R4ResourceType.CompartmentDefinition,
-      @JsonKey(includeFromJson: true, includeToJson: false) this.dbId,
-      @JsonKey(name: 'id') this.fhirId,
+      this.id,
       this.meta,
       this.implicitRules,
       @JsonKey(name: '_implicitRules') this.implicitRulesElement,
@@ -11233,15 +11151,11 @@ class _$CompartmentDefinitionImpl extends _CompartmentDefinition {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.CompartmentDefinition)
   final R4ResourceType resourceType;
-  @override
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  final int? dbId;
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
   @override
-  @JsonKey(name: 'id')
-  final String? fhirId;
+  final String? id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
@@ -11536,7 +11450,7 @@ class _$CompartmentDefinitionImpl extends _CompartmentDefinition {
 
   @override
   String toString() {
-    return 'CompartmentDefinition(resourceType: $resourceType, dbId: $dbId, fhirId: $fhirId, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, version: $version, versionElement: $versionElement, name: $name, nameElement: $nameElement, status: $status, statusElement: $statusElement, experimental: $experimental, experimentalElement: $experimentalElement, date: $date, dateElement: $dateElement, publisher: $publisher, publisherElement: $publisherElement, contact: $contact, description: $description, descriptionElement: $descriptionElement, useContext: $useContext, purpose: $purpose, purposeElement: $purposeElement, code: $code, codeElement: $codeElement, search: $search, searchElement: $searchElement, resource: $resource)';
+    return 'CompartmentDefinition(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, version: $version, versionElement: $versionElement, name: $name, nameElement: $nameElement, status: $status, statusElement: $statusElement, experimental: $experimental, experimentalElement: $experimentalElement, date: $date, dateElement: $dateElement, publisher: $publisher, publisherElement: $publisherElement, contact: $contact, description: $description, descriptionElement: $descriptionElement, useContext: $useContext, purpose: $purpose, purposeElement: $purposeElement, code: $code, codeElement: $codeElement, search: $search, searchElement: $searchElement, resource: $resource)';
   }
 
   @override
@@ -11546,8 +11460,7 @@ class _$CompartmentDefinitionImpl extends _CompartmentDefinition {
             other is _$CompartmentDefinitionImpl &&
             (identical(other.resourceType, resourceType) ||
                 other.resourceType == resourceType) &&
-            (identical(other.dbId, dbId) || other.dbId == dbId) &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.meta, meta) || other.meta == meta) &&
             (identical(other.implicitRules, implicitRules) ||
                 other.implicitRules == implicitRules) &&
@@ -11611,8 +11524,7 @@ class _$CompartmentDefinitionImpl extends _CompartmentDefinition {
   int get hashCode => Object.hashAll([
         runtimeType,
         resourceType,
-        dbId,
-        fhirId,
+        id,
         meta,
         implicitRules,
         implicitRulesElement,
@@ -11668,8 +11580,7 @@ abstract class _CompartmentDefinition extends CompartmentDefinition {
   const factory _CompartmentDefinition(
           {@JsonKey(unknownEnumValue: R4ResourceType.CompartmentDefinition)
           final R4ResourceType resourceType,
-          @JsonKey(includeFromJson: true, includeToJson: false) final int? dbId,
-          @JsonKey(name: 'id') final String? fhirId,
+          final String? id,
           final FhirMeta? meta,
           final FhirUri? implicitRules,
           @JsonKey(name: '_implicitRules') final Element? implicitRulesElement,
@@ -11714,14 +11625,10 @@ abstract class _CompartmentDefinition extends CompartmentDefinition {
   @JsonKey(unknownEnumValue: R4ResourceType.CompartmentDefinition)
   R4ResourceType get resourceType;
   @override
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  int? get dbId;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @JsonKey(name: 'id')
-  String? get fhirId;
+  String? get id;
   @override
 
   /// [meta] The metadata about the resource. This is content that is
@@ -11947,8 +11854,7 @@ CompartmentDefinitionResource _$CompartmentDefinitionResourceFromJson(
 mixin _$CompartmentDefinitionResource {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -12014,7 +11920,7 @@ abstract class $CompartmentDefinitionResourceCopyWith<$Res> {
           CompartmentDefinitionResource>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? code,
@@ -12042,7 +11948,7 @@ class _$CompartmentDefinitionResourceCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? code = freezed,
@@ -12053,9 +11959,9 @@ class _$CompartmentDefinitionResourceCopyWithImpl<$Res,
     Object? documentationElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -12127,7 +12033,7 @@ abstract class _$$CompartmentDefinitionResourceImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? code,
@@ -12156,7 +12062,7 @@ class __$$CompartmentDefinitionResourceImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? code = freezed,
@@ -12167,9 +12073,9 @@ class __$$CompartmentDefinitionResourceImplCopyWithImpl<$Res>
     Object? documentationElement = freezed,
   }) {
     return _then(_$CompartmentDefinitionResourceImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -12212,7 +12118,7 @@ class __$$CompartmentDefinitionResourceImplCopyWithImpl<$Res>
 class _$CompartmentDefinitionResourceImpl
     extends _CompartmentDefinitionResource {
   const _$CompartmentDefinitionResourceImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.code,
@@ -12234,8 +12140,7 @@ class _$CompartmentDefinitionResourceImpl
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -12351,7 +12256,7 @@ class _$CompartmentDefinitionResourceImpl
 
   @override
   String toString() {
-    return 'CompartmentDefinitionResource(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, codeElement: $codeElement, param: $param, paramElement: $paramElement, documentation: $documentation, documentationElement: $documentationElement)';
+    return 'CompartmentDefinitionResource(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, codeElement: $codeElement, param: $param, paramElement: $paramElement, documentation: $documentation, documentationElement: $documentationElement)';
   }
 
   @override
@@ -12359,7 +12264,7 @@ class _$CompartmentDefinitionResourceImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CompartmentDefinitionResourceImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -12380,7 +12285,7 @@ class _$CompartmentDefinitionResourceImpl
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       code,
@@ -12409,7 +12314,7 @@ class _$CompartmentDefinitionResourceImpl
 abstract class _CompartmentDefinitionResource
     extends CompartmentDefinitionResource {
   const factory _CompartmentDefinitionResource(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final FhirCode? code,
@@ -12429,8 +12334,7 @@ abstract class _CompartmentDefinitionResource
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -12502,13 +12406,10 @@ ExampleScenario _$ExampleScenarioFromJson(Map<String, dynamic> json) {
 mixin _$ExampleScenario {
   @JsonKey(unknownEnumValue: R4ResourceType.ExampleScenario)
   R4ResourceType get resourceType => throw _privateConstructorUsedError;
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  int? get dbId => throw _privateConstructorUsedError;
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @JsonKey(name: 'id')
-  String? get fhirId => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
@@ -12710,8 +12611,7 @@ abstract class $ExampleScenarioCopyWith<$Res> {
   $Res call(
       {@JsonKey(unknownEnumValue: R4ResourceType.ExampleScenario)
       R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-      @JsonKey(name: 'id') String? fhirId,
+      String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
@@ -12777,8 +12677,7 @@ class _$ExampleScenarioCopyWithImpl<$Res, $Val extends ExampleScenario>
   @override
   $Res call({
     Object? resourceType = null,
-    Object? dbId = freezed,
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? meta = freezed,
     Object? implicitRules = freezed,
     Object? implicitRulesElement = freezed,
@@ -12820,13 +12719,9 @@ class _$ExampleScenarioCopyWithImpl<$Res, $Val extends ExampleScenario>
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as R4ResourceType,
-      dbId: freezed == dbId
-          ? _value.dbId
-          : dbId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       meta: freezed == meta
           ? _value.meta
@@ -13139,8 +13034,7 @@ abstract class _$$ExampleScenarioImplCopyWith<$Res>
   $Res call(
       {@JsonKey(unknownEnumValue: R4ResourceType.ExampleScenario)
       R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-      @JsonKey(name: 'id') String? fhirId,
+      String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
@@ -13217,8 +13111,7 @@ class __$$ExampleScenarioImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? resourceType = null,
-    Object? dbId = freezed,
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? meta = freezed,
     Object? implicitRules = freezed,
     Object? implicitRulesElement = freezed,
@@ -13260,13 +13153,9 @@ class __$$ExampleScenarioImplCopyWithImpl<$Res>
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as R4ResourceType,
-      dbId: freezed == dbId
-          ? _value.dbId
-          : dbId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       meta: freezed == meta
           ? _value.meta
@@ -13418,8 +13307,7 @@ class _$ExampleScenarioImpl extends _ExampleScenario {
   const _$ExampleScenarioImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.ExampleScenario)
       this.resourceType = R4ResourceType.ExampleScenario,
-      @JsonKey(includeFromJson: true, includeToJson: false) this.dbId,
-      @JsonKey(name: 'id') this.fhirId,
+      this.id,
       this.meta,
       this.implicitRules,
       @JsonKey(name: '_implicitRules') this.implicitRulesElement,
@@ -13474,15 +13362,11 @@ class _$ExampleScenarioImpl extends _ExampleScenario {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.ExampleScenario)
   final R4ResourceType resourceType;
-  @override
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  final int? dbId;
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
   @override
-  @JsonKey(name: 'id')
-  final String? fhirId;
+  final String? id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
@@ -13832,7 +13716,7 @@ class _$ExampleScenarioImpl extends _ExampleScenario {
 
   @override
   String toString() {
-    return 'ExampleScenario(resourceType: $resourceType, dbId: $dbId, fhirId: $fhirId, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, identifier: $identifier, version: $version, versionElement: $versionElement, name: $name, nameElement: $nameElement, status: $status, statusElement: $statusElement, experimental: $experimental, experimentalElement: $experimentalElement, date: $date, dateElement: $dateElement, publisher: $publisher, publisherElement: $publisherElement, contact: $contact, useContext: $useContext, jurisdiction: $jurisdiction, copyright: $copyright, copyrightElement: $copyrightElement, purpose: $purpose, purposeElement: $purposeElement, actor: $actor, instance: $instance, process: $process, workflow: $workflow)';
+    return 'ExampleScenario(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, identifier: $identifier, version: $version, versionElement: $versionElement, name: $name, nameElement: $nameElement, status: $status, statusElement: $statusElement, experimental: $experimental, experimentalElement: $experimentalElement, date: $date, dateElement: $dateElement, publisher: $publisher, publisherElement: $publisherElement, contact: $contact, useContext: $useContext, jurisdiction: $jurisdiction, copyright: $copyright, copyrightElement: $copyrightElement, purpose: $purpose, purposeElement: $purposeElement, actor: $actor, instance: $instance, process: $process, workflow: $workflow)';
   }
 
   @override
@@ -13842,8 +13726,7 @@ class _$ExampleScenarioImpl extends _ExampleScenario {
             other is _$ExampleScenarioImpl &&
             (identical(other.resourceType, resourceType) ||
                 other.resourceType == resourceType) &&
-            (identical(other.dbId, dbId) || other.dbId == dbId) &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.meta, meta) || other.meta == meta) &&
             (identical(other.implicitRules, implicitRules) ||
                 other.implicitRules == implicitRules) &&
@@ -13908,8 +13791,7 @@ class _$ExampleScenarioImpl extends _ExampleScenario {
   int get hashCode => Object.hashAll([
         runtimeType,
         resourceType,
-        dbId,
-        fhirId,
+        id,
         meta,
         implicitRules,
         implicitRulesElement,
@@ -13966,8 +13848,7 @@ abstract class _ExampleScenario extends ExampleScenario {
   const factory _ExampleScenario(
       {@JsonKey(unknownEnumValue: R4ResourceType.ExampleScenario)
       final R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) final int? dbId,
-      @JsonKey(name: 'id') final String? fhirId,
+      final String? id,
       final FhirMeta? meta,
       final FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') final Element? implicitRulesElement,
@@ -14012,14 +13893,10 @@ abstract class _ExampleScenario extends ExampleScenario {
   @JsonKey(unknownEnumValue: R4ResourceType.ExampleScenario)
   R4ResourceType get resourceType;
   @override
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  int? get dbId;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @JsonKey(name: 'id')
-  String? get fhirId;
+  String? get id;
   @override
 
   /// [meta] The metadata about the resource. This is content that is
@@ -14251,8 +14128,7 @@ ExampleScenarioActor _$ExampleScenarioActorFromJson(Map<String, dynamic> json) {
 mixin _$ExampleScenarioActor {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -14320,7 +14196,7 @@ abstract class $ExampleScenarioActorCopyWith<$Res> {
       _$ExampleScenarioActorCopyWithImpl<$Res, ExampleScenarioActor>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? actorId,
@@ -14352,7 +14228,7 @@ class _$ExampleScenarioActorCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? actorId = freezed,
@@ -14365,9 +14241,9 @@ class _$ExampleScenarioActorCopyWithImpl<$Res,
     Object? descriptionElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -14470,7 +14346,7 @@ abstract class _$$ExampleScenarioActorImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? actorId,
@@ -14503,7 +14379,7 @@ class __$$ExampleScenarioActorImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? actorId = freezed,
@@ -14516,9 +14392,9 @@ class __$$ExampleScenarioActorImplCopyWithImpl<$Res>
     Object? descriptionElement = freezed,
   }) {
     return _then(_$ExampleScenarioActorImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -14568,7 +14444,7 @@ class __$$ExampleScenarioActorImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ExampleScenarioActorImpl extends _ExampleScenarioActor {
   const _$ExampleScenarioActorImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.actorId,
@@ -14589,8 +14465,7 @@ class _$ExampleScenarioActorImpl extends _ExampleScenarioActor {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -14692,7 +14567,7 @@ class _$ExampleScenarioActorImpl extends _ExampleScenarioActor {
 
   @override
   String toString() {
-    return 'ExampleScenarioActor(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, actorId: $actorId, actorIdElement: $actorIdElement, type: $type, typeElement: $typeElement, name: $name, nameElement: $nameElement, description: $description, descriptionElement: $descriptionElement)';
+    return 'ExampleScenarioActor(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, actorId: $actorId, actorIdElement: $actorIdElement, type: $type, typeElement: $typeElement, name: $name, nameElement: $nameElement, description: $description, descriptionElement: $descriptionElement)';
   }
 
   @override
@@ -14700,7 +14575,7 @@ class _$ExampleScenarioActorImpl extends _ExampleScenarioActor {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ExampleScenarioActorImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -14724,7 +14599,7 @@ class _$ExampleScenarioActorImpl extends _ExampleScenarioActor {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       actorId,
@@ -14754,7 +14629,7 @@ class _$ExampleScenarioActorImpl extends _ExampleScenarioActor {
 
 abstract class _ExampleScenarioActor extends ExampleScenarioActor {
   const factory _ExampleScenarioActor(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final String? actorId,
@@ -14775,8 +14650,7 @@ abstract class _ExampleScenarioActor extends ExampleScenarioActor {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -14854,8 +14728,7 @@ ExampleScenarioInstance _$ExampleScenarioInstanceFromJson(
 mixin _$ExampleScenarioInstance {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -14932,7 +14805,7 @@ abstract class $ExampleScenarioInstanceCopyWith<$Res> {
       _$ExampleScenarioInstanceCopyWithImpl<$Res, ExampleScenarioInstance>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? resourceId,
@@ -14966,7 +14839,7 @@ class _$ExampleScenarioInstanceCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? resourceId = freezed,
@@ -14981,9 +14854,9 @@ class _$ExampleScenarioInstanceCopyWithImpl<$Res,
     Object? containedInstance = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -15095,7 +14968,7 @@ abstract class _$$ExampleScenarioInstanceImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? resourceId,
@@ -15132,7 +15005,7 @@ class __$$ExampleScenarioInstanceImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? resourceId = freezed,
@@ -15147,9 +15020,9 @@ class __$$ExampleScenarioInstanceImplCopyWithImpl<$Res>
     Object? containedInstance = freezed,
   }) {
     return _then(_$ExampleScenarioInstanceImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -15207,7 +15080,7 @@ class __$$ExampleScenarioInstanceImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ExampleScenarioInstanceImpl extends _ExampleScenarioInstance {
   const _$ExampleScenarioInstanceImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.resourceId,
@@ -15232,8 +15105,7 @@ class _$ExampleScenarioInstanceImpl extends _ExampleScenarioInstance {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -15364,7 +15236,7 @@ class _$ExampleScenarioInstanceImpl extends _ExampleScenarioInstance {
 
   @override
   String toString() {
-    return 'ExampleScenarioInstance(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, resourceId: $resourceId, resourceIdElement: $resourceIdElement, resourceType: $resourceType, resourceTypeElement: $resourceTypeElement, name: $name, nameElement: $nameElement, description: $description, descriptionElement: $descriptionElement, version: $version, containedInstance: $containedInstance)';
+    return 'ExampleScenarioInstance(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, resourceId: $resourceId, resourceIdElement: $resourceIdElement, resourceType: $resourceType, resourceTypeElement: $resourceTypeElement, name: $name, nameElement: $nameElement, description: $description, descriptionElement: $descriptionElement, version: $version, containedInstance: $containedInstance)';
   }
 
   @override
@@ -15372,7 +15244,7 @@ class _$ExampleScenarioInstanceImpl extends _ExampleScenarioInstance {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ExampleScenarioInstanceImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -15401,7 +15273,7 @@ class _$ExampleScenarioInstanceImpl extends _ExampleScenarioInstance {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       resourceId,
@@ -15432,7 +15304,7 @@ class _$ExampleScenarioInstanceImpl extends _ExampleScenarioInstance {
 
 abstract class _ExampleScenarioInstance extends ExampleScenarioInstance {
   const factory _ExampleScenarioInstance(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final String? resourceId,
@@ -15455,8 +15327,7 @@ abstract class _ExampleScenarioInstance extends ExampleScenarioInstance {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -15543,8 +15414,7 @@ ExampleScenarioVersion _$ExampleScenarioVersionFromJson(
 mixin _$ExampleScenarioVersion {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -15598,7 +15468,7 @@ abstract class $ExampleScenarioVersionCopyWith<$Res> {
       _$ExampleScenarioVersionCopyWithImpl<$Res, ExampleScenarioVersion>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? versionId,
@@ -15624,7 +15494,7 @@ class _$ExampleScenarioVersionCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? versionId = freezed,
@@ -15633,9 +15503,9 @@ class _$ExampleScenarioVersionCopyWithImpl<$Res,
     Object? descriptionElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -15699,7 +15569,7 @@ abstract class _$$ExampleScenarioVersionImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? versionId,
@@ -15726,7 +15596,7 @@ class __$$ExampleScenarioVersionImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? versionId = freezed,
@@ -15735,9 +15605,9 @@ class __$$ExampleScenarioVersionImplCopyWithImpl<$Res>
     Object? descriptionElement = freezed,
   }) {
     return _then(_$ExampleScenarioVersionImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -15771,7 +15641,7 @@ class __$$ExampleScenarioVersionImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ExampleScenarioVersionImpl extends _ExampleScenarioVersion {
   const _$ExampleScenarioVersionImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.versionId,
@@ -15788,8 +15658,7 @@ class _$ExampleScenarioVersionImpl extends _ExampleScenarioVersion {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -15873,7 +15742,7 @@ class _$ExampleScenarioVersionImpl extends _ExampleScenarioVersion {
 
   @override
   String toString() {
-    return 'ExampleScenarioVersion(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, versionId: $versionId, versionIdElement: $versionIdElement, description: $description, descriptionElement: $descriptionElement)';
+    return 'ExampleScenarioVersion(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, versionId: $versionId, versionIdElement: $versionIdElement, description: $description, descriptionElement: $descriptionElement)';
   }
 
   @override
@@ -15881,7 +15750,7 @@ class _$ExampleScenarioVersionImpl extends _ExampleScenarioVersion {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ExampleScenarioVersionImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -15900,7 +15769,7 @@ class _$ExampleScenarioVersionImpl extends _ExampleScenarioVersion {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       versionId,
@@ -15925,7 +15794,7 @@ class _$ExampleScenarioVersionImpl extends _ExampleScenarioVersion {
 
 abstract class _ExampleScenarioVersion extends ExampleScenarioVersion {
   const factory _ExampleScenarioVersion(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final String? versionId,
@@ -15942,8 +15811,7 @@ abstract class _ExampleScenarioVersion extends ExampleScenarioVersion {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -16003,8 +15871,7 @@ ExampleScenarioContainedInstance _$ExampleScenarioContainedInstanceFromJson(
 mixin _$ExampleScenarioContainedInstance {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -16060,7 +15927,7 @@ abstract class $ExampleScenarioContainedInstanceCopyWith<$Res> {
           ExampleScenarioContainedInstance>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? resourceId,
@@ -16086,7 +15953,7 @@ class _$ExampleScenarioContainedInstanceCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? resourceId = freezed,
@@ -16095,9 +15962,9 @@ class _$ExampleScenarioContainedInstanceCopyWithImpl<$Res,
     Object? versionIdElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -16161,7 +16028,7 @@ abstract class _$$ExampleScenarioContainedInstanceImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? resourceId,
@@ -16188,7 +16055,7 @@ class __$$ExampleScenarioContainedInstanceImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? resourceId = freezed,
@@ -16197,9 +16064,9 @@ class __$$ExampleScenarioContainedInstanceImplCopyWithImpl<$Res>
     Object? versionIdElement = freezed,
   }) {
     return _then(_$ExampleScenarioContainedInstanceImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -16234,7 +16101,7 @@ class __$$ExampleScenarioContainedInstanceImplCopyWithImpl<$Res>
 class _$ExampleScenarioContainedInstanceImpl
     extends _ExampleScenarioContainedInstance {
   const _$ExampleScenarioContainedInstanceImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.resourceId,
@@ -16252,8 +16119,7 @@ class _$ExampleScenarioContainedInstanceImpl
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -16337,7 +16203,7 @@ class _$ExampleScenarioContainedInstanceImpl
 
   @override
   String toString() {
-    return 'ExampleScenarioContainedInstance(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, resourceId: $resourceId, resourceIdElement: $resourceIdElement, versionId: $versionId, versionIdElement: $versionIdElement)';
+    return 'ExampleScenarioContainedInstance(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, resourceId: $resourceId, resourceIdElement: $resourceIdElement, versionId: $versionId, versionIdElement: $versionIdElement)';
   }
 
   @override
@@ -16345,7 +16211,7 @@ class _$ExampleScenarioContainedInstanceImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ExampleScenarioContainedInstanceImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -16364,7 +16230,7 @@ class _$ExampleScenarioContainedInstanceImpl
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       resourceId,
@@ -16391,7 +16257,7 @@ class _$ExampleScenarioContainedInstanceImpl
 abstract class _ExampleScenarioContainedInstance
     extends ExampleScenarioContainedInstance {
   const factory _ExampleScenarioContainedInstance(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final String? resourceId,
@@ -16409,8 +16275,7 @@ abstract class _ExampleScenarioContainedInstance
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -16471,8 +16336,7 @@ ExampleScenarioProcess _$ExampleScenarioProcessFromJson(
 mixin _$ExampleScenarioProcess {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -16543,7 +16407,7 @@ abstract class $ExampleScenarioProcessCopyWith<$Res> {
       _$ExampleScenarioProcessCopyWithImpl<$Res, ExampleScenarioProcess>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? title,
@@ -16576,7 +16440,7 @@ class _$ExampleScenarioProcessCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? title = freezed,
@@ -16590,9 +16454,9 @@ class _$ExampleScenarioProcessCopyWithImpl<$Res,
     Object? step = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -16700,7 +16564,7 @@ abstract class _$$ExampleScenarioProcessImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? title,
@@ -16736,7 +16600,7 @@ class __$$ExampleScenarioProcessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? title = freezed,
@@ -16750,9 +16614,9 @@ class __$$ExampleScenarioProcessImplCopyWithImpl<$Res>
     Object? step = freezed,
   }) {
     return _then(_$ExampleScenarioProcessImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -16806,7 +16670,7 @@ class __$$ExampleScenarioProcessImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ExampleScenarioProcessImpl extends _ExampleScenarioProcess {
   const _$ExampleScenarioProcessImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.title,
@@ -16829,8 +16693,7 @@ class _$ExampleScenarioProcessImpl extends _ExampleScenarioProcess {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -16945,7 +16808,7 @@ class _$ExampleScenarioProcessImpl extends _ExampleScenarioProcess {
 
   @override
   String toString() {
-    return 'ExampleScenarioProcess(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, title: $title, titleElement: $titleElement, description: $description, descriptionElement: $descriptionElement, preConditions: $preConditions, preConditionsElement: $preConditionsElement, postConditions: $postConditions, postConditionsElement: $postConditionsElement, step: $step)';
+    return 'ExampleScenarioProcess(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, title: $title, titleElement: $titleElement, description: $description, descriptionElement: $descriptionElement, preConditions: $preConditions, preConditionsElement: $preConditionsElement, postConditions: $postConditions, postConditionsElement: $postConditionsElement, step: $step)';
   }
 
   @override
@@ -16953,7 +16816,7 @@ class _$ExampleScenarioProcessImpl extends _ExampleScenarioProcess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ExampleScenarioProcessImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -16980,7 +16843,7 @@ class _$ExampleScenarioProcessImpl extends _ExampleScenarioProcess {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       title,
@@ -17010,7 +16873,7 @@ class _$ExampleScenarioProcessImpl extends _ExampleScenarioProcess {
 
 abstract class _ExampleScenarioProcess extends ExampleScenarioProcess {
   const factory _ExampleScenarioProcess(
-      {@JsonKey(name: 'id') final FhirId? fhirId,
+      {final FhirId? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final String? title,
@@ -17031,8 +16894,7 @@ abstract class _ExampleScenarioProcess extends ExampleScenarioProcess {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -17113,8 +16975,7 @@ ExampleScenarioStep _$ExampleScenarioStepFromJson(Map<String, dynamic> json) {
 mixin _$ExampleScenarioStep {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -17173,7 +17034,7 @@ abstract class $ExampleScenarioStepCopyWith<$Res> {
       _$ExampleScenarioStepCopyWithImpl<$Res, ExampleScenarioStep>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<ExampleScenarioProcess>? process,
@@ -17199,7 +17060,7 @@ class _$ExampleScenarioStepCopyWithImpl<$Res, $Val extends ExampleScenarioStep>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? process = freezed,
@@ -17209,9 +17070,9 @@ class _$ExampleScenarioStepCopyWithImpl<$Res, $Val extends ExampleScenarioStep>
     Object? alternative = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -17278,7 +17139,7 @@ abstract class _$$ExampleScenarioStepImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<ExampleScenarioProcess>? process,
@@ -17304,7 +17165,7 @@ class __$$ExampleScenarioStepImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? process = freezed,
@@ -17314,9 +17175,9 @@ class __$$ExampleScenarioStepImplCopyWithImpl<$Res>
     Object? alternative = freezed,
   }) {
     return _then(_$ExampleScenarioStepImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -17354,7 +17215,7 @@ class __$$ExampleScenarioStepImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ExampleScenarioStepImpl extends _ExampleScenarioStep {
   const _$ExampleScenarioStepImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final List<ExampleScenarioProcess>? process,
@@ -17374,8 +17235,7 @@ class _$ExampleScenarioStepImpl extends _ExampleScenarioStep {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -17482,7 +17342,7 @@ class _$ExampleScenarioStepImpl extends _ExampleScenarioStep {
 
   @override
   String toString() {
-    return 'ExampleScenarioStep(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, process: $process, pause: $pause, pauseElement: $pauseElement, operation: $operation, alternative: $alternative)';
+    return 'ExampleScenarioStep(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, process: $process, pause: $pause, pauseElement: $pauseElement, operation: $operation, alternative: $alternative)';
   }
 
   @override
@@ -17490,7 +17350,7 @@ class _$ExampleScenarioStepImpl extends _ExampleScenarioStep {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ExampleScenarioStepImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -17509,7 +17369,7 @@ class _$ExampleScenarioStepImpl extends _ExampleScenarioStep {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       const DeepCollectionEquality().hash(_process),
@@ -17535,7 +17395,7 @@ class _$ExampleScenarioStepImpl extends _ExampleScenarioStep {
 
 abstract class _ExampleScenarioStep extends ExampleScenarioStep {
   const factory _ExampleScenarioStep(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final List<ExampleScenarioProcess>? process,
@@ -17553,8 +17413,7 @@ abstract class _ExampleScenarioStep extends ExampleScenarioStep {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -17618,8 +17477,7 @@ ExampleScenarioOperation _$ExampleScenarioOperationFromJson(
 mixin _$ExampleScenarioOperation {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -17725,7 +17583,7 @@ abstract class $ExampleScenarioOperationCopyWith<$Res> {
       _$ExampleScenarioOperationCopyWithImpl<$Res, ExampleScenarioOperation>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? number,
@@ -17773,7 +17631,7 @@ class _$ExampleScenarioOperationCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? number = freezed,
@@ -17796,9 +17654,9 @@ class _$ExampleScenarioOperationCopyWithImpl<$Res,
     Object? response = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -18016,7 +17874,7 @@ abstract class _$$ExampleScenarioOperationImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? number,
@@ -18073,7 +17931,7 @@ class __$$ExampleScenarioOperationImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? number = freezed,
@@ -18096,9 +17954,9 @@ class __$$ExampleScenarioOperationImplCopyWithImpl<$Res>
     Object? response = freezed,
   }) {
     return _then(_$ExampleScenarioOperationImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -18188,7 +18046,7 @@ class __$$ExampleScenarioOperationImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ExampleScenarioOperationImpl extends _ExampleScenarioOperation {
   const _$ExampleScenarioOperationImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.number,
@@ -18219,8 +18077,7 @@ class _$ExampleScenarioOperationImpl extends _ExampleScenarioOperation {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -18368,7 +18225,7 @@ class _$ExampleScenarioOperationImpl extends _ExampleScenarioOperation {
 
   @override
   String toString() {
-    return 'ExampleScenarioOperation(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, number: $number, numberElement: $numberElement, type: $type, typeElement: $typeElement, name: $name, nameElement: $nameElement, initiator: $initiator, initiatorElement: $initiatorElement, receiver: $receiver, receiverElement: $receiverElement, description: $description, descriptionElement: $descriptionElement, initiatorActive: $initiatorActive, initiatorActiveElement: $initiatorActiveElement, receiverActive: $receiverActive, receiverActiveElement: $receiverActiveElement, request: $request, response: $response)';
+    return 'ExampleScenarioOperation(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, number: $number, numberElement: $numberElement, type: $type, typeElement: $typeElement, name: $name, nameElement: $nameElement, initiator: $initiator, initiatorElement: $initiatorElement, receiver: $receiver, receiverElement: $receiverElement, description: $description, descriptionElement: $descriptionElement, initiatorActive: $initiatorActive, initiatorActiveElement: $initiatorActiveElement, receiverActive: $receiverActive, receiverActiveElement: $receiverActiveElement, request: $request, response: $response)';
   }
 
   @override
@@ -18376,7 +18233,7 @@ class _$ExampleScenarioOperationImpl extends _ExampleScenarioOperation {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ExampleScenarioOperationImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -18419,7 +18276,7 @@ class _$ExampleScenarioOperationImpl extends _ExampleScenarioOperation {
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        fhirId,
+        id,
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),
         number,
@@ -18459,7 +18316,7 @@ class _$ExampleScenarioOperationImpl extends _ExampleScenarioOperation {
 
 abstract class _ExampleScenarioOperation extends ExampleScenarioOperation {
   const factory _ExampleScenarioOperation(
-      {@JsonKey(name: 'id') final FhirId? fhirId,
+      {final FhirId? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final String? number,
@@ -18490,8 +18347,7 @@ abstract class _ExampleScenarioOperation extends ExampleScenarioOperation {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -18615,8 +18471,7 @@ ExampleScenarioAlternative _$ExampleScenarioAlternativeFromJson(
 mixin _$ExampleScenarioAlternative {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -18676,7 +18531,7 @@ abstract class $ExampleScenarioAlternativeCopyWith<$Res> {
           ExampleScenarioAlternative>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? title,
@@ -18703,7 +18558,7 @@ class _$ExampleScenarioAlternativeCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? title = freezed,
@@ -18713,9 +18568,9 @@ class _$ExampleScenarioAlternativeCopyWithImpl<$Res,
     Object? step = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -18783,7 +18638,7 @@ abstract class _$$ExampleScenarioAlternativeImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? title,
@@ -18811,7 +18666,7 @@ class __$$ExampleScenarioAlternativeImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? title = freezed,
@@ -18821,9 +18676,9 @@ class __$$ExampleScenarioAlternativeImplCopyWithImpl<$Res>
     Object? step = freezed,
   }) {
     return _then(_$ExampleScenarioAlternativeImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -18861,7 +18716,7 @@ class __$$ExampleScenarioAlternativeImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ExampleScenarioAlternativeImpl extends _ExampleScenarioAlternative {
   const _$ExampleScenarioAlternativeImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.title,
@@ -18881,8 +18736,7 @@ class _$ExampleScenarioAlternativeImpl extends _ExampleScenarioAlternative {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -18981,7 +18835,7 @@ class _$ExampleScenarioAlternativeImpl extends _ExampleScenarioAlternative {
 
   @override
   String toString() {
-    return 'ExampleScenarioAlternative(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, title: $title, titleElement: $titleElement, description: $description, descriptionElement: $descriptionElement, step: $step)';
+    return 'ExampleScenarioAlternative(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, title: $title, titleElement: $titleElement, description: $description, descriptionElement: $descriptionElement, step: $step)';
   }
 
   @override
@@ -18989,7 +18843,7 @@ class _$ExampleScenarioAlternativeImpl extends _ExampleScenarioAlternative {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ExampleScenarioAlternativeImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -19008,7 +18862,7 @@ class _$ExampleScenarioAlternativeImpl extends _ExampleScenarioAlternative {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       title,
@@ -19034,7 +18888,7 @@ class _$ExampleScenarioAlternativeImpl extends _ExampleScenarioAlternative {
 
 abstract class _ExampleScenarioAlternative extends ExampleScenarioAlternative {
   const factory _ExampleScenarioAlternative(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final String? title,
@@ -19052,8 +18906,7 @@ abstract class _ExampleScenarioAlternative extends ExampleScenarioAlternative {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -19118,13 +18971,10 @@ GraphDefinition _$GraphDefinitionFromJson(Map<String, dynamic> json) {
 mixin _$GraphDefinition {
   @JsonKey(unknownEnumValue: R4ResourceType.GraphDefinition)
   R4ResourceType get resourceType => throw _privateConstructorUsedError;
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  int? get dbId => throw _privateConstructorUsedError;
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @JsonKey(name: 'id')
-  String? get fhirId => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
@@ -19316,8 +19166,7 @@ abstract class $GraphDefinitionCopyWith<$Res> {
   $Res call(
       {@JsonKey(unknownEnumValue: R4ResourceType.GraphDefinition)
       R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-      @JsonKey(name: 'id') String? fhirId,
+      String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
@@ -19383,8 +19232,7 @@ class _$GraphDefinitionCopyWithImpl<$Res, $Val extends GraphDefinition>
   @override
   $Res call({
     Object? resourceType = null,
-    Object? dbId = freezed,
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? meta = freezed,
     Object? implicitRules = freezed,
     Object? implicitRulesElement = freezed,
@@ -19425,13 +19273,9 @@ class _$GraphDefinitionCopyWithImpl<$Res, $Val extends GraphDefinition>
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as R4ResourceType,
-      dbId: freezed == dbId
-          ? _value.dbId
-          : dbId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       meta: freezed == meta
           ? _value.meta
@@ -19752,8 +19596,7 @@ abstract class _$$GraphDefinitionImplCopyWith<$Res>
   $Res call(
       {@JsonKey(unknownEnumValue: R4ResourceType.GraphDefinition)
       R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-      @JsonKey(name: 'id') String? fhirId,
+      String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
@@ -19831,8 +19674,7 @@ class __$$GraphDefinitionImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? resourceType = null,
-    Object? dbId = freezed,
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? meta = freezed,
     Object? implicitRules = freezed,
     Object? implicitRulesElement = freezed,
@@ -19873,13 +19715,9 @@ class __$$GraphDefinitionImplCopyWithImpl<$Res>
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as R4ResourceType,
-      dbId: freezed == dbId
-          ? _value.dbId
-          : dbId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       meta: freezed == meta
           ? _value.meta
@@ -20027,8 +19865,7 @@ class _$GraphDefinitionImpl extends _GraphDefinition {
   const _$GraphDefinitionImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.GraphDefinition)
       this.resourceType = R4ResourceType.GraphDefinition,
-      @JsonKey(includeFromJson: true, includeToJson: false) this.dbId,
-      @JsonKey(name: 'id') this.fhirId,
+      this.id,
       this.meta,
       this.implicitRules,
       @JsonKey(name: '_implicitRules') this.implicitRulesElement,
@@ -20078,15 +19915,11 @@ class _$GraphDefinitionImpl extends _GraphDefinition {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.GraphDefinition)
   final R4ResourceType resourceType;
-  @override
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  final int? dbId;
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
   @override
-  @JsonKey(name: 'id')
-  final String? fhirId;
+  final String? id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
@@ -20388,7 +20221,7 @@ class _$GraphDefinitionImpl extends _GraphDefinition {
 
   @override
   String toString() {
-    return 'GraphDefinition(resourceType: $resourceType, dbId: $dbId, fhirId: $fhirId, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, version: $version, versionElement: $versionElement, name: $name, nameElement: $nameElement, status: $status, statusElement: $statusElement, experimental: $experimental, experimentalElement: $experimentalElement, date: $date, dateElement: $dateElement, publisher: $publisher, publisherElement: $publisherElement, contact: $contact, description: $description, descriptionElement: $descriptionElement, useContext: $useContext, jurisdiction: $jurisdiction, purpose: $purpose, purposeElement: $purposeElement, start: $start, startElement: $startElement, profile: $profile, link: $link)';
+    return 'GraphDefinition(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, version: $version, versionElement: $versionElement, name: $name, nameElement: $nameElement, status: $status, statusElement: $statusElement, experimental: $experimental, experimentalElement: $experimentalElement, date: $date, dateElement: $dateElement, publisher: $publisher, publisherElement: $publisherElement, contact: $contact, description: $description, descriptionElement: $descriptionElement, useContext: $useContext, jurisdiction: $jurisdiction, purpose: $purpose, purposeElement: $purposeElement, start: $start, startElement: $startElement, profile: $profile, link: $link)';
   }
 
   @override
@@ -20398,8 +20231,7 @@ class _$GraphDefinitionImpl extends _GraphDefinition {
             other is _$GraphDefinitionImpl &&
             (identical(other.resourceType, resourceType) ||
                 other.resourceType == resourceType) &&
-            (identical(other.dbId, dbId) || other.dbId == dbId) &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.meta, meta) || other.meta == meta) &&
             (identical(other.implicitRules, implicitRules) ||
                 other.implicitRules == implicitRules) &&
@@ -20463,8 +20295,7 @@ class _$GraphDefinitionImpl extends _GraphDefinition {
   int get hashCode => Object.hashAll([
         runtimeType,
         resourceType,
-        dbId,
-        fhirId,
+        id,
         meta,
         implicitRules,
         implicitRulesElement,
@@ -20520,8 +20351,7 @@ abstract class _GraphDefinition extends GraphDefinition {
   const factory _GraphDefinition(
       {@JsonKey(unknownEnumValue: R4ResourceType.GraphDefinition)
       final R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) final int? dbId,
-      @JsonKey(name: 'id') final String? fhirId,
+      final String? id,
       final FhirMeta? meta,
       final FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') final Element? implicitRulesElement,
@@ -20565,14 +20395,10 @@ abstract class _GraphDefinition extends GraphDefinition {
   @JsonKey(unknownEnumValue: R4ResourceType.GraphDefinition)
   R4ResourceType get resourceType;
   @override
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  int? get dbId;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @JsonKey(name: 'id')
-  String? get fhirId;
+  String? get id;
   @override
 
   /// [meta] The metadata about the resource. This is content that is
@@ -20795,8 +20621,7 @@ GraphDefinitionLink _$GraphDefinitionLinkFromJson(Map<String, dynamic> json) {
 mixin _$GraphDefinitionLink {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -20876,7 +20701,7 @@ abstract class $GraphDefinitionLinkCopyWith<$Res> {
       _$GraphDefinitionLinkCopyWithImpl<$Res, GraphDefinitionLink>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? path,
@@ -20911,7 +20736,7 @@ class _$GraphDefinitionLinkCopyWithImpl<$Res, $Val extends GraphDefinitionLink>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? path = freezed,
@@ -20927,9 +20752,9 @@ class _$GraphDefinitionLinkCopyWithImpl<$Res, $Val extends GraphDefinitionLink>
     Object? target = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -21056,7 +20881,7 @@ abstract class _$$GraphDefinitionLinkImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? path,
@@ -21094,7 +20919,7 @@ class __$$GraphDefinitionLinkImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? path = freezed,
@@ -21110,9 +20935,9 @@ class __$$GraphDefinitionLinkImplCopyWithImpl<$Res>
     Object? target = freezed,
   }) {
     return _then(_$GraphDefinitionLinkImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -21174,7 +20999,7 @@ class __$$GraphDefinitionLinkImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$GraphDefinitionLinkImpl extends _GraphDefinitionLink {
   const _$GraphDefinitionLinkImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.path,
@@ -21199,8 +21024,7 @@ class _$GraphDefinitionLinkImpl extends _GraphDefinitionLink {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -21326,7 +21150,7 @@ class _$GraphDefinitionLinkImpl extends _GraphDefinitionLink {
 
   @override
   String toString() {
-    return 'GraphDefinitionLink(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, path: $path, pathElement: $pathElement, sliceName: $sliceName, sliceNameElement: $sliceNameElement, min: $min, minElement: $minElement, max: $max, maxElement: $maxElement, description: $description, descriptionElement: $descriptionElement, target: $target)';
+    return 'GraphDefinitionLink(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, path: $path, pathElement: $pathElement, sliceName: $sliceName, sliceNameElement: $sliceNameElement, min: $min, minElement: $minElement, max: $max, maxElement: $maxElement, description: $description, descriptionElement: $descriptionElement, target: $target)';
   }
 
   @override
@@ -21334,7 +21158,7 @@ class _$GraphDefinitionLinkImpl extends _GraphDefinitionLink {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GraphDefinitionLinkImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -21363,7 +21187,7 @@ class _$GraphDefinitionLinkImpl extends _GraphDefinitionLink {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       path,
@@ -21395,7 +21219,7 @@ class _$GraphDefinitionLinkImpl extends _GraphDefinitionLink {
 
 abstract class _GraphDefinitionLink extends GraphDefinitionLink {
   const factory _GraphDefinitionLink(
-      {@JsonKey(name: 'id') final FhirId? fhirId,
+      {final FhirId? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final String? path,
@@ -21418,8 +21242,7 @@ abstract class _GraphDefinitionLink extends GraphDefinitionLink {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -21512,8 +21335,7 @@ GraphDefinitionTarget _$GraphDefinitionTargetFromJson(
 mixin _$GraphDefinitionTarget {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -21577,7 +21399,7 @@ abstract class $GraphDefinitionTargetCopyWith<$Res> {
       _$GraphDefinitionTargetCopyWithImpl<$Res, GraphDefinitionTarget>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? type,
@@ -21606,7 +21428,7 @@ class _$GraphDefinitionTargetCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? type = freezed,
@@ -21618,9 +21440,9 @@ class _$GraphDefinitionTargetCopyWithImpl<$Res,
     Object? link = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -21696,7 +21518,7 @@ abstract class _$$GraphDefinitionTargetImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? type,
@@ -21725,7 +21547,7 @@ class __$$GraphDefinitionTargetImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? type = freezed,
@@ -21737,9 +21559,9 @@ class __$$GraphDefinitionTargetImplCopyWithImpl<$Res>
     Object? link = freezed,
   }) {
     return _then(_$GraphDefinitionTargetImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -21785,7 +21607,7 @@ class __$$GraphDefinitionTargetImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$GraphDefinitionTargetImpl extends _GraphDefinitionTarget {
   const _$GraphDefinitionTargetImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.type,
@@ -21807,8 +21629,7 @@ class _$GraphDefinitionTargetImpl extends _GraphDefinitionTarget {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -21922,7 +21743,7 @@ class _$GraphDefinitionTargetImpl extends _GraphDefinitionTarget {
 
   @override
   String toString() {
-    return 'GraphDefinitionTarget(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, typeElement: $typeElement, params: $params, paramsElement: $paramsElement, profile: $profile, compartment: $compartment, link: $link)';
+    return 'GraphDefinitionTarget(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, typeElement: $typeElement, params: $params, paramsElement: $paramsElement, profile: $profile, compartment: $compartment, link: $link)';
   }
 
   @override
@@ -21930,7 +21751,7 @@ class _$GraphDefinitionTargetImpl extends _GraphDefinitionTarget {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GraphDefinitionTargetImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -21951,7 +21772,7 @@ class _$GraphDefinitionTargetImpl extends _GraphDefinitionTarget {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       type,
@@ -21979,7 +21800,7 @@ class _$GraphDefinitionTargetImpl extends _GraphDefinitionTarget {
 
 abstract class _GraphDefinitionTarget extends GraphDefinitionTarget {
   const factory _GraphDefinitionTarget(
-      {@JsonKey(name: 'id') final FhirId? fhirId,
+      {final FhirId? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirCode? type,
@@ -21998,8 +21819,7 @@ abstract class _GraphDefinitionTarget extends GraphDefinitionTarget {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -22071,8 +21891,7 @@ GraphDefinitionCompartment _$GraphDefinitionCompartmentFromJson(
 mixin _$GraphDefinitionCompartment {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -22150,7 +21969,7 @@ abstract class $GraphDefinitionCompartmentCopyWith<$Res> {
           GraphDefinitionCompartment>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? use,
@@ -22185,7 +22004,7 @@ class _$GraphDefinitionCompartmentCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? use = freezed,
@@ -22200,9 +22019,9 @@ class _$GraphDefinitionCompartmentCopyWithImpl<$Res,
     Object? descriptionElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -22326,7 +22145,7 @@ abstract class _$$GraphDefinitionCompartmentImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? use,
@@ -22365,7 +22184,7 @@ class __$$GraphDefinitionCompartmentImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? use = freezed,
@@ -22380,9 +22199,9 @@ class __$$GraphDefinitionCompartmentImplCopyWithImpl<$Res>
     Object? descriptionElement = freezed,
   }) {
     return _then(_$GraphDefinitionCompartmentImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -22440,7 +22259,7 @@ class __$$GraphDefinitionCompartmentImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$GraphDefinitionCompartmentImpl extends _GraphDefinitionCompartment {
   const _$GraphDefinitionCompartmentImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.use,
@@ -22464,8 +22283,7 @@ class _$GraphDefinitionCompartmentImpl extends _GraphDefinitionCompartment {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -22578,7 +22396,7 @@ class _$GraphDefinitionCompartmentImpl extends _GraphDefinitionCompartment {
 
   @override
   String toString() {
-    return 'GraphDefinitionCompartment(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, use: $use, useElement: $useElement, code: $code, codeElement: $codeElement, rule: $rule, ruleElement: $ruleElement, expression: $expression, expressionElement: $expressionElement, description: $description, descriptionElement: $descriptionElement)';
+    return 'GraphDefinitionCompartment(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, use: $use, useElement: $useElement, code: $code, codeElement: $codeElement, rule: $rule, ruleElement: $ruleElement, expression: $expression, expressionElement: $expressionElement, description: $description, descriptionElement: $descriptionElement)';
   }
 
   @override
@@ -22586,7 +22404,7 @@ class _$GraphDefinitionCompartmentImpl extends _GraphDefinitionCompartment {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GraphDefinitionCompartmentImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -22614,7 +22432,7 @@ class _$GraphDefinitionCompartmentImpl extends _GraphDefinitionCompartment {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       use,
@@ -22645,7 +22463,7 @@ class _$GraphDefinitionCompartmentImpl extends _GraphDefinitionCompartment {
 
 abstract class _GraphDefinitionCompartment extends GraphDefinitionCompartment {
   const factory _GraphDefinitionCompartment(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final FhirCode? use,
@@ -22668,8 +22486,7 @@ abstract class _GraphDefinitionCompartment extends GraphDefinitionCompartment {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -22757,13 +22574,10 @@ ImplementationGuide _$ImplementationGuideFromJson(Map<String, dynamic> json) {
 mixin _$ImplementationGuide {
   @JsonKey(unknownEnumValue: R4ResourceType.ImplementationGuide)
   R4ResourceType get resourceType => throw _privateConstructorUsedError;
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  int? get dbId => throw _privateConstructorUsedError;
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @JsonKey(name: 'id')
-  String? get fhirId => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
@@ -23001,8 +22815,7 @@ abstract class $ImplementationGuideCopyWith<$Res> {
   $Res call(
       {@JsonKey(unknownEnumValue: R4ResourceType.ImplementationGuide)
       R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-      @JsonKey(name: 'id') String? fhirId,
+      String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
@@ -23080,8 +22893,7 @@ class _$ImplementationGuideCopyWithImpl<$Res, $Val extends ImplementationGuide>
   @override
   $Res call({
     Object? resourceType = null,
-    Object? dbId = freezed,
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? meta = freezed,
     Object? implicitRules = freezed,
     Object? implicitRulesElement = freezed,
@@ -23130,13 +22942,9 @@ class _$ImplementationGuideCopyWithImpl<$Res, $Val extends ImplementationGuide>
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as R4ResourceType,
-      dbId: freezed == dbId
-          ? _value.dbId
-          : dbId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       meta: freezed == meta
           ? _value.meta
@@ -23539,8 +23347,7 @@ abstract class _$$ImplementationGuideImplCopyWith<$Res>
   $Res call(
       {@JsonKey(unknownEnumValue: R4ResourceType.ImplementationGuide)
       R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-      @JsonKey(name: 'id') String? fhirId,
+      String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
@@ -23634,8 +23441,7 @@ class __$$ImplementationGuideImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? resourceType = null,
-    Object? dbId = freezed,
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? meta = freezed,
     Object? implicitRules = freezed,
     Object? implicitRulesElement = freezed,
@@ -23684,13 +23490,9 @@ class __$$ImplementationGuideImplCopyWithImpl<$Res>
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as R4ResourceType,
-      dbId: freezed == dbId
-          ? _value.dbId
-          : dbId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       meta: freezed == meta
           ? _value.meta
@@ -23870,8 +23672,7 @@ class _$ImplementationGuideImpl extends _ImplementationGuide {
   const _$ImplementationGuideImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.ImplementationGuide)
       this.resourceType = R4ResourceType.ImplementationGuide,
-      @JsonKey(includeFromJson: true, includeToJson: false) this.dbId,
-      @JsonKey(name: 'id') this.fhirId,
+      this.id,
       this.meta,
       this.implicitRules,
       @JsonKey(name: '_implicitRules') this.implicitRulesElement,
@@ -23932,15 +23733,11 @@ class _$ImplementationGuideImpl extends _ImplementationGuide {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.ImplementationGuide)
   final R4ResourceType resourceType;
-  @override
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  final int? dbId;
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
   @override
-  @JsonKey(name: 'id')
-  final String? fhirId;
+  final String? id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
@@ -24327,7 +24124,7 @@ class _$ImplementationGuideImpl extends _ImplementationGuide {
 
   @override
   String toString() {
-    return 'ImplementationGuide(resourceType: $resourceType, dbId: $dbId, fhirId: $fhirId, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, version: $version, versionElement: $versionElement, name: $name, nameElement: $nameElement, title: $title, titleElement: $titleElement, status: $status, statusElement: $statusElement, experimental: $experimental, experimentalElement: $experimentalElement, date: $date, dateElement: $dateElement, publisher: $publisher, publisherElement: $publisherElement, contact: $contact, description: $description, descriptionElement: $descriptionElement, useContext: $useContext, jurisdiction: $jurisdiction, copyright: $copyright, copyrightElement: $copyrightElement, packageId: $packageId, packageIdElement: $packageIdElement, license: $license, licenseElement: $licenseElement, fhirVersion: $fhirVersion, fhirVersionElement: $fhirVersionElement, dependsOn: $dependsOn, global: $global, definition: $definition, manifest: $manifest)';
+    return 'ImplementationGuide(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, version: $version, versionElement: $versionElement, name: $name, nameElement: $nameElement, title: $title, titleElement: $titleElement, status: $status, statusElement: $statusElement, experimental: $experimental, experimentalElement: $experimentalElement, date: $date, dateElement: $dateElement, publisher: $publisher, publisherElement: $publisherElement, contact: $contact, description: $description, descriptionElement: $descriptionElement, useContext: $useContext, jurisdiction: $jurisdiction, copyright: $copyright, copyrightElement: $copyrightElement, packageId: $packageId, packageIdElement: $packageIdElement, license: $license, licenseElement: $licenseElement, fhirVersion: $fhirVersion, fhirVersionElement: $fhirVersionElement, dependsOn: $dependsOn, global: $global, definition: $definition, manifest: $manifest)';
   }
 
   @override
@@ -24337,8 +24134,7 @@ class _$ImplementationGuideImpl extends _ImplementationGuide {
             other is _$ImplementationGuideImpl &&
             (identical(other.resourceType, resourceType) ||
                 other.resourceType == resourceType) &&
-            (identical(other.dbId, dbId) || other.dbId == dbId) &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.meta, meta) || other.meta == meta) &&
             (identical(other.implicitRules, implicitRules) ||
                 other.implicitRules == implicitRules) &&
@@ -24419,8 +24215,7 @@ class _$ImplementationGuideImpl extends _ImplementationGuide {
   int get hashCode => Object.hashAll([
         runtimeType,
         resourceType,
-        dbId,
-        fhirId,
+        id,
         meta,
         implicitRules,
         implicitRulesElement,
@@ -24484,8 +24279,7 @@ abstract class _ImplementationGuide extends ImplementationGuide {
   const factory _ImplementationGuide(
       {@JsonKey(unknownEnumValue: R4ResourceType.ImplementationGuide)
       final R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) final int? dbId,
-      @JsonKey(name: 'id') final String? fhirId,
+      final String? id,
       final FhirMeta? meta,
       final FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') final Element? implicitRulesElement,
@@ -24537,14 +24331,10 @@ abstract class _ImplementationGuide extends ImplementationGuide {
   @JsonKey(unknownEnumValue: R4ResourceType.ImplementationGuide)
   R4ResourceType get resourceType;
   @override
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  int? get dbId;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @JsonKey(name: 'id')
-  String? get fhirId;
+  String? get id;
   @override
 
   /// [meta] The metadata about the resource. This is content that is
@@ -24818,8 +24608,7 @@ ImplementationGuideDependsOn _$ImplementationGuideDependsOnFromJson(
 mixin _$ImplementationGuideDependsOn {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -24881,7 +24670,7 @@ abstract class $ImplementationGuideDependsOnCopyWith<$Res> {
           ImplementationGuideDependsOn>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCanonical uri,
@@ -24908,7 +24697,7 @@ class _$ImplementationGuideDependsOnCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? uri = null,
@@ -24918,9 +24707,9 @@ class _$ImplementationGuideDependsOnCopyWithImpl<$Res,
     Object? versionElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -24988,7 +24777,7 @@ abstract class _$$ImplementationGuideDependsOnImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCanonical uri,
@@ -25016,7 +24805,7 @@ class __$$ImplementationGuideDependsOnImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? uri = null,
@@ -25026,9 +24815,9 @@ class __$$ImplementationGuideDependsOnImplCopyWithImpl<$Res>
     Object? versionElement = freezed,
   }) {
     return _then(_$ImplementationGuideDependsOnImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -25066,7 +24855,7 @@ class __$$ImplementationGuideDependsOnImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ImplementationGuideDependsOnImpl extends _ImplementationGuideDependsOn {
   const _$ImplementationGuideDependsOnImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required this.uri,
@@ -25085,8 +24874,7 @@ class _$ImplementationGuideDependsOnImpl extends _ImplementationGuideDependsOn {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -25177,7 +24965,7 @@ class _$ImplementationGuideDependsOnImpl extends _ImplementationGuideDependsOn {
 
   @override
   String toString() {
-    return 'ImplementationGuideDependsOn(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, uri: $uri, packageId: $packageId, packageIdElement: $packageIdElement, version: $version, versionElement: $versionElement)';
+    return 'ImplementationGuideDependsOn(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, uri: $uri, packageId: $packageId, packageIdElement: $packageIdElement, version: $version, versionElement: $versionElement)';
   }
 
   @override
@@ -25185,7 +24973,7 @@ class _$ImplementationGuideDependsOnImpl extends _ImplementationGuideDependsOn {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ImplementationGuideDependsOnImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -25204,7 +24992,7 @@ class _$ImplementationGuideDependsOnImpl extends _ImplementationGuideDependsOn {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       uri,
@@ -25232,7 +25020,7 @@ class _$ImplementationGuideDependsOnImpl extends _ImplementationGuideDependsOn {
 abstract class _ImplementationGuideDependsOn
     extends ImplementationGuideDependsOn {
   const factory _ImplementationGuideDependsOn(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           required final FhirCanonical uri,
@@ -25250,8 +25038,7 @@ abstract class _ImplementationGuideDependsOn
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -25319,8 +25106,7 @@ ImplementationGuideGlobal _$ImplementationGuideGlobalFromJson(
 mixin _$ImplementationGuideGlobal {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -25370,7 +25156,7 @@ abstract class $ImplementationGuideGlobalCopyWith<$Res> {
       _$ImplementationGuideGlobalCopyWithImpl<$Res, ImplementationGuideGlobal>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? type,
@@ -25394,7 +25180,7 @@ class _$ImplementationGuideGlobalCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? type = freezed,
@@ -25402,9 +25188,9 @@ class _$ImplementationGuideGlobalCopyWithImpl<$Res,
     Object? profile = null,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -25452,7 +25238,7 @@ abstract class _$$ImplementationGuideGlobalImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? type,
@@ -25476,7 +25262,7 @@ class __$$ImplementationGuideGlobalImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? type = freezed,
@@ -25484,9 +25270,9 @@ class __$$ImplementationGuideGlobalImplCopyWithImpl<$Res>
     Object? profile = null,
   }) {
     return _then(_$ImplementationGuideGlobalImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -25516,7 +25302,7 @@ class __$$ImplementationGuideGlobalImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ImplementationGuideGlobalImpl extends _ImplementationGuideGlobal {
   const _$ImplementationGuideGlobalImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.type,
@@ -25532,8 +25318,7 @@ class _$ImplementationGuideGlobalImpl extends _ImplementationGuideGlobal {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -25612,7 +25397,7 @@ class _$ImplementationGuideGlobalImpl extends _ImplementationGuideGlobal {
 
   @override
   String toString() {
-    return 'ImplementationGuideGlobal(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, typeElement: $typeElement, profile: $profile)';
+    return 'ImplementationGuideGlobal(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, typeElement: $typeElement, profile: $profile)';
   }
 
   @override
@@ -25620,7 +25405,7 @@ class _$ImplementationGuideGlobalImpl extends _ImplementationGuideGlobal {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ImplementationGuideGlobalImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -25635,7 +25420,7 @@ class _$ImplementationGuideGlobalImpl extends _ImplementationGuideGlobal {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       type,
@@ -25659,7 +25444,7 @@ class _$ImplementationGuideGlobalImpl extends _ImplementationGuideGlobal {
 
 abstract class _ImplementationGuideGlobal extends ImplementationGuideGlobal {
   const factory _ImplementationGuideGlobal(
-      {@JsonKey(name: 'id') final FhirId? fhirId,
+      {final FhirId? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirCode? type,
@@ -25674,8 +25459,7 @@ abstract class _ImplementationGuideGlobal extends ImplementationGuideGlobal {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -25730,8 +25514,7 @@ ImplementationGuideDefinition _$ImplementationGuideDefinitionFromJson(
 mixin _$ImplementationGuideDefinition {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -25797,7 +25580,7 @@ abstract class $ImplementationGuideDefinitionCopyWith<$Res> {
           ImplementationGuideDefinition>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<ImplementationGuideGrouping>? grouping,
@@ -25823,7 +25606,7 @@ class _$ImplementationGuideDefinitionCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? grouping = freezed,
@@ -25833,9 +25616,9 @@ class _$ImplementationGuideDefinitionCopyWithImpl<$Res,
     Object? template = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -25891,7 +25674,7 @@ abstract class _$$ImplementationGuideDefinitionImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<ImplementationGuideGrouping>? grouping,
@@ -25917,7 +25700,7 @@ class __$$ImplementationGuideDefinitionImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? grouping = freezed,
@@ -25927,9 +25710,9 @@ class __$$ImplementationGuideDefinitionImplCopyWithImpl<$Res>
     Object? template = freezed,
   }) {
     return _then(_$ImplementationGuideDefinitionImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -25968,7 +25751,7 @@ class __$$ImplementationGuideDefinitionImplCopyWithImpl<$Res>
 class _$ImplementationGuideDefinitionImpl
     extends _ImplementationGuideDefinition {
   const _$ImplementationGuideDefinitionImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final List<ImplementationGuideGrouping>? grouping,
@@ -25991,8 +25774,7 @@ class _$ImplementationGuideDefinitionImpl
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -26121,7 +25903,7 @@ class _$ImplementationGuideDefinitionImpl
 
   @override
   String toString() {
-    return 'ImplementationGuideDefinition(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, grouping: $grouping, resource: $resource, page: $page, parameter: $parameter, template: $template)';
+    return 'ImplementationGuideDefinition(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, grouping: $grouping, resource: $resource, page: $page, parameter: $parameter, template: $template)';
   }
 
   @override
@@ -26129,7 +25911,7 @@ class _$ImplementationGuideDefinitionImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ImplementationGuideDefinitionImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -26146,7 +25928,7 @@ class _$ImplementationGuideDefinitionImpl
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       const DeepCollectionEquality().hash(_grouping),
@@ -26174,7 +25956,7 @@ class _$ImplementationGuideDefinitionImpl
 abstract class _ImplementationGuideDefinition
     extends ImplementationGuideDefinition {
   const factory _ImplementationGuideDefinition(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final List<ImplementationGuideGrouping>? grouping,
@@ -26192,8 +25974,7 @@ abstract class _ImplementationGuideDefinition
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -26261,8 +26042,7 @@ ImplementationGuideGrouping _$ImplementationGuideGroupingFromJson(
 mixin _$ImplementationGuideGrouping {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -26319,7 +26099,7 @@ abstract class $ImplementationGuideGroupingCopyWith<$Res> {
           ImplementationGuideGrouping>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? name,
@@ -26345,7 +26125,7 @@ class _$ImplementationGuideGroupingCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? name = freezed,
@@ -26354,9 +26134,9 @@ class _$ImplementationGuideGroupingCopyWithImpl<$Res,
     Object? descriptionElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -26420,7 +26200,7 @@ abstract class _$$ImplementationGuideGroupingImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? name,
@@ -26447,7 +26227,7 @@ class __$$ImplementationGuideGroupingImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? name = freezed,
@@ -26456,9 +26236,9 @@ class __$$ImplementationGuideGroupingImplCopyWithImpl<$Res>
     Object? descriptionElement = freezed,
   }) {
     return _then(_$ImplementationGuideGroupingImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -26492,7 +26272,7 @@ class __$$ImplementationGuideGroupingImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ImplementationGuideGroupingImpl extends _ImplementationGuideGrouping {
   const _$ImplementationGuideGroupingImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.name,
@@ -26510,8 +26290,7 @@ class _$ImplementationGuideGroupingImpl extends _ImplementationGuideGrouping {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -26596,7 +26375,7 @@ class _$ImplementationGuideGroupingImpl extends _ImplementationGuideGrouping {
 
   @override
   String toString() {
-    return 'ImplementationGuideGrouping(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, description: $description, descriptionElement: $descriptionElement)';
+    return 'ImplementationGuideGrouping(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, description: $description, descriptionElement: $descriptionElement)';
   }
 
   @override
@@ -26604,7 +26383,7 @@ class _$ImplementationGuideGroupingImpl extends _ImplementationGuideGrouping {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ImplementationGuideGroupingImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -26622,7 +26401,7 @@ class _$ImplementationGuideGroupingImpl extends _ImplementationGuideGrouping {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       name,
@@ -26648,7 +26427,7 @@ class _$ImplementationGuideGroupingImpl extends _ImplementationGuideGrouping {
 abstract class _ImplementationGuideGrouping
     extends ImplementationGuideGrouping {
   const factory _ImplementationGuideGrouping(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final String? name,
@@ -26665,8 +26444,7 @@ abstract class _ImplementationGuideGrouping
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -26727,8 +26505,7 @@ ImplementationGuideResource _$ImplementationGuideResourceFromJson(
 mixin _$ImplementationGuideResource {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -26825,7 +26602,7 @@ abstract class $ImplementationGuideResourceCopyWith<$Res> {
           ImplementationGuideResource>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       Reference reference,
@@ -26864,7 +26641,7 @@ class _$ImplementationGuideResourceCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? reference = null,
@@ -26882,9 +26659,9 @@ class _$ImplementationGuideResourceCopyWithImpl<$Res,
     Object? groupingIdElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -27028,7 +26805,7 @@ abstract class _$$ImplementationGuideResourceImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       Reference reference,
@@ -27072,7 +26849,7 @@ class __$$ImplementationGuideResourceImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? reference = null,
@@ -27090,9 +26867,9 @@ class __$$ImplementationGuideResourceImplCopyWithImpl<$Res>
     Object? groupingIdElement = freezed,
   }) {
     return _then(_$ImplementationGuideResourceImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -27162,7 +26939,7 @@ class __$$ImplementationGuideResourceImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ImplementationGuideResourceImpl extends _ImplementationGuideResource {
   const _$ImplementationGuideResourceImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required this.reference,
@@ -27191,8 +26968,7 @@ class _$ImplementationGuideResourceImpl extends _ImplementationGuideResource {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -27347,7 +27123,7 @@ class _$ImplementationGuideResourceImpl extends _ImplementationGuideResource {
 
   @override
   String toString() {
-    return 'ImplementationGuideResource(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, reference: $reference, fhirVersion: $fhirVersion, fhirVersionElement: $fhirVersionElement, name: $name, nameElement: $nameElement, description: $description, descriptionElement: $descriptionElement, exampleBoolean: $exampleBoolean, exampleBooleanElement: $exampleBooleanElement, exampleCanonical: $exampleCanonical, exampleCanonicalElement: $exampleCanonicalElement, groupingId: $groupingId, groupingIdElement: $groupingIdElement)';
+    return 'ImplementationGuideResource(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, reference: $reference, fhirVersion: $fhirVersion, fhirVersionElement: $fhirVersionElement, name: $name, nameElement: $nameElement, description: $description, descriptionElement: $descriptionElement, exampleBoolean: $exampleBoolean, exampleBooleanElement: $exampleBooleanElement, exampleCanonical: $exampleCanonical, exampleCanonicalElement: $exampleCanonicalElement, groupingId: $groupingId, groupingIdElement: $groupingIdElement)';
   }
 
   @override
@@ -27355,7 +27131,7 @@ class _$ImplementationGuideResourceImpl extends _ImplementationGuideResource {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ImplementationGuideResourceImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -27392,7 +27168,7 @@ class _$ImplementationGuideResourceImpl extends _ImplementationGuideResource {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       reference,
@@ -27427,7 +27203,7 @@ class _$ImplementationGuideResourceImpl extends _ImplementationGuideResource {
 abstract class _ImplementationGuideResource
     extends ImplementationGuideResource {
   const factory _ImplementationGuideResource(
-      {@JsonKey(name: 'id') final FhirId? fhirId,
+      {final FhirId? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required final Reference reference,
@@ -27454,8 +27230,7 @@ abstract class _ImplementationGuideResource
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -27565,8 +27340,7 @@ ImplementationGuidePage _$ImplementationGuidePageFromJson(
 mixin _$ImplementationGuidePage {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -27634,7 +27408,7 @@ abstract class $ImplementationGuidePageCopyWith<$Res> {
       _$ImplementationGuidePageCopyWithImpl<$Res, ImplementationGuidePage>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirUrl? nameUrl,
@@ -27666,7 +27440,7 @@ class _$ImplementationGuidePageCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? nameUrl = freezed,
@@ -27679,9 +27453,9 @@ class _$ImplementationGuidePageCopyWithImpl<$Res,
     Object? page = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -27785,7 +27559,7 @@ abstract class _$$ImplementationGuidePageImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirUrl? nameUrl,
@@ -27820,7 +27594,7 @@ class __$$ImplementationGuidePageImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? nameUrl = freezed,
@@ -27833,9 +27607,9 @@ class __$$ImplementationGuidePageImplCopyWithImpl<$Res>
     Object? page = freezed,
   }) {
     return _then(_$ImplementationGuidePageImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -27885,7 +27659,7 @@ class __$$ImplementationGuidePageImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ImplementationGuidePageImpl extends _ImplementationGuidePage {
   const _$ImplementationGuidePageImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.nameUrl,
@@ -27907,8 +27681,7 @@ class _$ImplementationGuidePageImpl extends _ImplementationGuidePage {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -28019,7 +27792,7 @@ class _$ImplementationGuidePageImpl extends _ImplementationGuidePage {
 
   @override
   String toString() {
-    return 'ImplementationGuidePage(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, nameUrl: $nameUrl, nameUrlElement: $nameUrlElement, nameReference: $nameReference, title: $title, titleElement: $titleElement, generation: $generation, generationElement: $generationElement, page: $page)';
+    return 'ImplementationGuidePage(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, nameUrl: $nameUrl, nameUrlElement: $nameUrlElement, nameReference: $nameReference, title: $title, titleElement: $titleElement, generation: $generation, generationElement: $generationElement, page: $page)';
   }
 
   @override
@@ -28027,7 +27800,7 @@ class _$ImplementationGuidePageImpl extends _ImplementationGuidePage {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ImplementationGuidePageImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -28051,7 +27824,7 @@ class _$ImplementationGuidePageImpl extends _ImplementationGuidePage {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       nameUrl,
@@ -28080,7 +27853,7 @@ class _$ImplementationGuidePageImpl extends _ImplementationGuidePage {
 
 abstract class _ImplementationGuidePage extends ImplementationGuidePage {
   const factory _ImplementationGuidePage(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final FhirUrl? nameUrl,
@@ -28101,8 +27874,7 @@ abstract class _ImplementationGuidePage extends ImplementationGuidePage {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -28180,8 +27952,7 @@ ImplementationGuideParameter _$ImplementationGuideParameterFromJson(
 mixin _$ImplementationGuideParameter {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -28239,7 +28010,7 @@ abstract class $ImplementationGuideParameterCopyWith<$Res> {
           ImplementationGuideParameter>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? code,
@@ -28265,7 +28036,7 @@ class _$ImplementationGuideParameterCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? code = freezed,
@@ -28274,9 +28045,9 @@ class _$ImplementationGuideParameterCopyWithImpl<$Res,
     Object? valueElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -28340,7 +28111,7 @@ abstract class _$$ImplementationGuideParameterImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? code,
@@ -28367,7 +28138,7 @@ class __$$ImplementationGuideParameterImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? code = freezed,
@@ -28376,9 +28147,9 @@ class __$$ImplementationGuideParameterImplCopyWithImpl<$Res>
     Object? valueElement = freezed,
   }) {
     return _then(_$ImplementationGuideParameterImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -28412,7 +28183,7 @@ class __$$ImplementationGuideParameterImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ImplementationGuideParameterImpl extends _ImplementationGuideParameter {
   const _$ImplementationGuideParameterImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.code,
@@ -28430,8 +28201,7 @@ class _$ImplementationGuideParameterImpl extends _ImplementationGuideParameter {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -28517,7 +28287,7 @@ class _$ImplementationGuideParameterImpl extends _ImplementationGuideParameter {
 
   @override
   String toString() {
-    return 'ImplementationGuideParameter(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, codeElement: $codeElement, value: $value, valueElement: $valueElement)';
+    return 'ImplementationGuideParameter(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, codeElement: $codeElement, value: $value, valueElement: $valueElement)';
   }
 
   @override
@@ -28525,7 +28295,7 @@ class _$ImplementationGuideParameterImpl extends _ImplementationGuideParameter {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ImplementationGuideParameterImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -28542,7 +28312,7 @@ class _$ImplementationGuideParameterImpl extends _ImplementationGuideParameter {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       code,
@@ -28569,7 +28339,7 @@ class _$ImplementationGuideParameterImpl extends _ImplementationGuideParameter {
 abstract class _ImplementationGuideParameter
     extends ImplementationGuideParameter {
   const factory _ImplementationGuideParameter(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final FhirCode? code,
@@ -28586,8 +28356,7 @@ abstract class _ImplementationGuideParameter
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -28650,8 +28419,7 @@ ImplementationGuideTemplate _$ImplementationGuideTemplateFromJson(
 mixin _$ImplementationGuideTemplate {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -28714,7 +28482,7 @@ abstract class $ImplementationGuideTemplateCopyWith<$Res> {
           ImplementationGuideTemplate>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? code,
@@ -28743,7 +28511,7 @@ class _$ImplementationGuideTemplateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? code = freezed,
@@ -28754,9 +28522,9 @@ class _$ImplementationGuideTemplateCopyWithImpl<$Res,
     Object? scopeElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -28840,7 +28608,7 @@ abstract class _$$ImplementationGuideTemplateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? code,
@@ -28871,7 +28639,7 @@ class __$$ImplementationGuideTemplateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? code = freezed,
@@ -28882,9 +28650,9 @@ class __$$ImplementationGuideTemplateImplCopyWithImpl<$Res>
     Object? scopeElement = freezed,
   }) {
     return _then(_$ImplementationGuideTemplateImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -28926,7 +28694,7 @@ class __$$ImplementationGuideTemplateImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ImplementationGuideTemplateImpl extends _ImplementationGuideTemplate {
   const _$ImplementationGuideTemplateImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.code,
@@ -28946,8 +28714,7 @@ class _$ImplementationGuideTemplateImpl extends _ImplementationGuideTemplate {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -29040,7 +28807,7 @@ class _$ImplementationGuideTemplateImpl extends _ImplementationGuideTemplate {
 
   @override
   String toString() {
-    return 'ImplementationGuideTemplate(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, codeElement: $codeElement, source: $source, sourceElement: $sourceElement, scope: $scope, scopeElement: $scopeElement)';
+    return 'ImplementationGuideTemplate(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, codeElement: $codeElement, source: $source, sourceElement: $sourceElement, scope: $scope, scopeElement: $scopeElement)';
   }
 
   @override
@@ -29048,7 +28815,7 @@ class _$ImplementationGuideTemplateImpl extends _ImplementationGuideTemplate {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ImplementationGuideTemplateImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -29068,7 +28835,7 @@ class _$ImplementationGuideTemplateImpl extends _ImplementationGuideTemplate {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       code,
@@ -29096,7 +28863,7 @@ class _$ImplementationGuideTemplateImpl extends _ImplementationGuideTemplate {
 abstract class _ImplementationGuideTemplate
     extends ImplementationGuideTemplate {
   const factory _ImplementationGuideTemplate(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final FhirCode? code,
@@ -29115,8 +28882,7 @@ abstract class _ImplementationGuideTemplate
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -29185,8 +28951,7 @@ ImplementationGuideManifest _$ImplementationGuideManifestFromJson(
 mixin _$ImplementationGuideManifest {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -29263,7 +29028,7 @@ abstract class $ImplementationGuideManifestCopyWith<$Res> {
           ImplementationGuideManifest>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirUrl? rendering,
@@ -29292,7 +29057,7 @@ class _$ImplementationGuideManifestCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? rendering = freezed,
@@ -29305,9 +29070,9 @@ class _$ImplementationGuideManifestCopyWithImpl<$Res,
     Object? otherElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -29375,7 +29140,7 @@ abstract class _$$ImplementationGuideManifestImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirUrl? rendering,
@@ -29404,7 +29169,7 @@ class __$$ImplementationGuideManifestImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? rendering = freezed,
@@ -29417,9 +29182,9 @@ class __$$ImplementationGuideManifestImplCopyWithImpl<$Res>
     Object? otherElement = freezed,
   }) {
     return _then(_$ImplementationGuideManifestImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -29469,7 +29234,7 @@ class __$$ImplementationGuideManifestImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ImplementationGuideManifestImpl extends _ImplementationGuideManifest {
   const _$ImplementationGuideManifestImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.rendering,
@@ -29497,8 +29262,7 @@ class _$ImplementationGuideManifestImpl extends _ImplementationGuideManifest {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -29662,7 +29426,7 @@ class _$ImplementationGuideManifestImpl extends _ImplementationGuideManifest {
 
   @override
   String toString() {
-    return 'ImplementationGuideManifest(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, rendering: $rendering, renderingElement: $renderingElement, resource: $resource, page: $page, image: $image, imageElement: $imageElement, other: $other, otherElement: $otherElement)';
+    return 'ImplementationGuideManifest(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, rendering: $rendering, renderingElement: $renderingElement, resource: $resource, page: $page, image: $image, imageElement: $imageElement, other: $other, otherElement: $otherElement)';
   }
 
   @override
@@ -29670,7 +29434,7 @@ class _$ImplementationGuideManifestImpl extends _ImplementationGuideManifest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ImplementationGuideManifestImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -29693,7 +29457,7 @@ class _$ImplementationGuideManifestImpl extends _ImplementationGuideManifest {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       rendering,
@@ -29723,7 +29487,7 @@ class _$ImplementationGuideManifestImpl extends _ImplementationGuideManifest {
 abstract class _ImplementationGuideManifest
     extends ImplementationGuideManifest {
   const factory _ImplementationGuideManifest(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final FhirUrl? rendering,
@@ -29744,8 +29508,7 @@ abstract class _ImplementationGuideManifest
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -29828,8 +29591,7 @@ ImplementationGuideResource1 _$ImplementationGuideResource1FromJson(
 mixin _$ImplementationGuideResource1 {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -29900,7 +29662,7 @@ abstract class $ImplementationGuideResource1CopyWith<$Res> {
           ImplementationGuideResource1>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       Reference reference,
@@ -29931,7 +29693,7 @@ class _$ImplementationGuideResource1CopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? reference = null,
@@ -29943,9 +29705,9 @@ class _$ImplementationGuideResource1CopyWithImpl<$Res,
     Object? relativePathElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -30041,7 +29803,7 @@ abstract class _$$ImplementationGuideResource1ImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       Reference reference,
@@ -30075,7 +29837,7 @@ class __$$ImplementationGuideResource1ImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? reference = null,
@@ -30087,9 +29849,9 @@ class __$$ImplementationGuideResource1ImplCopyWithImpl<$Res>
     Object? relativePathElement = freezed,
   }) {
     return _then(_$ImplementationGuideResource1Impl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -30135,7 +29897,7 @@ class __$$ImplementationGuideResource1ImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ImplementationGuideResource1Impl extends _ImplementationGuideResource1 {
   const _$ImplementationGuideResource1Impl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required this.reference,
@@ -30156,8 +29918,7 @@ class _$ImplementationGuideResource1Impl extends _ImplementationGuideResource1 {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -30259,7 +30020,7 @@ class _$ImplementationGuideResource1Impl extends _ImplementationGuideResource1 {
 
   @override
   String toString() {
-    return 'ImplementationGuideResource1(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, reference: $reference, exampleBoolean: $exampleBoolean, exampleBooleanElement: $exampleBooleanElement, exampleCanonical: $exampleCanonical, exampleCanonicalElement: $exampleCanonicalElement, relativePath: $relativePath, relativePathElement: $relativePathElement)';
+    return 'ImplementationGuideResource1(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, reference: $reference, exampleBoolean: $exampleBoolean, exampleBooleanElement: $exampleBooleanElement, exampleCanonical: $exampleCanonical, exampleCanonicalElement: $exampleCanonicalElement, relativePath: $relativePath, relativePathElement: $relativePathElement)';
   }
 
   @override
@@ -30267,7 +30028,7 @@ class _$ImplementationGuideResource1Impl extends _ImplementationGuideResource1 {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ImplementationGuideResource1Impl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -30293,7 +30054,7 @@ class _$ImplementationGuideResource1Impl extends _ImplementationGuideResource1 {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       reference,
@@ -30323,7 +30084,7 @@ class _$ImplementationGuideResource1Impl extends _ImplementationGuideResource1 {
 abstract class _ImplementationGuideResource1
     extends ImplementationGuideResource1 {
   const factory _ImplementationGuideResource1(
-      {@JsonKey(name: 'id') final FhirId? fhirId,
+      {final FhirId? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required final Reference reference,
@@ -30344,8 +30105,7 @@ abstract class _ImplementationGuideResource1
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -30424,8 +30184,7 @@ ImplementationGuidePage1 _$ImplementationGuidePage1FromJson(
 mixin _$ImplementationGuidePage1 {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -30486,7 +30245,7 @@ abstract class $ImplementationGuidePage1CopyWith<$Res> {
       _$ImplementationGuidePage1CopyWithImpl<$Res, ImplementationGuidePage1>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? name,
@@ -30514,7 +30273,7 @@ class _$ImplementationGuidePage1CopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? name = freezed,
@@ -30525,9 +30284,9 @@ class _$ImplementationGuidePage1CopyWithImpl<$Res,
     Object? anchorElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -30599,7 +30358,7 @@ abstract class _$$ImplementationGuidePage1ImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? name,
@@ -30628,7 +30387,7 @@ class __$$ImplementationGuidePage1ImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? name = freezed,
@@ -30639,9 +30398,9 @@ class __$$ImplementationGuidePage1ImplCopyWithImpl<$Res>
     Object? anchorElement = freezed,
   }) {
     return _then(_$ImplementationGuidePage1Impl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -30683,7 +30442,7 @@ class __$$ImplementationGuidePage1ImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ImplementationGuidePage1Impl extends _ImplementationGuidePage1 {
   const _$ImplementationGuidePage1Impl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.name,
@@ -30704,8 +30463,7 @@ class _$ImplementationGuidePage1Impl extends _ImplementationGuidePage1 {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -30816,7 +30574,7 @@ class _$ImplementationGuidePage1Impl extends _ImplementationGuidePage1 {
 
   @override
   String toString() {
-    return 'ImplementationGuidePage1(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, title: $title, titleElement: $titleElement, anchor: $anchor, anchorElement: $anchorElement)';
+    return 'ImplementationGuidePage1(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, title: $title, titleElement: $titleElement, anchor: $anchor, anchorElement: $anchorElement)';
   }
 
   @override
@@ -30824,7 +30582,7 @@ class _$ImplementationGuidePage1Impl extends _ImplementationGuidePage1 {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ImplementationGuidePage1Impl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -30844,7 +30602,7 @@ class _$ImplementationGuidePage1Impl extends _ImplementationGuidePage1 {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       name,
@@ -30871,7 +30629,7 @@ class _$ImplementationGuidePage1Impl extends _ImplementationGuidePage1 {
 
 abstract class _ImplementationGuidePage1 extends ImplementationGuidePage1 {
   const factory _ImplementationGuidePage1(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final String? name,
@@ -30890,8 +30648,7 @@ abstract class _ImplementationGuidePage1 extends ImplementationGuidePage1 {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -30959,13 +30716,10 @@ MessageDefinition _$MessageDefinitionFromJson(Map<String, dynamic> json) {
 mixin _$MessageDefinition {
   @JsonKey(unknownEnumValue: R4ResourceType.MessageDefinition)
   R4ResourceType get resourceType => throw _privateConstructorUsedError;
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  int? get dbId => throw _privateConstructorUsedError;
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @JsonKey(name: 'id')
-  String? get fhirId => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
@@ -31215,8 +30969,7 @@ abstract class $MessageDefinitionCopyWith<$Res> {
   $Res call(
       {@JsonKey(unknownEnumValue: R4ResourceType.MessageDefinition)
       R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-      @JsonKey(name: 'id') String? fhirId,
+      String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
@@ -31301,8 +31054,7 @@ class _$MessageDefinitionCopyWithImpl<$Res, $Val extends MessageDefinition>
   @override
   $Res call({
     Object? resourceType = null,
-    Object? dbId = freezed,
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? meta = freezed,
     Object? implicitRules = freezed,
     Object? implicitRulesElement = freezed,
@@ -31357,13 +31109,9 @@ class _$MessageDefinitionCopyWithImpl<$Res, $Val extends MessageDefinition>
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as R4ResourceType,
-      dbId: freezed == dbId
-          ? _value.dbId
-          : dbId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       meta: freezed == meta
           ? _value.meta
@@ -31800,8 +31548,7 @@ abstract class _$$MessageDefinitionImplCopyWith<$Res>
   $Res call(
       {@JsonKey(unknownEnumValue: R4ResourceType.MessageDefinition)
       R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-      @JsonKey(name: 'id') String? fhirId,
+      String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
@@ -31903,8 +31650,7 @@ class __$$MessageDefinitionImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? resourceType = null,
-    Object? dbId = freezed,
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? meta = freezed,
     Object? implicitRules = freezed,
     Object? implicitRulesElement = freezed,
@@ -31959,13 +31705,9 @@ class __$$MessageDefinitionImplCopyWithImpl<$Res>
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as R4ResourceType,
-      dbId: freezed == dbId
-          ? _value.dbId
-          : dbId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       meta: freezed == meta
           ? _value.meta
@@ -32169,8 +31911,7 @@ class _$MessageDefinitionImpl extends _MessageDefinition {
   const _$MessageDefinitionImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.MessageDefinition)
       this.resourceType = R4ResourceType.MessageDefinition,
-      @JsonKey(includeFromJson: true, includeToJson: false) this.dbId,
-      @JsonKey(name: 'id') this.fhirId,
+      this.id,
       this.meta,
       this.implicitRules,
       @JsonKey(name: '_implicitRules') this.implicitRulesElement,
@@ -32239,15 +31980,11 @@ class _$MessageDefinitionImpl extends _MessageDefinition {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.MessageDefinition)
   final R4ResourceType resourceType;
-  @override
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  final int? dbId;
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
   @override
-  @JsonKey(name: 'id')
-  final String? fhirId;
+  final String? id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
@@ -32675,7 +32412,7 @@ class _$MessageDefinitionImpl extends _MessageDefinition {
 
   @override
   String toString() {
-    return 'MessageDefinition(resourceType: $resourceType, dbId: $dbId, fhirId: $fhirId, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, identifier: $identifier, version: $version, versionElement: $versionElement, name: $name, nameElement: $nameElement, title: $title, titleElement: $titleElement, replaces: $replaces, status: $status, statusElement: $statusElement, experimental: $experimental, experimentalElement: $experimentalElement, date: $date, dateElement: $dateElement, publisher: $publisher, publisherElement: $publisherElement, contact: $contact, description: $description, descriptionElement: $descriptionElement, useContext: $useContext, jurisdiction: $jurisdiction, purpose: $purpose, purposeElement: $purposeElement, copyright: $copyright, copyrightElement: $copyrightElement, base: $base, parent: $parent, eventCoding: $eventCoding, eventUri: $eventUri, eventUriElement: $eventUriElement, category: $category, categoryElement: $categoryElement, focus: $focus, responseRequired: $responseRequired, responseRequiredElement: $responseRequiredElement, allowedResponse: $allowedResponse, graph: $graph)';
+    return 'MessageDefinition(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, identifier: $identifier, version: $version, versionElement: $versionElement, name: $name, nameElement: $nameElement, title: $title, titleElement: $titleElement, replaces: $replaces, status: $status, statusElement: $statusElement, experimental: $experimental, experimentalElement: $experimentalElement, date: $date, dateElement: $dateElement, publisher: $publisher, publisherElement: $publisherElement, contact: $contact, description: $description, descriptionElement: $descriptionElement, useContext: $useContext, jurisdiction: $jurisdiction, purpose: $purpose, purposeElement: $purposeElement, copyright: $copyright, copyrightElement: $copyrightElement, base: $base, parent: $parent, eventCoding: $eventCoding, eventUri: $eventUri, eventUriElement: $eventUriElement, category: $category, categoryElement: $categoryElement, focus: $focus, responseRequired: $responseRequired, responseRequiredElement: $responseRequiredElement, allowedResponse: $allowedResponse, graph: $graph)';
   }
 
   @override
@@ -32685,8 +32422,7 @@ class _$MessageDefinitionImpl extends _MessageDefinition {
             other is _$MessageDefinitionImpl &&
             (identical(other.resourceType, resourceType) ||
                 other.resourceType == resourceType) &&
-            (identical(other.dbId, dbId) || other.dbId == dbId) &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.meta, meta) || other.meta == meta) &&
             (identical(other.implicitRules, implicitRules) ||
                 other.implicitRules == implicitRules) &&
@@ -32776,8 +32512,7 @@ class _$MessageDefinitionImpl extends _MessageDefinition {
   int get hashCode => Object.hashAll([
         runtimeType,
         resourceType,
-        dbId,
-        fhirId,
+        id,
         meta,
         implicitRules,
         implicitRulesElement,
@@ -32847,8 +32582,7 @@ abstract class _MessageDefinition extends MessageDefinition {
   const factory _MessageDefinition(
       {@JsonKey(unknownEnumValue: R4ResourceType.MessageDefinition)
       final R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) final int? dbId,
-      @JsonKey(name: 'id') final String? fhirId,
+      final String? id,
       final FhirMeta? meta,
       final FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') final Element? implicitRulesElement,
@@ -32907,14 +32641,10 @@ abstract class _MessageDefinition extends MessageDefinition {
   @JsonKey(unknownEnumValue: R4ResourceType.MessageDefinition)
   R4ResourceType get resourceType;
   @override
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  int? get dbId;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @JsonKey(name: 'id')
-  String? get fhirId;
+  String? get id;
   @override
 
   /// [meta] The metadata about the resource. This is content that is
@@ -33209,8 +32939,7 @@ MessageDefinitionFocus _$MessageDefinitionFocusFromJson(
 mixin _$MessageDefinitionFocus {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -33279,7 +33008,7 @@ abstract class $MessageDefinitionFocusCopyWith<$Res> {
       _$MessageDefinitionFocusCopyWithImpl<$Res, MessageDefinitionFocus>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? code,
@@ -33309,7 +33038,7 @@ class _$MessageDefinitionFocusCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? code = freezed,
@@ -33321,9 +33050,9 @@ class _$MessageDefinitionFocusCopyWithImpl<$Res,
     Object? maxElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -33411,7 +33140,7 @@ abstract class _$$MessageDefinitionFocusImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? code,
@@ -33443,7 +33172,7 @@ class __$$MessageDefinitionFocusImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? code = freezed,
@@ -33455,9 +33184,9 @@ class __$$MessageDefinitionFocusImplCopyWithImpl<$Res>
     Object? maxElement = freezed,
   }) {
     return _then(_$MessageDefinitionFocusImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -33503,7 +33232,7 @@ class __$$MessageDefinitionFocusImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MessageDefinitionFocusImpl extends _MessageDefinitionFocus {
   const _$MessageDefinitionFocusImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.code,
@@ -33523,8 +33252,7 @@ class _$MessageDefinitionFocusImpl extends _MessageDefinitionFocus {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -33626,7 +33354,7 @@ class _$MessageDefinitionFocusImpl extends _MessageDefinitionFocus {
 
   @override
   String toString() {
-    return 'MessageDefinitionFocus(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, codeElement: $codeElement, profile: $profile, min: $min, minElement: $minElement, max: $max, maxElement: $maxElement)';
+    return 'MessageDefinitionFocus(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, codeElement: $codeElement, profile: $profile, min: $min, minElement: $minElement, max: $max, maxElement: $maxElement)';
   }
 
   @override
@@ -33634,7 +33362,7 @@ class _$MessageDefinitionFocusImpl extends _MessageDefinitionFocus {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MessageDefinitionFocusImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -33655,7 +33383,7 @@ class _$MessageDefinitionFocusImpl extends _MessageDefinitionFocus {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       code,
@@ -33683,7 +33411,7 @@ class _$MessageDefinitionFocusImpl extends _MessageDefinitionFocus {
 
 abstract class _MessageDefinitionFocus extends MessageDefinitionFocus {
   const factory _MessageDefinitionFocus(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final FhirCode? code,
@@ -33703,8 +33431,7 @@ abstract class _MessageDefinitionFocus extends MessageDefinitionFocus {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -33782,8 +33509,7 @@ MessageDefinitionAllowedResponse _$MessageDefinitionAllowedResponseFromJson(
 mixin _$MessageDefinitionAllowedResponse {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -33837,7 +33563,7 @@ abstract class $MessageDefinitionAllowedResponseCopyWith<$Res> {
           MessageDefinitionAllowedResponse>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCanonical message,
@@ -33861,7 +33587,7 @@ class _$MessageDefinitionAllowedResponseCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? message = null,
@@ -33869,9 +33595,9 @@ class _$MessageDefinitionAllowedResponseCopyWithImpl<$Res,
     Object? situationElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -33919,7 +33645,7 @@ abstract class _$$MessageDefinitionAllowedResponseImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCanonical message,
@@ -33943,7 +33669,7 @@ class __$$MessageDefinitionAllowedResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? message = null,
@@ -33951,9 +33677,9 @@ class __$$MessageDefinitionAllowedResponseImplCopyWithImpl<$Res>
     Object? situationElement = freezed,
   }) {
     return _then(_$MessageDefinitionAllowedResponseImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -33984,7 +33710,7 @@ class __$$MessageDefinitionAllowedResponseImplCopyWithImpl<$Res>
 class _$MessageDefinitionAllowedResponseImpl
     extends _MessageDefinitionAllowedResponse {
   const _$MessageDefinitionAllowedResponseImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required this.message,
@@ -34001,8 +33727,7 @@ class _$MessageDefinitionAllowedResponseImpl
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -34083,7 +33808,7 @@ class _$MessageDefinitionAllowedResponseImpl
 
   @override
   String toString() {
-    return 'MessageDefinitionAllowedResponse(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, message: $message, situation: $situation, situationElement: $situationElement)';
+    return 'MessageDefinitionAllowedResponse(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, message: $message, situation: $situation, situationElement: $situationElement)';
   }
 
   @override
@@ -34091,7 +33816,7 @@ class _$MessageDefinitionAllowedResponseImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MessageDefinitionAllowedResponseImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -34107,7 +33832,7 @@ class _$MessageDefinitionAllowedResponseImpl
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       message,
@@ -34133,7 +33858,7 @@ class _$MessageDefinitionAllowedResponseImpl
 abstract class _MessageDefinitionAllowedResponse
     extends MessageDefinitionAllowedResponse {
   const factory _MessageDefinitionAllowedResponse(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           required final FhirCanonical message,
@@ -34150,8 +33875,7 @@ abstract class _MessageDefinitionAllowedResponse
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -34208,13 +33932,10 @@ OperationDefinition _$OperationDefinitionFromJson(Map<String, dynamic> json) {
 mixin _$OperationDefinition {
   @JsonKey(unknownEnumValue: R4ResourceType.OperationDefinition)
   R4ResourceType get resourceType => throw _privateConstructorUsedError;
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  int? get dbId => throw _privateConstructorUsedError;
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @JsonKey(name: 'id')
-  String? get fhirId => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
@@ -34488,8 +34209,7 @@ abstract class $OperationDefinitionCopyWith<$Res> {
   $Res call(
       {@JsonKey(unknownEnumValue: R4ResourceType.OperationDefinition)
       R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-      @JsonKey(name: 'id') String? fhirId,
+      String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
@@ -34581,8 +34301,7 @@ class _$OperationDefinitionCopyWithImpl<$Res, $Val extends OperationDefinition>
   @override
   $Res call({
     Object? resourceType = null,
-    Object? dbId = freezed,
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? meta = freezed,
     Object? implicitRules = freezed,
     Object? implicitRulesElement = freezed,
@@ -34642,13 +34361,9 @@ class _$OperationDefinitionCopyWithImpl<$Res, $Val extends OperationDefinition>
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as R4ResourceType,
-      dbId: freezed == dbId
-          ? _value.dbId
-          : dbId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       meta: freezed == meta
           ? _value.meta
@@ -35129,8 +34844,7 @@ abstract class _$$OperationDefinitionImplCopyWith<$Res>
   $Res call(
       {@JsonKey(unknownEnumValue: R4ResourceType.OperationDefinition)
       R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-      @JsonKey(name: 'id') String? fhirId,
+      String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
@@ -35241,8 +34955,7 @@ class __$$OperationDefinitionImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? resourceType = null,
-    Object? dbId = freezed,
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? meta = freezed,
     Object? implicitRules = freezed,
     Object? implicitRulesElement = freezed,
@@ -35302,13 +35015,9 @@ class __$$OperationDefinitionImplCopyWithImpl<$Res>
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as R4ResourceType,
-      dbId: freezed == dbId
-          ? _value.dbId
-          : dbId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       meta: freezed == meta
           ? _value.meta
@@ -35532,8 +35241,7 @@ class _$OperationDefinitionImpl extends _OperationDefinition {
   const _$OperationDefinitionImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.OperationDefinition)
       this.resourceType = R4ResourceType.OperationDefinition,
-      @JsonKey(includeFromJson: true, includeToJson: false) this.dbId,
-      @JsonKey(name: 'id') this.fhirId,
+      this.id,
       this.meta,
       this.implicitRules,
       @JsonKey(name: '_implicitRules') this.implicitRulesElement,
@@ -35605,15 +35313,11 @@ class _$OperationDefinitionImpl extends _OperationDefinition {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.OperationDefinition)
   final R4ResourceType resourceType;
-  @override
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  final int? dbId;
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
   @override
-  @JsonKey(name: 'id')
-  final String? fhirId;
+  final String? id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
@@ -36043,7 +35747,7 @@ class _$OperationDefinitionImpl extends _OperationDefinition {
 
   @override
   String toString() {
-    return 'OperationDefinition(resourceType: $resourceType, dbId: $dbId, fhirId: $fhirId, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, version: $version, versionElement: $versionElement, name: $name, nameElement: $nameElement, title: $title, titleElement: $titleElement, status: $status, statusElement: $statusElement, kind: $kind, kindElement: $kindElement, experimental: $experimental, experimentalElement: $experimentalElement, date: $date, dateElement: $dateElement, publisher: $publisher, publisherElement: $publisherElement, contact: $contact, description: $description, descriptionElement: $descriptionElement, useContext: $useContext, jurisdiction: $jurisdiction, purpose: $purpose, purposeElement: $purposeElement, affectsState: $affectsState, affectsStateElement: $affectsStateElement, code: $code, codeElement: $codeElement, comment: $comment, commentElement: $commentElement, base: $base, resource: $resource, resourceElement: $resourceElement, system: $system, systemElement: $systemElement, type: $type, typeElement: $typeElement, instance: $instance, instanceElement: $instanceElement, inputProfile: $inputProfile, outputProfile: $outputProfile, parameter: $parameter, overload: $overload)';
+    return 'OperationDefinition(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, version: $version, versionElement: $versionElement, name: $name, nameElement: $nameElement, title: $title, titleElement: $titleElement, status: $status, statusElement: $statusElement, kind: $kind, kindElement: $kindElement, experimental: $experimental, experimentalElement: $experimentalElement, date: $date, dateElement: $dateElement, publisher: $publisher, publisherElement: $publisherElement, contact: $contact, description: $description, descriptionElement: $descriptionElement, useContext: $useContext, jurisdiction: $jurisdiction, purpose: $purpose, purposeElement: $purposeElement, affectsState: $affectsState, affectsStateElement: $affectsStateElement, code: $code, codeElement: $codeElement, comment: $comment, commentElement: $commentElement, base: $base, resource: $resource, resourceElement: $resourceElement, system: $system, systemElement: $systemElement, type: $type, typeElement: $typeElement, instance: $instance, instanceElement: $instanceElement, inputProfile: $inputProfile, outputProfile: $outputProfile, parameter: $parameter, overload: $overload)';
   }
 
   @override
@@ -36053,8 +35757,7 @@ class _$OperationDefinitionImpl extends _OperationDefinition {
             other is _$OperationDefinitionImpl &&
             (identical(other.resourceType, resourceType) ||
                 other.resourceType == resourceType) &&
-            (identical(other.dbId, dbId) || other.dbId == dbId) &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.meta, meta) || other.meta == meta) &&
             (identical(other.implicitRules, implicitRules) ||
                 other.implicitRules == implicitRules) &&
@@ -36150,8 +35853,7 @@ class _$OperationDefinitionImpl extends _OperationDefinition {
   int get hashCode => Object.hashAll([
         runtimeType,
         resourceType,
-        dbId,
-        fhirId,
+        id,
         meta,
         implicitRules,
         implicitRulesElement,
@@ -36226,8 +35928,7 @@ abstract class _OperationDefinition extends OperationDefinition {
   const factory _OperationDefinition(
           {@JsonKey(unknownEnumValue: R4ResourceType.OperationDefinition)
           final R4ResourceType resourceType,
-          @JsonKey(includeFromJson: true, includeToJson: false) final int? dbId,
-          @JsonKey(name: 'id') final String? fhirId,
+          final String? id,
           final FhirMeta? meta,
           final FhirUri? implicitRules,
           @JsonKey(name: '_implicitRules') final Element? implicitRulesElement,
@@ -36291,14 +35992,10 @@ abstract class _OperationDefinition extends OperationDefinition {
   @JsonKey(unknownEnumValue: R4ResourceType.OperationDefinition)
   R4ResourceType get resourceType;
   @override
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  int? get dbId;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @JsonKey(name: 'id')
-  String? get fhirId;
+  String? get id;
   @override
 
   /// [meta] The metadata about the resource. This is content that is
@@ -36621,8 +36318,7 @@ OperationDefinitionParameter _$OperationDefinitionParameterFromJson(
 mixin _$OperationDefinitionParameter {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -36741,7 +36437,7 @@ abstract class $OperationDefinitionParameterCopyWith<$Res> {
           OperationDefinitionParameter>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? name,
@@ -36787,7 +36483,7 @@ class _$OperationDefinitionParameterCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? name = freezed,
@@ -36810,9 +36506,9 @@ class _$OperationDefinitionParameterCopyWithImpl<$Res,
     Object? part_ = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -37004,7 +36700,7 @@ abstract class _$$OperationDefinitionParameterImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? name,
@@ -37057,7 +36753,7 @@ class __$$OperationDefinitionParameterImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? name = freezed,
@@ -37080,9 +36776,9 @@ class __$$OperationDefinitionParameterImplCopyWithImpl<$Res>
     Object? part_ = freezed,
   }) {
     return _then(_$OperationDefinitionParameterImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -37172,7 +36868,7 @@ class __$$OperationDefinitionParameterImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$OperationDefinitionParameterImpl extends _OperationDefinitionParameter {
   const _$OperationDefinitionParameterImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.name,
@@ -37207,8 +36903,7 @@ class _$OperationDefinitionParameterImpl extends _OperationDefinitionParameter {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -37403,7 +37098,7 @@ class _$OperationDefinitionParameterImpl extends _OperationDefinitionParameter {
 
   @override
   String toString() {
-    return 'OperationDefinitionParameter(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, use: $use, useElement: $useElement, min: $min, minElement: $minElement, max: $max, maxElement: $maxElement, documentation: $documentation, documentationElement: $documentationElement, type: $type, typeElement: $typeElement, targetProfile: $targetProfile, searchType: $searchType, searchTypeElement: $searchTypeElement, binding: $binding, referencedFrom: $referencedFrom, part_: $part_)';
+    return 'OperationDefinitionParameter(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, use: $use, useElement: $useElement, min: $min, minElement: $minElement, max: $max, maxElement: $maxElement, documentation: $documentation, documentationElement: $documentationElement, type: $type, typeElement: $typeElement, targetProfile: $targetProfile, searchType: $searchType, searchTypeElement: $searchTypeElement, binding: $binding, referencedFrom: $referencedFrom, part_: $part_)';
   }
 
   @override
@@ -37411,7 +37106,7 @@ class _$OperationDefinitionParameterImpl extends _OperationDefinitionParameter {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$OperationDefinitionParameterImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -37451,7 +37146,7 @@ class _$OperationDefinitionParameterImpl extends _OperationDefinitionParameter {
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        fhirId,
+        id,
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),
         name,
@@ -37493,7 +37188,7 @@ class _$OperationDefinitionParameterImpl extends _OperationDefinitionParameter {
 abstract class _OperationDefinitionParameter
     extends OperationDefinitionParameter {
   const factory _OperationDefinitionParameter(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final FhirCode? name,
@@ -37525,8 +37220,7 @@ abstract class _OperationDefinitionParameter
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -37662,8 +37356,7 @@ OperationDefinitionBinding _$OperationDefinitionBindingFromJson(
 mixin _$OperationDefinitionBinding {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -37717,7 +37410,7 @@ abstract class $OperationDefinitionBindingCopyWith<$Res> {
           OperationDefinitionBinding>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? strength,
@@ -37741,7 +37434,7 @@ class _$OperationDefinitionBindingCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? strength = freezed,
@@ -37749,9 +37442,9 @@ class _$OperationDefinitionBindingCopyWithImpl<$Res,
     Object? valueSet = null,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -37799,7 +37492,7 @@ abstract class _$$OperationDefinitionBindingImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? strength,
@@ -37823,7 +37516,7 @@ class __$$OperationDefinitionBindingImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? strength = freezed,
@@ -37831,9 +37524,9 @@ class __$$OperationDefinitionBindingImplCopyWithImpl<$Res>
     Object? valueSet = null,
   }) {
     return _then(_$OperationDefinitionBindingImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -37863,7 +37556,7 @@ class __$$OperationDefinitionBindingImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$OperationDefinitionBindingImpl extends _OperationDefinitionBinding {
   const _$OperationDefinitionBindingImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.strength,
@@ -37880,8 +37573,7 @@ class _$OperationDefinitionBindingImpl extends _OperationDefinitionBinding {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -37963,7 +37655,7 @@ class _$OperationDefinitionBindingImpl extends _OperationDefinitionBinding {
 
   @override
   String toString() {
-    return 'OperationDefinitionBinding(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, strength: $strength, strengthElement: $strengthElement, valueSet: $valueSet)';
+    return 'OperationDefinitionBinding(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, strength: $strength, strengthElement: $strengthElement, valueSet: $valueSet)';
   }
 
   @override
@@ -37971,7 +37663,7 @@ class _$OperationDefinitionBindingImpl extends _OperationDefinitionBinding {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$OperationDefinitionBindingImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -37988,7 +37680,7 @@ class _$OperationDefinitionBindingImpl extends _OperationDefinitionBinding {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       strength,
@@ -38012,7 +37704,7 @@ class _$OperationDefinitionBindingImpl extends _OperationDefinitionBinding {
 
 abstract class _OperationDefinitionBinding extends OperationDefinitionBinding {
   const factory _OperationDefinitionBinding(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final FhirCode? strength,
@@ -38028,8 +37720,7 @@ abstract class _OperationDefinitionBinding extends OperationDefinitionBinding {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -38087,8 +37778,7 @@ OperationDefinitionReferencedFrom _$OperationDefinitionReferencedFromFromJson(
 mixin _$OperationDefinitionReferencedFrom {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -38147,7 +37837,7 @@ abstract class $OperationDefinitionReferencedFromCopyWith<$Res> {
           OperationDefinitionReferencedFrom>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? source,
@@ -38173,7 +37863,7 @@ class _$OperationDefinitionReferencedFromCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? source = freezed,
@@ -38182,9 +37872,9 @@ class _$OperationDefinitionReferencedFromCopyWithImpl<$Res,
     Object? sourceIdElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -38248,7 +37938,7 @@ abstract class _$$OperationDefinitionReferencedFromImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? source,
@@ -38275,7 +37965,7 @@ class __$$OperationDefinitionReferencedFromImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? source = freezed,
@@ -38284,9 +37974,9 @@ class __$$OperationDefinitionReferencedFromImplCopyWithImpl<$Res>
     Object? sourceIdElement = freezed,
   }) {
     return _then(_$OperationDefinitionReferencedFromImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -38321,7 +38011,7 @@ class __$$OperationDefinitionReferencedFromImplCopyWithImpl<$Res>
 class _$OperationDefinitionReferencedFromImpl
     extends _OperationDefinitionReferencedFrom {
   const _$OperationDefinitionReferencedFromImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.source,
@@ -38339,8 +38029,7 @@ class _$OperationDefinitionReferencedFromImpl
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -38427,7 +38116,7 @@ class _$OperationDefinitionReferencedFromImpl
 
   @override
   String toString() {
-    return 'OperationDefinitionReferencedFrom(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, source: $source, sourceElement: $sourceElement, sourceId: $sourceId, sourceIdElement: $sourceIdElement)';
+    return 'OperationDefinitionReferencedFrom(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, source: $source, sourceElement: $sourceElement, sourceId: $sourceId, sourceIdElement: $sourceIdElement)';
   }
 
   @override
@@ -38435,7 +38124,7 @@ class _$OperationDefinitionReferencedFromImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$OperationDefinitionReferencedFromImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -38453,7 +38142,7 @@ class _$OperationDefinitionReferencedFromImpl
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       source,
@@ -38480,7 +38169,7 @@ class _$OperationDefinitionReferencedFromImpl
 abstract class _OperationDefinitionReferencedFrom
     extends OperationDefinitionReferencedFrom {
   const factory _OperationDefinitionReferencedFrom(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final String? source,
@@ -38498,8 +38187,7 @@ abstract class _OperationDefinitionReferencedFrom
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -38563,8 +38251,7 @@ OperationDefinitionOverload _$OperationDefinitionOverloadFromJson(
 mixin _$OperationDefinitionOverload {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -38621,7 +38308,7 @@ abstract class $OperationDefinitionOverloadCopyWith<$Res> {
           OperationDefinitionOverload>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<String>? parameterName,
@@ -38646,7 +38333,7 @@ class _$OperationDefinitionOverloadCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? parameterName = freezed,
@@ -38655,9 +38342,9 @@ class _$OperationDefinitionOverloadCopyWithImpl<$Res,
     Object? commentElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -38709,7 +38396,7 @@ abstract class _$$OperationDefinitionOverloadImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<String>? parameterName,
@@ -38734,7 +38421,7 @@ class __$$OperationDefinitionOverloadImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? parameterName = freezed,
@@ -38743,9 +38430,9 @@ class __$$OperationDefinitionOverloadImplCopyWithImpl<$Res>
     Object? commentElement = freezed,
   }) {
     return _then(_$OperationDefinitionOverloadImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -38779,7 +38466,7 @@ class __$$OperationDefinitionOverloadImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$OperationDefinitionOverloadImpl extends _OperationDefinitionOverload {
   const _$OperationDefinitionOverloadImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final List<String>? parameterName,
@@ -38800,8 +38487,7 @@ class _$OperationDefinitionOverloadImpl extends _OperationDefinitionOverload {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -38904,7 +38590,7 @@ class _$OperationDefinitionOverloadImpl extends _OperationDefinitionOverload {
 
   @override
   String toString() {
-    return 'OperationDefinitionOverload(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, parameterName: $parameterName, parameterNameElement: $parameterNameElement, comment: $comment, commentElement: $commentElement)';
+    return 'OperationDefinitionOverload(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, parameterName: $parameterName, parameterNameElement: $parameterNameElement, comment: $comment, commentElement: $commentElement)';
   }
 
   @override
@@ -38912,7 +38598,7 @@ class _$OperationDefinitionOverloadImpl extends _OperationDefinitionOverload {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$OperationDefinitionOverloadImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -38930,7 +38616,7 @@ class _$OperationDefinitionOverloadImpl extends _OperationDefinitionOverload {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       const DeepCollectionEquality().hash(_parameterName),
@@ -38956,7 +38642,7 @@ class _$OperationDefinitionOverloadImpl extends _OperationDefinitionOverload {
 abstract class _OperationDefinitionOverload
     extends OperationDefinitionOverload {
   const factory _OperationDefinitionOverload(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final List<String>? parameterName,
@@ -38974,8 +38660,7 @@ abstract class _OperationDefinitionOverload
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -39034,13 +38719,10 @@ SearchParameter _$SearchParameterFromJson(Map<String, dynamic> json) {
 mixin _$SearchParameter {
   @JsonKey(unknownEnumValue: R4ResourceType.SearchParameter)
   R4ResourceType get resourceType => throw _privateConstructorUsedError;
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  int? get dbId => throw _privateConstructorUsedError;
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @JsonKey(name: 'id')
-  String? get fhirId => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
@@ -39328,8 +39010,7 @@ abstract class $SearchParameterCopyWith<$Res> {
   $Res call(
       {@JsonKey(unknownEnumValue: R4ResourceType.SearchParameter)
       R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-      @JsonKey(name: 'id') String? fhirId,
+      String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
@@ -39423,8 +39104,7 @@ class _$SearchParameterCopyWithImpl<$Res, $Val extends SearchParameter>
   @override
   $Res call({
     Object? resourceType = null,
-    Object? dbId = freezed,
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? meta = freezed,
     Object? implicitRules = freezed,
     Object? implicitRulesElement = freezed,
@@ -39487,13 +39167,9 @@ class _$SearchParameterCopyWithImpl<$Res, $Val extends SearchParameter>
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as R4ResourceType,
-      dbId: freezed == dbId
-          ? _value.dbId
-          : dbId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       meta: freezed == meta
           ? _value.meta
@@ -39974,8 +39650,7 @@ abstract class _$$SearchParameterImplCopyWith<$Res>
   $Res call(
       {@JsonKey(unknownEnumValue: R4ResourceType.SearchParameter)
       R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-      @JsonKey(name: 'id') String? fhirId,
+      String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
@@ -40087,8 +39762,7 @@ class __$$SearchParameterImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? resourceType = null,
-    Object? dbId = freezed,
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? meta = freezed,
     Object? implicitRules = freezed,
     Object? implicitRulesElement = freezed,
@@ -40151,13 +39825,9 @@ class __$$SearchParameterImplCopyWithImpl<$Res>
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as R4ResourceType,
-      dbId: freezed == dbId
-          ? _value.dbId
-          : dbId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       meta: freezed == meta
           ? _value.meta
@@ -40393,8 +40063,7 @@ class _$SearchParameterImpl extends _SearchParameter {
   const _$SearchParameterImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.SearchParameter)
       this.resourceType = R4ResourceType.SearchParameter,
-      @JsonKey(includeFromJson: true, includeToJson: false) this.dbId,
-      @JsonKey(name: 'id') this.fhirId,
+      this.id,
       this.meta,
       this.implicitRules,
       @JsonKey(name: '_implicitRules') this.implicitRulesElement,
@@ -40476,15 +40145,11 @@ class _$SearchParameterImpl extends _SearchParameter {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.SearchParameter)
   final R4ResourceType resourceType;
-  @override
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  final int? dbId;
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
   @override
-  @JsonKey(name: 'id')
-  final String? fhirId;
+  final String? id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
@@ -41000,7 +40665,7 @@ class _$SearchParameterImpl extends _SearchParameter {
 
   @override
   String toString() {
-    return 'SearchParameter(resourceType: $resourceType, dbId: $dbId, fhirId: $fhirId, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, version: $version, versionElement: $versionElement, name: $name, nameElement: $nameElement, derivedFrom: $derivedFrom, status: $status, statusElement: $statusElement, experimental: $experimental, experimentalElement: $experimentalElement, date: $date, dateElement: $dateElement, publisher: $publisher, publisherElement: $publisherElement, contact: $contact, description: $description, descriptionElement: $descriptionElement, useContext: $useContext, jurisdiction: $jurisdiction, purpose: $purpose, purposeElement: $purposeElement, code: $code, codeElement: $codeElement, base: $base, baseElement: $baseElement, type: $type, typeElement: $typeElement, expression: $expression, expressionElement: $expressionElement, xpath: $xpath, xpathElement: $xpathElement, xpathUsage: $xpathUsage, xpathUsageElement: $xpathUsageElement, target: $target, targetElement: $targetElement, multipleOr: $multipleOr, multipleOrElement: $multipleOrElement, multipleAnd: $multipleAnd, multipleAndElement: $multipleAndElement, comparator: $comparator, comparatorElement: $comparatorElement, modifier: $modifier, modifierElement: $modifierElement, chain: $chain, chainElement: $chainElement, component: $component)';
+    return 'SearchParameter(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, version: $version, versionElement: $versionElement, name: $name, nameElement: $nameElement, derivedFrom: $derivedFrom, status: $status, statusElement: $statusElement, experimental: $experimental, experimentalElement: $experimentalElement, date: $date, dateElement: $dateElement, publisher: $publisher, publisherElement: $publisherElement, contact: $contact, description: $description, descriptionElement: $descriptionElement, useContext: $useContext, jurisdiction: $jurisdiction, purpose: $purpose, purposeElement: $purposeElement, code: $code, codeElement: $codeElement, base: $base, baseElement: $baseElement, type: $type, typeElement: $typeElement, expression: $expression, expressionElement: $expressionElement, xpath: $xpath, xpathElement: $xpathElement, xpathUsage: $xpathUsage, xpathUsageElement: $xpathUsageElement, target: $target, targetElement: $targetElement, multipleOr: $multipleOr, multipleOrElement: $multipleOrElement, multipleAnd: $multipleAnd, multipleAndElement: $multipleAndElement, comparator: $comparator, comparatorElement: $comparatorElement, modifier: $modifier, modifierElement: $modifierElement, chain: $chain, chainElement: $chainElement, component: $component)';
   }
 
   @override
@@ -41010,8 +40675,7 @@ class _$SearchParameterImpl extends _SearchParameter {
             other is _$SearchParameterImpl &&
             (identical(other.resourceType, resourceType) ||
                 other.resourceType == resourceType) &&
-            (identical(other.dbId, dbId) || other.dbId == dbId) &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.meta, meta) || other.meta == meta) &&
             (identical(other.implicitRules, implicitRules) ||
                 other.implicitRules == implicitRules) &&
@@ -41115,8 +40779,7 @@ class _$SearchParameterImpl extends _SearchParameter {
   int get hashCode => Object.hashAll([
         runtimeType,
         resourceType,
-        dbId,
-        fhirId,
+        id,
         meta,
         implicitRules,
         implicitRulesElement,
@@ -41194,8 +40857,7 @@ abstract class _SearchParameter extends SearchParameter {
   const factory _SearchParameter(
       {@JsonKey(unknownEnumValue: R4ResourceType.SearchParameter)
       final R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) final int? dbId,
-      @JsonKey(name: 'id') final String? fhirId,
+      final String? id,
       final FhirMeta? meta,
       final FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') final Element? implicitRulesElement,
@@ -41261,14 +40923,10 @@ abstract class _SearchParameter extends SearchParameter {
   @JsonKey(unknownEnumValue: R4ResourceType.SearchParameter)
   R4ResourceType get resourceType;
   @override
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  int? get dbId;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @JsonKey(name: 'id')
-  String? get fhirId;
+  String? get id;
   @override
 
   /// [meta] The metadata about the resource. This is content that is
@@ -41609,8 +41267,7 @@ SearchParameterComponent _$SearchParameterComponentFromJson(
 mixin _$SearchParameterComponent {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -41662,7 +41319,7 @@ abstract class $SearchParameterComponentCopyWith<$Res> {
       _$SearchParameterComponentCopyWithImpl<$Res, SearchParameterComponent>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCanonical definition,
@@ -41686,7 +41343,7 @@ class _$SearchParameterComponentCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? definition = null,
@@ -41694,9 +41351,9 @@ class _$SearchParameterComponentCopyWithImpl<$Res,
     Object? expressionElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -41744,7 +41401,7 @@ abstract class _$$SearchParameterComponentImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCanonical definition,
@@ -41768,7 +41425,7 @@ class __$$SearchParameterComponentImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? definition = null,
@@ -41776,9 +41433,9 @@ class __$$SearchParameterComponentImplCopyWithImpl<$Res>
     Object? expressionElement = freezed,
   }) {
     return _then(_$SearchParameterComponentImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -41808,7 +41465,7 @@ class __$$SearchParameterComponentImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SearchParameterComponentImpl extends _SearchParameterComponent {
   const _$SearchParameterComponentImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required this.definition,
@@ -41824,8 +41481,7 @@ class _$SearchParameterComponentImpl extends _SearchParameterComponent {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -41906,7 +41562,7 @@ class _$SearchParameterComponentImpl extends _SearchParameterComponent {
 
   @override
   String toString() {
-    return 'SearchParameterComponent(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, definition: $definition, expression: $expression, expressionElement: $expressionElement)';
+    return 'SearchParameterComponent(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, definition: $definition, expression: $expression, expressionElement: $expressionElement)';
   }
 
   @override
@@ -41914,7 +41570,7 @@ class _$SearchParameterComponentImpl extends _SearchParameterComponent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SearchParameterComponentImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -41931,7 +41587,7 @@ class _$SearchParameterComponentImpl extends _SearchParameterComponent {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       definition,
@@ -41955,7 +41611,7 @@ class _$SearchParameterComponentImpl extends _SearchParameterComponent {
 
 abstract class _SearchParameterComponent extends SearchParameterComponent {
   const factory _SearchParameterComponent(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           required final FhirCanonical definition,
@@ -41971,8 +41627,7 @@ abstract class _SearchParameterComponent extends SearchParameterComponent {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -42028,13 +41683,10 @@ StructureDefinition _$StructureDefinitionFromJson(Map<String, dynamic> json) {
 mixin _$StructureDefinition {
   @JsonKey(unknownEnumValue: R4ResourceType.StructureDefinition)
   R4ResourceType get resourceType => throw _privateConstructorUsedError;
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  int? get dbId => throw _privateConstructorUsedError;
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @JsonKey(name: 'id')
-  String? get fhirId => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
@@ -42326,8 +41978,7 @@ abstract class $StructureDefinitionCopyWith<$Res> {
   $Res call(
       {@JsonKey(unknownEnumValue: R4ResourceType.StructureDefinition)
       R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-      @JsonKey(name: 'id') String? fhirId,
+      String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
@@ -42423,8 +42074,7 @@ class _$StructureDefinitionCopyWithImpl<$Res, $Val extends StructureDefinition>
   @override
   $Res call({
     Object? resourceType = null,
-    Object? dbId = freezed,
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? meta = freezed,
     Object? implicitRules = freezed,
     Object? implicitRulesElement = freezed,
@@ -42485,13 +42135,9 @@ class _$StructureDefinitionCopyWithImpl<$Res, $Val extends StructureDefinition>
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as R4ResourceType,
-      dbId: freezed == dbId
-          ? _value.dbId
-          : dbId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       meta: freezed == meta
           ? _value.meta
@@ -43002,8 +42648,7 @@ abstract class _$$StructureDefinitionImplCopyWith<$Res>
   $Res call(
       {@JsonKey(unknownEnumValue: R4ResourceType.StructureDefinition)
       R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-      @JsonKey(name: 'id') String? fhirId,
+      String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
@@ -43120,8 +42765,7 @@ class __$$StructureDefinitionImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? resourceType = null,
-    Object? dbId = freezed,
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? meta = freezed,
     Object? implicitRules = freezed,
     Object? implicitRulesElement = freezed,
@@ -43182,13 +42826,9 @@ class __$$StructureDefinitionImplCopyWithImpl<$Res>
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as R4ResourceType,
-      dbId: freezed == dbId
-          ? _value.dbId
-          : dbId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       meta: freezed == meta
           ? _value.meta
@@ -43416,8 +43056,7 @@ class _$StructureDefinitionImpl extends _StructureDefinition {
   const _$StructureDefinitionImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.StructureDefinition)
       this.resourceType = R4ResourceType.StructureDefinition,
-      @JsonKey(includeFromJson: true, includeToJson: false) this.dbId,
-      @JsonKey(name: 'id') this.fhirId,
+      this.id,
       this.meta,
       this.implicitRules,
       @JsonKey(name: '_implicitRules') this.implicitRulesElement,
@@ -43493,15 +43132,11 @@ class _$StructureDefinitionImpl extends _StructureDefinition {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.StructureDefinition)
   final R4ResourceType resourceType;
-  @override
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  final int? dbId;
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
   @override
-  @JsonKey(name: 'id')
-  final String? fhirId;
+  final String? id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
@@ -43973,7 +43608,7 @@ class _$StructureDefinitionImpl extends _StructureDefinition {
 
   @override
   String toString() {
-    return 'StructureDefinition(resourceType: $resourceType, dbId: $dbId, fhirId: $fhirId, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, identifier: $identifier, version: $version, versionElement: $versionElement, name: $name, nameElement: $nameElement, title: $title, titleElement: $titleElement, status: $status, statusElement: $statusElement, experimental: $experimental, experimentalElement: $experimentalElement, date: $date, dateElement: $dateElement, publisher: $publisher, publisherElement: $publisherElement, contact: $contact, description: $description, descriptionElement: $descriptionElement, useContext: $useContext, jurisdiction: $jurisdiction, purpose: $purpose, purposeElement: $purposeElement, copyright: $copyright, copyrightElement: $copyrightElement, keyword: $keyword, fhirVersion: $fhirVersion, fhirVersionElement: $fhirVersionElement, mapping: $mapping, kind: $kind, kindElement: $kindElement, abstract_: $abstract_, abstractElement: $abstractElement, context: $context, contextInvariant: $contextInvariant, contextInvariantElement: $contextInvariantElement, type: $type, typeElement: $typeElement, baseDefinition: $baseDefinition, baseDefinitionElement: $baseDefinitionElement, derivation: $derivation, derivationElement: $derivationElement, snapshot: $snapshot, differential: $differential)';
+    return 'StructureDefinition(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, identifier: $identifier, version: $version, versionElement: $versionElement, name: $name, nameElement: $nameElement, title: $title, titleElement: $titleElement, status: $status, statusElement: $statusElement, experimental: $experimental, experimentalElement: $experimentalElement, date: $date, dateElement: $dateElement, publisher: $publisher, publisherElement: $publisherElement, contact: $contact, description: $description, descriptionElement: $descriptionElement, useContext: $useContext, jurisdiction: $jurisdiction, purpose: $purpose, purposeElement: $purposeElement, copyright: $copyright, copyrightElement: $copyrightElement, keyword: $keyword, fhirVersion: $fhirVersion, fhirVersionElement: $fhirVersionElement, mapping: $mapping, kind: $kind, kindElement: $kindElement, abstract_: $abstract_, abstractElement: $abstractElement, context: $context, contextInvariant: $contextInvariant, contextInvariantElement: $contextInvariantElement, type: $type, typeElement: $typeElement, baseDefinition: $baseDefinition, baseDefinitionElement: $baseDefinitionElement, derivation: $derivation, derivationElement: $derivationElement, snapshot: $snapshot, differential: $differential)';
   }
 
   @override
@@ -43983,8 +43618,7 @@ class _$StructureDefinitionImpl extends _StructureDefinition {
             other is _$StructureDefinitionImpl &&
             (identical(other.resourceType, resourceType) ||
                 other.resourceType == resourceType) &&
-            (identical(other.dbId, dbId) || other.dbId == dbId) &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.meta, meta) || other.meta == meta) &&
             (identical(other.implicitRules, implicitRules) ||
                 other.implicitRules == implicitRules) &&
@@ -44085,8 +43719,7 @@ class _$StructureDefinitionImpl extends _StructureDefinition {
   int get hashCode => Object.hashAll([
         runtimeType,
         resourceType,
-        dbId,
-        fhirId,
+        id,
         meta,
         implicitRules,
         implicitRulesElement,
@@ -44162,8 +43795,7 @@ abstract class _StructureDefinition extends StructureDefinition {
   const factory _StructureDefinition(
       {@JsonKey(unknownEnumValue: R4ResourceType.StructureDefinition)
       final R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) final int? dbId,
-      @JsonKey(name: 'id') final String? fhirId,
+      final String? id,
       final FhirMeta? meta,
       final FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') final Element? implicitRulesElement,
@@ -44229,14 +43861,10 @@ abstract class _StructureDefinition extends StructureDefinition {
   @JsonKey(unknownEnumValue: R4ResourceType.StructureDefinition)
   R4ResourceType get resourceType;
   @override
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  int? get dbId;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @JsonKey(name: 'id')
-  String? get fhirId;
+  String? get id;
   @override
 
   /// [meta] The metadata about the resource. This is content that is
@@ -44575,8 +44203,7 @@ StructureDefinitionMapping _$StructureDefinitionMappingFromJson(
 mixin _$StructureDefinitionMapping {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -44648,7 +44275,7 @@ abstract class $StructureDefinitionMappingCopyWith<$Res> {
           StructureDefinitionMapping>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirId? identity,
@@ -44680,7 +44307,7 @@ class _$StructureDefinitionMappingCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? identity = freezed,
@@ -44693,9 +44320,9 @@ class _$StructureDefinitionMappingCopyWithImpl<$Res,
     Object? commentElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -44799,7 +44426,7 @@ abstract class _$$StructureDefinitionMappingImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirId? identity,
@@ -44834,7 +44461,7 @@ class __$$StructureDefinitionMappingImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? identity = freezed,
@@ -44847,9 +44474,9 @@ class __$$StructureDefinitionMappingImplCopyWithImpl<$Res>
     Object? commentElement = freezed,
   }) {
     return _then(_$StructureDefinitionMappingImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -44899,7 +44526,7 @@ class __$$StructureDefinitionMappingImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$StructureDefinitionMappingImpl extends _StructureDefinitionMapping {
   const _$StructureDefinitionMappingImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.identity,
@@ -44921,8 +44548,7 @@ class _$StructureDefinitionMappingImpl extends _StructureDefinitionMapping {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -45027,7 +44653,7 @@ class _$StructureDefinitionMappingImpl extends _StructureDefinitionMapping {
 
   @override
   String toString() {
-    return 'StructureDefinitionMapping(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, identity: $identity, identityElement: $identityElement, uri: $uri, uriElement: $uriElement, name: $name, nameElement: $nameElement, comment: $comment, commentElement: $commentElement)';
+    return 'StructureDefinitionMapping(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, identity: $identity, identityElement: $identityElement, uri: $uri, uriElement: $uriElement, name: $name, nameElement: $nameElement, comment: $comment, commentElement: $commentElement)';
   }
 
   @override
@@ -45035,7 +44661,7 @@ class _$StructureDefinitionMappingImpl extends _StructureDefinitionMapping {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StructureDefinitionMappingImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -45059,7 +44685,7 @@ class _$StructureDefinitionMappingImpl extends _StructureDefinitionMapping {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       identity,
@@ -45088,7 +44714,7 @@ class _$StructureDefinitionMappingImpl extends _StructureDefinitionMapping {
 
 abstract class _StructureDefinitionMapping extends StructureDefinitionMapping {
   const factory _StructureDefinitionMapping(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final FhirId? identity,
@@ -45109,8 +44735,7 @@ abstract class _StructureDefinitionMapping extends StructureDefinitionMapping {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -45191,8 +44816,7 @@ StructureDefinitionContext _$StructureDefinitionContextFromJson(
 mixin _$StructureDefinitionContext {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -45249,7 +44873,7 @@ abstract class $StructureDefinitionContextCopyWith<$Res> {
           StructureDefinitionContext>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? type,
@@ -45275,7 +44899,7 @@ class _$StructureDefinitionContextCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? type = freezed,
@@ -45284,9 +44908,9 @@ class _$StructureDefinitionContextCopyWithImpl<$Res,
     Object? expressionElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -45350,7 +44974,7 @@ abstract class _$$StructureDefinitionContextImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? type,
@@ -45377,7 +45001,7 @@ class __$$StructureDefinitionContextImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? type = freezed,
@@ -45386,9 +45010,9 @@ class __$$StructureDefinitionContextImplCopyWithImpl<$Res>
     Object? expressionElement = freezed,
   }) {
     return _then(_$StructureDefinitionContextImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -45422,7 +45046,7 @@ class __$$StructureDefinitionContextImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$StructureDefinitionContextImpl extends _StructureDefinitionContext {
   const _$StructureDefinitionContextImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.type,
@@ -45440,8 +45064,7 @@ class _$StructureDefinitionContextImpl extends _StructureDefinitionContext {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -45527,7 +45150,7 @@ class _$StructureDefinitionContextImpl extends _StructureDefinitionContext {
 
   @override
   String toString() {
-    return 'StructureDefinitionContext(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, typeElement: $typeElement, expression: $expression, expressionElement: $expressionElement)';
+    return 'StructureDefinitionContext(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, typeElement: $typeElement, expression: $expression, expressionElement: $expressionElement)';
   }
 
   @override
@@ -45535,7 +45158,7 @@ class _$StructureDefinitionContextImpl extends _StructureDefinitionContext {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StructureDefinitionContextImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -45553,7 +45176,7 @@ class _$StructureDefinitionContextImpl extends _StructureDefinitionContext {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       type,
@@ -45578,7 +45201,7 @@ class _$StructureDefinitionContextImpl extends _StructureDefinitionContext {
 
 abstract class _StructureDefinitionContext extends StructureDefinitionContext {
   const factory _StructureDefinitionContext(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final FhirCode? type,
@@ -45595,8 +45218,7 @@ abstract class _StructureDefinitionContext extends StructureDefinitionContext {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -45658,8 +45280,7 @@ StructureDefinitionSnapshot _$StructureDefinitionSnapshotFromJson(
 mixin _$StructureDefinitionSnapshot {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -45704,7 +45325,7 @@ abstract class $StructureDefinitionSnapshotCopyWith<$Res> {
           StructureDefinitionSnapshot>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<ElementDefinition> element});
@@ -45724,15 +45345,15 @@ class _$StructureDefinitionSnapshotCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? element = null,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -45760,7 +45381,7 @@ abstract class _$$StructureDefinitionSnapshotImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<ElementDefinition> element});
@@ -45779,15 +45400,15 @@ class __$$StructureDefinitionSnapshotImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? element = null,
   }) {
     return _then(_$StructureDefinitionSnapshotImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -45809,7 +45430,7 @@ class __$$StructureDefinitionSnapshotImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$StructureDefinitionSnapshotImpl extends _StructureDefinitionSnapshot {
   const _$StructureDefinitionSnapshotImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required final List<ElementDefinition> element})
@@ -45825,8 +45446,7 @@ class _$StructureDefinitionSnapshotImpl extends _StructureDefinitionSnapshot {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -45903,7 +45523,7 @@ class _$StructureDefinitionSnapshotImpl extends _StructureDefinitionSnapshot {
 
   @override
   String toString() {
-    return 'StructureDefinitionSnapshot(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, element: $element)';
+    return 'StructureDefinitionSnapshot(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, element: $element)';
   }
 
   @override
@@ -45911,7 +45531,7 @@ class _$StructureDefinitionSnapshotImpl extends _StructureDefinitionSnapshot {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StructureDefinitionSnapshotImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -45923,7 +45543,7 @@ class _$StructureDefinitionSnapshotImpl extends _StructureDefinitionSnapshot {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       const DeepCollectionEquality().hash(_element));
@@ -45946,7 +45566,7 @@ class _$StructureDefinitionSnapshotImpl extends _StructureDefinitionSnapshot {
 abstract class _StructureDefinitionSnapshot
     extends StructureDefinitionSnapshot {
   const factory _StructureDefinitionSnapshot(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           required final List<ElementDefinition> element}) =
@@ -45960,8 +45580,7 @@ abstract class _StructureDefinitionSnapshot
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -46007,8 +45626,7 @@ StructureDefinitionDifferential _$StructureDefinitionDifferentialFromJson(
 mixin _$StructureDefinitionDifferential {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -46053,7 +45671,7 @@ abstract class $StructureDefinitionDifferentialCopyWith<$Res> {
           StructureDefinitionDifferential>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<ElementDefinition> element});
@@ -46073,15 +45691,15 @@ class _$StructureDefinitionDifferentialCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? element = null,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -46109,7 +45727,7 @@ abstract class _$$StructureDefinitionDifferentialImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<ElementDefinition> element});
@@ -46128,15 +45746,15 @@ class __$$StructureDefinitionDifferentialImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? element = null,
   }) {
     return _then(_$StructureDefinitionDifferentialImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -46159,7 +45777,7 @@ class __$$StructureDefinitionDifferentialImplCopyWithImpl<$Res>
 class _$StructureDefinitionDifferentialImpl
     extends _StructureDefinitionDifferential {
   const _$StructureDefinitionDifferentialImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required final List<ElementDefinition> element})
@@ -46175,8 +45793,7 @@ class _$StructureDefinitionDifferentialImpl
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -46253,7 +45870,7 @@ class _$StructureDefinitionDifferentialImpl
 
   @override
   String toString() {
-    return 'StructureDefinitionDifferential(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, element: $element)';
+    return 'StructureDefinitionDifferential(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, element: $element)';
   }
 
   @override
@@ -46261,7 +45878,7 @@ class _$StructureDefinitionDifferentialImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StructureDefinitionDifferentialImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -46273,7 +45890,7 @@ class _$StructureDefinitionDifferentialImpl
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       const DeepCollectionEquality().hash(_element));
@@ -46297,7 +45914,7 @@ class _$StructureDefinitionDifferentialImpl
 abstract class _StructureDefinitionDifferential
     extends StructureDefinitionDifferential {
   const factory _StructureDefinitionDifferential(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           required final List<ElementDefinition> element}) =
@@ -46311,8 +45928,7 @@ abstract class _StructureDefinitionDifferential
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -46358,13 +45974,10 @@ StructureMap _$StructureMapFromJson(Map<String, dynamic> json) {
 mixin _$StructureMap {
   @JsonKey(unknownEnumValue: R4ResourceType.StructureMap)
   R4ResourceType get resourceType => throw _privateConstructorUsedError;
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  int? get dbId => throw _privateConstructorUsedError;
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @JsonKey(name: 'id')
-  String? get fhirId => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
@@ -46578,8 +46191,7 @@ abstract class $StructureMapCopyWith<$Res> {
   $Res call(
       {@JsonKey(unknownEnumValue: R4ResourceType.StructureMap)
       R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-      @JsonKey(name: 'id') String? fhirId,
+      String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
@@ -46650,8 +46262,7 @@ class _$StructureMapCopyWithImpl<$Res, $Val extends StructureMap>
   @override
   $Res call({
     Object? resourceType = null,
-    Object? dbId = freezed,
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? meta = freezed,
     Object? implicitRules = freezed,
     Object? implicitRulesElement = freezed,
@@ -46696,13 +46307,9 @@ class _$StructureMapCopyWithImpl<$Res, $Val extends StructureMap>
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as R4ResourceType,
-      dbId: freezed == dbId
-          ? _value.dbId
-          : dbId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       meta: freezed == meta
           ? _value.meta
@@ -47051,8 +46658,7 @@ abstract class _$$StructureMapImplCopyWith<$Res>
   $Res call(
       {@JsonKey(unknownEnumValue: R4ResourceType.StructureMap)
       R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) int? dbId,
-      @JsonKey(name: 'id') String? fhirId,
+      String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
@@ -47136,8 +46742,7 @@ class __$$StructureMapImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? resourceType = null,
-    Object? dbId = freezed,
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? meta = freezed,
     Object? implicitRules = freezed,
     Object? implicitRulesElement = freezed,
@@ -47182,13 +46787,9 @@ class __$$StructureMapImplCopyWithImpl<$Res>
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as R4ResourceType,
-      dbId: freezed == dbId
-          ? _value.dbId
-          : dbId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       meta: freezed == meta
           ? _value.meta
@@ -47352,8 +46953,7 @@ class _$StructureMapImpl extends _StructureMap {
   const _$StructureMapImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.StructureMap)
       this.resourceType = R4ResourceType.StructureMap,
-      @JsonKey(includeFromJson: true, includeToJson: false) this.dbId,
-      @JsonKey(name: 'id') this.fhirId,
+      this.id,
       this.meta,
       this.implicitRules,
       @JsonKey(name: '_implicitRules') this.implicitRulesElement,
@@ -47410,15 +47010,11 @@ class _$StructureMapImpl extends _StructureMap {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.StructureMap)
   final R4ResourceType resourceType;
-  @override
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  final int? dbId;
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
   @override
-  @JsonKey(name: 'id')
-  final String? fhirId;
+  final String? id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
@@ -47775,7 +47371,7 @@ class _$StructureMapImpl extends _StructureMap {
 
   @override
   String toString() {
-    return 'StructureMap(resourceType: $resourceType, dbId: $dbId, fhirId: $fhirId, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, identifier: $identifier, version: $version, versionElement: $versionElement, name: $name, nameElement: $nameElement, title: $title, titleElement: $titleElement, status: $status, statusElement: $statusElement, experimental: $experimental, experimentalElement: $experimentalElement, date: $date, dateElement: $dateElement, publisher: $publisher, publisherElement: $publisherElement, contact: $contact, description: $description, descriptionElement: $descriptionElement, useContext: $useContext, jurisdiction: $jurisdiction, purpose: $purpose, purposeElement: $purposeElement, copyright: $copyright, copyrightElement: $copyrightElement, structure: $structure, import_: $import_, group: $group)';
+    return 'StructureMap(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, identifier: $identifier, version: $version, versionElement: $versionElement, name: $name, nameElement: $nameElement, title: $title, titleElement: $titleElement, status: $status, statusElement: $statusElement, experimental: $experimental, experimentalElement: $experimentalElement, date: $date, dateElement: $dateElement, publisher: $publisher, publisherElement: $publisherElement, contact: $contact, description: $description, descriptionElement: $descriptionElement, useContext: $useContext, jurisdiction: $jurisdiction, purpose: $purpose, purposeElement: $purposeElement, copyright: $copyright, copyrightElement: $copyrightElement, structure: $structure, import_: $import_, group: $group)';
   }
 
   @override
@@ -47785,8 +47381,7 @@ class _$StructureMapImpl extends _StructureMap {
             other is _$StructureMapImpl &&
             (identical(other.resourceType, resourceType) ||
                 other.resourceType == resourceType) &&
-            (identical(other.dbId, dbId) || other.dbId == dbId) &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.meta, meta) || other.meta == meta) &&
             (identical(other.implicitRules, implicitRules) ||
                 other.implicitRules == implicitRules) &&
@@ -47858,8 +47453,7 @@ class _$StructureMapImpl extends _StructureMap {
   int get hashCode => Object.hashAll([
         runtimeType,
         resourceType,
-        dbId,
-        fhirId,
+        id,
         meta,
         implicitRules,
         implicitRulesElement,
@@ -47918,8 +47512,7 @@ abstract class _StructureMap extends StructureMap {
   const factory _StructureMap(
       {@JsonKey(unknownEnumValue: R4ResourceType.StructureMap)
       final R4ResourceType resourceType,
-      @JsonKey(includeFromJson: true, includeToJson: false) final int? dbId,
-      @JsonKey(name: 'id') final String? fhirId,
+      final String? id,
       final FhirMeta? meta,
       final FhirUri? implicitRules,
       @JsonKey(name: '_implicitRules') final Element? implicitRulesElement,
@@ -47967,14 +47560,10 @@ abstract class _StructureMap extends StructureMap {
   @JsonKey(unknownEnumValue: R4ResourceType.StructureMap)
   R4ResourceType get resourceType;
   @override
-  @JsonKey(includeFromJson: true, includeToJson: false)
-  int? get dbId;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @JsonKey(name: 'id')
-  String? get fhirId;
+  String? get id;
   @override
 
   /// [meta] The metadata about the resource. This is content that is
@@ -48223,8 +47812,7 @@ StructureMapStructure _$StructureMapStructureFromJson(
 mixin _$StructureMapStructure {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -48289,7 +47877,7 @@ abstract class $StructureMapStructureCopyWith<$Res> {
       _$StructureMapStructureCopyWithImpl<$Res, StructureMapStructure>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCanonical url,
@@ -48319,7 +47907,7 @@ class _$StructureMapStructureCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? url = null,
@@ -48331,9 +47919,9 @@ class _$StructureMapStructureCopyWithImpl<$Res,
     Object? documentationElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -48421,7 +48009,7 @@ abstract class _$$StructureMapStructureImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCanonical url,
@@ -48452,7 +48040,7 @@ class __$$StructureMapStructureImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? url = null,
@@ -48464,9 +48052,9 @@ class __$$StructureMapStructureImplCopyWithImpl<$Res>
     Object? documentationElement = freezed,
   }) {
     return _then(_$StructureMapStructureImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -48512,7 +48100,7 @@ class __$$StructureMapStructureImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$StructureMapStructureImpl extends _StructureMapStructure {
   const _$StructureMapStructureImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required this.url,
@@ -48532,8 +48120,7 @@ class _$StructureMapStructureImpl extends _StructureMapStructure {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -48631,7 +48218,7 @@ class _$StructureMapStructureImpl extends _StructureMapStructure {
 
   @override
   String toString() {
-    return 'StructureMapStructure(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, mode: $mode, modeElement: $modeElement, alias: $alias, aliasElement: $aliasElement, documentation: $documentation, documentationElement: $documentationElement)';
+    return 'StructureMapStructure(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, mode: $mode, modeElement: $modeElement, alias: $alias, aliasElement: $aliasElement, documentation: $documentation, documentationElement: $documentationElement)';
   }
 
   @override
@@ -48639,7 +48226,7 @@ class _$StructureMapStructureImpl extends _StructureMapStructure {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StructureMapStructureImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -48661,7 +48248,7 @@ class _$StructureMapStructureImpl extends _StructureMapStructure {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       url,
@@ -48689,7 +48276,7 @@ class _$StructureMapStructureImpl extends _StructureMapStructure {
 
 abstract class _StructureMapStructure extends StructureMapStructure {
   const factory _StructureMapStructure(
-      {@JsonKey(name: 'id') final FhirId? fhirId,
+      {final FhirId? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required final FhirCanonical url,
@@ -48709,8 +48296,7 @@ abstract class _StructureMapStructure extends StructureMapStructure {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -48783,8 +48369,7 @@ StructureMapGroup _$StructureMapGroupFromJson(Map<String, dynamic> json) {
 mixin _$StructureMapGroup {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -48862,7 +48447,7 @@ abstract class $StructureMapGroupCopyWith<$Res> {
       _$StructureMapGroupCopyWithImpl<$Res, StructureMapGroup>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirId? name,
@@ -48895,7 +48480,7 @@ class _$StructureMapGroupCopyWithImpl<$Res, $Val extends StructureMapGroup>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? name = freezed,
@@ -48910,9 +48495,9 @@ class _$StructureMapGroupCopyWithImpl<$Res, $Val extends StructureMapGroup>
     Object? rule = null,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -49023,7 +48608,7 @@ abstract class _$$StructureMapGroupImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirId? name,
@@ -49058,7 +48643,7 @@ class __$$StructureMapGroupImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? name = freezed,
@@ -49073,9 +48658,9 @@ class __$$StructureMapGroupImplCopyWithImpl<$Res>
     Object? rule = null,
   }) {
     return _then(_$StructureMapGroupImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -49133,7 +48718,7 @@ class __$$StructureMapGroupImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$StructureMapGroupImpl extends _StructureMapGroup {
   const _$StructureMapGroupImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.name,
@@ -49158,8 +48743,7 @@ class _$StructureMapGroupImpl extends _StructureMapGroup {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -49288,7 +48872,7 @@ class _$StructureMapGroupImpl extends _StructureMapGroup {
 
   @override
   String toString() {
-    return 'StructureMapGroup(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, extends_: $extends_, extendsElement: $extendsElement, typeMode: $typeMode, typeModeElement: $typeModeElement, documentation: $documentation, documentationElement: $documentationElement, input: $input, rule: $rule)';
+    return 'StructureMapGroup(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, extends_: $extends_, extendsElement: $extendsElement, typeMode: $typeMode, typeModeElement: $typeModeElement, documentation: $documentation, documentationElement: $documentationElement, input: $input, rule: $rule)';
   }
 
   @override
@@ -49296,7 +48880,7 @@ class _$StructureMapGroupImpl extends _StructureMapGroup {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StructureMapGroupImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -49324,7 +48908,7 @@ class _$StructureMapGroupImpl extends _StructureMapGroup {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       name,
@@ -49355,7 +48939,7 @@ class _$StructureMapGroupImpl extends _StructureMapGroup {
 
 abstract class _StructureMapGroup extends StructureMapGroup {
   const factory _StructureMapGroup(
-      {@JsonKey(name: 'id') final FhirId? fhirId,
+      {final FhirId? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirId? name,
@@ -49377,8 +48961,7 @@ abstract class _StructureMapGroup extends StructureMapGroup {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -49467,8 +49050,7 @@ StructureMapInput _$StructureMapInputFromJson(Map<String, dynamic> json) {
 mixin _$StructureMapInput {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -49536,7 +49118,7 @@ abstract class $StructureMapInputCopyWith<$Res> {
       _$StructureMapInputCopyWithImpl<$Res, StructureMapInput>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirId? name,
@@ -49567,7 +49149,7 @@ class _$StructureMapInputCopyWithImpl<$Res, $Val extends StructureMapInput>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? name = freezed,
@@ -49580,9 +49162,9 @@ class _$StructureMapInputCopyWithImpl<$Res, $Val extends StructureMapInput>
     Object? documentationElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -49685,7 +49267,7 @@ abstract class _$$StructureMapInputImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirId? name,
@@ -49718,7 +49300,7 @@ class __$$StructureMapInputImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? name = freezed,
@@ -49731,9 +49313,9 @@ class __$$StructureMapInputImplCopyWithImpl<$Res>
     Object? documentationElement = freezed,
   }) {
     return _then(_$StructureMapInputImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -49783,7 +49365,7 @@ class __$$StructureMapInputImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$StructureMapInputImpl extends _StructureMapInput {
   const _$StructureMapInputImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.name,
@@ -49804,8 +49386,7 @@ class _$StructureMapInputImpl extends _StructureMapInput {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -49907,7 +49488,7 @@ class _$StructureMapInputImpl extends _StructureMapInput {
 
   @override
   String toString() {
-    return 'StructureMapInput(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, type: $type, typeElement: $typeElement, mode: $mode, modeElement: $modeElement, documentation: $documentation, documentationElement: $documentationElement)';
+    return 'StructureMapInput(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, type: $type, typeElement: $typeElement, mode: $mode, modeElement: $modeElement, documentation: $documentation, documentationElement: $documentationElement)';
   }
 
   @override
@@ -49915,7 +49496,7 @@ class _$StructureMapInputImpl extends _StructureMapInput {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StructureMapInputImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -49939,7 +49520,7 @@ class _$StructureMapInputImpl extends _StructureMapInput {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       name,
@@ -49968,7 +49549,7 @@ class _$StructureMapInputImpl extends _StructureMapInput {
 
 abstract class _StructureMapInput extends StructureMapInput {
   const factory _StructureMapInput(
-      {@JsonKey(name: 'id') final FhirId? fhirId,
+      {final FhirId? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirId? name,
@@ -49989,8 +49570,7 @@ abstract class _StructureMapInput extends StructureMapInput {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -50067,8 +49647,7 @@ StructureMapRule _$StructureMapRuleFromJson(Map<String, dynamic> json) {
 mixin _$StructureMapRule {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -50135,7 +49714,7 @@ abstract class $StructureMapRuleCopyWith<$Res> {
       _$StructureMapRuleCopyWithImpl<$Res, StructureMapRule>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirId? name,
@@ -50164,7 +49743,7 @@ class _$StructureMapRuleCopyWithImpl<$Res, $Val extends StructureMapRule>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? name = freezed,
@@ -50177,9 +49756,9 @@ class _$StructureMapRuleCopyWithImpl<$Res, $Val extends StructureMapRule>
     Object? documentationElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -50258,7 +49837,7 @@ abstract class _$$StructureMapRuleImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirId? name,
@@ -50287,7 +49866,7 @@ class __$$StructureMapRuleImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? name = freezed,
@@ -50300,9 +49879,9 @@ class __$$StructureMapRuleImplCopyWithImpl<$Res>
     Object? documentationElement = freezed,
   }) {
     return _then(_$StructureMapRuleImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -50352,7 +49931,7 @@ class __$$StructureMapRuleImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$StructureMapRuleImpl extends _StructureMapRule {
   const _$StructureMapRuleImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.name,
@@ -50377,8 +49956,7 @@ class _$StructureMapRuleImpl extends _StructureMapRule {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -50512,7 +50090,7 @@ class _$StructureMapRuleImpl extends _StructureMapRule {
 
   @override
   String toString() {
-    return 'StructureMapRule(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, source: $source, target: $target, rule: $rule, dependent: $dependent, documentation: $documentation, documentationElement: $documentationElement)';
+    return 'StructureMapRule(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, source: $source, target: $target, rule: $rule, dependent: $dependent, documentation: $documentation, documentationElement: $documentationElement)';
   }
 
   @override
@@ -50520,7 +50098,7 @@ class _$StructureMapRuleImpl extends _StructureMapRule {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StructureMapRuleImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -50543,7 +50121,7 @@ class _$StructureMapRuleImpl extends _StructureMapRule {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       name,
@@ -50572,7 +50150,7 @@ class _$StructureMapRuleImpl extends _StructureMapRule {
 
 abstract class _StructureMapRule extends StructureMapRule {
   const factory _StructureMapRule(
-      {@JsonKey(name: 'id') final FhirId? fhirId,
+      {final FhirId? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirId? name,
@@ -50593,8 +50171,7 @@ abstract class _StructureMapRule extends StructureMapRule {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -50669,8 +50246,7 @@ StructureMapSource _$StructureMapSourceFromJson(Map<String, dynamic> json) {
 mixin _$StructureMapSource {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -51072,7 +50648,7 @@ abstract class $StructureMapSourceCopyWith<$Res> {
       _$StructureMapSourceCopyWithImpl<$Res, StructureMapSource>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirId? context,
@@ -51250,7 +50826,7 @@ class _$StructureMapSourceCopyWithImpl<$Res, $Val extends StructureMapSource>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? context = freezed,
@@ -51344,9 +50920,9 @@ class _$StructureMapSourceCopyWithImpl<$Res, $Val extends StructureMapSource>
     Object? logMessageElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -52466,7 +52042,7 @@ abstract class _$$StructureMapSourceImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirId? context,
@@ -52702,7 +52278,7 @@ class __$$StructureMapSourceImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? context = freezed,
@@ -52796,9 +52372,9 @@ class __$$StructureMapSourceImplCopyWithImpl<$Res>
     Object? logMessageElement = freezed,
   }) {
     return _then(_$StructureMapSourceImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -53174,7 +52750,7 @@ class __$$StructureMapSourceImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$StructureMapSourceImpl extends _StructureMapSource {
   const _$StructureMapSourceImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.context,
@@ -53280,8 +52856,7 @@ class _$StructureMapSourceImpl extends _StructureMapSource {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -53777,7 +53352,7 @@ class _$StructureMapSourceImpl extends _StructureMapSource {
 
   @override
   String toString() {
-    return 'StructureMapSource(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, context: $context, contextElement: $contextElement, min: $min, minElement: $minElement, max: $max, maxElement: $maxElement, type: $type, typeElement: $typeElement, defaultValueBase64Binary: $defaultValueBase64Binary, defaultValueBase64BinaryElement: $defaultValueBase64BinaryElement, defaultValueBoolean: $defaultValueBoolean, defaultValueBooleanElement: $defaultValueBooleanElement, defaultValueCanonical: $defaultValueCanonical, defaultValueCanonicalElement: $defaultValueCanonicalElement, defaultValueCode: $defaultValueCode, defaultValueCodeElement: $defaultValueCodeElement, defaultValueDate: $defaultValueDate, defaultValueDateElement: $defaultValueDateElement, defaultValueDateTime: $defaultValueDateTime, defaultValueDateTimeElement: $defaultValueDateTimeElement, defaultValueDecimal: $defaultValueDecimal, defaultValueDecimalElement: $defaultValueDecimalElement, defaultValueId: $defaultValueId, defaultValueIdElement: $defaultValueIdElement, defaultValueInstant: $defaultValueInstant, defaultValueInstantElement: $defaultValueInstantElement, defaultValueInteger: $defaultValueInteger, defaultValueIntegerElement: $defaultValueIntegerElement, defaultValueMarkdown: $defaultValueMarkdown, defaultValueMarkdownElement: $defaultValueMarkdownElement, defaultValueOid: $defaultValueOid, defaultValueOidElement: $defaultValueOidElement, defaultValuePositiveInt: $defaultValuePositiveInt, defaultValuePositiveIntElement: $defaultValuePositiveIntElement, defaultValueString: $defaultValueString, defaultValueStringElement: $defaultValueStringElement, defaultValueTime: $defaultValueTime, defaultValueTimeElement: $defaultValueTimeElement, defaultValueUnsignedInt: $defaultValueUnsignedInt, defaultValueUnsignedIntElement: $defaultValueUnsignedIntElement, defaultValueUri: $defaultValueUri, defaultValueUriElement: $defaultValueUriElement, defaultValueUrl: $defaultValueUrl, defaultValueUrlElement: $defaultValueUrlElement, defaultValueUuid: $defaultValueUuid, defaultValueUuidElement: $defaultValueUuidElement, defaultValueAddress: $defaultValueAddress, defaultValueAge: $defaultValueAge, defaultValueAnnotation: $defaultValueAnnotation, defaultValueAttachment: $defaultValueAttachment, defaultValueCodeableConcept: $defaultValueCodeableConcept, defaultValueCoding: $defaultValueCoding, defaultValueContactPoint: $defaultValueContactPoint, defaultValueCount: $defaultValueCount, defaultValueDistance: $defaultValueDistance, defaultValueDuration: $defaultValueDuration, defaultValueHumanName: $defaultValueHumanName, defaultValueIdentifier: $defaultValueIdentifier, defaultValueMoney: $defaultValueMoney, defaultValuePeriod: $defaultValuePeriod, defaultValueQuantity: $defaultValueQuantity, defaultValueRange: $defaultValueRange, defaultValueRatio: $defaultValueRatio, defaultValueReference: $defaultValueReference, defaultValueSampledData: $defaultValueSampledData, defaultValueSignature: $defaultValueSignature, defaultValueTiming: $defaultValueTiming, defaultValueContactDetail: $defaultValueContactDetail, defaultValueContributor: $defaultValueContributor, defaultValueDataRequirement: $defaultValueDataRequirement, defaultValueExpression: $defaultValueExpression, defaultValueParameterDefinition: $defaultValueParameterDefinition, defaultValueRelatedArtifact: $defaultValueRelatedArtifact, defaultValueTriggerDefinition: $defaultValueTriggerDefinition, defaultValueUsageContext: $defaultValueUsageContext, defaultValueDosage: $defaultValueDosage, defaultValueMeta: $defaultValueMeta, element: $element, elementElement: $elementElement, listMode: $listMode, listModeElement: $listModeElement, variable: $variable, variableElement: $variableElement, condition: $condition, conditionElement: $conditionElement, check: $check, checkElement: $checkElement, logMessage: $logMessage, logMessageElement: $logMessageElement)';
+    return 'StructureMapSource(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, context: $context, contextElement: $contextElement, min: $min, minElement: $minElement, max: $max, maxElement: $maxElement, type: $type, typeElement: $typeElement, defaultValueBase64Binary: $defaultValueBase64Binary, defaultValueBase64BinaryElement: $defaultValueBase64BinaryElement, defaultValueBoolean: $defaultValueBoolean, defaultValueBooleanElement: $defaultValueBooleanElement, defaultValueCanonical: $defaultValueCanonical, defaultValueCanonicalElement: $defaultValueCanonicalElement, defaultValueCode: $defaultValueCode, defaultValueCodeElement: $defaultValueCodeElement, defaultValueDate: $defaultValueDate, defaultValueDateElement: $defaultValueDateElement, defaultValueDateTime: $defaultValueDateTime, defaultValueDateTimeElement: $defaultValueDateTimeElement, defaultValueDecimal: $defaultValueDecimal, defaultValueDecimalElement: $defaultValueDecimalElement, defaultValueId: $defaultValueId, defaultValueIdElement: $defaultValueIdElement, defaultValueInstant: $defaultValueInstant, defaultValueInstantElement: $defaultValueInstantElement, defaultValueInteger: $defaultValueInteger, defaultValueIntegerElement: $defaultValueIntegerElement, defaultValueMarkdown: $defaultValueMarkdown, defaultValueMarkdownElement: $defaultValueMarkdownElement, defaultValueOid: $defaultValueOid, defaultValueOidElement: $defaultValueOidElement, defaultValuePositiveInt: $defaultValuePositiveInt, defaultValuePositiveIntElement: $defaultValuePositiveIntElement, defaultValueString: $defaultValueString, defaultValueStringElement: $defaultValueStringElement, defaultValueTime: $defaultValueTime, defaultValueTimeElement: $defaultValueTimeElement, defaultValueUnsignedInt: $defaultValueUnsignedInt, defaultValueUnsignedIntElement: $defaultValueUnsignedIntElement, defaultValueUri: $defaultValueUri, defaultValueUriElement: $defaultValueUriElement, defaultValueUrl: $defaultValueUrl, defaultValueUrlElement: $defaultValueUrlElement, defaultValueUuid: $defaultValueUuid, defaultValueUuidElement: $defaultValueUuidElement, defaultValueAddress: $defaultValueAddress, defaultValueAge: $defaultValueAge, defaultValueAnnotation: $defaultValueAnnotation, defaultValueAttachment: $defaultValueAttachment, defaultValueCodeableConcept: $defaultValueCodeableConcept, defaultValueCoding: $defaultValueCoding, defaultValueContactPoint: $defaultValueContactPoint, defaultValueCount: $defaultValueCount, defaultValueDistance: $defaultValueDistance, defaultValueDuration: $defaultValueDuration, defaultValueHumanName: $defaultValueHumanName, defaultValueIdentifier: $defaultValueIdentifier, defaultValueMoney: $defaultValueMoney, defaultValuePeriod: $defaultValuePeriod, defaultValueQuantity: $defaultValueQuantity, defaultValueRange: $defaultValueRange, defaultValueRatio: $defaultValueRatio, defaultValueReference: $defaultValueReference, defaultValueSampledData: $defaultValueSampledData, defaultValueSignature: $defaultValueSignature, defaultValueTiming: $defaultValueTiming, defaultValueContactDetail: $defaultValueContactDetail, defaultValueContributor: $defaultValueContributor, defaultValueDataRequirement: $defaultValueDataRequirement, defaultValueExpression: $defaultValueExpression, defaultValueParameterDefinition: $defaultValueParameterDefinition, defaultValueRelatedArtifact: $defaultValueRelatedArtifact, defaultValueTriggerDefinition: $defaultValueTriggerDefinition, defaultValueUsageContext: $defaultValueUsageContext, defaultValueDosage: $defaultValueDosage, defaultValueMeta: $defaultValueMeta, element: $element, elementElement: $elementElement, listMode: $listMode, listModeElement: $listModeElement, variable: $variable, variableElement: $variableElement, condition: $condition, conditionElement: $conditionElement, check: $check, checkElement: $checkElement, logMessage: $logMessage, logMessageElement: $logMessageElement)';
   }
 
   @override
@@ -53785,7 +53360,7 @@ class _$StructureMapSourceImpl extends _StructureMapSource {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StructureMapSourceImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -53908,7 +53483,7 @@ class _$StructureMapSourceImpl extends _StructureMapSource {
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        fhirId,
+        id,
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),
         context,
@@ -54019,7 +53594,7 @@ class _$StructureMapSourceImpl extends _StructureMapSource {
 
 abstract class _StructureMapSource extends StructureMapSource {
   const factory _StructureMapSource(
-      {@JsonKey(name: 'id') final FhirId? fhirId,
+      {final FhirId? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirId? context,
@@ -54136,8 +53711,7 @@ abstract class _StructureMapSource extends StructureMapSource {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -54608,8 +54182,7 @@ StructureMapTarget _$StructureMapTargetFromJson(Map<String, dynamic> json) {
 mixin _$StructureMapTarget {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -54702,7 +54275,7 @@ abstract class $StructureMapTargetCopyWith<$Res> {
       _$StructureMapTargetCopyWithImpl<$Res, StructureMapTarget>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirId? context,
@@ -54742,7 +54315,7 @@ class _$StructureMapTargetCopyWithImpl<$Res, $Val extends StructureMapTarget>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? context = freezed,
@@ -54762,9 +54335,9 @@ class _$StructureMapTargetCopyWithImpl<$Res, $Val extends StructureMapTarget>
     Object? parameter = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -54919,7 +54492,7 @@ abstract class _$$StructureMapTargetImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirId? context,
@@ -54963,7 +54536,7 @@ class __$$StructureMapTargetImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? context = freezed,
@@ -54983,9 +54556,9 @@ class __$$StructureMapTargetImplCopyWithImpl<$Res>
     Object? parameter = freezed,
   }) {
     return _then(_$StructureMapTargetImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -55063,7 +54636,7 @@ class __$$StructureMapTargetImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$StructureMapTargetImpl extends _StructureMapTarget {
   const _$StructureMapTargetImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.context,
@@ -55094,8 +54667,7 @@ class _$StructureMapTargetImpl extends _StructureMapTarget {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -55255,7 +54827,7 @@ class _$StructureMapTargetImpl extends _StructureMapTarget {
 
   @override
   String toString() {
-    return 'StructureMapTarget(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, context: $context, contextElement: $contextElement, contextType: $contextType, contextTypeElement: $contextTypeElement, element: $element, elementElement: $elementElement, variable: $variable, variableElement: $variableElement, listMode: $listMode, listModeElement: $listModeElement, listRuleId: $listRuleId, listRuleIdElement: $listRuleIdElement, transform: $transform, transformElement: $transformElement, parameter: $parameter)';
+    return 'StructureMapTarget(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, context: $context, contextElement: $contextElement, contextType: $contextType, contextTypeElement: $contextTypeElement, element: $element, elementElement: $elementElement, variable: $variable, variableElement: $variableElement, listMode: $listMode, listModeElement: $listModeElement, listRuleId: $listRuleId, listRuleIdElement: $listRuleIdElement, transform: $transform, transformElement: $transformElement, parameter: $parameter)';
   }
 
   @override
@@ -55263,7 +54835,7 @@ class _$StructureMapTargetImpl extends _StructureMapTarget {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StructureMapTargetImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -55301,7 +54873,7 @@ class _$StructureMapTargetImpl extends _StructureMapTarget {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       context,
@@ -55337,7 +54909,7 @@ class _$StructureMapTargetImpl extends _StructureMapTarget {
 
 abstract class _StructureMapTarget extends StructureMapTarget {
   const factory _StructureMapTarget(
-      {@JsonKey(name: 'id') final FhirId? fhirId,
+      {final FhirId? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirId? context,
@@ -55364,8 +54936,7 @@ abstract class _StructureMapTarget extends StructureMapTarget {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -55474,8 +55045,7 @@ StructureMapParameter _$StructureMapParameterFromJson(
 mixin _$StructureMapParameter {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -55550,7 +55120,7 @@ abstract class $StructureMapParameterCopyWith<$Res> {
       _$StructureMapParameterCopyWithImpl<$Res, StructureMapParameter>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirId? valueId,
@@ -55585,7 +55155,7 @@ class _$StructureMapParameterCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? valueId = freezed,
@@ -55600,9 +55170,9 @@ class _$StructureMapParameterCopyWithImpl<$Res,
     Object? valueDecimalElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -55726,7 +55296,7 @@ abstract class _$$StructureMapParameterImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirId? valueId,
@@ -55764,7 +55334,7 @@ class __$$StructureMapParameterImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? valueId = freezed,
@@ -55779,9 +55349,9 @@ class __$$StructureMapParameterImplCopyWithImpl<$Res>
     Object? valueDecimalElement = freezed,
   }) {
     return _then(_$StructureMapParameterImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -55839,7 +55409,7 @@ class __$$StructureMapParameterImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$StructureMapParameterImpl extends _StructureMapParameter {
   const _$StructureMapParameterImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.valueId,
@@ -55862,8 +55432,7 @@ class _$StructureMapParameterImpl extends _StructureMapParameter {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -55974,7 +55543,7 @@ class _$StructureMapParameterImpl extends _StructureMapParameter {
 
   @override
   String toString() {
-    return 'StructureMapParameter(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, valueId: $valueId, valueIdElement: $valueIdElement, valueString: $valueString, valueStringElement: $valueStringElement, valueBoolean: $valueBoolean, valueBooleanElement: $valueBooleanElement, valueInteger: $valueInteger, valueIntegerElement: $valueIntegerElement, valueDecimal: $valueDecimal, valueDecimalElement: $valueDecimalElement)';
+    return 'StructureMapParameter(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, valueId: $valueId, valueIdElement: $valueIdElement, valueString: $valueString, valueStringElement: $valueStringElement, valueBoolean: $valueBoolean, valueBooleanElement: $valueBooleanElement, valueInteger: $valueInteger, valueIntegerElement: $valueIntegerElement, valueDecimal: $valueDecimal, valueDecimalElement: $valueDecimalElement)';
   }
 
   @override
@@ -55982,7 +55551,7 @@ class _$StructureMapParameterImpl extends _StructureMapParameter {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StructureMapParameterImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -56012,7 +55581,7 @@ class _$StructureMapParameterImpl extends _StructureMapParameter {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       valueId,
@@ -56043,7 +55612,7 @@ class _$StructureMapParameterImpl extends _StructureMapParameter {
 
 abstract class _StructureMapParameter extends StructureMapParameter {
   const factory _StructureMapParameter(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final FhirId? valueId,
@@ -56066,8 +55635,7 @@ abstract class _StructureMapParameter extends StructureMapParameter {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -56154,8 +55722,7 @@ StructureMapDependent _$StructureMapDependentFromJson(
 mixin _$StructureMapDependent {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId => throw _privateConstructorUsedError;
+  FhirId? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -56209,7 +55776,7 @@ abstract class $StructureMapDependentCopyWith<$Res> {
       _$StructureMapDependentCopyWithImpl<$Res, StructureMapDependent>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirId? name,
@@ -56234,7 +55801,7 @@ class _$StructureMapDependentCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? name = freezed,
@@ -56243,9 +55810,9 @@ class _$StructureMapDependentCopyWithImpl<$Res,
     Object? variableElement = freezed,
   }) {
     return _then(_value.copyWith(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value.extension_
@@ -56297,7 +55864,7 @@ abstract class _$$StructureMapDependentImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') FhirId? fhirId,
+      {FhirId? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirId? name,
@@ -56321,7 +55888,7 @@ class __$$StructureMapDependentImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fhirId = freezed,
+    Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? name = freezed,
@@ -56330,9 +55897,9 @@ class __$$StructureMapDependentImplCopyWithImpl<$Res>
     Object? variableElement = freezed,
   }) {
     return _then(_$StructureMapDependentImpl(
-      fhirId: freezed == fhirId
-          ? _value.fhirId
-          : fhirId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as FhirId?,
       extension_: freezed == extension_
           ? _value._extension_
@@ -56366,7 +55933,7 @@ class __$$StructureMapDependentImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$StructureMapDependentImpl extends _StructureMapDependent {
   const _$StructureMapDependentImpl(
-      {@JsonKey(name: 'id') this.fhirId,
+      {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       this.name,
@@ -56385,8 +55952,7 @@ class _$StructureMapDependentImpl extends _StructureMapDependent {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  @JsonKey(name: 'id')
-  final FhirId? fhirId;
+  final FhirId? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -56488,7 +56054,7 @@ class _$StructureMapDependentImpl extends _StructureMapDependent {
 
   @override
   String toString() {
-    return 'StructureMapDependent(fhirId: $fhirId, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, variable: $variable, variableElement: $variableElement)';
+    return 'StructureMapDependent(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, variable: $variable, variableElement: $variableElement)';
   }
 
   @override
@@ -56496,7 +56062,7 @@ class _$StructureMapDependentImpl extends _StructureMapDependent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StructureMapDependentImpl &&
-            (identical(other.fhirId, fhirId) || other.fhirId == fhirId) &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
@@ -56513,7 +56079,7 @@ class _$StructureMapDependentImpl extends _StructureMapDependent {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      fhirId,
+      id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       name,
@@ -56538,7 +56104,7 @@ class _$StructureMapDependentImpl extends _StructureMapDependent {
 
 abstract class _StructureMapDependent extends StructureMapDependent {
   const factory _StructureMapDependent(
-          {@JsonKey(name: 'id') final FhirId? fhirId,
+          {final FhirId? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final FhirId? name,
@@ -56555,8 +56121,7 @@ abstract class _StructureMapDependent extends StructureMapDependent {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @JsonKey(name: 'id')
-  FhirId? get fhirId;
+  FhirId? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
