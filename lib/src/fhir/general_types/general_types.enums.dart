@@ -197,6 +197,29 @@ enum TimingRepeatPeriodUnit {
   unknown,
 }
 
+extension TimingRepeatPeriodUnitExtension on TimingRepeatPeriodUnit {
+  String toTimeValue() {
+    switch (this) {
+      case TimingRepeatPeriodUnit.s:
+        return 'second';
+      case TimingRepeatPeriodUnit.min:
+        return 'minute';
+      case TimingRepeatPeriodUnit.h:
+        return 'hour';
+      case TimingRepeatPeriodUnit.d:
+        return 'day';
+      case TimingRepeatPeriodUnit.wk:
+        return 'week';
+      case TimingRepeatPeriodUnit.mo:
+        return 'month';
+      case TimingRepeatPeriodUnit.a:
+        return 'year';
+      case TimingRepeatPeriodUnit.unknown:
+        return 'unknown';
+    }
+  }
+}
+
 enum TimingRepeatWhen {
   @JsonValue('MORN')
   morn,
