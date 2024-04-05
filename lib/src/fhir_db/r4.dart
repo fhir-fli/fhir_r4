@@ -458,6 +458,9 @@ class FhirDb {
         dynamic result = finderResource;
         for (final Object key in field) {
           result = result[key];
+          if (result == null) {
+            return false;
+          }
         }
         return result.toString() == value;
       }
