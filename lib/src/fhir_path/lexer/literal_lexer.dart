@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_dynamic_calls
+// ignore_for_file: avoid_dynamic_calls, non_constant_identifier_names
 
 // Dart imports:
 import 'dart:convert';
@@ -126,9 +126,10 @@ final Parser<IdentifierParser> IDENTIFIER = ((pattern('A-Za-z') | char('_')) &
 
 /// DELIMITEDIDENTIFIER is signified by a backquote (`) on either end
 final Parser<IdentifierParser> DELIMITEDIDENTIFIER =
-    (char('`') & (ESC | char('`').neg()).star() & char('`')).map((List value) {
+    (char('`') & (ESC | char('`').neg()).star() & char('`'))
+        .map((List<dynamic> value) {
   final String middleValue = value[1]
-      .map((e) => e is Token
+      .map((dynamic e) => e is Token
           ? e.value.contains('u') as bool
               ? utf8.decode(<int>[
                   int.parse(e.value.split('u').last as String, radix: 16)
@@ -142,9 +143,10 @@ final Parser<IdentifierParser> DELIMITEDIDENTIFIER =
 });
 
 final Parser<IdentifierParser> DOUBLEQUOTEDIDENTIFIER =
-    (char('"') & (ESC | char('"').neg()).star() & char('"')).map((List value) {
+    (char('"') & (ESC | char('"').neg()).star() & char('"'))
+        .map((List<dynamic> value) {
   final String middleValue = value[1]
-      .map((e) => e is Token
+      .map((dynamic e) => e is Token
           ? e.value.contains('u') as bool
               ? utf8.decode(<int>[
                   int.parse(e.value.split('u').last as String, radix: 16)
@@ -159,7 +161,8 @@ final Parser<IdentifierParser> DOUBLEQUOTEDIDENTIFIER =
 
 /// A String is signified by single quotes (') on either end
 final Parser<StringParser> STRING =
-    (char("'") & (ESC | char("'").neg()).star() & char("'")).map((List value) {
+    (char("'") & (ESC | char("'").neg()).star() & char("'"))
+        .map((List<dynamic> value) {
   return StringParser(value[1].join('') as String);
 });
 
@@ -195,12 +198,12 @@ final Parser<WhiteSpaceParser> LINE_COMMENT =
         .map((String value) => WhiteSpaceParser(value));
 
 final Parser<String> ESC = ((char(r'\') & pattern(r"`'\/fnrt")).flatten() |
-        (char(r'\') & UNICODE).map((List value) {
+        (char(r'\') & UNICODE).map((List<dynamic> value) {
           return String.fromCharCodes(<int>[
             int.parse(value[1].replaceAll('u', '') as String, radix: 16)
           ]);
         }))
-    .map((value) {
+    .map((dynamic value) {
   return (value == r"\'"
       ? "'"
       : value == r'\`'

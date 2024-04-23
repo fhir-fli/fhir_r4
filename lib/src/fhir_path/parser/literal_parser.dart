@@ -92,20 +92,22 @@ class EnvVariableParser extends ValueParser<String> {
       return <dynamic>['http://hl7.org/fhir/StructureDefinition/$extension'];
     }
 
-    final passedValue = passed[variableName];
+    final dynamic passedValue = passed[variableName];
     if (passedValue == null) {
       throw FhirPathEvaluationException(
           'Variable $variableName does not exist.',
           variables: passed);
     }
 
-    if (passedValue is! Function()) {
-      return passedValue is List ? passedValue : <dynamic>[passedValue];
+    if (passedValue is! Function) {
+      return passedValue is List<dynamic>
+          ? passedValue
+          : <dynamic>[passedValue];
     } else {
       try {
-        final result = passedValue();
+        final dynamic result = passedValue();
 
-        return result is List ? result : <dynamic>[result];
+        return result is List<dynamic> ? result : <dynamic>[result];
       } catch (ex) {
         throw FhirPathEvaluationException(
             'Variable $value could not be lazily evaluated.',
@@ -243,11 +245,11 @@ class IdentifierParser extends ValueParser<String> {
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
     final String identifierName = value;
 
-    final List finalResults = <dynamic>[];
-    final List finalPrimitiveExtensions =
+    final List<dynamic> finalResults = <dynamic>[];
+    final List<dynamic> finalPrimitiveExtensions =
         List<dynamic>.filled(results.length, null);
 
-    final passedExtensions = passed[ExtensionParser.extensionKey];
+    final dynamic passedExtensions = passed[ExtensionParser.extensionKey];
     passed[ExtensionParser.extensionKey] = null;
 
     if (resourceTypeFromStringMap.keys.contains(identifierName)) {
@@ -256,7 +258,7 @@ class IdentifierParser extends ValueParser<String> {
         finalResults.add(passed.context);
       }
     } else {
-      results.forEachIndexed((int i, r) {
+      results.forEachIndexed((int i, dynamic r) {
         if (r is Map) {
           String jsonIdentifierName = identifierName;
           dynamic rValue = r[identifierName];
@@ -265,7 +267,7 @@ class IdentifierParser extends ValueParser<String> {
             // If the key cannot be found in the r-map, then find
             // a key that starts with the same word, e.g. 'value' identifier will
             // match 'valueDateTime' key.
-            r.forEach((k, v) {
+            r.forEach((dynamic k, dynamic v) {
               if (k.toString().startsWith(identifierName) &&
                   polymorphicPrefixes.contains(identifierName) &&
                   startsWithAPolymorphicPrefix(k.toString())) {
@@ -282,7 +284,7 @@ class IdentifierParser extends ValueParser<String> {
           }
 
           if (rValue is List) {
-            finalResults.addAll(rValue as Iterable);
+            finalResults.addAll(rValue as Iterable<dynamic>);
           } else if (rValue != null) {
             finalResults.add(rValue);
           } else if (r['resourceType'] == identifierName) {
@@ -292,9 +294,9 @@ class IdentifierParser extends ValueParser<String> {
           if (identifierName == 'extension') {
             // Special processing for extensions on primitives
             if (passedExtensions != null) {
-              final extensionOnPrimitive = passedExtensions[i];
+              final dynamic extensionOnPrimitive = passedExtensions[i];
               if (extensionOnPrimitive != null) {
-                finalResults.addAll(extensionOnPrimitive as Iterable);
+                finalResults.addAll(extensionOnPrimitive as Iterable<dynamic>);
               }
             } else {
               // This primitive does not have an extension
@@ -341,11 +343,11 @@ class DelimitedIdentifierParser extends ValueParser<String> {
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
     final String identifierName = value;
 
-    final List finalResults = <dynamic>[];
-    final List finalPrimitiveExtensions =
+    final List<dynamic> finalResults = <dynamic>[];
+    final List<dynamic> finalPrimitiveExtensions =
         List<dynamic>.filled(results.length, null);
 
-    final passedExtensions = passed[ExtensionParser.extensionKey];
+    final dynamic passedExtensions = passed[ExtensionParser.extensionKey];
     passed[ExtensionParser.extensionKey] = null;
 
     if (resourceTypeFromStringMap.keys.contains(identifierName) &&
@@ -354,7 +356,7 @@ class DelimitedIdentifierParser extends ValueParser<String> {
             : passed.context?['resourceType'] == identifierName)) {
       finalResults.add(passed.context);
     } else {
-      results.forEachIndexed((int i, r) {
+      results.forEachIndexed((int i, dynamic r) {
         if (r is Map) {
           String jsonIdentifierName = identifierName;
           dynamic rValue = r[identifierName];
@@ -363,7 +365,7 @@ class DelimitedIdentifierParser extends ValueParser<String> {
             // If the key cannot be found in the r-map, then find
             // a key that starts with the same word, e.g. 'value' identifier will
             // match 'valueDateTime' key.
-            r.forEach((k, v) {
+            r.forEach((dynamic k, dynamic v) {
               if (k.toString().startsWith(identifierName) &&
                   polymorphicPrefixes.contains(identifierName) &&
                   startsWithAPolymorphicPrefix(k.toString())) {
@@ -380,7 +382,7 @@ class DelimitedIdentifierParser extends ValueParser<String> {
           }
 
           if (rValue is List) {
-            finalResults.addAll(rValue as Iterable);
+            finalResults.addAll(rValue as Iterable<dynamic>);
           } else if (rValue != null) {
             finalResults.add(rValue);
           } else if (r['resourceType'] == identifierName) {
@@ -390,9 +392,9 @@ class DelimitedIdentifierParser extends ValueParser<String> {
           if (identifierName == 'extension') {
             // Special processing for extensions on primitives
             if (passedExtensions != null) {
-              final extensionOnPrimitive = passedExtensions[i];
+              final dynamic extensionOnPrimitive = passedExtensions[i];
               if (extensionOnPrimitive != null) {
-                finalResults.addAll(extensionOnPrimitive as Iterable);
+                finalResults.addAll(extensionOnPrimitive as Iterable<dynamic>);
               }
             } else {
               // This primitive does not have an extension

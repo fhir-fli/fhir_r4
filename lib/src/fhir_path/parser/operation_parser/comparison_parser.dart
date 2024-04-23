@@ -144,7 +144,7 @@ enum Comparator { gt, gte, lt, lte }
 
 // TODO(Dokotela): review if appropriately comparing different types
 @override
-List<dynamic> executeComparisons(List results, ParserList before,
+List<dynamic> executeComparisons(List<dynamic> results, ParserList before,
     ParserList after, Map<String, dynamic> passed, Comparator comparator,
     {bool where = false}) {
   // TODO(Dokotela): Currently, this is going to assume that if a String is being compared
@@ -209,8 +209,8 @@ List<dynamic> executeComparisons(List results, ParserList before,
           'Param1: $param2 - ${param2.runtimeType} - Valid? ${param2.isValid}\n');
 
   bool? compare(Comparator comparator, dynamic lhs, dynamic rhs) {
-    switch (lhs.runtimeType) {
-      case num:
+    switch (lhs) {
+      case int _:
         return rhs is num
             ? makeComparison(comparator, lhs, rhs)
             : rhs is FhirNumber && rhs.isValid
@@ -218,7 +218,7 @@ List<dynamic> executeComparisons(List results, ParserList before,
                 : rhs is String && num.tryParse(rhs) != null
                     ? makeComparison(comparator, lhs, num.parse(rhs))
                     : throw cannotCompareException(lhs, rhs);
-      case int:
+      case double _:
         return rhs is num
             ? makeComparison(comparator, lhs, rhs)
             : rhs is FhirNumber && rhs.isValid
@@ -226,23 +226,15 @@ List<dynamic> executeComparisons(List results, ParserList before,
                 : rhs is String && num.tryParse(rhs) != null
                     ? makeComparison(comparator, lhs, num.parse(rhs))
                     : throw cannotCompareException(lhs, rhs);
-      case double:
-        return rhs is num
-            ? makeComparison(comparator, lhs, rhs)
-            : rhs is FhirNumber && rhs.isValid
-                ? makeComparison(comparator, lhs, rhs.valueNumber)
-                : rhs is String && num.tryParse(rhs) != null
-                    ? makeComparison(comparator, lhs, num.parse(rhs))
-                    : throw cannotCompareException(lhs, rhs);
-      case FhirDate:
+      case FhirDate _:
         return rhs is FhirDateTimeBase
-            ? (lhs as FhirDate).isValid && rhs.isValid
+            ? lhs.isValid && rhs.isValid
                 ? makeComparison(comparator, lhs, rhs)
                 : throw invalidException(lhs, rhs)
             : rhs is String && FhirDateTime(rhs).isValid
                 ? makeComparison(comparator, lhs, rhs)
                 : throw cannotCompareException(lhs, rhs);
-      case DateTime:
+      case DateTime _:
         return (rhs is FhirDateTimeBase && rhs.isValid)
             ? makeComparison(comparator, FhirDateTime(lhs), rhs)
             : rhs is DateTime
@@ -252,23 +244,23 @@ List<dynamic> executeComparisons(List results, ParserList before,
                     ? makeComparison(
                         comparator, FhirDateTime(lhs), FhirDateTime(rhs))
                     : throw cannotCompareException(lhs, rhs);
-      case FhirDateTime:
+      case FhirDateTime _:
         return rhs is FhirDateTimeBase
-            ? (lhs as FhirDateTime).isValid && rhs.isValid
+            ? lhs.isValid && rhs.isValid
                 ? makeComparison(comparator, lhs, rhs)
                 : throw invalidException(lhs, rhs)
             : rhs is String && FhirDateTime(rhs).isValid
                 ? makeComparison(comparator, lhs, FhirDateTime(rhs))
                 : throw cannotCompareException(lhs, rhs);
-      case FhirTime:
+      case FhirTime _:
         return rhs is FhirTime
-            ? (lhs as FhirTime).isValid && rhs.isValid
+            ? lhs.isValid && rhs.isValid
                 ? makeComparison(comparator, lhs, rhs)
                 : throw invalidException(lhs, rhs)
             : rhs is String && FhirTime(rhs).isValid
                 ? makeComparison(comparator, lhs, FhirTime(rhs))
                 : throw cannotCompareException(lhs, rhs);
-      case ValidatedQuantity:
+      case ValidatedQuantity _:
         return rhs is ValidatedQuantity
             ? makeComparison(comparator, lhs, rhs)
             : rhs is String
@@ -311,12 +303,12 @@ List<dynamic> executeComparisons(List results, ParserList before,
     }
   }
 
-  final List lhs = SingletonEvaluation.toSingleton(
+  final List<dynamic> lhs = SingletonEvaluation.toSingleton(
       before.execute(results.toList(), passed),
       name: 'left-hand side',
       operation: comparator.toString(),
       collection: results);
-  final List rhs = SingletonEvaluation.toSingleton(
+  final List<dynamic> rhs = SingletonEvaluation.toSingleton(
       after.execute(results.toList(), passed),
       name: 'right-hand side',
       operation: comparator.toString(),
@@ -348,7 +340,7 @@ List<dynamic> executeComparisons(List results, ParserList before,
           operation: functionName,
           arguments: <ParserList>[before, after]);
     } else if (where) {
-      results.retainWhere((element) =>
+      results.retainWhere((dynamic element) =>
           compare(comparator, element[lhs.first], rhs.first) ?? false);
       return results;
     } else {
@@ -369,7 +361,7 @@ const List<Type> _allowedTypes = <Type>[
   ValidatedQuantity,
 ];
 
-Exception _wrongArgLength(String functionName, List value) =>
+Exception _wrongArgLength(String functionName, List<dynamic> value) =>
     FhirPathEvaluationException(
         'The function $functionName must have an argument that '
         'evaluates to 0 or 1 item.',

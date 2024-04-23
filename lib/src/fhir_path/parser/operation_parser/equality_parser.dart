@@ -16,8 +16,8 @@ class EqualsParser extends OperatorParser {
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List lhs = before.execute(results.toList(), passed);
-    final List rhs = after.execute(results.toList(), passed);
+    final List<dynamic> lhs = before.execute(results.toList(), passed);
+    final List<dynamic> rhs = after.execute(results.toList(), passed);
 
     if (lhs.isEmpty || rhs.isEmpty) {
       return <dynamic>[];
@@ -111,8 +111,8 @@ class EquivalentParser extends OperatorParser {
     } else if (executedBefore.length != executedAfter.length) {
       return <dynamic>[false];
     } else {
-      executedBefore.removeWhere((lhsElement) =>
-          executedAfter.indexWhere((rhsElement) {
+      executedBefore.removeWhere((dynamic lhsElement) =>
+          executedAfter.indexWhere((dynamic rhsElement) {
             if (lhsElement is FhirDateTime ||
                 lhsElement is FhirDate ||
                 rhsElement is FhirDateTime ||
@@ -207,7 +207,7 @@ class NotEqualsParser extends OperatorParser {
     final EqualsParser equalsParser = EqualsParser();
     equalsParser.before = this.before;
     equalsParser.after = this.after;
-    final List equality = equalsParser.execute(results, passed);
+    final List<dynamic> equality = equalsParser.execute(results, passed);
     return FpNotParser().execute(equality, passed);
   }
 
@@ -243,7 +243,7 @@ class NotEquivalentParser extends OperatorParser {
     final EquivalentParser equivalentParser = EquivalentParser();
     equivalentParser.before = this.before;
     equivalentParser.after = this.after;
-    final List equality = equivalentParser.execute(results, passed);
+    final List<dynamic> equality = equivalentParser.execute(results, passed);
     return FpNotParser().execute(equality, passed);
   }
 

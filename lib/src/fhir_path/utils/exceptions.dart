@@ -30,7 +30,7 @@ class FhirPathException implements Exception {
   final Object? context;
 
   /// Environment which was present
-  final Map? environment;
+  final Map<dynamic, dynamic>? environment;
 
   FhirPathException(this.message,
       {this.pathExpression,
@@ -45,7 +45,7 @@ class FhirPathException implements Exception {
 
   FhirPathException copyWith({
     Object? context,
-    Map? variables,
+    Map<dynamic, dynamic>? variables,
   }) {
     return FhirPathException(
       message,
@@ -148,7 +148,7 @@ class FhirPathEvaluationException extends FhirPathException {
     super.operation,
     super.arguments,
     super.collection,
-    Map? variables,
+    Map<dynamic, dynamic>? variables,
   }) : super(
           environment: variables,
         );

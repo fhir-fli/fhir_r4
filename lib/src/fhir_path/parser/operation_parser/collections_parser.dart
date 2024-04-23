@@ -15,7 +15,7 @@ class UnionOperatorParser extends OperatorParser {
     final List<dynamic> executedBefore =
         before.execute(results.toList(), passed);
     final List<dynamic> executedAfter = after.execute(results.toList(), passed);
-    executedBefore.forEach((e) {
+    executedBefore.forEach((dynamic e) {
       if (notFoundInList(executedAfter, e)) {
         executedAfter.add(e);
       }
@@ -56,8 +56,8 @@ class ContainsOperatorParser extends OperatorParser {
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List leftOperand = before.execute(results.toList(), passed);
-    final List rightOperand = after.execute(results.toList(), passed);
+    final List<dynamic> leftOperand = before.execute(results.toList(), passed);
+    final List<dynamic> rightOperand = after.execute(results.toList(), passed);
 
     if (leftOperand.isEmpty) {
       return <dynamic>[false];
@@ -77,7 +77,8 @@ class ContainsOperatorParser extends OperatorParser {
     final String rightItem = rightOperand.first.toString();
 
     return <dynamic>[
-      leftOperand.firstWhere((leftItem) => leftItem.toString() == rightItem,
+      leftOperand.firstWhere(
+              (dynamic leftItem) => leftItem.toString() == rightItem,
               orElse: () => null) !=
           null
     ];
@@ -133,7 +134,8 @@ class InParser extends OperatorParser {
 
     final String leftItem = executedBefore.first.toString();
     return <dynamic>[
-      executedAfter.firstWhere((rightItem) => rightItem.toString() == leftItem,
+      executedAfter.firstWhere(
+              (dynamic rightItem) => rightItem.toString() == leftItem,
               orElse: () => null) !=
           null
     ];
@@ -171,12 +173,12 @@ class CommaParser extends OperatorParser {
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List beforeResults = results.toList();
-    final List afterResults = results.toList();
-    final List beforeList = before.execute(beforeResults, passed);
-    final List afterList = after.execute(afterResults, passed);
+    final List<dynamic> beforeResults = results.toList();
+    final List<dynamic> afterResults = results.toList();
+    final List<dynamic> beforeList = before.execute(beforeResults, passed);
+    final List<dynamic> afterList = after.execute(afterResults, passed);
 
-    final List outcome = <dynamic>[];
+    final List<dynamic> outcome = <dynamic>[];
     if (beforeList.isEmpty) {
       outcome.add(<dynamic>[]);
     } else {

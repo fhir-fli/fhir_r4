@@ -84,11 +84,11 @@ class IterationContext {
   static List<dynamic> withIterationContext(
       List<dynamic> Function(IterationContext) iteratedFunction,
       Map<String, dynamic> passed) {
-    final topIterationContext = passed[_iterationKey];
+    final dynamic topIterationContext = passed[_iterationKey];
     final IterationContext thisIterationContext = IterationContext();
     passed[_iterationKey] = thisIterationContext;
 
-    final List result = iteratedFunction(thisIterationContext);
+    final List<dynamic> result = iteratedFunction(thisIterationContext);
 
     passed[_iterationKey] = topIterationContext;
 
@@ -96,7 +96,7 @@ class IterationContext {
   }
 
   static IterationContext current(Map<String, dynamic> passed) {
-    final topRepeatContext = passed[_iterationKey];
+    final dynamic topRepeatContext = passed[_iterationKey];
     if (topRepeatContext == null) {
       throw FhirPathEvaluationException(
           r'No context for $this, $total, or $index is available.');
@@ -193,7 +193,7 @@ class AggregateParser extends FunctionParser {
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List finalTotal = IterationContext.withIterationContext(
+    final List<dynamic> finalTotal = IterationContext.withIterationContext(
         (IterationContext iterationContext) {
       List<dynamic> currentTotal = <dynamic>[];
 
@@ -209,7 +209,7 @@ class AggregateParser extends FunctionParser {
         expression = value;
       }
 
-      iterationContext.totalValue = initialValue as List;
+      iterationContext.totalValue = initialValue as List<dynamic>;
       results.forEachIndexed((int i, r) {
         iterationContext.indexValue = i;
         iterationContext.thisValue = r;

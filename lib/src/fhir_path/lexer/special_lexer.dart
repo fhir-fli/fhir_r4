@@ -12,8 +12,8 @@ import '../r4.dart';
 
 /// identifies bracketsIndexs
 final Parser<BracketsIndexParser> bracketsIndexLexer =
-    (char('[') & digit().plus() & char(']')).map((List value) {
-  return BracketsIndexParser(int.parse(value[1].join('') as String));
+    (char('[') & digit().plus() & char(']')).map((List<dynamic> value) {
+  return BracketsIndexParser(int.parse((value[1] as List<String>).join()));
 });
 
 /// identifies indexs

@@ -18,10 +18,11 @@ class UnionFunctionParser extends FunctionParser {
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
     final List<dynamic> executedValue = value.execute(results.toList(), passed);
-    final List finalResults = <dynamic>[];
+    final List<dynamic> finalResults = <dynamic>[];
     finalResults
-      ..addAll(results.where((r) => notFoundInList(finalResults, r)))
-      ..addAll(executedValue.where((v) => notFoundInList(finalResults, v)));
+      ..addAll(results.where((dynamic r) => notFoundInList(finalResults, r)))
+      ..addAll(
+          executedValue.where((dynamic v) => notFoundInList(finalResults, v)));
     return finalResults;
   }
 

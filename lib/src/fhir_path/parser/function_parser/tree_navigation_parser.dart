@@ -8,10 +8,10 @@ class ChildrenParser extends FhirPathParser {
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List finalResults = <dynamic>[];
-    for (final r in results) {
+    final List<dynamic> finalResults = <dynamic>[];
+    for (final dynamic r in results) {
       if (r is Map) {
-        r.forEach((key, value) {
+        r.forEach((dynamic key, dynamic value) {
           if (value is List) {
             finalResults.addAll(value);
           } else {

@@ -47,7 +47,7 @@ class HasValueParser extends FhirPathParser {
       return <dynamic>[false];
     }
 
-    final element = results.first;
+    final dynamic element = results.first;
 
     if (element == null) {
       return <dynamic>[false];
@@ -107,13 +107,14 @@ class ExistsParser extends FunctionParser {
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List returnList = IterationContext.withIterationContext(
+    final List<dynamic> returnList = IterationContext.withIterationContext(
         (IterationContext iterationContext) {
-      final List iterationResult = <dynamic>[];
-      results.forEachIndexed((int i, element) {
+      final List<dynamic> iterationResult = <dynamic>[];
+      results.forEachIndexed((int i, dynamic element) {
         iterationContext.indexValue = i;
         iterationContext.thisValue = element;
-        final List newResult = value.execute(<dynamic>[element], passed);
+        final List<dynamic> newResult =
+            value.execute(<dynamic>[element], passed);
         if (newResult.isNotEmpty) {
           if (!(newResult.length == 1 && newResult.first == false)) {
             iterationResult.add(element);
@@ -164,7 +165,7 @@ class AllParser extends FunctionParser {
     return IterationContext.withIterationContext(
         (IterationContext iterationContext) {
       bool allResult = true;
-      results.forEachIndexed((int i, r) {
+      results.forEachIndexed((int i, dynamic r) {
         iterationContext.thisValue = r;
         iterationContext.indexValue = i;
         final List<dynamic> executedValue = value.execute(<dynamic>[r], passed);
@@ -216,7 +217,7 @@ class AllTrueParser extends FhirPathParser {
     if (results.isEmpty) {
       return <dynamic>[true];
     }
-    results.removeWhere((element) => element == true);
+    results.removeWhere((dynamic element) => element == true);
     return <dynamic>[results.isEmpty];
   }
 
@@ -250,7 +251,7 @@ class AnyTrueParser extends FhirPathParser {
     if (results.isEmpty) {
       return <dynamic>[false];
     }
-    results.retainWhere((element) => element == true);
+    results.retainWhere((dynamic element) => element == true);
     return <dynamic>[results.isNotEmpty];
   }
 
@@ -284,7 +285,7 @@ class AllFalseParser extends FhirPathParser {
     if (results.isEmpty) {
       return <dynamic>[true];
     }
-    results.removeWhere((element) => element == false);
+    results.removeWhere((dynamic element) => element == false);
     return <dynamic>[results.isEmpty];
   }
 
@@ -318,7 +319,7 @@ class AnyFalseParser extends FhirPathParser {
     if (results.isEmpty) {
       return <dynamic>[false];
     }
-    results.retainWhere((element) => element == false);
+    results.retainWhere((dynamic element) => element == false);
     return <dynamic>[results.isNotEmpty];
   }
 
@@ -356,7 +357,7 @@ class SubsetOfParser extends FunctionParser {
     } else {
       final List<dynamic> executedValue =
           value.execute(results.toList(), passed);
-      for (final r in results) {
+      for (final dynamic r in results) {
         if (notFoundInList(executedValue, r)) {
           return <dynamic>[false];
         }
@@ -402,7 +403,7 @@ class SupersetOfParser extends FunctionParser {
     } else {
       final List<dynamic> executedValue =
           value.execute(results.toList(), passed);
-      for (final v in executedValue) {
+      for (final dynamic v in executedValue) {
         if (notFoundInList(results, v)) {
           return <dynamic>[false];
         }
@@ -466,8 +467,8 @@ class DistinctParser extends FhirPathParser {
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List resultsList = <dynamic>[];
-    for (final r in results) {
+    final List<dynamic> resultsList = <dynamic>[];
+    for (final dynamic r in results) {
       if (notFoundInList(resultsList, r)) {
         resultsList.add(r);
       }
@@ -500,8 +501,8 @@ class IsDistinctParser extends FhirPathParser {
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List resultsList = <dynamic>[];
-    for (final r in results) {
+    final List<dynamic> resultsList = <dynamic>[];
+    for (final dynamic r in results) {
       if (notFoundInList(resultsList, r)) {
         resultsList.add(r);
       }

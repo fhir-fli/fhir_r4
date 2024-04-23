@@ -238,7 +238,7 @@ class ContainsFunctionParser extends FunctionParser {
     return results.isEmpty
         ? <dynamic>[]
         : results
-            .map((e) =>
+            .map((dynamic e) =>
                 e is String && e.contains(executedValue.first.toString()))
             .toList();
   }
@@ -537,15 +537,15 @@ class ToCharsParser extends FhirPathParser {
   String prettyPrint([int indent = 2]) => '.toChars()';
 }
 
-Exception _requiresList(String function, List results) =>
+Exception _requiresList(String function, List<dynamic> results) =>
     FhirPathEvaluationException(
       'The function $function only accepts lists'
-      ' with 0 or 1 item, this was the list passed: $results',
+      ' with 0 or 1 item, this was the List<dynamic> passed: $results',
       operation: function,
       collection: results,
     );
 
-Exception _requiresString(String function, List results) =>
+Exception _requiresString(String function, List<dynamic> results) =>
     FhirPathEvaluationException(
       'The function $function was not applied to a string.',
       operation: function,

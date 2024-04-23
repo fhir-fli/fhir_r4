@@ -18,7 +18,7 @@ class SingleParser extends FhirPathParser {
           : results.isEmpty
               ? <dynamic>[]
               : throw FhirPathEvaluationException(
-                  'The List $results is only allowed to contain one '
+                  'The List<dynamic> $results is only allowed to contain one '
                   'item if evaluated using the .single() function',
                   operation: '.single()',
                   collection: results);
@@ -191,21 +191,22 @@ class TakeParser extends FunctionParser {
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
     final List<dynamic> executedValue = value.execute(results.toList(), passed);
-    final List newResults = value.length != 1 || value.first is! IntegerParser
-        ? throw FhirPathEvaluationException(
-            'The argument passed to the .take() function was not valid:',
-            operation: '.take()',
-            arguments: value)
-        : executedValue.first is! int
+    final List<dynamic> newResults =
+        value.length != 1 || value.first is! IntegerParser
             ? throw FhirPathEvaluationException(
-                'The value for .take() was not a number: $value',
+                'The argument passed to the .take() function was not valid:',
                 operation: '.take()',
                 arguments: value)
-            : (executedValue.first as int) <= 0 || results.isEmpty
-                ? <dynamic>[]
-                : (executedValue.first as int) >= results.length
-                    ? results
-                    : results.sublist(0, executedValue.first as int);
+            : executedValue.first is! int
+                ? throw FhirPathEvaluationException(
+                    'The value for .take() was not a number: $value',
+                    operation: '.take()',
+                    arguments: value)
+                : (executedValue.first as int) <= 0 || results.isEmpty
+                    ? <dynamic>[]
+                    : (executedValue.first as int) >= results.length
+                        ? results
+                        : results.sublist(0, executedValue.first as int);
     return newResults;
   }
 
@@ -241,13 +242,13 @@ class IntersectParser extends FunctionParser {
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List other = value.execute(results.toList(), passed);
-    final List inBag = <dynamic>[...results];
+    final List<dynamic> other = value.execute(results.toList(), passed);
+    final List<dynamic> inBag = <dynamic>[...results];
 
     // Eliminate duplicates in input
-    final List outBag = <dynamic>[];
-    for (final item in inBag) {
-      if (outBag.indexWhere((otherItem) =>
+    final List<dynamic> outBag = <dynamic>[];
+    for (final dynamic item in inBag) {
+      if (outBag.indexWhere((dynamic otherItem) =>
               const DeepCollectionEquality().equals(item, otherItem)) ==
           -1) {
         outBag.add(item);
@@ -255,9 +256,9 @@ class IntersectParser extends FunctionParser {
     }
 
     // Intersect
-    outBag.removeWhere((e) =>
-        other.indexWhere(
-            (element) => const DeepCollectionEquality().equals(e, element)) ==
+    outBag.removeWhere((dynamic e) =>
+        other.indexWhere((dynamic element) =>
+            const DeepCollectionEquality().equals(e, element)) ==
         -1);
 
     return outBag;
@@ -296,9 +297,9 @@ class ExcludeParser extends FunctionParser {
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
     final List<dynamic> executedValue = value.execute(results.toList(), passed);
-    results.removeWhere((e) =>
-        executedValue.indexWhere(
-            (element) => const DeepCollectionEquality().equals(e, element)) !=
+    results.removeWhere((dynamic e) =>
+        executedValue.indexWhere((dynamic element) =>
+            const DeepCollectionEquality().equals(e, element)) !=
         -1);
     return results;
   }

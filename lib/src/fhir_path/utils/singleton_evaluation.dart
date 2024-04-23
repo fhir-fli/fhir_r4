@@ -32,7 +32,7 @@ class SingletonEvaluation {
           collection: collection);
     }
 
-    final item = input.first;
+    final dynamic item = input.first;
     if (item is Map) {
       if (item['value'] != null && item['unit'] != null) {
         return <dynamic>[

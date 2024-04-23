@@ -18,9 +18,9 @@ class FpWhereParser extends FunctionParser {
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List iterationResult = <dynamic>[];
-    for (final element in results) {
-      final List newResult = value.execute(<dynamic>[element], passed);
+    final List<dynamic> iterationResult = <dynamic>[];
+    for (final dynamic element in results) {
+      final List<dynamic> newResult = value.execute(<dynamic>[element], passed);
       if (newResult.isNotEmpty) {
         if (!(newResult.length == 1 && newResult.first == false)) {
           iterationResult.add(element);
@@ -65,8 +65,8 @@ class SelectParser extends FunctionParser {
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
     return IterationContext.withIterationContext(
         (IterationContext iterationContext) {
-      final List outputCollection = <dynamic>[];
-      results.forEachIndexed((int i, e) {
+      final List<dynamic> outputCollection = <dynamic>[];
+      results.forEachIndexed((int i, dynamic e) {
         iterationContext.thisValue = e;
         iterationContext.indexValue = i;
         outputCollection.addAll(value.execute(<dynamic>[e], passed));
@@ -107,8 +107,8 @@ class RepeatParser extends FunctionParser {
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
     final List<dynamic> finalResults = <dynamic>[];
-    results.forEach((r) {
-      value.execute(<dynamic>[r], passed).forEach((e) {
+    results.forEach((dynamic r) {
+      value.execute(<dynamic>[r], passed).forEach((dynamic e) {
         if (notFoundInList(finalResults, e)) {
           finalResults.add(e);
         }
@@ -118,8 +118,8 @@ class RepeatParser extends FunctionParser {
     while (len != finalResults.length) {
       results = finalResults.toList();
       len = finalResults.length;
-      results.forEach((r) {
-        value.execute(<dynamic>[r], passed).forEach((e) {
+      results.forEach((dynamic r) {
+        value.execute(<dynamic>[r], passed).forEach((dynamic e) {
           if (notFoundInList(finalResults, e)) {
             finalResults.add(e);
           }
@@ -174,8 +174,8 @@ class OfTypeParser extends FunctionParser {
         collection: results,
       );
     }
-    final List finalResults = <dynamic>[];
-    results.forEach((e) {
+    final List<dynamic> finalResults = <dynamic>[];
+    results.forEach((dynamic e) {
       if ((resourceTypeFromStringMap.keys
                   .contains((executedValue.first as IdentifierParser).value) &&
               e is Map &&
@@ -243,7 +243,8 @@ class ExtensionParser extends FunctionParser {
       return <dynamic>[];
     }
 
-    final extensionUrl = value.execute(results.toList(), passed).firstOrNull;
+    final dynamic extensionUrl =
+        value.execute(results.toList(), passed).firstOrNull;
     if (extensionUrl == null) {
       return <dynamic>[];
     }

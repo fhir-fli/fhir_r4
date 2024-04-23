@@ -243,10 +243,10 @@ class PowerParser extends FunctionParser {
     } else if (executedValue.length > 1) {
       throw _wrongArgLength('.power()', executedValue);
     }
-    final finalResults = results.first is num
+    final dynamic finalResults = results.first is num
         ? results.first
         : throw _wrongTypes('.power()', results, executedValue);
-    final finalValue = executedValue.first is num
+    final dynamic finalValue = executedValue.first is num
         ? executedValue.first
         : throw _wrongTypes('.power()', results, executedValue);
     return pow(finalResults as num, finalValue as num).isNaN
@@ -403,20 +403,21 @@ class TruncateParser extends FunctionParser {
   }
 }
 
-Exception _wrongLength(String functionName, List results) =>
+Exception _wrongLength(String functionName, List<dynamic> results) =>
     FhirPathEvaluationException(
         'The function $functionName can only work on a collection'
         ' with 0 or 1 item.',
         collection: results);
 
-Exception _wrongArgLength(String functionName, List value) =>
+Exception _wrongArgLength(String functionName, List<dynamic> value) =>
     FhirPathEvaluationException(
         'The function $functionName must have an argument that '
         'evaluates to 0 or 1 item.',
         operation: functionName,
         arguments: value);
 
-Exception _wrongTypes(String functionName, List results, dynamic value) =>
+Exception _wrongTypes(
+        String functionName, List<dynamic> results, dynamic value) =>
     FhirPathEvaluationException(
         'The function $functionName cannot work with the types '
         'passed.',

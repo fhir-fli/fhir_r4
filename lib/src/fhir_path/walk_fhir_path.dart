@@ -65,7 +65,6 @@ List<dynamic> walkFhirPath({
   Map<String, dynamic>? resource,
   Map<String, dynamic>? rootResource,
   Map<String, dynamic>? environment,
-  FhirVersion version = FhirVersion.r4,
 }) {
   final ParserList ast = parseFhirPath(pathExpression);
   return executeFhirPath(
@@ -75,7 +74,6 @@ List<dynamic> walkFhirPath({
     resource: resource,
     rootResource: rootResource,
     environment: environment,
-    version: version,
   );
 }
 
@@ -137,7 +135,6 @@ List<dynamic> executeFhirPath({
   Map<String, dynamic>? resource,
   Map<String, dynamic>? rootResource,
   Map<String, dynamic>? environment,
-  FhirVersion version = FhirVersion.r4,
 }) {
   // Use passed-in environment as the starting point.
   // It will later be amended/overridden by explicitly passed resources.
@@ -159,8 +156,6 @@ List<dynamic> executeFhirPath({
   if (rootResource != null) {
     passedEnvironment.rootResource = rootResource;
   }
-
-  passedEnvironment.version = version;
 
   try {
     if (parsedFhirPath.isEmpty) {
@@ -193,7 +188,6 @@ List<dynamic> dstu2WalkFhirPath(
     context: resourceJson,
     pathExpression: pathExpression,
     environment: environment,
-    version: FhirVersion.dstu2,
   );
 }
 

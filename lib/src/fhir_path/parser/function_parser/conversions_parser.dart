@@ -63,7 +63,7 @@ class IifParser extends FunctionParser {
       trueResultParser = criterionResultParser.after;
     }
 
-    final List criterionCollection =
+    final List<dynamic> criterionCollection =
         criterionExpressionParser.execute(results.toList(), passed);
 
     final bool? criterion = SingletonEvaluation.toBool(criterionCollection,
@@ -71,7 +71,8 @@ class IifParser extends FunctionParser {
 
     // Short-circuit: Only evaluate what matches the criterion.
     if (criterion == true) {
-      final List newResults = trueResultParser.execute(results, passed);
+      final List<dynamic> newResults =
+          trueResultParser.execute(results, passed);
       return newResults;
     } else {
       if (otherwiseResultParser == null) {
@@ -771,10 +772,10 @@ class ConvertsToQuantityParser extends FunctionParser {
   String prettyPrint([int indent = 2]) => '.convertsToQuantity()';
 }
 
-bool _isNotAcceptedType(List results) =>
+bool _isNotAcceptedType(List<dynamic> results) =>
     results.first is! bool && results.first is! num && results.first is! String;
 
-bool _isAllTypes(List results) =>
+bool _isAllTypes(List<dynamic> results) =>
     results.first is! bool &&
     results.first is! num &&
     results.first is! String &&
@@ -784,7 +785,7 @@ bool _isAllTypes(List results) =>
     results.first is! DateTime &&
     results.first is! ValidatedQuantity;
 
-Exception _conversionException(String function, List results) =>
+Exception _conversionException(String function, List<dynamic> results) =>
     FhirPathEvaluationException(
         'The function $function only accepts lists with 0 or 1 items.',
         operation: function,
