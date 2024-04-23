@@ -9,24 +9,24 @@ import '../../r4.dart';
 
 class EqualsParser extends OperatorParser {
   EqualsParser();
-  ParserList before = ParserList([]);
-  ParserList after = ParserList([]);
+  ParserList before = ParserList(<FhirPathParser>[]);
+  ParserList after = ParserList(<FhirPathParser>[]);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) {
-    final lhs = before.execute(results.toList(), passed);
-    final rhs = after.execute(results.toList(), passed);
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
+    final List lhs = before.execute(results.toList(), passed);
+    final List rhs = after.execute(results.toList(), passed);
 
     if (lhs.isEmpty || rhs.isEmpty) {
-      return [];
+      return <dynamic>[];
     } else if (lhs.length != rhs.length) {
-      return [false];
+      return <dynamic>[false];
     } else {
       /// for each entry in lhs and rhs (we checked above to ensure they
       /// were the same length)
-      for (var i = 0; i < lhs.length; i++) {
+      for (int i = 0; i < lhs.length; i++) {
         /// we check to see if any of the values are DateTimes
         if (lhs[i] is FhirDateTime ||
             lhs[i] is FhirDate ||
@@ -34,14 +34,14 @@ class EqualsParser extends OperatorParser {
             rhs[i] is FhirDate) {
           /// As long as one is, we convert them both to strings then back
           /// to DateTimes
-          final lhsDateTime = FhirDateTime(lhs[i].toString());
-          final rhsDateTime = FhirDateTime(rhs[i].toString());
+          final FhirDateTime lhsDateTime = FhirDateTime(lhs[i].toString());
+          final FhirDateTime rhsDateTime = FhirDateTime(rhs[i].toString());
 
-          final equals = lhsDateTime.isEqual(rhsDateTime);
+          final bool? equals = lhsDateTime.isEqual(rhsDateTime);
           if (equals != null) {
-            return [equals];
+            return <dynamic>[equals];
           } else {
-            return [];
+            return <dynamic>[];
           }
         }
 
@@ -59,7 +59,7 @@ class EqualsParser extends OperatorParser {
           }
         }
       }
-      return [true];
+      return <dynamic>[true];
     }
   }
 
@@ -92,23 +92,24 @@ class EqualsParser extends OperatorParser {
 
 class EquivalentParser extends OperatorParser {
   EquivalentParser();
-  ParserList before = ParserList([]);
-  ParserList after = ParserList([]);
+  ParserList before = ParserList(<FhirPathParser>[]);
+  ParserList after = ParserList(<FhirPathParser>[]);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) {
-    final executedBefore = before.execute(results.toList(), passed);
-    final executedAfter = after.execute(results.toList(), passed);
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
+    final List<dynamic> executedBefore =
+        before.execute(results.toList(), passed);
+    final List<dynamic> executedAfter = after.execute(results.toList(), passed);
     if (executedBefore.isEmpty) {
       if (executedAfter.isEmpty) {
-        return [true];
+        return <dynamic>[true];
       } else {
-        return [false];
+        return <dynamic>[false];
       }
     } else if (executedBefore.length != executedAfter.length) {
-      return [false];
+      return <dynamic>[false];
     } else {
       executedBefore.removeWhere((lhsElement) =>
           executedAfter.indexWhere((rhsElement) {
@@ -118,10 +119,12 @@ class EquivalentParser extends OperatorParser {
                 rhsElement is FhirDate) {
               /// As long as one is, we convert them both to strings then back
               /// to DateTimes
-              final lhsDateTime = FhirDateTime(lhsElement.toString());
-              final rhsDateTime = FhirDateTime(rhsElement.toString());
+              final FhirDateTime lhsDateTime =
+                  FhirDateTime(lhsElement.toString());
+              final FhirDateTime rhsDateTime =
+                  FhirDateTime(rhsElement.toString());
 
-              final equals = lhsDateTime.isEqual(rhsDateTime);
+              final bool? equals = lhsDateTime.isEqual(rhsDateTime);
               if (equals != null) {
                 return equals;
               } else {
@@ -165,7 +168,7 @@ class EquivalentParser extends OperatorParser {
             }
           }) !=
           -1);
-      return [executedBefore.isEmpty];
+      return <dynamic>[executedBefore.isEmpty];
     }
   }
 
@@ -200,11 +203,11 @@ class NotEqualsParser extends OperatorParser {
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) {
-    final equalsParser = EqualsParser();
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
+    final EqualsParser equalsParser = EqualsParser();
     equalsParser.before = this.before;
     equalsParser.after = this.after;
-    final equality = equalsParser.execute(results, passed);
+    final List equality = equalsParser.execute(results, passed);
     return FpNotParser().execute(equality, passed);
   }
 
@@ -236,11 +239,11 @@ class NotEquivalentParser extends OperatorParser {
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) {
-    final equivalentParser = EquivalentParser();
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
+    final EquivalentParser equivalentParser = EquivalentParser();
     equivalentParser.before = this.before;
     equivalentParser.after = this.after;
-    final equality = equivalentParser.execute(results, passed);
+    final List equality = equivalentParser.execute(results, passed);
     return FpNotParser().execute(equality, passed);
   }
 

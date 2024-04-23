@@ -14,17 +14,17 @@ class IndexOfParser extends FunctionParser {
   /// expression one object at a time
   @override
   @override
-  List execute(List results, Map<String, dynamic> passed) {
-    final executedValue = value.execute(results.toList(), passed);
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
+    final List<dynamic> executedValue = value.execute(results.toList(), passed);
     return results.isEmpty
-        ? []
+        ? <dynamic>[]
         : results.length > 1
             ? throw _requiresList('.indexOf()', results)
             : executedValue.first is! String
                 ? throw _requiresString('.indexOf()', results)
                 : results.first.toString() == ''
-                    ? []
-                    : [
+                    ? <dynamic>[]
+                    : <dynamic>[
                         results.first
                             .toString()
                             .indexOf(executedValue.first as String)
@@ -62,10 +62,10 @@ class SubstringParser extends FunctionParser {
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) {
-    final executedValue = value.execute(results.toList(), passed);
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
+    final List<dynamic> executedValue = value.execute(results.toList(), passed);
     return results.isEmpty
-        ? []
+        ? <dynamic>[]
         : results.length > 1
             ? throw _requiresList('.substring()', results)
             : (results.first is! String)
@@ -75,9 +75,9 @@ class SubstringParser extends FunctionParser {
                         (((executedValue.first as int) >=
                                 (results.first as String).length) ||
                             (executedValue.first as int) < 0)
-                    ? []
+                    ? <dynamic>[]
                     : executedValue.length == 1 && executedValue.first is int
-                        ? [
+                        ? <dynamic>[
                             results.first
                                 .toString()
                                 .substring(executedValue.first as int)
@@ -85,7 +85,7 @@ class SubstringParser extends FunctionParser {
                         : executedValue.length == 2 &&
                                 executedValue.first is int &&
                                 executedValue.last is int
-                            ? [
+                            ? <dynamic>[
                                 results.first.toString().substring(
                                       executedValue.first as int,
                                       ((executedValue.first as int) +
@@ -135,17 +135,17 @@ class StartsWithParser extends FunctionParser {
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) {
-    final executedValue = value.execute(results.toList(), passed);
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
+    final List<dynamic> executedValue = value.execute(results.toList(), passed);
     return results.isEmpty
-        ? []
+        ? <dynamic>[]
         : results.length > 1
             ? throw _requiresList('.startsWith()', results)
             : executedValue.first is! String
                 ? throw _requiresString('.startsWith()', results)
                 : results.first.toString() == ''
-                    ? [true]
-                    : [
+                    ? <dynamic>[true]
+                    : <dynamic>[
                         results.first
                             .toString()
                             .startsWith(executedValue.first as String)
@@ -183,17 +183,17 @@ class EndsWithParser extends FunctionParser {
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) {
-    final executedValue = value.execute(results.toList(), passed);
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
+    final List<dynamic> executedValue = value.execute(results.toList(), passed);
     return results.isEmpty
-        ? []
+        ? <dynamic>[]
         : results.length > 1
             ? throw _requiresList('.endsWith()', results)
             : executedValue.first is! String
                 ? throw _requiresString('.endsWith()', results)
                 : results.first.toString() == ''
-                    ? [true]
-                    : [
+                    ? <dynamic>[true]
+                    : <dynamic>[
                         results.first
                             .toString()
                             .endsWith(executedValue.first as String)
@@ -233,10 +233,10 @@ class ContainsFunctionParser extends FunctionParser {
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) {
-    final executedValue = value.execute(results.toList(), passed);
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
+    final List<dynamic> executedValue = value.execute(results.toList(), passed);
     return results.isEmpty
-        ? []
+        ? <dynamic>[]
         : results
             .map((e) =>
                 e is String && e.contains(executedValue.first.toString()))
@@ -270,11 +270,12 @@ class UpperParser extends FhirPathParser {
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) => results.isEmpty
-      ? []
-      : results.length > 1
-          ? throw _requiresList('.upper()', results)
-          : [results.first.toString().toUpperCase()];
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) =>
+      results.isEmpty
+          ? <dynamic>[]
+          : results.length > 1
+              ? throw _requiresList('.upper()', results)
+              : <dynamic>[results.first.toString().toUpperCase()];
 
   /// To print the entire parsed FHIRPath expression, this includes ALL
   /// of the Parsers that are used in this package by the names used in
@@ -300,11 +301,12 @@ class LowerParser extends FhirPathParser {
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) => results.isEmpty
-      ? []
-      : results.length > 1
-          ? throw _requiresList('.lower()', results)
-          : [results.first.toString().toLowerCase()];
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) =>
+      results.isEmpty
+          ? <dynamic>[]
+          : results.length > 1
+              ? throw _requiresList('.lower()', results)
+              : <dynamic>[results.first.toString().toLowerCase()];
 
   /// To print the entire parsed FHIRPath expression, this includes ALL
   /// of the Parsers that are used in this package by the names used in
@@ -334,15 +336,15 @@ class ReplaceParser extends FunctionParser {
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) {
-    final executedValue = value.execute(results.toList(), passed);
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
+    final List<dynamic> executedValue = value.execute(results.toList(), passed);
     return results.isEmpty
-        ? []
+        ? <dynamic>[]
         : results.length > 1
             ? throw _requiresList('.replace()', results)
             : executedValue.first is! String || executedValue.last is! String
                 ? throw _requiresString('.replace()', results)
-                : [
+                : <dynamic>[
                     results.first.toString().replaceAll(
                         executedValue.first as String,
                         executedValue.last as String)
@@ -380,15 +382,15 @@ class FpMatchesParser extends FunctionParser {
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) {
-    final executedValue = value.execute(results.toList(), passed);
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
+    final List<dynamic> executedValue = value.execute(results.toList(), passed);
     return results.isEmpty || value.isEmpty
-        ? []
+        ? <dynamic>[]
         : results.length > 1
             ? throw _requiresList('.matches()', results)
             : executedValue.first is! String
                 ? throw _requiresString('.matches()', results)
-                : [
+                : <dynamic>[
                     RegExp(executedValue.first as String)
                         .hasMatch(results.first.toString())
                   ];
@@ -426,16 +428,16 @@ class ReplaceMatchesParser extends FunctionParser {
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) {
-    final executedValue = value.execute(results.toList(), passed);
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
+    final List<dynamic> executedValue = value.execute(results.toList(), passed);
     return results.isEmpty || value.isEmpty
-        ? []
+        ? <dynamic>[]
         : results.length > 1
             ? throw _requiresList('.replace()', results)
             : value.length == 3 &&
                     value.first is StringParser &&
                     value.last is StringParser
-                ? [
+                ? <dynamic>[
                     results.first.toString().replaceAll(
                         RegExp('${executedValue.first}'),
                         '${executedValue.last}')
@@ -475,13 +477,14 @@ class LengthParser extends FhirPathParser {
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) => results.isEmpty
-      ? []
-      : results.length > 1
-          ? throw _requiresList('.length()', results)
-          : results.first is String
-              ? [(results.first as String).length]
-              : throw _requiresString('.length()', results);
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) =>
+      results.isEmpty
+          ? <dynamic>[]
+          : results.length > 1
+              ? throw _requiresList('.length()', results)
+              : results.first is String
+                  ? <dynamic>[(results.first as String).length]
+                  : throw _requiresString('.length()', results);
 
   /// To print the entire parsed FHIRPath expression, this includes ALL
   /// of the Parsers that are used in this package by the names used in
@@ -507,13 +510,14 @@ class ToCharsParser extends FhirPathParser {
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) => results.isEmpty
-      ? []
-      : results.length > 1
-          ? throw _requiresList('.toChars()', results)
-          : results.first is String
-              ? (results.first as String).split('')
-              : throw _requiresString('.toChar()', results);
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) =>
+      results.isEmpty
+          ? <dynamic>[]
+          : results.length > 1
+              ? throw _requiresList('.toChars()', results)
+              : results.first is String
+                  ? (results.first as String).split('')
+                  : throw _requiresString('.toChar()', results);
 
   /// To print the entire parsed FHIRPath expression, this includes ALL
   /// of the Parsers that are used in this package by the names used in

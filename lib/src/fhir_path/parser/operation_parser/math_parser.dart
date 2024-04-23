@@ -10,27 +10,27 @@ import '../../r4.dart';
 class UnaryNegateParser extends OperatorParser {
   UnaryNegateParser();
 
-  ParserList before = ParserList([]);
-  ParserList after = ParserList([]);
+  ParserList before = ParserList(<FhirPathParser>[]);
+  ParserList after = ParserList(<FhirPathParser>[]);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) {
-    final executedAfter = after.execute(results.toList(), passed);
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
+    final List<dynamic> executedAfter = after.execute(results.toList(), passed);
 
     if (executedAfter.isEmpty) {
-      return [];
+      return <dynamic>[];
     }
     if (executedAfter.length != 1) {
       throw FhirPathInvalidExpressionException(
           'Unary negate needs to be applied on a single item. Found instead: $executedAfter');
     }
     if (executedAfter.first is num) {
-      return [-(executedAfter.first as num)];
+      return <dynamic>[-(executedAfter.first as num)];
     }
     if (executedAfter.first is ValidatedQuantity) {
-      return [(executedAfter.first as ValidatedQuantity) * -1];
+      return <dynamic>[(executedAfter.first as ValidatedQuantity) * -1];
     } else {
       throw FhirPathInvalidExpressionException(
           'Unary negate needs to be followed by an integer, a decimal, or a quantity. Found instead: ${executedAfter.first}');
@@ -61,14 +61,14 @@ class UnaryNegateParser extends OperatorParser {
 class UnaryPlusParser extends OperatorParser {
   UnaryPlusParser();
 
-  ParserList before = ParserList([]);
-  ParserList after = ParserList([]);
+  ParserList before = ParserList(<FhirPathParser>[]);
+  ParserList after = ParserList(<FhirPathParser>[]);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) {
-    final executedAfter = after.execute(results.toList(), passed);
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
+    final List<dynamic> executedAfter = after.execute(results.toList(), passed);
 
     return executedAfter;
   }
@@ -96,17 +96,18 @@ class UnaryPlusParser extends OperatorParser {
 
 class StarParser extends OperatorParser {
   StarParser();
-  ParserList before = ParserList([]);
-  ParserList after = ParserList([]);
+  ParserList before = ParserList(<FhirPathParser>[]);
+  ParserList after = ParserList(<FhirPathParser>[]);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) {
-    final executedBefore = before.execute(results.toList(), passed);
-    final executedAfter = after.execute(results.toList(), passed);
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
+    final List<dynamic> executedBefore =
+        before.execute(results.toList(), passed);
+    final List<dynamic> executedAfter = after.execute(results.toList(), passed);
     if (executedBefore.isEmpty || executedAfter.isEmpty) {
-      return [];
+      return <dynamic>[];
     } else if (executedBefore.length != 1 || executedAfter.length != 1) {
       throw FhirPathEvaluationException(
           'Math Operators require each operand to result in a '
@@ -116,10 +117,12 @@ class StarParser extends OperatorParser {
           operation: '*',
           collection: results);
     } else if (executedBefore.first is num && executedAfter.first is num) {
-      return [(executedBefore.first as num) * (executedAfter.first as num)];
+      return <dynamic>[
+        (executedBefore.first as num) * (executedAfter.first as num)
+      ];
     } else if (executedBefore.first is ValidatedQuantity &&
         executedAfter.first is ValidatedQuantity) {
-      return [
+      return <dynamic>[
         (executedBefore.first as ValidatedQuantity) *
             (executedAfter.first as ValidatedQuantity)
       ];
@@ -162,17 +165,18 @@ class StarParser extends OperatorParser {
 /// If an attempt is made to divide by zero, the result is empty.
 class DivSignParser extends OperatorParser {
   DivSignParser();
-  ParserList before = ParserList([]);
-  ParserList after = ParserList([]);
+  ParserList before = ParserList(<FhirPathParser>[]);
+  ParserList after = ParserList(<FhirPathParser>[]);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) {
-    final executedBefore = before.execute(results.toList(), passed);
-    final executedAfter = after.execute(results.toList(), passed);
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
+    final List<dynamic> executedBefore =
+        before.execute(results.toList(), passed);
+    final List<dynamic> executedAfter = after.execute(results.toList(), passed);
     if (executedBefore.isEmpty || executedAfter.isEmpty) {
-      return [];
+      return <dynamic>[];
     } else if (executedBefore.length != 1 || executedAfter.length != 1) {
       throw FhirPathEvaluationException(
           'Math Operators require each operand to result in a '
@@ -183,16 +187,16 @@ class DivSignParser extends OperatorParser {
           collection: results);
     } else if (executedBefore.first is num && executedAfter.first is num) {
       return (executedAfter.first != 0)
-          ? [executedBefore.first / executedAfter.first]
-          : [];
+          ? <dynamic>[executedBefore.first / executedAfter.first]
+          : <dynamic>[];
     } else if (executedBefore.first is ValidatedQuantity &&
         executedAfter.first is ValidatedQuantity) {
       return ((executedAfter.first as ValidatedQuantity) != 0)
-          ? [
+          ? <dynamic>[
               (executedBefore.first as ValidatedQuantity) /
                   (executedAfter.first as ValidatedQuantity)
             ]
-          : [];
+          : <dynamic>[];
     } else {
       throw FhirPathEvaluationException(
           'The "/" operator only accepts Integers, Decimals and '
@@ -228,17 +232,18 @@ class DivSignParser extends OperatorParser {
 
 class DivStringParser extends OperatorParser {
   DivStringParser();
-  ParserList before = ParserList([]);
-  ParserList after = ParserList([]);
+  ParserList before = ParserList(<FhirPathParser>[]);
+  ParserList after = ParserList(<FhirPathParser>[]);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) {
-    final executedBefore = before.execute(results.toList(), passed);
-    final executedAfter = after.execute(results.toList(), passed);
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
+    final List<dynamic> executedBefore =
+        before.execute(results.toList(), passed);
+    final List<dynamic> executedAfter = after.execute(results.toList(), passed);
     if (executedBefore.isEmpty || executedAfter.isEmpty) {
-      return [];
+      return <dynamic>[];
     } else if (executedBefore.length != 1 || executedAfter.length != 1) {
       throw FhirPathEvaluationException(
           'Math Operators require each operand to result in a '
@@ -249,8 +254,8 @@ class DivStringParser extends OperatorParser {
           collection: results);
     } else if (executedBefore.first is num && executedAfter.first is num) {
       return (executedAfter.first != 0)
-          ? [executedBefore.first ~/ executedAfter.first]
-          : [];
+          ? <dynamic>[executedBefore.first ~/ executedAfter.first]
+          : <dynamic>[];
     } else {
       throw FhirPathEvaluationException(
           'The "div" operator only accepts Integers, and Decimals, '
@@ -286,17 +291,18 @@ class DivStringParser extends OperatorParser {
 
 class ModParser extends OperatorParser {
   ModParser();
-  ParserList before = ParserList([]);
-  ParserList after = ParserList([]);
+  ParserList before = ParserList(<FhirPathParser>[]);
+  ParserList after = ParserList(<FhirPathParser>[]);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) {
-    final executedBefore = before.execute(results.toList(), passed);
-    final executedAfter = after.execute(results.toList(), passed);
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
+    final List<dynamic> executedBefore =
+        before.execute(results.toList(), passed);
+    final List<dynamic> executedAfter = after.execute(results.toList(), passed);
     if (executedBefore.isEmpty || executedAfter.isEmpty) {
-      return [];
+      return <dynamic>[];
     } else if (executedBefore.length != 1 || executedAfter.length != 1) {
       throw FhirPathEvaluationException(
           'Math Operators require each operand to result in a '
@@ -306,12 +312,12 @@ class ModParser extends OperatorParser {
           operation: 'mod',
           collection: results);
     } else if (executedAfter.first is num && executedAfter.first == 0) {
-      return [];
+      return <dynamic>[];
     } else if (executedBefore.first is num && executedAfter.first is num) {
-      return [executedBefore.first % executedAfter.first];
+      return <dynamic>[executedBefore.first % executedAfter.first];
     } else if (executedBefore.first is ValidatedQuantity &&
         executedAfter.first is ValidatedQuantity) {
-      return [
+      return <dynamic>[
         (executedBefore.first as ValidatedQuantity) %
             (executedAfter.first as ValidatedQuantity)
       ];
@@ -350,18 +356,19 @@ class ModParser extends OperatorParser {
 
 class PlusParser extends OperatorParser {
   PlusParser();
-  ParserList before = ParserList([]);
-  ParserList after = ParserList([]);
+  ParserList before = ParserList(<FhirPathParser>[]);
+  ParserList after = ParserList(<FhirPathParser>[]);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) {
-    final executedBefore = before.execute(results.toList(), passed);
-    final executedAfter = after.execute(results.toList(), passed);
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
+    final List<dynamic> executedBefore =
+        before.execute(results.toList(), passed);
+    final List<dynamic> executedAfter = after.execute(results.toList(), passed);
 
     if (executedBefore.isEmpty || executedAfter.isEmpty) {
-      return [];
+      return <dynamic>[];
     } else if (executedBefore.length != 1 || executedAfter.length != 1) {
       throw FhirPathEvaluationException(
           'Math Operators require each operand to result in a '
@@ -375,27 +382,27 @@ class PlusParser extends OperatorParser {
         case int:
           {
             if (executedAfter.first is num) {
-              return [executedBefore.first + executedAfter.first];
+              return <dynamic>[executedBefore.first + executedAfter.first];
             }
             break;
           }
         case double:
           {
             if (executedAfter.first is num) {
-              return [executedBefore.first + executedAfter.first];
+              return <dynamic>[executedBefore.first + executedAfter.first];
             }
             break;
           }
         case ValidatedQuantity:
           {
             if (executedAfter.first is ValidatedQuantity) {
-              return [
+              return <dynamic>[
                 (executedBefore.first as ValidatedQuantity) +
                     (executedAfter.first as ValidatedQuantity)
               ];
             } else if (executedAfter.first is FhirDateTimeBase) {
               if ((executedBefore.first as ValidatedQuantity).isDuration) {
-                return [
+                return <dynamic>[
                   executedAfter.first +
                       extendedDurationFromValidatedQuantity(
                           executedBefore.first as ValidatedQuantity)
@@ -408,7 +415,7 @@ class PlusParser extends OperatorParser {
           {
             if (executedAfter.first is ValidatedQuantity &&
                 (executedAfter.first as ValidatedQuantity).isDuration) {
-              return [
+              return <dynamic>[
                 (executedBefore.first +
                         extendedDurationFromValidatedQuantity(
                             executedAfter.first as ValidatedQuantity))
@@ -421,7 +428,7 @@ class PlusParser extends OperatorParser {
           {
             if (executedAfter.first is ValidatedQuantity &&
                 (executedAfter.first as ValidatedQuantity).isDuration) {
-              return [
+              return <dynamic>[
                 (executedBefore.first +
                         extendedDurationFromValidatedQuantity(
                             executedAfter.first as ValidatedQuantity))
@@ -434,9 +441,9 @@ class PlusParser extends OperatorParser {
           {
             if (executedAfter.first is ValidatedQuantity &&
                 (executedAfter.first as ValidatedQuantity).isDuration) {
-              return [
-                (addToFhirTime(executedBefore.first as FhirTime,
-                        (executedAfter.first as ValidatedQuantity)))
+              return <dynamic>[
+                addToFhirTime(executedBefore.first as FhirTime,
+                        executedAfter.first as ValidatedQuantity)
                     .toString()
               ];
             }
@@ -445,18 +452,18 @@ class PlusParser extends OperatorParser {
         case String:
           {
             if (executedAfter.first is String) {
-              return [executedBefore.first + executedAfter.first];
+              return <dynamic>[executedBefore.first + executedAfter.first];
             } else if (executedAfter.first is ValidatedQuantity &&
                 (executedAfter.first as ValidatedQuantity).isDuration) {
               if (FhirDateTime(executedBefore.first).isValid) {
-                return [
+                return <dynamic>[
                   (FhirDateTime(executedBefore.first) +
                           extendedDurationFromValidatedQuantity(
                               executedAfter.first as ValidatedQuantity))
                       .toString()
                 ];
               } else if (FhirTime(executedBefore.first).isValid) {
-                return [
+                return <dynamic>[
                   addToFhirTime(FhirTime(executedBefore.first),
                           executedAfter.first as ValidatedQuantity)
                       .toString()
@@ -503,17 +510,18 @@ class PlusParser extends OperatorParser {
 
 class MinusParser extends OperatorParser {
   MinusParser();
-  ParserList before = ParserList([]);
-  ParserList after = ParserList([]);
+  ParserList before = ParserList(<FhirPathParser>[]);
+  ParserList after = ParserList(<FhirPathParser>[]);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) {
-    final executedBefore = before.execute(results.toList(), passed);
-    final executedAfter = after.execute(results.toList(), passed);
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
+    final List<dynamic> executedBefore =
+        before.execute(results.toList(), passed);
+    final List<dynamic> executedAfter = after.execute(results.toList(), passed);
     if (executedBefore.isEmpty || executedAfter.isEmpty) {
-      return [];
+      return <dynamic>[];
     } else if (executedBefore.length != 1 || executedAfter.length != 1) {
       throw FhirPathEvaluationException(
           'Math Operators require each operand to result in a '
@@ -527,7 +535,7 @@ class MinusParser extends OperatorParser {
         case int:
           {
             if (executedAfter.first is num) {
-              return [
+              return <dynamic>[
                 (executedBefore.first as int) - (executedAfter.first as num)
               ];
             }
@@ -536,7 +544,7 @@ class MinusParser extends OperatorParser {
         case double:
           {
             if (executedAfter.first is num) {
-              return [
+              return <dynamic>[
                 (executedBefore.first as double) - (executedAfter.first as num)
               ];
             }
@@ -545,7 +553,7 @@ class MinusParser extends OperatorParser {
         case ValidatedQuantity:
           {
             if (executedAfter.first is ValidatedQuantity) {
-              return [
+              return <dynamic>[
                 (executedBefore.first as ValidatedQuantity) -
                     (executedAfter.first as ValidatedQuantity)
               ];
@@ -556,7 +564,7 @@ class MinusParser extends OperatorParser {
           {
             if (executedAfter.first is ValidatedQuantity &&
                 (executedAfter.first as ValidatedQuantity).isDuration) {
-              return [
+              return <dynamic>[
                 (executedBefore.first -
                         extendedDurationFromValidatedQuantity(
                             executedAfter.first as ValidatedQuantity))
@@ -569,7 +577,7 @@ class MinusParser extends OperatorParser {
           {
             if (executedAfter.first is ValidatedQuantity &&
                 (executedAfter.first as ValidatedQuantity).isDuration) {
-              return [
+              return <dynamic>[
                 (executedBefore.first -
                         extendedDurationFromValidatedQuantity(
                             executedAfter.first as ValidatedQuantity))
@@ -582,9 +590,9 @@ class MinusParser extends OperatorParser {
           {
             if (executedAfter.first is ValidatedQuantity &&
                 (executedAfter.first as ValidatedQuantity).isDuration) {
-              return [
+              return <dynamic>[
                 subtractFromFhirTime(executedBefore.first as FhirTime,
-                        (executedAfter.first as ValidatedQuantity))
+                        executedAfter.first as ValidatedQuantity)
                     .toString()
               ];
             }
@@ -595,14 +603,14 @@ class MinusParser extends OperatorParser {
             if (executedAfter.first is ValidatedQuantity &&
                 (executedAfter.first as ValidatedQuantity).isDuration) {
               if (FhirDateTime(executedBefore.first).isValid) {
-                return [
+                return <dynamic>[
                   (FhirDateTime(executedBefore.first) -
                           extendedDurationFromValidatedQuantity(
                               executedAfter.first as ValidatedQuantity))
                       .toString()
                 ];
               } else if (FhirTime(executedBefore.first).isValid) {
-                return [
+                return <dynamic>[
                   subtractFromFhirTime(FhirTime(executedBefore.first),
                           executedAfter.first as ValidatedQuantity)
                       .toString()
@@ -655,15 +663,16 @@ class MinusParser extends OperatorParser {
 
 class StringConcatenationParser extends OperatorParser {
   StringConcatenationParser();
-  ParserList before = ParserList([]);
-  ParserList after = ParserList([]);
+  ParserList before = ParserList(<FhirPathParser>[]);
+  ParserList after = ParserList(<FhirPathParser>[]);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) {
-    final executedBefore = before.execute(results.toList(), passed);
-    final executedAfter = after.execute(results.toList(), passed);
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
+    final List<dynamic> executedBefore =
+        before.execute(results.toList(), passed);
+    final List<dynamic> executedAfter = after.execute(results.toList(), passed);
 
     if (executedBefore.length > 1 || executedAfter.length > 1) {
       throw FhirPathEvaluationException(
@@ -676,18 +685,18 @@ class StringConcatenationParser extends OperatorParser {
     }
 
     if (executedBefore.isEmpty && executedAfter.isEmpty) {
-      return [''];
+      return <dynamic>[''];
     } else if (executedBefore.isNotEmpty &&
         executedBefore.first is String &&
         executedAfter.isEmpty) {
-      return [(executedBefore.first as String)];
+      return <dynamic>[(executedBefore.first as String)];
     } else if (executedBefore.isEmpty &&
         executedAfter.isNotEmpty &&
         executedAfter.first is String) {
-      return [(executedAfter.first as String)];
+      return <dynamic>[(executedAfter.first as String)];
     } else if (executedBefore.first is String &&
         executedAfter.first is String) {
-      return [
+      return <dynamic>[
         (executedBefore.first as String) + (executedAfter.first as String)
       ];
     } else {

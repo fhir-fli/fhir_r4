@@ -19,17 +19,17 @@ import '../r4.dart';
 /// Finds strings 'true' or 'false' (without quotes)
 final Parser<BooleanParser> booleanLiteral = (string('true') | string('false'))
     .flatten()
-    .map((value) => BooleanParser(value == 'true'));
+    .map((String value) => BooleanParser(value == 'true'));
 
 /// Allows environmental variables to be passed to FHIRPath
 final Parser<EnvVariableParser> envVariableLexer =
     (char('%') & (IDENTIFIER | DELIMITEDIDENTIFIER | DOUBLEQUOTEDIDENTIFIER))
         .flatten()
-        .map((value) => EnvVariableParser(value));
+        .map((String value) => EnvVariableParser(value));
 
 // TODO(Dokotela): unit should be optional
 final Parser<QuantityParser> quantityLiteral =
-    (NUMBER.flatten() & (char(' ') & unit)).map((value) {
+    (NUMBER.flatten() & (char(' ') & unit)).map((List<dynamic> value) {
   return QuantityParser(ValidatedQuantity(
       value: UcumDecimal.fromString(value[0] as String),
       unit: value.length > 1 ? value[1].last as String : null));
@@ -38,13 +38,13 @@ final Parser<QuantityParser> quantityLiteral =
 final Parser<String> unit = (pluralDateTimePrecision |
         dateTimePrecision |
         STRING
-            .where((value) {
+            .where((StringParser value) {
               return UcumService().validate(value.value) == null;
             })
             .trim()
-            .map((value) => value.value))
+            .map((StringParser value) => value.value))
     .flatten()
-    .map((value) {
+    .map((String value) {
   if (value.startsWith("'")) {
     value = value.substring(1, value.length - 1);
   }
@@ -76,7 +76,8 @@ final Parser<String> pluralDateTimePrecision = (string('years') |
 
 /// Follows DateTime format specified in FHIRPath (I have also updated the FHIR)
 /// package to follow many of these guidelines
-final Parser<DateParser> DATE = (char('@') & DATEFORMAT).flatten().map((value) {
+final Parser<DateParser> DATE =
+    (char('@') & DATEFORMAT).flatten().map((String value) {
   return DateParser(FhirDate(value.replaceFirst('@', '')));
 });
 
@@ -85,13 +86,13 @@ final Parser<DateTimeParser> DATETIME = (char('@') &
         char('T') &
         (TIMEFORMAT & TIMEZONEOFFSETFORMAT.optional()).optional())
     .flatten()
-    .map((value) {
+    .map((String value) {
   return DateTimeParser(FhirDateTime(value.replaceFirst('@', '')));
 });
 
 final Parser<TimeParser> TIME = (char('@') & char('T') & TIMEFORMAT)
     .flatten()
-    .map((value) => TimeParser(FhirTime(value.replaceFirst('@T', ''))));
+    .map((String value) => TimeParser(FhirTime(value.replaceFirst('@T', ''))));
 
 final Parser<String> DATEFORMAT = (pattern('0-9').times(4) &
         (char('-') &
@@ -121,16 +122,17 @@ final Parser<String> TIMEZONEOFFSETFORMAT = (char('Z') |
 final Parser<IdentifierParser> IDENTIFIER = ((pattern('A-Za-z') | char('_')) &
         (pattern('A-Za-z0-9') | char('_')).star())
     .flatten()
-    .map((value) => IdentifierParser('', value));
+    .map((String value) => IdentifierParser('', value));
 
 /// DELIMITEDIDENTIFIER is signified by a backquote (`) on either end
 final Parser<IdentifierParser> DELIMITEDIDENTIFIER =
-    (char('`') & (ESC | char('`').neg()).star() & char('`')).map((value) {
+    (char('`') & (ESC | char('`').neg()).star() & char('`')).map((List value) {
   final String middleValue = value[1]
       .map((e) => e is Token
           ? e.value.contains('u') as bool
-              ? utf8.decode(
-                  [int.parse(e.value.split('u').last as String, radix: 16)])
+              ? utf8.decode(<int>[
+                  int.parse(e.value.split('u').last as String, radix: 16)
+                ])
               : e.value.replaceAll(r'\\', r'\')
           : e == r'\'
               ? ''
@@ -140,12 +142,13 @@ final Parser<IdentifierParser> DELIMITEDIDENTIFIER =
 });
 
 final Parser<IdentifierParser> DOUBLEQUOTEDIDENTIFIER =
-    (char('"') & (ESC | char('"').neg()).star() & char('"')).map((value) {
+    (char('"') & (ESC | char('"').neg()).star() & char('"')).map((List value) {
   final String middleValue = value[1]
       .map((e) => e is Token
           ? e.value.contains('u') as bool
-              ? utf8.decode(
-                  [int.parse(e.value.split('u').last as String, radix: 16)])
+              ? utf8.decode(<int>[
+                  int.parse(e.value.split('u').last as String, radix: 16)
+                ])
               : e.value.replaceAll(r'\\', r'\')
           : e == r'\'
               ? ''
@@ -156,7 +159,7 @@ final Parser<IdentifierParser> DOUBLEQUOTEDIDENTIFIER =
 
 /// A String is signified by single quotes (') on either end
 final Parser<StringParser> STRING =
-    (char("'") & (ESC | char("'").neg()).star() & char("'")).map((value) {
+    (char("'") & (ESC | char("'").neg()).star() & char("'")).map((List value) {
   return StringParser(value[1].join('') as String);
 });
 
@@ -166,44 +169,52 @@ final Parser NUMBER = DECIMAL.or(INTEGER);
 final Parser<DecimalParser> DECIMAL =
     (pattern('0-9').plus() & char('.') & pattern('0-9').plus())
         .flatten()
-        .map((value) => DecimalParser(double.parse(value)));
+        .map((String value) => DecimalParser(double.parse(value)));
 
 final Parser<IntegerParser> INTEGER = pattern('0-9')
     .plus()
     .flatten()
-    .map((value) => IntegerParser(int.parse(value)));
+    .map((String value) => IntegerParser(int.parse(value)));
 
 /// No equivalent for piping whitespace to the HIDDEN channel in Dart
-final Parser<WhiteSpaceParser> WS =
-    pattern(' \r\n\t').plus().flatten().map((value) => WhiteSpaceParser(value));
+final Parser<WhiteSpaceParser> WS = pattern(' \r\n\t')
+    .plus()
+    .flatten()
+    .map((String value) => WhiteSpaceParser(value));
 
 final Parser<WhiteSpaceParser> COMMENT = string('/*')
-    .seq(pattern('^\\*'))
+    .seq(pattern(r'^\*'))
     .star()
     .seq(string('*/'))
     .flatten()
-    .map((value) => WhiteSpaceParser(value));
+    .map((String value) => WhiteSpaceParser(value));
 
 final Parser<WhiteSpaceParser> LINE_COMMENT =
     (string('//') & (string('\r') | string('\n')).neg().star())
         .flatten()
-        .map((value) => WhiteSpaceParser(value));
+        .map((String value) => WhiteSpaceParser(value));
 
-final Parser<String> ESC = ((char('\\') & pattern('`\'\\/fnrt')).flatten() |
-        (char('\\') & UNICODE).map((value) {
-          return String.fromCharCodes(
-              [int.parse(value[1].replaceAll('u', '') as String, radix: 16)]);
+final Parser<String> ESC = ((char(r'\') & pattern(r"`'\/fnrt")).flatten() |
+        (char(r'\') & UNICODE).map((List value) {
+          return String.fromCharCodes(<int>[
+            int.parse(value[1].replaceAll('u', '') as String, radix: 16)
+          ]);
         }))
     .map((value) {
   return (value == r"\'"
       ? "'"
-      : value == r"\`"
+      : value == r'\`'
           ? '`'
           : jsonDecode('"$value"')) as String;
 });
 
-final Parser<String> UNICODE =
-    string('u').seq(HEX).seq(HEX).seq(HEX).seq(HEX).flatten().map((value) {
+final Parser<String> UNICODE = string('u')
+    .seq(HEX)
+    .seq(HEX)
+    .seq(HEX)
+    .seq(HEX)
+    .flatten()
+    .map((String value) {
   return value;
 });
 

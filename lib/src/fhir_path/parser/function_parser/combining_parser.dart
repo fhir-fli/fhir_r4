@@ -16,9 +16,9 @@ class UnionFunctionParser extends FunctionParser {
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) {
-    final executedValue = value.execute(results.toList(), passed);
-    final finalResults = [];
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
+    final List<dynamic> executedValue = value.execute(results.toList(), passed);
+    final List finalResults = <dynamic>[];
     finalResults
       ..addAll(results.where((r) => notFoundInList(finalResults, r)))
       ..addAll(executedValue.where((v) => notFoundInList(finalResults, v)));
@@ -61,11 +61,12 @@ class CombineParser extends FunctionParser {
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) {
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
     if (value.isEmpty) {
       return results;
     } else {
-      final executedValue = value.execute(results.toList(), passed);
+      final List<dynamic> executedValue =
+          value.execute(results.toList(), passed);
       executedValue.addAll(results);
       return executedValue;
     }

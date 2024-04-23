@@ -2,7 +2,7 @@
 import '../r4.dart';
 
 /// Trying to enforce Operator Order Precedence
-const operatorOrderMap = {
+const Map<Type, int> operatorOrderMap = <Type, int>{
   CommaParser: 14,
 
   /// #13: implies

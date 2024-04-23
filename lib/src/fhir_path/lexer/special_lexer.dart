@@ -12,7 +12,7 @@ import '../r4.dart';
 
 /// identifies bracketsIndexs
 final Parser<BracketsIndexParser> bracketsIndexLexer =
-    (char('[') & digit().plus() & char(']')).map((value) {
+    (char('[') & digit().plus() & char(']')).map((List value) {
   return BracketsIndexParser(int.parse(value[1].join('') as String));
 });
 

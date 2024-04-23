@@ -2,12 +2,10 @@
 
 // Package imports:
 import 'package:collection/collection.dart';
-import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_primitives/fhir_primitives.dart';
 import 'package:ucum/ucum.dart';
 
-// Project imports:
-import '../../r4.dart';
+import '../../../../fhir_r4.dart';
 
 class FpWhereParser extends FunctionParser {
   FpWhereParser(super.value);
@@ -19,10 +17,10 @@ class FpWhereParser extends FunctionParser {
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) {
-    final iterationResult = [];
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
+    final List iterationResult = <dynamic>[];
     for (final element in results) {
-      final newResult = value.execute([element], passed);
+      final List newResult = value.execute(<dynamic>[element], passed);
       if (newResult.isNotEmpty) {
         if (!(newResult.length == 1 && newResult.first == false)) {
           iterationResult.add(element);
@@ -64,13 +62,14 @@ class SelectParser extends FunctionParser {
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) {
-    return IterationContext.withIterationContext((iterationContext) {
-      final outputCollection = [];
-      results.forEachIndexed((i, e) {
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
+    return IterationContext.withIterationContext(
+        (IterationContext iterationContext) {
+      final List outputCollection = <dynamic>[];
+      results.forEachIndexed((int i, e) {
         iterationContext.thisValue = e;
         iterationContext.indexValue = i;
-        outputCollection.addAll(value.execute([e], passed));
+        outputCollection.addAll(value.execute(<dynamic>[e], passed));
       });
       return outputCollection;
     }, passed);
@@ -106,21 +105,21 @@ class RepeatParser extends FunctionParser {
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) {
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
     final List<dynamic> finalResults = <dynamic>[];
     results.forEach((r) {
-      value.execute([r], passed).forEach((e) {
+      value.execute(<dynamic>[r], passed).forEach((e) {
         if (notFoundInList(finalResults, e)) {
           finalResults.add(e);
         }
       });
     });
-    var len = -1;
+    int len = -1;
     while (len != finalResults.length) {
       results = finalResults.toList();
       len = finalResults.length;
       results.forEach((r) {
-        value.execute([r], passed).forEach((e) {
+        value.execute(<dynamic>[r], passed).forEach((e) {
           if (notFoundInList(finalResults, e)) {
             finalResults.add(e);
           }
@@ -161,10 +160,11 @@ class OfTypeParser extends FunctionParser {
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) {
-    final executedValue = value.length == 1 && value.first is IdentifierParser
-        ? [value.first]
-        : value.execute(results.toList(), passed);
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
+    final List<dynamic> executedValue =
+        value.length == 1 && value.first is IdentifierParser
+            ? <FhirPathParser>[value.first]
+            : value.execute(results.toList(), passed);
     if (executedValue.length != 1) {
       throw FhirPathEvaluationException(
         'The "ofType" function requires an argument that '
@@ -174,7 +174,7 @@ class OfTypeParser extends FunctionParser {
         collection: results,
       );
     }
-    final finalResults = [];
+    final List finalResults = <dynamic>[];
     results.forEach((e) {
       if ((resourceTypeFromStringMap.keys
                   .contains((executedValue.first as IdentifierParser).value) &&
@@ -233,31 +233,33 @@ class ExtensionParser extends FunctionParser {
 
   ExtensionParser copyWith(ParserList value) => ExtensionParser(value);
 
-  static const extensionKey = '__extension';
+  static const String extensionKey = '__extension';
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) {
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
     if (results.isEmpty) {
-      return [];
+      return <dynamic>[];
     }
 
     final extensionUrl = value.execute(results.toList(), passed).firstOrNull;
     if (extensionUrl == null) {
-      return [];
+      return <dynamic>[];
     }
 
     // .extension(exturl) is short-hand for .extension.where(url='exturl')
-    final urlEquals = EqualsParser();
-    urlEquals.before = ParserList([IdentifierParser('', 'url')]);
-    urlEquals.after = ParserList([StringParser('$extensionUrl')]);
-    final extensionUrlPredicate = ParserList([
+    final EqualsParser urlEquals = EqualsParser();
+    urlEquals.before =
+        ParserList(<FhirPathParser>[IdentifierParser('', 'url')]);
+    urlEquals.after =
+        ParserList(<FhirPathParser>[StringParser('$extensionUrl')]);
+    final ParserList extensionUrlPredicate = ParserList(<FhirPathParser>[
       urlEquals,
     ]);
-    final whereParser = FpWhereParser(extensionUrlPredicate);
-    final extensionParsers =
-        ParserList([IdentifierParser('', 'extension'), whereParser]);
+    final FpWhereParser whereParser = FpWhereParser(extensionUrlPredicate);
+    final ParserList extensionParsers = ParserList(
+        <FhirPathParser>[IdentifierParser('', 'extension'), whereParser]);
 
     return extensionParsers.execute(results.toList(), passed);
   }

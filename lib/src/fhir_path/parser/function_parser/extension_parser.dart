@@ -12,7 +12,8 @@ class SumParser extends FhirPathParser {
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) => [
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) =>
+      <dynamic>[
         results
             .map((e) => e is num
                 ? e
@@ -48,7 +49,8 @@ class MinParser extends FhirPathParser {
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) => [
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) =>
+      <dynamic>[
         results
             .map((e) => e is num
                 ? e
@@ -84,7 +86,8 @@ class MaxParser extends FhirPathParser {
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) => [
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) =>
+      <dynamic>[
         results
             .map((e) => e is num
                 ? e
@@ -120,7 +123,8 @@ class AvgParser extends FhirPathParser {
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) => [
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) =>
+      <dynamic>[
         results
             .map((e) => e is num
                 ? e
@@ -156,11 +160,11 @@ class AnswersParser extends FhirPathParser {
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) {
-    final descendants = DescendantsParser().execute(results, passed);
-    final answerMaps = descendants.where((element) =>
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
+    final List descendants = DescendantsParser().execute(results, passed);
+    final Iterable answerMaps = descendants.where((element) =>
         (element is Map<String, dynamic>) && element.containsKey('answer'));
-    final answers = <dynamic>[];
+    final List answers = <dynamic>[];
     answerMaps.forEach((element) {
       answers.addAll((element as Map<String, dynamic>)['answer'] as Iterable);
     });
@@ -191,11 +195,11 @@ class OrdinalParser extends FhirPathParser {
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
-  List execute(List results, Map<String, dynamic> passed) {
-    final newResults = [];
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
+    final List newResults = <dynamic>[];
 
     List checkForOrdinalValues(List list) {
-      final tempResults = [];
+      final List tempResults = <dynamic>[];
 
       /// check each result
       for (final val in list) {
@@ -247,13 +251,14 @@ class OrdinalParser extends FhirPathParser {
         break;
       }
 
-      polymorphicPrefixes.forEach((element) {
+      polymorphicPrefixes.forEach((String element) {
         if (result['${element}Coding'] != null) {
-          newResults
-              .addAll(checkForOrdinalValues([result['${element}Coding']]));
+          newResults.addAll(
+              checkForOrdinalValues(<dynamic>[result['${element}Coding']]));
         }
         if (result['${element}Code'] != null) {
-          newResults.addAll(checkForOrdinalValues([result['${element}Code']]));
+          newResults.addAll(
+              checkForOrdinalValues(<dynamic>[result['${element}Code']]));
         }
       });
     }
