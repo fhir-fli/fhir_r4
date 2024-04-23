@@ -140,8 +140,6 @@ class LessEqualParser extends OperatorParser {
       '\n${"  " * indent}${after.prettyPrint(indent + 1)}';
 }
 
-enum Comparator { gt, gte, lt, lte }
-
 // TODO(Dokotela): review if appropriately comparing different types
 @override
 List<dynamic> executeComparisons(List<dynamic> results, ParserList before,
@@ -185,6 +183,8 @@ List<dynamic> executeComparisons(List<dynamic> results, ParserList before,
           return param1 < param2 as bool?;
         case Comparator.lte:
           return param1 <= param2 as bool?;
+        case Comparator.eq:
+          return param1 == param2 as bool?;
       }
     } catch (e) {
       if (e is UnequalPrecision) {
