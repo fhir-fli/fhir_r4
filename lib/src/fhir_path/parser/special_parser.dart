@@ -4,7 +4,7 @@
 import 'package:collection/collection.dart';
 
 // Project imports:
-import '../r4.dart';
+import '../../../fhir_r4.dart';
 
 class BracketsIndexParser extends ValueParser<int> {
   BracketsIndexParser(super.value);
@@ -210,7 +210,7 @@ class AggregateParser extends FunctionParser {
       }
 
       iterationContext.totalValue = initialValue as List<dynamic>;
-      results.forEachIndexed((int i, r) {
+      results.forEachIndexed((int i, dynamic r) {
         iterationContext.indexValue = i;
         iterationContext.thisValue = r;
         iterationContext.totalValue = expression.execute(<dynamic>[r], passed);

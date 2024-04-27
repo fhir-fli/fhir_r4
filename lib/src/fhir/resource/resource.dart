@@ -6,20 +6,17 @@
 import 'dart:convert';
 
 // Package imports:
-import 'package:fhir_primitives/fhir_primitives.dart';
-import 'package:fhir_yaml/fhir_yaml.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:yaml/yaml.dart';
 
 // Project imports:
-import '../r4.dart';
+import '../../../fhir_r4.dart';
 
 part 'fhir_field_map.dart';
 part 'resource_from_json.dart';
 part 'resource_new_id.dart';
 part 'resource_new_version.dart';
 part 'resource_types_enum.dart';
-part 'resource_utils.dart';
 
 /// This class ends up functioning mostly like an abstract superclass. Some of
 /// the fields in other classes contain a generic resource, so in order for
@@ -102,7 +99,7 @@ abstract mixin class Resource {
   String toYaml() => json2yaml(toJson());
 
   /// produce a string of the [resourceType]
-  String? get resourceTypeString => resourceTypeToStringMap[resourceType];
+  String? get resourceTypeString => resourceType.toString();
 
   /// Convenience method to return a [Reference] referring to that [Resource]
   Reference get thisReference => Reference(
@@ -125,8 +122,7 @@ abstract mixin class Resource {
       _updateMeta(this, meta: oldMeta);
 
   static R4ResourceType? resourceTypeFromString(String type) =>
-      resourceTypeFromStringMap[type];
+      R4ResourceType.fromString(type);
 
-  static String resourceTypeToString(R4ResourceType type) =>
-      resourceTypeToStringMap[type]!;
+  static String resourceTypeToString(R4ResourceType type) => type.toString();
 }

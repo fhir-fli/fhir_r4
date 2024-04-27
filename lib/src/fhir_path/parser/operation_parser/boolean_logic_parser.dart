@@ -21,7 +21,7 @@ class AndStringParser extends OperatorParser {
     final bool? afterBool = SingletonEvaluation.toBool(executedAfter,
         name: "parameter after 'and'", operation: 'and', collection: results);
 
-    if (beforeBool == true && afterBool == true) {
+    if ((beforeBool ?? false) && (afterBool ?? false)) {
       return <dynamic>[true];
     }
 
@@ -127,7 +127,7 @@ class OrStringParser extends OperatorParser {
     final bool? afterBool = SingletonEvaluation.toBool(executedAfter,
         name: "parameter after 'or'", operation: 'or', collection: results);
 
-    if (beforeBool == true || afterBool == true) {
+    if ((beforeBool ?? false) || (afterBool ?? false)) {
       return <dynamic>[true];
     }
 
@@ -182,7 +182,7 @@ class ImpliesParser extends OperatorParser {
         operation: 'implies',
         collection: results);
 
-    if (beforeBool == true) {
+    if (beforeBool ?? false) {
       return afterBool != null ? <dynamic>[afterBool] : <dynamic>[];
     }
 
@@ -190,7 +190,7 @@ class ImpliesParser extends OperatorParser {
       return <dynamic>[true];
     }
 
-    if (afterBool == true) {
+    if (afterBool ?? false) {
       return <dynamic>[true];
     }
 

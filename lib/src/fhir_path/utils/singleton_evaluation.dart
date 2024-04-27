@@ -1,10 +1,10 @@
-// ignore_for_file: avoid_classes_with_only_static_members
+// ignore_for_file: avoid_classes_with_only_static_members, avoid_dynamic_calls
 
 // Package imports:
 import 'package:ucum/ucum.dart';
 
 // Project imports:
-import '../r4.dart';
+import '../../../fhir_r4.dart';
 
 /// Implements rule http://hl7.org/fhirpath/#singleton-evaluation-of-collections
 class SingletonEvaluation {

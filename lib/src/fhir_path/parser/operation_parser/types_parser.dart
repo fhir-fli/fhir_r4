@@ -1,6 +1,5 @@
 // ignore_for_file: annotate_overrides, overridden_fields, avoid_dynamic_calls
 
-import 'package:fhir_primitives/fhir_primitives.dart';
 import 'package:ucum/ucum.dart';
 
 // Package imports:
@@ -32,7 +31,7 @@ class IsParser extends OperatorParser {
             'Operand1: $executedBefore\n'
             'Operand2: $executedAfter',
             collection: results)
-        : (resourceTypeFromStringMap.keys.contains(executedAfter.first)) &&
+        : (R4ResourceType.typesAsStrings.contains(executedAfter.first)) &&
                 executedBefore.first is Map &&
                 executedBefore.first['resourceType'] == executedAfter.first
             ? <dynamic>[true]
@@ -134,7 +133,7 @@ class AsParser extends OperatorParser {
           collection: results);
     }
     final String identifierValue = (after.first as IdentifierParser).value;
-    if (((resourceTypeFromStringMap.keys.contains(identifierValue)) &&
+    if (((R4ResourceType.typesAsStrings.contains(identifierValue)) &&
             executedBefore.first is Map &&
             executedBefore.first['resourceType'] == identifierValue) ||
         (identifierValue.toLowerCase() == 'string' &&

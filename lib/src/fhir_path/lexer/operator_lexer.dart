@@ -2,7 +2,7 @@
 import 'package:petitparser/petitparser.dart';
 
 // Project imports:
-import '../r4.dart';
+import '../../../fhir_r4.dart';
 
 /******************************************************************************
  * All of the below are for operators that require two arguments. The Lexers 

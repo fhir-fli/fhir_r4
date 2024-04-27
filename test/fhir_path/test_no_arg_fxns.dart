@@ -5,7 +5,6 @@
 // ignore_for_file: always_specify_types, inference_failure_on_collection_literal
 
 // Package imports:
-import 'package:fhir_primitives/fhir_primitives.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 import 'package:ucum/ucum.dart';

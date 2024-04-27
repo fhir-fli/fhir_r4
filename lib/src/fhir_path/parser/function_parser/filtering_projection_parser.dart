@@ -2,7 +2,6 @@
 
 // Package imports:
 import 'package:collection/collection.dart';
-import 'package:fhir_primitives/fhir_primitives.dart';
 import 'package:ucum/ucum.dart';
 
 import '../../../../fhir_r4.dart';
@@ -176,7 +175,7 @@ class OfTypeParser extends FunctionParser {
     }
     final List<dynamic> finalResults = <dynamic>[];
     results.forEach((dynamic e) {
-      if ((resourceTypeFromStringMap.keys
+      if ((R4ResourceType.typesAsStrings
                   .contains((executedValue.first as IdentifierParser).value) &&
               e is Map &&
               e['resourceType'] ==

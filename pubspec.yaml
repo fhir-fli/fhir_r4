@@ -21,8 +21,6 @@ dependencies:
   collection: ^1.18.0
   fhir_primitives:
     path: ../fhir_primitives
-  fhir_yaml:
-    path: ../fhir_yaml
   freezed_annotation: ^2.4.1
   hive: ^2.2.3
   http: ^1.2.1

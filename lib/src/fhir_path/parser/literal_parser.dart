@@ -1,7 +1,8 @@
-// ignore_for_file: annotate_overrides, overridden_fields, avoid_dynamic_calls, avoid_bool_literals_in_conditional_expressions
+// ignore_for_file: annotate_overrides, overridden_fields, avoid_dynamic_calls
+// ignore_for_file: avoid_bool_literals_in_conditional_expressions
+// ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes
 
 import 'package:collection/collection.dart';
-import 'package:fhir_primitives/fhir_primitives.dart';
 import 'package:ucum/ucum.dart';
 
 import '../../../fhir_r4.dart';
@@ -166,6 +167,9 @@ class QuantityParser extends ValueParser<ValidatedQuantity> {
                             ValidatedQuantity.fromString(other.toString())
                         : false;
   }
+
+  @override
+  int get hashCode => value.hashCode;
 }
 
 /// The Integer type represents whole numbers in the range -2^31 to 2^31-1 in
@@ -252,7 +256,7 @@ class IdentifierParser extends ValueParser<String> {
     final dynamic passedExtensions = passed[ExtensionParser.extensionKey];
     passed[ExtensionParser.extensionKey] = null;
 
-    if (resourceTypeFromStringMap.keys.contains(identifierName)) {
+    if (R4ResourceType.typesAsStrings.contains(identifierName)) {
       if (!passed.hasNoContext &&
           passed.context?['resourceType'] == identifierName) {
         finalResults.add(passed.context);
@@ -350,7 +354,7 @@ class DelimitedIdentifierParser extends ValueParser<String> {
     final dynamic passedExtensions = passed[ExtensionParser.extensionKey];
     passed[ExtensionParser.extensionKey] = null;
 
-    if (resourceTypeFromStringMap.keys.contains(identifierName) &&
+    if (R4ResourceType.typesAsStrings.contains(identifierName) &&
         (passed.hasNoContext
             ? false
             : passed.context?['resourceType'] == identifierName)) {

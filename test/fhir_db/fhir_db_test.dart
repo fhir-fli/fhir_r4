@@ -4,7 +4,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
-import 'package:fhir_primitives/fhir_primitives.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:hive/hive.dart';
 import 'package:test/test.dart';

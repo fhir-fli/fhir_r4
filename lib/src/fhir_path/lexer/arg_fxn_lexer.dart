@@ -2,7 +2,7 @@
 import 'package:petitparser/petitparser.dart';
 
 // Project imports:
-import '../r4.dart';
+import '../../../fhir_r4.dart';
 
 /******************************************************************************
  * All of the below are for functions that accept (but usually don't require)
@@ -121,8 +121,8 @@ final Parser<ReplaceMatchesParser> replaceMatchesLexer =
         .map((_) => ReplaceMatchesParser.empty());
 
 /// identifies skips
-final Parser<FpSkipParser> skipLexer =
-    (string('skip(') | string('.skip(')).map((value) => FpSkipParser.empty());
+final Parser<FpSkipParser> skipLexer = (string('skip(') | string('.skip('))
+    .map((dynamic value) => FpSkipParser.empty());
 
 /// identifies takes
 final Parser<TakeParser> takeLexer =

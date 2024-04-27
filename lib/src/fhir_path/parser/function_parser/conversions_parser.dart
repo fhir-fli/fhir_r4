@@ -1,11 +1,10 @@
 // ignore_for_file: annotate_overrides, overridden_fields, prefer_if_elements_to_conditional_expressions
 
 // Package imports:
-import 'package:fhir_primitives/fhir_primitives.dart';
 import 'package:ucum/ucum.dart';
 
 // Project imports:
-import '../../r4.dart';
+import '../../../../fhir_r4.dart';
 
 /// http://hl7.org/fhirpath/#iifcriterion-expression-true-result-collection-otherwise-result-collection-collection
 /// The iif function in FHIRPath is an immediate if, also known as a conditional
@@ -70,7 +69,7 @@ class IifParser extends FunctionParser {
         name: 'criterion expression', operation: 'iif', collection: results);
 
     // Short-circuit: Only evaluate what matches the criterion.
-    if (criterion == true) {
+    if (criterion ?? false) {
       final List<dynamic> newResults =
           trueResultParser.execute(results, passed);
       return newResults;

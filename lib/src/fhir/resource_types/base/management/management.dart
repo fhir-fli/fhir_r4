@@ -6,13 +6,11 @@
 import 'dart:convert';
 
 // Package imports:
-import 'package:fhir_primitives/fhir_primitives.dart';
-import 'package:fhir_yaml/fhir_yaml.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:yaml/yaml.dart';
 
 // Project imports:
-import '../../../r4.dart';
+import '../../../../../fhir_r4.dart';
 
 part 'management.freezed.dart';
 part 'management.g.dart';
@@ -2445,8 +2443,8 @@ class FhirList with Resource, _$FhirList {
   ///
   /// [emptyReason] If the list is empty, why the list is empty.
   const factory FhirList({
-    @Default(R4ResourceType.List)
-    @JsonKey(unknownEnumValue: R4ResourceType.List)
+    @Default(R4ResourceType.FhirList)
+    @JsonKey(unknownEnumValue: R4ResourceType.FhirList)
 
     /// [resourceType] This is a List resource
     R4ResourceType resourceType,

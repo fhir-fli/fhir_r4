@@ -1,10 +1,7 @@
 // ignore_for_file: annotate_overrides, overridden_fields, avoid_dynamic_calls
 
-// Package imports:
-import 'package:fhir_primitives/fhir_primitives.dart';
-
 // Project imports:
-import '../../r4.dart';
+import '../../../../fhir_r4.dart';
 
 class FpNotParser extends FhirPathParser {
   FpNotParser();

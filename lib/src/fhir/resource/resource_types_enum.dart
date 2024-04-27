@@ -221,7 +221,7 @@ enum R4ResourceType {
   Linkage,
 
   @JsonValue('List')
-  List,
+  FhirList,
 
   @JsonValue('Location')
   Location,
@@ -422,11 +422,10 @@ enum R4ResourceType {
   VerificationResult,
 
   @JsonValue('VisionPrescription')
-  VisionPrescription,
-}
+  VisionPrescription;
 
-extension R4ResourceTypeExtension on R4ResourceType {
-  String get asString {
+  @override
+  String toString() {
     switch (this) {
       case R4ResourceType.Account:
         return 'Account';
@@ -647,7 +646,7 @@ extension R4ResourceTypeExtension on R4ResourceType {
       case R4ResourceType.Linkage:
         return 'Linkage';
 
-      case R4ResourceType.List:
+      case R4ResourceType.FhirList:
         return 'List';
 
       case R4ResourceType.Location:
@@ -852,4 +851,446 @@ extension R4ResourceTypeExtension on R4ResourceType {
         return 'VisionPrescription';
     }
   }
+
+  String toJson() => toString();
+
+  static R4ResourceType? fromString(String string) {
+    switch (string) {
+      case 'Account':
+        return R4ResourceType.Account;
+      case 'ActivityDefinition':
+        return R4ResourceType.ActivityDefinition;
+      case 'AdministrableProductDefinition':
+        return R4ResourceType.AdministrableProductDefinition;
+      case 'AdverseEvent':
+        return R4ResourceType.AdverseEvent;
+      case 'AllergyIntolerance':
+        return R4ResourceType.AllergyIntolerance;
+      case 'Appointment':
+        return R4ResourceType.Appointment;
+      case 'AppointmentResponse':
+        return R4ResourceType.AppointmentResponse;
+      case 'AuditEvent':
+        return R4ResourceType.AuditEvent;
+      case 'Basic':
+        return R4ResourceType.Basic;
+      case 'Binary':
+        return R4ResourceType.Binary;
+      case 'BiologicallyDerivedProduct':
+        return R4ResourceType.BiologicallyDerivedProduct;
+      case 'BodyStructure':
+        return R4ResourceType.BodyStructure;
+      case 'Bundle':
+        return R4ResourceType.Bundle;
+      case 'CapabilityStatement':
+        return R4ResourceType.CapabilityStatement;
+      case 'CarePlan':
+        return R4ResourceType.CarePlan;
+      case 'CareTeam':
+        return R4ResourceType.CareTeam;
+      case 'CatalogEntry':
+        return R4ResourceType.CatalogEntry;
+      case 'ChargeItem':
+        return R4ResourceType.ChargeItem;
+      case 'ChargeItemDefinition':
+        return R4ResourceType.ChargeItemDefinition;
+      case 'Citation':
+        return R4ResourceType.Citation;
+      case 'Claim':
+        return R4ResourceType.Claim;
+      case 'ClaimResponse':
+        return R4ResourceType.ClaimResponse;
+      case 'ClinicalImpression':
+        return R4ResourceType.ClinicalImpression;
+      case 'ClinicalUseDefinition':
+        return R4ResourceType.ClinicalUseDefinition;
+      case 'CodeSystem':
+        return R4ResourceType.CodeSystem;
+      case 'Communication':
+        return R4ResourceType.Communication;
+      case 'CommunicationRequest':
+        return R4ResourceType.CommunicationRequest;
+      case 'CompartmentDefinition':
+        return R4ResourceType.CompartmentDefinition;
+      case 'Composition':
+        return R4ResourceType.Composition;
+      case 'ConceptMap':
+        return R4ResourceType.ConceptMap;
+      case 'Condition':
+        return R4ResourceType.Condition;
+      case 'Consent':
+        return R4ResourceType.Consent;
+      case 'Contract':
+        return R4ResourceType.Contract;
+      case 'Coverage':
+        return R4ResourceType.Coverage;
+      case 'CoverageEligibilityRequest':
+        return R4ResourceType.CoverageEligibilityRequest;
+      case 'CoverageEligibilityResponse':
+        return R4ResourceType.CoverageEligibilityResponse;
+      case 'DetectedIssue':
+        return R4ResourceType.DetectedIssue;
+      case 'Device':
+        return R4ResourceType.Device;
+      case 'DeviceDefinition':
+        return R4ResourceType.DeviceDefinition;
+      case 'DeviceMetric':
+        return R4ResourceType.DeviceMetric;
+      case 'DeviceRequest':
+        return R4ResourceType.DeviceRequest;
+      case 'DeviceUseStatement':
+        return R4ResourceType.DeviceUseStatement;
+      case 'DiagnosticReport':
+        return R4ResourceType.DiagnosticReport;
+      case 'DocumentManifest':
+        return R4ResourceType.DocumentManifest;
+      case 'DocumentReference':
+        return R4ResourceType.DocumentReference;
+      case 'Encounter':
+        return R4ResourceType.Encounter;
+      case 'Endpoint':
+        return R4ResourceType.Endpoint;
+      case 'EnrollmentRequest':
+        return R4ResourceType.EnrollmentRequest;
+      case 'EnrollmentResponse':
+        return R4ResourceType.EnrollmentResponse;
+      case 'EpisodeOfCare':
+        return R4ResourceType.EpisodeOfCare;
+      case 'EventDefinition':
+        return R4ResourceType.EventDefinition;
+      case 'Evidence':
+        return R4ResourceType.Evidence;
+      case 'EvidenceReport':
+        return R4ResourceType.EvidenceReport;
+      case 'EvidenceVariable':
+        return R4ResourceType.EvidenceVariable;
+      case 'ExampleScenario':
+        return R4ResourceType.ExampleScenario;
+      case 'ExplanationOfBenefit':
+        return R4ResourceType.ExplanationOfBenefit;
+      case 'FamilyMemberHistory':
+        return R4ResourceType.FamilyMemberHistory;
+      case 'Flag':
+        return R4ResourceType.Flag;
+      case 'Goal':
+        return R4ResourceType.Goal;
+      case 'GraphDefinition':
+        return R4ResourceType.GraphDefinition;
+      case 'Group':
+        return R4ResourceType.Group;
+      case 'GuidanceResponse':
+        return R4ResourceType.GuidanceResponse;
+      case 'HealthcareService':
+        return R4ResourceType.HealthcareService;
+      case 'ImagingStudy':
+        return R4ResourceType.ImagingStudy;
+      case 'Immunization':
+        return R4ResourceType.Immunization;
+      case 'ImmunizationEvaluation':
+        return R4ResourceType.ImmunizationEvaluation;
+      case 'ImmunizationRecommendation':
+        return R4ResourceType.ImmunizationRecommendation;
+      case 'ImplementationGuide':
+        return R4ResourceType.ImplementationGuide;
+      case 'Ingredient':
+        return R4ResourceType.Ingredient;
+      case 'InsurancePlan':
+        return R4ResourceType.InsurancePlan;
+      case 'Invoice':
+        return R4ResourceType.Invoice;
+      case 'Library':
+        return R4ResourceType.Library;
+      case 'Linkage':
+        return R4ResourceType.Linkage;
+      case 'List':
+        return R4ResourceType.FhirList;
+      case 'Location':
+        return R4ResourceType.Location;
+      case 'ManufacturedItemDefinition':
+        return R4ResourceType.ManufacturedItemDefinition;
+      case 'Measure':
+        return R4ResourceType.Measure;
+      case 'MeasureReport':
+        return R4ResourceType.MeasureReport;
+      case 'Media':
+        return R4ResourceType.Media;
+      case 'Medication':
+        return R4ResourceType.Medication;
+      case 'MedicationAdministration':
+        return R4ResourceType.MedicationAdministration;
+      case 'MedicationDispense':
+        return R4ResourceType.MedicationDispense;
+      case 'MedicationKnowledge':
+        return R4ResourceType.MedicationKnowledge;
+      case 'MedicationRequest':
+        return R4ResourceType.MedicationRequest;
+      case 'MedicationStatement':
+        return R4ResourceType.MedicationStatement;
+      case 'MedicinalProductDefinition':
+        return R4ResourceType.MedicinalProductDefinition;
+      case 'MessageDefinition':
+        return R4ResourceType.MessageDefinition;
+      case 'MessageHeader':
+        return R4ResourceType.MessageHeader;
+      case 'MolecularSequence':
+        return R4ResourceType.MolecularSequence;
+      case 'NamingSystem':
+        return R4ResourceType.NamingSystem;
+      case 'NutritionOrder':
+        return R4ResourceType.NutritionOrder;
+      case 'NutritionProduct':
+        return R4ResourceType.NutritionProduct;
+      case 'Observation':
+        return R4ResourceType.Observation;
+      case 'ObservationDefinition':
+        return R4ResourceType.ObservationDefinition;
+      case 'OperationDefinition':
+        return R4ResourceType.OperationDefinition;
+      case 'OperationOutcome':
+        return R4ResourceType.OperationOutcome;
+      case 'Organization':
+        return R4ResourceType.Organization;
+      case 'OrganizationAffiliation':
+        return R4ResourceType.OrganizationAffiliation;
+      case 'PackagedProductDefinition':
+        return R4ResourceType.PackagedProductDefinition;
+      case 'Parameters':
+        return R4ResourceType.Parameters;
+      case 'Patient':
+        return R4ResourceType.Patient;
+      case 'PaymentNotice':
+        return R4ResourceType.PaymentNotice;
+      case 'PaymentReconciliation':
+        return R4ResourceType.PaymentReconciliation;
+      case 'Person':
+        return R4ResourceType.Person;
+      case 'PlanDefinition':
+        return R4ResourceType.PlanDefinition;
+      case 'Practitioner':
+        return R4ResourceType.Practitioner;
+      case 'PractitionerRole':
+        return R4ResourceType.PractitionerRole;
+      case 'Procedure':
+        return R4ResourceType.Procedure;
+      case 'Provenance':
+        return R4ResourceType.Provenance;
+      case 'Questionnaire':
+        return R4ResourceType.Questionnaire;
+      case 'QuestionnaireResponse':
+        return R4ResourceType.QuestionnaireResponse;
+      case 'RegulatedAuthorization':
+        return R4ResourceType.RegulatedAuthorization;
+      case 'RelatedPerson':
+        return R4ResourceType.RelatedPerson;
+      case 'RequestGroup':
+        return R4ResourceType.RequestGroup;
+      case 'ResearchDefinition':
+        return R4ResourceType.ResearchDefinition;
+      case 'ResearchElementDefinition':
+        return R4ResourceType.ResearchElementDefinition;
+      case 'ResearchStudy':
+        return R4ResourceType.ResearchStudy;
+      case 'ResearchSubject':
+        return R4ResourceType.ResearchSubject;
+      case 'RiskAssessment':
+        return R4ResourceType.RiskAssessment;
+      case 'Schedule':
+        return R4ResourceType.Schedule;
+      case 'SearchParameter':
+        return R4ResourceType.SearchParameter;
+      case 'ServiceRequest':
+        return R4ResourceType.ServiceRequest;
+      case 'Slot':
+        return R4ResourceType.Slot;
+      case 'Specimen':
+        return R4ResourceType.Specimen;
+      case 'SpecimenDefinition':
+        return R4ResourceType.SpecimenDefinition;
+      case 'StructureDefinition':
+        return R4ResourceType.StructureDefinition;
+      case 'StructureMap':
+        return R4ResourceType.StructureMap;
+      case 'Subscription':
+        return R4ResourceType.Subscription;
+      case 'SubscriptionStatus':
+        return R4ResourceType.SubscriptionStatus;
+      case 'SubscriptionTopic':
+        return R4ResourceType.SubscriptionTopic;
+      case 'Substance':
+        return R4ResourceType.Substance;
+      case 'SubstanceDefinition':
+        return R4ResourceType.SubstanceDefinition;
+      case 'SupplyDelivery':
+        return R4ResourceType.SupplyDelivery;
+      case 'SupplyRequest':
+        return R4ResourceType.SupplyRequest;
+      case 'Task':
+        return R4ResourceType.Task;
+      case 'TerminologyCapabilities':
+        return R4ResourceType.TerminologyCapabilities;
+      case 'TestReport':
+        return R4ResourceType.TestReport;
+      case 'TestScript':
+        return R4ResourceType.TestScript;
+      case 'ValueSet':
+        return R4ResourceType.ValueSet;
+      case 'VerificationResult':
+        return R4ResourceType.VerificationResult;
+      case 'VisionPrescription':
+        return R4ResourceType.VisionPrescription;
+      default:
+        return null;
+    }
+  }
+
+  static R4ResourceType? fromJson(dynamic json) {
+    if (json is String) {
+      return fromString(json);
+    }
+    return null;
+  }
+
+  static List<String> get typesAsStrings => <String>[
+        'Account',
+        'ActivityDefinition',
+        'AdministrableProductDefinition',
+        'AdverseEvent',
+        'AllergyIntolerance',
+        'Appointment',
+        'AppointmentResponse',
+        'AuditEvent',
+        'Basic',
+        'Binary',
+        'BiologicallyDerivedProduct',
+        'BodyStructure',
+        'Bundle',
+        'CapabilityStatement',
+        'CarePlan',
+        'CareTeam',
+        'CatalogEntry',
+        'ChargeItem',
+        'ChargeItemDefinition',
+        'Citation',
+        'Claim',
+        'ClaimResponse',
+        'ClinicalImpression',
+        'ClinicalUseDefinition',
+        'CodeSystem',
+        'Communication',
+        'CommunicationRequest',
+        'CompartmentDefinition',
+        'Composition',
+        'ConceptMap',
+        'Condition',
+        'Consent',
+        'Contract',
+        'Coverage',
+        'CoverageEligibilityRequest',
+        'CoverageEligibilityResponse',
+        'DetectedIssue',
+        'Device',
+        'DeviceDefinition',
+        'DeviceMetric',
+        'DeviceRequest',
+        'DeviceUseStatement',
+        'DiagnosticReport',
+        'DocumentManifest',
+        'DocumentReference',
+        'Encounter',
+        'Endpoint',
+        'EnrollmentRequest',
+        'EnrollmentResponse',
+        'EpisodeOfCare',
+        'EventDefinition',
+        'Evidence',
+        'EvidenceReport',
+        'EvidenceVariable',
+        'ExampleScenario',
+        'ExplanationOfBenefit',
+        'FamilyMemberHistory',
+        'Flag',
+        'Goal',
+        'GraphDefinition',
+        'Group',
+        'GuidanceResponse',
+        'HealthcareService',
+        'ImagingStudy',
+        'Immunization',
+        'ImmunizationEvaluation',
+        'ImmunizationRecommendation',
+        'ImplementationGuide',
+        'Ingredient',
+        'InsurancePlan',
+        'Invoice',
+        'Library',
+        'Linkage',
+        'List',
+        'Location',
+        'ManufacturedItemDefinition',
+        'Measure',
+        'MeasureReport',
+        'Media',
+        'Medication',
+        'MedicationAdministration',
+        'MedicationDispense',
+        'MedicationKnowledge',
+        'MedicationRequest',
+        'MedicationStatement',
+        'MedicinalProductDefinition',
+        'MessageDefinition',
+        'MessageHeader',
+        'MolecularSequence',
+        'NamingSystem',
+        'NutritionOrder',
+        'NutritionProduct',
+        'Observation',
+        'ObservationDefinition',
+        'OperationDefinition',
+        'OperationOutcome',
+        'Organization',
+        'OrganizationAffiliation',
+        'PackagedProductDefinition',
+        'Parameters',
+        'Patient',
+        'PaymentNotice',
+        'PaymentReconciliation',
+        'Person',
+        'PlanDefinition',
+        'Practitioner',
+        'PractitionerRole',
+        'Procedure',
+        'Provenance',
+        'Questionnaire',
+        'QuestionnaireResponse',
+        'RegulatedAuthorization',
+        'RelatedPerson',
+        'RequestGroup',
+        'ResearchDefinition',
+        'ResearchElementDefinition',
+        'ResearchStudy',
+        'ResearchSubject',
+        'RiskAssessment',
+        'Schedule',
+        'SearchParameter',
+        'ServiceRequest',
+        'Slot',
+        'Specimen',
+        'SpecimenDefinition',
+        'StructureDefinition',
+        'StructureMap',
+        'Subscription',
+        'SubscriptionStatus',
+        'SubscriptionTopic',
+        'Substance',
+        'SubstanceDefinition',
+        'SupplyDelivery',
+        'SupplyRequest',
+        'Task',
+        'TerminologyCapabilities',
+        'TestReport',
+        'TestScript',
+        'ValueSet',
+        'VerificationResult',
+        'VisionPrescription',
+      ];
 }
