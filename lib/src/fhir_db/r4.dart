@@ -275,34 +275,30 @@ class FhirDb {
     Resource resource,
     String? pw,
   ) async {
-    if (resource.resourceTypeString != null) {
-      if (resource.id != null) {
-        final Resource? oldResource = await get(
-          resourceType: resource.resourceType!,
-          id: resource.id!,
+    if (resource.id != null) {
+      final Resource? oldResource = await get(
+        resourceType: resource.resourceType!,
+        id: resource.id!,
+        pw: pw,
+      );
+      if (oldResource != null) {
+        await _saveHistory(
+          resource: oldResource.toJson(),
           pw: pw,
         );
-        if (oldResource != null) {
-          await _saveHistory(
-            resource: oldResource.toJson(),
-            pw: pw,
-          );
-          final FhirMeta? oldMeta = oldResource.meta;
-          final Resource newResource = resource.updateVersion(oldMeta: oldMeta);
-          await _saveToDb(
-            resourceType: newResource.resourceType!,
-            resource: newResource.toJson(),
-            pw: pw,
-          );
-          return newResource;
-        } else {
-          return _insert(resource, pw);
-        }
+        final FhirMeta? oldMeta = oldResource.meta;
+        final Resource newResource = resource.updateVersion(oldMeta: oldMeta);
+        await _saveToDb(
+          resourceType: newResource.resourceType!,
+          resource: newResource.toJson(),
+          pw: pw,
+        );
+        return newResource;
       } else {
         return _insert(resource, pw);
       }
     } else {
-      throw const FormatException('Resource passed must have a resourceType');
+      return _insert(resource, pw);
     }
   }
 
