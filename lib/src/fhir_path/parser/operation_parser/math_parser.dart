@@ -190,7 +190,8 @@ class DivSignParser extends OperatorParser {
           : <dynamic>[];
     } else if (executedBefore.first is ValidatedQuantity &&
         executedAfter.first is ValidatedQuantity) {
-      return (!(executedAfter.first as ValidatedQuantity).value.equals(0))
+      return ((executedAfter.first as ValidatedQuantity).value !=
+              UcumDecimal.fromInt(0))
           ? <dynamic>[
               (executedBefore.first as ValidatedQuantity) /
                   (executedAfter.first as ValidatedQuantity)
