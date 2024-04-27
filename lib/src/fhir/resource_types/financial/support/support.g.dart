@@ -105,7 +105,7 @@ _$CoverageImpl _$$CoverageImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$CoverageImplToJson(_$CoverageImpl instance) {
   final val = <String, dynamic>{
-    'resourceType': _$R4ResourceTypeEnumMap[instance.resourceType]!,
+    'resourceType': instance.resourceType.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -230,7 +230,7 @@ const _$R4ResourceTypeEnumMap = {
   R4ResourceType.Invoice: 'Invoice',
   R4ResourceType.Library: 'Library',
   R4ResourceType.Linkage: 'Linkage',
-  R4ResourceType.List: 'List',
+  R4ResourceType.FhirList: 'List',
   R4ResourceType.Location: 'Location',
   R4ResourceType.ManufacturedItemDefinition: 'ManufacturedItemDefinition',
   R4ResourceType.Measure: 'Measure',
@@ -518,7 +518,7 @@ _$CoverageEligibilityRequestImpl _$$CoverageEligibilityRequestImplFromJson(
 Map<String, dynamic> _$$CoverageEligibilityRequestImplToJson(
     _$CoverageEligibilityRequestImpl instance) {
   final val = <String, dynamic>{
-    'resourceType': _$R4ResourceTypeEnumMap[instance.resourceType]!,
+    'resourceType': instance.resourceType.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -887,7 +887,7 @@ _$CoverageEligibilityResponseImpl _$$CoverageEligibilityResponseImplFromJson(
 Map<String, dynamic> _$$CoverageEligibilityResponseImplToJson(
     _$CoverageEligibilityResponseImpl instance) {
   final val = <String, dynamic>{
-    'resourceType': _$R4ResourceTypeEnumMap[instance.resourceType]!,
+    'resourceType': instance.resourceType.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -1271,7 +1271,7 @@ _$EnrollmentRequestImpl _$$EnrollmentRequestImplFromJson(
 Map<String, dynamic> _$$EnrollmentRequestImplToJson(
     _$EnrollmentRequestImpl instance) {
   final val = <String, dynamic>{
-    'resourceType': _$R4ResourceTypeEnumMap[instance.resourceType]!,
+    'resourceType': instance.resourceType.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -1376,7 +1376,7 @@ _$EnrollmentResponseImpl _$$EnrollmentResponseImplFromJson(
 Map<String, dynamic> _$$EnrollmentResponseImplToJson(
     _$EnrollmentResponseImpl instance) {
   final val = <String, dynamic>{
-    'resourceType': _$R4ResourceTypeEnumMap[instance.resourceType]!,
+    'resourceType': instance.resourceType.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {

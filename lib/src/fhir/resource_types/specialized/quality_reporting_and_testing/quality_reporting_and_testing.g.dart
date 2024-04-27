@@ -224,7 +224,7 @@ _$MeasureImpl _$$MeasureImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$MeasureImplToJson(_$MeasureImpl instance) {
   final val = <String, dynamic>{
-    'resourceType': _$R4ResourceTypeEnumMap[instance.resourceType]!,
+    'resourceType': instance.resourceType.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -398,7 +398,7 @@ const _$R4ResourceTypeEnumMap = {
   R4ResourceType.Invoice: 'Invoice',
   R4ResourceType.Library: 'Library',
   R4ResourceType.Linkage: 'Linkage',
-  R4ResourceType.List: 'List',
+  R4ResourceType.FhirList: 'List',
   R4ResourceType.Location: 'Location',
   R4ResourceType.ManufacturedItemDefinition: 'ManufacturedItemDefinition',
   R4ResourceType.Measure: 'Measure',
@@ -770,7 +770,7 @@ _$MeasureReportImpl _$$MeasureReportImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$MeasureReportImplToJson(_$MeasureReportImpl instance) {
   final val = <String, dynamic>{
-    'resourceType': _$R4ResourceTypeEnumMap[instance.resourceType]!,
+    'resourceType': instance.resourceType.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -1153,7 +1153,7 @@ _$TestReportImpl _$$TestReportImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$TestReportImplToJson(_$TestReportImpl instance) {
   final val = <String, dynamic>{
-    'resourceType': _$R4ResourceTypeEnumMap[instance.resourceType]!,
+    'resourceType': instance.resourceType.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -1702,7 +1702,7 @@ _$TestScriptImpl _$$TestScriptImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$TestScriptImplToJson(_$TestScriptImpl instance) {
   final val = <String, dynamic>{
-    'resourceType': _$R4ResourceTypeEnumMap[instance.resourceType]!,
+    'resourceType': instance.resourceType.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {

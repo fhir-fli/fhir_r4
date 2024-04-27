@@ -12,8 +12,8 @@ _$ElementImpl _$$ElementImplFromJson(Map<String, dynamic> json) =>
       extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      line: json['line'] as int?,
-      col: json['col'] as int?,
+      line: (json['line'] as num?)?.toInt(),
+      col: (json['col'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$ElementImplToJson(_$ElementImpl instance) {

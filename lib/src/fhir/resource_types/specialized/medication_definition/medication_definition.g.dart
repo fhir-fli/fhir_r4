@@ -84,7 +84,7 @@ _$AdministrableProductDefinitionImpl
 Map<String, dynamic> _$$AdministrableProductDefinitionImplToJson(
     _$AdministrableProductDefinitionImpl instance) {
   final val = <String, dynamic>{
-    'resourceType': _$R4ResourceTypeEnumMap[instance.resourceType]!,
+    'resourceType': instance.resourceType.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -200,7 +200,7 @@ const _$R4ResourceTypeEnumMap = {
   R4ResourceType.Invoice: 'Invoice',
   R4ResourceType.Library: 'Library',
   R4ResourceType.Linkage: 'Linkage',
-  R4ResourceType.List: 'List',
+  R4ResourceType.FhirList: 'List',
   R4ResourceType.Location: 'Location',
   R4ResourceType.ManufacturedItemDefinition: 'ManufacturedItemDefinition',
   R4ResourceType.Measure: 'Measure',
@@ -555,7 +555,7 @@ _$IngredientImpl _$$IngredientImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$IngredientImplToJson(_$IngredientImpl instance) {
   final val = <String, dynamic>{
-    'resourceType': _$R4ResourceTypeEnumMap[instance.resourceType]!,
+    'resourceType': instance.resourceType.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -883,7 +883,7 @@ _$ClinicalUseDefinitionImpl _$$ClinicalUseDefinitionImplFromJson(
 Map<String, dynamic> _$$ClinicalUseDefinitionImplToJson(
     _$ClinicalUseDefinitionImpl instance) {
   final val = <String, dynamic>{
-    'resourceType': _$R4ResourceTypeEnumMap[instance.resourceType]!,
+    'resourceType': instance.resourceType.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -1342,7 +1342,7 @@ _$ManufacturedItemDefinitionImpl _$$ManufacturedItemDefinitionImplFromJson(
 Map<String, dynamic> _$$ManufacturedItemDefinitionImplToJson(
     _$ManufacturedItemDefinitionImpl instance) {
   final val = <String, dynamic>{
-    'resourceType': _$R4ResourceTypeEnumMap[instance.resourceType]!,
+    'resourceType': instance.resourceType.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -1586,7 +1586,7 @@ _$MedicinalProductDefinitionImpl _$$MedicinalProductDefinitionImplFromJson(
 Map<String, dynamic> _$$MedicinalProductDefinitionImplToJson(
     _$MedicinalProductDefinitionImpl instance) {
   final val = <String, dynamic>{
-    'resourceType': _$R4ResourceTypeEnumMap[instance.resourceType]!,
+    'resourceType': instance.resourceType.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -2073,7 +2073,7 @@ _$PackagedProductDefinitionImpl _$$PackagedProductDefinitionImplFromJson(
 Map<String, dynamic> _$$PackagedProductDefinitionImplToJson(
     _$PackagedProductDefinitionImpl instance) {
   final val = <String, dynamic>{
-    'resourceType': _$R4ResourceTypeEnumMap[instance.resourceType]!,
+    'resourceType': instance.resourceType.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -2493,7 +2493,7 @@ _$RegulatedAuthorizationImpl _$$RegulatedAuthorizationImplFromJson(
 Map<String, dynamic> _$$RegulatedAuthorizationImplToJson(
     _$RegulatedAuthorizationImpl instance) {
   final val = <String, dynamic>{
-    'resourceType': _$R4ResourceTypeEnumMap[instance.resourceType]!,
+    'resourceType': instance.resourceType.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -2702,7 +2702,7 @@ _$SubstanceDefinitionImpl _$$SubstanceDefinitionImplFromJson(
 Map<String, dynamic> _$$SubstanceDefinitionImplToJson(
     _$SubstanceDefinitionImpl instance) {
   final val = <String, dynamic>{
-    'resourceType': _$R4ResourceTypeEnumMap[instance.resourceType]!,
+    'resourceType': instance.resourceType.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {

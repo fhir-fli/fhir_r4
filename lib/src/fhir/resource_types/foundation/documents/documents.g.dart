@@ -94,7 +94,7 @@ _$CatalogEntryImpl _$$CatalogEntryImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$CatalogEntryImplToJson(_$CatalogEntryImpl instance) {
   final val = <String, dynamic>{
-    'resourceType': _$R4ResourceTypeEnumMap[instance.resourceType]!,
+    'resourceType': instance.resourceType.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -217,7 +217,7 @@ const _$R4ResourceTypeEnumMap = {
   R4ResourceType.Invoice: 'Invoice',
   R4ResourceType.Library: 'Library',
   R4ResourceType.Linkage: 'Linkage',
-  R4ResourceType.List: 'List',
+  R4ResourceType.FhirList: 'List',
   R4ResourceType.Location: 'Location',
   R4ResourceType.ManufacturedItemDefinition: 'ManufacturedItemDefinition',
   R4ResourceType.Measure: 'Measure',
@@ -415,7 +415,7 @@ _$CompositionImpl _$$CompositionImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$CompositionImplToJson(_$CompositionImpl instance) {
   final val = <String, dynamic>{
-    'resourceType': _$R4ResourceTypeEnumMap[instance.resourceType]!,
+    'resourceType': instance.resourceType.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -753,7 +753,7 @@ _$DocumentManifestImpl _$$DocumentManifestImplFromJson(
 Map<String, dynamic> _$$DocumentManifestImplToJson(
     _$DocumentManifestImpl instance) {
   final val = <String, dynamic>{
-    'resourceType': _$R4ResourceTypeEnumMap[instance.resourceType]!,
+    'resourceType': instance.resourceType.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -933,7 +933,7 @@ _$DocumentReferenceImpl _$$DocumentReferenceImplFromJson(
 Map<String, dynamic> _$$DocumentReferenceImplToJson(
     _$DocumentReferenceImpl instance) {
   final val = <String, dynamic>{
-    'resourceType': _$R4ResourceTypeEnumMap[instance.resourceType]!,
+    'resourceType': instance.resourceType.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {

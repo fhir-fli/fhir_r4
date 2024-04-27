@@ -158,7 +158,7 @@ _$CitationImpl _$$CitationImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$CitationImplToJson(_$CitationImpl instance) {
   final val = <String, dynamic>{
-    'resourceType': _$R4ResourceTypeEnumMap[instance.resourceType]!,
+    'resourceType': instance.resourceType.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -307,7 +307,7 @@ const _$R4ResourceTypeEnumMap = {
   R4ResourceType.Invoice: 'Invoice',
   R4ResourceType.Library: 'Library',
   R4ResourceType.Linkage: 'Linkage',
-  R4ResourceType.List: 'List',
+  R4ResourceType.FhirList: 'List',
   R4ResourceType.Location: 'Location',
   R4ResourceType.ManufacturedItemDefinition: 'ManufacturedItemDefinition',
   R4ResourceType.Measure: 'Measure',
@@ -1781,7 +1781,7 @@ _$EvidenceImpl _$$EvidenceImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$EvidenceImplToJson(_$EvidenceImpl instance) {
   final val = <String, dynamic>{
-    'resourceType': _$R4ResourceTypeEnumMap[instance.resourceType]!,
+    'resourceType': instance.resourceType.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -2382,7 +2382,7 @@ _$EvidenceReportImpl _$$EvidenceReportImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$EvidenceReportImplToJson(
     _$EvidenceReportImpl instance) {
   final val = <String, dynamic>{
-    'resourceType': _$R4ResourceTypeEnumMap[instance.resourceType]!,
+    'resourceType': instance.resourceType.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -2812,7 +2812,7 @@ _$EvidenceVariableImpl _$$EvidenceVariableImplFromJson(
 Map<String, dynamic> _$$EvidenceVariableImplToJson(
     _$EvidenceVariableImpl instance) {
   final val = <String, dynamic>{
-    'resourceType': _$R4ResourceTypeEnumMap[instance.resourceType]!,
+    'resourceType': instance.resourceType.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -3239,7 +3239,7 @@ _$ResearchDefinitionImpl _$$ResearchDefinitionImplFromJson(
 Map<String, dynamic> _$$ResearchDefinitionImplToJson(
     _$ResearchDefinitionImpl instance) {
   final val = <String, dynamic>{
-    'resourceType': _$R4ResourceTypeEnumMap[instance.resourceType]!,
+    'resourceType': instance.resourceType.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -3503,7 +3503,7 @@ _$ResearchElementDefinitionImpl _$$ResearchElementDefinitionImplFromJson(
 Map<String, dynamic> _$$ResearchElementDefinitionImplToJson(
     _$ResearchElementDefinitionImpl instance) {
   final val = <String, dynamic>{
-    'resourceType': _$R4ResourceTypeEnumMap[instance.resourceType]!,
+    'resourceType': instance.resourceType.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {
