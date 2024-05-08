@@ -782,6 +782,41 @@ class FhirDb {
     }
   }
 
+  BehaviorSubject<dynamic> generalSubject({
+    String? pw,
+  }) {
+    final BehaviorSubject<dynamic> subject = BehaviorSubject<dynamic>();
+    final HiveAesCipher? cipher = cipherFromKey(key: pw);
+    _ensureInit(pw: pw).then((_) {
+      Hive.openBox<dynamic>('general', encryptionCipher: cipher).then((box) {
+        final Stream<BoxEvent> stream = box.watch();
+        final StreamSubscription<BoxEvent> subscription = stream.listen(
+          (event) {
+            if (!event.deleted) {
+              subject.add(event.value);
+            } else {
+              subject.add(null); // Emit null to indicate deletion.
+            }
+          },
+          onError: (Object e) {
+            subject.addError(e); // Propagate errors.
+          },
+          onDone: () => subject
+              .close(), // Close the BehaviorSubject on stream completion.
+        );
+
+        // Ensure the subscription is cancelled when the BehaviorSubject is closed.
+        subject.onCancel = () {
+          subscription.cancel();
+        };
+      }).catchError((Object e) {
+        subject.addError(e); // Handle errors from _getBox.
+        subject.close();
+      });
+    });
+    return subject;
+  }
+
   /// ************************************************************************
   /// These methods are for closing boxes, usually not needed and mostly for
   /// debugging purposes
