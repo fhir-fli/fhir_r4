@@ -6,6 +6,7 @@ import 'dart:developer';
 
 import 'package:collection/collection.dart';
 import 'package:hive/hive.dart';
+import 'package:rxdart/rxdart.dart';
 
 import '../../fhir_r4.dart';
 import 'cipher_from_key.dart';
@@ -17,44 +18,59 @@ class FhirDb {
 
   static final FhirDb _fhirDb = FhirDb._internal();
 
-  bool initialized = false;
+  bool _initialized = false;
+  Completer<void>? _initCompleter;
   Set<R4ResourceType> _types = <R4ResourceType>{};
 
-  /// Initalizes the database, configure its path, and return it
+  /// Initializes the database, configures its path, and returns it.
+  /// Throws an exception if initialization fails.
   Future<void> init({String? path, String? pw}) async {
-    await _initDb(path: path, pw: pw);
+    if (!_initialized) {
+      await _initDb(path: path, pw: pw);
+    }
   }
 
-  /// To initialize the database as a whole. Configure the path, set initialized
-  /// to true, register all of the ResourceTypeAdapters, and then assign the
-  /// set of all of the types to the variable types
+  /// To initialize the database: configures the path, sets initialized to true,
+  /// registers all ResourceTypeAdapters, and assigns the set of all the types
+  /// to the variable types.
   Future<void> _initDb({String? path, String? pw}) async {
     final HiveAesCipher? cipher = cipherFromKey(key: pw);
     try {
-      if (!initialized) {
-        Hive.init(path ?? '.');
-        initialized = true;
-        final Box<List<String>> typesBox =
-            await Hive.openBox<List<String>>('types', encryptionCipher: cipher);
-        _types = typesBox
-                .get('types')
-                ?.map((String e) => Resource.resourceTypeFromString(e)!)
-                .toSet() ??
-            <R4ResourceType>{};
-      }
+      Hive.init(path ?? '.');
+      final Box<List<String>> typesBox =
+          await Hive.openBox<List<String>>('types', encryptionCipher: cipher);
+      _types = typesBox
+              .get('types')
+              ?.map((String e) => Resource.resourceTypeFromString(e)!)
+              .toSet() ??
+          <R4ResourceType>{};
+      _initialized =
+          true; // Set initialized to true only after all operations are successful.
     } catch (e) {
       log(e.toString());
+      throw Exception('Failed to initialize FhirDb: $e');
     }
   }
 
-  /// Convenience getter to ensure initialized
-  Future<void> _ensureInit({
-    String? path,
-    String? pw,
-  }) async {
-    if (!initialized) {
-      await _initDb(path: path, pw: pw);
+  Future<void> _ensureInit({String? path, String? pw}) async {
+    if (_initialized) {
+      return;
     }
+    if (_initCompleter == null) {
+      _initCompleter = Completer<void>();
+      try {
+        await _initDb(path: path, pw: pw);
+        _initialized = true;
+        _initCompleter?.complete();
+      } catch (e) {
+        _initCompleter?.completeError(e);
+        _initCompleter = null; // Allow retrying after a failure.
+        rethrow;
+      }
+    }
+
+    await _initCompleter
+        ?.future; // Wait for completion if initialization is ongoing.
   }
 
   Future<void> updateCipher({
@@ -62,93 +78,56 @@ class FhirDb {
     String? oldPw,
     String? newPw,
   }) async {
+    if (cipherFromKey(key: oldPw) == cipherFromKey(key: newPw)) {
+      return;
+    }
     try {
-      final HiveCipher? oldCipher = cipherFromKey(key: oldPw);
-      final HiveCipher? newCipher = cipherFromKey(key: newPw);
+      await _ensureInit(pw: oldPw);
+      final Box<List<String>> typesBox = await Hive.openBox<List<String>>(
+        'types',
+        encryptionCipher: cipherFromKey(key: oldPw),
+      );
 
-      /// only change the db if the new password is different from the old one
-      if (oldCipher != newCipher) {
-        await _ensureInit(pw: oldPw);
-
-        /// The types box contains only a single entry, which is a list of all of the
-        /// resource types that have been saved to the database
-        final Box<List<String>> typesBox = await Hive.openBox<List<String>>(
-            'types',
-            encryptionCipher: oldCipher);
-
-        /// get that list of types
-        final List<String> types = typesBox.get('types') ?? <String>[];
-
-        _types.map((R4ResourceType e) => e.toString()).toList();
-
-        /// Create a new temporary box to store resources while we are updating the boxes
-        /// with a new password
-        final Box<Map<dynamic, dynamic>> tempBox =
-            await Hive.openBox<Map<dynamic, dynamic>>('temp',
-                encryptionCipher: newCipher);
-
-        /// for each type in the list
+      final List<String> types = typesBox.get('types') ?? <String>[];
+      try {
         for (final String type in types) {
-          /// Retrieve all resources currently in the box
           final Box<Map<dynamic, dynamic>> oldBox =
               await Hive.openBox<Map<dynamic, dynamic>>(type,
-                  encryptionCipher: oldCipher);
+                  encryptionCipher: cipherFromKey(key: oldPw));
+          final Box<Map<dynamic, dynamic>> tempBox =
+              await Hive.openBox<Map<dynamic, dynamic>>('temp',
+                  encryptionCipher: cipherFromKey(key: newPw));
 
-          /// for each map in the box
-          for (final Map<dynamic, dynamic> value in oldBox.values) {
-            /// Cast map to correct type
-            final Map<String, dynamic> newValue =
-                jsonDecode(jsonEncode(value)) as Map<String, dynamic>;
-
-            /// convert it to a resource
-            final Resource resource = Resource.fromJson(newValue);
-
-            /// Save it in the temporary box as we're changing over to the new password, so
-            /// in case something goes wrong, we don't lose the data
-            await tempBox.put(resource.id, newValue);
+          try {
+            for (final Map<dynamic, dynamic> value in oldBox.values) {
+              await tempBox.put(value['id'], value);
+            }
+          } finally {
+            await oldBox.deleteFromDisk();
+            final Box<Map<dynamic, dynamic>> newBox =
+                await Hive.openBox<Map<dynamic, dynamic>>(type,
+                    encryptionCipher: cipherFromKey(key: newPw));
+            for (final Map<dynamic, dynamic> value in tempBox.values) {
+              await newBox.put(value['id'], value);
+            }
+            await tempBox.deleteFromDisk();
+            await newBox.close();
           }
-
-          /// after we have saved all of the resources in the temporary box, we can
-          /// delete the old box
-          await oldBox.deleteFromDisk();
-
-          /// Create the new box with the new password
-          final Box<Map<dynamic, dynamic>> newBox =
-              await Hive.openBox<Map<dynamic, dynamic>>(type,
-                  encryptionCipher: newCipher);
-
-          /// for each map in the temp box
-          for (final Map<dynamic, dynamic> value in tempBox.values) {
-            /// Cast map to correct type
-            final Map<String, dynamic> newValue =
-                Map<String, dynamic>.from(value);
-
-            /// convert it to a resource
-            final Resource resource = Resource.fromJson(newValue);
-
-            /// Save it to the new box with the new password
-            await newBox.put(resource.id, newValue);
-          }
-
-          /// clear everything from the tempBox so we can use it again
-          await tempBox.clear();
         }
-
-        /// After we've been through all of the types, delete the tempBox.
-        await tempBox.deleteFromDisk();
-
-        /// Delete the typesBox because we need to replace it too using the new password
+      } finally {
         await typesBox.deleteFromDisk();
-
-        /// Recreate the types box
-        final Box<List<String>> newTypesBox = await Hive.openBox<List<String>>(
-            'types',
-            encryptionCipher: newCipher);
-        await newTypesBox.put('types', types);
+        await Hive.openBox<List<String>>(
+          'types',
+          encryptionCipher: cipherFromKey(key: newPw),
+        ).then((box) async {
+          await box.put('types', types);
+          await box.close();
+        });
         await Hive.close();
       }
     } catch (e) {
       log(e.toString());
+      throw Exception('Failed to update cipher: $e');
     }
   }
 
@@ -167,13 +146,13 @@ class FhirDb {
     final HiveAesCipher? cipher = cipherFromKey(key: pw);
     final String resourceTypeString =
         Resource.resourceTypeToString(resourceType);
+
     try {
-      if (!Hive.isBoxOpen(resourceTypeString)) {
-        return Hive.openBox(resourceTypeString, encryptionCipher: cipher);
-      } else {
-        return Hive.box(resourceTypeString);
-      }
+      return Hive.isBoxOpen(resourceTypeString)
+          ? Hive.box(resourceTypeString)
+          : await Hive.openBox(resourceTypeString, encryptionCipher: cipher);
     } catch (e) {
+      log('Error opening box: $e');
       rethrow;
     }
   }
@@ -186,22 +165,24 @@ class FhirDb {
     required R4ResourceType resourceType,
     String? pw,
   }) async {
+    if (!_types.add(resourceType)) {
+      return true; // No need to update if already exists.
+    }
+
+    await _ensureInit(pw: pw);
+    final Box<List<String>> box = await Hive.openBox<List<String>>('types');
+
     try {
-      if (_types.contains(resourceType)) {
-        return true;
-      } else {
-        _types.add(resourceType);
-        await _ensureInit(pw: pw);
-        final Box<List<String>> box = Hive.box<List<String>>('types');
-        await box.put(
-            'types',
-            _types
-                .map((R4ResourceType e) => Resource.resourceTypeToString(e))
-                .toList());
-        return true;
-      }
+      final List<String> currentTypes =
+          box.get('types', defaultValue: <String>[])!;
+      currentTypes.add(Resource.resourceTypeToString(resourceType));
+      await box.put('types', currentTypes);
+      return true;
     } catch (e) {
+      log('Error adding type: $e');
       return false;
+    } finally {
+      await box.close(); // Ensure the box is always closed.
     }
   }
 
@@ -212,23 +193,22 @@ class FhirDb {
     Resource? resource,
     String? pw,
   }) async {
-    if (resource != null) {
-      if (resource.resourceType != null) {
-        return resource.id == null
-            ? await _insert(resource, pw)
-            : await exists(
-                resourceType: resource.resourceType!,
-                id: resource.id!,
-                pw: pw,
-              )
-                ? await _update(resource, pw)
-                : await _insert(resource, pw);
-      } else {
-        throw const FormatException('ResourceType cannot be null');
-      }
-    } else {
+    if (resource == null) {
       throw const FormatException('Resource cannot be null');
     }
+    if (resource.resourceType == null) {
+      throw const FormatException('ResourceType cannot be null');
+    }
+
+    await _ensureInit(pw: pw);
+    final bool exists = resource.id != null &&
+        await this.exists(
+          resourceType: resource.resourceType!,
+          id: resource.id!,
+          pw: pw,
+        );
+
+    return exists ? await _update(resource, pw) : await _insert(resource, pw);
   }
 
   /// The built-in bulkSave (called addAll) for Hive only allows automatically
@@ -238,14 +218,17 @@ class FhirDb {
     required List<Resource> resources,
     String? pw,
   }) async {
+    bool success = true;
     for (final Resource resource in resources) {
       try {
         await save(resource: resource, pw: pw);
       } catch (e) {
-        return false;
+        log('Error saving resource: $e');
+        success =
+            false; // Continue saving other resources, but record the failure.
       }
     }
-    return true;
+    return success;
   }
 
   Future<bool> addAll(
@@ -308,13 +291,14 @@ class FhirDb {
     String? pw,
   }) async {
     try {
-      await _ensureInit(pw: pw);
       final Box<Map<dynamic, dynamic>> box =
           await _getBox(resourceType: resourceType, pw: pw);
       await box.put(resource['id'], resource);
-      return await _addType(resourceType: resourceType, pw: pw);
+      return await _addType(
+          resourceType: resourceType,
+          pw: pw); // Add type after successful save.
     } catch (e, s) {
-      log('Error: $e, Stack at time of Error: $s');
+      log('Error saving to DB: $e, Stack at time of Error: $s');
       return false;
     }
   }
@@ -324,24 +308,17 @@ class FhirDb {
     String? pw,
   }) async {
     try {
-      await _ensureInit(pw: pw);
-      final HiveAesCipher? cipher = cipherFromKey(key: pw);
-      Box<Map<dynamic, dynamic>> box;
-      if (!Hive.isBoxOpen('history')) {
-        box = await Hive.openBox('history', encryptionCipher: cipher);
-      } else {
-        box = Hive.box('history');
-      }
-      if (resource['meta'] != null && resource['meta'] is Map) {
-        await box.put(
-            '${resource["resourceType"]}/${resource["id"]}/${(resource["meta"] as Map)["versionId"]}',
-            resource);
-        return true;
-      } else {
-        return false;
-      }
+      final Box<Map<dynamic, dynamic>> box = Hive.isBoxOpen('history')
+          ? Hive.box('history')
+          : await Hive.openBox('history',
+              encryptionCipher: cipherFromKey(key: pw));
+
+      final String historyKey =
+          '${resource["resourceType"]}/${resource["id"]}/${resource["meta"]["versionId"]}';
+      await box.put(historyKey, resource);
+      return true;
     } catch (e, s) {
-      log('Error: $e, Stack at time of Error: $s');
+      log('Error saving history: $e, Stack at time of Error: $s');
       return false;
     }
   }
@@ -353,64 +330,73 @@ class FhirDb {
   }) async {
     if (!_types.contains(resourceType)) {
       return false;
-    } else {
-      await _ensureInit(pw: pw);
-      final Box<Map<dynamic, dynamic>> box =
-          await _getBox(resourceType: resourceType, pw: pw);
-      return box.containsKey(id);
     }
+
+    final Box<Map<dynamic, dynamic>> box =
+        await _getBox(resourceType: resourceType, pw: pw);
+    return box.containsKey(id);
   }
 
-  Stream<Resource?> listen({
+  BehaviorSubject<Resource?> subject({
     required R4ResourceType resourceType,
     String? id,
     String? pw,
-  }) async* {
-    await _ensureInit(pw: pw);
-    final Box<Map<dynamic, dynamic>> box =
-        await _getBox(resourceType: resourceType, pw: pw);
+  }) {
+    final BehaviorSubject<Resource?> subject = BehaviorSubject<Resource?>();
 
-    if (id == null) {
-      yield* box.watch().map((BoxEvent event) {
-        if (!event.deleted) {
-          return Resource.fromJson(
-              jsonDecode(jsonEncode(event.value)) as Map<String, dynamic>);
-        } else {
-          return null;
-        }
-      });
-    } else {
-      yield* box.watch(key: id).map((BoxEvent event) {
-        if (!event.deleted) {
-          return Resource.fromJson(
-              jsonDecode(jsonEncode(event.value)) as Map<String, dynamic>);
-        } else {
-          return null;
-        }
-      });
-    }
+    _getBox(resourceType: resourceType, pw: pw).then((box) {
+      final Stream<BoxEvent> stream =
+          (id == null) ? box.watch() : box.watch(key: id);
+      final StreamSubscription<BoxEvent> subscription = stream.listen(
+        (event) {
+          if (!event.deleted) {
+            subject.add(Resource.fromJson(event.value as Map<String, dynamic>));
+          } else {
+            subject.add(null); // Emit null to indicate deletion.
+          }
+        },
+        onError: (Object e) {
+          subject.addError(e); // Propagate errors.
+        },
+        onDone: () =>
+            subject.close(), // Close the BehaviorSubject on stream completion.
+      );
+
+      // Ensure the subscription is cancelled when the BehaviorSubject is closed.
+      subject.onCancel = () {
+        subscription.cancel();
+      };
+    }).catchError((Object e) {
+      subject.addError(e); // Handle errors from _getBox.
+      subject.close();
+    });
+
+    return subject;
   }
 
   /// function used to save a new resource in the db
+  /// Retrieves a resource from the db based on its type and id.
   Future<Resource?> get({
     required R4ResourceType resourceType,
     required String id,
     String? pw,
   }) async {
-    await _ensureInit(pw: pw);
-    final Box<Map<dynamic, dynamic>> box =
-        await _getBox(resourceType: resourceType, pw: pw);
-    final Map<dynamic, dynamic>? resourceMap = box.get(id);
-
     try {
-      return resourceMap == null
-          ? null
-          : Resource.fromJson(
-              jsonDecode(jsonEncode(resourceMap)) as Map<String, dynamic>);
+      await _ensureInit(pw: pw);
+      final Box<Map<dynamic, dynamic>> box =
+          await _getBox(resourceType: resourceType, pw: pw);
+      final Map<dynamic, dynamic>? resourceMap = box.get(id);
+
+      if (resourceMap == null) {
+        return null;
+      }
+
+      // Assuming the map from the box is already in the correct format
+      return Resource.fromJson(
+          jsonDecode(jsonEncode(resourceMap)) as Map<String, dynamic>);
     } catch (e, s) {
-      log(e.toString());
-      log(s.toString());
-      return null;
+      log('Failed to retrieve resource from box. Error: $e, StackTrace: $s');
+      return null; // Consider whether to rethrow the exception or handle it differently
     }
   }
 
@@ -424,6 +410,7 @@ class FhirDb {
   /// newValue = resource['name'];
   /// newValue = newValue['given'];
   /// newValue = newValue[2];
+  /// Refactored for clarity and reduced redundancy
   Future<List<Resource>> find({
     Resource? resource,
     R4ResourceType? resourceType,
@@ -432,43 +419,53 @@ class FhirDb {
     String? value,
     String? pw,
   }) async {
-    /// if we're just trying to match a resource
-    if (resource != null &&
-        resource.resourceType != null &&
-        (resource.id != null || id != null)) {
-      final Resource? result = await get(
-        resourceType: resource.resourceType!,
-        id: resource.id!,
-        pw: pw,
-      );
-      return result == null ? <Resource>[] : <Resource>[result];
+    if (resource != null) {
+      return _searchByResource(resource, pw);
     } else if (resourceType != null && id != null) {
-      final Resource? result = await get(
-        resourceType: resourceType,
-        id: id,
-        pw: pw,
-      );
-      return result == null ? <Resource>[] : <Resource>[result];
+      return _searchById(resourceType, id, pw);
     } else if (resourceType != null && field != null && value != null) {
-      bool finder(Map<String, dynamic> finderResource) {
-        dynamic result = finderResource;
-        for (final Object key in field) {
-          result = result[key];
-          if (result == null) {
-            return false;
-          }
-        }
-        return result.toString() == value;
-      }
-
-      return (await search(resourceType: resourceType, finder: finder, pw: pw))
-          .toList();
+      return _searchByField(resourceType, field, value, pw);
     } else {
-      throw const FormatException('Must have either: '
-          '\n1) a resource with a resourceType'
-          '\n2) a resourceType and an Id'
-          '\n3) a resourceType, a specific field, and the value of interest');
+      throw const FormatException(
+          'Insufficient parameters provided for search.');
     }
+  }
+
+  Future<List<Resource>> _searchByResource(
+      Resource resource, String? pw) async {
+    final Resource? result = await get(
+      resourceType: resource.resourceType!,
+      id: resource.id!,
+      pw: pw,
+    );
+    return result == null ? <Resource>[] : <Resource>[result];
+  }
+
+  Future<List<Resource>> _searchById(
+      R4ResourceType resourceType, String id, String? pw) async {
+    final Resource? result = await get(
+      resourceType: resourceType,
+      id: id,
+      pw: pw,
+    );
+    return result == null ? <Resource>[] : <Resource>[result];
+  }
+
+  Future<List<Resource>> _searchByField(R4ResourceType resourceType,
+      List<Object> field, String value, String? pw) async {
+    bool finder(Map<String, dynamic> finderResource) {
+      dynamic result = finderResource;
+      for (final Object key in field) {
+        result = result[key];
+        if (result == null) {
+          return false;
+        }
+      }
+      return result.toString() == value;
+    }
+
+    return (await search(resourceType: resourceType, finder: finder, pw: pw))
+        .toList();
   }
 
   /// returns all resources of a specific type
