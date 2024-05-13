@@ -29,7 +29,7 @@ dependencies:
   mockito: ^5.4.4
   petitparser: ^6.0.2
   rxdart: ^0.27.3
-  ucum: ^0.4.0
+  ucum: ^0.5.0
   universal_io: ^2.2.2
   uuid: ^4.4.0
   yaml: ^3.1.2
