@@ -185,15 +185,9 @@ abstract class $AuditEventCopyWith<$Res> {
       List<AuditEventEntity>? entity});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  $ElementCopyWith<$Res>? get languageElement;
   $NarrativeCopyWith<$Res>? get text;
   $CodingCopyWith<$Res> get type;
-  $ElementCopyWith<$Res>? get actionElement;
   $PeriodCopyWith<$Res>? get period;
-  $ElementCopyWith<$Res>? get recordedElement;
-  $ElementCopyWith<$Res>? get outcomeElement;
-  $ElementCopyWith<$Res>? get outcomeDescElement;
   $AuditEventSourceCopyWith<$Res> get source;
 }
 
@@ -359,30 +353,6 @@ class _$AuditEventCopyWithImpl<$Res, $Val extends AuditEvent>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get implicitRulesElement {
-    if (_value.implicitRulesElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.implicitRulesElement!, (value) {
-      return _then(_value.copyWith(implicitRulesElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get languageElement {
-    if (_value.languageElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.languageElement!, (value) {
-      return _then(_value.copyWith(languageElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
     if (_value.text == null) {
       return null;
@@ -403,18 +373,6 @@ class _$AuditEventCopyWithImpl<$Res, $Val extends AuditEvent>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get actionElement {
-    if (_value.actionElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.actionElement!, (value) {
-      return _then(_value.copyWith(actionElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get period {
     if (_value.period == null) {
       return null;
@@ -422,42 +380,6 @@ class _$AuditEventCopyWithImpl<$Res, $Val extends AuditEvent>
 
     return $PeriodCopyWith<$Res>(_value.period!, (value) {
       return _then(_value.copyWith(period: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get recordedElement {
-    if (_value.recordedElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.recordedElement!, (value) {
-      return _then(_value.copyWith(recordedElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get outcomeElement {
-    if (_value.outcomeElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.outcomeElement!, (value) {
-      return _then(_value.copyWith(outcomeElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get outcomeDescElement {
-    if (_value.outcomeDescElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.outcomeDescElement!, (value) {
-      return _then(_value.copyWith(outcomeDescElement: value) as $Val);
     });
   }
 
@@ -510,23 +432,11 @@ abstract class _$$AuditEventImplCopyWith<$Res>
   @override
   $FhirMetaCopyWith<$Res>? get meta;
   @override
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  @override
-  $ElementCopyWith<$Res>? get languageElement;
-  @override
   $NarrativeCopyWith<$Res>? get text;
   @override
   $CodingCopyWith<$Res> get type;
   @override
-  $ElementCopyWith<$Res>? get actionElement;
-  @override
   $PeriodCopyWith<$Res>? get period;
-  @override
-  $ElementCopyWith<$Res>? get recordedElement;
-  @override
-  $ElementCopyWith<$Res>? get outcomeElement;
-  @override
-  $ElementCopyWith<$Res>? get outcomeDescElement;
   @override
   $AuditEventSourceCopyWith<$Res> get source;
 }
@@ -1245,7 +1155,7 @@ AuditEventAgent _$AuditEventAgentFromJson(Map<String, dynamic> json) {
 mixin _$AuditEventAgent {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1347,7 +1257,7 @@ abstract class $AuditEventAgentCopyWith<$Res> {
       _$AuditEventAgentCopyWithImpl<$Res, AuditEventAgent>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? type,
@@ -1368,9 +1278,6 @@ abstract class $AuditEventAgentCopyWith<$Res> {
 
   $CodeableConceptCopyWith<$Res>? get type;
   $ReferenceCopyWith<$Res>? get who;
-  $ElementCopyWith<$Res>? get altIdElement;
-  $ElementCopyWith<$Res>? get nameElement;
-  $ElementCopyWith<$Res>? get requestorElement;
   $ReferenceCopyWith<$Res>? get location;
   $CodingCopyWith<$Res>? get media;
   $AuditEventNetworkCopyWith<$Res>? get network;
@@ -1412,7 +1319,7 @@ class _$AuditEventAgentCopyWithImpl<$Res, $Val extends AuditEventAgent>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -1510,42 +1417,6 @@ class _$AuditEventAgentCopyWithImpl<$Res, $Val extends AuditEventAgent>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get altIdElement {
-    if (_value.altIdElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.altIdElement!, (value) {
-      return _then(_value.copyWith(altIdElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get nameElement {
-    if (_value.nameElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.nameElement!, (value) {
-      return _then(_value.copyWith(nameElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get requestorElement {
-    if (_value.requestorElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.requestorElement!, (value) {
-      return _then(_value.copyWith(requestorElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get location {
     if (_value.location == null) {
       return null;
@@ -1590,7 +1461,7 @@ abstract class _$$AuditEventAgentImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? type,
@@ -1613,12 +1484,6 @@ abstract class _$$AuditEventAgentImplCopyWith<$Res>
   $CodeableConceptCopyWith<$Res>? get type;
   @override
   $ReferenceCopyWith<$Res>? get who;
-  @override
-  $ElementCopyWith<$Res>? get altIdElement;
-  @override
-  $ElementCopyWith<$Res>? get nameElement;
-  @override
-  $ElementCopyWith<$Res>? get requestorElement;
   @override
   $ReferenceCopyWith<$Res>? get location;
   @override
@@ -1661,7 +1526,7 @@ class __$$AuditEventAgentImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -1770,7 +1635,7 @@ class _$AuditEventAgentImpl extends _AuditEventAgent {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2032,7 +1897,7 @@ class _$AuditEventAgentImpl extends _AuditEventAgent {
 
 abstract class _AuditEventAgent extends AuditEventAgent {
   const factory _AuditEventAgent(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final CodeableConcept? type,
@@ -2059,7 +1924,7 @@ abstract class _AuditEventAgent extends AuditEventAgent {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -2177,7 +2042,7 @@ AuditEventNetwork _$AuditEventNetworkFromJson(Map<String, dynamic> json) {
 mixin _$AuditEventNetwork {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2233,16 +2098,13 @@ abstract class $AuditEventNetworkCopyWith<$Res> {
       _$AuditEventNetworkCopyWithImpl<$Res, AuditEventNetwork>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? address,
       @JsonKey(name: '_address') Element? addressElement,
       FhirCode? type,
       @JsonKey(name: '_type') Element? typeElement});
-
-  $ElementCopyWith<$Res>? get addressElement;
-  $ElementCopyWith<$Res>? get typeElement;
 }
 
 /// @nodoc
@@ -2270,7 +2132,7 @@ class _$AuditEventNetworkCopyWithImpl<$Res, $Val extends AuditEventNetwork>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -2297,30 +2159,6 @@ class _$AuditEventNetworkCopyWithImpl<$Res, $Val extends AuditEventNetwork>
               as Element?,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get addressElement {
-    if (_value.addressElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.addressElement!, (value) {
-      return _then(_value.copyWith(addressElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get typeElement {
-    if (_value.typeElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.typeElement!, (value) {
-      return _then(_value.copyWith(typeElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -2332,18 +2170,13 @@ abstract class _$$AuditEventNetworkImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? address,
       @JsonKey(name: '_address') Element? addressElement,
       FhirCode? type,
       @JsonKey(name: '_type') Element? typeElement});
-
-  @override
-  $ElementCopyWith<$Res>? get addressElement;
-  @override
-  $ElementCopyWith<$Res>? get typeElement;
 }
 
 /// @nodoc
@@ -2369,7 +2202,7 @@ class __$$AuditEventNetworkImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -2419,7 +2252,7 @@ class _$AuditEventNetworkImpl extends _AuditEventNetwork {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2555,7 +2388,7 @@ class _$AuditEventNetworkImpl extends _AuditEventNetwork {
 
 abstract class _AuditEventNetwork extends AuditEventNetwork {
   const factory _AuditEventNetwork(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final String? address,
@@ -2572,7 +2405,7 @@ abstract class _AuditEventNetwork extends AuditEventNetwork {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -2633,7 +2466,7 @@ AuditEventSource _$AuditEventSourceFromJson(Map<String, dynamic> json) {
 mixin _$AuditEventSource {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2688,7 +2521,7 @@ abstract class $AuditEventSourceCopyWith<$Res> {
       _$AuditEventSourceCopyWithImpl<$Res, AuditEventSource>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? site,
@@ -2696,7 +2529,6 @@ abstract class $AuditEventSourceCopyWith<$Res> {
       Reference observer,
       List<Coding>? type});
 
-  $ElementCopyWith<$Res>? get siteElement;
   $ReferenceCopyWith<$Res> get observer;
 }
 
@@ -2725,7 +2557,7 @@ class _$AuditEventSourceCopyWithImpl<$Res, $Val extends AuditEventSource>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -2755,18 +2587,6 @@ class _$AuditEventSourceCopyWithImpl<$Res, $Val extends AuditEventSource>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get siteElement {
-    if (_value.siteElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.siteElement!, (value) {
-      return _then(_value.copyWith(siteElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get observer {
     return $ReferenceCopyWith<$Res>(_value.observer, (value) {
       return _then(_value.copyWith(observer: value) as $Val);
@@ -2783,7 +2603,7 @@ abstract class _$$AuditEventSourceImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? site,
@@ -2791,8 +2611,6 @@ abstract class _$$AuditEventSourceImplCopyWith<$Res>
       Reference observer,
       List<Coding>? type});
 
-  @override
-  $ElementCopyWith<$Res>? get siteElement;
   @override
   $ReferenceCopyWith<$Res> get observer;
 }
@@ -2820,7 +2638,7 @@ class __$$AuditEventSourceImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -2871,7 +2689,7 @@ class _$AuditEventSourceImpl extends _AuditEventSource {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3015,7 +2833,7 @@ class _$AuditEventSourceImpl extends _AuditEventSource {
 
 abstract class _AuditEventSource extends AuditEventSource {
   const factory _AuditEventSource(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final String? site,
@@ -3031,7 +2849,7 @@ abstract class _AuditEventSource extends AuditEventSource {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -3091,7 +2909,7 @@ AuditEventEntity _$AuditEventEntityFromJson(Map<String, dynamic> json) {
 mixin _$AuditEventEntity {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3173,7 +2991,7 @@ abstract class $AuditEventEntityCopyWith<$Res> {
       _$AuditEventEntityCopyWithImpl<$Res, AuditEventEntity>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       Reference? what,
@@ -3193,9 +3011,6 @@ abstract class $AuditEventEntityCopyWith<$Res> {
   $CodingCopyWith<$Res>? get type;
   $CodingCopyWith<$Res>? get role;
   $CodingCopyWith<$Res>? get lifecycle;
-  $ElementCopyWith<$Res>? get nameElement;
-  $ElementCopyWith<$Res>? get descriptionElement;
-  $ElementCopyWith<$Res>? get queryElement;
 }
 
 /// @nodoc
@@ -3231,7 +3046,7 @@ class _$AuditEventEntityCopyWithImpl<$Res, $Val extends AuditEventEntity>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -3338,42 +3153,6 @@ class _$AuditEventEntityCopyWithImpl<$Res, $Val extends AuditEventEntity>
       return _then(_value.copyWith(lifecycle: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get nameElement {
-    if (_value.nameElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.nameElement!, (value) {
-      return _then(_value.copyWith(nameElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get descriptionElement {
-    if (_value.descriptionElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.descriptionElement!, (value) {
-      return _then(_value.copyWith(descriptionElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get queryElement {
-    if (_value.queryElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.queryElement!, (value) {
-      return _then(_value.copyWith(queryElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -3385,7 +3164,7 @@ abstract class _$$AuditEventEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       Reference? what,
@@ -3409,12 +3188,6 @@ abstract class _$$AuditEventEntityImplCopyWith<$Res>
   $CodingCopyWith<$Res>? get role;
   @override
   $CodingCopyWith<$Res>? get lifecycle;
-  @override
-  $ElementCopyWith<$Res>? get nameElement;
-  @override
-  $ElementCopyWith<$Res>? get descriptionElement;
-  @override
-  $ElementCopyWith<$Res>? get queryElement;
 }
 
 /// @nodoc
@@ -3448,7 +3221,7 @@ class __$$AuditEventEntityImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -3540,7 +3313,7 @@ class _$AuditEventEntityImpl extends _AuditEventEntity {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3749,7 +3522,7 @@ class _$AuditEventEntityImpl extends _AuditEventEntity {
 
 abstract class _AuditEventEntity extends AuditEventEntity {
   const factory _AuditEventEntity(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final Reference? what,
@@ -3773,7 +3546,7 @@ abstract class _AuditEventEntity extends AuditEventEntity {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -3868,7 +3641,7 @@ AuditEventDetail _$AuditEventDetailFromJson(Map<String, dynamic> json) {
 mixin _$AuditEventDetail {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3929,7 +3702,7 @@ abstract class $AuditEventDetailCopyWith<$Res> {
       _$AuditEventDetailCopyWithImpl<$Res, AuditEventDetail>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? type,
@@ -3938,10 +3711,6 @@ abstract class $AuditEventDetailCopyWith<$Res> {
       @JsonKey(name: '_valueString') Element? valueStringElement,
       FhirBase64Binary? valueBase64Binary,
       @JsonKey(name: '_valueBase64Binary') Element? valueBase64BinaryElement});
-
-  $ElementCopyWith<$Res>? get typeElement;
-  $ElementCopyWith<$Res>? get valueStringElement;
-  $ElementCopyWith<$Res>? get valueBase64BinaryElement;
 }
 
 /// @nodoc
@@ -3971,7 +3740,7 @@ class _$AuditEventDetailCopyWithImpl<$Res, $Val extends AuditEventDetail>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -4006,42 +3775,6 @@ class _$AuditEventDetailCopyWithImpl<$Res, $Val extends AuditEventDetail>
               as Element?,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get typeElement {
-    if (_value.typeElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.typeElement!, (value) {
-      return _then(_value.copyWith(typeElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get valueStringElement {
-    if (_value.valueStringElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.valueStringElement!, (value) {
-      return _then(_value.copyWith(valueStringElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get valueBase64BinaryElement {
-    if (_value.valueBase64BinaryElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.valueBase64BinaryElement!, (value) {
-      return _then(_value.copyWith(valueBase64BinaryElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -4053,7 +3786,7 @@ abstract class _$$AuditEventDetailImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? type,
@@ -4062,13 +3795,6 @@ abstract class _$$AuditEventDetailImplCopyWith<$Res>
       @JsonKey(name: '_valueString') Element? valueStringElement,
       FhirBase64Binary? valueBase64Binary,
       @JsonKey(name: '_valueBase64Binary') Element? valueBase64BinaryElement});
-
-  @override
-  $ElementCopyWith<$Res>? get typeElement;
-  @override
-  $ElementCopyWith<$Res>? get valueStringElement;
-  @override
-  $ElementCopyWith<$Res>? get valueBase64BinaryElement;
 }
 
 /// @nodoc
@@ -4096,7 +3822,7 @@ class __$$AuditEventDetailImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -4156,7 +3882,7 @@ class _$AuditEventDetailImpl extends _AuditEventDetail {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -4307,7 +4033,7 @@ class _$AuditEventDetailImpl extends _AuditEventDetail {
 
 abstract class _AuditEventDetail extends AuditEventDetail {
   const factory _AuditEventDetail(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final String? type,
@@ -4326,7 +4052,7 @@ abstract class _AuditEventDetail extends AuditEventDetail {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -4572,13 +4298,9 @@ abstract class $ConsentCopyWith<$Res> {
       ConsentProvision? provision});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  $ElementCopyWith<$Res>? get languageElement;
   $NarrativeCopyWith<$Res>? get text;
-  $ElementCopyWith<$Res>? get statusElement;
   $CodeableConceptCopyWith<$Res> get scope;
   $ReferenceCopyWith<$Res>? get patient;
-  $ElementCopyWith<$Res>? get dateTimeElement;
   $AttachmentCopyWith<$Res>? get sourceAttachment;
   $ReferenceCopyWith<$Res>? get sourceReference;
   $CodeableConceptCopyWith<$Res>? get policyRule;
@@ -4752,30 +4474,6 @@ class _$ConsentCopyWithImpl<$Res, $Val extends Consent>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get implicitRulesElement {
-    if (_value.implicitRulesElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.implicitRulesElement!, (value) {
-      return _then(_value.copyWith(implicitRulesElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get languageElement {
-    if (_value.languageElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.languageElement!, (value) {
-      return _then(_value.copyWith(languageElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
     if (_value.text == null) {
       return null;
@@ -4783,18 +4481,6 @@ class _$ConsentCopyWithImpl<$Res, $Val extends Consent>
 
     return $NarrativeCopyWith<$Res>(_value.text!, (value) {
       return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get statusElement {
-    if (_value.statusElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.statusElement!, (value) {
-      return _then(_value.copyWith(statusElement: value) as $Val);
     });
   }
 
@@ -4815,18 +4501,6 @@ class _$ConsentCopyWithImpl<$Res, $Val extends Consent>
 
     return $ReferenceCopyWith<$Res>(_value.patient!, (value) {
       return _then(_value.copyWith(patient: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get dateTimeElement {
-    if (_value.dateTimeElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.dateTimeElement!, (value) {
-      return _then(_value.copyWith(dateTimeElement: value) as $Val);
     });
   }
 
@@ -4919,19 +4593,11 @@ abstract class _$$ConsentImplCopyWith<$Res> implements $ConsentCopyWith<$Res> {
   @override
   $FhirMetaCopyWith<$Res>? get meta;
   @override
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  @override
-  $ElementCopyWith<$Res>? get languageElement;
-  @override
   $NarrativeCopyWith<$Res>? get text;
-  @override
-  $ElementCopyWith<$Res>? get statusElement;
   @override
   $CodeableConceptCopyWith<$Res> get scope;
   @override
   $ReferenceCopyWith<$Res>? get patient;
-  @override
-  $ElementCopyWith<$Res>? get dateTimeElement;
   @override
   $AttachmentCopyWith<$Res>? get sourceAttachment;
   @override
@@ -5731,7 +5397,7 @@ ConsentPolicy _$ConsentPolicyFromJson(Map<String, dynamic> json) {
 mixin _$ConsentPolicy {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -5788,16 +5454,13 @@ abstract class $ConsentPolicyCopyWith<$Res> {
       _$ConsentPolicyCopyWithImpl<$Res, ConsentPolicy>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirUri? authority,
       @JsonKey(name: '_authority') Element? authorityElement,
       FhirUri? uri,
       @JsonKey(name: '_uri') Element? uriElement});
-
-  $ElementCopyWith<$Res>? get authorityElement;
-  $ElementCopyWith<$Res>? get uriElement;
 }
 
 /// @nodoc
@@ -5825,7 +5488,7 @@ class _$ConsentPolicyCopyWithImpl<$Res, $Val extends ConsentPolicy>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -5852,30 +5515,6 @@ class _$ConsentPolicyCopyWithImpl<$Res, $Val extends ConsentPolicy>
               as Element?,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get authorityElement {
-    if (_value.authorityElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.authorityElement!, (value) {
-      return _then(_value.copyWith(authorityElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get uriElement {
-    if (_value.uriElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.uriElement!, (value) {
-      return _then(_value.copyWith(uriElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -5887,18 +5526,13 @@ abstract class _$$ConsentPolicyImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirUri? authority,
       @JsonKey(name: '_authority') Element? authorityElement,
       FhirUri? uri,
       @JsonKey(name: '_uri') Element? uriElement});
-
-  @override
-  $ElementCopyWith<$Res>? get authorityElement;
-  @override
-  $ElementCopyWith<$Res>? get uriElement;
 }
 
 /// @nodoc
@@ -5924,7 +5558,7 @@ class __$$ConsentPolicyImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -5974,7 +5608,7 @@ class _$ConsentPolicyImpl extends _ConsentPolicy {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -6111,7 +5745,7 @@ class _$ConsentPolicyImpl extends _ConsentPolicy {
 
 abstract class _ConsentPolicy extends ConsentPolicy {
   const factory _ConsentPolicy(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirUri? authority,
@@ -6127,7 +5761,7 @@ abstract class _ConsentPolicy extends ConsentPolicy {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -6189,7 +5823,7 @@ ConsentVerification _$ConsentVerificationFromJson(Map<String, dynamic> json) {
 mixin _$ConsentVerification {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -6247,7 +5881,7 @@ abstract class $ConsentVerificationCopyWith<$Res> {
       _$ConsentVerificationCopyWithImpl<$Res, ConsentVerification>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirBoolean? verified,
@@ -6256,9 +5890,7 @@ abstract class $ConsentVerificationCopyWith<$Res> {
       FhirDateTime? verificationDate,
       @JsonKey(name: '_verificationDate') Element? verificationDateElement});
 
-  $ElementCopyWith<$Res>? get verifiedElement;
   $ReferenceCopyWith<$Res>? get verifiedWith;
-  $ElementCopyWith<$Res>? get verificationDateElement;
 }
 
 /// @nodoc
@@ -6287,7 +5919,7 @@ class _$ConsentVerificationCopyWithImpl<$Res, $Val extends ConsentVerification>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -6321,18 +5953,6 @@ class _$ConsentVerificationCopyWithImpl<$Res, $Val extends ConsentVerification>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get verifiedElement {
-    if (_value.verifiedElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.verifiedElement!, (value) {
-      return _then(_value.copyWith(verifiedElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get verifiedWith {
     if (_value.verifiedWith == null) {
       return null;
@@ -6340,18 +5960,6 @@ class _$ConsentVerificationCopyWithImpl<$Res, $Val extends ConsentVerification>
 
     return $ReferenceCopyWith<$Res>(_value.verifiedWith!, (value) {
       return _then(_value.copyWith(verifiedWith: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get verificationDateElement {
-    if (_value.verificationDateElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.verificationDateElement!, (value) {
-      return _then(_value.copyWith(verificationDateElement: value) as $Val);
     });
   }
 }
@@ -6365,7 +5973,7 @@ abstract class _$$ConsentVerificationImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirBoolean? verified,
@@ -6375,11 +5983,7 @@ abstract class _$$ConsentVerificationImplCopyWith<$Res>
       @JsonKey(name: '_verificationDate') Element? verificationDateElement});
 
   @override
-  $ElementCopyWith<$Res>? get verifiedElement;
-  @override
   $ReferenceCopyWith<$Res>? get verifiedWith;
-  @override
-  $ElementCopyWith<$Res>? get verificationDateElement;
 }
 
 /// @nodoc
@@ -6406,7 +6010,7 @@ class __$$ConsentVerificationImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -6461,7 +6065,7 @@ class _$ConsentVerificationImpl extends _ConsentVerification {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -6606,7 +6210,7 @@ class _$ConsentVerificationImpl extends _ConsentVerification {
 
 abstract class _ConsentVerification extends ConsentVerification {
   const factory _ConsentVerification(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirBoolean? verified,
@@ -6624,7 +6228,7 @@ abstract class _ConsentVerification extends ConsentVerification {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -6688,7 +6292,7 @@ ConsentProvision _$ConsentProvisionFromJson(Map<String, dynamic> json) {
 mixin _$ConsentProvision {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -6775,7 +6379,7 @@ abstract class $ConsentProvisionCopyWith<$Res> {
       _$ConsentProvisionCopyWithImpl<$Res, ConsentProvision>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? type,
@@ -6791,7 +6395,6 @@ abstract class $ConsentProvisionCopyWith<$Res> {
       List<ConsentData>? data,
       List<ConsentProvision>? provision});
 
-  $ElementCopyWith<$Res>? get typeElement;
   $PeriodCopyWith<$Res>? get period;
   $PeriodCopyWith<$Res>? get dataPeriod;
 }
@@ -6829,7 +6432,7 @@ class _$ConsentProvisionCopyWithImpl<$Res, $Val extends ConsentProvision>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -6891,18 +6494,6 @@ class _$ConsentProvisionCopyWithImpl<$Res, $Val extends ConsentProvision>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get typeElement {
-    if (_value.typeElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.typeElement!, (value) {
-      return _then(_value.copyWith(typeElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get period {
     if (_value.period == null) {
       return null;
@@ -6935,7 +6526,7 @@ abstract class _$$ConsentProvisionImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? type,
@@ -6951,8 +6542,6 @@ abstract class _$$ConsentProvisionImplCopyWith<$Res>
       List<ConsentData>? data,
       List<ConsentProvision>? provision});
 
-  @override
-  $ElementCopyWith<$Res>? get typeElement;
   @override
   $PeriodCopyWith<$Res>? get period;
   @override
@@ -6990,7 +6579,7 @@ class __$$ConsentProvisionImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -7088,7 +6677,7 @@ class _$ConsentProvisionImpl extends _ConsentProvision {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -7360,7 +6949,7 @@ class _$ConsentProvisionImpl extends _ConsentProvision {
 
 abstract class _ConsentProvision extends ConsentProvision {
   const factory _ConsentProvision(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirCode? type,
@@ -7384,7 +6973,7 @@ abstract class _ConsentProvision extends ConsentProvision {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -7484,7 +7073,7 @@ ConsentActor _$ConsentActorFromJson(Map<String, dynamic> json) {
 mixin _$ConsentActor {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -7533,7 +7122,7 @@ abstract class $ConsentActorCopyWith<$Res> {
       _$ConsentActorCopyWithImpl<$Res, ConsentActor>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept role,
@@ -7566,7 +7155,7 @@ class _$ConsentActorCopyWithImpl<$Res, $Val extends ConsentActor>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -7612,7 +7201,7 @@ abstract class _$$ConsentActorImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept role,
@@ -7645,7 +7234,7 @@ class __$$ConsentActorImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -7685,7 +7274,7 @@ class _$ConsentActorImpl extends _ConsentActor {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -7806,7 +7395,7 @@ class _$ConsentActorImpl extends _ConsentActor {
 
 abstract class _ConsentActor extends ConsentActor {
   const factory _ConsentActor(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required final CodeableConcept role,
@@ -7820,7 +7409,7 @@ abstract class _ConsentActor extends ConsentActor {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -7872,7 +7461,7 @@ ConsentData _$ConsentDataFromJson(Map<String, dynamic> json) {
 mixin _$ConsentData {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -7924,14 +7513,13 @@ abstract class $ConsentDataCopyWith<$Res> {
       _$ConsentDataCopyWithImpl<$Res, ConsentData>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? meaning,
       @JsonKey(name: '_meaning') Element? meaningElement,
       Reference reference});
 
-  $ElementCopyWith<$Res>? get meaningElement;
   $ReferenceCopyWith<$Res> get reference;
 }
 
@@ -7959,7 +7547,7 @@ class _$ConsentDataCopyWithImpl<$Res, $Val extends ConsentData>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -7985,18 +7573,6 @@ class _$ConsentDataCopyWithImpl<$Res, $Val extends ConsentData>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get meaningElement {
-    if (_value.meaningElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.meaningElement!, (value) {
-      return _then(_value.copyWith(meaningElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get reference {
     return $ReferenceCopyWith<$Res>(_value.reference, (value) {
       return _then(_value.copyWith(reference: value) as $Val);
@@ -8013,15 +7589,13 @@ abstract class _$$ConsentDataImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? meaning,
       @JsonKey(name: '_meaning') Element? meaningElement,
       Reference reference});
 
-  @override
-  $ElementCopyWith<$Res>? get meaningElement;
   @override
   $ReferenceCopyWith<$Res> get reference;
 }
@@ -8048,7 +7622,7 @@ class __$$ConsentDataImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -8093,7 +7667,7 @@ class _$ConsentDataImpl extends _ConsentData {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -8221,7 +7795,7 @@ class _$ConsentDataImpl extends _ConsentData {
 
 abstract class _ConsentData extends ConsentData {
   const factory _ConsentData(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirCode? meaning,
@@ -8236,7 +7810,7 @@ abstract class _ConsentData extends ConsentData {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -8453,12 +8027,8 @@ abstract class $ProvenanceCopyWith<$Res> {
       List<Signature>? signature});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  $ElementCopyWith<$Res>? get languageElement;
   $NarrativeCopyWith<$Res>? get text;
   $PeriodCopyWith<$Res>? get occurredPeriod;
-  $ElementCopyWith<$Res>? get occurredDateTimeElement;
-  $ElementCopyWith<$Res>? get recordedElement;
   $ReferenceCopyWith<$Res>? get location;
   $CodeableConceptCopyWith<$Res>? get activity;
 }
@@ -8620,30 +8190,6 @@ class _$ProvenanceCopyWithImpl<$Res, $Val extends Provenance>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get implicitRulesElement {
-    if (_value.implicitRulesElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.implicitRulesElement!, (value) {
-      return _then(_value.copyWith(implicitRulesElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get languageElement {
-    if (_value.languageElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.languageElement!, (value) {
-      return _then(_value.copyWith(languageElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
     if (_value.text == null) {
       return null;
@@ -8663,30 +8209,6 @@ class _$ProvenanceCopyWithImpl<$Res, $Val extends Provenance>
 
     return $PeriodCopyWith<$Res>(_value.occurredPeriod!, (value) {
       return _then(_value.copyWith(occurredPeriod: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get occurredDateTimeElement {
-    if (_value.occurredDateTimeElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.occurredDateTimeElement!, (value) {
-      return _then(_value.copyWith(occurredDateTimeElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get recordedElement {
-    if (_value.recordedElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.recordedElement!, (value) {
-      return _then(_value.copyWith(recordedElement: value) as $Val);
     });
   }
 
@@ -8754,17 +8276,9 @@ abstract class _$$ProvenanceImplCopyWith<$Res>
   @override
   $FhirMetaCopyWith<$Res>? get meta;
   @override
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  @override
-  $ElementCopyWith<$Res>? get languageElement;
-  @override
   $NarrativeCopyWith<$Res>? get text;
   @override
   $PeriodCopyWith<$Res>? get occurredPeriod;
-  @override
-  $ElementCopyWith<$Res>? get occurredDateTimeElement;
-  @override
-  $ElementCopyWith<$Res>? get recordedElement;
   @override
   $ReferenceCopyWith<$Res>? get location;
   @override
@@ -9511,7 +9025,7 @@ ProvenanceAgent _$ProvenanceAgentFromJson(Map<String, dynamic> json) {
 mixin _$ProvenanceAgent {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -9566,7 +9080,7 @@ abstract class $ProvenanceAgentCopyWith<$Res> {
       _$ProvenanceAgentCopyWithImpl<$Res, ProvenanceAgent>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? type,
@@ -9604,7 +9118,7 @@ class _$ProvenanceAgentCopyWithImpl<$Res, $Val extends ProvenanceAgent>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -9674,7 +9188,7 @@ abstract class _$$ProvenanceAgentImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? type,
@@ -9713,7 +9227,7 @@ class __$$ProvenanceAgentImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -9764,7 +9278,7 @@ class _$ProvenanceAgentImpl extends _ProvenanceAgent {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -9908,7 +9422,7 @@ class _$ProvenanceAgentImpl extends _ProvenanceAgent {
 
 abstract class _ProvenanceAgent extends ProvenanceAgent {
   const factory _ProvenanceAgent(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final CodeableConcept? type,
@@ -9924,7 +9438,7 @@ abstract class _ProvenanceAgent extends ProvenanceAgent {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -9984,7 +9498,7 @@ ProvenanceEntity _$ProvenanceEntityFromJson(Map<String, dynamic> json) {
 mixin _$ProvenanceEntity {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -10041,7 +9555,7 @@ abstract class $ProvenanceEntityCopyWith<$Res> {
       _$ProvenanceEntityCopyWithImpl<$Res, ProvenanceEntity>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? role,
@@ -10049,7 +9563,6 @@ abstract class $ProvenanceEntityCopyWith<$Res> {
       Reference what,
       List<ProvenanceAgent>? agent});
 
-  $ElementCopyWith<$Res>? get roleElement;
   $ReferenceCopyWith<$Res> get what;
 }
 
@@ -10078,7 +9591,7 @@ class _$ProvenanceEntityCopyWithImpl<$Res, $Val extends ProvenanceEntity>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -10108,18 +9621,6 @@ class _$ProvenanceEntityCopyWithImpl<$Res, $Val extends ProvenanceEntity>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get roleElement {
-    if (_value.roleElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.roleElement!, (value) {
-      return _then(_value.copyWith(roleElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get what {
     return $ReferenceCopyWith<$Res>(_value.what, (value) {
       return _then(_value.copyWith(what: value) as $Val);
@@ -10136,7 +9637,7 @@ abstract class _$$ProvenanceEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? role,
@@ -10144,8 +9645,6 @@ abstract class _$$ProvenanceEntityImplCopyWith<$Res>
       Reference what,
       List<ProvenanceAgent>? agent});
 
-  @override
-  $ElementCopyWith<$Res>? get roleElement;
   @override
   $ReferenceCopyWith<$Res> get what;
 }
@@ -10173,7 +9672,7 @@ class __$$ProvenanceEntityImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -10224,7 +9723,7 @@ class _$ProvenanceEntityImpl extends _ProvenanceEntity {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -10372,7 +9871,7 @@ class _$ProvenanceEntityImpl extends _ProvenanceEntity {
 
 abstract class _ProvenanceEntity extends ProvenanceEntity {
   const factory _ProvenanceEntity(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirCode? role,
@@ -10388,7 +9887,7 @@ abstract class _ProvenanceEntity extends ProvenanceEntity {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not

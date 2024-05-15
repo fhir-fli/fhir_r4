@@ -15,7 +15,7 @@ part 'fhir_extension.g.dart';
 
 /// [extension_] Optional Extension Element - found in all resources.
 @freezed
-class FhirExtension with _$FhirExtension {
+class FhirExtension with Element, _$FhirExtension {
   /// [FhirExtension] Optional Extension Element - found in all resources.
   const FhirExtension._();
 
@@ -552,8 +552,8 @@ class FhirExtension with _$FhirExtension {
     Dosage? valueDosage,
   }) = _FhirExtension;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'FhirExtension';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory FhirExtension.fromYaml(dynamic yaml) => yaml is String
@@ -581,8 +581,4 @@ class FhirExtension with _$FhirExtension {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }

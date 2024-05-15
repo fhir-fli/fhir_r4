@@ -16,7 +16,7 @@ part 'metadata_types.g.dart';
 
 /// [ContactDetail] Specifies contact information for a person or
 @freezed
-class ContactDetail with _$ContactDetail {
+class ContactDetail with DataType, _$ContactDetail {
   /// [ContactDetail] Specifies contact information for a person or
   const ContactDetail._();
 
@@ -63,8 +63,8 @@ class ContactDetail with _$ContactDetail {
     List<ContactPoint>? telecom,
   }) = _ContactDetail;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'ContactDetail';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ContactDetail.fromYaml(dynamic yaml) => yaml is String
@@ -92,10 +92,6 @@ class ContactDetail with _$ContactDetail {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 
   ContactDetail updateContactPointSystem(ContactPointSystem system,
       [int index = 0]) {
@@ -176,7 +172,7 @@ class ContactDetail with _$ContactDetail {
 
 /// [Contributor] A contributor to the content of a knowledge asset,
 @freezed
-class Contributor with _$Contributor {
+class Contributor with DataType, _$Contributor {
   /// [Contributor] A contributor to the content of a knowledge asset,
   const Contributor._();
 
@@ -235,8 +231,8 @@ class Contributor with _$Contributor {
     List<ContactDetail>? contact,
   }) = _Contributor;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'Contributor';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory Contributor.fromYaml(dynamic yaml) => yaml is String
@@ -264,15 +260,11 @@ class Contributor with _$Contributor {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [DataRequirement] Describes a required data item for evaluation in terms
 @freezed
-class DataRequirement with _$DataRequirement {
+class DataRequirement with DataType, _$DataRequirement {
   /// [DataRequirement] Describes a required data item for evaluation in terms
   const DataRequirement._();
 
@@ -402,8 +394,8 @@ class DataRequirement with _$DataRequirement {
     List<DataRequirementSort>? sort,
   }) = _DataRequirement;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'DataRequirement';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory DataRequirement.fromYaml(dynamic yaml) => yaml is String
@@ -431,15 +423,11 @@ class DataRequirement with _$DataRequirement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [DataRequirementCodeFilter] Describes a required data item for
 @freezed
-class DataRequirementCodeFilter with _$DataRequirementCodeFilter {
+class DataRequirementCodeFilter with Element, _$DataRequirementCodeFilter {
   /// [DataRequirementCodeFilter] Describes a required data item for
   const DataRequirementCodeFilter._();
 
@@ -561,8 +549,8 @@ class DataRequirementCodeFilter with _$DataRequirementCodeFilter {
     List<Coding>? code,
   }) = _DataRequirementCodeFilter;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'DataRequirementCodeFilter';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory DataRequirementCodeFilter.fromYaml(dynamic yaml) => yaml is String
@@ -590,15 +578,11 @@ class DataRequirementCodeFilter with _$DataRequirementCodeFilter {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [DataRequirementDateFilter] Describes a required data item for
 @freezed
-class DataRequirementDateFilter with _$DataRequirementDateFilter {
+class DataRequirementDateFilter with Element, _$DataRequirementDateFilter {
   /// [DataRequirementDateFilter] Describes a required data item for
   const DataRequirementDateFilter._();
 
@@ -746,8 +730,8 @@ class DataRequirementDateFilter with _$DataRequirementDateFilter {
     FhirDuration? valueDuration,
   }) = _DataRequirementDateFilter;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'DataRequirementDateFilter';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory DataRequirementDateFilter.fromYaml(dynamic yaml) => yaml is String
@@ -775,15 +759,11 @@ class DataRequirementDateFilter with _$DataRequirementDateFilter {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [DataRequirementSort] Describes a required data item for evaluation in
 @freezed
-class DataRequirementSort with _$DataRequirementSort {
+class DataRequirementSort with Element, _$DataRequirementSort {
   /// [DataRequirementSort] Describes a required data item for evaluation in
   const DataRequirementSort._();
 
@@ -872,8 +852,8 @@ class DataRequirementSort with _$DataRequirementSort {
     @JsonKey(name: '_direction') Element? directionElement,
   }) = _DataRequirementSort;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'DataRequirementSort';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory DataRequirementSort.fromYaml(dynamic yaml) => yaml is String
@@ -901,15 +881,11 @@ class DataRequirementSort with _$DataRequirementSort {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [ParameterDefinition] The parameters to the module. This collection
 @freezed
-class ParameterDefinition with _$ParameterDefinition {
+class ParameterDefinition with DataType, _$ParameterDefinition {
   /// [ParameterDefinition] The parameters to the module. This collection
   const ParameterDefinition._();
 
@@ -1016,8 +992,8 @@ class ParameterDefinition with _$ParameterDefinition {
     FhirCanonical? profile,
   }) = _ParameterDefinition;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'ParameterDefinition';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ParameterDefinition.fromYaml(dynamic yaml) => yaml is String
@@ -1045,15 +1021,11 @@ class ParameterDefinition with _$ParameterDefinition {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [RelatedArtifact] Related artifacts such as additional documentation,
 @freezed
-class RelatedArtifact with _$RelatedArtifact {
+class RelatedArtifact with DataType, _$RelatedArtifact {
   /// [RelatedArtifact] Related artifacts such as additional documentation,
   const RelatedArtifact._();
 
@@ -1156,8 +1128,8 @@ class RelatedArtifact with _$RelatedArtifact {
     FhirCanonical? resource,
   }) = _RelatedArtifact;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'RelatedArtifact';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory RelatedArtifact.fromYaml(dynamic yaml) => yaml is String
@@ -1185,15 +1157,11 @@ class RelatedArtifact with _$RelatedArtifact {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [TriggerDefinition] A description of a triggering event. Triggering
 @freezed
-class TriggerDefinition with _$TriggerDefinition {
+class TriggerDefinition with DataType, _$TriggerDefinition {
   /// [TriggerDefinition] A description of a triggering event. Triggering
   const TriggerDefinition._();
 
@@ -1299,8 +1267,8 @@ class TriggerDefinition with _$TriggerDefinition {
     FhirExpression? condition,
   }) = _TriggerDefinition;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'TriggerDefinition';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory TriggerDefinition.fromYaml(dynamic yaml) => yaml is String
@@ -1328,15 +1296,11 @@ class TriggerDefinition with _$TriggerDefinition {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [UsageContext] Specifies clinical/business/etc. metadata that can be used
 @freezed
-class UsageContext with _$UsageContext {
+class UsageContext with DataType, _$UsageContext {
   /// [UsageContext] Specifies clinical/business/etc. metadata that can be used
   const UsageContext._();
 
@@ -1403,8 +1367,8 @@ class UsageContext with _$UsageContext {
     Reference? valueReference,
   }) = _UsageContext;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'UsageContext';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory UsageContext.fromYaml(dynamic yaml) => yaml is String
@@ -1432,15 +1396,11 @@ class UsageContext with _$UsageContext {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [FhirExpression] A expression that is evaluated in a specified context and
 @freezed
-class FhirExpression with _$FhirExpression {
+class FhirExpression with DataType, _$FhirExpression {
   /// [FhirExpression] A expression that is evaluated in a specified context and
   const FhirExpression._();
 
@@ -1529,8 +1489,8 @@ class FhirExpression with _$FhirExpression {
     @JsonKey(name: '_reference') Element? referenceElement,
   }) = _FhirExpression;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'FhirExpression';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory FhirExpression.fromYaml(dynamic yaml) => yaml is String
@@ -1558,8 +1518,4 @@ class FhirExpression with _$FhirExpression {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }

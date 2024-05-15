@@ -1070,7 +1070,6 @@ abstract class $ProdCharacteristicCopyWith<$Res> {
   $QuantityCopyWith<$Res>? get weight;
   $QuantityCopyWith<$Res>? get nominalVolume;
   $QuantityCopyWith<$Res>? get externalDiameter;
-  $ElementCopyWith<$Res>? get shapeElement;
   $CodeableConceptCopyWith<$Res>? get scoring;
 }
 
@@ -1251,18 +1250,6 @@ class _$ProdCharacteristicCopyWithImpl<$Res, $Val extends ProdCharacteristic>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get shapeElement {
-    if (_value.shapeElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.shapeElement!, (value) {
-      return _then(_value.copyWith(shapeElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get scoring {
     if (_value.scoring == null) {
       return null;
@@ -1313,8 +1300,6 @@ abstract class _$$ProdCharacteristicImplCopyWith<$Res>
   $QuantityCopyWith<$Res>? get nominalVolume;
   @override
   $QuantityCopyWith<$Res>? get externalDiameter;
-  @override
-  $ElementCopyWith<$Res>? get shapeElement;
   @override
   $CodeableConceptCopyWith<$Res>? get scoring;
 }
@@ -1972,7 +1957,6 @@ abstract class $MarketingStatusCopyWith<$Res> {
   $CodeableConceptCopyWith<$Res>? get jurisdiction;
   $CodeableConceptCopyWith<$Res> get status;
   $PeriodCopyWith<$Res>? get dateRange;
-  $ElementCopyWith<$Res>? get restoreDateElement;
 }
 
 /// @nodoc
@@ -2081,18 +2065,6 @@ class _$MarketingStatusCopyWithImpl<$Res, $Val extends MarketingStatus>
       return _then(_value.copyWith(dateRange: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get restoreDateElement {
-    if (_value.restoreDateElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.restoreDateElement!, (value) {
-      return _then(_value.copyWith(restoreDateElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -2122,8 +2094,6 @@ abstract class _$$MarketingStatusImplCopyWith<$Res>
   $CodeableConceptCopyWith<$Res> get status;
   @override
   $PeriodCopyWith<$Res>? get dateRange;
-  @override
-  $ElementCopyWith<$Res>? get restoreDateElement;
 }
 
 /// @nodoc

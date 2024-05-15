@@ -413,7 +413,7 @@ Map<String, dynamic> _$$DiagnosticReportImplToJson(
 _$DiagnosticReportMediaImpl _$$DiagnosticReportMediaImplFromJson(
         Map<String, dynamic> json) =>
     _$DiagnosticReportMediaImpl(
-      id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+      id: json['id'] as String?,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -437,7 +437,7 @@ Map<String, dynamic> _$$DiagnosticReportMediaImplToJson(
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
@@ -615,7 +615,7 @@ Map<String, dynamic> _$$ImagingStudyImplToJson(_$ImagingStudyImpl instance) {
 _$ImagingStudySeriesImpl _$$ImagingStudySeriesImplFromJson(
         Map<String, dynamic> json) =>
     _$ImagingStudySeriesImpl(
-      id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+      id: json['id'] as String?,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -681,7 +681,7 @@ Map<String, dynamic> _$$ImagingStudySeriesImplToJson(
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
@@ -711,7 +711,7 @@ Map<String, dynamic> _$$ImagingStudySeriesImplToJson(
 _$ImagingStudyPerformerImpl _$$ImagingStudyPerformerImplFromJson(
         Map<String, dynamic> json) =>
     _$ImagingStudyPerformerImpl(
-      id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+      id: json['id'] as String?,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -734,7 +734,7 @@ Map<String, dynamic> _$$ImagingStudyPerformerImplToJson(
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
@@ -747,7 +747,7 @@ Map<String, dynamic> _$$ImagingStudyPerformerImplToJson(
 _$ImagingStudyInstanceImpl _$$ImagingStudyInstanceImplFromJson(
         Map<String, dynamic> json) =>
     _$ImagingStudyInstanceImpl(
-      id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+      id: json['id'] as String?,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -781,7 +781,7 @@ Map<String, dynamic> _$$ImagingStudyInstanceImplToJson(
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
@@ -1128,7 +1128,7 @@ Map<String, dynamic> _$$MolecularSequenceImplToJson(
 _$MolecularSequenceReferenceSeqImpl
     _$$MolecularSequenceReferenceSeqImplFromJson(Map<String, dynamic> json) =>
         _$MolecularSequenceReferenceSeqImpl(
-          id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+          id: json['id'] as String?,
           extension_: (json['extension'] as List<dynamic>?)
               ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
               .toList(),
@@ -1191,7 +1191,7 @@ Map<String, dynamic> _$$MolecularSequenceReferenceSeqImplToJson(
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
@@ -1218,7 +1218,7 @@ Map<String, dynamic> _$$MolecularSequenceReferenceSeqImplToJson(
 _$MolecularSequenceVariantImpl _$$MolecularSequenceVariantImplFromJson(
         Map<String, dynamic> json) =>
     _$MolecularSequenceVariantImpl(
-      id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+      id: json['id'] as String?,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -1260,7 +1260,7 @@ Map<String, dynamic> _$$MolecularSequenceVariantImplToJson(
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
@@ -1282,7 +1282,7 @@ Map<String, dynamic> _$$MolecularSequenceVariantImplToJson(
 _$MolecularSequenceQualityImpl _$$MolecularSequenceQualityImplFromJson(
         Map<String, dynamic> json) =>
     _$MolecularSequenceQualityImpl(
-      id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+      id: json['id'] as String?,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -1370,7 +1370,7 @@ Map<String, dynamic> _$$MolecularSequenceQualityImplToJson(
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
@@ -1407,7 +1407,7 @@ Map<String, dynamic> _$$MolecularSequenceQualityImplToJson(
 _$MolecularSequenceRocImpl _$$MolecularSequenceRocImplFromJson(
         Map<String, dynamic> json) =>
     _$MolecularSequenceRocImpl(
-      id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+      id: json['id'] as String?,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -1471,7 +1471,7 @@ Map<String, dynamic> _$$MolecularSequenceRocImplToJson(
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
@@ -1505,7 +1505,7 @@ Map<String, dynamic> _$$MolecularSequenceRocImplToJson(
 _$MolecularSequenceRepositoryImpl _$$MolecularSequenceRepositoryImplFromJson(
         Map<String, dynamic> json) =>
     _$MolecularSequenceRepositoryImpl(
-      id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+      id: json['id'] as String?,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -1548,7 +1548,7 @@ Map<String, dynamic> _$$MolecularSequenceRepositoryImplToJson(
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
@@ -1572,7 +1572,7 @@ _$MolecularSequenceStructureVariantImpl
     _$$MolecularSequenceStructureVariantImplFromJson(
             Map<String, dynamic> json) =>
         _$MolecularSequenceStructureVariantImpl(
-          id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+          id: json['id'] as String?,
           extension_: (json['extension'] as List<dynamic>?)
               ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
               .toList(),
@@ -1615,7 +1615,7 @@ Map<String, dynamic> _$$MolecularSequenceStructureVariantImplToJson(
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
@@ -1633,7 +1633,7 @@ Map<String, dynamic> _$$MolecularSequenceStructureVariantImplToJson(
 _$MolecularSequenceOuterImpl _$$MolecularSequenceOuterImplFromJson(
         Map<String, dynamic> json) =>
     _$MolecularSequenceOuterImpl(
-      id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+      id: json['id'] as String?,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -1660,7 +1660,7 @@ Map<String, dynamic> _$$MolecularSequenceOuterImplToJson(
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
@@ -1675,7 +1675,7 @@ Map<String, dynamic> _$$MolecularSequenceOuterImplToJson(
 _$MolecularSequenceInnerImpl _$$MolecularSequenceInnerImplFromJson(
         Map<String, dynamic> json) =>
     _$MolecularSequenceInnerImpl(
-      id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+      id: json['id'] as String?,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -1702,7 +1702,7 @@ Map<String, dynamic> _$$MolecularSequenceInnerImplToJson(
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
@@ -1970,7 +1970,7 @@ Map<String, dynamic> _$$ObservationImplToJson(_$ObservationImpl instance) {
 _$ObservationReferenceRangeImpl _$$ObservationReferenceRangeImplFromJson(
         Map<String, dynamic> json) =>
     _$ObservationReferenceRangeImpl(
-      id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+      id: json['id'] as String?,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -2008,7 +2008,7 @@ Map<String, dynamic> _$$ObservationReferenceRangeImplToJson(
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
@@ -2027,7 +2027,7 @@ Map<String, dynamic> _$$ObservationReferenceRangeImplToJson(
 _$ObservationComponentImpl _$$ObservationComponentImplFromJson(
         Map<String, dynamic> json) =>
     _$ObservationComponentImpl(
-      id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+      id: json['id'] as String?,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -2106,7 +2106,7 @@ Map<String, dynamic> _$$ObservationComponentImplToJson(
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
@@ -2258,7 +2258,7 @@ Map<String, dynamic> _$$QuestionnaireResponseImplToJson(
 _$QuestionnaireResponseItemImpl _$$QuestionnaireResponseItemImplFromJson(
         Map<String, dynamic> json) =>
     _$QuestionnaireResponseItemImpl(
-      id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+      id: json['id'] as String?,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -2299,7 +2299,7 @@ Map<String, dynamic> _$$QuestionnaireResponseItemImplToJson(
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
@@ -2318,7 +2318,7 @@ Map<String, dynamic> _$$QuestionnaireResponseItemImplToJson(
 _$QuestionnaireResponseAnswerImpl _$$QuestionnaireResponseAnswerImplFromJson(
         Map<String, dynamic> json) =>
     _$QuestionnaireResponseAnswerImpl(
-      id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+      id: json['id'] as String?,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -2399,7 +2399,7 @@ Map<String, dynamic> _$$QuestionnaireResponseAnswerImplToJson(
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
@@ -2557,7 +2557,7 @@ Map<String, dynamic> _$$SpecimenImplToJson(_$SpecimenImpl instance) {
 _$SpecimenCollectionImpl _$$SpecimenCollectionImplFromJson(
         Map<String, dynamic> json) =>
     _$SpecimenCollectionImpl(
-      id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+      id: json['id'] as String?,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -2609,7 +2609,7 @@ Map<String, dynamic> _$$SpecimenCollectionImplToJson(
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
@@ -2633,7 +2633,7 @@ Map<String, dynamic> _$$SpecimenCollectionImplToJson(
 _$SpecimenProcessingImpl _$$SpecimenProcessingImplFromJson(
         Map<String, dynamic> json) =>
     _$SpecimenProcessingImpl(
-      id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+      id: json['id'] as String?,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -2671,7 +2671,7 @@ Map<String, dynamic> _$$SpecimenProcessingImplToJson(
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
@@ -2689,7 +2689,7 @@ Map<String, dynamic> _$$SpecimenProcessingImplToJson(
 _$SpecimenContainerImpl _$$SpecimenContainerImplFromJson(
         Map<String, dynamic> json) =>
     _$SpecimenContainerImpl(
-      id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+      id: json['id'] as String?,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -2732,7 +2732,7 @@ Map<String, dynamic> _$$SpecimenContainerImplToJson(
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',

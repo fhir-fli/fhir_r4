@@ -15,7 +15,7 @@ part 'draft_types.g.dart';
 
 /// [Population] A populatioof people with some set of grouping criteria.
 @freezed
-class Population with _$Population {
+class Population with Element, _$Population {
   /// [Population] A populatioof people with some set of grouping criteria.
   const Population._();
 
@@ -100,8 +100,8 @@ class Population with _$Population {
     CodeableConcept? physiologicalCondition,
   }) = _Population;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'Population';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory Population.fromYaml(dynamic yaml) => yaml is String
@@ -129,15 +129,11 @@ class Population with _$Population {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [ProductShelfLife] The shelf-life and storage information for a medicinal product item or container can be described using this class.
 @freezed
-class ProductShelfLife with _$ProductShelfLife {
+class ProductShelfLife with Element, _$ProductShelfLife {
   /// [ProductShelfLife] The shelf-life and storage information for a medicinal product item or container can be described using this class.
   const ProductShelfLife._();
 
@@ -173,8 +169,8 @@ class ProductShelfLife with _$ProductShelfLife {
     List<CodeableConcept>? specialPrecautionsForStorage,
   }) = _ProductShelfLife;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'ProductShelfLife';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ProductShelfLife.fromYaml(dynamic yaml) => yaml is String
@@ -202,15 +198,11 @@ class ProductShelfLife with _$ProductShelfLife {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [ProdCharacteristic] The marketing status describes the date when a
 @freezed
-class ProdCharacteristic with _$ProdCharacteristic {
+class ProdCharacteristic with Element, _$ProdCharacteristic {
   /// [ProdCharacteristic] The marketing status describes the date when a
   const ProdCharacteristic._();
 
@@ -390,8 +382,8 @@ class ProdCharacteristic with _$ProdCharacteristic {
     CodeableConcept? scoring,
   }) = _ProdCharacteristic;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'ProdCharacteristic';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ProdCharacteristic.fromYaml(dynamic yaml) => yaml is String
@@ -419,15 +411,11 @@ class ProdCharacteristic with _$ProdCharacteristic {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [MarketingStatus] The marketing status describes the date when a
 @freezed
-class MarketingStatus with _$MarketingStatus {
+class MarketingStatus with Element, _$MarketingStatus {
   /// [MarketingStatus] The marketing status describes the date when a
   const MarketingStatus._();
 
@@ -557,8 +545,8 @@ class MarketingStatus with _$MarketingStatus {
     @JsonKey(name: '_restoreDate') Element? restoreDateElement,
   }) = _MarketingStatus;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MarketingStatus';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MarketingStatus.fromYaml(dynamic yaml) => yaml is String
@@ -586,8 +574,4 @@ class MarketingStatus with _$MarketingStatus {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }

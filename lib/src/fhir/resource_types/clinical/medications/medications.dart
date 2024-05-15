@@ -371,6 +371,9 @@ class Immunization with Resource, _$Immunization {
     List<ImmunizationProtocolApplied>? protocolApplied,
   }) = _Immunization;
 
+  @override
+  String get fhirType => 'Immunization';
+
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory Immunization.fromYaml(dynamic yaml) => yaml is String
       ? Immunization.fromJson(
@@ -406,7 +409,7 @@ class Immunization with Resource, _$Immunization {
 
 /// [ImmunizationPerformer] Describes the event of a patient being
 @freezed
-class ImmunizationPerformer with _$ImmunizationPerformer {
+class ImmunizationPerformer with BackboneType, _$ImmunizationPerformer {
   /// [ImmunizationPerformer] Describes the event of a patient being
   const ImmunizationPerformer._();
 
@@ -445,7 +448,7 @@ class ImmunizationPerformer with _$ImmunizationPerformer {
   const factory ImmunizationPerformer({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -478,8 +481,8 @@ class ImmunizationPerformer with _$ImmunizationPerformer {
     required Reference actor,
   }) = _ImmunizationPerformer;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'ImmunizationPerformer';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ImmunizationPerformer.fromYaml(dynamic yaml) => yaml is String
@@ -507,15 +510,11 @@ class ImmunizationPerformer with _$ImmunizationPerformer {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [ImmunizationEducation] Describes the event of a patient being
 @freezed
-class ImmunizationEducation with _$ImmunizationEducation {
+class ImmunizationEducation with BackboneType, _$ImmunizationEducation {
   /// [ImmunizationEducation] Describes the event of a patient being
   const ImmunizationEducation._();
 
@@ -567,7 +566,7 @@ class ImmunizationEducation with _$ImmunizationEducation {
   const factory ImmunizationEducation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -619,8 +618,8 @@ class ImmunizationEducation with _$ImmunizationEducation {
     @JsonKey(name: '_presentationDate') Element? presentationDateElement,
   }) = _ImmunizationEducation;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'ImmunizationEducation';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ImmunizationEducation.fromYaml(dynamic yaml) => yaml is String
@@ -648,15 +647,11 @@ class ImmunizationEducation with _$ImmunizationEducation {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [ImmunizationReaction] Describes the event of a patient being
 @freezed
-class ImmunizationReaction with _$ImmunizationReaction {
+class ImmunizationReaction with BackboneType, _$ImmunizationReaction {
   /// [ImmunizationReaction] Describes the event of a patient being
   const ImmunizationReaction._();
 
@@ -700,7 +695,7 @@ class ImmunizationReaction with _$ImmunizationReaction {
   const factory ImmunizationReaction({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -741,8 +736,8 @@ class ImmunizationReaction with _$ImmunizationReaction {
     @JsonKey(name: '_reported') Element? reportedElement,
   }) = _ImmunizationReaction;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'ImmunizationReaction';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ImmunizationReaction.fromYaml(dynamic yaml) => yaml is String
@@ -770,15 +765,12 @@ class ImmunizationReaction with _$ImmunizationReaction {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [ImmunizationProtocolApplied] Describes the event of a patient being
 @freezed
-class ImmunizationProtocolApplied with _$ImmunizationProtocolApplied {
+class ImmunizationProtocolApplied
+    with BackboneType, _$ImmunizationProtocolApplied {
   /// [ImmunizationProtocolApplied] Describes the event of a patient being
   const ImmunizationProtocolApplied._();
 
@@ -840,7 +832,7 @@ class ImmunizationProtocolApplied with _$ImmunizationProtocolApplied {
   const factory ImmunizationProtocolApplied({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -908,8 +900,8 @@ class ImmunizationProtocolApplied with _$ImmunizationProtocolApplied {
     @JsonKey(name: '_seriesDosesString') Element? seriesDosesStringElement,
   }) = _ImmunizationProtocolApplied;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'ImmunizationProtocolApplied';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ImmunizationProtocolApplied.fromYaml(dynamic yaml) => yaml is String
@@ -937,10 +929,6 @@ class ImmunizationProtocolApplied with _$ImmunizationProtocolApplied {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [ImmunizationEvaluation] Describes a comparison of an immunization event
@@ -1211,6 +1199,9 @@ class ImmunizationEvaluation with Resource, _$ImmunizationEvaluation {
     @JsonKey(name: '_seriesDosesString') Element? seriesDosesStringElement,
   }) = _ImmunizationEvaluation;
 
+  @override
+  String get fhirType => 'ImmunizationEvaluation';
+
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ImmunizationEvaluation.fromYaml(dynamic yaml) => yaml is String
       ? ImmunizationEvaluation.fromJson(
@@ -1409,6 +1400,9 @@ class ImmunizationRecommendation with Resource, _$ImmunizationRecommendation {
     required List<ImmunizationRecommendationRecommendation> recommendation,
   }) = _ImmunizationRecommendation;
 
+  @override
+  String get fhirType => 'ImmunizationRecommendation';
+
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ImmunizationRecommendation.fromYaml(dynamic yaml) => yaml is String
       ? ImmunizationRecommendation.fromJson(
@@ -1444,7 +1438,7 @@ class ImmunizationRecommendation with Resource, _$ImmunizationRecommendation {
 
 @freezed
 class ImmunizationRecommendationRecommendation
-    with _$ImmunizationRecommendationRecommendation {
+    with BackboneType, _$ImmunizationRecommendationRecommendation {
   const ImmunizationRecommendationRecommendation._();
 
   /// [ImmunizationRecommendationRecommendation] A patient's point-in-time set
@@ -1529,7 +1523,7 @@ class ImmunizationRecommendationRecommendation
   const factory ImmunizationRecommendationRecommendation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1629,8 +1623,8 @@ class ImmunizationRecommendationRecommendation
     List<Reference>? supportingPatientInformation,
   }) = _ImmunizationRecommendationRecommendation;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'ImmunizationRecommendationRecommendation';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ImmunizationRecommendationRecommendation.fromYaml(dynamic yaml) => yaml
@@ -1651,7 +1645,7 @@ class ImmunizationRecommendationRecommendation
 
 @freezed
 class ImmunizationRecommendationDateCriterion
-    with _$ImmunizationRecommendationDateCriterion {
+    with BackboneType, _$ImmunizationRecommendationDateCriterion {
   const ImmunizationRecommendationDateCriterion._();
 
   /// [ImmunizationRecommendationDateCriterion] A patient's point-in-time set
@@ -1691,7 +1685,7 @@ class ImmunizationRecommendationDateCriterion
   const factory ImmunizationRecommendationDateCriterion({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1727,8 +1721,8 @@ class ImmunizationRecommendationDateCriterion
     @JsonKey(name: '_value') Element? valueElement,
   }) = _ImmunizationRecommendationDateCriterion;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'ImmunizationRecommendationDateCriterion';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ImmunizationRecommendationDateCriterion.fromYaml(dynamic yaml) => yaml
@@ -1946,6 +1940,9 @@ class Medication with Resource, _$Medication {
     MedicationBatch? batch,
   }) = _Medication;
 
+  @override
+  String get fhirType => 'Medication';
+
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory Medication.fromYaml(dynamic yaml) => yaml is String
       ? Medication.fromJson(
@@ -1981,7 +1978,7 @@ class Medication with Resource, _$Medication {
 
 /// [MedicationIngredient] This resource is primarily used for the
 @freezed
-class MedicationIngredient with _$MedicationIngredient {
+class MedicationIngredient with BackboneType, _$MedicationIngredient {
   /// [MedicationIngredient] This resource is primarily used for the
   const MedicationIngredient._();
 
@@ -2031,7 +2028,7 @@ class MedicationIngredient with _$MedicationIngredient {
   const factory MedicationIngredient({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -2077,8 +2074,8 @@ class MedicationIngredient with _$MedicationIngredient {
     Ratio? strength,
   }) = _MedicationIngredient;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicationIngredient';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicationIngredient.fromYaml(dynamic yaml) => yaml is String
@@ -2106,15 +2103,11 @@ class MedicationIngredient with _$MedicationIngredient {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [MedicationBatch] This resource is primarily used for the identification
 @freezed
-class MedicationBatch with _$MedicationBatch {
+class MedicationBatch with BackboneType, _$MedicationBatch {
   /// [MedicationBatch] This resource is primarily used for the identification
   const MedicationBatch._();
 
@@ -2157,7 +2150,7 @@ class MedicationBatch with _$MedicationBatch {
   const factory MedicationBatch({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -2195,8 +2188,8 @@ class MedicationBatch with _$MedicationBatch {
     @JsonKey(name: '_expirationDate') Element? expirationDateElement,
   }) = _MedicationBatch;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicationBatch';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicationBatch.fromYaml(dynamic yaml) => yaml is String
@@ -2224,10 +2217,6 @@ class MedicationBatch with _$MedicationBatch {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [MedicationAdministration] Describes the event of a patient consuming or
@@ -2551,6 +2540,9 @@ class MedicationAdministration with Resource, _$MedicationAdministration {
     List<Reference>? eventHistory,
   }) = _MedicationAdministration;
 
+  @override
+  String get fhirType => 'MedicationAdministration';
+
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicationAdministration.fromYaml(dynamic yaml) => yaml is String
       ? MedicationAdministration.fromJson(
@@ -2586,7 +2578,7 @@ class MedicationAdministration with Resource, _$MedicationAdministration {
 
 @freezed
 class MedicationAdministrationPerformer
-    with _$MedicationAdministrationPerformer {
+    with BackboneType, _$MedicationAdministrationPerformer {
   const MedicationAdministrationPerformer._();
 
   /// [MedicationAdministrationPerformer] Describes the event of a patient
@@ -2626,7 +2618,7 @@ class MedicationAdministrationPerformer
   const factory MedicationAdministrationPerformer({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -2659,8 +2651,8 @@ class MedicationAdministrationPerformer
     required Reference actor,
   }) = _MedicationAdministrationPerformer;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicationAdministrationPerformer';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicationAdministrationPerformer.fromYaml(dynamic yaml) => yaml
@@ -2681,7 +2673,8 @@ class MedicationAdministrationPerformer
 
 /// [MedicationAdministrationDosage] Describes the event of a patient
 @freezed
-class MedicationAdministrationDosage with _$MedicationAdministrationDosage {
+class MedicationAdministrationDosage
+    with BackboneType, _$MedicationAdministrationDosage {
   /// [MedicationAdministrationDosage] Describes the event of a patient
   const MedicationAdministrationDosage._();
 
@@ -2753,7 +2746,7 @@ class MedicationAdministrationDosage with _$MedicationAdministrationDosage {
   const factory MedicationAdministrationDosage({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -2823,8 +2816,8 @@ class MedicationAdministrationDosage with _$MedicationAdministrationDosage {
     Quantity? rateQuantity,
   }) = _MedicationAdministrationDosage;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicationAdministrationDosage';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicationAdministrationDosage.fromYaml(dynamic yaml) => yaml
@@ -2853,10 +2846,6 @@ class MedicationAdministrationDosage with _$MedicationAdministrationDosage {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [MedicationDispense] Indicates that a medication product is to be or has
@@ -3211,6 +3200,9 @@ class MedicationDispense with Resource, _$MedicationDispense {
     List<Reference>? eventHistory,
   }) = _MedicationDispense;
 
+  @override
+  String get fhirType => 'MedicationDispense';
+
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicationDispense.fromYaml(dynamic yaml) => yaml is String
       ? MedicationDispense.fromJson(
@@ -3246,7 +3238,8 @@ class MedicationDispense with Resource, _$MedicationDispense {
 
 /// [MedicationDispensePerformer] Indicates that a medication product is to
 @freezed
-class MedicationDispensePerformer with _$MedicationDispensePerformer {
+class MedicationDispensePerformer
+    with BackboneType, _$MedicationDispensePerformer {
   /// [MedicationDispensePerformer] Indicates that a medication product is to
   const MedicationDispensePerformer._();
 
@@ -3288,7 +3281,7 @@ class MedicationDispensePerformer with _$MedicationDispensePerformer {
   const factory MedicationDispensePerformer({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -3322,8 +3315,8 @@ class MedicationDispensePerformer with _$MedicationDispensePerformer {
     required Reference actor,
   }) = _MedicationDispensePerformer;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicationDispensePerformer';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicationDispensePerformer.fromYaml(dynamic yaml) => yaml is String
@@ -3351,15 +3344,12 @@ class MedicationDispensePerformer with _$MedicationDispensePerformer {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [MedicationDispenseSubstitution] Indicates that a medication product is
 @freezed
-class MedicationDispenseSubstitution with _$MedicationDispenseSubstitution {
+class MedicationDispenseSubstitution
+    with BackboneType, _$MedicationDispenseSubstitution {
   /// [MedicationDispenseSubstitution] Indicates that a medication product is
   const MedicationDispenseSubstitution._();
 
@@ -3409,7 +3399,7 @@ class MedicationDispenseSubstitution with _$MedicationDispenseSubstitution {
   const factory MedicationDispenseSubstitution({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -3454,8 +3444,8 @@ class MedicationDispenseSubstitution with _$MedicationDispenseSubstitution {
     List<Reference>? responsibleParty,
   }) = _MedicationDispenseSubstitution;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicationDispenseSubstitution';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicationDispenseSubstitution.fromYaml(dynamic yaml) => yaml
@@ -3484,10 +3474,6 @@ class MedicationDispenseSubstitution with _$MedicationDispenseSubstitution {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [MedicationKnowledge] Information about a medication that is used to
@@ -3799,6 +3785,9 @@ class MedicationKnowledge with Resource, _$MedicationKnowledge {
     List<MedicationKnowledgeKinetics>? kinetics,
   }) = _MedicationKnowledge;
 
+  @override
+  String get fhirType => 'MedicationKnowledge';
+
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicationKnowledge.fromYaml(dynamic yaml) => yaml is String
       ? MedicationKnowledge.fromJson(
@@ -3834,7 +3823,7 @@ class MedicationKnowledge with Resource, _$MedicationKnowledge {
 
 @freezed
 class MedicationKnowledgeRelatedMedicationKnowledge
-    with _$MedicationKnowledgeRelatedMedicationKnowledge {
+    with BackboneType, _$MedicationKnowledgeRelatedMedicationKnowledge {
   const MedicationKnowledgeRelatedMedicationKnowledge._();
 
   /// [MedicationKnowledgeRelatedMedicationKnowledge] Information about a
@@ -3871,7 +3860,7 @@ class MedicationKnowledgeRelatedMedicationKnowledge
   const factory MedicationKnowledgeRelatedMedicationKnowledge({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -3904,8 +3893,8 @@ class MedicationKnowledgeRelatedMedicationKnowledge
     required List<Reference> reference,
   }) = _MedicationKnowledgeRelatedMedicationKnowledge;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicationKnowledgeRelatedMedicationKnowledge';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicationKnowledgeRelatedMedicationKnowledge.fromYaml(
@@ -3927,7 +3916,8 @@ class MedicationKnowledgeRelatedMedicationKnowledge
 
 /// [MedicationKnowledgeMonograph] Information about a medication that is
 @freezed
-class MedicationKnowledgeMonograph with _$MedicationKnowledgeMonograph {
+class MedicationKnowledgeMonograph
+    with BackboneType, _$MedicationKnowledgeMonograph {
   /// [MedicationKnowledgeMonograph] Information about a medication that is
   const MedicationKnowledgeMonograph._();
 
@@ -3965,7 +3955,7 @@ class MedicationKnowledgeMonograph with _$MedicationKnowledgeMonograph {
   const factory MedicationKnowledgeMonograph({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -3998,8 +3988,8 @@ class MedicationKnowledgeMonograph with _$MedicationKnowledgeMonograph {
     Reference? source,
   }) = _MedicationKnowledgeMonograph;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicationKnowledgeMonograph';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicationKnowledgeMonograph.fromYaml(dynamic yaml) => yaml is String
@@ -4027,15 +4017,12 @@ class MedicationKnowledgeMonograph with _$MedicationKnowledgeMonograph {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [MedicationKnowledgeIngredient] Information about a medication that is
 @freezed
-class MedicationKnowledgeIngredient with _$MedicationKnowledgeIngredient {
+class MedicationKnowledgeIngredient
+    with BackboneType, _$MedicationKnowledgeIngredient {
   /// [MedicationKnowledgeIngredient] Information about a medication that is
   const MedicationKnowledgeIngredient._();
 
@@ -4083,7 +4070,7 @@ class MedicationKnowledgeIngredient with _$MedicationKnowledgeIngredient {
   const factory MedicationKnowledgeIngredient({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -4129,8 +4116,8 @@ class MedicationKnowledgeIngredient with _$MedicationKnowledgeIngredient {
     Ratio? strength,
   }) = _MedicationKnowledgeIngredient;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicationKnowledgeIngredient';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicationKnowledgeIngredient.fromYaml(dynamic yaml) => yaml is String
@@ -4158,15 +4145,11 @@ class MedicationKnowledgeIngredient with _$MedicationKnowledgeIngredient {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [MedicationKnowledgeCost] Information about a medication that is used to
 @freezed
-class MedicationKnowledgeCost with _$MedicationKnowledgeCost {
+class MedicationKnowledgeCost with BackboneType, _$MedicationKnowledgeCost {
   /// [MedicationKnowledgeCost] Information about a medication that is used to
   const MedicationKnowledgeCost._();
 
@@ -4208,7 +4191,7 @@ class MedicationKnowledgeCost with _$MedicationKnowledgeCost {
   const factory MedicationKnowledgeCost({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -4247,8 +4230,8 @@ class MedicationKnowledgeCost with _$MedicationKnowledgeCost {
     required Money cost,
   }) = _MedicationKnowledgeCost;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicationKnowledgeCost';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicationKnowledgeCost.fromYaml(dynamic yaml) => yaml is String
@@ -4276,15 +4259,11 @@ class MedicationKnowledgeCost with _$MedicationKnowledgeCost {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 @freezed
 class MedicationKnowledgeMonitoringProgram
-    with _$MedicationKnowledgeMonitoringProgram {
+    with BackboneType, _$MedicationKnowledgeMonitoringProgram {
   const MedicationKnowledgeMonitoringProgram._();
 
   /// [MedicationKnowledgeMonitoringProgram] Information about a medication
@@ -4322,7 +4301,7 @@ class MedicationKnowledgeMonitoringProgram
   const factory MedicationKnowledgeMonitoringProgram({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -4357,8 +4336,8 @@ class MedicationKnowledgeMonitoringProgram
     @JsonKey(name: '_name') Element? nameElement,
   }) = _MedicationKnowledgeMonitoringProgram;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicationKnowledgeMonitoringProgram';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicationKnowledgeMonitoringProgram.fromYaml(dynamic yaml) => yaml
@@ -4379,7 +4358,7 @@ class MedicationKnowledgeMonitoringProgram
 
 @freezed
 class MedicationKnowledgeAdministrationGuidelines
-    with _$MedicationKnowledgeAdministrationGuidelines {
+    with BackboneType, _$MedicationKnowledgeAdministrationGuidelines {
   const MedicationKnowledgeAdministrationGuidelines._();
 
   /// [MedicationKnowledgeAdministrationGuidelines] Information about a
@@ -4423,7 +4402,7 @@ class MedicationKnowledgeAdministrationGuidelines
   const factory MedicationKnowledgeAdministrationGuidelines({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -4465,8 +4444,8 @@ class MedicationKnowledgeAdministrationGuidelines
     List<MedicationKnowledgePatientCharacteristics>? patientCharacteristics,
   }) = _MedicationKnowledgeAdministrationGuidelines;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicationKnowledgeAdministrationGuidelines';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicationKnowledgeAdministrationGuidelines.fromYaml(dynamic yaml) =>
@@ -4487,7 +4466,7 @@ class MedicationKnowledgeAdministrationGuidelines
 
 /// [MedicationKnowledgeDosage] Information about a medication that is used
 @freezed
-class MedicationKnowledgeDosage with _$MedicationKnowledgeDosage {
+class MedicationKnowledgeDosage with BackboneType, _$MedicationKnowledgeDosage {
   /// [MedicationKnowledgeDosage] Information about a medication that is used
   const MedicationKnowledgeDosage._();
 
@@ -4525,7 +4504,7 @@ class MedicationKnowledgeDosage with _$MedicationKnowledgeDosage {
   const factory MedicationKnowledgeDosage({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -4558,8 +4537,8 @@ class MedicationKnowledgeDosage with _$MedicationKnowledgeDosage {
     required List<Dosage> dosage,
   }) = _MedicationKnowledgeDosage;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicationKnowledgeDosage';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicationKnowledgeDosage.fromYaml(dynamic yaml) => yaml is String
@@ -4587,15 +4566,11 @@ class MedicationKnowledgeDosage with _$MedicationKnowledgeDosage {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 @freezed
 class MedicationKnowledgePatientCharacteristics
-    with _$MedicationKnowledgePatientCharacteristics {
+    with BackboneType, _$MedicationKnowledgePatientCharacteristics {
   const MedicationKnowledgePatientCharacteristics._();
 
   /// [MedicationKnowledgePatientCharacteristics] Information about a
@@ -4637,7 +4612,7 @@ class MedicationKnowledgePatientCharacteristics
   const factory MedicationKnowledgePatientCharacteristics({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -4677,8 +4652,8 @@ class MedicationKnowledgePatientCharacteristics
     @JsonKey(name: '_value') List<Element?>? valueElement,
   }) = _MedicationKnowledgePatientCharacteristics;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicationKnowledgePatientCharacteristics';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicationKnowledgePatientCharacteristics.fromYaml(dynamic yaml) => yaml
@@ -4699,7 +4674,7 @@ class MedicationKnowledgePatientCharacteristics
 
 @freezed
 class MedicationKnowledgeMedicineClassification
-    with _$MedicationKnowledgeMedicineClassification {
+    with BackboneType, _$MedicationKnowledgeMedicineClassification {
   const MedicationKnowledgeMedicineClassification._();
 
   /// [MedicationKnowledgeMedicineClassification] Information about a
@@ -4737,7 +4712,7 @@ class MedicationKnowledgeMedicineClassification
   const factory MedicationKnowledgeMedicineClassification({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -4771,8 +4746,8 @@ class MedicationKnowledgeMedicineClassification
     List<CodeableConcept>? classification,
   }) = _MedicationKnowledgeMedicineClassification;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicationKnowledgeMedicineClassification';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicationKnowledgeMedicineClassification.fromYaml(dynamic yaml) => yaml
@@ -4793,7 +4768,8 @@ class MedicationKnowledgeMedicineClassification
 
 /// [MedicationKnowledgePackaging] Information about a medication that is
 @freezed
-class MedicationKnowledgePackaging with _$MedicationKnowledgePackaging {
+class MedicationKnowledgePackaging
+    with BackboneType, _$MedicationKnowledgePackaging {
   /// [MedicationKnowledgePackaging] Information about a medication that is
   const MedicationKnowledgePackaging._();
 
@@ -4832,7 +4808,7 @@ class MedicationKnowledgePackaging with _$MedicationKnowledgePackaging {
   const factory MedicationKnowledgePackaging({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -4866,8 +4842,8 @@ class MedicationKnowledgePackaging with _$MedicationKnowledgePackaging {
     Quantity? quantity,
   }) = _MedicationKnowledgePackaging;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicationKnowledgePackaging';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicationKnowledgePackaging.fromYaml(dynamic yaml) => yaml is String
@@ -4895,15 +4871,11 @@ class MedicationKnowledgePackaging with _$MedicationKnowledgePackaging {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 @freezed
 class MedicationKnowledgeDrugCharacteristic
-    with _$MedicationKnowledgeDrugCharacteristic {
+    with BackboneType, _$MedicationKnowledgeDrugCharacteristic {
   const MedicationKnowledgeDrugCharacteristic._();
 
   /// [MedicationKnowledgeDrugCharacteristic] Information about a medication
@@ -4950,7 +4922,7 @@ class MedicationKnowledgeDrugCharacteristic
   const factory MedicationKnowledgeDrugCharacteristic({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -4998,8 +4970,8 @@ class MedicationKnowledgeDrugCharacteristic
     @JsonKey(name: '_valueBase64Binary') Element? valueBase64BinaryElement,
   }) = _MedicationKnowledgeDrugCharacteristic;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicationKnowledgeDrugCharacteristic';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicationKnowledgeDrugCharacteristic.fromYaml(dynamic yaml) => yaml
@@ -5020,7 +4992,8 @@ class MedicationKnowledgeDrugCharacteristic
 
 /// [MedicationKnowledgeRegulatory] Information about a medication that is
 @freezed
-class MedicationKnowledgeRegulatory with _$MedicationKnowledgeRegulatory {
+class MedicationKnowledgeRegulatory
+    with BackboneType, _$MedicationKnowledgeRegulatory {
   /// [MedicationKnowledgeRegulatory] Information about a medication that is
   const MedicationKnowledgeRegulatory._();
 
@@ -5063,7 +5036,7 @@ class MedicationKnowledgeRegulatory with _$MedicationKnowledgeRegulatory {
   const factory MedicationKnowledgeRegulatory({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -5103,8 +5076,8 @@ class MedicationKnowledgeRegulatory with _$MedicationKnowledgeRegulatory {
     MedicationKnowledgeMaxDispense? maxDispense,
   }) = _MedicationKnowledgeRegulatory;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicationKnowledgeRegulatory';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicationKnowledgeRegulatory.fromYaml(dynamic yaml) => yaml is String
@@ -5132,15 +5105,12 @@ class MedicationKnowledgeRegulatory with _$MedicationKnowledgeRegulatory {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [MedicationKnowledgeSubstitution] Information about a medication that is
 @freezed
-class MedicationKnowledgeSubstitution with _$MedicationKnowledgeSubstitution {
+class MedicationKnowledgeSubstitution
+    with BackboneType, _$MedicationKnowledgeSubstitution {
   /// [MedicationKnowledgeSubstitution] Information about a medication that is
   const MedicationKnowledgeSubstitution._();
 
@@ -5180,7 +5150,7 @@ class MedicationKnowledgeSubstitution with _$MedicationKnowledgeSubstitution {
   const factory MedicationKnowledgeSubstitution({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -5216,8 +5186,8 @@ class MedicationKnowledgeSubstitution with _$MedicationKnowledgeSubstitution {
     @JsonKey(name: '_allowed') Element? allowedElement,
   }) = _MedicationKnowledgeSubstitution;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicationKnowledgeSubstitution';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicationKnowledgeSubstitution.fromYaml(dynamic yaml) => yaml
@@ -5246,15 +5216,12 @@ class MedicationKnowledgeSubstitution with _$MedicationKnowledgeSubstitution {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [MedicationKnowledgeSchedule] Information about a medication that is
 @freezed
-class MedicationKnowledgeSchedule with _$MedicationKnowledgeSchedule {
+class MedicationKnowledgeSchedule
+    with BackboneType, _$MedicationKnowledgeSchedule {
   /// [MedicationKnowledgeSchedule] Information about a medication that is
   const MedicationKnowledgeSchedule._();
 
@@ -5289,7 +5256,7 @@ class MedicationKnowledgeSchedule with _$MedicationKnowledgeSchedule {
   const factory MedicationKnowledgeSchedule({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -5318,8 +5285,8 @@ class MedicationKnowledgeSchedule with _$MedicationKnowledgeSchedule {
     required CodeableConcept schedule,
   }) = _MedicationKnowledgeSchedule;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicationKnowledgeSchedule';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicationKnowledgeSchedule.fromYaml(dynamic yaml) => yaml is String
@@ -5347,15 +5314,12 @@ class MedicationKnowledgeSchedule with _$MedicationKnowledgeSchedule {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [MedicationKnowledgeMaxDispense] Information about a medication that is
 @freezed
-class MedicationKnowledgeMaxDispense with _$MedicationKnowledgeMaxDispense {
+class MedicationKnowledgeMaxDispense
+    with BackboneType, _$MedicationKnowledgeMaxDispense {
   /// [MedicationKnowledgeMaxDispense] Information about a medication that is
   const MedicationKnowledgeMaxDispense._();
 
@@ -5393,7 +5357,7 @@ class MedicationKnowledgeMaxDispense with _$MedicationKnowledgeMaxDispense {
   const factory MedicationKnowledgeMaxDispense({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -5426,8 +5390,8 @@ class MedicationKnowledgeMaxDispense with _$MedicationKnowledgeMaxDispense {
     FhirDuration? period,
   }) = _MedicationKnowledgeMaxDispense;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicationKnowledgeMaxDispense';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicationKnowledgeMaxDispense.fromYaml(dynamic yaml) => yaml
@@ -5456,15 +5420,12 @@ class MedicationKnowledgeMaxDispense with _$MedicationKnowledgeMaxDispense {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [MedicationKnowledgeKinetics] Information about a medication that is
 @freezed
-class MedicationKnowledgeKinetics with _$MedicationKnowledgeKinetics {
+class MedicationKnowledgeKinetics
+    with BackboneType, _$MedicationKnowledgeKinetics {
   /// [MedicationKnowledgeKinetics] Information about a medication that is
   const MedicationKnowledgeKinetics._();
 
@@ -5505,7 +5466,7 @@ class MedicationKnowledgeKinetics with _$MedicationKnowledgeKinetics {
   const factory MedicationKnowledgeKinetics({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -5542,8 +5503,8 @@ class MedicationKnowledgeKinetics with _$MedicationKnowledgeKinetics {
     FhirDuration? halfLifePeriod,
   }) = _MedicationKnowledgeKinetics;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicationKnowledgeKinetics';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicationKnowledgeKinetics.fromYaml(dynamic yaml) => yaml is String
@@ -5571,10 +5532,6 @@ class MedicationKnowledgeKinetics with _$MedicationKnowledgeKinetics {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [MedicationRequest] An order or request for both supply of the medication
@@ -6036,6 +5993,9 @@ class MedicationRequest with Resource, _$MedicationRequest {
     List<Reference>? eventHistory,
   }) = _MedicationRequest;
 
+  @override
+  String get fhirType => 'MedicationRequest';
+
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicationRequest.fromYaml(dynamic yaml) => yaml is String
       ? MedicationRequest.fromJson(
@@ -6071,7 +6031,8 @@ class MedicationRequest with Resource, _$MedicationRequest {
 
 /// [MedicationRequestDispenseRequest] An order or request for both supply
 @freezed
-class MedicationRequestDispenseRequest with _$MedicationRequestDispenseRequest {
+class MedicationRequestDispenseRequest
+    with BackboneType, _$MedicationRequestDispenseRequest {
   /// [MedicationRequestDispenseRequest] An order or request for both supply
   const MedicationRequestDispenseRequest._();
 
@@ -6137,7 +6098,7 @@ class MedicationRequestDispenseRequest with _$MedicationRequestDispenseRequest {
   const factory MedicationRequestDispenseRequest({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -6201,8 +6162,8 @@ class MedicationRequestDispenseRequest with _$MedicationRequestDispenseRequest {
     Reference? performer,
   }) = _MedicationRequestDispenseRequest;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicationRequestDispenseRequest';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicationRequestDispenseRequest.fromYaml(dynamic yaml) => yaml
@@ -6223,7 +6184,8 @@ class MedicationRequestDispenseRequest with _$MedicationRequestDispenseRequest {
 
 /// [MedicationRequestInitialFill] An order or request for both supply of
 @freezed
-class MedicationRequestInitialFill with _$MedicationRequestInitialFill {
+class MedicationRequestInitialFill
+    with BackboneType, _$MedicationRequestInitialFill {
   /// [MedicationRequestInitialFill] An order or request for both supply of
   const MedicationRequestInitialFill._();
 
@@ -6266,7 +6228,7 @@ class MedicationRequestInitialFill with _$MedicationRequestInitialFill {
   const factory MedicationRequestInitialFill({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -6300,8 +6262,8 @@ class MedicationRequestInitialFill with _$MedicationRequestInitialFill {
     FhirDuration? duration,
   }) = _MedicationRequestInitialFill;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicationRequestInitialFill';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicationRequestInitialFill.fromYaml(dynamic yaml) => yaml is String
@@ -6329,15 +6291,12 @@ class MedicationRequestInitialFill with _$MedicationRequestInitialFill {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [MedicationRequestSubstitution] An order or request for both supply of
 @freezed
-class MedicationRequestSubstitution with _$MedicationRequestSubstitution {
+class MedicationRequestSubstitution
+    with BackboneType, _$MedicationRequestSubstitution {
   /// [MedicationRequestSubstitution] An order or request for both supply of
   const MedicationRequestSubstitution._();
 
@@ -6385,7 +6344,7 @@ class MedicationRequestSubstitution with _$MedicationRequestSubstitution {
   const factory MedicationRequestSubstitution({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -6426,8 +6385,8 @@ class MedicationRequestSubstitution with _$MedicationRequestSubstitution {
     CodeableConcept? reason,
   }) = _MedicationRequestSubstitution;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicationRequestSubstitution';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicationRequestSubstitution.fromYaml(dynamic yaml) => yaml is String
@@ -6455,10 +6414,6 @@ class MedicationRequestSubstitution with _$MedicationRequestSubstitution {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [MedicationStatement] A record of a medication that is being consumed by
@@ -6783,6 +6738,9 @@ class MedicationStatement with Resource, _$MedicationStatement {
     ///  patient.
     List<Dosage>? dosage,
   }) = _MedicationStatement;
+
+  @override
+  String get fhirType => 'MedicationStatement';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicationStatement.fromYaml(dynamic yaml) => yaml is String

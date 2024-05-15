@@ -244,6 +244,9 @@ class CatalogEntry with Resource, _$CatalogEntry {
     List<CatalogEntryRelatedEntry>? relatedEntry,
   }) = _CatalogEntry;
 
+  @override
+  String get fhirType => 'CatalogEntry';
+
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory CatalogEntry.fromYaml(dynamic yaml) => yaml is String
       ? CatalogEntry.fromJson(
@@ -279,7 +282,7 @@ class CatalogEntry with Resource, _$CatalogEntry {
 
 /// [CatalogEntryRelatedEntry] Catalog entries are wrappers that
 @freezed
-class CatalogEntryRelatedEntry with _$CatalogEntryRelatedEntry {
+class CatalogEntryRelatedEntry with BackboneType, _$CatalogEntryRelatedEntry {
   /// [CatalogEntryRelatedEntry] Catalog entries are wrappers that
   const CatalogEntryRelatedEntry._();
 
@@ -319,7 +322,7 @@ class CatalogEntryRelatedEntry with _$CatalogEntryRelatedEntry {
   const factory CatalogEntryRelatedEntry({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -355,8 +358,8 @@ class CatalogEntryRelatedEntry with _$CatalogEntryRelatedEntry {
     required Reference item,
   }) = _CatalogEntryRelatedEntry;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'CatalogEntryRelatedEntry';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory CatalogEntryRelatedEntry.fromYaml(dynamic yaml) => yaml is String
@@ -384,10 +387,6 @@ class CatalogEntryRelatedEntry with _$CatalogEntryRelatedEntry {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [Composition] A set of healthcare-related information that is assembled
@@ -659,6 +658,9 @@ class Composition with Resource, _$Composition {
     List<CompositionSection>? section,
   }) = _Composition;
 
+  @override
+  String get fhirType => 'Composition';
+
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory Composition.fromYaml(dynamic yaml) => yaml is String
       ? Composition.fromJson(
@@ -694,7 +696,7 @@ class Composition with Resource, _$Composition {
 
 /// [CompositionAttester] A set of healthcare-related information that is
 @freezed
-class CompositionAttester with _$CompositionAttester {
+class CompositionAttester with BackboneType, _$CompositionAttester {
   /// [CompositionAttester] A set of healthcare-related information that is
   const CompositionAttester._();
 
@@ -745,7 +747,7 @@ class CompositionAttester with _$CompositionAttester {
   const factory CompositionAttester({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -786,8 +788,8 @@ class CompositionAttester with _$CompositionAttester {
     Reference? party,
   }) = _CompositionAttester;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'CompositionAttester';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory CompositionAttester.fromYaml(dynamic yaml) => yaml is String
@@ -815,15 +817,11 @@ class CompositionAttester with _$CompositionAttester {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [CompositionRelatesTo] A set of healthcare-related information that is
 @freezed
-class CompositionRelatesTo with _$CompositionRelatesTo {
+class CompositionRelatesTo with BackboneType, _$CompositionRelatesTo {
   /// [CompositionRelatesTo] A set of healthcare-related information that is
   const CompositionRelatesTo._();
 
@@ -873,7 +871,7 @@ class CompositionRelatesTo with _$CompositionRelatesTo {
   const factory CompositionRelatesTo({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -912,8 +910,8 @@ class CompositionRelatesTo with _$CompositionRelatesTo {
     Reference? targetReference,
   }) = _CompositionRelatesTo;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'CompositionRelatesTo';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory CompositionRelatesTo.fromYaml(dynamic yaml) => yaml is String
@@ -941,15 +939,11 @@ class CompositionRelatesTo with _$CompositionRelatesTo {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [CompositionEvent] A set of healthcare-related information that is
 @freezed
-class CompositionEvent with _$CompositionEvent {
+class CompositionEvent with BackboneType, _$CompositionEvent {
   /// [CompositionEvent] A set of healthcare-related information that is
   const CompositionEvent._();
 
@@ -1004,7 +998,7 @@ class CompositionEvent with _$CompositionEvent {
   const factory CompositionEvent({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1047,8 +1041,8 @@ class CompositionEvent with _$CompositionEvent {
     List<Reference>? detail,
   }) = _CompositionEvent;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'CompositionEvent';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory CompositionEvent.fromYaml(dynamic yaml) => yaml is String
@@ -1076,15 +1070,11 @@ class CompositionEvent with _$CompositionEvent {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [CompositionSection] A set of healthcare-related information that is
 @freezed
-class CompositionSection with _$CompositionSection {
+class CompositionSection with BackboneType, _$CompositionSection {
   /// [CompositionSection] A set of healthcare-related information that is
   const CompositionSection._();
 
@@ -1171,7 +1161,7 @@ class CompositionSection with _$CompositionSection {
   const factory CompositionSection({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1255,8 +1245,8 @@ class CompositionSection with _$CompositionSection {
     List<CompositionSection>? section,
   }) = _CompositionSection;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'CompositionSection';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory CompositionSection.fromYaml(dynamic yaml) => yaml is String
@@ -1284,10 +1274,6 @@ class CompositionSection with _$CompositionSection {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [DocumentManifest] A collection of documents compiled for a purpose
@@ -1532,6 +1518,9 @@ class DocumentManifest with Resource, _$DocumentManifest {
     List<DocumentManifestRelated>? related,
   }) = _DocumentManifest;
 
+  @override
+  String get fhirType => 'DocumentManifest';
+
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory DocumentManifest.fromYaml(dynamic yaml) => yaml is String
       ? DocumentManifest.fromJson(
@@ -1567,7 +1556,7 @@ class DocumentManifest with Resource, _$DocumentManifest {
 
 /// [DocumentManifestRelated] A collection of documents compiled for a
 @freezed
-class DocumentManifestRelated with _$DocumentManifestRelated {
+class DocumentManifestRelated with BackboneType, _$DocumentManifestRelated {
   /// [DocumentManifestRelated] A collection of documents compiled for a
   const DocumentManifestRelated._();
 
@@ -1606,7 +1595,7 @@ class DocumentManifestRelated with _$DocumentManifestRelated {
   const factory DocumentManifestRelated({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1640,8 +1629,8 @@ class DocumentManifestRelated with _$DocumentManifestRelated {
     Reference? ref,
   }) = _DocumentManifestRelated;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'DocumentManifestRelated';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory DocumentManifestRelated.fromYaml(dynamic yaml) => yaml is String
@@ -1669,10 +1658,6 @@ class DocumentManifestRelated with _$DocumentManifestRelated {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [DocumentReference] A reference to a document of any kind for any
@@ -1951,6 +1936,9 @@ class DocumentReference with Resource, _$DocumentReference {
     DocumentReferenceContext? context,
   }) = _DocumentReference;
 
+  @override
+  String get fhirType => 'DocumentReference';
+
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory DocumentReference.fromYaml(dynamic yaml) => yaml is String
       ? DocumentReference.fromJson(
@@ -1986,7 +1974,8 @@ class DocumentReference with Resource, _$DocumentReference {
 
 /// [DocumentReferenceRelatesTo] A reference to a document of any kind for
 @freezed
-class DocumentReferenceRelatesTo with _$DocumentReferenceRelatesTo {
+class DocumentReferenceRelatesTo
+    with BackboneType, _$DocumentReferenceRelatesTo {
   /// [DocumentReferenceRelatesTo] A reference to a document of any kind for
   const DocumentReferenceRelatesTo._();
 
@@ -2030,7 +2019,7 @@ class DocumentReferenceRelatesTo with _$DocumentReferenceRelatesTo {
   const factory DocumentReferenceRelatesTo({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -2066,8 +2055,8 @@ class DocumentReferenceRelatesTo with _$DocumentReferenceRelatesTo {
     required Reference target,
   }) = _DocumentReferenceRelatesTo;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'DocumentReferenceRelatesTo';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory DocumentReferenceRelatesTo.fromYaml(dynamic yaml) => yaml is String
@@ -2095,15 +2084,11 @@ class DocumentReferenceRelatesTo with _$DocumentReferenceRelatesTo {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [DocumentReferenceContent] A reference to a document of any kind for any
 @freezed
-class DocumentReferenceContent with _$DocumentReferenceContent {
+class DocumentReferenceContent with BackboneType, _$DocumentReferenceContent {
   /// [DocumentReferenceContent] A reference to a document of any kind for any
   const DocumentReferenceContent._();
 
@@ -2147,7 +2132,7 @@ class DocumentReferenceContent with _$DocumentReferenceContent {
   const factory DocumentReferenceContent({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -2182,8 +2167,8 @@ class DocumentReferenceContent with _$DocumentReferenceContent {
     Coding? format,
   }) = _DocumentReferenceContent;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'DocumentReferenceContent';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory DocumentReferenceContent.fromYaml(dynamic yaml) => yaml is String
@@ -2211,15 +2196,11 @@ class DocumentReferenceContent with _$DocumentReferenceContent {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [DocumentReferenceContext] A reference to a document of any kind for any
 @freezed
-class DocumentReferenceContext with _$DocumentReferenceContext {
+class DocumentReferenceContext with BackboneType, _$DocumentReferenceContext {
   /// [DocumentReferenceContext] A reference to a document of any kind for any
   const DocumentReferenceContext._();
 
@@ -2280,7 +2261,7 @@ class DocumentReferenceContext with _$DocumentReferenceContext {
   const factory DocumentReferenceContext({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -2337,8 +2318,8 @@ class DocumentReferenceContext with _$DocumentReferenceContext {
     List<Reference>? related,
   }) = _DocumentReferenceContext;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'DocumentReferenceContext';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory DocumentReferenceContext.fromYaml(dynamic yaml) => yaml is String
@@ -2366,8 +2347,4 @@ class DocumentReferenceContext with _$DocumentReferenceContext {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }

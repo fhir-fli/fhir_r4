@@ -17,7 +17,7 @@ part 'special_types.g.dart';
 /// [Narrative] A human-readable summary of the resource conveying the essential
 /// clinical and business information for the resource.
 @freezed
-class Narrative with _$Narrative {
+class Narrative with DataType, _$Narrative {
   /// [Narrative] A human-readable summary of the resource conveying the essential
   /// clinical and business information for the resource.
 
@@ -68,8 +68,8 @@ class Narrative with _$Narrative {
     required String div,
   }) = _Narrative;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'Narrative';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory Narrative.fromYaml(dynamic yaml) => yaml is String
@@ -97,17 +97,13 @@ class Narrative with _$Narrative {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [CodeableReference] A reference to a resource (by instance), or instead, a
 /// reference to a concept defined in a terminology or ontology (by class).
 
 @freezed
-class CodeableReference with _$CodeableReference {
+class CodeableReference with DataType, _$CodeableReference {
   /// [CodeableReference] A reference to a resource (by instance), or instead, a
   /// reference to a concept defined in a terminology or ontology (by class).
 
@@ -153,8 +149,8 @@ class CodeableReference with _$CodeableReference {
     Reference? reference,
   }) = _CodeableReference;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'CodeableReference';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory CodeableReference.fromYaml(dynamic yaml) => yaml is String
@@ -182,15 +178,11 @@ class CodeableReference with _$CodeableReference {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [Reference] A reference from one resource to another.
 @freezed
-class Reference with _$Reference {
+class Reference with DataType, _$Reference {
   /// [Reference] A reference from one resource to another.
   const Reference._();
 
@@ -300,8 +292,8 @@ class Reference with _$Reference {
     @JsonKey(name: '_display') Element? displayElement,
   }) = _Reference;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'Reference';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory Reference.fromYaml(dynamic yaml) => yaml is String
@@ -329,15 +321,11 @@ class Reference with _$Reference {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [FhirMeta] The metadata about a resource. This is content in the resource
 @freezed
-class FhirMeta with _$FhirMeta {
+class FhirMeta with DataType, _$FhirMeta {
   /// [FhirMeta] The metadata about a resource. This is content in the resource
   const FhirMeta._();
 
@@ -439,8 +427,8 @@ class FhirMeta with _$FhirMeta {
     List<Coding>? tag,
   }) = _FhirMeta;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'FhirMeta';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory FhirMeta.fromYaml(dynamic yaml) => yaml is String
@@ -468,15 +456,11 @@ class FhirMeta with _$FhirMeta {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [Dosage] Indicates how the medication is/was taken or should be taken by
 @freezed
-class Dosage with _$Dosage {
+class Dosage with DataType, _$Dosage {
   /// [Dosage] Indicates how the medication is/was taken or should be taken by
   const Dosage._();
 
@@ -645,8 +629,8 @@ class Dosage with _$Dosage {
     Quantity? maxDosePerLifetime,
   }) = _Dosage;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'Dosage';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory Dosage.fromYaml(dynamic yaml) => yaml is String
@@ -673,15 +657,11 @@ class Dosage with _$Dosage {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [DosageDoseAndRate] Indicates how the medication is/was taken or should
 @freezed
-class DosageDoseAndRate with _$DosageDoseAndRate {
+class DosageDoseAndRate with Element, _$DosageDoseAndRate {
   /// [DosageDoseAndRate] Indicates how the medication is/was taken or should
   const DosageDoseAndRate._();
 
@@ -772,8 +752,8 @@ class DosageDoseAndRate with _$DosageDoseAndRate {
     Quantity? rateQuantity,
   }) = _DosageDoseAndRate;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'DosageDoseAndRate';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory DosageDoseAndRate.fromYaml(dynamic yaml) => yaml is String
@@ -801,15 +781,11 @@ class DosageDoseAndRate with _$DosageDoseAndRate {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [ElementDefinition] Captures constraints on each element within the
 @freezed
-class ElementDefinition with _$ElementDefinition {
+class ElementDefinition with DataType, _$ElementDefinition {
   /// [ElementDefinition] Captures constraints on each element within the
   const ElementDefinition._();
 
@@ -4412,8 +4388,8 @@ class ElementDefinition with _$ElementDefinition {
     List<ElementDefinitionMapping>? mapping,
   }) = _ElementDefinition;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'ElementDefinition';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ElementDefinition.fromYaml(dynamic yaml) => yaml is String
@@ -4441,15 +4417,11 @@ class ElementDefinition with _$ElementDefinition {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [ElementDefinitionSlicing] Captures constraints on each element within
 @freezed
-class ElementDefinitionSlicing with _$ElementDefinitionSlicing {
+class ElementDefinitionSlicing with Element, _$ElementDefinitionSlicing {
   /// [ElementDefinitionSlicing] Captures constraints on each element within
   const ElementDefinitionSlicing._();
 
@@ -4566,8 +4538,8 @@ class ElementDefinitionSlicing with _$ElementDefinitionSlicing {
     @JsonKey(name: '_rules') Element? rulesElement,
   }) = _ElementDefinitionSlicing;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'ElementDefinitionSlicing';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ElementDefinitionSlicing.fromYaml(dynamic yaml) => yaml is String
@@ -4595,15 +4567,12 @@ class ElementDefinitionSlicing with _$ElementDefinitionSlicing {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [ElementDefinitionDiscriminator] Captures constraints on each element
 @freezed
-class ElementDefinitionDiscriminator with _$ElementDefinitionDiscriminator {
+class ElementDefinitionDiscriminator
+    with Element, _$ElementDefinitionDiscriminator {
   /// [ElementDefinitionDiscriminator] Captures constraints on each element
   const ElementDefinitionDiscriminator._();
 
@@ -4689,8 +4658,8 @@ class ElementDefinitionDiscriminator with _$ElementDefinitionDiscriminator {
     @JsonKey(name: '_path') Element? pathElement,
   }) = _ElementDefinitionDiscriminator;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'ElementDefinitionDiscriminator';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ElementDefinitionDiscriminator.fromYaml(dynamic yaml) => yaml
@@ -4719,15 +4688,11 @@ class ElementDefinitionDiscriminator with _$ElementDefinitionDiscriminator {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [ElementDefinitionBase] Captures constraints on each element within the
 @freezed
-class ElementDefinitionBase with _$ElementDefinitionBase {
+class ElementDefinitionBase with Element, _$ElementDefinitionBase {
   /// [ElementDefinitionBase] Captures constraints on each element within the
   const ElementDefinitionBase._();
 
@@ -4822,8 +4787,8 @@ class ElementDefinitionBase with _$ElementDefinitionBase {
     @JsonKey(name: '_max') Element? maxElement,
   }) = _ElementDefinitionBase;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'ElementDefinitionBase';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ElementDefinitionBase.fromYaml(dynamic yaml) => yaml is String
@@ -4851,15 +4816,11 @@ class ElementDefinitionBase with _$ElementDefinitionBase {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [ElementDefinitionType] Captures constraints on each element within the
 @freezed
-class ElementDefinitionType with _$ElementDefinitionType {
+class ElementDefinitionType with Element, _$ElementDefinitionType {
   /// [ElementDefinitionType] Captures constraints on each element within the
   const ElementDefinitionType._();
 
@@ -5002,8 +4963,8 @@ class ElementDefinitionType with _$ElementDefinitionType {
     @JsonKey(name: '_versioning') Element? versioningElement,
   }) = _ElementDefinitionType;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'ElementDefinitionType';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ElementDefinitionType.fromYaml(dynamic yaml) => yaml is String
@@ -5031,15 +4992,11 @@ class ElementDefinitionType with _$ElementDefinitionType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [ElementDefinitionExample] Captures constraints on each element within
 @freezed
-class ElementDefinitionExample with _$ElementDefinitionExample {
+class ElementDefinitionExample with Element, _$ElementDefinitionExample {
   /// [ElementDefinitionExample] Captures constraints on each element within
   const ElementDefinitionExample._();
 
@@ -5555,8 +5512,8 @@ class ElementDefinitionExample with _$ElementDefinitionExample {
     FhirMeta? valueMeta,
   }) = _ElementDefinitionExample;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'ElementDefinitionExample';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ElementDefinitionExample.fromYaml(dynamic yaml) => yaml is String
@@ -5584,15 +5541,11 @@ class ElementDefinitionExample with _$ElementDefinitionExample {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [ElementDefinitionConstraint] Captures constraints on each element
 @freezed
-class ElementDefinitionConstraint with _$ElementDefinitionConstraint {
+class ElementDefinitionConstraint with Element, _$ElementDefinitionConstraint {
   /// [ElementDefinitionConstraint] Captures constraints on each element
   const ElementDefinitionConstraint._();
 
@@ -5733,8 +5686,8 @@ class ElementDefinitionConstraint with _$ElementDefinitionConstraint {
     FhirCanonical? source,
   }) = _ElementDefinitionConstraint;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'ElementDefinitionConstraint';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ElementDefinitionConstraint.fromYaml(dynamic yaml) => yaml is String
@@ -5762,15 +5715,11 @@ class ElementDefinitionConstraint with _$ElementDefinitionConstraint {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [ElementDefinitionBinding] Captures constraints on each element within
 @freezed
-class ElementDefinitionBinding with _$ElementDefinitionBinding {
+class ElementDefinitionBinding with Element, _$ElementDefinitionBinding {
   /// [ElementDefinitionBinding] Captures constraints on each element within
   const ElementDefinitionBinding._();
 
@@ -5861,8 +5810,8 @@ class ElementDefinitionBinding with _$ElementDefinitionBinding {
     FhirCanonical? valueSet,
   }) = _ElementDefinitionBinding;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'ElementDefinitionBinding';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ElementDefinitionBinding.fromYaml(dynamic yaml) => yaml is String
@@ -5890,15 +5839,11 @@ class ElementDefinitionBinding with _$ElementDefinitionBinding {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [ElementDefinitionMapping] Captures constraints on each element within
 @freezed
-class ElementDefinitionMapping with _$ElementDefinitionMapping {
+class ElementDefinitionMapping with Element, _$ElementDefinitionMapping {
   /// [ElementDefinitionMapping] Captures constraints on each element within
   const ElementDefinitionMapping._();
 
@@ -6001,8 +5946,8 @@ class ElementDefinitionMapping with _$ElementDefinitionMapping {
     @JsonKey(name: '_comment') Element? commentElement,
   }) = _ElementDefinitionMapping;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'ElementDefinitionMapping';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ElementDefinitionMapping.fromYaml(dynamic yaml) => yaml is String
@@ -6030,8 +5975,4 @@ class ElementDefinitionMapping with _$ElementDefinitionMapping {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }

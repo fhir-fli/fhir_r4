@@ -297,6 +297,9 @@ class Coverage with Resource, _$Coverage {
     List<Reference>? contract,
   }) = _Coverage;
 
+  @override
+  String get fhirType => 'Coverage';
+
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory Coverage.fromYaml(dynamic yaml) => yaml is String
       ? Coverage.fromJson(
@@ -332,7 +335,7 @@ class Coverage with Resource, _$Coverage {
 
 /// [CoverageClass] Financial instrument which may be used to reimburse or
 @freezed
-class CoverageClass with _$CoverageClass {
+class CoverageClass with BackboneType, _$CoverageClass {
   /// [CoverageClass] Financial instrument which may be used to reimburse or
   const CoverageClass._();
 
@@ -379,7 +382,7 @@ class CoverageClass with _$CoverageClass {
   const factory CoverageClass({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -423,8 +426,8 @@ class CoverageClass with _$CoverageClass {
     @JsonKey(name: '_name') Element? nameElement,
   }) = _CoverageClass;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'CoverageClass';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory CoverageClass.fromYaml(dynamic yaml) => yaml is String
@@ -452,15 +455,11 @@ class CoverageClass with _$CoverageClass {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [CoverageCostToBeneficiary] Financial instrument which may be used to
 @freezed
-class CoverageCostToBeneficiary with _$CoverageCostToBeneficiary {
+class CoverageCostToBeneficiary with BackboneType, _$CoverageCostToBeneficiary {
   /// [CoverageCostToBeneficiary] Financial instrument which may be used to
   const CoverageCostToBeneficiary._();
 
@@ -503,7 +502,7 @@ class CoverageCostToBeneficiary with _$CoverageCostToBeneficiary {
   const factory CoverageCostToBeneficiary({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -542,8 +541,8 @@ class CoverageCostToBeneficiary with _$CoverageCostToBeneficiary {
     List<CoverageException>? exception,
   }) = _CoverageCostToBeneficiary;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'CoverageCostToBeneficiary';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory CoverageCostToBeneficiary.fromYaml(dynamic yaml) => yaml is String
@@ -571,15 +570,11 @@ class CoverageCostToBeneficiary with _$CoverageCostToBeneficiary {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [CoverageException] Financial instrument which may be used to reimburse
 @freezed
-class CoverageException with _$CoverageException {
+class CoverageException with BackboneType, _$CoverageException {
   /// [CoverageException] Financial instrument which may be used to reimburse
   const CoverageException._();
 
@@ -617,7 +612,7 @@ class CoverageException with _$CoverageException {
   const factory CoverageException({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -649,8 +644,8 @@ class CoverageException with _$CoverageException {
     Period? period,
   }) = _CoverageException;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'CoverageException';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory CoverageException.fromYaml(dynamic yaml) => yaml is String
@@ -678,10 +673,6 @@ class CoverageException with _$CoverageException {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [CoverageEligibilityRequest] The CoverageEligibilityRequest provides
@@ -942,6 +933,9 @@ class CoverageEligibilityRequest with Resource, _$CoverageEligibilityRequest {
     List<CoverageEligibilityRequestItem>? item,
   }) = _CoverageEligibilityRequest;
 
+  @override
+  String get fhirType => 'CoverageEligibilityRequest';
+
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory CoverageEligibilityRequest.fromYaml(dynamic yaml) => yaml is String
       ? CoverageEligibilityRequest.fromJson(
@@ -977,7 +971,7 @@ class CoverageEligibilityRequest with Resource, _$CoverageEligibilityRequest {
 
 @freezed
 class CoverageEligibilityRequestSupportingInfo
-    with _$CoverageEligibilityRequestSupportingInfo {
+    with BackboneType, _$CoverageEligibilityRequestSupportingInfo {
   const CoverageEligibilityRequestSupportingInfo._();
 
   /// [CoverageEligibilityRequestSupportingInfo] The
@@ -1026,7 +1020,7 @@ class CoverageEligibilityRequestSupportingInfo
   const factory CoverageEligibilityRequestSupportingInfo({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1070,8 +1064,8 @@ class CoverageEligibilityRequestSupportingInfo
     @JsonKey(name: '_appliesToAll') Element? appliesToAllElement,
   }) = _CoverageEligibilityRequestSupportingInfo;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'CoverageEligibilityRequestSupportingInfo';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory CoverageEligibilityRequestSupportingInfo.fromYaml(dynamic yaml) => yaml
@@ -1092,7 +1086,7 @@ class CoverageEligibilityRequestSupportingInfo
 
 @freezed
 class CoverageEligibilityRequestInsurance
-    with _$CoverageEligibilityRequestInsurance {
+    with BackboneType, _$CoverageEligibilityRequestInsurance {
   const CoverageEligibilityRequestInsurance._();
 
   /// [CoverageEligibilityRequestInsurance] The CoverageEligibilityRequest
@@ -1142,7 +1136,7 @@ class CoverageEligibilityRequestInsurance
   const factory CoverageEligibilityRequestInsurance({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1188,8 +1182,8 @@ class CoverageEligibilityRequestInsurance
     @JsonKey(name: '_businessArrangement') Element? businessArrangementElement,
   }) = _CoverageEligibilityRequestInsurance;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'CoverageEligibilityRequestInsurance';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory CoverageEligibilityRequestInsurance.fromYaml(dynamic yaml) => yaml
@@ -1210,7 +1204,8 @@ class CoverageEligibilityRequestInsurance
 
 /// [CoverageEligibilityRequestItem] The CoverageEligibilityRequest provides
 @freezed
-class CoverageEligibilityRequestItem with _$CoverageEligibilityRequestItem {
+class CoverageEligibilityRequestItem
+    with BackboneType, _$CoverageEligibilityRequestItem {
   /// [CoverageEligibilityRequestItem] The CoverageEligibilityRequest provides
   const CoverageEligibilityRequestItem._();
 
@@ -1275,7 +1270,7 @@ class CoverageEligibilityRequestItem with _$CoverageEligibilityRequestItem {
   const factory CoverageEligibilityRequestItem({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1342,8 +1337,8 @@ class CoverageEligibilityRequestItem with _$CoverageEligibilityRequestItem {
     List<Reference>? detail,
   }) = _CoverageEligibilityRequestItem;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'CoverageEligibilityRequestItem';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory CoverageEligibilityRequestItem.fromYaml(dynamic yaml) => yaml
@@ -1372,15 +1367,11 @@ class CoverageEligibilityRequestItem with _$CoverageEligibilityRequestItem {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 @freezed
 class CoverageEligibilityRequestDiagnosis
-    with _$CoverageEligibilityRequestDiagnosis {
+    with BackboneType, _$CoverageEligibilityRequestDiagnosis {
   const CoverageEligibilityRequestDiagnosis._();
 
   /// [CoverageEligibilityRequestDiagnosis] The CoverageEligibilityRequest
@@ -1421,7 +1412,7 @@ class CoverageEligibilityRequestDiagnosis
   const factory CoverageEligibilityRequestDiagnosis({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1455,8 +1446,8 @@ class CoverageEligibilityRequestDiagnosis
     Reference? diagnosisReference,
   }) = _CoverageEligibilityRequestDiagnosis;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'CoverageEligibilityRequestDiagnosis';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory CoverageEligibilityRequestDiagnosis.fromYaml(dynamic yaml) => yaml
@@ -1746,6 +1737,9 @@ class CoverageEligibilityResponse with Resource, _$CoverageEligibilityResponse {
     List<CoverageEligibilityResponseError>? error,
   }) = _CoverageEligibilityResponse;
 
+  @override
+  String get fhirType => 'CoverageEligibilityResponse';
+
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory CoverageEligibilityResponse.fromYaml(dynamic yaml) => yaml is String
       ? CoverageEligibilityResponse.fromJson(
@@ -1781,7 +1775,7 @@ class CoverageEligibilityResponse with Resource, _$CoverageEligibilityResponse {
 
 @freezed
 class CoverageEligibilityResponseInsurance
-    with _$CoverageEligibilityResponseInsurance {
+    with BackboneType, _$CoverageEligibilityResponseInsurance {
   const CoverageEligibilityResponseInsurance._();
 
   /// [CoverageEligibilityResponseInsurance] This resource provides
@@ -1830,7 +1824,7 @@ class CoverageEligibilityResponseInsurance
   const factory CoverageEligibilityResponseInsurance({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -1877,8 +1871,8 @@ class CoverageEligibilityResponseInsurance
     List<CoverageEligibilityResponseItem>? item,
   }) = _CoverageEligibilityResponseInsurance;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'CoverageEligibilityResponseInsurance';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory CoverageEligibilityResponseInsurance.fromYaml(dynamic yaml) => yaml
@@ -1899,7 +1893,8 @@ class CoverageEligibilityResponseInsurance
 
 /// [CoverageEligibilityResponseItem] This resource provides eligibility and
 @freezed
-class CoverageEligibilityResponseItem with _$CoverageEligibilityResponseItem {
+class CoverageEligibilityResponseItem
+    with BackboneType, _$CoverageEligibilityResponseItem {
   /// [CoverageEligibilityResponseItem] This resource provides eligibility and
   const CoverageEligibilityResponseItem._();
 
@@ -1982,7 +1977,7 @@ class CoverageEligibilityResponseItem with _$CoverageEligibilityResponseItem {
   const factory CoverageEligibilityResponseItem({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -2077,8 +2072,8 @@ class CoverageEligibilityResponseItem with _$CoverageEligibilityResponseItem {
     @JsonKey(name: '_authorizationUrl') Element? authorizationUrlElement,
   }) = _CoverageEligibilityResponseItem;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'CoverageEligibilityResponseItem';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory CoverageEligibilityResponseItem.fromYaml(dynamic yaml) => yaml
@@ -2107,15 +2102,11 @@ class CoverageEligibilityResponseItem with _$CoverageEligibilityResponseItem {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 @freezed
 class CoverageEligibilityResponseBenefit
-    with _$CoverageEligibilityResponseBenefit {
+    with BackboneType, _$CoverageEligibilityResponseBenefit {
   const CoverageEligibilityResponseBenefit._();
 
   /// [CoverageEligibilityResponseBenefit] This resource provides eligibility
@@ -2175,7 +2166,7 @@ class CoverageEligibilityResponseBenefit
   const factory CoverageEligibilityResponseBenefit({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -2239,8 +2230,8 @@ class CoverageEligibilityResponseBenefit
     Money? usedMoney,
   }) = _CoverageEligibilityResponseBenefit;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'CoverageEligibilityResponseBenefit';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory CoverageEligibilityResponseBenefit.fromYaml(dynamic yaml) => yaml
@@ -2261,7 +2252,8 @@ class CoverageEligibilityResponseBenefit
 
 /// [CoverageEligibilityResponseError] This resource provides eligibility
 @freezed
-class CoverageEligibilityResponseError with _$CoverageEligibilityResponseError {
+class CoverageEligibilityResponseError
+    with BackboneType, _$CoverageEligibilityResponseError {
   /// [CoverageEligibilityResponseError] This resource provides eligibility
   const CoverageEligibilityResponseError._();
 
@@ -2298,7 +2290,7 @@ class CoverageEligibilityResponseError with _$CoverageEligibilityResponseError {
   const factory CoverageEligibilityResponseError({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -2328,8 +2320,8 @@ class CoverageEligibilityResponseError with _$CoverageEligibilityResponseError {
     required CodeableConcept code,
   }) = _CoverageEligibilityResponseError;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'CoverageEligibilityResponseError';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory CoverageEligibilityResponseError.fromYaml(dynamic yaml) => yaml
@@ -2526,6 +2518,9 @@ class EnrollmentRequest with Resource, _$EnrollmentRequest {
     ///  or payor.
     Reference? coverage,
   }) = _EnrollmentRequest;
+
+  @override
+  String get fhirType => 'EnrollmentRequest';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory EnrollmentRequest.fromYaml(dynamic yaml) => yaml is String
@@ -2753,6 +2748,9 @@ class EnrollmentResponse with Resource, _$EnrollmentResponse {
     ///  rendered to the patient.
     Reference? requestProvider,
   }) = _EnrollmentResponse;
+
+  @override
+  String get fhirType => 'EnrollmentResponse';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory EnrollmentResponse.fromYaml(dynamic yaml) => yaml is String

@@ -116,10 +116,7 @@ abstract class $AdministrableProductDefinitionCopyWith<$Res> {
           routeOfAdministration});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  $ElementCopyWith<$Res>? get languageElement;
   $NarrativeCopyWith<$Res>? get text;
-  $ElementCopyWith<$Res>? get statusElement;
   $CodeableConceptCopyWith<$Res>? get administrableDoseForm;
   $CodeableConceptCopyWith<$Res>? get unitOfPresentation;
   $ReferenceCopyWith<$Res>? get device;
@@ -268,30 +265,6 @@ class _$AdministrableProductDefinitionCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get implicitRulesElement {
-    if (_value.implicitRulesElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.implicitRulesElement!, (value) {
-      return _then(_value.copyWith(implicitRulesElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get languageElement {
-    if (_value.languageElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.languageElement!, (value) {
-      return _then(_value.copyWith(languageElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
     if (_value.text == null) {
       return null;
@@ -299,18 +272,6 @@ class _$AdministrableProductDefinitionCopyWithImpl<$Res,
 
     return $NarrativeCopyWith<$Res>(_value.text!, (value) {
       return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get statusElement {
-    if (_value.statusElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.statusElement!, (value) {
-      return _then(_value.copyWith(statusElement: value) as $Val);
     });
   }
 
@@ -389,13 +350,7 @@ abstract class _$$AdministrableProductDefinitionImplCopyWith<$Res>
   @override
   $FhirMetaCopyWith<$Res>? get meta;
   @override
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  @override
-  $ElementCopyWith<$Res>? get languageElement;
-  @override
   $NarrativeCopyWith<$Res>? get text;
-  @override
-  $ElementCopyWith<$Res>? get statusElement;
   @override
   $CodeableConceptCopyWith<$Res>? get administrableDoseForm;
   @override
@@ -940,7 +895,7 @@ AdministrableProductDefinitionProperty
 /// @nodoc
 mixin _$AdministrableProductDefinitionProperty {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -997,7 +952,7 @@ abstract class $AdministrableProductDefinitionPropertyCopyWith<$Res> {
           AdministrableProductDefinitionProperty>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept type,
@@ -1013,8 +968,6 @@ abstract class $AdministrableProductDefinitionPropertyCopyWith<$Res> {
   $CodeableConceptCopyWith<$Res> get type;
   $CodeableConceptCopyWith<$Res>? get valueCodeableConcept;
   $QuantityCopyWith<$Res>? get valueQuantity;
-  $ElementCopyWith<$Res>? get valueDateElement;
-  $ElementCopyWith<$Res>? get valueBooleanElement;
   $AttachmentCopyWith<$Res>? get valueAttachment;
   $CodeableConceptCopyWith<$Res>? get status;
 }
@@ -1050,7 +1003,7 @@ class _$AdministrableProductDefinitionPropertyCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -1133,30 +1086,6 @@ class _$AdministrableProductDefinitionPropertyCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get valueDateElement {
-    if (_value.valueDateElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.valueDateElement!, (value) {
-      return _then(_value.copyWith(valueDateElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get valueBooleanElement {
-    if (_value.valueBooleanElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.valueBooleanElement!, (value) {
-      return _then(_value.copyWith(valueBooleanElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $AttachmentCopyWith<$Res>? get valueAttachment {
     if (_value.valueAttachment == null) {
       return null;
@@ -1190,7 +1119,7 @@ abstract class _$$AdministrableProductDefinitionPropertyImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept type,
@@ -1209,10 +1138,6 @@ abstract class _$$AdministrableProductDefinitionPropertyImplCopyWith<$Res>
   $CodeableConceptCopyWith<$Res>? get valueCodeableConcept;
   @override
   $QuantityCopyWith<$Res>? get valueQuantity;
-  @override
-  $ElementCopyWith<$Res>? get valueDateElement;
-  @override
-  $ElementCopyWith<$Res>? get valueBooleanElement;
   @override
   $AttachmentCopyWith<$Res>? get valueAttachment;
   @override
@@ -1249,7 +1174,7 @@ class __$$AdministrableProductDefinitionPropertyImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -1325,7 +1250,7 @@ class _$AdministrableProductDefinitionPropertyImpl
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -1465,7 +1390,7 @@ class _$AdministrableProductDefinitionPropertyImpl
 abstract class _AdministrableProductDefinitionProperty
     extends AdministrableProductDefinitionProperty {
   const factory _AdministrableProductDefinitionProperty(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           required final CodeableConcept type,
@@ -1487,7 +1412,7 @@ abstract class _AdministrableProductDefinitionProperty
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -1552,7 +1477,7 @@ AdministrableProductDefinitionRouteOfAdministration
 /// @nodoc
 mixin _$AdministrableProductDefinitionRouteOfAdministration {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -1603,7 +1528,7 @@ abstract class $AdministrableProductDefinitionRouteOfAdministrationCopyWith<
           AdministrableProductDefinitionRouteOfAdministration>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept code,
@@ -1653,7 +1578,7 @@ class _$AdministrableProductDefinitionRouteOfAdministrationCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -1777,7 +1702,7 @@ abstract class _$$AdministrableProductDefinitionRouteOfAdministrationImplCopyWit
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept code,
@@ -1834,7 +1759,7 @@ class __$$AdministrableProductDefinitionRouteOfAdministrationImplCopyWithImpl<
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -1901,7 +1826,7 @@ class _$AdministrableProductDefinitionRouteOfAdministrationImpl
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -2038,7 +1963,7 @@ class _$AdministrableProductDefinitionRouteOfAdministrationImpl
 abstract class _AdministrableProductDefinitionRouteOfAdministration
     extends AdministrableProductDefinitionRouteOfAdministration {
   const factory _AdministrableProductDefinitionRouteOfAdministration(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           required final CodeableConcept code,
@@ -2059,7 +1984,7 @@ abstract class _AdministrableProductDefinitionRouteOfAdministration
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -2114,7 +2039,7 @@ AdministrableProductDefinitionTargetSpecies
 /// @nodoc
 mixin _$AdministrableProductDefinitionTargetSpecies {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -2148,7 +2073,7 @@ abstract class $AdministrableProductDefinitionTargetSpeciesCopyWith<$Res> {
           AdministrableProductDefinitionTargetSpecies>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept code,
@@ -2182,7 +2107,7 @@ class _$AdministrableProductDefinitionTargetSpeciesCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -2222,7 +2147,7 @@ abstract class _$$AdministrableProductDefinitionTargetSpeciesImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept code,
@@ -2256,7 +2181,7 @@ class __$$AdministrableProductDefinitionTargetSpeciesImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -2299,7 +2224,7 @@ class _$AdministrableProductDefinitionTargetSpeciesImpl
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -2400,7 +2325,7 @@ class _$AdministrableProductDefinitionTargetSpeciesImpl
 abstract class _AdministrableProductDefinitionTargetSpecies
     extends AdministrableProductDefinitionTargetSpecies {
   const factory _AdministrableProductDefinitionTargetSpecies(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           required final CodeableConcept code,
@@ -2416,7 +2341,7 @@ abstract class _AdministrableProductDefinitionTargetSpecies
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -2451,7 +2376,7 @@ AdministrableProductDefinitionWithdrawalPeriod
 /// @nodoc
 mixin _$AdministrableProductDefinitionWithdrawalPeriod {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -2490,7 +2415,7 @@ abstract class $AdministrableProductDefinitionWithdrawalPeriodCopyWith<$Res> {
           AdministrableProductDefinitionWithdrawalPeriod>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept tissue,
@@ -2501,7 +2426,6 @@ abstract class $AdministrableProductDefinitionWithdrawalPeriodCopyWith<$Res> {
 
   $CodeableConceptCopyWith<$Res> get tissue;
   $QuantityCopyWith<$Res> get value;
-  $ElementCopyWith<$Res>? get supportingInformationElement;
 }
 
 /// @nodoc
@@ -2531,7 +2455,7 @@ class _$AdministrableProductDefinitionWithdrawalPeriodCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -2574,20 +2498,6 @@ class _$AdministrableProductDefinitionWithdrawalPeriodCopyWithImpl<$Res,
       return _then(_value.copyWith(value: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get supportingInformationElement {
-    if (_value.supportingInformationElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.supportingInformationElement!,
-        (value) {
-      return _then(
-          _value.copyWith(supportingInformationElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -2602,7 +2512,7 @@ abstract class _$$AdministrableProductDefinitionWithdrawalPeriodImplCopyWith<
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept tissue,
@@ -2615,8 +2525,6 @@ abstract class _$$AdministrableProductDefinitionWithdrawalPeriodImplCopyWith<
   $CodeableConceptCopyWith<$Res> get tissue;
   @override
   $QuantityCopyWith<$Res> get value;
-  @override
-  $ElementCopyWith<$Res>? get supportingInformationElement;
 }
 
 /// @nodoc
@@ -2645,7 +2553,7 @@ class __$$AdministrableProductDefinitionWithdrawalPeriodImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -2697,7 +2605,7 @@ class _$AdministrableProductDefinitionWithdrawalPeriodImpl
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -2802,7 +2710,7 @@ class _$AdministrableProductDefinitionWithdrawalPeriodImpl
 abstract class _AdministrableProductDefinitionWithdrawalPeriod
     extends AdministrableProductDefinitionWithdrawalPeriod {
   const factory _AdministrableProductDefinitionWithdrawalPeriod(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           required final CodeableConcept tissue,
@@ -2820,7 +2728,7 @@ abstract class _AdministrableProductDefinitionWithdrawalPeriod
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -2972,14 +2880,10 @@ abstract class $IngredientCopyWith<$Res> {
       IngredientSubstance substance});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  $ElementCopyWith<$Res>? get languageElement;
   $NarrativeCopyWith<$Res>? get text;
   $IdentifierCopyWith<$Res>? get identifier;
-  $ElementCopyWith<$Res>? get statusElement;
   $CodeableConceptCopyWith<$Res> get role;
   $CodeableConceptCopyWith<$Res>? get group;
-  $ElementCopyWith<$Res>? get allergenicIndicatorElement;
   $IngredientSubstanceCopyWith<$Res> get substance;
 }
 
@@ -3125,30 +3029,6 @@ class _$IngredientCopyWithImpl<$Res, $Val extends Ingredient>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get implicitRulesElement {
-    if (_value.implicitRulesElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.implicitRulesElement!, (value) {
-      return _then(_value.copyWith(implicitRulesElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get languageElement {
-    if (_value.languageElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.languageElement!, (value) {
-      return _then(_value.copyWith(languageElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
     if (_value.text == null) {
       return null;
@@ -3173,18 +3053,6 @@ class _$IngredientCopyWithImpl<$Res, $Val extends Ingredient>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get statusElement {
-    if (_value.statusElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.statusElement!, (value) {
-      return _then(_value.copyWith(statusElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get role {
     return $CodeableConceptCopyWith<$Res>(_value.role, (value) {
       return _then(_value.copyWith(role: value) as $Val);
@@ -3200,18 +3068,6 @@ class _$IngredientCopyWithImpl<$Res, $Val extends Ingredient>
 
     return $CodeableConceptCopyWith<$Res>(_value.group!, (value) {
       return _then(_value.copyWith(group: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get allergenicIndicatorElement {
-    if (_value.allergenicIndicatorElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.allergenicIndicatorElement!, (value) {
-      return _then(_value.copyWith(allergenicIndicatorElement: value) as $Val);
     });
   }
 
@@ -3260,21 +3116,13 @@ abstract class _$$IngredientImplCopyWith<$Res>
   @override
   $FhirMetaCopyWith<$Res>? get meta;
   @override
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  @override
-  $ElementCopyWith<$Res>? get languageElement;
-  @override
   $NarrativeCopyWith<$Res>? get text;
   @override
   $IdentifierCopyWith<$Res>? get identifier;
   @override
-  $ElementCopyWith<$Res>? get statusElement;
-  @override
   $CodeableConceptCopyWith<$Res> get role;
   @override
   $CodeableConceptCopyWith<$Res>? get group;
-  @override
-  $ElementCopyWith<$Res>? get allergenicIndicatorElement;
   @override
   $IngredientSubstanceCopyWith<$Res> get substance;
 }
@@ -3826,7 +3674,7 @@ IngredientManufacturer _$IngredientManufacturerFromJson(
 /// @nodoc
 mixin _$IngredientManufacturer {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -3859,14 +3707,13 @@ abstract class $IngredientManufacturerCopyWith<$Res> {
       _$IngredientManufacturerCopyWithImpl<$Res, IngredientManufacturer>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? role,
       @JsonKey(name: '_role') Element? roleElement,
       Reference manufacturer});
 
-  $ElementCopyWith<$Res>? get roleElement;
   $ReferenceCopyWith<$Res> get manufacturer;
 }
 
@@ -3895,7 +3742,7 @@ class _$IngredientManufacturerCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -3921,18 +3768,6 @@ class _$IngredientManufacturerCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get roleElement {
-    if (_value.roleElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.roleElement!, (value) {
-      return _then(_value.copyWith(roleElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get manufacturer {
     return $ReferenceCopyWith<$Res>(_value.manufacturer, (value) {
       return _then(_value.copyWith(manufacturer: value) as $Val);
@@ -3950,15 +3785,13 @@ abstract class _$$IngredientManufacturerImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? role,
       @JsonKey(name: '_role') Element? roleElement,
       Reference manufacturer});
 
-  @override
-  $ElementCopyWith<$Res>? get roleElement;
   @override
   $ReferenceCopyWith<$Res> get manufacturer;
 }
@@ -3987,7 +3820,7 @@ class __$$IngredientManufacturerImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -4031,7 +3864,7 @@ class _$IngredientManufacturerImpl extends _IngredientManufacturer {
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -4124,7 +3957,7 @@ class _$IngredientManufacturerImpl extends _IngredientManufacturer {
 
 abstract class _IngredientManufacturer extends IngredientManufacturer {
   const factory _IngredientManufacturer(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirCode? role,
@@ -4138,7 +3971,7 @@ abstract class _IngredientManufacturer extends IngredientManufacturer {
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -4174,7 +4007,7 @@ IngredientSubstance _$IngredientSubstanceFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$IngredientSubstance {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -4204,7 +4037,7 @@ abstract class $IngredientSubstanceCopyWith<$Res> {
       _$IngredientSubstanceCopyWithImpl<$Res, IngredientSubstance>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableReference code,
@@ -4236,7 +4069,7 @@ class _$IngredientSubstanceCopyWithImpl<$Res, $Val extends IngredientSubstance>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -4274,7 +4107,7 @@ abstract class _$$IngredientSubstanceImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableReference code,
@@ -4305,7 +4138,7 @@ class __$$IngredientSubstanceImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -4345,7 +4178,7 @@ class _$IngredientSubstanceImpl extends _IngredientSubstance {
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -4440,7 +4273,7 @@ class _$IngredientSubstanceImpl extends _IngredientSubstance {
 
 abstract class _IngredientSubstance extends IngredientSubstance {
   const factory _IngredientSubstance(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required final CodeableReference code,
@@ -4453,7 +4286,7 @@ abstract class _IngredientSubstance extends IngredientSubstance {
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -4485,7 +4318,7 @@ IngredientStrength _$IngredientStrengthFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$IngredientStrength {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -4549,7 +4382,7 @@ abstract class $IngredientStrengthCopyWith<$Res> {
       _$IngredientStrengthCopyWithImpl<$Res, IngredientStrength>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       Ratio? presentationRatio,
@@ -4567,11 +4400,8 @@ abstract class $IngredientStrengthCopyWith<$Res> {
 
   $RatioCopyWith<$Res>? get presentationRatio;
   $RatioRangeCopyWith<$Res>? get presentationRatioRange;
-  $ElementCopyWith<$Res>? get textPresentationElement;
   $RatioCopyWith<$Res>? get concentrationRatio;
   $RatioRangeCopyWith<$Res>? get concentrationRatioRange;
-  $ElementCopyWith<$Res>? get textConcentrationElement;
-  $ElementCopyWith<$Res>? get measurementPointElement;
 }
 
 /// @nodoc
@@ -4607,7 +4437,7 @@ class _$IngredientStrengthCopyWithImpl<$Res, $Val extends IngredientStrength>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -4693,18 +4523,6 @@ class _$IngredientStrengthCopyWithImpl<$Res, $Val extends IngredientStrength>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get textPresentationElement {
-    if (_value.textPresentationElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.textPresentationElement!, (value) {
-      return _then(_value.copyWith(textPresentationElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $RatioCopyWith<$Res>? get concentrationRatio {
     if (_value.concentrationRatio == null) {
       return null;
@@ -4726,30 +4544,6 @@ class _$IngredientStrengthCopyWithImpl<$Res, $Val extends IngredientStrength>
       return _then(_value.copyWith(concentrationRatioRange: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get textConcentrationElement {
-    if (_value.textConcentrationElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.textConcentrationElement!, (value) {
-      return _then(_value.copyWith(textConcentrationElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get measurementPointElement {
-    if (_value.measurementPointElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.measurementPointElement!, (value) {
-      return _then(_value.copyWith(measurementPointElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -4761,7 +4555,7 @@ abstract class _$$IngredientStrengthImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       Ratio? presentationRatio,
@@ -4782,15 +4576,9 @@ abstract class _$$IngredientStrengthImplCopyWith<$Res>
   @override
   $RatioRangeCopyWith<$Res>? get presentationRatioRange;
   @override
-  $ElementCopyWith<$Res>? get textPresentationElement;
-  @override
   $RatioCopyWith<$Res>? get concentrationRatio;
   @override
   $RatioRangeCopyWith<$Res>? get concentrationRatioRange;
-  @override
-  $ElementCopyWith<$Res>? get textConcentrationElement;
-  @override
-  $ElementCopyWith<$Res>? get measurementPointElement;
 }
 
 /// @nodoc
@@ -4824,7 +4612,7 @@ class __$$IngredientStrengthImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -4915,7 +4703,7 @@ class _$IngredientStrengthImpl extends _IngredientStrength {
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -5098,7 +4886,7 @@ class _$IngredientStrengthImpl extends _IngredientStrength {
 
 abstract class _IngredientStrength extends IngredientStrength {
   const factory _IngredientStrength(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final Ratio? presentationRatio,
@@ -5125,7 +4913,7 @@ abstract class _IngredientStrength extends IngredientStrength {
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -5201,7 +4989,7 @@ IngredientReferenceStrength _$IngredientReferenceStrengthFromJson(
 /// @nodoc
 mixin _$IngredientReferenceStrength {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -5249,7 +5037,7 @@ abstract class $IngredientReferenceStrengthCopyWith<$Res> {
           IngredientReferenceStrength>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableReference? substance,
@@ -5264,7 +5052,6 @@ abstract class $IngredientReferenceStrengthCopyWith<$Res> {
   $RatioCopyWith<$Res>? get strengthRatio;
   $RatioRangeCopyWith<$Res>? get strengthRatioRange;
   $QuantityCopyWith<$Res>? get strengthQuantity;
-  $ElementCopyWith<$Res>? get measurementPointElement;
 }
 
 /// @nodoc
@@ -5296,7 +5083,7 @@ class _$IngredientReferenceStrengthCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -5383,18 +5170,6 @@ class _$IngredientReferenceStrengthCopyWithImpl<$Res,
       return _then(_value.copyWith(strengthQuantity: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get measurementPointElement {
-    if (_value.measurementPointElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.measurementPointElement!, (value) {
-      return _then(_value.copyWith(measurementPointElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -5407,7 +5182,7 @@ abstract class _$$IngredientReferenceStrengthImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableReference? substance,
@@ -5426,8 +5201,6 @@ abstract class _$$IngredientReferenceStrengthImplCopyWith<$Res>
   $RatioRangeCopyWith<$Res>? get strengthRatioRange;
   @override
   $QuantityCopyWith<$Res>? get strengthQuantity;
-  @override
-  $ElementCopyWith<$Res>? get measurementPointElement;
 }
 
 /// @nodoc
@@ -5458,7 +5231,7 @@ class __$$IngredientReferenceStrengthImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -5524,7 +5297,7 @@ class _$IngredientReferenceStrengthImpl extends _IngredientReferenceStrength {
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -5658,7 +5431,7 @@ class _$IngredientReferenceStrengthImpl extends _IngredientReferenceStrength {
 abstract class _IngredientReferenceStrength
     extends IngredientReferenceStrength {
   const factory _IngredientReferenceStrength(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final CodeableReference? substance,
@@ -5678,7 +5451,7 @@ abstract class _IngredientReferenceStrength
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -5848,10 +5621,7 @@ abstract class $ClinicalUseDefinitionCopyWith<$Res> {
       ClinicalUseDefinitionWarning? warning});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  $ElementCopyWith<$Res>? get languageElement;
   $NarrativeCopyWith<$Res>? get text;
-  $ElementCopyWith<$Res>? get typeElement;
   $CodeableConceptCopyWith<$Res>? get status;
   $ClinicalUseDefinitionContraindicationCopyWith<$Res>? get contraindication;
   $ClinicalUseDefinitionIndicationCopyWith<$Res>? get indication;
@@ -6008,30 +5778,6 @@ class _$ClinicalUseDefinitionCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get implicitRulesElement {
-    if (_value.implicitRulesElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.implicitRulesElement!, (value) {
-      return _then(_value.copyWith(implicitRulesElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get languageElement {
-    if (_value.languageElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.languageElement!, (value) {
-      return _then(_value.copyWith(languageElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
     if (_value.text == null) {
       return null;
@@ -6039,18 +5785,6 @@ class _$ClinicalUseDefinitionCopyWithImpl<$Res,
 
     return $NarrativeCopyWith<$Res>(_value.text!, (value) {
       return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get typeElement {
-    if (_value.typeElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.typeElement!, (value) {
-      return _then(_value.copyWith(typeElement: value) as $Val);
     });
   }
 
@@ -6169,13 +5903,7 @@ abstract class _$$ClinicalUseDefinitionImplCopyWith<$Res>
   @override
   $FhirMetaCopyWith<$Res>? get meta;
   @override
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  @override
-  $ElementCopyWith<$Res>? get languageElement;
-  @override
   $NarrativeCopyWith<$Res>? get text;
-  @override
-  $ElementCopyWith<$Res>? get typeElement;
   @override
   $CodeableConceptCopyWith<$Res>? get status;
   @override
@@ -6758,7 +6486,7 @@ ClinicalUseDefinitionContraindication
 /// @nodoc
 mixin _$ClinicalUseDefinitionContraindication {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -6802,7 +6530,7 @@ abstract class $ClinicalUseDefinitionContraindicationCopyWith<$Res> {
           ClinicalUseDefinitionContraindication>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableReference? diseaseSymptomProcedure,
@@ -6842,7 +6570,7 @@ class _$ClinicalUseDefinitionContraindicationCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -6910,7 +6638,7 @@ abstract class _$$ClinicalUseDefinitionContraindicationImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableReference? diseaseSymptomProcedure,
@@ -6951,7 +6679,7 @@ class __$$ClinicalUseDefinitionContraindicationImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -7010,7 +6738,7 @@ class _$ClinicalUseDefinitionContraindicationImpl
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -7147,7 +6875,7 @@ class _$ClinicalUseDefinitionContraindicationImpl
 abstract class _ClinicalUseDefinitionContraindication
     extends ClinicalUseDefinitionContraindication {
   const factory _ClinicalUseDefinitionContraindication(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final CodeableReference? diseaseSymptomProcedure,
@@ -7165,7 +6893,7 @@ abstract class _ClinicalUseDefinitionContraindication
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -7210,7 +6938,7 @@ ClinicalUseDefinitionOtherTherapy _$ClinicalUseDefinitionOtherTherapyFromJson(
 /// @nodoc
 mixin _$ClinicalUseDefinitionOtherTherapy {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -7241,7 +6969,7 @@ abstract class $ClinicalUseDefinitionOtherTherapyCopyWith<$Res> {
           ClinicalUseDefinitionOtherTherapy>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept relationshipType,
@@ -7275,7 +7003,7 @@ class _$ClinicalUseDefinitionOtherTherapyCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -7322,7 +7050,7 @@ abstract class _$$ClinicalUseDefinitionOtherTherapyImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept relationshipType,
@@ -7357,7 +7085,7 @@ class __$$ClinicalUseDefinitionOtherTherapyImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -7398,7 +7126,7 @@ class _$ClinicalUseDefinitionOtherTherapyImpl
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -7485,7 +7213,7 @@ class _$ClinicalUseDefinitionOtherTherapyImpl
 abstract class _ClinicalUseDefinitionOtherTherapy
     extends ClinicalUseDefinitionOtherTherapy {
   const factory _ClinicalUseDefinitionOtherTherapy(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           required final CodeableConcept relationshipType,
@@ -7500,7 +7228,7 @@ abstract class _ClinicalUseDefinitionOtherTherapy
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -7533,7 +7261,7 @@ ClinicalUseDefinitionIndication _$ClinicalUseDefinitionIndicationFromJson(
 /// @nodoc
 mixin _$ClinicalUseDefinitionIndication {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -7589,7 +7317,7 @@ abstract class $ClinicalUseDefinitionIndicationCopyWith<$Res> {
           ClinicalUseDefinitionIndication>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableReference? diseaseSymptomProcedure,
@@ -7606,7 +7334,6 @@ abstract class $ClinicalUseDefinitionIndicationCopyWith<$Res> {
   $CodeableReferenceCopyWith<$Res>? get diseaseStatus;
   $CodeableReferenceCopyWith<$Res>? get intendedEffect;
   $RangeCopyWith<$Res>? get durationRange;
-  $ElementCopyWith<$Res>? get durationStringElement;
 }
 
 /// @nodoc
@@ -7640,7 +7367,7 @@ class _$ClinicalUseDefinitionIndicationCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -7736,18 +7463,6 @@ class _$ClinicalUseDefinitionIndicationCopyWithImpl<$Res,
       return _then(_value.copyWith(durationRange: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get durationStringElement {
-    if (_value.durationStringElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.durationStringElement!, (value) {
-      return _then(_value.copyWith(durationStringElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -7760,7 +7475,7 @@ abstract class _$$ClinicalUseDefinitionIndicationImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableReference? diseaseSymptomProcedure,
@@ -7781,8 +7496,6 @@ abstract class _$$ClinicalUseDefinitionIndicationImplCopyWith<$Res>
   $CodeableReferenceCopyWith<$Res>? get intendedEffect;
   @override
   $RangeCopyWith<$Res>? get durationRange;
-  @override
-  $ElementCopyWith<$Res>? get durationStringElement;
 }
 
 /// @nodoc
@@ -7815,7 +7528,7 @@ class __$$ClinicalUseDefinitionIndicationImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -7894,7 +7607,7 @@ class _$ClinicalUseDefinitionIndicationImpl
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -8061,7 +7774,7 @@ class _$ClinicalUseDefinitionIndicationImpl
 abstract class _ClinicalUseDefinitionIndication
     extends ClinicalUseDefinitionIndication {
   const factory _ClinicalUseDefinitionIndication(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final CodeableReference? diseaseSymptomProcedure,
@@ -8082,7 +7795,7 @@ abstract class _ClinicalUseDefinitionIndication
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -8144,7 +7857,7 @@ ClinicalUseDefinitionInteraction _$ClinicalUseDefinitionInteractionFromJson(
 /// @nodoc
 mixin _$ClinicalUseDefinitionInteraction {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -8185,7 +7898,7 @@ abstract class $ClinicalUseDefinitionInteractionCopyWith<$Res> {
           ClinicalUseDefinitionInteraction>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<ClinicalUseDefinitionInteractant>? interactant,
@@ -8226,7 +7939,7 @@ class _$ClinicalUseDefinitionInteractionCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -8305,7 +8018,7 @@ abstract class _$$ClinicalUseDefinitionInteractionImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<ClinicalUseDefinitionInteractant>? interactant,
@@ -8348,7 +8061,7 @@ class __$$ClinicalUseDefinitionInteractionImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -8406,7 +8119,7 @@ class _$ClinicalUseDefinitionInteractionImpl
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -8531,7 +8244,7 @@ class _$ClinicalUseDefinitionInteractionImpl
 abstract class _ClinicalUseDefinitionInteraction
     extends ClinicalUseDefinitionInteraction {
   const factory _ClinicalUseDefinitionInteraction(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final List<ClinicalUseDefinitionInteractant>? interactant,
@@ -8549,7 +8262,7 @@ abstract class _ClinicalUseDefinitionInteraction
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -8594,7 +8307,7 @@ ClinicalUseDefinitionInteractant _$ClinicalUseDefinitionInteractantFromJson(
 /// @nodoc
 mixin _$ClinicalUseDefinitionInteractant {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -8626,7 +8339,7 @@ abstract class $ClinicalUseDefinitionInteractantCopyWith<$Res> {
           ClinicalUseDefinitionInteractant>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       Reference? itemReference,
@@ -8660,7 +8373,7 @@ class _$ClinicalUseDefinitionInteractantCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -8715,7 +8428,7 @@ abstract class _$$ClinicalUseDefinitionInteractantImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       Reference? itemReference,
@@ -8750,7 +8463,7 @@ class __$$ClinicalUseDefinitionInteractantImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -8791,7 +8504,7 @@ class _$ClinicalUseDefinitionInteractantImpl
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -8879,7 +8592,7 @@ class _$ClinicalUseDefinitionInteractantImpl
 abstract class _ClinicalUseDefinitionInteractant
     extends ClinicalUseDefinitionInteractant {
   const factory _ClinicalUseDefinitionInteractant(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final Reference? itemReference,
@@ -8894,7 +8607,7 @@ abstract class _ClinicalUseDefinitionInteractant
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -8928,7 +8641,7 @@ ClinicalUseDefinitionUndesirableEffect
 /// @nodoc
 mixin _$ClinicalUseDefinitionUndesirableEffect {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -8965,7 +8678,7 @@ abstract class $ClinicalUseDefinitionUndesirableEffectCopyWith<$Res> {
           ClinicalUseDefinitionUndesirableEffect>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableReference? symptomConditionEffect,
@@ -9002,7 +8715,7 @@ class _$ClinicalUseDefinitionUndesirableEffectCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -9075,7 +8788,7 @@ abstract class _$$ClinicalUseDefinitionUndesirableEffectImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableReference? symptomConditionEffect,
@@ -9114,7 +8827,7 @@ class __$$ClinicalUseDefinitionUndesirableEffectImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -9160,7 +8873,7 @@ class _$ClinicalUseDefinitionUndesirableEffectImpl
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -9256,7 +8969,7 @@ class _$ClinicalUseDefinitionUndesirableEffectImpl
 abstract class _ClinicalUseDefinitionUndesirableEffect
     extends ClinicalUseDefinitionUndesirableEffect {
   const factory _ClinicalUseDefinitionUndesirableEffect(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final CodeableReference? symptomConditionEffect,
@@ -9272,7 +8985,7 @@ abstract class _ClinicalUseDefinitionUndesirableEffect
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -9309,7 +9022,7 @@ ClinicalUseDefinitionWarning _$ClinicalUseDefinitionWarningFromJson(
 /// @nodoc
 mixin _$ClinicalUseDefinitionWarning {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -9344,14 +9057,13 @@ abstract class $ClinicalUseDefinitionWarningCopyWith<$Res> {
           ClinicalUseDefinitionWarning>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirMarkdown? description,
       @JsonKey(name: '_description') Element? descriptionElement,
       CodeableConcept? code});
 
-  $ElementCopyWith<$Res>? get descriptionElement;
   $CodeableConceptCopyWith<$Res>? get code;
 }
 
@@ -9380,7 +9092,7 @@ class _$ClinicalUseDefinitionWarningCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -9406,18 +9118,6 @@ class _$ClinicalUseDefinitionWarningCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get descriptionElement {
-    if (_value.descriptionElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.descriptionElement!, (value) {
-      return _then(_value.copyWith(descriptionElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get code {
     if (_value.code == null) {
       return null;
@@ -9439,15 +9139,13 @@ abstract class _$$ClinicalUseDefinitionWarningImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirMarkdown? description,
       @JsonKey(name: '_description') Element? descriptionElement,
       CodeableConcept? code});
 
-  @override
-  $ElementCopyWith<$Res>? get descriptionElement;
   @override
   $CodeableConceptCopyWith<$Res>? get code;
 }
@@ -9476,7 +9174,7 @@ class __$$ClinicalUseDefinitionWarningImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -9521,7 +9219,7 @@ class _$ClinicalUseDefinitionWarningImpl extends _ClinicalUseDefinitionWarning {
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -9616,7 +9314,7 @@ class _$ClinicalUseDefinitionWarningImpl extends _ClinicalUseDefinitionWarning {
 abstract class _ClinicalUseDefinitionWarning
     extends ClinicalUseDefinitionWarning {
   const factory _ClinicalUseDefinitionWarning(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirMarkdown? description,
@@ -9630,7 +9328,7 @@ abstract class _ClinicalUseDefinitionWarning
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -9766,10 +9464,7 @@ abstract class $ManufacturedItemDefinitionCopyWith<$Res> {
       List<ManufacturedItemDefinitionProperty>? property});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  $ElementCopyWith<$Res>? get languageElement;
   $NarrativeCopyWith<$Res>? get text;
-  $ElementCopyWith<$Res>? get statusElement;
   $CodeableConceptCopyWith<$Res> get manufacturedDoseForm;
   $CodeableConceptCopyWith<$Res>? get unitOfPresentation;
 }
@@ -9902,30 +9597,6 @@ class _$ManufacturedItemDefinitionCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get implicitRulesElement {
-    if (_value.implicitRulesElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.implicitRulesElement!, (value) {
-      return _then(_value.copyWith(implicitRulesElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get languageElement {
-    if (_value.languageElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.languageElement!, (value) {
-      return _then(_value.copyWith(languageElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
     if (_value.text == null) {
       return null;
@@ -9933,18 +9604,6 @@ class _$ManufacturedItemDefinitionCopyWithImpl<$Res,
 
     return $NarrativeCopyWith<$Res>(_value.text!, (value) {
       return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get statusElement {
-    if (_value.statusElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.statusElement!, (value) {
-      return _then(_value.copyWith(statusElement: value) as $Val);
     });
   }
 
@@ -10002,13 +9661,7 @@ abstract class _$$ManufacturedItemDefinitionImplCopyWith<$Res>
   @override
   $FhirMetaCopyWith<$Res>? get meta;
   @override
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  @override
-  $ElementCopyWith<$Res>? get languageElement;
-  @override
   $NarrativeCopyWith<$Res>? get text;
-  @override
-  $ElementCopyWith<$Res>? get statusElement;
   @override
   $CodeableConceptCopyWith<$Res> get manufacturedDoseForm;
   @override
@@ -10516,7 +10169,7 @@ ManufacturedItemDefinitionProperty _$ManufacturedItemDefinitionPropertyFromJson(
 /// @nodoc
 mixin _$ManufacturedItemDefinitionProperty {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -10570,7 +10223,7 @@ abstract class $ManufacturedItemDefinitionPropertyCopyWith<$Res> {
           ManufacturedItemDefinitionProperty>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept type,
@@ -10585,8 +10238,6 @@ abstract class $ManufacturedItemDefinitionPropertyCopyWith<$Res> {
   $CodeableConceptCopyWith<$Res> get type;
   $CodeableConceptCopyWith<$Res>? get valueCodeableConcept;
   $QuantityCopyWith<$Res>? get valueQuantity;
-  $ElementCopyWith<$Res>? get valueDateElement;
-  $ElementCopyWith<$Res>? get valueBooleanElement;
   $AttachmentCopyWith<$Res>? get valueAttachment;
 }
 
@@ -10620,7 +10271,7 @@ class _$ManufacturedItemDefinitionPropertyCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -10699,30 +10350,6 @@ class _$ManufacturedItemDefinitionPropertyCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get valueDateElement {
-    if (_value.valueDateElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.valueDateElement!, (value) {
-      return _then(_value.copyWith(valueDateElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get valueBooleanElement {
-    if (_value.valueBooleanElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.valueBooleanElement!, (value) {
-      return _then(_value.copyWith(valueBooleanElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $AttachmentCopyWith<$Res>? get valueAttachment {
     if (_value.valueAttachment == null) {
       return null;
@@ -10744,7 +10371,7 @@ abstract class _$$ManufacturedItemDefinitionPropertyImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept type,
@@ -10762,10 +10389,6 @@ abstract class _$$ManufacturedItemDefinitionPropertyImplCopyWith<$Res>
   $CodeableConceptCopyWith<$Res>? get valueCodeableConcept;
   @override
   $QuantityCopyWith<$Res>? get valueQuantity;
-  @override
-  $ElementCopyWith<$Res>? get valueDateElement;
-  @override
-  $ElementCopyWith<$Res>? get valueBooleanElement;
   @override
   $AttachmentCopyWith<$Res>? get valueAttachment;
 }
@@ -10799,7 +10422,7 @@ class __$$ManufacturedItemDefinitionPropertyImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -10870,7 +10493,7 @@ class _$ManufacturedItemDefinitionPropertyImpl
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -11003,7 +10626,7 @@ class _$ManufacturedItemDefinitionPropertyImpl
 abstract class _ManufacturedItemDefinitionProperty
     extends ManufacturedItemDefinitionProperty {
   const factory _ManufacturedItemDefinitionProperty(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           required final CodeableConcept type,
@@ -11024,7 +10647,7 @@ abstract class _ManufacturedItemDefinitionProperty
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -11292,17 +10915,11 @@ abstract class $MedicinalProductDefinitionCopyWith<$Res> {
       List<MedicinalProductDefinitionCharacteristic>? characteristic});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  $ElementCopyWith<$Res>? get languageElement;
   $NarrativeCopyWith<$Res>? get text;
   $CodeableConceptCopyWith<$Res>? get type;
   $CodeableConceptCopyWith<$Res>? get domain;
-  $ElementCopyWith<$Res>? get versionElement;
   $CodeableConceptCopyWith<$Res>? get status;
-  $ElementCopyWith<$Res>? get statusDateElement;
-  $ElementCopyWith<$Res>? get descriptionElement;
   $CodeableConceptCopyWith<$Res>? get combinedPharmaceuticalDoseForm;
-  $ElementCopyWith<$Res>? get indicationElement;
   $CodeableConceptCopyWith<$Res>? get legalStatusOfSupply;
   $CodeableConceptCopyWith<$Res>? get additionalMonitoringIndicator;
   $CodeableConceptCopyWith<$Res>? get pediatricUseIndicator;
@@ -11556,30 +11173,6 @@ class _$MedicinalProductDefinitionCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get implicitRulesElement {
-    if (_value.implicitRulesElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.implicitRulesElement!, (value) {
-      return _then(_value.copyWith(implicitRulesElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get languageElement {
-    if (_value.languageElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.languageElement!, (value) {
-      return _then(_value.copyWith(languageElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
     if (_value.text == null) {
       return null;
@@ -11616,18 +11209,6 @@ class _$MedicinalProductDefinitionCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get versionElement {
-    if (_value.versionElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.versionElement!, (value) {
-      return _then(_value.copyWith(versionElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get status {
     if (_value.status == null) {
       return null;
@@ -11635,30 +11216,6 @@ class _$MedicinalProductDefinitionCopyWithImpl<$Res,
 
     return $CodeableConceptCopyWith<$Res>(_value.status!, (value) {
       return _then(_value.copyWith(status: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get statusDateElement {
-    if (_value.statusDateElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.statusDateElement!, (value) {
-      return _then(_value.copyWith(statusDateElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get descriptionElement {
-    if (_value.descriptionElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.descriptionElement!, (value) {
-      return _then(_value.copyWith(descriptionElement: value) as $Val);
     });
   }
 
@@ -11673,18 +11230,6 @@ class _$MedicinalProductDefinitionCopyWithImpl<$Res,
         _value.combinedPharmaceuticalDoseForm!, (value) {
       return _then(
           _value.copyWith(combinedPharmaceuticalDoseForm: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get indicationElement {
-    if (_value.indicationElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.indicationElement!, (value) {
-      return _then(_value.copyWith(indicationElement: value) as $Val);
     });
   }
 
@@ -11785,27 +11330,15 @@ abstract class _$$MedicinalProductDefinitionImplCopyWith<$Res>
   @override
   $FhirMetaCopyWith<$Res>? get meta;
   @override
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  @override
-  $ElementCopyWith<$Res>? get languageElement;
-  @override
   $NarrativeCopyWith<$Res>? get text;
   @override
   $CodeableConceptCopyWith<$Res>? get type;
   @override
   $CodeableConceptCopyWith<$Res>? get domain;
   @override
-  $ElementCopyWith<$Res>? get versionElement;
-  @override
   $CodeableConceptCopyWith<$Res>? get status;
   @override
-  $ElementCopyWith<$Res>? get statusDateElement;
-  @override
-  $ElementCopyWith<$Res>? get descriptionElement;
-  @override
   $CodeableConceptCopyWith<$Res>? get combinedPharmaceuticalDoseForm;
-  @override
-  $ElementCopyWith<$Res>? get indicationElement;
   @override
   $CodeableConceptCopyWith<$Res>? get legalStatusOfSupply;
   @override
@@ -12878,7 +12411,7 @@ MedicinalProductDefinitionContact _$MedicinalProductDefinitionContactFromJson(
 /// @nodoc
 mixin _$MedicinalProductDefinitionContact {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -12910,7 +12443,7 @@ abstract class $MedicinalProductDefinitionContactCopyWith<$Res> {
           MedicinalProductDefinitionContact>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? type,
@@ -12944,7 +12477,7 @@ class _$MedicinalProductDefinitionContactCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -12995,7 +12528,7 @@ abstract class _$$MedicinalProductDefinitionContactImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? type,
@@ -13030,7 +12563,7 @@ class __$$MedicinalProductDefinitionContactImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -13071,7 +12604,7 @@ class _$MedicinalProductDefinitionContactImpl
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -13159,7 +12692,7 @@ class _$MedicinalProductDefinitionContactImpl
 abstract class _MedicinalProductDefinitionContact
     extends MedicinalProductDefinitionContact {
   const factory _MedicinalProductDefinitionContact(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final CodeableConcept? type,
@@ -13174,7 +12707,7 @@ abstract class _MedicinalProductDefinitionContact
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -13208,7 +12741,7 @@ MedicinalProductDefinitionName _$MedicinalProductDefinitionNameFromJson(
 /// @nodoc
 mixin _$MedicinalProductDefinitionName {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -13252,7 +12785,7 @@ abstract class $MedicinalProductDefinitionNameCopyWith<$Res> {
           MedicinalProductDefinitionName>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? productName,
@@ -13261,7 +12794,6 @@ abstract class $MedicinalProductDefinitionNameCopyWith<$Res> {
       List<MedicinalProductDefinitionNamePart>? namePart,
       List<MedicinalProductDefinitionCountryLanguage>? countryLanguage});
 
-  $ElementCopyWith<$Res>? get productNameElement;
   $CodeableConceptCopyWith<$Res>? get type;
 }
 
@@ -13292,7 +12824,7 @@ class _$MedicinalProductDefinitionNameCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -13326,18 +12858,6 @@ class _$MedicinalProductDefinitionNameCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get productNameElement {
-    if (_value.productNameElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.productNameElement!, (value) {
-      return _then(_value.copyWith(productNameElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get type {
     if (_value.type == null) {
       return null;
@@ -13359,7 +12879,7 @@ abstract class _$$MedicinalProductDefinitionNameImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? productName,
@@ -13368,8 +12888,6 @@ abstract class _$$MedicinalProductDefinitionNameImplCopyWith<$Res>
       List<MedicinalProductDefinitionNamePart>? namePart,
       List<MedicinalProductDefinitionCountryLanguage>? countryLanguage});
 
-  @override
-  $ElementCopyWith<$Res>? get productNameElement;
   @override
   $CodeableConceptCopyWith<$Res>? get type;
 }
@@ -13400,7 +12918,7 @@ class __$$MedicinalProductDefinitionNameImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -13458,7 +12976,7 @@ class _$MedicinalProductDefinitionNameImpl
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -13586,7 +13104,7 @@ class _$MedicinalProductDefinitionNameImpl
 abstract class _MedicinalProductDefinitionName
     extends MedicinalProductDefinitionName {
   const factory _MedicinalProductDefinitionName(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final String? productName,
@@ -13603,7 +13121,7 @@ abstract class _MedicinalProductDefinitionName
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -13650,7 +13168,7 @@ MedicinalProductDefinitionNamePart _$MedicinalProductDefinitionNamePartFromJson(
 /// @nodoc
 mixin _$MedicinalProductDefinitionNamePart {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -13688,14 +13206,13 @@ abstract class $MedicinalProductDefinitionNamePartCopyWith<$Res> {
           MedicinalProductDefinitionNamePart>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       @JsonKey(name: 'part') String? part_,
       @JsonKey(name: '_part') Element? partElement,
       CodeableConcept type});
 
-  $ElementCopyWith<$Res>? get partElement;
   $CodeableConceptCopyWith<$Res> get type;
 }
 
@@ -13724,7 +13241,7 @@ class _$MedicinalProductDefinitionNamePartCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -13750,18 +13267,6 @@ class _$MedicinalProductDefinitionNamePartCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get partElement {
-    if (_value.partElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.partElement!, (value) {
-      return _then(_value.copyWith(partElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get type {
     return $CodeableConceptCopyWith<$Res>(_value.type, (value) {
       return _then(_value.copyWith(type: value) as $Val);
@@ -13779,15 +13284,13 @@ abstract class _$$MedicinalProductDefinitionNamePartImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       @JsonKey(name: 'part') String? part_,
       @JsonKey(name: '_part') Element? partElement,
       CodeableConcept type});
 
-  @override
-  $ElementCopyWith<$Res>? get partElement;
   @override
   $CodeableConceptCopyWith<$Res> get type;
 }
@@ -13816,7 +13319,7 @@ class __$$MedicinalProductDefinitionNamePartImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -13862,7 +13365,7 @@ class _$MedicinalProductDefinitionNamePartImpl
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -13959,7 +13462,7 @@ class _$MedicinalProductDefinitionNamePartImpl
 abstract class _MedicinalProductDefinitionNamePart
     extends MedicinalProductDefinitionNamePart {
   const factory _MedicinalProductDefinitionNamePart(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           @JsonKey(name: 'part') final String? part_,
@@ -13975,7 +13478,7 @@ abstract class _MedicinalProductDefinitionNamePart
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -14016,7 +13519,7 @@ MedicinalProductDefinitionCountryLanguage
 /// @nodoc
 mixin _$MedicinalProductDefinitionCountryLanguage {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -14052,7 +13555,7 @@ abstract class $MedicinalProductDefinitionCountryLanguageCopyWith<$Res> {
           MedicinalProductDefinitionCountryLanguage>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept country,
@@ -14090,7 +13593,7 @@ class _$MedicinalProductDefinitionCountryLanguageCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -14153,7 +13656,7 @@ abstract class _$$MedicinalProductDefinitionCountryLanguageImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept country,
@@ -14192,7 +13695,7 @@ class __$$MedicinalProductDefinitionCountryLanguageImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -14238,7 +13741,7 @@ class _$MedicinalProductDefinitionCountryLanguageImpl
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -14336,7 +13839,7 @@ class _$MedicinalProductDefinitionCountryLanguageImpl
 abstract class _MedicinalProductDefinitionCountryLanguage
     extends MedicinalProductDefinitionCountryLanguage {
   const factory _MedicinalProductDefinitionCountryLanguage(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           required final CodeableConcept country,
@@ -14352,7 +13855,7 @@ abstract class _MedicinalProductDefinitionCountryLanguage
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -14391,7 +13894,7 @@ MedicinalProductDefinitionCrossReference
 /// @nodoc
 mixin _$MedicinalProductDefinitionCrossReference {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -14424,7 +13927,7 @@ abstract class $MedicinalProductDefinitionCrossReferenceCopyWith<$Res> {
           MedicinalProductDefinitionCrossReference>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableReference product,
@@ -14459,7 +13962,7 @@ class _$MedicinalProductDefinitionCrossReferenceCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -14510,7 +14013,7 @@ abstract class _$$MedicinalProductDefinitionCrossReferenceImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableReference product,
@@ -14545,7 +14048,7 @@ class __$$MedicinalProductDefinitionCrossReferenceImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -14586,7 +14089,7 @@ class _$MedicinalProductDefinitionCrossReferenceImpl
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -14675,7 +14178,7 @@ class _$MedicinalProductDefinitionCrossReferenceImpl
 abstract class _MedicinalProductDefinitionCrossReference
     extends MedicinalProductDefinitionCrossReference {
   const factory _MedicinalProductDefinitionCrossReference(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           required final CodeableReference product,
@@ -14690,7 +14193,7 @@ abstract class _MedicinalProductDefinitionCrossReference
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -14724,7 +14227,7 @@ MedicinalProductDefinitionOperation
 /// @nodoc
 mixin _$MedicinalProductDefinitionOperation {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -14764,7 +14267,7 @@ abstract class $MedicinalProductDefinitionOperationCopyWith<$Res> {
           MedicinalProductDefinitionOperation>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableReference? type,
@@ -14803,7 +14306,7 @@ class _$MedicinalProductDefinitionOperationCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -14879,7 +14382,7 @@ abstract class _$$MedicinalProductDefinitionOperationImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableReference? type,
@@ -14920,7 +14423,7 @@ class __$$MedicinalProductDefinitionOperationImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -14972,7 +14475,7 @@ class _$MedicinalProductDefinitionOperationImpl
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -15085,7 +14588,7 @@ class _$MedicinalProductDefinitionOperationImpl
 abstract class _MedicinalProductDefinitionOperation
     extends MedicinalProductDefinitionOperation {
   const factory _MedicinalProductDefinitionOperation(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final CodeableReference? type,
@@ -15102,7 +14605,7 @@ abstract class _MedicinalProductDefinitionOperation
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -15145,7 +14648,7 @@ MedicinalProductDefinitionCharacteristic
 /// @nodoc
 mixin _$MedicinalProductDefinitionCharacteristic {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -15199,7 +14702,7 @@ abstract class $MedicinalProductDefinitionCharacteristicCopyWith<$Res> {
           MedicinalProductDefinitionCharacteristic>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept type,
@@ -15214,8 +14717,6 @@ abstract class $MedicinalProductDefinitionCharacteristicCopyWith<$Res> {
   $CodeableConceptCopyWith<$Res> get type;
   $CodeableConceptCopyWith<$Res>? get valueCodeableConcept;
   $QuantityCopyWith<$Res>? get valueQuantity;
-  $ElementCopyWith<$Res>? get valueDateElement;
-  $ElementCopyWith<$Res>? get valueBooleanElement;
   $AttachmentCopyWith<$Res>? get valueAttachment;
 }
 
@@ -15250,7 +14751,7 @@ class _$MedicinalProductDefinitionCharacteristicCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -15329,30 +14830,6 @@ class _$MedicinalProductDefinitionCharacteristicCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get valueDateElement {
-    if (_value.valueDateElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.valueDateElement!, (value) {
-      return _then(_value.copyWith(valueDateElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get valueBooleanElement {
-    if (_value.valueBooleanElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.valueBooleanElement!, (value) {
-      return _then(_value.copyWith(valueBooleanElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $AttachmentCopyWith<$Res>? get valueAttachment {
     if (_value.valueAttachment == null) {
       return null;
@@ -15374,7 +14851,7 @@ abstract class _$$MedicinalProductDefinitionCharacteristicImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept type,
@@ -15392,10 +14869,6 @@ abstract class _$$MedicinalProductDefinitionCharacteristicImplCopyWith<$Res>
   $CodeableConceptCopyWith<$Res>? get valueCodeableConcept;
   @override
   $QuantityCopyWith<$Res>? get valueQuantity;
-  @override
-  $ElementCopyWith<$Res>? get valueDateElement;
-  @override
-  $ElementCopyWith<$Res>? get valueBooleanElement;
   @override
   $AttachmentCopyWith<$Res>? get valueAttachment;
 }
@@ -15429,7 +14902,7 @@ class __$$MedicinalProductDefinitionCharacteristicImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -15500,7 +14973,7 @@ class _$MedicinalProductDefinitionCharacteristicImpl
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -15634,7 +15107,7 @@ class _$MedicinalProductDefinitionCharacteristicImpl
 abstract class _MedicinalProductDefinitionCharacteristic
     extends MedicinalProductDefinitionCharacteristic {
   const factory _MedicinalProductDefinitionCharacteristic(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           required final CodeableConcept type,
@@ -15655,7 +15128,7 @@ abstract class _MedicinalProductDefinitionCharacteristic
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -15859,15 +15332,9 @@ abstract class $PackagedProductDefinitionCopyWith<$Res> {
       PackagedProductDefinitionPackage? package});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  $ElementCopyWith<$Res>? get languageElement;
   $NarrativeCopyWith<$Res>? get text;
-  $ElementCopyWith<$Res>? get nameElement;
   $CodeableConceptCopyWith<$Res>? get type;
   $CodeableConceptCopyWith<$Res>? get status;
-  $ElementCopyWith<$Res>? get statusDateElement;
-  $ElementCopyWith<$Res>? get descriptionElement;
-  $ElementCopyWith<$Res>? get copackagedIndicatorElement;
   $PackagedProductDefinitionPackageCopyWith<$Res>? get package;
 }
 
@@ -16049,30 +15516,6 @@ class _$PackagedProductDefinitionCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get implicitRulesElement {
-    if (_value.implicitRulesElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.implicitRulesElement!, (value) {
-      return _then(_value.copyWith(implicitRulesElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get languageElement {
-    if (_value.languageElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.languageElement!, (value) {
-      return _then(_value.copyWith(languageElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
     if (_value.text == null) {
       return null;
@@ -16080,18 +15523,6 @@ class _$PackagedProductDefinitionCopyWithImpl<$Res,
 
     return $NarrativeCopyWith<$Res>(_value.text!, (value) {
       return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get nameElement {
-    if (_value.nameElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.nameElement!, (value) {
-      return _then(_value.copyWith(nameElement: value) as $Val);
     });
   }
 
@@ -16116,42 +15547,6 @@ class _$PackagedProductDefinitionCopyWithImpl<$Res,
 
     return $CodeableConceptCopyWith<$Res>(_value.status!, (value) {
       return _then(_value.copyWith(status: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get statusDateElement {
-    if (_value.statusDateElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.statusDateElement!, (value) {
-      return _then(_value.copyWith(statusDateElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get descriptionElement {
-    if (_value.descriptionElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.descriptionElement!, (value) {
-      return _then(_value.copyWith(descriptionElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get copackagedIndicatorElement {
-    if (_value.copackagedIndicatorElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.copackagedIndicatorElement!, (value) {
-      return _then(_value.copyWith(copackagedIndicatorElement: value) as $Val);
     });
   }
 
@@ -16213,23 +15608,11 @@ abstract class _$$PackagedProductDefinitionImplCopyWith<$Res>
   @override
   $FhirMetaCopyWith<$Res>? get meta;
   @override
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  @override
-  $ElementCopyWith<$Res>? get languageElement;
-  @override
   $NarrativeCopyWith<$Res>? get text;
-  @override
-  $ElementCopyWith<$Res>? get nameElement;
   @override
   $CodeableConceptCopyWith<$Res>? get type;
   @override
   $CodeableConceptCopyWith<$Res>? get status;
-  @override
-  $ElementCopyWith<$Res>? get statusDateElement;
-  @override
-  $ElementCopyWith<$Res>? get descriptionElement;
-  @override
-  $ElementCopyWith<$Res>? get copackagedIndicatorElement;
   @override
   $PackagedProductDefinitionPackageCopyWith<$Res>? get package;
 }
@@ -16957,7 +16340,7 @@ PackagedProductDefinitionLegalStatusOfSupply
 /// @nodoc
 mixin _$PackagedProductDefinitionLegalStatusOfSupply {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -16990,7 +16373,7 @@ abstract class $PackagedProductDefinitionLegalStatusOfSupplyCopyWith<$Res> {
           PackagedProductDefinitionLegalStatusOfSupply>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? code,
@@ -17025,7 +16408,7 @@ class _$PackagedProductDefinitionLegalStatusOfSupplyCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -17081,7 +16464,7 @@ abstract class _$$PackagedProductDefinitionLegalStatusOfSupplyImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? code,
@@ -17117,7 +16500,7 @@ class __$$PackagedProductDefinitionLegalStatusOfSupplyImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -17158,7 +16541,7 @@ class _$PackagedProductDefinitionLegalStatusOfSupplyImpl
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -17249,7 +16632,7 @@ class _$PackagedProductDefinitionLegalStatusOfSupplyImpl
 abstract class _PackagedProductDefinitionLegalStatusOfSupply
     extends PackagedProductDefinitionLegalStatusOfSupply {
   const factory _PackagedProductDefinitionLegalStatusOfSupply(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final CodeableConcept? code,
@@ -17264,7 +16647,7 @@ abstract class _PackagedProductDefinitionLegalStatusOfSupply
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -17298,7 +16681,7 @@ PackagedProductDefinitionPackage _$PackagedProductDefinitionPackageFromJson(
 /// @nodoc
 mixin _$PackagedProductDefinitionPackage {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -17363,7 +16746,7 @@ abstract class $PackagedProductDefinitionPackageCopyWith<$Res> {
           PackagedProductDefinitionPackage>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<Identifier>? identifier,
@@ -17379,7 +16762,6 @@ abstract class $PackagedProductDefinitionPackageCopyWith<$Res> {
       List<PackagedProductDefinitionPackage>? package});
 
   $CodeableConceptCopyWith<$Res>? get type;
-  $ElementCopyWith<$Res>? get quantityElement;
 }
 
 /// @nodoc
@@ -17415,7 +16797,7 @@ class _$PackagedProductDefinitionPackageCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -17482,18 +16864,6 @@ class _$PackagedProductDefinitionPackageCopyWithImpl<$Res,
       return _then(_value.copyWith(type: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get quantityElement {
-    if (_value.quantityElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.quantityElement!, (value) {
-      return _then(_value.copyWith(quantityElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -17506,7 +16876,7 @@ abstract class _$$PackagedProductDefinitionPackageImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<Identifier>? identifier,
@@ -17523,8 +16893,6 @@ abstract class _$$PackagedProductDefinitionPackageImplCopyWith<$Res>
 
   @override
   $CodeableConceptCopyWith<$Res>? get type;
-  @override
-  $ElementCopyWith<$Res>? get quantityElement;
 }
 
 /// @nodoc
@@ -17559,7 +16927,7 @@ class __$$PackagedProductDefinitionPackageImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -17653,7 +17021,7 @@ class _$PackagedProductDefinitionPackageImpl
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -17877,7 +17245,7 @@ class _$PackagedProductDefinitionPackageImpl
 abstract class _PackagedProductDefinitionPackage
     extends PackagedProductDefinitionPackage {
   const factory _PackagedProductDefinitionPackage(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final List<Identifier>? identifier,
@@ -17901,7 +17269,7 @@ abstract class _PackagedProductDefinitionPackage
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -17974,7 +17342,7 @@ PackagedProductDefinitionShelfLifeStorage
 mixin _$PackagedProductDefinitionShelfLifeStorage {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -18052,7 +17420,7 @@ abstract class $PackagedProductDefinitionShelfLifeStorageCopyWith<$Res> {
           PackagedProductDefinitionShelfLifeStorage>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       Identifier? identifier,
@@ -18065,7 +17433,6 @@ abstract class $PackagedProductDefinitionShelfLifeStorageCopyWith<$Res> {
   $IdentifierCopyWith<$Res>? get identifier;
   $CodeableConceptCopyWith<$Res> get type;
   $FhirDurationCopyWith<$Res>? get periodDuration;
-  $ElementCopyWith<$Res>? get periodStringElement;
 }
 
 /// @nodoc
@@ -18097,7 +17464,7 @@ class _$PackagedProductDefinitionShelfLifeStorageCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -18164,18 +17531,6 @@ class _$PackagedProductDefinitionShelfLifeStorageCopyWithImpl<$Res,
       return _then(_value.copyWith(periodDuration: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get periodStringElement {
-    if (_value.periodStringElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.periodStringElement!, (value) {
-      return _then(_value.copyWith(periodStringElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -18188,7 +17543,7 @@ abstract class _$$PackagedProductDefinitionShelfLifeStorageImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       Identifier? identifier,
@@ -18204,8 +17559,6 @@ abstract class _$$PackagedProductDefinitionShelfLifeStorageImplCopyWith<$Res>
   $CodeableConceptCopyWith<$Res> get type;
   @override
   $FhirDurationCopyWith<$Res>? get periodDuration;
-  @override
-  $ElementCopyWith<$Res>? get periodStringElement;
 }
 
 /// @nodoc
@@ -18235,7 +17588,7 @@ class __$$PackagedProductDefinitionShelfLifeStorageImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -18298,7 +17651,7 @@ class _$PackagedProductDefinitionShelfLifeStorageImpl
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -18478,7 +17831,7 @@ class _$PackagedProductDefinitionShelfLifeStorageImpl
 abstract class _PackagedProductDefinitionShelfLifeStorage
     extends PackagedProductDefinitionShelfLifeStorage {
   const factory _PackagedProductDefinitionShelfLifeStorage(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final Identifier? identifier,
@@ -18498,7 +17851,7 @@ abstract class _PackagedProductDefinitionShelfLifeStorage
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -18580,7 +17933,7 @@ PackagedProductDefinitionProperty _$PackagedProductDefinitionPropertyFromJson(
 /// @nodoc
 mixin _$PackagedProductDefinitionProperty {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -18633,7 +17986,7 @@ abstract class $PackagedProductDefinitionPropertyCopyWith<$Res> {
           PackagedProductDefinitionProperty>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept type,
@@ -18648,8 +18001,6 @@ abstract class $PackagedProductDefinitionPropertyCopyWith<$Res> {
   $CodeableConceptCopyWith<$Res> get type;
   $CodeableConceptCopyWith<$Res>? get valueCodeableConcept;
   $QuantityCopyWith<$Res>? get valueQuantity;
-  $ElementCopyWith<$Res>? get valueDateElement;
-  $ElementCopyWith<$Res>? get valueBooleanElement;
   $AttachmentCopyWith<$Res>? get valueAttachment;
 }
 
@@ -18683,7 +18034,7 @@ class _$PackagedProductDefinitionPropertyCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -18762,30 +18113,6 @@ class _$PackagedProductDefinitionPropertyCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get valueDateElement {
-    if (_value.valueDateElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.valueDateElement!, (value) {
-      return _then(_value.copyWith(valueDateElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get valueBooleanElement {
-    if (_value.valueBooleanElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.valueBooleanElement!, (value) {
-      return _then(_value.copyWith(valueBooleanElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $AttachmentCopyWith<$Res>? get valueAttachment {
     if (_value.valueAttachment == null) {
       return null;
@@ -18807,7 +18134,7 @@ abstract class _$$PackagedProductDefinitionPropertyImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept type,
@@ -18825,10 +18152,6 @@ abstract class _$$PackagedProductDefinitionPropertyImplCopyWith<$Res>
   $CodeableConceptCopyWith<$Res>? get valueCodeableConcept;
   @override
   $QuantityCopyWith<$Res>? get valueQuantity;
-  @override
-  $ElementCopyWith<$Res>? get valueDateElement;
-  @override
-  $ElementCopyWith<$Res>? get valueBooleanElement;
   @override
   $AttachmentCopyWith<$Res>? get valueAttachment;
 }
@@ -18862,7 +18185,7 @@ class __$$PackagedProductDefinitionPropertyImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -18933,7 +18256,7 @@ class _$PackagedProductDefinitionPropertyImpl
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -19066,7 +18389,7 @@ class _$PackagedProductDefinitionPropertyImpl
 abstract class _PackagedProductDefinitionProperty
     extends PackagedProductDefinitionProperty {
   const factory _PackagedProductDefinitionProperty(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           required final CodeableConcept type,
@@ -19087,7 +18410,7 @@ abstract class _PackagedProductDefinitionProperty
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -19148,7 +18471,7 @@ PackagedProductDefinitionContainedItem
 /// @nodoc
 mixin _$PackagedProductDefinitionContainedItem {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -19181,7 +18504,7 @@ abstract class $PackagedProductDefinitionContainedItemCopyWith<$Res> {
           PackagedProductDefinitionContainedItem>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableReference item,
@@ -19215,7 +18538,7 @@ class _$PackagedProductDefinitionContainedItemCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -19266,7 +18589,7 @@ abstract class _$$PackagedProductDefinitionContainedItemImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableReference item,
@@ -19301,7 +18624,7 @@ class __$$PackagedProductDefinitionContainedItemImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -19342,7 +18665,7 @@ class _$PackagedProductDefinitionContainedItemImpl
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -19431,7 +18754,7 @@ class _$PackagedProductDefinitionContainedItemImpl
 abstract class _PackagedProductDefinitionContainedItem
     extends PackagedProductDefinitionContainedItem {
   const factory _PackagedProductDefinitionContainedItem(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required final CodeableReference item,
@@ -19445,7 +18768,7 @@ abstract class _PackagedProductDefinitionContainedItem
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -19609,13 +18932,9 @@ abstract class $RegulatedAuthorizationCopyWith<$Res> {
       @JsonKey(name: 'case') RegulatedAuthorizationCase? case_});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  $ElementCopyWith<$Res>? get languageElement;
   $NarrativeCopyWith<$Res>? get text;
   $CodeableConceptCopyWith<$Res>? get type;
-  $ElementCopyWith<$Res>? get descriptionElement;
   $CodeableConceptCopyWith<$Res>? get status;
-  $ElementCopyWith<$Res>? get statusDateElement;
   $PeriodCopyWith<$Res>? get validityPeriod;
   $CodeableReferenceCopyWith<$Res>? get indication;
   $CodeableConceptCopyWith<$Res>? get intendedUse;
@@ -19792,30 +19111,6 @@ class _$RegulatedAuthorizationCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get implicitRulesElement {
-    if (_value.implicitRulesElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.implicitRulesElement!, (value) {
-      return _then(_value.copyWith(implicitRulesElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get languageElement {
-    if (_value.languageElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.languageElement!, (value) {
-      return _then(_value.copyWith(languageElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
     if (_value.text == null) {
       return null;
@@ -19840,18 +19135,6 @@ class _$RegulatedAuthorizationCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get descriptionElement {
-    if (_value.descriptionElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.descriptionElement!, (value) {
-      return _then(_value.copyWith(descriptionElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get status {
     if (_value.status == null) {
       return null;
@@ -19859,18 +19142,6 @@ class _$RegulatedAuthorizationCopyWithImpl<$Res,
 
     return $CodeableConceptCopyWith<$Res>(_value.status!, (value) {
       return _then(_value.copyWith(status: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get statusDateElement {
-    if (_value.statusDateElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.statusDateElement!, (value) {
-      return _then(_value.copyWith(statusDateElement: value) as $Val);
     });
   }
 
@@ -19988,19 +19259,11 @@ abstract class _$$RegulatedAuthorizationImplCopyWith<$Res>
   @override
   $FhirMetaCopyWith<$Res>? get meta;
   @override
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  @override
-  $ElementCopyWith<$Res>? get languageElement;
-  @override
   $NarrativeCopyWith<$Res>? get text;
   @override
   $CodeableConceptCopyWith<$Res>? get type;
   @override
-  $ElementCopyWith<$Res>? get descriptionElement;
-  @override
   $CodeableConceptCopyWith<$Res>? get status;
-  @override
-  $ElementCopyWith<$Res>? get statusDateElement;
   @override
   $PeriodCopyWith<$Res>? get validityPeriod;
   @override
@@ -20661,7 +19924,7 @@ RegulatedAuthorizationCase _$RegulatedAuthorizationCaseFromJson(
 /// @nodoc
 mixin _$RegulatedAuthorizationCase {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -20709,7 +19972,7 @@ abstract class $RegulatedAuthorizationCaseCopyWith<$Res> {
           RegulatedAuthorizationCase>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       Identifier? identifier,
@@ -20724,7 +19987,6 @@ abstract class $RegulatedAuthorizationCaseCopyWith<$Res> {
   $CodeableConceptCopyWith<$Res>? get type;
   $CodeableConceptCopyWith<$Res>? get status;
   $PeriodCopyWith<$Res>? get datePeriod;
-  $ElementCopyWith<$Res>? get dateDateTimeElement;
 }
 
 /// @nodoc
@@ -20756,7 +20018,7 @@ class _$RegulatedAuthorizationCaseCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -20843,18 +20105,6 @@ class _$RegulatedAuthorizationCaseCopyWithImpl<$Res,
       return _then(_value.copyWith(datePeriod: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get dateDateTimeElement {
-    if (_value.dateDateTimeElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.dateDateTimeElement!, (value) {
-      return _then(_value.copyWith(dateDateTimeElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -20867,7 +20117,7 @@ abstract class _$$RegulatedAuthorizationCaseImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       Identifier? identifier,
@@ -20886,8 +20136,6 @@ abstract class _$$RegulatedAuthorizationCaseImplCopyWith<$Res>
   $CodeableConceptCopyWith<$Res>? get status;
   @override
   $PeriodCopyWith<$Res>? get datePeriod;
-  @override
-  $ElementCopyWith<$Res>? get dateDateTimeElement;
 }
 
 /// @nodoc
@@ -20918,7 +20166,7 @@ class __$$RegulatedAuthorizationCaseImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -20984,7 +20232,7 @@ class _$RegulatedAuthorizationCaseImpl extends _RegulatedAuthorizationCase {
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -21115,7 +20363,7 @@ class _$RegulatedAuthorizationCaseImpl extends _RegulatedAuthorizationCase {
 
 abstract class _RegulatedAuthorizationCase extends RegulatedAuthorizationCase {
   const factory _RegulatedAuthorizationCase(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final Identifier? identifier,
@@ -21134,7 +20382,7 @@ abstract class _RegulatedAuthorizationCase extends RegulatedAuthorizationCase {
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -21343,13 +20591,9 @@ abstract class $SubstanceDefinitionCopyWith<$Res> {
       SubstanceDefinitionSourceMaterial? sourceMaterial});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  $ElementCopyWith<$Res>? get languageElement;
   $NarrativeCopyWith<$Res>? get text;
-  $ElementCopyWith<$Res>? get versionElement;
   $CodeableConceptCopyWith<$Res>? get status;
   $CodeableConceptCopyWith<$Res>? get domain;
-  $ElementCopyWith<$Res>? get descriptionElement;
   $SubstanceDefinitionStructureCopyWith<$Res>? get structure;
   $SubstanceDefinitionSourceMaterialCopyWith<$Res>? get sourceMaterial;
 }
@@ -21546,30 +20790,6 @@ class _$SubstanceDefinitionCopyWithImpl<$Res, $Val extends SubstanceDefinition>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get implicitRulesElement {
-    if (_value.implicitRulesElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.implicitRulesElement!, (value) {
-      return _then(_value.copyWith(implicitRulesElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get languageElement {
-    if (_value.languageElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.languageElement!, (value) {
-      return _then(_value.copyWith(languageElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
     if (_value.text == null) {
       return null;
@@ -21577,18 +20797,6 @@ class _$SubstanceDefinitionCopyWithImpl<$Res, $Val extends SubstanceDefinition>
 
     return $NarrativeCopyWith<$Res>(_value.text!, (value) {
       return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get versionElement {
-    if (_value.versionElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.versionElement!, (value) {
-      return _then(_value.copyWith(versionElement: value) as $Val);
     });
   }
 
@@ -21613,18 +20821,6 @@ class _$SubstanceDefinitionCopyWithImpl<$Res, $Val extends SubstanceDefinition>
 
     return $CodeableConceptCopyWith<$Res>(_value.domain!, (value) {
       return _then(_value.copyWith(domain: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get descriptionElement {
-    if (_value.descriptionElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.descriptionElement!, (value) {
-      return _then(_value.copyWith(descriptionElement: value) as $Val);
     });
   }
 
@@ -21700,19 +20896,11 @@ abstract class _$$SubstanceDefinitionImplCopyWith<$Res>
   @override
   $FhirMetaCopyWith<$Res>? get meta;
   @override
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  @override
-  $ElementCopyWith<$Res>? get languageElement;
-  @override
   $NarrativeCopyWith<$Res>? get text;
-  @override
-  $ElementCopyWith<$Res>? get versionElement;
   @override
   $CodeableConceptCopyWith<$Res>? get status;
   @override
   $CodeableConceptCopyWith<$Res>? get domain;
-  @override
-  $ElementCopyWith<$Res>? get descriptionElement;
   @override
   $SubstanceDefinitionStructureCopyWith<$Res>? get structure;
   @override
@@ -22539,7 +21727,7 @@ SubstanceDefinitionMoiety _$SubstanceDefinitionMoietyFromJson(
 /// @nodoc
 mixin _$SubstanceDefinitionMoiety {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -22602,7 +21790,7 @@ abstract class $SubstanceDefinitionMoietyCopyWith<$Res> {
       _$SubstanceDefinitionMoietyCopyWithImpl<$Res, SubstanceDefinitionMoiety>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? role,
@@ -22620,12 +21808,9 @@ abstract class $SubstanceDefinitionMoietyCopyWith<$Res> {
 
   $CodeableConceptCopyWith<$Res>? get role;
   $IdentifierCopyWith<$Res>? get identifier;
-  $ElementCopyWith<$Res>? get nameElement;
   $CodeableConceptCopyWith<$Res>? get stereochemistry;
   $CodeableConceptCopyWith<$Res>? get opticalActivity;
-  $ElementCopyWith<$Res>? get molecularFormulaElement;
   $QuantityCopyWith<$Res>? get amountQuantity;
-  $ElementCopyWith<$Res>? get amountStringElement;
   $CodeableConceptCopyWith<$Res>? get measurementType;
 }
 
@@ -22663,7 +21848,7 @@ class _$SubstanceDefinitionMoietyCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -22749,18 +21934,6 @@ class _$SubstanceDefinitionMoietyCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get nameElement {
-    if (_value.nameElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.nameElement!, (value) {
-      return _then(_value.copyWith(nameElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get stereochemistry {
     if (_value.stereochemistry == null) {
       return null;
@@ -22785,18 +21958,6 @@ class _$SubstanceDefinitionMoietyCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get molecularFormulaElement {
-    if (_value.molecularFormulaElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.molecularFormulaElement!, (value) {
-      return _then(_value.copyWith(molecularFormulaElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get amountQuantity {
     if (_value.amountQuantity == null) {
       return null;
@@ -22804,18 +21965,6 @@ class _$SubstanceDefinitionMoietyCopyWithImpl<$Res,
 
     return $QuantityCopyWith<$Res>(_value.amountQuantity!, (value) {
       return _then(_value.copyWith(amountQuantity: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get amountStringElement {
-    if (_value.amountStringElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.amountStringElement!, (value) {
-      return _then(_value.copyWith(amountStringElement: value) as $Val);
     });
   }
 
@@ -22842,7 +21991,7 @@ abstract class _$$SubstanceDefinitionMoietyImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? role,
@@ -22863,17 +22012,11 @@ abstract class _$$SubstanceDefinitionMoietyImplCopyWith<$Res>
   @override
   $IdentifierCopyWith<$Res>? get identifier;
   @override
-  $ElementCopyWith<$Res>? get nameElement;
-  @override
   $CodeableConceptCopyWith<$Res>? get stereochemistry;
   @override
   $CodeableConceptCopyWith<$Res>? get opticalActivity;
   @override
-  $ElementCopyWith<$Res>? get molecularFormulaElement;
-  @override
   $QuantityCopyWith<$Res>? get amountQuantity;
-  @override
-  $ElementCopyWith<$Res>? get amountStringElement;
   @override
   $CodeableConceptCopyWith<$Res>? get measurementType;
 }
@@ -22911,7 +22054,7 @@ class __$$SubstanceDefinitionMoietyImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -23000,7 +22143,7 @@ class _$SubstanceDefinitionMoietyImpl extends _SubstanceDefinitionMoiety {
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -23160,7 +22303,7 @@ class _$SubstanceDefinitionMoietyImpl extends _SubstanceDefinitionMoiety {
 
 abstract class _SubstanceDefinitionMoiety extends SubstanceDefinitionMoiety {
   const factory _SubstanceDefinitionMoiety(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final CodeableConcept? role,
@@ -23185,7 +22328,7 @@ abstract class _SubstanceDefinitionMoiety extends SubstanceDefinitionMoiety {
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -23261,7 +22404,7 @@ SubstanceDefinitionProperty _$SubstanceDefinitionPropertyFromJson(
 /// @nodoc
 mixin _$SubstanceDefinitionProperty {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -23314,7 +22457,7 @@ abstract class $SubstanceDefinitionPropertyCopyWith<$Res> {
           SubstanceDefinitionProperty>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept type,
@@ -23329,8 +22472,6 @@ abstract class $SubstanceDefinitionPropertyCopyWith<$Res> {
   $CodeableConceptCopyWith<$Res> get type;
   $CodeableConceptCopyWith<$Res>? get valueCodeableConcept;
   $QuantityCopyWith<$Res>? get valueQuantity;
-  $ElementCopyWith<$Res>? get valueDateElement;
-  $ElementCopyWith<$Res>? get valueBooleanElement;
   $AttachmentCopyWith<$Res>? get valueAttachment;
 }
 
@@ -23364,7 +22505,7 @@ class _$SubstanceDefinitionPropertyCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -23443,30 +22584,6 @@ class _$SubstanceDefinitionPropertyCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get valueDateElement {
-    if (_value.valueDateElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.valueDateElement!, (value) {
-      return _then(_value.copyWith(valueDateElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get valueBooleanElement {
-    if (_value.valueBooleanElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.valueBooleanElement!, (value) {
-      return _then(_value.copyWith(valueBooleanElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $AttachmentCopyWith<$Res>? get valueAttachment {
     if (_value.valueAttachment == null) {
       return null;
@@ -23488,7 +22605,7 @@ abstract class _$$SubstanceDefinitionPropertyImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept type,
@@ -23506,10 +22623,6 @@ abstract class _$$SubstanceDefinitionPropertyImplCopyWith<$Res>
   $CodeableConceptCopyWith<$Res>? get valueCodeableConcept;
   @override
   $QuantityCopyWith<$Res>? get valueQuantity;
-  @override
-  $ElementCopyWith<$Res>? get valueDateElement;
-  @override
-  $ElementCopyWith<$Res>? get valueBooleanElement;
   @override
   $AttachmentCopyWith<$Res>? get valueAttachment;
 }
@@ -23543,7 +22656,7 @@ class __$$SubstanceDefinitionPropertyImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -23613,7 +22726,7 @@ class _$SubstanceDefinitionPropertyImpl extends _SubstanceDefinitionProperty {
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -23745,7 +22858,7 @@ class _$SubstanceDefinitionPropertyImpl extends _SubstanceDefinitionProperty {
 abstract class _SubstanceDefinitionProperty
     extends SubstanceDefinitionProperty {
   const factory _SubstanceDefinitionProperty(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required final CodeableConcept type,
@@ -23764,7 +22877,7 @@ abstract class _SubstanceDefinitionProperty
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -23823,7 +22936,7 @@ SubstanceDefinitionMolecularWeight _$SubstanceDefinitionMolecularWeightFromJson(
 /// @nodoc
 mixin _$SubstanceDefinitionMolecularWeight {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -23859,7 +22972,7 @@ abstract class $SubstanceDefinitionMolecularWeightCopyWith<$Res> {
           SubstanceDefinitionMolecularWeight>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? method,
@@ -23896,7 +23009,7 @@ class _$SubstanceDefinitionMolecularWeightCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -23963,7 +23076,7 @@ abstract class _$$SubstanceDefinitionMolecularWeightImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? method,
@@ -24002,7 +23115,7 @@ class __$$SubstanceDefinitionMolecularWeightImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -24048,7 +23161,7 @@ class _$SubstanceDefinitionMolecularWeightImpl
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -24142,7 +23255,7 @@ class _$SubstanceDefinitionMolecularWeightImpl
 abstract class _SubstanceDefinitionMolecularWeight
     extends SubstanceDefinitionMolecularWeight {
   const factory _SubstanceDefinitionMolecularWeight(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final CodeableConcept? method,
@@ -24158,7 +23271,7 @@ abstract class _SubstanceDefinitionMolecularWeight
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -24196,7 +23309,7 @@ SubstanceDefinitionStructure _$SubstanceDefinitionStructureFromJson(
 /// @nodoc
 mixin _$SubstanceDefinitionStructure {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -24255,7 +23368,7 @@ abstract class $SubstanceDefinitionStructureCopyWith<$Res> {
           SubstanceDefinitionStructure>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? stereochemistry,
@@ -24272,8 +23385,6 @@ abstract class $SubstanceDefinitionStructureCopyWith<$Res> {
 
   $CodeableConceptCopyWith<$Res>? get stereochemistry;
   $CodeableConceptCopyWith<$Res>? get opticalActivity;
-  $ElementCopyWith<$Res>? get molecularFormulaElement;
-  $ElementCopyWith<$Res>? get molecularFormulaByMoietyElement;
   $SubstanceDefinitionMolecularWeightCopyWith<$Res>? get molecularWeight;
 }
 
@@ -24309,7 +23420,7 @@ class _$SubstanceDefinitionStructureCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -24388,32 +23499,6 @@ class _$SubstanceDefinitionStructureCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get molecularFormulaElement {
-    if (_value.molecularFormulaElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.molecularFormulaElement!, (value) {
-      return _then(_value.copyWith(molecularFormulaElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get molecularFormulaByMoietyElement {
-    if (_value.molecularFormulaByMoietyElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.molecularFormulaByMoietyElement!,
-        (value) {
-      return _then(
-          _value.copyWith(molecularFormulaByMoietyElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $SubstanceDefinitionMolecularWeightCopyWith<$Res>? get molecularWeight {
     if (_value.molecularWeight == null) {
       return null;
@@ -24436,7 +23521,7 @@ abstract class _$$SubstanceDefinitionStructureImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? stereochemistry,
@@ -24455,10 +23540,6 @@ abstract class _$$SubstanceDefinitionStructureImplCopyWith<$Res>
   $CodeableConceptCopyWith<$Res>? get stereochemistry;
   @override
   $CodeableConceptCopyWith<$Res>? get opticalActivity;
-  @override
-  $ElementCopyWith<$Res>? get molecularFormulaElement;
-  @override
-  $ElementCopyWith<$Res>? get molecularFormulaByMoietyElement;
   @override
   $SubstanceDefinitionMolecularWeightCopyWith<$Res>? get molecularWeight;
 }
@@ -24494,7 +23575,7 @@ class __$$SubstanceDefinitionStructureImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -24579,7 +23660,7 @@ class _$SubstanceDefinitionStructureImpl extends _SubstanceDefinitionStructure {
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -24756,7 +23837,7 @@ class _$SubstanceDefinitionStructureImpl extends _SubstanceDefinitionStructure {
 abstract class _SubstanceDefinitionStructure
     extends SubstanceDefinitionStructure {
   const factory _SubstanceDefinitionStructure(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final CodeableConcept? stereochemistry,
@@ -24780,7 +23861,7 @@ abstract class _SubstanceDefinitionStructure
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -24846,7 +23927,7 @@ SubstanceDefinitionRepresentation _$SubstanceDefinitionRepresentationFromJson(
 /// @nodoc
 mixin _$SubstanceDefinitionRepresentation {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -24888,7 +23969,7 @@ abstract class $SubstanceDefinitionRepresentationCopyWith<$Res> {
           SubstanceDefinitionRepresentation>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? type,
@@ -24898,7 +23979,6 @@ abstract class $SubstanceDefinitionRepresentationCopyWith<$Res> {
       Reference? document});
 
   $CodeableConceptCopyWith<$Res>? get type;
-  $ElementCopyWith<$Res>? get representationElement;
   $CodeableConceptCopyWith<$Res>? get format;
   $ReferenceCopyWith<$Res>? get document;
 }
@@ -24930,7 +24010,7 @@ class _$SubstanceDefinitionRepresentationCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -24976,18 +24056,6 @@ class _$SubstanceDefinitionRepresentationCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get representationElement {
-    if (_value.representationElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.representationElement!, (value) {
-      return _then(_value.copyWith(representationElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get format {
     if (_value.format == null) {
       return null;
@@ -25021,7 +24089,7 @@ abstract class _$$SubstanceDefinitionRepresentationImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? type,
@@ -25032,8 +24100,6 @@ abstract class _$$SubstanceDefinitionRepresentationImplCopyWith<$Res>
 
   @override
   $CodeableConceptCopyWith<$Res>? get type;
-  @override
-  $ElementCopyWith<$Res>? get representationElement;
   @override
   $CodeableConceptCopyWith<$Res>? get format;
   @override
@@ -25066,7 +24132,7 @@ class __$$SubstanceDefinitionRepresentationImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -25122,7 +24188,7 @@ class _$SubstanceDefinitionRepresentationImpl
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -25232,7 +24298,7 @@ class _$SubstanceDefinitionRepresentationImpl
 abstract class _SubstanceDefinitionRepresentation
     extends SubstanceDefinitionRepresentation {
   const factory _SubstanceDefinitionRepresentation(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final CodeableConcept? type,
@@ -25249,7 +24315,7 @@ abstract class _SubstanceDefinitionRepresentation
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -25296,7 +24362,7 @@ SubstanceDefinitionCode _$SubstanceDefinitionCodeFromJson(
 /// @nodoc
 mixin _$SubstanceDefinitionCode {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -25339,7 +24405,7 @@ abstract class $SubstanceDefinitionCodeCopyWith<$Res> {
       _$SubstanceDefinitionCodeCopyWithImpl<$Res, SubstanceDefinitionCode>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? code,
@@ -25351,7 +24417,6 @@ abstract class $SubstanceDefinitionCodeCopyWith<$Res> {
 
   $CodeableConceptCopyWith<$Res>? get code;
   $CodeableConceptCopyWith<$Res>? get status;
-  $ElementCopyWith<$Res>? get statusDateElement;
 }
 
 /// @nodoc
@@ -25382,7 +24447,7 @@ class _$SubstanceDefinitionCodeCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -25441,18 +24506,6 @@ class _$SubstanceDefinitionCodeCopyWithImpl<$Res,
       return _then(_value.copyWith(status: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get statusDateElement {
-    if (_value.statusDateElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.statusDateElement!, (value) {
-      return _then(_value.copyWith(statusDateElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -25465,7 +24518,7 @@ abstract class _$$SubstanceDefinitionCodeImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? code,
@@ -25479,8 +24532,6 @@ abstract class _$$SubstanceDefinitionCodeImplCopyWith<$Res>
   $CodeableConceptCopyWith<$Res>? get code;
   @override
   $CodeableConceptCopyWith<$Res>? get status;
-  @override
-  $ElementCopyWith<$Res>? get statusDateElement;
 }
 
 /// @nodoc
@@ -25510,7 +24561,7 @@ class __$$SubstanceDefinitionCodeImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -25571,7 +24622,7 @@ class _$SubstanceDefinitionCodeImpl extends _SubstanceDefinitionCode {
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -25702,7 +24753,7 @@ class _$SubstanceDefinitionCodeImpl extends _SubstanceDefinitionCode {
 
 abstract class _SubstanceDefinitionCode extends SubstanceDefinitionCode {
   const factory _SubstanceDefinitionCode(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final CodeableConcept? code,
@@ -25719,7 +24770,7 @@ abstract class _SubstanceDefinitionCode extends SubstanceDefinitionCode {
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -25769,7 +24820,7 @@ SubstanceDefinitionName _$SubstanceDefinitionNameFromJson(
 /// @nodoc
 mixin _$SubstanceDefinitionName {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -25837,7 +24888,7 @@ abstract class $SubstanceDefinitionNameCopyWith<$Res> {
       _$SubstanceDefinitionNameCopyWithImpl<$Res, SubstanceDefinitionName>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? name,
@@ -25854,10 +24905,8 @@ abstract class $SubstanceDefinitionNameCopyWith<$Res> {
       List<SubstanceDefinitionOfficial>? official,
       List<Reference>? source});
 
-  $ElementCopyWith<$Res>? get nameElement;
   $CodeableConceptCopyWith<$Res>? get type;
   $CodeableConceptCopyWith<$Res>? get status;
-  $ElementCopyWith<$Res>? get preferredElement;
 }
 
 /// @nodoc
@@ -25895,7 +24944,7 @@ class _$SubstanceDefinitionNameCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -25961,18 +25010,6 @@ class _$SubstanceDefinitionNameCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get nameElement {
-    if (_value.nameElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.nameElement!, (value) {
-      return _then(_value.copyWith(nameElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get type {
     if (_value.type == null) {
       return null;
@@ -25994,18 +25031,6 @@ class _$SubstanceDefinitionNameCopyWithImpl<$Res,
       return _then(_value.copyWith(status: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get preferredElement {
-    if (_value.preferredElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.preferredElement!, (value) {
-      return _then(_value.copyWith(preferredElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -26018,7 +25043,7 @@ abstract class _$$SubstanceDefinitionNameImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? name,
@@ -26036,13 +25061,9 @@ abstract class _$$SubstanceDefinitionNameImplCopyWith<$Res>
       List<Reference>? source});
 
   @override
-  $ElementCopyWith<$Res>? get nameElement;
-  @override
   $CodeableConceptCopyWith<$Res>? get type;
   @override
   $CodeableConceptCopyWith<$Res>? get status;
-  @override
-  $ElementCopyWith<$Res>? get preferredElement;
 }
 
 /// @nodoc
@@ -26079,7 +25100,7 @@ class __$$SubstanceDefinitionNameImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -26180,7 +25201,7 @@ class _$SubstanceDefinitionNameImpl extends _SubstanceDefinitionName {
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -26402,7 +25423,7 @@ class _$SubstanceDefinitionNameImpl extends _SubstanceDefinitionName {
 
 abstract class _SubstanceDefinitionName extends SubstanceDefinitionName {
   const factory _SubstanceDefinitionName(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final String? name,
@@ -26426,7 +25447,7 @@ abstract class _SubstanceDefinitionName extends SubstanceDefinitionName {
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -26505,7 +25526,7 @@ SubstanceDefinitionOfficial _$SubstanceDefinitionOfficialFromJson(
 /// @nodoc
 mixin _$SubstanceDefinitionOfficial {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -26544,7 +25565,7 @@ abstract class $SubstanceDefinitionOfficialCopyWith<$Res> {
           SubstanceDefinitionOfficial>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? authority,
@@ -26554,7 +25575,6 @@ abstract class $SubstanceDefinitionOfficialCopyWith<$Res> {
 
   $CodeableConceptCopyWith<$Res>? get authority;
   $CodeableConceptCopyWith<$Res>? get status;
-  $ElementCopyWith<$Res>? get dateElement;
 }
 
 /// @nodoc
@@ -26583,7 +25603,7 @@ class _$SubstanceDefinitionOfficialCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -26634,18 +25654,6 @@ class _$SubstanceDefinitionOfficialCopyWithImpl<$Res,
       return _then(_value.copyWith(status: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get dateElement {
-    if (_value.dateElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.dateElement!, (value) {
-      return _then(_value.copyWith(dateElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -26658,7 +25666,7 @@ abstract class _$$SubstanceDefinitionOfficialImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? authority,
@@ -26670,8 +25678,6 @@ abstract class _$$SubstanceDefinitionOfficialImplCopyWith<$Res>
   $CodeableConceptCopyWith<$Res>? get authority;
   @override
   $CodeableConceptCopyWith<$Res>? get status;
-  @override
-  $ElementCopyWith<$Res>? get dateElement;
 }
 
 /// @nodoc
@@ -26699,7 +25705,7 @@ class __$$SubstanceDefinitionOfficialImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -26749,7 +25755,7 @@ class _$SubstanceDefinitionOfficialImpl extends _SubstanceDefinitionOfficial {
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -26851,7 +25857,7 @@ class _$SubstanceDefinitionOfficialImpl extends _SubstanceDefinitionOfficial {
 abstract class _SubstanceDefinitionOfficial
     extends SubstanceDefinitionOfficial {
   const factory _SubstanceDefinitionOfficial(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final CodeableConcept? authority,
@@ -26867,7 +25873,7 @@ abstract class _SubstanceDefinitionOfficial
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -26909,7 +25915,7 @@ SubstanceDefinitionRelationship _$SubstanceDefinitionRelationshipFromJson(
 /// @nodoc
 mixin _$SubstanceDefinitionRelationship {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -26975,7 +25981,7 @@ abstract class $SubstanceDefinitionRelationshipCopyWith<$Res> {
           SubstanceDefinitionRelationship>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       Reference? substanceDefinitionReference,
@@ -26994,10 +26000,8 @@ abstract class $SubstanceDefinitionRelationshipCopyWith<$Res> {
   $ReferenceCopyWith<$Res>? get substanceDefinitionReference;
   $CodeableConceptCopyWith<$Res>? get substanceDefinitionCodeableConcept;
   $CodeableConceptCopyWith<$Res> get type;
-  $ElementCopyWith<$Res>? get isDefiningElement;
   $QuantityCopyWith<$Res>? get amountQuantity;
   $RatioCopyWith<$Res>? get amountRatio;
-  $ElementCopyWith<$Res>? get amountStringElement;
   $RatioCopyWith<$Res>? get ratioHighLimitAmount;
   $CodeableConceptCopyWith<$Res>? get comparator;
 }
@@ -27036,7 +26040,7 @@ class _$SubstanceDefinitionRelationshipCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -27135,18 +26139,6 @@ class _$SubstanceDefinitionRelationshipCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get isDefiningElement {
-    if (_value.isDefiningElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.isDefiningElement!, (value) {
-      return _then(_value.copyWith(isDefiningElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get amountQuantity {
     if (_value.amountQuantity == null) {
       return null;
@@ -27166,18 +26158,6 @@ class _$SubstanceDefinitionRelationshipCopyWithImpl<$Res,
 
     return $RatioCopyWith<$Res>(_value.amountRatio!, (value) {
       return _then(_value.copyWith(amountRatio: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get amountStringElement {
-    if (_value.amountStringElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.amountStringElement!, (value) {
-      return _then(_value.copyWith(amountStringElement: value) as $Val);
     });
   }
 
@@ -27216,7 +26196,7 @@ abstract class _$$SubstanceDefinitionRelationshipImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       Reference? substanceDefinitionReference,
@@ -27239,13 +26219,9 @@ abstract class _$$SubstanceDefinitionRelationshipImplCopyWith<$Res>
   @override
   $CodeableConceptCopyWith<$Res> get type;
   @override
-  $ElementCopyWith<$Res>? get isDefiningElement;
-  @override
   $QuantityCopyWith<$Res>? get amountQuantity;
   @override
   $RatioCopyWith<$Res>? get amountRatio;
-  @override
-  $ElementCopyWith<$Res>? get amountStringElement;
   @override
   $RatioCopyWith<$Res>? get ratioHighLimitAmount;
   @override
@@ -27285,7 +26261,7 @@ class __$$SubstanceDefinitionRelationshipImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -27378,7 +26354,7 @@ class _$SubstanceDefinitionRelationshipImpl
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -27551,7 +26527,7 @@ class _$SubstanceDefinitionRelationshipImpl
 abstract class _SubstanceDefinitionRelationship
     extends SubstanceDefinitionRelationship {
   const factory _SubstanceDefinitionRelationship(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final Reference? substanceDefinitionReference,
@@ -27574,7 +26550,7 @@ abstract class _SubstanceDefinitionRelationship
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
@@ -27650,7 +26626,7 @@ SubstanceDefinitionSourceMaterial _$SubstanceDefinitionSourceMaterialFromJson(
 /// @nodoc
 mixin _$SubstanceDefinitionSourceMaterial {
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   @JsonKey(name: 'extension')
@@ -27693,7 +26669,7 @@ abstract class $SubstanceDefinitionSourceMaterialCopyWith<$Res> {
           SubstanceDefinitionSourceMaterial>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? type,
@@ -27735,7 +26711,7 @@ class _$SubstanceDefinitionSourceMaterialCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -27826,7 +26802,7 @@ abstract class _$$SubstanceDefinitionSourceMaterialImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? type,
@@ -27871,7 +26847,7 @@ class __$$SubstanceDefinitionSourceMaterialImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -27928,7 +26904,7 @@ class _$SubstanceDefinitionSourceMaterialImpl
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
   final List<FhirExtension>? _extension_;
@@ -28045,7 +27021,7 @@ class _$SubstanceDefinitionSourceMaterialImpl
 abstract class _SubstanceDefinitionSourceMaterial
     extends SubstanceDefinitionSourceMaterial {
   const factory _SubstanceDefinitionSourceMaterial(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final CodeableConcept? type,
@@ -28063,7 +27039,7 @@ abstract class _SubstanceDefinitionSourceMaterial
   @override
 
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;

@@ -263,17 +263,10 @@ abstract class $CarePlanCopyWith<$Res> {
       List<Annotation>? note});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  $ElementCopyWith<$Res>? get languageElement;
   $NarrativeCopyWith<$Res>? get text;
-  $ElementCopyWith<$Res>? get statusElement;
-  $ElementCopyWith<$Res>? get intentElement;
-  $ElementCopyWith<$Res>? get titleElement;
-  $ElementCopyWith<$Res>? get descriptionElement;
   $ReferenceCopyWith<$Res> get subject;
   $ReferenceCopyWith<$Res>? get encounter;
   $PeriodCopyWith<$Res>? get period;
-  $ElementCopyWith<$Res>? get createdElement;
   $ReferenceCopyWith<$Res>? get author;
 }
 
@@ -509,30 +502,6 @@ class _$CarePlanCopyWithImpl<$Res, $Val extends CarePlan>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get implicitRulesElement {
-    if (_value.implicitRulesElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.implicitRulesElement!, (value) {
-      return _then(_value.copyWith(implicitRulesElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get languageElement {
-    if (_value.languageElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.languageElement!, (value) {
-      return _then(_value.copyWith(languageElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
     if (_value.text == null) {
       return null;
@@ -540,54 +509,6 @@ class _$CarePlanCopyWithImpl<$Res, $Val extends CarePlan>
 
     return $NarrativeCopyWith<$Res>(_value.text!, (value) {
       return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get statusElement {
-    if (_value.statusElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.statusElement!, (value) {
-      return _then(_value.copyWith(statusElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get intentElement {
-    if (_value.intentElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.intentElement!, (value) {
-      return _then(_value.copyWith(intentElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get titleElement {
-    if (_value.titleElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.titleElement!, (value) {
-      return _then(_value.copyWith(titleElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get descriptionElement {
-    if (_value.descriptionElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.descriptionElement!, (value) {
-      return _then(_value.copyWith(descriptionElement: value) as $Val);
     });
   }
 
@@ -620,18 +541,6 @@ class _$CarePlanCopyWithImpl<$Res, $Val extends CarePlan>
 
     return $PeriodCopyWith<$Res>(_value.period!, (value) {
       return _then(_value.copyWith(period: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get createdElement {
-    if (_value.createdElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.createdElement!, (value) {
-      return _then(_value.copyWith(createdElement: value) as $Val);
     });
   }
 
@@ -702,27 +611,13 @@ abstract class _$$CarePlanImplCopyWith<$Res>
   @override
   $FhirMetaCopyWith<$Res>? get meta;
   @override
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  @override
-  $ElementCopyWith<$Res>? get languageElement;
-  @override
   $NarrativeCopyWith<$Res>? get text;
-  @override
-  $ElementCopyWith<$Res>? get statusElement;
-  @override
-  $ElementCopyWith<$Res>? get intentElement;
-  @override
-  $ElementCopyWith<$Res>? get titleElement;
-  @override
-  $ElementCopyWith<$Res>? get descriptionElement;
   @override
   $ReferenceCopyWith<$Res> get subject;
   @override
   $ReferenceCopyWith<$Res>? get encounter;
   @override
   $PeriodCopyWith<$Res>? get period;
-  @override
-  $ElementCopyWith<$Res>? get createdElement;
   @override
   $ReferenceCopyWith<$Res>? get author;
 }
@@ -1862,7 +1757,7 @@ CarePlanActivity _$CarePlanActivityFromJson(Map<String, dynamic> json) {
 mixin _$CarePlanActivity {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1927,7 +1822,7 @@ abstract class $CarePlanActivityCopyWith<$Res> {
       _$CarePlanActivityCopyWithImpl<$Res, CarePlanActivity>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<CodeableConcept>? outcomeCodeableConcept,
@@ -1966,7 +1861,7 @@ class _$CarePlanActivityCopyWithImpl<$Res, $Val extends CarePlanActivity>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -2032,7 +1927,7 @@ abstract class _$$CarePlanActivityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<CodeableConcept>? outcomeCodeableConcept,
@@ -2071,7 +1966,7 @@ class __$$CarePlanActivityImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -2129,7 +2024,7 @@ class _$CarePlanActivityImpl extends _CarePlanActivity {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2312,7 +2207,7 @@ class _$CarePlanActivityImpl extends _CarePlanActivity {
 
 abstract class _CarePlanActivity extends CarePlanActivity {
   const factory _CarePlanActivity(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final List<CodeableConcept>? outcomeCodeableConcept,
@@ -2329,7 +2224,7 @@ abstract class _CarePlanActivity extends CarePlanActivity {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -2399,7 +2294,7 @@ CarePlanDetail _$CarePlanDetailFromJson(Map<String, dynamic> json) {
 mixin _$CarePlanDetail {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2557,7 +2452,7 @@ abstract class $CarePlanDetailCopyWith<$Res> {
       _$CarePlanDetailCopyWithImpl<$Res, CarePlanDetail>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? kind,
@@ -2587,20 +2482,15 @@ abstract class $CarePlanDetailCopyWith<$Res> {
       String? description,
       @JsonKey(name: '_description') Element? descriptionElement});
 
-  $ElementCopyWith<$Res>? get kindElement;
   $CodeableConceptCopyWith<$Res>? get code;
-  $ElementCopyWith<$Res>? get statusElement;
   $CodeableConceptCopyWith<$Res>? get statusReason;
-  $ElementCopyWith<$Res>? get doNotPerformElement;
   $TimingCopyWith<$Res>? get scheduledTiming;
   $PeriodCopyWith<$Res>? get scheduledPeriod;
-  $ElementCopyWith<$Res>? get scheduledStringElement;
   $ReferenceCopyWith<$Res>? get location;
   $CodeableConceptCopyWith<$Res>? get productCodeableConcept;
   $ReferenceCopyWith<$Res>? get productReference;
   $QuantityCopyWith<$Res>? get dailyAmount;
   $QuantityCopyWith<$Res>? get quantity;
-  $ElementCopyWith<$Res>? get descriptionElement;
 }
 
 /// @nodoc
@@ -2650,7 +2540,7 @@ class _$CarePlanDetailCopyWithImpl<$Res, $Val extends CarePlanDetail>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -2768,18 +2658,6 @@ class _$CarePlanDetailCopyWithImpl<$Res, $Val extends CarePlanDetail>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get kindElement {
-    if (_value.kindElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.kindElement!, (value) {
-      return _then(_value.copyWith(kindElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get code {
     if (_value.code == null) {
       return null;
@@ -2792,18 +2670,6 @@ class _$CarePlanDetailCopyWithImpl<$Res, $Val extends CarePlanDetail>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get statusElement {
-    if (_value.statusElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.statusElement!, (value) {
-      return _then(_value.copyWith(statusElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get statusReason {
     if (_value.statusReason == null) {
       return null;
@@ -2811,18 +2677,6 @@ class _$CarePlanDetailCopyWithImpl<$Res, $Val extends CarePlanDetail>
 
     return $CodeableConceptCopyWith<$Res>(_value.statusReason!, (value) {
       return _then(_value.copyWith(statusReason: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get doNotPerformElement {
-    if (_value.doNotPerformElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.doNotPerformElement!, (value) {
-      return _then(_value.copyWith(doNotPerformElement: value) as $Val);
     });
   }
 
@@ -2847,18 +2701,6 @@ class _$CarePlanDetailCopyWithImpl<$Res, $Val extends CarePlanDetail>
 
     return $PeriodCopyWith<$Res>(_value.scheduledPeriod!, (value) {
       return _then(_value.copyWith(scheduledPeriod: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get scheduledStringElement {
-    if (_value.scheduledStringElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.scheduledStringElement!, (value) {
-      return _then(_value.copyWith(scheduledStringElement: value) as $Val);
     });
   }
 
@@ -2922,18 +2764,6 @@ class _$CarePlanDetailCopyWithImpl<$Res, $Val extends CarePlanDetail>
       return _then(_value.copyWith(quantity: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get descriptionElement {
-    if (_value.descriptionElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.descriptionElement!, (value) {
-      return _then(_value.copyWith(descriptionElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -2945,7 +2775,7 @@ abstract class _$$CarePlanDetailImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? kind,
@@ -2976,21 +2806,13 @@ abstract class _$$CarePlanDetailImplCopyWith<$Res>
       @JsonKey(name: '_description') Element? descriptionElement});
 
   @override
-  $ElementCopyWith<$Res>? get kindElement;
-  @override
   $CodeableConceptCopyWith<$Res>? get code;
   @override
-  $ElementCopyWith<$Res>? get statusElement;
-  @override
   $CodeableConceptCopyWith<$Res>? get statusReason;
-  @override
-  $ElementCopyWith<$Res>? get doNotPerformElement;
   @override
   $TimingCopyWith<$Res>? get scheduledTiming;
   @override
   $PeriodCopyWith<$Res>? get scheduledPeriod;
-  @override
-  $ElementCopyWith<$Res>? get scheduledStringElement;
   @override
   $ReferenceCopyWith<$Res>? get location;
   @override
@@ -3001,8 +2823,6 @@ abstract class _$$CarePlanDetailImplCopyWith<$Res>
   $QuantityCopyWith<$Res>? get dailyAmount;
   @override
   $QuantityCopyWith<$Res>? get quantity;
-  @override
-  $ElementCopyWith<$Res>? get descriptionElement;
 }
 
 /// @nodoc
@@ -3050,7 +2870,7 @@ class __$$CarePlanDetailImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -3218,7 +3038,7 @@ class _$CarePlanDetailImpl extends _CarePlanDetail {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3614,7 +3434,7 @@ class _$CarePlanDetailImpl extends _CarePlanDetail {
 
 abstract class _CarePlanDetail extends CarePlanDetail {
   const factory _CarePlanDetail(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirCode? kind,
@@ -3654,7 +3474,7 @@ abstract class _CarePlanDetail extends CarePlanDetail {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -4002,11 +3822,7 @@ abstract class $CareTeamCopyWith<$Res> {
       List<Annotation>? note});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  $ElementCopyWith<$Res>? get languageElement;
   $NarrativeCopyWith<$Res>? get text;
-  $ElementCopyWith<$Res>? get statusElement;
-  $ElementCopyWith<$Res>? get nameElement;
   $ReferenceCopyWith<$Res>? get subject;
   $ReferenceCopyWith<$Res>? get encounter;
   $PeriodCopyWith<$Res>? get period;
@@ -4174,30 +3990,6 @@ class _$CareTeamCopyWithImpl<$Res, $Val extends CareTeam>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get implicitRulesElement {
-    if (_value.implicitRulesElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.implicitRulesElement!, (value) {
-      return _then(_value.copyWith(implicitRulesElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get languageElement {
-    if (_value.languageElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.languageElement!, (value) {
-      return _then(_value.copyWith(languageElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
     if (_value.text == null) {
       return null;
@@ -4205,30 +3997,6 @@ class _$CareTeamCopyWithImpl<$Res, $Val extends CareTeam>
 
     return $NarrativeCopyWith<$Res>(_value.text!, (value) {
       return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get statusElement {
-    if (_value.statusElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.statusElement!, (value) {
-      return _then(_value.copyWith(statusElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get nameElement {
-    if (_value.nameElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.nameElement!, (value) {
-      return _then(_value.copyWith(nameElement: value) as $Val);
     });
   }
 
@@ -4309,15 +4077,7 @@ abstract class _$$CareTeamImplCopyWith<$Res>
   @override
   $FhirMetaCopyWith<$Res>? get meta;
   @override
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  @override
-  $ElementCopyWith<$Res>? get languageElement;
-  @override
   $NarrativeCopyWith<$Res>? get text;
-  @override
-  $ElementCopyWith<$Res>? get statusElement;
-  @override
-  $ElementCopyWith<$Res>? get nameElement;
   @override
   $ReferenceCopyWith<$Res>? get subject;
   @override
@@ -5094,7 +4854,7 @@ CareTeamParticipant _$CareTeamParticipantFromJson(Map<String, dynamic> json) {
 mixin _$CareTeamParticipant {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -5150,7 +4910,7 @@ abstract class $CareTeamParticipantCopyWith<$Res> {
       _$CareTeamParticipantCopyWithImpl<$Res, CareTeamParticipant>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<CodeableConcept>? role,
@@ -5188,7 +4948,7 @@ class _$CareTeamParticipantCopyWithImpl<$Res, $Val extends CareTeamParticipant>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -5262,7 +5022,7 @@ abstract class _$$CareTeamParticipantImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<CodeableConcept>? role,
@@ -5301,7 +5061,7 @@ class __$$CareTeamParticipantImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -5352,7 +5112,7 @@ class _$CareTeamParticipantImpl extends _CareTeamParticipant {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -5498,7 +5258,7 @@ class _$CareTeamParticipantImpl extends _CareTeamParticipant {
 
 abstract class _CareTeamParticipant extends CareTeamParticipant {
   const factory _CareTeamParticipant(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final List<CodeableConcept>? role,
@@ -5514,7 +5274,7 @@ abstract class _CareTeamParticipant extends CareTeamParticipant {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -5768,18 +5528,12 @@ abstract class $GoalCopyWith<$Res> {
       List<Reference>? outcomeReference});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  $ElementCopyWith<$Res>? get languageElement;
   $NarrativeCopyWith<$Res>? get text;
-  $ElementCopyWith<$Res>? get lifecycleStatusElement;
   $CodeableConceptCopyWith<$Res>? get achievementStatus;
   $CodeableConceptCopyWith<$Res>? get priority;
   $CodeableConceptCopyWith<$Res> get description;
   $ReferenceCopyWith<$Res> get subject;
-  $ElementCopyWith<$Res>? get startDateElement;
   $CodeableConceptCopyWith<$Res>? get startCodeableConcept;
-  $ElementCopyWith<$Res>? get statusDateElement;
-  $ElementCopyWith<$Res>? get statusReasonElement;
   $ReferenceCopyWith<$Res>? get expressedBy;
 }
 
@@ -5975,30 +5729,6 @@ class _$GoalCopyWithImpl<$Res, $Val extends Goal>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get implicitRulesElement {
-    if (_value.implicitRulesElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.implicitRulesElement!, (value) {
-      return _then(_value.copyWith(implicitRulesElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get languageElement {
-    if (_value.languageElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.languageElement!, (value) {
-      return _then(_value.copyWith(languageElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
     if (_value.text == null) {
       return null;
@@ -6006,18 +5736,6 @@ class _$GoalCopyWithImpl<$Res, $Val extends Goal>
 
     return $NarrativeCopyWith<$Res>(_value.text!, (value) {
       return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get lifecycleStatusElement {
-    if (_value.lifecycleStatusElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.lifecycleStatusElement!, (value) {
-      return _then(_value.copyWith(lifecycleStatusElement: value) as $Val);
     });
   }
 
@@ -6063,18 +5781,6 @@ class _$GoalCopyWithImpl<$Res, $Val extends Goal>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get startDateElement {
-    if (_value.startDateElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.startDateElement!, (value) {
-      return _then(_value.copyWith(startDateElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get startCodeableConcept {
     if (_value.startCodeableConcept == null) {
       return null;
@@ -6083,30 +5789,6 @@ class _$GoalCopyWithImpl<$Res, $Val extends Goal>
     return $CodeableConceptCopyWith<$Res>(_value.startCodeableConcept!,
         (value) {
       return _then(_value.copyWith(startCodeableConcept: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get statusDateElement {
-    if (_value.statusDateElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.statusDateElement!, (value) {
-      return _then(_value.copyWith(statusDateElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get statusReasonElement {
-    if (_value.statusReasonElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.statusReasonElement!, (value) {
-      return _then(_value.copyWith(statusReasonElement: value) as $Val);
     });
   }
 
@@ -6168,13 +5850,7 @@ abstract class _$$GoalImplCopyWith<$Res> implements $GoalCopyWith<$Res> {
   @override
   $FhirMetaCopyWith<$Res>? get meta;
   @override
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  @override
-  $ElementCopyWith<$Res>? get languageElement;
-  @override
   $NarrativeCopyWith<$Res>? get text;
-  @override
-  $ElementCopyWith<$Res>? get lifecycleStatusElement;
   @override
   $CodeableConceptCopyWith<$Res>? get achievementStatus;
   @override
@@ -6184,13 +5860,7 @@ abstract class _$$GoalImplCopyWith<$Res> implements $GoalCopyWith<$Res> {
   @override
   $ReferenceCopyWith<$Res> get subject;
   @override
-  $ElementCopyWith<$Res>? get startDateElement;
-  @override
   $CodeableConceptCopyWith<$Res>? get startCodeableConcept;
-  @override
-  $ElementCopyWith<$Res>? get statusDateElement;
-  @override
-  $ElementCopyWith<$Res>? get statusReasonElement;
   @override
   $ReferenceCopyWith<$Res>? get expressedBy;
 }
@@ -7070,7 +6740,7 @@ GoalTarget _$GoalTargetFromJson(Map<String, dynamic> json) {
 mixin _$GoalTarget {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -7196,7 +6866,7 @@ abstract class $GoalTargetCopyWith<$Res> {
       _$GoalTargetCopyWithImpl<$Res, GoalTarget>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? measure,
@@ -7218,11 +6888,7 @@ abstract class $GoalTargetCopyWith<$Res> {
   $QuantityCopyWith<$Res>? get detailQuantity;
   $RangeCopyWith<$Res>? get detailRange;
   $CodeableConceptCopyWith<$Res>? get detailCodeableConcept;
-  $ElementCopyWith<$Res>? get detailStringElement;
-  $ElementCopyWith<$Res>? get detailBooleanElement;
-  $ElementCopyWith<$Res>? get detailIntegerElement;
   $RatioCopyWith<$Res>? get detailRatio;
-  $ElementCopyWith<$Res>? get dueDateElement;
   $FhirDurationCopyWith<$Res>? get dueDuration;
 }
 
@@ -7261,7 +6927,7 @@ class _$GoalTargetCopyWithImpl<$Res, $Val extends GoalTarget>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -7380,42 +7046,6 @@ class _$GoalTargetCopyWithImpl<$Res, $Val extends GoalTarget>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get detailStringElement {
-    if (_value.detailStringElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.detailStringElement!, (value) {
-      return _then(_value.copyWith(detailStringElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get detailBooleanElement {
-    if (_value.detailBooleanElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.detailBooleanElement!, (value) {
-      return _then(_value.copyWith(detailBooleanElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get detailIntegerElement {
-    if (_value.detailIntegerElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.detailIntegerElement!, (value) {
-      return _then(_value.copyWith(detailIntegerElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $RatioCopyWith<$Res>? get detailRatio {
     if (_value.detailRatio == null) {
       return null;
@@ -7423,18 +7053,6 @@ class _$GoalTargetCopyWithImpl<$Res, $Val extends GoalTarget>
 
     return $RatioCopyWith<$Res>(_value.detailRatio!, (value) {
       return _then(_value.copyWith(detailRatio: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get dueDateElement {
-    if (_value.dueDateElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.dueDateElement!, (value) {
-      return _then(_value.copyWith(dueDateElement: value) as $Val);
     });
   }
 
@@ -7460,7 +7078,7 @@ abstract class _$$GoalTargetImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? measure,
@@ -7487,15 +7105,7 @@ abstract class _$$GoalTargetImplCopyWith<$Res>
   @override
   $CodeableConceptCopyWith<$Res>? get detailCodeableConcept;
   @override
-  $ElementCopyWith<$Res>? get detailStringElement;
-  @override
-  $ElementCopyWith<$Res>? get detailBooleanElement;
-  @override
-  $ElementCopyWith<$Res>? get detailIntegerElement;
-  @override
   $RatioCopyWith<$Res>? get detailRatio;
-  @override
-  $ElementCopyWith<$Res>? get dueDateElement;
   @override
   $FhirDurationCopyWith<$Res>? get dueDuration;
 }
@@ -7533,7 +7143,7 @@ class __$$GoalTargetImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -7633,7 +7243,7 @@ class _$GoalTargetImpl extends _GoalTarget {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -7877,7 +7487,7 @@ class _$GoalTargetImpl extends _GoalTarget {
 
 abstract class _GoalTarget extends GoalTarget {
   const factory _GoalTarget(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final CodeableConcept? measure,
@@ -7903,7 +7513,7 @@ abstract class _GoalTarget extends GoalTarget {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -8266,14 +7876,9 @@ abstract class $NutritionOrderCopyWith<$Res> {
       List<Annotation>? note});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  $ElementCopyWith<$Res>? get languageElement;
   $NarrativeCopyWith<$Res>? get text;
-  $ElementCopyWith<$Res>? get statusElement;
-  $ElementCopyWith<$Res>? get intentElement;
   $ReferenceCopyWith<$Res> get patient;
   $ReferenceCopyWith<$Res>? get encounter;
-  $ElementCopyWith<$Res>? get dateTimeElement;
   $ReferenceCopyWith<$Res>? get orderer;
   $NutritionOrderOralDietCopyWith<$Res>? get oralDiet;
   $NutritionOrderEnteralFormulaCopyWith<$Res>? get enteralFormula;
@@ -8476,30 +8081,6 @@ class _$NutritionOrderCopyWithImpl<$Res, $Val extends NutritionOrder>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get implicitRulesElement {
-    if (_value.implicitRulesElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.implicitRulesElement!, (value) {
-      return _then(_value.copyWith(implicitRulesElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get languageElement {
-    if (_value.languageElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.languageElement!, (value) {
-      return _then(_value.copyWith(languageElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
     if (_value.text == null) {
       return null;
@@ -8507,30 +8088,6 @@ class _$NutritionOrderCopyWithImpl<$Res, $Val extends NutritionOrder>
 
     return $NarrativeCopyWith<$Res>(_value.text!, (value) {
       return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get statusElement {
-    if (_value.statusElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.statusElement!, (value) {
-      return _then(_value.copyWith(statusElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get intentElement {
-    if (_value.intentElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.intentElement!, (value) {
-      return _then(_value.copyWith(intentElement: value) as $Val);
     });
   }
 
@@ -8551,18 +8108,6 @@ class _$NutritionOrderCopyWithImpl<$Res, $Val extends NutritionOrder>
 
     return $ReferenceCopyWith<$Res>(_value.encounter!, (value) {
       return _then(_value.copyWith(encounter: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get dateTimeElement {
-    if (_value.dateTimeElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.dateTimeElement!, (value) {
-      return _then(_value.copyWith(dateTimeElement: value) as $Val);
     });
   }
 
@@ -8651,21 +8196,11 @@ abstract class _$$NutritionOrderImplCopyWith<$Res>
   @override
   $FhirMetaCopyWith<$Res>? get meta;
   @override
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  @override
-  $ElementCopyWith<$Res>? get languageElement;
-  @override
   $NarrativeCopyWith<$Res>? get text;
-  @override
-  $ElementCopyWith<$Res>? get statusElement;
-  @override
-  $ElementCopyWith<$Res>? get intentElement;
   @override
   $ReferenceCopyWith<$Res> get patient;
   @override
   $ReferenceCopyWith<$Res>? get encounter;
-  @override
-  $ElementCopyWith<$Res>? get dateTimeElement;
   @override
   $ReferenceCopyWith<$Res>? get orderer;
   @override
@@ -9676,7 +9211,7 @@ NutritionOrderOralDiet _$NutritionOrderOralDietFromJson(
 mixin _$NutritionOrderOralDiet {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -9750,7 +9285,7 @@ abstract class $NutritionOrderOralDietCopyWith<$Res> {
       _$NutritionOrderOralDietCopyWithImpl<$Res, NutritionOrderOralDiet>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<CodeableConcept>? type,
@@ -9760,8 +9295,6 @@ abstract class $NutritionOrderOralDietCopyWith<$Res> {
       List<CodeableConcept>? fluidConsistencyType,
       String? instruction,
       @JsonKey(name: '_instruction') Element? instructionElement});
-
-  $ElementCopyWith<$Res>? get instructionElement;
 }
 
 /// @nodoc
@@ -9793,7 +9326,7 @@ class _$NutritionOrderOralDietCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -9832,18 +9365,6 @@ class _$NutritionOrderOralDietCopyWithImpl<$Res,
               as Element?,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get instructionElement {
-    if (_value.instructionElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.instructionElement!, (value) {
-      return _then(_value.copyWith(instructionElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -9856,7 +9377,7 @@ abstract class _$$NutritionOrderOralDietImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<CodeableConcept>? type,
@@ -9866,9 +9387,6 @@ abstract class _$$NutritionOrderOralDietImplCopyWith<$Res>
       List<CodeableConcept>? fluidConsistencyType,
       String? instruction,
       @JsonKey(name: '_instruction') Element? instructionElement});
-
-  @override
-  $ElementCopyWith<$Res>? get instructionElement;
 }
 
 /// @nodoc
@@ -9899,7 +9417,7 @@ class __$$NutritionOrderOralDietImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -9969,7 +9487,7 @@ class _$NutritionOrderOralDietImpl extends _NutritionOrderOralDiet {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -10184,7 +9702,7 @@ class _$NutritionOrderOralDietImpl extends _NutritionOrderOralDiet {
 
 abstract class _NutritionOrderOralDiet extends NutritionOrderOralDiet {
   const factory _NutritionOrderOralDiet(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final List<CodeableConcept>? type,
@@ -10204,7 +9722,7 @@ abstract class _NutritionOrderOralDiet extends NutritionOrderOralDiet {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -10284,7 +9802,7 @@ NutritionOrderNutrient _$NutritionOrderNutrientFromJson(
 mixin _$NutritionOrderNutrient {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -10331,7 +9849,7 @@ abstract class $NutritionOrderNutrientCopyWith<$Res> {
       _$NutritionOrderNutrientCopyWithImpl<$Res, NutritionOrderNutrient>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? modifier,
@@ -10365,7 +9883,7 @@ class _$NutritionOrderNutrientCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -10420,7 +9938,7 @@ abstract class _$$NutritionOrderNutrientImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? modifier,
@@ -10455,7 +9973,7 @@ class __$$NutritionOrderNutrientImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -10495,7 +10013,7 @@ class _$NutritionOrderNutrientImpl extends _NutritionOrderNutrient {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -10615,7 +10133,7 @@ class _$NutritionOrderNutrientImpl extends _NutritionOrderNutrient {
 
 abstract class _NutritionOrderNutrient extends NutritionOrderNutrient {
   const factory _NutritionOrderNutrient(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final CodeableConcept? modifier,
@@ -10629,7 +10147,7 @@ abstract class _NutritionOrderNutrient extends NutritionOrderNutrient {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -10680,7 +10198,7 @@ NutritionOrderTexture _$NutritionOrderTextureFromJson(
 mixin _$NutritionOrderTexture {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -10728,7 +10246,7 @@ abstract class $NutritionOrderTextureCopyWith<$Res> {
       _$NutritionOrderTextureCopyWithImpl<$Res, NutritionOrderTexture>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? modifier,
@@ -10762,7 +10280,7 @@ class _$NutritionOrderTextureCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -10817,7 +10335,7 @@ abstract class _$$NutritionOrderTextureImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? modifier,
@@ -10851,7 +10369,7 @@ class __$$NutritionOrderTextureImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -10891,7 +10409,7 @@ class _$NutritionOrderTextureImpl extends _NutritionOrderTexture {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -11013,7 +10531,7 @@ class _$NutritionOrderTextureImpl extends _NutritionOrderTexture {
 
 abstract class _NutritionOrderTexture extends NutritionOrderTexture {
   const factory _NutritionOrderTexture(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final CodeableConcept? modifier,
@@ -11027,7 +10545,7 @@ abstract class _NutritionOrderTexture extends NutritionOrderTexture {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -11079,7 +10597,7 @@ NutritionOrderSupplement _$NutritionOrderSupplementFromJson(
 mixin _$NutritionOrderSupplement {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -11147,7 +10665,7 @@ abstract class $NutritionOrderSupplementCopyWith<$Res> {
       _$NutritionOrderSupplementCopyWithImpl<$Res, NutritionOrderSupplement>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? type,
@@ -11159,9 +10677,7 @@ abstract class $NutritionOrderSupplementCopyWith<$Res> {
       @JsonKey(name: '_instruction') Element? instructionElement});
 
   $CodeableConceptCopyWith<$Res>? get type;
-  $ElementCopyWith<$Res>? get productNameElement;
   $QuantityCopyWith<$Res>? get quantity;
-  $ElementCopyWith<$Res>? get instructionElement;
 }
 
 /// @nodoc
@@ -11193,7 +10709,7 @@ class _$NutritionOrderSupplementCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -11247,18 +10763,6 @@ class _$NutritionOrderSupplementCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get productNameElement {
-    if (_value.productNameElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.productNameElement!, (value) {
-      return _then(_value.copyWith(productNameElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get quantity {
     if (_value.quantity == null) {
       return null;
@@ -11266,18 +10770,6 @@ class _$NutritionOrderSupplementCopyWithImpl<$Res,
 
     return $QuantityCopyWith<$Res>(_value.quantity!, (value) {
       return _then(_value.copyWith(quantity: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get instructionElement {
-    if (_value.instructionElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.instructionElement!, (value) {
-      return _then(_value.copyWith(instructionElement: value) as $Val);
     });
   }
 }
@@ -11292,7 +10784,7 @@ abstract class _$$NutritionOrderSupplementImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? type,
@@ -11306,11 +10798,7 @@ abstract class _$$NutritionOrderSupplementImplCopyWith<$Res>
   @override
   $CodeableConceptCopyWith<$Res>? get type;
   @override
-  $ElementCopyWith<$Res>? get productNameElement;
-  @override
   $QuantityCopyWith<$Res>? get quantity;
-  @override
-  $ElementCopyWith<$Res>? get instructionElement;
 }
 
 /// @nodoc
@@ -11341,7 +10829,7 @@ class __$$NutritionOrderSupplementImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -11407,7 +10895,7 @@ class _$NutritionOrderSupplementImpl extends _NutritionOrderSupplement {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -11578,7 +11066,7 @@ class _$NutritionOrderSupplementImpl extends _NutritionOrderSupplement {
 
 abstract class _NutritionOrderSupplement extends NutritionOrderSupplement {
   const factory _NutritionOrderSupplement(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final CodeableConcept? type,
@@ -11598,7 +11086,7 @@ abstract class _NutritionOrderSupplement extends NutritionOrderSupplement {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -11675,7 +11163,7 @@ NutritionOrderEnteralFormula _$NutritionOrderEnteralFormulaFromJson(
 mixin _$NutritionOrderEnteralFormula {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -11773,7 +11261,7 @@ abstract class $NutritionOrderEnteralFormulaCopyWith<$Res> {
           NutritionOrderEnteralFormula>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? baseFormulaType,
@@ -11793,13 +11281,10 @@ abstract class $NutritionOrderEnteralFormulaCopyWith<$Res> {
       Element? administrationInstructionElement});
 
   $CodeableConceptCopyWith<$Res>? get baseFormulaType;
-  $ElementCopyWith<$Res>? get baseFormulaProductNameElement;
   $CodeableConceptCopyWith<$Res>? get additiveType;
-  $ElementCopyWith<$Res>? get additiveProductNameElement;
   $QuantityCopyWith<$Res>? get caloricDensity;
   $CodeableConceptCopyWith<$Res>? get routeofAdministration;
   $QuantityCopyWith<$Res>? get maxVolumeToDeliver;
-  $ElementCopyWith<$Res>? get administrationInstructionElement;
 }
 
 /// @nodoc
@@ -11836,7 +11321,7 @@ class _$NutritionOrderEnteralFormulaCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -11911,20 +11396,6 @@ class _$NutritionOrderEnteralFormulaCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get baseFormulaProductNameElement {
-    if (_value.baseFormulaProductNameElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.baseFormulaProductNameElement!,
-        (value) {
-      return _then(
-          _value.copyWith(baseFormulaProductNameElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get additiveType {
     if (_value.additiveType == null) {
       return null;
@@ -11932,18 +11403,6 @@ class _$NutritionOrderEnteralFormulaCopyWithImpl<$Res,
 
     return $CodeableConceptCopyWith<$Res>(_value.additiveType!, (value) {
       return _then(_value.copyWith(additiveType: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get additiveProductNameElement {
-    if (_value.additiveProductNameElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.additiveProductNameElement!, (value) {
-      return _then(_value.copyWith(additiveProductNameElement: value) as $Val);
     });
   }
 
@@ -11983,20 +11442,6 @@ class _$NutritionOrderEnteralFormulaCopyWithImpl<$Res,
       return _then(_value.copyWith(maxVolumeToDeliver: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get administrationInstructionElement {
-    if (_value.administrationInstructionElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.administrationInstructionElement!,
-        (value) {
-      return _then(
-          _value.copyWith(administrationInstructionElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -12009,7 +11454,7 @@ abstract class _$$NutritionOrderEnteralFormulaImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? baseFormulaType,
@@ -12031,19 +11476,13 @@ abstract class _$$NutritionOrderEnteralFormulaImplCopyWith<$Res>
   @override
   $CodeableConceptCopyWith<$Res>? get baseFormulaType;
   @override
-  $ElementCopyWith<$Res>? get baseFormulaProductNameElement;
-  @override
   $CodeableConceptCopyWith<$Res>? get additiveType;
-  @override
-  $ElementCopyWith<$Res>? get additiveProductNameElement;
   @override
   $QuantityCopyWith<$Res>? get caloricDensity;
   @override
   $CodeableConceptCopyWith<$Res>? get routeofAdministration;
   @override
   $QuantityCopyWith<$Res>? get maxVolumeToDeliver;
-  @override
-  $ElementCopyWith<$Res>? get administrationInstructionElement;
 }
 
 /// @nodoc
@@ -12079,7 +11518,7 @@ class __$$NutritionOrderEnteralFormulaImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -12174,7 +11613,7 @@ class _$NutritionOrderEnteralFormulaImpl extends _NutritionOrderEnteralFormula {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -12402,7 +11841,7 @@ class _$NutritionOrderEnteralFormulaImpl extends _NutritionOrderEnteralFormula {
 abstract class _NutritionOrderEnteralFormula
     extends NutritionOrderEnteralFormula {
   const factory _NutritionOrderEnteralFormula(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final CodeableConcept? baseFormulaType,
@@ -12430,7 +11869,7 @@ abstract class _NutritionOrderEnteralFormula
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -12537,7 +11976,7 @@ NutritionOrderAdministration _$NutritionOrderAdministrationFromJson(
 mixin _$NutritionOrderAdministration {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -12595,7 +12034,7 @@ abstract class $NutritionOrderAdministrationCopyWith<$Res> {
           NutritionOrderAdministration>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       Timing? schedule,
@@ -12635,7 +12074,7 @@ class _$NutritionOrderAdministrationCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -12722,7 +12161,7 @@ abstract class _$$NutritionOrderAdministrationImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       Timing? schedule,
@@ -12765,7 +12204,7 @@ class __$$NutritionOrderAdministrationImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -12816,7 +12255,7 @@ class _$NutritionOrderAdministrationImpl extends _NutritionOrderAdministration {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -12956,7 +12395,7 @@ class _$NutritionOrderAdministrationImpl extends _NutritionOrderAdministration {
 abstract class _NutritionOrderAdministration
     extends NutritionOrderAdministration {
   const factory _NutritionOrderAdministration(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final Timing? schedule,
@@ -12972,7 +12411,7 @@ abstract class _NutritionOrderAdministration
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -13246,17 +12685,11 @@ abstract class $RequestGroupCopyWith<$Res> {
       List<RequestGroupAction>? action});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  $ElementCopyWith<$Res>? get languageElement;
   $NarrativeCopyWith<$Res>? get text;
   $IdentifierCopyWith<$Res>? get groupIdentifier;
-  $ElementCopyWith<$Res>? get statusElement;
-  $ElementCopyWith<$Res>? get intentElement;
-  $ElementCopyWith<$Res>? get priorityElement;
   $CodeableConceptCopyWith<$Res>? get code;
   $ReferenceCopyWith<$Res>? get subject;
   $ReferenceCopyWith<$Res>? get encounter;
-  $ElementCopyWith<$Res>? get authoredOnElement;
   $ReferenceCopyWith<$Res>? get author;
 }
 
@@ -13467,30 +12900,6 @@ class _$RequestGroupCopyWithImpl<$Res, $Val extends RequestGroup>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get implicitRulesElement {
-    if (_value.implicitRulesElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.implicitRulesElement!, (value) {
-      return _then(_value.copyWith(implicitRulesElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get languageElement {
-    if (_value.languageElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.languageElement!, (value) {
-      return _then(_value.copyWith(languageElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
     if (_value.text == null) {
       return null;
@@ -13510,42 +12919,6 @@ class _$RequestGroupCopyWithImpl<$Res, $Val extends RequestGroup>
 
     return $IdentifierCopyWith<$Res>(_value.groupIdentifier!, (value) {
       return _then(_value.copyWith(groupIdentifier: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get statusElement {
-    if (_value.statusElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.statusElement!, (value) {
-      return _then(_value.copyWith(statusElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get intentElement {
-    if (_value.intentElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.intentElement!, (value) {
-      return _then(_value.copyWith(intentElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get priorityElement {
-    if (_value.priorityElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.priorityElement!, (value) {
-      return _then(_value.copyWith(priorityElement: value) as $Val);
     });
   }
 
@@ -13582,18 +12955,6 @@ class _$RequestGroupCopyWithImpl<$Res, $Val extends RequestGroup>
 
     return $ReferenceCopyWith<$Res>(_value.encounter!, (value) {
       return _then(_value.copyWith(encounter: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get authoredOnElement {
-    if (_value.authoredOnElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.authoredOnElement!, (value) {
-      return _then(_value.copyWith(authoredOnElement: value) as $Val);
     });
   }
 
@@ -13660,27 +13021,15 @@ abstract class _$$RequestGroupImplCopyWith<$Res>
   @override
   $FhirMetaCopyWith<$Res>? get meta;
   @override
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  @override
-  $ElementCopyWith<$Res>? get languageElement;
-  @override
   $NarrativeCopyWith<$Res>? get text;
   @override
   $IdentifierCopyWith<$Res>? get groupIdentifier;
-  @override
-  $ElementCopyWith<$Res>? get statusElement;
-  @override
-  $ElementCopyWith<$Res>? get intentElement;
-  @override
-  $ElementCopyWith<$Res>? get priorityElement;
   @override
   $CodeableConceptCopyWith<$Res>? get code;
   @override
   $ReferenceCopyWith<$Res>? get subject;
   @override
   $ReferenceCopyWith<$Res>? get encounter;
-  @override
-  $ElementCopyWith<$Res>? get authoredOnElement;
   @override
   $ReferenceCopyWith<$Res>? get author;
 }
@@ -14667,7 +14016,7 @@ RequestGroupAction _$RequestGroupActionFromJson(Map<String, dynamic> json) {
 mixin _$RequestGroupAction {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -14850,7 +14199,7 @@ abstract class $RequestGroupActionCopyWith<$Res> {
       _$RequestGroupActionCopyWithImpl<$Res, RequestGroupAction>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? prefix,
@@ -14890,23 +14239,12 @@ abstract class $RequestGroupActionCopyWith<$Res> {
       Reference? resource,
       List<RequestGroupAction>? action});
 
-  $ElementCopyWith<$Res>? get prefixElement;
-  $ElementCopyWith<$Res>? get titleElement;
-  $ElementCopyWith<$Res>? get descriptionElement;
-  $ElementCopyWith<$Res>? get textEquivalentElement;
-  $ElementCopyWith<$Res>? get priorityElement;
-  $ElementCopyWith<$Res>? get timingDateTimeElement;
   $AgeCopyWith<$Res>? get timingAge;
   $PeriodCopyWith<$Res>? get timingPeriod;
   $FhirDurationCopyWith<$Res>? get timingDuration;
   $RangeCopyWith<$Res>? get timingRange;
   $TimingCopyWith<$Res>? get timingTiming;
   $CodeableConceptCopyWith<$Res>? get type;
-  $ElementCopyWith<$Res>? get groupingBehaviorElement;
-  $ElementCopyWith<$Res>? get selectionBehaviorElement;
-  $ElementCopyWith<$Res>? get requiredBehaviorElement;
-  $ElementCopyWith<$Res>? get precheckBehaviorElement;
-  $ElementCopyWith<$Res>? get cardinalityBehaviorElement;
   $ReferenceCopyWith<$Res>? get resource;
 }
 
@@ -14966,7 +14304,7 @@ class _$RequestGroupActionCopyWithImpl<$Res, $Val extends RequestGroupAction>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -15120,78 +14458,6 @@ class _$RequestGroupActionCopyWithImpl<$Res, $Val extends RequestGroupAction>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get prefixElement {
-    if (_value.prefixElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.prefixElement!, (value) {
-      return _then(_value.copyWith(prefixElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get titleElement {
-    if (_value.titleElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.titleElement!, (value) {
-      return _then(_value.copyWith(titleElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get descriptionElement {
-    if (_value.descriptionElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.descriptionElement!, (value) {
-      return _then(_value.copyWith(descriptionElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get textEquivalentElement {
-    if (_value.textEquivalentElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.textEquivalentElement!, (value) {
-      return _then(_value.copyWith(textEquivalentElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get priorityElement {
-    if (_value.priorityElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.priorityElement!, (value) {
-      return _then(_value.copyWith(priorityElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get timingDateTimeElement {
-    if (_value.timingDateTimeElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.timingDateTimeElement!, (value) {
-      return _then(_value.copyWith(timingDateTimeElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $AgeCopyWith<$Res>? get timingAge {
     if (_value.timingAge == null) {
       return null;
@@ -15264,66 +14530,6 @@ class _$RequestGroupActionCopyWithImpl<$Res, $Val extends RequestGroupAction>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get groupingBehaviorElement {
-    if (_value.groupingBehaviorElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.groupingBehaviorElement!, (value) {
-      return _then(_value.copyWith(groupingBehaviorElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get selectionBehaviorElement {
-    if (_value.selectionBehaviorElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.selectionBehaviorElement!, (value) {
-      return _then(_value.copyWith(selectionBehaviorElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get requiredBehaviorElement {
-    if (_value.requiredBehaviorElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.requiredBehaviorElement!, (value) {
-      return _then(_value.copyWith(requiredBehaviorElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get precheckBehaviorElement {
-    if (_value.precheckBehaviorElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.precheckBehaviorElement!, (value) {
-      return _then(_value.copyWith(precheckBehaviorElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get cardinalityBehaviorElement {
-    if (_value.cardinalityBehaviorElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.cardinalityBehaviorElement!, (value) {
-      return _then(_value.copyWith(cardinalityBehaviorElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get resource {
     if (_value.resource == null) {
       return null;
@@ -15344,7 +14550,7 @@ abstract class _$$RequestGroupActionImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? prefix,
@@ -15385,18 +14591,6 @@ abstract class _$$RequestGroupActionImplCopyWith<$Res>
       List<RequestGroupAction>? action});
 
   @override
-  $ElementCopyWith<$Res>? get prefixElement;
-  @override
-  $ElementCopyWith<$Res>? get titleElement;
-  @override
-  $ElementCopyWith<$Res>? get descriptionElement;
-  @override
-  $ElementCopyWith<$Res>? get textEquivalentElement;
-  @override
-  $ElementCopyWith<$Res>? get priorityElement;
-  @override
-  $ElementCopyWith<$Res>? get timingDateTimeElement;
-  @override
   $AgeCopyWith<$Res>? get timingAge;
   @override
   $PeriodCopyWith<$Res>? get timingPeriod;
@@ -15408,16 +14602,6 @@ abstract class _$$RequestGroupActionImplCopyWith<$Res>
   $TimingCopyWith<$Res>? get timingTiming;
   @override
   $CodeableConceptCopyWith<$Res>? get type;
-  @override
-  $ElementCopyWith<$Res>? get groupingBehaviorElement;
-  @override
-  $ElementCopyWith<$Res>? get selectionBehaviorElement;
-  @override
-  $ElementCopyWith<$Res>? get requiredBehaviorElement;
-  @override
-  $ElementCopyWith<$Res>? get precheckBehaviorElement;
-  @override
-  $ElementCopyWith<$Res>? get cardinalityBehaviorElement;
   @override
   $ReferenceCopyWith<$Res>? get resource;
 }
@@ -15476,7 +14660,7 @@ class __$$RequestGroupActionImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -15687,7 +14871,7 @@ class _$RequestGroupActionImpl extends _RequestGroupAction {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -16133,7 +15317,7 @@ class _$RequestGroupActionImpl extends _RequestGroupAction {
 
 abstract class _RequestGroupAction extends RequestGroupAction {
   const factory _RequestGroupAction(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final String? prefix,
@@ -16185,7 +15369,7 @@ abstract class _RequestGroupAction extends RequestGroupAction {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -16402,7 +15586,7 @@ RequestGroupCondition _$RequestGroupConditionFromJson(
 mixin _$RequestGroupCondition {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -16453,14 +15637,13 @@ abstract class $RequestGroupConditionCopyWith<$Res> {
       _$RequestGroupConditionCopyWithImpl<$Res, RequestGroupCondition>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? kind,
       @JsonKey(name: '_kind') Element? kindElement,
       FhirExpression? expression});
 
-  $ElementCopyWith<$Res>? get kindElement;
   $FhirExpressionCopyWith<$Res>? get expression;
 }
 
@@ -16489,7 +15672,7 @@ class _$RequestGroupConditionCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -16515,18 +15698,6 @@ class _$RequestGroupConditionCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get kindElement {
-    if (_value.kindElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.kindElement!, (value) {
-      return _then(_value.copyWith(kindElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $FhirExpressionCopyWith<$Res>? get expression {
     if (_value.expression == null) {
       return null;
@@ -16548,15 +15719,13 @@ abstract class _$$RequestGroupConditionImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? kind,
       @JsonKey(name: '_kind') Element? kindElement,
       FhirExpression? expression});
 
-  @override
-  $ElementCopyWith<$Res>? get kindElement;
   @override
   $FhirExpressionCopyWith<$Res>? get expression;
 }
@@ -16584,7 +15753,7 @@ class __$$RequestGroupConditionImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -16629,7 +15798,7 @@ class _$RequestGroupConditionImpl extends _RequestGroupCondition {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -16757,7 +15926,7 @@ class _$RequestGroupConditionImpl extends _RequestGroupCondition {
 
 abstract class _RequestGroupCondition extends RequestGroupCondition {
   const factory _RequestGroupCondition(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirCode? kind,
@@ -16772,7 +15941,7 @@ abstract class _RequestGroupCondition extends RequestGroupCondition {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -16828,7 +15997,7 @@ RequestGroupRelatedAction _$RequestGroupRelatedActionFromJson(
 mixin _$RequestGroupRelatedAction {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -16890,7 +16059,7 @@ abstract class $RequestGroupRelatedActionCopyWith<$Res> {
       _$RequestGroupRelatedActionCopyWithImpl<$Res, RequestGroupRelatedAction>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirId? actionId,
@@ -16900,8 +16069,6 @@ abstract class $RequestGroupRelatedActionCopyWith<$Res> {
       FhirDuration? offsetDuration,
       Range? offsetRange});
 
-  $ElementCopyWith<$Res>? get actionIdElement;
-  $ElementCopyWith<$Res>? get relationshipElement;
   $FhirDurationCopyWith<$Res>? get offsetDuration;
   $RangeCopyWith<$Res>? get offsetRange;
 }
@@ -16934,7 +16101,7 @@ class _$RequestGroupRelatedActionCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -16972,30 +16139,6 @@ class _$RequestGroupRelatedActionCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get actionIdElement {
-    if (_value.actionIdElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.actionIdElement!, (value) {
-      return _then(_value.copyWith(actionIdElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get relationshipElement {
-    if (_value.relationshipElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.relationshipElement!, (value) {
-      return _then(_value.copyWith(relationshipElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $FhirDurationCopyWith<$Res>? get offsetDuration {
     if (_value.offsetDuration == null) {
       return null;
@@ -17029,7 +16172,7 @@ abstract class _$$RequestGroupRelatedActionImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirId? actionId,
@@ -17039,10 +16182,6 @@ abstract class _$$RequestGroupRelatedActionImplCopyWith<$Res>
       FhirDuration? offsetDuration,
       Range? offsetRange});
 
-  @override
-  $ElementCopyWith<$Res>? get actionIdElement;
-  @override
-  $ElementCopyWith<$Res>? get relationshipElement;
   @override
   $FhirDurationCopyWith<$Res>? get offsetDuration;
   @override
@@ -17076,7 +16215,7 @@ class __$$RequestGroupRelatedActionImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -17136,7 +16275,7 @@ class _$RequestGroupRelatedActionImpl extends _RequestGroupRelatedAction {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -17288,7 +16427,7 @@ class _$RequestGroupRelatedActionImpl extends _RequestGroupRelatedAction {
 
 abstract class _RequestGroupRelatedAction extends RequestGroupRelatedAction {
   const factory _RequestGroupRelatedAction(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirId? actionId,
@@ -17306,7 +16445,7 @@ abstract class _RequestGroupRelatedAction extends RequestGroupRelatedAction {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -17566,21 +16705,16 @@ abstract class $RiskAssessmentCopyWith<$Res> {
       List<Annotation>? note});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  $ElementCopyWith<$Res>? get languageElement;
   $NarrativeCopyWith<$Res>? get text;
   $ReferenceCopyWith<$Res>? get basedOn;
   $ReferenceCopyWith<$Res>? get parent;
-  $ElementCopyWith<$Res>? get statusElement;
   $CodeableConceptCopyWith<$Res>? get method;
   $CodeableConceptCopyWith<$Res>? get code;
   $ReferenceCopyWith<$Res> get subject;
   $ReferenceCopyWith<$Res>? get encounter;
-  $ElementCopyWith<$Res>? get occurrenceDateTimeElement;
   $PeriodCopyWith<$Res>? get occurrencePeriod;
   $ReferenceCopyWith<$Res>? get condition;
   $ReferenceCopyWith<$Res>? get performer;
-  $ElementCopyWith<$Res>? get mitigationElement;
 }
 
 /// @nodoc
@@ -17775,30 +16909,6 @@ class _$RiskAssessmentCopyWithImpl<$Res, $Val extends RiskAssessment>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get implicitRulesElement {
-    if (_value.implicitRulesElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.implicitRulesElement!, (value) {
-      return _then(_value.copyWith(implicitRulesElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get languageElement {
-    if (_value.languageElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.languageElement!, (value) {
-      return _then(_value.copyWith(languageElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
     if (_value.text == null) {
       return null;
@@ -17830,18 +16940,6 @@ class _$RiskAssessmentCopyWithImpl<$Res, $Val extends RiskAssessment>
 
     return $ReferenceCopyWith<$Res>(_value.parent!, (value) {
       return _then(_value.copyWith(parent: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get statusElement {
-    if (_value.statusElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.statusElement!, (value) {
-      return _then(_value.copyWith(statusElement: value) as $Val);
     });
   }
 
@@ -17891,18 +16989,6 @@ class _$RiskAssessmentCopyWithImpl<$Res, $Val extends RiskAssessment>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get occurrenceDateTimeElement {
-    if (_value.occurrenceDateTimeElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.occurrenceDateTimeElement!, (value) {
-      return _then(_value.copyWith(occurrenceDateTimeElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get occurrencePeriod {
     if (_value.occurrencePeriod == null) {
       return null;
@@ -17934,18 +17020,6 @@ class _$RiskAssessmentCopyWithImpl<$Res, $Val extends RiskAssessment>
 
     return $ReferenceCopyWith<$Res>(_value.performer!, (value) {
       return _then(_value.copyWith(performer: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get mitigationElement {
-    if (_value.mitigationElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.mitigationElement!, (value) {
-      return _then(_value.copyWith(mitigationElement: value) as $Val);
     });
   }
 }
@@ -17996,17 +17070,11 @@ abstract class _$$RiskAssessmentImplCopyWith<$Res>
   @override
   $FhirMetaCopyWith<$Res>? get meta;
   @override
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  @override
-  $ElementCopyWith<$Res>? get languageElement;
-  @override
   $NarrativeCopyWith<$Res>? get text;
   @override
   $ReferenceCopyWith<$Res>? get basedOn;
   @override
   $ReferenceCopyWith<$Res>? get parent;
-  @override
-  $ElementCopyWith<$Res>? get statusElement;
   @override
   $CodeableConceptCopyWith<$Res>? get method;
   @override
@@ -18016,15 +17084,11 @@ abstract class _$$RiskAssessmentImplCopyWith<$Res>
   @override
   $ReferenceCopyWith<$Res>? get encounter;
   @override
-  $ElementCopyWith<$Res>? get occurrenceDateTimeElement;
-  @override
   $PeriodCopyWith<$Res>? get occurrencePeriod;
   @override
   $ReferenceCopyWith<$Res>? get condition;
   @override
   $ReferenceCopyWith<$Res>? get performer;
-  @override
-  $ElementCopyWith<$Res>? get mitigationElement;
 }
 
 /// @nodoc
@@ -18883,7 +17947,7 @@ RiskAssessmentPrediction _$RiskAssessmentPredictionFromJson(
 mixin _$RiskAssessmentPrediction {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -18969,7 +18033,7 @@ abstract class $RiskAssessmentPredictionCopyWith<$Res> {
       _$RiskAssessmentPredictionCopyWithImpl<$Res, RiskAssessmentPrediction>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? outcome,
@@ -18985,13 +18049,10 @@ abstract class $RiskAssessmentPredictionCopyWith<$Res> {
       @JsonKey(name: '_rationale') Element? rationaleElement});
 
   $CodeableConceptCopyWith<$Res>? get outcome;
-  $ElementCopyWith<$Res>? get probabilityDecimalElement;
   $RangeCopyWith<$Res>? get probabilityRange;
   $CodeableConceptCopyWith<$Res>? get qualitativeRisk;
-  $ElementCopyWith<$Res>? get relativeRiskElement;
   $PeriodCopyWith<$Res>? get whenPeriod;
   $RangeCopyWith<$Res>? get whenRange;
-  $ElementCopyWith<$Res>? get rationaleElement;
 }
 
 /// @nodoc
@@ -19027,7 +18088,7 @@ class _$RiskAssessmentPredictionCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -19097,18 +18158,6 @@ class _$RiskAssessmentPredictionCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get probabilityDecimalElement {
-    if (_value.probabilityDecimalElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.probabilityDecimalElement!, (value) {
-      return _then(_value.copyWith(probabilityDecimalElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get probabilityRange {
     if (_value.probabilityRange == null) {
       return null;
@@ -19128,18 +18177,6 @@ class _$RiskAssessmentPredictionCopyWithImpl<$Res,
 
     return $CodeableConceptCopyWith<$Res>(_value.qualitativeRisk!, (value) {
       return _then(_value.copyWith(qualitativeRisk: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get relativeRiskElement {
-    if (_value.relativeRiskElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.relativeRiskElement!, (value) {
-      return _then(_value.copyWith(relativeRiskElement: value) as $Val);
     });
   }
 
@@ -19166,18 +18203,6 @@ class _$RiskAssessmentPredictionCopyWithImpl<$Res,
       return _then(_value.copyWith(whenRange: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get rationaleElement {
-    if (_value.rationaleElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.rationaleElement!, (value) {
-      return _then(_value.copyWith(rationaleElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -19190,7 +18215,7 @@ abstract class _$$RiskAssessmentPredictionImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept? outcome,
@@ -19208,19 +18233,13 @@ abstract class _$$RiskAssessmentPredictionImplCopyWith<$Res>
   @override
   $CodeableConceptCopyWith<$Res>? get outcome;
   @override
-  $ElementCopyWith<$Res>? get probabilityDecimalElement;
-  @override
   $RangeCopyWith<$Res>? get probabilityRange;
   @override
   $CodeableConceptCopyWith<$Res>? get qualitativeRisk;
   @override
-  $ElementCopyWith<$Res>? get relativeRiskElement;
-  @override
   $PeriodCopyWith<$Res>? get whenPeriod;
   @override
   $RangeCopyWith<$Res>? get whenRange;
-  @override
-  $ElementCopyWith<$Res>? get rationaleElement;
 }
 
 /// @nodoc
@@ -19255,7 +18274,7 @@ class __$$RiskAssessmentPredictionImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -19340,7 +18359,7 @@ class _$RiskAssessmentPredictionImpl extends _RiskAssessmentPrediction {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -19536,7 +18555,7 @@ class _$RiskAssessmentPredictionImpl extends _RiskAssessmentPrediction {
 
 abstract class _RiskAssessmentPrediction extends RiskAssessmentPrediction {
   const factory _RiskAssessmentPrediction(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final CodeableConcept? outcome,
@@ -19561,7 +18580,7 @@ abstract class _RiskAssessmentPrediction extends RiskAssessmentPrediction {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -20010,29 +19029,19 @@ abstract class $ServiceRequestCopyWith<$Res> {
       List<Reference>? relevantHistory});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  $ElementCopyWith<$Res>? get languageElement;
   $NarrativeCopyWith<$Res>? get text;
   $IdentifierCopyWith<$Res>? get requisition;
-  $ElementCopyWith<$Res>? get statusElement;
-  $ElementCopyWith<$Res>? get intentElement;
-  $ElementCopyWith<$Res>? get priorityElement;
-  $ElementCopyWith<$Res>? get doNotPerformElement;
   $CodeableConceptCopyWith<$Res>? get code;
   $QuantityCopyWith<$Res>? get quantityQuantity;
   $RatioCopyWith<$Res>? get quantityRatio;
   $RangeCopyWith<$Res>? get quantityRange;
   $ReferenceCopyWith<$Res> get subject;
   $ReferenceCopyWith<$Res>? get encounter;
-  $ElementCopyWith<$Res>? get occurrenceDateTimeElement;
   $PeriodCopyWith<$Res>? get occurrencePeriod;
   $TimingCopyWith<$Res>? get occurrenceTiming;
-  $ElementCopyWith<$Res>? get asNeededBooleanElement;
   $CodeableConceptCopyWith<$Res>? get asNeededCodeableConcept;
-  $ElementCopyWith<$Res>? get authoredOnElement;
   $ReferenceCopyWith<$Res>? get requester;
   $CodeableConceptCopyWith<$Res>? get performerType;
-  $ElementCopyWith<$Res>? get patientInstructionElement;
 }
 
 /// @nodoc
@@ -20357,30 +19366,6 @@ class _$ServiceRequestCopyWithImpl<$Res, $Val extends ServiceRequest>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get implicitRulesElement {
-    if (_value.implicitRulesElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.implicitRulesElement!, (value) {
-      return _then(_value.copyWith(implicitRulesElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get languageElement {
-    if (_value.languageElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.languageElement!, (value) {
-      return _then(_value.copyWith(languageElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
     if (_value.text == null) {
       return null;
@@ -20400,54 +19385,6 @@ class _$ServiceRequestCopyWithImpl<$Res, $Val extends ServiceRequest>
 
     return $IdentifierCopyWith<$Res>(_value.requisition!, (value) {
       return _then(_value.copyWith(requisition: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get statusElement {
-    if (_value.statusElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.statusElement!, (value) {
-      return _then(_value.copyWith(statusElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get intentElement {
-    if (_value.intentElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.intentElement!, (value) {
-      return _then(_value.copyWith(intentElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get priorityElement {
-    if (_value.priorityElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.priorityElement!, (value) {
-      return _then(_value.copyWith(priorityElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get doNotPerformElement {
-    if (_value.doNotPerformElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.doNotPerformElement!, (value) {
-      return _then(_value.copyWith(doNotPerformElement: value) as $Val);
     });
   }
 
@@ -20521,18 +19458,6 @@ class _$ServiceRequestCopyWithImpl<$Res, $Val extends ServiceRequest>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get occurrenceDateTimeElement {
-    if (_value.occurrenceDateTimeElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.occurrenceDateTimeElement!, (value) {
-      return _then(_value.copyWith(occurrenceDateTimeElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get occurrencePeriod {
     if (_value.occurrencePeriod == null) {
       return null;
@@ -20557,18 +19482,6 @@ class _$ServiceRequestCopyWithImpl<$Res, $Val extends ServiceRequest>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get asNeededBooleanElement {
-    if (_value.asNeededBooleanElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.asNeededBooleanElement!, (value) {
-      return _then(_value.copyWith(asNeededBooleanElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get asNeededCodeableConcept {
     if (_value.asNeededCodeableConcept == null) {
       return null;
@@ -20577,18 +19490,6 @@ class _$ServiceRequestCopyWithImpl<$Res, $Val extends ServiceRequest>
     return $CodeableConceptCopyWith<$Res>(_value.asNeededCodeableConcept!,
         (value) {
       return _then(_value.copyWith(asNeededCodeableConcept: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get authoredOnElement {
-    if (_value.authoredOnElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.authoredOnElement!, (value) {
-      return _then(_value.copyWith(authoredOnElement: value) as $Val);
     });
   }
 
@@ -20613,18 +19514,6 @@ class _$ServiceRequestCopyWithImpl<$Res, $Val extends ServiceRequest>
 
     return $CodeableConceptCopyWith<$Res>(_value.performerType!, (value) {
       return _then(_value.copyWith(performerType: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get patientInstructionElement {
-    if (_value.patientInstructionElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.patientInstructionElement!, (value) {
-      return _then(_value.copyWith(patientInstructionElement: value) as $Val);
     });
   }
 }
@@ -20701,21 +19590,9 @@ abstract class _$$ServiceRequestImplCopyWith<$Res>
   @override
   $FhirMetaCopyWith<$Res>? get meta;
   @override
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  @override
-  $ElementCopyWith<$Res>? get languageElement;
-  @override
   $NarrativeCopyWith<$Res>? get text;
   @override
   $IdentifierCopyWith<$Res>? get requisition;
-  @override
-  $ElementCopyWith<$Res>? get statusElement;
-  @override
-  $ElementCopyWith<$Res>? get intentElement;
-  @override
-  $ElementCopyWith<$Res>? get priorityElement;
-  @override
-  $ElementCopyWith<$Res>? get doNotPerformElement;
   @override
   $CodeableConceptCopyWith<$Res>? get code;
   @override
@@ -20729,23 +19606,15 @@ abstract class _$$ServiceRequestImplCopyWith<$Res>
   @override
   $ReferenceCopyWith<$Res>? get encounter;
   @override
-  $ElementCopyWith<$Res>? get occurrenceDateTimeElement;
-  @override
   $PeriodCopyWith<$Res>? get occurrencePeriod;
   @override
   $TimingCopyWith<$Res>? get occurrenceTiming;
   @override
-  $ElementCopyWith<$Res>? get asNeededBooleanElement;
-  @override
   $CodeableConceptCopyWith<$Res>? get asNeededCodeableConcept;
-  @override
-  $ElementCopyWith<$Res>? get authoredOnElement;
   @override
   $ReferenceCopyWith<$Res>? get requester;
   @override
   $CodeableConceptCopyWith<$Res>? get performerType;
-  @override
-  $ElementCopyWith<$Res>? get patientInstructionElement;
 }
 
 /// @nodoc
@@ -22484,14 +21353,9 @@ abstract class $VisionPrescriptionCopyWith<$Res> {
       List<VisionPrescriptionLensSpecification> lensSpecification});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  $ElementCopyWith<$Res>? get languageElement;
   $NarrativeCopyWith<$Res>? get text;
-  $ElementCopyWith<$Res>? get statusElement;
-  $ElementCopyWith<$Res>? get createdElement;
   $ReferenceCopyWith<$Res> get patient;
   $ReferenceCopyWith<$Res>? get encounter;
-  $ElementCopyWith<$Res>? get dateWrittenElement;
   $ReferenceCopyWith<$Res> get prescriber;
 }
 
@@ -22637,30 +21501,6 @@ class _$VisionPrescriptionCopyWithImpl<$Res, $Val extends VisionPrescription>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get implicitRulesElement {
-    if (_value.implicitRulesElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.implicitRulesElement!, (value) {
-      return _then(_value.copyWith(implicitRulesElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get languageElement {
-    if (_value.languageElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.languageElement!, (value) {
-      return _then(_value.copyWith(languageElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
     if (_value.text == null) {
       return null;
@@ -22668,30 +21508,6 @@ class _$VisionPrescriptionCopyWithImpl<$Res, $Val extends VisionPrescription>
 
     return $NarrativeCopyWith<$Res>(_value.text!, (value) {
       return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get statusElement {
-    if (_value.statusElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.statusElement!, (value) {
-      return _then(_value.copyWith(statusElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get createdElement {
-    if (_value.createdElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.createdElement!, (value) {
-      return _then(_value.copyWith(createdElement: value) as $Val);
     });
   }
 
@@ -22712,18 +21528,6 @@ class _$VisionPrescriptionCopyWithImpl<$Res, $Val extends VisionPrescription>
 
     return $ReferenceCopyWith<$Res>(_value.encounter!, (value) {
       return _then(_value.copyWith(encounter: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get dateWrittenElement {
-    if (_value.dateWrittenElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.dateWrittenElement!, (value) {
-      return _then(_value.copyWith(dateWrittenElement: value) as $Val);
     });
   }
 
@@ -22772,21 +21576,11 @@ abstract class _$$VisionPrescriptionImplCopyWith<$Res>
   @override
   $FhirMetaCopyWith<$Res>? get meta;
   @override
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  @override
-  $ElementCopyWith<$Res>? get languageElement;
-  @override
   $NarrativeCopyWith<$Res>? get text;
-  @override
-  $ElementCopyWith<$Res>? get statusElement;
-  @override
-  $ElementCopyWith<$Res>? get createdElement;
   @override
   $ReferenceCopyWith<$Res> get patient;
   @override
   $ReferenceCopyWith<$Res>? get encounter;
-  @override
-  $ElementCopyWith<$Res>? get dateWrittenElement;
   @override
   $ReferenceCopyWith<$Res> get prescriber;
 }
@@ -23425,7 +22219,7 @@ VisionPrescriptionLensSpecification
 mixin _$VisionPrescriptionLensSpecification {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -23555,7 +22349,7 @@ abstract class $VisionPrescriptionLensSpecificationCopyWith<$Res> {
           VisionPrescriptionLensSpecification>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept product,
@@ -23584,17 +22378,7 @@ abstract class $VisionPrescriptionLensSpecificationCopyWith<$Res> {
       List<Annotation>? note});
 
   $CodeableConceptCopyWith<$Res> get product;
-  $ElementCopyWith<$Res>? get eyeElement;
-  $ElementCopyWith<$Res>? get sphereElement;
-  $ElementCopyWith<$Res>? get cylinderElement;
-  $ElementCopyWith<$Res>? get axisElement;
-  $ElementCopyWith<$Res>? get addElement;
-  $ElementCopyWith<$Res>? get powerElement;
-  $ElementCopyWith<$Res>? get backCurveElement;
-  $ElementCopyWith<$Res>? get diameterElement;
   $QuantityCopyWith<$Res>? get duration;
-  $ElementCopyWith<$Res>? get colorElement;
-  $ElementCopyWith<$Res>? get brandElement;
 }
 
 /// @nodoc
@@ -23643,7 +22427,7 @@ class _$VisionPrescriptionLensSpecificationCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -23761,102 +22545,6 @@ class _$VisionPrescriptionLensSpecificationCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get eyeElement {
-    if (_value.eyeElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.eyeElement!, (value) {
-      return _then(_value.copyWith(eyeElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get sphereElement {
-    if (_value.sphereElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.sphereElement!, (value) {
-      return _then(_value.copyWith(sphereElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get cylinderElement {
-    if (_value.cylinderElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.cylinderElement!, (value) {
-      return _then(_value.copyWith(cylinderElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get axisElement {
-    if (_value.axisElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.axisElement!, (value) {
-      return _then(_value.copyWith(axisElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get addElement {
-    if (_value.addElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.addElement!, (value) {
-      return _then(_value.copyWith(addElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get powerElement {
-    if (_value.powerElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.powerElement!, (value) {
-      return _then(_value.copyWith(powerElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get backCurveElement {
-    if (_value.backCurveElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.backCurveElement!, (value) {
-      return _then(_value.copyWith(backCurveElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get diameterElement {
-    if (_value.diameterElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.diameterElement!, (value) {
-      return _then(_value.copyWith(diameterElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get duration {
     if (_value.duration == null) {
       return null;
@@ -23864,30 +22552,6 @@ class _$VisionPrescriptionLensSpecificationCopyWithImpl<$Res,
 
     return $QuantityCopyWith<$Res>(_value.duration!, (value) {
       return _then(_value.copyWith(duration: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get colorElement {
-    if (_value.colorElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.colorElement!, (value) {
-      return _then(_value.copyWith(colorElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get brandElement {
-    if (_value.brandElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.brandElement!, (value) {
-      return _then(_value.copyWith(brandElement: value) as $Val);
     });
   }
 }
@@ -23902,7 +22566,7 @@ abstract class _$$VisionPrescriptionLensSpecificationImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept product,
@@ -23933,27 +22597,7 @@ abstract class _$$VisionPrescriptionLensSpecificationImplCopyWith<$Res>
   @override
   $CodeableConceptCopyWith<$Res> get product;
   @override
-  $ElementCopyWith<$Res>? get eyeElement;
-  @override
-  $ElementCopyWith<$Res>? get sphereElement;
-  @override
-  $ElementCopyWith<$Res>? get cylinderElement;
-  @override
-  $ElementCopyWith<$Res>? get axisElement;
-  @override
-  $ElementCopyWith<$Res>? get addElement;
-  @override
-  $ElementCopyWith<$Res>? get powerElement;
-  @override
-  $ElementCopyWith<$Res>? get backCurveElement;
-  @override
-  $ElementCopyWith<$Res>? get diameterElement;
-  @override
   $QuantityCopyWith<$Res>? get duration;
-  @override
-  $ElementCopyWith<$Res>? get colorElement;
-  @override
-  $ElementCopyWith<$Res>? get brandElement;
 }
 
 /// @nodoc
@@ -24001,7 +22645,7 @@ class __$$VisionPrescriptionLensSpecificationImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -24155,7 +22799,7 @@ class _$VisionPrescriptionLensSpecificationImpl
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -24455,7 +23099,7 @@ class _$VisionPrescriptionLensSpecificationImpl
 abstract class _VisionPrescriptionLensSpecification
     extends VisionPrescriptionLensSpecification {
   const factory _VisionPrescriptionLensSpecification(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           required final CodeableConcept product,
@@ -24493,7 +23137,7 @@ abstract class _VisionPrescriptionLensSpecification
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -24646,7 +23290,7 @@ VisionPrescriptionPrism _$VisionPrescriptionPrismFromJson(
 mixin _$VisionPrescriptionPrism {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -24701,16 +23345,13 @@ abstract class $VisionPrescriptionPrismCopyWith<$Res> {
       _$VisionPrescriptionPrismCopyWithImpl<$Res, VisionPrescriptionPrism>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirDecimal? amount,
       @JsonKey(name: '_amount') Element? amountElement,
       FhirCode? base,
       @JsonKey(name: '_base') Element? baseElement});
-
-  $ElementCopyWith<$Res>? get amountElement;
-  $ElementCopyWith<$Res>? get baseElement;
 }
 
 /// @nodoc
@@ -24739,7 +23380,7 @@ class _$VisionPrescriptionPrismCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -24766,30 +23407,6 @@ class _$VisionPrescriptionPrismCopyWithImpl<$Res,
               as Element?,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get amountElement {
-    if (_value.amountElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.amountElement!, (value) {
-      return _then(_value.copyWith(amountElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get baseElement {
-    if (_value.baseElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.baseElement!, (value) {
-      return _then(_value.copyWith(baseElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -24802,18 +23419,13 @@ abstract class _$$VisionPrescriptionPrismImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirDecimal? amount,
       @JsonKey(name: '_amount') Element? amountElement,
       FhirCode? base,
       @JsonKey(name: '_base') Element? baseElement});
-
-  @override
-  $ElementCopyWith<$Res>? get amountElement;
-  @override
-  $ElementCopyWith<$Res>? get baseElement;
 }
 
 /// @nodoc
@@ -24841,7 +23453,7 @@ class __$$VisionPrescriptionPrismImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -24891,7 +23503,7 @@ class _$VisionPrescriptionPrismImpl extends _VisionPrescriptionPrism {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -25026,7 +23638,7 @@ class _$VisionPrescriptionPrismImpl extends _VisionPrescriptionPrism {
 
 abstract class _VisionPrescriptionPrism extends VisionPrescriptionPrism {
   const factory _VisionPrescriptionPrism(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final FhirDecimal? amount,
@@ -25043,7 +23655,7 @@ abstract class _VisionPrescriptionPrism extends VisionPrescriptionPrism {
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
