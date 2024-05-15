@@ -60,7 +60,7 @@ import '../../fhir_r4.dart';
 /// The lazy-loading mechanism is currently only supported through the
 /// [environment] map, not for explicitly passed-in parameters.
 List<dynamic> walkFhirPath({
-  required Map<String, dynamic>? context,
+  required dynamic context,
   required String pathExpression,
   Map<String, dynamic>? resource,
   Map<String, dynamic>? rootResource,
@@ -129,7 +129,7 @@ ParserList parseFhirPath(String pathExpression) {
 /// All parameters have the same meaning as for [walkFhirPath].
 List<dynamic> executeFhirPath({
   ///
-  required Map<String, dynamic>? context,
+  required dynamic context,
   required ParserList parsedFhirPath,
   required String pathExpression,
   Map<String, dynamic>? resource,
@@ -196,9 +196,8 @@ extension FhirPathResourceExtension on Map<String, dynamic> {
   static const String resourceKey = '%resource';
   static const String rootResourceKey = '%rootResource';
 
-  Map<String, dynamic>? get context =>
-      this[contextKey] as Map<String, dynamic>?;
-  set context(Map<String, dynamic>? context) => this[contextKey] = context;
+  dynamic get context => this[contextKey];
+  set context(dynamic context) => this[contextKey] = context;
   bool get hasNoContext => context == null;
 
   set resource(Map<String, dynamic>? resource) {

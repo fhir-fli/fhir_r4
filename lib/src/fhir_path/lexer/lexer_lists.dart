@@ -92,7 +92,8 @@ final ChoiceParser<dynamic> literalLexer = quantityLiteral |
     TIME;
 
 /// All lexers for functions that don't accept arguments
-final ChoiceParser<dynamic> simpleLexer = toBooleanLexer |
+final ChoiceParser<dynamic> simpleLexer = htmlCheckerLexer |
+    toBooleanLexer |
     convertsToBooleanLexer |
     toIntegerLexer |
     convertsToIntegerLexer |
