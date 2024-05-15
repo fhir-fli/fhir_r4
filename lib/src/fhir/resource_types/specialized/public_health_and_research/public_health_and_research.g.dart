@@ -330,7 +330,7 @@ const _$R4ResourceTypeEnumMap = {
 _$ResearchStudyArmImpl _$$ResearchStudyArmImplFromJson(
         Map<String, dynamic> json) =>
     _$ResearchStudyArmImpl(
-      id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+      id: json['id'] as String?,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -360,7 +360,7 @@ Map<String, dynamic> _$$ResearchStudyArmImplToJson(
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
@@ -376,7 +376,7 @@ Map<String, dynamic> _$$ResearchStudyArmImplToJson(
 _$ResearchStudyObjectiveImpl _$$ResearchStudyObjectiveImplFromJson(
         Map<String, dynamic> json) =>
     _$ResearchStudyObjectiveImpl(
-      id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+      id: json['id'] as String?,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -402,7 +402,7 @@ Map<String, dynamic> _$$ResearchStudyObjectiveImplToJson(
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',

@@ -182,16 +182,11 @@ abstract class $PaymentNoticeCopyWith<$Res> {
       CodeableConcept? paymentStatus});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  $ElementCopyWith<$Res>? get languageElement;
   $NarrativeCopyWith<$Res>? get text;
-  $ElementCopyWith<$Res>? get statusElement;
   $ReferenceCopyWith<$Res>? get request;
   $ReferenceCopyWith<$Res>? get response;
-  $ElementCopyWith<$Res>? get createdElement;
   $ReferenceCopyWith<$Res>? get provider;
   $ReferenceCopyWith<$Res> get payment;
-  $ElementCopyWith<$Res>? get paymentDateElement;
   $ReferenceCopyWith<$Res>? get payee;
   $ReferenceCopyWith<$Res> get recipient;
   $MoneyCopyWith<$Res> get amount;
@@ -360,30 +355,6 @@ class _$PaymentNoticeCopyWithImpl<$Res, $Val extends PaymentNotice>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get implicitRulesElement {
-    if (_value.implicitRulesElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.implicitRulesElement!, (value) {
-      return _then(_value.copyWith(implicitRulesElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get languageElement {
-    if (_value.languageElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.languageElement!, (value) {
-      return _then(_value.copyWith(languageElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
     if (_value.text == null) {
       return null;
@@ -391,18 +362,6 @@ class _$PaymentNoticeCopyWithImpl<$Res, $Val extends PaymentNotice>
 
     return $NarrativeCopyWith<$Res>(_value.text!, (value) {
       return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get statusElement {
-    if (_value.statusElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.statusElement!, (value) {
-      return _then(_value.copyWith(statusElement: value) as $Val);
     });
   }
 
@@ -432,18 +391,6 @@ class _$PaymentNoticeCopyWithImpl<$Res, $Val extends PaymentNotice>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get createdElement {
-    if (_value.createdElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.createdElement!, (value) {
-      return _then(_value.copyWith(createdElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get provider {
     if (_value.provider == null) {
       return null;
@@ -459,18 +406,6 @@ class _$PaymentNoticeCopyWithImpl<$Res, $Val extends PaymentNotice>
   $ReferenceCopyWith<$Res> get payment {
     return $ReferenceCopyWith<$Res>(_value.payment, (value) {
       return _then(_value.copyWith(payment: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get paymentDateElement {
-    if (_value.paymentDateElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.paymentDateElement!, (value) {
-      return _then(_value.copyWith(paymentDateElement: value) as $Val);
     });
   }
 
@@ -555,25 +490,15 @@ abstract class _$$PaymentNoticeImplCopyWith<$Res>
   @override
   $FhirMetaCopyWith<$Res>? get meta;
   @override
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  @override
-  $ElementCopyWith<$Res>? get languageElement;
-  @override
   $NarrativeCopyWith<$Res>? get text;
-  @override
-  $ElementCopyWith<$Res>? get statusElement;
   @override
   $ReferenceCopyWith<$Res>? get request;
   @override
   $ReferenceCopyWith<$Res>? get response;
   @override
-  $ElementCopyWith<$Res>? get createdElement;
-  @override
   $ReferenceCopyWith<$Res>? get provider;
   @override
   $ReferenceCopyWith<$Res> get payment;
-  @override
-  $ElementCopyWith<$Res>? get paymentDateElement;
   @override
   $ReferenceCopyWith<$Res>? get payee;
   @override
@@ -1455,18 +1380,11 @@ abstract class $PaymentReconciliationCopyWith<$Res> {
       List<PaymentReconciliationProcessNote>? processNote});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  $ElementCopyWith<$Res>? get languageElement;
   $NarrativeCopyWith<$Res>? get text;
-  $ElementCopyWith<$Res>? get statusElement;
   $PeriodCopyWith<$Res>? get period;
-  $ElementCopyWith<$Res>? get createdElement;
   $ReferenceCopyWith<$Res>? get paymentIssuer;
   $ReferenceCopyWith<$Res>? get request;
   $ReferenceCopyWith<$Res>? get requestor;
-  $ElementCopyWith<$Res>? get outcomeElement;
-  $ElementCopyWith<$Res>? get dispositionElement;
-  $ElementCopyWith<$Res>? get paymentDateElement;
   $MoneyCopyWith<$Res> get paymentAmount;
   $IdentifierCopyWith<$Res>? get paymentIdentifier;
   $CodeableConceptCopyWith<$Res>? get formCode;
@@ -1660,30 +1578,6 @@ class _$PaymentReconciliationCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get implicitRulesElement {
-    if (_value.implicitRulesElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.implicitRulesElement!, (value) {
-      return _then(_value.copyWith(implicitRulesElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get languageElement {
-    if (_value.languageElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.languageElement!, (value) {
-      return _then(_value.copyWith(languageElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
     if (_value.text == null) {
       return null;
@@ -1696,18 +1590,6 @@ class _$PaymentReconciliationCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get statusElement {
-    if (_value.statusElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.statusElement!, (value) {
-      return _then(_value.copyWith(statusElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get period {
     if (_value.period == null) {
       return null;
@@ -1715,18 +1597,6 @@ class _$PaymentReconciliationCopyWithImpl<$Res,
 
     return $PeriodCopyWith<$Res>(_value.period!, (value) {
       return _then(_value.copyWith(period: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get createdElement {
-    if (_value.createdElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.createdElement!, (value) {
-      return _then(_value.copyWith(createdElement: value) as $Val);
     });
   }
 
@@ -1763,42 +1633,6 @@ class _$PaymentReconciliationCopyWithImpl<$Res,
 
     return $ReferenceCopyWith<$Res>(_value.requestor!, (value) {
       return _then(_value.copyWith(requestor: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get outcomeElement {
-    if (_value.outcomeElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.outcomeElement!, (value) {
-      return _then(_value.copyWith(outcomeElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get dispositionElement {
-    if (_value.dispositionElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.dispositionElement!, (value) {
-      return _then(_value.copyWith(dispositionElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get paymentDateElement {
-    if (_value.paymentDateElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.paymentDateElement!, (value) {
-      return _then(_value.copyWith(paymentDateElement: value) as $Val);
     });
   }
 
@@ -1881,29 +1715,15 @@ abstract class _$$PaymentReconciliationImplCopyWith<$Res>
   @override
   $FhirMetaCopyWith<$Res>? get meta;
   @override
-  $ElementCopyWith<$Res>? get implicitRulesElement;
-  @override
-  $ElementCopyWith<$Res>? get languageElement;
-  @override
   $NarrativeCopyWith<$Res>? get text;
   @override
-  $ElementCopyWith<$Res>? get statusElement;
-  @override
   $PeriodCopyWith<$Res>? get period;
-  @override
-  $ElementCopyWith<$Res>? get createdElement;
   @override
   $ReferenceCopyWith<$Res>? get paymentIssuer;
   @override
   $ReferenceCopyWith<$Res>? get request;
   @override
   $ReferenceCopyWith<$Res>? get requestor;
-  @override
-  $ElementCopyWith<$Res>? get outcomeElement;
-  @override
-  $ElementCopyWith<$Res>? get dispositionElement;
-  @override
-  $ElementCopyWith<$Res>? get paymentDateElement;
   @override
   $MoneyCopyWith<$Res> get paymentAmount;
   @override
@@ -2722,7 +2542,7 @@ PaymentReconciliationDetail _$PaymentReconciliationDetailFromJson(
 mixin _$PaymentReconciliationDetail {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2805,7 +2625,7 @@ abstract class $PaymentReconciliationDetailCopyWith<$Res> {
           PaymentReconciliationDetail>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       Identifier? identifier,
@@ -2826,7 +2646,6 @@ abstract class $PaymentReconciliationDetailCopyWith<$Res> {
   $ReferenceCopyWith<$Res>? get request;
   $ReferenceCopyWith<$Res>? get submitter;
   $ReferenceCopyWith<$Res>? get response;
-  $ElementCopyWith<$Res>? get dateElement;
   $ReferenceCopyWith<$Res>? get responsible;
   $ReferenceCopyWith<$Res>? get payee;
   $MoneyCopyWith<$Res>? get amount;
@@ -2865,7 +2684,7 @@ class _$PaymentReconciliationDetailCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -2991,18 +2810,6 @@ class _$PaymentReconciliationDetailCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get dateElement {
-    if (_value.dateElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.dateElement!, (value) {
-      return _then(_value.copyWith(dateElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get responsible {
     if (_value.responsible == null) {
       return null;
@@ -3048,7 +2855,7 @@ abstract class _$$PaymentReconciliationDetailImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       Identifier? identifier,
@@ -3075,8 +2882,6 @@ abstract class _$$PaymentReconciliationDetailImplCopyWith<$Res>
   $ReferenceCopyWith<$Res>? get submitter;
   @override
   $ReferenceCopyWith<$Res>? get response;
-  @override
-  $ElementCopyWith<$Res>? get dateElement;
   @override
   $ReferenceCopyWith<$Res>? get responsible;
   @override
@@ -3117,7 +2922,7 @@ class __$$PaymentReconciliationDetailImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -3203,7 +3008,7 @@ class _$PaymentReconciliationDetailImpl extends _PaymentReconciliationDetail {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3390,7 +3195,7 @@ class _$PaymentReconciliationDetailImpl extends _PaymentReconciliationDetail {
 abstract class _PaymentReconciliationDetail
     extends PaymentReconciliationDetail {
   const factory _PaymentReconciliationDetail(
-      {final FhirId? id,
+      {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final Identifier? identifier,
@@ -3413,7 +3218,7 @@ abstract class _PaymentReconciliationDetail
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not
@@ -3507,7 +3312,7 @@ PaymentReconciliationProcessNote _$PaymentReconciliationProcessNoteFromJson(
 mixin _$PaymentReconciliationProcessNote {
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3563,16 +3368,13 @@ abstract class $PaymentReconciliationProcessNoteCopyWith<$Res> {
           PaymentReconciliationProcessNote>;
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? type,
       @JsonKey(name: '_type') Element? typeElement,
       String? text,
       @JsonKey(name: '_text') Element? textElement});
-
-  $ElementCopyWith<$Res>? get typeElement;
-  $ElementCopyWith<$Res>? get textElement;
 }
 
 /// @nodoc
@@ -3601,7 +3403,7 @@ class _$PaymentReconciliationProcessNoteCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value.extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -3628,30 +3430,6 @@ class _$PaymentReconciliationProcessNoteCopyWithImpl<$Res,
               as Element?,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get typeElement {
-    if (_value.typeElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.typeElement!, (value) {
-      return _then(_value.copyWith(typeElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get textElement {
-    if (_value.textElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.textElement!, (value) {
-      return _then(_value.copyWith(textElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -3664,18 +3442,13 @@ abstract class _$$PaymentReconciliationProcessNoteImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FhirId? id,
+      {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? type,
       @JsonKey(name: '_type') Element? typeElement,
       String? text,
       @JsonKey(name: '_text') Element? textElement});
-
-  @override
-  $ElementCopyWith<$Res>? get typeElement;
-  @override
-  $ElementCopyWith<$Res>? get textElement;
 }
 
 /// @nodoc
@@ -3703,7 +3476,7 @@ class __$$PaymentReconciliationProcessNoteImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as FhirId?,
+              as String?,
       extension_: freezed == extension_
           ? _value._extension_
           : extension_ // ignore: cast_nullable_to_non_nullable
@@ -3755,7 +3528,7 @@ class _$PaymentReconciliationProcessNoteImpl
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
   @override
-  final FhirId? id;
+  final String? id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3891,7 +3664,7 @@ class _$PaymentReconciliationProcessNoteImpl
 abstract class _PaymentReconciliationProcessNote
     extends PaymentReconciliationProcessNote {
   const factory _PaymentReconciliationProcessNote(
-          {final FhirId? id,
+          {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final FhirCode? type,
@@ -3909,7 +3682,7 @@ abstract class _PaymentReconciliationProcessNote
 
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  FhirId? get id;
+  String? get id;
   @override
 
   /// [extension_] May be used to represent additional information that is not

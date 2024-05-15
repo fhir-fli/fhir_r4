@@ -337,6 +337,9 @@ class ResearchStudy with Resource, _$ResearchStudy {
     List<ResearchStudyObjective>? objective,
   }) = _ResearchStudy;
 
+  @override
+  String get fhirType => 'ResearchStudy';
+
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ResearchStudy.fromYaml(dynamic yaml) => yaml is String
       ? ResearchStudy.fromJson(
@@ -372,7 +375,7 @@ class ResearchStudy with Resource, _$ResearchStudy {
 
 /// [ResearchStudyArm] A process where a researcher or organization plans
 @freezed
-class ResearchStudyArm with _$ResearchStudyArm {
+class ResearchStudyArm with BackboneType, _$ResearchStudyArm {
   /// [ResearchStudyArm] A process where a researcher or organization plans
   const ResearchStudyArm._();
 
@@ -422,7 +425,7 @@ class ResearchStudyArm with _$ResearchStudyArm {
   const factory ResearchStudyArm({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -465,8 +468,8 @@ class ResearchStudyArm with _$ResearchStudyArm {
     @JsonKey(name: '_description') Element? descriptionElement,
   }) = _ResearchStudyArm;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'ResearchStudyArm';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ResearchStudyArm.fromYaml(dynamic yaml) => yaml is String
@@ -494,15 +497,11 @@ class ResearchStudyArm with _$ResearchStudyArm {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [ResearchStudyObjective] A process where a researcher or organization
 @freezed
-class ResearchStudyObjective with _$ResearchStudyObjective {
+class ResearchStudyObjective with BackboneType, _$ResearchStudyObjective {
   /// [ResearchStudyObjective] A process where a researcher or organization
   const ResearchStudyObjective._();
 
@@ -546,7 +545,7 @@ class ResearchStudyObjective with _$ResearchStudyObjective {
   const factory ResearchStudyObjective({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -581,8 +580,8 @@ class ResearchStudyObjective with _$ResearchStudyObjective {
     CodeableConcept? type,
   }) = _ResearchStudyObjective;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'ResearchStudyObjective';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ResearchStudyObjective.fromYaml(dynamic yaml) => yaml is String
@@ -610,10 +609,6 @@ class ResearchStudyObjective with _$ResearchStudyObjective {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [ResearchSubject] A physical entity which is the primary unit of
@@ -810,6 +805,9 @@ class ResearchSubject with Resource, _$ResearchSubject {
     ///  the study.
     Reference? consent,
   }) = _ResearchSubject;
+
+  @override
+  String get fhirType => 'ResearchSubject';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ResearchSubject.fromYaml(dynamic yaml) => yaml is String

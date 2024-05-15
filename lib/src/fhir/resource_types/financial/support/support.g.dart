@@ -302,7 +302,7 @@ const _$R4ResourceTypeEnumMap = {
 
 _$CoverageClassImpl _$$CoverageClassImplFromJson(Map<String, dynamic> json) =>
     _$CoverageClassImpl(
-      id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+      id: json['id'] as String?,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -329,7 +329,7 @@ Map<String, dynamic> _$$CoverageClassImplToJson(_$CoverageClassImpl instance) {
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
@@ -345,7 +345,7 @@ Map<String, dynamic> _$$CoverageClassImplToJson(_$CoverageClassImpl instance) {
 _$CoverageCostToBeneficiaryImpl _$$CoverageCostToBeneficiaryImplFromJson(
         Map<String, dynamic> json) =>
     _$CoverageCostToBeneficiaryImpl(
-      id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+      id: json['id'] as String?,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -376,7 +376,7 @@ Map<String, dynamic> _$$CoverageCostToBeneficiaryImplToJson(
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
@@ -392,7 +392,7 @@ Map<String, dynamic> _$$CoverageCostToBeneficiaryImplToJson(
 _$CoverageExceptionImpl _$$CoverageExceptionImplFromJson(
         Map<String, dynamic> json) =>
     _$CoverageExceptionImpl(
-      id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+      id: json['id'] as String?,
       extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -415,7 +415,7 @@ Map<String, dynamic> _$$CoverageExceptionImplToJson(
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
@@ -570,7 +570,7 @@ _$CoverageEligibilityRequestSupportingInfoImpl
     _$$CoverageEligibilityRequestSupportingInfoImplFromJson(
             Map<String, dynamic> json) =>
         _$CoverageEligibilityRequestSupportingInfoImpl(
-          id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+          id: json['id'] as String?,
           extension_: (json['extension'] as List<dynamic>?)
               ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
               .toList(),
@@ -603,7 +603,7 @@ Map<String, dynamic> _$$CoverageEligibilityRequestSupportingInfoImplToJson(
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
@@ -620,7 +620,7 @@ _$CoverageEligibilityRequestInsuranceImpl
     _$$CoverageEligibilityRequestInsuranceImplFromJson(
             Map<String, dynamic> json) =>
         _$CoverageEligibilityRequestInsuranceImpl(
-          id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+          id: json['id'] as String?,
           extension_: (json['extension'] as List<dynamic>?)
               ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
               .toList(),
@@ -652,7 +652,7 @@ Map<String, dynamic> _$$CoverageEligibilityRequestInsuranceImplToJson(
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
@@ -669,7 +669,7 @@ Map<String, dynamic> _$$CoverageEligibilityRequestInsuranceImplToJson(
 _$CoverageEligibilityRequestItemImpl
     _$$CoverageEligibilityRequestItemImplFromJson(Map<String, dynamic> json) =>
         _$CoverageEligibilityRequestItemImpl(
-          id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+          id: json['id'] as String?,
           extension_: (json['extension'] as List<dynamic>?)
               ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
               .toList(),
@@ -726,7 +726,7 @@ Map<String, dynamic> _$$CoverageEligibilityRequestItemImplToJson(
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
@@ -752,7 +752,7 @@ _$CoverageEligibilityRequestDiagnosisImpl
     _$$CoverageEligibilityRequestDiagnosisImplFromJson(
             Map<String, dynamic> json) =>
         _$CoverageEligibilityRequestDiagnosisImpl(
-          id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+          id: json['id'] as String?,
           extension_: (json['extension'] as List<dynamic>?)
               ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
               .toList(),
@@ -779,7 +779,7 @@ Map<String, dynamic> _$$CoverageEligibilityRequestDiagnosisImplToJson(
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
@@ -942,7 +942,7 @@ _$CoverageEligibilityResponseInsuranceImpl
     _$$CoverageEligibilityResponseInsuranceImplFromJson(
             Map<String, dynamic> json) =>
         _$CoverageEligibilityResponseInsuranceImpl(
-          id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+          id: json['id'] as String?,
           extension_: (json['extension'] as List<dynamic>?)
               ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
               .toList(),
@@ -976,7 +976,7 @@ Map<String, dynamic> _$$CoverageEligibilityResponseInsuranceImplToJson(
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
@@ -992,7 +992,7 @@ Map<String, dynamic> _$$CoverageEligibilityResponseInsuranceImplToJson(
 _$CoverageEligibilityResponseItemImpl
     _$$CoverageEligibilityResponseItemImplFromJson(Map<String, dynamic> json) =>
         _$CoverageEligibilityResponseItemImpl(
-          id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+          id: json['id'] as String?,
           extension_: (json['extension'] as List<dynamic>?)
               ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
               .toList(),
@@ -1071,7 +1071,7 @@ Map<String, dynamic> _$$CoverageEligibilityResponseItemImplToJson(
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
@@ -1105,7 +1105,7 @@ _$CoverageEligibilityResponseBenefitImpl
     _$$CoverageEligibilityResponseBenefitImplFromJson(
             Map<String, dynamic> json) =>
         _$CoverageEligibilityResponseBenefitImpl(
-          id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+          id: json['id'] as String?,
           extension_: (json['extension'] as List<dynamic>?)
               ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
               .toList(),
@@ -1154,7 +1154,7 @@ Map<String, dynamic> _$$CoverageEligibilityResponseBenefitImplToJson(
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
@@ -1178,7 +1178,7 @@ _$CoverageEligibilityResponseErrorImpl
     _$$CoverageEligibilityResponseErrorImplFromJson(
             Map<String, dynamic> json) =>
         _$CoverageEligibilityResponseErrorImpl(
-          id: json['id'] == null ? null : FhirId.fromJson(json['id']),
+          id: json['id'] as String?,
           extension_: (json['extension'] as List<dynamic>?)
               ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
               .toList(),
@@ -1198,7 +1198,7 @@ Map<String, dynamic> _$$CoverageEligibilityResponseErrorImplToJson(
     }
   }
 
-  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('id', instance.id);
   writeNotNull(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',

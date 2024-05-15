@@ -81,9 +81,6 @@ abstract class $AnnotationCopyWith<$Res> {
       @JsonKey(name: '_text') Element? textElement});
 
   $ReferenceCopyWith<$Res>? get authorReference;
-  $ElementCopyWith<$Res>? get authorStringElement;
-  $ElementCopyWith<$Res>? get timeElement;
-  $ElementCopyWith<$Res>? get textElement;
 }
 
 /// @nodoc
@@ -160,42 +157,6 @@ class _$AnnotationCopyWithImpl<$Res, $Val extends Annotation>
       return _then(_value.copyWith(authorReference: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get authorStringElement {
-    if (_value.authorStringElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.authorStringElement!, (value) {
-      return _then(_value.copyWith(authorStringElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get timeElement {
-    if (_value.timeElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.timeElement!, (value) {
-      return _then(_value.copyWith(timeElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get textElement {
-    if (_value.textElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.textElement!, (value) {
-      return _then(_value.copyWith(textElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -219,12 +180,6 @@ abstract class _$$AnnotationImplCopyWith<$Res>
 
   @override
   $ReferenceCopyWith<$Res>? get authorReference;
-  @override
-  $ElementCopyWith<$Res>? get authorStringElement;
-  @override
-  $ElementCopyWith<$Res>? get timeElement;
-  @override
-  $ElementCopyWith<$Res>? get textElement;
 }
 
 /// @nodoc
@@ -603,15 +558,6 @@ abstract class $AttachmentCopyWith<$Res> {
       @JsonKey(name: '_title') Element? titleElement,
       FhirDateTime? creation,
       @JsonKey(name: '_creation') Element? creationElement});
-
-  $ElementCopyWith<$Res>? get contentTypeElement;
-  $ElementCopyWith<$Res>? get languageElement;
-  $ElementCopyWith<$Res>? get dataElement;
-  $ElementCopyWith<$Res>? get urlElement;
-  $ElementCopyWith<$Res>? get sizeElement;
-  $ElementCopyWith<$Res>? get hashElement;
-  $ElementCopyWith<$Res>? get titleElement;
-  $ElementCopyWith<$Res>? get creationElement;
 }
 
 /// @nodoc
@@ -721,102 +667,6 @@ class _$AttachmentCopyWithImpl<$Res, $Val extends Attachment>
               as Element?,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get contentTypeElement {
-    if (_value.contentTypeElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.contentTypeElement!, (value) {
-      return _then(_value.copyWith(contentTypeElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get languageElement {
-    if (_value.languageElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.languageElement!, (value) {
-      return _then(_value.copyWith(languageElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get dataElement {
-    if (_value.dataElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.dataElement!, (value) {
-      return _then(_value.copyWith(dataElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get urlElement {
-    if (_value.urlElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.urlElement!, (value) {
-      return _then(_value.copyWith(urlElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get sizeElement {
-    if (_value.sizeElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.sizeElement!, (value) {
-      return _then(_value.copyWith(sizeElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get hashElement {
-    if (_value.hashElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.hashElement!, (value) {
-      return _then(_value.copyWith(hashElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get titleElement {
-    if (_value.titleElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.titleElement!, (value) {
-      return _then(_value.copyWith(titleElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get creationElement {
-    if (_value.creationElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.creationElement!, (value) {
-      return _then(_value.copyWith(creationElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -846,23 +696,6 @@ abstract class _$$AttachmentImplCopyWith<$Res>
       @JsonKey(name: '_title') Element? titleElement,
       FhirDateTime? creation,
       @JsonKey(name: '_creation') Element? creationElement});
-
-  @override
-  $ElementCopyWith<$Res>? get contentTypeElement;
-  @override
-  $ElementCopyWith<$Res>? get languageElement;
-  @override
-  $ElementCopyWith<$Res>? get dataElement;
-  @override
-  $ElementCopyWith<$Res>? get urlElement;
-  @override
-  $ElementCopyWith<$Res>? get sizeElement;
-  @override
-  $ElementCopyWith<$Res>? get hashElement;
-  @override
-  $ElementCopyWith<$Res>? get titleElement;
-  @override
-  $ElementCopyWith<$Res>? get creationElement;
 }
 
 /// @nodoc
@@ -1389,10 +1222,7 @@ abstract class $IdentifierCopyWith<$Res> {
       Period? period,
       Reference? assigner});
 
-  $ElementCopyWith<$Res>? get useElement;
   $CodeableConceptCopyWith<$Res>? get type;
-  $ElementCopyWith<$Res>? get systemElement;
-  $ElementCopyWith<$Res>? get valueElement;
   $PeriodCopyWith<$Res>? get period;
   $ReferenceCopyWith<$Res>? get assigner;
 }
@@ -1472,18 +1302,6 @@ class _$IdentifierCopyWithImpl<$Res, $Val extends Identifier>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get useElement {
-    if (_value.useElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.useElement!, (value) {
-      return _then(_value.copyWith(useElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get type {
     if (_value.type == null) {
       return null;
@@ -1491,30 +1309,6 @@ class _$IdentifierCopyWithImpl<$Res, $Val extends Identifier>
 
     return $CodeableConceptCopyWith<$Res>(_value.type!, (value) {
       return _then(_value.copyWith(type: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get systemElement {
-    if (_value.systemElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.systemElement!, (value) {
-      return _then(_value.copyWith(systemElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get valueElement {
-    if (_value.valueElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.valueElement!, (value) {
-      return _then(_value.copyWith(valueElement: value) as $Val);
     });
   }
 
@@ -1565,13 +1359,7 @@ abstract class _$$IdentifierImplCopyWith<$Res>
       Reference? assigner});
 
   @override
-  $ElementCopyWith<$Res>? get useElement;
-  @override
   $CodeableConceptCopyWith<$Res>? get type;
-  @override
-  $ElementCopyWith<$Res>? get systemElement;
-  @override
-  $ElementCopyWith<$Res>? get valueElement;
   @override
   $PeriodCopyWith<$Res>? get period;
   @override
@@ -1933,8 +1721,6 @@ abstract class $CodeableConceptCopyWith<$Res> {
       List<Coding>? coding,
       String? text,
       @JsonKey(name: '_text') Element? textElement});
-
-  $ElementCopyWith<$Res>? get textElement;
 }
 
 /// @nodoc
@@ -1979,18 +1765,6 @@ class _$CodeableConceptCopyWithImpl<$Res, $Val extends CodeableConcept>
               as Element?,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get textElement {
-    if (_value.textElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.textElement!, (value) {
-      return _then(_value.copyWith(textElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -2007,9 +1781,6 @@ abstract class _$$CodeableConceptImplCopyWith<$Res>
       List<Coding>? coding,
       String? text,
       @JsonKey(name: '_text') Element? textElement});
-
-  @override
-  $ElementCopyWith<$Res>? get textElement;
 }
 
 /// @nodoc
@@ -2303,12 +2074,6 @@ abstract class $CodingCopyWith<$Res> {
       @JsonKey(name: '_display') Element? displayElement,
       FhirBoolean? userSelected,
       @JsonKey(name: '_userSelected') Element? userSelectedElement});
-
-  $ElementCopyWith<$Res>? get systemElement;
-  $ElementCopyWith<$Res>? get versionElement;
-  $ElementCopyWith<$Res>? get codeElement;
-  $ElementCopyWith<$Res>? get displayElement;
-  $ElementCopyWith<$Res>? get userSelectedElement;
 }
 
 /// @nodoc
@@ -2388,66 +2153,6 @@ class _$CodingCopyWithImpl<$Res, $Val extends Coding>
               as Element?,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get systemElement {
-    if (_value.systemElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.systemElement!, (value) {
-      return _then(_value.copyWith(systemElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get versionElement {
-    if (_value.versionElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.versionElement!, (value) {
-      return _then(_value.copyWith(versionElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get codeElement {
-    if (_value.codeElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.codeElement!, (value) {
-      return _then(_value.copyWith(codeElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get displayElement {
-    if (_value.displayElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.displayElement!, (value) {
-      return _then(_value.copyWith(displayElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get userSelectedElement {
-    if (_value.userSelectedElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.userSelectedElement!, (value) {
-      return _then(_value.copyWith(userSelectedElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -2470,17 +2175,6 @@ abstract class _$$CodingImplCopyWith<$Res> implements $CodingCopyWith<$Res> {
       @JsonKey(name: '_display') Element? displayElement,
       FhirBoolean? userSelected,
       @JsonKey(name: '_userSelected') Element? userSelectedElement});
-
-  @override
-  $ElementCopyWith<$Res>? get systemElement;
-  @override
-  $ElementCopyWith<$Res>? get versionElement;
-  @override
-  $ElementCopyWith<$Res>? get codeElement;
-  @override
-  $ElementCopyWith<$Res>? get displayElement;
-  @override
-  $ElementCopyWith<$Res>? get userSelectedElement;
 }
 
 /// @nodoc
@@ -2904,12 +2598,6 @@ abstract class $QuantityCopyWith<$Res> {
       @JsonKey(name: '_system') Element? systemElement,
       FhirCode? code,
       @JsonKey(name: '_code') Element? codeElement});
-
-  $ElementCopyWith<$Res>? get valueElement;
-  $ElementCopyWith<$Res>? get comparatorElement;
-  $ElementCopyWith<$Res>? get unitElement;
-  $ElementCopyWith<$Res>? get systemElement;
-  $ElementCopyWith<$Res>? get codeElement;
 }
 
 /// @nodoc
@@ -2989,66 +2677,6 @@ class _$QuantityCopyWithImpl<$Res, $Val extends Quantity>
               as Element?,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get valueElement {
-    if (_value.valueElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.valueElement!, (value) {
-      return _then(_value.copyWith(valueElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get comparatorElement {
-    if (_value.comparatorElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.comparatorElement!, (value) {
-      return _then(_value.copyWith(comparatorElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get unitElement {
-    if (_value.unitElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.unitElement!, (value) {
-      return _then(_value.copyWith(unitElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get systemElement {
-    if (_value.systemElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.systemElement!, (value) {
-      return _then(_value.copyWith(systemElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get codeElement {
-    if (_value.codeElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.codeElement!, (value) {
-      return _then(_value.copyWith(codeElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -3073,17 +2701,6 @@ abstract class _$$QuantityImplCopyWith<$Res>
       @JsonKey(name: '_system') Element? systemElement,
       FhirCode? code,
       @JsonKey(name: '_code') Element? codeElement});
-
-  @override
-  $ElementCopyWith<$Res>? get valueElement;
-  @override
-  $ElementCopyWith<$Res>? get comparatorElement;
-  @override
-  $ElementCopyWith<$Res>? get unitElement;
-  @override
-  $ElementCopyWith<$Res>? get systemElement;
-  @override
-  $ElementCopyWith<$Res>? get codeElement;
 }
 
 /// @nodoc
@@ -3493,12 +3110,6 @@ abstract class $FhirDurationCopyWith<$Res> {
       @JsonKey(name: '_system') Element? systemElement,
       FhirCode? code,
       @JsonKey(name: '_code') Element? codeElement});
-
-  $ElementCopyWith<$Res>? get valueElement;
-  $ElementCopyWith<$Res>? get comparatorElement;
-  $ElementCopyWith<$Res>? get unitElement;
-  $ElementCopyWith<$Res>? get systemElement;
-  $ElementCopyWith<$Res>? get codeElement;
 }
 
 /// @nodoc
@@ -3578,66 +3189,6 @@ class _$FhirDurationCopyWithImpl<$Res, $Val extends FhirDuration>
               as Element?,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get valueElement {
-    if (_value.valueElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.valueElement!, (value) {
-      return _then(_value.copyWith(valueElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get comparatorElement {
-    if (_value.comparatorElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.comparatorElement!, (value) {
-      return _then(_value.copyWith(comparatorElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get unitElement {
-    if (_value.unitElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.unitElement!, (value) {
-      return _then(_value.copyWith(unitElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get systemElement {
-    if (_value.systemElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.systemElement!, (value) {
-      return _then(_value.copyWith(systemElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get codeElement {
-    if (_value.codeElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.codeElement!, (value) {
-      return _then(_value.copyWith(codeElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -3662,17 +3213,6 @@ abstract class _$$FhirDurationImplCopyWith<$Res>
       @JsonKey(name: '_system') Element? systemElement,
       FhirCode? code,
       @JsonKey(name: '_code') Element? codeElement});
-
-  @override
-  $ElementCopyWith<$Res>? get valueElement;
-  @override
-  $ElementCopyWith<$Res>? get comparatorElement;
-  @override
-  $ElementCopyWith<$Res>? get unitElement;
-  @override
-  $ElementCopyWith<$Res>? get systemElement;
-  @override
-  $ElementCopyWith<$Res>? get codeElement;
 }
 
 /// @nodoc
@@ -4081,12 +3621,6 @@ abstract class $DistanceCopyWith<$Res> {
       @JsonKey(name: '_system') Element? systemElement,
       FhirCode? code,
       @JsonKey(name: '_code') Element? codeElement});
-
-  $ElementCopyWith<$Res>? get valueElement;
-  $ElementCopyWith<$Res>? get comparatorElement;
-  $ElementCopyWith<$Res>? get unitElement;
-  $ElementCopyWith<$Res>? get systemElement;
-  $ElementCopyWith<$Res>? get codeElement;
 }
 
 /// @nodoc
@@ -4166,66 +3700,6 @@ class _$DistanceCopyWithImpl<$Res, $Val extends Distance>
               as Element?,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get valueElement {
-    if (_value.valueElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.valueElement!, (value) {
-      return _then(_value.copyWith(valueElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get comparatorElement {
-    if (_value.comparatorElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.comparatorElement!, (value) {
-      return _then(_value.copyWith(comparatorElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get unitElement {
-    if (_value.unitElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.unitElement!, (value) {
-      return _then(_value.copyWith(unitElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get systemElement {
-    if (_value.systemElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.systemElement!, (value) {
-      return _then(_value.copyWith(systemElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get codeElement {
-    if (_value.codeElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.codeElement!, (value) {
-      return _then(_value.copyWith(codeElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -4250,17 +3724,6 @@ abstract class _$$DistanceImplCopyWith<$Res>
       @JsonKey(name: '_system') Element? systemElement,
       FhirCode? code,
       @JsonKey(name: '_code') Element? codeElement});
-
-  @override
-  $ElementCopyWith<$Res>? get valueElement;
-  @override
-  $ElementCopyWith<$Res>? get comparatorElement;
-  @override
-  $ElementCopyWith<$Res>? get unitElement;
-  @override
-  $ElementCopyWith<$Res>? get systemElement;
-  @override
-  $ElementCopyWith<$Res>? get codeElement;
 }
 
 /// @nodoc
@@ -4668,12 +4131,6 @@ abstract class $CountCopyWith<$Res> {
       @JsonKey(name: '_system') Element? systemElement,
       FhirCode? code,
       @JsonKey(name: '_code') Element? codeElement});
-
-  $ElementCopyWith<$Res>? get valueElement;
-  $ElementCopyWith<$Res>? get comparatorElement;
-  $ElementCopyWith<$Res>? get unitElement;
-  $ElementCopyWith<$Res>? get systemElement;
-  $ElementCopyWith<$Res>? get codeElement;
 }
 
 /// @nodoc
@@ -4753,66 +4210,6 @@ class _$CountCopyWithImpl<$Res, $Val extends Count>
               as Element?,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get valueElement {
-    if (_value.valueElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.valueElement!, (value) {
-      return _then(_value.copyWith(valueElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get comparatorElement {
-    if (_value.comparatorElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.comparatorElement!, (value) {
-      return _then(_value.copyWith(comparatorElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get unitElement {
-    if (_value.unitElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.unitElement!, (value) {
-      return _then(_value.copyWith(unitElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get systemElement {
-    if (_value.systemElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.systemElement!, (value) {
-      return _then(_value.copyWith(systemElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get codeElement {
-    if (_value.codeElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.codeElement!, (value) {
-      return _then(_value.copyWith(codeElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -4836,17 +4233,6 @@ abstract class _$$CountImplCopyWith<$Res> implements $CountCopyWith<$Res> {
       @JsonKey(name: '_system') Element? systemElement,
       FhirCode? code,
       @JsonKey(name: '_code') Element? codeElement});
-
-  @override
-  $ElementCopyWith<$Res>? get valueElement;
-  @override
-  $ElementCopyWith<$Res>? get comparatorElement;
-  @override
-  $ElementCopyWith<$Res>? get unitElement;
-  @override
-  $ElementCopyWith<$Res>? get systemElement;
-  @override
-  $ElementCopyWith<$Res>? get codeElement;
 }
 
 /// @nodoc
@@ -5223,9 +4609,6 @@ abstract class $MoneyCopyWith<$Res> {
       @JsonKey(name: '_value') Element? valueElement,
       FhirCode? currency,
       @JsonKey(name: '_currency') Element? currencyElement});
-
-  $ElementCopyWith<$Res>? get valueElement;
-  $ElementCopyWith<$Res>? get currencyElement;
 }
 
 /// @nodoc
@@ -5275,30 +4658,6 @@ class _$MoneyCopyWithImpl<$Res, $Val extends Money>
               as Element?,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get valueElement {
-    if (_value.valueElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.valueElement!, (value) {
-      return _then(_value.copyWith(valueElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get currencyElement {
-    if (_value.currencyElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.currencyElement!, (value) {
-      return _then(_value.copyWith(currencyElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -5315,11 +4674,6 @@ abstract class _$$MoneyImplCopyWith<$Res> implements $MoneyCopyWith<$Res> {
       @JsonKey(name: '_value') Element? valueElement,
       FhirCode? currency,
       @JsonKey(name: '_currency') Element? currencyElement});
-
-  @override
-  $ElementCopyWith<$Res>? get valueElement;
-  @override
-  $ElementCopyWith<$Res>? get currencyElement;
 }
 
 /// @nodoc
@@ -5616,12 +4970,6 @@ abstract class $AgeCopyWith<$Res> {
       @JsonKey(name: '_system') Element? systemElement,
       FhirCode? code,
       @JsonKey(name: '_code') Element? codeElement});
-
-  $ElementCopyWith<$Res>? get valueElement;
-  $ElementCopyWith<$Res>? get comparatorElement;
-  $ElementCopyWith<$Res>? get unitElement;
-  $ElementCopyWith<$Res>? get systemElement;
-  $ElementCopyWith<$Res>? get codeElement;
 }
 
 /// @nodoc
@@ -5700,66 +5048,6 @@ class _$AgeCopyWithImpl<$Res, $Val extends Age> implements $AgeCopyWith<$Res> {
               as Element?,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get valueElement {
-    if (_value.valueElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.valueElement!, (value) {
-      return _then(_value.copyWith(valueElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get comparatorElement {
-    if (_value.comparatorElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.comparatorElement!, (value) {
-      return _then(_value.copyWith(comparatorElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get unitElement {
-    if (_value.unitElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.unitElement!, (value) {
-      return _then(_value.copyWith(unitElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get systemElement {
-    if (_value.systemElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.systemElement!, (value) {
-      return _then(_value.copyWith(systemElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get codeElement {
-    if (_value.codeElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.codeElement!, (value) {
-      return _then(_value.copyWith(codeElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -5782,17 +5070,6 @@ abstract class _$$AgeImplCopyWith<$Res> implements $AgeCopyWith<$Res> {
       @JsonKey(name: '_system') Element? systemElement,
       FhirCode? code,
       @JsonKey(name: '_code') Element? codeElement});
-
-  @override
-  $ElementCopyWith<$Res>? get valueElement;
-  @override
-  $ElementCopyWith<$Res>? get comparatorElement;
-  @override
-  $ElementCopyWith<$Res>? get unitElement;
-  @override
-  $ElementCopyWith<$Res>? get systemElement;
-  @override
-  $ElementCopyWith<$Res>? get codeElement;
 }
 
 /// @nodoc
@@ -6470,9 +5747,6 @@ abstract class $PeriodCopyWith<$Res> {
       @JsonKey(name: '_start') Element? startElement,
       FhirDateTime? end,
       @JsonKey(name: '_end') Element? endElement});
-
-  $ElementCopyWith<$Res>? get startElement;
-  $ElementCopyWith<$Res>? get endElement;
 }
 
 /// @nodoc
@@ -6522,30 +5796,6 @@ class _$PeriodCopyWithImpl<$Res, $Val extends Period>
               as Element?,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get startElement {
-    if (_value.startElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.startElement!, (value) {
-      return _then(_value.copyWith(startElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get endElement {
-    if (_value.endElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.endElement!, (value) {
-      return _then(_value.copyWith(endElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -6562,11 +5812,6 @@ abstract class _$$PeriodImplCopyWith<$Res> implements $PeriodCopyWith<$Res> {
       @JsonKey(name: '_start') Element? startElement,
       FhirDateTime? end,
       @JsonKey(name: '_end') Element? endElement});
-
-  @override
-  $ElementCopyWith<$Res>? get startElement;
-  @override
-  $ElementCopyWith<$Res>? get endElement;
 }
 
 /// @nodoc
@@ -7500,12 +6745,6 @@ abstract class $SampledDataCopyWith<$Res> {
       @JsonKey(name: '_data') Element? dataElement});
 
   $QuantityCopyWith<$Res> get origin;
-  $ElementCopyWith<$Res>? get periodElement;
-  $ElementCopyWith<$Res>? get factorElement;
-  $ElementCopyWith<$Res>? get lowerLimitElement;
-  $ElementCopyWith<$Res>? get upperLimitElement;
-  $ElementCopyWith<$Res>? get dimensionsElement;
-  $ElementCopyWith<$Res>? get dataElement;
 }
 
 /// @nodoc
@@ -7608,78 +6847,6 @@ class _$SampledDataCopyWithImpl<$Res, $Val extends SampledData>
       return _then(_value.copyWith(origin: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get periodElement {
-    if (_value.periodElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.periodElement!, (value) {
-      return _then(_value.copyWith(periodElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get factorElement {
-    if (_value.factorElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.factorElement!, (value) {
-      return _then(_value.copyWith(factorElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get lowerLimitElement {
-    if (_value.lowerLimitElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.lowerLimitElement!, (value) {
-      return _then(_value.copyWith(lowerLimitElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get upperLimitElement {
-    if (_value.upperLimitElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.upperLimitElement!, (value) {
-      return _then(_value.copyWith(upperLimitElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get dimensionsElement {
-    if (_value.dimensionsElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.dimensionsElement!, (value) {
-      return _then(_value.copyWith(dimensionsElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get dataElement {
-    if (_value.dataElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.dataElement!, (value) {
-      return _then(_value.copyWith(dataElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -7709,18 +6876,6 @@ abstract class _$$SampledDataImplCopyWith<$Res>
 
   @override
   $QuantityCopyWith<$Res> get origin;
-  @override
-  $ElementCopyWith<$Res>? get periodElement;
-  @override
-  $ElementCopyWith<$Res>? get factorElement;
-  @override
-  $ElementCopyWith<$Res>? get lowerLimitElement;
-  @override
-  $ElementCopyWith<$Res>? get upperLimitElement;
-  @override
-  $ElementCopyWith<$Res>? get dimensionsElement;
-  @override
-  $ElementCopyWith<$Res>? get dataElement;
 }
 
 /// @nodoc
@@ -8215,12 +7370,8 @@ abstract class $SignatureCopyWith<$Res> {
       FhirBase64Binary? data,
       @JsonKey(name: '_data') Element? dataElement});
 
-  $ElementCopyWith<$Res>? get whenElement;
   $ReferenceCopyWith<$Res> get who;
   $ReferenceCopyWith<$Res>? get onBehalfOf;
-  $ElementCopyWith<$Res>? get targetFormatElement;
-  $ElementCopyWith<$Res>? get sigFormatElement;
-  $ElementCopyWith<$Res>? get dataElement;
 }
 
 /// @nodoc
@@ -8308,18 +7459,6 @@ class _$SignatureCopyWithImpl<$Res, $Val extends Signature>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get whenElement {
-    if (_value.whenElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.whenElement!, (value) {
-      return _then(_value.copyWith(whenElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get who {
     return $ReferenceCopyWith<$Res>(_value.who, (value) {
       return _then(_value.copyWith(who: value) as $Val);
@@ -8335,42 +7474,6 @@ class _$SignatureCopyWithImpl<$Res, $Val extends Signature>
 
     return $ReferenceCopyWith<$Res>(_value.onBehalfOf!, (value) {
       return _then(_value.copyWith(onBehalfOf: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get targetFormatElement {
-    if (_value.targetFormatElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.targetFormatElement!, (value) {
-      return _then(_value.copyWith(targetFormatElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get sigFormatElement {
-    if (_value.sigFormatElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.sigFormatElement!, (value) {
-      return _then(_value.copyWith(sigFormatElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get dataElement {
-    if (_value.dataElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.dataElement!, (value) {
-      return _then(_value.copyWith(dataElement: value) as $Val);
     });
   }
 }
@@ -8399,17 +7502,9 @@ abstract class _$$SignatureImplCopyWith<$Res>
       @JsonKey(name: '_data') Element? dataElement});
 
   @override
-  $ElementCopyWith<$Res>? get whenElement;
-  @override
   $ReferenceCopyWith<$Res> get who;
   @override
   $ReferenceCopyWith<$Res>? get onBehalfOf;
-  @override
-  $ElementCopyWith<$Res>? get targetFormatElement;
-  @override
-  $ElementCopyWith<$Res>? get sigFormatElement;
-  @override
-  $ElementCopyWith<$Res>? get dataElement;
 }
 
 /// @nodoc
@@ -8880,9 +7975,6 @@ abstract class $HumanNameCopyWith<$Res> {
       @JsonKey(name: '_suffix') List<Element?>? suffixElement,
       Period? period});
 
-  $ElementCopyWith<$Res>? get useElement;
-  $ElementCopyWith<$Res>? get textElement;
-  $ElementCopyWith<$Res>? get familyElement;
   $PeriodCopyWith<$Res>? get period;
 }
 
@@ -8981,42 +8073,6 @@ class _$HumanNameCopyWithImpl<$Res, $Val extends HumanName>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get useElement {
-    if (_value.useElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.useElement!, (value) {
-      return _then(_value.copyWith(useElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get textElement {
-    if (_value.textElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.textElement!, (value) {
-      return _then(_value.copyWith(textElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get familyElement {
-    if (_value.familyElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.familyElement!, (value) {
-      return _then(_value.copyWith(familyElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get period {
     if (_value.period == null) {
       return null;
@@ -9053,12 +8109,6 @@ abstract class _$$HumanNameImplCopyWith<$Res>
       @JsonKey(name: '_suffix') List<Element?>? suffixElement,
       Period? period});
 
-  @override
-  $ElementCopyWith<$Res>? get useElement;
-  @override
-  $ElementCopyWith<$Res>? get textElement;
-  @override
-  $ElementCopyWith<$Res>? get familyElement;
   @override
   $PeriodCopyWith<$Res>? get period;
 }
@@ -9649,14 +8699,6 @@ abstract class $AddressCopyWith<$Res> {
       @JsonKey(name: '_country') Element? countryElement,
       Period? period});
 
-  $ElementCopyWith<$Res>? get useElement;
-  $ElementCopyWith<$Res>? get typeElement;
-  $ElementCopyWith<$Res>? get textElement;
-  $ElementCopyWith<$Res>? get cityElement;
-  $ElementCopyWith<$Res>? get districtElement;
-  $ElementCopyWith<$Res>? get stateElement;
-  $ElementCopyWith<$Res>? get postalCodeElement;
-  $ElementCopyWith<$Res>? get countryElement;
   $PeriodCopyWith<$Res>? get period;
 }
 
@@ -9785,102 +8827,6 @@ class _$AddressCopyWithImpl<$Res, $Val extends Address>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get useElement {
-    if (_value.useElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.useElement!, (value) {
-      return _then(_value.copyWith(useElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get typeElement {
-    if (_value.typeElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.typeElement!, (value) {
-      return _then(_value.copyWith(typeElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get textElement {
-    if (_value.textElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.textElement!, (value) {
-      return _then(_value.copyWith(textElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get cityElement {
-    if (_value.cityElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.cityElement!, (value) {
-      return _then(_value.copyWith(cityElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get districtElement {
-    if (_value.districtElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.districtElement!, (value) {
-      return _then(_value.copyWith(districtElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get stateElement {
-    if (_value.stateElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.stateElement!, (value) {
-      return _then(_value.copyWith(stateElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get postalCodeElement {
-    if (_value.postalCodeElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.postalCodeElement!, (value) {
-      return _then(_value.copyWith(postalCodeElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get countryElement {
-    if (_value.countryElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.countryElement!, (value) {
-      return _then(_value.copyWith(countryElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get period {
     if (_value.period == null) {
       return null;
@@ -9922,22 +8868,6 @@ abstract class _$$AddressImplCopyWith<$Res> implements $AddressCopyWith<$Res> {
       @JsonKey(name: '_country') Element? countryElement,
       Period? period});
 
-  @override
-  $ElementCopyWith<$Res>? get useElement;
-  @override
-  $ElementCopyWith<$Res>? get typeElement;
-  @override
-  $ElementCopyWith<$Res>? get textElement;
-  @override
-  $ElementCopyWith<$Res>? get cityElement;
-  @override
-  $ElementCopyWith<$Res>? get districtElement;
-  @override
-  $ElementCopyWith<$Res>? get stateElement;
-  @override
-  $ElementCopyWith<$Res>? get postalCodeElement;
-  @override
-  $ElementCopyWith<$Res>? get countryElement;
   @override
   $PeriodCopyWith<$Res>? get period;
 }
@@ -10555,10 +9485,6 @@ abstract class $ContactPointCopyWith<$Res> {
       @JsonKey(name: '_rank') Element? rankElement,
       Period? period});
 
-  $ElementCopyWith<$Res>? get systemElement;
-  $ElementCopyWith<$Res>? get valueElement;
-  $ElementCopyWith<$Res>? get useElement;
-  $ElementCopyWith<$Res>? get rankElement;
   $PeriodCopyWith<$Res>? get period;
 }
 
@@ -10637,54 +9563,6 @@ class _$ContactPointCopyWithImpl<$Res, $Val extends ContactPoint>
 
   @override
   @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get systemElement {
-    if (_value.systemElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.systemElement!, (value) {
-      return _then(_value.copyWith(systemElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get valueElement {
-    if (_value.valueElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.valueElement!, (value) {
-      return _then(_value.copyWith(valueElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get useElement {
-    if (_value.useElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.useElement!, (value) {
-      return _then(_value.copyWith(useElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get rankElement {
-    if (_value.rankElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.rankElement!, (value) {
-      return _then(_value.copyWith(rankElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get period {
     if (_value.period == null) {
       return null;
@@ -10718,14 +9596,6 @@ abstract class _$$ContactPointImplCopyWith<$Res>
       @JsonKey(name: '_rank') Element? rankElement,
       Period? period});
 
-  @override
-  $ElementCopyWith<$Res>? get systemElement;
-  @override
-  $ElementCopyWith<$Res>? get valueElement;
-  @override
-  $ElementCopyWith<$Res>? get useElement;
-  @override
-  $ElementCopyWith<$Res>? get rankElement;
   @override
   $PeriodCopyWith<$Res>? get period;
 }
@@ -11735,17 +10605,6 @@ abstract class $TimingRepeatCopyWith<$Res> {
   $FhirDurationCopyWith<$Res>? get boundsDuration;
   $RangeCopyWith<$Res>? get boundsRange;
   $PeriodCopyWith<$Res>? get boundsPeriod;
-  $ElementCopyWith<$Res>? get countElement;
-  $ElementCopyWith<$Res>? get countMaxElement;
-  $ElementCopyWith<$Res>? get durationElement;
-  $ElementCopyWith<$Res>? get durationMaxElement;
-  $ElementCopyWith<$Res>? get durationUnitElement;
-  $ElementCopyWith<$Res>? get frequencyElement;
-  $ElementCopyWith<$Res>? get frequencyMaxElement;
-  $ElementCopyWith<$Res>? get periodElement;
-  $ElementCopyWith<$Res>? get periodMaxElement;
-  $ElementCopyWith<$Res>? get periodUnitElement;
-  $ElementCopyWith<$Res>? get offsetElement;
 }
 
 /// @nodoc
@@ -11971,138 +10830,6 @@ class _$TimingRepeatCopyWithImpl<$Res, $Val extends TimingRepeat>
       return _then(_value.copyWith(boundsPeriod: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get countElement {
-    if (_value.countElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.countElement!, (value) {
-      return _then(_value.copyWith(countElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get countMaxElement {
-    if (_value.countMaxElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.countMaxElement!, (value) {
-      return _then(_value.copyWith(countMaxElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get durationElement {
-    if (_value.durationElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.durationElement!, (value) {
-      return _then(_value.copyWith(durationElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get durationMaxElement {
-    if (_value.durationMaxElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.durationMaxElement!, (value) {
-      return _then(_value.copyWith(durationMaxElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get durationUnitElement {
-    if (_value.durationUnitElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.durationUnitElement!, (value) {
-      return _then(_value.copyWith(durationUnitElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get frequencyElement {
-    if (_value.frequencyElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.frequencyElement!, (value) {
-      return _then(_value.copyWith(frequencyElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get frequencyMaxElement {
-    if (_value.frequencyMaxElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.frequencyMaxElement!, (value) {
-      return _then(_value.copyWith(frequencyMaxElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get periodElement {
-    if (_value.periodElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.periodElement!, (value) {
-      return _then(_value.copyWith(periodElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get periodMaxElement {
-    if (_value.periodMaxElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.periodMaxElement!, (value) {
-      return _then(_value.copyWith(periodMaxElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get periodUnitElement {
-    if (_value.periodUnitElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.periodUnitElement!, (value) {
-      return _then(_value.copyWith(periodUnitElement: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ElementCopyWith<$Res>? get offsetElement {
-    if (_value.offsetElement == null) {
-      return null;
-    }
-
-    return $ElementCopyWith<$Res>(_value.offsetElement!, (value) {
-      return _then(_value.copyWith(offsetElement: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -12157,28 +10884,6 @@ abstract class _$$TimingRepeatImplCopyWith<$Res>
   $RangeCopyWith<$Res>? get boundsRange;
   @override
   $PeriodCopyWith<$Res>? get boundsPeriod;
-  @override
-  $ElementCopyWith<$Res>? get countElement;
-  @override
-  $ElementCopyWith<$Res>? get countMaxElement;
-  @override
-  $ElementCopyWith<$Res>? get durationElement;
-  @override
-  $ElementCopyWith<$Res>? get durationMaxElement;
-  @override
-  $ElementCopyWith<$Res>? get durationUnitElement;
-  @override
-  $ElementCopyWith<$Res>? get frequencyElement;
-  @override
-  $ElementCopyWith<$Res>? get frequencyMaxElement;
-  @override
-  $ElementCopyWith<$Res>? get periodElement;
-  @override
-  $ElementCopyWith<$Res>? get periodMaxElement;
-  @override
-  $ElementCopyWith<$Res>? get periodUnitElement;
-  @override
-  $ElementCopyWith<$Res>? get offsetElement;
 }
 
 /// @nodoc

@@ -102,6 +102,9 @@ class AdministrableProductDefinition
         routeOfAdministration,
   }) = _AdministrableProductDefinition;
 
+  @override
+  String get fhirType => 'AdministrableProductDefinition';
+
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory AdministrableProductDefinition.fromYaml(dynamic yaml) => yaml
           is String
@@ -138,7 +141,7 @@ class AdministrableProductDefinition
 
 @freezed
 class AdministrableProductDefinitionProperty
-    with _$AdministrableProductDefinitionProperty {
+    with BackboneType, _$AdministrableProductDefinitionProperty {
   const AdministrableProductDefinitionProperty._();
 
   /// [AdministrableProductDefinitionProperty] A medicinal product in the final form which is suitable for administering to a patient (after any mixing of multiple components, dissolution etc. has been performed).
@@ -171,7 +174,7 @@ class AdministrableProductDefinitionProperty
   /// [status] The status of characteristic e.g. assigned or pending.;
   const factory AdministrableProductDefinitionProperty({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -208,8 +211,8 @@ class AdministrableProductDefinitionProperty
     CodeableConcept? status,
   }) = _AdministrableProductDefinitionProperty;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'AdministrableProductDefinitionProperty';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory AdministrableProductDefinitionProperty.fromYaml(dynamic yaml) => yaml
@@ -239,15 +242,11 @@ class AdministrableProductDefinitionProperty
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 @freezed
 class AdministrableProductDefinitionRouteOfAdministration
-    with _$AdministrableProductDefinitionRouteOfAdministration {
+    with BackboneType, _$AdministrableProductDefinitionRouteOfAdministration {
   const AdministrableProductDefinitionRouteOfAdministration._();
 
   /// [AdministrableProductDefinitionRouteOfAdministration] A medicinal product in the final form which is suitable for administering to a patient (after any mixing of multiple components, dissolution etc. has been performed).
@@ -276,7 +275,7 @@ class AdministrableProductDefinitionRouteOfAdministration
   /// [targetSpecies] A species for which this route applies.;
   const factory AdministrableProductDefinitionRouteOfAdministration({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -307,8 +306,8 @@ class AdministrableProductDefinitionRouteOfAdministration
     List<AdministrableProductDefinitionTargetSpecies>? targetSpecies,
   }) = _AdministrableProductDefinitionRouteOfAdministration;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'AdministrableProductDefinitionRouteOfAdministration';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory AdministrableProductDefinitionRouteOfAdministration.fromYaml(
@@ -341,15 +340,11 @@ class AdministrableProductDefinitionRouteOfAdministration
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 @freezed
 class AdministrableProductDefinitionTargetSpecies
-    with _$AdministrableProductDefinitionTargetSpecies {
+    with BackboneType, _$AdministrableProductDefinitionTargetSpecies {
   const AdministrableProductDefinitionTargetSpecies._();
 
   /// [AdministrableProductDefinitionTargetSpecies] A medicinal product in the final form which is suitable for administering to a patient (after any mixing of multiple components, dissolution etc. has been performed).
@@ -368,7 +363,7 @@ class AdministrableProductDefinitionTargetSpecies
   /// [withdrawalPeriod] A species specific time during which consumption of animal product is not appropriate.;
   const factory AdministrableProductDefinitionTargetSpecies({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -384,8 +379,8 @@ class AdministrableProductDefinitionTargetSpecies
     List<AdministrableProductDefinitionWithdrawalPeriod>? withdrawalPeriod,
   }) = _AdministrableProductDefinitionTargetSpecies;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'AdministrableProductDefinitionTargetSpecies';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory AdministrableProductDefinitionTargetSpecies.fromYaml(dynamic yaml) =>
@@ -416,15 +411,11 @@ class AdministrableProductDefinitionTargetSpecies
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 @freezed
 class AdministrableProductDefinitionWithdrawalPeriod
-    with _$AdministrableProductDefinitionWithdrawalPeriod {
+    with BackboneType, _$AdministrableProductDefinitionWithdrawalPeriod {
   const AdministrableProductDefinitionWithdrawalPeriod._();
 
   /// [AdministrableProductDefinitionWithdrawalPeriod] A medicinal product in the final form which is suitable for administering to a patient (after any mixing of multiple components, dissolution etc. has been performed).
@@ -447,7 +438,7 @@ class AdministrableProductDefinitionWithdrawalPeriod
   /// [supportingInformationElement] (_supportingInformation): Extensions for supportingInformation;
   const factory AdministrableProductDefinitionWithdrawalPeriod({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -470,8 +461,8 @@ class AdministrableProductDefinitionWithdrawalPeriod
     Element? supportingInformationElement,
   }) = _AdministrableProductDefinitionWithdrawalPeriod;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'AdministrableProductDefinitionWithdrawalPeriod';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory AdministrableProductDefinitionWithdrawalPeriod.fromYaml(
@@ -503,10 +494,6 @@ class AdministrableProductDefinitionWithdrawalPeriod
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [Ingredient] An ingredient of a manufactured item or pharmaceutical product.
@@ -632,6 +619,9 @@ class Ingredient with Resource, _$Ingredient {
     required IngredientSubstance substance,
   }) = _Ingredient;
 
+  @override
+  String get fhirType => 'Ingredient';
+
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory Ingredient.fromYaml(dynamic yaml) => yaml is String
       ? Ingredient.fromJson(
@@ -667,7 +657,7 @@ class Ingredient with Resource, _$Ingredient {
 
 /// [IngredientManufacturer] An ingredient of a manufactured item or pharmaceutical product.
 @freezed
-class IngredientManufacturer with _$IngredientManufacturer {
+class IngredientManufacturer with BackboneType, _$IngredientManufacturer {
   /// [IngredientManufacturer] An ingredient of a manufactured item or pharmaceutical product.
   const IngredientManufacturer._();
 
@@ -687,7 +677,7 @@ class IngredientManufacturer with _$IngredientManufacturer {
   /// [manufacturer] An organization that manufactures this ingredient.;
   const factory IngredientManufacturer({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -705,8 +695,8 @@ class IngredientManufacturer with _$IngredientManufacturer {
     required Reference manufacturer,
   }) = _IngredientManufacturer;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'IngredientManufacturer';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory IngredientManufacturer.fromYaml(dynamic yaml) => yaml is String
@@ -734,15 +724,11 @@ class IngredientManufacturer with _$IngredientManufacturer {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [IngredientSubstance] An ingredient of a manufactured item or pharmaceutical product.
 @freezed
-class IngredientSubstance with _$IngredientSubstance {
+class IngredientSubstance with BackboneType, _$IngredientSubstance {
   /// [IngredientSubstance] An ingredient of a manufactured item or pharmaceutical product.
   const IngredientSubstance._();
 
@@ -762,7 +748,7 @@ class IngredientSubstance with _$IngredientSubstance {
   /// [strength] The quantity of substance in the unit of presentation, or in the volume (or mass) of the single pharmaceutical product or manufactured item. The allowed repetitions do not represent different strengths, but are different representations - mathematically equivalent - of a single strength.;
   const factory IngredientSubstance({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -778,8 +764,8 @@ class IngredientSubstance with _$IngredientSubstance {
     List<IngredientStrength>? strength,
   }) = _IngredientSubstance;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'IngredientSubstance';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory IngredientSubstance.fromYaml(dynamic yaml) => yaml is String
@@ -807,15 +793,11 @@ class IngredientSubstance with _$IngredientSubstance {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [IngredientStrength] An ingredient of a manufactured item or pharmaceutical product.
 @freezed
-class IngredientStrength with _$IngredientStrength {
+class IngredientStrength with BackboneType, _$IngredientStrength {
   /// [IngredientStrength] An ingredient of a manufactured item or pharmaceutical product.
   const IngredientStrength._();
 
@@ -855,7 +837,7 @@ class IngredientStrength with _$IngredientStrength {
   /// [referenceStrength] Strength expressed in terms of a reference substance. For when the ingredient strength is additionally expressed as equivalent to the strength of some other closely related substance (e.g. salt vs. base). Reference strength represents the strength (quantitative composition) of the active moiety of the active substance. There are situations when the active substance and active moiety are different, therefore both a strength and a reference strength are needed.;
   const factory IngredientStrength({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -901,8 +883,8 @@ class IngredientStrength with _$IngredientStrength {
     List<IngredientReferenceStrength>? referenceStrength,
   }) = _IngredientStrength;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'IngredientStrength';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory IngredientStrength.fromYaml(dynamic yaml) => yaml is String
@@ -930,15 +912,12 @@ class IngredientStrength with _$IngredientStrength {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [IngredientReferenceStrength] An ingredient of a manufactured item or pharmaceutical product.
 @freezed
-class IngredientReferenceStrength with _$IngredientReferenceStrength {
+class IngredientReferenceStrength
+    with BackboneType, _$IngredientReferenceStrength {
   /// [IngredientReferenceStrength] An ingredient of a manufactured item or pharmaceutical product.
   const IngredientReferenceStrength._();
 
@@ -968,7 +947,7 @@ class IngredientReferenceStrength with _$IngredientReferenceStrength {
   /// [country] The country or countries for which the strength range applies.;
   const factory IngredientReferenceStrength({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -999,8 +978,8 @@ class IngredientReferenceStrength with _$IngredientReferenceStrength {
     List<CodeableConcept>? country,
   }) = _IngredientReferenceStrength;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'IngredientReferenceStrength';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory IngredientReferenceStrength.fromYaml(dynamic yaml) => yaml is String
@@ -1028,10 +1007,6 @@ class IngredientReferenceStrength with _$IngredientReferenceStrength {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [ClinicalUseDefinition] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
@@ -1159,6 +1134,9 @@ class ClinicalUseDefinition with Resource, _$ClinicalUseDefinition {
     ClinicalUseDefinitionWarning? warning,
   }) = _ClinicalUseDefinition;
 
+  @override
+  String get fhirType => 'ClinicalUseDefinition';
+
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ClinicalUseDefinition.fromYaml(dynamic yaml) => yaml is String
       ? ClinicalUseDefinition.fromJson(
@@ -1194,7 +1172,7 @@ class ClinicalUseDefinition with Resource, _$ClinicalUseDefinition {
 
 @freezed
 class ClinicalUseDefinitionContraindication
-    with _$ClinicalUseDefinitionContraindication {
+    with BackboneType, _$ClinicalUseDefinitionContraindication {
   const ClinicalUseDefinitionContraindication._();
 
   /// [ClinicalUseDefinitionContraindication] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
@@ -1217,7 +1195,7 @@ class ClinicalUseDefinitionContraindication
   /// [otherTherapy] Information about the use of the medicinal product in relation to other therapies described as part of the contraindication.;
   const factory ClinicalUseDefinitionContraindication({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -1241,8 +1219,8 @@ class ClinicalUseDefinitionContraindication
     List<ClinicalUseDefinitionOtherTherapy>? otherTherapy,
   }) = _ClinicalUseDefinitionContraindication;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'ClinicalUseDefinitionContraindication';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ClinicalUseDefinitionContraindication.fromYaml(dynamic yaml) => yaml
@@ -1272,15 +1250,11 @@ class ClinicalUseDefinitionContraindication
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 @freezed
 class ClinicalUseDefinitionOtherTherapy
-    with _$ClinicalUseDefinitionOtherTherapy {
+    with BackboneType, _$ClinicalUseDefinitionOtherTherapy {
   const ClinicalUseDefinitionOtherTherapy._();
 
   /// [ClinicalUseDefinitionOtherTherapy] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
@@ -1297,7 +1271,7 @@ class ClinicalUseDefinitionOtherTherapy
   /// [therapy] Reference to a specific medication (active substance, medicinal product or class of products) as part of an indication or contraindication.;
   const factory ClinicalUseDefinitionOtherTherapy({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -1312,8 +1286,8 @@ class ClinicalUseDefinitionOtherTherapy
     required CodeableReference therapy,
   }) = _ClinicalUseDefinitionOtherTherapy;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'ClinicalUseDefinitionOtherTherapy';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ClinicalUseDefinitionOtherTherapy.fromYaml(dynamic yaml) => yaml
@@ -1343,15 +1317,12 @@ class ClinicalUseDefinitionOtherTherapy
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [ClinicalUseDefinitionIndication] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 @freezed
-class ClinicalUseDefinitionIndication with _$ClinicalUseDefinitionIndication {
+class ClinicalUseDefinitionIndication
+    with BackboneType, _$ClinicalUseDefinitionIndication {
   /// [ClinicalUseDefinitionIndication] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
   const ClinicalUseDefinitionIndication._();
 
@@ -1383,7 +1354,7 @@ class ClinicalUseDefinitionIndication with _$ClinicalUseDefinitionIndication {
   /// [otherTherapy] Information about the use of the medicinal product in relation to other therapies described as part of the indication.;
   const factory ClinicalUseDefinitionIndication({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -1419,8 +1390,8 @@ class ClinicalUseDefinitionIndication with _$ClinicalUseDefinitionIndication {
     List<ClinicalUseDefinitionOtherTherapy>? otherTherapy,
   }) = _ClinicalUseDefinitionIndication;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'ClinicalUseDefinitionIndication';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ClinicalUseDefinitionIndication.fromYaml(dynamic yaml) => yaml
@@ -1449,15 +1420,12 @@ class ClinicalUseDefinitionIndication with _$ClinicalUseDefinitionIndication {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [ClinicalUseDefinitionInteraction] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 @freezed
-class ClinicalUseDefinitionInteraction with _$ClinicalUseDefinitionInteraction {
+class ClinicalUseDefinitionInteraction
+    with BackboneType, _$ClinicalUseDefinitionInteraction {
   /// [ClinicalUseDefinitionInteraction] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
   const ClinicalUseDefinitionInteraction._();
 
@@ -1481,7 +1449,7 @@ class ClinicalUseDefinitionInteraction with _$ClinicalUseDefinitionInteraction {
   /// [management] Actions for managing the interaction.;
   const factory ClinicalUseDefinitionInteraction({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -1505,8 +1473,8 @@ class ClinicalUseDefinitionInteraction with _$ClinicalUseDefinitionInteraction {
     List<CodeableConcept>? management,
   }) = _ClinicalUseDefinitionInteraction;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'ClinicalUseDefinitionInteraction';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ClinicalUseDefinitionInteraction.fromYaml(dynamic yaml) => yaml
@@ -1536,15 +1504,12 @@ class ClinicalUseDefinitionInteraction with _$ClinicalUseDefinitionInteraction {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [ClinicalUseDefinitionInteractant] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 @freezed
-class ClinicalUseDefinitionInteractant with _$ClinicalUseDefinitionInteractant {
+class ClinicalUseDefinitionInteractant
+    with BackboneType, _$ClinicalUseDefinitionInteractant {
   /// [ClinicalUseDefinitionInteractant] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
   const ClinicalUseDefinitionInteractant._();
 
@@ -1562,7 +1527,7 @@ class ClinicalUseDefinitionInteractant with _$ClinicalUseDefinitionInteractant {
   /// [itemCodeableConcept] The specific medication, food or laboratory test that interacts.;
   const factory ClinicalUseDefinitionInteractant({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -1577,8 +1542,8 @@ class ClinicalUseDefinitionInteractant with _$ClinicalUseDefinitionInteractant {
     CodeableConcept? itemCodeableConcept,
   }) = _ClinicalUseDefinitionInteractant;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'ClinicalUseDefinitionInteractant';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ClinicalUseDefinitionInteractant.fromYaml(dynamic yaml) => yaml
@@ -1608,15 +1573,11 @@ class ClinicalUseDefinitionInteractant with _$ClinicalUseDefinitionInteractant {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 @freezed
 class ClinicalUseDefinitionUndesirableEffect
-    with _$ClinicalUseDefinitionUndesirableEffect {
+    with BackboneType, _$ClinicalUseDefinitionUndesirableEffect {
   const ClinicalUseDefinitionUndesirableEffect._();
 
   /// [ClinicalUseDefinitionUndesirableEffect] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
@@ -1635,7 +1596,7 @@ class ClinicalUseDefinitionUndesirableEffect
   /// [frequencyOfOccurrence] How often the effect is seen.;
   const factory ClinicalUseDefinitionUndesirableEffect({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -1653,8 +1614,8 @@ class ClinicalUseDefinitionUndesirableEffect
     CodeableConcept? frequencyOfOccurrence,
   }) = _ClinicalUseDefinitionUndesirableEffect;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'ClinicalUseDefinitionUndesirableEffect';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ClinicalUseDefinitionUndesirableEffect.fromYaml(dynamic yaml) => yaml
@@ -1684,15 +1645,12 @@ class ClinicalUseDefinitionUndesirableEffect
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [ClinicalUseDefinitionWarning] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 @freezed
-class ClinicalUseDefinitionWarning with _$ClinicalUseDefinitionWarning {
+class ClinicalUseDefinitionWarning
+    with BackboneType, _$ClinicalUseDefinitionWarning {
   /// [ClinicalUseDefinitionWarning] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
   const ClinicalUseDefinitionWarning._();
 
@@ -1712,7 +1670,7 @@ class ClinicalUseDefinitionWarning with _$ClinicalUseDefinitionWarning {
   /// [code] A coded or unformatted textual definition of this warning.;
   const factory ClinicalUseDefinitionWarning({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -1730,8 +1688,8 @@ class ClinicalUseDefinitionWarning with _$ClinicalUseDefinitionWarning {
     CodeableConcept? code,
   }) = _ClinicalUseDefinitionWarning;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'ClinicalUseDefinitionWarning';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ClinicalUseDefinitionWarning.fromYaml(dynamic yaml) => yaml is String
@@ -1759,10 +1717,6 @@ class ClinicalUseDefinitionWarning with _$ClinicalUseDefinitionWarning {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [ManufacturedItemDefinition] The definition and characteristics of a medicinal manufactured item, such as a tablet or capsule, as contained in a packaged medicinal product.
@@ -1875,6 +1829,9 @@ class ManufacturedItemDefinition with Resource, _$ManufacturedItemDefinition {
     List<ManufacturedItemDefinitionProperty>? property,
   }) = _ManufacturedItemDefinition;
 
+  @override
+  String get fhirType => 'ManufacturedItemDefinition';
+
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ManufacturedItemDefinition.fromYaml(dynamic yaml) => yaml is String
       ? ManufacturedItemDefinition.fromJson(
@@ -1910,7 +1867,7 @@ class ManufacturedItemDefinition with Resource, _$ManufacturedItemDefinition {
 
 @freezed
 class ManufacturedItemDefinitionProperty
-    with _$ManufacturedItemDefinitionProperty {
+    with BackboneType, _$ManufacturedItemDefinitionProperty {
   const ManufacturedItemDefinitionProperty._();
 
   /// [ManufacturedItemDefinitionProperty] The definition and characteristics of a medicinal manufactured item, such as a tablet or capsule, as contained in a packaged medicinal product.
@@ -1941,7 +1898,7 @@ class ManufacturedItemDefinitionProperty
   /// [valueAttachment] A value for the characteristic.;
   const factory ManufacturedItemDefinitionProperty({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -1975,8 +1932,8 @@ class ManufacturedItemDefinitionProperty
     Attachment? valueAttachment,
   }) = _ManufacturedItemDefinitionProperty;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'ManufacturedItemDefinitionProperty';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory ManufacturedItemDefinitionProperty.fromYaml(dynamic yaml) => yaml
@@ -2006,10 +1963,6 @@ class ManufacturedItemDefinitionProperty
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [MedicinalProductDefinition] A medicinal product, being a substance or combination of substances that is intended to treat, prevent or diagnose a disease, or to restore, correct or modify physiological functions by exerting a pharmacological, immunological or metabolic action. This resource is intended to define and detail such products and their properties, for uses other than direct patient care (e.g. regulatory use, or drug catalogs).
@@ -2241,6 +2194,9 @@ class MedicinalProductDefinition with Resource, _$MedicinalProductDefinition {
     List<MedicinalProductDefinitionCharacteristic>? characteristic,
   }) = _MedicinalProductDefinition;
 
+  @override
+  String get fhirType => 'MedicinalProductDefinition';
+
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicinalProductDefinition.fromYaml(dynamic yaml) => yaml is String
       ? MedicinalProductDefinition.fromJson(
@@ -2276,7 +2232,7 @@ class MedicinalProductDefinition with Resource, _$MedicinalProductDefinition {
 
 @freezed
 class MedicinalProductDefinitionContact
-    with _$MedicinalProductDefinitionContact {
+    with BackboneType, _$MedicinalProductDefinitionContact {
   const MedicinalProductDefinitionContact._();
 
   /// [MedicinalProductDefinitionContact] A medicinal product, being a substance or combination of substances that is intended to treat, prevent or diagnose a disease, or to restore, correct or modify physiological functions by exerting a pharmacological, immunological or metabolic action. This resource is intended to define and detail such products and their properties, for uses other than direct patient care (e.g. regulatory use, or drug catalogs).
@@ -2295,7 +2251,7 @@ class MedicinalProductDefinitionContact
   /// [contact] A product specific contact, person (in a role), or an organization.;
   const factory MedicinalProductDefinitionContact({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -2311,8 +2267,8 @@ class MedicinalProductDefinitionContact
     required Reference contact,
   }) = _MedicinalProductDefinitionContact;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicinalProductDefinitionContact';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicinalProductDefinitionContact.fromYaml(dynamic yaml) => yaml
@@ -2342,15 +2298,12 @@ class MedicinalProductDefinitionContact
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [MedicinalProductDefinitionName] A medicinal product, being a substance or combination of substances that is intended to treat, prevent or diagnose a disease, or to restore, correct or modify physiological functions by exerting a pharmacological, immunological or metabolic action. This resource is intended to define and detail such products and their properties, for uses other than direct patient care (e.g. regulatory use, or drug catalogs).
 @freezed
-class MedicinalProductDefinitionName with _$MedicinalProductDefinitionName {
+class MedicinalProductDefinitionName
+    with BackboneType, _$MedicinalProductDefinitionName {
   /// [MedicinalProductDefinitionName] A medicinal product, being a substance or combination of substances that is intended to treat, prevent or diagnose a disease, or to restore, correct or modify physiological functions by exerting a pharmacological, immunological or metabolic action. This resource is intended to define and detail such products and their properties, for uses other than direct patient care (e.g. regulatory use, or drug catalogs).
   const MedicinalProductDefinitionName._();
 
@@ -2376,7 +2329,7 @@ class MedicinalProductDefinitionName with _$MedicinalProductDefinitionName {
   /// [countryLanguage] Country and jurisdiction where the name applies, and associated language.;
   const factory MedicinalProductDefinitionName({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -2401,8 +2354,8 @@ class MedicinalProductDefinitionName with _$MedicinalProductDefinitionName {
     List<MedicinalProductDefinitionCountryLanguage>? countryLanguage,
   }) = _MedicinalProductDefinitionName;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicinalProductDefinitionName';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicinalProductDefinitionName.fromYaml(dynamic yaml) => yaml
@@ -2431,15 +2384,11 @@ class MedicinalProductDefinitionName with _$MedicinalProductDefinitionName {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 @freezed
 class MedicinalProductDefinitionNamePart
-    with _$MedicinalProductDefinitionNamePart {
+    with BackboneType, _$MedicinalProductDefinitionNamePart {
   const MedicinalProductDefinitionNamePart._();
 
   /// [MedicinalProductDefinitionNamePart] A medicinal product, being a substance or combination of substances that is intended to treat, prevent or diagnose a disease, or to restore, correct or modify physiological functions by exerting a pharmacological, immunological or metabolic action. This resource is intended to define and detail such products and their properties, for uses other than direct patient care (e.g. regulatory use, or drug catalogs).
@@ -2460,7 +2409,7 @@ class MedicinalProductDefinitionNamePart
   /// [type] Identifying type for this part of the name (e.g. strength part).;
   const factory MedicinalProductDefinitionNamePart({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -2479,8 +2428,8 @@ class MedicinalProductDefinitionNamePart
     required CodeableConcept type,
   }) = _MedicinalProductDefinitionNamePart;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicinalProductDefinitionNamePart';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicinalProductDefinitionNamePart.fromYaml(dynamic yaml) => yaml
@@ -2510,15 +2459,11 @@ class MedicinalProductDefinitionNamePart
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 @freezed
 class MedicinalProductDefinitionCountryLanguage
-    with _$MedicinalProductDefinitionCountryLanguage {
+    with BackboneType, _$MedicinalProductDefinitionCountryLanguage {
   const MedicinalProductDefinitionCountryLanguage._();
 
   /// [MedicinalProductDefinitionCountryLanguage] A medicinal product, being a substance or combination of substances that is intended to treat, prevent or diagnose a disease, or to restore, correct or modify physiological functions by exerting a pharmacological, immunological or metabolic action. This resource is intended to define and detail such products and their properties, for uses other than direct patient care (e.g. regulatory use, or drug catalogs).
@@ -2539,7 +2484,7 @@ class MedicinalProductDefinitionCountryLanguage
   /// [language] Language code for this name.;
   const factory MedicinalProductDefinitionCountryLanguage({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -2558,8 +2503,8 @@ class MedicinalProductDefinitionCountryLanguage
     required CodeableConcept language,
   }) = _MedicinalProductDefinitionCountryLanguage;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicinalProductDefinitionCountryLanguage';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicinalProductDefinitionCountryLanguage.fromYaml(dynamic yaml) => yaml
@@ -2590,15 +2535,11 @@ class MedicinalProductDefinitionCountryLanguage
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 @freezed
 class MedicinalProductDefinitionCrossReference
-    with _$MedicinalProductDefinitionCrossReference {
+    with BackboneType, _$MedicinalProductDefinitionCrossReference {
   const MedicinalProductDefinitionCrossReference._();
 
   /// [MedicinalProductDefinitionCrossReference] A medicinal product, being a substance or combination of substances that is intended to treat, prevent or diagnose a disease, or to restore, correct or modify physiological functions by exerting a pharmacological, immunological or metabolic action. This resource is intended to define and detail such products and their properties, for uses other than direct patient care (e.g. regulatory use, or drug catalogs).
@@ -2617,7 +2558,7 @@ class MedicinalProductDefinitionCrossReference
   /// [type] The type of relationship, for instance branded to generic, virtual to actual product, product to development product (investigational), parallel import version.;
   const factory MedicinalProductDefinitionCrossReference({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -2633,8 +2574,8 @@ class MedicinalProductDefinitionCrossReference
     CodeableConcept? type,
   }) = _MedicinalProductDefinitionCrossReference;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicinalProductDefinitionCrossReference';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicinalProductDefinitionCrossReference.fromYaml(dynamic yaml) => yaml
@@ -2665,15 +2606,11 @@ class MedicinalProductDefinitionCrossReference
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 @freezed
 class MedicinalProductDefinitionOperation
-    with _$MedicinalProductDefinitionOperation {
+    with BackboneType, _$MedicinalProductDefinitionOperation {
   const MedicinalProductDefinitionOperation._();
 
   /// [MedicinalProductDefinitionOperation] A medicinal product, being a substance or combination of substances that is intended to treat, prevent or diagnose a disease, or to restore, correct or modify physiological functions by exerting a pharmacological, immunological or metabolic action. This resource is intended to define and detail such products and their properties, for uses other than direct patient care (e.g. regulatory use, or drug catalogs).
@@ -2696,7 +2633,7 @@ class MedicinalProductDefinitionOperation
   /// [confidentialityIndicator] Specifies whether this particular business or manufacturing process is considered proprietary or confidential.;
   const factory MedicinalProductDefinitionOperation({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -2718,8 +2655,8 @@ class MedicinalProductDefinitionOperation
     CodeableConcept? confidentialityIndicator,
   }) = _MedicinalProductDefinitionOperation;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicinalProductDefinitionOperation';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicinalProductDefinitionOperation.fromYaml(dynamic yaml) => yaml
@@ -2749,15 +2686,11 @@ class MedicinalProductDefinitionOperation
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 @freezed
 class MedicinalProductDefinitionCharacteristic
-    with _$MedicinalProductDefinitionCharacteristic {
+    with BackboneType, _$MedicinalProductDefinitionCharacteristic {
   const MedicinalProductDefinitionCharacteristic._();
 
   /// [MedicinalProductDefinitionCharacteristic] A medicinal product, being a substance or combination of substances that is intended to treat, prevent or diagnose a disease, or to restore, correct or modify physiological functions by exerting a pharmacological, immunological or metabolic action. This resource is intended to define and detail such products and their properties, for uses other than direct patient care (e.g. regulatory use, or drug catalogs).
@@ -2788,7 +2721,7 @@ class MedicinalProductDefinitionCharacteristic
   /// [valueAttachment] A value for the characteristic.text.;
   const factory MedicinalProductDefinitionCharacteristic({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -2822,8 +2755,8 @@ class MedicinalProductDefinitionCharacteristic
     Attachment? valueAttachment,
   }) = _MedicinalProductDefinitionCharacteristic;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'MedicinalProductDefinitionCharacteristic';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory MedicinalProductDefinitionCharacteristic.fromYaml(dynamic yaml) => yaml
@@ -2854,10 +2787,6 @@ class MedicinalProductDefinitionCharacteristic
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [PackagedProductDefinition] A medically related item or items, in a container or package.
@@ -3020,6 +2949,9 @@ class PackagedProductDefinition with Resource, _$PackagedProductDefinition {
     PackagedProductDefinitionPackage? package,
   }) = _PackagedProductDefinition;
 
+  @override
+  String get fhirType => 'PackagedProductDefinition';
+
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory PackagedProductDefinition.fromYaml(dynamic yaml) => yaml is String
       ? PackagedProductDefinition.fromJson(
@@ -3055,7 +2987,7 @@ class PackagedProductDefinition with Resource, _$PackagedProductDefinition {
 
 @freezed
 class PackagedProductDefinitionLegalStatusOfSupply
-    with _$PackagedProductDefinitionLegalStatusOfSupply {
+    with BackboneType, _$PackagedProductDefinitionLegalStatusOfSupply {
   const PackagedProductDefinitionLegalStatusOfSupply._();
 
   /// [PackagedProductDefinitionLegalStatusOfSupply] A medically related item or items, in a container or package.
@@ -3074,7 +3006,7 @@ class PackagedProductDefinitionLegalStatusOfSupply
   /// [jurisdiction] The place where the legal status of supply applies. When not specified, this indicates it is unknown in this context.;
   const factory PackagedProductDefinitionLegalStatusOfSupply({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -3090,8 +3022,8 @@ class PackagedProductDefinitionLegalStatusOfSupply
     CodeableConcept? jurisdiction,
   }) = _PackagedProductDefinitionLegalStatusOfSupply;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'PackagedProductDefinitionLegalStatusOfSupply';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory PackagedProductDefinitionLegalStatusOfSupply.fromYaml(dynamic yaml) =>
@@ -3122,15 +3054,12 @@ class PackagedProductDefinitionLegalStatusOfSupply
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [PackagedProductDefinitionPackage] A medically related item or items, in a container or package.
 @freezed
-class PackagedProductDefinitionPackage with _$PackagedProductDefinitionPackage {
+class PackagedProductDefinitionPackage
+    with BackboneType, _$PackagedProductDefinitionPackage {
   /// [PackagedProductDefinitionPackage] A medically related item or items, in a container or package.
   const PackagedProductDefinitionPackage._();
 
@@ -3168,7 +3097,7 @@ class PackagedProductDefinitionPackage with _$PackagedProductDefinitionPackage {
   /// [package] Allows containers (and parts of containers) parwithin containers, still a single packaged product.  See also PackagedProductDefinition.package.containedItem.item(PackagedProductDefinition).;
   const factory PackagedProductDefinitionPackage({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -3211,8 +3140,8 @@ class PackagedProductDefinitionPackage with _$PackagedProductDefinitionPackage {
     List<PackagedProductDefinitionPackage>? package,
   }) = _PackagedProductDefinitionPackage;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'PackagedProductDefinitionPackage';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory PackagedProductDefinitionPackage.fromYaml(dynamic yaml) => yaml
@@ -3242,15 +3171,11 @@ class PackagedProductDefinitionPackage with _$PackagedProductDefinitionPackage {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 @freezed
 class PackagedProductDefinitionShelfLifeStorage
-    with _$PackagedProductDefinitionShelfLifeStorage {
+    with BackboneType, _$PackagedProductDefinitionShelfLifeStorage {
   const PackagedProductDefinitionShelfLifeStorage._();
 
   /// [PackagedProductDefinitionShelfLifeStorage] The shelf-life and storage information for a medicinal
@@ -3309,7 +3234,7 @@ class PackagedProductDefinitionShelfLifeStorage
   const factory PackagedProductDefinitionShelfLifeStorage({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of extensions
@@ -3368,8 +3293,8 @@ class PackagedProductDefinitionShelfLifeStorage
     List<CodeableConcept>? specialPrecautionsForStorage,
   }) = _PackagedProductDefinitionShelfLifeStorage;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'PackagedProductDefinitionShelfLifeStorage';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory PackagedProductDefinitionShelfLifeStorage.fromYaml(dynamic yaml) => yaml
@@ -3400,15 +3325,11 @@ class PackagedProductDefinitionShelfLifeStorage
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 @freezed
 class PackagedProductDefinitionProperty
-    with _$PackagedProductDefinitionProperty {
+    with BackboneType, _$PackagedProductDefinitionProperty {
   const PackagedProductDefinitionProperty._();
 
   /// [PackagedProductDefinitionProperty] A medically related item or items, in a container or package.
@@ -3439,7 +3360,7 @@ class PackagedProductDefinitionProperty
   /// [valueAttachment] A value for the characteristic.;
   const factory PackagedProductDefinitionProperty({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -3473,8 +3394,8 @@ class PackagedProductDefinitionProperty
     Attachment? valueAttachment,
   }) = _PackagedProductDefinitionProperty;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'PackagedProductDefinitionProperty';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory PackagedProductDefinitionProperty.fromYaml(dynamic yaml) => yaml
@@ -3504,15 +3425,11 @@ class PackagedProductDefinitionProperty
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 @freezed
 class PackagedProductDefinitionContainedItem
-    with _$PackagedProductDefinitionContainedItem {
+    with BackboneType, _$PackagedProductDefinitionContainedItem {
   const PackagedProductDefinitionContainedItem._();
 
   /// [PackagedProductDefinitionContainedItem] A medically related item or items, in a container or package.
@@ -3531,7 +3448,7 @@ class PackagedProductDefinitionContainedItem
   /// [amount] The number of this type of item within this packaging.;
   const factory PackagedProductDefinitionContainedItem({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -3547,8 +3464,8 @@ class PackagedProductDefinitionContainedItem
     Quantity? amount,
   }) = _PackagedProductDefinitionContainedItem;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'PackagedProductDefinitionContainedItem';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory PackagedProductDefinitionContainedItem.fromYaml(dynamic yaml) => yaml
@@ -3578,10 +3495,6 @@ class PackagedProductDefinitionContainedItem
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [RegulatedAuthorization] Regulatory approval, clearance or licencing related to a regulated product, treatment, facility or activity that is cited in a guidance, regulation, rule or legislative act. An example is Market Authorization relating to a Medicinal Product.
@@ -3732,6 +3645,9 @@ class RegulatedAuthorization with Resource, _$RegulatedAuthorization {
     @JsonKey(name: 'case') RegulatedAuthorizationCase? case_,
   }) = _RegulatedAuthorization;
 
+  @override
+  String get fhirType => 'RegulatedAuthorization';
+
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory RegulatedAuthorization.fromYaml(dynamic yaml) => yaml is String
       ? RegulatedAuthorization.fromJson(
@@ -3767,7 +3683,8 @@ class RegulatedAuthorization with Resource, _$RegulatedAuthorization {
 
 /// [RegulatedAuthorizationCase] Regulatory approval, clearance or licencing related to a regulated product, treatment, facility or activity that is cited in a guidance, regulation, rule or legislative act. An example is Market Authorization relating to a Medicinal Product.
 @freezed
-class RegulatedAuthorizationCase with _$RegulatedAuthorizationCase {
+class RegulatedAuthorizationCase
+    with BackboneType, _$RegulatedAuthorizationCase {
   /// [RegulatedAuthorizationCase] Regulatory approval, clearance or licencing related to a regulated product, treatment, facility or activity that is cited in a guidance, regulation, rule or legislative act. An example is Market Authorization relating to a Medicinal Product.
   const RegulatedAuthorizationCase._();
 
@@ -3797,7 +3714,7 @@ class RegulatedAuthorizationCase with _$RegulatedAuthorizationCase {
   /// [application] A regulatory submission from an organization to a regulator, as part of an assessing case. Multiple applications may occur over time, with more or different information to support or modify the submission or the authorization. The applications can be considered as steps within the longer running case or procedure for this authorization process.;
   const factory RegulatedAuthorizationCase({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -3828,8 +3745,8 @@ class RegulatedAuthorizationCase with _$RegulatedAuthorizationCase {
     List<RegulatedAuthorizationCase>? application,
   }) = _RegulatedAuthorizationCase;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'RegulatedAuthorizationCase';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory RegulatedAuthorizationCase.fromYaml(dynamic yaml) => yaml is String
@@ -3857,10 +3774,6 @@ class RegulatedAuthorizationCase with _$RegulatedAuthorizationCase {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [SubstanceDefinition] The detailed description of a substance, typically at a level beyond what is used for prescribing.
@@ -4036,6 +3949,9 @@ class SubstanceDefinition with Resource, _$SubstanceDefinition {
     SubstanceDefinitionSourceMaterial? sourceMaterial,
   }) = _SubstanceDefinition;
 
+  @override
+  String get fhirType => 'SubstanceDefinition';
+
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory SubstanceDefinition.fromYaml(dynamic yaml) => yaml is String
       ? SubstanceDefinition.fromJson(
@@ -4071,7 +3987,7 @@ class SubstanceDefinition with Resource, _$SubstanceDefinition {
 
 /// [SubstanceDefinitionMoiety] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 @freezed
-class SubstanceDefinitionMoiety with _$SubstanceDefinitionMoiety {
+class SubstanceDefinitionMoiety with BackboneType, _$SubstanceDefinitionMoiety {
   /// [SubstanceDefinitionMoiety] The detailed description of a substance, typically at a level beyond what is used for prescribing.
   const SubstanceDefinitionMoiety._();
 
@@ -4111,7 +4027,7 @@ class SubstanceDefinitionMoiety with _$SubstanceDefinitionMoiety {
   /// [measurementType] The measurement type of the quantitative value. In capturing the actual relative amounts of substances or molecular fragments it may be necessary to indicate whether the amount refers to, for example, a mole ratio or weight ratio.;
   const factory SubstanceDefinitionMoiety({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -4157,8 +4073,8 @@ class SubstanceDefinitionMoiety with _$SubstanceDefinitionMoiety {
     CodeableConcept? measurementType,
   }) = _SubstanceDefinitionMoiety;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'SubstanceDefinitionMoiety';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory SubstanceDefinitionMoiety.fromYaml(dynamic yaml) => yaml is String
@@ -4186,15 +4102,12 @@ class SubstanceDefinitionMoiety with _$SubstanceDefinitionMoiety {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [SubstanceDefinitionProperty] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 @freezed
-class SubstanceDefinitionProperty with _$SubstanceDefinitionProperty {
+class SubstanceDefinitionProperty
+    with BackboneType, _$SubstanceDefinitionProperty {
   /// [SubstanceDefinitionProperty] The detailed description of a substance, typically at a level beyond what is used for prescribing.
   const SubstanceDefinitionProperty._();
 
@@ -4226,7 +4139,7 @@ class SubstanceDefinitionProperty with _$SubstanceDefinitionProperty {
   /// [valueAttachment] A value for the property.;
   const factory SubstanceDefinitionProperty({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -4260,8 +4173,8 @@ class SubstanceDefinitionProperty with _$SubstanceDefinitionProperty {
     Attachment? valueAttachment,
   }) = _SubstanceDefinitionProperty;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'SubstanceDefinitionProperty';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory SubstanceDefinitionProperty.fromYaml(dynamic yaml) => yaml is String
@@ -4289,15 +4202,11 @@ class SubstanceDefinitionProperty with _$SubstanceDefinitionProperty {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 @freezed
 class SubstanceDefinitionMolecularWeight
-    with _$SubstanceDefinitionMolecularWeight {
+    with BackboneType, _$SubstanceDefinitionMolecularWeight {
   const SubstanceDefinitionMolecularWeight._();
 
   /// [SubstanceDefinitionMolecularWeight] The detailed description of a substance, typically at a level beyond what is used for prescribing.
@@ -4318,7 +4227,7 @@ class SubstanceDefinitionMolecularWeight
   /// [amount] Used to capture quantitative values for a variety of elements. If only limits are given, the arithmetic mean would be the average. If only a single definite value for a given element is given, it would be captured in this field.;
   const factory SubstanceDefinitionMolecularWeight({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -4337,8 +4246,8 @@ class SubstanceDefinitionMolecularWeight
     required Quantity amount,
   }) = _SubstanceDefinitionMolecularWeight;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'SubstanceDefinitionMolecularWeight';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory SubstanceDefinitionMolecularWeight.fromYaml(dynamic yaml) => yaml
@@ -4368,15 +4277,12 @@ class SubstanceDefinitionMolecularWeight
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [SubstanceDefinitionStructure] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 @freezed
-class SubstanceDefinitionStructure with _$SubstanceDefinitionStructure {
+class SubstanceDefinitionStructure
+    with BackboneType, _$SubstanceDefinitionStructure {
   /// [SubstanceDefinitionStructure] The detailed description of a substance, typically at a level beyond what is used for prescribing.
   const SubstanceDefinitionStructure._();
 
@@ -4412,7 +4318,7 @@ class SubstanceDefinitionStructure with _$SubstanceDefinitionStructure {
   /// [representation] A depiction of the structure or characterization of the substance.;
   const factory SubstanceDefinitionStructure({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -4453,8 +4359,8 @@ class SubstanceDefinitionStructure with _$SubstanceDefinitionStructure {
     List<SubstanceDefinitionRepresentation>? representation,
   }) = _SubstanceDefinitionStructure;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'SubstanceDefinitionStructure';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory SubstanceDefinitionStructure.fromYaml(dynamic yaml) => yaml is String
@@ -4482,15 +4388,11 @@ class SubstanceDefinitionStructure with _$SubstanceDefinitionStructure {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 @freezed
 class SubstanceDefinitionRepresentation
-    with _$SubstanceDefinitionRepresentation {
+    with BackboneType, _$SubstanceDefinitionRepresentation {
   const SubstanceDefinitionRepresentation._();
 
   /// [SubstanceDefinitionRepresentation] The detailed description of a substance, typically at a level beyond what is used for prescribing.
@@ -4515,7 +4417,7 @@ class SubstanceDefinitionRepresentation
   /// [document] An attached file with the structural representation or characterization e.g. a molecular structure graphic of the substance, a JCAMP or AnIML file.;
   const factory SubstanceDefinitionRepresentation({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -4540,8 +4442,8 @@ class SubstanceDefinitionRepresentation
     Reference? document,
   }) = _SubstanceDefinitionRepresentation;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'SubstanceDefinitionRepresentation';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory SubstanceDefinitionRepresentation.fromYaml(dynamic yaml) => yaml
@@ -4571,15 +4473,11 @@ class SubstanceDefinitionRepresentation
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [SubstanceDefinitionCode] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 @freezed
-class SubstanceDefinitionCode with _$SubstanceDefinitionCode {
+class SubstanceDefinitionCode with BackboneType, _$SubstanceDefinitionCode {
   /// [SubstanceDefinitionCode] The detailed description of a substance, typically at a level beyond what is used for prescribing.
   const SubstanceDefinitionCode._();
 
@@ -4607,7 +4505,7 @@ class SubstanceDefinitionCode with _$SubstanceDefinitionCode {
   /// [source] Supporting literature.;
   const factory SubstanceDefinitionCode({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -4635,8 +4533,8 @@ class SubstanceDefinitionCode with _$SubstanceDefinitionCode {
     List<Reference>? source,
   }) = _SubstanceDefinitionCode;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'SubstanceDefinitionCode';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory SubstanceDefinitionCode.fromYaml(dynamic yaml) => yaml is String
@@ -4664,15 +4562,11 @@ class SubstanceDefinitionCode with _$SubstanceDefinitionCode {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [SubstanceDefinitionName] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 @freezed
-class SubstanceDefinitionName with _$SubstanceDefinitionName {
+class SubstanceDefinitionName with BackboneType, _$SubstanceDefinitionName {
   /// [SubstanceDefinitionName] The detailed description of a substance, typically at a level beyond what is used for prescribing.
   const SubstanceDefinitionName._();
 
@@ -4714,7 +4608,7 @@ class SubstanceDefinitionName with _$SubstanceDefinitionName {
   /// [source] Supporting literature.;
   const factory SubstanceDefinitionName({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -4763,8 +4657,8 @@ class SubstanceDefinitionName with _$SubstanceDefinitionName {
     List<Reference>? source,
   }) = _SubstanceDefinitionName;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'SubstanceDefinitionName';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory SubstanceDefinitionName.fromYaml(dynamic yaml) => yaml is String
@@ -4792,15 +4686,12 @@ class SubstanceDefinitionName with _$SubstanceDefinitionName {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [SubstanceDefinitionOfficial] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 @freezed
-class SubstanceDefinitionOfficial with _$SubstanceDefinitionOfficial {
+class SubstanceDefinitionOfficial
+    with BackboneType, _$SubstanceDefinitionOfficial {
   /// [SubstanceDefinitionOfficial] The detailed description of a substance, typically at a level beyond what is used for prescribing.
   const SubstanceDefinitionOfficial._();
 
@@ -4824,7 +4715,7 @@ class SubstanceDefinitionOfficial with _$SubstanceDefinitionOfficial {
   /// [dateElement] (_date): Extensions for date;
   const factory SubstanceDefinitionOfficial({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -4846,8 +4737,8 @@ class SubstanceDefinitionOfficial with _$SubstanceDefinitionOfficial {
     @JsonKey(name: '_date') Element? dateElement,
   }) = _SubstanceDefinitionOfficial;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'SubstanceDefinitionOfficial';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory SubstanceDefinitionOfficial.fromYaml(dynamic yaml) => yaml is String
@@ -4875,15 +4766,12 @@ class SubstanceDefinitionOfficial with _$SubstanceDefinitionOfficial {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 /// [SubstanceDefinitionRelationship] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 @freezed
-class SubstanceDefinitionRelationship with _$SubstanceDefinitionRelationship {
+class SubstanceDefinitionRelationship
+    with BackboneType, _$SubstanceDefinitionRelationship {
   /// [SubstanceDefinitionRelationship] The detailed description of a substance, typically at a level beyond what is used for prescribing.
   const SubstanceDefinitionRelationship._();
 
@@ -4923,7 +4811,7 @@ class SubstanceDefinitionRelationship with _$SubstanceDefinitionRelationship {
   /// [source] Supporting literature.;
   const factory SubstanceDefinitionRelationship({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -4969,8 +4857,8 @@ class SubstanceDefinitionRelationship with _$SubstanceDefinitionRelationship {
     List<Reference>? source,
   }) = _SubstanceDefinitionRelationship;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'SubstanceDefinitionRelationship';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory SubstanceDefinitionRelationship.fromYaml(dynamic yaml) => yaml
@@ -4999,15 +4887,11 @@ class SubstanceDefinitionRelationship with _$SubstanceDefinitionRelationship {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
 
 @freezed
 class SubstanceDefinitionSourceMaterial
-    with _$SubstanceDefinitionSourceMaterial {
+    with BackboneType, _$SubstanceDefinitionSourceMaterial {
   const SubstanceDefinitionSourceMaterial._();
 
   /// [SubstanceDefinitionSourceMaterial] The detailed description of a substance, typically at a level beyond what is used for prescribing.
@@ -5032,7 +4916,7 @@ class SubstanceDefinitionSourceMaterial
   /// [countryOfOrigin] The country or countries where the material is harvested.;
   const factory SubstanceDefinitionSourceMaterial({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-    FhirId? id,
+    String? id,
 
     /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -5057,8 +4941,8 @@ class SubstanceDefinitionSourceMaterial
     List<CodeableConcept>? countryOfOrigin,
   }) = _SubstanceDefinitionSourceMaterial;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  @override
+  String get fhirType => 'SubstanceDefinitionSourceMaterial';
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
   factory SubstanceDefinitionSourceMaterial.fromYaml(dynamic yaml) => yaml
@@ -5088,8 +4972,4 @@ class SubstanceDefinitionSourceMaterial
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
-  String toJsonString() => jsonEncode(toJson());
 }
