@@ -128,7 +128,6 @@ ParserList parseFhirPath(String pathExpression) {
 ///
 /// All parameters have the same meaning as for [walkFhirPath].
 List<dynamic> executeFhirPath({
-  ///
   required dynamic context,
   required ParserList parsedFhirPath,
   required String pathExpression,
@@ -161,7 +160,9 @@ List<dynamic> executeFhirPath({
     if (parsedFhirPath.isEmpty) {
       return <dynamic>[];
     } else {
-      return parsedFhirPath.execute(<dynamic>[context], passedEnvironment);
+      return parsedFhirPath.execute(
+          context is List ? <dynamic>[...context] : <dynamic>[context],
+          passedEnvironment);
     }
   } catch (error) {
     if (error is FhirPathException) {
@@ -176,19 +177,6 @@ List<dynamic> executeFhirPath({
       );
     }
   }
-}
-
-List<dynamic> dstu2WalkFhirPath(
-  Resource? resource,
-  String pathExpression, [
-  Map<String, dynamic>? environment,
-]) {
-  final Map<String, dynamic>? resourceJson = resource?.toJson();
-  return walkFhirPath(
-    context: resourceJson,
-    pathExpression: pathExpression,
-    environment: environment,
-  );
 }
 
 extension FhirPathResourceExtension on Map<String, dynamic> {
