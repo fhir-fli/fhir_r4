@@ -1,0 +1,130 @@
+/// /// [Dosage] Indicates how the medication is/was taken or should be taken
+/// by the patient.
+
+@freezed
+class Dosage with _$Dosage {
+  const Dosage._();
+
+  const factory Dosage({
+/// /// [id] Unique id for the element within a resource (for internal
+/// references). This may be any string value that does not contain spaces.
+
+    @JsonKey(name: 'id') String? id,
+/// /// [extension] May be used to represent additional information that is not
+/// part of the basic definition of the element. To make the use of extensions
+/// safe and managable, there is a strict set of governance applied to the
+/// definition and use of extensions. Though any implementer can define an
+/// extension, there is a set of requirements that SHALL be met as part of the
+/// definition of the extension.
+
+    @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
+/// /// [modifierExtension] May be used to represent additional information
+/// that is not part of the basic definition of the element and that modifies
+/// the understanding of the element in which it is contained and/or the
+/// understanding of the containing element's descendants. Usually modifier
+/// elements provide negation or qualification. To make the use of extensions
+/// safe and managable, there is a strict set of governance applied to the
+/// definition and use of extensions. Though any implementer can define an
+/// extension, there is a set of requirements that SHALL be met as part of the
+/// definition of the extension. Applications processing a resource are
+/// required to check for modifier extensions.
+
+Modifier extensions SHALL NOT
+/// change the meaning of any elements on Resource or DomainResource (including
+/// cannot change the meaning of modifierExtension itself).
+
+    @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
+/// /// [sequence] Indicates the order in which the dosage instructions should
+/// be applied or interpreted.
+
+    @JsonKey(name: 'sequence') FhirInteger? sequence,
+/// /// [_sequence] Extensions for sequence
+
+    @JsonKey(name: '_sequence') FhirElement? sequenceElement,
+/// /// [text] Free text dosage instructions e.g. SIG.
+
+    @JsonKey(name: 'text') String? text,
+/// /// [_text] Extensions for text
+
+    @JsonKey(name: '_text') FhirElement? textElement,
+/// /// [additionalInstruction] Supplemental instructions to the patient on how
+/// to take the medication  (e.g. "with meals" or"take half to one hour before
+/// food") or warnings for the patient about the medication (e.g. "may cause
+/// drowsiness" or "avoid exposure of skin to direct sunlight or sunlamps").
+
+    @JsonKey(name: 'additionalInstruction') List<List<CodeableConcept>>? additionalInstruction,
+/// /// [patientInstruction] Instructions in terms that are understood by the
+/// patient or consumer.
+
+    @JsonKey(name: 'patientInstruction') String? patientInstruction,
+/// /// [_patientInstruction] Extensions for patientInstruction
+
+    @JsonKey(name: '_patientInstruction') FhirElement? patientInstructionElement,
+/// /// [timing] When medication should be administered.
+
+    @JsonKey(name: 'timing') Timing? timing,
+/// /// [asNeeded] Indicates whether the Medication is only taken when needed
+/// within a specific dosing schedule (Boolean option).
+
+    @JsonKey(name: 'asNeeded') FhirBoolean? asNeeded,
+/// /// [_asNeeded] Extensions for asNeeded
+
+    @JsonKey(name: '_asNeeded') FhirElement? asNeededElement,
+/// /// [asNeededFor] Indicates whether the Medication is only taken based on a
+/// precondition for taking the Medication (CodeableConcept).
+
+    @JsonKey(name: 'asNeededFor') List<List<CodeableConcept>>? asNeededFor,
+/// /// [site] Body site to administer to.
+
+    @JsonKey(name: 'site') CodeableConcept? site,
+/// /// [route] How drug should enter body.
+
+    @JsonKey(name: 'route') CodeableConcept? route,
+/// /// [method] Technique for administering medication.
+
+    @JsonKey(name: 'method') CodeableConcept? method,
+/// /// [doseAndRate] Depending on the resource,this is the amount of
+/// medication administered, to  be administered or typical amount to be
+/// administered.
+
+    @JsonKey(name: 'doseAndRate') List<List<Dosage_DoseAndRate>>? doseAndRate,
+/// /// [maxDosePerPeriod] Upper limit on medication per unit of time.
+
+    @JsonKey(name: 'maxDosePerPeriod') List<List<Ratio>>? maxDosePerPeriod,
+/// /// [maxDosePerAdministration] Upper limit on medication per
+/// administration.
+
+    @JsonKey(name: 'maxDosePerAdministration') Quantity? maxDosePerAdministration,
+/// /// [maxDosePerLifetime] Upper limit on medication per lifetime of the
+/// patient.
+
+    @JsonKey(name: 'maxDosePerLifetime') Quantity? maxDosePerLifetime,
+  }) = _$Dosage;
+
+  @override
+  String get fhirType => 'Dosage';
+
+  factory Dosage.fromJson(Map<String, dynamic> json) =>
+      _$DosageFromJson(json);
+
+  factory Dosage.fromYaml(dynamic yaml) => yaml is String
+      ? Dosage.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>)
+      : yaml is YamlMap
+          ? Dosage.fromJson(jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>)
+          : throw ArgumentError(
+              'Dosage cannot be constructed from input provided,'
+              ' it is neither a yaml string nor a yaml map.');
+
+  factory Dosage.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, dynamic>) {
+      return _$DosageFromJson(json);
+    } else {
+      throw FormatException('FormatException:\nYou passed $json\n'
+          'This does not properly decode to a Map<String,dynamic>.');
+    }
+  }
+  @override
+  String toJsonString() => jsonEncode(toJson());
+}

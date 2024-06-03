@@ -1,0 +1,79 @@
+/// /// [VerificationResult_Validator] Describes validation requirements,
+/// source(s), status and dates for one or more elements.
+
+@freezed
+class VerificationResult_Validator with _$VerificationResult_Validator {
+  const VerificationResult_Validator._();
+
+  const factory VerificationResult_Validator({
+/// /// [id] Unique id for the element within a resource (for internal
+/// references). This may be any string value that does not contain spaces.
+
+    @JsonKey(name: 'id') String? id,
+/// /// [extension] May be used to represent additional information that is not
+/// part of the basic definition of the element. To make the use of extensions
+/// safe and managable, there is a strict set of governance applied to the
+/// definition and use of extensions. Though any implementer can define an
+/// extension, there is a set of requirements that SHALL be met as part of the
+/// definition of the extension.
+
+    @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
+/// /// [modifierExtension] May be used to represent additional information
+/// that is not part of the basic definition of the element and that modifies
+/// the understanding of the element in which it is contained and/or the
+/// understanding of the containing element's descendants. Usually modifier
+/// elements provide negation or qualification. To make the use of extensions
+/// safe and managable, there is a strict set of governance applied to the
+/// definition and use of extensions. Though any implementer can define an
+/// extension, there is a set of requirements that SHALL be met as part of the
+/// definition of the extension. Applications processing a resource are
+/// required to check for modifier extensions.
+
+Modifier extensions SHALL NOT
+/// change the meaning of any elements on Resource or DomainResource (including
+/// cannot change the meaning of modifierExtension itself).
+
+    @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
+/// /// [organization] Reference to the organization validating information.
+
+    @JsonKey(name: 'organization') Reference? organization,
+/// /// [identityCertificate] A digital identity certificate associated with
+/// the validator.
+
+    @JsonKey(name: 'identityCertificate') String? identityCertificate,
+/// /// [_identityCertificate] Extensions for identityCertificate
+
+    @JsonKey(name: '_identityCertificate') FhirElement? identityCertificateElement,
+/// /// [attestationSignature] Signed assertion by the validator that they have
+/// validated the information.
+
+    @JsonKey(name: 'attestationSignature') Signature? attestationSignature,
+  }) = _$VerificationResult_Validator;
+
+  @override
+  String get fhirType => 'VerificationResult_Validator';
+
+  factory VerificationResult_Validator.fromJson(Map<String, dynamic> json) =>
+      _$VerificationResult_ValidatorFromJson(json);
+
+  factory VerificationResult_Validator.fromYaml(dynamic yaml) => yaml is String
+      ? VerificationResult_Validator.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>)
+      : yaml is YamlMap
+          ? VerificationResult_Validator.fromJson(jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>)
+          : throw ArgumentError(
+              'VerificationResult_Validator cannot be constructed from input provided,'
+              ' it is neither a yaml string nor a yaml map.');
+
+  factory VerificationResult_Validator.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, dynamic>) {
+      return _$VerificationResult_ValidatorFromJson(json);
+    } else {
+      throw FormatException('FormatException:\nYou passed $json\n'
+          'This does not properly decode to a Map<String,dynamic>.');
+    }
+  }
+  @override
+  String toJsonString() => jsonEncode(toJson());
+}

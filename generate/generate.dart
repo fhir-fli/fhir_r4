@@ -1,162 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-const Map<String, String> primitiveTypes = <String, String>{
-  'string': 'String',
-  'base64Binary': 'FhirBase64Binary',
-  'boolean': 'FhirBoolean',
-  'canonical': 'FhirCanonical',
-  'code': 'FhirCode',
-  'date': 'FhirDate',
-  'decimal': 'FhirDecimal',
-  'dateTime': 'FhirDateTime',
-  'uri': 'FhirUri',
-  'url': 'FhirUrl',
-  'id': 'FhirId',
-  'instant': 'FhirInstant',
-  'integer': 'FhirInteger',
-  'integer64': 'FhirInteger64',
-  'markdown': 'FhirMarkdown',
-  'oid': 'FhirOid',
-  'positiveInt': 'FhirPositiveInt',
-  'time': 'FhirTime',
-  'unsignedInt': 'FhirUnsignedInt',
-  'uuid': 'FhirUuid',
-  'Duration': 'FhirDuration',
-  'xhtml': 'FhirXhtml',
-  'Meta': 'FhirMeta',
-  'Expression': 'FhirExpression',
-  'Element': 'FhirElement',
-  'Extension': 'FhirExtension',
-  'Period': 'Period',
-  'Reference': 'Reference',
-  'Address': 'Address',
-  'Age': 'Age',
-  'Annotation': 'Annotation',
-  'Attachment': 'Attachment',
-  'CodeableConcept': 'CodeableConcept',
-  'CodeableReference': 'CodeableReference',
-  'Coding': 'Coding',
-  'ContactPoint': 'ContactPoint',
-  'Count': 'Count',
-  'Distance': 'Distance',
-  'HumanName': 'HumanName',
-  'Identifier': 'Identifier',
-  'Money': 'Money',
-  'Quantity': 'Quantity',
-  'Range': 'Range',
-  'Ratio': 'Ratio',
-  'RatioRange': 'RatioRange',
-  'SampledData': 'SampledData',
-  'Signature': 'Signature',
-  'Timing': 'Timing',
-  'ContactDetail': 'ContactDetail',
-  'DataRequirement': 'DataRequirement',
-  'ParameterDefinition': 'ParameterDefinition',
-  'RelatedArtifact': 'RelatedArtifact',
-  'TriggerDefinition': 'TriggerDefinition',
-  'UsageContext': 'UsageContext',
-  'Availability': 'Availability',
-  'ExtendedContactDetail': 'ExtendedContactDetail',
-  'Dosage': 'Dosage',
-};
-
-const Map<String, String> allTypes = <String, String>{
-  'base64Binary': 'primitive_types',
-  'boolean': 'primitive_types',
-  'canonical': 'primitive_types',
-  'code': 'primitive_types',
-  'date': 'primitive_types',
-  'dateTime': 'primitive_types',
-  'decimal': 'primitive_types',
-  'id': 'primitive_types',
-  'instant': 'primitive_types',
-  'integer': 'primitive_types',
-  'integer64': 'primitive_types',
-  'markdown': 'primitive_types',
-  'oid': 'primitive_types',
-  'positiveInt': 'primitive_types',
-  'string': 'primitive_types',
-  'time': 'primitive_types',
-  'unsignedInt': 'primitive_types',
-  'uri': 'primitive_types',
-  'url': 'primitive_types',
-  'uuid': 'primitive_types',
-  'xhtml': 'primitive_types',
-  'Element': 'basic_types',
-  'DataType': 'abstract_types',
-  'PrimitiveType': 'abstract_types',
-  'BackboneType': 'abstract_types',
-  'Extension': 'basic_types',
-  'Address': 'general_types',
-  'Age': 'general_types',
-  'Annotation': 'general_types',
-  'Attachment': 'general_types',
-  'Availability': 'metadata_types',
-  'Base': 'abstract_types',
-  'CodeableConcept': 'general_types',
-  'CodeableReference': 'special_types',
-  'Coding': 'general_types',
-  'ContactDetail': 'metadata_types',
-  'ContactPoint': 'general_types',
-  'Contributor': 'metadata_types',
-  'Count': 'general_types',
-  'DataRequirement': 'metadata_types',
-  'Distance': 'general_types',
-  'Dosage': 'special_types',
-  'Duration': 'general_types',
-  'ElementDefinition': 'special_types',
-  'Expression': 'metadata_types',
-  'ExtendedContactDetail': 'metadata_types',
-  'HumanName': 'general_types',
-  'Identifier': 'general_types',
-  'MarketingStatus': 'draft_types',
-  'Meta': 'special_types',
-  'Money': 'general_types',
-  'MonetaryComponent': 'metadata_types',
-  'Narrative': 'special_types',
-  'ParameterDefinition': 'metadata_types',
-  'Period': 'general_types',
-  'Quantity': 'general_types',
-  'Range': 'general_types',
-  'Ratio': 'general_types',
-  'RatioRange': 'general_types',
-  'Reference': 'special_types',
-  'RelatedArtifact': 'metadata_types',
-  'SampledData': 'general_types',
-  'Signature': 'general_types',
-  'Timing': 'general_types',
-  'TriggerDefinition': 'metadata_types',
-  'UsageContext': 'metadata_types',
-  'VirtualServiceDetail': 'metadata_types',
-};
-
-const Map<String, String> resourceTypes = <String, String>{
-  'conformance': 'foundation',
-  'terminology': 'foundation',
-  'security': 'foundation',
-  'documents': 'foundation',
-  'other': 'foundation',
-  'individuals': 'base',
-  'entities1': 'base',
-  'entities2': 'base',
-  'workflow': 'base',
-  'management': 'base',
-  'summary': 'clinical',
-  'diagnostics': 'clinical',
-  'medications': 'clinical',
-  'care_provision': 'clinical',
-  'request_and_response': 'clinical',
-  'support': 'financial',
-  'billing': 'financial',
-  'payment': 'financial',
-  'general': 'financial',
-  'public_health_and_research': 'specialized',
-  'definitional_artifacts': 'specialized',
-  'evidence_based_medicine': 'specialized',
-  'quality_reporting_and_testing': 'specialized',
-  'medication_definition': 'specialized',
-};
+import 'fhir_maps.dart';
 
 void main() {
   // Load the JSON schema
@@ -169,33 +14,22 @@ void main() {
   final Map<String, dynamic> definitions =
       schema['definitions'] as Map<String, dynamic>;
 
+  final Map<String, String> parentDirectories = <String, String>{};
+
   definitions.forEach((String key, dynamic value) {
-    if (key == 'Extension') {
-      generateAndSaveClass(key, value as Map<String, dynamic>, true);
-    } else {
-      generateAndSaveClass(key, value as Map<String, dynamic>, false);
-    }
+    final String directory = determineDirectory(key, parentDirectories);
+    parentDirectories[key] = directory;
+    generateAndSaveClass(key, value as Map<String, dynamic>, directory);
   });
 }
 
 void generateAndSaveClass(
-    String key, Map<String, dynamic> definition, bool isExtension) {
-  String dartClass;
-  if (isExtension) {
-    dartClass = generateFhirExtensionClass(definition);
-  } else {
-    dartClass = generateClass(key, definition);
-  }
-
-  final String directory = determineDirectory(key);
+    String key, Map<String, dynamic> definition, String directory) {
+  final String dartClass = generateClass(key, definition);
   final File outputFile = File(
       'path_to_your_output_directory/$directory/${key.toLowerCase()}.dart');
   outputFile.createSync(recursive: true);
   outputFile.writeAsStringSync(dartClass);
-}
-
-String generateFhirExtensionClass(Map<String, dynamic> definition) {
-  // Implement the generation logic for FhirExtension
 }
 
 String generateClass(String className, Map<String, dynamic> definition) {
@@ -208,8 +42,7 @@ String generateClass(String className, Map<String, dynamic> definition) {
 
   buffer.writeln(formatComment('/// [$className] $description'));
   buffer.writeln('@freezed');
-  buffer.writeln(
-      'class $className with ${className.substring(0, 1).toUpperCase()}${className.substring(1).toLowerCase()} {');
+  buffer.writeln('class $className with _\$$className {');
   buffer.writeln('  const $className._();');
   buffer.writeln();
   buffer.writeln('  const factory $className({');
@@ -388,16 +221,25 @@ String formatComment(String comment) {
   return buffer.toString();
 }
 
-String determineDirectory(String typeName) {
+String determineDirectory(
+    String typeName, Map<String, String> parentDirectories) {
   // Check if it's a predefined type
   if (allTypes.containsKey(typeName)) {
     return allTypes[typeName]!;
   }
 
+  // Check if it's a subclass
+  for (final String parent in parentDirectories.keys) {
+    if (typeName.startsWith(parent) && typeName != parent) {
+      return parentDirectories[parent]!;
+    }
+  }
+
   // Check if it's a resource type
-  final String? resourceType = resourceTypes[typeName];
-  if (resourceType != null) {
-    return 'resource_types/$resourceType';
+  for (final String resourceType in resourceTypes.keys) {
+    if (typeName.startsWith(resourceType)) {
+      return 'resource_types/${resourceTypes[resourceType]}';
+    }
   }
 
   // Default directory if no match found
