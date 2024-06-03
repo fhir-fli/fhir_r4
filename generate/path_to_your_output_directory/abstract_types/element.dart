@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:fhir_primitives/fhir_primitives.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,15 +8,17 @@ import '../../r4.dart';
 
 /// [Element] Base definition for all FHIR elements.
 @JsonSerializable()
-abstract class Element extends Base {
+abstract class Element extends FhirBase {
   String? get id;
   List<FhirExtension>? get extension_;
 
+  @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
         'extension': extension_,
       };
 
+  @override
   String toYaml() => json2yaml(toJson());
 
   static Element fromYaml(dynamic yaml) => yaml is String
@@ -42,6 +45,5 @@ abstract class Element extends Base {
     }
   }
 
-  @override
   String toJsonString() => jsonEncode(toJson());
 }

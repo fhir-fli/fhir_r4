@@ -23,7 +23,7 @@ const Map<String, String> primitiveTypes = <String, String>{
   'xhtml': 'FhirXhtml',
   'Meta': 'FhirMeta',
   'Expression': 'FhirExpression',
-  'Element': 'FhirElement',
+  'Element': 'PrimitiveElement',
   'Extension': 'FhirExtension',
   'Period': 'Period',
   'Reference': 'Reference',

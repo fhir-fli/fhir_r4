@@ -17,6 +17,9 @@ void main() {
   final Map<String, String> parentDirectories = <String, String>{};
 
   definitions.forEach((String key, dynamic value) {
+    // Skip abstract types and only generate the FhirExtension class
+    if (allTypes[key] == 'abstract_types' || key != 'Extension') return;
+
     final String directory = determineDirectory(key, parentDirectories);
     parentDirectories[key] = directory;
     generateAndSaveClass(key, value as Map<String, dynamic>, directory);
@@ -25,9 +28,13 @@ void main() {
 
 void generateAndSaveClass(
     String key, Map<String, dynamic> definition, String directory) {
-  final String dartClass = generateClass(key, definition);
-  final File outputFile = File(
-      'path_to_your_output_directory/$directory/${key.toLowerCase()}.dart');
+  String dartClass = generateClass(key, definition);
+  dartClass = dartClass.replaceFirst(
+      '/// [FhirExtension] Optional Extension Element - found in all resources.\n',
+      '');
+  dartClass = dartClass.replaceAll('/// ///', '///');
+  final File outputFile =
+      File('path_to_your_output_directory/$directory/fhir_extension.dart');
   outputFile.createSync(recursive: true);
   outputFile.writeAsStringSync(dartClass);
 }
@@ -39,6 +46,15 @@ String generateClass(String className, Map<String, dynamic> definition) {
       definition['description']?.toString() ?? 'No description available';
   final Map<String, dynamic>? properties =
       definition['properties'] as Map<String, dynamic>?;
+
+  // Rename Extension to FhirExtension
+  className = className == 'Extension' ? 'FhirExtension' : className;
+
+  // Add imports
+  buffer.writeln("import 'package:fhir_primitives/fhir_primitives.dart';");
+  buffer
+      .writeln("import 'package:freezed_annotation/freezed_annotation.dart';");
+  buffer.writeln("import '../../r4.dart';");
 
   buffer.writeln(formatComment('/// [$className] $description'));
   buffer.writeln('@freezed');
@@ -118,13 +134,6 @@ String determineType(String key, Map<String, dynamic> value) {
     return convertType(ref);
   }
 
-  value.forEach((String key, value) {
-    if (key.toLowerCase().contains('instant') ||
-        value.toString().toLowerCase().contains('instant')) {
-      print('key: $key, value: $value');
-    }
-  });
-
   if (type == 'string') {
     switch (pattern) {
       case r'^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}\u003d\u003d|[A-Za-z0-9+/]{3}\u003d)?$':
@@ -202,7 +211,8 @@ String determineType(String key, Map<String, dynamic> value) {
 }
 
 String convertType(String ref) {
-  return primitiveTypes[ref] ?? ref;
+  // Rename Extension to FhirExtension in type conversion
+  return ref == 'Extension' ? 'FhirExtension' : primitiveTypes[ref] ?? ref;
 }
 
 String formatComment(String comment) {
