@@ -1,4 +1,7 @@
-/// /// [Citation_PublicationForm] The Citation Resource enables reference to
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Citation_PublicationForm] The Citation Resource enables reference to
 /// any knowledge artifact for purposes of identification and attribution. The
 /// Citation Resource supports existing reference structures and developing
 /// publication practices such as versioning, expressing complex
@@ -9,11 +12,11 @@ class Citation_PublicationForm with _$Citation_PublicationForm {
   const Citation_PublicationForm._();
 
   const factory Citation_PublicationForm({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -21,7 +24,7 @@ class Citation_PublicationForm with _$Citation_PublicationForm {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -37,11 +40,11 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [publishedIn] The collection the cited article or artifact is published
+/// [publishedIn] The collection the cited article or artifact is published
 /// in.
 
     @JsonKey(name: 'publishedIn') Citation_PublishedIn? publishedIn,
-/// /// [citedMedium] Describes the form of the medium cited. Common codes are
+/// [citedMedium] Describes the form of the medium cited. Common codes are
 /// "Internet" or "Print". The CitedMedium value set has 6 codes. The codes
 /// internet, print, and offline-digital-storage are the common codes for a
 /// typical publication form, though internet and print are more common for
@@ -53,89 +56,89 @@ Modifier extensions SHALL NOT
 /// publication form not associated with the issue.
 
     @JsonKey(name: 'citedMedium') CodeableConcept? citedMedium,
-/// /// [volume] Volume number of journal or other collection in which the
+/// [volume] Volume number of journal or other collection in which the
 /// article is published.
 
     @JsonKey(name: 'volume') String? volume,
-/// /// [_volume] Extensions for volume
+/// [_volume] Extensions for volume
 
-    @JsonKey(name: '_volume') FhirElement? volumeElement,
-/// /// [issue] Issue, part or supplement of journal or other collection in
+    @JsonKey(name: '_volume') PrimitiveElement? volumeElement,
+/// [issue] Issue, part or supplement of journal or other collection in
 /// which the article is published.
 
     @JsonKey(name: 'issue') String? issue,
-/// /// [_issue] Extensions for issue
+/// [_issue] Extensions for issue
 
-    @JsonKey(name: '_issue') FhirElement? issueElement,
-/// /// [articleDate] The date the article was added to the database, or the
+    @JsonKey(name: '_issue') PrimitiveElement? issueElement,
+/// [articleDate] The date the article was added to the database, or the
 /// date the article was released.
 
     @JsonKey(name: 'articleDate') FhirDateTime? articleDate,
-/// /// [_articleDate] Extensions for articleDate
+/// [_articleDate] Extensions for articleDate
 
-    @JsonKey(name: '_articleDate') FhirElement? articleDateElement,
-/// /// [publicationDateText] Text representation of the date on which the
+    @JsonKey(name: '_articleDate') PrimitiveElement? articleDateElement,
+/// [publicationDateText] Text representation of the date on which the
 /// issue of the cited artifact was published.
 
     @JsonKey(name: 'publicationDateText') String? publicationDateText,
-/// /// [_publicationDateText] Extensions for publicationDateText
+/// [_publicationDateText] Extensions for publicationDateText
 
-    @JsonKey(name: '_publicationDateText') FhirElement? publicationDateTextElement,
-/// /// [publicationDateSeason] Spring, Summer, Fall/Autumn, Winter.
+    @JsonKey(name: '_publicationDateText') PrimitiveElement? publicationDateTextElement,
+/// [publicationDateSeason] Spring, Summer, Fall/Autumn, Winter.
 
     @JsonKey(name: 'publicationDateSeason') String? publicationDateSeason,
-/// /// [_publicationDateSeason] Extensions for publicationDateSeason
+/// [_publicationDateSeason] Extensions for publicationDateSeason
 
-    @JsonKey(name: '_publicationDateSeason') FhirElement? publicationDateSeasonElement,
-/// /// [lastRevisionDate] The date the article was last revised or updated in
+    @JsonKey(name: '_publicationDateSeason') PrimitiveElement? publicationDateSeasonElement,
+/// [lastRevisionDate] The date the article was last revised or updated in
 /// the database.
 
     @JsonKey(name: 'lastRevisionDate') FhirDateTime? lastRevisionDate,
-/// /// [_lastRevisionDate] Extensions for lastRevisionDate
+/// [_lastRevisionDate] Extensions for lastRevisionDate
 
-    @JsonKey(name: '_lastRevisionDate') FhirElement? lastRevisionDateElement,
-/// /// [language] The language or languages in which this form of the article
+    @JsonKey(name: '_lastRevisionDate') PrimitiveElement? lastRevisionDateElement,
+/// [language] The language or languages in which this form of the article
 /// is published.
 
     @JsonKey(name: 'language') List<List<CodeableConcept>>? language,
-/// /// [accessionNumber] Entry number or identifier for inclusion in a
+/// [accessionNumber] Entry number or identifier for inclusion in a
 /// database.
 
     @JsonKey(name: 'accessionNumber') String? accessionNumber,
-/// /// [_accessionNumber] Extensions for accessionNumber
+/// [_accessionNumber] Extensions for accessionNumber
 
-    @JsonKey(name: '_accessionNumber') FhirElement? accessionNumberElement,
-/// /// [pageString] Used for full display of pagination.
+    @JsonKey(name: '_accessionNumber') PrimitiveElement? accessionNumberElement,
+/// [pageString] Used for full display of pagination.
 
     @JsonKey(name: 'pageString') String? pageString,
-/// /// [_pageString] Extensions for pageString
+/// [_pageString] Extensions for pageString
 
-    @JsonKey(name: '_pageString') FhirElement? pageStringElement,
-/// /// [firstPage] Used for isolated representation of first page.
+    @JsonKey(name: '_pageString') PrimitiveElement? pageStringElement,
+/// [firstPage] Used for isolated representation of first page.
 
     @JsonKey(name: 'firstPage') String? firstPage,
-/// /// [_firstPage] Extensions for firstPage
+/// [_firstPage] Extensions for firstPage
 
-    @JsonKey(name: '_firstPage') FhirElement? firstPageElement,
-/// /// [lastPage] Used for isolated representation of last page.
+    @JsonKey(name: '_firstPage') PrimitiveElement? firstPageElement,
+/// [lastPage] Used for isolated representation of last page.
 
     @JsonKey(name: 'lastPage') String? lastPage,
-/// /// [_lastPage] Extensions for lastPage
+/// [_lastPage] Extensions for lastPage
 
-    @JsonKey(name: '_lastPage') FhirElement? lastPageElement,
-/// /// [pageCount] Actual or approximate number of pages or screens. Distinct
+    @JsonKey(name: '_lastPage') PrimitiveElement? lastPageElement,
+/// [pageCount] Actual or approximate number of pages or screens. Distinct
 /// from reporting the page numbers.
 
     @JsonKey(name: 'pageCount') String? pageCount,
-/// /// [_pageCount] Extensions for pageCount
+/// [_pageCount] Extensions for pageCount
 
-    @JsonKey(name: '_pageCount') FhirElement? pageCountElement,
-/// /// [copyright] Copyright notice for the full article or artifact.
+    @JsonKey(name: '_pageCount') PrimitiveElement? pageCountElement,
+/// [copyright] Copyright notice for the full article or artifact.
 
     @JsonKey(name: 'copyright') FhirMarkdown? copyright,
-/// /// [_copyright] Extensions for copyright
+/// [_copyright] Extensions for copyright
 
-    @JsonKey(name: '_copyright') FhirElement? copyrightElement,
+    @JsonKey(name: '_copyright') PrimitiveElement? copyrightElement,
   }) = _$Citation_PublicationForm;
 
   @override

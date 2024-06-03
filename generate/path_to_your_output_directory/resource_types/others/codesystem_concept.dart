@@ -1,4 +1,7 @@
-/// /// [CodeSystem_Concept] The CodeSystem resource is used to declare the
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [CodeSystem_Concept] The CodeSystem resource is used to declare the
 /// existence of and describe a code system or code system supplement and its
 /// key properties, and optionally define a part or all of its content.
 
@@ -7,11 +10,11 @@ class CodeSystem_Concept with _$CodeSystem_Concept {
   const CodeSystem_Concept._();
 
   const factory CodeSystem_Concept({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -19,7 +22,7 @@ class CodeSystem_Concept with _$CodeSystem_Concept {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -35,38 +38,38 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [code] A code - a text symbol - that uniquely identifies the concept
+/// [code] A code - a text symbol - that uniquely identifies the concept
 /// within the code system.
 
     @JsonKey(name: 'code') FhirCode? code,
-/// /// [_code] Extensions for code
+/// [_code] Extensions for code
 
-    @JsonKey(name: '_code') FhirElement? codeElement,
-/// /// [display] A human readable string that is the recommended default way
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
+/// [display] A human readable string that is the recommended default way
 /// to present this concept to a user.
 
     @JsonKey(name: 'display') String? display,
-/// /// [_display] Extensions for display
+/// [_display] Extensions for display
 
-    @JsonKey(name: '_display') FhirElement? displayElement,
-/// /// [definition] The formal definition of the concept. The code system
+    @JsonKey(name: '_display') PrimitiveElement? displayElement,
+/// [definition] The formal definition of the concept. The code system
 /// resource does not make formal definitions required, because of the
 /// prevalence of legacy systems. However, they are highly recommended, as
 /// without them there is no formal meaning associated with the concept.
 
     @JsonKey(name: 'definition') String? definition,
-/// /// [_definition] Extensions for definition
+/// [_definition] Extensions for definition
 
-    @JsonKey(name: '_definition') FhirElement? definitionElement,
-/// /// [designation] Additional representations for the concept - other
+    @JsonKey(name: '_definition') PrimitiveElement? definitionElement,
+/// [designation] Additional representations for the concept - other
 /// languages, aliases, specialized purposes, used for particular purposes,
 /// etc.
 
     @JsonKey(name: 'designation') List<List<CodeSystem_Designation>>? designation,
-/// /// [property] A property value for this concept.
+/// [property] A property value for this concept.
 
     @JsonKey(name: 'property') List<List<CodeSystem_Property1>>? property,
-/// /// [concept] Defines children of a concept to produce a hierarchy of
+/// [concept] Defines children of a concept to produce a hierarchy of
 /// concepts. The nature of the relationships is variable
 /// (is-a/contains/categorizes) - see hierarchyMeaning.
 

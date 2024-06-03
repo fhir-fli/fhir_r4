@@ -1,4 +1,7 @@
-/// /// [Provenance_Entity] Provenance of a resource is a record that describes
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Provenance_Entity] Provenance of a resource is a record that describes
 /// entities and processes involved in producing and delivering or otherwise
 /// influencing that resource. Provenance provides a critical foundation for
 /// assessing authenticity, enabling trust, and allowing reproducibility.
@@ -14,11 +17,11 @@ class Provenance_Entity with _$Provenance_Entity {
   const Provenance_Entity._();
 
   const factory Provenance_Entity({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -26,7 +29,7 @@ class Provenance_Entity with _$Provenance_Entity {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -42,17 +45,17 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [role] How the entity was used during the activity.
+/// [role] How the entity was used during the activity.
 
     @JsonKey(name: 'role') FhirCode? role,
-/// /// [_role] Extensions for role
+/// [_role] Extensions for role
 
-    @JsonKey(name: '_role') FhirElement? roleElement,
-/// /// [what] Identity of the  Entity used. May be a logical or physical uri
+    @JsonKey(name: '_role') PrimitiveElement? roleElement,
+/// [what] Identity of the  Entity used. May be a logical or physical uri
 /// and maybe absolute or relative.
 
     @JsonKey(name: 'what') Reference? what,
-/// /// [agent] The entity is attributed to an agent to express the agent's
+/// [agent] The entity is attributed to an agent to express the agent's
 /// responsibility for that entity, possibly along with other agents. This
 /// description can be understood as shorthand for saying that the agent was
 /// responsible for the activity which used the entity.

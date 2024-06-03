@@ -1,4 +1,7 @@
-/// /// [Person_Link] Demographics and administrative information about a
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Person_Link] Demographics and administrative information about a
 /// person independent of a specific health-related context.
 
 @freezed
@@ -6,11 +9,11 @@ class Person_Link with _$Person_Link {
   const Person_Link._();
 
   const factory Person_Link({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class Person_Link with _$Person_Link {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,16 +37,16 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [target] The resource to which this actual person is associated.
+/// [target] The resource to which this actual person is associated.
 
     @JsonKey(name: 'target') Reference? target,
-/// /// [assurance] Level of assurance that this link is associated with the
+/// [assurance] Level of assurance that this link is associated with the
 /// target resource.
 
     @JsonKey(name: 'assurance') FhirCode? assurance,
-/// /// [_assurance] Extensions for assurance
+/// [_assurance] Extensions for assurance
 
-    @JsonKey(name: '_assurance') FhirElement? assuranceElement,
+    @JsonKey(name: '_assurance') PrimitiveElement? assuranceElement,
   }) = _$Person_Link;
 
   @override

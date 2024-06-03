@@ -1,4 +1,7 @@
-/// /// [Citation_Summary1] The Citation Resource enables reference to any
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Citation_Summary1] The Citation Resource enables reference to any
 /// knowledge artifact for purposes of identification and attribution. The
 /// Citation Resource supports existing reference structures and developing
 /// publication practices such as versioning, expressing complex
@@ -9,11 +12,11 @@ class Citation_Summary1 with _$Citation_Summary1 {
   const Citation_Summary1._();
 
   const factory Citation_Summary1({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -21,7 +24,7 @@ class Citation_Summary1 with _$Citation_Summary1 {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -37,25 +40,25 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [type] Used most commonly to express an author list or a
+/// [type] Used most commonly to express an author list or a
 /// contributorship statement.
 
     @JsonKey(name: 'type') CodeableConcept? type,
-/// /// [style] The format for the display string, such as author last name
+/// [style] The format for the display string, such as author last name
 /// with first letter capitalized followed by forename initials.
 
     @JsonKey(name: 'style') CodeableConcept? style,
-/// /// [source] Used to code the producer or rule for creating the display
+/// [source] Used to code the producer or rule for creating the display
 /// string.
 
     @JsonKey(name: 'source') CodeableConcept? source,
-/// /// [value] The display string for the author list, contributor list, or
+/// [value] The display string for the author list, contributor list, or
 /// contributorship statement.
 
     @JsonKey(name: 'value') FhirMarkdown? value,
-/// /// [_value] Extensions for value
+/// [_value] Extensions for value
 
-    @JsonKey(name: '_value') FhirElement? valueElement,
+    @JsonKey(name: '_value') PrimitiveElement? valueElement,
   }) = _$Citation_Summary1;
 
   @override

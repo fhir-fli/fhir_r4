@@ -1,4 +1,7 @@
-/// /// [TestScript_Variable] A structured set of tests against a FHIR server
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [TestScript_Variable] A structured set of tests against a FHIR server
 /// or client implementation to determine compliance against the FHIR
 /// specification.
 
@@ -7,11 +10,11 @@ class TestScript_Variable with _$TestScript_Variable {
   const TestScript_Variable._();
 
   const factory TestScript_Variable({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -19,7 +22,7 @@ class TestScript_Variable with _$TestScript_Variable {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -35,63 +38,63 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [name] Descriptive name for this variable.
+/// [name] Descriptive name for this variable.
 
     @JsonKey(name: 'name') String? name,
-/// /// [_name] Extensions for name
+/// [_name] Extensions for name
 
-    @JsonKey(name: '_name') FhirElement? nameElement,
-/// /// [defaultValue] A default, hard-coded, or user-defined value for this
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
+/// [defaultValue] A default, hard-coded, or user-defined value for this
 /// variable.
 
     @JsonKey(name: 'defaultValue') String? defaultValue,
-/// /// [_defaultValue] Extensions for defaultValue
+/// [_defaultValue] Extensions for defaultValue
 
-    @JsonKey(name: '_defaultValue') FhirElement? defaultValueElement,
-/// /// [description] A free text natural language description of the variable
+    @JsonKey(name: '_defaultValue') PrimitiveElement? defaultValueElement,
+/// [description] A free text natural language description of the variable
 /// and its purpose.
 
     @JsonKey(name: 'description') String? description,
-/// /// [_description] Extensions for description
+/// [_description] Extensions for description
 
-    @JsonKey(name: '_description') FhirElement? descriptionElement,
-/// /// [expression] The FHIRPath expression for a specific value to evaluate
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
+/// [expression] The FHIRPath expression for a specific value to evaluate
 /// against the fixture body. When variables are defined, only one of either
 /// expression, headerField or path must be specified.
 
     @JsonKey(name: 'expression') String? expression,
-/// /// [_expression] Extensions for expression
+/// [_expression] Extensions for expression
 
-    @JsonKey(name: '_expression') FhirElement? expressionElement,
-/// /// [headerField] Will be used to grab the HTTP header field value from the
+    @JsonKey(name: '_expression') PrimitiveElement? expressionElement,
+/// [headerField] Will be used to grab the HTTP header field value from the
 /// headers that sourceId is pointing to.
 
     @JsonKey(name: 'headerField') String? headerField,
-/// /// [_headerField] Extensions for headerField
+/// [_headerField] Extensions for headerField
 
-    @JsonKey(name: '_headerField') FhirElement? headerFieldElement,
-/// /// [hint] Displayable text string with hint help information to the user
+    @JsonKey(name: '_headerField') PrimitiveElement? headerFieldElement,
+/// [hint] Displayable text string with hint help information to the user
 /// when entering a default value.
 
     @JsonKey(name: 'hint') String? hint,
-/// /// [_hint] Extensions for hint
+/// [_hint] Extensions for hint
 
-    @JsonKey(name: '_hint') FhirElement? hintElement,
-/// /// [path] XPath or JSONPath to evaluate against the fixture body.  When
+    @JsonKey(name: '_hint') PrimitiveElement? hintElement,
+/// [path] XPath or JSONPath to evaluate against the fixture body.  When
 /// variables are defined, only one of either expression, headerField or path
 /// must be specified.
 
     @JsonKey(name: 'path') String? path,
-/// /// [_path] Extensions for path
+/// [_path] Extensions for path
 
-    @JsonKey(name: '_path') FhirElement? pathElement,
-/// /// [sourceId] Fixture to evaluate the XPath/JSONPath expression or the
+    @JsonKey(name: '_path') PrimitiveElement? pathElement,
+/// [sourceId] Fixture to evaluate the XPath/JSONPath expression or the
 /// headerField  against within this variable.
 
     @JsonKey(name: 'sourceId') FhirId? sourceId,
-/// /// [_sourceId] Extensions for sourceId
+/// [_sourceId] Extensions for sourceId
 
-    @JsonKey(name: '_sourceId') FhirElement? sourceIdElement,
+    @JsonKey(name: '_sourceId') PrimitiveElement? sourceIdElement,
   }) = _$TestScript_Variable;
 
   @override

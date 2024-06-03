@@ -1,4 +1,7 @@
-/// /// [CapabilityStatement_SearchParam] A Capability Statement documents a
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [CapabilityStatement_SearchParam] A Capability Statement documents a
 /// set of capabilities (behaviors) of a FHIR Server or Client for a particular
 /// version of FHIR that may be used as a statement of actual server
 /// functionality or a statement of required or desired server implementation.
@@ -8,11 +11,11 @@ class CapabilityStatement_SearchParam with _$CapabilityStatement_SearchParam {
   const CapabilityStatement_SearchParam._();
 
   const factory CapabilityStatement_SearchParam({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -20,7 +23,7 @@ class CapabilityStatement_SearchParam with _$CapabilityStatement_SearchParam {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -36,7 +39,7 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [name] The label used for the search parameter in this particular
+/// [name] The label used for the search parameter in this particular
 /// system's API - i.e. the 'name' portion of the name-value pair that will
 /// appear as part of the search URL.  This SHOULD be the same as the
 /// SearchParameter.code of the defining SearchParameter.  However, it can
@@ -44,10 +47,10 @@ Modifier extensions SHALL NOT
 /// multiple SearchParameters that happen to share the same code.
 
     @JsonKey(name: 'name') String? name,
-/// /// [_name] Extensions for name
+/// [_name] Extensions for name
 
-    @JsonKey(name: '_name') FhirElement? nameElement,
-/// /// [definition] An absolute URI that is a formal reference to where this
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
+/// [definition] An absolute URI that is a formal reference to where this
 /// parameter was first defined, so that a client can be confident of the
 /// meaning of the search parameter (a reference to
 /// [SearchParameter.url](searchparameter-definitions.html#SearchParameter.url)).
@@ -56,21 +59,21 @@ Modifier extensions SHALL NOT
 /// defined IGs.
 
     @JsonKey(name: 'definition') FhirCanonical? definition,
-/// /// [type] The type of value a search parameter refers to, and how the
+/// [type] The type of value a search parameter refers to, and how the
 /// content is interpreted.
 
     @JsonKey(name: 'type') FhirCode? type,
-/// /// [_type] Extensions for type
+/// [_type] Extensions for type
 
-    @JsonKey(name: '_type') FhirElement? typeElement,
-/// /// [documentation] This allows documentation of any distinct behaviors
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
+/// [documentation] This allows documentation of any distinct behaviors
 /// about how the search parameter is used.  For example, text matching
 /// algorithms.
 
     @JsonKey(name: 'documentation') FhirMarkdown? documentation,
-/// /// [_documentation] Extensions for documentation
+/// [_documentation] Extensions for documentation
 
-    @JsonKey(name: '_documentation') FhirElement? documentationElement,
+    @JsonKey(name: '_documentation') PrimitiveElement? documentationElement,
   }) = _$CapabilityStatement_SearchParam;
 
   @override

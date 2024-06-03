@@ -1,4 +1,7 @@
-/// /// [MedicationKnowledge_Cost] Information about a medication that is used
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [MedicationKnowledge_Cost] Information about a medication that is used
 /// to support knowledge.
 
 @freezed
@@ -6,11 +9,11 @@ class MedicationKnowledge_Cost with _$MedicationKnowledge_Cost {
   const MedicationKnowledge_Cost._();
 
   const factory MedicationKnowledge_Cost({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class MedicationKnowledge_Cost with _$MedicationKnowledge_Cost {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,26 +37,26 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [effectiveDate] The date range for which the cost information of the
+/// [effectiveDate] The date range for which the cost information of the
 /// medication is effective.
 
     @JsonKey(name: 'effectiveDate') List<List<Period>>? effectiveDate,
-/// /// [type] The category of the cost information.  For example,
+/// [type] The category of the cost information.  For example,
 /// manufacturers' cost, patient cost, claim reimbursement cost, actual
 /// acquisition cost.
 
     @JsonKey(name: 'type') CodeableConcept? type,
-/// /// [source] The source or owner that assigns the price to the medication.
+/// [source] The source or owner that assigns the price to the medication.
 
     @JsonKey(name: 'source') String? source,
-/// /// [_source] Extensions for source
+/// [_source] Extensions for source
 
-    @JsonKey(name: '_source') FhirElement? sourceElement,
-/// /// [costMoney] The price or representation of the cost (for example, Band
+    @JsonKey(name: '_source') PrimitiveElement? sourceElement,
+/// [costMoney] The price or representation of the cost (for example, Band
 /// A, Band B or $, $$) of the medication.
 
     @JsonKey(name: 'costMoney') Money? costMoney,
-/// /// [costCodeableConcept] The price or representation of the cost (for
+/// [costCodeableConcept] The price or representation of the cost (for
 /// example, Band A, Band B or $, $$) of the medication.
 
     @JsonKey(name: 'costCodeableConcept') CodeableConcept? costCodeableConcept,

@@ -1,4 +1,7 @@
-/// /// [ImplementationGuide_Resource1] A set of rules of how a particular
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [ImplementationGuide_Resource1] A set of rules of how a particular
 /// interoperability or standards problem is solved - typically through the use
 /// of FHIR resources. This resource is used to gather all the parts of an
 /// implementation guide into a logical whole and to publish a computable
@@ -9,11 +12,11 @@ class ImplementationGuide_Resource1 with _$ImplementationGuide_Resource1 {
   const ImplementationGuide_Resource1._();
 
   const factory ImplementationGuide_Resource1({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -21,7 +24,7 @@ class ImplementationGuide_Resource1 with _$ImplementationGuide_Resource1 {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -37,26 +40,26 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [reference] Where this resource is found.
+/// [reference] Where this resource is found.
 
     @JsonKey(name: 'reference') Reference? reference,
-/// /// [isExample] If true, indicates the resource is an example instance.
+/// [isExample] If true, indicates the resource is an example instance.
 
     @JsonKey(name: 'isExample') FhirBoolean? isExample,
-/// /// [_isExample] Extensions for isExample
+/// [_isExample] Extensions for isExample
 
-    @JsonKey(name: '_isExample') FhirElement? isExampleElement,
-/// /// [profile] If present, indicates profile(s) the instance is valid
+    @JsonKey(name: '_isExample') PrimitiveElement? isExampleElement,
+/// [profile] If present, indicates profile(s) the instance is valid
 /// against.
 
     @JsonKey(name: 'profile') List<List<FhirCanonical>>? profile,
-/// /// [relativePath] The relative path for primary page for this resource
+/// [relativePath] The relative path for primary page for this resource
 /// within the IG.
 
     @JsonKey(name: 'relativePath') FhirUrl? relativePath,
-/// /// [_relativePath] Extensions for relativePath
+/// [_relativePath] Extensions for relativePath
 
-    @JsonKey(name: '_relativePath') FhirElement? relativePathElement,
+    @JsonKey(name: '_relativePath') PrimitiveElement? relativePathElement,
   }) = _$ImplementationGuide_Resource1;
 
   @override

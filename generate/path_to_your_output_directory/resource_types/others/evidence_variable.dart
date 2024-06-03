@@ -1,4 +1,7 @@
-/// /// [Evidence_Variable] The Evidence Resource provides a
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Evidence_Variable] The Evidence Resource provides a
 /// machine-interpretable expression of an evidence concept including the
 /// evidence variables (e.g., population, exposures/interventions, comparators,
 /// outcomes, measured variables, confounding variables), the statistics, and
@@ -9,11 +12,11 @@ class Evidence_Variable with _$Evidence_Variable {
   const Evidence_Variable._();
 
   const factory Evidence_Variable({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -21,7 +24,7 @@ class Evidence_Variable with _$Evidence_Variable {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -37,24 +40,24 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [variableDefinition] Description of the variable.
+/// [variableDefinition] Description of the variable.
 
     @JsonKey(name: 'variableDefinition') Reference? variableDefinition,
-/// /// [handling] How the variable is classified for use in adjusted analysis.
+/// [handling] How the variable is classified for use in adjusted analysis.
 
     @JsonKey(name: 'handling') FhirCode? handling,
-/// /// [_handling] Extensions for handling
+/// [_handling] Extensions for handling
 
-    @JsonKey(name: '_handling') FhirElement? handlingElement,
-/// /// [valueCategory] Description for grouping of ordinal or polychotomous
+    @JsonKey(name: '_handling') PrimitiveElement? handlingElement,
+/// [valueCategory] Description for grouping of ordinal or polychotomous
 /// variables.
 
     @JsonKey(name: 'valueCategory') List<List<CodeableConcept>>? valueCategory,
-/// /// [valueQuantity] Discrete value for grouping of ordinal or polychotomous
+/// [valueQuantity] Discrete value for grouping of ordinal or polychotomous
 /// variables.
 
     @JsonKey(name: 'valueQuantity') List<List<Quantity>>? valueQuantity,
-/// /// [valueRange] Range of values for grouping of ordinal or polychotomous
+/// [valueRange] Range of values for grouping of ordinal or polychotomous
 /// variables.
 
     @JsonKey(name: 'valueRange') List<List<Range>>? valueRange,

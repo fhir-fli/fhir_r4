@@ -1,4 +1,7 @@
-/// /// [MedicationRequest_DispenseRequest] An order or request for both supply
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [MedicationRequest_DispenseRequest] An order or request for both supply
 /// of the medication and the instructions for administration of the medication
 /// to a patient. The resource is called "MedicationRequest" rather than
 /// "MedicationPrescription" or "MedicationOrder" to generalize the use across
@@ -10,11 +13,11 @@ class MedicationRequest_DispenseRequest with _$MedicationRequest_DispenseRequest
   const MedicationRequest_DispenseRequest._();
 
   const factory MedicationRequest_DispenseRequest({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -22,7 +25,7 @@ class MedicationRequest_DispenseRequest with _$MedicationRequest_DispenseRequest
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -38,19 +41,19 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [initialFill] Indicates the quantity or duration for the first dispense
+/// [initialFill] Indicates the quantity or duration for the first dispense
 /// of the medication.
 
     @JsonKey(name: 'initialFill') MedicationRequest_InitialFill? initialFill,
-/// /// [dispenseInterval] The minimum period of time that must occur between
+/// [dispenseInterval] The minimum period of time that must occur between
 /// dispenses of the medication.
 
     @JsonKey(name: 'dispenseInterval') FhirDuration? dispenseInterval,
-/// /// [validityPeriod] This indicates the validity period of a prescription
+/// [validityPeriod] This indicates the validity period of a prescription
 /// (stale dating the Prescription).
 
     @JsonKey(name: 'validityPeriod') Period? validityPeriod,
-/// /// [numberOfRepeatsAllowed] An integer indicating the number of times, in
+/// [numberOfRepeatsAllowed] An integer indicating the number of times, in
 /// addition to the original dispense, (aka refills or repeats) that the
 /// patient can receive the prescribed medication. Usage Notes: This integer
 /// does not include the original order dispense. This means that if an order
@@ -60,26 +63,26 @@ Modifier extensions SHALL NOT
 /// after the initial dispense.
 
     @JsonKey(name: 'numberOfRepeatsAllowed') FhirUnsignedInt? numberOfRepeatsAllowed,
-/// /// [_numberOfRepeatsAllowed] Extensions for numberOfRepeatsAllowed
+/// [_numberOfRepeatsAllowed] Extensions for numberOfRepeatsAllowed
 
-    @JsonKey(name: '_numberOfRepeatsAllowed') FhirElement? numberOfRepeatsAllowedElement,
-/// /// [quantity] The amount that is to be dispensed for one fill.
+    @JsonKey(name: '_numberOfRepeatsAllowed') PrimitiveElement? numberOfRepeatsAllowedElement,
+/// [quantity] The amount that is to be dispensed for one fill.
 
     @JsonKey(name: 'quantity') Quantity? quantity,
-/// /// [expectedSupplyDuration] Identifies the period time over which the
+/// [expectedSupplyDuration] Identifies the period time over which the
 /// supplied product is expected to be used, or the length of time the dispense
 /// is expected to last.
 
     @JsonKey(name: 'expectedSupplyDuration') FhirDuration? expectedSupplyDuration,
-/// /// [dispenser] Indicates the intended performing Organization that will
+/// [dispenser] Indicates the intended performing Organization that will
 /// dispense the medication as specified by the prescriber.
 
     @JsonKey(name: 'dispenser') Reference? dispenser,
-/// /// [dispenserInstruction] Provides additional information to the
+/// [dispenserInstruction] Provides additional information to the
 /// dispenser, for example, counselling to be provided to the patient.
 
     @JsonKey(name: 'dispenserInstruction') List<List<Annotation>>? dispenserInstruction,
-/// /// [doseAdministrationAid] Provides information about the type of
+/// [doseAdministrationAid] Provides information about the type of
 /// adherence packaging to be supplied for the medication dispense.
 
     @JsonKey(name: 'doseAdministrationAid') CodeableConcept? doseAdministrationAid,

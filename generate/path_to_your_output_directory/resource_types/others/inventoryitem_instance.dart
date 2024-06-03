@@ -1,4 +1,7 @@
-/// /// [InventoryItem_Instance] A functional description of an inventory item
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [InventoryItem_Instance] A functional description of an inventory item
 /// used in inventory and supply-related workflows.
 
 @freezed
@@ -6,11 +9,11 @@ class InventoryItem_Instance with _$InventoryItem_Instance {
   const InventoryItem_Instance._();
 
   const factory InventoryItem_Instance({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class InventoryItem_Instance with _$InventoryItem_Instance {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,26 +37,26 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [identifier] The identifier for the physical instance, typically a
+/// [identifier] The identifier for the physical instance, typically a
 /// serial number.
 
     @JsonKey(name: 'identifier') List<List<Identifier>>? identifier,
-/// /// [lotNumber] The lot or batch number of the item.
+/// [lotNumber] The lot or batch number of the item.
 
     @JsonKey(name: 'lotNumber') String? lotNumber,
-/// /// [_lotNumber] Extensions for lotNumber
+/// [_lotNumber] Extensions for lotNumber
 
-    @JsonKey(name: '_lotNumber') FhirElement? lotNumberElement,
-/// /// [expiry] The expiry date or date and time for the product.
+    @JsonKey(name: '_lotNumber') PrimitiveElement? lotNumberElement,
+/// [expiry] The expiry date or date and time for the product.
 
     @JsonKey(name: 'expiry') FhirDateTime? expiry,
-/// /// [_expiry] Extensions for expiry
+/// [_expiry] Extensions for expiry
 
-    @JsonKey(name: '_expiry') FhirElement? expiryElement,
-/// /// [subject] The subject that the item is associated with.
+    @JsonKey(name: '_expiry') PrimitiveElement? expiryElement,
+/// [subject] The subject that the item is associated with.
 
     @JsonKey(name: 'subject') Reference? subject,
-/// /// [location] The location that the item is associated with.
+/// [location] The location that the item is associated with.
 
     @JsonKey(name: 'location') Reference? location,
   }) = _$InventoryItem_Instance;

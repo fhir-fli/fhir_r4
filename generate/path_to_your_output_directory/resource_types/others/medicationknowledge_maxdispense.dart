@@ -1,4 +1,7 @@
-/// /// [MedicationKnowledge_MaxDispense] Information about a medication that
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [MedicationKnowledge_MaxDispense] Information about a medication that
 /// is used to support knowledge.
 
 @freezed
@@ -6,11 +9,11 @@ class MedicationKnowledge_MaxDispense with _$MedicationKnowledge_MaxDispense {
   const MedicationKnowledge_MaxDispense._();
 
   const factory MedicationKnowledge_MaxDispense({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class MedicationKnowledge_MaxDispense with _$MedicationKnowledge_MaxDispense {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,11 +37,11 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [quantity] The maximum number of units of the medication that can be
+/// [quantity] The maximum number of units of the medication that can be
 /// dispensed.
 
     @JsonKey(name: 'quantity') Quantity? quantity,
-/// /// [period] The period that applies to the maximum number of units.
+/// [period] The period that applies to the maximum number of units.
 
     @JsonKey(name: 'period') FhirDuration? period,
   }) = _$MedicationKnowledge_MaxDispense;

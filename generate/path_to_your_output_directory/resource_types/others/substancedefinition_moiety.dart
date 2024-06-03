@@ -1,4 +1,7 @@
-/// /// [SubstanceDefinition_Moiety] The detailed description of a substance,
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [SubstanceDefinition_Moiety] The detailed description of a substance,
 /// typically at a level beyond what is used for prescribing.
 
 @freezed
@@ -6,11 +9,11 @@ class SubstanceDefinition_Moiety with _$SubstanceDefinition_Moiety {
   const SubstanceDefinition_Moiety._();
 
   const factory SubstanceDefinition_Moiety({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class SubstanceDefinition_Moiety with _$SubstanceDefinition_Moiety {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,41 +37,41 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [role] Role that the moiety is playing.
+/// [role] Role that the moiety is playing.
 
     @JsonKey(name: 'role') CodeableConcept? role,
-/// /// [identifier] Identifier by which this moiety substance is known.
+/// [identifier] Identifier by which this moiety substance is known.
 
     @JsonKey(name: 'identifier') Identifier? identifier,
-/// /// [name] Textual name for this moiety substance.
+/// [name] Textual name for this moiety substance.
 
     @JsonKey(name: 'name') String? name,
-/// /// [_name] Extensions for name
+/// [_name] Extensions for name
 
-    @JsonKey(name: '_name') FhirElement? nameElement,
-/// /// [stereochemistry] Stereochemistry type.
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
+/// [stereochemistry] Stereochemistry type.
 
     @JsonKey(name: 'stereochemistry') CodeableConcept? stereochemistry,
-/// /// [opticalActivity] Optical activity type.
+/// [opticalActivity] Optical activity type.
 
     @JsonKey(name: 'opticalActivity') CodeableConcept? opticalActivity,
-/// /// [molecularFormula] Molecular formula for this moiety of this substance,
+/// [molecularFormula] Molecular formula for this moiety of this substance,
 /// typically using the Hill system.
 
     @JsonKey(name: 'molecularFormula') String? molecularFormula,
-/// /// [_molecularFormula] Extensions for molecularFormula
+/// [_molecularFormula] Extensions for molecularFormula
 
-    @JsonKey(name: '_molecularFormula') FhirElement? molecularFormulaElement,
-/// /// [amountQuantity] Quantitative value for this moiety.
+    @JsonKey(name: '_molecularFormula') PrimitiveElement? molecularFormulaElement,
+/// [amountQuantity] Quantitative value for this moiety.
 
     @JsonKey(name: 'amountQuantity') Quantity? amountQuantity,
-/// /// [amountString] Quantitative value for this moiety.
+/// [amountString] Quantitative value for this moiety.
 
     @JsonKey(name: 'amountString') String? amountString,
-/// /// [_amountString] Extensions for amountString
+/// [_amountString] Extensions for amountString
 
-    @JsonKey(name: '_amountString') FhirElement? amountStringElement,
-/// /// [measurementType] The measurement type of the quantitative value. In
+    @JsonKey(name: '_amountString') PrimitiveElement? amountStringElement,
+/// [measurementType] The measurement type of the quantitative value. In
 /// capturing the actual relative amounts of substances or molecular fragments
 /// it may be necessary to indicate whether the amount refers to, for example,
 /// a mole ratio or weight ratio.

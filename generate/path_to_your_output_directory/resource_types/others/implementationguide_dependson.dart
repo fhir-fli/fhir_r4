@@ -1,4 +1,7 @@
-/// /// [ImplementationGuide_DependsOn] A set of rules of how a particular
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [ImplementationGuide_DependsOn] A set of rules of how a particular
 /// interoperability or standards problem is solved - typically through the use
 /// of FHIR resources. This resource is used to gather all the parts of an
 /// implementation guide into a logical whole and to publish a computable
@@ -9,11 +12,11 @@ class ImplementationGuide_DependsOn with _$ImplementationGuide_DependsOn {
   const ImplementationGuide_DependsOn._();
 
   const factory ImplementationGuide_DependsOn({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -21,7 +24,7 @@ class ImplementationGuide_DependsOn with _$ImplementationGuide_DependsOn {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -37,31 +40,31 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [uri] A canonical reference to the Implementation guide for the
+/// [uri] A canonical reference to the Implementation guide for the
 /// dependency.
 
     @JsonKey(name: 'uri') FhirCanonical? uri,
-/// /// [packageId] The NPM package name for the Implementation Guide that this
+/// [packageId] The NPM package name for the Implementation Guide that this
 /// IG depends on.
 
     @JsonKey(name: 'packageId') FhirId? packageId,
-/// /// [_packageId] Extensions for packageId
+/// [_packageId] Extensions for packageId
 
-    @JsonKey(name: '_packageId') FhirElement? packageIdElement,
-/// /// [version] The version of the IG that is depended on, when the correct
+    @JsonKey(name: '_packageId') PrimitiveElement? packageIdElement,
+/// [version] The version of the IG that is depended on, when the correct
 /// version is required to understand the IG correctly.
 
     @JsonKey(name: 'version') String? version,
-/// /// [_version] Extensions for version
+/// [_version] Extensions for version
 
-    @JsonKey(name: '_version') FhirElement? versionElement,
-/// /// [reason] A description explaining the nature of the dependency on the
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
+/// [reason] A description explaining the nature of the dependency on the
 /// listed IG.
 
     @JsonKey(name: 'reason') FhirMarkdown? reason,
-/// /// [_reason] Extensions for reason
+/// [_reason] Extensions for reason
 
-    @JsonKey(name: '_reason') FhirElement? reasonElement,
+    @JsonKey(name: '_reason') PrimitiveElement? reasonElement,
   }) = _$ImplementationGuide_DependsOn;
 
   @override

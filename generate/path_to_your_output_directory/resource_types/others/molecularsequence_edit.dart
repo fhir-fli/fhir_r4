@@ -1,15 +1,18 @@
-/// /// [MolecularSequence_Edit] Representation of a molecular sequence.
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [MolecularSequence_Edit] Representation of a molecular sequence.
 
 @freezed
 class MolecularSequence_Edit with _$MolecularSequence_Edit {
   const MolecularSequence_Edit._();
 
   const factory MolecularSequence_Edit({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -17,7 +20,7 @@ class MolecularSequence_Edit with _$MolecularSequence_Edit {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -33,43 +36,43 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [start] Start position of the edit on the starting sequence. If the
+/// [start] Start position of the edit on the starting sequence. If the
 /// coordinate system is either 0-based or 1-based, then start position is
 /// inclusive.
 
     @JsonKey(name: 'start') FhirInteger? start,
-/// /// [_start] Extensions for start
+/// [_start] Extensions for start
 
-    @JsonKey(name: '_start') FhirElement? startElement,
-/// /// [end] End position of the edit on the starting sequence. If the
+    @JsonKey(name: '_start') PrimitiveElement? startElement,
+/// [end] End position of the edit on the starting sequence. If the
 /// coordinate system is 0-based then end is exclusive and does not include the
 /// last position. If the coordinate system is 1-base, then end is inclusive
 /// and includes the last position.
 
     @JsonKey(name: 'end') FhirInteger? end,
-/// /// [_end] Extensions for end
+/// [_end] Extensions for end
 
-    @JsonKey(name: '_end') FhirElement? endElement,
-/// /// [replacementSequence] Allele that was observed. Nucleotide(s)/amino
+    @JsonKey(name: '_end') PrimitiveElement? endElement,
+/// [replacementSequence] Allele that was observed. Nucleotide(s)/amino
 /// acids from start position of sequence to stop position of sequence on the
 /// positive (+) strand of the observed sequence. When the sequence type is
 /// DNA, it should be the sequence on the positive (+) strand. This will lay in
 /// the range between variant.start and variant.end.
 
     @JsonKey(name: 'replacementSequence') String? replacementSequence,
-/// /// [_replacementSequence] Extensions for replacementSequence
+/// [_replacementSequence] Extensions for replacementSequence
 
-    @JsonKey(name: '_replacementSequence') FhirElement? replacementSequenceElement,
-/// /// [replacedSequence] Allele in the starting sequence. Nucleotide(s)/amino
+    @JsonKey(name: '_replacementSequence') PrimitiveElement? replacementSequenceElement,
+/// [replacedSequence] Allele in the starting sequence. Nucleotide(s)/amino
 /// acids from start position of sequence to stop position of sequence on the
 /// positive (+) strand of the starting sequence. When the sequence  type is
 /// DNA, it should be the sequence on the positive (+) strand. This will lay in
 /// the range between variant.start and variant.end.
 
     @JsonKey(name: 'replacedSequence') String? replacedSequence,
-/// /// [_replacedSequence] Extensions for replacedSequence
+/// [_replacedSequence] Extensions for replacedSequence
 
-    @JsonKey(name: '_replacedSequence') FhirElement? replacedSequenceElement,
+    @JsonKey(name: '_replacedSequence') PrimitiveElement? replacedSequenceElement,
   }) = _$MolecularSequence_Edit;
 
   @override

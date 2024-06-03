@@ -1,4 +1,7 @@
-/// /// [ArtifactAssessment_Content] This Resource provides one or more
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [ArtifactAssessment_Content] This Resource provides one or more
 /// comments, classifiers or ratings about a Resource and supports attribution
 /// and rights management metadata for the added content.
 
@@ -7,11 +10,11 @@ class ArtifactAssessment_Content with _$ArtifactAssessment_Content {
   const ArtifactAssessment_Content._();
 
   const factory ArtifactAssessment_Content({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -19,7 +22,7 @@ class ArtifactAssessment_Content with _$ArtifactAssessment_Content {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -35,52 +38,52 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [informationType] The type of information this component of the content
+/// [informationType] The type of information this component of the content
 /// represents.
 
     @JsonKey(name: 'informationType') FhirCode? informationType,
-/// /// [_informationType] Extensions for informationType
+/// [_informationType] Extensions for informationType
 
-    @JsonKey(name: '_informationType') FhirElement? informationTypeElement,
-/// /// [summary] A brief summary of the content of this component.
+    @JsonKey(name: '_informationType') PrimitiveElement? informationTypeElement,
+/// [summary] A brief summary of the content of this component.
 
     @JsonKey(name: 'summary') FhirMarkdown? summary,
-/// /// [_summary] Extensions for summary
+/// [_summary] Extensions for summary
 
-    @JsonKey(name: '_summary') FhirElement? summaryElement,
-/// /// [type] Indicates what type of content this component represents.
+    @JsonKey(name: '_summary') PrimitiveElement? summaryElement,
+/// [type] Indicates what type of content this component represents.
 
     @JsonKey(name: 'type') CodeableConcept? type,
-/// /// [classifier] Represents a rating, classifier, or assessment of the
+/// [classifier] Represents a rating, classifier, or assessment of the
 /// artifact.
 
     @JsonKey(name: 'classifier') List<List<CodeableConcept>>? classifier,
-/// /// [quantity] A quantitative rating of the artifact.
+/// [quantity] A quantitative rating of the artifact.
 
     @JsonKey(name: 'quantity') Quantity? quantity,
-/// /// [author] Indicates who or what authored the content.
+/// [author] Indicates who or what authored the content.
 
     @JsonKey(name: 'author') Reference? author,
-/// /// [path] A URI that points to what the comment is about, such as a line
+/// [path] A URI that points to what the comment is about, such as a line
 /// of text in the CQL, or a specific element in a resource.
 
     @JsonKey(name: 'path') List<List<FhirUri>>? path,
-/// /// [_path] Extensions for path
+/// [_path] Extensions for path
 
-    @JsonKey(name: '_path') List<FhirElement>? pathElement,
-/// /// [relatedArtifact] Additional related artifacts that provide supporting
+    @JsonKey(name: '_path') List<PrimitiveElement>? pathElement,
+/// [relatedArtifact] Additional related artifacts that provide supporting
 /// documentation, additional evidence, or further information related to the
 /// content.
 
     @JsonKey(name: 'relatedArtifact') List<List<RelatedArtifact>>? relatedArtifact,
-/// /// [freeToShare] Acceptable to publicly share the comment, classifier or
+/// [freeToShare] Acceptable to publicly share the comment, classifier or
 /// rating.
 
     @JsonKey(name: 'freeToShare') FhirBoolean? freeToShare,
-/// /// [_freeToShare] Extensions for freeToShare
+/// [_freeToShare] Extensions for freeToShare
 
-    @JsonKey(name: '_freeToShare') FhirElement? freeToShareElement,
-/// /// [component] If the informationType is container, the components of the
+    @JsonKey(name: '_freeToShare') PrimitiveElement? freeToShareElement,
+/// [component] If the informationType is container, the components of the
 /// content.
 
     @JsonKey(name: 'component') List<List<ArtifactAssessment_Content>>? component,

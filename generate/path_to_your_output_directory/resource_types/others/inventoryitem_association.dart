@@ -1,4 +1,7 @@
-/// /// [InventoryItem_Association] A functional description of an inventory
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [InventoryItem_Association] A functional description of an inventory
 /// item used in inventory and supply-related workflows.
 
 @freezed
@@ -6,11 +9,11 @@ class InventoryItem_Association with _$InventoryItem_Association {
   const InventoryItem_Association._();
 
   const factory InventoryItem_Association({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class InventoryItem_Association with _$InventoryItem_Association {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,15 +37,15 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [associationType] This attribute defined the type of association when
+/// [associationType] This attribute defined the type of association when
 /// establishing associations or relations between items, e.g. 'packaged
 /// within' or 'used with' or 'to be mixed with.
 
     @JsonKey(name: 'associationType') CodeableConcept? associationType,
-/// /// [relatedItem] The related item or product.
+/// [relatedItem] The related item or product.
 
     @JsonKey(name: 'relatedItem') Reference? relatedItem,
-/// /// [quantity] The quantity of the related product in this product -
+/// [quantity] The quantity of the related product in this product -
 /// Numerator is the quantity of the related product. Denominator is the
 /// quantity of the present product. For example a value of 20 means that this
 /// product contains 20 units of the related product; a value of 1:20 means the

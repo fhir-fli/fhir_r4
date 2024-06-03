@@ -1,4 +1,7 @@
-/// /// [ExplanationOfBenefit_Insurance] This resource provides: the claim
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [ExplanationOfBenefit_Insurance] This resource provides: the claim
 /// details; adjudication details from the processing of a Claim; and
 /// optionally account balance information, for informing the subscriber of the
 /// benefits provided.
@@ -8,11 +11,11 @@ class ExplanationOfBenefit_Insurance with _$ExplanationOfBenefit_Insurance {
   const ExplanationOfBenefit_Insurance._();
 
   const factory ExplanationOfBenefit_Insurance({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -20,7 +23,7 @@ class ExplanationOfBenefit_Insurance with _$ExplanationOfBenefit_Insurance {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -36,27 +39,27 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [focal] A flag to indicate that this Coverage is to be used for
+/// [focal] A flag to indicate that this Coverage is to be used for
 /// adjudication of this claim when set to true.
 
     @JsonKey(name: 'focal') FhirBoolean? focal,
-/// /// [_focal] Extensions for focal
+/// [_focal] Extensions for focal
 
-    @JsonKey(name: '_focal') FhirElement? focalElement,
-/// /// [coverage] Reference to the insurance card level information contained
+    @JsonKey(name: '_focal') PrimitiveElement? focalElement,
+/// [coverage] Reference to the insurance card level information contained
 /// in the Coverage resource. The coverage issuing insurer will use these
 /// details to locate the patient's actual coverage within the insurer's
 /// information system.
 
     @JsonKey(name: 'coverage') Reference? coverage,
-/// /// [preAuthRef] Reference numbers previously provided by the insurer to
+/// [preAuthRef] Reference numbers previously provided by the insurer to
 /// the provider to be quoted on subsequent claims containing services or
 /// products related to the prior authorization.
 
     @JsonKey(name: 'preAuthRef') List<List<String>>? preAuthRef,
-/// /// [_preAuthRef] Extensions for preAuthRef
+/// [_preAuthRef] Extensions for preAuthRef
 
-    @JsonKey(name: '_preAuthRef') List<FhirElement>? preAuthRefElement,
+    @JsonKey(name: '_preAuthRef') List<PrimitiveElement>? preAuthRefElement,
   }) = _$ExplanationOfBenefit_Insurance;
 
   @override

@@ -1,4 +1,7 @@
-/// /// [SubstanceDefinition_Relationship] The detailed description of a
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [SubstanceDefinition_Relationship] The detailed description of a
 /// substance, typically at a level beyond what is used for prescribing.
 
 @freezed
@@ -6,11 +9,11 @@ class SubstanceDefinition_Relationship with _$SubstanceDefinition_Relationship {
   const SubstanceDefinition_Relationship._();
 
   const factory SubstanceDefinition_Relationship({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class SubstanceDefinition_Relationship with _$SubstanceDefinition_Relationship {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,52 +37,52 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [substanceDefinitionReference] A pointer to another substance, as a
+/// [substanceDefinitionReference] A pointer to another substance, as a
 /// resource or just a representational code.
 
     @JsonKey(name: 'substanceDefinitionReference') Reference? substanceDefinitionReference,
-/// /// [substanceDefinitionCodeableConcept] A pointer to another substance, as
+/// [substanceDefinitionCodeableConcept] A pointer to another substance, as
 /// a resource or just a representational code.
 
     @JsonKey(name: 'substanceDefinitionCodeableConcept') CodeableConcept? substanceDefinitionCodeableConcept,
-/// /// [type] For example "salt to parent", "active moiety", "starting
+/// [type] For example "salt to parent", "active moiety", "starting
 /// material", "polymorph", "impurity of".
 
     @JsonKey(name: 'type') CodeableConcept? type,
-/// /// [isDefining] For example where an enzyme strongly bonds with a
+/// [isDefining] For example where an enzyme strongly bonds with a
 /// particular substance, this is a defining relationship for that enzyme, out
 /// of several possible substance relationships.
 
     @JsonKey(name: 'isDefining') FhirBoolean? isDefining,
-/// /// [_isDefining] Extensions for isDefining
+/// [_isDefining] Extensions for isDefining
 
-    @JsonKey(name: '_isDefining') FhirElement? isDefiningElement,
-/// /// [amountQuantity] A numeric factor for the relationship, for instance to
+    @JsonKey(name: '_isDefining') PrimitiveElement? isDefiningElement,
+/// [amountQuantity] A numeric factor for the relationship, for instance to
 /// express that the salt of a substance has some percentage of the active
 /// substance in relation to some other.
 
     @JsonKey(name: 'amountQuantity') Quantity? amountQuantity,
-/// /// [amountRatio] A numeric factor for the relationship, for instance to
+/// [amountRatio] A numeric factor for the relationship, for instance to
 /// express that the salt of a substance has some percentage of the active
 /// substance in relation to some other.
 
     @JsonKey(name: 'amountRatio') Ratio? amountRatio,
-/// /// [amountString] A numeric factor for the relationship, for instance to
+/// [amountString] A numeric factor for the relationship, for instance to
 /// express that the salt of a substance has some percentage of the active
 /// substance in relation to some other.
 
     @JsonKey(name: 'amountString') String? amountString,
-/// /// [_amountString] Extensions for amountString
+/// [_amountString] Extensions for amountString
 
-    @JsonKey(name: '_amountString') FhirElement? amountStringElement,
-/// /// [ratioHighLimitAmount] For use when the numeric has an uncertain range.
+    @JsonKey(name: '_amountString') PrimitiveElement? amountStringElement,
+/// [ratioHighLimitAmount] For use when the numeric has an uncertain range.
 
     @JsonKey(name: 'ratioHighLimitAmount') Ratio? ratioHighLimitAmount,
-/// /// [comparator] An operator for the amount, for example "average",
+/// [comparator] An operator for the amount, for example "average",
 /// "approximately", "less than".
 
     @JsonKey(name: 'comparator') CodeableConcept? comparator,
-/// /// [source] Supporting literature.
+/// [source] Supporting literature.
 
     @JsonKey(name: 'source') List<List<Reference>>? source,
   }) = _$SubstanceDefinition_Relationship;

@@ -1,4 +1,7 @@
-/// /// [RiskAssessment_Prediction] An assessment of the likely outcome(s) for
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [RiskAssessment_Prediction] An assessment of the likely outcome(s) for
 /// a patient or other subject as well as the likelihood of each outcome.
 
 @freezed
@@ -6,11 +9,11 @@ class RiskAssessment_Prediction with _$RiskAssessment_Prediction {
   const RiskAssessment_Prediction._();
 
   const factory RiskAssessment_Prediction({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class RiskAssessment_Prediction with _$RiskAssessment_Prediction {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,49 +37,49 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [outcome] One of the potential outcomes for the patient (e.g.
+/// [outcome] One of the potential outcomes for the patient (e.g.
 /// remission, death,  a particular condition).
 
     @JsonKey(name: 'outcome') CodeableConcept? outcome,
-/// /// [probabilityDecimal] Indicates how likely the outcome is (in the
+/// [probabilityDecimal] Indicates how likely the outcome is (in the
 /// specified timeframe).
 
     @JsonKey(name: 'probabilityDecimal') FhirDecimal? probabilityDecimal,
-/// /// [_probabilityDecimal] Extensions for probabilityDecimal
+/// [_probabilityDecimal] Extensions for probabilityDecimal
 
-    @JsonKey(name: '_probabilityDecimal') FhirElement? probabilityDecimalElement,
-/// /// [probabilityRange] Indicates how likely the outcome is (in the
+    @JsonKey(name: '_probabilityDecimal') PrimitiveElement? probabilityDecimalElement,
+/// [probabilityRange] Indicates how likely the outcome is (in the
 /// specified timeframe).
 
     @JsonKey(name: 'probabilityRange') Range? probabilityRange,
-/// /// [qualitativeRisk] Indicates how likely the outcome is (in the specified
+/// [qualitativeRisk] Indicates how likely the outcome is (in the specified
 /// timeframe), expressed as a qualitative value (e.g. low, medium, or high).
 
     @JsonKey(name: 'qualitativeRisk') CodeableConcept? qualitativeRisk,
-/// /// [relativeRisk] Indicates the risk for this particular subject (with
+/// [relativeRisk] Indicates the risk for this particular subject (with
 /// their specific characteristics) divided by the risk of the population in
 /// general.  (Numbers greater than 1 = higher risk than the population,
 /// numbers less than 1 = lower risk.).
 
     @JsonKey(name: 'relativeRisk') FhirDecimal? relativeRisk,
-/// /// [_relativeRisk] Extensions for relativeRisk
+/// [_relativeRisk] Extensions for relativeRisk
 
-    @JsonKey(name: '_relativeRisk') FhirElement? relativeRiskElement,
-/// /// [whenPeriod] Indicates the period of time or age range of the subject
+    @JsonKey(name: '_relativeRisk') PrimitiveElement? relativeRiskElement,
+/// [whenPeriod] Indicates the period of time or age range of the subject
 /// to which the specified probability applies.
 
     @JsonKey(name: 'whenPeriod') Period? whenPeriod,
-/// /// [whenRange] Indicates the period of time or age range of the subject to
+/// [whenRange] Indicates the period of time or age range of the subject to
 /// which the specified probability applies.
 
     @JsonKey(name: 'whenRange') Range? whenRange,
-/// /// [rationale] Additional information explaining the basis for the
+/// [rationale] Additional information explaining the basis for the
 /// prediction.
 
     @JsonKey(name: 'rationale') String? rationale,
-/// /// [_rationale] Extensions for rationale
+/// [_rationale] Extensions for rationale
 
-    @JsonKey(name: '_rationale') FhirElement? rationaleElement,
+    @JsonKey(name: '_rationale') PrimitiveElement? rationaleElement,
   }) = _$RiskAssessment_Prediction;
 
   @override

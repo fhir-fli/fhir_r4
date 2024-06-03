@@ -1,4 +1,7 @@
-/// /// [MedicationDispense_Performer] Indicates that a medication product is
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [MedicationDispense_Performer] Indicates that a medication product is
 /// to be or has been dispensed for a named person/patient.  This includes a
 /// description of the medication product (supply) provided and the
 /// instructions for administering the medication.  The medication dispense is
@@ -9,11 +12,11 @@ class MedicationDispense_Performer with _$MedicationDispense_Performer {
   const MedicationDispense_Performer._();
 
   const factory MedicationDispense_Performer({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -21,7 +24,7 @@ class MedicationDispense_Performer with _$MedicationDispense_Performer {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -37,11 +40,11 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [function] Distinguishes the type of performer in the dispense.  For
+/// [function] Distinguishes the type of performer in the dispense.  For
 /// example, date enterer, packager, final checker.
 
     @JsonKey(name: 'function') CodeableConcept? function,
-/// /// [actor] The device, practitioner, etc. who performed the action.  It
+/// [actor] The device, practitioner, etc. who performed the action.  It
 /// should be assumed that the actor is the dispenser of the medication.
 
     @JsonKey(name: 'actor') Reference? actor,

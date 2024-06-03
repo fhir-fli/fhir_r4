@@ -1,4 +1,7 @@
-/// /// [ManufacturedItemDefinition_Component] The definition and
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [ManufacturedItemDefinition_Component] The definition and
 /// characteristics of a medicinal manufactured item, such as a tablet or
 /// capsule, as contained in a packaged medicinal product.
 
@@ -7,11 +10,11 @@ class ManufacturedItemDefinition_Component with _$ManufacturedItemDefinition_Com
   const ManufacturedItemDefinition_Component._();
 
   const factory ManufacturedItemDefinition_Component({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -19,7 +22,7 @@ class ManufacturedItemDefinition_Component with _$ManufacturedItemDefinition_Com
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -35,27 +38,27 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [type] Defining type of the component e.g. shell, layer, ink.
+/// [type] Defining type of the component e.g. shell, layer, ink.
 
     @JsonKey(name: 'type') CodeableConcept? type,
-/// /// [function] The function of this component within the item e.g. delivers
+/// [function] The function of this component within the item e.g. delivers
 /// active ingredient, masks taste.
 
     @JsonKey(name: 'function') List<List<CodeableConcept>>? function,
-/// /// [amount] The measurable amount of total quantity of all substances in
+/// [amount] The measurable amount of total quantity of all substances in
 /// the component, expressable in different ways (e.g. by mass or volume).
 
     @JsonKey(name: 'amount') List<List<Quantity>>? amount,
-/// /// [constituent] A reference to a constituent of the manufactured item as
+/// [constituent] A reference to a constituent of the manufactured item as
 /// a whole, linked here so that its component location within the item can be
 /// indicated. This not where the item's ingredient are primarily stated (for
 /// which see Ingredient.for or ManufacturedItemDefinition.ingredient).
 
     @JsonKey(name: 'constituent') List<List<ManufacturedItemDefinition_Constituent>>? constituent,
-/// /// [property] General characteristics of this component.
+/// [property] General characteristics of this component.
 
     @JsonKey(name: 'property') List<List<ManufacturedItemDefinition_Property>>? property,
-/// /// [component] A component that this component contains or is made from.
+/// [component] A component that this component contains or is made from.
 
     @JsonKey(name: 'component') List<List<ManufacturedItemDefinition_Component>>? component,
   }) = _$ManufacturedItemDefinition_Component;

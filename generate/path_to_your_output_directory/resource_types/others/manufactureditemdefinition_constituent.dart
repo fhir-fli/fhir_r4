@@ -1,4 +1,7 @@
-/// /// [ManufacturedItemDefinition_Constituent] The definition and
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [ManufacturedItemDefinition_Constituent] The definition and
 /// characteristics of a medicinal manufactured item, such as a tablet or
 /// capsule, as contained in a packaged medicinal product.
 
@@ -7,11 +10,11 @@ class ManufacturedItemDefinition_Constituent with _$ManufacturedItemDefinition_C
   const ManufacturedItemDefinition_Constituent._();
 
   const factory ManufacturedItemDefinition_Constituent({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -19,7 +22,7 @@ class ManufacturedItemDefinition_Constituent with _$ManufacturedItemDefinition_C
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -35,21 +38,21 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [amount] The measurable amount of the substance, expressable in
+/// [amount] The measurable amount of the substance, expressable in
 /// different ways (e.g. by mass or volume).
 
     @JsonKey(name: 'amount') List<List<Quantity>>? amount,
-/// /// [location] The physical location of the constituent/ingredient within
+/// [location] The physical location of the constituent/ingredient within
 /// the component. Example – if the component is the bead in the capsule, then
 /// the location would be where the ingredient resides within the product part
 /// – intragranular, extra-granular, etc.
 
     @JsonKey(name: 'location') List<List<CodeableConcept>>? location,
-/// /// [function] The function of this constituent within the component e.g.
+/// [function] The function of this constituent within the component e.g.
 /// binder.
 
     @JsonKey(name: 'function') List<List<CodeableConcept>>? function,
-/// /// [hasIngredient] The ingredient that is the constituent of the given
+/// [hasIngredient] The ingredient that is the constituent of the given
 /// component.
 
     @JsonKey(name: 'hasIngredient') List<List<CodeableReference>>? hasIngredient,

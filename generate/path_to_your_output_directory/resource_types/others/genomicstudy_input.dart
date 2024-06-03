@@ -1,4 +1,7 @@
-/// /// [GenomicStudy_Input] A GenomicStudy is a set of analyses performed to
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [GenomicStudy_Input] A GenomicStudy is a set of analyses performed to
 /// analyze and generate genomic data.
 
 @freezed
@@ -6,11 +9,11 @@ class GenomicStudy_Input with _$GenomicStudy_Input {
   const GenomicStudy_Input._();
 
   const factory GenomicStudy_Input({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class GenomicStudy_Input with _$GenomicStudy_Input {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,17 +37,17 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [file] File containing input data.
+/// [file] File containing input data.
 
     @JsonKey(name: 'file') Reference? file,
-/// /// [type] Type of input data, e.g., BAM, CRAM, or FASTA.
+/// [type] Type of input data, e.g., BAM, CRAM, or FASTA.
 
     @JsonKey(name: 'type') CodeableConcept? type,
-/// /// [generatedByIdentifier] The analysis event or other GenomicStudy that
+/// [generatedByIdentifier] The analysis event or other GenomicStudy that
 /// generated this input file.
 
     @JsonKey(name: 'generatedByIdentifier') Identifier? generatedByIdentifier,
-/// /// [generatedByReference] The analysis event or other GenomicStudy that
+/// [generatedByReference] The analysis event or other GenomicStudy that
 /// generated this input file.
 
     @JsonKey(name: 'generatedByReference') Reference? generatedByReference,

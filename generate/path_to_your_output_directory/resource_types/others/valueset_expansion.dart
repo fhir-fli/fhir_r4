@@ -1,4 +1,7 @@
-/// /// [ValueSet_Expansion] A ValueSet resource instance specifies a set of
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [ValueSet_Expansion] A ValueSet resource instance specifies a set of
 /// codes drawn from one or more code systems, intended for use in a particular
 /// context. Value sets link between [CodeSystem](codesystem.html) definitions
 /// and their use in [coded elements](terminologies.html).
@@ -8,11 +11,11 @@ class ValueSet_Expansion with _$ValueSet_Expansion {
   const ValueSet_Expansion._();
 
   const factory ValueSet_Expansion({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -20,7 +23,7 @@ class ValueSet_Expansion with _$ValueSet_Expansion {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -36,7 +39,7 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [identifier] An identifier that uniquely identifies this expansion of
+/// [identifier] An identifier that uniquely identifies this expansion of
 /// the valueset, based on a unique combination of the provided parameters, the
 /// system default parameters, and the underlying system code system versions
 /// etc. Systems may re-use the same identifier as long as those factors remain
@@ -44,50 +47,50 @@ Modifier extensions SHALL NOT
 /// This is a business identifier.
 
     @JsonKey(name: 'identifier') FhirUri? identifier,
-/// /// [_identifier] Extensions for identifier
+/// [_identifier] Extensions for identifier
 
-    @JsonKey(name: '_identifier') FhirElement? identifierElement,
-/// /// [next] As per paging Search results, the next URLs are opaque to the
+    @JsonKey(name: '_identifier') PrimitiveElement? identifierElement,
+/// [next] As per paging Search results, the next URLs are opaque to the
 /// client, have no dictated structure, and only the server understands them.
 
     @JsonKey(name: 'next') FhirUri? next,
-/// /// [_next] Extensions for next
+/// [_next] Extensions for next
 
-    @JsonKey(name: '_next') FhirElement? nextElement,
-/// /// [timestamp] The time at which the expansion was produced by the
+    @JsonKey(name: '_next') PrimitiveElement? nextElement,
+/// [timestamp] The time at which the expansion was produced by the
 /// expanding system.
 
     @JsonKey(name: 'timestamp') FhirDateTime? timestamp,
-/// /// [_timestamp] Extensions for timestamp
+/// [_timestamp] Extensions for timestamp
 
-    @JsonKey(name: '_timestamp') FhirElement? timestampElement,
-/// /// [total] The total number of concepts in the expansion. If the number of
+    @JsonKey(name: '_timestamp') PrimitiveElement? timestampElement,
+/// [total] The total number of concepts in the expansion. If the number of
 /// concept nodes in this resource is less than the stated number, then the
 /// server can return more using the offset parameter.
 
     @JsonKey(name: 'total') FhirInteger? total,
-/// /// [_total] Extensions for total
+/// [_total] Extensions for total
 
-    @JsonKey(name: '_total') FhirElement? totalElement,
-/// /// [offset] If paging is being used, the offset at which this resource
+    @JsonKey(name: '_total') PrimitiveElement? totalElement,
+/// [offset] If paging is being used, the offset at which this resource
 /// starts.  I.e. this resource is a partial view into the expansion. If paging
 /// is not being used, this element SHALL NOT be present.
 
     @JsonKey(name: 'offset') FhirInteger? offset,
-/// /// [_offset] Extensions for offset
+/// [_offset] Extensions for offset
 
-    @JsonKey(name: '_offset') FhirElement? offsetElement,
-/// /// [parameter] A parameter that controlled the expansion process. These
+    @JsonKey(name: '_offset') PrimitiveElement? offsetElement,
+/// [parameter] A parameter that controlled the expansion process. These
 /// parameters may be used by users of expanded value sets to check whether the
 /// expansion is suitable for a particular purpose, or to pick the correct
 /// expansion.
 
     @JsonKey(name: 'parameter') List<List<ValueSet_Parameter>>? parameter,
-/// /// [property] A property defines an additional slot through which
+/// [property] A property defines an additional slot through which
 /// additional information can be provided about a concept.
 
     @JsonKey(name: 'property') List<List<ValueSet_Property>>? property,
-/// /// [contains] The codes that are contained in the value set expansion.
+/// [contains] The codes that are contained in the value set expansion.
 
     @JsonKey(name: 'contains') List<List<ValueSet_Contains>>? contains,
   }) = _$ValueSet_Expansion;

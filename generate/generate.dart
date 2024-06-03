@@ -17,8 +17,9 @@ void main() {
   final Map<String, String> parentDirectories = <String, String>{};
 
   definitions.forEach((String key, dynamic value) {
-    // Skip abstract types and only generate the FhirExtension class
-    if (allTypes[key] == 'abstract_types' || key != 'Extension') return;
+    // Skip abstract types and primitive types
+    if (allTypes[key] == 'abstract_types' || allTypes[key] == 'primitive_types')
+      return;
 
     final String directory = determineDirectory(key, parentDirectories);
     parentDirectories[key] = directory;
@@ -29,12 +30,25 @@ void main() {
 void generateAndSaveClass(
     String key, Map<String, dynamic> definition, String directory) {
   String dartClass = generateClass(key, definition);
-  dartClass = dartClass.replaceFirst(
-      '/// [FhirExtension] Optional Extension Element - found in all resources.\n',
-      '');
-  dartClass = dartClass.replaceAll('/// ///', '///');
-  final File outputFile =
-      File('path_to_your_output_directory/$directory/fhir_extension.dart');
+
+  // Special handling for FhirExtension
+  if (key == 'Extension') {
+    dartClass = dartClass.replaceFirst(
+        '/// [FhirExtension] Optional Extension Element - found in all resources.\n',
+        '');
+    dartClass = dartClass.replaceAll('/// ///', '///');
+    dartClass = dartClass.replaceAll('Extension', 'FhirExtension');
+    dartClass = dartClass.replaceAll('extension', 'fhirExtension');
+  } else {
+    dartClass = dartClass.replaceAll('/// ///', '///');
+  }
+
+  // Determine the correct file name and directory
+  final String fileName =
+      key == 'Extension' ? 'fhir_extension.dart' : '${key.toLowerCase()}.dart';
+  final String outputPath =
+      'path_to_your_output_directory/$directory/$fileName';
+  final File outputFile = File(outputPath);
   outputFile.createSync(recursive: true);
   outputFile.writeAsStringSync(dartClass);
 }
@@ -247,6 +261,9 @@ String determineDirectory(
 
   // Check if it's a resource type
   for (final String resourceType in resourceTypes.keys) {
+    if (typeName.toLowerCase().startsWith('elementdefinition')) {
+      return 'special_types';
+    }
     if (typeName.startsWith(resourceType)) {
       return 'resource_types/${resourceTypes[resourceType]}';
     }

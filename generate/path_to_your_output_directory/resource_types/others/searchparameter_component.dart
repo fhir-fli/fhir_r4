@@ -1,4 +1,7 @@
-/// /// [SearchParameter_Component] A search parameter that defines a named
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [SearchParameter_Component] A search parameter that defines a named
 /// search item that can be used to search/filter on a resource.
 
 @freezed
@@ -6,11 +9,11 @@ class SearchParameter_Component with _$SearchParameter_Component {
   const SearchParameter_Component._();
 
   const factory SearchParameter_Component({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class SearchParameter_Component with _$SearchParameter_Component {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,17 +37,17 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [definition] The definition of the search parameter that describes this
+/// [definition] The definition of the search parameter that describes this
 /// part.
 
     @JsonKey(name: 'definition') FhirCanonical? definition,
-/// /// [expression] A sub-expression that defines how to extract values for
+/// [expression] A sub-expression that defines how to extract values for
 /// this component from the output of the main SearchParameter.expression.
 
     @JsonKey(name: 'expression') String? expression,
-/// /// [_expression] Extensions for expression
+/// [_expression] Extensions for expression
 
-    @JsonKey(name: '_expression') FhirElement? expressionElement,
+    @JsonKey(name: '_expression') PrimitiveElement? expressionElement,
   }) = _$SearchParameter_Component;
 
   @override

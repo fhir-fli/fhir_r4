@@ -1,4 +1,7 @@
-/// /// [VerificationResult_Validator] Describes validation requirements,
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [VerificationResult_Validator] Describes validation requirements,
 /// source(s), status and dates for one or more elements.
 
 @freezed
@@ -6,11 +9,11 @@ class VerificationResult_Validator with _$VerificationResult_Validator {
   const VerificationResult_Validator._();
 
   const factory VerificationResult_Validator({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class VerificationResult_Validator with _$VerificationResult_Validator {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,17 +37,17 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [organization] Reference to the organization validating information.
+/// [organization] Reference to the organization validating information.
 
     @JsonKey(name: 'organization') Reference? organization,
-/// /// [identityCertificate] A digital identity certificate associated with
+/// [identityCertificate] A digital identity certificate associated with
 /// the validator.
 
     @JsonKey(name: 'identityCertificate') String? identityCertificate,
-/// /// [_identityCertificate] Extensions for identityCertificate
+/// [_identityCertificate] Extensions for identityCertificate
 
-    @JsonKey(name: '_identityCertificate') FhirElement? identityCertificateElement,
-/// /// [attestationSignature] Signed assertion by the validator that they have
+    @JsonKey(name: '_identityCertificate') PrimitiveElement? identityCertificateElement,
+/// [attestationSignature] Signed assertion by the validator that they have
 /// validated the information.
 
     @JsonKey(name: 'attestationSignature') Signature? attestationSignature,

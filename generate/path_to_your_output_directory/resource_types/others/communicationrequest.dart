@@ -1,4 +1,7 @@
-/// /// [CommunicationRequest] A request to convey information; e.g. the CDS
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [CommunicationRequest] A request to convey information; e.g. the CDS
 /// system proposes that an alert be sent to a responsible provider, the CDS
 /// system proposes that the public health agency be notified about a
 /// reportable condition.
@@ -8,34 +11,34 @@ class CommunicationRequest with _$CommunicationRequest {
   const CommunicationRequest._();
 
   const factory CommunicationRequest({
-/// /// [resourceType] This is a CommunicationRequest resource
+/// [resourceType] This is a CommunicationRequest resource
 
     @JsonKey(name: 'resourceType') dynamic? resourceType,
-/// /// [id] The logical id of the resource, as used in the URL for the
+/// [id] The logical id of the resource, as used in the URL for the
 /// resource. Once assigned, this value never changes.
 
     @JsonKey(name: 'id') FhirId? id,
-/// /// [meta] The metadata about the resource. This is content that is
+/// [meta] The metadata about the resource. This is content that is
 /// maintained by the infrastructure. Changes to the content might not always
 /// be associated with version changes to the resource.
 
     @JsonKey(name: 'meta') FhirMeta? meta,
-/// /// [implicitRules] A reference to a set of rules that were followed when
+/// [implicitRules] A reference to a set of rules that were followed when
 /// the resource was constructed, and which must be understood when processing
 /// the content. Often, this is a reference to an implementation guide that
 /// defines the special rules along with other profiles etc.
 
     @JsonKey(name: 'implicitRules') FhirUri? implicitRules,
-/// /// [_implicitRules] Extensions for implicitRules
+/// [_implicitRules] Extensions for implicitRules
 
-    @JsonKey(name: '_implicitRules') FhirElement? implicitRulesElement,
-/// /// [language] The base language in which the resource is written.
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
+/// [language] The base language in which the resource is written.
 
     @JsonKey(name: 'language') FhirCode? language,
-/// /// [_language] Extensions for language
+/// [_language] Extensions for language
 
-    @JsonKey(name: '_language') FhirElement? languageElement,
-/// /// [text] A human-readable narrative that contains a summary of the
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
+/// [text] A human-readable narrative that contains a summary of the
 /// resource and can be used to represent the content of the resource to a
 /// human. The narrative need not encode all the structured data, but is
 /// required to contain sufficient detail to make it "clinically safe" for a
@@ -43,14 +46,14 @@ class CommunicationRequest with _$CommunicationRequest {
 /// content should be represented in the narrative to ensure clinical safety.
 
     @JsonKey(name: 'text') Narrative? text,
-/// /// [contained] These resources do not have an independent existence apart
+/// [contained] These resources do not have an independent existence apart
 /// from the resource that contains them - they cannot be identified
 /// independently, nor can they have their own independent transaction scope.
 /// This is allowed to be a Parameters resource if and only if it is referenced
 /// by a resource that provides context/meaning.
 
     @JsonKey(name: 'contained') List<List<ResourceList>>? contained,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the resource. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -58,7 +61,7 @@ class CommunicationRequest with _$CommunicationRequest {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the resource and that modifies
 /// the understanding of the element that contains it and/or the understanding
 /// of the containing element's descendants. Usually modifier elements provide
@@ -74,20 +77,20 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [identifier] Business identifiers assigned to this communication
+/// [identifier] Business identifiers assigned to this communication
 /// request by the performer or other systems which remain constant as the
 /// resource is updated and propagates from server to server.
 
     @JsonKey(name: 'identifier') List<List<Identifier>>? identifier,
-/// /// [basedOn] A plan or proposal that is fulfilled in whole or in part by
+/// [basedOn] A plan or proposal that is fulfilled in whole or in part by
 /// this request.
 
     @JsonKey(name: 'basedOn') List<List<Reference>>? basedOn,
-/// /// [replaces] Completed or terminated request(s) whose function is taken
+/// [replaces] Completed or terminated request(s) whose function is taken
 /// by this new request.
 
     @JsonKey(name: 'replaces') List<List<Reference>>? replaces,
-/// /// [groupIdentifier] A shared identifier common to multiple independent
+/// [groupIdentifier] A shared identifier common to multiple independent
 /// Request instances that were activated/authorized more or less
 /// simultaneously by a single author.  The presence of the same identifier on
 /// each request ties those requests together and may have business
@@ -96,98 +99,98 @@ Modifier extensions SHALL NOT
 /// prescription number shared by all meds ordered at one time.
 
     @JsonKey(name: 'groupIdentifier') Identifier? groupIdentifier,
-/// /// [status] The status of the proposal or order.
+/// [status] The status of the proposal or order.
 
     @JsonKey(name: 'status') FhirCode? status,
-/// /// [_status] Extensions for status
+/// [_status] Extensions for status
 
-    @JsonKey(name: '_status') FhirElement? statusElement,
-/// /// [statusReason] Captures the reason for the current state of the
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
+/// [statusReason] Captures the reason for the current state of the
 /// CommunicationRequest.
 
     @JsonKey(name: 'statusReason') CodeableConcept? statusReason,
-/// /// [intent] Indicates the level of authority/intentionality associated
+/// [intent] Indicates the level of authority/intentionality associated
 /// with the CommunicationRequest and where the request fits into the workflow
 /// chain.
 
     @JsonKey(name: 'intent') FhirCode? intent,
-/// /// [_intent] Extensions for intent
+/// [_intent] Extensions for intent
 
-    @JsonKey(name: '_intent') FhirElement? intentElement,
-/// /// [category] The type of message to be sent such as alert, notification,
+    @JsonKey(name: '_intent') PrimitiveElement? intentElement,
+/// [category] The type of message to be sent such as alert, notification,
 /// reminder, instruction, etc.
 
     @JsonKey(name: 'category') List<List<CodeableConcept>>? category,
-/// /// [priority] Characterizes how quickly the proposed act must be
+/// [priority] Characterizes how quickly the proposed act must be
 /// initiated. Includes concepts such as stat, urgent, routine.
 
     @JsonKey(name: 'priority') FhirCode? priority,
-/// /// [_priority] Extensions for priority
+/// [_priority] Extensions for priority
 
-    @JsonKey(name: '_priority') FhirElement? priorityElement,
-/// /// [doNotPerform] If true indicates that the CommunicationRequest is
+    @JsonKey(name: '_priority') PrimitiveElement? priorityElement,
+/// [doNotPerform] If true indicates that the CommunicationRequest is
 /// asking for the specified action to *not* occur.
 
     @JsonKey(name: 'doNotPerform') FhirBoolean? doNotPerform,
-/// /// [_doNotPerform] Extensions for doNotPerform
+/// [_doNotPerform] Extensions for doNotPerform
 
-    @JsonKey(name: '_doNotPerform') FhirElement? doNotPerformElement,
-/// /// [medium] A channel that was used for this communication (e.g. email,
+    @JsonKey(name: '_doNotPerform') PrimitiveElement? doNotPerformElement,
+/// [medium] A channel that was used for this communication (e.g. email,
 /// fax).
 
     @JsonKey(name: 'medium') List<List<CodeableConcept>>? medium,
-/// /// [subject] The patient or group that is the focus of this communication
+/// [subject] The patient or group that is the focus of this communication
 /// request.
 
     @JsonKey(name: 'subject') Reference? subject,
-/// /// [about] Other resources that pertain to this communication request and
+/// [about] Other resources that pertain to this communication request and
 /// to which this communication request should be associated.
 
     @JsonKey(name: 'about') List<List<Reference>>? about,
-/// /// [encounter] The Encounter during which this CommunicationRequest was
+/// [encounter] The Encounter during which this CommunicationRequest was
 /// created or to which the creation of this record is tightly associated.
 
     @JsonKey(name: 'encounter') Reference? encounter,
-/// /// [payload] Text, attachment(s), or resource(s) to be communicated to the
+/// [payload] Text, attachment(s), or resource(s) to be communicated to the
 /// recipient.
 
     @JsonKey(name: 'payload') List<List<CommunicationRequest_Payload>>? payload,
-/// /// [occurrenceDateTime] The time when this communication is to occur.
+/// [occurrenceDateTime] The time when this communication is to occur.
 
     @JsonKey(name: 'occurrenceDateTime') FhirDateTime? occurrenceDateTime,
-/// /// [_occurrenceDateTime] Extensions for occurrenceDateTime
+/// [_occurrenceDateTime] Extensions for occurrenceDateTime
 
-    @JsonKey(name: '_occurrenceDateTime') FhirElement? occurrenceDateTimeElement,
-/// /// [occurrencePeriod] The time when this communication is to occur.
+    @JsonKey(name: '_occurrenceDateTime') PrimitiveElement? occurrenceDateTimeElement,
+/// [occurrencePeriod] The time when this communication is to occur.
 
     @JsonKey(name: 'occurrencePeriod') Period? occurrencePeriod,
-/// /// [authoredOn] For draft requests, indicates the date of initial
+/// [authoredOn] For draft requests, indicates the date of initial
 /// creation.  For requests with other statuses, indicates the date of
 /// activation.
 
     @JsonKey(name: 'authoredOn') FhirDateTime? authoredOn,
-/// /// [_authoredOn] Extensions for authoredOn
+/// [_authoredOn] Extensions for authoredOn
 
-    @JsonKey(name: '_authoredOn') FhirElement? authoredOnElement,
-/// /// [requester] The device, individual, or organization who asks for the
+    @JsonKey(name: '_authoredOn') PrimitiveElement? authoredOnElement,
+/// [requester] The device, individual, or organization who asks for the
 /// information to be shared.
 
     @JsonKey(name: 'requester') Reference? requester,
-/// /// [recipient] The entity (e.g. person, organization, clinical information
+/// [recipient] The entity (e.g. person, organization, clinical information
 /// system, device, group, or care team) which is the intended target of the
 /// communication.
 
     @JsonKey(name: 'recipient') List<List<Reference>>? recipient,
-/// /// [informationProvider] The entity (e.g. person, organization, clinical
+/// [informationProvider] The entity (e.g. person, organization, clinical
 /// information system, or device) which is to be the source of the
 /// communication.
 
     @JsonKey(name: 'informationProvider') List<List<Reference>>? informationProvider,
-/// /// [reason] Describes why the request is being made in coded or textual
+/// [reason] Describes why the request is being made in coded or textual
 /// form.
 
     @JsonKey(name: 'reason') List<List<CodeableReference>>? reason,
-/// /// [note] Comments made about the request by the requester, sender,
+/// [note] Comments made about the request by the requester, sender,
 /// recipient, subject or other participants.
 
     @JsonKey(name: 'note') List<List<Annotation>>? note,

@@ -1,4 +1,7 @@
-/// /// [Account_Coverage] A financial tool for tracking value accrued for a
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Account_Coverage] A financial tool for tracking value accrued for a
 /// particular purpose.  In the healthcare field, used to track charges for a
 /// patient, cost centers, etc.
 
@@ -7,11 +10,11 @@ class Account_Coverage with _$Account_Coverage {
   const Account_Coverage._();
 
   const factory Account_Coverage({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -19,7 +22,7 @@ class Account_Coverage with _$Account_Coverage {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -35,7 +38,7 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [coverage] The party(s) that contribute to payment (or part of) of the
+/// [coverage] The party(s) that contribute to payment (or part of) of the
 /// charges applied to this account (including self-pay).
 
 A coverage may only
@@ -43,12 +46,12 @@ A coverage may only
 /// coverages in the account could be important when processing billing.
 
     @JsonKey(name: 'coverage') Reference? coverage,
-/// /// [priority] The priority of the coverage in the context of this account.
+/// [priority] The priority of the coverage in the context of this account.
 
     @JsonKey(name: 'priority') FhirPositiveInt? priority,
-/// /// [_priority] Extensions for priority
+/// [_priority] Extensions for priority
 
-    @JsonKey(name: '_priority') FhirElement? priorityElement,
+    @JsonKey(name: '_priority') PrimitiveElement? priorityElement,
   }) = _$Account_Coverage;
 
   @override

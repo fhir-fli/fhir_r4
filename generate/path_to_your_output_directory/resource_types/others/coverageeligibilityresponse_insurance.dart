@@ -1,4 +1,7 @@
-/// /// [CoverageEligibilityResponse_Insurance] This resource provides
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [CoverageEligibilityResponse_Insurance] This resource provides
 /// eligibility and plan details from the processing of an
 /// CoverageEligibilityRequest resource.
 
@@ -7,11 +10,11 @@ class CoverageEligibilityResponse_Insurance with _$CoverageEligibilityResponse_I
   const CoverageEligibilityResponse_Insurance._();
 
   const factory CoverageEligibilityResponse_Insurance({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -19,7 +22,7 @@ class CoverageEligibilityResponse_Insurance with _$CoverageEligibilityResponse_I
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -35,24 +38,24 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [coverage] Reference to the insurance card level information contained
+/// [coverage] Reference to the insurance card level information contained
 /// in the Coverage resource. The coverage issuing insurer will use these
 /// details to locate the patient's actual coverage within the insurer's
 /// information system.
 
     @JsonKey(name: 'coverage') Reference? coverage,
-/// /// [inforce] Flag indicating if the coverage provided is inforce currently
+/// [inforce] Flag indicating if the coverage provided is inforce currently
 /// if no service date(s) specified or for the whole duration of the service
 /// dates.
 
     @JsonKey(name: 'inforce') FhirBoolean? inforce,
-/// /// [_inforce] Extensions for inforce
+/// [_inforce] Extensions for inforce
 
-    @JsonKey(name: '_inforce') FhirElement? inforceElement,
-/// /// [benefitPeriod] The term of the benefits documented in this response.
+    @JsonKey(name: '_inforce') PrimitiveElement? inforceElement,
+/// [benefitPeriod] The term of the benefits documented in this response.
 
     @JsonKey(name: 'benefitPeriod') Period? benefitPeriod,
-/// /// [item] Benefits and optionally current balances, and authorization
+/// [item] Benefits and optionally current balances, and authorization
 /// details by category or service.
 
     @JsonKey(name: 'item') List<List<CoverageEligibilityResponse_Item>>? item,

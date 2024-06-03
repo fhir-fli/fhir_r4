@@ -1,4 +1,7 @@
-/// /// [Questionnaire_EnableWhen] A structured set of questions intended to
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Questionnaire_EnableWhen] A structured set of questions intended to
 /// guide the collection of answers from end-users. Questionnaires provide
 /// detailed control over order, presentation, phraseology and grouping to
 /// allow coherent, consistent data collection.
@@ -8,11 +11,11 @@ class Questionnaire_EnableWhen with _$Questionnaire_EnableWhen {
   const Questionnaire_EnableWhen._();
 
   const factory Questionnaire_EnableWhen({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -20,7 +23,7 @@ class Questionnaire_EnableWhen with _$Questionnaire_EnableWhen {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -36,104 +39,104 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [question] The linkId for the question whose answer (or lack of answer)
+/// [question] The linkId for the question whose answer (or lack of answer)
 /// governs whether this item is enabled.
 
     @JsonKey(name: 'question') String? question,
-/// /// [_question] Extensions for question
+/// [_question] Extensions for question
 
-    @JsonKey(name: '_question') FhirElement? questionElement,
-/// /// [operator] Specifies the criteria by which the question is enabled.
+    @JsonKey(name: '_question') PrimitiveElement? questionElement,
+/// [operator] Specifies the criteria by which the question is enabled.
 
     @JsonKey(name: 'operator') FhirCode? operator,
-/// /// [_operator] Extensions for operator
+/// [_operator] Extensions for operator
 
-    @JsonKey(name: '_operator') FhirElement? operatorElement,
-/// /// [answerBoolean] A value that the referenced question is tested using
+    @JsonKey(name: '_operator') PrimitiveElement? operatorElement,
+/// [answerBoolean] A value that the referenced question is tested using
 /// the specified operator in order for the item to be enabled.  If there are
 /// multiple answers, a match on any of the answers suffices.  If different
 /// behavior is desired (all must match, at least 2 must match, etc.), consider
 /// using the enableWhenExpression extension.
 
     @JsonKey(name: 'answerBoolean') FhirBoolean? answerBoolean,
-/// /// [_answerBoolean] Extensions for answerBoolean
+/// [_answerBoolean] Extensions for answerBoolean
 
-    @JsonKey(name: '_answerBoolean') FhirElement? answerBooleanElement,
-/// /// [answerDecimal] A value that the referenced question is tested using
+    @JsonKey(name: '_answerBoolean') PrimitiveElement? answerBooleanElement,
+/// [answerDecimal] A value that the referenced question is tested using
 /// the specified operator in order for the item to be enabled.  If there are
 /// multiple answers, a match on any of the answers suffices.  If different
 /// behavior is desired (all must match, at least 2 must match, etc.), consider
 /// using the enableWhenExpression extension.
 
     @JsonKey(name: 'answerDecimal') FhirDecimal? answerDecimal,
-/// /// [_answerDecimal] Extensions for answerDecimal
+/// [_answerDecimal] Extensions for answerDecimal
 
-    @JsonKey(name: '_answerDecimal') FhirElement? answerDecimalElement,
-/// /// [answerInteger] A value that the referenced question is tested using
+    @JsonKey(name: '_answerDecimal') PrimitiveElement? answerDecimalElement,
+/// [answerInteger] A value that the referenced question is tested using
 /// the specified operator in order for the item to be enabled.  If there are
 /// multiple answers, a match on any of the answers suffices.  If different
 /// behavior is desired (all must match, at least 2 must match, etc.), consider
 /// using the enableWhenExpression extension.
 
     @JsonKey(name: 'answerInteger') FhirInteger? answerInteger,
-/// /// [_answerInteger] Extensions for answerInteger
+/// [_answerInteger] Extensions for answerInteger
 
-    @JsonKey(name: '_answerInteger') FhirElement? answerIntegerElement,
-/// /// [answerDate] A value that the referenced question is tested using the
+    @JsonKey(name: '_answerInteger') PrimitiveElement? answerIntegerElement,
+/// [answerDate] A value that the referenced question is tested using the
 /// specified operator in order for the item to be enabled.  If there are
 /// multiple answers, a match on any of the answers suffices.  If different
 /// behavior is desired (all must match, at least 2 must match, etc.), consider
 /// using the enableWhenExpression extension.
 
     @JsonKey(name: 'answerDate') FhirDate? answerDate,
-/// /// [_answerDate] Extensions for answerDate
+/// [_answerDate] Extensions for answerDate
 
-    @JsonKey(name: '_answerDate') FhirElement? answerDateElement,
-/// /// [answerDateTime] A value that the referenced question is tested using
+    @JsonKey(name: '_answerDate') PrimitiveElement? answerDateElement,
+/// [answerDateTime] A value that the referenced question is tested using
 /// the specified operator in order for the item to be enabled.  If there are
 /// multiple answers, a match on any of the answers suffices.  If different
 /// behavior is desired (all must match, at least 2 must match, etc.), consider
 /// using the enableWhenExpression extension.
 
     @JsonKey(name: 'answerDateTime') FhirDateTime? answerDateTime,
-/// /// [_answerDateTime] Extensions for answerDateTime
+/// [_answerDateTime] Extensions for answerDateTime
 
-    @JsonKey(name: '_answerDateTime') FhirElement? answerDateTimeElement,
-/// /// [answerTime] A value that the referenced question is tested using the
+    @JsonKey(name: '_answerDateTime') PrimitiveElement? answerDateTimeElement,
+/// [answerTime] A value that the referenced question is tested using the
 /// specified operator in order for the item to be enabled.  If there are
 /// multiple answers, a match on any of the answers suffices.  If different
 /// behavior is desired (all must match, at least 2 must match, etc.), consider
 /// using the enableWhenExpression extension.
 
     @JsonKey(name: 'answerTime') FhirTime? answerTime,
-/// /// [_answerTime] Extensions for answerTime
+/// [_answerTime] Extensions for answerTime
 
-    @JsonKey(name: '_answerTime') FhirElement? answerTimeElement,
-/// /// [answerString] A value that the referenced question is tested using the
+    @JsonKey(name: '_answerTime') PrimitiveElement? answerTimeElement,
+/// [answerString] A value that the referenced question is tested using the
 /// specified operator in order for the item to be enabled.  If there are
 /// multiple answers, a match on any of the answers suffices.  If different
 /// behavior is desired (all must match, at least 2 must match, etc.), consider
 /// using the enableWhenExpression extension.
 
     @JsonKey(name: 'answerString') String? answerString,
-/// /// [_answerString] Extensions for answerString
+/// [_answerString] Extensions for answerString
 
-    @JsonKey(name: '_answerString') FhirElement? answerStringElement,
-/// /// [answerCoding] A value that the referenced question is tested using the
+    @JsonKey(name: '_answerString') PrimitiveElement? answerStringElement,
+/// [answerCoding] A value that the referenced question is tested using the
 /// specified operator in order for the item to be enabled.  If there are
 /// multiple answers, a match on any of the answers suffices.  If different
 /// behavior is desired (all must match, at least 2 must match, etc.), consider
 /// using the enableWhenExpression extension.
 
     @JsonKey(name: 'answerCoding') Coding? answerCoding,
-/// /// [answerQuantity] A value that the referenced question is tested using
+/// [answerQuantity] A value that the referenced question is tested using
 /// the specified operator in order for the item to be enabled.  If there are
 /// multiple answers, a match on any of the answers suffices.  If different
 /// behavior is desired (all must match, at least 2 must match, etc.), consider
 /// using the enableWhenExpression extension.
 
     @JsonKey(name: 'answerQuantity') Quantity? answerQuantity,
-/// /// [answerReference] A value that the referenced question is tested using
+/// [answerReference] A value that the referenced question is tested using
 /// the specified operator in order for the item to be enabled.  If there are
 /// multiple answers, a match on any of the answers suffices.  If different
 /// behavior is desired (all must match, at least 2 must match, etc.), consider

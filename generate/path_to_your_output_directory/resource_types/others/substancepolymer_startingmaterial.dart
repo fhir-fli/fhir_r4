@@ -1,4 +1,7 @@
-/// /// [SubstancePolymer_StartingMaterial] Properties of a substance specific
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [SubstancePolymer_StartingMaterial] Properties of a substance specific
 /// to it being a polymer.
 
 @freezed
@@ -6,11 +9,11 @@ class SubstancePolymer_StartingMaterial with _$SubstancePolymer_StartingMaterial
   const SubstancePolymer_StartingMaterial._();
 
   const factory SubstancePolymer_StartingMaterial({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class SubstancePolymer_StartingMaterial with _$SubstancePolymer_StartingMaterial
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,20 +37,20 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [code] The type of substance for this starting material.
+/// [code] The type of substance for this starting material.
 
     @JsonKey(name: 'code') CodeableConcept? code,
-/// /// [category] Substance high level category, e.g. chemical substance.
+/// [category] Substance high level category, e.g. chemical substance.
 
     @JsonKey(name: 'category') CodeableConcept? category,
-/// /// [isDefining] Used to specify whether the attribute described is a
+/// [isDefining] Used to specify whether the attribute described is a
 /// defining element for the unique identification of the polymer.
 
     @JsonKey(name: 'isDefining') FhirBoolean? isDefining,
-/// /// [_isDefining] Extensions for isDefining
+/// [_isDefining] Extensions for isDefining
 
-    @JsonKey(name: '_isDefining') FhirElement? isDefiningElement,
-/// /// [amount] A percentage.
+    @JsonKey(name: '_isDefining') PrimitiveElement? isDefiningElement,
+/// [amount] A percentage.
 
     @JsonKey(name: 'amount') Quantity? amount,
   }) = _$SubstancePolymer_StartingMaterial;

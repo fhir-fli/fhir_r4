@@ -1,4 +1,7 @@
-/// /// [InsuranceProduct] Details of a Health Insurance product provided by an
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [InsuranceProduct] Details of a Health Insurance product provided by an
 /// organization.
 
 @freezed
@@ -6,34 +9,34 @@ class InsuranceProduct with _$InsuranceProduct {
   const InsuranceProduct._();
 
   const factory InsuranceProduct({
-/// /// [resourceType] This is a InsuranceProduct resource
+/// [resourceType] This is a InsuranceProduct resource
 
     @JsonKey(name: 'resourceType') dynamic? resourceType,
-/// /// [id] The logical id of the resource, as used in the URL for the
+/// [id] The logical id of the resource, as used in the URL for the
 /// resource. Once assigned, this value never changes.
 
     @JsonKey(name: 'id') FhirId? id,
-/// /// [meta] The metadata about the resource. This is content that is
+/// [meta] The metadata about the resource. This is content that is
 /// maintained by the infrastructure. Changes to the content might not always
 /// be associated with version changes to the resource.
 
     @JsonKey(name: 'meta') FhirMeta? meta,
-/// /// [implicitRules] A reference to a set of rules that were followed when
+/// [implicitRules] A reference to a set of rules that were followed when
 /// the resource was constructed, and which must be understood when processing
 /// the content. Often, this is a reference to an implementation guide that
 /// defines the special rules along with other profiles etc.
 
     @JsonKey(name: 'implicitRules') FhirUri? implicitRules,
-/// /// [_implicitRules] Extensions for implicitRules
+/// [_implicitRules] Extensions for implicitRules
 
-    @JsonKey(name: '_implicitRules') FhirElement? implicitRulesElement,
-/// /// [language] The base language in which the resource is written.
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
+/// [language] The base language in which the resource is written.
 
     @JsonKey(name: 'language') FhirCode? language,
-/// /// [_language] Extensions for language
+/// [_language] Extensions for language
 
-    @JsonKey(name: '_language') FhirElement? languageElement,
-/// /// [text] A human-readable narrative that contains a summary of the
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
+/// [text] A human-readable narrative that contains a summary of the
 /// resource and can be used to represent the content of the resource to a
 /// human. The narrative need not encode all the structured data, but is
 /// required to contain sufficient detail to make it "clinically safe" for a
@@ -41,14 +44,14 @@ class InsuranceProduct with _$InsuranceProduct {
 /// content should be represented in the narrative to ensure clinical safety.
 
     @JsonKey(name: 'text') Narrative? text,
-/// /// [contained] These resources do not have an independent existence apart
+/// [contained] These resources do not have an independent existence apart
 /// from the resource that contains them - they cannot be identified
 /// independently, nor can they have their own independent transaction scope.
 /// This is allowed to be a Parameters resource if and only if it is referenced
 /// by a resource that provides context/meaning.
 
     @JsonKey(name: 'contained') List<List<ResourceList>>? contained,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the resource. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -56,7 +59,7 @@ class InsuranceProduct with _$InsuranceProduct {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the resource and that modifies
 /// the understanding of the element that contains it and/or the understanding
 /// of the containing element's descendants. Usually modifier elements provide
@@ -72,70 +75,70 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [identifier] Business identifiers assigned to this health insurance
+/// [identifier] Business identifiers assigned to this health insurance
 /// product which remain constant as the resource is updated and propagates
 /// from server to server.
 
     @JsonKey(name: 'identifier') List<List<Identifier>>? identifier,
-/// /// [status] The current state of the health insurance product.
+/// [status] The current state of the health insurance product.
 
     @JsonKey(name: 'status') FhirCode? status,
-/// /// [_status] Extensions for status
+/// [_status] Extensions for status
 
-    @JsonKey(name: '_status') FhirElement? statusElement,
-/// /// [type] The kind of health insurance product.
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
+/// [type] The kind of health insurance product.
 
     @JsonKey(name: 'type') List<List<CodeableConcept>>? type,
-/// /// [name] Official name of the health insurance product as designated by
+/// [name] Official name of the health insurance product as designated by
 /// the owner.
 
     @JsonKey(name: 'name') String? name,
-/// /// [_name] Extensions for name
+/// [_name] Extensions for name
 
-    @JsonKey(name: '_name') FhirElement? nameElement,
-/// /// [alias] A list of alternate names that the product is known as, or was
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
+/// [alias] A list of alternate names that the product is known as, or was
 /// known as in the past.
 
     @JsonKey(name: 'alias') List<List<String>>? alias,
-/// /// [_alias] Extensions for alias
+/// [_alias] Extensions for alias
 
-    @JsonKey(name: '_alias') List<FhirElement>? aliasElement,
-/// /// [period] The period of time that the health insurance product is
+    @JsonKey(name: '_alias') List<PrimitiveElement>? aliasElement,
+/// [period] The period of time that the health insurance product is
 /// available.
 
     @JsonKey(name: 'period') Period? period,
-/// /// [ownedBy] The entity that is providing  the health insurance product
+/// [ownedBy] The entity that is providing  the health insurance product
 /// and underwriting the risk.  This is typically an insurance carriers, other
 /// third-party payers, or health plan sponsors comonly referred to as
 /// 'payers'.
 
     @JsonKey(name: 'ownedBy') Reference? ownedBy,
-/// /// [administeredBy] An organization which administer other services such
+/// [administeredBy] An organization which administer other services such
 /// as underwriting, customer service and/or claims processing on behalf of the
 /// health insurance product owner.
 
     @JsonKey(name: 'administeredBy') Reference? administeredBy,
-/// /// [coverageArea] The geographic region in which a health insurance
+/// [coverageArea] The geographic region in which a health insurance
 /// product's benefits apply.
 
     @JsonKey(name: 'coverageArea') List<List<Reference>>? coverageArea,
-/// /// [contact] The contact details of communication devices available
+/// [contact] The contact details of communication devices available
 /// relevant to the specific Insurance Product. This can include addresses,
 /// phone numbers, fax numbers, mobile numbers, email addresses and web sites.
 
     @JsonKey(name: 'contact') List<List<ExtendedContactDetail>>? contact,
-/// /// [endpoint] The technical endpoints providing access to services
+/// [endpoint] The technical endpoints providing access to services
 /// operated for the health insurance product.
 
     @JsonKey(name: 'endpoint') List<List<Reference>>? endpoint,
-/// /// [network] Reference to the network included in the health insurance
+/// [network] Reference to the network included in the health insurance
 /// product.
 
     @JsonKey(name: 'network') List<List<Reference>>? network,
-/// /// [coverage] Details about the coverage offered by the insurance product.
+/// [coverage] Details about the coverage offered by the insurance product.
 
     @JsonKey(name: 'coverage') List<List<InsuranceProduct_Coverage>>? coverage,
-/// /// [related] Another product that is related to this product. Often used
+/// [related] Another product that is related to this product. Often used
 /// to create relationships to parents or families of products.
 
     @JsonKey(name: 'related') List<List<InsuranceProduct_Related>>? related,

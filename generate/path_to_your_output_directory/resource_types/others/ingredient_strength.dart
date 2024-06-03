@@ -1,4 +1,7 @@
-/// /// [Ingredient_Strength] An ingredient of a manufactured item or
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Ingredient_Strength] An ingredient of a manufactured item or
 /// pharmaceutical product.
 
 @freezed
@@ -6,11 +9,11 @@ class Ingredient_Strength with _$Ingredient_Strength {
   const Ingredient_Strength._();
 
   const factory Ingredient_Strength({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class Ingredient_Strength with _$Ingredient_Strength {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,7 +37,7 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [presentationRatio] The quantity of substance in the unit of
+/// [presentationRatio] The quantity of substance in the unit of
 /// presentation, or in the volume (or mass) of the single pharmaceutical
 /// product or manufactured item. Unit of presentation refers to the quantity
 /// that the item occurs in e.g. a strength per tablet size, perhaps 'per 20mg'
@@ -42,7 +45,7 @@ Modifier extensions SHALL NOT
 /// which would be 'per mg').
 
     @JsonKey(name: 'presentationRatio') Ratio? presentationRatio,
-/// /// [presentationRatioRange] The quantity of substance in the unit of
+/// [presentationRatioRange] The quantity of substance in the unit of
 /// presentation, or in the volume (or mass) of the single pharmaceutical
 /// product or manufactured item. Unit of presentation refers to the quantity
 /// that the item occurs in e.g. a strength per tablet size, perhaps 'per 20mg'
@@ -50,7 +53,7 @@ Modifier extensions SHALL NOT
 /// which would be 'per mg').
 
     @JsonKey(name: 'presentationRatioRange') RatioRange? presentationRatioRange,
-/// /// [presentationCodeableConcept] The quantity of substance in the unit of
+/// [presentationCodeableConcept] The quantity of substance in the unit of
 /// presentation, or in the volume (or mass) of the single pharmaceutical
 /// product or manufactured item. Unit of presentation refers to the quantity
 /// that the item occurs in e.g. a strength per tablet size, perhaps 'per 20mg'
@@ -58,7 +61,7 @@ Modifier extensions SHALL NOT
 /// which would be 'per mg').
 
     @JsonKey(name: 'presentationCodeableConcept') CodeableConcept? presentationCodeableConcept,
-/// /// [presentationQuantity] The quantity of substance in the unit of
+/// [presentationQuantity] The quantity of substance in the unit of
 /// presentation, or in the volume (or mass) of the single pharmaceutical
 /// product or manufactured item. Unit of presentation refers to the quantity
 /// that the item occurs in e.g. a strength per tablet size, perhaps 'per 20mg'
@@ -66,54 +69,54 @@ Modifier extensions SHALL NOT
 /// which would be 'per mg').
 
     @JsonKey(name: 'presentationQuantity') Quantity? presentationQuantity,
-/// /// [textPresentation] A textual represention of either the whole of the
+/// [textPresentation] A textual represention of either the whole of the
 /// presentation strength or a part of it - with the rest being in
 /// Strength.presentation as a ratio.
 
     @JsonKey(name: 'textPresentation') String? textPresentation,
-/// /// [_textPresentation] Extensions for textPresentation
+/// [_textPresentation] Extensions for textPresentation
 
-    @JsonKey(name: '_textPresentation') FhirElement? textPresentationElement,
-/// /// [concentrationRatio] The strength per unitary volume (or mass).
+    @JsonKey(name: '_textPresentation') PrimitiveElement? textPresentationElement,
+/// [concentrationRatio] The strength per unitary volume (or mass).
 
     @JsonKey(name: 'concentrationRatio') Ratio? concentrationRatio,
-/// /// [concentrationRatioRange] The strength per unitary volume (or mass).
+/// [concentrationRatioRange] The strength per unitary volume (or mass).
 
     @JsonKey(name: 'concentrationRatioRange') RatioRange? concentrationRatioRange,
-/// /// [concentrationCodeableConcept] The strength per unitary volume (or
+/// [concentrationCodeableConcept] The strength per unitary volume (or
 /// mass).
 
     @JsonKey(name: 'concentrationCodeableConcept') CodeableConcept? concentrationCodeableConcept,
-/// /// [concentrationQuantity] The strength per unitary volume (or mass).
+/// [concentrationQuantity] The strength per unitary volume (or mass).
 
     @JsonKey(name: 'concentrationQuantity') Quantity? concentrationQuantity,
-/// /// [textConcentration] A textual represention of either the whole of the
+/// [textConcentration] A textual represention of either the whole of the
 /// concentration strength or a part of it - with the rest being in
 /// Strength.concentration as a ratio.
 
     @JsonKey(name: 'textConcentration') String? textConcentration,
-/// /// [_textConcentration] Extensions for textConcentration
+/// [_textConcentration] Extensions for textConcentration
 
-    @JsonKey(name: '_textConcentration') FhirElement? textConcentrationElement,
-/// /// [basis] A code that indicates if the strength is, for example, based on
+    @JsonKey(name: '_textConcentration') PrimitiveElement? textConcentrationElement,
+/// [basis] A code that indicates if the strength is, for example, based on
 /// the ingredient substance as stated or on the substance base (when the
 /// ingredient is a salt).
 
     @JsonKey(name: 'basis') CodeableConcept? basis,
-/// /// [measurementPoint] For when strength is measured at a particular point
+/// [measurementPoint] For when strength is measured at a particular point
 /// or distance. There are products where strength is measured at a particular
 /// point. For example, the strength of the ingredient in some inhalers is
 /// measured at a particular position relative to the point of aerosolization.
 
     @JsonKey(name: 'measurementPoint') String? measurementPoint,
-/// /// [_measurementPoint] Extensions for measurementPoint
+/// [_measurementPoint] Extensions for measurementPoint
 
-    @JsonKey(name: '_measurementPoint') FhirElement? measurementPointElement,
-/// /// [country] The country or countries for which the strength range
+    @JsonKey(name: '_measurementPoint') PrimitiveElement? measurementPointElement,
+/// [country] The country or countries for which the strength range
 /// applies.
 
     @JsonKey(name: 'country') List<List<CodeableConcept>>? country,
-/// /// [referenceStrength] Strength expressed in terms of a reference
+/// [referenceStrength] Strength expressed in terms of a reference
 /// substance. For when the ingredient strength is additionally expressed as
 /// equivalent to the strength of some other closely related substance (e.g.
 /// salt vs. base). Reference strength represents the strength (quantitative

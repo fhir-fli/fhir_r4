@@ -1,4 +1,7 @@
-/// /// [Endpoint_Payload] The technical details of an endpoint that can be
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Endpoint_Payload] The technical details of an endpoint that can be
 /// used for electronic services, such as for web services providing XDS.b, a
 /// REST endpoint for another FHIR server, or a s/Mime email address. This may
 /// include any security context information.
@@ -8,11 +11,11 @@ class Endpoint_Payload with _$Endpoint_Payload {
   const Endpoint_Payload._();
 
   const factory Endpoint_Payload({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -20,7 +23,7 @@ class Endpoint_Payload with _$Endpoint_Payload {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -36,37 +39,37 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [type] The payload type describes the acceptable content that can be
+/// [type] The payload type describes the acceptable content that can be
 /// communicated on the endpoint.
 
     @JsonKey(name: 'type') List<List<CodeableConcept>>? type,
-/// /// [mimeType] The mime type to send the payload in - e.g.
+/// [mimeType] The mime type to send the payload in - e.g.
 /// application/fhir+xml, application/fhir+json. If the mime type is not
 /// specified, then the sender could send any content (including no content
 /// depending on the connectionType).
 
     @JsonKey(name: 'mimeType') List<List<FhirCode>>? mimeType,
-/// /// [_mimeType] Extensions for mimeType
+/// [_mimeType] Extensions for mimeType
 
-    @JsonKey(name: '_mimeType') List<FhirElement>? mimeTypeElement,
-/// /// [profileCanonical] The FHIR profile that is expected at this endpoint.
+    @JsonKey(name: '_mimeType') List<PrimitiveElement>? mimeTypeElement,
+/// [profileCanonical] The FHIR profile that is expected at this endpoint.
 /// It describes the resources that are handled, or even simply which resource
 /// types -e.g. Vital Sign Observations or QuestionnaireResponse.The
 /// `profileUri` may be used when a FHIR Structure Definition is not
 /// available/appropriate.
 
     @JsonKey(name: 'profileCanonical') List<List<FhirCanonical>>? profileCanonical,
-/// /// [_profileCanonical] Extensions for profileCanonical
+/// [_profileCanonical] Extensions for profileCanonical
 
-    @JsonKey(name: '_profileCanonical') List<FhirElement>? profileCanonicalElement,
-/// /// [profileUri] The profile (as a uri) that is expected at this endpoint
+    @JsonKey(name: '_profileCanonical') List<PrimitiveElement>? profileCanonicalElement,
+/// [profileUri] The profile (as a uri) that is expected at this endpoint
 /// when not represented using a FHIR profile.e.g. CDA Template ID expressed
 /// as an OID (in the Uri).
 
     @JsonKey(name: 'profileUri') List<List<FhirUri>>? profileUri,
-/// /// [_profileUri] Extensions for profileUri
+/// [_profileUri] Extensions for profileUri
 
-    @JsonKey(name: '_profileUri') List<FhirElement>? profileUriElement,
+    @JsonKey(name: '_profileUri') List<PrimitiveElement>? profileUriElement,
   }) = _$Endpoint_Payload;
 
   @override

@@ -1,4 +1,7 @@
-/// /// [Evidence_ModelCharacteristic] The Evidence Resource provides a
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Evidence_ModelCharacteristic] The Evidence Resource provides a
 /// machine-interpretable expression of an evidence concept including the
 /// evidence variables (e.g., population, exposures/interventions, comparators,
 /// outcomes, measured variables, confounding variables), the statistics, and
@@ -9,11 +12,11 @@ class Evidence_ModelCharacteristic with _$Evidence_ModelCharacteristic {
   const Evidence_ModelCharacteristic._();
 
   const factory Evidence_ModelCharacteristic({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -21,7 +24,7 @@ class Evidence_ModelCharacteristic with _$Evidence_ModelCharacteristic {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -37,38 +40,38 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [code] Description of a component of the method to generate the
+/// [code] Description of a component of the method to generate the
 /// statistic.
 
     @JsonKey(name: 'code') CodeableConcept? code,
-/// /// [valueQuantity] Further specification of the value of the component of
+/// [valueQuantity] Further specification of the value of the component of
 /// the method to generate the statistic.
 
     @JsonKey(name: 'valueQuantity') Quantity? valueQuantity,
-/// /// [valueRange] Further specification of the value of the component of the
+/// [valueRange] Further specification of the value of the component of the
 /// method to generate the statistic.
 
     @JsonKey(name: 'valueRange') Range? valueRange,
-/// /// [valueCodeableConcept] Further specification of the value of the
+/// [valueCodeableConcept] Further specification of the value of the
 /// component of the method to generate the statistic.
 
     @JsonKey(name: 'valueCodeableConcept') CodeableConcept? valueCodeableConcept,
-/// /// [intended] The plan for analysis.
+/// [intended] The plan for analysis.
 
     @JsonKey(name: 'intended') FhirBoolean? intended,
-/// /// [_intended] Extensions for intended
+/// [_intended] Extensions for intended
 
-    @JsonKey(name: '_intended') FhirElement? intendedElement,
-/// /// [applied] The analysis that was applied.
+    @JsonKey(name: '_intended') PrimitiveElement? intendedElement,
+/// [applied] The analysis that was applied.
 
     @JsonKey(name: 'applied') FhirBoolean? applied,
-/// /// [_applied] Extensions for applied
+/// [_applied] Extensions for applied
 
-    @JsonKey(name: '_applied') FhirElement? appliedElement,
-/// /// [variable] A variable adjusted for in the adjusted analysis.
+    @JsonKey(name: '_applied') PrimitiveElement? appliedElement,
+/// [variable] A variable adjusted for in the adjusted analysis.
 
     @JsonKey(name: 'variable') List<List<Evidence_Variable>>? variable,
-/// /// [attribute] An attribute of the statistic used as a model
+/// [attribute] An attribute of the statistic used as a model
 /// characteristic.
 
     @JsonKey(name: 'attribute') List<List<Evidence_AttributeEstimate>>? attribute,

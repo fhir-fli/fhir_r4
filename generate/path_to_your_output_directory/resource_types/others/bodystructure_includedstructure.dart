@@ -1,4 +1,7 @@
-/// /// [BodyStructure_IncludedStructure] Record details about an anatomical
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [BodyStructure_IncludedStructure] Record details about an anatomical
 /// structure.  This resource may be used when a coded concept does not provide
 /// the necessary detail needed for the use case.
 
@@ -7,11 +10,11 @@ class BodyStructure_IncludedStructure with _$BodyStructure_IncludedStructure {
   const BodyStructure_IncludedStructure._();
 
   const factory BodyStructure_IncludedStructure({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -19,7 +22,7 @@ class BodyStructure_IncludedStructure with _$BodyStructure_IncludedStructure {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -35,20 +38,20 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [structure] Code that represents the included structure.
+/// [structure] Code that represents the included structure.
 
     @JsonKey(name: 'structure') CodeableConcept? structure,
-/// /// [laterality] Code that represents the included structure laterality.
+/// [laterality] Code that represents the included structure laterality.
 
     @JsonKey(name: 'laterality') CodeableConcept? laterality,
-/// /// [bodyLandmarkOrientation] Body locations in relation to a specific body
+/// [bodyLandmarkOrientation] Body locations in relation to a specific body
 /// landmark (tatoo, scar, other body structure).
 
     @JsonKey(name: 'bodyLandmarkOrientation') List<List<BodyStructure_BodyLandmarkOrientation>>? bodyLandmarkOrientation,
-/// /// [spatialReference] XY or XYZ-coordinate orientation for structure.
+/// [spatialReference] XY or XYZ-coordinate orientation for structure.
 
     @JsonKey(name: 'spatialReference') List<List<Reference>>? spatialReference,
-/// /// [qualifier] Code that represents the included structure qualifier.
+/// [qualifier] Code that represents the included structure qualifier.
 
     @JsonKey(name: 'qualifier') List<List<CodeableConcept>>? qualifier,
   }) = _$BodyStructure_IncludedStructure;

@@ -1,4 +1,7 @@
-/// /// [PlanDefinition_DynamicValue] This resource allows for the definition
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [PlanDefinition_DynamicValue] This resource allows for the definition
 /// of various types of plans as a sharable, consumable, and executable
 /// artifact. The resource is general enough to support the description of a
 /// broad range of clinical and non-clinical artifacts such as clinical
@@ -10,11 +13,11 @@ class PlanDefinition_DynamicValue with _$PlanDefinition_DynamicValue {
   const PlanDefinition_DynamicValue._();
 
   const factory PlanDefinition_DynamicValue({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -22,7 +25,7 @@ class PlanDefinition_DynamicValue with _$PlanDefinition_DynamicValue {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -38,7 +41,7 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [path] The path to the element to be customized. This is the path on
+/// [path] The path to the element to be customized. This is the path on
 /// the resource that will hold the result of the calculation defined by the
 /// expression. The specified path SHALL be a FHIRPath resolvable on the
 /// specified target type of the ActivityDefinition, and SHALL consist only of
@@ -48,10 +51,10 @@ Modifier extensions SHALL NOT
 /// [Simple FHIRPath Profile](fhirpath.html#simple) for full details).
 
     @JsonKey(name: 'path') String? path,
-/// /// [_path] Extensions for path
+/// [_path] Extensions for path
 
-    @JsonKey(name: '_path') FhirElement? pathElement,
-/// /// [expression] An expression specifying the value of the customized
+    @JsonKey(name: '_path') PrimitiveElement? pathElement,
+/// [expression] An expression specifying the value of the customized
 /// element.
 
     @JsonKey(name: 'expression') FhirExpression? expression,

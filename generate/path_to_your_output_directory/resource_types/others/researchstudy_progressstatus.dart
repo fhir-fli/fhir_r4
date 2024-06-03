@@ -1,4 +1,7 @@
-/// /// [ResearchStudy_ProgressStatus] A scientific study of nature that
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [ResearchStudy_ProgressStatus] A scientific study of nature that
 /// sometimes includes processes involved in health and disease. For example,
 /// clinical trials are research studies that involve people. These studies may
 /// be related to new ways to screen, prevent, diagnose, and treat disease.
@@ -10,11 +13,11 @@ class ResearchStudy_ProgressStatus with _$ResearchStudy_ProgressStatus {
   const ResearchStudy_ProgressStatus._();
 
   const factory ResearchStudy_ProgressStatus({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -22,7 +25,7 @@ class ResearchStudy_ProgressStatus with _$ResearchStudy_ProgressStatus {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -38,18 +41,18 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [state] Label for status or state (e.g. recruitment status).
+/// [state] Label for status or state (e.g. recruitment status).
 
     @JsonKey(name: 'state') CodeableConcept? state,
-/// /// [actual] An indication of whether or not the date is a known date when
+/// [actual] An indication of whether or not the date is a known date when
 /// the state changed or will change. A value of true indicates a known date. A
 /// value of false indicates an estimated date.
 
     @JsonKey(name: 'actual') FhirBoolean? actual,
-/// /// [_actual] Extensions for actual
+/// [_actual] Extensions for actual
 
-    @JsonKey(name: '_actual') FhirElement? actualElement,
-/// /// [period] Date range.
+    @JsonKey(name: '_actual') PrimitiveElement? actualElement,
+/// [period] Date range.
 
     @JsonKey(name: 'period') Period? period,
   }) = _$ResearchStudy_ProgressStatus;

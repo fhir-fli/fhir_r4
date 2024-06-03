@@ -1,4 +1,7 @@
-/// /// [Condition_Stage] A clinical condition, problem, diagnosis, or other
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Condition_Stage] A clinical condition, problem, diagnosis, or other
 /// event, situation, issue, or clinical concept that has risen to a level of
 /// concern.
 
@@ -7,11 +10,11 @@ class Condition_Stage with _$Condition_Stage {
   const Condition_Stage._();
 
   const factory Condition_Stage({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -19,7 +22,7 @@ class Condition_Stage with _$Condition_Stage {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -35,17 +38,17 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [summary] A simple summary of the stage such as "Stage 3" or "Early
+/// [summary] A simple summary of the stage such as "Stage 3" or "Early
 /// Onset". The determination of the stage is disease-specific, such as cancer,
 /// retinopathy of prematurity, kidney diseases, Alzheimer's, or Parkinson
 /// disease.
 
     @JsonKey(name: 'summary') CodeableConcept? summary,
-/// /// [assessment] Reference to a formal record of the evidence on which the
+/// [assessment] Reference to a formal record of the evidence on which the
 /// staging assessment is based.
 
     @JsonKey(name: 'assessment') List<List<Reference>>? assessment,
-/// /// [type] The kind of staging, such as pathological or clinical staging.
+/// [type] The kind of staging, such as pathological or clinical staging.
 
     @JsonKey(name: 'type') CodeableConcept? type,
   }) = _$Condition_Stage;

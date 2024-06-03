@@ -1,4 +1,7 @@
-/// /// [Binary] A resource that represents the data of a single raw artifact
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Binary] A resource that represents the data of a single raw artifact
 /// as digital content accessible in its native format.  A Binary resource can
 /// contain any content, whether text, image, pdf, zip archive, etc.
 
@@ -7,41 +10,41 @@ class Binary with _$Binary {
   const Binary._();
 
   const factory Binary({
-/// /// [resourceType] This is a Binary resource
+/// [resourceType] This is a Binary resource
 
     @JsonKey(name: 'resourceType') dynamic? resourceType,
-/// /// [id] The logical id of the resource, as used in the URL for the
+/// [id] The logical id of the resource, as used in the URL for the
 /// resource. Once assigned, this value never changes.
 
     @JsonKey(name: 'id') FhirId? id,
-/// /// [meta] The metadata about the resource. This is content that is
+/// [meta] The metadata about the resource. This is content that is
 /// maintained by the infrastructure. Changes to the content might not always
 /// be associated with version changes to the resource.
 
     @JsonKey(name: 'meta') FhirMeta? meta,
-/// /// [implicitRules] A reference to a set of rules that were followed when
+/// [implicitRules] A reference to a set of rules that were followed when
 /// the resource was constructed, and which must be understood when processing
 /// the content. Often, this is a reference to an implementation guide that
 /// defines the special rules along with other profiles etc.
 
     @JsonKey(name: 'implicitRules') FhirUri? implicitRules,
-/// /// [_implicitRules] Extensions for implicitRules
+/// [_implicitRules] Extensions for implicitRules
 
-    @JsonKey(name: '_implicitRules') FhirElement? implicitRulesElement,
-/// /// [language] The base language in which the resource is written.
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
+/// [language] The base language in which the resource is written.
 
     @JsonKey(name: 'language') FhirCode? language,
-/// /// [_language] Extensions for language
+/// [_language] Extensions for language
 
-    @JsonKey(name: '_language') FhirElement? languageElement,
-/// /// [contentType] MimeType of the binary content represented as a standard
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
+/// [contentType] MimeType of the binary content represented as a standard
 /// MimeType (BCP 13).
 
     @JsonKey(name: 'contentType') FhirCode? contentType,
-/// /// [_contentType] Extensions for contentType
+/// [_contentType] Extensions for contentType
 
-    @JsonKey(name: '_contentType') FhirElement? contentTypeElement,
-/// /// [securityContext] This element identifies another resource that can be
+    @JsonKey(name: '_contentType') PrimitiveElement? contentTypeElement,
+/// [securityContext] This element identifies another resource that can be
 /// used as a proxy of the security sensitivity to use when deciding and
 /// enforcing access control rules for the Binary resource. Given that the
 /// Binary resource contains very few elements that can be used to determine
@@ -53,12 +56,12 @@ class Binary with _$Binary {
 /// only be granted to applications that have access to the patient.
 
     @JsonKey(name: 'securityContext') Reference? securityContext,
-/// /// [data] The actual content, base64 encoded.
+/// [data] The actual content, base64 encoded.
 
     @JsonKey(name: 'data') FhirBase64Binary? data,
-/// /// [_data] Extensions for data
+/// [_data] Extensions for data
 
-    @JsonKey(name: '_data') FhirElement? dataElement,
+    @JsonKey(name: '_data') PrimitiveElement? dataElement,
   }) = _$Binary;
 
   @override

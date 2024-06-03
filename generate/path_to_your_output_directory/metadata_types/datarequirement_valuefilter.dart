@@ -1,4 +1,7 @@
-/// /// [DataRequirement_ValueFilter] Describes a required data item for
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [DataRequirement_ValueFilter] Describes a required data item for
 /// evaluation in terms of the type of data, and optional code or date-based
 /// filters of the data.
 
@@ -7,11 +10,11 @@ class DataRequirement_ValueFilter with _$DataRequirement_ValueFilter {
   const DataRequirement_ValueFilter._();
 
   const factory DataRequirement_ValueFilter({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -19,7 +22,7 @@ class DataRequirement_ValueFilter with _$DataRequirement_ValueFilter {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -35,7 +38,7 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [path] The attribute of the filter. The specified path SHALL be a
+/// [path] The attribute of the filter. The specified path SHALL be a
 /// FHIRPath resolvable on the specified type of the DataRequirement, and SHALL
 /// consist only of identifiers, constant indexers, and .resolve(). The path is
 /// allowed to contain qualifiers (.) to traverse sub-elements, as well as
@@ -46,34 +49,34 @@ Modifier extensions SHALL NOT
 /// for the filter.
 
     @JsonKey(name: 'path') String? path,
-/// /// [_path] Extensions for path
+/// [_path] Extensions for path
 
-    @JsonKey(name: '_path') FhirElement? pathElement,
-/// /// [searchParam] A search parameter defined on the specified type of the
+    @JsonKey(name: '_path') PrimitiveElement? pathElement,
+/// [searchParam] A search parameter defined on the specified type of the
 /// DataRequirement, and which searches on elements of a type compatible with
 /// the type of the valueFilter.value[x] for the filter.
 
     @JsonKey(name: 'searchParam') String? searchParam,
-/// /// [_searchParam] Extensions for searchParam
+/// [_searchParam] Extensions for searchParam
 
-    @JsonKey(name: '_searchParam') FhirElement? searchParamElement,
-/// /// [comparator] The comparator to be used to determine whether the value
+    @JsonKey(name: '_searchParam') PrimitiveElement? searchParamElement,
+/// [comparator] The comparator to be used to determine whether the value
 /// is matching.
 
     @JsonKey(name: 'comparator') FhirCode? comparator,
-/// /// [_comparator] Extensions for comparator
+/// [_comparator] Extensions for comparator
 
-    @JsonKey(name: '_comparator') FhirElement? comparatorElement,
-/// /// [valueDateTime] The value of the filter.
+    @JsonKey(name: '_comparator') PrimitiveElement? comparatorElement,
+/// [valueDateTime] The value of the filter.
 
     @JsonKey(name: 'valueDateTime') FhirDateTime? valueDateTime,
-/// /// [_valueDateTime] Extensions for valueDateTime
+/// [_valueDateTime] Extensions for valueDateTime
 
-    @JsonKey(name: '_valueDateTime') FhirElement? valueDateTimeElement,
-/// /// [valuePeriod] The value of the filter.
+    @JsonKey(name: '_valueDateTime') PrimitiveElement? valueDateTimeElement,
+/// [valuePeriod] The value of the filter.
 
     @JsonKey(name: 'valuePeriod') Period? valuePeriod,
-/// /// [valueDuration] The value of the filter.
+/// [valueDuration] The value of the filter.
 
     @JsonKey(name: 'valueDuration') FhirDuration? valueDuration,
   }) = _$DataRequirement_ValueFilter;

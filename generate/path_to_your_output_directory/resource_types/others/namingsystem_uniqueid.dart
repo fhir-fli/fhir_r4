@@ -1,4 +1,7 @@
-/// /// [NamingSystem_UniqueId] A curated namespace that issues unique symbols
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [NamingSystem_UniqueId] A curated namespace that issues unique symbols
 /// within that namespace for the identification of concepts, people, devices,
 /// etc.  Represents a "System" used within the Identifier and Coding data
 /// types.
@@ -8,11 +11,11 @@ class NamingSystem_UniqueId with _$NamingSystem_UniqueId {
   const NamingSystem_UniqueId._();
 
   const factory NamingSystem_UniqueId({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -20,7 +23,7 @@ class NamingSystem_UniqueId with _$NamingSystem_UniqueId {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -36,45 +39,45 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [type] Identifies the unique identifier scheme used for this particular
+/// [type] Identifies the unique identifier scheme used for this particular
 /// identifier.
 
     @JsonKey(name: 'type') FhirCode? type,
-/// /// [_type] Extensions for type
+/// [_type] Extensions for type
 
-    @JsonKey(name: '_type') FhirElement? typeElement,
-/// /// [value] The string that should be sent over the wire to identify the
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
+/// [value] The string that should be sent over the wire to identify the
 /// code system or identifier system.
 
     @JsonKey(name: 'value') String? value,
-/// /// [_value] Extensions for value
+/// [_value] Extensions for value
 
-    @JsonKey(name: '_value') FhirElement? valueElement,
-/// /// [preferred] Indicates whether this identifier is the "preferred"
+    @JsonKey(name: '_value') PrimitiveElement? valueElement,
+/// [preferred] Indicates whether this identifier is the "preferred"
 /// identifier of this type.
 
     @JsonKey(name: 'preferred') FhirBoolean? preferred,
-/// /// [_preferred] Extensions for preferred
+/// [_preferred] Extensions for preferred
 
-    @JsonKey(name: '_preferred') FhirElement? preferredElement,
-/// /// [comment] Notes about the past or intended usage of this identifier.
+    @JsonKey(name: '_preferred') PrimitiveElement? preferredElement,
+/// [comment] Notes about the past or intended usage of this identifier.
 
     @JsonKey(name: 'comment') String? comment,
-/// /// [_comment] Extensions for comment
+/// [_comment] Extensions for comment
 
-    @JsonKey(name: '_comment') FhirElement? commentElement,
-/// /// [period] Identifies the period of time over which this identifier is
+    @JsonKey(name: '_comment') PrimitiveElement? commentElement,
+/// [period] Identifies the period of time over which this identifier is
 /// considered appropriate to refer to the naming system.  Outside of this
 /// window, the identifier might be non-deterministic.
 
     @JsonKey(name: 'period') Period? period,
-/// /// [authoritative] Indicates whether this identifier ie endorsed by the
+/// [authoritative] Indicates whether this identifier ie endorsed by the
 /// official owner of the associated naming system.
 
     @JsonKey(name: 'authoritative') FhirBoolean? authoritative,
-/// /// [_authoritative] Extensions for authoritative
+/// [_authoritative] Extensions for authoritative
 
-    @JsonKey(name: '_authoritative') FhirElement? authoritativeElement,
+    @JsonKey(name: '_authoritative') PrimitiveElement? authoritativeElement,
   }) = _$NamingSystem_UniqueId;
 
   @override

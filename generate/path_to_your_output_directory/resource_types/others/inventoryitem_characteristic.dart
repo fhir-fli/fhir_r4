@@ -1,4 +1,7 @@
-/// /// [InventoryItem_Characteristic] A functional description of an inventory
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [InventoryItem_Characteristic] A functional description of an inventory
 /// item used in inventory and supply-related workflows.
 
 @freezed
@@ -6,11 +9,11 @@ class InventoryItem_Characteristic with _$InventoryItem_Characteristic {
   const InventoryItem_Characteristic._();
 
   const factory InventoryItem_Characteristic({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class InventoryItem_Characteristic with _$InventoryItem_Characteristic {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,64 +37,64 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [characteristicType] The type of characteristic that is being defined.
+/// [characteristicType] The type of characteristic that is being defined.
 
     @JsonKey(name: 'characteristicType') CodeableConcept? characteristicType,
-/// /// [valueString] The value of the attribute.
+/// [valueString] The value of the attribute.
 
     @JsonKey(name: 'valueString') String? valueString,
-/// /// [_valueString] Extensions for valueString
+/// [_valueString] Extensions for valueString
 
-    @JsonKey(name: '_valueString') FhirElement? valueStringElement,
-/// /// [valueInteger] The value of the attribute.
+    @JsonKey(name: '_valueString') PrimitiveElement? valueStringElement,
+/// [valueInteger] The value of the attribute.
 
     @JsonKey(name: 'valueInteger') FhirInteger? valueInteger,
-/// /// [_valueInteger] Extensions for valueInteger
+/// [_valueInteger] Extensions for valueInteger
 
-    @JsonKey(name: '_valueInteger') FhirElement? valueIntegerElement,
-/// /// [valueDecimal] The value of the attribute.
+    @JsonKey(name: '_valueInteger') PrimitiveElement? valueIntegerElement,
+/// [valueDecimal] The value of the attribute.
 
     @JsonKey(name: 'valueDecimal') FhirDecimal? valueDecimal,
-/// /// [_valueDecimal] Extensions for valueDecimal
+/// [_valueDecimal] Extensions for valueDecimal
 
-    @JsonKey(name: '_valueDecimal') FhirElement? valueDecimalElement,
-/// /// [valueBoolean] The value of the attribute.
+    @JsonKey(name: '_valueDecimal') PrimitiveElement? valueDecimalElement,
+/// [valueBoolean] The value of the attribute.
 
     @JsonKey(name: 'valueBoolean') FhirBoolean? valueBoolean,
-/// /// [_valueBoolean] Extensions for valueBoolean
+/// [_valueBoolean] Extensions for valueBoolean
 
-    @JsonKey(name: '_valueBoolean') FhirElement? valueBooleanElement,
-/// /// [valueUrl] The value of the attribute.
+    @JsonKey(name: '_valueBoolean') PrimitiveElement? valueBooleanElement,
+/// [valueUrl] The value of the attribute.
 
     @JsonKey(name: 'valueUrl') FhirUrl? valueUrl,
-/// /// [_valueUrl] Extensions for valueUrl
+/// [_valueUrl] Extensions for valueUrl
 
-    @JsonKey(name: '_valueUrl') FhirElement? valueUrlElement,
-/// /// [valueDateTime] The value of the attribute.
+    @JsonKey(name: '_valueUrl') PrimitiveElement? valueUrlElement,
+/// [valueDateTime] The value of the attribute.
 
     @JsonKey(name: 'valueDateTime') FhirDateTime? valueDateTime,
-/// /// [_valueDateTime] Extensions for valueDateTime
+/// [_valueDateTime] Extensions for valueDateTime
 
-    @JsonKey(name: '_valueDateTime') FhirElement? valueDateTimeElement,
-/// /// [valueQuantity] The value of the attribute.
+    @JsonKey(name: '_valueDateTime') PrimitiveElement? valueDateTimeElement,
+/// [valueQuantity] The value of the attribute.
 
     @JsonKey(name: 'valueQuantity') Quantity? valueQuantity,
-/// /// [valueRange] The value of the attribute.
+/// [valueRange] The value of the attribute.
 
     @JsonKey(name: 'valueRange') Range? valueRange,
-/// /// [valueRatio] The value of the attribute.
+/// [valueRatio] The value of the attribute.
 
     @JsonKey(name: 'valueRatio') Ratio? valueRatio,
-/// /// [valueAnnotation] The value of the attribute.
+/// [valueAnnotation] The value of the attribute.
 
     @JsonKey(name: 'valueAnnotation') Annotation? valueAnnotation,
-/// /// [valueAddress] The value of the attribute.
+/// [valueAddress] The value of the attribute.
 
     @JsonKey(name: 'valueAddress') Address? valueAddress,
-/// /// [valueDuration] The value of the attribute.
+/// [valueDuration] The value of the attribute.
 
     @JsonKey(name: 'valueDuration') FhirDuration? valueDuration,
-/// /// [valueCodeableConcept] The value of the attribute.
+/// [valueCodeableConcept] The value of the attribute.
 
     @JsonKey(name: 'valueCodeableConcept') CodeableConcept? valueCodeableConcept,
   }) = _$InventoryItem_Characteristic;

@@ -1,4 +1,7 @@
-/// /// [ChargeItemDefinition_PropertyGroup] The ChargeItemDefinition resource
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [ChargeItemDefinition_PropertyGroup] The ChargeItemDefinition resource
 /// provides the properties that apply to the (billing) codes necessary to
 /// calculate costs and prices. The properties may differ largely depending on
 /// type and realm, therefore this resource gives only a rough structure and
@@ -9,11 +12,11 @@ class ChargeItemDefinition_PropertyGroup with _$ChargeItemDefinition_PropertyGro
   const ChargeItemDefinition_PropertyGroup._();
 
   const factory ChargeItemDefinition_PropertyGroup({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -21,7 +24,7 @@ class ChargeItemDefinition_PropertyGroup with _$ChargeItemDefinition_PropertyGro
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -37,11 +40,11 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [applicability] Expressions that describe applicability criteria for
+/// [applicability] Expressions that describe applicability criteria for
 /// the priceComponent.
 
     @JsonKey(name: 'applicability') List<List<ChargeItemDefinition_Applicability>>? applicability,
-/// /// [priceComponent] The price for a ChargeItem may be calculated as a base
+/// [priceComponent] The price for a ChargeItem may be calculated as a base
 /// price with surcharges/deductions that apply in certain conditions. A
 /// ChargeItemDefinition resource that defines the prices, factors and
 /// conditions that apply to a billing code is currently under development. The

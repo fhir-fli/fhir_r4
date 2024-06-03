@@ -1,4 +1,7 @@
-/// /// [ObservationDefinition_Component] Set of definitional characteristics
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [ObservationDefinition_Component] Set of definitional characteristics
 /// for a kind of observation or measurement produced or consumed by an
 /// orderable health care service.
 
@@ -7,11 +10,11 @@ class ObservationDefinition_Component with _$ObservationDefinition_Component {
   const ObservationDefinition_Component._();
 
   const factory ObservationDefinition_Component({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -19,7 +22,7 @@ class ObservationDefinition_Component with _$ObservationDefinition_Component {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -35,21 +38,21 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [code] Describes what will be observed.
+/// [code] Describes what will be observed.
 
     @JsonKey(name: 'code') CodeableConcept? code,
-/// /// [permittedDataType] The data types allowed for the value element of the
+/// [permittedDataType] The data types allowed for the value element of the
 /// instance of this component observations.
 
     @JsonKey(name: 'permittedDataType') List<List<FhirCode>>? permittedDataType,
-/// /// [_permittedDataType] Extensions for permittedDataType
+/// [_permittedDataType] Extensions for permittedDataType
 
-    @JsonKey(name: '_permittedDataType') List<FhirElement>? permittedDataTypeElement,
-/// /// [permittedUnit] Units allowed for the valueQuantity element in the
+    @JsonKey(name: '_permittedDataType') List<PrimitiveElement>? permittedDataTypeElement,
+/// [permittedUnit] Units allowed for the valueQuantity element in the
 /// instance observations conforming to this ObservationDefinition.
 
     @JsonKey(name: 'permittedUnit') List<List<Coding>>? permittedUnit,
-/// /// [qualifiedValue] A set of qualified values associated with a context
+/// [qualifiedValue] A set of qualified values associated with a context
 /// and a set of conditions -  provides a range for quantitative and ordinal
 /// observations and a collection of value sets for qualitative observations.
 

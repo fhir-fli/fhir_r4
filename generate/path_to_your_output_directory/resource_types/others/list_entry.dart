@@ -1,4 +1,7 @@
-/// /// [List_Entry] A List is a curated collection of resources, for things
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [List_Entry] A List is a curated collection of resources, for things
 /// such as problem lists, allergy lists, facility list, organization list,
 /// etc.
 
@@ -7,11 +10,11 @@ class List_Entry with _$List_Entry {
   const List_Entry._();
 
   const factory List_Entry({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -19,7 +22,7 @@ class List_Entry with _$List_Entry {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -35,23 +38,23 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [flag] The flag allows the system constructing the list to indicate the
+/// [flag] The flag allows the system constructing the list to indicate the
 /// role and significance of the item in the list.
 
     @JsonKey(name: 'flag') CodeableConcept? flag,
-/// /// [deleted] True if this item is marked as deleted in the list.
+/// [deleted] True if this item is marked as deleted in the list.
 
     @JsonKey(name: 'deleted') FhirBoolean? deleted,
-/// /// [_deleted] Extensions for deleted
+/// [_deleted] Extensions for deleted
 
-    @JsonKey(name: '_deleted') FhirElement? deletedElement,
-/// /// [date] When this item was added to the list.
+    @JsonKey(name: '_deleted') PrimitiveElement? deletedElement,
+/// [date] When this item was added to the list.
 
     @JsonKey(name: 'date') FhirDateTime? date,
-/// /// [_date] Extensions for date
+/// [_date] Extensions for date
 
-    @JsonKey(name: '_date') FhirElement? dateElement,
-/// /// [item] A reference to the actual resource from which data was derived.
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
+/// [item] A reference to the actual resource from which data was derived.
 
     @JsonKey(name: 'item') Reference? item,
   }) = _$List_Entry;

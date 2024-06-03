@@ -1,4 +1,7 @@
-/// /// [Device_UdiCarrier] A type of a manufactured item that is used in the
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Device_UdiCarrier] A type of a manufactured item that is used in the
 /// provision of healthcare without being substantially changed through that
 /// activity. The device may be a medical or non-medical device.
 
@@ -7,11 +10,11 @@ class Device_UdiCarrier with _$Device_UdiCarrier {
   const Device_UdiCarrier._();
 
   const factory Device_UdiCarrier({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -19,7 +22,7 @@ class Device_UdiCarrier with _$Device_UdiCarrier {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -35,22 +38,22 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [deviceIdentifier] The device identifier (DI) is a mandatory, fixed
+/// [deviceIdentifier] The device identifier (DI) is a mandatory, fixed
 /// portion of a UDI that identifies the labeler and the specific version or
 /// model of a device.
 
     @JsonKey(name: 'deviceIdentifier') String? deviceIdentifier,
-/// /// [_deviceIdentifier] Extensions for deviceIdentifier
+/// [_deviceIdentifier] Extensions for deviceIdentifier
 
-    @JsonKey(name: '_deviceIdentifier') FhirElement? deviceIdentifierElement,
-/// /// [deviceIdentifierSystem] Establishes the namespace for the device
+    @JsonKey(name: '_deviceIdentifier') PrimitiveElement? deviceIdentifierElement,
+/// [deviceIdentifierSystem] Establishes the namespace for the device
 /// identifier value that is an URL, OID, urn or uuid.
 
     @JsonKey(name: 'deviceIdentifierSystem') FhirUri? deviceIdentifierSystem,
-/// /// [_deviceIdentifierSystem] Extensions for deviceIdentifierSystem
+/// [_deviceIdentifierSystem] Extensions for deviceIdentifierSystem
 
-    @JsonKey(name: '_deviceIdentifierSystem') FhirElement? deviceIdentifierSystemElement,
-/// /// [issuer] Organization that is charged with issuing UDIs for devices.
+    @JsonKey(name: '_deviceIdentifierSystem') PrimitiveElement? deviceIdentifierSystemElement,
+/// [issuer] Organization that is charged with issuing UDIs for devices.
 /// For example, the US FDA issuers include: 
 1) GS1:
 /// http://hl7.org/fhir/NamingSystem/gs1-di, 
@@ -64,10 +67,10 @@ Modifier extensions SHALL NOT
 /// http://hl7.org/fhir/NamingSystem/ifa-gmbh-di.
 
     @JsonKey(name: 'issuer') FhirUri? issuer,
-/// /// [_issuer] Extensions for issuer
+/// [_issuer] Extensions for issuer
 
-    @JsonKey(name: '_issuer') FhirElement? issuerElement,
-/// /// [jurisdiction] The identity of the authoritative source for UDI
+    @JsonKey(name: '_issuer') PrimitiveElement? issuerElement,
+/// [jurisdiction] The identity of the authoritative source for UDI
 /// generation within a jurisdiction. All UDIs are globally unique within a
 /// single namespace with the appropriate repository uri as the system. For
 /// example, UDIs of devices managed in the U.S. by the FDA, the value is
@@ -75,33 +78,33 @@ Modifier extensions SHALL NOT
 /// European Commission http://hl7.org/fhir/NamingSystem/eu-ec-udi.
 
     @JsonKey(name: 'jurisdiction') FhirUri? jurisdiction,
-/// /// [_jurisdiction] Extensions for jurisdiction
+/// [_jurisdiction] Extensions for jurisdiction
 
-    @JsonKey(name: '_jurisdiction') FhirElement? jurisdictionElement,
-/// /// [carrierAIDC] The full UDI carrier of the Automatic Identification and
+    @JsonKey(name: '_jurisdiction') PrimitiveElement? jurisdictionElement,
+/// [carrierAIDC] The full UDI carrier of the Automatic Identification and
 /// Data Capture (AIDC) technology representation of the barcode string as
 /// printed on the packaging of the device - e.g., a barcode or RFID.   Because
 /// of limitations on character sets in XML and the need to round-trip JSON
 /// data through XML, AIDC Formats *SHALL* be base64 encoded.
 
     @JsonKey(name: 'carrierAIDC') FhirBase64Binary? carrierAIDC,
-/// /// [_carrierAIDC] Extensions for carrierAIDC
+/// [_carrierAIDC] Extensions for carrierAIDC
 
-    @JsonKey(name: '_carrierAIDC') FhirElement? carrierAIDCElement,
-/// /// [carrierHRF] The full UDI carrier as the human readable form (HRF)
+    @JsonKey(name: '_carrierAIDC') PrimitiveElement? carrierAIDCElement,
+/// [carrierHRF] The full UDI carrier as the human readable form (HRF)
 /// representation of the barcode string as printed on the packaging of the
 /// device.
 
     @JsonKey(name: 'carrierHRF') String? carrierHRF,
-/// /// [_carrierHRF] Extensions for carrierHRF
+/// [_carrierHRF] Extensions for carrierHRF
 
-    @JsonKey(name: '_carrierHRF') FhirElement? carrierHRFElement,
-/// /// [entryType] A coded entry to indicate how the data was entered.
+    @JsonKey(name: '_carrierHRF') PrimitiveElement? carrierHRFElement,
+/// [entryType] A coded entry to indicate how the data was entered.
 
     @JsonKey(name: 'entryType') FhirCode? entryType,
-/// /// [_entryType] Extensions for entryType
+/// [_entryType] Extensions for entryType
 
-    @JsonKey(name: '_entryType') FhirElement? entryTypeElement,
+    @JsonKey(name: '_entryType') PrimitiveElement? entryTypeElement,
   }) = _$Device_UdiCarrier;
 
   @override

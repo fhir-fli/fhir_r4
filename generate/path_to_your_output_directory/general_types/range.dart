@@ -1,15 +1,18 @@
-/// /// [Range] A set of ordered Quantities defined by a low and high limit.
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Range] A set of ordered Quantities defined by a low and high limit.
 
 @freezed
 class Range with _$Range {
   const Range._();
 
   const factory Range({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -17,10 +20,10 @@ class Range with _$Range {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [low] The low limit. The boundary is inclusive.
+/// [low] The low limit. The boundary is inclusive.
 
     @JsonKey(name: 'low') Quantity? low,
-/// /// [high] The high limit. The boundary is inclusive.
+/// [high] The high limit. The boundary is inclusive.
 
     @JsonKey(name: 'high') Quantity? high,
   }) = _$Range;

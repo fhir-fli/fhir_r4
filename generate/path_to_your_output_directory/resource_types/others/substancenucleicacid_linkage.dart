@@ -1,4 +1,7 @@
-/// /// [SubstanceNucleicAcid_Linkage] Nucleic acids are defined by three
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [SubstanceNucleicAcid_Linkage] Nucleic acids are defined by three
 /// distinct elements: the base, sugar and linkage. Individual substance/moiety
 /// IDs will be created for each of these elements. The nucleotide sequence
 /// will be always entered in the 5’-3’ direction.
@@ -8,11 +11,11 @@ class SubstanceNucleicAcid_Linkage with _$SubstanceNucleicAcid_Linkage {
   const SubstanceNucleicAcid_Linkage._();
 
   const factory SubstanceNucleicAcid_Linkage({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -20,7 +23,7 @@ class SubstanceNucleicAcid_Linkage with _$SubstanceNucleicAcid_Linkage {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -36,7 +39,7 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [connectivity] The entity that links the sugar residues together should
+/// [connectivity] The entity that links the sugar residues together should
 /// also be captured for nearly all naturally occurring nucleic acid the
 /// linkage is a phosphate group. For many synthetic oligonucleotides
 /// phosphorothioate linkages are often seen. Linkage connectivity is assumed
@@ -44,26 +47,26 @@ Modifier extensions SHALL NOT
 /// specified.
 
     @JsonKey(name: 'connectivity') String? connectivity,
-/// /// [_connectivity] Extensions for connectivity
+/// [_connectivity] Extensions for connectivity
 
-    @JsonKey(name: '_connectivity') FhirElement? connectivityElement,
-/// /// [identifier] Each linkage will be registered as a fragment and have an
+    @JsonKey(name: '_connectivity') PrimitiveElement? connectivityElement,
+/// [identifier] Each linkage will be registered as a fragment and have an
 /// ID.
 
     @JsonKey(name: 'identifier') Identifier? identifier,
-/// /// [name] Each linkage will be registered as a fragment and have at least
+/// [name] Each linkage will be registered as a fragment and have at least
 /// one name. A single name shall be assigned to each linkage.
 
     @JsonKey(name: 'name') String? name,
-/// /// [_name] Extensions for name
+/// [_name] Extensions for name
 
-    @JsonKey(name: '_name') FhirElement? nameElement,
-/// /// [residueSite] Residues shall be captured as described in 5.3.6.8.3.
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
+/// [residueSite] Residues shall be captured as described in 5.3.6.8.3.
 
     @JsonKey(name: 'residueSite') String? residueSite,
-/// /// [_residueSite] Extensions for residueSite
+/// [_residueSite] Extensions for residueSite
 
-    @JsonKey(name: '_residueSite') FhirElement? residueSiteElement,
+    @JsonKey(name: '_residueSite') PrimitiveElement? residueSiteElement,
   }) = _$SubstanceNucleicAcid_Linkage;
 
   @override

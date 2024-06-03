@@ -1,4 +1,7 @@
-/// /// [ClinicalImpression_Finding] A record of a clinical assessment
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [ClinicalImpression_Finding] A record of a clinical assessment
 /// performed to determine what problem(s) may affect the patient and before
 /// planning the treatments or management strategies that are best to manage a
 /// patient's condition. Assessments are often 1:1 with a clinical consultation
@@ -12,11 +15,11 @@ class ClinicalImpression_Finding with _$ClinicalImpression_Finding {
   const ClinicalImpression_Finding._();
 
   const factory ClinicalImpression_Finding({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -24,7 +27,7 @@ class ClinicalImpression_Finding with _$ClinicalImpression_Finding {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -40,16 +43,16 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [item] Specific text, code or reference for finding or diagnosis, which
+/// [item] Specific text, code or reference for finding or diagnosis, which
 /// may include ruled-out or resolved conditions.
 
     @JsonKey(name: 'item') CodeableReference? item,
-/// /// [basis] Which investigations support finding or diagnosis.
+/// [basis] Which investigations support finding or diagnosis.
 
     @JsonKey(name: 'basis') String? basis,
-/// /// [_basis] Extensions for basis
+/// [_basis] Extensions for basis
 
-    @JsonKey(name: '_basis') FhirElement? basisElement,
+    @JsonKey(name: '_basis') PrimitiveElement? basisElement,
   }) = _$ClinicalImpression_Finding;
 
   @override

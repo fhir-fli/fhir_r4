@@ -1,4 +1,7 @@
-/// /// [CareTeam_Participant] The Care Team includes all the people and
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [CareTeam_Participant] The Care Team includes all the people and
 /// organizations who plan to participate in the coordination and delivery of
 /// care.
 
@@ -7,11 +10,11 @@ class CareTeam_Participant with _$CareTeam_Participant {
   const CareTeam_Participant._();
 
   const factory CareTeam_Participant({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -19,7 +22,7 @@ class CareTeam_Participant with _$CareTeam_Participant {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -35,24 +38,24 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [role] Indicates specific responsibility of an individual within the
+/// [role] Indicates specific responsibility of an individual within the
 /// care team, such as "Primary care physician", "Trained social worker
 /// counselor", "Caregiver", etc.
 
     @JsonKey(name: 'role') CodeableConcept? role,
-/// /// [member] The specific person or organization who is
+/// [member] The specific person or organization who is
 /// participating/expected to participate in the care team.
 
     @JsonKey(name: 'member') Reference? member,
-/// /// [onBehalfOf] Entity that the participant is acting as a proxy of, or an
+/// [onBehalfOf] Entity that the participant is acting as a proxy of, or an
 /// agent of, or in the interest of, or as a representative of.
 
     @JsonKey(name: 'onBehalfOf') Reference? onBehalfOf,
-/// /// [coveragePeriod] When the member is generally available within this
+/// [coveragePeriod] When the member is generally available within this
 /// care team.
 
     @JsonKey(name: 'coveragePeriod') Period? coveragePeriod,
-/// /// [coverageTiming] When the member is generally available within this
+/// [coverageTiming] When the member is generally available within this
 /// care team.
 
     @JsonKey(name: 'coverageTiming') Timing? coverageTiming,

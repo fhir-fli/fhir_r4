@@ -1,4 +1,7 @@
-/// /// [SupplyDelivery] Record of movement of supplies from one location to
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [SupplyDelivery] Record of movement of supplies from one location to
 /// another.
 
 @freezed
@@ -6,34 +9,34 @@ class SupplyDelivery with _$SupplyDelivery {
   const SupplyDelivery._();
 
   const factory SupplyDelivery({
-/// /// [resourceType] This is a SupplyDelivery resource
+/// [resourceType] This is a SupplyDelivery resource
 
     @JsonKey(name: 'resourceType') dynamic? resourceType,
-/// /// [id] The logical id of the resource, as used in the URL for the
+/// [id] The logical id of the resource, as used in the URL for the
 /// resource. Once assigned, this value never changes.
 
     @JsonKey(name: 'id') FhirId? id,
-/// /// [meta] The metadata about the resource. This is content that is
+/// [meta] The metadata about the resource. This is content that is
 /// maintained by the infrastructure. Changes to the content might not always
 /// be associated with version changes to the resource.
 
     @JsonKey(name: 'meta') FhirMeta? meta,
-/// /// [implicitRules] A reference to a set of rules that were followed when
+/// [implicitRules] A reference to a set of rules that were followed when
 /// the resource was constructed, and which must be understood when processing
 /// the content. Often, this is a reference to an implementation guide that
 /// defines the special rules along with other profiles etc.
 
     @JsonKey(name: 'implicitRules') FhirUri? implicitRules,
-/// /// [_implicitRules] Extensions for implicitRules
+/// [_implicitRules] Extensions for implicitRules
 
-    @JsonKey(name: '_implicitRules') FhirElement? implicitRulesElement,
-/// /// [language] The base language in which the resource is written.
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
+/// [language] The base language in which the resource is written.
 
     @JsonKey(name: 'language') FhirCode? language,
-/// /// [_language] Extensions for language
+/// [_language] Extensions for language
 
-    @JsonKey(name: '_language') FhirElement? languageElement,
-/// /// [text] A human-readable narrative that contains a summary of the
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
+/// [text] A human-readable narrative that contains a summary of the
 /// resource and can be used to represent the content of the resource to a
 /// human. The narrative need not encode all the structured data, but is
 /// required to contain sufficient detail to make it "clinically safe" for a
@@ -41,14 +44,14 @@ class SupplyDelivery with _$SupplyDelivery {
 /// content should be represented in the narrative to ensure clinical safety.
 
     @JsonKey(name: 'text') Narrative? text,
-/// /// [contained] These resources do not have an independent existence apart
+/// [contained] These resources do not have an independent existence apart
 /// from the resource that contains them - they cannot be identified
 /// independently, nor can they have their own independent transaction scope.
 /// This is allowed to be a Parameters resource if and only if it is referenced
 /// by a resource that provides context/meaning.
 
     @JsonKey(name: 'contained') List<List<ResourceList>>? contained,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the resource. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -56,7 +59,7 @@ class SupplyDelivery with _$SupplyDelivery {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the resource and that modifies
 /// the understanding of the element that contains it and/or the understanding
 /// of the containing element's descendants. Usually modifier elements provide
@@ -72,62 +75,62 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [identifier] Identifier for the supply delivery event that is used to
+/// [identifier] Identifier for the supply delivery event that is used to
 /// identify it across multiple disparate systems.
 
     @JsonKey(name: 'identifier') List<List<Identifier>>? identifier,
-/// /// [basedOn] A plan, proposal or order that is fulfilled in whole or in
+/// [basedOn] A plan, proposal or order that is fulfilled in whole or in
 /// part by this event.
 
     @JsonKey(name: 'basedOn') List<List<Reference>>? basedOn,
-/// /// [partOf] A larger event of which this particular event is a component
+/// [partOf] A larger event of which this particular event is a component
 /// or step.
 
     @JsonKey(name: 'partOf') List<List<Reference>>? partOf,
-/// /// [status] A code specifying the state of the dispense event.
+/// [status] A code specifying the state of the dispense event.
 
     @JsonKey(name: 'status') FhirCode? status,
-/// /// [_status] Extensions for status
+/// [_status] Extensions for status
 
-    @JsonKey(name: '_status') FhirElement? statusElement,
-/// /// [patient] A link to a resource representing the person whom the
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
+/// [patient] A link to a resource representing the person whom the
 /// delivered item is for.
 
     @JsonKey(name: 'patient') Reference? patient,
-/// /// [type] Indicates the type of supply being provided.  Examples include:
+/// [type] Indicates the type of supply being provided.  Examples include:
 /// Medication, Device, Biologically Derived Product.
 
     @JsonKey(name: 'type') CodeableConcept? type,
-/// /// [stage] Indicates the stage of the delivery. In case the delivery is
+/// [stage] Indicates the stage of the delivery. In case the delivery is
 /// tracked only at the specific events (e.g. receipt), this resource
 /// represents the stage represented, not the entire history nor previous
 /// delivery stages.
 
     @JsonKey(name: 'stage') CodeableConcept? stage,
-/// /// [suppliedItem] The item that is being delivered or has been supplied.
+/// [suppliedItem] The item that is being delivered or has been supplied.
 
     @JsonKey(name: 'suppliedItem') List<List<SupplyDelivery_SuppliedItem>>? suppliedItem,
-/// /// [occurrenceDateTime] The date or time(s) the activity occurred.
+/// [occurrenceDateTime] The date or time(s) the activity occurred.
 
     @JsonKey(name: 'occurrenceDateTime') FhirDateTime? occurrenceDateTime,
-/// /// [_occurrenceDateTime] Extensions for occurrenceDateTime
+/// [_occurrenceDateTime] Extensions for occurrenceDateTime
 
-    @JsonKey(name: '_occurrenceDateTime') FhirElement? occurrenceDateTimeElement,
-/// /// [occurrencePeriod] The date or time(s) the activity occurred.
+    @JsonKey(name: '_occurrenceDateTime') PrimitiveElement? occurrenceDateTimeElement,
+/// [occurrencePeriod] The date or time(s) the activity occurred.
 
     @JsonKey(name: 'occurrencePeriod') Period? occurrencePeriod,
-/// /// [occurrenceTiming] The date or time(s) the activity occurred.
+/// [occurrenceTiming] The date or time(s) the activity occurred.
 
     @JsonKey(name: 'occurrenceTiming') Timing? occurrenceTiming,
-/// /// [supplier] The individual or organization responsible for supplying the
+/// [supplier] The individual or organization responsible for supplying the
 /// delivery.
 
     @JsonKey(name: 'supplier') Reference? supplier,
-/// /// [destination] Identification of the facility, location or person where
+/// [destination] Identification of the facility, location or person where
 /// the delivery is shipped to.
 
     @JsonKey(name: 'destination') Reference? destination,
-/// /// [receiver] Identifies the individual or organization that received the
+/// [receiver] Identifies the individual or organization that received the
 /// delivery.
 
     @JsonKey(name: 'receiver') List<List<Reference>>? receiver,

@@ -1,15 +1,18 @@
-/// /// [Bundle_Entry] A container for a collection of resources.
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Bundle_Entry] A container for a collection of resources.
 
 @freezed
 class Bundle_Entry with _$Bundle_Entry {
   const Bundle_Entry._();
 
   const factory Bundle_Entry({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -17,7 +20,7 @@ class Bundle_Entry with _$Bundle_Entry {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -33,10 +36,10 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [link] A series of links that provide context to this entry.
+/// [link] A series of links that provide context to this entry.
 
     @JsonKey(name: 'link') List<List<Bundle_Link>>? link,
-/// /// [fullUrl] The Absolute URL for the resource. Except for transactions
+/// [fullUrl] The Absolute URL for the resource. Except for transactions
 /// and batches, each entry in a Bundle must have a fullUrl. The fullUrl SHALL
 /// NOT disagree with the id in the resource - i.e. if the fullUrl is not a
 /// urn:uuid, the URL shall be version-independent URL consistent with the
@@ -53,25 +56,25 @@ Modifier extensions SHALL NOT
 /// operation.
 
     @JsonKey(name: 'fullUrl') FhirUri? fullUrl,
-/// /// [_fullUrl] Extensions for fullUrl
+/// [_fullUrl] Extensions for fullUrl
 
-    @JsonKey(name: '_fullUrl') FhirElement? fullUrlElement,
-/// /// [resource] The Resource for the entry. The purpose/meaning of the
+    @JsonKey(name: '_fullUrl') PrimitiveElement? fullUrlElement,
+/// [resource] The Resource for the entry. The purpose/meaning of the
 /// resource is determined by the Bundle.type. This is allowed to be a
 /// Parameters resource if and only if it is referenced by something else
 /// within the Bundle that provides context/meaning.
 
     @JsonKey(name: 'resource') ResourceList? resource,
-/// /// [search] Information about the search process that lead to the creation
+/// [search] Information about the search process that lead to the creation
 /// of this entry.
 
     @JsonKey(name: 'search') Bundle_Search? search,
-/// /// [request] Additional information about how this entry should be
+/// [request] Additional information about how this entry should be
 /// processed as part of a transaction or batch.  For history, it shows how the
 /// entry was processed to create the version contained in the entry.
 
     @JsonKey(name: 'request') Bundle_Request? request,
-/// /// [response] Indicates the results of processing the corresponding
+/// [response] Indicates the results of processing the corresponding
 /// 'request' entry in the batch or transaction being responded to or what the
 /// results of an operation where when returning history.
 

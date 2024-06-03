@@ -1,4 +1,7 @@
-/// /// [Address] An address expressed using postal conventions (as opposed to
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Address] An address expressed using postal conventions (as opposed to
 /// GPS or other location definition formats).  This data type may be used to
 /// convey addresses for use in delivering mail as well as for visiting
 /// locations which might not be valid for mail delivery.  There are a variety
@@ -12,11 +15,11 @@ class Address with _$Address {
   const Address._();
 
   const factory Address({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -24,72 +27,72 @@ class Address with _$Address {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [use] The purpose of this address.
+/// [use] The purpose of this address.
 
     @JsonKey(name: 'use') dynamic? use,
-/// /// [_use] Extensions for use
+/// [_use] Extensions for use
 
-    @JsonKey(name: '_use') FhirElement? useElement,
-/// /// [type] Distinguishes between physical addresses (those you can visit)
+    @JsonKey(name: '_use') PrimitiveElement? useElement,
+/// [type] Distinguishes between physical addresses (those you can visit)
 /// and mailing addresses (e.g. PO Boxes and care-of addresses). Most addresses
 /// are both.
 
     @JsonKey(name: 'type') dynamic? type,
-/// /// [_type] Extensions for type
+/// [_type] Extensions for type
 
-    @JsonKey(name: '_type') FhirElement? typeElement,
-/// /// [text] Specifies the entire address as it should be displayed e.g. on a
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
+/// [text] Specifies the entire address as it should be displayed e.g. on a
 /// postal label. This may be provided instead of or as well as the specific
 /// parts.
 
     @JsonKey(name: 'text') String? text,
-/// /// [_text] Extensions for text
+/// [_text] Extensions for text
 
-    @JsonKey(name: '_text') FhirElement? textElement,
-/// /// [line] This component contains the house number, apartment number,
+    @JsonKey(name: '_text') PrimitiveElement? textElement,
+/// [line] This component contains the house number, apartment number,
 /// street name, street direction,  P.O. Box number, delivery hints, and
 /// similar address information.
 
     @JsonKey(name: 'line') List<List<String>>? line,
-/// /// [_line] Extensions for line
+/// [_line] Extensions for line
 
-    @JsonKey(name: '_line') List<FhirElement>? lineElement,
-/// /// [city] The name of the city, town, suburb, village or other community
+    @JsonKey(name: '_line') List<PrimitiveElement>? lineElement,
+/// [city] The name of the city, town, suburb, village or other community
 /// or delivery center.
 
     @JsonKey(name: 'city') String? city,
-/// /// [_city] Extensions for city
+/// [_city] Extensions for city
 
-    @JsonKey(name: '_city') FhirElement? cityElement,
-/// /// [district] The name of the administrative area (county).
+    @JsonKey(name: '_city') PrimitiveElement? cityElement,
+/// [district] The name of the administrative area (county).
 
     @JsonKey(name: 'district') String? district,
-/// /// [_district] Extensions for district
+/// [_district] Extensions for district
 
-    @JsonKey(name: '_district') FhirElement? districtElement,
-/// /// [state] Sub-unit of a country with limited sovereignty in a federally
+    @JsonKey(name: '_district') PrimitiveElement? districtElement,
+/// [state] Sub-unit of a country with limited sovereignty in a federally
 /// organized country. A code may be used if codes are in common use (e.g. US 2
 /// letter state codes).
 
     @JsonKey(name: 'state') String? state,
-/// /// [_state] Extensions for state
+/// [_state] Extensions for state
 
-    @JsonKey(name: '_state') FhirElement? stateElement,
-/// /// [postalCode] A postal code designating a region defined by the postal
+    @JsonKey(name: '_state') PrimitiveElement? stateElement,
+/// [postalCode] A postal code designating a region defined by the postal
 /// service.
 
     @JsonKey(name: 'postalCode') String? postalCode,
-/// /// [_postalCode] Extensions for postalCode
+/// [_postalCode] Extensions for postalCode
 
-    @JsonKey(name: '_postalCode') FhirElement? postalCodeElement,
-/// /// [country] Country - a nation as commonly understood or generally
+    @JsonKey(name: '_postalCode') PrimitiveElement? postalCodeElement,
+/// [country] Country - a nation as commonly understood or generally
 /// accepted.
 
     @JsonKey(name: 'country') String? country,
-/// /// [_country] Extensions for country
+/// [_country] Extensions for country
 
-    @JsonKey(name: '_country') FhirElement? countryElement,
-/// /// [period] Time period when address was/is in use.
+    @JsonKey(name: '_country') PrimitiveElement? countryElement,
+/// [period] Time period when address was/is in use.
 
     @JsonKey(name: 'period') Period? period,
   }) = _$Address;

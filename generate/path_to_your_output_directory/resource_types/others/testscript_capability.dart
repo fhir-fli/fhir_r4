@@ -1,4 +1,7 @@
-/// /// [TestScript_Capability] A structured set of tests against a FHIR server
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [TestScript_Capability] A structured set of tests against a FHIR server
 /// or client implementation to determine compliance against the FHIR
 /// specification.
 
@@ -7,11 +10,11 @@ class TestScript_Capability with _$TestScript_Capability {
   const TestScript_Capability._();
 
   const factory TestScript_Capability({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -19,7 +22,7 @@ class TestScript_Capability with _$TestScript_Capability {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -35,47 +38,47 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [required] Whether or not the test execution will require the given
+/// [required] Whether or not the test execution will require the given
 /// capabilities of the server in order for this test script to execute.
 
     @JsonKey(name: 'required') FhirBoolean? required,
-/// /// [_required] Extensions for required
+/// [_required] Extensions for required
 
-    @JsonKey(name: '_required') FhirElement? requiredElement,
-/// /// [validated] Whether or not the test execution will validate the given
+    @JsonKey(name: '_required') PrimitiveElement? requiredElement,
+/// [validated] Whether or not the test execution will validate the given
 /// capabilities of the server in order for this test script to execute.
 
     @JsonKey(name: 'validated') FhirBoolean? validated,
-/// /// [_validated] Extensions for validated
+/// [_validated] Extensions for validated
 
-    @JsonKey(name: '_validated') FhirElement? validatedElement,
-/// /// [description] Description of the capabilities that this test script is
+    @JsonKey(name: '_validated') PrimitiveElement? validatedElement,
+/// [description] Description of the capabilities that this test script is
 /// requiring the server to support.
 
     @JsonKey(name: 'description') String? description,
-/// /// [_description] Extensions for description
+/// [_description] Extensions for description
 
-    @JsonKey(name: '_description') FhirElement? descriptionElement,
-/// /// [origin] Which origin server these requirements apply to.
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
+/// [origin] Which origin server these requirements apply to.
 
     @JsonKey(name: 'origin') List<List<FhirInteger>>? origin,
-/// /// [_origin] Extensions for origin
+/// [_origin] Extensions for origin
 
-    @JsonKey(name: '_origin') List<FhirElement>? originElement,
-/// /// [destination] Which server these requirements apply to.
+    @JsonKey(name: '_origin') List<PrimitiveElement>? originElement,
+/// [destination] Which server these requirements apply to.
 
     @JsonKey(name: 'destination') FhirInteger? destination,
-/// /// [_destination] Extensions for destination
+/// [_destination] Extensions for destination
 
-    @JsonKey(name: '_destination') FhirElement? destinationElement,
-/// /// [link] Links to the FHIR specification that describes this interaction
+    @JsonKey(name: '_destination') PrimitiveElement? destinationElement,
+/// [link] Links to the FHIR specification that describes this interaction
 /// and the resources involved in more detail.
 
     @JsonKey(name: 'link') List<List<FhirUri>>? link,
-/// /// [_link] Extensions for link
+/// [_link] Extensions for link
 
-    @JsonKey(name: '_link') List<FhirElement>? linkElement,
-/// /// [capabilities] Minimum capabilities required of server for test script
+    @JsonKey(name: '_link') List<PrimitiveElement>? linkElement,
+/// [capabilities] Minimum capabilities required of server for test script
 /// to execute successfully.   If server does not meet at a minimum the
 /// referenced capability statement, then all tests in this script are skipped.
 

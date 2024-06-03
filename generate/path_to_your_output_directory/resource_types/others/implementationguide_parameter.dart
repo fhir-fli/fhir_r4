@@ -1,4 +1,7 @@
-/// /// [ImplementationGuide_Parameter] A set of rules of how a particular
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [ImplementationGuide_Parameter] A set of rules of how a particular
 /// interoperability or standards problem is solved - typically through the use
 /// of FHIR resources. This resource is used to gather all the parts of an
 /// implementation guide into a logical whole and to publish a computable
@@ -9,11 +12,11 @@ class ImplementationGuide_Parameter with _$ImplementationGuide_Parameter {
   const ImplementationGuide_Parameter._();
 
   const factory ImplementationGuide_Parameter({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -21,7 +24,7 @@ class ImplementationGuide_Parameter with _$ImplementationGuide_Parameter {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -37,15 +40,15 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [code] A tool-specific code that defines the parameter.
+/// [code] A tool-specific code that defines the parameter.
 
     @JsonKey(name: 'code') Coding? code,
-/// /// [value] Value for named type.
+/// [value] Value for named type.
 
     @JsonKey(name: 'value') String? value,
-/// /// [_value] Extensions for value
+/// [_value] Extensions for value
 
-    @JsonKey(name: '_value') FhirElement? valueElement,
+    @JsonKey(name: '_value') PrimitiveElement? valueElement,
   }) = _$ImplementationGuide_Parameter;
 
   @override

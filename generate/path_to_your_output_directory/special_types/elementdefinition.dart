@@ -1,4 +1,7 @@
-/// /// [ElementDefinition] Captures constraints on each element within the
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [ElementDefinition] Captures constraints on each element within the
 /// resource, profile, or extension.
 
 @freezed
@@ -6,11 +9,11 @@ class ElementDefinition with _$ElementDefinition {
   const ElementDefinition._();
 
   const factory ElementDefinition({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class ElementDefinition with _$ElementDefinition {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,55 +37,55 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [path] The path identifies the element and is expressed as a
+/// [path] The path identifies the element and is expressed as a
 /// "."-separated list of ancestor elements, beginning with the name of the
 /// resource or extension.
 
     @JsonKey(name: 'path') String? path,
-/// /// [_path] Extensions for path
+/// [_path] Extensions for path
 
-    @JsonKey(name: '_path') FhirElement? pathElement,
-/// /// [representation] Codes that define how this element is represented in
+    @JsonKey(name: '_path') PrimitiveElement? pathElement,
+/// [representation] Codes that define how this element is represented in
 /// instances, when the deviation varies from the normal case. No extensions
 /// are allowed on elements with a representation of 'xmlAttr', no matter what
 /// FHIR serialization format is used.
 
     @JsonKey(name: 'representation') List<List<dynamic>>? representation,
-/// /// [_representation] Extensions for representation
+/// [_representation] Extensions for representation
 
-    @JsonKey(name: '_representation') List<FhirElement>? representationElement,
-/// /// [sliceName] The name of this element definition slice, when slicing is
+    @JsonKey(name: '_representation') List<PrimitiveElement>? representationElement,
+/// [sliceName] The name of this element definition slice, when slicing is
 /// working. The name must be a token with no dots or spaces. This is a unique
 /// name referring to a specific set of constraints applied to this element,
 /// used to provide a name to different slices of the same element.
 
     @JsonKey(name: 'sliceName') String? sliceName,
-/// /// [_sliceName] Extensions for sliceName
+/// [_sliceName] Extensions for sliceName
 
-    @JsonKey(name: '_sliceName') FhirElement? sliceNameElement,
-/// /// [sliceIsConstraining] If true, indicates that this slice definition is
+    @JsonKey(name: '_sliceName') PrimitiveElement? sliceNameElement,
+/// [sliceIsConstraining] If true, indicates that this slice definition is
 /// constraining a slice definition with the same name in an inherited profile.
 /// If false, the slice is not overriding any slice in an inherited profile. If
 /// missing, the slice might or might not be overriding a slice in an inherited
 /// profile, depending on the sliceName.
 
     @JsonKey(name: 'sliceIsConstraining') FhirBoolean? sliceIsConstraining,
-/// /// [_sliceIsConstraining] Extensions for sliceIsConstraining
+/// [_sliceIsConstraining] Extensions for sliceIsConstraining
 
-    @JsonKey(name: '_sliceIsConstraining') FhirElement? sliceIsConstrainingElement,
-/// /// [label] A single preferred label which is the text to display beside
+    @JsonKey(name: '_sliceIsConstraining') PrimitiveElement? sliceIsConstrainingElement,
+/// [label] A single preferred label which is the text to display beside
 /// the element indicating its meaning or to use to prompt for the element in a
 /// user display or form.
 
     @JsonKey(name: 'label') String? label,
-/// /// [_label] Extensions for label
+/// [_label] Extensions for label
 
-    @JsonKey(name: '_label') FhirElement? labelElement,
-/// /// [code] A code that has the same meaning as the element in a particular
+    @JsonKey(name: '_label') PrimitiveElement? labelElement,
+/// [code] A code that has the same meaning as the element in a particular
 /// terminology.
 
     @JsonKey(name: 'code') List<List<Coding>>? code,
-/// /// [slicing] Indicates that the element is sliced into a set of
+/// [slicing] Indicates that the element is sliced into a set of
 /// alternative definitions (i.e. in a structure definition, there are multiple
 /// different constraints on a single element in the base resource). Slicing
 /// can be used in any resource that has cardinality ..* on the base resource,
@@ -91,14 +94,14 @@ Modifier extensions SHALL NOT
 /// a shorter path occurs (the shorter path terminates the set).
 
     @JsonKey(name: 'slicing') ElementDefinition_Slicing? slicing,
-/// /// [short] A concise description of what this element means (e.g. for use
+/// [short] A concise description of what this element means (e.g. for use
 /// in autogenerated summaries).
 
     @JsonKey(name: 'short') String? short,
-/// /// [_short] Extensions for short
+/// [_short] Extensions for short
 
-    @JsonKey(name: '_short') FhirElement? shortElement,
-/// /// [definition] Provides a complete explanation of the meaning of the data
+    @JsonKey(name: '_short') PrimitiveElement? shortElement,
+/// [definition] Provides a complete explanation of the meaning of the data
 /// element for human readability.  For the case of elements derived from
 /// existing elements (e.g. constraints), the definition SHALL be consistent
 /// with the base definition, but convey the meaning of the element in the
@@ -106,49 +109,49 @@ Modifier extensions SHALL NOT
 /// is specified in ElementDefinition.definition).
 
     @JsonKey(name: 'definition') FhirMarkdown? definition,
-/// /// [_definition] Extensions for definition
+/// [_definition] Extensions for definition
 
-    @JsonKey(name: '_definition') FhirElement? definitionElement,
-/// /// [comment] Explanatory notes and implementation guidance about the data
+    @JsonKey(name: '_definition') PrimitiveElement? definitionElement,
+/// [comment] Explanatory notes and implementation guidance about the data
 /// element, including notes about how to use the data properly, exceptions to
 /// proper use, etc. (Note: The text you are reading is specified in
 /// ElementDefinition.comment).
 
     @JsonKey(name: 'comment') FhirMarkdown? comment,
-/// /// [_comment] Extensions for comment
+/// [_comment] Extensions for comment
 
-    @JsonKey(name: '_comment') FhirElement? commentElement,
-/// /// [requirements] This element is for traceability of why the element was
+    @JsonKey(name: '_comment') PrimitiveElement? commentElement,
+/// [requirements] This element is for traceability of why the element was
 /// created and why the constraints exist as they do. This may be used to point
 /// to source materials or specifications that drove the structure of this
 /// element.
 
     @JsonKey(name: 'requirements') FhirMarkdown? requirements,
-/// /// [_requirements] Extensions for requirements
+/// [_requirements] Extensions for requirements
 
-    @JsonKey(name: '_requirements') FhirElement? requirementsElement,
-/// /// [alias] Identifies additional names by which this element might also be
+    @JsonKey(name: '_requirements') PrimitiveElement? requirementsElement,
+/// [alias] Identifies additional names by which this element might also be
 /// known.
 
     @JsonKey(name: 'alias') List<List<String>>? alias,
-/// /// [_alias] Extensions for alias
+/// [_alias] Extensions for alias
 
-    @JsonKey(name: '_alias') List<FhirElement>? aliasElement,
-/// /// [min] The minimum number of times this element SHALL appear in the
+    @JsonKey(name: '_alias') List<PrimitiveElement>? aliasElement,
+/// [min] The minimum number of times this element SHALL appear in the
 /// instance.
 
     @JsonKey(name: 'min') FhirUnsignedInt? min,
-/// /// [_min] Extensions for min
+/// [_min] Extensions for min
 
-    @JsonKey(name: '_min') FhirElement? minElement,
-/// /// [max] The maximum number of times this element is permitted to appear
+    @JsonKey(name: '_min') PrimitiveElement? minElement,
+/// [max] The maximum number of times this element is permitted to appear
 /// in the instance.
 
     @JsonKey(name: 'max') String? max,
-/// /// [_max] Extensions for max
+/// [_max] Extensions for max
 
-    @JsonKey(name: '_max') FhirElement? maxElement,
-/// /// [base] Information about the base definition of the element, provided
+    @JsonKey(name: '_max') PrimitiveElement? maxElement,
+/// [base] Information about the base definition of the element, provided
 /// to make it unnecessary for tools to trace the deviation of the element
 /// through the derived and related profiles. When the element definition is
 /// not the original definition of an element - e.g. either in a constraint on
@@ -158,805 +161,805 @@ Modifier extensions SHALL NOT
 /// same.
 
     @JsonKey(name: 'base') ElementDefinition_Base? base,
-/// /// [contentReference] Identifies an element defined elsewhere in the
+/// [contentReference] Identifies an element defined elsewhere in the
 /// definition whose content rules should be applied to the current element.
 /// ContentReferences bring across all the rules that are in the
 /// ElementDefinition for the element, including definitions, cardinality
 /// constraints, bindings, invariants etc.
 
     @JsonKey(name: 'contentReference') FhirUri? contentReference,
-/// /// [_contentReference] Extensions for contentReference
+/// [_contentReference] Extensions for contentReference
 
-    @JsonKey(name: '_contentReference') FhirElement? contentReferenceElement,
-/// /// [type] The data type or resource that the value of this element is
+    @JsonKey(name: '_contentReference') PrimitiveElement? contentReferenceElement,
+/// [type] The data type or resource that the value of this element is
 /// permitted to be.
 
     @JsonKey(name: 'type') List<List<ElementDefinition_Type>>? type,
-/// /// [defaultValueBase64Binary] The value that should be used if there is no
+/// [defaultValueBase64Binary] The value that should be used if there is no
 /// value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueBase64Binary') FhirBase64Binary? defaultValueBase64Binary,
-/// /// [_defaultValueBase64Binary] Extensions for defaultValueBase64Binary
+/// [_defaultValueBase64Binary] Extensions for defaultValueBase64Binary
 
-    @JsonKey(name: '_defaultValueBase64Binary') FhirElement? defaultValueBase64BinaryElement,
-/// /// [defaultValueBoolean] The value that should be used if there is no
+    @JsonKey(name: '_defaultValueBase64Binary') PrimitiveElement? defaultValueBase64BinaryElement,
+/// [defaultValueBoolean] The value that should be used if there is no
 /// value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueBoolean') FhirBoolean? defaultValueBoolean,
-/// /// [_defaultValueBoolean] Extensions for defaultValueBoolean
+/// [_defaultValueBoolean] Extensions for defaultValueBoolean
 
-    @JsonKey(name: '_defaultValueBoolean') FhirElement? defaultValueBooleanElement,
-/// /// [defaultValueCanonical] The value that should be used if there is no
+    @JsonKey(name: '_defaultValueBoolean') PrimitiveElement? defaultValueBooleanElement,
+/// [defaultValueCanonical] The value that should be used if there is no
 /// value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueCanonical') FhirCanonical? defaultValueCanonical,
-/// /// [_defaultValueCanonical] Extensions for defaultValueCanonical
+/// [_defaultValueCanonical] Extensions for defaultValueCanonical
 
-    @JsonKey(name: '_defaultValueCanonical') FhirElement? defaultValueCanonicalElement,
-/// /// [defaultValueCode] The value that should be used if there is no value
+    @JsonKey(name: '_defaultValueCanonical') PrimitiveElement? defaultValueCanonicalElement,
+/// [defaultValueCode] The value that should be used if there is no value
 /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
 /// false').
 
     @JsonKey(name: 'defaultValueCode') FhirCode? defaultValueCode,
-/// /// [_defaultValueCode] Extensions for defaultValueCode
+/// [_defaultValueCode] Extensions for defaultValueCode
 
-    @JsonKey(name: '_defaultValueCode') FhirElement? defaultValueCodeElement,
-/// /// [defaultValueDate] The value that should be used if there is no value
+    @JsonKey(name: '_defaultValueCode') PrimitiveElement? defaultValueCodeElement,
+/// [defaultValueDate] The value that should be used if there is no value
 /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
 /// false').
 
     @JsonKey(name: 'defaultValueDate') FhirDate? defaultValueDate,
-/// /// [_defaultValueDate] Extensions for defaultValueDate
+/// [_defaultValueDate] Extensions for defaultValueDate
 
-    @JsonKey(name: '_defaultValueDate') FhirElement? defaultValueDateElement,
-/// /// [defaultValueDateTime] The value that should be used if there is no
+    @JsonKey(name: '_defaultValueDate') PrimitiveElement? defaultValueDateElement,
+/// [defaultValueDateTime] The value that should be used if there is no
 /// value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueDateTime') FhirDateTime? defaultValueDateTime,
-/// /// [_defaultValueDateTime] Extensions for defaultValueDateTime
+/// [_defaultValueDateTime] Extensions for defaultValueDateTime
 
-    @JsonKey(name: '_defaultValueDateTime') FhirElement? defaultValueDateTimeElement,
-/// /// [defaultValueDecimal] The value that should be used if there is no
+    @JsonKey(name: '_defaultValueDateTime') PrimitiveElement? defaultValueDateTimeElement,
+/// [defaultValueDecimal] The value that should be used if there is no
 /// value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueDecimal') FhirDecimal? defaultValueDecimal,
-/// /// [_defaultValueDecimal] Extensions for defaultValueDecimal
+/// [_defaultValueDecimal] Extensions for defaultValueDecimal
 
-    @JsonKey(name: '_defaultValueDecimal') FhirElement? defaultValueDecimalElement,
-/// /// [defaultValueId] The value that should be used if there is no value
+    @JsonKey(name: '_defaultValueDecimal') PrimitiveElement? defaultValueDecimalElement,
+/// [defaultValueId] The value that should be used if there is no value
 /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
 /// false').
 
     @JsonKey(name: 'defaultValueId') FhirId? defaultValueId,
-/// /// [_defaultValueId] Extensions for defaultValueId
+/// [_defaultValueId] Extensions for defaultValueId
 
-    @JsonKey(name: '_defaultValueId') FhirElement? defaultValueIdElement,
-/// /// [defaultValueInstant] The value that should be used if there is no
+    @JsonKey(name: '_defaultValueId') PrimitiveElement? defaultValueIdElement,
+/// [defaultValueInstant] The value that should be used if there is no
 /// value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueInstant') FhirInstant? defaultValueInstant,
-/// /// [_defaultValueInstant] Extensions for defaultValueInstant
+/// [_defaultValueInstant] Extensions for defaultValueInstant
 
-    @JsonKey(name: '_defaultValueInstant') FhirElement? defaultValueInstantElement,
-/// /// [defaultValueInteger] The value that should be used if there is no
+    @JsonKey(name: '_defaultValueInstant') PrimitiveElement? defaultValueInstantElement,
+/// [defaultValueInteger] The value that should be used if there is no
 /// value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueInteger') FhirInteger? defaultValueInteger,
-/// /// [_defaultValueInteger] Extensions for defaultValueInteger
+/// [_defaultValueInteger] Extensions for defaultValueInteger
 
-    @JsonKey(name: '_defaultValueInteger') FhirElement? defaultValueIntegerElement,
-/// /// [defaultValueInteger64] The value that should be used if there is no
+    @JsonKey(name: '_defaultValueInteger') PrimitiveElement? defaultValueIntegerElement,
+/// [defaultValueInteger64] The value that should be used if there is no
 /// value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueInteger64') FhirInteger64? defaultValueInteger64,
-/// /// [_defaultValueInteger64] Extensions for defaultValueInteger64
+/// [_defaultValueInteger64] Extensions for defaultValueInteger64
 
-    @JsonKey(name: '_defaultValueInteger64') FhirElement? defaultValueInteger64Element,
-/// /// [defaultValueMarkdown] The value that should be used if there is no
+    @JsonKey(name: '_defaultValueInteger64') PrimitiveElement? defaultValueInteger64Element,
+/// [defaultValueMarkdown] The value that should be used if there is no
 /// value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueMarkdown') FhirMarkdown? defaultValueMarkdown,
-/// /// [_defaultValueMarkdown] Extensions for defaultValueMarkdown
+/// [_defaultValueMarkdown] Extensions for defaultValueMarkdown
 
-    @JsonKey(name: '_defaultValueMarkdown') FhirElement? defaultValueMarkdownElement,
-/// /// [defaultValueOid] The value that should be used if there is no value
+    @JsonKey(name: '_defaultValueMarkdown') PrimitiveElement? defaultValueMarkdownElement,
+/// [defaultValueOid] The value that should be used if there is no value
 /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
 /// false').
 
     @JsonKey(name: 'defaultValueOid') FhirOid? defaultValueOid,
-/// /// [_defaultValueOid] Extensions for defaultValueOid
+/// [_defaultValueOid] Extensions for defaultValueOid
 
-    @JsonKey(name: '_defaultValueOid') FhirElement? defaultValueOidElement,
-/// /// [defaultValuePositiveInt] The value that should be used if there is no
+    @JsonKey(name: '_defaultValueOid') PrimitiveElement? defaultValueOidElement,
+/// [defaultValuePositiveInt] The value that should be used if there is no
 /// value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValuePositiveInt') FhirPositiveInt? defaultValuePositiveInt,
-/// /// [_defaultValuePositiveInt] Extensions for defaultValuePositiveInt
+/// [_defaultValuePositiveInt] Extensions for defaultValuePositiveInt
 
-    @JsonKey(name: '_defaultValuePositiveInt') FhirElement? defaultValuePositiveIntElement,
-/// /// [defaultValueString] The value that should be used if there is no value
+    @JsonKey(name: '_defaultValuePositiveInt') PrimitiveElement? defaultValuePositiveIntElement,
+/// [defaultValueString] The value that should be used if there is no value
 /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
 /// false').
 
     @JsonKey(name: 'defaultValueString') String? defaultValueString,
-/// /// [_defaultValueString] Extensions for defaultValueString
+/// [_defaultValueString] Extensions for defaultValueString
 
-    @JsonKey(name: '_defaultValueString') FhirElement? defaultValueStringElement,
-/// /// [defaultValueTime] The value that should be used if there is no value
+    @JsonKey(name: '_defaultValueString') PrimitiveElement? defaultValueStringElement,
+/// [defaultValueTime] The value that should be used if there is no value
 /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
 /// false').
 
     @JsonKey(name: 'defaultValueTime') FhirTime? defaultValueTime,
-/// /// [_defaultValueTime] Extensions for defaultValueTime
+/// [_defaultValueTime] Extensions for defaultValueTime
 
-    @JsonKey(name: '_defaultValueTime') FhirElement? defaultValueTimeElement,
-/// /// [defaultValueUnsignedInt] The value that should be used if there is no
+    @JsonKey(name: '_defaultValueTime') PrimitiveElement? defaultValueTimeElement,
+/// [defaultValueUnsignedInt] The value that should be used if there is no
 /// value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueUnsignedInt') FhirUnsignedInt? defaultValueUnsignedInt,
-/// /// [_defaultValueUnsignedInt] Extensions for defaultValueUnsignedInt
+/// [_defaultValueUnsignedInt] Extensions for defaultValueUnsignedInt
 
-    @JsonKey(name: '_defaultValueUnsignedInt') FhirElement? defaultValueUnsignedIntElement,
-/// /// [defaultValueUri] The value that should be used if there is no value
+    @JsonKey(name: '_defaultValueUnsignedInt') PrimitiveElement? defaultValueUnsignedIntElement,
+/// [defaultValueUri] The value that should be used if there is no value
 /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
 /// false').
 
     @JsonKey(name: 'defaultValueUri') FhirUri? defaultValueUri,
-/// /// [_defaultValueUri] Extensions for defaultValueUri
+/// [_defaultValueUri] Extensions for defaultValueUri
 
-    @JsonKey(name: '_defaultValueUri') FhirElement? defaultValueUriElement,
-/// /// [defaultValueUrl] The value that should be used if there is no value
+    @JsonKey(name: '_defaultValueUri') PrimitiveElement? defaultValueUriElement,
+/// [defaultValueUrl] The value that should be used if there is no value
 /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
 /// false').
 
     @JsonKey(name: 'defaultValueUrl') FhirUrl? defaultValueUrl,
-/// /// [_defaultValueUrl] Extensions for defaultValueUrl
+/// [_defaultValueUrl] Extensions for defaultValueUrl
 
-    @JsonKey(name: '_defaultValueUrl') FhirElement? defaultValueUrlElement,
-/// /// [defaultValueUuid] The value that should be used if there is no value
+    @JsonKey(name: '_defaultValueUrl') PrimitiveElement? defaultValueUrlElement,
+/// [defaultValueUuid] The value that should be used if there is no value
 /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
 /// false').
 
     @JsonKey(name: 'defaultValueUuid') FhirUuid? defaultValueUuid,
-/// /// [_defaultValueUuid] Extensions for defaultValueUuid
+/// [_defaultValueUuid] Extensions for defaultValueUuid
 
-    @JsonKey(name: '_defaultValueUuid') FhirElement? defaultValueUuidElement,
-/// /// [defaultValueAddress] The value that should be used if there is no
+    @JsonKey(name: '_defaultValueUuid') PrimitiveElement? defaultValueUuidElement,
+/// [defaultValueAddress] The value that should be used if there is no
 /// value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueAddress') Address? defaultValueAddress,
-/// /// [defaultValueAge] The value that should be used if there is no value
+/// [defaultValueAge] The value that should be used if there is no value
 /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
 /// false').
 
     @JsonKey(name: 'defaultValueAge') Age? defaultValueAge,
-/// /// [defaultValueAnnotation] The value that should be used if there is no
+/// [defaultValueAnnotation] The value that should be used if there is no
 /// value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueAnnotation') Annotation? defaultValueAnnotation,
-/// /// [defaultValueAttachment] The value that should be used if there is no
+/// [defaultValueAttachment] The value that should be used if there is no
 /// value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueAttachment') Attachment? defaultValueAttachment,
-/// /// [defaultValueCodeableConcept] The value that should be used if there is
+/// [defaultValueCodeableConcept] The value that should be used if there is
 /// no value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueCodeableConcept') CodeableConcept? defaultValueCodeableConcept,
-/// /// [defaultValueCodeableReference] The value that should be used if there
+/// [defaultValueCodeableReference] The value that should be used if there
 /// is no value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueCodeableReference') CodeableReference? defaultValueCodeableReference,
-/// /// [defaultValueCoding] The value that should be used if there is no value
+/// [defaultValueCoding] The value that should be used if there is no value
 /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
 /// false').
 
     @JsonKey(name: 'defaultValueCoding') Coding? defaultValueCoding,
-/// /// [defaultValueContactPoint] The value that should be used if there is no
+/// [defaultValueContactPoint] The value that should be used if there is no
 /// value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueContactPoint') ContactPoint? defaultValueContactPoint,
-/// /// [defaultValueCount] The value that should be used if there is no value
+/// [defaultValueCount] The value that should be used if there is no value
 /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
 /// false').
 
     @JsonKey(name: 'defaultValueCount') Count? defaultValueCount,
-/// /// [defaultValueDistance] The value that should be used if there is no
+/// [defaultValueDistance] The value that should be used if there is no
 /// value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueDistance') Distance? defaultValueDistance,
-/// /// [defaultValueDuration] The value that should be used if there is no
+/// [defaultValueDuration] The value that should be used if there is no
 /// value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueDuration') FhirDuration? defaultValueDuration,
-/// /// [defaultValueHumanName] The value that should be used if there is no
+/// [defaultValueHumanName] The value that should be used if there is no
 /// value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueHumanName') HumanName? defaultValueHumanName,
-/// /// [defaultValueIdentifier] The value that should be used if there is no
+/// [defaultValueIdentifier] The value that should be used if there is no
 /// value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueIdentifier') Identifier? defaultValueIdentifier,
-/// /// [defaultValueMoney] The value that should be used if there is no value
+/// [defaultValueMoney] The value that should be used if there is no value
 /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
 /// false').
 
     @JsonKey(name: 'defaultValueMoney') Money? defaultValueMoney,
-/// /// [defaultValuePeriod] The value that should be used if there is no value
+/// [defaultValuePeriod] The value that should be used if there is no value
 /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
 /// false').
 
     @JsonKey(name: 'defaultValuePeriod') Period? defaultValuePeriod,
-/// /// [defaultValueQuantity] The value that should be used if there is no
+/// [defaultValueQuantity] The value that should be used if there is no
 /// value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueQuantity') Quantity? defaultValueQuantity,
-/// /// [defaultValueRange] The value that should be used if there is no value
+/// [defaultValueRange] The value that should be used if there is no value
 /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
 /// false').
 
     @JsonKey(name: 'defaultValueRange') Range? defaultValueRange,
-/// /// [defaultValueRatio] The value that should be used if there is no value
+/// [defaultValueRatio] The value that should be used if there is no value
 /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
 /// false').
 
     @JsonKey(name: 'defaultValueRatio') Ratio? defaultValueRatio,
-/// /// [defaultValueRatioRange] The value that should be used if there is no
+/// [defaultValueRatioRange] The value that should be used if there is no
 /// value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueRatioRange') RatioRange? defaultValueRatioRange,
-/// /// [defaultValueReference] The value that should be used if there is no
+/// [defaultValueReference] The value that should be used if there is no
 /// value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueReference') Reference? defaultValueReference,
-/// /// [defaultValueSampledData] The value that should be used if there is no
+/// [defaultValueSampledData] The value that should be used if there is no
 /// value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueSampledData') SampledData? defaultValueSampledData,
-/// /// [defaultValueSignature] The value that should be used if there is no
+/// [defaultValueSignature] The value that should be used if there is no
 /// value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueSignature') Signature? defaultValueSignature,
-/// /// [defaultValueTiming] The value that should be used if there is no value
+/// [defaultValueTiming] The value that should be used if there is no value
 /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
 /// false').
 
     @JsonKey(name: 'defaultValueTiming') Timing? defaultValueTiming,
-/// /// [defaultValueContactDetail] The value that should be used if there is
+/// [defaultValueContactDetail] The value that should be used if there is
 /// no value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueContactDetail') ContactDetail? defaultValueContactDetail,
-/// /// [defaultValueDataRequirement] The value that should be used if there is
+/// [defaultValueDataRequirement] The value that should be used if there is
 /// no value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueDataRequirement') DataRequirement? defaultValueDataRequirement,
-/// /// [defaultValueExpression] The value that should be used if there is no
+/// [defaultValueExpression] The value that should be used if there is no
 /// value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueExpression') FhirExpression? defaultValueExpression,
-/// /// [defaultValueParameterDefinition] The value that should be used if
+/// [defaultValueParameterDefinition] The value that should be used if
 /// there is no value stated in the instance (e.g. 'if not otherwise specified,
 /// the abstract is false').
 
     @JsonKey(name: 'defaultValueParameterDefinition') ParameterDefinition? defaultValueParameterDefinition,
-/// /// [defaultValueRelatedArtifact] The value that should be used if there is
+/// [defaultValueRelatedArtifact] The value that should be used if there is
 /// no value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueRelatedArtifact') RelatedArtifact? defaultValueRelatedArtifact,
-/// /// [defaultValueTriggerDefinition] The value that should be used if there
+/// [defaultValueTriggerDefinition] The value that should be used if there
 /// is no value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueTriggerDefinition') TriggerDefinition? defaultValueTriggerDefinition,
-/// /// [defaultValueUsageContext] The value that should be used if there is no
+/// [defaultValueUsageContext] The value that should be used if there is no
 /// value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueUsageContext') UsageContext? defaultValueUsageContext,
-/// /// [defaultValueAvailability] The value that should be used if there is no
+/// [defaultValueAvailability] The value that should be used if there is no
 /// value stated in the instance (e.g. 'if not otherwise specified, the
 /// abstract is false').
 
     @JsonKey(name: 'defaultValueAvailability') Availability? defaultValueAvailability,
-/// /// [defaultValueExtendedContactDetail] The value that should be used if
+/// [defaultValueExtendedContactDetail] The value that should be used if
 /// there is no value stated in the instance (e.g. 'if not otherwise specified,
 /// the abstract is false').
 
     @JsonKey(name: 'defaultValueExtendedContactDetail') ExtendedContactDetail? defaultValueExtendedContactDetail,
-/// /// [defaultValueDosage] The value that should be used if there is no value
+/// [defaultValueDosage] The value that should be used if there is no value
 /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
 /// false').
 
     @JsonKey(name: 'defaultValueDosage') Dosage? defaultValueDosage,
-/// /// [defaultValueMeta] The value that should be used if there is no value
+/// [defaultValueMeta] The value that should be used if there is no value
 /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
 /// false').
 
     @JsonKey(name: 'defaultValueMeta') FhirMeta? defaultValueMeta,
-/// /// [meaningWhenMissing] The Implicit meaning that is to be understood when
+/// [meaningWhenMissing] The Implicit meaning that is to be understood when
 /// this element is missing (e.g. 'when this element is missing, the period is
 /// ongoing').
 
     @JsonKey(name: 'meaningWhenMissing') FhirMarkdown? meaningWhenMissing,
-/// /// [_meaningWhenMissing] Extensions for meaningWhenMissing
+/// [_meaningWhenMissing] Extensions for meaningWhenMissing
 
-    @JsonKey(name: '_meaningWhenMissing') FhirElement? meaningWhenMissingElement,
-/// /// [orderMeaning] If present, indicates that the order of the repeating
+    @JsonKey(name: '_meaningWhenMissing') PrimitiveElement? meaningWhenMissingElement,
+/// [orderMeaning] If present, indicates that the order of the repeating
 /// element has meaning and describes what that meaning is.  If absent, it
 /// means that the order of the element has no meaning.
 
     @JsonKey(name: 'orderMeaning') String? orderMeaning,
-/// /// [_orderMeaning] Extensions for orderMeaning
+/// [_orderMeaning] Extensions for orderMeaning
 
-    @JsonKey(name: '_orderMeaning') FhirElement? orderMeaningElement,
-/// /// [fixedBase64Binary] Specifies a value that SHALL be exactly the value
+    @JsonKey(name: '_orderMeaning') PrimitiveElement? orderMeaningElement,
+/// [fixedBase64Binary] Specifies a value that SHALL be exactly the value
 /// for this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedBase64Binary') FhirBase64Binary? fixedBase64Binary,
-/// /// [_fixedBase64Binary] Extensions for fixedBase64Binary
+/// [_fixedBase64Binary] Extensions for fixedBase64Binary
 
-    @JsonKey(name: '_fixedBase64Binary') FhirElement? fixedBase64BinaryElement,
-/// /// [fixedBoolean] Specifies a value that SHALL be exactly the value  for
+    @JsonKey(name: '_fixedBase64Binary') PrimitiveElement? fixedBase64BinaryElement,
+/// [fixedBoolean] Specifies a value that SHALL be exactly the value  for
 /// this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedBoolean') FhirBoolean? fixedBoolean,
-/// /// [_fixedBoolean] Extensions for fixedBoolean
+/// [_fixedBoolean] Extensions for fixedBoolean
 
-    @JsonKey(name: '_fixedBoolean') FhirElement? fixedBooleanElement,
-/// /// [fixedCanonical] Specifies a value that SHALL be exactly the value  for
+    @JsonKey(name: '_fixedBoolean') PrimitiveElement? fixedBooleanElement,
+/// [fixedCanonical] Specifies a value that SHALL be exactly the value  for
 /// this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedCanonical') FhirCanonical? fixedCanonical,
-/// /// [_fixedCanonical] Extensions for fixedCanonical
+/// [_fixedCanonical] Extensions for fixedCanonical
 
-    @JsonKey(name: '_fixedCanonical') FhirElement? fixedCanonicalElement,
-/// /// [fixedCode] Specifies a value that SHALL be exactly the value  for this
+    @JsonKey(name: '_fixedCanonical') PrimitiveElement? fixedCanonicalElement,
+/// [fixedCode] Specifies a value that SHALL be exactly the value  for this
 /// element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedCode') FhirCode? fixedCode,
-/// /// [_fixedCode] Extensions for fixedCode
+/// [_fixedCode] Extensions for fixedCode
 
-    @JsonKey(name: '_fixedCode') FhirElement? fixedCodeElement,
-/// /// [fixedDate] Specifies a value that SHALL be exactly the value  for this
+    @JsonKey(name: '_fixedCode') PrimitiveElement? fixedCodeElement,
+/// [fixedDate] Specifies a value that SHALL be exactly the value  for this
 /// element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedDate') FhirDate? fixedDate,
-/// /// [_fixedDate] Extensions for fixedDate
+/// [_fixedDate] Extensions for fixedDate
 
-    @JsonKey(name: '_fixedDate') FhirElement? fixedDateElement,
-/// /// [fixedDateTime] Specifies a value that SHALL be exactly the value  for
+    @JsonKey(name: '_fixedDate') PrimitiveElement? fixedDateElement,
+/// [fixedDateTime] Specifies a value that SHALL be exactly the value  for
 /// this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedDateTime') FhirDateTime? fixedDateTime,
-/// /// [_fixedDateTime] Extensions for fixedDateTime
+/// [_fixedDateTime] Extensions for fixedDateTime
 
-    @JsonKey(name: '_fixedDateTime') FhirElement? fixedDateTimeElement,
-/// /// [fixedDecimal] Specifies a value that SHALL be exactly the value  for
+    @JsonKey(name: '_fixedDateTime') PrimitiveElement? fixedDateTimeElement,
+/// [fixedDecimal] Specifies a value that SHALL be exactly the value  for
 /// this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedDecimal') FhirDecimal? fixedDecimal,
-/// /// [_fixedDecimal] Extensions for fixedDecimal
+/// [_fixedDecimal] Extensions for fixedDecimal
 
-    @JsonKey(name: '_fixedDecimal') FhirElement? fixedDecimalElement,
-/// /// [fixedId] Specifies a value that SHALL be exactly the value  for this
+    @JsonKey(name: '_fixedDecimal') PrimitiveElement? fixedDecimalElement,
+/// [fixedId] Specifies a value that SHALL be exactly the value  for this
 /// element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedId') FhirId? fixedId,
-/// /// [_fixedId] Extensions for fixedId
+/// [_fixedId] Extensions for fixedId
 
-    @JsonKey(name: '_fixedId') FhirElement? fixedIdElement,
-/// /// [fixedInstant] Specifies a value that SHALL be exactly the value  for
+    @JsonKey(name: '_fixedId') PrimitiveElement? fixedIdElement,
+/// [fixedInstant] Specifies a value that SHALL be exactly the value  for
 /// this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedInstant') FhirInstant? fixedInstant,
-/// /// [_fixedInstant] Extensions for fixedInstant
+/// [_fixedInstant] Extensions for fixedInstant
 
-    @JsonKey(name: '_fixedInstant') FhirElement? fixedInstantElement,
-/// /// [fixedInteger] Specifies a value that SHALL be exactly the value  for
+    @JsonKey(name: '_fixedInstant') PrimitiveElement? fixedInstantElement,
+/// [fixedInteger] Specifies a value that SHALL be exactly the value  for
 /// this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedInteger') FhirInteger? fixedInteger,
-/// /// [_fixedInteger] Extensions for fixedInteger
+/// [_fixedInteger] Extensions for fixedInteger
 
-    @JsonKey(name: '_fixedInteger') FhirElement? fixedIntegerElement,
-/// /// [fixedInteger64] Specifies a value that SHALL be exactly the value  for
+    @JsonKey(name: '_fixedInteger') PrimitiveElement? fixedIntegerElement,
+/// [fixedInteger64] Specifies a value that SHALL be exactly the value  for
 /// this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedInteger64') FhirInteger64? fixedInteger64,
-/// /// [_fixedInteger64] Extensions for fixedInteger64
+/// [_fixedInteger64] Extensions for fixedInteger64
 
-    @JsonKey(name: '_fixedInteger64') FhirElement? fixedInteger64Element,
-/// /// [fixedMarkdown] Specifies a value that SHALL be exactly the value  for
+    @JsonKey(name: '_fixedInteger64') PrimitiveElement? fixedInteger64Element,
+/// [fixedMarkdown] Specifies a value that SHALL be exactly the value  for
 /// this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedMarkdown') FhirMarkdown? fixedMarkdown,
-/// /// [_fixedMarkdown] Extensions for fixedMarkdown
+/// [_fixedMarkdown] Extensions for fixedMarkdown
 
-    @JsonKey(name: '_fixedMarkdown') FhirElement? fixedMarkdownElement,
-/// /// [fixedOid] Specifies a value that SHALL be exactly the value  for this
+    @JsonKey(name: '_fixedMarkdown') PrimitiveElement? fixedMarkdownElement,
+/// [fixedOid] Specifies a value that SHALL be exactly the value  for this
 /// element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedOid') FhirOid? fixedOid,
-/// /// [_fixedOid] Extensions for fixedOid
+/// [_fixedOid] Extensions for fixedOid
 
-    @JsonKey(name: '_fixedOid') FhirElement? fixedOidElement,
-/// /// [fixedPositiveInt] Specifies a value that SHALL be exactly the value
+    @JsonKey(name: '_fixedOid') PrimitiveElement? fixedOidElement,
+/// [fixedPositiveInt] Specifies a value that SHALL be exactly the value
 /// for this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedPositiveInt') FhirPositiveInt? fixedPositiveInt,
-/// /// [_fixedPositiveInt] Extensions for fixedPositiveInt
+/// [_fixedPositiveInt] Extensions for fixedPositiveInt
 
-    @JsonKey(name: '_fixedPositiveInt') FhirElement? fixedPositiveIntElement,
-/// /// [fixedString] Specifies a value that SHALL be exactly the value  for
+    @JsonKey(name: '_fixedPositiveInt') PrimitiveElement? fixedPositiveIntElement,
+/// [fixedString] Specifies a value that SHALL be exactly the value  for
 /// this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedString') String? fixedString,
-/// /// [_fixedString] Extensions for fixedString
+/// [_fixedString] Extensions for fixedString
 
-    @JsonKey(name: '_fixedString') FhirElement? fixedStringElement,
-/// /// [fixedTime] Specifies a value that SHALL be exactly the value  for this
+    @JsonKey(name: '_fixedString') PrimitiveElement? fixedStringElement,
+/// [fixedTime] Specifies a value that SHALL be exactly the value  for this
 /// element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedTime') FhirTime? fixedTime,
-/// /// [_fixedTime] Extensions for fixedTime
+/// [_fixedTime] Extensions for fixedTime
 
-    @JsonKey(name: '_fixedTime') FhirElement? fixedTimeElement,
-/// /// [fixedUnsignedInt] Specifies a value that SHALL be exactly the value
+    @JsonKey(name: '_fixedTime') PrimitiveElement? fixedTimeElement,
+/// [fixedUnsignedInt] Specifies a value that SHALL be exactly the value
 /// for this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedUnsignedInt') FhirUnsignedInt? fixedUnsignedInt,
-/// /// [_fixedUnsignedInt] Extensions for fixedUnsignedInt
+/// [_fixedUnsignedInt] Extensions for fixedUnsignedInt
 
-    @JsonKey(name: '_fixedUnsignedInt') FhirElement? fixedUnsignedIntElement,
-/// /// [fixedUri] Specifies a value that SHALL be exactly the value  for this
+    @JsonKey(name: '_fixedUnsignedInt') PrimitiveElement? fixedUnsignedIntElement,
+/// [fixedUri] Specifies a value that SHALL be exactly the value  for this
 /// element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedUri') FhirUri? fixedUri,
-/// /// [_fixedUri] Extensions for fixedUri
+/// [_fixedUri] Extensions for fixedUri
 
-    @JsonKey(name: '_fixedUri') FhirElement? fixedUriElement,
-/// /// [fixedUrl] Specifies a value that SHALL be exactly the value  for this
+    @JsonKey(name: '_fixedUri') PrimitiveElement? fixedUriElement,
+/// [fixedUrl] Specifies a value that SHALL be exactly the value  for this
 /// element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedUrl') FhirUrl? fixedUrl,
-/// /// [_fixedUrl] Extensions for fixedUrl
+/// [_fixedUrl] Extensions for fixedUrl
 
-    @JsonKey(name: '_fixedUrl') FhirElement? fixedUrlElement,
-/// /// [fixedUuid] Specifies a value that SHALL be exactly the value  for this
+    @JsonKey(name: '_fixedUrl') PrimitiveElement? fixedUrlElement,
+/// [fixedUuid] Specifies a value that SHALL be exactly the value  for this
 /// element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedUuid') FhirUuid? fixedUuid,
-/// /// [_fixedUuid] Extensions for fixedUuid
+/// [_fixedUuid] Extensions for fixedUuid
 
-    @JsonKey(name: '_fixedUuid') FhirElement? fixedUuidElement,
-/// /// [fixedAddress] Specifies a value that SHALL be exactly the value  for
+    @JsonKey(name: '_fixedUuid') PrimitiveElement? fixedUuidElement,
+/// [fixedAddress] Specifies a value that SHALL be exactly the value  for
 /// this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedAddress') Address? fixedAddress,
-/// /// [fixedAge] Specifies a value that SHALL be exactly the value  for this
+/// [fixedAge] Specifies a value that SHALL be exactly the value  for this
 /// element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedAge') Age? fixedAge,
-/// /// [fixedAnnotation] Specifies a value that SHALL be exactly the value
+/// [fixedAnnotation] Specifies a value that SHALL be exactly the value
 /// for this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedAnnotation') Annotation? fixedAnnotation,
-/// /// [fixedAttachment] Specifies a value that SHALL be exactly the value
+/// [fixedAttachment] Specifies a value that SHALL be exactly the value
 /// for this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedAttachment') Attachment? fixedAttachment,
-/// /// [fixedCodeableConcept] Specifies a value that SHALL be exactly the
+/// [fixedCodeableConcept] Specifies a value that SHALL be exactly the
 /// value  for this element in the instance, if present. For purposes of
 /// comparison, non-significant whitespace is ignored, and all values must be
 /// an exact match (case and accent sensitive). Missing elements/attributes
 /// must also be missing.
 
     @JsonKey(name: 'fixedCodeableConcept') CodeableConcept? fixedCodeableConcept,
-/// /// [fixedCodeableReference] Specifies a value that SHALL be exactly the
+/// [fixedCodeableReference] Specifies a value that SHALL be exactly the
 /// value  for this element in the instance, if present. For purposes of
 /// comparison, non-significant whitespace is ignored, and all values must be
 /// an exact match (case and accent sensitive). Missing elements/attributes
 /// must also be missing.
 
     @JsonKey(name: 'fixedCodeableReference') CodeableReference? fixedCodeableReference,
-/// /// [fixedCoding] Specifies a value that SHALL be exactly the value  for
+/// [fixedCoding] Specifies a value that SHALL be exactly the value  for
 /// this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedCoding') Coding? fixedCoding,
-/// /// [fixedContactPoint] Specifies a value that SHALL be exactly the value
+/// [fixedContactPoint] Specifies a value that SHALL be exactly the value
 /// for this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedContactPoint') ContactPoint? fixedContactPoint,
-/// /// [fixedCount] Specifies a value that SHALL be exactly the value  for
+/// [fixedCount] Specifies a value that SHALL be exactly the value  for
 /// this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedCount') Count? fixedCount,
-/// /// [fixedDistance] Specifies a value that SHALL be exactly the value  for
+/// [fixedDistance] Specifies a value that SHALL be exactly the value  for
 /// this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedDistance') Distance? fixedDistance,
-/// /// [fixedDuration] Specifies a value that SHALL be exactly the value  for
+/// [fixedDuration] Specifies a value that SHALL be exactly the value  for
 /// this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedDuration') FhirDuration? fixedDuration,
-/// /// [fixedHumanName] Specifies a value that SHALL be exactly the value  for
+/// [fixedHumanName] Specifies a value that SHALL be exactly the value  for
 /// this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedHumanName') HumanName? fixedHumanName,
-/// /// [fixedIdentifier] Specifies a value that SHALL be exactly the value
+/// [fixedIdentifier] Specifies a value that SHALL be exactly the value
 /// for this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedIdentifier') Identifier? fixedIdentifier,
-/// /// [fixedMoney] Specifies a value that SHALL be exactly the value  for
+/// [fixedMoney] Specifies a value that SHALL be exactly the value  for
 /// this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedMoney') Money? fixedMoney,
-/// /// [fixedPeriod] Specifies a value that SHALL be exactly the value  for
+/// [fixedPeriod] Specifies a value that SHALL be exactly the value  for
 /// this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedPeriod') Period? fixedPeriod,
-/// /// [fixedQuantity] Specifies a value that SHALL be exactly the value  for
+/// [fixedQuantity] Specifies a value that SHALL be exactly the value  for
 /// this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedQuantity') Quantity? fixedQuantity,
-/// /// [fixedRange] Specifies a value that SHALL be exactly the value  for
+/// [fixedRange] Specifies a value that SHALL be exactly the value  for
 /// this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedRange') Range? fixedRange,
-/// /// [fixedRatio] Specifies a value that SHALL be exactly the value  for
+/// [fixedRatio] Specifies a value that SHALL be exactly the value  for
 /// this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedRatio') Ratio? fixedRatio,
-/// /// [fixedRatioRange] Specifies a value that SHALL be exactly the value
+/// [fixedRatioRange] Specifies a value that SHALL be exactly the value
 /// for this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedRatioRange') RatioRange? fixedRatioRange,
-/// /// [fixedReference] Specifies a value that SHALL be exactly the value  for
+/// [fixedReference] Specifies a value that SHALL be exactly the value  for
 /// this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedReference') Reference? fixedReference,
-/// /// [fixedSampledData] Specifies a value that SHALL be exactly the value
+/// [fixedSampledData] Specifies a value that SHALL be exactly the value
 /// for this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedSampledData') SampledData? fixedSampledData,
-/// /// [fixedSignature] Specifies a value that SHALL be exactly the value  for
+/// [fixedSignature] Specifies a value that SHALL be exactly the value  for
 /// this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedSignature') Signature? fixedSignature,
-/// /// [fixedTiming] Specifies a value that SHALL be exactly the value  for
+/// [fixedTiming] Specifies a value that SHALL be exactly the value  for
 /// this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedTiming') Timing? fixedTiming,
-/// /// [fixedContactDetail] Specifies a value that SHALL be exactly the value
+/// [fixedContactDetail] Specifies a value that SHALL be exactly the value
 /// for this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedContactDetail') ContactDetail? fixedContactDetail,
-/// /// [fixedDataRequirement] Specifies a value that SHALL be exactly the
+/// [fixedDataRequirement] Specifies a value that SHALL be exactly the
 /// value  for this element in the instance, if present. For purposes of
 /// comparison, non-significant whitespace is ignored, and all values must be
 /// an exact match (case and accent sensitive). Missing elements/attributes
 /// must also be missing.
 
     @JsonKey(name: 'fixedDataRequirement') DataRequirement? fixedDataRequirement,
-/// /// [fixedExpression] Specifies a value that SHALL be exactly the value
+/// [fixedExpression] Specifies a value that SHALL be exactly the value
 /// for this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedExpression') FhirExpression? fixedExpression,
-/// /// [fixedParameterDefinition] Specifies a value that SHALL be exactly the
+/// [fixedParameterDefinition] Specifies a value that SHALL be exactly the
 /// value  for this element in the instance, if present. For purposes of
 /// comparison, non-significant whitespace is ignored, and all values must be
 /// an exact match (case and accent sensitive). Missing elements/attributes
 /// must also be missing.
 
     @JsonKey(name: 'fixedParameterDefinition') ParameterDefinition? fixedParameterDefinition,
-/// /// [fixedRelatedArtifact] Specifies a value that SHALL be exactly the
+/// [fixedRelatedArtifact] Specifies a value that SHALL be exactly the
 /// value  for this element in the instance, if present. For purposes of
 /// comparison, non-significant whitespace is ignored, and all values must be
 /// an exact match (case and accent sensitive). Missing elements/attributes
 /// must also be missing.
 
     @JsonKey(name: 'fixedRelatedArtifact') RelatedArtifact? fixedRelatedArtifact,
-/// /// [fixedTriggerDefinition] Specifies a value that SHALL be exactly the
+/// [fixedTriggerDefinition] Specifies a value that SHALL be exactly the
 /// value  for this element in the instance, if present. For purposes of
 /// comparison, non-significant whitespace is ignored, and all values must be
 /// an exact match (case and accent sensitive). Missing elements/attributes
 /// must also be missing.
 
     @JsonKey(name: 'fixedTriggerDefinition') TriggerDefinition? fixedTriggerDefinition,
-/// /// [fixedUsageContext] Specifies a value that SHALL be exactly the value
+/// [fixedUsageContext] Specifies a value that SHALL be exactly the value
 /// for this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedUsageContext') UsageContext? fixedUsageContext,
-/// /// [fixedAvailability] Specifies a value that SHALL be exactly the value
+/// [fixedAvailability] Specifies a value that SHALL be exactly the value
 /// for this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedAvailability') Availability? fixedAvailability,
-/// /// [fixedExtendedContactDetail] Specifies a value that SHALL be exactly
+/// [fixedExtendedContactDetail] Specifies a value that SHALL be exactly
 /// the value  for this element in the instance, if present. For purposes of
 /// comparison, non-significant whitespace is ignored, and all values must be
 /// an exact match (case and accent sensitive). Missing elements/attributes
 /// must also be missing.
 
     @JsonKey(name: 'fixedExtendedContactDetail') ExtendedContactDetail? fixedExtendedContactDetail,
-/// /// [fixedDosage] Specifies a value that SHALL be exactly the value  for
+/// [fixedDosage] Specifies a value that SHALL be exactly the value  for
 /// this element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedDosage') Dosage? fixedDosage,
-/// /// [fixedMeta] Specifies a value that SHALL be exactly the value  for this
+/// [fixedMeta] Specifies a value that SHALL be exactly the value  for this
 /// element in the instance, if present. For purposes of comparison,
 /// non-significant whitespace is ignored, and all values must be an exact
 /// match (case and accent sensitive). Missing elements/attributes must also be
 /// missing.
 
     @JsonKey(name: 'fixedMeta') FhirMeta? fixedMeta,
-/// /// [patternBase64Binary] Specifies a value that each occurrence of the
+/// [patternBase64Binary] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
 /// values may be found too. This is effectively constraint by example.  
@@ -989,10 +992,10 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternBase64Binary') FhirBase64Binary? patternBase64Binary,
-/// /// [_patternBase64Binary] Extensions for patternBase64Binary
+/// [_patternBase64Binary] Extensions for patternBase64Binary
 
-    @JsonKey(name: '_patternBase64Binary') FhirElement? patternBase64BinaryElement,
-/// /// [patternBoolean] Specifies a value that each occurrence of the element
+    @JsonKey(name: '_patternBase64Binary') PrimitiveElement? patternBase64BinaryElement,
+/// [patternBoolean] Specifies a value that each occurrence of the element
 /// in the instance SHALL follow - that is, any value in the pattern must be
 /// found in the instance, if the element has a value. Other additional values
 /// may be found too. This is effectively constraint by example.  
@@ -1025,10 +1028,10 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternBoolean') FhirBoolean? patternBoolean,
-/// /// [_patternBoolean] Extensions for patternBoolean
+/// [_patternBoolean] Extensions for patternBoolean
 
-    @JsonKey(name: '_patternBoolean') FhirElement? patternBooleanElement,
-/// /// [patternCanonical] Specifies a value that each occurrence of the
+    @JsonKey(name: '_patternBoolean') PrimitiveElement? patternBooleanElement,
+/// [patternCanonical] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
 /// values may be found too. This is effectively constraint by example.  
@@ -1061,10 +1064,10 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternCanonical') FhirCanonical? patternCanonical,
-/// /// [_patternCanonical] Extensions for patternCanonical
+/// [_patternCanonical] Extensions for patternCanonical
 
-    @JsonKey(name: '_patternCanonical') FhirElement? patternCanonicalElement,
-/// /// [patternCode] Specifies a value that each occurrence of the element in
+    @JsonKey(name: '_patternCanonical') PrimitiveElement? patternCanonicalElement,
+/// [patternCode] Specifies a value that each occurrence of the element in
 /// the instance SHALL follow - that is, any value in the pattern must be found
 /// in the instance, if the element has a value. Other additional values may be
 /// found too. This is effectively constraint by example.  
@@ -1097,10 +1100,10 @@ If a pattern[x] is declared on a repeating
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternCode') FhirCode? patternCode,
-/// /// [_patternCode] Extensions for patternCode
+/// [_patternCode] Extensions for patternCode
 
-    @JsonKey(name: '_patternCode') FhirElement? patternCodeElement,
-/// /// [patternDate] Specifies a value that each occurrence of the element in
+    @JsonKey(name: '_patternCode') PrimitiveElement? patternCodeElement,
+/// [patternDate] Specifies a value that each occurrence of the element in
 /// the instance SHALL follow - that is, any value in the pattern must be found
 /// in the instance, if the element has a value. Other additional values may be
 /// found too. This is effectively constraint by example.  
@@ -1133,10 +1136,10 @@ If a pattern[x] is declared on a repeating
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternDate') FhirDate? patternDate,
-/// /// [_patternDate] Extensions for patternDate
+/// [_patternDate] Extensions for patternDate
 
-    @JsonKey(name: '_patternDate') FhirElement? patternDateElement,
-/// /// [patternDateTime] Specifies a value that each occurrence of the element
+    @JsonKey(name: '_patternDate') PrimitiveElement? patternDateElement,
+/// [patternDateTime] Specifies a value that each occurrence of the element
 /// in the instance SHALL follow - that is, any value in the pattern must be
 /// found in the instance, if the element has a value. Other additional values
 /// may be found too. This is effectively constraint by example.  
@@ -1169,10 +1172,10 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternDateTime') FhirDateTime? patternDateTime,
-/// /// [_patternDateTime] Extensions for patternDateTime
+/// [_patternDateTime] Extensions for patternDateTime
 
-    @JsonKey(name: '_patternDateTime') FhirElement? patternDateTimeElement,
-/// /// [patternDecimal] Specifies a value that each occurrence of the element
+    @JsonKey(name: '_patternDateTime') PrimitiveElement? patternDateTimeElement,
+/// [patternDecimal] Specifies a value that each occurrence of the element
 /// in the instance SHALL follow - that is, any value in the pattern must be
 /// found in the instance, if the element has a value. Other additional values
 /// may be found too. This is effectively constraint by example.  
@@ -1205,10 +1208,10 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternDecimal') FhirDecimal? patternDecimal,
-/// /// [_patternDecimal] Extensions for patternDecimal
+/// [_patternDecimal] Extensions for patternDecimal
 
-    @JsonKey(name: '_patternDecimal') FhirElement? patternDecimalElement,
-/// /// [patternId] Specifies a value that each occurrence of the element in
+    @JsonKey(name: '_patternDecimal') PrimitiveElement? patternDecimalElement,
+/// [patternId] Specifies a value that each occurrence of the element in
 /// the instance SHALL follow - that is, any value in the pattern must be found
 /// in the instance, if the element has a value. Other additional values may be
 /// found too. This is effectively constraint by example.  
@@ -1241,10 +1244,10 @@ If a pattern[x] is declared on a repeating
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternId') FhirId? patternId,
-/// /// [_patternId] Extensions for patternId
+/// [_patternId] Extensions for patternId
 
-    @JsonKey(name: '_patternId') FhirElement? patternIdElement,
-/// /// [patternInstant] Specifies a value that each occurrence of the element
+    @JsonKey(name: '_patternId') PrimitiveElement? patternIdElement,
+/// [patternInstant] Specifies a value that each occurrence of the element
 /// in the instance SHALL follow - that is, any value in the pattern must be
 /// found in the instance, if the element has a value. Other additional values
 /// may be found too. This is effectively constraint by example.  
@@ -1277,10 +1280,10 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternInstant') FhirInstant? patternInstant,
-/// /// [_patternInstant] Extensions for patternInstant
+/// [_patternInstant] Extensions for patternInstant
 
-    @JsonKey(name: '_patternInstant') FhirElement? patternInstantElement,
-/// /// [patternInteger] Specifies a value that each occurrence of the element
+    @JsonKey(name: '_patternInstant') PrimitiveElement? patternInstantElement,
+/// [patternInteger] Specifies a value that each occurrence of the element
 /// in the instance SHALL follow - that is, any value in the pattern must be
 /// found in the instance, if the element has a value. Other additional values
 /// may be found too. This is effectively constraint by example.  
@@ -1313,10 +1316,10 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternInteger') FhirInteger? patternInteger,
-/// /// [_patternInteger] Extensions for patternInteger
+/// [_patternInteger] Extensions for patternInteger
 
-    @JsonKey(name: '_patternInteger') FhirElement? patternIntegerElement,
-/// /// [patternInteger64] Specifies a value that each occurrence of the
+    @JsonKey(name: '_patternInteger') PrimitiveElement? patternIntegerElement,
+/// [patternInteger64] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
 /// values may be found too. This is effectively constraint by example.  
@@ -1349,10 +1352,10 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternInteger64') FhirInteger64? patternInteger64,
-/// /// [_patternInteger64] Extensions for patternInteger64
+/// [_patternInteger64] Extensions for patternInteger64
 
-    @JsonKey(name: '_patternInteger64') FhirElement? patternInteger64Element,
-/// /// [patternMarkdown] Specifies a value that each occurrence of the element
+    @JsonKey(name: '_patternInteger64') PrimitiveElement? patternInteger64Element,
+/// [patternMarkdown] Specifies a value that each occurrence of the element
 /// in the instance SHALL follow - that is, any value in the pattern must be
 /// found in the instance, if the element has a value. Other additional values
 /// may be found too. This is effectively constraint by example.  
@@ -1385,10 +1388,10 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternMarkdown') FhirMarkdown? patternMarkdown,
-/// /// [_patternMarkdown] Extensions for patternMarkdown
+/// [_patternMarkdown] Extensions for patternMarkdown
 
-    @JsonKey(name: '_patternMarkdown') FhirElement? patternMarkdownElement,
-/// /// [patternOid] Specifies a value that each occurrence of the element in
+    @JsonKey(name: '_patternMarkdown') PrimitiveElement? patternMarkdownElement,
+/// [patternOid] Specifies a value that each occurrence of the element in
 /// the instance SHALL follow - that is, any value in the pattern must be found
 /// in the instance, if the element has a value. Other additional values may be
 /// found too. This is effectively constraint by example.  
@@ -1421,10 +1424,10 @@ If a pattern[x] is declared on a repeating
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternOid') FhirOid? patternOid,
-/// /// [_patternOid] Extensions for patternOid
+/// [_patternOid] Extensions for patternOid
 
-    @JsonKey(name: '_patternOid') FhirElement? patternOidElement,
-/// /// [patternPositiveInt] Specifies a value that each occurrence of the
+    @JsonKey(name: '_patternOid') PrimitiveElement? patternOidElement,
+/// [patternPositiveInt] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
 /// values may be found too. This is effectively constraint by example.  
@@ -1457,10 +1460,10 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternPositiveInt') FhirPositiveInt? patternPositiveInt,
-/// /// [_patternPositiveInt] Extensions for patternPositiveInt
+/// [_patternPositiveInt] Extensions for patternPositiveInt
 
-    @JsonKey(name: '_patternPositiveInt') FhirElement? patternPositiveIntElement,
-/// /// [patternString] Specifies a value that each occurrence of the element
+    @JsonKey(name: '_patternPositiveInt') PrimitiveElement? patternPositiveIntElement,
+/// [patternString] Specifies a value that each occurrence of the element
 /// in the instance SHALL follow - that is, any value in the pattern must be
 /// found in the instance, if the element has a value. Other additional values
 /// may be found too. This is effectively constraint by example.  
@@ -1493,10 +1496,10 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternString') String? patternString,
-/// /// [_patternString] Extensions for patternString
+/// [_patternString] Extensions for patternString
 
-    @JsonKey(name: '_patternString') FhirElement? patternStringElement,
-/// /// [patternTime] Specifies a value that each occurrence of the element in
+    @JsonKey(name: '_patternString') PrimitiveElement? patternStringElement,
+/// [patternTime] Specifies a value that each occurrence of the element in
 /// the instance SHALL follow - that is, any value in the pattern must be found
 /// in the instance, if the element has a value. Other additional values may be
 /// found too. This is effectively constraint by example.  
@@ -1529,10 +1532,10 @@ If a pattern[x] is declared on a repeating
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternTime') FhirTime? patternTime,
-/// /// [_patternTime] Extensions for patternTime
+/// [_patternTime] Extensions for patternTime
 
-    @JsonKey(name: '_patternTime') FhirElement? patternTimeElement,
-/// /// [patternUnsignedInt] Specifies a value that each occurrence of the
+    @JsonKey(name: '_patternTime') PrimitiveElement? patternTimeElement,
+/// [patternUnsignedInt] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
 /// values may be found too. This is effectively constraint by example.  
@@ -1565,10 +1568,10 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternUnsignedInt') FhirUnsignedInt? patternUnsignedInt,
-/// /// [_patternUnsignedInt] Extensions for patternUnsignedInt
+/// [_patternUnsignedInt] Extensions for patternUnsignedInt
 
-    @JsonKey(name: '_patternUnsignedInt') FhirElement? patternUnsignedIntElement,
-/// /// [patternUri] Specifies a value that each occurrence of the element in
+    @JsonKey(name: '_patternUnsignedInt') PrimitiveElement? patternUnsignedIntElement,
+/// [patternUri] Specifies a value that each occurrence of the element in
 /// the instance SHALL follow - that is, any value in the pattern must be found
 /// in the instance, if the element has a value. Other additional values may be
 /// found too. This is effectively constraint by example.  
@@ -1601,10 +1604,10 @@ If a pattern[x] is declared on a repeating
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternUri') FhirUri? patternUri,
-/// /// [_patternUri] Extensions for patternUri
+/// [_patternUri] Extensions for patternUri
 
-    @JsonKey(name: '_patternUri') FhirElement? patternUriElement,
-/// /// [patternUrl] Specifies a value that each occurrence of the element in
+    @JsonKey(name: '_patternUri') PrimitiveElement? patternUriElement,
+/// [patternUrl] Specifies a value that each occurrence of the element in
 /// the instance SHALL follow - that is, any value in the pattern must be found
 /// in the instance, if the element has a value. Other additional values may be
 /// found too. This is effectively constraint by example.  
@@ -1637,10 +1640,10 @@ If a pattern[x] is declared on a repeating
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternUrl') FhirUrl? patternUrl,
-/// /// [_patternUrl] Extensions for patternUrl
+/// [_patternUrl] Extensions for patternUrl
 
-    @JsonKey(name: '_patternUrl') FhirElement? patternUrlElement,
-/// /// [patternUuid] Specifies a value that each occurrence of the element in
+    @JsonKey(name: '_patternUrl') PrimitiveElement? patternUrlElement,
+/// [patternUuid] Specifies a value that each occurrence of the element in
 /// the instance SHALL follow - that is, any value in the pattern must be found
 /// in the instance, if the element has a value. Other additional values may be
 /// found too. This is effectively constraint by example.  
@@ -1673,10 +1676,10 @@ If a pattern[x] is declared on a repeating
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternUuid') FhirUuid? patternUuid,
-/// /// [_patternUuid] Extensions for patternUuid
+/// [_patternUuid] Extensions for patternUuid
 
-    @JsonKey(name: '_patternUuid') FhirElement? patternUuidElement,
-/// /// [patternAddress] Specifies a value that each occurrence of the element
+    @JsonKey(name: '_patternUuid') PrimitiveElement? patternUuidElement,
+/// [patternAddress] Specifies a value that each occurrence of the element
 /// in the instance SHALL follow - that is, any value in the pattern must be
 /// found in the instance, if the element has a value. Other additional values
 /// may be found too. This is effectively constraint by example.  
@@ -1709,7 +1712,7 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternAddress') Address? patternAddress,
-/// /// [patternAge] Specifies a value that each occurrence of the element in
+/// [patternAge] Specifies a value that each occurrence of the element in
 /// the instance SHALL follow - that is, any value in the pattern must be found
 /// in the instance, if the element has a value. Other additional values may be
 /// found too. This is effectively constraint by example.  
@@ -1742,7 +1745,7 @@ If a pattern[x] is declared on a repeating
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternAge') Age? patternAge,
-/// /// [patternAnnotation] Specifies a value that each occurrence of the
+/// [patternAnnotation] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
 /// values may be found too. This is effectively constraint by example.  
@@ -1775,7 +1778,7 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternAnnotation') Annotation? patternAnnotation,
-/// /// [patternAttachment] Specifies a value that each occurrence of the
+/// [patternAttachment] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
 /// values may be found too. This is effectively constraint by example.  
@@ -1808,7 +1811,7 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternAttachment') Attachment? patternAttachment,
-/// /// [patternCodeableConcept] Specifies a value that each occurrence of the
+/// [patternCodeableConcept] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
 /// values may be found too. This is effectively constraint by example.  
@@ -1841,7 +1844,7 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternCodeableConcept') CodeableConcept? patternCodeableConcept,
-/// /// [patternCodeableReference] Specifies a value that each occurrence of
+/// [patternCodeableReference] Specifies a value that each occurrence of
 /// the element in the instance SHALL follow - that is, any value in the
 /// pattern must be found in the instance, if the element has a value. Other
 /// additional values may be found too. This is effectively constraint by
@@ -1875,7 +1878,7 @@ If a pattern[x] is declared on a repeating element, the
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternCodeableReference') CodeableReference? patternCodeableReference,
-/// /// [patternCoding] Specifies a value that each occurrence of the element
+/// [patternCoding] Specifies a value that each occurrence of the element
 /// in the instance SHALL follow - that is, any value in the pattern must be
 /// found in the instance, if the element has a value. Other additional values
 /// may be found too. This is effectively constraint by example.  
@@ -1908,7 +1911,7 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternCoding') Coding? patternCoding,
-/// /// [patternContactPoint] Specifies a value that each occurrence of the
+/// [patternContactPoint] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
 /// values may be found too. This is effectively constraint by example.  
@@ -1941,7 +1944,7 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternContactPoint') ContactPoint? patternContactPoint,
-/// /// [patternCount] Specifies a value that each occurrence of the element in
+/// [patternCount] Specifies a value that each occurrence of the element in
 /// the instance SHALL follow - that is, any value in the pattern must be found
 /// in the instance, if the element has a value. Other additional values may be
 /// found too. This is effectively constraint by example.  
@@ -1974,7 +1977,7 @@ If a pattern[x] is declared on a repeating
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternCount') Count? patternCount,
-/// /// [patternDistance] Specifies a value that each occurrence of the element
+/// [patternDistance] Specifies a value that each occurrence of the element
 /// in the instance SHALL follow - that is, any value in the pattern must be
 /// found in the instance, if the element has a value. Other additional values
 /// may be found too. This is effectively constraint by example.  
@@ -2007,7 +2010,7 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternDistance') Distance? patternDistance,
-/// /// [patternDuration] Specifies a value that each occurrence of the element
+/// [patternDuration] Specifies a value that each occurrence of the element
 /// in the instance SHALL follow - that is, any value in the pattern must be
 /// found in the instance, if the element has a value. Other additional values
 /// may be found too. This is effectively constraint by example.  
@@ -2040,7 +2043,7 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternDuration') FhirDuration? patternDuration,
-/// /// [patternHumanName] Specifies a value that each occurrence of the
+/// [patternHumanName] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
 /// values may be found too. This is effectively constraint by example.  
@@ -2073,7 +2076,7 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternHumanName') HumanName? patternHumanName,
-/// /// [patternIdentifier] Specifies a value that each occurrence of the
+/// [patternIdentifier] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
 /// values may be found too. This is effectively constraint by example.  
@@ -2106,7 +2109,7 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternIdentifier') Identifier? patternIdentifier,
-/// /// [patternMoney] Specifies a value that each occurrence of the element in
+/// [patternMoney] Specifies a value that each occurrence of the element in
 /// the instance SHALL follow - that is, any value in the pattern must be found
 /// in the instance, if the element has a value. Other additional values may be
 /// found too. This is effectively constraint by example.  
@@ -2139,7 +2142,7 @@ If a pattern[x] is declared on a repeating
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternMoney') Money? patternMoney,
-/// /// [patternPeriod] Specifies a value that each occurrence of the element
+/// [patternPeriod] Specifies a value that each occurrence of the element
 /// in the instance SHALL follow - that is, any value in the pattern must be
 /// found in the instance, if the element has a value. Other additional values
 /// may be found too. This is effectively constraint by example.  
@@ -2172,7 +2175,7 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternPeriod') Period? patternPeriod,
-/// /// [patternQuantity] Specifies a value that each occurrence of the element
+/// [patternQuantity] Specifies a value that each occurrence of the element
 /// in the instance SHALL follow - that is, any value in the pattern must be
 /// found in the instance, if the element has a value. Other additional values
 /// may be found too. This is effectively constraint by example.  
@@ -2205,7 +2208,7 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternQuantity') Quantity? patternQuantity,
-/// /// [patternRange] Specifies a value that each occurrence of the element in
+/// [patternRange] Specifies a value that each occurrence of the element in
 /// the instance SHALL follow - that is, any value in the pattern must be found
 /// in the instance, if the element has a value. Other additional values may be
 /// found too. This is effectively constraint by example.  
@@ -2238,7 +2241,7 @@ If a pattern[x] is declared on a repeating
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternRange') Range? patternRange,
-/// /// [patternRatio] Specifies a value that each occurrence of the element in
+/// [patternRatio] Specifies a value that each occurrence of the element in
 /// the instance SHALL follow - that is, any value in the pattern must be found
 /// in the instance, if the element has a value. Other additional values may be
 /// found too. This is effectively constraint by example.  
@@ -2271,7 +2274,7 @@ If a pattern[x] is declared on a repeating
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternRatio') Ratio? patternRatio,
-/// /// [patternRatioRange] Specifies a value that each occurrence of the
+/// [patternRatioRange] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
 /// values may be found too. This is effectively constraint by example.  
@@ -2304,7 +2307,7 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternRatioRange') RatioRange? patternRatioRange,
-/// /// [patternReference] Specifies a value that each occurrence of the
+/// [patternReference] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
 /// values may be found too. This is effectively constraint by example.  
@@ -2337,7 +2340,7 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternReference') Reference? patternReference,
-/// /// [patternSampledData] Specifies a value that each occurrence of the
+/// [patternSampledData] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
 /// values may be found too. This is effectively constraint by example.  
@@ -2370,7 +2373,7 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternSampledData') SampledData? patternSampledData,
-/// /// [patternSignature] Specifies a value that each occurrence of the
+/// [patternSignature] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
 /// values may be found too. This is effectively constraint by example.  
@@ -2403,7 +2406,7 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternSignature') Signature? patternSignature,
-/// /// [patternTiming] Specifies a value that each occurrence of the element
+/// [patternTiming] Specifies a value that each occurrence of the element
 /// in the instance SHALL follow - that is, any value in the pattern must be
 /// found in the instance, if the element has a value. Other additional values
 /// may be found too. This is effectively constraint by example.  
@@ -2436,7 +2439,7 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternTiming') Timing? patternTiming,
-/// /// [patternContactDetail] Specifies a value that each occurrence of the
+/// [patternContactDetail] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
 /// values may be found too. This is effectively constraint by example.  
@@ -2469,7 +2472,7 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternContactDetail') ContactDetail? patternContactDetail,
-/// /// [patternDataRequirement] Specifies a value that each occurrence of the
+/// [patternDataRequirement] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
 /// values may be found too. This is effectively constraint by example.  
@@ -2502,7 +2505,7 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternDataRequirement') DataRequirement? patternDataRequirement,
-/// /// [patternExpression] Specifies a value that each occurrence of the
+/// [patternExpression] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
 /// values may be found too. This is effectively constraint by example.  
@@ -2535,7 +2538,7 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternExpression') FhirExpression? patternExpression,
-/// /// [patternParameterDefinition] Specifies a value that each occurrence of
+/// [patternParameterDefinition] Specifies a value that each occurrence of
 /// the element in the instance SHALL follow - that is, any value in the
 /// pattern must be found in the instance, if the element has a value. Other
 /// additional values may be found too. This is effectively constraint by
@@ -2569,7 +2572,7 @@ If a pattern[x] is declared on a repeating element, the
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternParameterDefinition') ParameterDefinition? patternParameterDefinition,
-/// /// [patternRelatedArtifact] Specifies a value that each occurrence of the
+/// [patternRelatedArtifact] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
 /// values may be found too. This is effectively constraint by example.  
@@ -2602,7 +2605,7 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternRelatedArtifact') RelatedArtifact? patternRelatedArtifact,
-/// /// [patternTriggerDefinition] Specifies a value that each occurrence of
+/// [patternTriggerDefinition] Specifies a value that each occurrence of
 /// the element in the instance SHALL follow - that is, any value in the
 /// pattern must be found in the instance, if the element has a value. Other
 /// additional values may be found too. This is effectively constraint by
@@ -2636,7 +2639,7 @@ If a pattern[x] is declared on a repeating element, the
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternTriggerDefinition') TriggerDefinition? patternTriggerDefinition,
-/// /// [patternUsageContext] Specifies a value that each occurrence of the
+/// [patternUsageContext] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
 /// values may be found too. This is effectively constraint by example.  
@@ -2669,7 +2672,7 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternUsageContext') UsageContext? patternUsageContext,
-/// /// [patternAvailability] Specifies a value that each occurrence of the
+/// [patternAvailability] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
 /// values may be found too. This is effectively constraint by example.  
@@ -2702,7 +2705,7 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternAvailability') Availability? patternAvailability,
-/// /// [patternExtendedContactDetail] Specifies a value that each occurrence
+/// [patternExtendedContactDetail] Specifies a value that each occurrence
 /// of the element in the instance SHALL follow - that is, any value in the
 /// pattern must be found in the instance, if the element has a value. Other
 /// additional values may be found too. This is effectively constraint by
@@ -2736,7 +2739,7 @@ If a pattern[x] is declared on a repeating element, the
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternExtendedContactDetail') ExtendedContactDetail? patternExtendedContactDetail,
-/// /// [patternDosage] Specifies a value that each occurrence of the element
+/// [patternDosage] Specifies a value that each occurrence of the element
 /// in the instance SHALL follow - that is, any value in the pattern must be
 /// found in the instance, if the element has a value. Other additional values
 /// may be found too. This is effectively constraint by example.  
@@ -2769,7 +2772,7 @@ If a pattern[x] is
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternDosage') Dosage? patternDosage,
-/// /// [patternMeta] Specifies a value that each occurrence of the element in
+/// [patternMeta] Specifies a value that each occurrence of the element in
 /// the instance SHALL follow - that is, any value in the pattern must be found
 /// in the instance, if the element has a value. Other additional values may be
 /// found too. This is effectively constraint by example.  
@@ -2802,165 +2805,165 @@ If a pattern[x] is declared on a repeating
 /// pattern usage and the effect it will have.
 
     @JsonKey(name: 'patternMeta') FhirMeta? patternMeta,
-/// /// [example] A sample value for this element demonstrating the type of
+/// [example] A sample value for this element demonstrating the type of
 /// information that would typically be found in the element.
 
     @JsonKey(name: 'example') List<List<ElementDefinition_Example>>? example,
-/// /// [minValueDate] The minimum allowed value for the element. The value is
+/// [minValueDate] The minimum allowed value for the element. The value is
 /// inclusive. This is allowed for the types date, dateTime, instant, time,
 /// decimal, integer, and Quantity.
 
     @JsonKey(name: 'minValueDate') FhirDate? minValueDate,
-/// /// [_minValueDate] Extensions for minValueDate
+/// [_minValueDate] Extensions for minValueDate
 
-    @JsonKey(name: '_minValueDate') FhirElement? minValueDateElement,
-/// /// [minValueDateTime] The minimum allowed value for the element. The value
+    @JsonKey(name: '_minValueDate') PrimitiveElement? minValueDateElement,
+/// [minValueDateTime] The minimum allowed value for the element. The value
 /// is inclusive. This is allowed for the types date, dateTime, instant, time,
 /// decimal, integer, and Quantity.
 
     @JsonKey(name: 'minValueDateTime') FhirDateTime? minValueDateTime,
-/// /// [_minValueDateTime] Extensions for minValueDateTime
+/// [_minValueDateTime] Extensions for minValueDateTime
 
-    @JsonKey(name: '_minValueDateTime') FhirElement? minValueDateTimeElement,
-/// /// [minValueInstant] The minimum allowed value for the element. The value
+    @JsonKey(name: '_minValueDateTime') PrimitiveElement? minValueDateTimeElement,
+/// [minValueInstant] The minimum allowed value for the element. The value
 /// is inclusive. This is allowed for the types date, dateTime, instant, time,
 /// decimal, integer, and Quantity.
 
     @JsonKey(name: 'minValueInstant') FhirInstant? minValueInstant,
-/// /// [_minValueInstant] Extensions for minValueInstant
+/// [_minValueInstant] Extensions for minValueInstant
 
-    @JsonKey(name: '_minValueInstant') FhirElement? minValueInstantElement,
-/// /// [minValueTime] The minimum allowed value for the element. The value is
+    @JsonKey(name: '_minValueInstant') PrimitiveElement? minValueInstantElement,
+/// [minValueTime] The minimum allowed value for the element. The value is
 /// inclusive. This is allowed for the types date, dateTime, instant, time,
 /// decimal, integer, and Quantity.
 
     @JsonKey(name: 'minValueTime') FhirTime? minValueTime,
-/// /// [_minValueTime] Extensions for minValueTime
+/// [_minValueTime] Extensions for minValueTime
 
-    @JsonKey(name: '_minValueTime') FhirElement? minValueTimeElement,
-/// /// [minValueDecimal] The minimum allowed value for the element. The value
+    @JsonKey(name: '_minValueTime') PrimitiveElement? minValueTimeElement,
+/// [minValueDecimal] The minimum allowed value for the element. The value
 /// is inclusive. This is allowed for the types date, dateTime, instant, time,
 /// decimal, integer, and Quantity.
 
     @JsonKey(name: 'minValueDecimal') FhirDecimal? minValueDecimal,
-/// /// [_minValueDecimal] Extensions for minValueDecimal
+/// [_minValueDecimal] Extensions for minValueDecimal
 
-    @JsonKey(name: '_minValueDecimal') FhirElement? minValueDecimalElement,
-/// /// [minValueInteger] The minimum allowed value for the element. The value
+    @JsonKey(name: '_minValueDecimal') PrimitiveElement? minValueDecimalElement,
+/// [minValueInteger] The minimum allowed value for the element. The value
 /// is inclusive. This is allowed for the types date, dateTime, instant, time,
 /// decimal, integer, and Quantity.
 
     @JsonKey(name: 'minValueInteger') FhirInteger? minValueInteger,
-/// /// [_minValueInteger] Extensions for minValueInteger
+/// [_minValueInteger] Extensions for minValueInteger
 
-    @JsonKey(name: '_minValueInteger') FhirElement? minValueIntegerElement,
-/// /// [minValueInteger64] The minimum allowed value for the element. The
+    @JsonKey(name: '_minValueInteger') PrimitiveElement? minValueIntegerElement,
+/// [minValueInteger64] The minimum allowed value for the element. The
 /// value is inclusive. This is allowed for the types date, dateTime, instant,
 /// time, decimal, integer, and Quantity.
 
     @JsonKey(name: 'minValueInteger64') FhirInteger64? minValueInteger64,
-/// /// [_minValueInteger64] Extensions for minValueInteger64
+/// [_minValueInteger64] Extensions for minValueInteger64
 
-    @JsonKey(name: '_minValueInteger64') FhirElement? minValueInteger64Element,
-/// /// [minValuePositiveInt] The minimum allowed value for the element. The
+    @JsonKey(name: '_minValueInteger64') PrimitiveElement? minValueInteger64Element,
+/// [minValuePositiveInt] The minimum allowed value for the element. The
 /// value is inclusive. This is allowed for the types date, dateTime, instant,
 /// time, decimal, integer, and Quantity.
 
     @JsonKey(name: 'minValuePositiveInt') FhirPositiveInt? minValuePositiveInt,
-/// /// [_minValuePositiveInt] Extensions for minValuePositiveInt
+/// [_minValuePositiveInt] Extensions for minValuePositiveInt
 
-    @JsonKey(name: '_minValuePositiveInt') FhirElement? minValuePositiveIntElement,
-/// /// [minValueUnsignedInt] The minimum allowed value for the element. The
+    @JsonKey(name: '_minValuePositiveInt') PrimitiveElement? minValuePositiveIntElement,
+/// [minValueUnsignedInt] The minimum allowed value for the element. The
 /// value is inclusive. This is allowed for the types date, dateTime, instant,
 /// time, decimal, integer, and Quantity.
 
     @JsonKey(name: 'minValueUnsignedInt') FhirUnsignedInt? minValueUnsignedInt,
-/// /// [_minValueUnsignedInt] Extensions for minValueUnsignedInt
+/// [_minValueUnsignedInt] Extensions for minValueUnsignedInt
 
-    @JsonKey(name: '_minValueUnsignedInt') FhirElement? minValueUnsignedIntElement,
-/// /// [minValueQuantity] The minimum allowed value for the element. The value
+    @JsonKey(name: '_minValueUnsignedInt') PrimitiveElement? minValueUnsignedIntElement,
+/// [minValueQuantity] The minimum allowed value for the element. The value
 /// is inclusive. This is allowed for the types date, dateTime, instant, time,
 /// decimal, integer, and Quantity.
 
     @JsonKey(name: 'minValueQuantity') Quantity? minValueQuantity,
-/// /// [maxValueDate] The maximum allowed value for the element. The value is
+/// [maxValueDate] The maximum allowed value for the element. The value is
 /// inclusive. This is allowed for the types date, dateTime, instant, time,
 /// decimal, integer, and Quantity.
 
     @JsonKey(name: 'maxValueDate') FhirDate? maxValueDate,
-/// /// [_maxValueDate] Extensions for maxValueDate
+/// [_maxValueDate] Extensions for maxValueDate
 
-    @JsonKey(name: '_maxValueDate') FhirElement? maxValueDateElement,
-/// /// [maxValueDateTime] The maximum allowed value for the element. The value
+    @JsonKey(name: '_maxValueDate') PrimitiveElement? maxValueDateElement,
+/// [maxValueDateTime] The maximum allowed value for the element. The value
 /// is inclusive. This is allowed for the types date, dateTime, instant, time,
 /// decimal, integer, and Quantity.
 
     @JsonKey(name: 'maxValueDateTime') FhirDateTime? maxValueDateTime,
-/// /// [_maxValueDateTime] Extensions for maxValueDateTime
+/// [_maxValueDateTime] Extensions for maxValueDateTime
 
-    @JsonKey(name: '_maxValueDateTime') FhirElement? maxValueDateTimeElement,
-/// /// [maxValueInstant] The maximum allowed value for the element. The value
+    @JsonKey(name: '_maxValueDateTime') PrimitiveElement? maxValueDateTimeElement,
+/// [maxValueInstant] The maximum allowed value for the element. The value
 /// is inclusive. This is allowed for the types date, dateTime, instant, time,
 /// decimal, integer, and Quantity.
 
     @JsonKey(name: 'maxValueInstant') FhirInstant? maxValueInstant,
-/// /// [_maxValueInstant] Extensions for maxValueInstant
+/// [_maxValueInstant] Extensions for maxValueInstant
 
-    @JsonKey(name: '_maxValueInstant') FhirElement? maxValueInstantElement,
-/// /// [maxValueTime] The maximum allowed value for the element. The value is
+    @JsonKey(name: '_maxValueInstant') PrimitiveElement? maxValueInstantElement,
+/// [maxValueTime] The maximum allowed value for the element. The value is
 /// inclusive. This is allowed for the types date, dateTime, instant, time,
 /// decimal, integer, and Quantity.
 
     @JsonKey(name: 'maxValueTime') FhirTime? maxValueTime,
-/// /// [_maxValueTime] Extensions for maxValueTime
+/// [_maxValueTime] Extensions for maxValueTime
 
-    @JsonKey(name: '_maxValueTime') FhirElement? maxValueTimeElement,
-/// /// [maxValueDecimal] The maximum allowed value for the element. The value
+    @JsonKey(name: '_maxValueTime') PrimitiveElement? maxValueTimeElement,
+/// [maxValueDecimal] The maximum allowed value for the element. The value
 /// is inclusive. This is allowed for the types date, dateTime, instant, time,
 /// decimal, integer, and Quantity.
 
     @JsonKey(name: 'maxValueDecimal') FhirDecimal? maxValueDecimal,
-/// /// [_maxValueDecimal] Extensions for maxValueDecimal
+/// [_maxValueDecimal] Extensions for maxValueDecimal
 
-    @JsonKey(name: '_maxValueDecimal') FhirElement? maxValueDecimalElement,
-/// /// [maxValueInteger] The maximum allowed value for the element. The value
+    @JsonKey(name: '_maxValueDecimal') PrimitiveElement? maxValueDecimalElement,
+/// [maxValueInteger] The maximum allowed value for the element. The value
 /// is inclusive. This is allowed for the types date, dateTime, instant, time,
 /// decimal, integer, and Quantity.
 
     @JsonKey(name: 'maxValueInteger') FhirInteger? maxValueInteger,
-/// /// [_maxValueInteger] Extensions for maxValueInteger
+/// [_maxValueInteger] Extensions for maxValueInteger
 
-    @JsonKey(name: '_maxValueInteger') FhirElement? maxValueIntegerElement,
-/// /// [maxValueInteger64] The maximum allowed value for the element. The
+    @JsonKey(name: '_maxValueInteger') PrimitiveElement? maxValueIntegerElement,
+/// [maxValueInteger64] The maximum allowed value for the element. The
 /// value is inclusive. This is allowed for the types date, dateTime, instant,
 /// time, decimal, integer, and Quantity.
 
     @JsonKey(name: 'maxValueInteger64') FhirInteger64? maxValueInteger64,
-/// /// [_maxValueInteger64] Extensions for maxValueInteger64
+/// [_maxValueInteger64] Extensions for maxValueInteger64
 
-    @JsonKey(name: '_maxValueInteger64') FhirElement? maxValueInteger64Element,
-/// /// [maxValuePositiveInt] The maximum allowed value for the element. The
+    @JsonKey(name: '_maxValueInteger64') PrimitiveElement? maxValueInteger64Element,
+/// [maxValuePositiveInt] The maximum allowed value for the element. The
 /// value is inclusive. This is allowed for the types date, dateTime, instant,
 /// time, decimal, integer, and Quantity.
 
     @JsonKey(name: 'maxValuePositiveInt') FhirPositiveInt? maxValuePositiveInt,
-/// /// [_maxValuePositiveInt] Extensions for maxValuePositiveInt
+/// [_maxValuePositiveInt] Extensions for maxValuePositiveInt
 
-    @JsonKey(name: '_maxValuePositiveInt') FhirElement? maxValuePositiveIntElement,
-/// /// [maxValueUnsignedInt] The maximum allowed value for the element. The
+    @JsonKey(name: '_maxValuePositiveInt') PrimitiveElement? maxValuePositiveIntElement,
+/// [maxValueUnsignedInt] The maximum allowed value for the element. The
 /// value is inclusive. This is allowed for the types date, dateTime, instant,
 /// time, decimal, integer, and Quantity.
 
     @JsonKey(name: 'maxValueUnsignedInt') FhirUnsignedInt? maxValueUnsignedInt,
-/// /// [_maxValueUnsignedInt] Extensions for maxValueUnsignedInt
+/// [_maxValueUnsignedInt] Extensions for maxValueUnsignedInt
 
-    @JsonKey(name: '_maxValueUnsignedInt') FhirElement? maxValueUnsignedIntElement,
-/// /// [maxValueQuantity] The maximum allowed value for the element. The value
+    @JsonKey(name: '_maxValueUnsignedInt') PrimitiveElement? maxValueUnsignedIntElement,
+/// [maxValueQuantity] The maximum allowed value for the element. The value
 /// is inclusive. This is allowed for the types date, dateTime, instant, time,
 /// decimal, integer, and Quantity.
 
     @JsonKey(name: 'maxValueQuantity') Quantity? maxValueQuantity,
-/// /// [maxLength] Indicates the maximum length in characters that is
+/// [maxLength] Indicates the maximum length in characters that is
 /// permitted to be present in conformant instances and which is expected to be
 /// supported by conformant consumers that support the element. ```maxLength```
 /// SHOULD only be used on primitive data types that have a string
@@ -2968,33 +2971,33 @@ If a pattern[x] is declared on a repeating
 /// [[[http://hl7.org/fhir/StructureDefinition/structuredefinition-type-characteristics]]]).
 
     @JsonKey(name: 'maxLength') FhirInteger? maxLength,
-/// /// [_maxLength] Extensions for maxLength
+/// [_maxLength] Extensions for maxLength
 
-    @JsonKey(name: '_maxLength') FhirElement? maxLengthElement,
-/// /// [condition] A reference to an invariant that may make additional
+    @JsonKey(name: '_maxLength') PrimitiveElement? maxLengthElement,
+/// [condition] A reference to an invariant that may make additional
 /// statements about the cardinality or value in the instance.
 
     @JsonKey(name: 'condition') List<List<FhirId>>? condition,
-/// /// [_condition] Extensions for condition
+/// [_condition] Extensions for condition
 
-    @JsonKey(name: '_condition') List<FhirElement>? conditionElement,
-/// /// [constraint] Formal constraints such as co-occurrence and other
+    @JsonKey(name: '_condition') List<PrimitiveElement>? conditionElement,
+/// [constraint] Formal constraints such as co-occurrence and other
 /// constraints that can be computationally evaluated within the context of the
 /// instance.
 
     @JsonKey(name: 'constraint') List<List<ElementDefinition_Constraint>>? constraint,
-/// /// [mustHaveValue] Specifies for a primitive data type that the value of
+/// [mustHaveValue] Specifies for a primitive data type that the value of
 /// the data type cannot be replaced by an extension.
 
     @JsonKey(name: 'mustHaveValue') FhirBoolean? mustHaveValue,
-/// /// [_mustHaveValue] Extensions for mustHaveValue
+/// [_mustHaveValue] Extensions for mustHaveValue
 
-    @JsonKey(name: '_mustHaveValue') FhirElement? mustHaveValueElement,
-/// /// [valueAlternatives] Specifies a list of extensions that can appear in
+    @JsonKey(name: '_mustHaveValue') PrimitiveElement? mustHaveValueElement,
+/// [valueAlternatives] Specifies a list of extensions that can appear in
 /// place of a primitive value.
 
     @JsonKey(name: 'valueAlternatives') List<List<FhirCanonical>>? valueAlternatives,
-/// /// [mustSupport] If true, implementations that produce or consume
+/// [mustSupport] If true, implementations that produce or consume
 /// resources SHALL provide "support" for the element in some meaningful way.
 /// Note that this is being phased out and replaced by obligations (see below).
 ///  If false, the element may be ignored and not supported. If false, whether
@@ -3002,10 +3005,10 @@ If a pattern[x] is declared on a repeating
 /// implementation.
 
     @JsonKey(name: 'mustSupport') FhirBoolean? mustSupport,
-/// /// [_mustSupport] Extensions for mustSupport
+/// [_mustSupport] Extensions for mustSupport
 
-    @JsonKey(name: '_mustSupport') FhirElement? mustSupportElement,
-/// /// [isModifier] If true, the value of this element affects the
+    @JsonKey(name: '_mustSupport') PrimitiveElement? mustSupportElement,
+/// [isModifier] If true, the value of this element affects the
 /// interpretation of the element or resource that contains it, and the value
 /// of the element cannot be ignored. Typically, this is used for status,
 /// negation and qualification codes. The effect of this is that the element
@@ -3016,28 +3019,28 @@ If a pattern[x] is declared on a repeating
 /// modifier extension.
 
     @JsonKey(name: 'isModifier') FhirBoolean? isModifier,
-/// /// [_isModifier] Extensions for isModifier
+/// [_isModifier] Extensions for isModifier
 
-    @JsonKey(name: '_isModifier') FhirElement? isModifierElement,
-/// /// [isModifierReason] Explains how that element affects the interpretation
+    @JsonKey(name: '_isModifier') PrimitiveElement? isModifierElement,
+/// [isModifierReason] Explains how that element affects the interpretation
 /// of the resource or element that contains it.
 
     @JsonKey(name: 'isModifierReason') String? isModifierReason,
-/// /// [_isModifierReason] Extensions for isModifierReason
+/// [_isModifierReason] Extensions for isModifierReason
 
-    @JsonKey(name: '_isModifierReason') FhirElement? isModifierReasonElement,
-/// /// [isSummary] Whether the element should be included if a client requests
+    @JsonKey(name: '_isModifierReason') PrimitiveElement? isModifierReasonElement,
+/// [isSummary] Whether the element should be included if a client requests
 /// a search with the parameter _summary=true.
 
     @JsonKey(name: 'isSummary') FhirBoolean? isSummary,
-/// /// [_isSummary] Extensions for isSummary
+/// [_isSummary] Extensions for isSummary
 
-    @JsonKey(name: '_isSummary') FhirElement? isSummaryElement,
-/// /// [binding] Binds to a value set if this element is coded (code, Coding,
+    @JsonKey(name: '_isSummary') PrimitiveElement? isSummaryElement,
+/// [binding] Binds to a value set if this element is coded (code, Coding,
 /// CodeableConcept, Quantity), or the data types (string, uri).
 
     @JsonKey(name: 'binding') ElementDefinition_Binding? binding,
-/// /// [mapping] Identifies a concept from an external specification that
+/// [mapping] Identifies a concept from an external specification that
 /// roughly corresponds to this element.
 
     @JsonKey(name: 'mapping') List<List<ElementDefinition_Mapping>>? mapping,

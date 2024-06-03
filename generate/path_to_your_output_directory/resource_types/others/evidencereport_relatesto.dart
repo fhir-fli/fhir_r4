@@ -1,4 +1,7 @@
-/// /// [EvidenceReport_RelatesTo] The EvidenceReport Resource is a specialized
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [EvidenceReport_RelatesTo] The EvidenceReport Resource is a specialized
 /// container for a collection of resources and codeable concepts, adapted to
 /// support compositions of Evidence, EvidenceVariable, and Citation resources
 /// and related concepts.
@@ -8,11 +11,11 @@ class EvidenceReport_RelatesTo with _$EvidenceReport_RelatesTo {
   const EvidenceReport_RelatesTo._();
 
   const factory EvidenceReport_RelatesTo({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -20,7 +23,7 @@ class EvidenceReport_RelatesTo with _$EvidenceReport_RelatesTo {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -36,14 +39,14 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [code] The type of relationship that this composition has with anther
+/// [code] The type of relationship that this composition has with anther
 /// composition or document.
 
     @JsonKey(name: 'code') FhirCode? code,
-/// /// [_code] Extensions for code
+/// [_code] Extensions for code
 
-    @JsonKey(name: '_code') FhirElement? codeElement,
-/// /// [target] The target composition/document of this relationship.
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
+/// [target] The target composition/document of this relationship.
 
     @JsonKey(name: 'target') EvidenceReport_Target? target,
   }) = _$EvidenceReport_RelatesTo;

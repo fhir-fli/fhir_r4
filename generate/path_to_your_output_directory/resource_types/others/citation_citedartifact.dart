@@ -1,4 +1,7 @@
-/// /// [Citation_CitedArtifact] The Citation Resource enables reference to any
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Citation_CitedArtifact] The Citation Resource enables reference to any
 /// knowledge artifact for purposes of identification and attribution. The
 /// Citation Resource supports existing reference structures and developing
 /// publication practices such as versioning, expressing complex
@@ -9,11 +12,11 @@ class Citation_CitedArtifact with _$Citation_CitedArtifact {
   const Citation_CitedArtifact._();
 
   const factory Citation_CitedArtifact({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -21,7 +24,7 @@ class Citation_CitedArtifact with _$Citation_CitedArtifact {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -37,60 +40,60 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [identifier] A formal identifier that is used to identify the cited
+/// [identifier] A formal identifier that is used to identify the cited
 /// artifact when it is represented in other formats, or referenced in a
 /// specification, model, design or an instance.
 
     @JsonKey(name: 'identifier') List<List<Identifier>>? identifier,
-/// /// [relatedIdentifier] A formal identifier that is used to identify things
+/// [relatedIdentifier] A formal identifier that is used to identify things
 /// closely related to the cited artifact.
 
     @JsonKey(name: 'relatedIdentifier') List<List<Identifier>>? relatedIdentifier,
-/// /// [dateAccessed] When the cited artifact was accessed.
+/// [dateAccessed] When the cited artifact was accessed.
 
     @JsonKey(name: 'dateAccessed') FhirDateTime? dateAccessed,
-/// /// [_dateAccessed] Extensions for dateAccessed
+/// [_dateAccessed] Extensions for dateAccessed
 
-    @JsonKey(name: '_dateAccessed') FhirElement? dateAccessedElement,
-/// /// [version] The defined version of the cited artifact.
+    @JsonKey(name: '_dateAccessed') PrimitiveElement? dateAccessedElement,
+/// [version] The defined version of the cited artifact.
 
     @JsonKey(name: 'version') Citation_Version? version,
-/// /// [currentState] The status of the cited artifact.
+/// [currentState] The status of the cited artifact.
 
     @JsonKey(name: 'currentState') List<List<CodeableConcept>>? currentState,
-/// /// [statusDate] An effective date or period, historical or future, actual
+/// [statusDate] An effective date or period, historical or future, actual
 /// or expected, for a status of the cited artifact.
 
     @JsonKey(name: 'statusDate') List<List<Citation_StatusDate1>>? statusDate,
-/// /// [title] The title details of the article or artifact.
+/// [title] The title details of the article or artifact.
 
     @JsonKey(name: 'title') List<List<Citation_Title>>? title,
-/// /// [abstract] The abstract may be used to convey article-contained
+/// [abstract] The abstract may be used to convey article-contained
 /// abstracts, externally-created abstracts, or other descriptive summaries.
 
     @JsonKey(name: 'abstract') List<List<Citation_Abstract>>? abstract,
-/// /// [part] The component of the article or artifact.
+/// [part] The component of the article or artifact.
 
     @JsonKey(name: 'part') Citation_Part? part,
-/// /// [relatesTo] The artifact related to the cited artifact.
+/// [relatesTo] The artifact related to the cited artifact.
 
     @JsonKey(name: 'relatesTo') List<List<Citation_RelatesTo>>? relatesTo,
-/// /// [publicationForm] If multiple, used to represent alternative forms of
+/// [publicationForm] If multiple, used to represent alternative forms of
 /// the article that are not separate citations.
 
     @JsonKey(name: 'publicationForm') List<List<Citation_PublicationForm>>? publicationForm,
-/// /// [webLocation] Used for any URL for the article or artifact cited.
+/// [webLocation] Used for any URL for the article or artifact cited.
 
     @JsonKey(name: 'webLocation') List<List<Citation_WebLocation>>? webLocation,
-/// /// [classification] The assignment to an organizing scheme.
+/// [classification] The assignment to an organizing scheme.
 
     @JsonKey(name: 'classification') List<List<Citation_Classification1>>? classification,
-/// /// [contributorship] This element is used to list authors and other
+/// [contributorship] This element is used to list authors and other
 /// contributors, their contact information, specific contributions, and
 /// summary statements.
 
     @JsonKey(name: 'contributorship') Citation_Contributorship? contributorship,
-/// /// [note] Any additional information or content for the article or
+/// [note] Any additional information or content for the article or
 /// artifact.
 
     @JsonKey(name: 'note') List<List<Annotation>>? note,

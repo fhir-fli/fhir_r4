@@ -1,4 +1,7 @@
-/// /// [MonetaryComponent] Financial line items use this datatype to commonly
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [MonetaryComponent] Financial line items use this datatype to commonly
 /// categorize the value, and other factors that may effect how the value
 /// should be interpreted.
 
@@ -7,11 +10,11 @@ class MonetaryComponent with _$MonetaryComponent {
   const MonetaryComponent._();
 
   const factory MonetaryComponent({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -19,26 +22,26 @@ class MonetaryComponent with _$MonetaryComponent {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [type] The type of monetary component, what the value is to be used for
+/// [type] The type of monetary component, what the value is to be used for
 /// and how that should be applied in its context. e.g. A surchange would
 /// increase the cost, a deduction would reduce the cost.
 
     @JsonKey(name: 'type') FhirCode? type,
-/// /// [_type] Extensions for type
+/// [_type] Extensions for type
 
-    @JsonKey(name: '_type') FhirElement? typeElement,
-/// /// [code] A codable breakdown of the type of monetary component. e.g.
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
+/// [code] A codable breakdown of the type of monetary component. e.g.
 /// State Tax, Federal Tax, VIP-Discount.
 
     @JsonKey(name: 'code') CodeableConcept? code,
-/// /// [factor] The factor that has been applied to the base price (in another
+/// [factor] The factor that has been applied to the base price (in another
 /// monetary component value) when performing calculations.
 
     @JsonKey(name: 'factor') FhirDecimal? factor,
-/// /// [_factor] Extensions for factor
+/// [_factor] Extensions for factor
 
-    @JsonKey(name: '_factor') FhirElement? factorElement,
-/// /// [amount] The explicit value amount of the component (based on
+    @JsonKey(name: '_factor') PrimitiveElement? factorElement,
+/// [amount] The explicit value amount of the component (based on
 /// type/code).
 
     @JsonKey(name: 'amount') Money? amount,

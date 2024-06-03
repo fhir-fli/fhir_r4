@@ -1,4 +1,7 @@
-/// /// [MedicationKnowledge_EnvironmentalSetting] Information about a
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [MedicationKnowledge_EnvironmentalSetting] Information about a
 /// medication that is used to support knowledge.
 
 @freezed
@@ -6,11 +9,11 @@ class MedicationKnowledge_EnvironmentalSetting with _$MedicationKnowledge_Enviro
   const MedicationKnowledge_EnvironmentalSetting._();
 
   const factory MedicationKnowledge_EnvironmentalSetting({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class MedicationKnowledge_EnvironmentalSetting with _$MedicationKnowledge_Enviro
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,19 +37,19 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [type] Identifies the category or type of setting (e.g., type of
+/// [type] Identifies the category or type of setting (e.g., type of
 /// location, temperature, humidity).
 
     @JsonKey(name: 'type') CodeableConcept? type,
-/// /// [valueQuantity] Value associated to the setting. E.g., 40° – 50°F for
+/// [valueQuantity] Value associated to the setting. E.g., 40° – 50°F for
 /// temperature.
 
     @JsonKey(name: 'valueQuantity') Quantity? valueQuantity,
-/// /// [valueRange] Value associated to the setting. E.g., 40° – 50°F for
+/// [valueRange] Value associated to the setting. E.g., 40° – 50°F for
 /// temperature.
 
     @JsonKey(name: 'valueRange') Range? valueRange,
-/// /// [valueCodeableConcept] Value associated to the setting. E.g., 40° –
+/// [valueCodeableConcept] Value associated to the setting. E.g., 40° –
 /// 50°F for temperature.
 
     @JsonKey(name: 'valueCodeableConcept') CodeableConcept? valueCodeableConcept,

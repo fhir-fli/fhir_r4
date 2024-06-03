@@ -1,4 +1,7 @@
-/// /// [Task_Output] A task to be performed as a part of a workflow and the
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Task_Output] A task to be performed as a part of a workflow and the
 /// related informations like inputs, outputs and execution progress. While
 /// very simple workflows can be implemented with Request alone, most workflows
 /// would require a Task (explicit or contained) as a means to track the
@@ -10,11 +13,11 @@ class Task_Output with _$Task_Output {
   const Task_Output._();
 
   const factory Task_Output({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -22,7 +25,7 @@ class Task_Output with _$Task_Output {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -38,236 +41,236 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [type] The name of the Output parameter.
+/// [type] The name of the Output parameter.
 
     @JsonKey(name: 'type') CodeableConcept? type,
-/// /// [valueBase64Binary] The value of the Output parameter as a basic type.
+/// [valueBase64Binary] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueBase64Binary') FhirBase64Binary? valueBase64Binary,
-/// /// [_valueBase64Binary] Extensions for valueBase64Binary
+/// [_valueBase64Binary] Extensions for valueBase64Binary
 
-    @JsonKey(name: '_valueBase64Binary') FhirElement? valueBase64BinaryElement,
-/// /// [valueBoolean] The value of the Output parameter as a basic type.
+    @JsonKey(name: '_valueBase64Binary') PrimitiveElement? valueBase64BinaryElement,
+/// [valueBoolean] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueBoolean') FhirBoolean? valueBoolean,
-/// /// [_valueBoolean] Extensions for valueBoolean
+/// [_valueBoolean] Extensions for valueBoolean
 
-    @JsonKey(name: '_valueBoolean') FhirElement? valueBooleanElement,
-/// /// [valueCanonical] The value of the Output parameter as a basic type.
+    @JsonKey(name: '_valueBoolean') PrimitiveElement? valueBooleanElement,
+/// [valueCanonical] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueCanonical') FhirCanonical? valueCanonical,
-/// /// [_valueCanonical] Extensions for valueCanonical
+/// [_valueCanonical] Extensions for valueCanonical
 
-    @JsonKey(name: '_valueCanonical') FhirElement? valueCanonicalElement,
-/// /// [valueCode] The value of the Output parameter as a basic type.
+    @JsonKey(name: '_valueCanonical') PrimitiveElement? valueCanonicalElement,
+/// [valueCode] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueCode') FhirCode? valueCode,
-/// /// [_valueCode] Extensions for valueCode
+/// [_valueCode] Extensions for valueCode
 
-    @JsonKey(name: '_valueCode') FhirElement? valueCodeElement,
-/// /// [valueDate] The value of the Output parameter as a basic type.
+    @JsonKey(name: '_valueCode') PrimitiveElement? valueCodeElement,
+/// [valueDate] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueDate') FhirDate? valueDate,
-/// /// [_valueDate] Extensions for valueDate
+/// [_valueDate] Extensions for valueDate
 
-    @JsonKey(name: '_valueDate') FhirElement? valueDateElement,
-/// /// [valueDateTime] The value of the Output parameter as a basic type.
+    @JsonKey(name: '_valueDate') PrimitiveElement? valueDateElement,
+/// [valueDateTime] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueDateTime') FhirDateTime? valueDateTime,
-/// /// [_valueDateTime] Extensions for valueDateTime
+/// [_valueDateTime] Extensions for valueDateTime
 
-    @JsonKey(name: '_valueDateTime') FhirElement? valueDateTimeElement,
-/// /// [valueDecimal] The value of the Output parameter as a basic type.
+    @JsonKey(name: '_valueDateTime') PrimitiveElement? valueDateTimeElement,
+/// [valueDecimal] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueDecimal') FhirDecimal? valueDecimal,
-/// /// [_valueDecimal] Extensions for valueDecimal
+/// [_valueDecimal] Extensions for valueDecimal
 
-    @JsonKey(name: '_valueDecimal') FhirElement? valueDecimalElement,
-/// /// [valueId] The value of the Output parameter as a basic type.
+    @JsonKey(name: '_valueDecimal') PrimitiveElement? valueDecimalElement,
+/// [valueId] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueId') FhirId? valueId,
-/// /// [_valueId] Extensions for valueId
+/// [_valueId] Extensions for valueId
 
-    @JsonKey(name: '_valueId') FhirElement? valueIdElement,
-/// /// [valueInstant] The value of the Output parameter as a basic type.
+    @JsonKey(name: '_valueId') PrimitiveElement? valueIdElement,
+/// [valueInstant] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueInstant') FhirInstant? valueInstant,
-/// /// [_valueInstant] Extensions for valueInstant
+/// [_valueInstant] Extensions for valueInstant
 
-    @JsonKey(name: '_valueInstant') FhirElement? valueInstantElement,
-/// /// [valueInteger] The value of the Output parameter as a basic type.
+    @JsonKey(name: '_valueInstant') PrimitiveElement? valueInstantElement,
+/// [valueInteger] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueInteger') FhirInteger? valueInteger,
-/// /// [_valueInteger] Extensions for valueInteger
+/// [_valueInteger] Extensions for valueInteger
 
-    @JsonKey(name: '_valueInteger') FhirElement? valueIntegerElement,
-/// /// [valueInteger64] The value of the Output parameter as a basic type.
+    @JsonKey(name: '_valueInteger') PrimitiveElement? valueIntegerElement,
+/// [valueInteger64] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueInteger64') FhirInteger64? valueInteger64,
-/// /// [_valueInteger64] Extensions for valueInteger64
+/// [_valueInteger64] Extensions for valueInteger64
 
-    @JsonKey(name: '_valueInteger64') FhirElement? valueInteger64Element,
-/// /// [valueMarkdown] The value of the Output parameter as a basic type.
+    @JsonKey(name: '_valueInteger64') PrimitiveElement? valueInteger64Element,
+/// [valueMarkdown] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueMarkdown') FhirMarkdown? valueMarkdown,
-/// /// [_valueMarkdown] Extensions for valueMarkdown
+/// [_valueMarkdown] Extensions for valueMarkdown
 
-    @JsonKey(name: '_valueMarkdown') FhirElement? valueMarkdownElement,
-/// /// [valueOid] The value of the Output parameter as a basic type.
+    @JsonKey(name: '_valueMarkdown') PrimitiveElement? valueMarkdownElement,
+/// [valueOid] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueOid') FhirOid? valueOid,
-/// /// [_valueOid] Extensions for valueOid
+/// [_valueOid] Extensions for valueOid
 
-    @JsonKey(name: '_valueOid') FhirElement? valueOidElement,
-/// /// [valuePositiveInt] The value of the Output parameter as a basic type.
+    @JsonKey(name: '_valueOid') PrimitiveElement? valueOidElement,
+/// [valuePositiveInt] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valuePositiveInt') FhirPositiveInt? valuePositiveInt,
-/// /// [_valuePositiveInt] Extensions for valuePositiveInt
+/// [_valuePositiveInt] Extensions for valuePositiveInt
 
-    @JsonKey(name: '_valuePositiveInt') FhirElement? valuePositiveIntElement,
-/// /// [valueString] The value of the Output parameter as a basic type.
+    @JsonKey(name: '_valuePositiveInt') PrimitiveElement? valuePositiveIntElement,
+/// [valueString] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueString') String? valueString,
-/// /// [_valueString] Extensions for valueString
+/// [_valueString] Extensions for valueString
 
-    @JsonKey(name: '_valueString') FhirElement? valueStringElement,
-/// /// [valueTime] The value of the Output parameter as a basic type.
+    @JsonKey(name: '_valueString') PrimitiveElement? valueStringElement,
+/// [valueTime] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueTime') FhirTime? valueTime,
-/// /// [_valueTime] Extensions for valueTime
+/// [_valueTime] Extensions for valueTime
 
-    @JsonKey(name: '_valueTime') FhirElement? valueTimeElement,
-/// /// [valueUnsignedInt] The value of the Output parameter as a basic type.
+    @JsonKey(name: '_valueTime') PrimitiveElement? valueTimeElement,
+/// [valueUnsignedInt] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueUnsignedInt') FhirUnsignedInt? valueUnsignedInt,
-/// /// [_valueUnsignedInt] Extensions for valueUnsignedInt
+/// [_valueUnsignedInt] Extensions for valueUnsignedInt
 
-    @JsonKey(name: '_valueUnsignedInt') FhirElement? valueUnsignedIntElement,
-/// /// [valueUri] The value of the Output parameter as a basic type.
+    @JsonKey(name: '_valueUnsignedInt') PrimitiveElement? valueUnsignedIntElement,
+/// [valueUri] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueUri') FhirUri? valueUri,
-/// /// [_valueUri] Extensions for valueUri
+/// [_valueUri] Extensions for valueUri
 
-    @JsonKey(name: '_valueUri') FhirElement? valueUriElement,
-/// /// [valueUrl] The value of the Output parameter as a basic type.
+    @JsonKey(name: '_valueUri') PrimitiveElement? valueUriElement,
+/// [valueUrl] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueUrl') FhirUrl? valueUrl,
-/// /// [_valueUrl] Extensions for valueUrl
+/// [_valueUrl] Extensions for valueUrl
 
-    @JsonKey(name: '_valueUrl') FhirElement? valueUrlElement,
-/// /// [valueUuid] The value of the Output parameter as a basic type.
+    @JsonKey(name: '_valueUrl') PrimitiveElement? valueUrlElement,
+/// [valueUuid] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueUuid') FhirUuid? valueUuid,
-/// /// [_valueUuid] Extensions for valueUuid
+/// [_valueUuid] Extensions for valueUuid
 
-    @JsonKey(name: '_valueUuid') FhirElement? valueUuidElement,
-/// /// [valueAddress] The value of the Output parameter as a basic type.
+    @JsonKey(name: '_valueUuid') PrimitiveElement? valueUuidElement,
+/// [valueAddress] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueAddress') Address? valueAddress,
-/// /// [valueAge] The value of the Output parameter as a basic type.
+/// [valueAge] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueAge') Age? valueAge,
-/// /// [valueAnnotation] The value of the Output parameter as a basic type.
+/// [valueAnnotation] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueAnnotation') Annotation? valueAnnotation,
-/// /// [valueAttachment] The value of the Output parameter as a basic type.
+/// [valueAttachment] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueAttachment') Attachment? valueAttachment,
-/// /// [valueCodeableConcept] The value of the Output parameter as a basic
+/// [valueCodeableConcept] The value of the Output parameter as a basic
 /// type.
 
     @JsonKey(name: 'valueCodeableConcept') CodeableConcept? valueCodeableConcept,
-/// /// [valueCodeableReference] The value of the Output parameter as a basic
+/// [valueCodeableReference] The value of the Output parameter as a basic
 /// type.
 
     @JsonKey(name: 'valueCodeableReference') CodeableReference? valueCodeableReference,
-/// /// [valueCoding] The value of the Output parameter as a basic type.
+/// [valueCoding] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueCoding') Coding? valueCoding,
-/// /// [valueContactPoint] The value of the Output parameter as a basic type.
+/// [valueContactPoint] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueContactPoint') ContactPoint? valueContactPoint,
-/// /// [valueCount] The value of the Output parameter as a basic type.
+/// [valueCount] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueCount') Count? valueCount,
-/// /// [valueDistance] The value of the Output parameter as a basic type.
+/// [valueDistance] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueDistance') Distance? valueDistance,
-/// /// [valueDuration] The value of the Output parameter as a basic type.
+/// [valueDuration] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueDuration') FhirDuration? valueDuration,
-/// /// [valueHumanName] The value of the Output parameter as a basic type.
+/// [valueHumanName] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueHumanName') HumanName? valueHumanName,
-/// /// [valueIdentifier] The value of the Output parameter as a basic type.
+/// [valueIdentifier] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueIdentifier') Identifier? valueIdentifier,
-/// /// [valueMoney] The value of the Output parameter as a basic type.
+/// [valueMoney] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueMoney') Money? valueMoney,
-/// /// [valuePeriod] The value of the Output parameter as a basic type.
+/// [valuePeriod] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valuePeriod') Period? valuePeriod,
-/// /// [valueQuantity] The value of the Output parameter as a basic type.
+/// [valueQuantity] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueQuantity') Quantity? valueQuantity,
-/// /// [valueRange] The value of the Output parameter as a basic type.
+/// [valueRange] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueRange') Range? valueRange,
-/// /// [valueRatio] The value of the Output parameter as a basic type.
+/// [valueRatio] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueRatio') Ratio? valueRatio,
-/// /// [valueRatioRange] The value of the Output parameter as a basic type.
+/// [valueRatioRange] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueRatioRange') RatioRange? valueRatioRange,
-/// /// [valueReference] The value of the Output parameter as a basic type.
+/// [valueReference] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueReference') Reference? valueReference,
-/// /// [valueSampledData] The value of the Output parameter as a basic type.
+/// [valueSampledData] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueSampledData') SampledData? valueSampledData,
-/// /// [valueSignature] The value of the Output parameter as a basic type.
+/// [valueSignature] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueSignature') Signature? valueSignature,
-/// /// [valueTiming] The value of the Output parameter as a basic type.
+/// [valueTiming] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueTiming') Timing? valueTiming,
-/// /// [valueContactDetail] The value of the Output parameter as a basic type.
+/// [valueContactDetail] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueContactDetail') ContactDetail? valueContactDetail,
-/// /// [valueDataRequirement] The value of the Output parameter as a basic
+/// [valueDataRequirement] The value of the Output parameter as a basic
 /// type.
 
     @JsonKey(name: 'valueDataRequirement') DataRequirement? valueDataRequirement,
-/// /// [valueExpression] The value of the Output parameter as a basic type.
+/// [valueExpression] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueExpression') FhirExpression? valueExpression,
-/// /// [valueParameterDefinition] The value of the Output parameter as a basic
+/// [valueParameterDefinition] The value of the Output parameter as a basic
 /// type.
 
     @JsonKey(name: 'valueParameterDefinition') ParameterDefinition? valueParameterDefinition,
-/// /// [valueRelatedArtifact] The value of the Output parameter as a basic
+/// [valueRelatedArtifact] The value of the Output parameter as a basic
 /// type.
 
     @JsonKey(name: 'valueRelatedArtifact') RelatedArtifact? valueRelatedArtifact,
-/// /// [valueTriggerDefinition] The value of the Output parameter as a basic
+/// [valueTriggerDefinition] The value of the Output parameter as a basic
 /// type.
 
     @JsonKey(name: 'valueTriggerDefinition') TriggerDefinition? valueTriggerDefinition,
-/// /// [valueUsageContext] The value of the Output parameter as a basic type.
+/// [valueUsageContext] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueUsageContext') UsageContext? valueUsageContext,
-/// /// [valueAvailability] The value of the Output parameter as a basic type.
+/// [valueAvailability] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueAvailability') Availability? valueAvailability,
-/// /// [valueExtendedContactDetail] The value of the Output parameter as a
+/// [valueExtendedContactDetail] The value of the Output parameter as a
 /// basic type.
 
     @JsonKey(name: 'valueExtendedContactDetail') ExtendedContactDetail? valueExtendedContactDetail,
-/// /// [valueDosage] The value of the Output parameter as a basic type.
+/// [valueDosage] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueDosage') Dosage? valueDosage,
-/// /// [valueMeta] The value of the Output parameter as a basic type.
+/// [valueMeta] The value of the Output parameter as a basic type.
 
     @JsonKey(name: 'valueMeta') FhirMeta? valueMeta,
   }) = _$Task_Output;

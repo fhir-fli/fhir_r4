@@ -1,15 +1,18 @@
-/// /// [ExampleScenario_ContainedInstance] Example of workflow instance.
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [ExampleScenario_ContainedInstance] Example of workflow instance.
 
 @freezed
 class ExampleScenario_ContainedInstance with _$ExampleScenario_ContainedInstance {
   const ExampleScenario_ContainedInstance._();
 
   const factory ExampleScenario_ContainedInstance({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -17,7 +20,7 @@ class ExampleScenario_ContainedInstance with _$ExampleScenario_ContainedInstance
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -33,20 +36,20 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [instanceReference] A reference to the key of an instance found within
+/// [instanceReference] A reference to the key of an instance found within
 /// this one.
 
     @JsonKey(name: 'instanceReference') String? instanceReference,
-/// /// [_instanceReference] Extensions for instanceReference
+/// [_instanceReference] Extensions for instanceReference
 
-    @JsonKey(name: '_instanceReference') FhirElement? instanceReferenceElement,
-/// /// [versionReference] A reference to the key of a specific version of an
+    @JsonKey(name: '_instanceReference') PrimitiveElement? instanceReferenceElement,
+/// [versionReference] A reference to the key of a specific version of an
 /// instance in this instance.
 
     @JsonKey(name: 'versionReference') String? versionReference,
-/// /// [_versionReference] Extensions for versionReference
+/// [_versionReference] Extensions for versionReference
 
-    @JsonKey(name: '_versionReference') FhirElement? versionReferenceElement,
+    @JsonKey(name: '_versionReference') PrimitiveElement? versionReferenceElement,
   }) = _$ExampleScenario_ContainedInstance;
 
   @override

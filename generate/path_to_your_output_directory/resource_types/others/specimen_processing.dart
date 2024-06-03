@@ -1,15 +1,18 @@
-/// /// [Specimen_Processing] A sample to be used for analysis.
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Specimen_Processing] A sample to be used for analysis.
 
 @freezed
 class Specimen_Processing with _$Specimen_Processing {
   const Specimen_Processing._();
 
   const factory Specimen_Processing({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -17,7 +20,7 @@ class Specimen_Processing with _$Specimen_Processing {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -33,39 +36,39 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [description] Textual description of procedure.
+/// [description] Textual description of procedure.
 
     @JsonKey(name: 'description') String? description,
-/// /// [_description] Extensions for description
+/// [_description] Extensions for description
 
-    @JsonKey(name: '_description') FhirElement? descriptionElement,
-/// /// [method] A coded value specifying the method used to process the
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
+/// [method] A coded value specifying the method used to process the
 /// specimen.
 
     @JsonKey(name: 'method') CodeableConcept? method,
-/// /// [performer] The performer of the processing of the specimen.
+/// [performer] The performer of the processing of the specimen.
 
     @JsonKey(name: 'performer') Reference? performer,
-/// /// [device] The device used in the processing of the specimen.
+/// [device] The device used in the processing of the specimen.
 
     @JsonKey(name: 'device') Reference? device,
-/// /// [additive] Material used in the processing step.
+/// [additive] Material used in the processing step.
 
     @JsonKey(name: 'additive') List<List<Reference>>? additive,
-/// /// [timeDateTime] A record of the time or period when the specimen
+/// [timeDateTime] A record of the time or period when the specimen
 /// processing occurred.  For example the time of sample fixation or the period
 /// of time the sample was in formalin.
 
     @JsonKey(name: 'timeDateTime') FhirDateTime? timeDateTime,
-/// /// [_timeDateTime] Extensions for timeDateTime
+/// [_timeDateTime] Extensions for timeDateTime
 
-    @JsonKey(name: '_timeDateTime') FhirElement? timeDateTimeElement,
-/// /// [timePeriod] A record of the time or period when the specimen
+    @JsonKey(name: '_timeDateTime') PrimitiveElement? timeDateTimeElement,
+/// [timePeriod] A record of the time or period when the specimen
 /// processing occurred.  For example the time of sample fixation or the period
 /// of time the sample was in formalin.
 
     @JsonKey(name: 'timePeriod') Period? timePeriod,
-/// /// [timeDuration] A record of the time or period when the specimen
+/// [timeDuration] A record of the time or period when the specimen
 /// processing occurred.  For example the time of sample fixation or the period
 /// of time the sample was in formalin.
 

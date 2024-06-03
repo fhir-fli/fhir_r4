@@ -1,4 +1,7 @@
-/// /// [PackagedProductDefinition_Property] A medically related item or items,
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [PackagedProductDefinition_Property] A medically related item or items,
 /// in a container or package.
 
 @freezed
@@ -6,11 +9,11 @@ class PackagedProductDefinition_Property with _$PackagedProductDefinition_Proper
   const PackagedProductDefinition_Property._();
 
   const factory PackagedProductDefinition_Property({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class PackagedProductDefinition_Property with _$PackagedProductDefinition_Proper
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,28 +37,28 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [type] A code expressing the type of characteristic.
+/// [type] A code expressing the type of characteristic.
 
     @JsonKey(name: 'type') CodeableConcept? type,
-/// /// [valueCodeableConcept] A value for the characteristic.
+/// [valueCodeableConcept] A value for the characteristic.
 
     @JsonKey(name: 'valueCodeableConcept') CodeableConcept? valueCodeableConcept,
-/// /// [valueQuantity] A value for the characteristic.
+/// [valueQuantity] A value for the characteristic.
 
     @JsonKey(name: 'valueQuantity') Quantity? valueQuantity,
-/// /// [valueDate] A value for the characteristic.
+/// [valueDate] A value for the characteristic.
 
     @JsonKey(name: 'valueDate') FhirDate? valueDate,
-/// /// [_valueDate] Extensions for valueDate
+/// [_valueDate] Extensions for valueDate
 
-    @JsonKey(name: '_valueDate') FhirElement? valueDateElement,
-/// /// [valueBoolean] A value for the characteristic.
+    @JsonKey(name: '_valueDate') PrimitiveElement? valueDateElement,
+/// [valueBoolean] A value for the characteristic.
 
     @JsonKey(name: 'valueBoolean') FhirBoolean? valueBoolean,
-/// /// [_valueBoolean] Extensions for valueBoolean
+/// [_valueBoolean] Extensions for valueBoolean
 
-    @JsonKey(name: '_valueBoolean') FhirElement? valueBooleanElement,
-/// /// [valueAttachment] A value for the characteristic.
+    @JsonKey(name: '_valueBoolean') PrimitiveElement? valueBooleanElement,
+/// [valueAttachment] A value for the characteristic.
 
     @JsonKey(name: 'valueAttachment') Attachment? valueAttachment,
   }) = _$PackagedProductDefinition_Property;

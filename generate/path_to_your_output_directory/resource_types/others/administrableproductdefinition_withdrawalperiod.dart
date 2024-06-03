@@ -1,4 +1,7 @@
-/// /// [AdministrableProductDefinition_WithdrawalPeriod] A medicinal product
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [AdministrableProductDefinition_WithdrawalPeriod] A medicinal product
 /// in the final form which is suitable for administering to a patient (after
 /// any mixing of multiple components, dissolution etc. has been performed).
 
@@ -7,11 +10,11 @@ class AdministrableProductDefinition_WithdrawalPeriod with _$AdministrableProduc
   const AdministrableProductDefinition_WithdrawalPeriod._();
 
   const factory AdministrableProductDefinition_WithdrawalPeriod({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -19,7 +22,7 @@ class AdministrableProductDefinition_WithdrawalPeriod with _$AdministrableProduc
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -35,19 +38,19 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [tissue] Coded expression for the type of tissue for which the
+/// [tissue] Coded expression for the type of tissue for which the
 /// withdrawal period applies, e.g. meat, milk.
 
     @JsonKey(name: 'tissue') CodeableConcept? tissue,
-/// /// [value] A value for the time.
+/// [value] A value for the time.
 
     @JsonKey(name: 'value') Quantity? value,
-/// /// [supportingInformation] Extra information about the withdrawal period.
+/// [supportingInformation] Extra information about the withdrawal period.
 
     @JsonKey(name: 'supportingInformation') String? supportingInformation,
-/// /// [_supportingInformation] Extensions for supportingInformation
+/// [_supportingInformation] Extensions for supportingInformation
 
-    @JsonKey(name: '_supportingInformation') FhirElement? supportingInformationElement,
+    @JsonKey(name: '_supportingInformation') PrimitiveElement? supportingInformationElement,
   }) = _$AdministrableProductDefinition_WithdrawalPeriod;
 
   @override

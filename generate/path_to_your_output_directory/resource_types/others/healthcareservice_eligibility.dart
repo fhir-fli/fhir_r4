@@ -1,4 +1,7 @@
-/// /// [HealthcareService_Eligibility] The details of a healthcare service
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [HealthcareService_Eligibility] The details of a healthcare service
 /// available at a location.
 
 @freezed
@@ -6,11 +9,11 @@ class HealthcareService_Eligibility with _$HealthcareService_Eligibility {
   const HealthcareService_Eligibility._();
 
   const factory HealthcareService_Eligibility({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class HealthcareService_Eligibility with _$HealthcareService_Eligibility {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,45 +37,45 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [code] Coded value for the eligibility.
+/// [code] Coded value for the eligibility.
 
     @JsonKey(name: 'code') CodeableConcept? code,
-/// /// [valueCodeableConcept] Sometimes an eligibility code requires
+/// [valueCodeableConcept] Sometimes an eligibility code requires
 /// additional data to calculate the eligibility rules.
 
     @JsonKey(name: 'valueCodeableConcept') CodeableConcept? valueCodeableConcept,
-/// /// [valueBoolean] Sometimes an eligibility code requires additional data
+/// [valueBoolean] Sometimes an eligibility code requires additional data
 /// to calculate the eligibility rules.
 
     @JsonKey(name: 'valueBoolean') FhirBoolean? valueBoolean,
-/// /// [_valueBoolean] Extensions for valueBoolean
+/// [_valueBoolean] Extensions for valueBoolean
 
-    @JsonKey(name: '_valueBoolean') FhirElement? valueBooleanElement,
-/// /// [valueQuantity] Sometimes an eligibility code requires additional data
+    @JsonKey(name: '_valueBoolean') PrimitiveElement? valueBooleanElement,
+/// [valueQuantity] Sometimes an eligibility code requires additional data
 /// to calculate the eligibility rules.
 
     @JsonKey(name: 'valueQuantity') Quantity? valueQuantity,
-/// /// [valueRange] Sometimes an eligibility code requires additional data to
+/// [valueRange] Sometimes an eligibility code requires additional data to
 /// calculate the eligibility rules.
 
     @JsonKey(name: 'valueRange') Range? valueRange,
-/// /// [valueReference] Sometimes an eligibility code requires additional data
+/// [valueReference] Sometimes an eligibility code requires additional data
 /// to calculate the eligibility rules.
 
     @JsonKey(name: 'valueReference') Reference? valueReference,
-/// /// [comment] Describes the eligibility conditions for the service.
+/// [comment] Describes the eligibility conditions for the service.
 
     @JsonKey(name: 'comment') FhirMarkdown? comment,
-/// /// [_comment] Extensions for comment
+/// [_comment] Extensions for comment
 
-    @JsonKey(name: '_comment') FhirElement? commentElement,
-/// /// [period] The period that this eligibility rule is a requirement for
+    @JsonKey(name: '_comment') PrimitiveElement? commentElement,
+/// [period] The period that this eligibility rule is a requirement for
 /// this service.
 
     @JsonKey(name: 'period') FhirMarkdown? period,
-/// /// [_period] Extensions for period
+/// [_period] Extensions for period
 
-    @JsonKey(name: '_period') FhirElement? periodElement,
+    @JsonKey(name: '_period') PrimitiveElement? periodElement,
   }) = _$HealthcareService_Eligibility;
 
   @override

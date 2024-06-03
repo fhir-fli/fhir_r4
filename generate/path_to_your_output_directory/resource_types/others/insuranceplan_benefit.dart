@@ -1,15 +1,18 @@
-/// /// [InsurancePlan_Benefit] Details about an insurance plan.
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [InsurancePlan_Benefit] Details about an insurance plan.
 
 @freezed
 class InsurancePlan_Benefit with _$InsurancePlan_Benefit {
   const InsurancePlan_Benefit._();
 
   const factory InsurancePlan_Benefit({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -17,7 +20,7 @@ class InsurancePlan_Benefit with _$InsurancePlan_Benefit {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -33,12 +36,12 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [type] Type of specific benefit (preventative; primary care office
+/// [type] Type of specific benefit (preventative; primary care office
 /// visit; speciality office visit; hospitalization; emergency room; urgent
 /// care).
 
     @JsonKey(name: 'type') CodeableConcept? type,
-/// /// [cost] List of the costs associated with a specific benefit.
+/// [cost] List of the costs associated with a specific benefit.
 
     @JsonKey(name: 'cost') List<List<InsurancePlan_Cost>>? cost,
   }) = _$InsurancePlan_Benefit;

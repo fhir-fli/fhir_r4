@@ -1,15 +1,18 @@
-/// /// [ExampleScenario_Process] Example of workflow instance.
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [ExampleScenario_Process] Example of workflow instance.
 
 @freezed
 class ExampleScenario_Process with _$ExampleScenario_Process {
   const ExampleScenario_Process._();
 
   const factory ExampleScenario_Process({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -17,7 +20,7 @@ class ExampleScenario_Process with _$ExampleScenario_Process {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -33,35 +36,35 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [title] A short descriptive label the process to be used in tables or
+/// [title] A short descriptive label the process to be used in tables or
 /// diagrams.
 
     @JsonKey(name: 'title') String? title,
-/// /// [_title] Extensions for title
+/// [_title] Extensions for title
 
-    @JsonKey(name: '_title') FhirElement? titleElement,
-/// /// [description] An explanation of what the process represents and what it
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
+/// [description] An explanation of what the process represents and what it
 /// does.
 
     @JsonKey(name: 'description') FhirMarkdown? description,
-/// /// [_description] Extensions for description
+/// [_description] Extensions for description
 
-    @JsonKey(name: '_description') FhirElement? descriptionElement,
-/// /// [preConditions] Description of the initial state of the actors,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
+/// [preConditions] Description of the initial state of the actors,
 /// environment and data before the process starts.
 
     @JsonKey(name: 'preConditions') FhirMarkdown? preConditions,
-/// /// [_preConditions] Extensions for preConditions
+/// [_preConditions] Extensions for preConditions
 
-    @JsonKey(name: '_preConditions') FhirElement? preConditionsElement,
-/// /// [postConditions] Description of the final state of the actors,
+    @JsonKey(name: '_preConditions') PrimitiveElement? preConditionsElement,
+/// [postConditions] Description of the final state of the actors,
 /// environment and data after the process has been successfully completed.
 
     @JsonKey(name: 'postConditions') FhirMarkdown? postConditions,
-/// /// [_postConditions] Extensions for postConditions
+/// [_postConditions] Extensions for postConditions
 
-    @JsonKey(name: '_postConditions') FhirElement? postConditionsElement,
-/// /// [step] A significant action that occurs as part of the process.
+    @JsonKey(name: '_postConditions') PrimitiveElement? postConditionsElement,
+/// [step] A significant action that occurs as part of the process.
 
     @JsonKey(name: 'step') List<List<ExampleScenario_Step>>? step,
   }) = _$ExampleScenario_Process;

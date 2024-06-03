@@ -1,4 +1,7 @@
-/// /// [ConceptMap_Group] A statement of relationships from one set of
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [ConceptMap_Group] A statement of relationships from one set of
 /// concepts to one or more other concepts - either concepts in code systems,
 /// or data element/data element concepts, or classes in class models.
 
@@ -7,11 +10,11 @@ class ConceptMap_Group with _$ConceptMap_Group {
   const ConceptMap_Group._();
 
   const factory ConceptMap_Group({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -19,7 +22,7 @@ class ConceptMap_Group with _$ConceptMap_Group {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -35,19 +38,19 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [source] An absolute URI that identifies the source system where the
+/// [source] An absolute URI that identifies the source system where the
 /// concepts to be mapped are defined.
 
     @JsonKey(name: 'source') FhirCanonical? source,
-/// /// [target] An absolute URI that identifies the target system that the
+/// [target] An absolute URI that identifies the target system that the
 /// concepts will be mapped to.
 
     @JsonKey(name: 'target') FhirCanonical? target,
-/// /// [element] Mappings for an individual concept in the source to one or
+/// [element] Mappings for an individual concept in the source to one or
 /// more concepts in the target.
 
     @JsonKey(name: 'element') List<List<ConceptMap_Element>>? element,
-/// /// [unmapped] What to do when there is no mapping to a target concept from
+/// [unmapped] What to do when there is no mapping to a target concept from
 /// the source concept and ConceptMap.group.element.noMap is not true. This
 /// provides the "default" to be applied when there is no target concept
 /// mapping specified or the expansion of

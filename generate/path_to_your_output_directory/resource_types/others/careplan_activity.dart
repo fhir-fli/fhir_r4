@@ -1,4 +1,7 @@
-/// /// [CarePlan_Activity] Describes the intention of how one or more
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [CarePlan_Activity] Describes the intention of how one or more
 /// practitioners intend to deliver care for a particular patient, group or
 /// community for a period of time, possibly limited to care for a specific
 /// condition or set of conditions.
@@ -8,11 +11,11 @@ class CarePlan_Activity with _$CarePlan_Activity {
   const CarePlan_Activity._();
 
   const factory CarePlan_Activity({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -20,7 +23,7 @@ class CarePlan_Activity with _$CarePlan_Activity {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -36,7 +39,7 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [performedActivity] Identifies the activity that was performed. For
+/// [performedActivity] Identifies the activity that was performed. For
 /// example, an activity could be patient education, exercise, or a medication
 /// administration. The reference to an "event" resource, such as Procedure or
 /// Encounter or Observation, represents the activity that was performed. The
@@ -45,10 +48,10 @@ Modifier extensions SHALL NOT
 /// resource).
 
     @JsonKey(name: 'performedActivity') List<List<CodeableReference>>? performedActivity,
-/// /// [progress] Notes about the adherence/status/progress of the activity.
+/// [progress] Notes about the adherence/status/progress of the activity.
 
     @JsonKey(name: 'progress') List<List<Annotation>>? progress,
-/// /// [plannedActivityReference] The details of the proposed activity
+/// [plannedActivityReference] The details of the proposed activity
 /// represented in a specific resource.
 
     @JsonKey(name: 'plannedActivityReference') Reference? plannedActivityReference,

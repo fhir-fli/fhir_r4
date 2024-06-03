@@ -1,4 +1,7 @@
-/// /// [SubstanceProtein_Subunit] A SubstanceProtein is defined as a single
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [SubstanceProtein_Subunit] A SubstanceProtein is defined as a single
 /// unit of a linear amino acid sequence, or a combination of subunits that are
 /// either covalently linked or have a defined invariant stoichiometric
 /// relationship. This includes all synthetic, recombinant and purified
@@ -13,11 +16,11 @@ class SubstanceProtein_Subunit with _$SubstanceProtein_Subunit {
   const SubstanceProtein_Subunit._();
 
   const factory SubstanceProtein_Subunit({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -25,7 +28,7 @@ class SubstanceProtein_Subunit with _$SubstanceProtein_Subunit {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -41,16 +44,16 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [subunit] Index of primary sequences of amino acids linked through
+/// [subunit] Index of primary sequences of amino acids linked through
 /// peptide bonds in order of decreasing length. Sequences of the same length
 /// will be ordered by molecular weight. Subunits that have identical sequences
 /// will be repeated and have sequential subscripts.
 
     @JsonKey(name: 'subunit') FhirInteger? subunit,
-/// /// [_subunit] Extensions for subunit
+/// [_subunit] Extensions for subunit
 
-    @JsonKey(name: '_subunit') FhirElement? subunitElement,
-/// /// [sequence] The sequence information shall be provided enumerating the
+    @JsonKey(name: '_subunit') PrimitiveElement? subunitElement,
+/// [sequence] The sequence information shall be provided enumerating the
 /// amino acids from N- to C-terminal end using standard single-letter amino
 /// acid codes. Uppercase shall be used for L-amino acids and lowercase for
 /// D-amino acids. Transcribed SubstanceProteins will always be described using
@@ -60,17 +63,17 @@ Modifier extensions SHALL NOT
 /// position in the sequence.
 
     @JsonKey(name: 'sequence') String? sequence,
-/// /// [_sequence] Extensions for sequence
+/// [_sequence] Extensions for sequence
 
-    @JsonKey(name: '_sequence') FhirElement? sequenceElement,
-/// /// [length] Length of linear sequences of amino acids contained in the
+    @JsonKey(name: '_sequence') PrimitiveElement? sequenceElement,
+/// [length] Length of linear sequences of amino acids contained in the
 /// subunit.
 
     @JsonKey(name: 'length') FhirInteger? length,
-/// /// [_length] Extensions for length
+/// [_length] Extensions for length
 
-    @JsonKey(name: '_length') FhirElement? lengthElement,
-/// /// [sequenceAttachment] The sequence information shall be provided
+    @JsonKey(name: '_length') PrimitiveElement? lengthElement,
+/// [sequenceAttachment] The sequence information shall be provided
 /// enumerating the amino acids from N- to C-terminal end using standard
 /// single-letter amino acid codes. Uppercase shall be used for L-amino acids
 /// and lowercase for D-amino acids. Transcribed SubstanceProteins will always
@@ -80,28 +83,28 @@ Modifier extensions SHALL NOT
 /// distinguished by their position in the sequence.
 
     @JsonKey(name: 'sequenceAttachment') Attachment? sequenceAttachment,
-/// /// [nTerminalModificationId] Unique identifier for molecular fragment
+/// [nTerminalModificationId] Unique identifier for molecular fragment
 /// modification based on the ISO 11238 Substance ID.
 
     @JsonKey(name: 'nTerminalModificationId') Identifier? nTerminalModificationId,
-/// /// [nTerminalModification] The name of the fragment modified at the
+/// [nTerminalModification] The name of the fragment modified at the
 /// N-terminal of the SubstanceProtein shall be specified.
 
     @JsonKey(name: 'nTerminalModification') String? nTerminalModification,
-/// /// [_nTerminalModification] Extensions for nTerminalModification
+/// [_nTerminalModification] Extensions for nTerminalModification
 
-    @JsonKey(name: '_nTerminalModification') FhirElement? nTerminalModificationElement,
-/// /// [cTerminalModificationId] Unique identifier for molecular fragment
+    @JsonKey(name: '_nTerminalModification') PrimitiveElement? nTerminalModificationElement,
+/// [cTerminalModificationId] Unique identifier for molecular fragment
 /// modification based on the ISO 11238 Substance ID.
 
     @JsonKey(name: 'cTerminalModificationId') Identifier? cTerminalModificationId,
-/// /// [cTerminalModification] The modification at the C-terminal shall be
+/// [cTerminalModification] The modification at the C-terminal shall be
 /// specified.
 
     @JsonKey(name: 'cTerminalModification') String? cTerminalModification,
-/// /// [_cTerminalModification] Extensions for cTerminalModification
+/// [_cTerminalModification] Extensions for cTerminalModification
 
-    @JsonKey(name: '_cTerminalModification') FhirElement? cTerminalModificationElement,
+    @JsonKey(name: '_cTerminalModification') PrimitiveElement? cTerminalModificationElement,
   }) = _$SubstanceProtein_Subunit;
 
   @override

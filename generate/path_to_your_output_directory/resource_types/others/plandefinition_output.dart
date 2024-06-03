@@ -1,4 +1,7 @@
-/// /// [PlanDefinition_Output] This resource allows for the definition of
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [PlanDefinition_Output] This resource allows for the definition of
 /// various types of plans as a sharable, consumable, and executable artifact.
 /// The resource is general enough to support the description of a broad range
 /// of clinical and non-clinical artifacts such as clinical decision support
@@ -9,11 +12,11 @@ class PlanDefinition_Output with _$PlanDefinition_Output {
   const PlanDefinition_Output._();
 
   const factory PlanDefinition_Output({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -21,7 +24,7 @@ class PlanDefinition_Output with _$PlanDefinition_Output {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -37,25 +40,25 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [title] A human-readable label for the data requirement used to label
+/// [title] A human-readable label for the data requirement used to label
 /// data flows in BPMN or similar diagrams. Also provides a human readable
 /// label when rendering the data requirement that conveys its purpose to human
 /// readers.
 
     @JsonKey(name: 'title') String? title,
-/// /// [_title] Extensions for title
+/// [_title] Extensions for title
 
-    @JsonKey(name: '_title') FhirElement? titleElement,
-/// /// [requirement] Defines the data that results as output from the action.
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
+/// [requirement] Defines the data that results as output from the action.
 
     @JsonKey(name: 'requirement') DataRequirement? requirement,
-/// /// [relatedData] Points to an existing input or output element that is
+/// [relatedData] Points to an existing input or output element that is
 /// results as output from the action.
 
     @JsonKey(name: 'relatedData') String? relatedData,
-/// /// [_relatedData] Extensions for relatedData
+/// [_relatedData] Extensions for relatedData
 
-    @JsonKey(name: '_relatedData') FhirElement? relatedDataElement,
+    @JsonKey(name: '_relatedData') PrimitiveElement? relatedDataElement,
   }) = _$PlanDefinition_Output;
 
   @override

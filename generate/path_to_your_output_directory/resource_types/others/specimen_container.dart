@@ -1,15 +1,18 @@
-/// /// [Specimen_Container] A sample to be used for analysis.
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Specimen_Container] A sample to be used for analysis.
 
 @freezed
 class Specimen_Container with _$Specimen_Container {
   const Specimen_Container._();
 
   const factory Specimen_Container({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -17,7 +20,7 @@ class Specimen_Container with _$Specimen_Container {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -33,12 +36,12 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [device] The device resource for the the container holding the
+/// [device] The device resource for the the container holding the
 /// specimen. If the container is in a holder then the referenced device will
 /// point to a parent device.
 
     @JsonKey(name: 'device') Reference? device,
-/// /// [specimenQuantity] The quantity of specimen in the container; may be
+/// [specimenQuantity] The quantity of specimen in the container; may be
 /// volume, dimensions, or other appropriate measurements, depending on the
 /// specimen type.
 

@@ -1,4 +1,7 @@
-/// /// [Appointment_RecurrenceTemplate] A booking of a healthcare event among
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Appointment_RecurrenceTemplate] A booking of a healthcare event among
 /// patient(s), practitioner(s), related person(s) and/or device(s) for a
 /// specific date/time. This may result in one or more Encounter(s).
 
@@ -7,11 +10,11 @@ class Appointment_RecurrenceTemplate with _$Appointment_RecurrenceTemplate {
   const Appointment_RecurrenceTemplate._();
 
   const factory Appointment_RecurrenceTemplate({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -19,7 +22,7 @@ class Appointment_RecurrenceTemplate with _$Appointment_RecurrenceTemplate {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -35,55 +38,55 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [timezone] The timezone of the recurring appointment occurrences.
+/// [timezone] The timezone of the recurring appointment occurrences.
 
     @JsonKey(name: 'timezone') CodeableConcept? timezone,
-/// /// [recurrenceType] How often the appointment series should recur.
+/// [recurrenceType] How often the appointment series should recur.
 
     @JsonKey(name: 'recurrenceType') CodeableConcept? recurrenceType,
-/// /// [lastOccurrenceDate] Recurring appointments will not occur after this
+/// [lastOccurrenceDate] Recurring appointments will not occur after this
 /// date.
 
     @JsonKey(name: 'lastOccurrenceDate') FhirDate? lastOccurrenceDate,
-/// /// [_lastOccurrenceDate] Extensions for lastOccurrenceDate
+/// [_lastOccurrenceDate] Extensions for lastOccurrenceDate
 
-    @JsonKey(name: '_lastOccurrenceDate') FhirElement? lastOccurrenceDateElement,
-/// /// [occurrenceCount] How many appointments are planned in the recurrence.
+    @JsonKey(name: '_lastOccurrenceDate') PrimitiveElement? lastOccurrenceDateElement,
+/// [occurrenceCount] How many appointments are planned in the recurrence.
 
     @JsonKey(name: 'occurrenceCount') FhirPositiveInt? occurrenceCount,
-/// /// [_occurrenceCount] Extensions for occurrenceCount
+/// [_occurrenceCount] Extensions for occurrenceCount
 
-    @JsonKey(name: '_occurrenceCount') FhirElement? occurrenceCountElement,
-/// /// [occurrenceDate] The list of specific dates that will have appointments
+    @JsonKey(name: '_occurrenceCount') PrimitiveElement? occurrenceCountElement,
+/// [occurrenceDate] The list of specific dates that will have appointments
 /// generated.
 
     @JsonKey(name: 'occurrenceDate') List<List<FhirDate>>? occurrenceDate,
-/// /// [_occurrenceDate] Extensions for occurrenceDate
+/// [_occurrenceDate] Extensions for occurrenceDate
 
-    @JsonKey(name: '_occurrenceDate') List<FhirElement>? occurrenceDateElement,
-/// /// [weeklyTemplate] Information about weekly recurring appointments.
+    @JsonKey(name: '_occurrenceDate') List<PrimitiveElement>? occurrenceDateElement,
+/// [weeklyTemplate] Information about weekly recurring appointments.
 
     @JsonKey(name: 'weeklyTemplate') Appointment_WeeklyTemplate? weeklyTemplate,
-/// /// [monthlyTemplate] Information about monthly recurring appointments.
+/// [monthlyTemplate] Information about monthly recurring appointments.
 
     @JsonKey(name: 'monthlyTemplate') Appointment_MonthlyTemplate? monthlyTemplate,
-/// /// [yearlyTemplate] Information about yearly recurring appointments.
+/// [yearlyTemplate] Information about yearly recurring appointments.
 
     @JsonKey(name: 'yearlyTemplate') Appointment_YearlyTemplate? yearlyTemplate,
-/// /// [excludingDate] Any dates, such as holidays, that should be excluded
+/// [excludingDate] Any dates, such as holidays, that should be excluded
 /// from the recurrence.
 
     @JsonKey(name: 'excludingDate') List<List<FhirDate>>? excludingDate,
-/// /// [_excludingDate] Extensions for excludingDate
+/// [_excludingDate] Extensions for excludingDate
 
-    @JsonKey(name: '_excludingDate') List<FhirElement>? excludingDateElement,
-/// /// [excludingRecurrenceId] Any dates, such as holidays, that should be
+    @JsonKey(name: '_excludingDate') List<PrimitiveElement>? excludingDateElement,
+/// [excludingRecurrenceId] Any dates, such as holidays, that should be
 /// excluded from the recurrence.
 
     @JsonKey(name: 'excludingRecurrenceId') List<List<FhirPositiveInt>>? excludingRecurrenceId,
-/// /// [_excludingRecurrenceId] Extensions for excludingRecurrenceId
+/// [_excludingRecurrenceId] Extensions for excludingRecurrenceId
 
-    @JsonKey(name: '_excludingRecurrenceId') List<FhirElement>? excludingRecurrenceIdElement,
+    @JsonKey(name: '_excludingRecurrenceId') List<PrimitiveElement>? excludingRecurrenceIdElement,
   }) = _$Appointment_RecurrenceTemplate;
 
   @override

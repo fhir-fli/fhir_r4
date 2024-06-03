@@ -1,4 +1,7 @@
-/// /// [Device_ConformsTo] A type of a manufactured item that is used in the
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Device_ConformsTo] A type of a manufactured item that is used in the
 /// provision of healthcare without being substantially changed through that
 /// activity. The device may be a medical or non-medical device.
 
@@ -7,11 +10,11 @@ class Device_ConformsTo with _$Device_ConformsTo {
   const Device_ConformsTo._();
 
   const factory Device_ConformsTo({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -19,7 +22,7 @@ class Device_ConformsTo with _$Device_ConformsTo {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -35,23 +38,23 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [category] Describes the type of the standard, specification, or formal
+/// [category] Describes the type of the standard, specification, or formal
 /// guidance.
 
     @JsonKey(name: 'category') CodeableConcept? category,
-/// /// [specification] Code that identifies the specific standard,
+/// [specification] Code that identifies the specific standard,
 /// specification, protocol, formal guidance, regulation, legislation, or
 /// certification scheme to which the device adheres.
 
     @JsonKey(name: 'specification') CodeableConcept? specification,
-/// /// [version] Identifies the specific form or variant of the standard,
+/// [version] Identifies the specific form or variant of the standard,
 /// specification, or formal guidance. This may be a 'version number', release,
 /// document edition, publication year, or other label.
 
     @JsonKey(name: 'version') String? version,
-/// /// [_version] Extensions for version
+/// [_version] Extensions for version
 
-    @JsonKey(name: '_version') FhirElement? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
   }) = _$Device_ConformsTo;
 
   @override

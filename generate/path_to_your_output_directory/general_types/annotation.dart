@@ -1,4 +1,7 @@
-/// /// [Annotation] A  text note which also  contains information about who
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Annotation] A  text note which also  contains information about who
 /// made the statement and when.
 
 @freezed
@@ -6,11 +9,11 @@ class Annotation with _$Annotation {
   const Annotation._();
 
   const factory Annotation({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,27 +21,27 @@ class Annotation with _$Annotation {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [authorReference] The individual responsible for making the annotation.
+/// [authorReference] The individual responsible for making the annotation.
 
     @JsonKey(name: 'authorReference') Reference? authorReference,
-/// /// [authorString] The individual responsible for making the annotation.
+/// [authorString] The individual responsible for making the annotation.
 
     @JsonKey(name: 'authorString') String? authorString,
-/// /// [_authorString] Extensions for authorString
+/// [_authorString] Extensions for authorString
 
-    @JsonKey(name: '_authorString') FhirElement? authorStringElement,
-/// /// [time] Indicates when this particular annotation was made.
+    @JsonKey(name: '_authorString') PrimitiveElement? authorStringElement,
+/// [time] Indicates when this particular annotation was made.
 
     @JsonKey(name: 'time') FhirDateTime? time,
-/// /// [_time] Extensions for time
+/// [_time] Extensions for time
 
-    @JsonKey(name: '_time') FhirElement? timeElement,
-/// /// [text] The text of the annotation in markdown format.
+    @JsonKey(name: '_time') PrimitiveElement? timeElement,
+/// [text] The text of the annotation in markdown format.
 
     @JsonKey(name: 'text') FhirMarkdown? text,
-/// /// [_text] Extensions for text
+/// [_text] Extensions for text
 
-    @JsonKey(name: '_text') FhirElement? textElement,
+    @JsonKey(name: '_text') PrimitiveElement? textElement,
   }) = _$Annotation;
 
   @override

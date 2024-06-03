@@ -1,4 +1,7 @@
-/// /// [DataRequirement_CodeFilter] Describes a required data item for
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [DataRequirement_CodeFilter] Describes a required data item for
 /// evaluation in terms of the type of data, and optional code or date-based
 /// filters of the data.
 
@@ -7,11 +10,11 @@ class DataRequirement_CodeFilter with _$DataRequirement_CodeFilter {
   const DataRequirement_CodeFilter._();
 
   const factory DataRequirement_CodeFilter({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -19,7 +22,7 @@ class DataRequirement_CodeFilter with _$DataRequirement_CodeFilter {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -35,7 +38,7 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [path] The code-valued attribute of the filter. The specified path
+/// [path] The code-valued attribute of the filter. The specified path
 /// SHALL be a FHIRPath resolvable on the specified type of the
 /// DataRequirement, and SHALL consist only of identifiers, constant indexers,
 /// and .resolve(). The path is allowed to contain qualifiers (.) to traverse
@@ -45,24 +48,24 @@ Modifier extensions SHALL NOT
 /// must resolve to an element of type code, Coding, or CodeableConcept.
 
     @JsonKey(name: 'path') String? path,
-/// /// [_path] Extensions for path
+/// [_path] Extensions for path
 
-    @JsonKey(name: '_path') FhirElement? pathElement,
-/// /// [searchParam] A token parameter that refers to a search parameter
+    @JsonKey(name: '_path') PrimitiveElement? pathElement,
+/// [searchParam] A token parameter that refers to a search parameter
 /// defined on the specified type of the DataRequirement, and which searches on
 /// elements of type code, Coding, or CodeableConcept.
 
     @JsonKey(name: 'searchParam') String? searchParam,
-/// /// [_searchParam] Extensions for searchParam
+/// [_searchParam] Extensions for searchParam
 
-    @JsonKey(name: '_searchParam') FhirElement? searchParamElement,
-/// /// [valueSet] The valueset for the code filter. The valueSet and code
+    @JsonKey(name: '_searchParam') PrimitiveElement? searchParamElement,
+/// [valueSet] The valueset for the code filter. The valueSet and code
 /// elements are additive. If valueSet is specified, the filter will return
 /// only those data items for which the value of the code-valued element
 /// specified in the path is a member of the specified valueset.
 
     @JsonKey(name: 'valueSet') FhirCanonical? valueSet,
-/// /// [code] The codes for the code filter. If values are given, the filter
+/// [code] The codes for the code filter. If values are given, the filter
 /// will return only those data items for which the code-valued attribute
 /// specified by the path has a value that is one of the specified codes. If
 /// codes are specified in addition to a value set, the filter returns items

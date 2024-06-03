@@ -1,4 +1,7 @@
-/// /// [Citation_WebLocation] The Citation Resource enables reference to any
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Citation_WebLocation] The Citation Resource enables reference to any
 /// knowledge artifact for purposes of identification and attribution. The
 /// Citation Resource supports existing reference structures and developing
 /// publication practices such as versioning, expressing complex
@@ -9,11 +12,11 @@ class Citation_WebLocation with _$Citation_WebLocation {
   const Citation_WebLocation._();
 
   const factory Citation_WebLocation({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -21,7 +24,7 @@ class Citation_WebLocation with _$Citation_WebLocation {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -37,16 +40,16 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [classifier] A characterization of the object expected at the web
+/// [classifier] A characterization of the object expected at the web
 /// location.
 
     @JsonKey(name: 'classifier') List<List<CodeableConcept>>? classifier,
-/// /// [url] The specific URL.
+/// [url] The specific URL.
 
     @JsonKey(name: 'url') FhirUri? url,
-/// /// [_url] Extensions for url
+/// [_url] Extensions for url
 
-    @JsonKey(name: '_url') FhirElement? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
   }) = _$Citation_WebLocation;
 
   @override

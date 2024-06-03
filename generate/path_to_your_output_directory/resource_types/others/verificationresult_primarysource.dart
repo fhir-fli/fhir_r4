@@ -1,4 +1,7 @@
-/// /// [VerificationResult_PrimarySource] Describes validation requirements,
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [VerificationResult_PrimarySource] Describes validation requirements,
 /// source(s), status and dates for one or more elements.
 
 @freezed
@@ -6,11 +9,11 @@ class VerificationResult_PrimarySource with _$VerificationResult_PrimarySource {
   const VerificationResult_PrimarySource._();
 
   const factory VerificationResult_PrimarySource({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class VerificationResult_PrimarySource with _$VerificationResult_PrimarySource {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,34 +37,34 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [who] Reference to the primary source.
+/// [who] Reference to the primary source.
 
     @JsonKey(name: 'who') Reference? who,
-/// /// [type] Type of primary source (License Board; Primary Education;
+/// [type] Type of primary source (License Board; Primary Education;
 /// Continuing Education; Postal Service; Relationship owner; Registration
 /// Authority; legal source; issuing source; authoritative source).
 
     @JsonKey(name: 'type') List<List<CodeableConcept>>? type,
-/// /// [communicationMethod] Method for communicating with the primary source
+/// [communicationMethod] Method for communicating with the primary source
 /// (manual; API; Push).
 
     @JsonKey(name: 'communicationMethod') List<List<CodeableConcept>>? communicationMethod,
-/// /// [validationStatus] Status of the validation of the target against the
+/// [validationStatus] Status of the validation of the target against the
 /// primary source (successful; failed; unknown).
 
     @JsonKey(name: 'validationStatus') CodeableConcept? validationStatus,
-/// /// [validationDate] When the target was validated against the primary
+/// [validationDate] When the target was validated against the primary
 /// source.
 
     @JsonKey(name: 'validationDate') FhirDateTime? validationDate,
-/// /// [_validationDate] Extensions for validationDate
+/// [_validationDate] Extensions for validationDate
 
-    @JsonKey(name: '_validationDate') FhirElement? validationDateElement,
-/// /// [canPushUpdates] Ability of the primary source to push updates/alerts
+    @JsonKey(name: '_validationDate') PrimitiveElement? validationDateElement,
+/// [canPushUpdates] Ability of the primary source to push updates/alerts
 /// (yes; no; undetermined).
 
     @JsonKey(name: 'canPushUpdates') CodeableConcept? canPushUpdates,
-/// /// [pushTypeAvailable] Type of alerts/updates the primary source can send
+/// [pushTypeAvailable] Type of alerts/updates the primary source can send
 /// (specific requested changes; any changes; as defined by source).
 
     @JsonKey(name: 'pushTypeAvailable') List<List<CodeableConcept>>? pushTypeAvailable,

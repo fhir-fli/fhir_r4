@@ -1,4 +1,7 @@
-/// /// [CoverageEligibilityRequest_Diagnosis] The CoverageEligibilityRequest
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [CoverageEligibilityRequest_Diagnosis] The CoverageEligibilityRequest
 /// provides patient and insurance coverage information to an insurer for them
 /// to respond, in the form of an CoverageEligibilityResponse, with information
 /// regarding whether the stated coverage is valid and in-force and optionally
@@ -9,11 +12,11 @@ class CoverageEligibilityRequest_Diagnosis with _$CoverageEligibilityRequest_Dia
   const CoverageEligibilityRequest_Diagnosis._();
 
   const factory CoverageEligibilityRequest_Diagnosis({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -21,7 +24,7 @@ class CoverageEligibilityRequest_Diagnosis with _$CoverageEligibilityRequest_Dia
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -37,11 +40,11 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [diagnosisCodeableConcept] The nature of illness or problem in a coded
+/// [diagnosisCodeableConcept] The nature of illness or problem in a coded
 /// form or as a reference to an external defined Condition.
 
     @JsonKey(name: 'diagnosisCodeableConcept') CodeableConcept? diagnosisCodeableConcept,
-/// /// [diagnosisReference] The nature of illness or problem in a coded form
+/// [diagnosisReference] The nature of illness or problem in a coded form
 /// or as a reference to an external defined Condition.
 
     @JsonKey(name: 'diagnosisReference') Reference? diagnosisReference,

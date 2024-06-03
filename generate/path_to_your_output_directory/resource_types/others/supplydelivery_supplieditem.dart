@@ -1,4 +1,7 @@
-/// /// [SupplyDelivery_SuppliedItem] Record of movement of supplies from one
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [SupplyDelivery_SuppliedItem] Record of movement of supplies from one
 /// location to another.
 
 @freezed
@@ -6,11 +9,11 @@ class SupplyDelivery_SuppliedItem with _$SupplyDelivery_SuppliedItem {
   const SupplyDelivery_SuppliedItem._();
 
   const factory SupplyDelivery_SuppliedItem({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class SupplyDelivery_SuppliedItem with _$SupplyDelivery_SuppliedItem {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,22 +37,22 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [quantity] The amount of the item that has been supplied. Unit of
+/// [quantity] The amount of the item that has been supplied. Unit of
 /// measure may be included.
 
     @JsonKey(name: 'quantity') Quantity? quantity,
-/// /// [condition] The condition in which the supplied item was at the event
+/// [condition] The condition in which the supplied item was at the event
 /// (shipment, or receipt, etc.).  For example, to indicate when the supplied
 /// item is not suitable for use (e.g., damaged or out of temperature control).
 
     @JsonKey(name: 'condition') CodeableConcept? condition,
-/// /// [itemCodeableConcept] Identifies the medication, substance, device or
+/// [itemCodeableConcept] Identifies the medication, substance, device or
 /// biologically derived product being supplied. This is either a link to a
 /// resource representing the details of the item or a code that identifies the
 /// item from a known list.
 
     @JsonKey(name: 'itemCodeableConcept') CodeableConcept? itemCodeableConcept,
-/// /// [itemReference] Identifies the medication, substance, device or
+/// [itemReference] Identifies the medication, substance, device or
 /// biologically derived product being supplied. This is either a link to a
 /// resource representing the details of the item or a code that identifies the
 /// item from a known list.

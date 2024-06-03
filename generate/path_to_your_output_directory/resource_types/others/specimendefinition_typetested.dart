@@ -1,4 +1,7 @@
-/// /// [SpecimenDefinition_TypeTested] A kind of specimen with associated set
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [SpecimenDefinition_TypeTested] A kind of specimen with associated set
 /// of requirements.
 
 @freezed
@@ -6,11 +9,11 @@ class SpecimenDefinition_TypeTested with _$SpecimenDefinition_TypeTested {
   const SpecimenDefinition_TypeTested._();
 
   const factory SpecimenDefinition_TypeTested({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class SpecimenDefinition_TypeTested with _$SpecimenDefinition_TypeTested {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,52 +37,52 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [isDerived] Primary of secondary specimen.
+/// [isDerived] Primary of secondary specimen.
 
     @JsonKey(name: 'isDerived') FhirBoolean? isDerived,
-/// /// [_isDerived] Extensions for isDerived
+/// [_isDerived] Extensions for isDerived
 
-    @JsonKey(name: '_isDerived') FhirElement? isDerivedElement,
-/// /// [type] The kind of specimen conditioned for testing expected by lab.
+    @JsonKey(name: '_isDerived') PrimitiveElement? isDerivedElement,
+/// [type] The kind of specimen conditioned for testing expected by lab.
 
     @JsonKey(name: 'type') CodeableConcept? type,
-/// /// [preference] The preference for this type of conditioned specimen.
+/// [preference] The preference for this type of conditioned specimen.
 
     @JsonKey(name: 'preference') FhirCode? preference,
-/// /// [_preference] Extensions for preference
+/// [_preference] Extensions for preference
 
-    @JsonKey(name: '_preference') FhirElement? preferenceElement,
-/// /// [container] The specimen's container.
+    @JsonKey(name: '_preference') PrimitiveElement? preferenceElement,
+/// [container] The specimen's container.
 
     @JsonKey(name: 'container') SpecimenDefinition_Container? container,
-/// /// [requirement] Requirements for delivery and special handling of this
+/// [requirement] Requirements for delivery and special handling of this
 /// kind of conditioned specimen.
 
     @JsonKey(name: 'requirement') FhirMarkdown? requirement,
-/// /// [_requirement] Extensions for requirement
+/// [_requirement] Extensions for requirement
 
-    @JsonKey(name: '_requirement') FhirElement? requirementElement,
-/// /// [retentionTime] The usual time that a specimen of this kind is retained
+    @JsonKey(name: '_requirement') PrimitiveElement? requirementElement,
+/// [retentionTime] The usual time that a specimen of this kind is retained
 /// after the ordered tests are completed, for the purpose of additional
 /// testing.
 
     @JsonKey(name: 'retentionTime') FhirDuration? retentionTime,
-/// /// [singleUse] Specimen can be used by only one test or panel if the value
+/// [singleUse] Specimen can be used by only one test or panel if the value
 /// is "true".
 
     @JsonKey(name: 'singleUse') FhirBoolean? singleUse,
-/// /// [_singleUse] Extensions for singleUse
+/// [_singleUse] Extensions for singleUse
 
-    @JsonKey(name: '_singleUse') FhirElement? singleUseElement,
-/// /// [rejectionCriterion] Criterion for rejection of the specimen in its
+    @JsonKey(name: '_singleUse') PrimitiveElement? singleUseElement,
+/// [rejectionCriterion] Criterion for rejection of the specimen in its
 /// container by the laboratory.
 
     @JsonKey(name: 'rejectionCriterion') List<List<CodeableConcept>>? rejectionCriterion,
-/// /// [handling] Set of instructions for preservation/transport of the
+/// [handling] Set of instructions for preservation/transport of the
 /// specimen at a defined temperature interval, prior the testing process.
 
     @JsonKey(name: 'handling') List<List<SpecimenDefinition_Handling>>? handling,
-/// /// [testingDestination] Where the specimen will be tested: e.g., lab,
+/// [testingDestination] Where the specimen will be tested: e.g., lab,
 /// sector, device or any combination of these.
 
     @JsonKey(name: 'testingDestination') List<List<CodeableConcept>>? testingDestination,

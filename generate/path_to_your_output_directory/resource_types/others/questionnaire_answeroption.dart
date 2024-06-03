@@ -1,4 +1,7 @@
-/// /// [Questionnaire_AnswerOption] A structured set of questions intended to
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Questionnaire_AnswerOption] A structured set of questions intended to
 /// guide the collection of answers from end-users. Questionnaires provide
 /// detailed control over order, presentation, phraseology and grouping to
 /// allow coherent, consistent data collection.
@@ -8,11 +11,11 @@ class Questionnaire_AnswerOption with _$Questionnaire_AnswerOption {
   const Questionnaire_AnswerOption._();
 
   const factory Questionnaire_AnswerOption({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -20,7 +23,7 @@ class Questionnaire_AnswerOption with _$Questionnaire_AnswerOption {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -36,49 +39,49 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [valueInteger] A potential answer that's allowed as the answer to this
+/// [valueInteger] A potential answer that's allowed as the answer to this
 /// question.
 
     @JsonKey(name: 'valueInteger') FhirInteger? valueInteger,
-/// /// [_valueInteger] Extensions for valueInteger
+/// [_valueInteger] Extensions for valueInteger
 
-    @JsonKey(name: '_valueInteger') FhirElement? valueIntegerElement,
-/// /// [valueDate] A potential answer that's allowed as the answer to this
+    @JsonKey(name: '_valueInteger') PrimitiveElement? valueIntegerElement,
+/// [valueDate] A potential answer that's allowed as the answer to this
 /// question.
 
     @JsonKey(name: 'valueDate') FhirDate? valueDate,
-/// /// [_valueDate] Extensions for valueDate
+/// [_valueDate] Extensions for valueDate
 
-    @JsonKey(name: '_valueDate') FhirElement? valueDateElement,
-/// /// [valueTime] A potential answer that's allowed as the answer to this
+    @JsonKey(name: '_valueDate') PrimitiveElement? valueDateElement,
+/// [valueTime] A potential answer that's allowed as the answer to this
 /// question.
 
     @JsonKey(name: 'valueTime') FhirTime? valueTime,
-/// /// [_valueTime] Extensions for valueTime
+/// [_valueTime] Extensions for valueTime
 
-    @JsonKey(name: '_valueTime') FhirElement? valueTimeElement,
-/// /// [valueString] A potential answer that's allowed as the answer to this
+    @JsonKey(name: '_valueTime') PrimitiveElement? valueTimeElement,
+/// [valueString] A potential answer that's allowed as the answer to this
 /// question.
 
     @JsonKey(name: 'valueString') String? valueString,
-/// /// [_valueString] Extensions for valueString
+/// [_valueString] Extensions for valueString
 
-    @JsonKey(name: '_valueString') FhirElement? valueStringElement,
-/// /// [valueCoding] A potential answer that's allowed as the answer to this
+    @JsonKey(name: '_valueString') PrimitiveElement? valueStringElement,
+/// [valueCoding] A potential answer that's allowed as the answer to this
 /// question.
 
     @JsonKey(name: 'valueCoding') Coding? valueCoding,
-/// /// [valueReference] A potential answer that's allowed as the answer to
+/// [valueReference] A potential answer that's allowed as the answer to
 /// this question.
 
     @JsonKey(name: 'valueReference') Reference? valueReference,
-/// /// [initialSelected] Indicates whether the answer value is selected when
+/// [initialSelected] Indicates whether the answer value is selected when
 /// the list of possible answers is initially shown.
 
     @JsonKey(name: 'initialSelected') FhirBoolean? initialSelected,
-/// /// [_initialSelected] Extensions for initialSelected
+/// [_initialSelected] Extensions for initialSelected
 
-    @JsonKey(name: '_initialSelected') FhirElement? initialSelectedElement,
+    @JsonKey(name: '_initialSelected') PrimitiveElement? initialSelectedElement,
   }) = _$Questionnaire_AnswerOption;
 
   @override

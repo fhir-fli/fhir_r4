@@ -1,4 +1,7 @@
-/// /// [Availability] Availability data for an {item}, declaring what
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Availability] Availability data for an {item}, declaring what
 /// days/times are available, and any exceptions. The exceptions could be
 /// textual only, e.g. Public holidays, or could be time period specific and
 /// indicate a specific years dates.
@@ -8,11 +11,11 @@ class Availability with _$Availability {
   const Availability._();
 
   const factory Availability({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -20,15 +23,15 @@ class Availability with _$Availability {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [period] The period of time when the availability is applicable.  For
+/// [period] The period of time when the availability is applicable.  For
 /// example, you might use this property to indicate the period during the
 /// holiday season when you close an hour early.
 
     @JsonKey(name: 'period') Period? period,
-/// /// [availableTime] A collection of times that the {item} is available.
+/// [availableTime] A collection of times that the {item} is available.
 
     @JsonKey(name: 'availableTime') List<List<Availability_AvailableTime>>? availableTime,
-/// /// [notAvailableTime] The {item} is not available during this period of
+/// [notAvailableTime] The {item} is not available during this period of
 /// time due to the provided reason.
 
     @JsonKey(name: 'notAvailableTime') List<List<Availability_NotAvailableTime>>? notAvailableTime,

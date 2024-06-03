@@ -1,4 +1,7 @@
-/// /// [Ingredient_ReferenceStrength] An ingredient of a manufactured item or
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Ingredient_ReferenceStrength] An ingredient of a manufactured item or
 /// pharmaceutical product.
 
 @freezed
@@ -6,11 +9,11 @@ class Ingredient_ReferenceStrength with _$Ingredient_ReferenceStrength {
   const Ingredient_ReferenceStrength._();
 
   const factory Ingredient_ReferenceStrength({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class Ingredient_ReferenceStrength with _$Ingredient_ReferenceStrength {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,28 +37,28 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [substance] Relevant reference substance.
+/// [substance] Relevant reference substance.
 
     @JsonKey(name: 'substance') CodeableReference? substance,
-/// /// [strengthRatio] Strength expressed in terms of a reference substance.
+/// [strengthRatio] Strength expressed in terms of a reference substance.
 
     @JsonKey(name: 'strengthRatio') Ratio? strengthRatio,
-/// /// [strengthRatioRange] Strength expressed in terms of a reference
+/// [strengthRatioRange] Strength expressed in terms of a reference
 /// substance.
 
     @JsonKey(name: 'strengthRatioRange') RatioRange? strengthRatioRange,
-/// /// [strengthQuantity] Strength expressed in terms of a reference
+/// [strengthQuantity] Strength expressed in terms of a reference
 /// substance.
 
     @JsonKey(name: 'strengthQuantity') Quantity? strengthQuantity,
-/// /// [measurementPoint] For when strength is measured at a particular point
+/// [measurementPoint] For when strength is measured at a particular point
 /// or distance.
 
     @JsonKey(name: 'measurementPoint') String? measurementPoint,
-/// /// [_measurementPoint] Extensions for measurementPoint
+/// [_measurementPoint] Extensions for measurementPoint
 
-    @JsonKey(name: '_measurementPoint') FhirElement? measurementPointElement,
-/// /// [country] The country or countries for which the strength range
+    @JsonKey(name: '_measurementPoint') PrimitiveElement? measurementPointElement,
+/// [country] The country or countries for which the strength range
 /// applies.
 
     @JsonKey(name: 'country') List<List<CodeableConcept>>? country,

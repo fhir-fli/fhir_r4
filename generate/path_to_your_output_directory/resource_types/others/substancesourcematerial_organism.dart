@@ -1,4 +1,7 @@
-/// /// [SubstanceSourceMaterial_Organism] Source material shall capture
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [SubstanceSourceMaterial_Organism] Source material shall capture
 /// information on the taxonomic and anatomical origins as well as the fraction
 /// of a material that can result in or can be modified to form a substance.
 /// This set of data elements shall be used to define polymer substances
@@ -19,11 +22,11 @@ class SubstanceSourceMaterial_Organism with _$SubstanceSourceMaterial_Organism {
   const SubstanceSourceMaterial_Organism._();
 
   const factory SubstanceSourceMaterial_Organism({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -31,7 +34,7 @@ class SubstanceSourceMaterial_Organism with _$SubstanceSourceMaterial_Organism {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -47,39 +50,39 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [family] The family of an organism shall be specified.
+/// [family] The family of an organism shall be specified.
 
     @JsonKey(name: 'family') CodeableConcept? family,
-/// /// [genus] The genus of an organism shall be specified; refers to the
+/// [genus] The genus of an organism shall be specified; refers to the
 /// Latin epithet of the genus element of the plant/animal scientific name; it
 /// is present in names for genera, species and infraspecies.
 
     @JsonKey(name: 'genus') CodeableConcept? genus,
-/// /// [species] The species of an organism shall be specified; refers to the
+/// [species] The species of an organism shall be specified; refers to the
 /// Latin epithet of the species of the plant/animal; it is present in names
 /// for species and infraspecies.
 
     @JsonKey(name: 'species') CodeableConcept? species,
-/// /// [intraspecificType] The Intraspecific type of an organism shall be
+/// [intraspecificType] The Intraspecific type of an organism shall be
 /// specified.
 
     @JsonKey(name: 'intraspecificType') CodeableConcept? intraspecificType,
-/// /// [intraspecificDescription] The intraspecific description of an organism
+/// [intraspecificDescription] The intraspecific description of an organism
 /// shall be specified based on a controlled vocabulary. For Influenza Vaccine,
 /// the intraspecific description shall contain the syntax of the antigen in
 /// line with the WHO convention.
 
     @JsonKey(name: 'intraspecificDescription') String? intraspecificDescription,
-/// /// [_intraspecificDescription] Extensions for intraspecificDescription
+/// [_intraspecificDescription] Extensions for intraspecificDescription
 
-    @JsonKey(name: '_intraspecificDescription') FhirElement? intraspecificDescriptionElement,
-/// /// [author] 4.9.13.6.1 Author type (Conditional).
+    @JsonKey(name: '_intraspecificDescription') PrimitiveElement? intraspecificDescriptionElement,
+/// [author] 4.9.13.6.1 Author type (Conditional).
 
     @JsonKey(name: 'author') List<List<SubstanceSourceMaterial_Author>>? author,
-/// /// [hybrid] 4.9.13.8.1 Hybrid species maternal organism ID (Optional).
+/// [hybrid] 4.9.13.8.1 Hybrid species maternal organism ID (Optional).
 
     @JsonKey(name: 'hybrid') SubstanceSourceMaterial_Hybrid? hybrid,
-/// /// [organismGeneral] 4.9.13.7.1 Kingdom (Conditional).
+/// [organismGeneral] 4.9.13.7.1 Kingdom (Conditional).
 
     @JsonKey(name: 'organismGeneral') SubstanceSourceMaterial_OrganismGeneral? organismGeneral,
   }) = _$SubstanceSourceMaterial_Organism;

@@ -1,4 +1,7 @@
-/// /// [NutritionProduct_Instance] A food or supplement that is consumed by
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [NutritionProduct_Instance] A food or supplement that is consumed by
 /// patients.
 
 @freezed
@@ -6,11 +9,11 @@ class NutritionProduct_Instance with _$NutritionProduct_Instance {
   const NutritionProduct_Instance._();
 
   const factory NutritionProduct_Instance({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class NutritionProduct_Instance with _$NutritionProduct_Instance {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,41 +37,41 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [quantity] The amount of items or instances that the resource
+/// [quantity] The amount of items or instances that the resource
 /// considers, for instance when referring to 2 identical units together.
 
     @JsonKey(name: 'quantity') Quantity? quantity,
-/// /// [identifier] The identifier for the physical instance, typically a
+/// [identifier] The identifier for the physical instance, typically a
 /// serial number or manufacturer number.
 
     @JsonKey(name: 'identifier') List<List<Identifier>>? identifier,
-/// /// [name] The name for the specific product.
+/// [name] The name for the specific product.
 
     @JsonKey(name: 'name') String? name,
-/// /// [_name] Extensions for name
+/// [_name] Extensions for name
 
-    @JsonKey(name: '_name') FhirElement? nameElement,
-/// /// [lotNumber] The identification of the batch or lot of the product.
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
+/// [lotNumber] The identification of the batch or lot of the product.
 
     @JsonKey(name: 'lotNumber') String? lotNumber,
-/// /// [_lotNumber] Extensions for lotNumber
+/// [_lotNumber] Extensions for lotNumber
 
-    @JsonKey(name: '_lotNumber') FhirElement? lotNumberElement,
-/// /// [expiry] The time after which the product is no longer expected to be
+    @JsonKey(name: '_lotNumber') PrimitiveElement? lotNumberElement,
+/// [expiry] The time after which the product is no longer expected to be
 /// in proper condition, or its use is not advised or not allowed.
 
     @JsonKey(name: 'expiry') FhirDateTime? expiry,
-/// /// [_expiry] Extensions for expiry
+/// [_expiry] Extensions for expiry
 
-    @JsonKey(name: '_expiry') FhirElement? expiryElement,
-/// /// [useBy] The time after which the product is no longer expected to be in
+    @JsonKey(name: '_expiry') PrimitiveElement? expiryElement,
+/// [useBy] The time after which the product is no longer expected to be in
 /// proper condition, or its use is not advised or not allowed.
 
     @JsonKey(name: 'useBy') FhirDateTime? useBy,
-/// /// [_useBy] Extensions for useBy
+/// [_useBy] Extensions for useBy
 
-    @JsonKey(name: '_useBy') FhirElement? useByElement,
-/// /// [biologicalSourceEvent] An identifier that supports traceability to the
+    @JsonKey(name: '_useBy') PrimitiveElement? useByElement,
+/// [biologicalSourceEvent] An identifier that supports traceability to the
 /// event during which material in this product from one or more biological
 /// entities was obtained or pooled.
 

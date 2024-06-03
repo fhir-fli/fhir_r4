@@ -1,4 +1,7 @@
-/// /// [ImmunizationRecommendation_Recommendation] A patient's point-in-time
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [ImmunizationRecommendation_Recommendation] A patient's point-in-time
 /// set of recommendations (i.e. forecasting) according to a published schedule
 /// with optional supporting justification.
 
@@ -7,11 +10,11 @@ class ImmunizationRecommendation_Recommendation with _$ImmunizationRecommendatio
   const ImmunizationRecommendation_Recommendation._();
 
   const factory ImmunizationRecommendation_Recommendation({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -19,7 +22,7 @@ class ImmunizationRecommendation_Recommendation with _$ImmunizationRecommendatio
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -35,62 +38,62 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [vaccineCode] Vaccine(s) or vaccine group that pertain to the
+/// [vaccineCode] Vaccine(s) or vaccine group that pertain to the
 /// recommendation.
 
     @JsonKey(name: 'vaccineCode') List<List<CodeableConcept>>? vaccineCode,
-/// /// [targetDisease] The targeted disease for the recommendation.
+/// [targetDisease] The targeted disease for the recommendation.
 
     @JsonKey(name: 'targetDisease') List<List<CodeableConcept>>? targetDisease,
-/// /// [contraindicatedVaccineCode] Vaccine(s) which should not be used to
+/// [contraindicatedVaccineCode] Vaccine(s) which should not be used to
 /// fulfill the recommendation.
 
     @JsonKey(name: 'contraindicatedVaccineCode') List<List<CodeableConcept>>? contraindicatedVaccineCode,
-/// /// [forecastStatus] Indicates the patient status with respect to the path
+/// [forecastStatus] Indicates the patient status with respect to the path
 /// to immunity for the target disease.
 
     @JsonKey(name: 'forecastStatus') CodeableConcept? forecastStatus,
-/// /// [forecastReason] The reason for the assigned forecast status.
+/// [forecastReason] The reason for the assigned forecast status.
 
     @JsonKey(name: 'forecastReason') List<List<CodeableConcept>>? forecastReason,
-/// /// [dateCriterion] Vaccine date recommendations.  For example, earliest
+/// [dateCriterion] Vaccine date recommendations.  For example, earliest
 /// date to administer, latest date to administer, etc.
 
     @JsonKey(name: 'dateCriterion') List<List<ImmunizationRecommendation_DateCriterion>>? dateCriterion,
-/// /// [description] Contains the description about the protocol under which
+/// [description] Contains the description about the protocol under which
 /// the vaccine was administered.
 
     @JsonKey(name: 'description') FhirMarkdown? description,
-/// /// [_description] Extensions for description
+/// [_description] Extensions for description
 
-    @JsonKey(name: '_description') FhirElement? descriptionElement,
-/// /// [series] One possible path to achieve presumed immunity against a
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
+/// [series] One possible path to achieve presumed immunity against a
 /// disease - within the context of an authority.
 
     @JsonKey(name: 'series') String? series,
-/// /// [_series] Extensions for series
+/// [_series] Extensions for series
 
-    @JsonKey(name: '_series') FhirElement? seriesElement,
-/// /// [doseNumber] Nominal position of the recommended dose in a series as
+    @JsonKey(name: '_series') PrimitiveElement? seriesElement,
+/// [doseNumber] Nominal position of the recommended dose in a series as
 /// determined by the evaluation and forecasting process (e.g. dose 2 is the
 /// next recommended dose).
 
     @JsonKey(name: 'doseNumber') String? doseNumber,
-/// /// [_doseNumber] Extensions for doseNumber
+/// [_doseNumber] Extensions for doseNumber
 
-    @JsonKey(name: '_doseNumber') FhirElement? doseNumberElement,
-/// /// [seriesDoses] The recommended number of doses to achieve immunity as
+    @JsonKey(name: '_doseNumber') PrimitiveElement? doseNumberElement,
+/// [seriesDoses] The recommended number of doses to achieve immunity as
 /// determined by the evaluation and forecasting process.
 
     @JsonKey(name: 'seriesDoses') String? seriesDoses,
-/// /// [_seriesDoses] Extensions for seriesDoses
+/// [_seriesDoses] Extensions for seriesDoses
 
-    @JsonKey(name: '_seriesDoses') FhirElement? seriesDosesElement,
-/// /// [supportingImmunization] Immunization event history and/or evaluation
+    @JsonKey(name: '_seriesDoses') PrimitiveElement? seriesDosesElement,
+/// [supportingImmunization] Immunization event history and/or evaluation
 /// that supports the status and recommendation.
 
     @JsonKey(name: 'supportingImmunization') List<List<Reference>>? supportingImmunization,
-/// /// [supportingPatientInformation] Patient Information that supports the
+/// [supportingPatientInformation] Patient Information that supports the
 /// status and recommendation.  This includes patient observations, adverse
 /// reactions and allergy/intolerance information.
 

@@ -1,4 +1,7 @@
-/// /// [TestPlan_Dependency1] A plan for executing testing on an artifact or
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [TestPlan_Dependency1] A plan for executing testing on an artifact or
 /// specifications.
 
 @freezed
@@ -6,11 +9,11 @@ class TestPlan_Dependency1 with _$TestPlan_Dependency1 {
   const TestPlan_Dependency1._();
 
   const factory TestPlan_Dependency1({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class TestPlan_Dependency1 with _$TestPlan_Dependency1 {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,23 +37,23 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [description] Description of the criteria.
+/// [description] Description of the criteria.
 
     @JsonKey(name: 'description') FhirMarkdown? description,
-/// /// [_description] Extensions for description
+/// [_description] Extensions for description
 
-    @JsonKey(name: '_description') FhirElement? descriptionElement,
-/// /// [reference] Canonical reference providing traceability to the TestPlan
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
+/// [reference] Canonical reference providing traceability to the TestPlan
 /// dependency instance for this test case.
 
     @JsonKey(name: 'reference') FhirCanonical? reference,
-/// /// [key] TestPlan.testCase.key that identifies the testCase in the
+/// [key] TestPlan.testCase.key that identifies the testCase in the
 /// TestPlan dependency instance.
 
     @JsonKey(name: 'key') FhirId? key,
-/// /// [_key] Extensions for key
+/// [_key] Extensions for key
 
-    @JsonKey(name: '_key') FhirElement? keyElement,
+    @JsonKey(name: '_key') PrimitiveElement? keyElement,
   }) = _$TestPlan_Dependency1;
 
   @override

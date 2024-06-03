@@ -1,4 +1,7 @@
-/// /// [TestScript_Requirement] A structured set of tests against a FHIR
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [TestScript_Requirement] A structured set of tests against a FHIR
 /// server or client implementation to determine compliance against the FHIR
 /// specification.
 
@@ -7,11 +10,11 @@ class TestScript_Requirement with _$TestScript_Requirement {
   const TestScript_Requirement._();
 
   const factory TestScript_Requirement({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -19,7 +22,7 @@ class TestScript_Requirement with _$TestScript_Requirement {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -35,17 +38,17 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [reference] Canonical reference providing traceability to the testing
+/// [reference] Canonical reference providing traceability to the testing
 /// requirement for this assert.
 
     @JsonKey(name: 'reference') FhirCanonical? reference,
-/// /// [key] Requirements.statement.key that identifies the statement that
+/// [key] Requirements.statement.key that identifies the statement that
 /// this assert satisfies.
 
     @JsonKey(name: 'key') FhirId? key,
-/// /// [_key] Extensions for key
+/// [_key] Extensions for key
 
-    @JsonKey(name: '_key') FhirElement? keyElement,
+    @JsonKey(name: '_key') PrimitiveElement? keyElement,
   }) = _$TestScript_Requirement;
 
   @override

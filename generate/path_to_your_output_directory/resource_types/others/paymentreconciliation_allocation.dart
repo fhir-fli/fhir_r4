@@ -1,4 +1,7 @@
-/// /// [PaymentReconciliation_Allocation] This resource provides the details
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [PaymentReconciliation_Allocation] This resource provides the details
 /// including amount of a payment and allocates the payment items being paid.
 
 @freezed
@@ -6,11 +9,11 @@ class PaymentReconciliation_Allocation with _$PaymentReconciliation_Allocation {
   const PaymentReconciliation_Allocation._();
 
   const factory PaymentReconciliation_Allocation({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class PaymentReconciliation_Allocation with _$PaymentReconciliation_Allocation {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,73 +37,73 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [identifier] Unique identifier for the current payment item for the
+/// [identifier] Unique identifier for the current payment item for the
 /// referenced payable.
 
     @JsonKey(name: 'identifier') Identifier? identifier,
-/// /// [predecessor] Unique identifier for the prior payment item for the
+/// [predecessor] Unique identifier for the prior payment item for the
 /// referenced payable.
 
     @JsonKey(name: 'predecessor') Identifier? predecessor,
-/// /// [target] Specific resource to which the payment/adjustment/advance
+/// [target] Specific resource to which the payment/adjustment/advance
 /// applies.
 
     @JsonKey(name: 'target') Reference? target,
-/// /// [targetItemString]  Identifies the claim line item, encounter or other
+/// [targetItemString]  Identifies the claim line item, encounter or other
 /// sub-element being paid. Note payment may be partial, that is not match the
 /// then outstanding balance or amount incurred.
 
     @JsonKey(name: 'targetItemString') String? targetItemString,
-/// /// [_targetItemString] Extensions for targetItemString
+/// [_targetItemString] Extensions for targetItemString
 
-    @JsonKey(name: '_targetItemString') FhirElement? targetItemStringElement,
-/// /// [targetItemIdentifier]  Identifies the claim line item, encounter or
+    @JsonKey(name: '_targetItemString') PrimitiveElement? targetItemStringElement,
+/// [targetItemIdentifier]  Identifies the claim line item, encounter or
 /// other sub-element being paid. Note payment may be partial, that is not
 /// match the then outstanding balance or amount incurred.
 
     @JsonKey(name: 'targetItemIdentifier') Identifier? targetItemIdentifier,
-/// /// [targetItemPositiveInt]  Identifies the claim line item, encounter or
+/// [targetItemPositiveInt]  Identifies the claim line item, encounter or
 /// other sub-element being paid. Note payment may be partial, that is not
 /// match the then outstanding balance or amount incurred.
 
     @JsonKey(name: 'targetItemPositiveInt') FhirPositiveInt? targetItemPositiveInt,
-/// /// [_targetItemPositiveInt] Extensions for targetItemPositiveInt
+/// [_targetItemPositiveInt] Extensions for targetItemPositiveInt
 
-    @JsonKey(name: '_targetItemPositiveInt') FhirElement? targetItemPositiveIntElement,
-/// /// [encounter] The Encounter to which this payment applies, may be
+    @JsonKey(name: '_targetItemPositiveInt') PrimitiveElement? targetItemPositiveIntElement,
+/// [encounter] The Encounter to which this payment applies, may be
 /// completed by the receiver, used for search.
 
     @JsonKey(name: 'encounter') Reference? encounter,
-/// /// [account] The Account to which this payment applies, may be completed
+/// [account] The Account to which this payment applies, may be completed
 /// by the receiver, used for search.
 
     @JsonKey(name: 'account') Reference? account,
-/// /// [type] Code to indicate the nature of the payment.
+/// [type] Code to indicate the nature of the payment.
 
     @JsonKey(name: 'type') CodeableConcept? type,
-/// /// [submitter] The party which submitted the claim or financial
+/// [submitter] The party which submitted the claim or financial
 /// transaction.
 
     @JsonKey(name: 'submitter') Reference? submitter,
-/// /// [response] A resource, such as a ClaimResponse, which contains a
+/// [response] A resource, such as a ClaimResponse, which contains a
 /// commitment to payment.
 
     @JsonKey(name: 'response') Reference? response,
-/// /// [date] The date from the response resource containing a commitment to
+/// [date] The date from the response resource containing a commitment to
 /// pay.
 
     @JsonKey(name: 'date') FhirDate? date,
-/// /// [_date] Extensions for date
+/// [_date] Extensions for date
 
-    @JsonKey(name: '_date') FhirElement? dateElement,
-/// /// [responsible] A reference to the individual who is responsible for
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
+/// [responsible] A reference to the individual who is responsible for
 /// inquiries regarding the response and its payment.
 
     @JsonKey(name: 'responsible') Reference? responsible,
-/// /// [payee] The party which is receiving the payment.
+/// [payee] The party which is receiving the payment.
 
     @JsonKey(name: 'payee') Reference? payee,
-/// /// [amount] The monetary amount allocated from the total payment to the
+/// [amount] The monetary amount allocated from the total payment to the
 /// payable.
 
     @JsonKey(name: 'amount') Money? amount,

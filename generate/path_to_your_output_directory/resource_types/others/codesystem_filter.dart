@@ -1,4 +1,7 @@
-/// /// [CodeSystem_Filter] The CodeSystem resource is used to declare the
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [CodeSystem_Filter] The CodeSystem resource is used to declare the
 /// existence of and describe a code system or code system supplement and its
 /// key properties, and optionally define a part or all of its content.
 
@@ -7,11 +10,11 @@ class CodeSystem_Filter with _$CodeSystem_Filter {
   const CodeSystem_Filter._();
 
   const factory CodeSystem_Filter({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -19,7 +22,7 @@ class CodeSystem_Filter with _$CodeSystem_Filter {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -35,31 +38,31 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [code] The code that identifies this filter when it is used as a filter
+/// [code] The code that identifies this filter when it is used as a filter
 /// in [ValueSet](valueset.html#).compose.include.filter.
 
     @JsonKey(name: 'code') FhirCode? code,
-/// /// [_code] Extensions for code
+/// [_code] Extensions for code
 
-    @JsonKey(name: '_code') FhirElement? codeElement,
-/// /// [description] A description of how or why the filter is used.
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
+/// [description] A description of how or why the filter is used.
 
     @JsonKey(name: 'description') String? description,
-/// /// [_description] Extensions for description
+/// [_description] Extensions for description
 
-    @JsonKey(name: '_description') FhirElement? descriptionElement,
-/// /// [operator] A list of operators that can be used with the filter.
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
+/// [operator] A list of operators that can be used with the filter.
 
     @JsonKey(name: 'operator') List<List<FhirCode>>? operator,
-/// /// [_operator] Extensions for operator
+/// [_operator] Extensions for operator
 
-    @JsonKey(name: '_operator') List<FhirElement>? operatorElement,
-/// /// [value] A description of what the value for the filter should be.
+    @JsonKey(name: '_operator') List<PrimitiveElement>? operatorElement,
+/// [value] A description of what the value for the filter should be.
 
     @JsonKey(name: 'value') String? value,
-/// /// [_value] Extensions for value
+/// [_value] Extensions for value
 
-    @JsonKey(name: '_value') FhirElement? valueElement,
+    @JsonKey(name: '_value') PrimitiveElement? valueElement,
   }) = _$CodeSystem_Filter;
 
   @override

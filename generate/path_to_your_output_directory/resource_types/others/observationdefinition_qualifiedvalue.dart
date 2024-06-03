@@ -1,4 +1,7 @@
-/// /// [ObservationDefinition_QualifiedValue] Set of definitional
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [ObservationDefinition_QualifiedValue] Set of definitional
 /// characteristics for a kind of observation or measurement produced or
 /// consumed by an orderable health care service.
 
@@ -7,11 +10,11 @@ class ObservationDefinition_QualifiedValue with _$ObservationDefinition_Qualifie
   const ObservationDefinition_QualifiedValue._();
 
   const factory ObservationDefinition_QualifiedValue({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -19,7 +22,7 @@ class ObservationDefinition_QualifiedValue with _$ObservationDefinition_Qualifie
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -35,60 +38,60 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [context] A concept defining the context for this set of qualified
+/// [context] A concept defining the context for this set of qualified
 /// values.
 
     @JsonKey(name: 'context') CodeableConcept? context,
-/// /// [appliesTo] The target population this  set of qualified values applies
+/// [appliesTo] The target population this  set of qualified values applies
 /// to.
 
     @JsonKey(name: 'appliesTo') List<List<CodeableConcept>>? appliesTo,
-/// /// [gender] The gender this  set of qualified values applies to.
+/// [gender] The gender this  set of qualified values applies to.
 
     @JsonKey(name: 'gender') FhirCode? gender,
-/// /// [_gender] Extensions for gender
+/// [_gender] Extensions for gender
 
-    @JsonKey(name: '_gender') FhirElement? genderElement,
-/// /// [age] The age range this  set of qualified values applies to.
+    @JsonKey(name: '_gender') PrimitiveElement? genderElement,
+/// [age] The age range this  set of qualified values applies to.
 
     @JsonKey(name: 'age') Range? age,
-/// /// [gestationalAge] The gestational age this  set of qualified values
+/// [gestationalAge] The gestational age this  set of qualified values
 /// applies to.
 
     @JsonKey(name: 'gestationalAge') Range? gestationalAge,
-/// /// [condition] Text based condition for which the the set of qualified
+/// [condition] Text based condition for which the the set of qualified
 /// values is valid.
 
     @JsonKey(name: 'condition') String? condition,
-/// /// [_condition] Extensions for condition
+/// [_condition] Extensions for condition
 
-    @JsonKey(name: '_condition') FhirElement? conditionElement,
-/// /// [rangeCategory] The category of range of values for continuous or
+    @JsonKey(name: '_condition') PrimitiveElement? conditionElement,
+/// [rangeCategory] The category of range of values for continuous or
 /// ordinal observations that match the criteria of this set of qualified
 /// values.
 
     @JsonKey(name: 'rangeCategory') FhirCode? rangeCategory,
-/// /// [_rangeCategory] Extensions for rangeCategory
+/// [_rangeCategory] Extensions for rangeCategory
 
-    @JsonKey(name: '_rangeCategory') FhirElement? rangeCategoryElement,
-/// /// [range] The range of values defined for continuous or ordinal
+    @JsonKey(name: '_rangeCategory') PrimitiveElement? rangeCategoryElement,
+/// [range] The range of values defined for continuous or ordinal
 /// observations that match the criteria of this set of qualified values.
 
     @JsonKey(name: 'range') Range? range,
-/// /// [validCodedValueSet] The set of valid coded results for qualitative
+/// [validCodedValueSet] The set of valid coded results for qualitative
 /// observations  that match the criteria of this set of qualified values.
 
     @JsonKey(name: 'validCodedValueSet') FhirCanonical? validCodedValueSet,
-/// /// [normalCodedValueSet] The set of normal coded results for qualitative
+/// [normalCodedValueSet] The set of normal coded results for qualitative
 /// observations  that match the criteria of this set of qualified values.
 
     @JsonKey(name: 'normalCodedValueSet') FhirCanonical? normalCodedValueSet,
-/// /// [abnormalCodedValueSet] The set of abnormal coded results for
+/// [abnormalCodedValueSet] The set of abnormal coded results for
 /// qualitative observations  that match the criteria of this set of qualified
 /// values.
 
     @JsonKey(name: 'abnormalCodedValueSet') FhirCanonical? abnormalCodedValueSet,
-/// /// [criticalCodedValueSet] The set of critical coded results for
+/// [criticalCodedValueSet] The set of critical coded results for
 /// qualitative observations  that match the criteria of this set of qualified
 /// values.
 

@@ -1,15 +1,18 @@
-/// /// [Reference] A reference from one resource to another.
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Reference] A reference from one resource to another.
 
 @freezed
 class Reference with _$Reference {
   const Reference._();
 
   const factory Reference({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -17,7 +20,7 @@ class Reference with _$Reference {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [reference] A reference to a location at which the other resource is
+/// [reference] A reference to a location at which the other resource is
 /// found. The reference may be a relative reference, in which case it is
 /// relative to the service base URL, or an absolute URL that resolves to the
 /// location where the resource is found. The reference may be version specific
@@ -26,10 +29,10 @@ class Reference with _$Reference {
 /// '#') refer to contained resources.
 
     @JsonKey(name: 'reference') String? reference,
-/// /// [_reference] Extensions for reference
+/// [_reference] Extensions for reference
 
-    @JsonKey(name: '_reference') FhirElement? referenceElement,
-/// /// [type] The expected type of the target of the reference. If both
+    @JsonKey(name: '_reference') PrimitiveElement? referenceElement,
+/// [type] The expected type of the target of the reference. If both
 /// Reference.type and Reference.reference are populated and
 /// Reference.reference is a FHIR URL, both SHALL be consistent.
 
@@ -42,10 +45,10 @@ The type is
 /// models, not resources).
 
     @JsonKey(name: 'type') FhirUri? type,
-/// /// [_type] Extensions for type
+/// [_type] Extensions for type
 
-    @JsonKey(name: '_type') FhirElement? typeElement,
-/// /// [identifier] An identifier for the target resource. This is used when
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
+/// [identifier] An identifier for the target resource. This is used when
 /// there is no way to reference the other resource directly, either because
 /// the entity it represents is not available through a FHIR server, or because
 /// there is no way for the author of the resource to convert a known
@@ -56,13 +59,13 @@ The type is
 /// FHIR resource type allowed by the reference.
 
     @JsonKey(name: 'identifier') Identifier? identifier,
-/// /// [display] Plain text narrative that identifies the resource in addition
+/// [display] Plain text narrative that identifies the resource in addition
 /// to the resource reference.
 
     @JsonKey(name: 'display') String? display,
-/// /// [_display] Extensions for display
+/// [_display] Extensions for display
 
-    @JsonKey(name: '_display') FhirElement? displayElement,
+    @JsonKey(name: '_display') PrimitiveElement? displayElement,
   }) = _$Reference;
 
   @override

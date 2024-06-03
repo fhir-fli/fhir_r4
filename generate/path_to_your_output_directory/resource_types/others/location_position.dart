@@ -1,4 +1,7 @@
-/// /// [Location_Position] Details and position information for a place where
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Location_Position] Details and position information for a place where
 /// services are provided and resources and participants may be stored, found,
 /// contained, or accommodated.
 
@@ -7,11 +10,11 @@ class Location_Position with _$Location_Position {
   const Location_Position._();
 
   const factory Location_Position({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -19,7 +22,7 @@ class Location_Position with _$Location_Position {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -35,30 +38,30 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [longitude] Longitude. The value domain and the interpretation are the
+/// [longitude] Longitude. The value domain and the interpretation are the
 /// same as for the text of the longitude element in KML (see notes on Location
 /// main page).
 
     @JsonKey(name: 'longitude') FhirDecimal? longitude,
-/// /// [_longitude] Extensions for longitude
+/// [_longitude] Extensions for longitude
 
-    @JsonKey(name: '_longitude') FhirElement? longitudeElement,
-/// /// [latitude] Latitude. The value domain and the interpretation are the
+    @JsonKey(name: '_longitude') PrimitiveElement? longitudeElement,
+/// [latitude] Latitude. The value domain and the interpretation are the
 /// same as for the text of the latitude element in KML (see notes on Location
 /// main page).
 
     @JsonKey(name: 'latitude') FhirDecimal? latitude,
-/// /// [_latitude] Extensions for latitude
+/// [_latitude] Extensions for latitude
 
-    @JsonKey(name: '_latitude') FhirElement? latitudeElement,
-/// /// [altitude] Altitude. The value domain and the interpretation are the
+    @JsonKey(name: '_latitude') PrimitiveElement? latitudeElement,
+/// [altitude] Altitude. The value domain and the interpretation are the
 /// same as for the text of the altitude element in KML (see notes on Location
 /// main page).
 
     @JsonKey(name: 'altitude') FhirDecimal? altitude,
-/// /// [_altitude] Extensions for altitude
+/// [_altitude] Extensions for altitude
 
-    @JsonKey(name: '_altitude') FhirElement? altitudeElement,
+    @JsonKey(name: '_altitude') PrimitiveElement? altitudeElement,
   }) = _$Location_Position;
 
   @override

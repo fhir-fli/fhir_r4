@@ -1,4 +1,7 @@
-/// /// [EvidenceReport_Target] The EvidenceReport Resource is a specialized
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [EvidenceReport_Target] The EvidenceReport Resource is a specialized
 /// container for a collection of resources and codeable concepts, adapted to
 /// support compositions of Evidence, EvidenceVariable, and Citation resources
 /// and related concepts.
@@ -8,11 +11,11 @@ class EvidenceReport_Target with _$EvidenceReport_Target {
   const EvidenceReport_Target._();
 
   const factory EvidenceReport_Target({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -20,7 +23,7 @@ class EvidenceReport_Target with _$EvidenceReport_Target {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -36,22 +39,22 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [url] Target of the relationship URL.
+/// [url] Target of the relationship URL.
 
     @JsonKey(name: 'url') FhirUri? url,
-/// /// [_url] Extensions for url
+/// [_url] Extensions for url
 
-    @JsonKey(name: '_url') FhirElement? urlElement,
-/// /// [identifier] Target of the relationship Identifier.
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
+/// [identifier] Target of the relationship Identifier.
 
     @JsonKey(name: 'identifier') Identifier? identifier,
-/// /// [display] Target of the relationship Display.
+/// [display] Target of the relationship Display.
 
     @JsonKey(name: 'display') FhirMarkdown? display,
-/// /// [_display] Extensions for display
+/// [_display] Extensions for display
 
-    @JsonKey(name: '_display') FhirElement? displayElement,
-/// /// [resource] Target of the relationship Resource reference.
+    @JsonKey(name: '_display') PrimitiveElement? displayElement,
+/// [resource] Target of the relationship Resource reference.
 
     @JsonKey(name: 'resource') Reference? resource,
   }) = _$EvidenceReport_Target;

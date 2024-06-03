@@ -1,4 +1,7 @@
-/// /// [SpecimenDefinition_Container] A kind of specimen with associated set
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [SpecimenDefinition_Container] A kind of specimen with associated set
 /// of requirements.
 
 @freezed
@@ -6,11 +9,11 @@ class SpecimenDefinition_Container with _$SpecimenDefinition_Container {
   const SpecimenDefinition_Container._();
 
   const factory SpecimenDefinition_Container({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class SpecimenDefinition_Container with _$SpecimenDefinition_Container {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,47 +37,47 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [material] The type of material of the container.
+/// [material] The type of material of the container.
 
     @JsonKey(name: 'material') CodeableConcept? material,
-/// /// [type] The type of container used to contain this kind of specimen.
+/// [type] The type of container used to contain this kind of specimen.
 
     @JsonKey(name: 'type') CodeableConcept? type,
-/// /// [cap] Color of container cap.
+/// [cap] Color of container cap.
 
     @JsonKey(name: 'cap') CodeableConcept? cap,
-/// /// [description] The textual description of the kind of container.
+/// [description] The textual description of the kind of container.
 
     @JsonKey(name: 'description') FhirMarkdown? description,
-/// /// [_description] Extensions for description
+/// [_description] Extensions for description
 
-    @JsonKey(name: '_description') FhirElement? descriptionElement,
-/// /// [capacity] The capacity (volume or other measure) of this kind of
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
+/// [capacity] The capacity (volume or other measure) of this kind of
 /// container.
 
     @JsonKey(name: 'capacity') Quantity? capacity,
-/// /// [minimumVolumeQuantity] The minimum volume to be conditioned in the
+/// [minimumVolumeQuantity] The minimum volume to be conditioned in the
 /// container.
 
     @JsonKey(name: 'minimumVolumeQuantity') Quantity? minimumVolumeQuantity,
-/// /// [minimumVolumeString] The minimum volume to be conditioned in the
+/// [minimumVolumeString] The minimum volume to be conditioned in the
 /// container.
 
     @JsonKey(name: 'minimumVolumeString') String? minimumVolumeString,
-/// /// [_minimumVolumeString] Extensions for minimumVolumeString
+/// [_minimumVolumeString] Extensions for minimumVolumeString
 
-    @JsonKey(name: '_minimumVolumeString') FhirElement? minimumVolumeStringElement,
-/// /// [additive] Substance introduced in the kind of container to preserve,
+    @JsonKey(name: '_minimumVolumeString') PrimitiveElement? minimumVolumeStringElement,
+/// [additive] Substance introduced in the kind of container to preserve,
 /// maintain or enhance the specimen. Examples: Formalin, Citrate, EDTA.
 
     @JsonKey(name: 'additive') List<List<SpecimenDefinition_Additive>>? additive,
-/// /// [preparation] Special processing that should be applied to the
+/// [preparation] Special processing that should be applied to the
 /// container for this kind of specimen.
 
     @JsonKey(name: 'preparation') FhirMarkdown? preparation,
-/// /// [_preparation] Extensions for preparation
+/// [_preparation] Extensions for preparation
 
-    @JsonKey(name: '_preparation') FhirElement? preparationElement,
+    @JsonKey(name: '_preparation') PrimitiveElement? preparationElement,
   }) = _$SpecimenDefinition_Container;
 
   @override

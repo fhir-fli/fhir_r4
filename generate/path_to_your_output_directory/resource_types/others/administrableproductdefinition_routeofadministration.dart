@@ -1,4 +1,7 @@
-/// /// [AdministrableProductDefinition_RouteOfAdministration] A medicinal
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [AdministrableProductDefinition_RouteOfAdministration] A medicinal
 /// product in the final form which is suitable for administering to a patient
 /// (after any mixing of multiple components, dissolution etc. has been
 /// performed).
@@ -8,11 +11,11 @@ class AdministrableProductDefinition_RouteOfAdministration with _$AdministrableP
   const AdministrableProductDefinition_RouteOfAdministration._();
 
   const factory AdministrableProductDefinition_RouteOfAdministration({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -20,7 +23,7 @@ class AdministrableProductDefinition_RouteOfAdministration with _$AdministrableP
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -36,31 +39,31 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [code] Coded expression for the route.
+/// [code] Coded expression for the route.
 
     @JsonKey(name: 'code') CodeableConcept? code,
-/// /// [firstDose] The first dose (dose quantity) administered can be
+/// [firstDose] The first dose (dose quantity) administered can be
 /// specified for the product, using a numerical value and its unit of
 /// measurement.
 
     @JsonKey(name: 'firstDose') Quantity? firstDose,
-/// /// [maxSingleDose] The maximum single dose that can be administered,
+/// [maxSingleDose] The maximum single dose that can be administered,
 /// specified using a numerical value and its unit of measurement.
 
     @JsonKey(name: 'maxSingleDose') Quantity? maxSingleDose,
-/// /// [maxDosePerDay] The maximum dose per day (maximum dose quantity to be
+/// [maxDosePerDay] The maximum dose per day (maximum dose quantity to be
 /// administered in any one 24-h period) that can be administered.
 
     @JsonKey(name: 'maxDosePerDay') Quantity? maxDosePerDay,
-/// /// [maxDosePerTreatmentPeriod] The maximum dose per treatment period that
+/// [maxDosePerTreatmentPeriod] The maximum dose per treatment period that
 /// can be administered.
 
     @JsonKey(name: 'maxDosePerTreatmentPeriod') Ratio? maxDosePerTreatmentPeriod,
-/// /// [maxTreatmentPeriod] The maximum treatment period during which the
+/// [maxTreatmentPeriod] The maximum treatment period during which the
 /// product can be administered.
 
     @JsonKey(name: 'maxTreatmentPeriod') FhirDuration? maxTreatmentPeriod,
-/// /// [targetSpecies] A species for which this route applies.
+/// [targetSpecies] A species for which this route applies.
 
     @JsonKey(name: 'targetSpecies') List<List<AdministrableProductDefinition_TargetSpecies>>? targetSpecies,
   }) = _$AdministrableProductDefinition_RouteOfAdministration;

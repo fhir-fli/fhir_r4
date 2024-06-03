@@ -1,4 +1,7 @@
-/// /// [CodeableReference] A reference to a resource (by instance), or
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [CodeableReference] A reference to a resource (by instance), or
 /// instead, a reference to a concept defined in a terminology or ontology (by
 /// class).
 
@@ -7,11 +10,11 @@ class CodeableReference with _$CodeableReference {
   const CodeableReference._();
 
   const factory CodeableReference({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -19,11 +22,11 @@ class CodeableReference with _$CodeableReference {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [concept] A reference to a concept - e.g. the information is identified
+/// [concept] A reference to a concept - e.g. the information is identified
 /// by its general class to the degree of precision found in the terminology.
 
     @JsonKey(name: 'concept') CodeableConcept? concept,
-/// /// [reference] A reference to a resource the provides exact details about
+/// [reference] A reference to a resource the provides exact details about
 /// the information being referenced.
 
     @JsonKey(name: 'reference') Reference? reference,

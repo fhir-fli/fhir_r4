@@ -1,4 +1,7 @@
-/// /// [Citation_Abstract] The Citation Resource enables reference to any
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Citation_Abstract] The Citation Resource enables reference to any
 /// knowledge artifact for purposes of identification and attribution. The
 /// Citation Resource supports existing reference structures and developing
 /// publication practices such as versioning, expressing complex
@@ -9,11 +12,11 @@ class Citation_Abstract with _$Citation_Abstract {
   const Citation_Abstract._();
 
   const factory Citation_Abstract({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -21,7 +24,7 @@ class Citation_Abstract with _$Citation_Abstract {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -37,25 +40,25 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [type] Used to express the reason for or classification of the
+/// [type] Used to express the reason for or classification of the
 /// abstract.
 
     @JsonKey(name: 'type') CodeableConcept? type,
-/// /// [language] Used to express the specific language of the abstract.
+/// [language] Used to express the specific language of the abstract.
 
     @JsonKey(name: 'language') CodeableConcept? language,
-/// /// [text] Abstract content.
+/// [text] Abstract content.
 
     @JsonKey(name: 'text') FhirMarkdown? text,
-/// /// [_text] Extensions for text
+/// [_text] Extensions for text
 
-    @JsonKey(name: '_text') FhirElement? textElement,
-/// /// [copyright] Copyright notice for the abstract.
+    @JsonKey(name: '_text') PrimitiveElement? textElement,
+/// [copyright] Copyright notice for the abstract.
 
     @JsonKey(name: 'copyright') FhirMarkdown? copyright,
-/// /// [_copyright] Extensions for copyright
+/// [_copyright] Extensions for copyright
 
-    @JsonKey(name: '_copyright') FhirElement? copyrightElement,
+    @JsonKey(name: '_copyright') PrimitiveElement? copyrightElement,
   }) = _$Citation_Abstract;
 
   @override

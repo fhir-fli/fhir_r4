@@ -1,4 +1,7 @@
-/// /// [DeviceDefinition_Material] The characteristics, operational status and
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [DeviceDefinition_Material] The characteristics, operational status and
 /// capabilities of a medical-related component of a medical device.
 
 @freezed
@@ -6,11 +9,11 @@ class DeviceDefinition_Material with _$DeviceDefinition_Material {
   const DeviceDefinition_Material._();
 
   const factory DeviceDefinition_Material({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class DeviceDefinition_Material with _$DeviceDefinition_Material {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,25 +37,25 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [substance] A substance that the device contains, may contain, or is
+/// [substance] A substance that the device contains, may contain, or is
 /// made of - for example latex - to be used to determine patient
 /// compatibility. This is not intended to represent the composition of the
 /// device, only the clinically relevant materials.
 
     @JsonKey(name: 'substance') CodeableConcept? substance,
-/// /// [alternate] Indicates an alternative material of the device.
+/// [alternate] Indicates an alternative material of the device.
 
     @JsonKey(name: 'alternate') FhirBoolean? alternate,
-/// /// [_alternate] Extensions for alternate
+/// [_alternate] Extensions for alternate
 
-    @JsonKey(name: '_alternate') FhirElement? alternateElement,
-/// /// [allergenicIndicator] Whether the substance is a known or suspected
+    @JsonKey(name: '_alternate') PrimitiveElement? alternateElement,
+/// [allergenicIndicator] Whether the substance is a known or suspected
 /// allergen.
 
     @JsonKey(name: 'allergenicIndicator') FhirBoolean? allergenicIndicator,
-/// /// [_allergenicIndicator] Extensions for allergenicIndicator
+/// [_allergenicIndicator] Extensions for allergenicIndicator
 
-    @JsonKey(name: '_allergenicIndicator') FhirElement? allergenicIndicatorElement,
+    @JsonKey(name: '_allergenicIndicator') PrimitiveElement? allergenicIndicatorElement,
   }) = _$DeviceDefinition_Material;
 
   @override

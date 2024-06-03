@@ -1,4 +1,7 @@
-/// /// [ResourceList] No description available
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [ResourceList] No description available
 
 @freezed
 class ResourceList with _$ResourceList {

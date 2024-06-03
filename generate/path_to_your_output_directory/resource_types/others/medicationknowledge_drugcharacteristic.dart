@@ -1,4 +1,7 @@
-/// /// [MedicationKnowledge_DrugCharacteristic] Information about a medication
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [MedicationKnowledge_DrugCharacteristic] Information about a medication
 /// that is used to support knowledge.
 
 @freezed
@@ -6,11 +9,11 @@ class MedicationKnowledge_DrugCharacteristic with _$MedicationKnowledge_DrugChar
   const MedicationKnowledge_DrugCharacteristic._();
 
   const factory MedicationKnowledge_DrugCharacteristic({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class MedicationKnowledge_DrugCharacteristic with _$MedicationKnowledge_DrugChar
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,29 +37,29 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [type] A code specifying which characteristic of the medicine is being
+/// [type] A code specifying which characteristic of the medicine is being
 /// described (for example, colour, shape, imprint).
 
     @JsonKey(name: 'type') CodeableConcept? type,
-/// /// [valueCodeableConcept] Description of the characteristic.
+/// [valueCodeableConcept] Description of the characteristic.
 
     @JsonKey(name: 'valueCodeableConcept') CodeableConcept? valueCodeableConcept,
-/// /// [valueString] Description of the characteristic.
+/// [valueString] Description of the characteristic.
 
     @JsonKey(name: 'valueString') String? valueString,
-/// /// [_valueString] Extensions for valueString
+/// [_valueString] Extensions for valueString
 
-    @JsonKey(name: '_valueString') FhirElement? valueStringElement,
-/// /// [valueQuantity] Description of the characteristic.
+    @JsonKey(name: '_valueString') PrimitiveElement? valueStringElement,
+/// [valueQuantity] Description of the characteristic.
 
     @JsonKey(name: 'valueQuantity') Quantity? valueQuantity,
-/// /// [valueBase64Binary] Description of the characteristic.
+/// [valueBase64Binary] Description of the characteristic.
 
     @JsonKey(name: 'valueBase64Binary') FhirBase64Binary? valueBase64Binary,
-/// /// [_valueBase64Binary] Extensions for valueBase64Binary
+/// [_valueBase64Binary] Extensions for valueBase64Binary
 
-    @JsonKey(name: '_valueBase64Binary') FhirElement? valueBase64BinaryElement,
-/// /// [valueAttachment] Description of the characteristic.
+    @JsonKey(name: '_valueBase64Binary') PrimitiveElement? valueBase64BinaryElement,
+/// [valueAttachment] Description of the characteristic.
 
     @JsonKey(name: 'valueAttachment') Attachment? valueAttachment,
   }) = _$MedicationKnowledge_DrugCharacteristic;

@@ -1,4 +1,7 @@
-/// /// [Contract_Term] Legally enforceable, formally recorded unilateral or
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Contract_Term] Legally enforceable, formally recorded unilateral or
 /// bilateral directive i.e., a policy or agreement.
 
 @freezed
@@ -6,11 +9,11 @@ class Contract_Term with _$Contract_Term {
   const Contract_Term._();
 
   const factory Contract_Term({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class Contract_Term with _$Contract_Term {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,58 +37,58 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [identifier] Unique identifier for this particular Contract Provision.
+/// [identifier] Unique identifier for this particular Contract Provision.
 
     @JsonKey(name: 'identifier') Identifier? identifier,
-/// /// [issued] When this Contract Provision was issued.
+/// [issued] When this Contract Provision was issued.
 
     @JsonKey(name: 'issued') FhirDateTime? issued,
-/// /// [_issued] Extensions for issued
+/// [_issued] Extensions for issued
 
-    @JsonKey(name: '_issued') FhirElement? issuedElement,
-/// /// [applies] Relevant time or time-period when this Contract Provision is
+    @JsonKey(name: '_issued') PrimitiveElement? issuedElement,
+/// [applies] Relevant time or time-period when this Contract Provision is
 /// applicable.
 
     @JsonKey(name: 'applies') Period? applies,
-/// /// [topicCodeableConcept] The entity that the term applies to.
+/// [topicCodeableConcept] The entity that the term applies to.
 
     @JsonKey(name: 'topicCodeableConcept') CodeableConcept? topicCodeableConcept,
-/// /// [topicReference] The entity that the term applies to.
+/// [topicReference] The entity that the term applies to.
 
     @JsonKey(name: 'topicReference') Reference? topicReference,
-/// /// [type] A legal clause or condition contained within a contract that
+/// [type] A legal clause or condition contained within a contract that
 /// requires one or both parties to perform a particular requirement by some
 /// specified time or prevents one or both parties from performing a particular
 /// requirement by some specified time.
 
     @JsonKey(name: 'type') CodeableConcept? type,
-/// /// [subType] A specialized legal clause or condition based on overarching
+/// [subType] A specialized legal clause or condition based on overarching
 /// contract type.
 
     @JsonKey(name: 'subType') CodeableConcept? subType,
-/// /// [text] Statement of a provision in a policy or a contract.
+/// [text] Statement of a provision in a policy or a contract.
 
     @JsonKey(name: 'text') String? text,
-/// /// [_text] Extensions for text
+/// [_text] Extensions for text
 
-    @JsonKey(name: '_text') FhirElement? textElement,
-/// /// [securityLabel] Security labels that protect the handling of
+    @JsonKey(name: '_text') PrimitiveElement? textElement,
+/// [securityLabel] Security labels that protect the handling of
 /// information about the term and its elements, which may be specifically
 /// identified.
 
     @JsonKey(name: 'securityLabel') List<List<Contract_SecurityLabel>>? securityLabel,
-/// /// [offer] The matter of concern in the context of this provision of the
+/// [offer] The matter of concern in the context of this provision of the
 /// agrement.
 
     @JsonKey(name: 'offer') Contract_Offer? offer,
-/// /// [asset] Contract Term Asset List.
+/// [asset] Contract Term Asset List.
 
     @JsonKey(name: 'asset') List<List<Contract_Asset>>? asset,
-/// /// [action] An actor taking a role in an activity for which it can be
+/// [action] An actor taking a role in an activity for which it can be
 /// assigned some degree of responsibility for the activity taking place.
 
     @JsonKey(name: 'action') List<List<Contract_Action>>? action,
-/// /// [group] Nested group of Contract Provisions.
+/// [group] Nested group of Contract Provisions.
 
     @JsonKey(name: 'group') List<List<Contract_Term>>? group,
   }) = _$Contract_Term;

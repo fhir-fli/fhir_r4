@@ -1,4 +1,7 @@
-/// /// [DeviceDefinition_Packaging] The characteristics, operational status
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [DeviceDefinition_Packaging] The characteristics, operational status
 /// and capabilities of a medical-related component of a medical device.
 
 @freezed
@@ -6,11 +9,11 @@ class DeviceDefinition_Packaging with _$DeviceDefinition_Packaging {
   const DeviceDefinition_Packaging._();
 
   const factory DeviceDefinition_Packaging({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class DeviceDefinition_Packaging with _$DeviceDefinition_Packaging {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,27 +37,27 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [identifier] The business identifier of the packaged medication.
+/// [identifier] The business identifier of the packaged medication.
 
     @JsonKey(name: 'identifier') Identifier? identifier,
-/// /// [type] A code that defines the specific type of packaging.
+/// [type] A code that defines the specific type of packaging.
 
     @JsonKey(name: 'type') CodeableConcept? type,
-/// /// [count] The number of items contained in the package (devices or
+/// [count] The number of items contained in the package (devices or
 /// sub-packages).
 
     @JsonKey(name: 'count') FhirInteger? count,
-/// /// [_count] Extensions for count
+/// [_count] Extensions for count
 
-    @JsonKey(name: '_count') FhirElement? countElement,
-/// /// [distributor] An organization that distributes the packaged device.
+    @JsonKey(name: '_count') PrimitiveElement? countElement,
+/// [distributor] An organization that distributes the packaged device.
 
     @JsonKey(name: 'distributor') List<List<DeviceDefinition_Distributor>>? distributor,
-/// /// [udiDeviceIdentifier] Unique Device Identifier (UDI) Barcode string on
+/// [udiDeviceIdentifier] Unique Device Identifier (UDI) Barcode string on
 /// the packaging.
 
     @JsonKey(name: 'udiDeviceIdentifier') List<List<DeviceDefinition_UdiDeviceIdentifier>>? udiDeviceIdentifier,
-/// /// [packaging] Allows packages within packages.
+/// [packaging] Allows packages within packages.
 
     @JsonKey(name: 'packaging') List<List<DeviceDefinition_Packaging>>? packaging,
   }) = _$DeviceDefinition_Packaging;

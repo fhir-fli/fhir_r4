@@ -1,4 +1,7 @@
-/// /// [Subscription_Parameter] The subscription resource describes a
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Subscription_Parameter] The subscription resource describes a
 /// particular client's request to be notified about a SubscriptionTopic.
 
 @freezed
@@ -6,11 +9,11 @@ class Subscription_Parameter with _$Subscription_Parameter {
   const Subscription_Parameter._();
 
   const factory Subscription_Parameter({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class Subscription_Parameter with _$Subscription_Parameter {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,22 +37,22 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [name] Parameter name for information passed to the channel for
+/// [name] Parameter name for information passed to the channel for
 /// notifications, for example in the case of a REST hook wanting to pass
 /// through an authorization header, the name would be Authorization.
 
     @JsonKey(name: 'name') String? name,
-/// /// [_name] Extensions for name
+/// [_name] Extensions for name
 
-    @JsonKey(name: '_name') FhirElement? nameElement,
-/// /// [value] Parameter value for information passed to the channel for
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
+/// [value] Parameter value for information passed to the channel for
 /// notifications, for example in the case of a REST hook wanting to pass
 /// through an authorization header, the value would be `Bearer 0193...`.
 
     @JsonKey(name: 'value') String? value,
-/// /// [_value] Extensions for value
+/// [_value] Extensions for value
 
-    @JsonKey(name: '_value') FhirElement? valueElement,
+    @JsonKey(name: '_value') PrimitiveElement? valueElement,
   }) = _$Subscription_Parameter;
 
   @override

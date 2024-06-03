@@ -1,4 +1,7 @@
-/// /// [CoverageEligibilityRequest_SupportingInfo] The
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [CoverageEligibilityRequest_SupportingInfo] The
 /// CoverageEligibilityRequest provides patient and insurance coverage
 /// information to an insurer for them to respond, in the form of an
 /// CoverageEligibilityResponse, with information regarding whether the stated
@@ -10,11 +13,11 @@ class CoverageEligibilityRequest_SupportingInfo with _$CoverageEligibilityReques
   const CoverageEligibilityRequest_SupportingInfo._();
 
   const factory CoverageEligibilityRequest_SupportingInfo({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -22,7 +25,7 @@ class CoverageEligibilityRequest_SupportingInfo with _$CoverageEligibilityReques
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -38,25 +41,25 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [sequence] A number to uniquely identify supporting information
+/// [sequence] A number to uniquely identify supporting information
 /// entries.
 
     @JsonKey(name: 'sequence') FhirPositiveInt? sequence,
-/// /// [_sequence] Extensions for sequence
+/// [_sequence] Extensions for sequence
 
-    @JsonKey(name: '_sequence') FhirElement? sequenceElement,
-/// /// [information] Additional data or information such as resources,
+    @JsonKey(name: '_sequence') PrimitiveElement? sequenceElement,
+/// [information] Additional data or information such as resources,
 /// documents, images etc. including references to the data or the actual
 /// inclusion of the data.
 
     @JsonKey(name: 'information') Reference? information,
-/// /// [appliesToAll] The supporting materials are applicable for all detail
+/// [appliesToAll] The supporting materials are applicable for all detail
 /// items, product/servce categories and specific billing codes.
 
     @JsonKey(name: 'appliesToAll') FhirBoolean? appliesToAll,
-/// /// [_appliesToAll] Extensions for appliesToAll
+/// [_appliesToAll] Extensions for appliesToAll
 
-    @JsonKey(name: '_appliesToAll') FhirElement? appliesToAllElement,
+    @JsonKey(name: '_appliesToAll') PrimitiveElement? appliesToAllElement,
   }) = _$CoverageEligibilityRequest_SupportingInfo;
 
   @override

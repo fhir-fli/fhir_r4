@@ -1,4 +1,7 @@
-/// /// [Contract_Offer] Legally enforceable, formally recorded unilateral or
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Contract_Offer] Legally enforceable, formally recorded unilateral or
 /// bilateral directive i.e., a policy or agreement.
 
 @freezed
@@ -6,11 +9,11 @@ class Contract_Offer with _$Contract_Offer {
   const Contract_Offer._();
 
   const factory Contract_Offer({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class Contract_Offer with _$Contract_Offer {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,51 +37,51 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [identifier] Unique identifier for this particular Contract Provision.
+/// [identifier] Unique identifier for this particular Contract Provision.
 
     @JsonKey(name: 'identifier') List<List<Identifier>>? identifier,
-/// /// [party] Offer Recipient.
+/// [party] Offer Recipient.
 
     @JsonKey(name: 'party') List<List<Contract_Party>>? party,
-/// /// [topic] The owner of an asset has the residual control rights over the
+/// [topic] The owner of an asset has the residual control rights over the
 /// asset: the right to decide all usages of the asset in any way not
 /// inconsistent with a prior contract, custom, or law (Hart, 1995, p. 30).
 
     @JsonKey(name: 'topic') Reference? topic,
-/// /// [type] Type of Contract Provision such as specific requirements,
+/// [type] Type of Contract Provision such as specific requirements,
 /// purposes for actions, obligations, prohibitions, e.g. life time maximum
 /// benefit.
 
     @JsonKey(name: 'type') CodeableConcept? type,
-/// /// [decision] Type of choice made by accepting party with respect to an
+/// [decision] Type of choice made by accepting party with respect to an
 /// offer made by an offeror/ grantee.
 
     @JsonKey(name: 'decision') CodeableConcept? decision,
-/// /// [decisionMode] How the decision about a Contract was conveyed.
+/// [decisionMode] How the decision about a Contract was conveyed.
 
     @JsonKey(name: 'decisionMode') List<List<CodeableConcept>>? decisionMode,
-/// /// [answer] Response to offer text.
+/// [answer] Response to offer text.
 
     @JsonKey(name: 'answer') List<List<Contract_Answer>>? answer,
-/// /// [text] Human readable form of this Contract Offer.
+/// [text] Human readable form of this Contract Offer.
 
     @JsonKey(name: 'text') String? text,
-/// /// [_text] Extensions for text
+/// [_text] Extensions for text
 
-    @JsonKey(name: '_text') FhirElement? textElement,
-/// /// [linkId] The id of the clause or question text of the offer in the
+    @JsonKey(name: '_text') PrimitiveElement? textElement,
+/// [linkId] The id of the clause or question text of the offer in the
 /// referenced questionnaire/response.
 
     @JsonKey(name: 'linkId') List<List<String>>? linkId,
-/// /// [_linkId] Extensions for linkId
+/// [_linkId] Extensions for linkId
 
-    @JsonKey(name: '_linkId') List<FhirElement>? linkIdElement,
-/// /// [securityLabelNumber] Security labels that protects the offer.
+    @JsonKey(name: '_linkId') List<PrimitiveElement>? linkIdElement,
+/// [securityLabelNumber] Security labels that protects the offer.
 
     @JsonKey(name: 'securityLabelNumber') List<List<FhirUnsignedInt>>? securityLabelNumber,
-/// /// [_securityLabelNumber] Extensions for securityLabelNumber
+/// [_securityLabelNumber] Extensions for securityLabelNumber
 
-    @JsonKey(name: '_securityLabelNumber') List<FhirElement>? securityLabelNumberElement,
+    @JsonKey(name: '_securityLabelNumber') List<PrimitiveElement>? securityLabelNumberElement,
   }) = _$Contract_Offer;
 
   @override

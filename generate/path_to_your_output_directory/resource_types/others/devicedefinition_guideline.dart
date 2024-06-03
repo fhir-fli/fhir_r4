@@ -1,4 +1,7 @@
-/// /// [DeviceDefinition_Guideline] The characteristics, operational status
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [DeviceDefinition_Guideline] The characteristics, operational status
 /// and capabilities of a medical-related component of a medical device.
 
 @freezed
@@ -6,11 +9,11 @@ class DeviceDefinition_Guideline with _$DeviceDefinition_Guideline {
   const DeviceDefinition_Guideline._();
 
   const factory DeviceDefinition_Guideline({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class DeviceDefinition_Guideline with _$DeviceDefinition_Guideline {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,40 +37,40 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [useContext] The circumstances that form the setting for using the
+/// [useContext] The circumstances that form the setting for using the
 /// device.
 
     @JsonKey(name: 'useContext') List<List<UsageContext>>? useContext,
-/// /// [usageInstruction] Detailed written and visual directions for the user
+/// [usageInstruction] Detailed written and visual directions for the user
 /// on how to use the device.
 
     @JsonKey(name: 'usageInstruction') FhirMarkdown? usageInstruction,
-/// /// [_usageInstruction] Extensions for usageInstruction
+/// [_usageInstruction] Extensions for usageInstruction
 
-    @JsonKey(name: '_usageInstruction') FhirElement? usageInstructionElement,
-/// /// [relatedArtifact] A source of information or reference for this
+    @JsonKey(name: '_usageInstruction') PrimitiveElement? usageInstructionElement,
+/// [relatedArtifact] A source of information or reference for this
 /// guideline.
 
     @JsonKey(name: 'relatedArtifact') List<List<RelatedArtifact>>? relatedArtifact,
-/// /// [indication] A clinical condition for which the device was designed to
+/// [indication] A clinical condition for which the device was designed to
 /// be used.
 
     @JsonKey(name: 'indication') List<List<CodeableConcept>>? indication,
-/// /// [contraindication] A specific situation when a device should not be
+/// [contraindication] A specific situation when a device should not be
 /// used because it may cause harm.
 
     @JsonKey(name: 'contraindication') List<List<CodeableConcept>>? contraindication,
-/// /// [warning] Specific hazard alert information that a user needs to know
+/// [warning] Specific hazard alert information that a user needs to know
 /// before using the device.
 
     @JsonKey(name: 'warning') List<List<CodeableConcept>>? warning,
-/// /// [intendedUse] A description of the general purpose or medical use of
+/// [intendedUse] A description of the general purpose or medical use of
 /// the device or its function.
 
     @JsonKey(name: 'intendedUse') String? intendedUse,
-/// /// [_intendedUse] Extensions for intendedUse
+/// [_intendedUse] Extensions for intendedUse
 
-    @JsonKey(name: '_intendedUse') FhirElement? intendedUseElement,
+    @JsonKey(name: '_intendedUse') PrimitiveElement? intendedUseElement,
   }) = _$DeviceDefinition_Guideline;
 
   @override

@@ -1,4 +1,7 @@
-/// /// [Coverage_Class] Financial instrument which may be used to reimburse or
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Coverage_Class] Financial instrument which may be used to reimburse or
 /// pay for health care products and services. Includes both insurance and
 /// self-payment.
 
@@ -7,11 +10,11 @@ class Coverage_Class with _$Coverage_Class {
   const Coverage_Class._();
 
   const factory Coverage_Class({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -19,7 +22,7 @@ class Coverage_Class with _$Coverage_Class {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -35,21 +38,21 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [type] The type of classification for which an insurer-specific class
+/// [type] The type of classification for which an insurer-specific class
 /// label or number and optional name is provided.  For example, type may be
 /// used to identify a class of coverage or employer group, policy, or plan.
 
     @JsonKey(name: 'type') CodeableConcept? type,
-/// /// [value] The alphanumeric identifier associated with the insurer issued
+/// [value] The alphanumeric identifier associated with the insurer issued
 /// label.
 
     @JsonKey(name: 'value') Identifier? value,
-/// /// [name] A short description for the class.
+/// [name] A short description for the class.
 
     @JsonKey(name: 'name') String? name,
-/// /// [_name] Extensions for name
+/// [_name] Extensions for name
 
-    @JsonKey(name: '_name') FhirElement? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
   }) = _$Coverage_Class;
 
   @override

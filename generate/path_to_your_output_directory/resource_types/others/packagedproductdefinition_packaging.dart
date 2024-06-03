@@ -1,4 +1,7 @@
-/// /// [PackagedProductDefinition_Packaging] A medically related item or
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [PackagedProductDefinition_Packaging] A medically related item or
 /// items, in a container or package.
 
 @freezed
@@ -6,11 +9,11 @@ class PackagedProductDefinition_Packaging with _$PackagedProductDefinition_Packa
   const PackagedProductDefinition_Packaging._();
 
   const factory PackagedProductDefinition_Packaging({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class PackagedProductDefinition_Packaging with _$PackagedProductDefinition_Packa
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,55 +37,55 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [identifier] A business identifier that is specific to this particular
+/// [identifier] A business identifier that is specific to this particular
 /// part of the packaging, often assigned by the manufacturer. Including
 /// possibly Data Carrier Identifier (a GS1 barcode).
 
     @JsonKey(name: 'identifier') List<List<Identifier>>? identifier,
-/// /// [type] The physical type of the container of the items.
+/// [type] The physical type of the container of the items.
 
     @JsonKey(name: 'type') CodeableConcept? type,
-/// /// [componentPart] Is this a part of the packaging (e.g. a cap or bottle
+/// [componentPart] Is this a part of the packaging (e.g. a cap or bottle
 /// stopper), rather than the packaging itself (e.g. a bottle or vial). The
 /// latter type are designed be a container, but the former are not.
 
     @JsonKey(name: 'componentPart') FhirBoolean? componentPart,
-/// /// [_componentPart] Extensions for componentPart
+/// [_componentPart] Extensions for componentPart
 
-    @JsonKey(name: '_componentPart') FhirElement? componentPartElement,
-/// /// [quantity] The quantity of packaging items contained at this layer of
+    @JsonKey(name: '_componentPart') PrimitiveElement? componentPartElement,
+/// [quantity] The quantity of packaging items contained at this layer of
 /// the package. This does not relate to the number of contained items but
 /// relates solely to the number of packaging items. When looking at the
 /// outermost layer it is always 1. If there are two boxes within, at the next
 /// layer it would be 2.
 
     @JsonKey(name: 'quantity') FhirInteger? quantity,
-/// /// [_quantity] Extensions for quantity
+/// [_quantity] Extensions for quantity
 
-    @JsonKey(name: '_quantity') FhirElement? quantityElement,
-/// /// [material] Material type of the package item.
+    @JsonKey(name: '_quantity') PrimitiveElement? quantityElement,
+/// [material] Material type of the package item.
 
     @JsonKey(name: 'material') List<List<CodeableConcept>>? material,
-/// /// [alternateMaterial] A possible alternate material for this part of the
+/// [alternateMaterial] A possible alternate material for this part of the
 /// packaging, that is allowed to be used instead of the usual material (e.g.
 /// different types of plastic for a blister sleeve).
 
     @JsonKey(name: 'alternateMaterial') List<List<CodeableConcept>>? alternateMaterial,
-/// /// [shelfLifeStorage] Shelf Life and storage information.
+/// [shelfLifeStorage] Shelf Life and storage information.
 
     @JsonKey(name: 'shelfLifeStorage') List<List<ProductShelfLife>>? shelfLifeStorage,
-/// /// [manufacturer] Manufacturer of this packaging item. When there are
+/// [manufacturer] Manufacturer of this packaging item. When there are
 /// multiple values each one is a potential manufacturer of this packaging
 /// item.
 
     @JsonKey(name: 'manufacturer') List<List<Reference>>? manufacturer,
-/// /// [property] General characteristics of this item.
+/// [property] General characteristics of this item.
 
     @JsonKey(name: 'property') List<List<PackagedProductDefinition_Property>>? property,
-/// /// [containedItem] The item(s) within the packaging.
+/// [containedItem] The item(s) within the packaging.
 
     @JsonKey(name: 'containedItem') List<List<PackagedProductDefinition_ContainedItem>>? containedItem,
-/// /// [packaging] Allows containers (and parts of containers) within
+/// [packaging] Allows containers (and parts of containers) within
 /// containers, still as a part of a single packaged product. See also
 /// PackagedProductDefinition.packaging.containedItem.item(PackagedProductDefinition).
 

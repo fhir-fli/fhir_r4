@@ -1,4 +1,7 @@
-/// /// [TestReport_Assert] A summary of information based on the results of
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [TestReport_Assert] A summary of information based on the results of
 /// executing a TestScript.
 
 @freezed
@@ -6,11 +9,11 @@ class TestReport_Assert with _$TestReport_Assert {
   const TestReport_Assert._();
 
   const factory TestReport_Assert({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class TestReport_Assert with _$TestReport_Assert {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,25 +37,25 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [result] The result of this assertion.
+/// [result] The result of this assertion.
 
     @JsonKey(name: 'result') FhirCode? result,
-/// /// [_result] Extensions for result
+/// [_result] Extensions for result
 
-    @JsonKey(name: '_result') FhirElement? resultElement,
-/// /// [message] An explanatory message associated with the result.
+    @JsonKey(name: '_result') PrimitiveElement? resultElement,
+/// [message] An explanatory message associated with the result.
 
     @JsonKey(name: 'message') FhirMarkdown? message,
-/// /// [_message] Extensions for message
+/// [_message] Extensions for message
 
-    @JsonKey(name: '_message') FhirElement? messageElement,
-/// /// [detail] A link to further details on the result.
+    @JsonKey(name: '_message') PrimitiveElement? messageElement,
+/// [detail] A link to further details on the result.
 
     @JsonKey(name: 'detail') String? detail,
-/// /// [_detail] Extensions for detail
+/// [_detail] Extensions for detail
 
-    @JsonKey(name: '_detail') FhirElement? detailElement,
-/// /// [requirement] Links or references providing traceability to the testing
+    @JsonKey(name: '_detail') PrimitiveElement? detailElement,
+/// [requirement] Links or references providing traceability to the testing
 /// requirements for this assert.
 
     @JsonKey(name: 'requirement') List<List<TestReport_Requirement>>? requirement,

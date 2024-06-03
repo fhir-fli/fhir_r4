@@ -1,15 +1,18 @@
-/// /// [SubstanceReferenceInformation_Target] Todo.
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [SubstanceReferenceInformation_Target] Todo.
 
 @freezed
 class SubstanceReferenceInformation_Target with _$SubstanceReferenceInformation_Target {
   const SubstanceReferenceInformation_Target._();
 
   const factory SubstanceReferenceInformation_Target({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -17,7 +20,7 @@ class SubstanceReferenceInformation_Target with _$SubstanceReferenceInformation_
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -33,37 +36,37 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [target] Todo.
+/// [target] Todo.
 
     @JsonKey(name: 'target') Identifier? target,
-/// /// [type] Todo.
+/// [type] Todo.
 
     @JsonKey(name: 'type') CodeableConcept? type,
-/// /// [interaction] Todo.
+/// [interaction] Todo.
 
     @JsonKey(name: 'interaction') CodeableConcept? interaction,
-/// /// [organism] Todo.
+/// [organism] Todo.
 
     @JsonKey(name: 'organism') CodeableConcept? organism,
-/// /// [organismType] Todo.
+/// [organismType] Todo.
 
     @JsonKey(name: 'organismType') CodeableConcept? organismType,
-/// /// [amountQuantity] Todo.
+/// [amountQuantity] Todo.
 
     @JsonKey(name: 'amountQuantity') Quantity? amountQuantity,
-/// /// [amountRange] Todo.
+/// [amountRange] Todo.
 
     @JsonKey(name: 'amountRange') Range? amountRange,
-/// /// [amountString] Todo.
+/// [amountString] Todo.
 
     @JsonKey(name: 'amountString') String? amountString,
-/// /// [_amountString] Extensions for amountString
+/// [_amountString] Extensions for amountString
 
-    @JsonKey(name: '_amountString') FhirElement? amountStringElement,
-/// /// [amountType] Todo.
+    @JsonKey(name: '_amountString') PrimitiveElement? amountStringElement,
+/// [amountType] Todo.
 
     @JsonKey(name: 'amountType') CodeableConcept? amountType,
-/// /// [source] Todo.
+/// [source] Todo.
 
     @JsonKey(name: 'source') List<List<Reference>>? source,
   }) = _$SubstanceReferenceInformation_Target;

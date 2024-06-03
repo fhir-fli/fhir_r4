@@ -1,4 +1,7 @@
-/// /// [Evidence_AttributeEstimate] The Evidence Resource provides a
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Evidence_AttributeEstimate] The Evidence Resource provides a
 /// machine-interpretable expression of an evidence concept including the
 /// evidence variables (e.g., population, exposures/interventions, comparators,
 /// outcomes, measured variables, confounding variables), the statistics, and
@@ -9,11 +12,11 @@ class Evidence_AttributeEstimate with _$Evidence_AttributeEstimate {
   const Evidence_AttributeEstimate._();
 
   const factory Evidence_AttributeEstimate({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -21,7 +24,7 @@ class Evidence_AttributeEstimate with _$Evidence_AttributeEstimate {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -37,34 +40,34 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [description] Human-readable summary of the estimate.
+/// [description] Human-readable summary of the estimate.
 
     @JsonKey(name: 'description') FhirMarkdown? description,
-/// /// [_description] Extensions for description
+/// [_description] Extensions for description
 
-    @JsonKey(name: '_description') FhirElement? descriptionElement,
-/// /// [note] Footnote or explanatory note about the estimate.
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
+/// [note] Footnote or explanatory note about the estimate.
 
     @JsonKey(name: 'note') List<List<Annotation>>? note,
-/// /// [type] The type of attribute estimate, e.g., confidence interval or p
+/// [type] The type of attribute estimate, e.g., confidence interval or p
 /// value.
 
     @JsonKey(name: 'type') CodeableConcept? type,
-/// /// [quantity] The singular quantity of the attribute estimate, for
+/// [quantity] The singular quantity of the attribute estimate, for
 /// attribute estimates represented as single values; also used to report unit
 /// of measure.
 
     @JsonKey(name: 'quantity') Quantity? quantity,
-/// /// [level] Use 95 for a 95% confidence interval.
+/// [level] Use 95 for a 95% confidence interval.
 
     @JsonKey(name: 'level') FhirDecimal? level,
-/// /// [_level] Extensions for level
+/// [_level] Extensions for level
 
-    @JsonKey(name: '_level') FhirElement? levelElement,
-/// /// [range] Lower bound of confidence interval.
+    @JsonKey(name: '_level') PrimitiveElement? levelElement,
+/// [range] Lower bound of confidence interval.
 
     @JsonKey(name: 'range') Range? range,
-/// /// [attributeEstimate] A nested attribute estimate; which is the attribute
+/// [attributeEstimate] A nested attribute estimate; which is the attribute
 /// estimate of an attribute estimate.
 
     @JsonKey(name: 'attributeEstimate') List<List<Evidence_AttributeEstimate>>? attributeEstimate,

@@ -1,4 +1,7 @@
-/// /// [MedicinalProductDefinition_Operation] A medicinal product, being a
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [MedicinalProductDefinition_Operation] A medicinal product, being a
 /// substance or combination of substances that is intended to treat, prevent
 /// or diagnose a disease, or to restore, correct or modify physiological
 /// functions by exerting a pharmacological, immunological or metabolic action.
@@ -11,11 +14,11 @@ class MedicinalProductDefinition_Operation with _$MedicinalProductDefinition_Ope
   const MedicinalProductDefinition_Operation._();
 
   const factory MedicinalProductDefinition_Operation({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -23,7 +26,7 @@ class MedicinalProductDefinition_Operation with _$MedicinalProductDefinition_Ope
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -39,20 +42,20 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [type] The type of manufacturing operation e.g. manufacturing itself,
+/// [type] The type of manufacturing operation e.g. manufacturing itself,
 /// re-packaging. For the authorization of this, a RegulatedAuthorization would
 /// point to the same plan or activity referenced here.
 
     @JsonKey(name: 'type') CodeableReference? type,
-/// /// [effectiveDate] Date range of applicability.
+/// [effectiveDate] Date range of applicability.
 
     @JsonKey(name: 'effectiveDate') Period? effectiveDate,
-/// /// [organization] The organization or establishment responsible for (or
+/// [organization] The organization or establishment responsible for (or
 /// associated with) the particular process or step, examples include the
 /// manufacturer, importer, agent.
 
     @JsonKey(name: 'organization') List<List<Reference>>? organization,
-/// /// [confidentialityIndicator] Specifies whether this particular business
+/// [confidentialityIndicator] Specifies whether this particular business
 /// or manufacturing process is considered proprietary or confidential.
 
     @JsonKey(name: 'confidentialityIndicator') CodeableConcept? confidentialityIndicator,

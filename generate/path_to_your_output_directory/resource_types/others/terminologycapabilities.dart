@@ -1,4 +1,7 @@
-/// /// [TerminologyCapabilities] A TerminologyCapabilities resource documents
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [TerminologyCapabilities] A TerminologyCapabilities resource documents
 /// a set of capabilities (behaviors) of a FHIR Terminology Server that may be
 /// used as a statement of actual server functionality or a statement of
 /// required or desired server implementation.
@@ -8,34 +11,34 @@ class TerminologyCapabilities with _$TerminologyCapabilities {
   const TerminologyCapabilities._();
 
   const factory TerminologyCapabilities({
-/// /// [resourceType] This is a TerminologyCapabilities resource
+/// [resourceType] This is a TerminologyCapabilities resource
 
     @JsonKey(name: 'resourceType') dynamic? resourceType,
-/// /// [id] The logical id of the resource, as used in the URL for the
+/// [id] The logical id of the resource, as used in the URL for the
 /// resource. Once assigned, this value never changes.
 
     @JsonKey(name: 'id') FhirId? id,
-/// /// [meta] The metadata about the resource. This is content that is
+/// [meta] The metadata about the resource. This is content that is
 /// maintained by the infrastructure. Changes to the content might not always
 /// be associated with version changes to the resource.
 
     @JsonKey(name: 'meta') FhirMeta? meta,
-/// /// [implicitRules] A reference to a set of rules that were followed when
+/// [implicitRules] A reference to a set of rules that were followed when
 /// the resource was constructed, and which must be understood when processing
 /// the content. Often, this is a reference to an implementation guide that
 /// defines the special rules along with other profiles etc.
 
     @JsonKey(name: 'implicitRules') FhirUri? implicitRules,
-/// /// [_implicitRules] Extensions for implicitRules
+/// [_implicitRules] Extensions for implicitRules
 
-    @JsonKey(name: '_implicitRules') FhirElement? implicitRulesElement,
-/// /// [language] The base language in which the resource is written.
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
+/// [language] The base language in which the resource is written.
 
     @JsonKey(name: 'language') FhirCode? language,
-/// /// [_language] Extensions for language
+/// [_language] Extensions for language
 
-    @JsonKey(name: '_language') FhirElement? languageElement,
-/// /// [text] A human-readable narrative that contains a summary of the
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
+/// [text] A human-readable narrative that contains a summary of the
 /// resource and can be used to represent the content of the resource to a
 /// human. The narrative need not encode all the structured data, but is
 /// required to contain sufficient detail to make it "clinically safe" for a
@@ -43,14 +46,14 @@ class TerminologyCapabilities with _$TerminologyCapabilities {
 /// content should be represented in the narrative to ensure clinical safety.
 
     @JsonKey(name: 'text') Narrative? text,
-/// /// [contained] These resources do not have an independent existence apart
+/// [contained] These resources do not have an independent existence apart
 /// from the resource that contains them - they cannot be identified
 /// independently, nor can they have their own independent transaction scope.
 /// This is allowed to be a Parameters resource if and only if it is referenced
 /// by a resource that provides context/meaning.
 
     @JsonKey(name: 'contained') List<List<ResourceList>>? contained,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the resource. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -58,7 +61,7 @@ class TerminologyCapabilities with _$TerminologyCapabilities {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the resource and that modifies
 /// the understanding of the element that contains it and/or the understanding
 /// of the containing element's descendants. Usually modifier elements provide
@@ -74,7 +77,7 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [url] An absolute URI that is used to identify this terminology
+/// [url] An absolute URI that is used to identify this terminology
 /// capabilities when it is referenced in a specification, model, design or an
 /// instance; also called its canonical identifier. This SHOULD be globally
 /// unique and SHOULD be a literal address at which an authoritative instance
@@ -83,15 +86,15 @@ Modifier extensions SHALL NOT
 /// terminology capabilities is stored on different servers.
 
     @JsonKey(name: 'url') FhirUri? url,
-/// /// [_url] Extensions for url
+/// [_url] Extensions for url
 
-    @JsonKey(name: '_url') FhirElement? urlElement,
-/// /// [identifier] A formal identifier that is used to identify this
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
+/// [identifier] A formal identifier that is used to identify this
 /// terminology capabilities when it is represented in other formats, or
 /// referenced in a specification, model, design or an instance.
 
     @JsonKey(name: 'identifier') List<List<Identifier>>? identifier,
-/// /// [version] The identifier that is used to identify this version of the
+/// [version] The identifier that is used to identify this version of the
 /// terminology capabilities when it is referenced in a specification, model,
 /// design or instance. This is an arbitrary value managed by the terminology
 /// capabilities author and is not expected to be globally unique. For example,
@@ -100,167 +103,167 @@ Modifier extensions SHALL NOT
 /// lexicographical sequence.
 
     @JsonKey(name: 'version') String? version,
-/// /// [_version] Extensions for version
+/// [_version] Extensions for version
 
-    @JsonKey(name: '_version') FhirElement? versionElement,
-/// /// [versionAlgorithmString] Indicates the mechanism used to compare
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
+/// [versionAlgorithmString] Indicates the mechanism used to compare
 /// versions to determine which is more current.
 
     @JsonKey(name: 'versionAlgorithmString') String? versionAlgorithmString,
-/// /// [_versionAlgorithmString] Extensions for versionAlgorithmString
+/// [_versionAlgorithmString] Extensions for versionAlgorithmString
 
-    @JsonKey(name: '_versionAlgorithmString') FhirElement? versionAlgorithmStringElement,
-/// /// [versionAlgorithmCoding] Indicates the mechanism used to compare
+    @JsonKey(name: '_versionAlgorithmString') PrimitiveElement? versionAlgorithmStringElement,
+/// [versionAlgorithmCoding] Indicates the mechanism used to compare
 /// versions to determine which is more current.
 
     @JsonKey(name: 'versionAlgorithmCoding') Coding? versionAlgorithmCoding,
-/// /// [name] A natural language name identifying the terminology
+/// [name] A natural language name identifying the terminology
 /// capabilities. This name should be usable as an identifier for the module by
 /// machine processing applications such as code generation.
 
     @JsonKey(name: 'name') String? name,
-/// /// [_name] Extensions for name
+/// [_name] Extensions for name
 
-    @JsonKey(name: '_name') FhirElement? nameElement,
-/// /// [title] A short, descriptive, user-friendly title for the terminology
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
+/// [title] A short, descriptive, user-friendly title for the terminology
 /// capabilities.
 
     @JsonKey(name: 'title') String? title,
-/// /// [_title] Extensions for title
+/// [_title] Extensions for title
 
-    @JsonKey(name: '_title') FhirElement? titleElement,
-/// /// [status] The status of this terminology capabilities. Enables tracking
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
+/// [status] The status of this terminology capabilities. Enables tracking
 /// the life-cycle of the content.
 
     @JsonKey(name: 'status') FhirCode? status,
-/// /// [_status] Extensions for status
+/// [_status] Extensions for status
 
-    @JsonKey(name: '_status') FhirElement? statusElement,
-/// /// [experimental] A Boolean value to indicate that this terminology
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
+/// [experimental] A Boolean value to indicate that this terminology
 /// capabilities is authored for testing purposes (or
 /// education/evaluation/marketing) and is not intended to be used for genuine
 /// usage.
 
     @JsonKey(name: 'experimental') FhirBoolean? experimental,
-/// /// [_experimental] Extensions for experimental
+/// [_experimental] Extensions for experimental
 
-    @JsonKey(name: '_experimental') FhirElement? experimentalElement,
-/// /// [date] The date  (and optionally time) when the terminology
+    @JsonKey(name: '_experimental') PrimitiveElement? experimentalElement,
+/// [date] The date  (and optionally time) when the terminology
 /// capabilities was last significantly changed. The date must change when the
 /// business version changes and it must change if the status code changes. In
 /// addition, it should change when the substantive content of the terminology
 /// capabilities changes.
 
     @JsonKey(name: 'date') FhirDateTime? date,
-/// /// [_date] Extensions for date
+/// [_date] Extensions for date
 
-    @JsonKey(name: '_date') FhirElement? dateElement,
-/// /// [publisher] The name of the organization or individual responsible for
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
+/// [publisher] The name of the organization or individual responsible for
 /// the release and ongoing maintenance of the terminology capabilities.
 
     @JsonKey(name: 'publisher') String? publisher,
-/// /// [_publisher] Extensions for publisher
+/// [_publisher] Extensions for publisher
 
-    @JsonKey(name: '_publisher') FhirElement? publisherElement,
-/// /// [contact] Contact details to assist a user in finding and communicating
+    @JsonKey(name: '_publisher') PrimitiveElement? publisherElement,
+/// [contact] Contact details to assist a user in finding and communicating
 /// with the publisher.
 
     @JsonKey(name: 'contact') List<List<ContactDetail>>? contact,
-/// /// [description] A free text natural language description of the
+/// [description] A free text natural language description of the
 /// terminology capabilities from a consumer's perspective. Typically, this is
 /// used when the capability statement describes a desired rather than an
 /// actual solution, for example as a formal expression of requirements as part
 /// of an RFP.
 
     @JsonKey(name: 'description') FhirMarkdown? description,
-/// /// [_description] Extensions for description
+/// [_description] Extensions for description
 
-    @JsonKey(name: '_description') FhirElement? descriptionElement,
-/// /// [useContext] The content was developed with a focus and intent of
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
+/// [useContext] The content was developed with a focus and intent of
 /// supporting the contexts that are listed. These contexts may be general
 /// categories (gender, age, ...) or may be references to specific programs
 /// (insurance plans, studies, ...) and may be used to assist with indexing and
 /// searching for appropriate terminology capabilities instances.
 
     @JsonKey(name: 'useContext') List<List<UsageContext>>? useContext,
-/// /// [jurisdiction] A legal or geographic region in which the terminology
+/// [jurisdiction] A legal or geographic region in which the terminology
 /// capabilities is intended to be used.
 
     @JsonKey(name: 'jurisdiction') List<List<CodeableConcept>>? jurisdiction,
-/// /// [purpose] Explanation of why this terminology capabilities is needed
+/// [purpose] Explanation of why this terminology capabilities is needed
 /// and why it has been designed as it has.
 
     @JsonKey(name: 'purpose') FhirMarkdown? purpose,
-/// /// [_purpose] Extensions for purpose
+/// [_purpose] Extensions for purpose
 
-    @JsonKey(name: '_purpose') FhirElement? purposeElement,
-/// /// [copyright] A copyright statement relating to the terminology
+    @JsonKey(name: '_purpose') PrimitiveElement? purposeElement,
+/// [copyright] A copyright statement relating to the terminology
 /// capabilities and/or its contents. Copyright statements are generally legal
 /// restrictions on the use and publishing of the terminology capabilities.
 
     @JsonKey(name: 'copyright') FhirMarkdown? copyright,
-/// /// [_copyright] Extensions for copyright
+/// [_copyright] Extensions for copyright
 
-    @JsonKey(name: '_copyright') FhirElement? copyrightElement,
-/// /// [copyrightLabel] A short string (<50 characters), suitable for
+    @JsonKey(name: '_copyright') PrimitiveElement? copyrightElement,
+/// [copyrightLabel] A short string (<50 characters), suitable for
 /// inclusion in a page footer that identifies the copyright holder, effective
 /// period, and optionally whether rights are resctricted. (e.g. 'All rights
 /// reserved', 'Some rights reserved').
 
     @JsonKey(name: 'copyrightLabel') String? copyrightLabel,
-/// /// [_copyrightLabel] Extensions for copyrightLabel
+/// [_copyrightLabel] Extensions for copyrightLabel
 
-    @JsonKey(name: '_copyrightLabel') FhirElement? copyrightLabelElement,
-/// /// [kind] The way that this statement is intended to be used, to describe
+    @JsonKey(name: '_copyrightLabel') PrimitiveElement? copyrightLabelElement,
+/// [kind] The way that this statement is intended to be used, to describe
 /// an actual running instance of software, a particular product (kind, not
 /// instance of software) or a class of implementation (e.g. a desired
 /// purchase).
 
     @JsonKey(name: 'kind') FhirCode? kind,
-/// /// [_kind] Extensions for kind
+/// [_kind] Extensions for kind
 
-    @JsonKey(name: '_kind') FhirElement? kindElement,
-/// /// [software] Software that is covered by this terminology capability
+    @JsonKey(name: '_kind') PrimitiveElement? kindElement,
+/// [software] Software that is covered by this terminology capability
 /// statement.  It is used when the statement describes the capabilities of a
 /// particular software version, independent of an installation.
 
     @JsonKey(name: 'software') TerminologyCapabilities_Software? software,
-/// /// [implementation] Identifies a specific implementation instance that is
+/// [implementation] Identifies a specific implementation instance that is
 /// described by the terminology capability statement - i.e. a particular
 /// installation, rather than the capabilities of a software program.
 
     @JsonKey(name: 'implementation') TerminologyCapabilities_Implementation? implementation,
-/// /// [lockedDate] Whether the server supports lockedDate.
+/// [lockedDate] Whether the server supports lockedDate.
 
     @JsonKey(name: 'lockedDate') FhirBoolean? lockedDate,
-/// /// [_lockedDate] Extensions for lockedDate
+/// [_lockedDate] Extensions for lockedDate
 
-    @JsonKey(name: '_lockedDate') FhirElement? lockedDateElement,
-/// /// [codeSystem] Identifies a code system that is supported by the server.
+    @JsonKey(name: '_lockedDate') PrimitiveElement? lockedDateElement,
+/// [codeSystem] Identifies a code system that is supported by the server.
 /// If there is a no code system URL, then this declares the general
 /// assumptions a client can make about support for any CodeSystem resource.
 
     @JsonKey(name: 'codeSystem') List<List<TerminologyCapabilities_CodeSystem>>? codeSystem,
-/// /// [expansion] Information about the
+/// [expansion] Information about the
 /// [ValueSet/$expand](valueset-operation-expand.html) operation.
 
     @JsonKey(name: 'expansion') TerminologyCapabilities_Expansion? expansion,
-/// /// [codeSearch] The degree to which the server supports the code search
+/// [codeSearch] The degree to which the server supports the code search
 /// parameter on ValueSet, if it is supported.
 
     @JsonKey(name: 'codeSearch') FhirCode? codeSearch,
-/// /// [_codeSearch] Extensions for codeSearch
+/// [_codeSearch] Extensions for codeSearch
 
-    @JsonKey(name: '_codeSearch') FhirElement? codeSearchElement,
-/// /// [validateCode] Information about the
+    @JsonKey(name: '_codeSearch') PrimitiveElement? codeSearchElement,
+/// [validateCode] Information about the
 /// [ValueSet/$validate-code](valueset-operation-validate-code.html) operation.
 
     @JsonKey(name: 'validateCode') TerminologyCapabilities_ValidateCode? validateCode,
-/// /// [translation] Information about the
+/// [translation] Information about the
 /// [ConceptMap/$translate](conceptmap-operation-translate.html) operation.
 
     @JsonKey(name: 'translation') TerminologyCapabilities_Translation? translation,
-/// /// [closure] Whether the $closure operation is supported.
+/// [closure] Whether the $closure operation is supported.
 
     @JsonKey(name: 'closure') TerminologyCapabilities_Closure? closure,
   }) = _$TerminologyCapabilities;

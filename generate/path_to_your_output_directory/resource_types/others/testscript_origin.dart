@@ -1,4 +1,7 @@
-/// /// [TestScript_Origin] A structured set of tests against a FHIR server or
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [TestScript_Origin] A structured set of tests against a FHIR server or
 /// client implementation to determine compliance against the FHIR
 /// specification.
 
@@ -7,11 +10,11 @@ class TestScript_Origin with _$TestScript_Origin {
   const TestScript_Origin._();
 
   const factory TestScript_Origin({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -19,7 +22,7 @@ class TestScript_Origin with _$TestScript_Origin {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -35,23 +38,23 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [index] Abstract name given to an origin server in this test script.
+/// [index] Abstract name given to an origin server in this test script.
 /// The name is provided as a number starting at 1.
 
     @JsonKey(name: 'index') FhirInteger? index,
-/// /// [_index] Extensions for index
+/// [_index] Extensions for index
 
-    @JsonKey(name: '_index') FhirElement? indexElement,
-/// /// [profile] The type of origin profile the test system supports.
+    @JsonKey(name: '_index') PrimitiveElement? indexElement,
+/// [profile] The type of origin profile the test system supports.
 
     @JsonKey(name: 'profile') Coding? profile,
-/// /// [url] The explicit url path of the origin server used in this test
+/// [url] The explicit url path of the origin server used in this test
 /// script.
 
     @JsonKey(name: 'url') FhirUrl? url,
-/// /// [_url] Extensions for url
+/// [_url] Extensions for url
 
-    @JsonKey(name: '_url') FhirElement? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
   }) = _$TestScript_Origin;
 
   @override

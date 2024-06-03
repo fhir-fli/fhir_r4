@@ -1,4 +1,7 @@
-/// /// [InventoryItem] A functional description of an inventory item used in
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [InventoryItem] A functional description of an inventory item used in
 /// inventory and supply-related workflows.
 
 @freezed
@@ -6,34 +9,34 @@ class InventoryItem with _$InventoryItem {
   const InventoryItem._();
 
   const factory InventoryItem({
-/// /// [resourceType] This is a InventoryItem resource
+/// [resourceType] This is a InventoryItem resource
 
     @JsonKey(name: 'resourceType') dynamic? resourceType,
-/// /// [id] The logical id of the resource, as used in the URL for the
+/// [id] The logical id of the resource, as used in the URL for the
 /// resource. Once assigned, this value never changes.
 
     @JsonKey(name: 'id') FhirId? id,
-/// /// [meta] The metadata about the resource. This is content that is
+/// [meta] The metadata about the resource. This is content that is
 /// maintained by the infrastructure. Changes to the content might not always
 /// be associated with version changes to the resource.
 
     @JsonKey(name: 'meta') FhirMeta? meta,
-/// /// [implicitRules] A reference to a set of rules that were followed when
+/// [implicitRules] A reference to a set of rules that were followed when
 /// the resource was constructed, and which must be understood when processing
 /// the content. Often, this is a reference to an implementation guide that
 /// defines the special rules along with other profiles etc.
 
     @JsonKey(name: 'implicitRules') FhirUri? implicitRules,
-/// /// [_implicitRules] Extensions for implicitRules
+/// [_implicitRules] Extensions for implicitRules
 
-    @JsonKey(name: '_implicitRules') FhirElement? implicitRulesElement,
-/// /// [language] The base language in which the resource is written.
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
+/// [language] The base language in which the resource is written.
 
     @JsonKey(name: 'language') FhirCode? language,
-/// /// [_language] Extensions for language
+/// [_language] Extensions for language
 
-    @JsonKey(name: '_language') FhirElement? languageElement,
-/// /// [text] A human-readable narrative that contains a summary of the
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
+/// [text] A human-readable narrative that contains a summary of the
 /// resource and can be used to represent the content of the resource to a
 /// human. The narrative need not encode all the structured data, but is
 /// required to contain sufficient detail to make it "clinically safe" for a
@@ -41,14 +44,14 @@ class InventoryItem with _$InventoryItem {
 /// content should be represented in the narrative to ensure clinical safety.
 
     @JsonKey(name: 'text') Narrative? text,
-/// /// [contained] These resources do not have an independent existence apart
+/// [contained] These resources do not have an independent existence apart
 /// from the resource that contains them - they cannot be identified
 /// independently, nor can they have their own independent transaction scope.
 /// This is allowed to be a Parameters resource if and only if it is referenced
 /// by a resource that provides context/meaning.
 
     @JsonKey(name: 'contained') List<List<ResourceList>>? contained,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the resource. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -56,7 +59,7 @@ class InventoryItem with _$InventoryItem {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the resource and that modifies
 /// the understanding of the element that contains it and/or the understanding
 /// of the containing element's descendants. Usually modifier elements provide
@@ -72,54 +75,54 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [identifier] Business identifier for the inventory item.
+/// [identifier] Business identifier for the inventory item.
 
     @JsonKey(name: 'identifier') List<List<Identifier>>? identifier,
-/// /// [status] Status of the item entry.
+/// [status] Status of the item entry.
 
     @JsonKey(name: 'status') FhirCode? status,
-/// /// [_status] Extensions for status
+/// [_status] Extensions for status
 
-    @JsonKey(name: '_status') FhirElement? statusElement,
-/// /// [category] Category or class of the item.
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
+/// [category] Category or class of the item.
 
     @JsonKey(name: 'category') List<List<CodeableConcept>>? category,
-/// /// [code] Code designating the specific type of item.
+/// [code] Code designating the specific type of item.
 
     @JsonKey(name: 'code') List<List<CodeableConcept>>? code,
-/// /// [name] The item name(s) - the brand name, or common name, functional
+/// [name] The item name(s) - the brand name, or common name, functional
 /// name, generic name.
 
     @JsonKey(name: 'name') List<List<InventoryItem_Name>>? name,
-/// /// [responsibleOrganization] Organization(s) responsible for the product.
+/// [responsibleOrganization] Organization(s) responsible for the product.
 
     @JsonKey(name: 'responsibleOrganization') List<List<InventoryItem_ResponsibleOrganization>>? responsibleOrganization,
-/// /// [description] The descriptive characteristics of the inventory item.
+/// [description] The descriptive characteristics of the inventory item.
 
     @JsonKey(name: 'description') InventoryItem_Description? description,
-/// /// [inventoryStatus] The usage status e.g. recalled, in use, discarded...
+/// [inventoryStatus] The usage status e.g. recalled, in use, discarded...
 /// This can be used to indicate that the items have been taken out of
 /// inventory, or are in use, etc.
 
     @JsonKey(name: 'inventoryStatus') List<List<CodeableConcept>>? inventoryStatus,
-/// /// [baseUnit] The base unit of measure - the unit in which the product is
+/// [baseUnit] The base unit of measure - the unit in which the product is
 /// used or counted.
 
     @JsonKey(name: 'baseUnit') CodeableConcept? baseUnit,
-/// /// [netContent] Net content or amount present in the item.
+/// [netContent] Net content or amount present in the item.
 
     @JsonKey(name: 'netContent') Quantity? netContent,
-/// /// [association] Association with other items or products.
+/// [association] Association with other items or products.
 
     @JsonKey(name: 'association') List<List<InventoryItem_Association>>? association,
-/// /// [characteristic] The descriptive or identifying characteristics of the
+/// [characteristic] The descriptive or identifying characteristics of the
 /// item.
 
     @JsonKey(name: 'characteristic') List<List<InventoryItem_Characteristic>>? characteristic,
-/// /// [instance] Instances or occurrences of the product.
+/// [instance] Instances or occurrences of the product.
 
     @JsonKey(name: 'instance') InventoryItem_Instance? instance,
-/// /// [productReference] Link to a product resource used in clinical
+/// [productReference] Link to a product resource used in clinical
 /// workflows.
 
     @JsonKey(name: 'productReference') Reference? productReference,

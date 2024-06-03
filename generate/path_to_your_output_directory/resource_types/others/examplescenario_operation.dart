@@ -1,15 +1,18 @@
-/// /// [ExampleScenario_Operation] Example of workflow instance.
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [ExampleScenario_Operation] Example of workflow instance.
 
 @freezed
 class ExampleScenario_Operation with _$ExampleScenario_Operation {
   const ExampleScenario_Operation._();
 
   const factory ExampleScenario_Operation({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -17,7 +20,7 @@ class ExampleScenario_Operation with _$ExampleScenario_Operation {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -33,54 +36,54 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [type] The standardized type of action (FHIR or otherwise).
+/// [type] The standardized type of action (FHIR or otherwise).
 
     @JsonKey(name: 'type') Coding? type,
-/// /// [title] A short descriptive label the step to be used in tables or
+/// [title] A short descriptive label the step to be used in tables or
 /// diagrams.
 
     @JsonKey(name: 'title') String? title,
-/// /// [_title] Extensions for title
+/// [_title] Extensions for title
 
-    @JsonKey(name: '_title') FhirElement? titleElement,
-/// /// [initiator] The system that invokes the action/transmits the data.
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
+/// [initiator] The system that invokes the action/transmits the data.
 
     @JsonKey(name: 'initiator') String? initiator,
-/// /// [_initiator] Extensions for initiator
+/// [_initiator] Extensions for initiator
 
-    @JsonKey(name: '_initiator') FhirElement? initiatorElement,
-/// /// [receiver] The system on which the action is invoked/receives the data.
+    @JsonKey(name: '_initiator') PrimitiveElement? initiatorElement,
+/// [receiver] The system on which the action is invoked/receives the data.
 
     @JsonKey(name: 'receiver') String? receiver,
-/// /// [_receiver] Extensions for receiver
+/// [_receiver] Extensions for receiver
 
-    @JsonKey(name: '_receiver') FhirElement? receiverElement,
-/// /// [description] An explanation of what the operation represents and what
+    @JsonKey(name: '_receiver') PrimitiveElement? receiverElement,
+/// [description] An explanation of what the operation represents and what
 /// it does.
 
     @JsonKey(name: 'description') FhirMarkdown? description,
-/// /// [_description] Extensions for description
+/// [_description] Extensions for description
 
-    @JsonKey(name: '_description') FhirElement? descriptionElement,
-/// /// [initiatorActive] If false, the initiator is deactivated right after
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
+/// [initiatorActive] If false, the initiator is deactivated right after
 /// the operation.
 
     @JsonKey(name: 'initiatorActive') FhirBoolean? initiatorActive,
-/// /// [_initiatorActive] Extensions for initiatorActive
+/// [_initiatorActive] Extensions for initiatorActive
 
-    @JsonKey(name: '_initiatorActive') FhirElement? initiatorActiveElement,
-/// /// [receiverActive] If false, the receiver is deactivated right after the
+    @JsonKey(name: '_initiatorActive') PrimitiveElement? initiatorActiveElement,
+/// [receiverActive] If false, the receiver is deactivated right after the
 /// operation.
 
     @JsonKey(name: 'receiverActive') FhirBoolean? receiverActive,
-/// /// [_receiverActive] Extensions for receiverActive
+/// [_receiverActive] Extensions for receiverActive
 
-    @JsonKey(name: '_receiverActive') FhirElement? receiverActiveElement,
-/// /// [request] A reference to the instance that is transmitted from
+    @JsonKey(name: '_receiverActive') PrimitiveElement? receiverActiveElement,
+/// [request] A reference to the instance that is transmitted from
 /// requester to receiver as part of the invocation of the operation.
 
     @JsonKey(name: 'request') ExampleScenario_ContainedInstance? request,
-/// /// [response] A reference to the instance that is transmitted from
+/// [response] A reference to the instance that is transmitted from
 /// receiver to requester as part of the operation's synchronous response (if
 /// any).
 

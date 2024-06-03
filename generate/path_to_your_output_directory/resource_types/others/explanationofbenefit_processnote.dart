@@ -1,4 +1,7 @@
-/// /// [ExplanationOfBenefit_ProcessNote] This resource provides: the claim
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [ExplanationOfBenefit_ProcessNote] This resource provides: the claim
 /// details; adjudication details from the processing of a Claim; and
 /// optionally account balance information, for informing the subscriber of the
 /// benefits provided.
@@ -8,11 +11,11 @@ class ExplanationOfBenefit_ProcessNote with _$ExplanationOfBenefit_ProcessNote {
   const ExplanationOfBenefit_ProcessNote._();
 
   const factory ExplanationOfBenefit_ProcessNote({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -20,7 +23,7 @@ class ExplanationOfBenefit_ProcessNote with _$ExplanationOfBenefit_ProcessNote {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -36,22 +39,22 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [number] A number to uniquely identify a note entry.
+/// [number] A number to uniquely identify a note entry.
 
     @JsonKey(name: 'number') FhirPositiveInt? number,
-/// /// [_number] Extensions for number
+/// [_number] Extensions for number
 
-    @JsonKey(name: '_number') FhirElement? numberElement,
-/// /// [type] The business purpose of the note text.
+    @JsonKey(name: '_number') PrimitiveElement? numberElement,
+/// [type] The business purpose of the note text.
 
     @JsonKey(name: 'type') CodeableConcept? type,
-/// /// [text] The explanation or description associated with the processing.
+/// [text] The explanation or description associated with the processing.
 
     @JsonKey(name: 'text') String? text,
-/// /// [_text] Extensions for text
+/// [_text] Extensions for text
 
-    @JsonKey(name: '_text') FhirElement? textElement,
-/// /// [language] A code to define the language used in the text of the note.
+    @JsonKey(name: '_text') PrimitiveElement? textElement,
+/// [language] A code to define the language used in the text of the note.
 
     @JsonKey(name: 'language') CodeableConcept? language,
   }) = _$ExplanationOfBenefit_ProcessNote;

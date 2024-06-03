@@ -1,4 +1,7 @@
-/// /// [SubstanceNucleicAcid_Sugar] Nucleic acids are defined by three
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [SubstanceNucleicAcid_Sugar] Nucleic acids are defined by three
 /// distinct elements: the base, sugar and linkage. Individual substance/moiety
 /// IDs will be created for each of these elements. The nucleotide sequence
 /// will be always entered in the 5’-3’ direction.
@@ -8,11 +11,11 @@ class SubstanceNucleicAcid_Sugar with _$SubstanceNucleicAcid_Sugar {
   const SubstanceNucleicAcid_Sugar._();
 
   const factory SubstanceNucleicAcid_Sugar({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -20,7 +23,7 @@ class SubstanceNucleicAcid_Sugar with _$SubstanceNucleicAcid_Sugar {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -36,25 +39,25 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [identifier] The Substance ID of the sugar or sugar-like component that
+/// [identifier] The Substance ID of the sugar or sugar-like component that
 /// make up the nucleotide.
 
     @JsonKey(name: 'identifier') Identifier? identifier,
-/// /// [name] The name of the sugar or sugar-like component that make up the
+/// [name] The name of the sugar or sugar-like component that make up the
 /// nucleotide.
 
     @JsonKey(name: 'name') String? name,
-/// /// [_name] Extensions for name
+/// [_name] Extensions for name
 
-    @JsonKey(name: '_name') FhirElement? nameElement,
-/// /// [residueSite] The residues that contain a given sugar will be captured.
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
+/// [residueSite] The residues that contain a given sugar will be captured.
 /// The order of given residues will be captured in the 5‘-3‘direction
 /// consistent with the base sequences listed above.
 
     @JsonKey(name: 'residueSite') String? residueSite,
-/// /// [_residueSite] Extensions for residueSite
+/// [_residueSite] Extensions for residueSite
 
-    @JsonKey(name: '_residueSite') FhirElement? residueSiteElement,
+    @JsonKey(name: '_residueSite') PrimitiveElement? residueSiteElement,
   }) = _$SubstanceNucleicAcid_Sugar;
 
   @override

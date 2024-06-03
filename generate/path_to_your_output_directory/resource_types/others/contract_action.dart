@@ -1,4 +1,7 @@
-/// /// [Contract_Action] Legally enforceable, formally recorded unilateral or
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Contract_Action] Legally enforceable, formally recorded unilateral or
 /// bilateral directive i.e., a policy or agreement.
 
 @freezed
@@ -6,11 +9,11 @@ class Contract_Action with _$Contract_Action {
   const Contract_Action._();
 
   const factory Contract_Action({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class Contract_Action with _$Contract_Action {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,113 +37,113 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [doNotPerform] True if the term prohibits the  action.
+/// [doNotPerform] True if the term prohibits the  action.
 
     @JsonKey(name: 'doNotPerform') FhirBoolean? doNotPerform,
-/// /// [_doNotPerform] Extensions for doNotPerform
+/// [_doNotPerform] Extensions for doNotPerform
 
-    @JsonKey(name: '_doNotPerform') FhirElement? doNotPerformElement,
-/// /// [type] Activity or service obligation to be done or not done, performed
+    @JsonKey(name: '_doNotPerform') PrimitiveElement? doNotPerformElement,
+/// [type] Activity or service obligation to be done or not done, performed
 /// or not performed, effectuated or not by this Contract term.
 
     @JsonKey(name: 'type') CodeableConcept? type,
-/// /// [subject] Entity of the action.
+/// [subject] Entity of the action.
 
     @JsonKey(name: 'subject') List<List<Contract_Subject>>? subject,
-/// /// [intent] Reason or purpose for the action stipulated by this Contract
+/// [intent] Reason or purpose for the action stipulated by this Contract
 /// Provision.
 
     @JsonKey(name: 'intent') CodeableConcept? intent,
-/// /// [linkId] Id [identifier??] of the clause or question text related to
+/// [linkId] Id [identifier??] of the clause or question text related to
 /// this action in the referenced form or QuestionnaireResponse.
 
     @JsonKey(name: 'linkId') List<List<String>>? linkId,
-/// /// [_linkId] Extensions for linkId
+/// [_linkId] Extensions for linkId
 
-    @JsonKey(name: '_linkId') List<FhirElement>? linkIdElement,
-/// /// [status] Current state of the term action.
+    @JsonKey(name: '_linkId') List<PrimitiveElement>? linkIdElement,
+/// [status] Current state of the term action.
 
     @JsonKey(name: 'status') CodeableConcept? status,
-/// /// [context] Encounter or Episode with primary association to the
+/// [context] Encounter or Episode with primary association to the
 /// specified term activity.
 
     @JsonKey(name: 'context') Reference? context,
-/// /// [contextLinkId] Id [identifier??] of the clause or question text
+/// [contextLinkId] Id [identifier??] of the clause or question text
 /// related to the requester of this action in the referenced form or
 /// QuestionnaireResponse.
 
     @JsonKey(name: 'contextLinkId') List<List<String>>? contextLinkId,
-/// /// [_contextLinkId] Extensions for contextLinkId
+/// [_contextLinkId] Extensions for contextLinkId
 
-    @JsonKey(name: '_contextLinkId') List<FhirElement>? contextLinkIdElement,
-/// /// [occurrenceDateTime] When action happens.
+    @JsonKey(name: '_contextLinkId') List<PrimitiveElement>? contextLinkIdElement,
+/// [occurrenceDateTime] When action happens.
 
     @JsonKey(name: 'occurrenceDateTime') FhirDateTime? occurrenceDateTime,
-/// /// [_occurrenceDateTime] Extensions for occurrenceDateTime
+/// [_occurrenceDateTime] Extensions for occurrenceDateTime
 
-    @JsonKey(name: '_occurrenceDateTime') FhirElement? occurrenceDateTimeElement,
-/// /// [occurrencePeriod] When action happens.
+    @JsonKey(name: '_occurrenceDateTime') PrimitiveElement? occurrenceDateTimeElement,
+/// [occurrencePeriod] When action happens.
 
     @JsonKey(name: 'occurrencePeriod') Period? occurrencePeriod,
-/// /// [occurrenceTiming] When action happens.
+/// [occurrenceTiming] When action happens.
 
     @JsonKey(name: 'occurrenceTiming') Timing? occurrenceTiming,
-/// /// [requester] Who or what initiated the action and has responsibility for
+/// [requester] Who or what initiated the action and has responsibility for
 /// its activation.
 
     @JsonKey(name: 'requester') List<List<Reference>>? requester,
-/// /// [requesterLinkId] Id [identifier??] of the clause or question text
+/// [requesterLinkId] Id [identifier??] of the clause or question text
 /// related to the requester of this action in the referenced form or
 /// QuestionnaireResponse.
 
     @JsonKey(name: 'requesterLinkId') List<List<String>>? requesterLinkId,
-/// /// [_requesterLinkId] Extensions for requesterLinkId
+/// [_requesterLinkId] Extensions for requesterLinkId
 
-    @JsonKey(name: '_requesterLinkId') List<FhirElement>? requesterLinkIdElement,
-/// /// [performerType] The type of individual that is desired or required to
+    @JsonKey(name: '_requesterLinkId') List<PrimitiveElement>? requesterLinkIdElement,
+/// [performerType] The type of individual that is desired or required to
 /// perform or not perform the action.
 
     @JsonKey(name: 'performerType') List<List<CodeableConcept>>? performerType,
-/// /// [performerRole] The type of role or competency of an individual desired
+/// [performerRole] The type of role or competency of an individual desired
 /// or required to perform or not perform the action.
 
     @JsonKey(name: 'performerRole') CodeableConcept? performerRole,
-/// /// [performer] Indicates who or what is being asked to perform (or not
+/// [performer] Indicates who or what is being asked to perform (or not
 /// perform) the ction.
 
     @JsonKey(name: 'performer') Reference? performer,
-/// /// [performerLinkId] Id [identifier??] of the clause or question text
+/// [performerLinkId] Id [identifier??] of the clause or question text
 /// related to the reason type or reference of this  action in the referenced
 /// form or QuestionnaireResponse.
 
     @JsonKey(name: 'performerLinkId') List<List<String>>? performerLinkId,
-/// /// [_performerLinkId] Extensions for performerLinkId
+/// [_performerLinkId] Extensions for performerLinkId
 
-    @JsonKey(name: '_performerLinkId') List<FhirElement>? performerLinkIdElement,
-/// /// [reason] Rationale for the action to be performed or not performed.
+    @JsonKey(name: '_performerLinkId') List<PrimitiveElement>? performerLinkIdElement,
+/// [reason] Rationale for the action to be performed or not performed.
 /// Describes why the action is permitted or prohibited. Either a coded
 /// concept, or another resource whose existence justifies permitting or not
 /// permitting this action.
 
     @JsonKey(name: 'reason') List<List<CodeableReference>>? reason,
-/// /// [reasonLinkId] Id [identifier??] of the clause or question text related
+/// [reasonLinkId] Id [identifier??] of the clause or question text related
 /// to the reason type or reference of this  action in the referenced form or
 /// QuestionnaireResponse.
 
     @JsonKey(name: 'reasonLinkId') List<List<String>>? reasonLinkId,
-/// /// [_reasonLinkId] Extensions for reasonLinkId
+/// [_reasonLinkId] Extensions for reasonLinkId
 
-    @JsonKey(name: '_reasonLinkId') List<FhirElement>? reasonLinkIdElement,
-/// /// [note] Comments made about the term action made by the requester,
+    @JsonKey(name: '_reasonLinkId') List<PrimitiveElement>? reasonLinkIdElement,
+/// [note] Comments made about the term action made by the requester,
 /// performer, subject or other participants.
 
     @JsonKey(name: 'note') List<List<Annotation>>? note,
-/// /// [securityLabelNumber] Security labels that protects the action.
+/// [securityLabelNumber] Security labels that protects the action.
 
     @JsonKey(name: 'securityLabelNumber') List<List<FhirUnsignedInt>>? securityLabelNumber,
-/// /// [_securityLabelNumber] Extensions for securityLabelNumber
+/// [_securityLabelNumber] Extensions for securityLabelNumber
 
-    @JsonKey(name: '_securityLabelNumber') List<FhirElement>? securityLabelNumberElement,
+    @JsonKey(name: '_securityLabelNumber') List<PrimitiveElement>? securityLabelNumberElement,
   }) = _$Contract_Action;
 
   @override

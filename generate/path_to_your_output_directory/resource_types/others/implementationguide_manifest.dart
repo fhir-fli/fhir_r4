@@ -1,4 +1,7 @@
-/// /// [ImplementationGuide_Manifest] A set of rules of how a particular
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [ImplementationGuide_Manifest] A set of rules of how a particular
 /// interoperability or standards problem is solved - typically through the use
 /// of FHIR resources. This resource is used to gather all the parts of an
 /// implementation guide into a logical whole and to publish a computable
@@ -9,11 +12,11 @@ class ImplementationGuide_Manifest with _$ImplementationGuide_Manifest {
   const ImplementationGuide_Manifest._();
 
   const factory ImplementationGuide_Manifest({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -21,7 +24,7 @@ class ImplementationGuide_Manifest with _$ImplementationGuide_Manifest {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -37,37 +40,37 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [rendering] A pointer to official web page, PDF or other rendering of
+/// [rendering] A pointer to official web page, PDF or other rendering of
 /// the implementation guide.
 
     @JsonKey(name: 'rendering') FhirUrl? rendering,
-/// /// [_rendering] Extensions for rendering
+/// [_rendering] Extensions for rendering
 
-    @JsonKey(name: '_rendering') FhirElement? renderingElement,
-/// /// [resource] A resource that is part of the implementation guide.
+    @JsonKey(name: '_rendering') PrimitiveElement? renderingElement,
+/// [resource] A resource that is part of the implementation guide.
 /// Conformance resources (value set, structure definition, capability
 /// statements etc.) are obvious candidates for inclusion, but any kind of
 /// resource can be included as an example resource.
 
     @JsonKey(name: 'resource') List<List<ImplementationGuide_Resource1>>? resource,
-/// /// [page] Information about a page within the IG.
+/// [page] Information about a page within the IG.
 
     @JsonKey(name: 'page') List<List<ImplementationGuide_Page1>>? page,
-/// /// [image] Indicates a relative path to an image that exists within the
+/// [image] Indicates a relative path to an image that exists within the
 /// IG.
 
     @JsonKey(name: 'image') List<List<String>>? image,
-/// /// [_image] Extensions for image
+/// [_image] Extensions for image
 
-    @JsonKey(name: '_image') List<FhirElement>? imageElement,
-/// /// [other] Indicates the relative path of an additional non-page,
+    @JsonKey(name: '_image') List<PrimitiveElement>? imageElement,
+/// [other] Indicates the relative path of an additional non-page,
 /// non-image file that is part of the IG - e.g. zip, jar and similar files
 /// that could be the target of a hyperlink in a derived IG.
 
     @JsonKey(name: 'other') List<List<String>>? other,
-/// /// [_other] Extensions for other
+/// [_other] Extensions for other
 
-    @JsonKey(name: '_other') List<FhirElement>? otherElement,
+    @JsonKey(name: '_other') List<PrimitiveElement>? otherElement,
   }) = _$ImplementationGuide_Manifest;
 
   @override

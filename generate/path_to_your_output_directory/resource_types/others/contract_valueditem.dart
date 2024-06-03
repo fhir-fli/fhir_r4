@@ -1,4 +1,7 @@
-/// /// [Contract_ValuedItem] Legally enforceable, formally recorded unilateral
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [Contract_ValuedItem] Legally enforceable, formally recorded unilateral
 /// or bilateral directive i.e., a policy or agreement.
 
 @freezed
@@ -6,11 +9,11 @@ class Contract_ValuedItem with _$Contract_ValuedItem {
   const Contract_ValuedItem._();
 
   const factory Contract_ValuedItem({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class Contract_ValuedItem with _$Contract_ValuedItem {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,89 +37,89 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [entityCodeableConcept] Specific type of Contract Valued Item that may
+/// [entityCodeableConcept] Specific type of Contract Valued Item that may
 /// be priced.
 
     @JsonKey(name: 'entityCodeableConcept') CodeableConcept? entityCodeableConcept,
-/// /// [entityReference] Specific type of Contract Valued Item that may be
+/// [entityReference] Specific type of Contract Valued Item that may be
 /// priced.
 
     @JsonKey(name: 'entityReference') Reference? entityReference,
-/// /// [identifier] Identifies a Contract Valued Item instance.
+/// [identifier] Identifies a Contract Valued Item instance.
 
     @JsonKey(name: 'identifier') Identifier? identifier,
-/// /// [effectiveTime] Indicates the time during which this Contract
+/// [effectiveTime] Indicates the time during which this Contract
 /// ValuedItem information is effective.
 
     @JsonKey(name: 'effectiveTime') FhirDateTime? effectiveTime,
-/// /// [_effectiveTime] Extensions for effectiveTime
+/// [_effectiveTime] Extensions for effectiveTime
 
-    @JsonKey(name: '_effectiveTime') FhirElement? effectiveTimeElement,
-/// /// [quantity] Specifies the units by which the Contract Valued Item is
+    @JsonKey(name: '_effectiveTime') PrimitiveElement? effectiveTimeElement,
+/// [quantity] Specifies the units by which the Contract Valued Item is
 /// measured or counted, and quantifies the countable or measurable Contract
 /// Valued Item instances.
 
     @JsonKey(name: 'quantity') Quantity? quantity,
-/// /// [unitPrice] A Contract Valued Item unit valuation measure.
+/// [unitPrice] A Contract Valued Item unit valuation measure.
 
     @JsonKey(name: 'unitPrice') Money? unitPrice,
-/// /// [factor] A real number that represents a multiplier used in determining
+/// [factor] A real number that represents a multiplier used in determining
 /// the overall value of the Contract Valued Item delivered. The concept of a
 /// Factor allows for a discount or surcharge multiplier to be applied to a
 /// monetary amount.
 
     @JsonKey(name: 'factor') FhirDecimal? factor,
-/// /// [_factor] Extensions for factor
+/// [_factor] Extensions for factor
 
-    @JsonKey(name: '_factor') FhirElement? factorElement,
-/// /// [points] An amount that expresses the weighting (based on difficulty,
+    @JsonKey(name: '_factor') PrimitiveElement? factorElement,
+/// [points] An amount that expresses the weighting (based on difficulty,
 /// cost and/or resource intensiveness) associated with the Contract Valued
 /// Item delivered. The concept of Points allows for assignment of point values
 /// for a Contract Valued Item, such that a monetary amount can be assigned to
 /// each point.
 
     @JsonKey(name: 'points') FhirDecimal? points,
-/// /// [_points] Extensions for points
+/// [_points] Extensions for points
 
-    @JsonKey(name: '_points') FhirElement? pointsElement,
-/// /// [net] Expresses the product of the Contract Valued Item unitQuantity
+    @JsonKey(name: '_points') PrimitiveElement? pointsElement,
+/// [net] Expresses the product of the Contract Valued Item unitQuantity
 /// and the unitPriceAmt. For example, the formula: unit Quantity * unit Price
 /// (Cost per Point) * factor Number  * points = net Amount. Quantity, factor
 /// and points are assumed to be 1 if not supplied.
 
     @JsonKey(name: 'net') Money? net,
-/// /// [payment] Terms of valuation.
+/// [payment] Terms of valuation.
 
     @JsonKey(name: 'payment') String? payment,
-/// /// [_payment] Extensions for payment
+/// [_payment] Extensions for payment
 
-    @JsonKey(name: '_payment') FhirElement? paymentElement,
-/// /// [paymentDate] When payment is due.
+    @JsonKey(name: '_payment') PrimitiveElement? paymentElement,
+/// [paymentDate] When payment is due.
 
     @JsonKey(name: 'paymentDate') FhirDateTime? paymentDate,
-/// /// [_paymentDate] Extensions for paymentDate
+/// [_paymentDate] Extensions for paymentDate
 
-    @JsonKey(name: '_paymentDate') FhirElement? paymentDateElement,
-/// /// [responsible] Who will make payment.
+    @JsonKey(name: '_paymentDate') PrimitiveElement? paymentDateElement,
+/// [responsible] Who will make payment.
 
     @JsonKey(name: 'responsible') Reference? responsible,
-/// /// [recipient] Who will receive payment.
+/// [recipient] Who will receive payment.
 
     @JsonKey(name: 'recipient') Reference? recipient,
-/// /// [linkId] Id  of the clause or question text related to the context of
+/// [linkId] Id  of the clause or question text related to the context of
 /// this valuedItem in the referenced form or QuestionnaireResponse.
 
     @JsonKey(name: 'linkId') List<List<String>>? linkId,
-/// /// [_linkId] Extensions for linkId
+/// [_linkId] Extensions for linkId
 
-    @JsonKey(name: '_linkId') List<FhirElement>? linkIdElement,
-/// /// [securityLabelNumber] A set of security labels that define which terms
+    @JsonKey(name: '_linkId') List<PrimitiveElement>? linkIdElement,
+/// [securityLabelNumber] A set of security labels that define which terms
 /// are controlled by this condition.
 
     @JsonKey(name: 'securityLabelNumber') List<List<FhirUnsignedInt>>? securityLabelNumber,
-/// /// [_securityLabelNumber] Extensions for securityLabelNumber
+/// [_securityLabelNumber] Extensions for securityLabelNumber
 
-    @JsonKey(name: '_securityLabelNumber') List<FhirElement>? securityLabelNumberElement,
+    @JsonKey(name: '_securityLabelNumber') List<PrimitiveElement>? securityLabelNumberElement,
   }) = _$Contract_ValuedItem;
 
   @override

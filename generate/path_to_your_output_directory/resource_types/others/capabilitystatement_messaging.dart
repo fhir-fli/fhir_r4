@@ -1,4 +1,7 @@
-/// /// [CapabilityStatement_Messaging] A Capability Statement documents a set
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [CapabilityStatement_Messaging] A Capability Statement documents a set
 /// of capabilities (behaviors) of a FHIR Server or Client for a particular
 /// version of FHIR that may be used as a statement of actual server
 /// functionality or a statement of required or desired server implementation.
@@ -8,11 +11,11 @@ class CapabilityStatement_Messaging with _$CapabilityStatement_Messaging {
   const CapabilityStatement_Messaging._();
 
   const factory CapabilityStatement_Messaging({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -20,7 +23,7 @@ class CapabilityStatement_Messaging with _$CapabilityStatement_Messaging {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -36,28 +39,28 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [endpoint] An endpoint (network accessible address) to which messages
+/// [endpoint] An endpoint (network accessible address) to which messages
 /// and/or replies are to be sent.
 
     @JsonKey(name: 'endpoint') List<List<CapabilityStatement_Endpoint>>? endpoint,
-/// /// [reliableCache] Length if the receiver's reliable messaging cache in
+/// [reliableCache] Length if the receiver's reliable messaging cache in
 /// minutes (if a receiver) or how long the cache length on the receiver should
 /// be (if a sender).
 
     @JsonKey(name: 'reliableCache') FhirUnsignedInt? reliableCache,
-/// /// [_reliableCache] Extensions for reliableCache
+/// [_reliableCache] Extensions for reliableCache
 
-    @JsonKey(name: '_reliableCache') FhirElement? reliableCacheElement,
-/// /// [documentation] Documentation about the system's messaging capabilities
+    @JsonKey(name: '_reliableCache') PrimitiveElement? reliableCacheElement,
+/// [documentation] Documentation about the system's messaging capabilities
 /// for this endpoint not otherwise documented by the capability statement.
 /// For example, the process for becoming an authorized messaging exchange
 /// partner.
 
     @JsonKey(name: 'documentation') FhirMarkdown? documentation,
-/// /// [_documentation] Extensions for documentation
+/// [_documentation] Extensions for documentation
 
-    @JsonKey(name: '_documentation') FhirElement? documentationElement,
-/// /// [supportedMessage] References to message definitions for messages this
+    @JsonKey(name: '_documentation') PrimitiveElement? documentationElement,
+/// [supportedMessage] References to message definitions for messages this
 /// system can send or receive.
 
     @JsonKey(name: 'supportedMessage') List<List<CapabilityStatement_SupportedMessage>>? supportedMessage,

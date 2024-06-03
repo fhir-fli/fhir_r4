@@ -1,4 +1,7 @@
-/// /// [CompartmentDefinition_Resource] A compartment definition that defines
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [CompartmentDefinition_Resource] A compartment definition that defines
 /// how resources are accessed on a server.
 
 @freezed
@@ -6,11 +9,11 @@ class CompartmentDefinition_Resource with _$CompartmentDefinition_Resource {
   const CompartmentDefinition_Resource._();
 
   const factory CompartmentDefinition_Resource({
-/// /// [id] Unique id for the element within a resource (for internal
+/// [id] Unique id for the element within a resource (for internal
 /// references). This may be any string value that does not contain spaces.
 
     @JsonKey(name: 'id') String? id,
-/// /// [extension] May be used to represent additional information that is not
+/// [extension] May be used to represent additional information that is not
 /// part of the basic definition of the element. To make the use of extensions
 /// safe and managable, there is a strict set of governance applied to the
 /// definition and use of extensions. Though any implementer can define an
@@ -18,7 +21,7 @@ class CompartmentDefinition_Resource with _$CompartmentDefinition_Resource {
 /// definition of the extension.
 
     @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
-/// /// [modifierExtension] May be used to represent additional information
+/// [modifierExtension] May be used to represent additional information
 /// that is not part of the basic definition of the element and that modifies
 /// the understanding of the element in which it is contained and/or the
 /// understanding of the containing element's descendants. Usually modifier
@@ -34,43 +37,43 @@ Modifier extensions SHALL NOT
 /// cannot change the meaning of modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
-/// /// [code] The name of a resource supported by the server.
+/// [code] The name of a resource supported by the server.
 
     @JsonKey(name: 'code') FhirCode? code,
-/// /// [_code] Extensions for code
+/// [_code] Extensions for code
 
-    @JsonKey(name: '_code') FhirElement? codeElement,
-/// /// [param] The name of a search parameter that represents the link to the
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
+/// [param] The name of a search parameter that represents the link to the
 /// compartment. More than one may be listed because a resource may be linked
 /// to a compartment in more than one way,.
 
     @JsonKey(name: 'param') List<List<String>>? param,
-/// /// [_param] Extensions for param
+/// [_param] Extensions for param
 
-    @JsonKey(name: '_param') List<FhirElement>? paramElement,
-/// /// [documentation] Additional documentation about the resource and
+    @JsonKey(name: '_param') List<PrimitiveElement>? paramElement,
+/// [documentation] Additional documentation about the resource and
 /// compartment.
 
     @JsonKey(name: 'documentation') String? documentation,
-/// /// [_documentation] Extensions for documentation
+/// [_documentation] Extensions for documentation
 
-    @JsonKey(name: '_documentation') FhirElement? documentationElement,
-/// /// [startParam] Search Parameter for mapping requests made with
+    @JsonKey(name: '_documentation') PrimitiveElement? documentationElement,
+/// [startParam] Search Parameter for mapping requests made with
 /// $everything.start (e.g. on
 /// [Patient.$everything](patient-operation-everything.html)).
 
     @JsonKey(name: 'startParam') FhirUri? startParam,
-/// /// [_startParam] Extensions for startParam
+/// [_startParam] Extensions for startParam
 
-    @JsonKey(name: '_startParam') FhirElement? startParamElement,
-/// /// [endParam] Search Parameter for mapping requests made with
+    @JsonKey(name: '_startParam') PrimitiveElement? startParamElement,
+/// [endParam] Search Parameter for mapping requests made with
 /// $everything.end (e.g. on
 /// [Patient.$everything](patient-operation-everything.html)).
 
     @JsonKey(name: 'endParam') FhirUri? endParam,
-/// /// [_endParam] Extensions for endParam
+/// [_endParam] Extensions for endParam
 
-    @JsonKey(name: '_endParam') FhirElement? endParamElement,
+    @JsonKey(name: '_endParam') PrimitiveElement? endParamElement,
   }) = _$CompartmentDefinition_Resource;
 
   @override
