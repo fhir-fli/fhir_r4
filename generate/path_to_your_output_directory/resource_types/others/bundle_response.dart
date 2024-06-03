@@ -30,10 +30,10 @@ class Bundle_Response with _$Bundle_Response {
 /// extension, there is a set of requirements that SHALL be met as part of the
 /// definition of the extension. Applications processing a resource are
 /// required to check for modifier extensions.
-
-Modifier extensions SHALL NOT
-/// change the meaning of any elements on Resource or DomainResource (including
-/// cannot change the meaning of modifierExtension itself).
+///
+/// Modifier extensions SHALL NOT change the meaning of any elements on
+/// Resource or DomainResource (including cannot change the meaning of
+/// modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
 /// [status] The status code returned by processing this entry. The status

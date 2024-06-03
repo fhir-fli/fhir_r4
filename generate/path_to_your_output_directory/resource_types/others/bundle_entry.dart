@@ -30,10 +30,10 @@ class Bundle_Entry with _$Bundle_Entry {
 /// extension, there is a set of requirements that SHALL be met as part of the
 /// definition of the extension. Applications processing a resource are
 /// required to check for modifier extensions.
-
-Modifier extensions SHALL NOT
-/// change the meaning of any elements on Resource or DomainResource (including
-/// cannot change the meaning of modifierExtension itself).
+///
+/// Modifier extensions SHALL NOT change the meaning of any elements on
+/// Resource or DomainResource (including cannot change the meaning of
+/// modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
 /// [link] A series of links that provide context to this entry.
@@ -47,13 +47,11 @@ Modifier extensions SHALL NOT
 /// resource. Even when not required, fullUrl MAY be set to a urn:uuid to allow
 /// referencing entries in a transaction. The fullUrl can be an arbitrary URI
 /// and is not limited to urn:uuid, urn:oid, http, and https. The fullUrl
-/// element SHALL have a value except when: 
-* invoking a create
-* invoking or
-/// responding to an operation where the body is not a single identified
-/// resource
-* invoking or returning the results of a search or history
-/// operation.
+/// element SHALL have a value except when:
+/// * invoking a create
+/// * invoking or responding to an operation where the body is not a single
+/// identified resource
+/// * invoking or returning the results of a search or history operation.
 
     @JsonKey(name: 'fullUrl') FhirUri? fullUrl,
 /// [_fullUrl] Extensions for fullUrl

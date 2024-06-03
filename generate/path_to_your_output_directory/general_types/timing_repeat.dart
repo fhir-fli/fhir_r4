@@ -35,10 +35,10 @@ class Timing_Repeat with _$Timing_Repeat {
 /// extension, there is a set of requirements that SHALL be met as part of the
 /// definition of the extension. Applications processing a resource are
 /// required to check for modifier extensions.
-
-Modifier extensions SHALL NOT
-/// change the meaning of any elements on Resource or DomainResource (including
-/// cannot change the meaning of modifierExtension itself).
+///
+/// Modifier extensions SHALL NOT change the meaning of any elements on
+/// Resource or DomainResource (including cannot change the meaning of
+/// modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
 /// [boundsDuration] Either a duration for the length of the timing
@@ -87,9 +87,8 @@ Modifier extensions SHALL NOT
 
     @JsonKey(name: '_durationMax') PrimitiveElement? durationMaxElement,
 /// [durationUnit] The units of time for the duration, in UCUM units
-Normal
-/// practice is to use the 'mo' code as a calendar month when calculating the
-/// next occurrence.
+/// Normal practice is to use the 'mo' code as a calendar month when
+/// calculating the next occurrence.
 
     @JsonKey(name: 'durationUnit') dynamic? durationUnit,
 /// [_durationUnit] Extensions for durationUnit
@@ -129,9 +128,8 @@ Normal
 
     @JsonKey(name: '_periodMax') PrimitiveElement? periodMaxElement,
 /// [periodUnit] The units of time for the period in UCUM units
-Normal
-/// practice is to use the 'mo' code as a calendar month when calculating the
-/// next occurrence.
+/// Normal practice is to use the 'mo' code as a calendar month when
+/// calculating the next occurrence.
 
     @JsonKey(name: 'periodUnit') dynamic? periodUnit,
 /// [_periodUnit] Extensions for periodUnit

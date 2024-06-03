@@ -6,9 +6,8 @@ import '../../r4.dart';
 /// convey addresses for use in delivering mail as well as for visiting
 /// locations which might not be valid for mail delivery.  There are a variety
 /// of postal address formats defined around the world.
-The
-/// ISO21090-codedString may be used to provide a coded representation of the
-/// contents of strings in an Address.
+/// The ISO21090-codedString may be used to provide a coded representation of
+/// the contents of strings in an Address.
 
 @freezed
 class Address with _$Address {

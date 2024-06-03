@@ -32,18 +32,18 @@ class Account_Coverage with _$Account_Coverage {
 /// extension, there is a set of requirements that SHALL be met as part of the
 /// definition of the extension. Applications processing a resource are
 /// required to check for modifier extensions.
-
-Modifier extensions SHALL NOT
-/// change the meaning of any elements on Resource or DomainResource (including
-/// cannot change the meaning of modifierExtension itself).
+///
+/// Modifier extensions SHALL NOT change the meaning of any elements on
+/// Resource or DomainResource (including cannot change the meaning of
+/// modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
 /// [coverage] The party(s) that contribute to payment (or part of) of the
 /// charges applied to this account (including self-pay).
-
-A coverage may only
-/// be responsible for specific types of charges, and the sequence of the
-/// coverages in the account could be important when processing billing.
+///
+/// A coverage may only be responsible for specific types of charges, and the
+/// sequence of the coverages in the account could be important when processing
+/// billing.
 
     @JsonKey(name: 'coverage') Reference? coverage,
 /// [priority] The priority of the coverage in the context of this account.

@@ -71,10 +71,10 @@ class Group with _$Group {
 /// extension, there is a set of requirements that SHALL be met as part of the
 /// definition of the extension. Applications processing a resource are
 /// required to check for modifier extensions.
-
-Modifier extensions SHALL NOT
-/// change the meaning of any elements on Resource or DomainResource (including
-/// cannot change the meaning of modifierExtension itself).
+///
+/// Modifier extensions SHALL NOT change the meaning of any elements on
+/// Resource or DomainResource (including cannot change the meaning of
+/// modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
 /// [url] An absolute URI that is used to identify this Group when it is
@@ -213,20 +213,18 @@ Modifier extensions SHALL NOT
 
     @JsonKey(name: '_type') PrimitiveElement? typeElement,
 /// [membership] Basis for membership in the Group:
-
-* 'definitional': The
-/// Group.characteristics specified are both necessary and sufficient to
-/// determine membership. All entities that meet the criteria are considered to
-/// be members of the group, whether referenced by the group or not. If members
-/// are present, they are individuals that happen to be known as meeting the
-/// Group.characteristics. The list cannot be presumed to be complete.
-*
-/// 'conceptual': The Group.characteristics specified are both necessary and
+///
+/// * 'definitional': The Group.characteristics specified are both necessary
+/// and sufficient to determine membership. All entities that meet the criteria
+/// are considered to be members of the group, whether referenced by the group
+/// or not. If members are present, they are individuals that happen to be
+/// known as meeting the Group.characteristics. The list cannot be presumed to
+/// be complete.
+/// * 'conceptual': The Group.characteristics specified are both necessary and
 /// sufficient to determine membership. The 'conceptual' Group is a
 /// 'definitional' Group in which the Group.type is not bound to FHIR types.
-*
-/// 'enumerated': The Group.characteristics are necessary but not sufficient to
-/// determine membership. Membership is determined by being listed as one of
+/// * 'enumerated': The Group.characteristics are necessary but not sufficient
+/// to determine membership. Membership is determined by being listed as one of
 /// the Group.member.
 
     @JsonKey(name: 'membership') FhirCode? membership,

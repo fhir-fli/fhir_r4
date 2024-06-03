@@ -70,10 +70,10 @@ class Appointment with _$Appointment {
 /// extension, there is a set of requirements that SHALL be met as part of the
 /// definition of the extension. Applications processing a resource are
 /// required to check for modifier extensions.
-
-Modifier extensions SHALL NOT
-/// change the meaning of any elements on Resource or DomainResource (including
-/// cannot change the meaning of modifierExtension itself).
+///
+/// Modifier extensions SHALL NOT change the meaning of any elements on
+/// Resource or DomainResource (including cannot change the meaning of
+/// modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
 /// [identifier] This records identifiers associated with this appointment
@@ -185,12 +185,11 @@ Modifier extensions SHALL NOT
     @JsonKey(name: '_minutesDuration') PrimitiveElement? minutesDurationElement,
 /// [requestedPeriod] A set of date ranges (potentially including times)
 /// that the appointment is preferred to be scheduled within.
-
-The duration
-/// (usually in minutes) could also be provided to indicate the length of the
-/// appointment to fill and populate the start/end times for the actual
-/// allocated time. However, in other situations the duration may be calculated
-/// by the scheduling system.
+///
+/// The duration (usually in minutes) could also be provided to indicate the
+/// length of the appointment to fill and populate the start/end times for the
+/// actual allocated time. However, in other situations the duration may be
+/// calculated by the scheduling system.
 
     @JsonKey(name: 'requestedPeriod') List<List<Period>>? requestedPeriod,
 /// [slot] The slots from the participants' schedules that will be filled

@@ -69,10 +69,10 @@ class Subscription with _$Subscription {
 /// extension, there is a set of requirements that SHALL be met as part of the
 /// definition of the extension. Applications processing a resource are
 /// required to check for modifier extensions.
-
-Modifier extensions SHALL NOT
-/// change the meaning of any elements on Resource or DomainResource (including
-/// cannot change the meaning of modifierExtension itself).
+///
+/// Modifier extensions SHALL NOT change the meaning of any elements on
+/// Resource or DomainResource (including cannot change the meaning of
+/// modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
 /// [identifier] A formal identifier that is used to identify this code
@@ -156,15 +156,13 @@ Modifier extensions SHALL NOT
     @JsonKey(name: '_timeout') PrimitiveElement? timeoutElement,
 /// [contentType] The MIME type to send the payload in - e.g.,
 /// `application/fhir+xml` or `application/fhir+json`. Note that:
-
-* clients
-/// may request notifications in a specific FHIR version by using the [FHIR
-/// Version Parameter](http.html#version-parameter) - e.g.,
+///
+/// * clients may request notifications in a specific FHIR version by using the
+/// [FHIR Version Parameter](http.html#version-parameter) - e.g.,
 /// `application/fhir+json; fhirVersion=4.0`.
-
-* additional MIME types can be
-/// allowed by channels - e.g., `text/plain` and `text/html` are defined by the
-/// Email channel.
+///
+/// * additional MIME types can be allowed by channels - e.g., `text/plain` and
+/// `text/html` are defined by the Email channel.
 
     @JsonKey(name: 'contentType') FhirCode? contentType,
 /// [_contentType] Extensions for contentType

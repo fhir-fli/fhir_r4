@@ -15,6 +15,10 @@ void main() {
       schema['definitions'] as Map<String, dynamic>;
 
   final Map<String, String> parentDirectories = <String, String>{};
+  final Map<String, StringBuffer> specialTypeBuffers = {
+    'elementdefinition': StringBuffer(),
+    'dosage': StringBuffer(),
+  };
 
   definitions.forEach((String key, dynamic value) {
     // Skip abstract types and primitive types
@@ -23,8 +27,23 @@ void main() {
 
     final String directory = determineDirectory(key, parentDirectories);
     parentDirectories[key] = directory;
-    generateAndSaveClass(key, value as Map<String, dynamic>, directory);
+
+    // Handle special types
+    if (key.toLowerCase().startsWith('elementdefinition')) {
+      generateClassContent(key, value as Map<String, dynamic>,
+          specialTypeBuffers['elementdefinition']!);
+    } else if (key.toLowerCase().startsWith('dosage')) {
+      generateClassContent(
+          key, value as Map<String, dynamic>, specialTypeBuffers['dosage']!);
+    } else {
+      generateAndSaveClass(key, value as Map<String, dynamic>, directory);
+    }
   });
+
+  // Save special type buffers to their respective files
+  saveSpecialTypeClasses(
+      'elementdefinition', specialTypeBuffers['elementdefinition']!);
+  saveSpecialTypeClasses('dosage', specialTypeBuffers['dosage']!);
 }
 
 void generateAndSaveClass(
@@ -36,16 +55,16 @@ void generateAndSaveClass(
     dartClass = dartClass.replaceFirst(
         '/// [FhirExtension] Optional Extension Element - found in all resources.\n',
         '');
-    dartClass = dartClass.replaceAll('/// ///', '///');
-    dartClass = dartClass.replaceAll('Extension', 'FhirExtension');
+    dartClass = dartClass.replaceAll('class Extension', 'class FhirExtension');
+    dartClass = dartClass.replaceAll('const Extension', 'const FhirExtension');
     dartClass = dartClass.replaceAll('extension', 'fhirExtension');
-  } else {
-    dartClass = dartClass.replaceAll('/// ///', '///');
   }
+
+  dartClass = dartClass.replaceAll('/// ///', '///');
 
   // Determine the correct file name and directory
   final String fileName =
-      key == 'Extension' ? 'fhir_extension.dart' : '${key.toLowerCase()}.dart';
+      key == 'Extension' ? 'fhir_extension.dart' : '${toSnakeCase(key)}.dart';
   final String outputPath =
       'path_to_your_output_directory/$directory/$fileName';
   final File outputFile = File(outputPath);
@@ -137,6 +156,24 @@ String generateClass(String className, Map<String, dynamic> definition) {
   buffer.writeln('}');
 
   return buffer.toString();
+}
+
+void generateClassContent(
+    String className, Map<String, dynamic> definition, StringBuffer buffer) {
+  final String classContent =
+      generateClass(className, definition).replaceAll('/// ///', '///');
+  buffer.write(classContent);
+  buffer.write('\n');
+}
+
+void saveSpecialTypeClasses(String typeName, StringBuffer buffer) {
+  if (buffer.isEmpty) return;
+
+  final String outputPath =
+      'path_to_your_output_directory/special_types/${toSnakeCase(typeName)}.dart';
+  final File outputFile = File(outputPath);
+  outputFile.createSync(recursive: true);
+  outputFile.writeAsStringSync(buffer.toString().replaceAll('/// ///', '///'));
 }
 
 String determineType(String key, Map<String, dynamic> value) {
@@ -231,18 +268,21 @@ String convertType(String ref) {
 
 String formatComment(String comment) {
   final StringBuffer buffer = StringBuffer();
-  final List<String> words = comment.split(' ');
-  String line = '/// ';
-  for (final String word in words) {
-    if ((line.length + word.length + 1) > 80) {
-      buffer.writeln(line.trim());
-      line = '/// $word ';
-    } else {
-      line += '$word ';
+  final List<String> lines = comment.split('\n');
+  for (final String line in lines) {
+    final List<String> words = line.split(' ');
+    String commentLine = '/// ';
+    for (final String word in words) {
+      if ((commentLine.length + word.length + 1) > 80 || word.contains('\n')) {
+        buffer.writeln(commentLine.trim());
+        commentLine = '/// $word ';
+      } else {
+        commentLine += '$word ';
+      }
     }
+    buffer.writeln(commentLine.trim());
   }
-  buffer.writeln(line.trim());
-  return buffer.toString();
+  return buffer.toString().replaceAll('/// ///', '///');
 }
 
 String determineDirectory(
@@ -250,6 +290,16 @@ String determineDirectory(
   // Check if it's a predefined type
   if (allTypes.containsKey(typeName)) {
     return allTypes[typeName]!;
+  }
+
+  // Ensure ElementDefinition is always written to special_types
+  if (typeName.toLowerCase().startsWith('elementdefinition')) {
+    return 'special_types';
+  }
+
+  // Ensure Dosage is always written to special_types
+  if (typeName.toLowerCase().startsWith('dosage')) {
+    return 'special_types';
   }
 
   // Check if it's a subclass
@@ -261,9 +311,6 @@ String determineDirectory(
 
   // Check if it's a resource type
   for (final String resourceType in resourceTypes.keys) {
-    if (typeName.toLowerCase().startsWith('elementdefinition')) {
-      return 'special_types';
-    }
     if (typeName.startsWith(resourceType)) {
       return 'resource_types/${resourceTypes[resourceType]}';
     }
@@ -271,4 +318,11 @@ String determineDirectory(
 
   // Default directory if no match found
   return 'resource_types/others';
+}
+
+String toSnakeCase(String name) {
+  final RegExp exp = RegExp(r'(?<=[a-z])[A-Z]');
+  return name
+      .replaceAllMapped(exp, (Match m) => ('_' + m.group(0)!))
+      .toLowerCase();
 }

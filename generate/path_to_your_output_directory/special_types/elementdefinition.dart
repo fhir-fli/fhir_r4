@@ -31,10 +31,10 @@ class ElementDefinition with _$ElementDefinition {
 /// extension, there is a set of requirements that SHALL be met as part of the
 /// definition of the extension. Applications processing a resource are
 /// required to check for modifier extensions.
-
-Modifier extensions SHALL NOT
-/// change the meaning of any elements on Resource or DomainResource (including
-/// cannot change the meaning of modifierExtension itself).
+///
+/// Modifier extensions SHALL NOT change the meaning of any elements on
+/// Resource or DomainResource (including cannot change the meaning of
+/// modifierExtension itself).
 
     @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
 /// [path] The path identifies the element and is expressed as a
@@ -962,32 +962,26 @@ Modifier extensions SHALL NOT
 /// [patternBase64Binary] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
-/// values may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// values may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -998,32 +992,26 @@ If a pattern[x] is
 /// [patternBoolean] Specifies a value that each occurrence of the element
 /// in the instance SHALL follow - that is, any value in the pattern must be
 /// found in the instance, if the element has a value. Other additional values
-/// may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -1034,32 +1022,26 @@ If a pattern[x] is
 /// [patternCanonical] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
-/// values may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// values may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -1070,32 +1052,26 @@ If a pattern[x] is
 /// [patternCode] Specifies a value that each occurrence of the element in
 /// the instance SHALL follow - that is, any value in the pattern must be found
 /// in the instance, if the element has a value. Other additional values may be
-/// found too. This is effectively constraint by example.  
-
-When pattern[x] is
-/// used to constrain a primitive, it means that the value provided in the
-/// pattern[x] must match the instance value exactly.
-
-When an element within a
-/// pattern[x] is used to constrain an array, it means that each element
-/// provided in the pattern[x] must (recursively) match at least one element
-/// from the instance array.
-
-When pattern[x] is used to constrain a complex
-/// object, it means that each property in the pattern must be present in the
-/// complex object, and its value must recursively match -- i.e.,
-
-1. If
-/// primitive: it must match exactly the pattern value
-2. If a complex object:
-/// it must match (recursively) the pattern value
-3. If an array: it must match
-/// (recursively) the pattern value
-
-If a pattern[x] is declared on a repeating
-/// element, the pattern applies to all repetitions.  If the desire is for a
-/// pattern to apply to only one element or a subset of elements, slicing must
-/// be used. See [Examples of
+/// found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
+/// provided in the pattern[x] must match the instance value exactly.
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -1106,32 +1082,26 @@ If a pattern[x] is declared on a repeating
 /// [patternDate] Specifies a value that each occurrence of the element in
 /// the instance SHALL follow - that is, any value in the pattern must be found
 /// in the instance, if the element has a value. Other additional values may be
-/// found too. This is effectively constraint by example.  
-
-When pattern[x] is
-/// used to constrain a primitive, it means that the value provided in the
-/// pattern[x] must match the instance value exactly.
-
-When an element within a
-/// pattern[x] is used to constrain an array, it means that each element
-/// provided in the pattern[x] must (recursively) match at least one element
-/// from the instance array.
-
-When pattern[x] is used to constrain a complex
-/// object, it means that each property in the pattern must be present in the
-/// complex object, and its value must recursively match -- i.e.,
-
-1. If
-/// primitive: it must match exactly the pattern value
-2. If a complex object:
-/// it must match (recursively) the pattern value
-3. If an array: it must match
-/// (recursively) the pattern value
-
-If a pattern[x] is declared on a repeating
-/// element, the pattern applies to all repetitions.  If the desire is for a
-/// pattern to apply to only one element or a subset of elements, slicing must
-/// be used. See [Examples of
+/// found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
+/// provided in the pattern[x] must match the instance value exactly.
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -1142,32 +1112,26 @@ If a pattern[x] is declared on a repeating
 /// [patternDateTime] Specifies a value that each occurrence of the element
 /// in the instance SHALL follow - that is, any value in the pattern must be
 /// found in the instance, if the element has a value. Other additional values
-/// may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -1178,32 +1142,26 @@ If a pattern[x] is
 /// [patternDecimal] Specifies a value that each occurrence of the element
 /// in the instance SHALL follow - that is, any value in the pattern must be
 /// found in the instance, if the element has a value. Other additional values
-/// may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -1214,32 +1172,26 @@ If a pattern[x] is
 /// [patternId] Specifies a value that each occurrence of the element in
 /// the instance SHALL follow - that is, any value in the pattern must be found
 /// in the instance, if the element has a value. Other additional values may be
-/// found too. This is effectively constraint by example.  
-
-When pattern[x] is
-/// used to constrain a primitive, it means that the value provided in the
-/// pattern[x] must match the instance value exactly.
-
-When an element within a
-/// pattern[x] is used to constrain an array, it means that each element
-/// provided in the pattern[x] must (recursively) match at least one element
-/// from the instance array.
-
-When pattern[x] is used to constrain a complex
-/// object, it means that each property in the pattern must be present in the
-/// complex object, and its value must recursively match -- i.e.,
-
-1. If
-/// primitive: it must match exactly the pattern value
-2. If a complex object:
-/// it must match (recursively) the pattern value
-3. If an array: it must match
-/// (recursively) the pattern value
-
-If a pattern[x] is declared on a repeating
-/// element, the pattern applies to all repetitions.  If the desire is for a
-/// pattern to apply to only one element or a subset of elements, slicing must
-/// be used. See [Examples of
+/// found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
+/// provided in the pattern[x] must match the instance value exactly.
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -1250,32 +1202,26 @@ If a pattern[x] is declared on a repeating
 /// [patternInstant] Specifies a value that each occurrence of the element
 /// in the instance SHALL follow - that is, any value in the pattern must be
 /// found in the instance, if the element has a value. Other additional values
-/// may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -1286,32 +1232,26 @@ If a pattern[x] is
 /// [patternInteger] Specifies a value that each occurrence of the element
 /// in the instance SHALL follow - that is, any value in the pattern must be
 /// found in the instance, if the element has a value. Other additional values
-/// may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -1322,32 +1262,26 @@ If a pattern[x] is
 /// [patternInteger64] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
-/// values may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// values may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -1358,32 +1292,26 @@ If a pattern[x] is
 /// [patternMarkdown] Specifies a value that each occurrence of the element
 /// in the instance SHALL follow - that is, any value in the pattern must be
 /// found in the instance, if the element has a value. Other additional values
-/// may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -1394,32 +1322,26 @@ If a pattern[x] is
 /// [patternOid] Specifies a value that each occurrence of the element in
 /// the instance SHALL follow - that is, any value in the pattern must be found
 /// in the instance, if the element has a value. Other additional values may be
-/// found too. This is effectively constraint by example.  
-
-When pattern[x] is
-/// used to constrain a primitive, it means that the value provided in the
-/// pattern[x] must match the instance value exactly.
-
-When an element within a
-/// pattern[x] is used to constrain an array, it means that each element
-/// provided in the pattern[x] must (recursively) match at least one element
-/// from the instance array.
-
-When pattern[x] is used to constrain a complex
-/// object, it means that each property in the pattern must be present in the
-/// complex object, and its value must recursively match -- i.e.,
-
-1. If
-/// primitive: it must match exactly the pattern value
-2. If a complex object:
-/// it must match (recursively) the pattern value
-3. If an array: it must match
-/// (recursively) the pattern value
-
-If a pattern[x] is declared on a repeating
-/// element, the pattern applies to all repetitions.  If the desire is for a
-/// pattern to apply to only one element or a subset of elements, slicing must
-/// be used. See [Examples of
+/// found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
+/// provided in the pattern[x] must match the instance value exactly.
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -1430,32 +1352,26 @@ If a pattern[x] is declared on a repeating
 /// [patternPositiveInt] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
-/// values may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// values may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -1466,32 +1382,26 @@ If a pattern[x] is
 /// [patternString] Specifies a value that each occurrence of the element
 /// in the instance SHALL follow - that is, any value in the pattern must be
 /// found in the instance, if the element has a value. Other additional values
-/// may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -1502,32 +1412,26 @@ If a pattern[x] is
 /// [patternTime] Specifies a value that each occurrence of the element in
 /// the instance SHALL follow - that is, any value in the pattern must be found
 /// in the instance, if the element has a value. Other additional values may be
-/// found too. This is effectively constraint by example.  
-
-When pattern[x] is
-/// used to constrain a primitive, it means that the value provided in the
-/// pattern[x] must match the instance value exactly.
-
-When an element within a
-/// pattern[x] is used to constrain an array, it means that each element
-/// provided in the pattern[x] must (recursively) match at least one element
-/// from the instance array.
-
-When pattern[x] is used to constrain a complex
-/// object, it means that each property in the pattern must be present in the
-/// complex object, and its value must recursively match -- i.e.,
-
-1. If
-/// primitive: it must match exactly the pattern value
-2. If a complex object:
-/// it must match (recursively) the pattern value
-3. If an array: it must match
-/// (recursively) the pattern value
-
-If a pattern[x] is declared on a repeating
-/// element, the pattern applies to all repetitions.  If the desire is for a
-/// pattern to apply to only one element or a subset of elements, slicing must
-/// be used. See [Examples of
+/// found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
+/// provided in the pattern[x] must match the instance value exactly.
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -1538,32 +1442,26 @@ If a pattern[x] is declared on a repeating
 /// [patternUnsignedInt] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
-/// values may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// values may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -1574,32 +1472,26 @@ If a pattern[x] is
 /// [patternUri] Specifies a value that each occurrence of the element in
 /// the instance SHALL follow - that is, any value in the pattern must be found
 /// in the instance, if the element has a value. Other additional values may be
-/// found too. This is effectively constraint by example.  
-
-When pattern[x] is
-/// used to constrain a primitive, it means that the value provided in the
-/// pattern[x] must match the instance value exactly.
-
-When an element within a
-/// pattern[x] is used to constrain an array, it means that each element
-/// provided in the pattern[x] must (recursively) match at least one element
-/// from the instance array.
-
-When pattern[x] is used to constrain a complex
-/// object, it means that each property in the pattern must be present in the
-/// complex object, and its value must recursively match -- i.e.,
-
-1. If
-/// primitive: it must match exactly the pattern value
-2. If a complex object:
-/// it must match (recursively) the pattern value
-3. If an array: it must match
-/// (recursively) the pattern value
-
-If a pattern[x] is declared on a repeating
-/// element, the pattern applies to all repetitions.  If the desire is for a
-/// pattern to apply to only one element or a subset of elements, slicing must
-/// be used. See [Examples of
+/// found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
+/// provided in the pattern[x] must match the instance value exactly.
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -1610,32 +1502,26 @@ If a pattern[x] is declared on a repeating
 /// [patternUrl] Specifies a value that each occurrence of the element in
 /// the instance SHALL follow - that is, any value in the pattern must be found
 /// in the instance, if the element has a value. Other additional values may be
-/// found too. This is effectively constraint by example.  
-
-When pattern[x] is
-/// used to constrain a primitive, it means that the value provided in the
-/// pattern[x] must match the instance value exactly.
-
-When an element within a
-/// pattern[x] is used to constrain an array, it means that each element
-/// provided in the pattern[x] must (recursively) match at least one element
-/// from the instance array.
-
-When pattern[x] is used to constrain a complex
-/// object, it means that each property in the pattern must be present in the
-/// complex object, and its value must recursively match -- i.e.,
-
-1. If
-/// primitive: it must match exactly the pattern value
-2. If a complex object:
-/// it must match (recursively) the pattern value
-3. If an array: it must match
-/// (recursively) the pattern value
-
-If a pattern[x] is declared on a repeating
-/// element, the pattern applies to all repetitions.  If the desire is for a
-/// pattern to apply to only one element or a subset of elements, slicing must
-/// be used. See [Examples of
+/// found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
+/// provided in the pattern[x] must match the instance value exactly.
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -1646,32 +1532,26 @@ If a pattern[x] is declared on a repeating
 /// [patternUuid] Specifies a value that each occurrence of the element in
 /// the instance SHALL follow - that is, any value in the pattern must be found
 /// in the instance, if the element has a value. Other additional values may be
-/// found too. This is effectively constraint by example.  
-
-When pattern[x] is
-/// used to constrain a primitive, it means that the value provided in the
-/// pattern[x] must match the instance value exactly.
-
-When an element within a
-/// pattern[x] is used to constrain an array, it means that each element
-/// provided in the pattern[x] must (recursively) match at least one element
-/// from the instance array.
-
-When pattern[x] is used to constrain a complex
-/// object, it means that each property in the pattern must be present in the
-/// complex object, and its value must recursively match -- i.e.,
-
-1. If
-/// primitive: it must match exactly the pattern value
-2. If a complex object:
-/// it must match (recursively) the pattern value
-3. If an array: it must match
-/// (recursively) the pattern value
-
-If a pattern[x] is declared on a repeating
-/// element, the pattern applies to all repetitions.  If the desire is for a
-/// pattern to apply to only one element or a subset of elements, slicing must
-/// be used. See [Examples of
+/// found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
+/// provided in the pattern[x] must match the instance value exactly.
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -1682,32 +1562,26 @@ If a pattern[x] is declared on a repeating
 /// [patternAddress] Specifies a value that each occurrence of the element
 /// in the instance SHALL follow - that is, any value in the pattern must be
 /// found in the instance, if the element has a value. Other additional values
-/// may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -1715,32 +1589,26 @@ If a pattern[x] is
 /// [patternAge] Specifies a value that each occurrence of the element in
 /// the instance SHALL follow - that is, any value in the pattern must be found
 /// in the instance, if the element has a value. Other additional values may be
-/// found too. This is effectively constraint by example.  
-
-When pattern[x] is
-/// used to constrain a primitive, it means that the value provided in the
-/// pattern[x] must match the instance value exactly.
-
-When an element within a
-/// pattern[x] is used to constrain an array, it means that each element
-/// provided in the pattern[x] must (recursively) match at least one element
-/// from the instance array.
-
-When pattern[x] is used to constrain a complex
-/// object, it means that each property in the pattern must be present in the
-/// complex object, and its value must recursively match -- i.e.,
-
-1. If
-/// primitive: it must match exactly the pattern value
-2. If a complex object:
-/// it must match (recursively) the pattern value
-3. If an array: it must match
-/// (recursively) the pattern value
-
-If a pattern[x] is declared on a repeating
-/// element, the pattern applies to all repetitions.  If the desire is for a
-/// pattern to apply to only one element or a subset of elements, slicing must
-/// be used. See [Examples of
+/// found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
+/// provided in the pattern[x] must match the instance value exactly.
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -1748,32 +1616,26 @@ If a pattern[x] is declared on a repeating
 /// [patternAnnotation] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
-/// values may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// values may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -1781,32 +1643,26 @@ If a pattern[x] is
 /// [patternAttachment] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
-/// values may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// values may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -1814,32 +1670,26 @@ If a pattern[x] is
 /// [patternCodeableConcept] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
-/// values may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// values may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -1848,32 +1698,26 @@ If a pattern[x] is
 /// the element in the instance SHALL follow - that is, any value in the
 /// pattern must be found in the instance, if the element has a value. Other
 /// additional values may be found too. This is effectively constraint by
-/// example.  
-
-When pattern[x] is used to constrain a primitive, it means that
-/// the value provided in the pattern[x] must match the instance value
-/// exactly.
-
-When an element within a pattern[x] is used to constrain an
-/// array, it means that each element provided in the pattern[x] must
-/// (recursively) match at least one element from the instance array.
-
-When
-/// pattern[x] is used to constrain a complex object, it means that each
+/// example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
+/// provided in the pattern[x] must match the instance value exactly.
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
 /// property in the pattern must be present in the complex object, and its
 /// value must recursively match -- i.e.,
-
-1. If primitive: it must match
-/// exactly the pattern value
-2. If a complex object: it must match
-/// (recursively) the pattern value
-3. If an array: it must match (recursively)
-/// the pattern value
-
-If a pattern[x] is declared on a repeating element, the
-/// pattern applies to all repetitions.  If the desire is for a pattern to
-/// apply to only one element or a subset of elements, slicing must be used.
-/// See [Examples of
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -1881,32 +1725,26 @@ If a pattern[x] is declared on a repeating element, the
 /// [patternCoding] Specifies a value that each occurrence of the element
 /// in the instance SHALL follow - that is, any value in the pattern must be
 /// found in the instance, if the element has a value. Other additional values
-/// may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -1914,32 +1752,26 @@ If a pattern[x] is
 /// [patternContactPoint] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
-/// values may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// values may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -1947,32 +1779,26 @@ If a pattern[x] is
 /// [patternCount] Specifies a value that each occurrence of the element in
 /// the instance SHALL follow - that is, any value in the pattern must be found
 /// in the instance, if the element has a value. Other additional values may be
-/// found too. This is effectively constraint by example.  
-
-When pattern[x] is
-/// used to constrain a primitive, it means that the value provided in the
-/// pattern[x] must match the instance value exactly.
-
-When an element within a
-/// pattern[x] is used to constrain an array, it means that each element
-/// provided in the pattern[x] must (recursively) match at least one element
-/// from the instance array.
-
-When pattern[x] is used to constrain a complex
-/// object, it means that each property in the pattern must be present in the
-/// complex object, and its value must recursively match -- i.e.,
-
-1. If
-/// primitive: it must match exactly the pattern value
-2. If a complex object:
-/// it must match (recursively) the pattern value
-3. If an array: it must match
-/// (recursively) the pattern value
-
-If a pattern[x] is declared on a repeating
-/// element, the pattern applies to all repetitions.  If the desire is for a
-/// pattern to apply to only one element or a subset of elements, slicing must
-/// be used. See [Examples of
+/// found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
+/// provided in the pattern[x] must match the instance value exactly.
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -1980,32 +1806,26 @@ If a pattern[x] is declared on a repeating
 /// [patternDistance] Specifies a value that each occurrence of the element
 /// in the instance SHALL follow - that is, any value in the pattern must be
 /// found in the instance, if the element has a value. Other additional values
-/// may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -2013,32 +1833,26 @@ If a pattern[x] is
 /// [patternDuration] Specifies a value that each occurrence of the element
 /// in the instance SHALL follow - that is, any value in the pattern must be
 /// found in the instance, if the element has a value. Other additional values
-/// may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -2046,32 +1860,26 @@ If a pattern[x] is
 /// [patternHumanName] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
-/// values may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// values may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -2079,32 +1887,26 @@ If a pattern[x] is
 /// [patternIdentifier] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
-/// values may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// values may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -2112,32 +1914,26 @@ If a pattern[x] is
 /// [patternMoney] Specifies a value that each occurrence of the element in
 /// the instance SHALL follow - that is, any value in the pattern must be found
 /// in the instance, if the element has a value. Other additional values may be
-/// found too. This is effectively constraint by example.  
-
-When pattern[x] is
-/// used to constrain a primitive, it means that the value provided in the
-/// pattern[x] must match the instance value exactly.
-
-When an element within a
-/// pattern[x] is used to constrain an array, it means that each element
-/// provided in the pattern[x] must (recursively) match at least one element
-/// from the instance array.
-
-When pattern[x] is used to constrain a complex
-/// object, it means that each property in the pattern must be present in the
-/// complex object, and its value must recursively match -- i.e.,
-
-1. If
-/// primitive: it must match exactly the pattern value
-2. If a complex object:
-/// it must match (recursively) the pattern value
-3. If an array: it must match
-/// (recursively) the pattern value
-
-If a pattern[x] is declared on a repeating
-/// element, the pattern applies to all repetitions.  If the desire is for a
-/// pattern to apply to only one element or a subset of elements, slicing must
-/// be used. See [Examples of
+/// found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
+/// provided in the pattern[x] must match the instance value exactly.
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -2145,32 +1941,26 @@ If a pattern[x] is declared on a repeating
 /// [patternPeriod] Specifies a value that each occurrence of the element
 /// in the instance SHALL follow - that is, any value in the pattern must be
 /// found in the instance, if the element has a value. Other additional values
-/// may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -2178,32 +1968,26 @@ If a pattern[x] is
 /// [patternQuantity] Specifies a value that each occurrence of the element
 /// in the instance SHALL follow - that is, any value in the pattern must be
 /// found in the instance, if the element has a value. Other additional values
-/// may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -2211,32 +1995,26 @@ If a pattern[x] is
 /// [patternRange] Specifies a value that each occurrence of the element in
 /// the instance SHALL follow - that is, any value in the pattern must be found
 /// in the instance, if the element has a value. Other additional values may be
-/// found too. This is effectively constraint by example.  
-
-When pattern[x] is
-/// used to constrain a primitive, it means that the value provided in the
-/// pattern[x] must match the instance value exactly.
-
-When an element within a
-/// pattern[x] is used to constrain an array, it means that each element
-/// provided in the pattern[x] must (recursively) match at least one element
-/// from the instance array.
-
-When pattern[x] is used to constrain a complex
-/// object, it means that each property in the pattern must be present in the
-/// complex object, and its value must recursively match -- i.e.,
-
-1. If
-/// primitive: it must match exactly the pattern value
-2. If a complex object:
-/// it must match (recursively) the pattern value
-3. If an array: it must match
-/// (recursively) the pattern value
-
-If a pattern[x] is declared on a repeating
-/// element, the pattern applies to all repetitions.  If the desire is for a
-/// pattern to apply to only one element or a subset of elements, slicing must
-/// be used. See [Examples of
+/// found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
+/// provided in the pattern[x] must match the instance value exactly.
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -2244,32 +2022,26 @@ If a pattern[x] is declared on a repeating
 /// [patternRatio] Specifies a value that each occurrence of the element in
 /// the instance SHALL follow - that is, any value in the pattern must be found
 /// in the instance, if the element has a value. Other additional values may be
-/// found too. This is effectively constraint by example.  
-
-When pattern[x] is
-/// used to constrain a primitive, it means that the value provided in the
-/// pattern[x] must match the instance value exactly.
-
-When an element within a
-/// pattern[x] is used to constrain an array, it means that each element
-/// provided in the pattern[x] must (recursively) match at least one element
-/// from the instance array.
-
-When pattern[x] is used to constrain a complex
-/// object, it means that each property in the pattern must be present in the
-/// complex object, and its value must recursively match -- i.e.,
-
-1. If
-/// primitive: it must match exactly the pattern value
-2. If a complex object:
-/// it must match (recursively) the pattern value
-3. If an array: it must match
-/// (recursively) the pattern value
-
-If a pattern[x] is declared on a repeating
-/// element, the pattern applies to all repetitions.  If the desire is for a
-/// pattern to apply to only one element or a subset of elements, slicing must
-/// be used. See [Examples of
+/// found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
+/// provided in the pattern[x] must match the instance value exactly.
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -2277,32 +2049,26 @@ If a pattern[x] is declared on a repeating
 /// [patternRatioRange] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
-/// values may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// values may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -2310,32 +2076,26 @@ If a pattern[x] is
 /// [patternReference] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
-/// values may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// values may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -2343,32 +2103,26 @@ If a pattern[x] is
 /// [patternSampledData] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
-/// values may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// values may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -2376,32 +2130,26 @@ If a pattern[x] is
 /// [patternSignature] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
-/// values may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// values may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -2409,32 +2157,26 @@ If a pattern[x] is
 /// [patternTiming] Specifies a value that each occurrence of the element
 /// in the instance SHALL follow - that is, any value in the pattern must be
 /// found in the instance, if the element has a value. Other additional values
-/// may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -2442,32 +2184,26 @@ If a pattern[x] is
 /// [patternContactDetail] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
-/// values may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// values may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -2475,32 +2211,26 @@ If a pattern[x] is
 /// [patternDataRequirement] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
-/// values may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// values may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -2508,32 +2238,26 @@ If a pattern[x] is
 /// [patternExpression] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
-/// values may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// values may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -2542,32 +2266,26 @@ If a pattern[x] is
 /// the element in the instance SHALL follow - that is, any value in the
 /// pattern must be found in the instance, if the element has a value. Other
 /// additional values may be found too. This is effectively constraint by
-/// example.  
-
-When pattern[x] is used to constrain a primitive, it means that
-/// the value provided in the pattern[x] must match the instance value
-/// exactly.
-
-When an element within a pattern[x] is used to constrain an
-/// array, it means that each element provided in the pattern[x] must
-/// (recursively) match at least one element from the instance array.
-
-When
-/// pattern[x] is used to constrain a complex object, it means that each
+/// example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
+/// provided in the pattern[x] must match the instance value exactly.
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
 /// property in the pattern must be present in the complex object, and its
 /// value must recursively match -- i.e.,
-
-1. If primitive: it must match
-/// exactly the pattern value
-2. If a complex object: it must match
-/// (recursively) the pattern value
-3. If an array: it must match (recursively)
-/// the pattern value
-
-If a pattern[x] is declared on a repeating element, the
-/// pattern applies to all repetitions.  If the desire is for a pattern to
-/// apply to only one element or a subset of elements, slicing must be used.
-/// See [Examples of
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -2575,32 +2293,26 @@ If a pattern[x] is declared on a repeating element, the
 /// [patternRelatedArtifact] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
-/// values may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// values may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -2609,32 +2321,26 @@ If a pattern[x] is
 /// the element in the instance SHALL follow - that is, any value in the
 /// pattern must be found in the instance, if the element has a value. Other
 /// additional values may be found too. This is effectively constraint by
-/// example.  
-
-When pattern[x] is used to constrain a primitive, it means that
-/// the value provided in the pattern[x] must match the instance value
-/// exactly.
-
-When an element within a pattern[x] is used to constrain an
-/// array, it means that each element provided in the pattern[x] must
-/// (recursively) match at least one element from the instance array.
-
-When
-/// pattern[x] is used to constrain a complex object, it means that each
+/// example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
+/// provided in the pattern[x] must match the instance value exactly.
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
 /// property in the pattern must be present in the complex object, and its
 /// value must recursively match -- i.e.,
-
-1. If primitive: it must match
-/// exactly the pattern value
-2. If a complex object: it must match
-/// (recursively) the pattern value
-3. If an array: it must match (recursively)
-/// the pattern value
-
-If a pattern[x] is declared on a repeating element, the
-/// pattern applies to all repetitions.  If the desire is for a pattern to
-/// apply to only one element or a subset of elements, slicing must be used.
-/// See [Examples of
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -2642,32 +2348,26 @@ If a pattern[x] is declared on a repeating element, the
 /// [patternUsageContext] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
-/// values may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// values may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -2675,32 +2375,26 @@ If a pattern[x] is
 /// [patternAvailability] Specifies a value that each occurrence of the
 /// element in the instance SHALL follow - that is, any value in the pattern
 /// must be found in the instance, if the element has a value. Other additional
-/// values may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// values may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -2709,32 +2403,26 @@ If a pattern[x] is
 /// of the element in the instance SHALL follow - that is, any value in the
 /// pattern must be found in the instance, if the element has a value. Other
 /// additional values may be found too. This is effectively constraint by
-/// example.  
-
-When pattern[x] is used to constrain a primitive, it means that
-/// the value provided in the pattern[x] must match the instance value
-/// exactly.
-
-When an element within a pattern[x] is used to constrain an
-/// array, it means that each element provided in the pattern[x] must
-/// (recursively) match at least one element from the instance array.
-
-When
-/// pattern[x] is used to constrain a complex object, it means that each
+/// example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
+/// provided in the pattern[x] must match the instance value exactly.
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
 /// property in the pattern must be present in the complex object, and its
 /// value must recursively match -- i.e.,
-
-1. If primitive: it must match
-/// exactly the pattern value
-2. If a complex object: it must match
-/// (recursively) the pattern value
-3. If an array: it must match (recursively)
-/// the pattern value
-
-If a pattern[x] is declared on a repeating element, the
-/// pattern applies to all repetitions.  If the desire is for a pattern to
-/// apply to only one element or a subset of elements, slicing must be used.
-/// See [Examples of
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -2742,32 +2430,26 @@ If a pattern[x] is declared on a repeating element, the
 /// [patternDosage] Specifies a value that each occurrence of the element
 /// in the instance SHALL follow - that is, any value in the pattern must be
 /// found in the instance, if the element has a value. Other additional values
-/// may be found too. This is effectively constraint by example.  
-
-When
-/// pattern[x] is used to constrain a primitive, it means that the value
+/// may be found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
 /// provided in the pattern[x] must match the instance value exactly.
-
-When an
-/// element within a pattern[x] is used to constrain an array, it means that
-/// each element provided in the pattern[x] must (recursively) match at least
-/// one element from the instance array.
-
-When pattern[x] is used to constrain
-/// a complex object, it means that each property in the pattern must be
-/// present in the complex object, and its value must recursively match --
-/// i.e.,
-
-1. If primitive: it must match exactly the pattern value
-2. If a
-/// complex object: it must match (recursively) the pattern value
-3. If an
-/// array: it must match (recursively) the pattern value
-
-If a pattern[x] is
-/// declared on a repeating element, the pattern applies to all repetitions.
-/// If the desire is for a pattern to apply to only one element or a subset of
-/// elements, slicing must be used. See [Examples of
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -2775,32 +2457,26 @@ If a pattern[x] is
 /// [patternMeta] Specifies a value that each occurrence of the element in
 /// the instance SHALL follow - that is, any value in the pattern must be found
 /// in the instance, if the element has a value. Other additional values may be
-/// found too. This is effectively constraint by example.  
-
-When pattern[x] is
-/// used to constrain a primitive, it means that the value provided in the
-/// pattern[x] must match the instance value exactly.
-
-When an element within a
-/// pattern[x] is used to constrain an array, it means that each element
-/// provided in the pattern[x] must (recursively) match at least one element
-/// from the instance array.
-
-When pattern[x] is used to constrain a complex
-/// object, it means that each property in the pattern must be present in the
-/// complex object, and its value must recursively match -- i.e.,
-
-1. If
-/// primitive: it must match exactly the pattern value
-2. If a complex object:
-/// it must match (recursively) the pattern value
-3. If an array: it must match
-/// (recursively) the pattern value
-
-If a pattern[x] is declared on a repeating
-/// element, the pattern applies to all repetitions.  If the desire is for a
-/// pattern to apply to only one element or a subset of elements, slicing must
-/// be used. See [Examples of
+/// found too. This is effectively constraint by example.
+///
+/// When pattern[x] is used to constrain a primitive, it means that the value
+/// provided in the pattern[x] must match the instance value exactly.
+///
+/// When an element within a pattern[x] is used to constrain an array, it means
+/// that each element provided in the pattern[x] must (recursively) match at
+/// least one element from the instance array.
+///
+/// When pattern[x] is used to constrain a complex object, it means that each
+/// property in the pattern must be present in the complex object, and its
+/// value must recursively match -- i.e.,
+///
+/// 1. If primitive: it must match exactly the pattern value
+/// 2. If a complex object: it must match (recursively) the pattern value
+/// 3. If an array: it must match (recursively) the pattern value
+///
+/// If a pattern[x] is declared on a repeating element, the pattern applies to
+/// all repetitions.  If the desire is for a pattern to apply to only one
+/// element or a subset of elements, slicing must be used. See [Examples of
 /// Patterns](elementdefinition-examples.html#pattern-examples) for examples of
 /// pattern usage and the effect it will have.
 
@@ -3073,3 +2749,1156 @@ If a pattern[x] is declared on a repeating
   @override
   String toJsonString() => jsonEncode(toJson());
 }
+
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [ElementDefinition_Slicing] Captures constraints on each element within
+/// the resource, profile, or extension.
+
+@freezed
+class ElementDefinition_Slicing with _$ElementDefinition_Slicing {
+  const ElementDefinition_Slicing._();
+
+  const factory ElementDefinition_Slicing({
+/// [id] Unique id for the element within a resource (for internal
+/// references). This may be any string value that does not contain spaces.
+
+    @JsonKey(name: 'id') String? id,
+/// [extension] May be used to represent additional information that is not
+/// part of the basic definition of the element. To make the use of extensions
+/// safe and managable, there is a strict set of governance applied to the
+/// definition and use of extensions. Though any implementer can define an
+/// extension, there is a set of requirements that SHALL be met as part of the
+/// definition of the extension.
+
+    @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
+/// [modifierExtension] May be used to represent additional information
+/// that is not part of the basic definition of the element and that modifies
+/// the understanding of the element in which it is contained and/or the
+/// understanding of the containing element's descendants. Usually modifier
+/// elements provide negation or qualification. To make the use of extensions
+/// safe and managable, there is a strict set of governance applied to the
+/// definition and use of extensions. Though any implementer can define an
+/// extension, there is a set of requirements that SHALL be met as part of the
+/// definition of the extension. Applications processing a resource are
+/// required to check for modifier extensions.
+///
+/// Modifier extensions SHALL NOT change the meaning of any elements on
+/// Resource or DomainResource (including cannot change the meaning of
+/// modifierExtension itself).
+
+    @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
+/// [discriminator] Designates which child elements are used to
+/// discriminate between the slices when processing an instance. If one or more
+/// discriminators are provided, the value of the child elements in the
+/// instance data SHALL completely distinguish which slice the element in the
+/// resource matches based on the allowed values for those elements in each of
+/// the slices.
+
+    @JsonKey(name: 'discriminator') List<List<ElementDefinition_Discriminator>>? discriminator,
+/// [description] A human-readable text description of how the slicing
+/// works. If there is no discriminator, this is required to be present to
+/// provide whatever information is possible about how the slices can be
+/// differentiated.
+
+    @JsonKey(name: 'description') String? description,
+/// [_description] Extensions for description
+
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
+/// [ordered] If the matching elements have to occur in the same order as
+/// defined in the profile.
+
+    @JsonKey(name: 'ordered') FhirBoolean? ordered,
+/// [_ordered] Extensions for ordered
+
+    @JsonKey(name: '_ordered') PrimitiveElement? orderedElement,
+/// [rules] Whether additional slices are allowed or not. When the slices
+/// are ordered, profile authors can also say that additional slices are only
+/// allowed at the end.
+
+    @JsonKey(name: 'rules') dynamic? rules,
+/// [_rules] Extensions for rules
+
+    @JsonKey(name: '_rules') PrimitiveElement? rulesElement,
+  }) = _$ElementDefinition_Slicing;
+
+  @override
+  String get fhirType => 'ElementDefinition_Slicing';
+
+  factory ElementDefinition_Slicing.fromJson(Map<String, dynamic> json) =>
+      _$ElementDefinition_SlicingFromJson(json);
+
+  factory ElementDefinition_Slicing.fromYaml(dynamic yaml) => yaml is String
+      ? ElementDefinition_Slicing.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>)
+      : yaml is YamlMap
+          ? ElementDefinition_Slicing.fromJson(jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>)
+          : throw ArgumentError(
+              'ElementDefinition_Slicing cannot be constructed from input provided,'
+              ' it is neither a yaml string nor a yaml map.');
+
+  factory ElementDefinition_Slicing.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, dynamic>) {
+      return _$ElementDefinition_SlicingFromJson(json);
+    } else {
+      throw FormatException('FormatException:\nYou passed $json\n'
+          'This does not properly decode to a Map<String,dynamic>.');
+    }
+  }
+  @override
+  String toJsonString() => jsonEncode(toJson());
+}
+
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [ElementDefinition_Discriminator] Captures constraints on each element
+/// within the resource, profile, or extension.
+
+@freezed
+class ElementDefinition_Discriminator with _$ElementDefinition_Discriminator {
+  const ElementDefinition_Discriminator._();
+
+  const factory ElementDefinition_Discriminator({
+/// [id] Unique id for the element within a resource (for internal
+/// references). This may be any string value that does not contain spaces.
+
+    @JsonKey(name: 'id') String? id,
+/// [extension] May be used to represent additional information that is not
+/// part of the basic definition of the element. To make the use of extensions
+/// safe and managable, there is a strict set of governance applied to the
+/// definition and use of extensions. Though any implementer can define an
+/// extension, there is a set of requirements that SHALL be met as part of the
+/// definition of the extension.
+
+    @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
+/// [modifierExtension] May be used to represent additional information
+/// that is not part of the basic definition of the element and that modifies
+/// the understanding of the element in which it is contained and/or the
+/// understanding of the containing element's descendants. Usually modifier
+/// elements provide negation or qualification. To make the use of extensions
+/// safe and managable, there is a strict set of governance applied to the
+/// definition and use of extensions. Though any implementer can define an
+/// extension, there is a set of requirements that SHALL be met as part of the
+/// definition of the extension. Applications processing a resource are
+/// required to check for modifier extensions.
+///
+/// Modifier extensions SHALL NOT change the meaning of any elements on
+/// Resource or DomainResource (including cannot change the meaning of
+/// modifierExtension itself).
+
+    @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
+/// [type] How the element value is interpreted when discrimination is
+/// evaluated.
+
+    @JsonKey(name: 'type') dynamic? type,
+/// [_type] Extensions for type
+
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
+/// [path] A FHIRPath expression, using [the simple subset of
+/// FHIRPath](fhirpath.html#simple), that is used to identify the element on
+/// which discrimination is based.
+
+    @JsonKey(name: 'path') String? path,
+/// [_path] Extensions for path
+
+    @JsonKey(name: '_path') PrimitiveElement? pathElement,
+  }) = _$ElementDefinition_Discriminator;
+
+  @override
+  String get fhirType => 'ElementDefinition_Discriminator';
+
+  factory ElementDefinition_Discriminator.fromJson(Map<String, dynamic> json) =>
+      _$ElementDefinition_DiscriminatorFromJson(json);
+
+  factory ElementDefinition_Discriminator.fromYaml(dynamic yaml) => yaml is String
+      ? ElementDefinition_Discriminator.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>)
+      : yaml is YamlMap
+          ? ElementDefinition_Discriminator.fromJson(jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>)
+          : throw ArgumentError(
+              'ElementDefinition_Discriminator cannot be constructed from input provided,'
+              ' it is neither a yaml string nor a yaml map.');
+
+  factory ElementDefinition_Discriminator.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, dynamic>) {
+      return _$ElementDefinition_DiscriminatorFromJson(json);
+    } else {
+      throw FormatException('FormatException:\nYou passed $json\n'
+          'This does not properly decode to a Map<String,dynamic>.');
+    }
+  }
+  @override
+  String toJsonString() => jsonEncode(toJson());
+}
+
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [ElementDefinition_Base] Captures constraints on each element within
+/// the resource, profile, or extension.
+
+@freezed
+class ElementDefinition_Base with _$ElementDefinition_Base {
+  const ElementDefinition_Base._();
+
+  const factory ElementDefinition_Base({
+/// [id] Unique id for the element within a resource (for internal
+/// references). This may be any string value that does not contain spaces.
+
+    @JsonKey(name: 'id') String? id,
+/// [extension] May be used to represent additional information that is not
+/// part of the basic definition of the element. To make the use of extensions
+/// safe and managable, there is a strict set of governance applied to the
+/// definition and use of extensions. Though any implementer can define an
+/// extension, there is a set of requirements that SHALL be met as part of the
+/// definition of the extension.
+
+    @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
+/// [modifierExtension] May be used to represent additional information
+/// that is not part of the basic definition of the element and that modifies
+/// the understanding of the element in which it is contained and/or the
+/// understanding of the containing element's descendants. Usually modifier
+/// elements provide negation or qualification. To make the use of extensions
+/// safe and managable, there is a strict set of governance applied to the
+/// definition and use of extensions. Though any implementer can define an
+/// extension, there is a set of requirements that SHALL be met as part of the
+/// definition of the extension. Applications processing a resource are
+/// required to check for modifier extensions.
+///
+/// Modifier extensions SHALL NOT change the meaning of any elements on
+/// Resource or DomainResource (including cannot change the meaning of
+/// modifierExtension itself).
+
+    @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
+/// [path] The Path that identifies the base element - this matches the
+/// ElementDefinition.path for that element. Across FHIR, there is only one
+/// base definition of any element - that is, an element definition on a
+/// [[[StructureDefinition]]] without a StructureDefinition.base.
+
+    @JsonKey(name: 'path') String? path,
+/// [_path] Extensions for path
+
+    @JsonKey(name: '_path') PrimitiveElement? pathElement,
+/// [min] Minimum cardinality of the base element identified by the path.
+
+    @JsonKey(name: 'min') FhirUnsignedInt? min,
+/// [_min] Extensions for min
+
+    @JsonKey(name: '_min') PrimitiveElement? minElement,
+/// [max] Maximum cardinality of the base element identified by the path.
+
+    @JsonKey(name: 'max') String? max,
+/// [_max] Extensions for max
+
+    @JsonKey(name: '_max') PrimitiveElement? maxElement,
+  }) = _$ElementDefinition_Base;
+
+  @override
+  String get fhirType => 'ElementDefinition_Base';
+
+  factory ElementDefinition_Base.fromJson(Map<String, dynamic> json) =>
+      _$ElementDefinition_BaseFromJson(json);
+
+  factory ElementDefinition_Base.fromYaml(dynamic yaml) => yaml is String
+      ? ElementDefinition_Base.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>)
+      : yaml is YamlMap
+          ? ElementDefinition_Base.fromJson(jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>)
+          : throw ArgumentError(
+              'ElementDefinition_Base cannot be constructed from input provided,'
+              ' it is neither a yaml string nor a yaml map.');
+
+  factory ElementDefinition_Base.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, dynamic>) {
+      return _$ElementDefinition_BaseFromJson(json);
+    } else {
+      throw FormatException('FormatException:\nYou passed $json\n'
+          'This does not properly decode to a Map<String,dynamic>.');
+    }
+  }
+  @override
+  String toJsonString() => jsonEncode(toJson());
+}
+
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [ElementDefinition_Type] Captures constraints on each element within
+/// the resource, profile, or extension.
+
+@freezed
+class ElementDefinition_Type with _$ElementDefinition_Type {
+  const ElementDefinition_Type._();
+
+  const factory ElementDefinition_Type({
+/// [id] Unique id for the element within a resource (for internal
+/// references). This may be any string value that does not contain spaces.
+
+    @JsonKey(name: 'id') String? id,
+/// [extension] May be used to represent additional information that is not
+/// part of the basic definition of the element. To make the use of extensions
+/// safe and managable, there is a strict set of governance applied to the
+/// definition and use of extensions. Though any implementer can define an
+/// extension, there is a set of requirements that SHALL be met as part of the
+/// definition of the extension.
+
+    @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
+/// [modifierExtension] May be used to represent additional information
+/// that is not part of the basic definition of the element and that modifies
+/// the understanding of the element in which it is contained and/or the
+/// understanding of the containing element's descendants. Usually modifier
+/// elements provide negation or qualification. To make the use of extensions
+/// safe and managable, there is a strict set of governance applied to the
+/// definition and use of extensions. Though any implementer can define an
+/// extension, there is a set of requirements that SHALL be met as part of the
+/// definition of the extension. Applications processing a resource are
+/// required to check for modifier extensions.
+///
+/// Modifier extensions SHALL NOT change the meaning of any elements on
+/// Resource or DomainResource (including cannot change the meaning of
+/// modifierExtension itself).
+
+    @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
+/// [code] URL of Data type or Resource that is a(or the) type used for
+/// this element. References are URLs that are relative to
+/// http://hl7.org/fhir/StructureDefinition e.g. "string" is a reference to
+/// http://hl7.org/fhir/StructureDefinition/string. Absolute URLs are only
+/// allowed in logical models.
+
+    @JsonKey(name: 'code') FhirUri? code,
+/// [_code] Extensions for code
+
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
+/// [profile] Identifies a profile structure or implementation Guide that
+/// applies to the datatype this element refers to. If any profiles are
+/// specified, then the content must conform to at least one of them. The URL
+/// can be a local reference - to a contained StructureDefinition, or a
+/// reference to another StructureDefinition or Implementation Guide by a
+/// canonical URL. When an implementation guide is specified, the type SHALL
+/// conform to at least one profile defined in the implementation guide.
+
+    @JsonKey(name: 'profile') List<List<FhirCanonical>>? profile,
+/// [targetProfile] Used when the type is "Reference" or "canonical", and
+/// identifies a profile structure or implementation Guide that applies to the
+/// target of the reference this element refers to. If any profiles are
+/// specified, then the content must conform to at least one of them. The URL
+/// can be a local reference - to a contained StructureDefinition, or a
+/// reference to another StructureDefinition or Implementation Guide by a
+/// canonical URL. When an implementation guide is specified, the target
+/// resource SHALL conform to at least one profile defined in the
+/// implementation guide.
+
+    @JsonKey(name: 'targetProfile') List<List<FhirCanonical>>? targetProfile,
+/// [aggregation] If the type is a reference to another resource, how the
+/// resource is or can be aggregated - is it a contained resource, or a
+/// reference, and if the context is a bundle, is it included in the bundle.
+
+    @JsonKey(name: 'aggregation') List<List<dynamic>>? aggregation,
+/// [_aggregation] Extensions for aggregation
+
+    @JsonKey(name: '_aggregation') List<PrimitiveElement>? aggregationElement,
+/// [versioning] Whether this reference needs to be version specific or
+/// version independent, or whether either can be used.
+
+    @JsonKey(name: 'versioning') dynamic? versioning,
+/// [_versioning] Extensions for versioning
+
+    @JsonKey(name: '_versioning') PrimitiveElement? versioningElement,
+  }) = _$ElementDefinition_Type;
+
+  @override
+  String get fhirType => 'ElementDefinition_Type';
+
+  factory ElementDefinition_Type.fromJson(Map<String, dynamic> json) =>
+      _$ElementDefinition_TypeFromJson(json);
+
+  factory ElementDefinition_Type.fromYaml(dynamic yaml) => yaml is String
+      ? ElementDefinition_Type.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>)
+      : yaml is YamlMap
+          ? ElementDefinition_Type.fromJson(jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>)
+          : throw ArgumentError(
+              'ElementDefinition_Type cannot be constructed from input provided,'
+              ' it is neither a yaml string nor a yaml map.');
+
+  factory ElementDefinition_Type.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, dynamic>) {
+      return _$ElementDefinition_TypeFromJson(json);
+    } else {
+      throw FormatException('FormatException:\nYou passed $json\n'
+          'This does not properly decode to a Map<String,dynamic>.');
+    }
+  }
+  @override
+  String toJsonString() => jsonEncode(toJson());
+}
+
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [ElementDefinition_Example] Captures constraints on each element within
+/// the resource, profile, or extension.
+
+@freezed
+class ElementDefinition_Example with _$ElementDefinition_Example {
+  const ElementDefinition_Example._();
+
+  const factory ElementDefinition_Example({
+/// [id] Unique id for the element within a resource (for internal
+/// references). This may be any string value that does not contain spaces.
+
+    @JsonKey(name: 'id') String? id,
+/// [extension] May be used to represent additional information that is not
+/// part of the basic definition of the element. To make the use of extensions
+/// safe and managable, there is a strict set of governance applied to the
+/// definition and use of extensions. Though any implementer can define an
+/// extension, there is a set of requirements that SHALL be met as part of the
+/// definition of the extension.
+
+    @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
+/// [modifierExtension] May be used to represent additional information
+/// that is not part of the basic definition of the element and that modifies
+/// the understanding of the element in which it is contained and/or the
+/// understanding of the containing element's descendants. Usually modifier
+/// elements provide negation or qualification. To make the use of extensions
+/// safe and managable, there is a strict set of governance applied to the
+/// definition and use of extensions. Though any implementer can define an
+/// extension, there is a set of requirements that SHALL be met as part of the
+/// definition of the extension. Applications processing a resource are
+/// required to check for modifier extensions.
+///
+/// Modifier extensions SHALL NOT change the meaning of any elements on
+/// Resource or DomainResource (including cannot change the meaning of
+/// modifierExtension itself).
+
+    @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
+/// [label] Describes the purpose of this example among the set of
+/// examples.
+
+    @JsonKey(name: 'label') String? label,
+/// [_label] Extensions for label
+
+    @JsonKey(name: '_label') PrimitiveElement? labelElement,
+/// [valueBase64Binary] The actual value for the element, which must be one
+/// of the types allowed for this element.
+
+    @JsonKey(name: 'valueBase64Binary') FhirBase64Binary? valueBase64Binary,
+/// [_valueBase64Binary] Extensions for valueBase64Binary
+
+    @JsonKey(name: '_valueBase64Binary') PrimitiveElement? valueBase64BinaryElement,
+/// [valueBoolean] The actual value for the element, which must be one of
+/// the types allowed for this element.
+
+    @JsonKey(name: 'valueBoolean') FhirBoolean? valueBoolean,
+/// [_valueBoolean] Extensions for valueBoolean
+
+    @JsonKey(name: '_valueBoolean') PrimitiveElement? valueBooleanElement,
+/// [valueCanonical] The actual value for the element, which must be one of
+/// the types allowed for this element.
+
+    @JsonKey(name: 'valueCanonical') FhirCanonical? valueCanonical,
+/// [_valueCanonical] Extensions for valueCanonical
+
+    @JsonKey(name: '_valueCanonical') PrimitiveElement? valueCanonicalElement,
+/// [valueCode] The actual value for the element, which must be one of the
+/// types allowed for this element.
+
+    @JsonKey(name: 'valueCode') FhirCode? valueCode,
+/// [_valueCode] Extensions for valueCode
+
+    @JsonKey(name: '_valueCode') PrimitiveElement? valueCodeElement,
+/// [valueDate] The actual value for the element, which must be one of the
+/// types allowed for this element.
+
+    @JsonKey(name: 'valueDate') FhirDate? valueDate,
+/// [_valueDate] Extensions for valueDate
+
+    @JsonKey(name: '_valueDate') PrimitiveElement? valueDateElement,
+/// [valueDateTime] The actual value for the element, which must be one of
+/// the types allowed for this element.
+
+    @JsonKey(name: 'valueDateTime') FhirDateTime? valueDateTime,
+/// [_valueDateTime] Extensions for valueDateTime
+
+    @JsonKey(name: '_valueDateTime') PrimitiveElement? valueDateTimeElement,
+/// [valueDecimal] The actual value for the element, which must be one of
+/// the types allowed for this element.
+
+    @JsonKey(name: 'valueDecimal') FhirDecimal? valueDecimal,
+/// [_valueDecimal] Extensions for valueDecimal
+
+    @JsonKey(name: '_valueDecimal') PrimitiveElement? valueDecimalElement,
+/// [valueId] The actual value for the element, which must be one of the
+/// types allowed for this element.
+
+    @JsonKey(name: 'valueId') FhirId? valueId,
+/// [_valueId] Extensions for valueId
+
+    @JsonKey(name: '_valueId') PrimitiveElement? valueIdElement,
+/// [valueInstant] The actual value for the element, which must be one of
+/// the types allowed for this element.
+
+    @JsonKey(name: 'valueInstant') FhirInstant? valueInstant,
+/// [_valueInstant] Extensions for valueInstant
+
+    @JsonKey(name: '_valueInstant') PrimitiveElement? valueInstantElement,
+/// [valueInteger] The actual value for the element, which must be one of
+/// the types allowed for this element.
+
+    @JsonKey(name: 'valueInteger') FhirInteger? valueInteger,
+/// [_valueInteger] Extensions for valueInteger
+
+    @JsonKey(name: '_valueInteger') PrimitiveElement? valueIntegerElement,
+/// [valueInteger64] The actual value for the element, which must be one of
+/// the types allowed for this element.
+
+    @JsonKey(name: 'valueInteger64') FhirInteger64? valueInteger64,
+/// [_valueInteger64] Extensions for valueInteger64
+
+    @JsonKey(name: '_valueInteger64') PrimitiveElement? valueInteger64Element,
+/// [valueMarkdown] The actual value for the element, which must be one of
+/// the types allowed for this element.
+
+    @JsonKey(name: 'valueMarkdown') FhirMarkdown? valueMarkdown,
+/// [_valueMarkdown] Extensions for valueMarkdown
+
+    @JsonKey(name: '_valueMarkdown') PrimitiveElement? valueMarkdownElement,
+/// [valueOid] The actual value for the element, which must be one of the
+/// types allowed for this element.
+
+    @JsonKey(name: 'valueOid') FhirOid? valueOid,
+/// [_valueOid] Extensions for valueOid
+
+    @JsonKey(name: '_valueOid') PrimitiveElement? valueOidElement,
+/// [valuePositiveInt] The actual value for the element, which must be one
+/// of the types allowed for this element.
+
+    @JsonKey(name: 'valuePositiveInt') FhirPositiveInt? valuePositiveInt,
+/// [_valuePositiveInt] Extensions for valuePositiveInt
+
+    @JsonKey(name: '_valuePositiveInt') PrimitiveElement? valuePositiveIntElement,
+/// [valueString] The actual value for the element, which must be one of
+/// the types allowed for this element.
+
+    @JsonKey(name: 'valueString') String? valueString,
+/// [_valueString] Extensions for valueString
+
+    @JsonKey(name: '_valueString') PrimitiveElement? valueStringElement,
+/// [valueTime] The actual value for the element, which must be one of the
+/// types allowed for this element.
+
+    @JsonKey(name: 'valueTime') FhirTime? valueTime,
+/// [_valueTime] Extensions for valueTime
+
+    @JsonKey(name: '_valueTime') PrimitiveElement? valueTimeElement,
+/// [valueUnsignedInt] The actual value for the element, which must be one
+/// of the types allowed for this element.
+
+    @JsonKey(name: 'valueUnsignedInt') FhirUnsignedInt? valueUnsignedInt,
+/// [_valueUnsignedInt] Extensions for valueUnsignedInt
+
+    @JsonKey(name: '_valueUnsignedInt') PrimitiveElement? valueUnsignedIntElement,
+/// [valueUri] The actual value for the element, which must be one of the
+/// types allowed for this element.
+
+    @JsonKey(name: 'valueUri') FhirUri? valueUri,
+/// [_valueUri] Extensions for valueUri
+
+    @JsonKey(name: '_valueUri') PrimitiveElement? valueUriElement,
+/// [valueUrl] The actual value for the element, which must be one of the
+/// types allowed for this element.
+
+    @JsonKey(name: 'valueUrl') FhirUrl? valueUrl,
+/// [_valueUrl] Extensions for valueUrl
+
+    @JsonKey(name: '_valueUrl') PrimitiveElement? valueUrlElement,
+/// [valueUuid] The actual value for the element, which must be one of the
+/// types allowed for this element.
+
+    @JsonKey(name: 'valueUuid') FhirUuid? valueUuid,
+/// [_valueUuid] Extensions for valueUuid
+
+    @JsonKey(name: '_valueUuid') PrimitiveElement? valueUuidElement,
+/// [valueAddress] The actual value for the element, which must be one of
+/// the types allowed for this element.
+
+    @JsonKey(name: 'valueAddress') Address? valueAddress,
+/// [valueAge] The actual value for the element, which must be one of the
+/// types allowed for this element.
+
+    @JsonKey(name: 'valueAge') Age? valueAge,
+/// [valueAnnotation] The actual value for the element, which must be one
+/// of the types allowed for this element.
+
+    @JsonKey(name: 'valueAnnotation') Annotation? valueAnnotation,
+/// [valueAttachment] The actual value for the element, which must be one
+/// of the types allowed for this element.
+
+    @JsonKey(name: 'valueAttachment') Attachment? valueAttachment,
+/// [valueCodeableConcept] The actual value for the element, which must be
+/// one of the types allowed for this element.
+
+    @JsonKey(name: 'valueCodeableConcept') CodeableConcept? valueCodeableConcept,
+/// [valueCodeableReference] The actual value for the element, which must
+/// be one of the types allowed for this element.
+
+    @JsonKey(name: 'valueCodeableReference') CodeableReference? valueCodeableReference,
+/// [valueCoding] The actual value for the element, which must be one of
+/// the types allowed for this element.
+
+    @JsonKey(name: 'valueCoding') Coding? valueCoding,
+/// [valueContactPoint] The actual value for the element, which must be one
+/// of the types allowed for this element.
+
+    @JsonKey(name: 'valueContactPoint') ContactPoint? valueContactPoint,
+/// [valueCount] The actual value for the element, which must be one of the
+/// types allowed for this element.
+
+    @JsonKey(name: 'valueCount') Count? valueCount,
+/// [valueDistance] The actual value for the element, which must be one of
+/// the types allowed for this element.
+
+    @JsonKey(name: 'valueDistance') Distance? valueDistance,
+/// [valueDuration] The actual value for the element, which must be one of
+/// the types allowed for this element.
+
+    @JsonKey(name: 'valueDuration') FhirDuration? valueDuration,
+/// [valueHumanName] The actual value for the element, which must be one of
+/// the types allowed for this element.
+
+    @JsonKey(name: 'valueHumanName') HumanName? valueHumanName,
+/// [valueIdentifier] The actual value for the element, which must be one
+/// of the types allowed for this element.
+
+    @JsonKey(name: 'valueIdentifier') Identifier? valueIdentifier,
+/// [valueMoney] The actual value for the element, which must be one of the
+/// types allowed for this element.
+
+    @JsonKey(name: 'valueMoney') Money? valueMoney,
+/// [valuePeriod] The actual value for the element, which must be one of
+/// the types allowed for this element.
+
+    @JsonKey(name: 'valuePeriod') Period? valuePeriod,
+/// [valueQuantity] The actual value for the element, which must be one of
+/// the types allowed for this element.
+
+    @JsonKey(name: 'valueQuantity') Quantity? valueQuantity,
+/// [valueRange] The actual value for the element, which must be one of the
+/// types allowed for this element.
+
+    @JsonKey(name: 'valueRange') Range? valueRange,
+/// [valueRatio] The actual value for the element, which must be one of the
+/// types allowed for this element.
+
+    @JsonKey(name: 'valueRatio') Ratio? valueRatio,
+/// [valueRatioRange] The actual value for the element, which must be one
+/// of the types allowed for this element.
+
+    @JsonKey(name: 'valueRatioRange') RatioRange? valueRatioRange,
+/// [valueReference] The actual value for the element, which must be one of
+/// the types allowed for this element.
+
+    @JsonKey(name: 'valueReference') Reference? valueReference,
+/// [valueSampledData] The actual value for the element, which must be one
+/// of the types allowed for this element.
+
+    @JsonKey(name: 'valueSampledData') SampledData? valueSampledData,
+/// [valueSignature] The actual value for the element, which must be one of
+/// the types allowed for this element.
+
+    @JsonKey(name: 'valueSignature') Signature? valueSignature,
+/// [valueTiming] The actual value for the element, which must be one of
+/// the types allowed for this element.
+
+    @JsonKey(name: 'valueTiming') Timing? valueTiming,
+/// [valueContactDetail] The actual value for the element, which must be
+/// one of the types allowed for this element.
+
+    @JsonKey(name: 'valueContactDetail') ContactDetail? valueContactDetail,
+/// [valueDataRequirement] The actual value for the element, which must be
+/// one of the types allowed for this element.
+
+    @JsonKey(name: 'valueDataRequirement') DataRequirement? valueDataRequirement,
+/// [valueExpression] The actual value for the element, which must be one
+/// of the types allowed for this element.
+
+    @JsonKey(name: 'valueExpression') FhirExpression? valueExpression,
+/// [valueParameterDefinition] The actual value for the element, which must
+/// be one of the types allowed for this element.
+
+    @JsonKey(name: 'valueParameterDefinition') ParameterDefinition? valueParameterDefinition,
+/// [valueRelatedArtifact] The actual value for the element, which must be
+/// one of the types allowed for this element.
+
+    @JsonKey(name: 'valueRelatedArtifact') RelatedArtifact? valueRelatedArtifact,
+/// [valueTriggerDefinition] The actual value for the element, which must
+/// be one of the types allowed for this element.
+
+    @JsonKey(name: 'valueTriggerDefinition') TriggerDefinition? valueTriggerDefinition,
+/// [valueUsageContext] The actual value for the element, which must be one
+/// of the types allowed for this element.
+
+    @JsonKey(name: 'valueUsageContext') UsageContext? valueUsageContext,
+/// [valueAvailability] The actual value for the element, which must be one
+/// of the types allowed for this element.
+
+    @JsonKey(name: 'valueAvailability') Availability? valueAvailability,
+/// [valueExtendedContactDetail] The actual value for the element, which
+/// must be one of the types allowed for this element.
+
+    @JsonKey(name: 'valueExtendedContactDetail') ExtendedContactDetail? valueExtendedContactDetail,
+/// [valueDosage] The actual value for the element, which must be one of
+/// the types allowed for this element.
+
+    @JsonKey(name: 'valueDosage') Dosage? valueDosage,
+/// [valueMeta] The actual value for the element, which must be one of the
+/// types allowed for this element.
+
+    @JsonKey(name: 'valueMeta') FhirMeta? valueMeta,
+  }) = _$ElementDefinition_Example;
+
+  @override
+  String get fhirType => 'ElementDefinition_Example';
+
+  factory ElementDefinition_Example.fromJson(Map<String, dynamic> json) =>
+      _$ElementDefinition_ExampleFromJson(json);
+
+  factory ElementDefinition_Example.fromYaml(dynamic yaml) => yaml is String
+      ? ElementDefinition_Example.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>)
+      : yaml is YamlMap
+          ? ElementDefinition_Example.fromJson(jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>)
+          : throw ArgumentError(
+              'ElementDefinition_Example cannot be constructed from input provided,'
+              ' it is neither a yaml string nor a yaml map.');
+
+  factory ElementDefinition_Example.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, dynamic>) {
+      return _$ElementDefinition_ExampleFromJson(json);
+    } else {
+      throw FormatException('FormatException:\nYou passed $json\n'
+          'This does not properly decode to a Map<String,dynamic>.');
+    }
+  }
+  @override
+  String toJsonString() => jsonEncode(toJson());
+}
+
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [ElementDefinition_Constraint] Captures constraints on each element
+/// within the resource, profile, or extension.
+
+@freezed
+class ElementDefinition_Constraint with _$ElementDefinition_Constraint {
+  const ElementDefinition_Constraint._();
+
+  const factory ElementDefinition_Constraint({
+/// [id] Unique id for the element within a resource (for internal
+/// references). This may be any string value that does not contain spaces.
+
+    @JsonKey(name: 'id') String? id,
+/// [extension] May be used to represent additional information that is not
+/// part of the basic definition of the element. To make the use of extensions
+/// safe and managable, there is a strict set of governance applied to the
+/// definition and use of extensions. Though any implementer can define an
+/// extension, there is a set of requirements that SHALL be met as part of the
+/// definition of the extension.
+
+    @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
+/// [modifierExtension] May be used to represent additional information
+/// that is not part of the basic definition of the element and that modifies
+/// the understanding of the element in which it is contained and/or the
+/// understanding of the containing element's descendants. Usually modifier
+/// elements provide negation or qualification. To make the use of extensions
+/// safe and managable, there is a strict set of governance applied to the
+/// definition and use of extensions. Though any implementer can define an
+/// extension, there is a set of requirements that SHALL be met as part of the
+/// definition of the extension. Applications processing a resource are
+/// required to check for modifier extensions.
+///
+/// Modifier extensions SHALL NOT change the meaning of any elements on
+/// Resource or DomainResource (including cannot change the meaning of
+/// modifierExtension itself).
+
+    @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
+/// [key] Allows identification of which elements have their cardinalities
+/// impacted by the constraint.  Will not be referenced for constraints that do
+/// not affect cardinality.
+
+    @JsonKey(name: 'key') FhirId? key,
+/// [_key] Extensions for key
+
+    @JsonKey(name: '_key') PrimitiveElement? keyElement,
+/// [requirements] Description of why this constraint is necessary or
+/// appropriate.
+
+    @JsonKey(name: 'requirements') FhirMarkdown? requirements,
+/// [_requirements] Extensions for requirements
+
+    @JsonKey(name: '_requirements') PrimitiveElement? requirementsElement,
+/// [severity] Identifies the impact constraint violation has on the
+/// conformance of the instance.
+
+    @JsonKey(name: 'severity') dynamic? severity,
+/// [_severity] Extensions for severity
+
+    @JsonKey(name: '_severity') PrimitiveElement? severityElement,
+/// [suppress] If true, indicates that the warning or best practice
+/// guideline should be suppressed.
+
+    @JsonKey(name: 'suppress') FhirBoolean? suppress,
+/// [_suppress] Extensions for suppress
+
+    @JsonKey(name: '_suppress') PrimitiveElement? suppressElement,
+/// [human] Text that can be used to describe the constraint in messages
+/// identifying that the constraint has been violated.
+
+    @JsonKey(name: 'human') String? human,
+/// [_human] Extensions for human
+
+    @JsonKey(name: '_human') PrimitiveElement? humanElement,
+/// [expression] A [FHIRPath](fhirpath.html) expression of constraint that
+/// can be executed to see if this constraint is met.
+
+    @JsonKey(name: 'expression') String? expression,
+/// [_expression] Extensions for expression
+
+    @JsonKey(name: '_expression') PrimitiveElement? expressionElement,
+/// [source] A reference to the original source of the constraint, for
+/// traceability purposes.
+
+    @JsonKey(name: 'source') FhirCanonical? source,
+  }) = _$ElementDefinition_Constraint;
+
+  @override
+  String get fhirType => 'ElementDefinition_Constraint';
+
+  factory ElementDefinition_Constraint.fromJson(Map<String, dynamic> json) =>
+      _$ElementDefinition_ConstraintFromJson(json);
+
+  factory ElementDefinition_Constraint.fromYaml(dynamic yaml) => yaml is String
+      ? ElementDefinition_Constraint.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>)
+      : yaml is YamlMap
+          ? ElementDefinition_Constraint.fromJson(jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>)
+          : throw ArgumentError(
+              'ElementDefinition_Constraint cannot be constructed from input provided,'
+              ' it is neither a yaml string nor a yaml map.');
+
+  factory ElementDefinition_Constraint.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, dynamic>) {
+      return _$ElementDefinition_ConstraintFromJson(json);
+    } else {
+      throw FormatException('FormatException:\nYou passed $json\n'
+          'This does not properly decode to a Map<String,dynamic>.');
+    }
+  }
+  @override
+  String toJsonString() => jsonEncode(toJson());
+}
+
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [ElementDefinition_Binding] Captures constraints on each element within
+/// the resource, profile, or extension.
+
+@freezed
+class ElementDefinition_Binding with _$ElementDefinition_Binding {
+  const ElementDefinition_Binding._();
+
+  const factory ElementDefinition_Binding({
+/// [id] Unique id for the element within a resource (for internal
+/// references). This may be any string value that does not contain spaces.
+
+    @JsonKey(name: 'id') String? id,
+/// [extension] May be used to represent additional information that is not
+/// part of the basic definition of the element. To make the use of extensions
+/// safe and managable, there is a strict set of governance applied to the
+/// definition and use of extensions. Though any implementer can define an
+/// extension, there is a set of requirements that SHALL be met as part of the
+/// definition of the extension.
+
+    @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
+/// [modifierExtension] May be used to represent additional information
+/// that is not part of the basic definition of the element and that modifies
+/// the understanding of the element in which it is contained and/or the
+/// understanding of the containing element's descendants. Usually modifier
+/// elements provide negation or qualification. To make the use of extensions
+/// safe and managable, there is a strict set of governance applied to the
+/// definition and use of extensions. Though any implementer can define an
+/// extension, there is a set of requirements that SHALL be met as part of the
+/// definition of the extension. Applications processing a resource are
+/// required to check for modifier extensions.
+///
+/// Modifier extensions SHALL NOT change the meaning of any elements on
+/// Resource or DomainResource (including cannot change the meaning of
+/// modifierExtension itself).
+
+    @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
+/// [strength] Indicates the degree of conformance expectations associated
+/// with this binding - that is, the degree to which the provided value set
+/// must be adhered to in the instances.
+
+    @JsonKey(name: 'strength') dynamic? strength,
+/// [_strength] Extensions for strength
+
+    @JsonKey(name: '_strength') PrimitiveElement? strengthElement,
+/// [description] Describes the intended use of this particular set of
+/// codes.
+
+    @JsonKey(name: 'description') FhirMarkdown? description,
+/// [_description] Extensions for description
+
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
+/// [valueSet] Refers to the value set that identifies the set of codes the
+/// binding refers to.
+
+    @JsonKey(name: 'valueSet') FhirCanonical? valueSet,
+/// [additional] Additional bindings that help applications implementing
+/// this element. Additional bindings do not replace the main binding but
+/// provide more information and/or context.
+
+    @JsonKey(name: 'additional') List<List<ElementDefinition_Additional>>? additional,
+  }) = _$ElementDefinition_Binding;
+
+  @override
+  String get fhirType => 'ElementDefinition_Binding';
+
+  factory ElementDefinition_Binding.fromJson(Map<String, dynamic> json) =>
+      _$ElementDefinition_BindingFromJson(json);
+
+  factory ElementDefinition_Binding.fromYaml(dynamic yaml) => yaml is String
+      ? ElementDefinition_Binding.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>)
+      : yaml is YamlMap
+          ? ElementDefinition_Binding.fromJson(jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>)
+          : throw ArgumentError(
+              'ElementDefinition_Binding cannot be constructed from input provided,'
+              ' it is neither a yaml string nor a yaml map.');
+
+  factory ElementDefinition_Binding.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, dynamic>) {
+      return _$ElementDefinition_BindingFromJson(json);
+    } else {
+      throw FormatException('FormatException:\nYou passed $json\n'
+          'This does not properly decode to a Map<String,dynamic>.');
+    }
+  }
+  @override
+  String toJsonString() => jsonEncode(toJson());
+}
+
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [ElementDefinition_Additional] Captures constraints on each element
+/// within the resource, profile, or extension.
+
+@freezed
+class ElementDefinition_Additional with _$ElementDefinition_Additional {
+  const ElementDefinition_Additional._();
+
+  const factory ElementDefinition_Additional({
+/// [id] Unique id for the element within a resource (for internal
+/// references). This may be any string value that does not contain spaces.
+
+    @JsonKey(name: 'id') String? id,
+/// [extension] May be used to represent additional information that is not
+/// part of the basic definition of the element. To make the use of extensions
+/// safe and managable, there is a strict set of governance applied to the
+/// definition and use of extensions. Though any implementer can define an
+/// extension, there is a set of requirements that SHALL be met as part of the
+/// definition of the extension.
+
+    @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
+/// [modifierExtension] May be used to represent additional information
+/// that is not part of the basic definition of the element and that modifies
+/// the understanding of the element in which it is contained and/or the
+/// understanding of the containing element's descendants. Usually modifier
+/// elements provide negation or qualification. To make the use of extensions
+/// safe and managable, there is a strict set of governance applied to the
+/// definition and use of extensions. Though any implementer can define an
+/// extension, there is a set of requirements that SHALL be met as part of the
+/// definition of the extension. Applications processing a resource are
+/// required to check for modifier extensions.
+///
+/// Modifier extensions SHALL NOT change the meaning of any elements on
+/// Resource or DomainResource (including cannot change the meaning of
+/// modifierExtension itself).
+
+    @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
+/// [purpose] The use of this additional binding.
+
+    @JsonKey(name: 'purpose') FhirCode? purpose,
+/// [_purpose] Extensions for purpose
+
+    @JsonKey(name: '_purpose') PrimitiveElement? purposeElement,
+/// [valueSet] The valueSet that is being bound for the purpose.
+
+    @JsonKey(name: 'valueSet') FhirCanonical? valueSet,
+/// [documentation] Documentation of the purpose of use of the
+/// bindingproviding additional information about how it is intended to be
+/// used.
+
+    @JsonKey(name: 'documentation') FhirMarkdown? documentation,
+/// [_documentation] Extensions for documentation
+
+    @JsonKey(name: '_documentation') PrimitiveElement? documentationElement,
+/// [shortDoco] Concise documentation - for summary tables.
+
+    @JsonKey(name: 'shortDoco') String? shortDoco,
+/// [_shortDoco] Extensions for shortDoco
+
+    @JsonKey(name: '_shortDoco') PrimitiveElement? shortDocoElement,
+/// [usage] Qualifies the usage of the binding. Typically bindings are
+/// qualified by jurisdiction, but they may also be qualified by gender,
+/// workflow status, clinical domain etc. The information to decide whether a
+/// usege context applies is usually outside the resource, determined by
+/// context, and this might present challenges for validation tooling.
+
+    @JsonKey(name: 'usage') List<List<UsageContext>>? usage,
+/// [any] Whether the binding applies to all repeats, or just to any one of
+/// them. This is only relevant for elements that can repeat.
+
+    @JsonKey(name: 'any') FhirBoolean? any,
+/// [_any] Extensions for any
+
+    @JsonKey(name: '_any') PrimitiveElement? anyElement,
+  }) = _$ElementDefinition_Additional;
+
+  @override
+  String get fhirType => 'ElementDefinition_Additional';
+
+  factory ElementDefinition_Additional.fromJson(Map<String, dynamic> json) =>
+      _$ElementDefinition_AdditionalFromJson(json);
+
+  factory ElementDefinition_Additional.fromYaml(dynamic yaml) => yaml is String
+      ? ElementDefinition_Additional.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>)
+      : yaml is YamlMap
+          ? ElementDefinition_Additional.fromJson(jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>)
+          : throw ArgumentError(
+              'ElementDefinition_Additional cannot be constructed from input provided,'
+              ' it is neither a yaml string nor a yaml map.');
+
+  factory ElementDefinition_Additional.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, dynamic>) {
+      return _$ElementDefinition_AdditionalFromJson(json);
+    } else {
+      throw FormatException('FormatException:\nYou passed $json\n'
+          'This does not properly decode to a Map<String,dynamic>.');
+    }
+  }
+  @override
+  String toJsonString() => jsonEncode(toJson());
+}
+
+import 'package:fhir_primitives/fhir_primitives.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../r4.dart';
+/// [ElementDefinition_Mapping] Captures constraints on each element within
+/// the resource, profile, or extension.
+
+@freezed
+class ElementDefinition_Mapping with _$ElementDefinition_Mapping {
+  const ElementDefinition_Mapping._();
+
+  const factory ElementDefinition_Mapping({
+/// [id] Unique id for the element within a resource (for internal
+/// references). This may be any string value that does not contain spaces.
+
+    @JsonKey(name: 'id') String? id,
+/// [extension] May be used to represent additional information that is not
+/// part of the basic definition of the element. To make the use of extensions
+/// safe and managable, there is a strict set of governance applied to the
+/// definition and use of extensions. Though any implementer can define an
+/// extension, there is a set of requirements that SHALL be met as part of the
+/// definition of the extension.
+
+    @JsonKey(name: 'extension') List<List<FhirExtension>>? extension,
+/// [modifierExtension] May be used to represent additional information
+/// that is not part of the basic definition of the element and that modifies
+/// the understanding of the element in which it is contained and/or the
+/// understanding of the containing element's descendants. Usually modifier
+/// elements provide negation or qualification. To make the use of extensions
+/// safe and managable, there is a strict set of governance applied to the
+/// definition and use of extensions. Though any implementer can define an
+/// extension, there is a set of requirements that SHALL be met as part of the
+/// definition of the extension. Applications processing a resource are
+/// required to check for modifier extensions.
+///
+/// Modifier extensions SHALL NOT change the meaning of any elements on
+/// Resource or DomainResource (including cannot change the meaning of
+/// modifierExtension itself).
+
+    @JsonKey(name: 'modifierExtension') List<List<FhirExtension>>? modifierExtension,
+/// [identity] An internal reference to the definition of a mapping.
+
+    @JsonKey(name: 'identity') FhirId? identity,
+/// [_identity] Extensions for identity
+
+    @JsonKey(name: '_identity') PrimitiveElement? identityElement,
+/// [language] Identifies the computable language in which mapping.map is
+/// expressed.
+
+    @JsonKey(name: 'language') FhirCode? language,
+/// [_language] Extensions for language
+
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
+/// [map] Expresses what part of the target specification corresponds to
+/// this element.
+
+    @JsonKey(name: 'map') String? map,
+/// [_map] Extensions for map
+
+    @JsonKey(name: '_map') PrimitiveElement? mapElement,
+/// [comment] Comments that provide information about the mapping or its
+/// use.
+
+    @JsonKey(name: 'comment') FhirMarkdown? comment,
+/// [_comment] Extensions for comment
+
+    @JsonKey(name: '_comment') PrimitiveElement? commentElement,
+  }) = _$ElementDefinition_Mapping;
+
+  @override
+  String get fhirType => 'ElementDefinition_Mapping';
+
+  factory ElementDefinition_Mapping.fromJson(Map<String, dynamic> json) =>
+      _$ElementDefinition_MappingFromJson(json);
+
+  factory ElementDefinition_Mapping.fromYaml(dynamic yaml) => yaml is String
+      ? ElementDefinition_Mapping.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>)
+      : yaml is YamlMap
+          ? ElementDefinition_Mapping.fromJson(jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>)
+          : throw ArgumentError(
+              'ElementDefinition_Mapping cannot be constructed from input provided,'
+              ' it is neither a yaml string nor a yaml map.');
+
+  factory ElementDefinition_Mapping.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, dynamic>) {
+      return _$ElementDefinition_MappingFromJson(json);
+    } else {
+      throw FormatException('FormatException:\nYou passed $json\n'
+          'This does not properly decode to a Map<String,dynamic>.');
+    }
+  }
+  @override
+  String toJsonString() => jsonEncode(toJson());
+}
+
