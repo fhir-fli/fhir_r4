@@ -200,7 +200,6 @@ abstract class $CatalogEntryCopyWith<$Res> {
       List<CatalogEntryRelatedEntry>? relatedEntry});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $NarrativeCopyWith<$Res>? get text;
   $CodeableConceptCopyWith<$Res>? get type;
   $ReferenceCopyWith<$Res> get referencedItem;
   $PeriodCopyWith<$Res>? get validityPeriod;
@@ -378,18 +377,6 @@ class _$CatalogEntryCopyWithImpl<$Res, $Val extends CatalogEntry>
 
   @override
   @pragma('vm:prefer-inline')
-  $NarrativeCopyWith<$Res>? get text {
-    if (_value.text == null) {
-      return null;
-    }
-
-    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
-      return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get type {
     if (_value.type == null) {
       return null;
@@ -462,8 +449,6 @@ abstract class _$$CatalogEntryImplCopyWith<$Res>
 
   @override
   $FhirMetaCopyWith<$Res>? get meta;
-  @override
-  $NarrativeCopyWith<$Res>? get text;
   @override
   $CodeableConceptCopyWith<$Res>? get type;
   @override
@@ -965,7 +950,7 @@ class _$CatalogEntryImpl extends _CatalogEntry {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            (identical(other.text, text) || other.text == text) &&
+            const DeepCollectionEquality().equals(other.text, text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -1016,7 +1001,7 @@ class _$CatalogEntryImpl extends _CatalogEntry {
         implicitRulesElement,
         language,
         languageElement,
-        text,
+        const DeepCollectionEquality().hash(text),
         const DeepCollectionEquality().hash(_contained),
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),
@@ -1860,7 +1845,6 @@ abstract class $CompositionCopyWith<$Res> {
       List<CompositionSection>? section});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $NarrativeCopyWith<$Res>? get text;
   $IdentifierCopyWith<$Res>? get identifier;
   $CodeableConceptCopyWith<$Res> get type;
   $ReferenceCopyWith<$Res>? get subject;
@@ -2050,18 +2034,6 @@ class _$CompositionCopyWithImpl<$Res, $Val extends Composition>
 
   @override
   @pragma('vm:prefer-inline')
-  $NarrativeCopyWith<$Res>? get text {
-    if (_value.text == null) {
-      return null;
-    }
-
-    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
-      return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $IdentifierCopyWith<$Res>? get identifier {
     if (_value.identifier == null) {
       return null;
@@ -2160,8 +2132,6 @@ abstract class _$$CompositionImplCopyWith<$Res>
 
   @override
   $FhirMetaCopyWith<$Res>? get meta;
-  @override
-  $NarrativeCopyWith<$Res>? get text;
   @override
   $IdentifierCopyWith<$Res>? get identifier;
   @override
@@ -2694,7 +2664,7 @@ class _$CompositionImpl extends _Composition {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            (identical(other.text, text) || other.text == text) &&
+            const DeepCollectionEquality().equals(other.text, text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -2742,7 +2712,7 @@ class _$CompositionImpl extends _Composition {
         implicitRulesElement,
         language,
         languageElement,
-        text,
+        const DeepCollectionEquality().hash(text),
         const DeepCollectionEquality().hash(_contained),
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),
@@ -4488,7 +4458,6 @@ abstract class $CompositionSectionCopyWith<$Res> {
 
   $CodeableConceptCopyWith<$Res>? get code;
   $ReferenceCopyWith<$Res>? get focus;
-  $NarrativeCopyWith<$Res>? get text;
   $CodeableConceptCopyWith<$Res>? get orderedBy;
   $CodeableConceptCopyWith<$Res>? get emptyReason;
 }
@@ -4612,18 +4581,6 @@ class _$CompositionSectionCopyWithImpl<$Res, $Val extends CompositionSection>
 
   @override
   @pragma('vm:prefer-inline')
-  $NarrativeCopyWith<$Res>? get text {
-    if (_value.text == null) {
-      return null;
-    }
-
-    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
-      return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get orderedBy {
     if (_value.orderedBy == null) {
       return null;
@@ -4676,8 +4633,6 @@ abstract class _$$CompositionSectionImplCopyWith<$Res>
   $CodeableConceptCopyWith<$Res>? get code;
   @override
   $ReferenceCopyWith<$Res>? get focus;
-  @override
-  $NarrativeCopyWith<$Res>? get text;
   @override
   $CodeableConceptCopyWith<$Res>? get orderedBy;
   @override
@@ -4994,7 +4949,7 @@ class _$CompositionSectionImpl extends _CompositionSection {
             (identical(other.code, code) || other.code == code) &&
             const DeepCollectionEquality().equals(other._author, _author) &&
             (identical(other.focus, focus) || other.focus == focus) &&
-            (identical(other.text, text) || other.text == text) &&
+            const DeepCollectionEquality().equals(other.text, text) &&
             (identical(other.mode, mode) || other.mode == mode) &&
             (identical(other.modeElement, modeElement) ||
                 other.modeElement == modeElement) &&
@@ -5018,7 +4973,7 @@ class _$CompositionSectionImpl extends _CompositionSection {
       code,
       const DeepCollectionEquality().hash(_author),
       focus,
-      text,
+      const DeepCollectionEquality().hash(text),
       mode,
       modeElement,
       orderedBy,
@@ -5358,7 +5313,6 @@ abstract class $DocumentManifestCopyWith<$Res> {
       List<DocumentManifestRelated>? related});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $NarrativeCopyWith<$Res>? get text;
   $IdentifierCopyWith<$Res>? get masterIdentifier;
   $CodeableConceptCopyWith<$Res>? get type;
   $ReferenceCopyWith<$Res>? get subject;
@@ -5531,18 +5485,6 @@ class _$DocumentManifestCopyWithImpl<$Res, $Val extends DocumentManifest>
 
   @override
   @pragma('vm:prefer-inline')
-  $NarrativeCopyWith<$Res>? get text {
-    if (_value.text == null) {
-      return null;
-    }
-
-    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
-      return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $IdentifierCopyWith<$Res>? get masterIdentifier {
     if (_value.masterIdentifier == null) {
       return null;
@@ -5618,8 +5560,6 @@ abstract class _$$DocumentManifestImplCopyWith<$Res>
 
   @override
   $FhirMetaCopyWith<$Res>? get meta;
-  @override
-  $NarrativeCopyWith<$Res>? get text;
   @override
   $IdentifierCopyWith<$Res>? get masterIdentifier;
   @override
@@ -6105,7 +6045,7 @@ class _$DocumentManifestImpl extends _DocumentManifest {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            (identical(other.text, text) || other.text == text) &&
+            const DeepCollectionEquality().equals(other.text, text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -6149,7 +6089,7 @@ class _$DocumentManifestImpl extends _DocumentManifest {
         implicitRulesElement,
         language,
         languageElement,
-        text,
+        const DeepCollectionEquality().hash(text),
         const DeepCollectionEquality().hash(_contained),
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),
@@ -6996,7 +6936,6 @@ abstract class $DocumentReferenceCopyWith<$Res> {
       DocumentReferenceContext? context});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $NarrativeCopyWith<$Res>? get text;
   $IdentifierCopyWith<$Res>? get masterIdentifier;
   $CodeableConceptCopyWith<$Res>? get type;
   $ReferenceCopyWith<$Res>? get subject;
@@ -7192,18 +7131,6 @@ class _$DocumentReferenceCopyWithImpl<$Res, $Val extends DocumentReference>
 
   @override
   @pragma('vm:prefer-inline')
-  $NarrativeCopyWith<$Res>? get text {
-    if (_value.text == null) {
-      return null;
-    }
-
-    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
-      return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $IdentifierCopyWith<$Res>? get masterIdentifier {
     if (_value.masterIdentifier == null) {
       return null;
@@ -7319,8 +7246,6 @@ abstract class _$$DocumentReferenceImplCopyWith<$Res>
 
   @override
   $FhirMetaCopyWith<$Res>? get meta;
-  @override
-  $NarrativeCopyWith<$Res>? get text;
   @override
   $IdentifierCopyWith<$Res>? get masterIdentifier;
   @override
@@ -7873,7 +7798,7 @@ class _$DocumentReferenceImpl extends _DocumentReference {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            (identical(other.text, text) || other.text == text) &&
+            const DeepCollectionEquality().equals(other.text, text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -7925,7 +7850,7 @@ class _$DocumentReferenceImpl extends _DocumentReference {
         implicitRulesElement,
         language,
         languageElement,
-        text,
+        const DeepCollectionEquality().hash(text),
         const DeepCollectionEquality().hash(_contained),
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),

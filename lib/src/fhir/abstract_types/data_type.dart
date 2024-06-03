@@ -8,22 +8,20 @@ import '../../../fhir_r4.dart';
 /// [DataType] Base definition for the few data types that are allowed to
 /// carry modifier extensions.
 @JsonSerializable()
-abstract mixin class DataType implements Element {
+abstract class DataType extends Element {
   /// [DataType] Base definition for the few data types that are allowed to
   /// carry modifier extensions.
 
-  /// [id] Unique id for the element within a resource (for internal
-  ///  references).
-  /// This may be any string value that does not contain spaces.;
   @override
   String? get id;
 
-  /// Produces a Yaml formatted String version of the object
+  @override
+  Map<String, dynamic> toJson() => <String, dynamic>{'id': id};
+
   @override
   String toYaml() => json2yaml(toJson());
 
-  /// Factory constructor that accepts a [String] in YAML format as an argument
-  DataType fromYaml(dynamic yaml) => yaml is String
+  static DataType fromYaml(dynamic yaml) => yaml is String
       ? DataType.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>)
       : yaml is YamlMap
@@ -33,13 +31,10 @@ abstract mixin class DataType implements Element {
               'DataType cannot be constructed from input provided,'
               ' it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor, accepts [Map<String, dynamic>] as an argument
   static DataType fromJson(Map<String, dynamic> json) {
     throw UnimplementedError('DataType.fromJson');
   }
 
-  /// Acts like a constructor, returns a [DataType], accepts a
-  /// [String] as an argument, mostly because I got tired of typing it out
   static DataType fromJsonString(String source) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
@@ -50,11 +45,6 @@ abstract mixin class DataType implements Element {
     }
   }
 
-  @override
-  Map<String, dynamic> toJson() => <String, dynamic>{'id': id};
-
-  /// Another convenience method because more and more I'm transmitting FHIR
-  /// data as a String and not a Map
   @override
   String toJsonString() => jsonEncode(toJson());
 }

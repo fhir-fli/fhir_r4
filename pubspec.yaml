@@ -19,7 +19,9 @@ environment:
 dependencies:
   archive: ^3.5.0
   collection: ^1.18.0
-  fhir_primitives: ^0.1.0
+  # fhir_primitives: ^0.1.0
+  fhir_primitives:
+    path: ../fhir_primitives
   freezed_annotation: ^2.4.1
   hive: ^2.2.3
   http: ^1.2.1

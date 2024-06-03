@@ -142,7 +142,6 @@ abstract class $BasicCopyWith<$Res> {
       Reference? author});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $NarrativeCopyWith<$Res>? get text;
   $CodeableConceptCopyWith<$Res> get code;
   $ReferenceCopyWith<$Res>? get subject;
   $ReferenceCopyWith<$Res>? get author;
@@ -265,18 +264,6 @@ class _$BasicCopyWithImpl<$Res, $Val extends Basic>
 
   @override
   @pragma('vm:prefer-inline')
-  $NarrativeCopyWith<$Res>? get text {
-    if (_value.text == null) {
-      return null;
-    }
-
-    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
-      return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get code {
     return $CodeableConceptCopyWith<$Res>(_value.code, (value) {
       return _then(_value.copyWith(code: value) as $Val);
@@ -337,8 +324,6 @@ abstract class _$$BasicImplCopyWith<$Res> implements $BasicCopyWith<$Res> {
 
   @override
   $FhirMetaCopyWith<$Res>? get meta;
-  @override
-  $NarrativeCopyWith<$Res>? get text;
   @override
   $CodeableConceptCopyWith<$Res> get code;
   @override
@@ -667,7 +652,7 @@ class _$BasicImpl extends _Basic {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            (identical(other.text, text) || other.text == text) &&
+            const DeepCollectionEquality().equals(other.text, text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -695,7 +680,7 @@ class _$BasicImpl extends _Basic {
       implicitRulesElement,
       language,
       languageElement,
-      text,
+      const DeepCollectionEquality().hash(text),
       const DeepCollectionEquality().hash(_contained),
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
@@ -988,7 +973,6 @@ abstract class $BinaryCopyWith<$Res> {
       @JsonKey(name: '_data') Element? dataElement});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $NarrativeCopyWith<$Res>? get text;
   $ReferenceCopyWith<$Res>? get securityContext;
 }
 
@@ -1104,18 +1088,6 @@ class _$BinaryCopyWithImpl<$Res, $Val extends Binary>
 
   @override
   @pragma('vm:prefer-inline')
-  $NarrativeCopyWith<$Res>? get text {
-    if (_value.text == null) {
-      return null;
-    }
-
-    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
-      return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get securityContext {
     if (_value.securityContext == null) {
       return null;
@@ -1155,8 +1127,6 @@ abstract class _$$BinaryImplCopyWith<$Res> implements $BinaryCopyWith<$Res> {
 
   @override
   $FhirMetaCopyWith<$Res>? get meta;
-  @override
-  $NarrativeCopyWith<$Res>? get text;
   @override
   $ReferenceCopyWith<$Res>? get securityContext;
 }
@@ -1468,7 +1438,7 @@ class _$BinaryImpl extends _Binary {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            (identical(other.text, text) || other.text == text) &&
+            const DeepCollectionEquality().equals(other.text, text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -1497,7 +1467,7 @@ class _$BinaryImpl extends _Binary {
       implicitRulesElement,
       language,
       languageElement,
-      text,
+      const DeepCollectionEquality().hash(text),
       const DeepCollectionEquality().hash(_contained),
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
@@ -1809,7 +1779,6 @@ abstract class $BundleCopyWith<$Res> {
       Signature? signature});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $NarrativeCopyWith<$Res>? get text;
   $IdentifierCopyWith<$Res>? get identifier;
   $SignatureCopyWith<$Res>? get signature;
 }
@@ -1951,18 +1920,6 @@ class _$BundleCopyWithImpl<$Res, $Val extends Bundle>
 
   @override
   @pragma('vm:prefer-inline')
-  $NarrativeCopyWith<$Res>? get text {
-    if (_value.text == null) {
-      return null;
-    }
-
-    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
-      return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $IdentifierCopyWith<$Res>? get identifier {
     if (_value.identifier == null) {
       return null;
@@ -2019,8 +1976,6 @@ abstract class _$$BundleImplCopyWith<$Res> implements $BundleCopyWith<$Res> {
 
   @override
   $FhirMetaCopyWith<$Res>? get meta;
-  @override
-  $NarrativeCopyWith<$Res>? get text;
   @override
   $IdentifierCopyWith<$Res>? get identifier;
   @override
@@ -2402,7 +2357,7 @@ class _$BundleImpl extends _Bundle {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            (identical(other.text, text) || other.text == text) &&
+            const DeepCollectionEquality().equals(other.text, text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -2438,7 +2393,7 @@ class _$BundleImpl extends _Bundle {
         implicitRulesElement,
         language,
         languageElement,
-        text,
+        const DeepCollectionEquality().hash(text),
         const DeepCollectionEquality().hash(_contained),
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),
@@ -5458,7 +5413,6 @@ abstract class $LinkageCopyWith<$Res> {
       List<LinkageItem> item});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $NarrativeCopyWith<$Res>? get text;
   $ReferenceCopyWith<$Res>? get author;
 }
 
@@ -5569,18 +5523,6 @@ class _$LinkageCopyWithImpl<$Res, $Val extends Linkage>
 
   @override
   @pragma('vm:prefer-inline')
-  $NarrativeCopyWith<$Res>? get text {
-    if (_value.text == null) {
-      return null;
-    }
-
-    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
-      return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get author {
     if (_value.author == null) {
       return null;
@@ -5619,8 +5561,6 @@ abstract class _$$LinkageImplCopyWith<$Res> implements $LinkageCopyWith<$Res> {
 
   @override
   $FhirMetaCopyWith<$Res>? get meta;
-  @override
-  $NarrativeCopyWith<$Res>? get text;
   @override
   $ReferenceCopyWith<$Res>? get author;
 }
@@ -5925,7 +5865,7 @@ class _$LinkageImpl extends _Linkage {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            (identical(other.text, text) || other.text == text) &&
+            const DeepCollectionEquality().equals(other.text, text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -5950,7 +5890,7 @@ class _$LinkageImpl extends _Linkage {
       implicitRulesElement,
       language,
       languageElement,
-      text,
+      const DeepCollectionEquality().hash(text),
       const DeepCollectionEquality().hash(_contained),
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
@@ -6677,7 +6617,6 @@ abstract class $MessageHeaderCopyWith<$Res> {
       FhirCanonical? definition});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $NarrativeCopyWith<$Res>? get text;
   $CodingCopyWith<$Res>? get eventCoding;
   $ReferenceCopyWith<$Res>? get sender;
   $ReferenceCopyWith<$Res>? get enterer;
@@ -6840,18 +6779,6 @@ class _$MessageHeaderCopyWithImpl<$Res, $Val extends MessageHeader>
 
   @override
   @pragma('vm:prefer-inline')
-  $NarrativeCopyWith<$Res>? get text {
-    if (_value.text == null) {
-      return null;
-    }
-
-    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
-      return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $CodingCopyWith<$Res>? get eventCoding {
     if (_value.eventCoding == null) {
       return null;
@@ -6980,8 +6907,6 @@ abstract class _$$MessageHeaderImplCopyWith<$Res>
 
   @override
   $FhirMetaCopyWith<$Res>? get meta;
-  @override
-  $NarrativeCopyWith<$Res>? get text;
   @override
   $CodingCopyWith<$Res>? get eventCoding;
   @override
@@ -7417,7 +7342,7 @@ class _$MessageHeaderImpl extends _MessageHeader {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            (identical(other.text, text) || other.text == text) &&
+            const DeepCollectionEquality().equals(other.text, text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -7457,7 +7382,7 @@ class _$MessageHeaderImpl extends _MessageHeader {
         implicitRulesElement,
         language,
         languageElement,
-        text,
+        const DeepCollectionEquality().hash(text),
         const DeepCollectionEquality().hash(_contained),
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),
@@ -9364,7 +9289,6 @@ abstract class $OperationOutcomeCopyWith<$Res> {
       List<OperationOutcomeIssue> issue});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $NarrativeCopyWith<$Res>? get text;
 }
 
 /// @nodoc
@@ -9456,18 +9380,6 @@ class _$OperationOutcomeCopyWithImpl<$Res, $Val extends OperationOutcome>
       return _then(_value.copyWith(meta: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $NarrativeCopyWith<$Res>? get text {
-    if (_value.text == null) {
-      return null;
-    }
-
-    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
-      return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -9495,8 +9407,6 @@ abstract class _$$OperationOutcomeImplCopyWith<$Res>
 
   @override
   $FhirMetaCopyWith<$Res>? get meta;
-  @override
-  $NarrativeCopyWith<$Res>? get text;
 }
 
 /// @nodoc
@@ -9763,7 +9673,7 @@ class _$OperationOutcomeImpl extends _OperationOutcome {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            (identical(other.text, text) || other.text == text) &&
+            const DeepCollectionEquality().equals(other.text, text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -9784,7 +9694,7 @@ class _$OperationOutcomeImpl extends _OperationOutcome {
       implicitRulesElement,
       language,
       languageElement,
-      text,
+      const DeepCollectionEquality().hash(text),
       const DeepCollectionEquality().hash(_contained),
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
@@ -10755,7 +10665,6 @@ abstract class $ParametersCopyWith<$Res> {
       List<ParametersParameter>? parameter});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $NarrativeCopyWith<$Res>? get text;
 }
 
 /// @nodoc
@@ -10847,18 +10756,6 @@ class _$ParametersCopyWithImpl<$Res, $Val extends Parameters>
       return _then(_value.copyWith(meta: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $NarrativeCopyWith<$Res>? get text {
-    if (_value.text == null) {
-      return null;
-    }
-
-    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
-      return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -10886,8 +10783,6 @@ abstract class _$$ParametersImplCopyWith<$Res>
 
   @override
   $FhirMetaCopyWith<$Res>? get meta;
-  @override
-  $NarrativeCopyWith<$Res>? get text;
 }
 
 /// @nodoc
@@ -11154,7 +11049,7 @@ class _$ParametersImpl extends _Parameters {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            (identical(other.text, text) || other.text == text) &&
+            const DeepCollectionEquality().equals(other.text, text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -11176,7 +11071,7 @@ class _$ParametersImpl extends _Parameters {
       implicitRulesElement,
       language,
       languageElement,
-      text,
+      const DeepCollectionEquality().hash(text),
       const DeepCollectionEquality().hash(_contained),
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
@@ -14320,7 +14215,6 @@ abstract class $SubscriptionCopyWith<$Res> {
       SubscriptionChannel channel});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $NarrativeCopyWith<$Res>? get text;
   $SubscriptionChannelCopyWith<$Res> get channel;
 }
 
@@ -14471,18 +14365,6 @@ class _$SubscriptionCopyWithImpl<$Res, $Val extends Subscription>
 
   @override
   @pragma('vm:prefer-inline')
-  $NarrativeCopyWith<$Res>? get text {
-    if (_value.text == null) {
-      return null;
-    }
-
-    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
-      return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $SubscriptionChannelCopyWith<$Res> get channel {
     return $SubscriptionChannelCopyWith<$Res>(_value.channel, (value) {
       return _then(_value.copyWith(channel: value) as $Val);
@@ -14526,8 +14408,6 @@ abstract class _$$SubscriptionImplCopyWith<$Res>
 
   @override
   $FhirMetaCopyWith<$Res>? get meta;
-  @override
-  $NarrativeCopyWith<$Res>? get text;
   @override
   $SubscriptionChannelCopyWith<$Res> get channel;
 }
@@ -14917,7 +14797,7 @@ class _$SubscriptionImpl extends _Subscription {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            (identical(other.text, text) || other.text == text) &&
+            const DeepCollectionEquality().equals(other.text, text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -14955,7 +14835,7 @@ class _$SubscriptionImpl extends _Subscription {
         implicitRulesElement,
         language,
         languageElement,
-        text,
+        const DeepCollectionEquality().hash(text),
         const DeepCollectionEquality().hash(_contained),
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),
@@ -15848,7 +15728,6 @@ abstract class $SubscriptionStatusCopyWith<$Res> {
       List<CodeableConcept>? error});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $NarrativeCopyWith<$Res>? get text;
   $ReferenceCopyWith<$Res> get subscription;
 }
 
@@ -15990,18 +15869,6 @@ class _$SubscriptionStatusCopyWithImpl<$Res, $Val extends SubscriptionStatus>
 
   @override
   @pragma('vm:prefer-inline')
-  $NarrativeCopyWith<$Res>? get text {
-    if (_value.text == null) {
-      return null;
-    }
-
-    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
-      return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get subscription {
     return $ReferenceCopyWith<$Res>(_value.subscription, (value) {
       return _then(_value.copyWith(subscription: value) as $Val);
@@ -16043,8 +15910,6 @@ abstract class _$$SubscriptionStatusImplCopyWith<$Res>
 
   @override
   $FhirMetaCopyWith<$Res>? get meta;
-  @override
-  $NarrativeCopyWith<$Res>? get text;
   @override
   $ReferenceCopyWith<$Res> get subscription;
 }
@@ -16368,7 +16233,7 @@ class _$SubscriptionStatusImpl extends _SubscriptionStatus {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            (identical(other.text, text) || other.text == text) &&
+            const DeepCollectionEquality().equals(other.text, text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -16408,7 +16273,7 @@ class _$SubscriptionStatusImpl extends _SubscriptionStatus {
         implicitRulesElement,
         language,
         languageElement,
-        text,
+        const DeepCollectionEquality().hash(text),
         const DeepCollectionEquality().hash(_contained),
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),
@@ -17211,7 +17076,6 @@ abstract class $SubscriptionTopicCopyWith<$Res> {
       List<SubscriptionTopicNotificationShape>? notificationShape});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $NarrativeCopyWith<$Res>? get text;
   $PeriodCopyWith<$Res>? get effectivePeriod;
 }
 
@@ -17472,18 +17336,6 @@ class _$SubscriptionTopicCopyWithImpl<$Res, $Val extends SubscriptionTopic>
 
   @override
   @pragma('vm:prefer-inline')
-  $NarrativeCopyWith<$Res>? get text {
-    if (_value.text == null) {
-      return null;
-    }
-
-    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
-      return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get effectivePeriod {
     if (_value.effectivePeriod == null) {
       return null;
@@ -17552,8 +17404,6 @@ abstract class _$$SubscriptionTopicImplCopyWith<$Res>
 
   @override
   $FhirMetaCopyWith<$Res>? get meta;
-  @override
-  $NarrativeCopyWith<$Res>? get text;
   @override
   $PeriodCopyWith<$Res>? get effectivePeriod;
 }
@@ -18169,7 +18019,7 @@ class _$SubscriptionTopicImpl extends _SubscriptionTopic {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            (identical(other.text, text) || other.text == text) &&
+            const DeepCollectionEquality().equals(other.text, text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -18250,7 +18100,7 @@ class _$SubscriptionTopicImpl extends _SubscriptionTopic {
         implicitRulesElement,
         language,
         languageElement,
-        text,
+        const DeepCollectionEquality().hash(text),
         const DeepCollectionEquality().hash(_contained),
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),

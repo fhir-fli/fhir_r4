@@ -5,11 +5,11 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-/// [FhirBaseElement] Base definition for all elements in a resource.
+/// [PrimitiveElement] Base definition for all elements in a resource.
 @JsonSerializable()
-class FhirBaseElement implements Element {
-  /// [FhirBaseElement] Base definition for all elements in a resource.
-  const FhirBaseElement({
+class PrimitiveElement implements Element {
+  /// [PrimitiveElement] Base definition for all elements in a resource.
+  const PrimitiveElement({
     this.id,
     this.extension_,
   });
@@ -21,22 +21,22 @@ class FhirBaseElement implements Element {
   final List<FhirExtension>? extension_;
 
   /// Factory constructor that accepts a [String] in YAML format as an argument
-  factory FhirBaseElement.fromYaml(dynamic yaml) => yaml is String
-      ? FhirBaseElement.fromJson(
+  factory PrimitiveElement.fromYaml(dynamic yaml) => yaml is String
+      ? PrimitiveElement.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>)
       : yaml is YamlMap
-          ? FhirBaseElement.fromJson(
+          ? PrimitiveElement.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>)
           : throw ArgumentError(
-              'FhirBaseElement cannot be constructed from input provided,'
+              'PrimitiveElement cannot be constructed from input provided,'
               ' it is neither a yaml string nor a yaml map.');
 
   @override
   String get fhirType => 'Element';
 
   /// Factory constructor, accepts [Map<String, dynamic>] as an argument
-  factory FhirBaseElement.fromJson(Map<String, dynamic> json) {
-    return FhirBaseElement(
+  factory PrimitiveElement.fromJson(Map<String, dynamic> json) {
+    return PrimitiveElement(
       id: json['id'] as String?,
       extension_: json['extension'] == null
           ? null
@@ -49,10 +49,10 @@ class FhirBaseElement implements Element {
 
   /// Acts like a constructor, returns a [Element], accepts a
   /// [String] as an argument, mostly because I got tired of typing it out
-  factory FhirBaseElement.fromJsonString(String source) {
+  factory PrimitiveElement.fromJsonString(String source) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return FhirBaseElement.fromJson(json);
+      return PrimitiveElement.fromJson(json);
     } else {
       throw FormatException('FormatException:\nYou passed $json\n'
           'This does not properly decode to a Map<String,dynamic>.');

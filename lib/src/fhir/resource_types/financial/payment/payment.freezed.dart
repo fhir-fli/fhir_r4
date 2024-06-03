@@ -182,7 +182,6 @@ abstract class $PaymentNoticeCopyWith<$Res> {
       CodeableConcept? paymentStatus});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $NarrativeCopyWith<$Res>? get text;
   $ReferenceCopyWith<$Res>? get request;
   $ReferenceCopyWith<$Res>? get response;
   $ReferenceCopyWith<$Res>? get provider;
@@ -355,18 +354,6 @@ class _$PaymentNoticeCopyWithImpl<$Res, $Val extends PaymentNotice>
 
   @override
   @pragma('vm:prefer-inline')
-  $NarrativeCopyWith<$Res>? get text {
-    if (_value.text == null) {
-      return null;
-    }
-
-    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
-      return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get request {
     if (_value.request == null) {
       return null;
@@ -489,8 +476,6 @@ abstract class _$$PaymentNoticeImplCopyWith<$Res>
 
   @override
   $FhirMetaCopyWith<$Res>? get meta;
-  @override
-  $NarrativeCopyWith<$Res>? get text;
   @override
   $ReferenceCopyWith<$Res>? get request;
   @override
@@ -920,7 +905,7 @@ class _$PaymentNoticeImpl extends _PaymentNotice {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            (identical(other.text, text) || other.text == text) &&
+            const DeepCollectionEquality().equals(other.text, text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -964,7 +949,7 @@ class _$PaymentNoticeImpl extends _PaymentNotice {
         implicitRulesElement,
         language,
         languageElement,
-        text,
+        const DeepCollectionEquality().hash(text),
         const DeepCollectionEquality().hash(_contained),
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),
@@ -1380,7 +1365,6 @@ abstract class $PaymentReconciliationCopyWith<$Res> {
       List<PaymentReconciliationProcessNote>? processNote});
 
   $FhirMetaCopyWith<$Res>? get meta;
-  $NarrativeCopyWith<$Res>? get text;
   $PeriodCopyWith<$Res>? get period;
   $ReferenceCopyWith<$Res>? get paymentIssuer;
   $ReferenceCopyWith<$Res>? get request;
@@ -1578,18 +1562,6 @@ class _$PaymentReconciliationCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $NarrativeCopyWith<$Res>? get text {
-    if (_value.text == null) {
-      return null;
-    }
-
-    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
-      return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get period {
     if (_value.period == null) {
       return null;
@@ -1714,8 +1686,6 @@ abstract class _$$PaymentReconciliationImplCopyWith<$Res>
 
   @override
   $FhirMetaCopyWith<$Res>? get meta;
-  @override
-  $NarrativeCopyWith<$Res>? get text;
   @override
   $PeriodCopyWith<$Res>? get period;
   @override
@@ -2222,7 +2192,7 @@ class _$PaymentReconciliationImpl extends _PaymentReconciliation {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            (identical(other.text, text) || other.text == text) &&
+            const DeepCollectionEquality().equals(other.text, text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -2276,7 +2246,7 @@ class _$PaymentReconciliationImpl extends _PaymentReconciliation {
         implicitRulesElement,
         language,
         languageElement,
-        text,
+        const DeepCollectionEquality().hash(text),
         const DeepCollectionEquality().hash(_contained),
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),
