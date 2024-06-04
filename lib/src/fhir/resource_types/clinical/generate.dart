@@ -2,7 +2,7 @@ import 'dart:io';
 
 void main() {
   final Directory directory = Directory('.');
-  final List<FileSystemEntity> files = directory.listSync();
+  final List<FileSystemEntity> files = directory.listSync(recursive: true);
 
   for (final FileSystemEntity file in files) {
     if (file is File && file.path.endsWith('.dart')) {
@@ -65,12 +65,16 @@ void processFile(File file) {
 }
 
 String? extractClassName(String line) {
-  final RegExp regex = RegExp(r'@freezed\s+class\s+(\w+)\s+with\s+\*\$\w+\s+implements\s+DomainResource');
+  final RegExp regex = RegExp(
+      r'@freezed\s+class\s+(\w+)\s+with\s+\*\$\w+\s+implements\s+DomainResource');
   final RegExpMatch? match = regex.firstMatch(line);
   return match?.group(1);
 }
 
 String snakeCase(String input) {
   final RegExp regex = RegExp(r'(?<=[a-z])[A-Z]');
-  return input.replaceAllMapped(regex, (Match match) => '_${match.group(0)!.toLowerCase()}').toLowerCase();
+  return input
+      .replaceAllMapped(
+          regex, (Match match) => '_${match.group(0)!.toLowerCase()}')
+      .toLowerCase();
 }
