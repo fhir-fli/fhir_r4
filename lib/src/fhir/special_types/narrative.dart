@@ -101,6 +101,5 @@ class Narrative with _$Narrative implements DataType {
   String toJsonString() => jsonEncode(toJson());
 
   @override
-  @override
   String toYaml() => json2yaml(toJson());
 }

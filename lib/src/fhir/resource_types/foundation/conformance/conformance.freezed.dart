@@ -354,6 +354,7 @@ abstract class $CapabilityStatementCopyWith<$Res> {
       List<CapabilityStatementDocument>? document});
 
   $FhirMetaCopyWith<$Res>? get meta;
+  $NarrativeCopyWith<$Res>? get text;
   $CapabilityStatementSoftwareCopyWith<$Res>? get software;
   $CapabilityStatementImplementationCopyWith<$Res>? get implementation;
 }
@@ -650,6 +651,18 @@ class _$CapabilityStatementCopyWithImpl<$Res, $Val extends CapabilityStatement>
 
   @override
   @pragma('vm:prefer-inline')
+  $NarrativeCopyWith<$Res>? get text {
+    if (_value.text == null) {
+      return null;
+    }
+
+    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
+      return _then(_value.copyWith(text: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
   $CapabilityStatementSoftwareCopyWith<$Res>? get software {
     if (_value.software == null) {
       return null;
@@ -740,6 +753,8 @@ abstract class _$$CapabilityStatementImplCopyWith<$Res>
 
   @override
   $FhirMetaCopyWith<$Res>? get meta;
+  @override
+  $NarrativeCopyWith<$Res>? get text;
   @override
   $CapabilityStatementSoftwareCopyWith<$Res>? get software;
   @override
@@ -1620,7 +1635,7 @@ class _$CapabilityStatementImpl extends _CapabilityStatement {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            const DeepCollectionEquality().equals(other.text, text) &&
+            (identical(other.text, text) || other.text == text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -1709,7 +1724,7 @@ class _$CapabilityStatementImpl extends _CapabilityStatement {
         implicitRulesElement,
         language,
         languageElement,
-        const DeepCollectionEquality().hash(text),
+        text,
         const DeepCollectionEquality().hash(_contained),
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),
@@ -9667,6 +9682,7 @@ abstract class $CompartmentDefinitionCopyWith<$Res> {
       List<CompartmentDefinitionResource>? resource});
 
   $FhirMetaCopyWith<$Res>? get meta;
+  $NarrativeCopyWith<$Res>? get text;
 }
 
 /// @nodoc
@@ -9879,6 +9895,18 @@ class _$CompartmentDefinitionCopyWithImpl<$Res,
       return _then(_value.copyWith(meta: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $NarrativeCopyWith<$Res>? get text {
+    if (_value.text == null) {
+      return null;
+    }
+
+    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
+      return _then(_value.copyWith(text: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -9931,6 +9959,8 @@ abstract class _$$CompartmentDefinitionImplCopyWith<$Res>
 
   @override
   $FhirMetaCopyWith<$Res>? get meta;
+  @override
+  $NarrativeCopyWith<$Res>? get text;
 }
 
 /// @nodoc
@@ -10505,7 +10535,7 @@ class _$CompartmentDefinitionImpl extends _CompartmentDefinition {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            const DeepCollectionEquality().equals(other.text, text) &&
+            (identical(other.text, text) || other.text == text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -10565,7 +10595,7 @@ class _$CompartmentDefinitionImpl extends _CompartmentDefinition {
         implicitRulesElement,
         language,
         languageElement,
-        const DeepCollectionEquality().hash(text),
+        text,
         const DeepCollectionEquality().hash(_contained),
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),
@@ -11652,6 +11682,7 @@ abstract class $ExampleScenarioCopyWith<$Res> {
       List<FhirCanonical>? workflow});
 
   $FhirMetaCopyWith<$Res>? get meta;
+  $NarrativeCopyWith<$Res>? get text;
 }
 
 /// @nodoc
@@ -11868,6 +11899,18 @@ class _$ExampleScenarioCopyWithImpl<$Res, $Val extends ExampleScenario>
       return _then(_value.copyWith(meta: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $NarrativeCopyWith<$Res>? get text {
+    if (_value.text == null) {
+      return null;
+    }
+
+    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
+      return _then(_value.copyWith(text: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -11920,6 +11963,8 @@ abstract class _$$ExampleScenarioImplCopyWith<$Res>
 
   @override
   $FhirMetaCopyWith<$Res>? get meta;
+  @override
+  $NarrativeCopyWith<$Res>? get text;
 }
 
 /// @nodoc
@@ -12559,7 +12604,7 @@ class _$ExampleScenarioImpl extends _ExampleScenario {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            const DeepCollectionEquality().equals(other.text, text) &&
+            (identical(other.text, text) || other.text == text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -12620,7 +12665,7 @@ class _$ExampleScenarioImpl extends _ExampleScenario {
         implicitRulesElement,
         language,
         languageElement,
-        const DeepCollectionEquality().hash(text),
+        text,
         const DeepCollectionEquality().hash(_contained),
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),
@@ -17609,6 +17654,7 @@ abstract class $GraphDefinitionCopyWith<$Res> {
       List<GraphDefinitionLink>? link});
 
   $FhirMetaCopyWith<$Res>? get meta;
+  $NarrativeCopyWith<$Res>? get text;
 }
 
 /// @nodoc
@@ -17820,6 +17866,18 @@ class _$GraphDefinitionCopyWithImpl<$Res, $Val extends GraphDefinition>
       return _then(_value.copyWith(meta: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $NarrativeCopyWith<$Res>? get text {
+    if (_value.text == null) {
+      return null;
+    }
+
+    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
+      return _then(_value.copyWith(text: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -17871,6 +17929,8 @@ abstract class _$$GraphDefinitionImplCopyWith<$Res>
 
   @override
   $FhirMetaCopyWith<$Res>? get meta;
+  @override
+  $NarrativeCopyWith<$Res>? get text;
 }
 
 /// @nodoc
@@ -18452,7 +18512,7 @@ class _$GraphDefinitionImpl extends _GraphDefinition {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            const DeepCollectionEquality().equals(other.text, text) &&
+            (identical(other.text, text) || other.text == text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -18512,7 +18572,7 @@ class _$GraphDefinitionImpl extends _GraphDefinition {
         implicitRulesElement,
         language,
         languageElement,
-        const DeepCollectionEquality().hash(text),
+        text,
         const DeepCollectionEquality().hash(_contained),
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),
@@ -20885,6 +20945,7 @@ abstract class $ImplementationGuideCopyWith<$Res> {
       ImplementationGuideManifest? manifest});
 
   $FhirMetaCopyWith<$Res>? get meta;
+  $NarrativeCopyWith<$Res>? get text;
   $ImplementationGuideDefinitionCopyWith<$Res>? get definition;
   $ImplementationGuideManifestCopyWith<$Res>? get manifest;
 }
@@ -21141,6 +21202,18 @@ class _$ImplementationGuideCopyWithImpl<$Res, $Val extends ImplementationGuide>
 
   @override
   @pragma('vm:prefer-inline')
+  $NarrativeCopyWith<$Res>? get text {
+    if (_value.text == null) {
+      return null;
+    }
+
+    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
+      return _then(_value.copyWith(text: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
   $ImplementationGuideDefinitionCopyWith<$Res>? get definition {
     if (_value.definition == null) {
       return null;
@@ -21223,6 +21296,8 @@ abstract class _$$ImplementationGuideImplCopyWith<$Res>
 
   @override
   $FhirMetaCopyWith<$Res>? get meta;
+  @override
+  $NarrativeCopyWith<$Res>? get text;
   @override
   $ImplementationGuideDefinitionCopyWith<$Res>? get definition;
   @override
@@ -21944,7 +22019,7 @@ class _$ImplementationGuideImpl extends _ImplementationGuide {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            const DeepCollectionEquality().equals(other.text, text) &&
+            (identical(other.text, text) || other.text == text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -22021,7 +22096,7 @@ class _$ImplementationGuideImpl extends _ImplementationGuide {
         implicitRulesElement,
         language,
         languageElement,
-        const DeepCollectionEquality().hash(text),
+        text,
         const DeepCollectionEquality().hash(_contained),
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),
@@ -28446,6 +28521,7 @@ abstract class $MessageDefinitionCopyWith<$Res> {
       List<FhirCanonical>? graph});
 
   $FhirMetaCopyWith<$Res>? get meta;
+  $NarrativeCopyWith<$Res>? get text;
   $CodingCopyWith<$Res>? get eventCoding;
 }
 
@@ -28731,6 +28807,18 @@ class _$MessageDefinitionCopyWithImpl<$Res, $Val extends MessageDefinition>
 
   @override
   @pragma('vm:prefer-inline')
+  $NarrativeCopyWith<$Res>? get text {
+    if (_value.text == null) {
+      return null;
+    }
+
+    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
+      return _then(_value.copyWith(text: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
   $CodingCopyWith<$Res>? get eventCoding {
     if (_value.eventCoding == null) {
       return null;
@@ -28805,6 +28893,8 @@ abstract class _$$MessageDefinitionImplCopyWith<$Res>
 
   @override
   $FhirMetaCopyWith<$Res>? get meta;
+  @override
+  $NarrativeCopyWith<$Res>? get text;
   @override
   $CodingCopyWith<$Res>? get eventCoding;
 }
@@ -29603,7 +29693,7 @@ class _$MessageDefinitionImpl extends _MessageDefinition {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            const DeepCollectionEquality().equals(other.text, text) &&
+            (identical(other.text, text) || other.text == text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -29689,7 +29779,7 @@ class _$MessageDefinitionImpl extends _MessageDefinition {
         implicitRulesElement,
         language,
         languageElement,
-        const DeepCollectionEquality().hash(text),
+        text,
         const DeepCollectionEquality().hash(_contained),
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),
@@ -31372,6 +31462,7 @@ abstract class $OperationDefinitionCopyWith<$Res> {
       List<OperationDefinitionOverload>? overload});
 
   $FhirMetaCopyWith<$Res>? get meta;
+  $NarrativeCopyWith<$Res>? get text;
 }
 
 /// @nodoc
@@ -31678,6 +31769,18 @@ class _$OperationDefinitionCopyWithImpl<$Res, $Val extends OperationDefinition>
       return _then(_value.copyWith(meta: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $NarrativeCopyWith<$Res>? get text {
+    if (_value.text == null) {
+      return null;
+    }
+
+    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
+      return _then(_value.copyWith(text: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -31748,6 +31851,8 @@ abstract class _$$OperationDefinitionImplCopyWith<$Res>
 
   @override
   $FhirMetaCopyWith<$Res>? get meta;
+  @override
+  $NarrativeCopyWith<$Res>? get text;
 }
 
 /// @nodoc
@@ -32574,7 +32679,7 @@ class _$OperationDefinitionImpl extends _OperationDefinition {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            const DeepCollectionEquality().equals(other.text, text) &&
+            (identical(other.text, text) || other.text == text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -32666,7 +32771,7 @@ class _$OperationDefinitionImpl extends _OperationDefinition {
         implicitRulesElement,
         language,
         languageElement,
-        const DeepCollectionEquality().hash(text),
+        text,
         const DeepCollectionEquality().hash(_contained),
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),
@@ -35705,6 +35810,7 @@ abstract class $SearchParameterCopyWith<$Res> {
       List<SearchParameterComponent>? component});
 
   $FhirMetaCopyWith<$Res>? get meta;
+  $NarrativeCopyWith<$Res>? get text;
 }
 
 /// @nodoc
@@ -36026,6 +36132,18 @@ class _$SearchParameterCopyWithImpl<$Res, $Val extends SearchParameter>
       return _then(_value.copyWith(meta: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $NarrativeCopyWith<$Res>? get text {
+    if (_value.text == null) {
+      return null;
+    }
+
+    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
+      return _then(_value.copyWith(text: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -36099,6 +36217,8 @@ abstract class _$$SearchParameterImplCopyWith<$Res>
 
   @override
   $FhirMetaCopyWith<$Res>? get meta;
+  @override
+  $NarrativeCopyWith<$Res>? get text;
 }
 
 /// @nodoc
@@ -37036,7 +37156,7 @@ class _$SearchParameterImpl extends _SearchParameter {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            const DeepCollectionEquality().equals(other.text, text) &&
+            (identical(other.text, text) || other.text == text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -37136,7 +37256,7 @@ class _$SearchParameterImpl extends _SearchParameter {
         implicitRulesElement,
         language,
         languageElement,
-        const DeepCollectionEquality().hash(text),
+        text,
         const DeepCollectionEquality().hash(_contained),
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),
@@ -38370,6 +38490,7 @@ abstract class $StructureDefinitionCopyWith<$Res> {
       StructureDefinitionDifferential? differential});
 
   $FhirMetaCopyWith<$Res>? get meta;
+  $NarrativeCopyWith<$Res>? get text;
   $StructureDefinitionSnapshotCopyWith<$Res>? get snapshot;
   $StructureDefinitionDifferentialCopyWith<$Res>? get differential;
 }
@@ -38686,6 +38807,18 @@ class _$StructureDefinitionCopyWithImpl<$Res, $Val extends StructureDefinition>
 
   @override
   @pragma('vm:prefer-inline')
+  $NarrativeCopyWith<$Res>? get text {
+    if (_value.text == null) {
+      return null;
+    }
+
+    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
+      return _then(_value.copyWith(text: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
   $StructureDefinitionSnapshotCopyWith<$Res>? get snapshot {
     if (_value.snapshot == null) {
       return null;
@@ -38781,6 +38914,8 @@ abstract class _$$StructureDefinitionImplCopyWith<$Res>
 
   @override
   $FhirMetaCopyWith<$Res>? get meta;
+  @override
+  $NarrativeCopyWith<$Res>? get text;
   @override
   $StructureDefinitionSnapshotCopyWith<$Res>? get snapshot;
   @override
@@ -39662,7 +39797,7 @@ class _$StructureDefinitionImpl extends _StructureDefinition {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            const DeepCollectionEquality().equals(other.text, text) &&
+            (identical(other.text, text) || other.text == text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -39759,7 +39894,7 @@ class _$StructureDefinitionImpl extends _StructureDefinition {
         implicitRulesElement,
         language,
         languageElement,
-        const DeepCollectionEquality().hash(text),
+        text,
         const DeepCollectionEquality().hash(_contained),
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),
@@ -42172,6 +42307,7 @@ abstract class $StructureMapCopyWith<$Res> {
       List<StructureMapGroup> group});
 
   $FhirMetaCopyWith<$Res>? get meta;
+  $NarrativeCopyWith<$Res>? get text;
 }
 
 /// @nodoc
@@ -42403,6 +42539,18 @@ class _$StructureMapCopyWithImpl<$Res, $Val extends StructureMap>
       return _then(_value.copyWith(meta: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $NarrativeCopyWith<$Res>? get text {
+    if (_value.text == null) {
+      return null;
+    }
+
+    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
+      return _then(_value.copyWith(text: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -42458,6 +42606,8 @@ abstract class _$$StructureMapImplCopyWith<$Res>
 
   @override
   $FhirMetaCopyWith<$Res>? get meta;
+  @override
+  $NarrativeCopyWith<$Res>? get text;
 }
 
 /// @nodoc
@@ -43121,7 +43271,7 @@ class _$StructureMapImpl extends _StructureMap {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            const DeepCollectionEquality().equals(other.text, text) &&
+            (identical(other.text, text) || other.text == text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -43189,7 +43339,7 @@ class _$StructureMapImpl extends _StructureMap {
         implicitRulesElement,
         language,
         languageElement,
-        const DeepCollectionEquality().hash(text),
+        text,
         const DeepCollectionEquality().hash(_contained),
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),

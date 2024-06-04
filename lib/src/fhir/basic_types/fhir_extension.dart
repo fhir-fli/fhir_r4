@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
@@ -6,7 +9,7 @@ part 'fhir_extension.freezed.dart';
 part 'fhir_extension.g.dart';
 
 @freezed
-class FhirExtension with _$FhirExtension implements Element {
+class FhirExtension with _$FhirExtension implements FhirBase {
   const FhirExtension._();
 
   const factory FhirExtension({
@@ -378,7 +381,7 @@ class FhirExtension with _$FhirExtension implements Element {
     /// the data types (see [Extensibility](extensibility.html) for a list).
 
     @JsonKey(name: 'valueDosage') Dosage? valueDosage,
-  }) = _$FhirExtension;
+  }) = _FhirExtension;
 
   @override
   String get fhirType => 'FhirExtension';
@@ -405,6 +408,9 @@ class FhirExtension with _$FhirExtension implements Element {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-  @override
+
   String toJsonString() => jsonEncode(toJson());
+
+  @override
+  String toYaml() => json2yaml(toJson());
 }

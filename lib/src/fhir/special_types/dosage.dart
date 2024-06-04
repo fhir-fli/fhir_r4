@@ -10,13 +10,12 @@ import 'package:yaml/yaml.dart';
 // Project imports:
 import '../../../fhir_r4.dart';
 
-part 'special_types.enums.dart';
-part 'special_types.freezed.dart';
-part 'special_types.g.dart';
+part 'dosage.freezed.dart';
+part 'dosage.g.dart';
 
 /// [Dosage] Indicates how the medication is/was taken or should be taken by
 @freezed
-class Dosage with _$Dosage implements DataType {
+class Dosage with _$Dosage implements BackboneType {
   /// [Dosage] Indicates how the medication is/was taken or should be taken by
   const Dosage._();
 
@@ -213,11 +212,17 @@ class Dosage with _$Dosage implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  String toJsonString() => jsonEncode(toJson());
+
+  @override
+  String toYaml() => json2yaml(toJson());
 }
 
 /// [DosageDoseAndRate] Indicates how the medication is/was taken or should
 @freezed
-class DosageDoseAndRate with Element, _$DosageDoseAndRate {
+class DosageDoseAndRate with _$DosageDoseAndRate implements Element {
   /// [DosageDoseAndRate] Indicates how the medication is/was taken or should
   const DosageDoseAndRate._();
 
@@ -337,4 +342,10 @@ class DosageDoseAndRate with Element, _$DosageDoseAndRate {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  String toJsonString() => jsonEncode(toJson());
+
+  @override
+  String toYaml() => json2yaml(toJson());
 }

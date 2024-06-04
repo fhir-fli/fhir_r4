@@ -92,4 +92,10 @@ class CodeableReference with _$CodeableReference implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  String toJsonString() => jsonEncode(toJson());
+
+  @override
+  String toYaml() => json2yaml(toJson());
 }

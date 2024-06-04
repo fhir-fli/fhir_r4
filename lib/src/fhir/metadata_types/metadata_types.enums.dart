@@ -1,4 +1,4 @@
-part of 'metadata_types.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 enum ContributorType {
   @JsonValue('author')

@@ -1,0 +1,713 @@
+// coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
+
+part of 'attachment.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+
+Attachment _$AttachmentFromJson(Map<String, dynamic> json) {
+  return _Attachment.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Attachment {
+  /// [id] Unique id for the element within a resource (for internal
+  ///  references). This may be any string value that does not contain spaces.
+  String? get id => throw _privateConstructorUsedError;
+
+  /// [extension] May be used to represent additional information that is not
+  /// part of the basic definition of the element. To make the use of extensions
+  /// safe and manageable, there is a strict set of governance  applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of the
+  ///  definition of the extension.
+  @JsonKey(name: 'extension')
+  List<FhirExtension>? get extension_ => throw _privateConstructorUsedError;
+
+  /// [contentType] Identifies the type of the data in the attachment and
+  /// allows a method to be chosen to interpret or render the data. Includes
+  ///  mime type parameters such as charset where appropriate.
+  FhirCode? get contentType => throw _privateConstructorUsedError;
+
+  /// [contentTypeElement] Extensions for contentType
+  @JsonKey(name: '_contentType')
+  Element? get contentTypeElement => throw _privateConstructorUsedError;
+
+  /// [language] The human language of the content. The value can be any valid
+  ///  value according to BCP 47.
+  FhirCode? get language => throw _privateConstructorUsedError;
+
+  /// [languageElement] Extensions for language
+  @JsonKey(name: '_language')
+  Element? get languageElement => throw _privateConstructorUsedError;
+
+  /// [data] The actual data of the attachment - a sequence of bytes, base64
+  ///  encoded.
+  FhirBase64Binary? get data => throw _privateConstructorUsedError;
+
+  /// [dataElement] Extensions for data
+  @JsonKey(name: '_data')
+  Element? get dataElement => throw _privateConstructorUsedError;
+
+  /// [url] A location where the data can be accessed.
+  FhirUrl? get url => throw _privateConstructorUsedError;
+
+  /// [urlElement] Extensions for url
+  @JsonKey(name: '_url')
+  Element? get urlElement => throw _privateConstructorUsedError;
+
+  /// [size] The number of bytes of data that make up this attachment (before
+  ///  base64 encoding, if that is done).
+  FhirUnsignedInt? get size => throw _privateConstructorUsedError;
+
+  /// [sizeElement] Extensions for size
+  @JsonKey(name: '_size')
+  Element? get sizeElement => throw _privateConstructorUsedError;
+
+  /// [hash] The calculated hash of the data using SHA-1. Represented using
+  ///  base64.
+  FhirBase64Binary? get hash => throw _privateConstructorUsedError;
+
+  /// [hashElement] Extensions for hash
+  @JsonKey(name: '_hash')
+  Element? get hashElement => throw _privateConstructorUsedError;
+
+  /// [title] A label or set of text to display in place of the data.
+  String? get title => throw _privateConstructorUsedError;
+
+  /// [titleElement] Extensions for title
+  @JsonKey(name: '_title')
+  Element? get titleElement => throw _privateConstructorUsedError;
+
+  /// [creation] The date that the attachment was first created.
+  FhirDateTime? get creation => throw _privateConstructorUsedError;
+
+  /// [creationElement] Extensions for creation
+  @JsonKey(name: '_creation')
+  Element? get creationElement => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $AttachmentCopyWith<Attachment> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AttachmentCopyWith<$Res> {
+  factory $AttachmentCopyWith(
+          Attachment value, $Res Function(Attachment) then) =
+      _$AttachmentCopyWithImpl<$Res, Attachment>;
+  @useResult
+  $Res call(
+      {String? id,
+      @JsonKey(name: 'extension') List<FhirExtension>? extension_,
+      FhirCode? contentType,
+      @JsonKey(name: '_contentType') Element? contentTypeElement,
+      FhirCode? language,
+      @JsonKey(name: '_language') Element? languageElement,
+      FhirBase64Binary? data,
+      @JsonKey(name: '_data') Element? dataElement,
+      FhirUrl? url,
+      @JsonKey(name: '_url') Element? urlElement,
+      FhirUnsignedInt? size,
+      @JsonKey(name: '_size') Element? sizeElement,
+      FhirBase64Binary? hash,
+      @JsonKey(name: '_hash') Element? hashElement,
+      String? title,
+      @JsonKey(name: '_title') Element? titleElement,
+      FhirDateTime? creation,
+      @JsonKey(name: '_creation') Element? creationElement});
+}
+
+/// @nodoc
+class _$AttachmentCopyWithImpl<$Res, $Val extends Attachment>
+    implements $AttachmentCopyWith<$Res> {
+  _$AttachmentCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? extension_ = freezed,
+    Object? contentType = freezed,
+    Object? contentTypeElement = freezed,
+    Object? language = freezed,
+    Object? languageElement = freezed,
+    Object? data = freezed,
+    Object? dataElement = freezed,
+    Object? url = freezed,
+    Object? urlElement = freezed,
+    Object? size = freezed,
+    Object? sizeElement = freezed,
+    Object? hash = freezed,
+    Object? hashElement = freezed,
+    Object? title = freezed,
+    Object? titleElement = freezed,
+    Object? creation = freezed,
+    Object? creationElement = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      extension_: freezed == extension_
+          ? _value.extension_
+          : extension_ // ignore: cast_nullable_to_non_nullable
+              as List<FhirExtension>?,
+      contentType: freezed == contentType
+          ? _value.contentType
+          : contentType // ignore: cast_nullable_to_non_nullable
+              as FhirCode?,
+      contentTypeElement: freezed == contentTypeElement
+          ? _value.contentTypeElement
+          : contentTypeElement // ignore: cast_nullable_to_non_nullable
+              as Element?,
+      language: freezed == language
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as FhirCode?,
+      languageElement: freezed == languageElement
+          ? _value.languageElement
+          : languageElement // ignore: cast_nullable_to_non_nullable
+              as Element?,
+      data: freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as FhirBase64Binary?,
+      dataElement: freezed == dataElement
+          ? _value.dataElement
+          : dataElement // ignore: cast_nullable_to_non_nullable
+              as Element?,
+      url: freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as FhirUrl?,
+      urlElement: freezed == urlElement
+          ? _value.urlElement
+          : urlElement // ignore: cast_nullable_to_non_nullable
+              as Element?,
+      size: freezed == size
+          ? _value.size
+          : size // ignore: cast_nullable_to_non_nullable
+              as FhirUnsignedInt?,
+      sizeElement: freezed == sizeElement
+          ? _value.sizeElement
+          : sizeElement // ignore: cast_nullable_to_non_nullable
+              as Element?,
+      hash: freezed == hash
+          ? _value.hash
+          : hash // ignore: cast_nullable_to_non_nullable
+              as FhirBase64Binary?,
+      hashElement: freezed == hashElement
+          ? _value.hashElement
+          : hashElement // ignore: cast_nullable_to_non_nullable
+              as Element?,
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      titleElement: freezed == titleElement
+          ? _value.titleElement
+          : titleElement // ignore: cast_nullable_to_non_nullable
+              as Element?,
+      creation: freezed == creation
+          ? _value.creation
+          : creation // ignore: cast_nullable_to_non_nullable
+              as FhirDateTime?,
+      creationElement: freezed == creationElement
+          ? _value.creationElement
+          : creationElement // ignore: cast_nullable_to_non_nullable
+              as Element?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$AttachmentImplCopyWith<$Res>
+    implements $AttachmentCopyWith<$Res> {
+  factory _$$AttachmentImplCopyWith(
+          _$AttachmentImpl value, $Res Function(_$AttachmentImpl) then) =
+      __$$AttachmentImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String? id,
+      @JsonKey(name: 'extension') List<FhirExtension>? extension_,
+      FhirCode? contentType,
+      @JsonKey(name: '_contentType') Element? contentTypeElement,
+      FhirCode? language,
+      @JsonKey(name: '_language') Element? languageElement,
+      FhirBase64Binary? data,
+      @JsonKey(name: '_data') Element? dataElement,
+      FhirUrl? url,
+      @JsonKey(name: '_url') Element? urlElement,
+      FhirUnsignedInt? size,
+      @JsonKey(name: '_size') Element? sizeElement,
+      FhirBase64Binary? hash,
+      @JsonKey(name: '_hash') Element? hashElement,
+      String? title,
+      @JsonKey(name: '_title') Element? titleElement,
+      FhirDateTime? creation,
+      @JsonKey(name: '_creation') Element? creationElement});
+}
+
+/// @nodoc
+class __$$AttachmentImplCopyWithImpl<$Res>
+    extends _$AttachmentCopyWithImpl<$Res, _$AttachmentImpl>
+    implements _$$AttachmentImplCopyWith<$Res> {
+  __$$AttachmentImplCopyWithImpl(
+      _$AttachmentImpl _value, $Res Function(_$AttachmentImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? extension_ = freezed,
+    Object? contentType = freezed,
+    Object? contentTypeElement = freezed,
+    Object? language = freezed,
+    Object? languageElement = freezed,
+    Object? data = freezed,
+    Object? dataElement = freezed,
+    Object? url = freezed,
+    Object? urlElement = freezed,
+    Object? size = freezed,
+    Object? sizeElement = freezed,
+    Object? hash = freezed,
+    Object? hashElement = freezed,
+    Object? title = freezed,
+    Object? titleElement = freezed,
+    Object? creation = freezed,
+    Object? creationElement = freezed,
+  }) {
+    return _then(_$AttachmentImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      extension_: freezed == extension_
+          ? _value._extension_
+          : extension_ // ignore: cast_nullable_to_non_nullable
+              as List<FhirExtension>?,
+      contentType: freezed == contentType
+          ? _value.contentType
+          : contentType // ignore: cast_nullable_to_non_nullable
+              as FhirCode?,
+      contentTypeElement: freezed == contentTypeElement
+          ? _value.contentTypeElement
+          : contentTypeElement // ignore: cast_nullable_to_non_nullable
+              as Element?,
+      language: freezed == language
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as FhirCode?,
+      languageElement: freezed == languageElement
+          ? _value.languageElement
+          : languageElement // ignore: cast_nullable_to_non_nullable
+              as Element?,
+      data: freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as FhirBase64Binary?,
+      dataElement: freezed == dataElement
+          ? _value.dataElement
+          : dataElement // ignore: cast_nullable_to_non_nullable
+              as Element?,
+      url: freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as FhirUrl?,
+      urlElement: freezed == urlElement
+          ? _value.urlElement
+          : urlElement // ignore: cast_nullable_to_non_nullable
+              as Element?,
+      size: freezed == size
+          ? _value.size
+          : size // ignore: cast_nullable_to_non_nullable
+              as FhirUnsignedInt?,
+      sizeElement: freezed == sizeElement
+          ? _value.sizeElement
+          : sizeElement // ignore: cast_nullable_to_non_nullable
+              as Element?,
+      hash: freezed == hash
+          ? _value.hash
+          : hash // ignore: cast_nullable_to_non_nullable
+              as FhirBase64Binary?,
+      hashElement: freezed == hashElement
+          ? _value.hashElement
+          : hashElement // ignore: cast_nullable_to_non_nullable
+              as Element?,
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      titleElement: freezed == titleElement
+          ? _value.titleElement
+          : titleElement // ignore: cast_nullable_to_non_nullable
+              as Element?,
+      creation: freezed == creation
+          ? _value.creation
+          : creation // ignore: cast_nullable_to_non_nullable
+              as FhirDateTime?,
+      creationElement: freezed == creationElement
+          ? _value.creationElement
+          : creationElement // ignore: cast_nullable_to_non_nullable
+              as Element?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$AttachmentImpl extends _Attachment {
+  const _$AttachmentImpl(
+      {this.id,
+      @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
+      this.contentType,
+      @JsonKey(name: '_contentType') this.contentTypeElement,
+      this.language,
+      @JsonKey(name: '_language') this.languageElement,
+      this.data,
+      @JsonKey(name: '_data') this.dataElement,
+      this.url,
+      @JsonKey(name: '_url') this.urlElement,
+      this.size,
+      @JsonKey(name: '_size') this.sizeElement,
+      this.hash,
+      @JsonKey(name: '_hash') this.hashElement,
+      this.title,
+      @JsonKey(name: '_title') this.titleElement,
+      this.creation,
+      @JsonKey(name: '_creation') this.creationElement})
+      : _extension_ = extension_,
+        super._();
+
+  factory _$AttachmentImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AttachmentImplFromJson(json);
+
+  /// [id] Unique id for the element within a resource (for internal
+  ///  references). This may be any string value that does not contain spaces.
+  @override
+  final String? id;
+
+  /// [extension] May be used to represent additional information that is not
+  /// part of the basic definition of the element. To make the use of extensions
+  /// safe and manageable, there is a strict set of governance  applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of the
+  ///  definition of the extension.
+  final List<FhirExtension>? _extension_;
+
+  /// [extension] May be used to represent additional information that is not
+  /// part of the basic definition of the element. To make the use of extensions
+  /// safe and manageable, there is a strict set of governance  applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of the
+  ///  definition of the extension.
+  @override
+  @JsonKey(name: 'extension')
+  List<FhirExtension>? get extension_ {
+    final value = _extension_;
+    if (value == null) return null;
+    if (_extension_ is EqualUnmodifiableListView) return _extension_;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  /// [contentType] Identifies the type of the data in the attachment and
+  /// allows a method to be chosen to interpret or render the data. Includes
+  ///  mime type parameters such as charset where appropriate.
+  @override
+  final FhirCode? contentType;
+
+  /// [contentTypeElement] Extensions for contentType
+  @override
+  @JsonKey(name: '_contentType')
+  final Element? contentTypeElement;
+
+  /// [language] The human language of the content. The value can be any valid
+  ///  value according to BCP 47.
+  @override
+  final FhirCode? language;
+
+  /// [languageElement] Extensions for language
+  @override
+  @JsonKey(name: '_language')
+  final Element? languageElement;
+
+  /// [data] The actual data of the attachment - a sequence of bytes, base64
+  ///  encoded.
+  @override
+  final FhirBase64Binary? data;
+
+  /// [dataElement] Extensions for data
+  @override
+  @JsonKey(name: '_data')
+  final Element? dataElement;
+
+  /// [url] A location where the data can be accessed.
+  @override
+  final FhirUrl? url;
+
+  /// [urlElement] Extensions for url
+  @override
+  @JsonKey(name: '_url')
+  final Element? urlElement;
+
+  /// [size] The number of bytes of data that make up this attachment (before
+  ///  base64 encoding, if that is done).
+  @override
+  final FhirUnsignedInt? size;
+
+  /// [sizeElement] Extensions for size
+  @override
+  @JsonKey(name: '_size')
+  final Element? sizeElement;
+
+  /// [hash] The calculated hash of the data using SHA-1. Represented using
+  ///  base64.
+  @override
+  final FhirBase64Binary? hash;
+
+  /// [hashElement] Extensions for hash
+  @override
+  @JsonKey(name: '_hash')
+  final Element? hashElement;
+
+  /// [title] A label or set of text to display in place of the data.
+  @override
+  final String? title;
+
+  /// [titleElement] Extensions for title
+  @override
+  @JsonKey(name: '_title')
+  final Element? titleElement;
+
+  /// [creation] The date that the attachment was first created.
+  @override
+  final FhirDateTime? creation;
+
+  /// [creationElement] Extensions for creation
+  @override
+  @JsonKey(name: '_creation')
+  final Element? creationElement;
+
+  @override
+  String toString() {
+    return 'Attachment(id: $id, extension_: $extension_, contentType: $contentType, contentTypeElement: $contentTypeElement, language: $language, languageElement: $languageElement, data: $data, dataElement: $dataElement, url: $url, urlElement: $urlElement, size: $size, sizeElement: $sizeElement, hash: $hash, hashElement: $hashElement, title: $title, titleElement: $titleElement, creation: $creation, creationElement: $creationElement)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AttachmentImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            const DeepCollectionEquality()
+                .equals(other._extension_, _extension_) &&
+            (identical(other.contentType, contentType) ||
+                other.contentType == contentType) &&
+            (identical(other.contentTypeElement, contentTypeElement) ||
+                other.contentTypeElement == contentTypeElement) &&
+            (identical(other.language, language) ||
+                other.language == language) &&
+            (identical(other.languageElement, languageElement) ||
+                other.languageElement == languageElement) &&
+            (identical(other.data, data) || other.data == data) &&
+            (identical(other.dataElement, dataElement) ||
+                other.dataElement == dataElement) &&
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.urlElement, urlElement) ||
+                other.urlElement == urlElement) &&
+            (identical(other.size, size) || other.size == size) &&
+            (identical(other.sizeElement, sizeElement) ||
+                other.sizeElement == sizeElement) &&
+            (identical(other.hash, hash) || other.hash == hash) &&
+            (identical(other.hashElement, hashElement) ||
+                other.hashElement == hashElement) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.titleElement, titleElement) ||
+                other.titleElement == titleElement) &&
+            (identical(other.creation, creation) ||
+                other.creation == creation) &&
+            (identical(other.creationElement, creationElement) ||
+                other.creationElement == creationElement));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      const DeepCollectionEquality().hash(_extension_),
+      contentType,
+      contentTypeElement,
+      language,
+      languageElement,
+      data,
+      dataElement,
+      url,
+      urlElement,
+      size,
+      sizeElement,
+      hash,
+      hashElement,
+      title,
+      titleElement,
+      creation,
+      creationElement);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AttachmentImplCopyWith<_$AttachmentImpl> get copyWith =>
+      __$$AttachmentImplCopyWithImpl<_$AttachmentImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$AttachmentImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Attachment extends Attachment {
+  const factory _Attachment(
+          {final String? id,
+          @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
+          final FhirCode? contentType,
+          @JsonKey(name: '_contentType') final Element? contentTypeElement,
+          final FhirCode? language,
+          @JsonKey(name: '_language') final Element? languageElement,
+          final FhirBase64Binary? data,
+          @JsonKey(name: '_data') final Element? dataElement,
+          final FhirUrl? url,
+          @JsonKey(name: '_url') final Element? urlElement,
+          final FhirUnsignedInt? size,
+          @JsonKey(name: '_size') final Element? sizeElement,
+          final FhirBase64Binary? hash,
+          @JsonKey(name: '_hash') final Element? hashElement,
+          final String? title,
+          @JsonKey(name: '_title') final Element? titleElement,
+          final FhirDateTime? creation,
+          @JsonKey(name: '_creation') final Element? creationElement}) =
+      _$AttachmentImpl;
+  const _Attachment._() : super._();
+
+  factory _Attachment.fromJson(Map<String, dynamic> json) =
+      _$AttachmentImpl.fromJson;
+
+  @override
+
+  /// [id] Unique id for the element within a resource (for internal
+  ///  references). This may be any string value that does not contain spaces.
+  String? get id;
+  @override
+
+  /// [extension] May be used to represent additional information that is not
+  /// part of the basic definition of the element. To make the use of extensions
+  /// safe and manageable, there is a strict set of governance  applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of the
+  ///  definition of the extension.
+  @JsonKey(name: 'extension')
+  List<FhirExtension>? get extension_;
+  @override
+
+  /// [contentType] Identifies the type of the data in the attachment and
+  /// allows a method to be chosen to interpret or render the data. Includes
+  ///  mime type parameters such as charset where appropriate.
+  FhirCode? get contentType;
+  @override
+
+  /// [contentTypeElement] Extensions for contentType
+  @JsonKey(name: '_contentType')
+  Element? get contentTypeElement;
+  @override
+
+  /// [language] The human language of the content. The value can be any valid
+  ///  value according to BCP 47.
+  FhirCode? get language;
+  @override
+
+  /// [languageElement] Extensions for language
+  @JsonKey(name: '_language')
+  Element? get languageElement;
+  @override
+
+  /// [data] The actual data of the attachment - a sequence of bytes, base64
+  ///  encoded.
+  FhirBase64Binary? get data;
+  @override
+
+  /// [dataElement] Extensions for data
+  @JsonKey(name: '_data')
+  Element? get dataElement;
+  @override
+
+  /// [url] A location where the data can be accessed.
+  FhirUrl? get url;
+  @override
+
+  /// [urlElement] Extensions for url
+  @JsonKey(name: '_url')
+  Element? get urlElement;
+  @override
+
+  /// [size] The number of bytes of data that make up this attachment (before
+  ///  base64 encoding, if that is done).
+  FhirUnsignedInt? get size;
+  @override
+
+  /// [sizeElement] Extensions for size
+  @JsonKey(name: '_size')
+  Element? get sizeElement;
+  @override
+
+  /// [hash] The calculated hash of the data using SHA-1. Represented using
+  ///  base64.
+  FhirBase64Binary? get hash;
+  @override
+
+  /// [hashElement] Extensions for hash
+  @JsonKey(name: '_hash')
+  Element? get hashElement;
+  @override
+
+  /// [title] A label or set of text to display in place of the data.
+  String? get title;
+  @override
+
+  /// [titleElement] Extensions for title
+  @JsonKey(name: '_title')
+  Element? get titleElement;
+  @override
+
+  /// [creation] The date that the attachment was first created.
+  FhirDateTime? get creation;
+  @override
+
+  /// [creationElement] Extensions for creation
+  @JsonKey(name: '_creation')
+  Element? get creationElement;
+  @override
+  @JsonKey(ignore: true)
+  _$$AttachmentImplCopyWith<_$AttachmentImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
