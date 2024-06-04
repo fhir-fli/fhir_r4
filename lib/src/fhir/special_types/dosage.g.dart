@@ -19,18 +19,19 @@ _$DosageImpl _$$DosageImplFromJson(Map<String, dynamic> json) => _$DosageImpl(
           : FhirInteger.fromJson(json['sequence']),
       sequenceElement: json['_sequence'] == null
           ? null
-          : Element.fromJson(json['_sequence'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_sequence'] as Map<String, dynamic>),
       text: json['text'] as String?,
       textElement: json['_text'] == null
           ? null
-          : Element.fromJson(json['_text'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_text'] as Map<String, dynamic>),
       additionalInstruction: (json['additionalInstruction'] as List<dynamic>?)
           ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       patientInstruction: json['patientInstruction'] as String?,
       patientInstructionElement: json['_patientInstruction'] == null
           ? null
-          : Element.fromJson(
+          : PrimitiveElement.fromJson(
               json['_patientInstruction'] as Map<String, dynamic>),
       timing: json['timing'] == null
           ? null
@@ -40,7 +41,8 @@ _$DosageImpl _$$DosageImplFromJson(Map<String, dynamic> json) => _$DosageImpl(
           : FhirBoolean.fromJson(json['asNeededBoolean']),
       asNeededBooleanElement: json['_asNeededBoolean'] == null
           ? null
-          : Element.fromJson(json['_asNeededBoolean'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_asNeededBoolean'] as Map<String, dynamic>),
       asNeededCodeableConcept: json['asNeededCodeableConcept'] == null
           ? null
           : CodeableConcept.fromJson(

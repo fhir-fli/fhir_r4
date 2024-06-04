@@ -318,14 +318,14 @@ class TimingRepeat with _$TimingRepeat implements Element {
     FhirPositiveInt? count,
 
     /// [countElement] Extensions for count
-    @JsonKey(name: '_count') Element? countElement,
+    @JsonKey(name: '_count') PrimitiveElement? countElement,
 
     /// [countMax] If present, indicates that the count is a range - so to
     ///  perform the action between [count] and [countMax] times.
     FhirPositiveInt? countMax,
 
     /// [countMaxElement] Extensions for countMax
-    @JsonKey(name: '_countMax') Element? countMaxElement,
+    @JsonKey(name: '_countMax') PrimitiveElement? countMaxElement,
 
     /// [duration] How long this thing happens for when it happens. If
     /// durationMax is present, this element indicates the lower bound of the
@@ -333,21 +333,21 @@ class TimingRepeat with _$TimingRepeat implements Element {
     FhirDecimal? duration,
 
     /// [durationElement] Extensions for duration
-    @JsonKey(name: '_duration') Element? durationElement,
+    @JsonKey(name: '_duration') PrimitiveElement? durationElement,
 
     /// [durationMax] If present, indicates that the duration is a range - so to
     ///  perform the action between [duration] and [durationMax] time length.
     FhirDecimal? durationMax,
 
     /// [durationMaxElement] Extensions for durationMax
-    @JsonKey(name: '_durationMax') Element? durationMaxElement,
+    @JsonKey(name: '_durationMax') PrimitiveElement? durationMaxElement,
     @JsonKey(unknownEnumValue: TimingRepeatDurationUnit.unknown)
 
     /// [durationUnit] The units of time for the duration, in UCUM units.
     TimingRepeatDurationUnit? durationUnit,
 
     /// [durationUnitElement] Extensions for durationUnit
-    @JsonKey(name: '_durationUnit') Element? durationUnitElement,
+    @JsonKey(name: '_durationUnit') PrimitiveElement? durationUnitElement,
 
     /// [frequency] The number of times to repeat the action within the specified
     /// period. If frequencyMax is present, this element indicates the lower bound
@@ -355,7 +355,7 @@ class TimingRepeat with _$TimingRepeat implements Element {
     FhirPositiveInt? frequency,
 
     /// [frequencyElement] Extensions for frequency
-    @JsonKey(name: '_frequency') Element? frequencyElement,
+    @JsonKey(name: '_frequency') PrimitiveElement? frequencyElement,
 
     /// [frequencyMax] If present, indicates that the frequency is a range - so
     /// to repeat between [frequency] and [frequencyMax] times within the period
@@ -363,7 +363,7 @@ class TimingRepeat with _$TimingRepeat implements Element {
     FhirPositiveInt? frequencyMax,
 
     /// [frequencyMaxElement] Extensions for frequencyMax
-    @JsonKey(name: '_frequencyMax') Element? frequencyMaxElement,
+    @JsonKey(name: '_frequencyMax') PrimitiveElement? frequencyMaxElement,
 
     /// [period] Indicates the duration of time over which repetitions are to
     /// occur; e.g. to express "3 times per day", 3 would be the frequency and "1
@@ -372,7 +372,7 @@ class TimingRepeat with _$TimingRepeat implements Element {
     FhirDecimal? period,
 
     /// [periodElement] Extensions for period
-    @JsonKey(name: '_period') Element? periodElement,
+    @JsonKey(name: '_period') PrimitiveElement? periodElement,
 
     /// [periodMax] If present, indicates that the period is a range from [period]
     /// to [periodMax], allowing expressing concepts such as "do this once every
@@ -380,14 +380,14 @@ class TimingRepeat with _$TimingRepeat implements Element {
     FhirDecimal? periodMax,
 
     /// [periodMaxElement] Extensions for periodMax
-    @JsonKey(name: '_periodMax') Element? periodMaxElement,
+    @JsonKey(name: '_periodMax') PrimitiveElement? periodMaxElement,
     @JsonKey(unknownEnumValue: TimingRepeatPeriodUnit.unknown)
 
     /// [periodUnit] The units of time for the period in UCUM units.
     TimingRepeatPeriodUnit? periodUnit,
 
     /// [periodUnitElement] Extensions for periodUnit
-    @JsonKey(name: '_periodUnit') Element? periodUnitElement,
+    @JsonKey(name: '_periodUnit') PrimitiveElement? periodUnitElement,
 
     /// [dayOfWeek] If one or more days of week is provided, then the action
     ///  happens only on the specified day(s).
@@ -415,7 +415,7 @@ class TimingRepeat with _$TimingRepeat implements Element {
     FhirUnsignedInt? offset,
 
     /// [offsetElement] Extensions for offset
-    @JsonKey(name: '_offset') Element? offsetElement,
+    @JsonKey(name: '_offset') PrimitiveElement? offsetElement,
   }) = _TimingRepeat;
 
   @override

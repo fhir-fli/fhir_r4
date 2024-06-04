@@ -15,7 +15,7 @@ part 'summary.g.dart';
 
 /// [AdverseEvent] Actual or  potential/avoided event causing unintended
 @freezed
-class AdverseEvent with Resource, _$AdverseEvent {
+class AdverseEvent with _$AdverseEvent implements DomainResource {
   /// [AdverseEvent] Actual or  potential/avoided event causing unintended
   const AdverseEvent._();
 
@@ -153,26 +153,26 @@ class AdverseEvent with Resource, _$AdverseEvent {
     String? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
     FhirCode? language,
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
     Narrative? text,
     List<Resource>? contained,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Identifier? identifier,
     FhirCode? actuality,
-    @JsonKey(name: '_actuality') Element? actualityElement,
+    @JsonKey(name: '_actuality') PrimitiveElement? actualityElement,
     List<CodeableConcept>? category,
     CodeableConcept? event,
     required Reference subject,
     Reference? encounter,
     FhirDateTime? date,
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
     FhirDateTime? detected,
-    @JsonKey(name: '_detected') Element? detectedElement,
+    @JsonKey(name: '_detected') PrimitiveElement? detectedElement,
     FhirDateTime? recordedDate,
-    @JsonKey(name: '_recordedDate') Element? recordedDateElement,
+    @JsonKey(name: '_recordedDate') PrimitiveElement? recordedDateElement,
     List<Reference>? resultingCondition,
     Reference? location,
     CodeableConcept? seriousness,
@@ -224,7 +224,9 @@ class AdverseEvent with Resource, _$AdverseEvent {
 
 /// [AdverseEventSuspectEntity] Actual or  potential/avoided event causing
 @freezed
-class AdverseEventSuspectEntity with BackboneType, _$AdverseEventSuspectEntity {
+class AdverseEventSuspectEntity
+    with _$AdverseEventSuspectEntity
+    implements BackboneElement {
   /// [AdverseEventSuspectEntity] Actual or  potential/avoided event causing
   const AdverseEventSuspectEntity._();
 
@@ -304,7 +306,9 @@ class AdverseEventSuspectEntity with BackboneType, _$AdverseEventSuspectEntity {
 
 /// [AdverseEventCausality] Actual or  potential/avoided event causing
 @freezed
-class AdverseEventCausality with BackboneType, _$AdverseEventCausality {
+class AdverseEventCausality
+    with _$AdverseEventCausality
+    implements BackboneElement {
   /// [AdverseEventCausality] Actual or  potential/avoided event causing
   const AdverseEventCausality._();
 
@@ -354,7 +358,8 @@ class AdverseEventCausality with BackboneType, _$AdverseEventCausality {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? assessment,
     String? productRelatedness,
-    @JsonKey(name: '_productRelatedness') Element? productRelatednessElement,
+    @JsonKey(name: '_productRelatedness')
+    PrimitiveElement? productRelatednessElement,
     Reference? author,
     CodeableConcept? method,
   }) = _AdverseEventCausality;
@@ -392,7 +397,7 @@ class AdverseEventCausality with BackboneType, _$AdverseEventCausality {
 
 /// [AllergyIntolerance] Risk of harmful or undesirable, physiological
 @freezed
-class AllergyIntolerance with Resource, _$AllergyIntolerance {
+class AllergyIntolerance with _$AllergyIntolerance implements DomainResource {
   /// [AllergyIntolerance] Risk of harmful or undesirable, physiological
   const AllergyIntolerance._();
 
@@ -546,9 +551,9 @@ class AllergyIntolerance with Resource, _$AllergyIntolerance {
     String? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
     FhirCode? language,
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
     Narrative? text,
     List<Resource>? contained,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -557,27 +562,27 @@ class AllergyIntolerance with Resource, _$AllergyIntolerance {
     CodeableConcept? clinicalStatus,
     CodeableConcept? verificationStatus,
     FhirCode? type,
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
     List<FhirCode>? category,
     @JsonKey(name: '_category') List<Element?>? categoryElement,
     FhirCode? criticality,
-    @JsonKey(name: '_criticality') Element? criticalityElement,
+    @JsonKey(name: '_criticality') PrimitiveElement? criticalityElement,
     CodeableConcept? code,
     required Reference patient,
     Reference? encounter,
     FhirDateTime? onsetDateTime,
-    @JsonKey(name: '_onsetDateTime') Element? onsetDateTimeElement,
+    @JsonKey(name: '_onsetDateTime') PrimitiveElement? onsetDateTimeElement,
     Age? onsetAge,
     Period? onsetPeriod,
     Range? onsetRange,
     String? onsetString,
-    @JsonKey(name: '_onsetString') Element? onsetStringElement,
+    @JsonKey(name: '_onsetString') PrimitiveElement? onsetStringElement,
     FhirDateTime? recordedDate,
-    @JsonKey(name: '_recordedDate') Element? recordedDateElement,
+    @JsonKey(name: '_recordedDate') PrimitiveElement? recordedDateElement,
     Reference? recorder,
     Reference? asserter,
     FhirDateTime? lastOccurrence,
-    @JsonKey(name: '_lastOccurrence') Element? lastOccurrenceElement,
+    @JsonKey(name: '_lastOccurrence') PrimitiveElement? lastOccurrenceElement,
     List<Annotation>? note,
     List<AllergyIntoleranceReaction>? reaction,
   }) = _AllergyIntolerance;
@@ -694,11 +699,11 @@ class AllergyIntoleranceReaction
     CodeableConcept? substance,
     required List<CodeableConcept> manifestation,
     String? description,
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
     FhirDateTime? onset,
-    @JsonKey(name: '_onset') Element? onsetElement,
+    @JsonKey(name: '_onset') PrimitiveElement? onsetElement,
     FhirCode? severity,
-    @JsonKey(name: '_severity') Element? severityElement,
+    @JsonKey(name: '_severity') PrimitiveElement? severityElement,
     CodeableConcept? exposureRoute,
     List<Annotation>? note,
   }) = _AllergyIntoleranceReaction;
@@ -736,7 +741,7 @@ class AllergyIntoleranceReaction
 
 /// [ClinicalImpression] A record of a clinical assessment performed to
 @freezed
-class ClinicalImpression with Resource, _$ClinicalImpression {
+class ClinicalImpression with _$ClinicalImpression implements DomainResource {
   /// [ClinicalImpression] A record of a clinical assessment performed to
   const ClinicalImpression._();
 
@@ -882,27 +887,28 @@ class ClinicalImpression with Resource, _$ClinicalImpression {
     String? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
     FhirCode? language,
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
     Narrative? text,
     List<Resource>? contained,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     FhirCode? status,
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
     CodeableConcept? statusReason,
     CodeableConcept? code,
     String? description,
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
     required Reference subject,
     Reference? encounter,
     FhirDateTime? effectiveDateTime,
-    @JsonKey(name: '_effectiveDateTime') Element? effectiveDateTimeElement,
+    @JsonKey(name: '_effectiveDateTime')
+    PrimitiveElement? effectiveDateTimeElement,
     Period? effectivePeriod,
     FhirDateTime? date,
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
     Reference? assessor,
     Reference? previous,
     List<Reference>? problem,
@@ -910,7 +916,7 @@ class ClinicalImpression with Resource, _$ClinicalImpression {
     List<FhirUri>? protocol,
     @JsonKey(name: '_protocol') List<Element?>? protocolElement,
     String? summary,
-    @JsonKey(name: '_summary') Element? summaryElement,
+    @JsonKey(name: '_summary') PrimitiveElement? summaryElement,
     List<ClinicalImpressionFinding>? finding,
     List<CodeableConcept>? prognosisCodeableConcept,
     List<Reference>? prognosisReference,
@@ -1042,7 +1048,9 @@ class ClinicalImpressionInvestigation
 
 /// [ClinicalImpressionFinding] A record of a clinical assessment performed
 @freezed
-class ClinicalImpressionFinding with BackboneType, _$ClinicalImpressionFinding {
+class ClinicalImpressionFinding
+    with _$ClinicalImpressionFinding
+    implements BackboneElement {
   /// [ClinicalImpressionFinding] A record of a clinical assessment performed
   const ClinicalImpressionFinding._();
 
@@ -1095,7 +1103,7 @@ class ClinicalImpressionFinding with BackboneType, _$ClinicalImpressionFinding {
     CodeableConcept? itemCodeableConcept,
     Reference? itemReference,
     String? basis,
-    @JsonKey(name: '_basis') Element? basisElement,
+    @JsonKey(name: '_basis') PrimitiveElement? basisElement,
   }) = _ClinicalImpressionFinding;
 
   @override
@@ -1131,7 +1139,7 @@ class ClinicalImpressionFinding with BackboneType, _$ClinicalImpressionFinding {
 
 /// [Condition] A clinical condition, problem, diagnosis, or other event,
 @freezed
-class Condition with Resource, _$Condition {
+class Condition with _$Condition implements DomainResource {
   /// [Condition] A clinical condition, problem, diagnosis, or other event,
   const Condition._();
 
@@ -1291,9 +1299,9 @@ class Condition with Resource, _$Condition {
     String? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
     FhirCode? language,
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
     Narrative? text,
     List<Resource>? contained,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -1308,21 +1316,22 @@ class Condition with Resource, _$Condition {
     required Reference subject,
     Reference? encounter,
     FhirDateTime? onsetDateTime,
-    @JsonKey(name: '_onsetDateTime') Element? onsetDateTimeElement,
+    @JsonKey(name: '_onsetDateTime') PrimitiveElement? onsetDateTimeElement,
     Age? onsetAge,
     Period? onsetPeriod,
     Range? onsetRange,
     String? onsetString,
-    @JsonKey(name: '_onsetString') Element? onsetStringElement,
+    @JsonKey(name: '_onsetString') PrimitiveElement? onsetStringElement,
     FhirDateTime? abatementDateTime,
-    @JsonKey(name: '_abatementDateTime') Element? abatementDateTimeElement,
+    @JsonKey(name: '_abatementDateTime')
+    PrimitiveElement? abatementDateTimeElement,
     Age? abatementAge,
     Period? abatementPeriod,
     Range? abatementRange,
     String? abatementString,
-    @JsonKey(name: '_abatementString') Element? abatementStringElement,
+    @JsonKey(name: '_abatementString') PrimitiveElement? abatementStringElement,
     FhirDateTime? recordedDate,
-    @JsonKey(name: '_recordedDate') Element? recordedDateElement,
+    @JsonKey(name: '_recordedDate') PrimitiveElement? recordedDateElement,
     Reference? recorder,
     Reference? asserter,
     List<ConditionStage>? stage,
@@ -1368,7 +1377,7 @@ class Condition with Resource, _$Condition {
 
 /// [ConditionStage] A clinical condition, problem, diagnosis, or other
 @freezed
-class ConditionStage with BackboneType, _$ConditionStage {
+class ConditionStage with _$ConditionStage implements BackboneElement {
   /// [ConditionStage] A clinical condition, problem, diagnosis, or other
   const ConditionStage._();
 
@@ -1449,7 +1458,7 @@ class ConditionStage with BackboneType, _$ConditionStage {
 
 /// [ConditionEvidence] A clinical condition, problem, diagnosis, or other
 @freezed
-class ConditionEvidence with BackboneType, _$ConditionEvidence {
+class ConditionEvidence with _$ConditionEvidence implements BackboneElement {
   /// [ConditionEvidence] A clinical condition, problem, diagnosis, or other
   const ConditionEvidence._();
 
@@ -1527,7 +1536,7 @@ class ConditionEvidence with BackboneType, _$ConditionEvidence {
 
 /// [DetectedIssue] Indicates an actual or potential clinical issue with or
 @freezed
-class DetectedIssue with Resource, _$DetectedIssue {
+class DetectedIssue with _$DetectedIssue implements DomainResource {
   /// [DetectedIssue] Indicates an actual or potential clinical issue with or
   const DetectedIssue._();
 
@@ -1645,30 +1654,31 @@ class DetectedIssue with Resource, _$DetectedIssue {
     String? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
     FhirCode? language,
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
     Narrative? text,
     List<Resource>? contained,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     FhirCode? status,
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
     CodeableConcept? code,
     FhirCode? severity,
-    @JsonKey(name: '_severity') Element? severityElement,
+    @JsonKey(name: '_severity') PrimitiveElement? severityElement,
     Reference? patient,
     FhirDateTime? identifiedDateTime,
-    @JsonKey(name: '_identifiedDateTime') Element? identifiedDateTimeElement,
+    @JsonKey(name: '_identifiedDateTime')
+    PrimitiveElement? identifiedDateTimeElement,
     Period? identifiedPeriod,
     Reference? author,
     List<Reference>? implicated,
     List<DetectedIssueEvidence>? evidence,
     String? detail,
-    @JsonKey(name: '_detail') Element? detailElement,
+    @JsonKey(name: '_detail') PrimitiveElement? detailElement,
     FhirUri? reference,
-    @JsonKey(name: '_reference') Element? referenceElement,
+    @JsonKey(name: '_reference') PrimitiveElement? referenceElement,
     List<DetectedIssueMitigation>? mitigation,
   }) = _DetectedIssue;
 
@@ -1710,7 +1720,9 @@ class DetectedIssue with Resource, _$DetectedIssue {
 
 /// [DetectedIssueEvidence] Indicates an actual or potential clinical issue
 @freezed
-class DetectedIssueEvidence with BackboneType, _$DetectedIssueEvidence {
+class DetectedIssueEvidence
+    with _$DetectedIssueEvidence
+    implements BackboneElement {
   /// [DetectedIssueEvidence] Indicates an actual or potential clinical issue
   const DetectedIssueEvidence._();
 
@@ -1788,7 +1800,9 @@ class DetectedIssueEvidence with BackboneType, _$DetectedIssueEvidence {
 
 /// [DetectedIssueMitigation] Indicates an actual or potential clinical
 @freezed
-class DetectedIssueMitigation with BackboneType, _$DetectedIssueMitigation {
+class DetectedIssueMitigation
+    with _$DetectedIssueMitigation
+    implements BackboneElement {
   /// [DetectedIssueMitigation] Indicates an actual or potential clinical
   const DetectedIssueMitigation._();
 
@@ -1837,7 +1851,7 @@ class DetectedIssueMitigation with BackboneType, _$DetectedIssueMitigation {
     List<FhirExtension>? modifierExtension,
     required CodeableConcept action,
     FhirDateTime? date,
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
     Reference? author,
   }) = _DetectedIssueMitigation;
 
@@ -1874,7 +1888,7 @@ class DetectedIssueMitigation with BackboneType, _$DetectedIssueMitigation {
 
 /// [FamilyMemberHistory] Significant health conditions for a person related
 @freezed
-class FamilyMemberHistory with Resource, _$FamilyMemberHistory {
+class FamilyMemberHistory with _$FamilyMemberHistory implements DomainResource {
   /// [FamilyMemberHistory] Significant health conditions for a person related
   const FamilyMemberHistory._();
 
@@ -2041,9 +2055,9 @@ class FamilyMemberHistory with Resource, _$FamilyMemberHistory {
     String? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
     FhirCode? language,
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
     Narrative? text,
     List<Resource>? contained,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -2053,34 +2067,34 @@ class FamilyMemberHistory with Resource, _$FamilyMemberHistory {
     List<FhirUri>? instantiatesUri,
     @JsonKey(name: '_instantiatesUri') List<Element?>? instantiatesUriElement,
     FhirCode? status,
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
     CodeableConcept? dataAbsentReason,
     required Reference patient,
     FhirDateTime? date,
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
     String? name,
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
     required CodeableConcept relationship,
     CodeableConcept? sex,
     Period? bornPeriod,
     FhirDate? bornDate,
-    @JsonKey(name: '_bornDate') Element? bornDateElement,
+    @JsonKey(name: '_bornDate') PrimitiveElement? bornDateElement,
     String? bornString,
-    @JsonKey(name: '_bornString') Element? bornStringElement,
+    @JsonKey(name: '_bornString') PrimitiveElement? bornStringElement,
     Age? ageAge,
     Range? ageRange,
     String? ageString,
-    @JsonKey(name: '_ageString') Element? ageStringElement,
+    @JsonKey(name: '_ageString') PrimitiveElement? ageStringElement,
     FhirBoolean? estimatedAge,
-    @JsonKey(name: '_estimatedAge') Element? estimatedAgeElement,
+    @JsonKey(name: '_estimatedAge') PrimitiveElement? estimatedAgeElement,
     FhirBoolean? deceasedBoolean,
-    @JsonKey(name: '_deceasedBoolean') Element? deceasedBooleanElement,
+    @JsonKey(name: '_deceasedBoolean') PrimitiveElement? deceasedBooleanElement,
     Age? deceasedAge,
     Range? deceasedRange,
     FhirDate? deceasedDate,
-    @JsonKey(name: '_deceasedDate') Element? deceasedDateElement,
+    @JsonKey(name: '_deceasedDate') PrimitiveElement? deceasedDateElement,
     String? deceasedString,
-    @JsonKey(name: '_deceasedString') Element? deceasedStringElement,
+    @JsonKey(name: '_deceasedString') PrimitiveElement? deceasedStringElement,
     List<CodeableConcept>? reasonCode,
     List<Reference>? reasonReference,
     List<Annotation>? note,
@@ -2199,12 +2213,13 @@ class FamilyMemberHistoryCondition
     required CodeableConcept code,
     CodeableConcept? outcome,
     FhirBoolean? contributedToDeath,
-    @JsonKey(name: '_contributedToDeath') Element? contributedToDeathElement,
+    @JsonKey(name: '_contributedToDeath')
+    PrimitiveElement? contributedToDeathElement,
     Age? onsetAge,
     Range? onsetRange,
     Period? onsetPeriod,
     String? onsetString,
-    @JsonKey(name: '_onsetString') Element? onsetStringElement,
+    @JsonKey(name: '_onsetString') PrimitiveElement? onsetStringElement,
     List<Annotation>? note,
   }) = _FamilyMemberHistoryCondition;
 
@@ -2241,7 +2256,7 @@ class FamilyMemberHistoryCondition
 
 /// [Procedure] An action that is or was performed on or for a patient. This
 @freezed
-class Procedure with Resource, _$Procedure {
+class Procedure with _$Procedure implements DomainResource {
   /// [Procedure] An action that is or was performed on or for a patient. This
   const Procedure._();
 
@@ -2428,9 +2443,9 @@ class Procedure with Resource, _$Procedure {
     String? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
     FhirCode? language,
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
     Narrative? text,
     List<Resource>? contained,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -2442,17 +2457,18 @@ class Procedure with Resource, _$Procedure {
     List<Reference>? basedOn,
     List<Reference>? partOf,
     FhirCode? status,
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
     CodeableConcept? statusReason,
     CodeableConcept? category,
     CodeableConcept? code,
     required Reference subject,
     Reference? encounter,
     FhirDateTime? performedDateTime,
-    @JsonKey(name: '_performedDateTime') Element? performedDateTimeElement,
+    @JsonKey(name: '_performedDateTime')
+    PrimitiveElement? performedDateTimeElement,
     Period? performedPeriod,
     String? performedString,
-    @JsonKey(name: '_performedString') Element? performedStringElement,
+    @JsonKey(name: '_performedString') PrimitiveElement? performedStringElement,
     Age? performedAge,
     Range? performedRange,
     Reference? recorder,
@@ -2511,7 +2527,7 @@ class Procedure with Resource, _$Procedure {
 
 /// [ProcedurePerformer] An action that is or was performed on or for a
 @freezed
-class ProcedurePerformer with BackboneType, _$ProcedurePerformer {
+class ProcedurePerformer with _$ProcedurePerformer implements BackboneElement {
   /// [ProcedurePerformer] An action that is or was performed on or for a
   const ProcedurePerformer._();
 
@@ -2592,7 +2608,9 @@ class ProcedurePerformer with BackboneType, _$ProcedurePerformer {
 
 /// [ProcedureFocalDevice] An action that is or was performed on or for a
 @freezed
-class ProcedureFocalDevice with BackboneType, _$ProcedureFocalDevice {
+class ProcedureFocalDevice
+    with _$ProcedureFocalDevice
+    implements BackboneElement {
   /// [ProcedureFocalDevice] An action that is or was performed on or for a
   const ProcedureFocalDevice._();
 

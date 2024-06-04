@@ -16,7 +16,7 @@ _$NarrativeImpl _$$NarrativeImplFromJson(Map<String, dynamic> json) =>
           unknownValue: NarrativeStatus.unknown),
       statusElement: json['_status'] == null
           ? null
-          : Element.fromJson(json['_status'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_status'] as Map<String, dynamic>),
       div: json['div'] as String,
     );
 

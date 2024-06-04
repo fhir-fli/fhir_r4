@@ -37,7 +37,7 @@ mixin _$TriggerDefinition {
 
   /// [typeElement] Extensions for type
   @JsonKey(name: '_type')
-  Element? get typeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get typeElement => throw _privateConstructorUsedError;
 
   /// [name] A formal name for the event. This may be an absolute URI that
   /// identifies the event formally (e.g. from a trigger registry), or a simple
@@ -46,7 +46,7 @@ mixin _$TriggerDefinition {
 
   /// [nameElement] Extensions for name
   @JsonKey(name: '_name')
-  Element? get nameElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get nameElement => throw _privateConstructorUsedError;
 
   /// [timingTiming] The timing of the event (if this is a periodic trigger).
   Timing? get timingTiming => throw _privateConstructorUsedError;
@@ -60,14 +60,15 @@ mixin _$TriggerDefinition {
 
   /// [timingDateElement] Extensions for timingDate
   @JsonKey(name: '_timingDate')
-  Element? get timingDateElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get timingDateElement => throw _privateConstructorUsedError;
 
   /// [timingDateTime] The timing of the event (if this is a periodic trigger).
   FhirDateTime? get timingDateTime => throw _privateConstructorUsedError;
 
   /// [timingDateTimeElement] Extensions for timingDateTime
   @JsonKey(name: '_timingDateTime')
-  Element? get timingDateTimeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get timingDateTimeElement =>
+      throw _privateConstructorUsedError;
 
   /// [data] The triggering data of the event (if this is a data trigger). If
   /// more than one data is requirement is specified, then all the data
@@ -96,15 +97,15 @@ abstract class $TriggerDefinitionCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: TriggerDefinitionType.unknown)
       TriggerDefinitionType? type,
-      @JsonKey(name: '_type') Element? typeElement,
+      @JsonKey(name: '_type') PrimitiveElement? typeElement,
       String? name,
-      @JsonKey(name: '_name') Element? nameElement,
+      @JsonKey(name: '_name') PrimitiveElement? nameElement,
       Timing? timingTiming,
       Reference? timingReference,
       FhirDate? timingDate,
-      @JsonKey(name: '_timingDate') Element? timingDateElement,
+      @JsonKey(name: '_timingDate') PrimitiveElement? timingDateElement,
       FhirDateTime? timingDateTime,
-      @JsonKey(name: '_timingDateTime') Element? timingDateTimeElement,
+      @JsonKey(name: '_timingDateTime') PrimitiveElement? timingDateTimeElement,
       List<DataRequirement>? data,
       FhirExpression? condition});
 
@@ -157,7 +158,7 @@ class _$TriggerDefinitionCopyWithImpl<$Res, $Val extends TriggerDefinition>
       typeElement: freezed == typeElement
           ? _value.typeElement
           : typeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -165,7 +166,7 @@ class _$TriggerDefinitionCopyWithImpl<$Res, $Val extends TriggerDefinition>
       nameElement: freezed == nameElement
           ? _value.nameElement
           : nameElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       timingTiming: freezed == timingTiming
           ? _value.timingTiming
           : timingTiming // ignore: cast_nullable_to_non_nullable
@@ -181,7 +182,7 @@ class _$TriggerDefinitionCopyWithImpl<$Res, $Val extends TriggerDefinition>
       timingDateElement: freezed == timingDateElement
           ? _value.timingDateElement
           : timingDateElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       timingDateTime: freezed == timingDateTime
           ? _value.timingDateTime
           : timingDateTime // ignore: cast_nullable_to_non_nullable
@@ -189,7 +190,7 @@ class _$TriggerDefinitionCopyWithImpl<$Res, $Val extends TriggerDefinition>
       timingDateTimeElement: freezed == timingDateTimeElement
           ? _value.timingDateTimeElement
           : timingDateTimeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -251,15 +252,15 @@ abstract class _$$TriggerDefinitionImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: TriggerDefinitionType.unknown)
       TriggerDefinitionType? type,
-      @JsonKey(name: '_type') Element? typeElement,
+      @JsonKey(name: '_type') PrimitiveElement? typeElement,
       String? name,
-      @JsonKey(name: '_name') Element? nameElement,
+      @JsonKey(name: '_name') PrimitiveElement? nameElement,
       Timing? timingTiming,
       Reference? timingReference,
       FhirDate? timingDate,
-      @JsonKey(name: '_timingDate') Element? timingDateElement,
+      @JsonKey(name: '_timingDate') PrimitiveElement? timingDateElement,
       FhirDateTime? timingDateTime,
-      @JsonKey(name: '_timingDateTime') Element? timingDateTimeElement,
+      @JsonKey(name: '_timingDateTime') PrimitiveElement? timingDateTimeElement,
       List<DataRequirement>? data,
       FhirExpression? condition});
 
@@ -313,7 +314,7 @@ class __$$TriggerDefinitionImplCopyWithImpl<$Res>
       typeElement: freezed == typeElement
           ? _value.typeElement
           : typeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -321,7 +322,7 @@ class __$$TriggerDefinitionImplCopyWithImpl<$Res>
       nameElement: freezed == nameElement
           ? _value.nameElement
           : nameElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       timingTiming: freezed == timingTiming
           ? _value.timingTiming
           : timingTiming // ignore: cast_nullable_to_non_nullable
@@ -337,7 +338,7 @@ class __$$TriggerDefinitionImplCopyWithImpl<$Res>
       timingDateElement: freezed == timingDateElement
           ? _value.timingDateElement
           : timingDateElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       timingDateTime: freezed == timingDateTime
           ? _value.timingDateTime
           : timingDateTime // ignore: cast_nullable_to_non_nullable
@@ -345,7 +346,7 @@ class __$$TriggerDefinitionImplCopyWithImpl<$Res>
       timingDateTimeElement: freezed == timingDateTimeElement
           ? _value.timingDateTimeElement
           : timingDateTimeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       data: freezed == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -419,7 +420,7 @@ class _$TriggerDefinitionImpl extends _TriggerDefinition {
   /// [typeElement] Extensions for type
   @override
   @JsonKey(name: '_type')
-  final Element? typeElement;
+  final PrimitiveElement? typeElement;
 
   /// [name] A formal name for the event. This may be an absolute URI that
   /// identifies the event formally (e.g. from a trigger registry), or a simple
@@ -430,7 +431,7 @@ class _$TriggerDefinitionImpl extends _TriggerDefinition {
   /// [nameElement] Extensions for name
   @override
   @JsonKey(name: '_name')
-  final Element? nameElement;
+  final PrimitiveElement? nameElement;
 
   /// [timingTiming] The timing of the event (if this is a periodic trigger).
   @override
@@ -448,7 +449,7 @@ class _$TriggerDefinitionImpl extends _TriggerDefinition {
   /// [timingDateElement] Extensions for timingDate
   @override
   @JsonKey(name: '_timingDate')
-  final Element? timingDateElement;
+  final PrimitiveElement? timingDateElement;
 
   /// [timingDateTime] The timing of the event (if this is a periodic trigger).
   @override
@@ -457,7 +458,7 @@ class _$TriggerDefinitionImpl extends _TriggerDefinition {
   /// [timingDateTimeElement] Extensions for timingDateTime
   @override
   @JsonKey(name: '_timingDateTime')
-  final Element? timingDateTimeElement;
+  final PrimitiveElement? timingDateTimeElement;
 
   /// [data] The triggering data of the event (if this is a data trigger). If
   /// more than one data is requirement is specified, then all the data
@@ -558,15 +559,16 @@ abstract class _TriggerDefinition extends TriggerDefinition {
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: TriggerDefinitionType.unknown)
       final TriggerDefinitionType? type,
-      @JsonKey(name: '_type') final Element? typeElement,
+      @JsonKey(name: '_type') final PrimitiveElement? typeElement,
       final String? name,
-      @JsonKey(name: '_name') final Element? nameElement,
+      @JsonKey(name: '_name') final PrimitiveElement? nameElement,
       final Timing? timingTiming,
       final Reference? timingReference,
       final FhirDate? timingDate,
-      @JsonKey(name: '_timingDate') final Element? timingDateElement,
+      @JsonKey(name: '_timingDate') final PrimitiveElement? timingDateElement,
       final FhirDateTime? timingDateTime,
-      @JsonKey(name: '_timingDateTime') final Element? timingDateTimeElement,
+      @JsonKey(name: '_timingDateTime')
+      final PrimitiveElement? timingDateTimeElement,
       final List<DataRequirement>? data,
       final FhirExpression? condition}) = _$TriggerDefinitionImpl;
   const _TriggerDefinition._() : super._();
@@ -596,7 +598,7 @@ abstract class _TriggerDefinition extends TriggerDefinition {
 
   /// [typeElement] Extensions for type
   @JsonKey(name: '_type')
-  Element? get typeElement;
+  PrimitiveElement? get typeElement;
   @override
 
   /// [name] A formal name for the event. This may be an absolute URI that
@@ -607,7 +609,7 @@ abstract class _TriggerDefinition extends TriggerDefinition {
 
   /// [nameElement] Extensions for name
   @JsonKey(name: '_name')
-  Element? get nameElement;
+  PrimitiveElement? get nameElement;
   @override
 
   /// [timingTiming] The timing of the event (if this is a periodic trigger).
@@ -625,7 +627,7 @@ abstract class _TriggerDefinition extends TriggerDefinition {
 
   /// [timingDateElement] Extensions for timingDate
   @JsonKey(name: '_timingDate')
-  Element? get timingDateElement;
+  PrimitiveElement? get timingDateElement;
   @override
 
   /// [timingDateTime] The timing of the event (if this is a periodic trigger).
@@ -634,7 +636,7 @@ abstract class _TriggerDefinition extends TriggerDefinition {
 
   /// [timingDateTimeElement] Extensions for timingDateTime
   @JsonKey(name: '_timingDateTime')
-  Element? get timingDateTimeElement;
+  PrimitiveElement? get timingDateTimeElement;
   @override
 
   /// [data] The triggering data of the event (if this is a data trigger). If

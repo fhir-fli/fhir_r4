@@ -39,20 +39,20 @@ mixin _$Count {
 
   /// [valueElement] Extensions for value
   @JsonKey(name: '_value')
-  Element? get valueElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get valueElement => throw _privateConstructorUsedError;
   @JsonKey(unknownEnumValue: CountComparator.unknown)
   CountComparator? get comparator => throw _privateConstructorUsedError;
 
   /// [comparatorElement] Extensions for comparator
   @JsonKey(name: '_comparator')
-  Element? get comparatorElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get comparatorElement => throw _privateConstructorUsedError;
 
   /// [unit] A human-readable form of the unit.
   String? get unit => throw _privateConstructorUsedError;
 
   /// [unitElement] Extensions for unit
   @JsonKey(name: '_unit')
-  Element? get unitElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get unitElement => throw _privateConstructorUsedError;
 
   /// [system] The identification of the system that provides the coded form of
   ///  the unit.
@@ -60,7 +60,7 @@ mixin _$Count {
 
   /// [systemElement] Extensions for system
   @JsonKey(name: '_system')
-  Element? get systemElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get systemElement => throw _privateConstructorUsedError;
 
   /// [code] A computer processable form of the unit in some unit
   ///  representation system.
@@ -68,7 +68,7 @@ mixin _$Count {
 
   /// [codeElement] Extensions for code
   @JsonKey(name: '_code')
-  Element? get codeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get codeElement => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -84,16 +84,16 @@ abstract class $CountCopyWith<$Res> {
       {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       FhirDecimal? value,
-      @JsonKey(name: '_value') Element? valueElement,
+      @JsonKey(name: '_value') PrimitiveElement? valueElement,
       @JsonKey(unknownEnumValue: CountComparator.unknown)
       CountComparator? comparator,
-      @JsonKey(name: '_comparator') Element? comparatorElement,
+      @JsonKey(name: '_comparator') PrimitiveElement? comparatorElement,
       String? unit,
-      @JsonKey(name: '_unit') Element? unitElement,
+      @JsonKey(name: '_unit') PrimitiveElement? unitElement,
       FhirUri? system,
-      @JsonKey(name: '_system') Element? systemElement,
+      @JsonKey(name: '_system') PrimitiveElement? systemElement,
       FhirCode? code,
-      @JsonKey(name: '_code') Element? codeElement});
+      @JsonKey(name: '_code') PrimitiveElement? codeElement});
 }
 
 /// @nodoc
@@ -138,7 +138,7 @@ class _$CountCopyWithImpl<$Res, $Val extends Count>
       valueElement: freezed == valueElement
           ? _value.valueElement
           : valueElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       comparator: freezed == comparator
           ? _value.comparator
           : comparator // ignore: cast_nullable_to_non_nullable
@@ -146,7 +146,7 @@ class _$CountCopyWithImpl<$Res, $Val extends Count>
       comparatorElement: freezed == comparatorElement
           ? _value.comparatorElement
           : comparatorElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       unit: freezed == unit
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
@@ -154,7 +154,7 @@ class _$CountCopyWithImpl<$Res, $Val extends Count>
       unitElement: freezed == unitElement
           ? _value.unitElement
           : unitElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       system: freezed == system
           ? _value.system
           : system // ignore: cast_nullable_to_non_nullable
@@ -162,7 +162,7 @@ class _$CountCopyWithImpl<$Res, $Val extends Count>
       systemElement: freezed == systemElement
           ? _value.systemElement
           : systemElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -170,7 +170,7 @@ class _$CountCopyWithImpl<$Res, $Val extends Count>
       codeElement: freezed == codeElement
           ? _value.codeElement
           : codeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ) as $Val);
   }
 }
@@ -186,16 +186,16 @@ abstract class _$$CountImplCopyWith<$Res> implements $CountCopyWith<$Res> {
       {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       FhirDecimal? value,
-      @JsonKey(name: '_value') Element? valueElement,
+      @JsonKey(name: '_value') PrimitiveElement? valueElement,
       @JsonKey(unknownEnumValue: CountComparator.unknown)
       CountComparator? comparator,
-      @JsonKey(name: '_comparator') Element? comparatorElement,
+      @JsonKey(name: '_comparator') PrimitiveElement? comparatorElement,
       String? unit,
-      @JsonKey(name: '_unit') Element? unitElement,
+      @JsonKey(name: '_unit') PrimitiveElement? unitElement,
       FhirUri? system,
-      @JsonKey(name: '_system') Element? systemElement,
+      @JsonKey(name: '_system') PrimitiveElement? systemElement,
       FhirCode? code,
-      @JsonKey(name: '_code') Element? codeElement});
+      @JsonKey(name: '_code') PrimitiveElement? codeElement});
 }
 
 /// @nodoc
@@ -238,7 +238,7 @@ class __$$CountImplCopyWithImpl<$Res>
       valueElement: freezed == valueElement
           ? _value.valueElement
           : valueElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       comparator: freezed == comparator
           ? _value.comparator
           : comparator // ignore: cast_nullable_to_non_nullable
@@ -246,7 +246,7 @@ class __$$CountImplCopyWithImpl<$Res>
       comparatorElement: freezed == comparatorElement
           ? _value.comparatorElement
           : comparatorElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       unit: freezed == unit
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
@@ -254,7 +254,7 @@ class __$$CountImplCopyWithImpl<$Res>
       unitElement: freezed == unitElement
           ? _value.unitElement
           : unitElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       system: freezed == system
           ? _value.system
           : system // ignore: cast_nullable_to_non_nullable
@@ -262,7 +262,7 @@ class __$$CountImplCopyWithImpl<$Res>
       systemElement: freezed == systemElement
           ? _value.systemElement
           : systemElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -270,7 +270,7 @@ class __$$CountImplCopyWithImpl<$Res>
       codeElement: freezed == codeElement
           ? _value.codeElement
           : codeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ));
   }
 }
@@ -334,7 +334,7 @@ class _$CountImpl extends _Count {
   /// [valueElement] Extensions for value
   @override
   @JsonKey(name: '_value')
-  final Element? valueElement;
+  final PrimitiveElement? valueElement;
   @override
   @JsonKey(unknownEnumValue: CountComparator.unknown)
   final CountComparator? comparator;
@@ -342,7 +342,7 @@ class _$CountImpl extends _Count {
   /// [comparatorElement] Extensions for comparator
   @override
   @JsonKey(name: '_comparator')
-  final Element? comparatorElement;
+  final PrimitiveElement? comparatorElement;
 
   /// [unit] A human-readable form of the unit.
   @override
@@ -351,7 +351,7 @@ class _$CountImpl extends _Count {
   /// [unitElement] Extensions for unit
   @override
   @JsonKey(name: '_unit')
-  final Element? unitElement;
+  final PrimitiveElement? unitElement;
 
   /// [system] The identification of the system that provides the coded form of
   ///  the unit.
@@ -361,7 +361,7 @@ class _$CountImpl extends _Count {
   /// [systemElement] Extensions for system
   @override
   @JsonKey(name: '_system')
-  final Element? systemElement;
+  final PrimitiveElement? systemElement;
 
   /// [code] A computer processable form of the unit in some unit
   ///  representation system.
@@ -371,7 +371,7 @@ class _$CountImpl extends _Count {
   /// [codeElement] Extensions for code
   @override
   @JsonKey(name: '_code')
-  final Element? codeElement;
+  final PrimitiveElement? codeElement;
 
   @override
   String toString() {
@@ -440,16 +440,17 @@ abstract class _Count extends Count {
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final FhirDecimal? value,
-      @JsonKey(name: '_value') final Element? valueElement,
+      @JsonKey(name: '_value') final PrimitiveElement? valueElement,
       @JsonKey(unknownEnumValue: CountComparator.unknown)
       final CountComparator? comparator,
-      @JsonKey(name: '_comparator') final Element? comparatorElement,
+      @JsonKey(name: '_comparator') final PrimitiveElement? comparatorElement,
       final String? unit,
-      @JsonKey(name: '_unit') final Element? unitElement,
+      @JsonKey(name: '_unit') final PrimitiveElement? unitElement,
       final FhirUri? system,
-      @JsonKey(name: '_system') final Element? systemElement,
+      @JsonKey(name: '_system') final PrimitiveElement? systemElement,
       final FhirCode? code,
-      @JsonKey(name: '_code') final Element? codeElement}) = _$CountImpl;
+      @JsonKey(name: '_code')
+      final PrimitiveElement? codeElement}) = _$CountImpl;
   const _Count._() : super._();
 
   factory _Count.fromJson(Map<String, dynamic> json) = _$CountImpl.fromJson;
@@ -478,7 +479,7 @@ abstract class _Count extends Count {
 
   /// [valueElement] Extensions for value
   @JsonKey(name: '_value')
-  Element? get valueElement;
+  PrimitiveElement? get valueElement;
   @override
   @JsonKey(unknownEnumValue: CountComparator.unknown)
   CountComparator? get comparator;
@@ -486,7 +487,7 @@ abstract class _Count extends Count {
 
   /// [comparatorElement] Extensions for comparator
   @JsonKey(name: '_comparator')
-  Element? get comparatorElement;
+  PrimitiveElement? get comparatorElement;
   @override
 
   /// [unit] A human-readable form of the unit.
@@ -495,7 +496,7 @@ abstract class _Count extends Count {
 
   /// [unitElement] Extensions for unit
   @JsonKey(name: '_unit')
-  Element? get unitElement;
+  PrimitiveElement? get unitElement;
   @override
 
   /// [system] The identification of the system that provides the coded form of
@@ -505,7 +506,7 @@ abstract class _Count extends Count {
 
   /// [systemElement] Extensions for system
   @JsonKey(name: '_system')
-  Element? get systemElement;
+  PrimitiveElement? get systemElement;
   @override
 
   /// [code] A computer processable form of the unit in some unit
@@ -515,7 +516,7 @@ abstract class _Count extends Count {
 
   /// [codeElement] Extensions for code
   @JsonKey(name: '_code')
-  Element? get codeElement;
+  PrimitiveElement? get codeElement;
   @override
   @JsonKey(ignore: true)
   _$$CountImplCopyWith<_$CountImpl> get copyWith =>

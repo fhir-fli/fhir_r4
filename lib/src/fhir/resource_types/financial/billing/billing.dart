@@ -15,7 +15,7 @@ part 'billing.g.dart';
 
 /// [Claim] A provider issued list of professional services and products
 @freezed
-class Claim with Resource, _$Claim {
+class Claim with _$Claim implements DomainResource {
   /// [Claim] A provider issued list of professional services and products
   const Claim._();
 
@@ -183,13 +183,13 @@ class Claim with Resource, _$Claim {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -235,7 +235,7 @@ class Claim with Resource, _$Claim {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [type] The category of claim, e.g. oral, pharmacy, vision, institutional,
     ///  professional.
@@ -254,7 +254,7 @@ class Claim with Resource, _$Claim {
     FhirCode? use,
 
     /// [useElement] Extensions for use
-    @JsonKey(name: '_use') Element? useElement,
+    @JsonKey(name: '_use') PrimitiveElement? useElement,
 
     /// [patient] The party to whom the professional services and/or products
     /// have been supplied or are being considered and for whom actual or forecast
@@ -268,7 +268,7 @@ class Claim with Resource, _$Claim {
     FhirDateTime? created,
 
     /// [createdElement] Extensions for created
-    @JsonKey(name: '_created') Element? createdElement,
+    @JsonKey(name: '_created') PrimitiveElement? createdElement,
 
     /// [enterer] Individual who created the claim, predetermination or
     ///  preauthorization.
@@ -675,7 +675,7 @@ class ClaimCareTeam with BackboneType, _$ClaimCareTeam {
     FhirPositiveInt? sequence,
 
     /// [sequenceElement] Extensions for sequence
-    @JsonKey(name: '_sequence') Element? sequenceElement,
+    @JsonKey(name: '_sequence') PrimitiveElement? sequenceElement,
 
     /// [provider] Member of the team who provided the product or service.
     required Reference provider,
@@ -685,7 +685,7 @@ class ClaimCareTeam with BackboneType, _$ClaimCareTeam {
     FhirBoolean? responsible,
 
     /// [responsibleElement] Extensions for responsible
-    @JsonKey(name: '_responsible') Element? responsibleElement,
+    @JsonKey(name: '_responsible') PrimitiveElement? responsibleElement,
 
     /// [role] The lead, assisting or supervising practitioner and their
     ///  discipline if a multidisciplinary team.
@@ -836,7 +836,7 @@ class ClaimSupportingInfo with BackboneType, _$ClaimSupportingInfo {
     FhirPositiveInt? sequence,
 
     /// [sequenceElement] Extensions for sequence
-    @JsonKey(name: '_sequence') Element? sequenceElement,
+    @JsonKey(name: '_sequence') PrimitiveElement? sequenceElement,
 
     /// [category] The general class of the information supplied: information;
     ///  exception; accident, employment; onset, etc.
@@ -851,7 +851,7 @@ class ClaimSupportingInfo with BackboneType, _$ClaimSupportingInfo {
     FhirDate? timingDate,
 
     /// [timingDateElement] Extensions for timingDate
-    @JsonKey(name: '_timingDate') Element? timingDateElement,
+    @JsonKey(name: '_timingDate') PrimitiveElement? timingDateElement,
 
     /// [timingPeriod] The date when or period to which this information refers.
     Period? timingPeriod,
@@ -862,7 +862,7 @@ class ClaimSupportingInfo with BackboneType, _$ClaimSupportingInfo {
     FhirBoolean? valueBoolean,
 
     /// [valueBooleanElement] Extensions for valueBoolean
-    @JsonKey(name: '_valueBoolean') Element? valueBooleanElement,
+    @JsonKey(name: '_valueBoolean') PrimitiveElement? valueBooleanElement,
 
     /// [valueString] Additional data or information such as resources,
     /// documents, images etc. including references to the data or the actual
@@ -870,7 +870,7 @@ class ClaimSupportingInfo with BackboneType, _$ClaimSupportingInfo {
     String? valueString,
 
     /// [valueStringElement] Extensions for valueString
-    @JsonKey(name: '_valueString') Element? valueStringElement,
+    @JsonKey(name: '_valueString') PrimitiveElement? valueStringElement,
 
     /// [valueQuantity] Additional data or information such as resources,
     /// documents, images etc. including references to the data or the actual
@@ -1007,7 +1007,7 @@ class ClaimDiagnosis with BackboneType, _$ClaimDiagnosis {
     FhirPositiveInt? sequence,
 
     /// [sequenceElement] Extensions for sequence
-    @JsonKey(name: '_sequence') Element? sequenceElement,
+    @JsonKey(name: '_sequence') PrimitiveElement? sequenceElement,
 
     /// [diagnosisCodeableConcept] The nature of illness or problem in a coded
     ///  form or as a reference to an external defined Condition.
@@ -1144,7 +1144,7 @@ class ClaimProcedure with BackboneType, _$ClaimProcedure {
     FhirPositiveInt? sequence,
 
     /// [sequenceElement] Extensions for sequence
-    @JsonKey(name: '_sequence') Element? sequenceElement,
+    @JsonKey(name: '_sequence') PrimitiveElement? sequenceElement,
 
     /// [type] When the condition was observed or the relative ranking.
     List<CodeableConcept>? type,
@@ -1153,7 +1153,7 @@ class ClaimProcedure with BackboneType, _$ClaimProcedure {
     FhirDateTime? date,
 
     /// [dateElement] Extensions for date
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
 
     /// [procedureCodeableConcept] The code or reference to a Procedure resource
     ///  which identifies the clinical intervention performed.
@@ -1296,14 +1296,14 @@ class ClaimInsurance with BackboneType, _$ClaimInsurance {
     FhirPositiveInt? sequence,
 
     /// [sequenceElement] Extensions for sequence
-    @JsonKey(name: '_sequence') Element? sequenceElement,
+    @JsonKey(name: '_sequence') PrimitiveElement? sequenceElement,
 
     /// [focal] A flag to indicate that this Coverage is to be used for
     ///  adjudication of this claim when set to true.
     FhirBoolean? focal,
 
     /// [focalElement] Extensions for focal
-    @JsonKey(name: '_focal') Element? focalElement,
+    @JsonKey(name: '_focal') PrimitiveElement? focalElement,
 
     /// [identifier] The business identifier to be used when the claim is sent
     ///  for adjudication against this insurance policy.
@@ -1320,7 +1320,8 @@ class ClaimInsurance with BackboneType, _$ClaimInsurance {
     String? businessArrangement,
 
     /// [businessArrangementElement] Extensions for businessArrangement
-    @JsonKey(name: '_businessArrangement') Element? businessArrangementElement,
+    @JsonKey(name: '_businessArrangement')
+    PrimitiveElement? businessArrangementElement,
 
     /// [preAuthRef] Reference numbers previously provided by the insurer to the
     /// provider to be quoted on subsequent claims containing services or products
@@ -1445,7 +1446,7 @@ class ClaimAccident with BackboneType, _$ClaimAccident {
     FhirDate? date,
 
     /// [dateElement] Extensions for date
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
 
     /// [type] The type or context of the accident event for the purposes of
     /// selection of potential insurance coverages and determination of
@@ -1634,7 +1635,7 @@ class ClaimItem with BackboneType, _$ClaimItem {
     FhirPositiveInt? sequence,
 
     /// [sequenceElement] Extensions for sequence
-    @JsonKey(name: '_sequence') Element? sequenceElement,
+    @JsonKey(name: '_sequence') PrimitiveElement? sequenceElement,
 
     /// [careTeamSequence] CareTeam members related to this service or product.
     List<FhirPositiveInt>? careTeamSequence,
@@ -1689,7 +1690,7 @@ class ClaimItem with BackboneType, _$ClaimItem {
     FhirDate? servicedDate,
 
     /// [servicedDateElement] Extensions for servicedDate
-    @JsonKey(name: '_servicedDate') Element? servicedDateElement,
+    @JsonKey(name: '_servicedDate') PrimitiveElement? servicedDateElement,
 
     /// [servicedPeriod] The date or dates when the service or product was
     ///  supplied, performed or completed.
@@ -1719,7 +1720,7 @@ class ClaimItem with BackboneType, _$ClaimItem {
     FhirDecimal? factor,
 
     /// [factorElement] Extensions for factor
-    @JsonKey(name: '_factor') Element? factorElement,
+    @JsonKey(name: '_factor') PrimitiveElement? factorElement,
 
     /// [net] The quantity times the unit price for an additional service or
     ///  product or charge.
@@ -1880,7 +1881,7 @@ class ClaimDetail with BackboneType, _$ClaimDetail {
     FhirPositiveInt? sequence,
 
     /// [sequenceElement] Extensions for sequence
-    @JsonKey(name: '_sequence') Element? sequenceElement,
+    @JsonKey(name: '_sequence') PrimitiveElement? sequenceElement,
 
     /// [revenue] The type of revenue or cost center providing the product and/or
     ///  service.
@@ -1917,7 +1918,7 @@ class ClaimDetail with BackboneType, _$ClaimDetail {
     FhirDecimal? factor,
 
     /// [factorElement] Extensions for factor
-    @JsonKey(name: '_factor') Element? factorElement,
+    @JsonKey(name: '_factor') PrimitiveElement? factorElement,
 
     /// [net] The quantity times the unit price for an additional service or
     ///  product or charge.
@@ -2064,7 +2065,7 @@ class ClaimSubDetail with BackboneType, _$ClaimSubDetail {
     FhirPositiveInt? sequence,
 
     /// [sequenceElement] Extensions for sequence
-    @JsonKey(name: '_sequence') Element? sequenceElement,
+    @JsonKey(name: '_sequence') PrimitiveElement? sequenceElement,
 
     /// [revenue] The type of revenue or cost center providing the product and/or
     ///  service.
@@ -2101,7 +2102,7 @@ class ClaimSubDetail with BackboneType, _$ClaimSubDetail {
     FhirDecimal? factor,
 
     /// [factorElement] Extensions for factor
-    @JsonKey(name: '_factor') Element? factorElement,
+    @JsonKey(name: '_factor') PrimitiveElement? factorElement,
 
     /// [net] The quantity times the unit price for an additional service or
     ///  product or charge.
@@ -2144,7 +2145,7 @@ class ClaimSubDetail with BackboneType, _$ClaimSubDetail {
 
 /// [ClaimResponse] This resource provides the adjudication details from the
 @freezed
-class ClaimResponse with Resource, _$ClaimResponse {
+class ClaimResponse with _$ClaimResponse implements DomainResource {
   /// [ClaimResponse] This resource provides the adjudication details from the
   const ClaimResponse._();
 
@@ -2316,13 +2317,13 @@ class ClaimResponse with Resource, _$ClaimResponse {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -2368,7 +2369,7 @@ class ClaimResponse with Resource, _$ClaimResponse {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [type] A finer grained suite of claim type codes which may convey
     /// additional information such as Inpatient vs Outpatient and/or a specialty
@@ -2388,7 +2389,7 @@ class ClaimResponse with Resource, _$ClaimResponse {
     FhirCode? use,
 
     /// [useElement] Extensions for use
-    @JsonKey(name: '_use') Element? useElement,
+    @JsonKey(name: '_use') PrimitiveElement? useElement,
 
     /// [patient] The party to whom the professional services and/or products
     /// have been supplied or are being considered and for whom actual for facast
@@ -2399,7 +2400,7 @@ class ClaimResponse with Resource, _$ClaimResponse {
     FhirDateTime? created,
 
     /// [createdElement] Extensions for created
-    @JsonKey(name: '_created') Element? createdElement,
+    @JsonKey(name: '_created') PrimitiveElement? createdElement,
 
     /// [insurer] The party responsible for authorization, adjudication and
     ///  reimbursement.
@@ -2417,21 +2418,21 @@ class ClaimResponse with Resource, _$ClaimResponse {
     FhirCode? outcome,
 
     /// [outcomeElement] Extensions for outcome
-    @JsonKey(name: '_outcome') Element? outcomeElement,
+    @JsonKey(name: '_outcome') PrimitiveElement? outcomeElement,
 
     /// [disposition] A human readable description of the status of the
     ///  adjudication.
     String? disposition,
 
     /// [dispositionElement] Extensions for disposition
-    @JsonKey(name: '_disposition') Element? dispositionElement,
+    @JsonKey(name: '_disposition') PrimitiveElement? dispositionElement,
 
     /// [preAuthRef] Reference from the Insurer which is used in later
     ///  communications which refers to this adjudication.
     String? preAuthRef,
 
     /// [preAuthRefElement] Extensions for preAuthRef
-    @JsonKey(name: '_preAuthRef') Element? preAuthRefElement,
+    @JsonKey(name: '_preAuthRef') PrimitiveElement? preAuthRefElement,
 
     /// [preAuthPeriod] The time frame during which this authorization is
     ///  effective.
@@ -2601,7 +2602,7 @@ class ClaimResponseItem with BackboneType, _$ClaimResponseItem {
     FhirPositiveInt? itemSequence,
 
     /// [itemSequenceElement] Extensions for itemSequence
-    @JsonKey(name: '_itemSequence') Element? itemSequenceElement,
+    @JsonKey(name: '_itemSequence') PrimitiveElement? itemSequenceElement,
 
     /// [noteNumber] The numbers associated with notes below which apply to the
     ///  adjudication of this item.
@@ -2746,7 +2747,7 @@ class ClaimResponseAdjudication with BackboneType, _$ClaimResponseAdjudication {
     FhirDecimal? value,
 
     /// [valueElement] Extensions for value
-    @JsonKey(name: '_value') Element? valueElement,
+    @JsonKey(name: '_value') PrimitiveElement? valueElement,
   }) = _ClaimResponseAdjudication;
 
   @override
@@ -2857,7 +2858,7 @@ class ClaimResponseDetail with BackboneType, _$ClaimResponseDetail {
     FhirPositiveInt? detailSequence,
 
     /// [detailSequenceElement] Extensions for detailSequence
-    @JsonKey(name: '_detailSequence') Element? detailSequenceElement,
+    @JsonKey(name: '_detailSequence') PrimitiveElement? detailSequenceElement,
 
     /// [noteNumber] The numbers associated with notes below which apply to the
     ///  adjudication of this item.
@@ -2981,7 +2982,8 @@ class ClaimResponseSubDetail with BackboneType, _$ClaimResponseSubDetail {
     FhirPositiveInt? subDetailSequence,
 
     /// [subDetailSequenceElement] Extensions for subDetailSequence
-    @JsonKey(name: '_subDetailSequence') Element? subDetailSequenceElement,
+    @JsonKey(name: '_subDetailSequence')
+    PrimitiveElement? subDetailSequenceElement,
 
     /// [noteNumber] The numbers associated with notes below which apply to the
     ///  adjudication of this item.
@@ -3199,7 +3201,7 @@ class ClaimResponseAddItem with BackboneType, _$ClaimResponseAddItem {
     FhirDate? servicedDate,
 
     /// [servicedDateElement] Extensions for servicedDate
-    @JsonKey(name: '_servicedDate') Element? servicedDateElement,
+    @JsonKey(name: '_servicedDate') PrimitiveElement? servicedDateElement,
 
     /// [servicedPeriod] The date or dates when the service or product was
     ///  supplied, performed or completed.
@@ -3229,7 +3231,7 @@ class ClaimResponseAddItem with BackboneType, _$ClaimResponseAddItem {
     FhirDecimal? factor,
 
     /// [factorElement] Extensions for factor
-    @JsonKey(name: '_factor') Element? factorElement,
+    @JsonKey(name: '_factor') PrimitiveElement? factorElement,
 
     /// [net] The quantity times the unit price for an additional service or
     ///  product or charge.
@@ -3404,7 +3406,7 @@ class ClaimResponseDetail1 with BackboneType, _$ClaimResponseDetail1 {
     FhirDecimal? factor,
 
     /// [factorElement] Extensions for factor
-    @JsonKey(name: '_factor') Element? factorElement,
+    @JsonKey(name: '_factor') PrimitiveElement? factorElement,
 
     /// [net] The quantity times the unit price for an additional service or
     ///  product or charge.
@@ -3570,7 +3572,7 @@ class ClaimResponseSubDetail1 with BackboneType, _$ClaimResponseSubDetail1 {
     FhirDecimal? factor,
 
     /// [factorElement] Extensions for factor
-    @JsonKey(name: '_factor') Element? factorElement,
+    @JsonKey(name: '_factor') PrimitiveElement? factorElement,
 
     /// [net] The quantity times the unit price for an additional service or
     ///  product or charge.
@@ -3821,7 +3823,7 @@ class ClaimResponsePayment with BackboneType, _$ClaimResponsePayment {
     FhirDate? date,
 
     /// [dateElement] Extensions for date
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
 
     /// [amount] Benefits payable less any payment adjustment.
     required Money amount,
@@ -3939,19 +3941,19 @@ class ClaimResponseProcessNote with BackboneType, _$ClaimResponseProcessNote {
     FhirPositiveInt? number,
 
     /// [numberElement] Extensions for number
-    @JsonKey(name: '_number') Element? numberElement,
+    @JsonKey(name: '_number') PrimitiveElement? numberElement,
 
     /// [type] The business purpose of the note text.
     FhirCode? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [text] The explanation or description associated with the processing.
     String? text,
 
     /// [textElement] Extensions for text
-    @JsonKey(name: '_text') Element? textElement,
+    @JsonKey(name: '_text') PrimitiveElement? textElement,
 
     /// [language] A code to define the language used in the text of the note.
     CodeableConcept? language,
@@ -4076,14 +4078,14 @@ class ClaimResponseInsurance with BackboneType, _$ClaimResponseInsurance {
     FhirPositiveInt? sequence,
 
     /// [sequenceElement] Extensions for sequence
-    @JsonKey(name: '_sequence') Element? sequenceElement,
+    @JsonKey(name: '_sequence') PrimitiveElement? sequenceElement,
 
     /// [focal] A flag to indicate that this Coverage is to be used for
     ///  adjudication of this claim when set to true.
     FhirBoolean? focal,
 
     /// [focalElement] Extensions for focal
-    @JsonKey(name: '_focal') Element? focalElement,
+    @JsonKey(name: '_focal') PrimitiveElement? focalElement,
 
     /// [coverage] Reference to the insurance card level information contained in
     /// the Coverage resource. The coverage issuing insurer will use these details
@@ -4096,7 +4098,8 @@ class ClaimResponseInsurance with BackboneType, _$ClaimResponseInsurance {
     String? businessArrangement,
 
     /// [businessArrangementElement] Extensions for businessArrangement
-    @JsonKey(name: '_businessArrangement') Element? businessArrangementElement,
+    @JsonKey(name: '_businessArrangement')
+    PrimitiveElement? businessArrangementElement,
 
     /// [claimResponse] The result of the adjudication of the line items for the
     ///  Coverage specified in this insurance.
@@ -4221,7 +4224,7 @@ class ClaimResponseError with BackboneType, _$ClaimResponseError {
     FhirPositiveInt? itemSequence,
 
     /// [itemSequenceElement] Extensions for itemSequence
-    @JsonKey(name: '_itemSequence') Element? itemSequenceElement,
+    @JsonKey(name: '_itemSequence') PrimitiveElement? itemSequenceElement,
 
     /// [detailSequence] The sequence number of the detail within the line item
     /// submitted which contains the error. This value is omitted when the error
@@ -4229,7 +4232,7 @@ class ClaimResponseError with BackboneType, _$ClaimResponseError {
     FhirPositiveInt? detailSequence,
 
     /// [detailSequenceElement] Extensions for detailSequence
-    @JsonKey(name: '_detailSequence') Element? detailSequenceElement,
+    @JsonKey(name: '_detailSequence') PrimitiveElement? detailSequenceElement,
 
     /// [subDetailSequence] The sequence number of the sub-detail within the
     /// detail within the line item submitted which contains the error. This value
@@ -4237,7 +4240,8 @@ class ClaimResponseError with BackboneType, _$ClaimResponseError {
     FhirPositiveInt? subDetailSequence,
 
     /// [subDetailSequenceElement] Extensions for subDetailSequence
-    @JsonKey(name: '_subDetailSequence') Element? subDetailSequenceElement,
+    @JsonKey(name: '_subDetailSequence')
+    PrimitiveElement? subDetailSequenceElement,
 
     /// [code] An error code, from a specified code system, which details why the
     ///  claim could not be adjudicated.
@@ -4277,7 +4281,7 @@ class ClaimResponseError with BackboneType, _$ClaimResponseError {
 
 /// [Invoice] Invoice containing collected ChargeItems from an Account with
 @freezed
-class Invoice with Resource, _$Invoice {
+class Invoice with _$Invoice implements DomainResource {
   /// [Invoice] Invoice containing collected ChargeItems from an Account with
   const Invoice._();
 
@@ -4413,13 +4417,13 @@ class Invoice with Resource, _$Invoice {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -4466,14 +4470,14 @@ class Invoice with Resource, _$Invoice {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [cancelledReason] In case of Invoice cancellation a reason must be given
     ///  (entered in error, superseded by corrected invoice etc.).
     String? cancelledReason,
 
     /// [cancelledReasonElement] Extensions for cancelledReason
-    @JsonKey(name: '_cancelledReason') Element? cancelledReasonElement,
+    @JsonKey(name: '_cancelledReason') PrimitiveElement? cancelledReasonElement,
 
     /// [type] Type of Invoice depending on domain, realm an usage (e.g.
     ///  internal/external, dental, preliminary).
@@ -4491,7 +4495,7 @@ class Invoice with Resource, _$Invoice {
     FhirDateTime? date,
 
     /// [dateElement] Extensions for date
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
 
     /// [participant] Indicates who or what performed or participated in the
     ///  charged service.
@@ -4526,7 +4530,7 @@ class Invoice with Resource, _$Invoice {
     FhirMarkdown? paymentTerms,
 
     /// [paymentTermsElement] Extensions for paymentTerms
-    @JsonKey(name: '_paymentTerms') Element? paymentTermsElement,
+    @JsonKey(name: '_paymentTerms') PrimitiveElement? paymentTermsElement,
 
     /// [note] Comments made about the invoice by the issuer, subject, or other
     ///  participants.
@@ -4762,7 +4766,7 @@ class InvoiceLineItem with BackboneType, _$InvoiceLineItem {
     FhirPositiveInt? sequence,
 
     /// [sequenceElement] Extensions for sequence
-    @JsonKey(name: '_sequence') Element? sequenceElement,
+    @JsonKey(name: '_sequence') PrimitiveElement? sequenceElement,
 
     /// [chargeItemReference] The ChargeItem contains information such as the
     /// billing code, date, amount etc. If no further details are required for the
@@ -4894,7 +4898,7 @@ class InvoicePriceComponent with BackboneType, _$InvoicePriceComponent {
     FhirCode? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [code] A code that identifies the component. Codes may be used to
     ///  differentiate between kinds of taxes, surcharges, discounts etc.
@@ -4905,7 +4909,7 @@ class InvoicePriceComponent with BackboneType, _$InvoicePriceComponent {
     FhirDecimal? factor,
 
     /// [factorElement] Extensions for factor
-    @JsonKey(name: '_factor') Element? factorElement,
+    @JsonKey(name: '_factor') PrimitiveElement? factorElement,
 
     /// [amount] The amount calculated for this component.
     Money? amount,

@@ -16,16 +16,16 @@ _$AddressImpl _$$AddressImplFromJson(Map<String, dynamic> json) =>
           unknownValue: AddressUse.unknown),
       useElement: json['_use'] == null
           ? null
-          : Element.fromJson(json['_use'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_use'] as Map<String, dynamic>),
       type: $enumDecodeNullable(_$AddressTypeEnumMap, json['type'],
           unknownValue: AddressType.unknown),
       typeElement: json['_type'] == null
           ? null
-          : Element.fromJson(json['_type'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_type'] as Map<String, dynamic>),
       text: json['text'] as String?,
       textElement: json['_text'] == null
           ? null
-          : Element.fromJson(json['_text'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_text'] as Map<String, dynamic>),
       line: (json['line'] as List<dynamic>?)?.map((e) => e as String).toList(),
       lineElement: (json['_line'] as List<dynamic>?)
           ?.map((e) =>
@@ -34,23 +34,25 @@ _$AddressImpl _$$AddressImplFromJson(Map<String, dynamic> json) =>
       city: json['city'] as String?,
       cityElement: json['_city'] == null
           ? null
-          : Element.fromJson(json['_city'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_city'] as Map<String, dynamic>),
       district: json['district'] as String?,
       districtElement: json['_district'] == null
           ? null
-          : Element.fromJson(json['_district'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_district'] as Map<String, dynamic>),
       state: json['state'] as String?,
       stateElement: json['_state'] == null
           ? null
-          : Element.fromJson(json['_state'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_state'] as Map<String, dynamic>),
       postalCode: json['postalCode'] as String?,
       postalCodeElement: json['_postalCode'] == null
           ? null
-          : Element.fromJson(json['_postalCode'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_postalCode'] as Map<String, dynamic>),
       country: json['country'] as String?,
       countryElement: json['_country'] == null
           ? null
-          : Element.fromJson(json['_country'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_country'] as Map<String, dynamic>),
       period: json['period'] == null
           ? null
           : Period.fromJson(json['period'] as Map<String, dynamic>),

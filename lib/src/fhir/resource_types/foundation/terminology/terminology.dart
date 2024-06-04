@@ -15,7 +15,7 @@ part 'terminology.g.dart';
 
 /// [CodeSystem] The CodeSystem resource is used to declare the existence of
 @freezed
-class CodeSystem with Resource, _$CodeSystem {
+class CodeSystem with _$CodeSystem implements DomainResource {
   /// [CodeSystem] The CodeSystem resource is used to declare the existence of
   const CodeSystem._();
 
@@ -232,13 +232,13 @@ class CodeSystem with Resource, _$CodeSystem {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -288,7 +288,7 @@ class CodeSystem with Resource, _$CodeSystem {
     FhirUri? url,
 
     /// [urlElement] Extensions for url
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
 
     /// [identifier] A formal identifier that is used to identify this code
     /// system when it is represented in other formats, or referenced in a
@@ -305,7 +305,7 @@ class CodeSystem with Resource, _$CodeSystem {
     String? version,
 
     /// [versionElement] Extensions for version
-    @JsonKey(name: '_version') Element? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
 
     /// [name] A natural language name identifying the code system. This name
     /// should be usable as an identifier for the module by machine processing
@@ -313,20 +313,20 @@ class CodeSystem with Resource, _$CodeSystem {
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [title] A short, descriptive, user-friendly title for the code system.
     String? title,
 
     /// [titleElement] Extensions for title
-    @JsonKey(name: '_title') Element? titleElement,
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
 
     /// [status] The date (and optionally time) when the code system resource was
     ///  created or revised.
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [experimental] A Boolean value to indicate that this code system is
     /// authored for testing purposes (or education/evaluation/marketing) and is
@@ -334,7 +334,7 @@ class CodeSystem with Resource, _$CodeSystem {
     FhirBoolean? experimental,
 
     /// [experimentalElement] Extensions for experimental
-    @JsonKey(name: '_experimental') Element? experimentalElement,
+    @JsonKey(name: '_experimental') PrimitiveElement? experimentalElement,
 
     /// [date] The date  (and optionally time) when the code system was
     /// published. The date must change when the business version changes and it
@@ -343,14 +343,14 @@ class CodeSystem with Resource, _$CodeSystem {
     FhirDateTime? date,
 
     /// [dateElement] Extensions for date
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
 
     /// [publisher] The name of the organization or individual that published the
     ///  code system.
     String? publisher,
 
     /// [publisherElement] Extensions for publisher
-    @JsonKey(name: '_publisher') Element? publisherElement,
+    @JsonKey(name: '_publisher') PrimitiveElement? publisherElement,
 
     /// [contact] Contact details to assist a user in finding and communicating
     ///  with the publisher.
@@ -361,7 +361,7 @@ class CodeSystem with Resource, _$CodeSystem {
     FhirMarkdown? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [useContext] The content was developed with a focus and intent of
     /// supporting the contexts that are listed. These contexts may be general
@@ -379,7 +379,7 @@ class CodeSystem with Resource, _$CodeSystem {
     FhirMarkdown? purpose,
 
     /// [purposeElement] Extensions for purpose
-    @JsonKey(name: '_purpose') Element? purposeElement,
+    @JsonKey(name: '_purpose') PrimitiveElement? purposeElement,
 
     /// [copyright] A copyright statement relating to the code system and/or its
     /// contents. Copyright statements are generally legal restrictions on the use
@@ -387,14 +387,14 @@ class CodeSystem with Resource, _$CodeSystem {
     FhirMarkdown? copyright,
 
     /// [copyrightElement] Extensions for copyright
-    @JsonKey(name: '_copyright') Element? copyrightElement,
+    @JsonKey(name: '_copyright') PrimitiveElement? copyrightElement,
 
     /// [caseSensitive] If code comparison is case sensitive when codes within
     ///  this system are compared to each other.
     FhirBoolean? caseSensitive,
 
     /// [caseSensitiveElement] Extensions for caseSensitive
-    @JsonKey(name: '_caseSensitive') Element? caseSensitiveElement,
+    @JsonKey(name: '_caseSensitive') PrimitiveElement? caseSensitiveElement,
 
     /// [valueSet] Canonical reference to the value set that contains the entire
     ///  code system.
@@ -405,14 +405,15 @@ class CodeSystem with Resource, _$CodeSystem {
     FhirCode? hierarchyMeaning,
 
     /// [hierarchyMeaningElement] Extensions for hierarchyMeaning
-    @JsonKey(name: '_hierarchyMeaning') Element? hierarchyMeaningElement,
+    @JsonKey(name: '_hierarchyMeaning')
+    PrimitiveElement? hierarchyMeaningElement,
 
     /// [compositional] The code system defines a compositional
     ///  (post-coordination) grammar.
     FhirBoolean? compositional,
 
     /// [compositionalElement] Extensions for compositional
-    @JsonKey(name: '_compositional') Element? compositionalElement,
+    @JsonKey(name: '_compositional') PrimitiveElement? compositionalElement,
 
     /// [versionNeeded] This flag is used to signify that the code system does
     /// not commit to concept permanence across versions. If true, a version must
@@ -420,14 +421,14 @@ class CodeSystem with Resource, _$CodeSystem {
     FhirBoolean? versionNeeded,
 
     /// [versionNeededElement] Extensions for versionNeeded
-    @JsonKey(name: '_versionNeeded') Element? versionNeededElement,
+    @JsonKey(name: '_versionNeeded') PrimitiveElement? versionNeededElement,
 
     /// [content] The extent of the content of the code system (the concepts and
     ///  codes it defines) are represented in this resource instance.
     FhirCode? content,
 
     /// [contentElement] Extensions for content
-    @JsonKey(name: '_content') Element? contentElement,
+    @JsonKey(name: '_content') PrimitiveElement? contentElement,
 
     /// [supplements] The canonical URL of the code system that this code system
     ///  supplement is adding designations and properties to.
@@ -439,7 +440,7 @@ class CodeSystem with Resource, _$CodeSystem {
     FhirUnsignedInt? count,
 
     /// [countElement] Extensions for count
-    @JsonKey(name: '_count') Element? countElement,
+    @JsonKey(name: '_count') PrimitiveElement? countElement,
 
     /// [filter] A filter that can be used in a value set compose statement when
     ///  selecting concepts using a filter.
@@ -493,7 +494,7 @@ class CodeSystem with Resource, _$CodeSystem {
 
 /// [CodeSystemFilter] The CodeSystem resource is used to declare the
 @freezed
-class CodeSystemFilter with BackboneType, _$CodeSystemFilter {
+class CodeSystemFilter with _$CodeSystemFilter implements BackboneElement {
   /// [CodeSystemFilter] The CodeSystem resource is used to declare the
   const CodeSystemFilter._();
 
@@ -574,13 +575,13 @@ class CodeSystemFilter with BackboneType, _$CodeSystemFilter {
     FhirCode? code,
 
     /// [codeElement] Extensions for code
-    @JsonKey(name: '_code') Element? codeElement,
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
 
     /// [description] A description of how or why the filter is used.
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [operator] A list of operators that can be used with the filter.
     @JsonKey(name: 'operator') List<FhirCode>? operator_,
@@ -592,7 +593,7 @@ class CodeSystemFilter with BackboneType, _$CodeSystemFilter {
     String? value,
 
     /// [valueElement] Extensions for value
-    @JsonKey(name: '_value') Element? valueElement,
+    @JsonKey(name: '_value') PrimitiveElement? valueElement,
   }) = _CodeSystemFilter;
 
   @override
@@ -628,7 +629,7 @@ class CodeSystemFilter with BackboneType, _$CodeSystemFilter {
 
 /// [CodeSystemProperty] The CodeSystem resource is used to declare the
 @freezed
-class CodeSystemProperty with BackboneType, _$CodeSystemProperty {
+class CodeSystemProperty with _$CodeSystemProperty implements BackboneElement {
   /// [CodeSystemProperty] The CodeSystem resource is used to declare the
   const CodeSystemProperty._();
 
@@ -716,7 +717,7 @@ class CodeSystemProperty with BackboneType, _$CodeSystemProperty {
     FhirCode? code,
 
     /// [codeElement] Extensions for code
-    @JsonKey(name: '_code') Element? codeElement,
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
 
     /// [uri] Reference to the formal meaning of the property. One possible
     /// source of meaning is the [Concept
@@ -724,14 +725,14 @@ class CodeSystemProperty with BackboneType, _$CodeSystemProperty {
     FhirUri? uri,
 
     /// [uriElement] Extensions for uri
-    @JsonKey(name: '_uri') Element? uriElement,
+    @JsonKey(name: '_uri') PrimitiveElement? uriElement,
 
     /// [description] A description of the property- why it is defined, and how
     ///  its value might be used.
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [type] The type of the property value. Properties of type "code" contain
     /// a code defined by the code system (e.g. a reference to another defined
@@ -739,7 +740,7 @@ class CodeSystemProperty with BackboneType, _$CodeSystemProperty {
     FhirCode? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
   }) = _CodeSystemProperty;
 
   @override
@@ -775,7 +776,7 @@ class CodeSystemProperty with BackboneType, _$CodeSystemProperty {
 
 /// [CodeSystemConcept] The CodeSystem resource is used to declare the
 @freezed
-class CodeSystemConcept with BackboneType, _$CodeSystemConcept {
+class CodeSystemConcept with _$CodeSystemConcept implements BackboneElement {
   /// [CodeSystemConcept] The CodeSystem resource is used to declare the
   const CodeSystemConcept._();
 
@@ -866,14 +867,14 @@ class CodeSystemConcept with BackboneType, _$CodeSystemConcept {
     FhirCode? code,
 
     /// [codeElement] Extensions for code
-    @JsonKey(name: '_code') Element? codeElement,
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
 
     /// [display] A human readable string that is the recommended default way to
     ///  present this concept to a user.
     String? display,
 
     /// [displayElement] Extensions for display
-    @JsonKey(name: '_display') Element? displayElement,
+    @JsonKey(name: '_display') PrimitiveElement? displayElement,
 
     /// [definition] The formal definition of the concept. The code system
     /// resource does not make formal definitions required, because of the
@@ -882,7 +883,7 @@ class CodeSystemConcept with BackboneType, _$CodeSystemConcept {
     String? definition,
 
     /// [definitionElement] Extensions for definition
-    @JsonKey(name: '_definition') Element? definitionElement,
+    @JsonKey(name: '_definition') PrimitiveElement? definitionElement,
 
     /// [designation] Additional representations for the concept - other
     /// languages, aliases, specialized purposes, used for particular purposes,
@@ -931,7 +932,9 @@ class CodeSystemConcept with BackboneType, _$CodeSystemConcept {
 
 /// [CodeSystemDesignation] The CodeSystem resource is used to declare the
 @freezed
-class CodeSystemDesignation with BackboneType, _$CodeSystemDesignation {
+class CodeSystemDesignation
+    with _$CodeSystemDesignation
+    implements BackboneElement {
   /// [CodeSystemDesignation] The CodeSystem resource is used to declare the
   const CodeSystemDesignation._();
 
@@ -1004,7 +1007,7 @@ class CodeSystemDesignation with BackboneType, _$CodeSystemDesignation {
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [use] A code that details how this designation would be used.
     Coding? use,
@@ -1013,7 +1016,7 @@ class CodeSystemDesignation with BackboneType, _$CodeSystemDesignation {
     String? value,
 
     /// [valueElement] Extensions for value
-    @JsonKey(name: '_value') Element? valueElement,
+    @JsonKey(name: '_value') PrimitiveElement? valueElement,
   }) = _CodeSystemDesignation;
 
   @override
@@ -1049,7 +1052,9 @@ class CodeSystemDesignation with BackboneType, _$CodeSystemDesignation {
 
 /// [CodeSystemProperty1] The CodeSystem resource is used to declare the
 @freezed
-class CodeSystemProperty1 with BackboneType, _$CodeSystemProperty1 {
+class CodeSystemProperty1
+    with _$CodeSystemProperty1
+    implements BackboneElement {
   /// [CodeSystemProperty1] The CodeSystem resource is used to declare the
   const CodeSystemProperty1._();
 
@@ -1142,13 +1147,13 @@ class CodeSystemProperty1 with BackboneType, _$CodeSystemProperty1 {
     FhirCode? code,
 
     /// [codeElement] Extensions for code
-    @JsonKey(name: '_code') Element? codeElement,
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
 
     /// [valueCode] The value of this property.
     FhirCode? valueCode,
 
     /// [valueCodeElement] Extensions for valueCode
-    @JsonKey(name: '_valueCode') Element? valueCodeElement,
+    @JsonKey(name: '_valueCode') PrimitiveElement? valueCodeElement,
 
     /// [valueCoding] The value of this property.
     Coding? valueCoding,
@@ -1157,31 +1162,31 @@ class CodeSystemProperty1 with BackboneType, _$CodeSystemProperty1 {
     String? valueString,
 
     /// [valueStringElement] Extensions for valueString
-    @JsonKey(name: '_valueString') Element? valueStringElement,
+    @JsonKey(name: '_valueString') PrimitiveElement? valueStringElement,
 
     /// [valueInteger] The value of this property.
     FhirInteger? valueInteger,
 
     /// [valueIntegerElement] Extensions for valueInteger
-    @JsonKey(name: '_valueInteger') Element? valueIntegerElement,
+    @JsonKey(name: '_valueInteger') PrimitiveElement? valueIntegerElement,
 
     /// [valueBoolean] The value of this property.
     FhirBoolean? valueBoolean,
 
     /// [valueBooleanElement] Extensions for valueBoolean
-    @JsonKey(name: '_valueBoolean') Element? valueBooleanElement,
+    @JsonKey(name: '_valueBoolean') PrimitiveElement? valueBooleanElement,
 
     /// [valueDateTime] The value of this property.
     FhirDateTime? valueDateTime,
 
     /// [valueDateTimeElement] Extensions for valueDateTime
-    @JsonKey(name: '_valueDateTime') Element? valueDateTimeElement,
+    @JsonKey(name: '_valueDateTime') PrimitiveElement? valueDateTimeElement,
 
     /// [valueDecimal] The value of this property.
     FhirDecimal? valueDecimal,
 
     /// [valueDecimalElement] Extensions for valueDecimal
-    @JsonKey(name: '_valueDecimal') Element? valueDecimalElement,
+    @JsonKey(name: '_valueDecimal') PrimitiveElement? valueDecimalElement,
   }) = _CodeSystemProperty1;
 
   @override
@@ -1217,7 +1222,7 @@ class CodeSystemProperty1 with BackboneType, _$CodeSystemProperty1 {
 
 /// [ConceptMap] A statement of relationships from one set of concepts to one
 @freezed
-class ConceptMap with Resource, _$ConceptMap {
+class ConceptMap with _$ConceptMap implements DomainResource {
   /// [ConceptMap] A statement of relationships from one set of concepts to one
   const ConceptMap._();
 
@@ -1412,13 +1417,13 @@ class ConceptMap with Resource, _$ConceptMap {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -1467,7 +1472,7 @@ class ConceptMap with Resource, _$ConceptMap {
     FhirUri? url,
 
     /// [urlElement] Extensions for url
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
 
     /// [identifier] A formal identifier that is used to identify this concept
     /// map when it is represented in other formats, or referenced in a
@@ -1484,7 +1489,7 @@ class ConceptMap with Resource, _$ConceptMap {
     String? version,
 
     /// [versionElement] Extensions for version
-    @JsonKey(name: '_version') Element? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
 
     /// [name] A natural language name identifying the concept map. This name
     /// should be usable as an identifier for the module by machine processing
@@ -1492,20 +1497,20 @@ class ConceptMap with Resource, _$ConceptMap {
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [title] A short, descriptive, user-friendly title for the concept map.
     String? title,
 
     /// [titleElement] Extensions for title
-    @JsonKey(name: '_title') Element? titleElement,
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
 
     /// [status] The status of this concept map. Enables tracking the life-cycle
     ///  of the content.
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [experimental] A Boolean value to indicate that this concept map is
     /// authored for testing purposes (or education/evaluation/marketing) and is
@@ -1513,7 +1518,7 @@ class ConceptMap with Resource, _$ConceptMap {
     FhirBoolean? experimental,
 
     /// [experimentalElement] Extensions for experimental
-    @JsonKey(name: '_experimental') Element? experimentalElement,
+    @JsonKey(name: '_experimental') PrimitiveElement? experimentalElement,
 
     /// [date] The date  (and optionally time) when the concept map was
     /// published. The date must change when the business version changes and it
@@ -1522,14 +1527,14 @@ class ConceptMap with Resource, _$ConceptMap {
     FhirDateTime? date,
 
     /// [dateElement] Extensions for date
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
 
     /// [publisher] The name of the organization or individual that published the
     ///  concept map.
     String? publisher,
 
     /// [publisherElement] Extensions for publisher
-    @JsonKey(name: '_publisher') Element? publisherElement,
+    @JsonKey(name: '_publisher') PrimitiveElement? publisherElement,
 
     /// [contact] Contact details to assist a user in finding and communicating
     ///  with the publisher.
@@ -1540,7 +1545,7 @@ class ConceptMap with Resource, _$ConceptMap {
     FhirMarkdown? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [useContext] The content was developed with a focus and intent of
     /// supporting the contexts that are listed. These contexts may be general
@@ -1558,7 +1563,7 @@ class ConceptMap with Resource, _$ConceptMap {
     FhirMarkdown? purpose,
 
     /// [purposeElement] Extensions for purpose
-    @JsonKey(name: '_purpose') Element? purposeElement,
+    @JsonKey(name: '_purpose') PrimitiveElement? purposeElement,
 
     /// [copyright] A copyright statement relating to the concept map and/or its
     /// contents. Copyright statements are generally legal restrictions on the use
@@ -1566,21 +1571,21 @@ class ConceptMap with Resource, _$ConceptMap {
     FhirMarkdown? copyright,
 
     /// [copyrightElement] Extensions for copyright
-    @JsonKey(name: '_copyright') Element? copyrightElement,
+    @JsonKey(name: '_copyright') PrimitiveElement? copyrightElement,
 
     /// [sourceUri] Identifier for the source value set that contains the
     ///  concepts that are being mapped and provides context for the mappings.
     FhirUri? sourceUri,
 
     /// [sourceUriElement] Extensions for sourceUri
-    @JsonKey(name: '_sourceUri') Element? sourceUriElement,
+    @JsonKey(name: '_sourceUri') PrimitiveElement? sourceUriElement,
 
     /// [sourceCanonical] Identifier for the source value set that contains the
     ///  concepts that are being mapped and provides context for the mappings.
     FhirCanonical? sourceCanonical,
 
     /// [sourceCanonicalElement] Extensions for sourceCanonical
-    @JsonKey(name: '_sourceCanonical') Element? sourceCanonicalElement,
+    @JsonKey(name: '_sourceCanonical') PrimitiveElement? sourceCanonicalElement,
 
     /// [targetUri] The target value set provides context for the mappings. Note
     /// that the mapping is made between concepts, not between value sets, but the
@@ -1589,7 +1594,7 @@ class ConceptMap with Resource, _$ConceptMap {
     FhirUri? targetUri,
 
     /// [targetUriElement] Extensions for targetUri
-    @JsonKey(name: '_targetUri') Element? targetUriElement,
+    @JsonKey(name: '_targetUri') PrimitiveElement? targetUriElement,
 
     /// [targetCanonical] The target value set provides context for the mappings.
     /// Note that the mapping is made between concepts, not between value sets,
@@ -1598,7 +1603,7 @@ class ConceptMap with Resource, _$ConceptMap {
     FhirCanonical? targetCanonical,
 
     /// [targetCanonicalElement] Extensions for targetCanonical
-    @JsonKey(name: '_targetCanonical') Element? targetCanonicalElement,
+    @JsonKey(name: '_targetCanonical') PrimitiveElement? targetCanonicalElement,
 
     /// [group] A group of mappings that all have the same source and target
     ///  system.
@@ -1643,7 +1648,7 @@ class ConceptMap with Resource, _$ConceptMap {
 
 /// [ConceptMapGroup] A statement of relationships from one set of concepts
 @freezed
-class ConceptMapGroup with BackboneType, _$ConceptMapGroup {
+class ConceptMapGroup with _$ConceptMapGroup implements BackboneElement {
   /// [ConceptMapGroup] A statement of relationships from one set of concepts
   const ConceptMapGroup._();
 
@@ -1735,28 +1740,28 @@ class ConceptMapGroup with BackboneType, _$ConceptMapGroup {
     FhirUri? source,
 
     /// [sourceElement] Extensions for source
-    @JsonKey(name: '_source') Element? sourceElement,
+    @JsonKey(name: '_source') PrimitiveElement? sourceElement,
 
     /// [sourceVersion] The specific version of the code system, as determined by
     ///  the code system authority.
     String? sourceVersion,
 
     /// [sourceVersionElement] Extensions for sourceVersion
-    @JsonKey(name: '_sourceVersion') Element? sourceVersionElement,
+    @JsonKey(name: '_sourceVersion') PrimitiveElement? sourceVersionElement,
 
     /// [target] An absolute URI that identifies the target system that the
     ///  concepts will be mapped to.
     FhirUri? target,
 
     /// [targetElement] Extensions for target
-    @JsonKey(name: '_target') Element? targetElement,
+    @JsonKey(name: '_target') PrimitiveElement? targetElement,
 
     /// [targetVersion] The specific version of the code system, as determined by
     ///  the code system authority.
     String? targetVersion,
 
     /// [targetVersionElement] Extensions for targetVersion
-    @JsonKey(name: '_targetVersion') Element? targetVersionElement,
+    @JsonKey(name: '_targetVersion') PrimitiveElement? targetVersionElement,
 
     /// [element] Mappings for an individual concept in the source to one or more
     ///  concepts in the target.
@@ -1802,7 +1807,7 @@ class ConceptMapGroup with BackboneType, _$ConceptMapGroup {
 
 /// [ConceptMapElement] A statement of relationships from one set of
 @freezed
-class ConceptMapElement with BackboneType, _$ConceptMapElement {
+class ConceptMapElement with _$ConceptMapElement implements BackboneElement {
   /// [ConceptMapElement] A statement of relationships from one set of
   const ConceptMapElement._();
 
@@ -1876,14 +1881,14 @@ class ConceptMapElement with BackboneType, _$ConceptMapElement {
     FhirCode? code,
 
     /// [codeElement] Extensions for code
-    @JsonKey(name: '_code') Element? codeElement,
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
 
     /// [display] The display for the code. The display is only provided to help
     ///  editors when editing the concept map.
     String? display,
 
     /// [displayElement] Extensions for display
-    @JsonKey(name: '_display') Element? displayElement,
+    @JsonKey(name: '_display') PrimitiveElement? displayElement,
 
     /// [target] A concept from the target value set that this concept maps to.
     List<ConceptMapTarget>? target,
@@ -1922,7 +1927,7 @@ class ConceptMapElement with BackboneType, _$ConceptMapElement {
 
 /// [ConceptMapTarget] A statement of relationships from one set of concepts
 @freezed
-class ConceptMapTarget with BackboneType, _$ConceptMapTarget {
+class ConceptMapTarget with _$ConceptMapTarget implements BackboneElement {
   /// [ConceptMapTarget] A statement of relationships from one set of concepts
   const ConceptMapTarget._();
 
@@ -2017,14 +2022,14 @@ class ConceptMapTarget with BackboneType, _$ConceptMapTarget {
     FhirCode? code,
 
     /// [codeElement] Extensions for code
-    @JsonKey(name: '_code') Element? codeElement,
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
 
     /// [display] The display for the code. The display is only provided to help
     ///  editors when editing the concept map.
     String? display,
 
     /// [displayElement] Extensions for display
-    @JsonKey(name: '_display') Element? displayElement,
+    @JsonKey(name: '_display') PrimitiveElement? displayElement,
 
     /// [equivalence] The equivalence between the source and target concepts
     /// (counting for the dependencies and products). The equivalence is read from
@@ -2032,14 +2037,14 @@ class ConceptMapTarget with BackboneType, _$ConceptMapTarget {
     FhirCode? equivalence,
 
     /// [equivalenceElement] Extensions for equivalence
-    @JsonKey(name: '_equivalence') Element? equivalenceElement,
+    @JsonKey(name: '_equivalence') PrimitiveElement? equivalenceElement,
 
     /// [comment] A description of status/issues in mapping that conveys
     ///  additional information not represented in  the structured data.
     String? comment,
 
     /// [commentElement] Extensions for comment
-    @JsonKey(name: '_comment') Element? commentElement,
+    @JsonKey(name: '_comment') PrimitiveElement? commentElement,
 
     /// [dependsOn] A set of additional dependencies for this mapping to hold.
     /// This mapping is only applicable if the specified element can be resolved,
@@ -2087,7 +2092,9 @@ class ConceptMapTarget with BackboneType, _$ConceptMapTarget {
 
 /// [ConceptMapDependsOn] A statement of relationships from one set of
 @freezed
-class ConceptMapDependsOn with BackboneType, _$ConceptMapDependsOn {
+class ConceptMapDependsOn
+    with _$ConceptMapDependsOn
+    implements BackboneElement {
   /// [ConceptMapDependsOn] A statement of relationships from one set of
   const ConceptMapDependsOn._();
 
@@ -2174,7 +2181,7 @@ class ConceptMapDependsOn with BackboneType, _$ConceptMapDependsOn {
     FhirUri? property,
 
     /// [propertyElement] Extensions for property
-    @JsonKey(name: '_property') Element? propertyElement,
+    @JsonKey(name: '_property') PrimitiveElement? propertyElement,
 
     /// [system] An absolute URI that identifies the code system of the
     /// dependency code (if the source/dependency is a value set that crosses code
@@ -2186,14 +2193,14 @@ class ConceptMapDependsOn with BackboneType, _$ConceptMapDependsOn {
     String? value,
 
     /// [valueElement] Extensions for value
-    @JsonKey(name: '_value') Element? valueElement,
+    @JsonKey(name: '_value') PrimitiveElement? valueElement,
 
     /// [display] The display for the code. The display is only provided to help
     ///  editors when editing the concept map.
     String? display,
 
     /// [displayElement] Extensions for display
-    @JsonKey(name: '_display') Element? displayElement,
+    @JsonKey(name: '_display') PrimitiveElement? displayElement,
   }) = _ConceptMapDependsOn;
 
   @override
@@ -2229,7 +2236,7 @@ class ConceptMapDependsOn with BackboneType, _$ConceptMapDependsOn {
 
 /// [ConceptMapUnmapped] A statement of relationships from one set of
 @freezed
-class ConceptMapUnmapped with BackboneType, _$ConceptMapUnmapped {
+class ConceptMapUnmapped with _$ConceptMapUnmapped implements BackboneElement {
   /// [ConceptMapUnmapped] A statement of relationships from one set of
   const ConceptMapUnmapped._();
 
@@ -2320,21 +2327,21 @@ class ConceptMapUnmapped with BackboneType, _$ConceptMapUnmapped {
     FhirCode? mode,
 
     /// [modeElement] Extensions for mode
-    @JsonKey(name: '_mode') Element? modeElement,
+    @JsonKey(name: '_mode') PrimitiveElement? modeElement,
 
     /// [code] The fixed code to use when the mode = 'fixed'  - all unmapped
     ///  codes are mapped to a single fixed code.
     FhirCode? code,
 
     /// [codeElement] Extensions for code
-    @JsonKey(name: '_code') Element? codeElement,
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
 
     /// [display] The display for the code. The display is only provided to help
     ///  editors when editing the concept map.
     String? display,
 
     /// [displayElement] Extensions for display
-    @JsonKey(name: '_display') Element? displayElement,
+    @JsonKey(name: '_display') PrimitiveElement? displayElement,
 
     /// [url] The canonical reference to an additional ConceptMap resource
     /// instance to use for mapping if this ConceptMap resource contains no
@@ -2375,7 +2382,7 @@ class ConceptMapUnmapped with BackboneType, _$ConceptMapUnmapped {
 
 /// [NamingSystem] A curated namespace that issues unique symbols within that
 @freezed
-class NamingSystem with Resource, _$NamingSystem {
+class NamingSystem with _$NamingSystem implements DomainResource {
   /// [NamingSystem] A curated namespace that issues unique symbols within that
   const NamingSystem._();
 
@@ -2521,13 +2528,13 @@ class NamingSystem with Resource, _$NamingSystem {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -2572,21 +2579,21 @@ class NamingSystem with Resource, _$NamingSystem {
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [status] The status of this naming system. Enables tracking the
     ///  life-cycle of the content.
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [kind] Indicates the purpose for the naming system - what kinds of things
     ///  does it make unique?
     FhirCode? kind,
 
     /// [kindElement] Extensions for kind
-    @JsonKey(name: '_kind') Element? kindElement,
+    @JsonKey(name: '_kind') PrimitiveElement? kindElement,
 
     /// [date] The date  (and optionally time) when the naming system was
     /// published. The date must change when the business version changes and it
@@ -2595,14 +2602,14 @@ class NamingSystem with Resource, _$NamingSystem {
     FhirDateTime? date,
 
     /// [dateElement] Extensions for date
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
 
     /// [publisher] The name of the organization or individual that published the
     ///  naming system.
     String? publisher,
 
     /// [publisherElement] Extensions for publisher
-    @JsonKey(name: '_publisher') Element? publisherElement,
+    @JsonKey(name: '_publisher') PrimitiveElement? publisherElement,
 
     /// [contact] Contact details to assist a user in finding and communicating
     ///  with the publisher.
@@ -2614,7 +2621,7 @@ class NamingSystem with Resource, _$NamingSystem {
     String? responsible,
 
     /// [responsibleElement] Extensions for responsible
-    @JsonKey(name: '_responsible') Element? responsibleElement,
+    @JsonKey(name: '_responsible') PrimitiveElement? responsibleElement,
 
     /// [type] Categorizes a naming system for easier search by grouping related
     ///  naming systems.
@@ -2626,7 +2633,7 @@ class NamingSystem with Resource, _$NamingSystem {
     FhirMarkdown? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [useContext] The content was developed with a focus and intent of
     /// supporting the contexts that are listed. These contexts may be general
@@ -2644,7 +2651,7 @@ class NamingSystem with Resource, _$NamingSystem {
     String? usage,
 
     /// [usageElement] Extensions for usage
-    @JsonKey(name: '_usage') Element? usageElement,
+    @JsonKey(name: '_usage') PrimitiveElement? usageElement,
 
     /// [uniqueId] Indicates how the system may be identified when referenced in
     ///  electronic exchange.
@@ -2689,7 +2696,9 @@ class NamingSystem with Resource, _$NamingSystem {
 
 /// [NamingSystemUniqueId] A curated namespace that issues unique symbols
 @freezed
-class NamingSystemUniqueId with BackboneType, _$NamingSystemUniqueId {
+class NamingSystemUniqueId
+    with _$NamingSystemUniqueId
+    implements BackboneElement {
   /// [NamingSystemUniqueId] A curated namespace that issues unique symbols
   const NamingSystemUniqueId._();
 
@@ -2777,27 +2786,27 @@ class NamingSystemUniqueId with BackboneType, _$NamingSystemUniqueId {
     FhirCode? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [value] The string that should be sent over the wire to identify the code
     ///  system or identifier system.
     String? value,
 
     /// [valueElement] Extensions for value
-    @JsonKey(name: '_value') Element? valueElement,
+    @JsonKey(name: '_value') PrimitiveElement? valueElement,
 
     /// [preferred] Indicates whether this identifier is the "preferred"
     ///  identifier of this type.
     FhirBoolean? preferred,
 
     /// [preferredElement] Extensions for preferred
-    @JsonKey(name: '_preferred') Element? preferredElement,
+    @JsonKey(name: '_preferred') PrimitiveElement? preferredElement,
 
     /// [comment] Notes about the past or intended usage of this identifier.
     String? comment,
 
     /// [commentElement] Extensions for comment
-    @JsonKey(name: '_comment') Element? commentElement,
+    @JsonKey(name: '_comment') PrimitiveElement? commentElement,
 
     /// [period] Identifies the period of time over which this identifier is
     /// considered appropriate to refer to the naming system.  Outside of this
@@ -2838,7 +2847,9 @@ class NamingSystemUniqueId with BackboneType, _$NamingSystemUniqueId {
 
 /// [TerminologyCapabilities] A TerminologyCapabilities resource documents a
 @freezed
-class TerminologyCapabilities with Resource, _$TerminologyCapabilities {
+class TerminologyCapabilities
+    with _$TerminologyCapabilities
+    implements DomainResource {
   /// [TerminologyCapabilities] A TerminologyCapabilities resource documents a
   const TerminologyCapabilities._();
 
@@ -3041,13 +3052,13 @@ class TerminologyCapabilities with Resource, _$TerminologyCapabilities {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -3096,7 +3107,7 @@ class TerminologyCapabilities with Resource, _$TerminologyCapabilities {
     FhirUri? url,
 
     /// [urlElement] Extensions for url
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
 
     /// [version] The identifier that is used to identify this version of the
     /// terminology capabilities when it is referenced in a specification, model,
@@ -3108,7 +3119,7 @@ class TerminologyCapabilities with Resource, _$TerminologyCapabilities {
     String? version,
 
     /// [versionElement] Extensions for version
-    @JsonKey(name: '_version') Element? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
 
     /// [name] A natural language name identifying the terminology capabilities.
     /// This name should be usable as an identifier for the module by machine
@@ -3116,21 +3127,21 @@ class TerminologyCapabilities with Resource, _$TerminologyCapabilities {
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [title] A short, descriptive, user-friendly title for the terminology
     ///  capabilities.
     String? title,
 
     /// [titleElement] Extensions for title
-    @JsonKey(name: '_title') Element? titleElement,
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
 
     /// [status] The status of this terminology capabilities. Enables tracking
     ///  the life-cycle of the content.
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [experimental] A Boolean value to indicate that this terminology
     /// capabilities is authored for testing purposes (or
@@ -3139,7 +3150,7 @@ class TerminologyCapabilities with Resource, _$TerminologyCapabilities {
     FhirBoolean? experimental,
 
     /// [experimentalElement] Extensions for experimental
-    @JsonKey(name: '_experimental') Element? experimentalElement,
+    @JsonKey(name: '_experimental') PrimitiveElement? experimentalElement,
 
     /// [date] The date  (and optionally time) when the terminology capabilities
     /// was published. The date must change when the business version changes and
@@ -3148,14 +3159,14 @@ class TerminologyCapabilities with Resource, _$TerminologyCapabilities {
     FhirDateTime? date,
 
     /// [dateElement] Extensions for date
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
 
     /// [publisher] The name of the organization or individual that published the
     ///  terminology capabilities.
     String? publisher,
 
     /// [publisherElement] Extensions for publisher
-    @JsonKey(name: '_publisher') Element? publisherElement,
+    @JsonKey(name: '_publisher') PrimitiveElement? publisherElement,
 
     /// [contact] Contact details to assist a user in finding and communicating
     ///  with the publisher.
@@ -3169,7 +3180,7 @@ class TerminologyCapabilities with Resource, _$TerminologyCapabilities {
     FhirMarkdown? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [useContext] The content was developed with a focus and intent of
     /// supporting the contexts that are listed. These contexts may be general
@@ -3187,7 +3198,7 @@ class TerminologyCapabilities with Resource, _$TerminologyCapabilities {
     FhirMarkdown? purpose,
 
     /// [purposeElement] Extensions for purpose
-    @JsonKey(name: '_purpose') Element? purposeElement,
+    @JsonKey(name: '_purpose') PrimitiveElement? purposeElement,
 
     /// [copyright] A copyright statement relating to the terminology
     /// capabilities and/or its contents. Copyright statements are generally legal
@@ -3195,7 +3206,7 @@ class TerminologyCapabilities with Resource, _$TerminologyCapabilities {
     FhirMarkdown? copyright,
 
     /// [copyrightElement] Extensions for copyright
-    @JsonKey(name: '_copyright') Element? copyrightElement,
+    @JsonKey(name: '_copyright') PrimitiveElement? copyrightElement,
 
     /// [kind] The way that this statement is intended to be used, to describe an
     /// actual running instance of software, a particular product (kind, not
@@ -3204,7 +3215,7 @@ class TerminologyCapabilities with Resource, _$TerminologyCapabilities {
     FhirCode? kind,
 
     /// [kindElement] Extensions for kind
-    @JsonKey(name: '_kind') Element? kindElement,
+    @JsonKey(name: '_kind') PrimitiveElement? kindElement,
 
     /// [software] Software that is covered by this terminology capability
     /// statement.  It is used when the statement describes the capabilities of a
@@ -3220,7 +3231,7 @@ class TerminologyCapabilities with Resource, _$TerminologyCapabilities {
     FhirBoolean? lockedDate,
 
     /// [lockedDateElement] Extensions for lockedDate
-    @JsonKey(name: '_lockedDate') Element? lockedDateElement,
+    @JsonKey(name: '_lockedDate') PrimitiveElement? lockedDateElement,
 
     /// [codeSystem] Identifies a code system that is supported by the server. If
     /// there is a no code system URL, then this declares the general assumptions
@@ -3236,7 +3247,7 @@ class TerminologyCapabilities with Resource, _$TerminologyCapabilities {
     FhirCode? codeSearch,
 
     /// [codeSearchElement] Extensions for codeSearch
-    @JsonKey(name: '_codeSearch') Element? codeSearchElement,
+    @JsonKey(name: '_codeSearch') PrimitiveElement? codeSearchElement,
 
     /// [validateCode] Information about the
     TerminologyCapabilitiesValidateCode? validateCode,
@@ -3357,14 +3368,14 @@ class TerminologyCapabilitiesSoftware
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [version] The version identifier for the software covered by this
     ///  statement.
     String? version,
 
     /// [versionElement] Extensions for version
-    @JsonKey(name: '_version') Element? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
   }) = _TerminologyCapabilitiesSoftware;
 
   @override
@@ -3474,13 +3485,13 @@ class TerminologyCapabilitiesImplementation
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [url] An absolute base URL for the implementation.
     FhirUrl? url,
 
     /// [urlElement] Extensions for url
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
   }) = _TerminologyCapabilitiesImplementation;
 
   @override
@@ -3586,7 +3597,7 @@ class TerminologyCapabilitiesCodeSystem
     FhirBoolean? subsumption,
 
     /// [subsumptionElement] Extensions for subsumption
-    @JsonKey(name: '_subsumption') Element? subsumptionElement,
+    @JsonKey(name: '_subsumption') PrimitiveElement? subsumptionElement,
   }) = _TerminologyCapabilitiesCodeSystem;
 
   @override
@@ -3701,20 +3712,20 @@ class TerminologyCapabilitiesVersion
     String? code,
 
     /// [codeElement] Extensions for code
-    @JsonKey(name: '_code') Element? codeElement,
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
 
     /// [isDefault] If this is the default version for this code system.
     FhirBoolean? isDefault,
 
     /// [isDefaultElement] Extensions for isDefault
-    @JsonKey(name: '_isDefault') Element? isDefaultElement,
+    @JsonKey(name: '_isDefault') PrimitiveElement? isDefaultElement,
 
     /// [compositional] If the compositional grammar defined by the code system
     ///  is supported.
     FhirBoolean? compositional,
 
     /// [compositionalElement] Extensions for compositional
-    @JsonKey(name: '_compositional') Element? compositionalElement,
+    @JsonKey(name: '_compositional') PrimitiveElement? compositionalElement,
 
     /// [language] Language Displays supported.
     List<FhirCode>? language,
@@ -3839,7 +3850,7 @@ class TerminologyCapabilitiesFilter
     FhirCode? code,
 
     /// [codeElement] Extensions for code
-    @JsonKey(name: '_code') Element? codeElement,
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
 
     /// [op] Operations supported for the property.
     List<FhirCode>? op,
@@ -3964,19 +3975,19 @@ class TerminologyCapabilitiesExpansion
     FhirBoolean? hierarchical,
 
     /// [hierarchicalElement] Extensions for hierarchical
-    @JsonKey(name: '_hierarchical') Element? hierarchicalElement,
+    @JsonKey(name: '_hierarchical') PrimitiveElement? hierarchicalElement,
 
     /// [paging] Whether the server supports paging on expansion.
     FhirBoolean? paging,
 
     /// [pagingElement] Extensions for paging
-    @JsonKey(name: '_paging') Element? pagingElement,
+    @JsonKey(name: '_paging') PrimitiveElement? pagingElement,
 
     /// [incomplete] Allow request for incomplete expansions?
     FhirBoolean? incomplete,
 
     /// [incompleteElement] Extensions for incomplete
-    @JsonKey(name: '_incomplete') Element? incompleteElement,
+    @JsonKey(name: '_incomplete') PrimitiveElement? incompleteElement,
 
     /// [parameter] Supported expansion parameter.
     List<TerminologyCapabilitiesParameter>? parameter,
@@ -3985,7 +3996,7 @@ class TerminologyCapabilitiesExpansion
     FhirMarkdown? textFilter,
 
     /// [textFilterElement] Extensions for textFilter
-    @JsonKey(name: '_textFilter') Element? textFilterElement,
+    @JsonKey(name: '_textFilter') PrimitiveElement? textFilterElement,
   }) = _TerminologyCapabilitiesExpansion;
 
   @override
@@ -4083,13 +4094,13 @@ class TerminologyCapabilitiesParameter
     FhirCode? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [documentation] Description of support for parameter.
     String? documentation,
 
     /// [documentationElement] Extensions for documentation
-    @JsonKey(name: '_documentation') Element? documentationElement,
+    @JsonKey(name: '_documentation') PrimitiveElement? documentationElement,
   }) = _TerminologyCapabilitiesParameter;
 
   @override
@@ -4181,7 +4192,7 @@ class TerminologyCapabilitiesValidateCode
     FhirBoolean? translations,
 
     /// [translationsElement] Extensions for translations
-    @JsonKey(name: '_translations') Element? translationsElement,
+    @JsonKey(name: '_translations') PrimitiveElement? translationsElement,
   }) = _TerminologyCapabilitiesValidateCode;
 
   @override
@@ -4273,7 +4284,7 @@ class TerminologyCapabilitiesTranslation
     FhirBoolean? needsMap,
 
     /// [needsMapElement] Extensions for needsMap
-    @JsonKey(name: '_needsMap') Element? needsMapElement,
+    @JsonKey(name: '_needsMap') PrimitiveElement? needsMapElement,
   }) = _TerminologyCapabilitiesTranslation;
 
   @override
@@ -4367,7 +4378,7 @@ class TerminologyCapabilitiesClosure
     FhirBoolean? translation,
 
     /// [translationElement] Extensions for translation
-    @JsonKey(name: '_translation') Element? translationElement,
+    @JsonKey(name: '_translation') PrimitiveElement? translationElement,
   }) = _TerminologyCapabilitiesClosure;
 
   @override
@@ -4404,7 +4415,7 @@ class TerminologyCapabilitiesClosure
 
 /// [ValueSet] A ValueSet resource instance specifies a set of codes drawn
 @freezed
-class ValueSet with Resource, _$ValueSet {
+class ValueSet with _$ValueSet implements DomainResource {
   /// [ValueSet] A ValueSet resource instance specifies a set of codes drawn
   const ValueSet._();
 
@@ -4590,13 +4601,13 @@ class ValueSet with Resource, _$ValueSet {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -4645,7 +4656,7 @@ class ValueSet with Resource, _$ValueSet {
     FhirUri? url,
 
     /// [urlElement] Extensions for url
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
 
     /// [identifier] A formal identifier that is used to identify this value set
     /// when it is represented in other formats, or referenced in a specification,
@@ -4662,7 +4673,7 @@ class ValueSet with Resource, _$ValueSet {
     String? version,
 
     /// [versionElement] Extensions for version
-    @JsonKey(name: '_version') Element? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
 
     /// [name] A natural language name identifying the value set. This name
     /// should be usable as an identifier for the module by machine processing
@@ -4670,13 +4681,13 @@ class ValueSet with Resource, _$ValueSet {
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [title] A short, descriptive, user-friendly title for the value set.
     String? title,
 
     /// [titleElement] Extensions for title
-    @JsonKey(name: '_title') Element? titleElement,
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
 
     /// [status] The status of this value set. Enables tracking the life-cycle of
     /// the content. The status of the value set applies to the value set
@@ -4685,7 +4696,7 @@ class ValueSet with Resource, _$ValueSet {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [experimental] A Boolean value to indicate that this value set is
     /// authored for testing purposes (or education/evaluation/marketing) and is
@@ -4693,21 +4704,21 @@ class ValueSet with Resource, _$ValueSet {
     FhirBoolean? experimental,
 
     /// [experimentalElement] Extensions for experimental
-    @JsonKey(name: '_experimental') Element? experimentalElement,
+    @JsonKey(name: '_experimental') PrimitiveElement? experimentalElement,
 
     /// [date] The date (and optionally time) when the value set was created or
     ///  revised (e.g. the 'content logical definition').
     FhirDateTime? date,
 
     /// [dateElement] Extensions for date
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
 
     /// [publisher] The name of the organization or individual that published the
     ///  value set.
     String? publisher,
 
     /// [publisherElement] Extensions for publisher
-    @JsonKey(name: '_publisher') Element? publisherElement,
+    @JsonKey(name: '_publisher') PrimitiveElement? publisherElement,
 
     /// [contact] Contact details to assist a user in finding and communicating
     ///  with the publisher.
@@ -4720,7 +4731,7 @@ class ValueSet with Resource, _$ValueSet {
     FhirMarkdown? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [useContext] The content was developed with a focus and intent of
     /// supporting the contexts that are listed. These contexts may be general
@@ -4739,14 +4750,14 @@ class ValueSet with Resource, _$ValueSet {
     FhirBoolean? immutable,
 
     /// [immutableElement] Extensions for immutable
-    @JsonKey(name: '_immutable') Element? immutableElement,
+    @JsonKey(name: '_immutable') PrimitiveElement? immutableElement,
 
     /// [purpose] Explanation of why this value set is needed and why it has been
     ///  designed as it has.
     FhirMarkdown? purpose,
 
     /// [purposeElement] Extensions for purpose
-    @JsonKey(name: '_purpose') Element? purposeElement,
+    @JsonKey(name: '_purpose') PrimitiveElement? purposeElement,
 
     /// [copyright] A copyright statement relating to the value set and/or its
     /// contents. Copyright statements are generally legal restrictions on the use
@@ -4754,7 +4765,7 @@ class ValueSet with Resource, _$ValueSet {
     FhirMarkdown? copyright,
 
     /// [copyrightElement] Extensions for copyright
-    @JsonKey(name: '_copyright') Element? copyrightElement,
+    @JsonKey(name: '_copyright') PrimitiveElement? copyrightElement,
 
     /// [compose] A set of criteria that define the contents of the value set by
     /// including or excluding codes selected from the specified code system(s)
@@ -4806,7 +4817,7 @@ class ValueSet with Resource, _$ValueSet {
 
 /// [ValueSetCompose] A ValueSet resource instance specifies a set of codes
 @freezed
-class ValueSetCompose with BackboneType, _$ValueSetCompose {
+class ValueSetCompose with _$ValueSetCompose implements BackboneElement {
   /// [ValueSetCompose] A ValueSet resource instance specifies a set of codes
   const ValueSetCompose._();
 
@@ -4895,7 +4906,7 @@ class ValueSetCompose with BackboneType, _$ValueSetCompose {
     FhirDate? lockedDate,
 
     /// [lockedDateElement] Extensions for lockedDate
-    @JsonKey(name: '_lockedDate') Element? lockedDateElement,
+    @JsonKey(name: '_lockedDate') PrimitiveElement? lockedDateElement,
 
     /// [inactive] Whether inactive codes - codes that are not approved for
     /// current use - are in the value set. If inactive = true, inactive codes are
@@ -4906,7 +4917,7 @@ class ValueSetCompose with BackboneType, _$ValueSetCompose {
     FhirBoolean? inactive,
 
     /// [inactiveElement] Extensions for inactive
-    @JsonKey(name: '_inactive') Element? inactiveElement,
+    @JsonKey(name: '_inactive') PrimitiveElement? inactiveElement,
 
     /// [include] Include one or more codes from a code system or other value
     ///  set(s).
@@ -4950,7 +4961,7 @@ class ValueSetCompose with BackboneType, _$ValueSetCompose {
 
 /// [ValueSetInclude] A ValueSet resource instance specifies a set of codes
 @freezed
-class ValueSetInclude with BackboneType, _$ValueSetInclude {
+class ValueSetInclude with _$ValueSetInclude implements BackboneElement {
   /// [ValueSetInclude] A ValueSet resource instance specifies a set of codes
   const ValueSetInclude._();
 
@@ -5037,14 +5048,14 @@ class ValueSetInclude with BackboneType, _$ValueSetInclude {
     FhirUri? system,
 
     /// [systemElement] Extensions for system
-    @JsonKey(name: '_system') Element? systemElement,
+    @JsonKey(name: '_system') PrimitiveElement? systemElement,
 
     /// [version] The version of the code system that the codes are selected
     ///  from, or the special version '*' for all versions.
     String? version,
 
     /// [versionElement] Extensions for version
-    @JsonKey(name: '_version') Element? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
 
     /// [concept] Specifies a concept to be included or excluded.
     List<ValueSetConcept>? concept,
@@ -5095,7 +5106,7 @@ class ValueSetInclude with BackboneType, _$ValueSetInclude {
 
 /// [ValueSetConcept] A ValueSet resource instance specifies a set of codes
 @freezed
-class ValueSetConcept with BackboneType, _$ValueSetConcept {
+class ValueSetConcept with _$ValueSetConcept implements BackboneElement {
   /// [ValueSetConcept] A ValueSet resource instance specifies a set of codes
   const ValueSetConcept._();
 
@@ -5173,7 +5184,7 @@ class ValueSetConcept with BackboneType, _$ValueSetConcept {
     FhirCode? code,
 
     /// [codeElement] Extensions for code
-    @JsonKey(name: '_code') Element? codeElement,
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
 
     /// [display] The text to display to the user for this concept in the context
     /// of this valueset. If no display is provided, then applications using the
@@ -5181,7 +5192,7 @@ class ValueSetConcept with BackboneType, _$ValueSetConcept {
     String? display,
 
     /// [displayElement] Extensions for display
-    @JsonKey(name: '_display') Element? displayElement,
+    @JsonKey(name: '_display') PrimitiveElement? displayElement,
 
     /// [designation] Additional representations for this concept when used in
     /// this value set - other languages, aliases, specialized purposes, used for
@@ -5222,7 +5233,9 @@ class ValueSetConcept with BackboneType, _$ValueSetConcept {
 
 /// [ValueSetDesignation] A ValueSet resource instance specifies a set of
 @freezed
-class ValueSetDesignation with BackboneType, _$ValueSetDesignation {
+class ValueSetDesignation
+    with _$ValueSetDesignation
+    implements BackboneElement {
   /// [ValueSetDesignation] A ValueSet resource instance specifies a set of
   const ValueSetDesignation._();
 
@@ -5296,7 +5309,7 @@ class ValueSetDesignation with BackboneType, _$ValueSetDesignation {
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [use] A code that represents types of uses of designations.
     Coding? use,
@@ -5305,7 +5318,7 @@ class ValueSetDesignation with BackboneType, _$ValueSetDesignation {
     String? value,
 
     /// [valueElement] Extensions for value
-    @JsonKey(name: '_value') Element? valueElement,
+    @JsonKey(name: '_value') PrimitiveElement? valueElement,
   }) = _ValueSetDesignation;
 
   @override
@@ -5341,7 +5354,7 @@ class ValueSetDesignation with BackboneType, _$ValueSetDesignation {
 
 /// [ValueSetFilter] A ValueSet resource instance specifies a set of codes
 @freezed
-class ValueSetFilter with BackboneType, _$ValueSetFilter {
+class ValueSetFilter with _$ValueSetFilter implements BackboneElement {
   /// [ValueSetFilter] A ValueSet resource instance specifies a set of codes
   const ValueSetFilter._();
 
@@ -5424,13 +5437,13 @@ class ValueSetFilter with BackboneType, _$ValueSetFilter {
     FhirCode? property,
 
     /// [propertyElement] Extensions for property
-    @JsonKey(name: '_property') Element? propertyElement,
+    @JsonKey(name: '_property') PrimitiveElement? propertyElement,
 
     /// [op] The kind of operation to perform as a part of the filter criteria.
     FhirCode? op,
 
     /// [opElement] Extensions for op
-    @JsonKey(name: '_op') Element? opElement,
+    @JsonKey(name: '_op') PrimitiveElement? opElement,
 
     /// [value] The match value may be either a code defined by the system, or a
     /// string value, which is a regex match on the literal string of the property
@@ -5441,7 +5454,7 @@ class ValueSetFilter with BackboneType, _$ValueSetFilter {
     String? value,
 
     /// [valueElement] Extensions for value
-    @JsonKey(name: '_value') Element? valueElement,
+    @JsonKey(name: '_value') PrimitiveElement? valueElement,
   }) = _ValueSetFilter;
 
   @override
@@ -5477,7 +5490,7 @@ class ValueSetFilter with BackboneType, _$ValueSetFilter {
 
 /// [ValueSetExpansion] A ValueSet resource instance specifies a set of
 @freezed
-class ValueSetExpansion with BackboneType, _$ValueSetExpansion {
+class ValueSetExpansion with _$ValueSetExpansion implements BackboneElement {
   /// [ValueSetExpansion] A ValueSet resource instance specifies a set of
   const ValueSetExpansion._();
 
@@ -5579,14 +5592,14 @@ class ValueSetExpansion with BackboneType, _$ValueSetExpansion {
     FhirUri? identifier,
 
     /// [identifierElement] Extensions for identifier
-    @JsonKey(name: '_identifier') Element? identifierElement,
+    @JsonKey(name: '_identifier') PrimitiveElement? identifierElement,
 
     /// [timestamp] The time at which the expansion was produced by the expanding
     ///  system.
     FhirDateTime? timestamp,
 
     /// [timestampElement] Extensions for timestamp
-    @JsonKey(name: '_timestamp') Element? timestampElement,
+    @JsonKey(name: '_timestamp') PrimitiveElement? timestampElement,
 
     /// [total] The total number of concepts in the expansion. If the number of
     /// concept nodes in this resource is less than the stated number, then the
@@ -5594,7 +5607,7 @@ class ValueSetExpansion with BackboneType, _$ValueSetExpansion {
     FhirInteger? total,
 
     /// [totalElement] Extensions for total
-    @JsonKey(name: '_total') Element? totalElement,
+    @JsonKey(name: '_total') PrimitiveElement? totalElement,
 
     /// [offset] If paging is being used, the offset at which this resource
     /// starts.  I.e. this resource is a partial view into the expansion. If
@@ -5602,7 +5615,7 @@ class ValueSetExpansion with BackboneType, _$ValueSetExpansion {
     FhirInteger? offset,
 
     /// [offsetElement] Extensions for offset
-    @JsonKey(name: '_offset') Element? offsetElement,
+    @JsonKey(name: '_offset') PrimitiveElement? offsetElement,
 
     /// [parameter] A parameter that controlled the expansion process. These
     /// parameters may be used by users of expanded value sets to check whether
@@ -5647,7 +5660,7 @@ class ValueSetExpansion with BackboneType, _$ValueSetExpansion {
 
 /// [ValueSetParameter] A ValueSet resource instance specifies a set of
 @freezed
-class ValueSetParameter with BackboneType, _$ValueSetParameter {
+class ValueSetParameter with _$ValueSetParameter implements BackboneElement {
   /// [ValueSetParameter] A ValueSet resource instance specifies a set of
   const ValueSetParameter._();
 
@@ -5747,49 +5760,49 @@ class ValueSetParameter with BackboneType, _$ValueSetParameter {
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [valueString] The value of the parameter.
     String? valueString,
 
     /// [valueStringElement] Extensions for valueString
-    @JsonKey(name: '_valueString') Element? valueStringElement,
+    @JsonKey(name: '_valueString') PrimitiveElement? valueStringElement,
 
     /// [valueBoolean] The value of the parameter.
     FhirBoolean? valueBoolean,
 
     /// [valueBooleanElement] Extensions for valueBoolean
-    @JsonKey(name: '_valueBoolean') Element? valueBooleanElement,
+    @JsonKey(name: '_valueBoolean') PrimitiveElement? valueBooleanElement,
 
     /// [valueInteger] The value of the parameter.
     FhirInteger? valueInteger,
 
     /// [valueIntegerElement] Extensions for valueInteger
-    @JsonKey(name: '_valueInteger') Element? valueIntegerElement,
+    @JsonKey(name: '_valueInteger') PrimitiveElement? valueIntegerElement,
 
     /// [valueDecimal] The value of the parameter.
     FhirDecimal? valueDecimal,
 
     /// [valueDecimalElement] Extensions for valueDecimal
-    @JsonKey(name: '_valueDecimal') Element? valueDecimalElement,
+    @JsonKey(name: '_valueDecimal') PrimitiveElement? valueDecimalElement,
 
     /// [valueUri] The value of the parameter.
     FhirUri? valueUri,
 
     /// [valueUriElement] Extensions for valueUri
-    @JsonKey(name: '_valueUri') Element? valueUriElement,
+    @JsonKey(name: '_valueUri') PrimitiveElement? valueUriElement,
 
     /// [valueCode] The value of the parameter.
     FhirCode? valueCode,
 
     /// [valueCodeElement] Extensions for valueCode
-    @JsonKey(name: '_valueCode') Element? valueCodeElement,
+    @JsonKey(name: '_valueCode') PrimitiveElement? valueCodeElement,
 
     /// [valueDateTime] The value of the parameter.
     FhirDateTime? valueDateTime,
 
     /// [valueDateTimeElement] Extensions for valueDateTime
-    @JsonKey(name: '_valueDateTime') Element? valueDateTimeElement,
+    @JsonKey(name: '_valueDateTime') PrimitiveElement? valueDateTimeElement,
   }) = _ValueSetParameter;
 
   @override
@@ -5825,7 +5838,7 @@ class ValueSetParameter with BackboneType, _$ValueSetParameter {
 
 /// [ValueSetContains] A ValueSet resource instance specifies a set of codes
 @freezed
-class ValueSetContains with BackboneType, _$ValueSetContains {
+class ValueSetContains with _$ValueSetContains implements BackboneElement {
   /// [ValueSetContains] A ValueSet resource instance specifies a set of codes
   const ValueSetContains._();
 
@@ -5935,7 +5948,7 @@ class ValueSetContains with BackboneType, _$ValueSetContains {
     FhirUri? system,
 
     /// [systemElement] Extensions for system
-    @JsonKey(name: '_system') Element? systemElement,
+    @JsonKey(name: '_system') PrimitiveElement? systemElement,
 
     /// [abstract] If true, this entry is included in the expansion for
     /// navigational purposes, and the user cannot select the code directly as a
@@ -5943,7 +5956,7 @@ class ValueSetContains with BackboneType, _$ValueSetContains {
     @JsonKey(name: 'abstract') FhirBoolean? abstract_,
 
     /// [abstractElement] Extensions for abstract
-    @JsonKey(name: '_abstract') Element? abstractElement,
+    @JsonKey(name: '_abstract') PrimitiveElement? abstractElement,
 
     /// [inactive] If the concept is inactive in the code system that defines it.
     /// Inactive codes are those that are no longer to be used, but are maintained
@@ -5953,7 +5966,7 @@ class ValueSetContains with BackboneType, _$ValueSetContains {
     FhirBoolean? inactive,
 
     /// [inactiveElement] Extensions for inactive
-    @JsonKey(name: '_inactive') Element? inactiveElement,
+    @JsonKey(name: '_inactive') PrimitiveElement? inactiveElement,
 
     /// [version] The version of the code system from this code was taken. Note
     /// that a well-maintained code system does not need the version reported,
@@ -5963,7 +5976,7 @@ class ValueSetContains with BackboneType, _$ValueSetContains {
     String? version,
 
     /// [versionElement] Extensions for version
-    @JsonKey(name: '_version') Element? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
 
     /// [code] The code for this item in the expansion hierarchy. If this code is
     /// missing the entry in the hierarchy is a place holder (abstract) and does
@@ -5971,13 +5984,13 @@ class ValueSetContains with BackboneType, _$ValueSetContains {
     FhirCode? code,
 
     /// [codeElement] Extensions for code
-    @JsonKey(name: '_code') Element? codeElement,
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
 
     /// [display] The recommended display for this item in the expansion.
     String? display,
 
     /// [displayElement] Extensions for display
-    @JsonKey(name: '_display') Element? displayElement,
+    @JsonKey(name: '_display') PrimitiveElement? displayElement,
 
     /// [designation] Additional representations for this item - other languages,
     /// aliases, specialized purposes, used for particular purposes, etc. These

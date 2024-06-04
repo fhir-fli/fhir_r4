@@ -39,7 +39,7 @@ mixin _$Coding {
 
   /// [systemElement] Extensions for system
   @JsonKey(name: '_system')
-  Element? get systemElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get systemElement => throw _privateConstructorUsedError;
 
   /// [version] The version of the code system which was used when choosing
   /// this code. Note that a well-maintained code system does not need the
@@ -51,7 +51,7 @@ mixin _$Coding {
 
   /// [versionElement] Extensions for version
   @JsonKey(name: '_version')
-  Element? get versionElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get versionElement => throw _privateConstructorUsedError;
 
   /// [code] A symbol in syntax defined by the system. The symbol may be a
   /// predefined code or an expression in a syntax defined by the coding system
@@ -60,7 +60,7 @@ mixin _$Coding {
 
   /// [codeElement] Extensions for code
   @JsonKey(name: '_code')
-  Element? get codeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get codeElement => throw _privateConstructorUsedError;
 
   /// [display] A representation of the meaning of the code in the system,
   ///  following the rules of the system.
@@ -68,7 +68,7 @@ mixin _$Coding {
 
   /// [displayElement] Extensions for display
   @JsonKey(name: '_display')
-  Element? get displayElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get displayElement => throw _privateConstructorUsedError;
 
   /// [userSelected] Indicates that this coding was chosen by a user directly -
   ///  e.g. off a pick list of available items (codes or displays).
@@ -76,7 +76,8 @@ mixin _$Coding {
 
   /// [userSelectedElement] Extensions for userSelected
   @JsonKey(name: '_userSelected')
-  Element? get userSelectedElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get userSelectedElement =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -92,15 +93,15 @@ abstract class $CodingCopyWith<$Res> {
       {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       FhirUri? system,
-      @JsonKey(name: '_system') Element? systemElement,
+      @JsonKey(name: '_system') PrimitiveElement? systemElement,
       String? version,
-      @JsonKey(name: '_version') Element? versionElement,
+      @JsonKey(name: '_version') PrimitiveElement? versionElement,
       FhirCode? code,
-      @JsonKey(name: '_code') Element? codeElement,
+      @JsonKey(name: '_code') PrimitiveElement? codeElement,
       String? display,
-      @JsonKey(name: '_display') Element? displayElement,
+      @JsonKey(name: '_display') PrimitiveElement? displayElement,
       FhirBoolean? userSelected,
-      @JsonKey(name: '_userSelected') Element? userSelectedElement});
+      @JsonKey(name: '_userSelected') PrimitiveElement? userSelectedElement});
 }
 
 /// @nodoc
@@ -145,7 +146,7 @@ class _$CodingCopyWithImpl<$Res, $Val extends Coding>
       systemElement: freezed == systemElement
           ? _value.systemElement
           : systemElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       version: freezed == version
           ? _value.version
           : version // ignore: cast_nullable_to_non_nullable
@@ -153,7 +154,7 @@ class _$CodingCopyWithImpl<$Res, $Val extends Coding>
       versionElement: freezed == versionElement
           ? _value.versionElement
           : versionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -161,7 +162,7 @@ class _$CodingCopyWithImpl<$Res, $Val extends Coding>
       codeElement: freezed == codeElement
           ? _value.codeElement
           : codeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       display: freezed == display
           ? _value.display
           : display // ignore: cast_nullable_to_non_nullable
@@ -169,7 +170,7 @@ class _$CodingCopyWithImpl<$Res, $Val extends Coding>
       displayElement: freezed == displayElement
           ? _value.displayElement
           : displayElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       userSelected: freezed == userSelected
           ? _value.userSelected
           : userSelected // ignore: cast_nullable_to_non_nullable
@@ -177,7 +178,7 @@ class _$CodingCopyWithImpl<$Res, $Val extends Coding>
       userSelectedElement: freezed == userSelectedElement
           ? _value.userSelectedElement
           : userSelectedElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ) as $Val);
   }
 }
@@ -193,15 +194,15 @@ abstract class _$$CodingImplCopyWith<$Res> implements $CodingCopyWith<$Res> {
       {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       FhirUri? system,
-      @JsonKey(name: '_system') Element? systemElement,
+      @JsonKey(name: '_system') PrimitiveElement? systemElement,
       String? version,
-      @JsonKey(name: '_version') Element? versionElement,
+      @JsonKey(name: '_version') PrimitiveElement? versionElement,
       FhirCode? code,
-      @JsonKey(name: '_code') Element? codeElement,
+      @JsonKey(name: '_code') PrimitiveElement? codeElement,
       String? display,
-      @JsonKey(name: '_display') Element? displayElement,
+      @JsonKey(name: '_display') PrimitiveElement? displayElement,
       FhirBoolean? userSelected,
-      @JsonKey(name: '_userSelected') Element? userSelectedElement});
+      @JsonKey(name: '_userSelected') PrimitiveElement? userSelectedElement});
 }
 
 /// @nodoc
@@ -244,7 +245,7 @@ class __$$CodingImplCopyWithImpl<$Res>
       systemElement: freezed == systemElement
           ? _value.systemElement
           : systemElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       version: freezed == version
           ? _value.version
           : version // ignore: cast_nullable_to_non_nullable
@@ -252,7 +253,7 @@ class __$$CodingImplCopyWithImpl<$Res>
       versionElement: freezed == versionElement
           ? _value.versionElement
           : versionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -260,7 +261,7 @@ class __$$CodingImplCopyWithImpl<$Res>
       codeElement: freezed == codeElement
           ? _value.codeElement
           : codeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       display: freezed == display
           ? _value.display
           : display // ignore: cast_nullable_to_non_nullable
@@ -268,7 +269,7 @@ class __$$CodingImplCopyWithImpl<$Res>
       displayElement: freezed == displayElement
           ? _value.displayElement
           : displayElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       userSelected: freezed == userSelected
           ? _value.userSelected
           : userSelected // ignore: cast_nullable_to_non_nullable
@@ -276,7 +277,7 @@ class __$$CodingImplCopyWithImpl<$Res>
       userSelectedElement: freezed == userSelectedElement
           ? _value.userSelectedElement
           : userSelectedElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ));
   }
 }
@@ -340,7 +341,7 @@ class _$CodingImpl extends _Coding {
   /// [systemElement] Extensions for system
   @override
   @JsonKey(name: '_system')
-  final Element? systemElement;
+  final PrimitiveElement? systemElement;
 
   /// [version] The version of the code system which was used when choosing
   /// this code. Note that a well-maintained code system does not need the
@@ -354,7 +355,7 @@ class _$CodingImpl extends _Coding {
   /// [versionElement] Extensions for version
   @override
   @JsonKey(name: '_version')
-  final Element? versionElement;
+  final PrimitiveElement? versionElement;
 
   /// [code] A symbol in syntax defined by the system. The symbol may be a
   /// predefined code or an expression in a syntax defined by the coding system
@@ -365,7 +366,7 @@ class _$CodingImpl extends _Coding {
   /// [codeElement] Extensions for code
   @override
   @JsonKey(name: '_code')
-  final Element? codeElement;
+  final PrimitiveElement? codeElement;
 
   /// [display] A representation of the meaning of the code in the system,
   ///  following the rules of the system.
@@ -375,7 +376,7 @@ class _$CodingImpl extends _Coding {
   /// [displayElement] Extensions for display
   @override
   @JsonKey(name: '_display')
-  final Element? displayElement;
+  final PrimitiveElement? displayElement;
 
   /// [userSelected] Indicates that this coding was chosen by a user directly -
   ///  e.g. off a pick list of available items (codes or displays).
@@ -385,7 +386,7 @@ class _$CodingImpl extends _Coding {
   /// [userSelectedElement] Extensions for userSelected
   @override
   @JsonKey(name: '_userSelected')
-  final Element? userSelectedElement;
+  final PrimitiveElement? userSelectedElement;
 
   @override
   String toString() {
@@ -451,19 +452,19 @@ class _$CodingImpl extends _Coding {
 
 abstract class _Coding extends Coding {
   const factory _Coding(
-          {final String? id,
-          @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
-          final FhirUri? system,
-          @JsonKey(name: '_system') final Element? systemElement,
-          final String? version,
-          @JsonKey(name: '_version') final Element? versionElement,
-          final FhirCode? code,
-          @JsonKey(name: '_code') final Element? codeElement,
-          final String? display,
-          @JsonKey(name: '_display') final Element? displayElement,
-          final FhirBoolean? userSelected,
-          @JsonKey(name: '_userSelected') final Element? userSelectedElement}) =
-      _$CodingImpl;
+      {final String? id,
+      @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
+      final FhirUri? system,
+      @JsonKey(name: '_system') final PrimitiveElement? systemElement,
+      final String? version,
+      @JsonKey(name: '_version') final PrimitiveElement? versionElement,
+      final FhirCode? code,
+      @JsonKey(name: '_code') final PrimitiveElement? codeElement,
+      final String? display,
+      @JsonKey(name: '_display') final PrimitiveElement? displayElement,
+      final FhirBoolean? userSelected,
+      @JsonKey(name: '_userSelected')
+      final PrimitiveElement? userSelectedElement}) = _$CodingImpl;
   const _Coding._() : super._();
 
   factory _Coding.fromJson(Map<String, dynamic> json) = _$CodingImpl.fromJson;
@@ -492,7 +493,7 @@ abstract class _Coding extends Coding {
 
   /// [systemElement] Extensions for system
   @JsonKey(name: '_system')
-  Element? get systemElement;
+  PrimitiveElement? get systemElement;
   @override
 
   /// [version] The version of the code system which was used when choosing
@@ -506,7 +507,7 @@ abstract class _Coding extends Coding {
 
   /// [versionElement] Extensions for version
   @JsonKey(name: '_version')
-  Element? get versionElement;
+  PrimitiveElement? get versionElement;
   @override
 
   /// [code] A symbol in syntax defined by the system. The symbol may be a
@@ -517,7 +518,7 @@ abstract class _Coding extends Coding {
 
   /// [codeElement] Extensions for code
   @JsonKey(name: '_code')
-  Element? get codeElement;
+  PrimitiveElement? get codeElement;
   @override
 
   /// [display] A representation of the meaning of the code in the system,
@@ -527,7 +528,7 @@ abstract class _Coding extends Coding {
 
   /// [displayElement] Extensions for display
   @JsonKey(name: '_display')
-  Element? get displayElement;
+  PrimitiveElement? get displayElement;
   @override
 
   /// [userSelected] Indicates that this coding was chosen by a user directly -
@@ -537,7 +538,7 @@ abstract class _Coding extends Coding {
 
   /// [userSelectedElement] Extensions for userSelected
   @JsonKey(name: '_userSelected')
-  Element? get userSelectedElement;
+  PrimitiveElement? get userSelectedElement;
   @override
   @JsonKey(ignore: true)
   _$$CodingImplCopyWith<_$CodingImpl> get copyWith =>

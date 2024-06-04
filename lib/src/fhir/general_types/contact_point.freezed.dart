@@ -37,7 +37,7 @@ mixin _$ContactPoint {
 
   /// [systemElement] Extensions for system
   @JsonKey(name: '_system')
-  Element? get systemElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get systemElement => throw _privateConstructorUsedError;
 
   /// [value] The actual contact point details, in a form that is meaningful to
   ///  the designated communication system (i.e. phone number or email address).
@@ -45,7 +45,7 @@ mixin _$ContactPoint {
 
   /// [valueElement] Extensions for value
   @JsonKey(name: '_value')
-  Element? get valueElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get valueElement => throw _privateConstructorUsedError;
 
   /// [use] Identifies the purpose for the contact point.
   @JsonKey(unknownEnumValue: ContactPointUse.unknown)
@@ -53,7 +53,7 @@ mixin _$ContactPoint {
 
   /// [useElement] Extensions for use
   @JsonKey(name: '_use')
-  Element? get useElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get useElement => throw _privateConstructorUsedError;
 
   /// [rank] Specifies a preferred order in which to use a set of contacts.
   /// ContactPoints with lower rank values are more preferred than those with
@@ -62,7 +62,7 @@ mixin _$ContactPoint {
 
   /// [rankElement] Extensions for rank
   @JsonKey(name: '_rank')
-  Element? get rankElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get rankElement => throw _privateConstructorUsedError;
 
   /// [period] Time period when the contact point was/is in use.
   Period? get period => throw _privateConstructorUsedError;
@@ -84,13 +84,13 @@ abstract class $ContactPointCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: ContactPointSystem.unknown)
       ContactPointSystem? system,
-      @JsonKey(name: '_system') Element? systemElement,
+      @JsonKey(name: '_system') PrimitiveElement? systemElement,
       String? value,
-      @JsonKey(name: '_value') Element? valueElement,
+      @JsonKey(name: '_value') PrimitiveElement? valueElement,
       @JsonKey(unknownEnumValue: ContactPointUse.unknown) ContactPointUse? use,
-      @JsonKey(name: '_use') Element? useElement,
+      @JsonKey(name: '_use') PrimitiveElement? useElement,
       FhirPositiveInt? rank,
-      @JsonKey(name: '_rank') Element? rankElement,
+      @JsonKey(name: '_rank') PrimitiveElement? rankElement,
       Period? period});
 
   $PeriodCopyWith<$Res>? get period;
@@ -137,7 +137,7 @@ class _$ContactPointCopyWithImpl<$Res, $Val extends ContactPoint>
       systemElement: freezed == systemElement
           ? _value.systemElement
           : systemElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       value: freezed == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -145,7 +145,7 @@ class _$ContactPointCopyWithImpl<$Res, $Val extends ContactPoint>
       valueElement: freezed == valueElement
           ? _value.valueElement
           : valueElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       use: freezed == use
           ? _value.use
           : use // ignore: cast_nullable_to_non_nullable
@@ -153,7 +153,7 @@ class _$ContactPointCopyWithImpl<$Res, $Val extends ContactPoint>
       useElement: freezed == useElement
           ? _value.useElement
           : useElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       rank: freezed == rank
           ? _value.rank
           : rank // ignore: cast_nullable_to_non_nullable
@@ -161,7 +161,7 @@ class _$ContactPointCopyWithImpl<$Res, $Val extends ContactPoint>
       rankElement: freezed == rankElement
           ? _value.rankElement
           : rankElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       period: freezed == period
           ? _value.period
           : period // ignore: cast_nullable_to_non_nullable
@@ -195,13 +195,13 @@ abstract class _$$ContactPointImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: ContactPointSystem.unknown)
       ContactPointSystem? system,
-      @JsonKey(name: '_system') Element? systemElement,
+      @JsonKey(name: '_system') PrimitiveElement? systemElement,
       String? value,
-      @JsonKey(name: '_value') Element? valueElement,
+      @JsonKey(name: '_value') PrimitiveElement? valueElement,
       @JsonKey(unknownEnumValue: ContactPointUse.unknown) ContactPointUse? use,
-      @JsonKey(name: '_use') Element? useElement,
+      @JsonKey(name: '_use') PrimitiveElement? useElement,
       FhirPositiveInt? rank,
-      @JsonKey(name: '_rank') Element? rankElement,
+      @JsonKey(name: '_rank') PrimitiveElement? rankElement,
       Period? period});
 
   @override
@@ -247,7 +247,7 @@ class __$$ContactPointImplCopyWithImpl<$Res>
       systemElement: freezed == systemElement
           ? _value.systemElement
           : systemElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       value: freezed == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -255,7 +255,7 @@ class __$$ContactPointImplCopyWithImpl<$Res>
       valueElement: freezed == valueElement
           ? _value.valueElement
           : valueElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       use: freezed == use
           ? _value.use
           : use // ignore: cast_nullable_to_non_nullable
@@ -263,7 +263,7 @@ class __$$ContactPointImplCopyWithImpl<$Res>
       useElement: freezed == useElement
           ? _value.useElement
           : useElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       rank: freezed == rank
           ? _value.rank
           : rank // ignore: cast_nullable_to_non_nullable
@@ -271,7 +271,7 @@ class __$$ContactPointImplCopyWithImpl<$Res>
       rankElement: freezed == rankElement
           ? _value.rankElement
           : rankElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       period: freezed == period
           ? _value.period
           : period // ignore: cast_nullable_to_non_nullable
@@ -337,7 +337,7 @@ class _$ContactPointImpl extends _ContactPoint {
   /// [systemElement] Extensions for system
   @override
   @JsonKey(name: '_system')
-  final Element? systemElement;
+  final PrimitiveElement? systemElement;
 
   /// [value] The actual contact point details, in a form that is meaningful to
   ///  the designated communication system (i.e. phone number or email address).
@@ -347,7 +347,7 @@ class _$ContactPointImpl extends _ContactPoint {
   /// [valueElement] Extensions for value
   @override
   @JsonKey(name: '_value')
-  final Element? valueElement;
+  final PrimitiveElement? valueElement;
 
   /// [use] Identifies the purpose for the contact point.
   @override
@@ -357,7 +357,7 @@ class _$ContactPointImpl extends _ContactPoint {
   /// [useElement] Extensions for use
   @override
   @JsonKey(name: '_use')
-  final Element? useElement;
+  final PrimitiveElement? useElement;
 
   /// [rank] Specifies a preferred order in which to use a set of contacts.
   /// ContactPoints with lower rank values are more preferred than those with
@@ -368,7 +368,7 @@ class _$ContactPointImpl extends _ContactPoint {
   /// [rankElement] Extensions for rank
   @override
   @JsonKey(name: '_rank')
-  final Element? rankElement;
+  final PrimitiveElement? rankElement;
 
   /// [period] Time period when the contact point was/is in use.
   @override
@@ -438,14 +438,14 @@ abstract class _ContactPoint extends ContactPoint {
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: ContactPointSystem.unknown)
       final ContactPointSystem? system,
-      @JsonKey(name: '_system') final Element? systemElement,
+      @JsonKey(name: '_system') final PrimitiveElement? systemElement,
       final String? value,
-      @JsonKey(name: '_value') final Element? valueElement,
+      @JsonKey(name: '_value') final PrimitiveElement? valueElement,
       @JsonKey(unknownEnumValue: ContactPointUse.unknown)
       final ContactPointUse? use,
-      @JsonKey(name: '_use') final Element? useElement,
+      @JsonKey(name: '_use') final PrimitiveElement? useElement,
       final FhirPositiveInt? rank,
-      @JsonKey(name: '_rank') final Element? rankElement,
+      @JsonKey(name: '_rank') final PrimitiveElement? rankElement,
       final Period? period}) = _$ContactPointImpl;
   const _ContactPoint._() : super._();
 
@@ -474,7 +474,7 @@ abstract class _ContactPoint extends ContactPoint {
 
   /// [systemElement] Extensions for system
   @JsonKey(name: '_system')
-  Element? get systemElement;
+  PrimitiveElement? get systemElement;
   @override
 
   /// [value] The actual contact point details, in a form that is meaningful to
@@ -484,7 +484,7 @@ abstract class _ContactPoint extends ContactPoint {
 
   /// [valueElement] Extensions for value
   @JsonKey(name: '_value')
-  Element? get valueElement;
+  PrimitiveElement? get valueElement;
   @override
 
   /// [use] Identifies the purpose for the contact point.
@@ -494,7 +494,7 @@ abstract class _ContactPoint extends ContactPoint {
 
   /// [useElement] Extensions for use
   @JsonKey(name: '_use')
-  Element? get useElement;
+  PrimitiveElement? get useElement;
   @override
 
   /// [rank] Specifies a preferred order in which to use a set of contacts.
@@ -505,7 +505,7 @@ abstract class _ContactPoint extends ContactPoint {
 
   /// [rankElement] Extensions for rank
   @JsonKey(name: '_rank')
-  Element? get rankElement;
+  PrimitiveElement? get rankElement;
   @override
 
   /// [period] Time period when the contact point was/is in use.

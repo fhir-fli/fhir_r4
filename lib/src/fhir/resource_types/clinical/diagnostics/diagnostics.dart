@@ -15,7 +15,7 @@ part 'diagnostics.g.dart';
 
 /// [BodyStructure] Record details about an anatomical structure.  This
 @freezed
-class BodyStructure with Resource, _$BodyStructure {
+class BodyStructure with _$BodyStructure implements DomainResource {
   /// [BodyStructure] Record details about an anatomical structure.  This
   const BodyStructure._();
 
@@ -124,13 +124,13 @@ class BodyStructure with Resource, _$BodyStructure {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -176,7 +176,7 @@ class BodyStructure with Resource, _$BodyStructure {
     FhirBoolean? active,
 
     /// [activeElement] Extensions for active
-    @JsonKey(name: '_active') Element? activeElement,
+    @JsonKey(name: '_active') PrimitiveElement? activeElement,
 
     /// [morphology] The kind of structure being represented by the body
     /// structure at `BodyStructure.location`.  This can define both normal and
@@ -197,7 +197,7 @@ class BodyStructure with Resource, _$BodyStructure {
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [image] Image or images used to identify a location.
     List<Attachment>? image,
@@ -244,7 +244,7 @@ class BodyStructure with Resource, _$BodyStructure {
 
 /// [DiagnosticReport] The findings and interpretation of diagnostic  tests
 @freezed
-class DiagnosticReport with Resource, _$DiagnosticReport {
+class DiagnosticReport with _$DiagnosticReport implements DomainResource {
   /// [DiagnosticReport] The findings and interpretation of diagnostic  tests
   const DiagnosticReport._();
 
@@ -406,13 +406,13 @@ class DiagnosticReport with Resource, _$DiagnosticReport {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -462,7 +462,7 @@ class DiagnosticReport with Resource, _$DiagnosticReport {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [category] A code that classifies the clinical discipline, department or
     /// diagnostic service that created the report (e.g. cardiology, biochemistry,
@@ -490,7 +490,8 @@ class DiagnosticReport with Resource, _$DiagnosticReport {
     FhirDateTime? effectiveDateTime,
 
     /// [effectiveDateTimeElement] Extensions for effectiveDateTime
-    @JsonKey(name: '_effectiveDateTime') Element? effectiveDateTimeElement,
+    @JsonKey(name: '_effectiveDateTime')
+    PrimitiveElement? effectiveDateTimeElement,
 
     /// [effectivePeriod] The time or time-period the observed values are related
     /// to. When the subject of the report is a patient, this is usually either
@@ -504,7 +505,7 @@ class DiagnosticReport with Resource, _$DiagnosticReport {
     FhirInstant? issued,
 
     /// [issuedElement] Extensions for issued
-    @JsonKey(name: '_issued') Element? issuedElement,
+    @JsonKey(name: '_issued') PrimitiveElement? issuedElement,
 
     /// [performer] The diagnostic service that is responsible for issuing the
     ///  report.
@@ -539,7 +540,7 @@ class DiagnosticReport with Resource, _$DiagnosticReport {
     String? conclusion,
 
     /// [conclusionElement] Extensions for conclusion
-    @JsonKey(name: '_conclusion') Element? conclusionElement,
+    @JsonKey(name: '_conclusion') PrimitiveElement? conclusionElement,
 
     /// [conclusionCode] One or more codes that represent the summary conclusion
     ///  (interpretation/impression) of the diagnostic report.
@@ -589,7 +590,9 @@ class DiagnosticReport with Resource, _$DiagnosticReport {
 
 /// [DiagnosticReportMedia] The findings and interpretation of diagnostic
 @freezed
-class DiagnosticReportMedia with BackboneType, _$DiagnosticReportMedia {
+class DiagnosticReportMedia
+    with _$DiagnosticReportMedia
+    implements BackboneElement {
   /// [DiagnosticReportMedia] The findings and interpretation of diagnostic
   const DiagnosticReportMedia._();
 
@@ -665,7 +668,7 @@ class DiagnosticReportMedia with BackboneType, _$DiagnosticReportMedia {
     String? comment,
 
     /// [commentElement] Extensions for comment
-    @JsonKey(name: '_comment') Element? commentElement,
+    @JsonKey(name: '_comment') PrimitiveElement? commentElement,
 
     /// [link] Reference to the image source.
     required Reference link,
@@ -704,7 +707,7 @@ class DiagnosticReportMedia with BackboneType, _$DiagnosticReportMedia {
 
 /// [ImagingStudy] Representation of the content produced in a DICOM imaging
 @freezed
-class ImagingStudy with Resource, _$ImagingStudy {
+class ImagingStudy with _$ImagingStudy implements DomainResource {
   /// [ImagingStudy] Representation of the content produced in a DICOM imaging
   const ImagingStudy._();
 
@@ -864,13 +867,13 @@ class ImagingStudy with Resource, _$ImagingStudy {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -917,7 +920,7 @@ class ImagingStudy with Resource, _$ImagingStudy {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [modality] A list of all the series.modality values that are actual
     /// acquisition modalities, i.e. those in the DICOM Context Group 29 (value
@@ -935,7 +938,7 @@ class ImagingStudy with Resource, _$ImagingStudy {
     FhirDateTime? started,
 
     /// [startedElement] Extensions for started
-    @JsonKey(name: '_started') Element? startedElement,
+    @JsonKey(name: '_started') PrimitiveElement? startedElement,
 
     /// [basedOn] A list of the diagnostic requests that resulted in this imaging
     ///  study being performed.
@@ -962,7 +965,7 @@ class ImagingStudy with Resource, _$ImagingStudy {
     FhirUnsignedInt? numberOfSeries,
 
     /// [numberOfSeriesElement] Extensions for numberOfSeries
-    @JsonKey(name: '_numberOfSeries') Element? numberOfSeriesElement,
+    @JsonKey(name: '_numberOfSeries') PrimitiveElement? numberOfSeriesElement,
 
     /// [numberOfInstances] Number of SOP Instances in Study. This value given
     /// may be larger than the number of instance elements this resource contains
@@ -971,7 +974,8 @@ class ImagingStudy with Resource, _$ImagingStudy {
     FhirUnsignedInt? numberOfInstances,
 
     /// [numberOfInstancesElement] Extensions for numberOfInstances
-    @JsonKey(name: '_numberOfInstances') Element? numberOfInstancesElement,
+    @JsonKey(name: '_numberOfInstances')
+    PrimitiveElement? numberOfInstancesElement,
 
     /// [procedureReference] The procedure which this ImagingStudy was part of.
     Reference? procedureReference,
@@ -1003,7 +1007,7 @@ class ImagingStudy with Resource, _$ImagingStudy {
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [series] Each study has one or more series of images or other content.
     List<ImagingStudySeries>? series,
@@ -1047,7 +1051,7 @@ class ImagingStudy with Resource, _$ImagingStudy {
 
 /// [ImagingStudySeries] Representation of the content produced in a DICOM
 @freezed
-class ImagingStudySeries with BackboneType, _$ImagingStudySeries {
+class ImagingStudySeries with _$ImagingStudySeries implements BackboneElement {
   /// [ImagingStudySeries] Representation of the content produced in a DICOM
   const ImagingStudySeries._();
 
@@ -1163,13 +1167,13 @@ class ImagingStudySeries with BackboneType, _$ImagingStudySeries {
     FhirId? uid,
 
     /// [uidElement] Extensions for uid
-    @JsonKey(name: '_uid') Element? uidElement,
+    @JsonKey(name: '_uid') PrimitiveElement? uidElement,
 
     /// [number] The numeric identifier of this series in the study.
     FhirUnsignedInt? number,
 
     /// [numberElement] Extensions for number
-    @JsonKey(name: '_number') Element? numberElement,
+    @JsonKey(name: '_number') PrimitiveElement? numberElement,
 
     /// [modality] The modality of this series sequence.
     required Coding modality,
@@ -1178,7 +1182,7 @@ class ImagingStudySeries with BackboneType, _$ImagingStudySeries {
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [numberOfInstances] Number of SOP Instances in the Study. The value given
     /// may be larger than the number of instance elements this resource contains
@@ -1187,7 +1191,8 @@ class ImagingStudySeries with BackboneType, _$ImagingStudySeries {
     FhirUnsignedInt? numberOfInstances,
 
     /// [numberOfInstancesElement] Extensions for numberOfInstances
-    @JsonKey(name: '_numberOfInstances') Element? numberOfInstancesElement,
+    @JsonKey(name: '_numberOfInstances')
+    PrimitiveElement? numberOfInstancesElement,
 
     /// [endpoint] The network service providing access (e.g., query, view, or
     /// retrieval) for this series. See implementation notes for information about
@@ -1216,7 +1221,7 @@ class ImagingStudySeries with BackboneType, _$ImagingStudySeries {
     FhirDateTime? started,
 
     /// [startedElement] Extensions for started
-    @JsonKey(name: '_started') Element? startedElement,
+    @JsonKey(name: '_started') PrimitiveElement? startedElement,
 
     /// [performer] Indicates who or what performed the series and how they were
     ///  involved.
@@ -1260,7 +1265,9 @@ class ImagingStudySeries with BackboneType, _$ImagingStudySeries {
 
 /// [ImagingStudyPerformer] Representation of the content produced in a
 @freezed
-class ImagingStudyPerformer with BackboneType, _$ImagingStudyPerformer {
+class ImagingStudyPerformer
+    with _$ImagingStudyPerformer
+    implements BackboneElement {
   /// [ImagingStudyPerformer] Representation of the content produced in a
   const ImagingStudyPerformer._();
 
@@ -1368,7 +1375,9 @@ class ImagingStudyPerformer with BackboneType, _$ImagingStudyPerformer {
 
 /// [ImagingStudyInstance] Representation of the content produced in a DICOM
 @freezed
-class ImagingStudyInstance with BackboneType, _$ImagingStudyInstance {
+class ImagingStudyInstance
+    with _$ImagingStudyInstance
+    implements BackboneElement {
   /// [ImagingStudyInstance] Representation of the content produced in a DICOM
   const ImagingStudyInstance._();
 
@@ -1448,7 +1457,7 @@ class ImagingStudyInstance with BackboneType, _$ImagingStudyInstance {
     FhirId? uid,
 
     /// [uidElement] Extensions for uid
-    @JsonKey(name: '_uid') Element? uidElement,
+    @JsonKey(name: '_uid') PrimitiveElement? uidElement,
 
     /// [sopClass] DICOM instance  type.
     required Coding sopClass,
@@ -1457,13 +1466,13 @@ class ImagingStudyInstance with BackboneType, _$ImagingStudyInstance {
     FhirUnsignedInt? number,
 
     /// [numberElement] Extensions for number
-    @JsonKey(name: '_number') Element? numberElement,
+    @JsonKey(name: '_number') PrimitiveElement? numberElement,
 
     /// [title] The description of the instance.
     String? title,
 
     /// [titleElement] Extensions for title
-    @JsonKey(name: '_title') Element? titleElement,
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
   }) = _ImagingStudyInstance;
 
   @override
@@ -1499,7 +1508,7 @@ class ImagingStudyInstance with BackboneType, _$ImagingStudyInstance {
 
 /// [Media] A photo, video, or audio recording acquired or used in
 @freezed
-class Media with Resource, _$Media {
+class Media with _$Media implements DomainResource {
   /// [Media] A photo, video, or audio recording acquired or used in
   const Media._();
 
@@ -1663,13 +1672,13 @@ class Media with Resource, _$Media {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -1726,7 +1735,7 @@ class Media with Resource, _$Media {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [type] A code that classifies whether the media is an image, video or
     ///  audio recording or some other media category.
@@ -1751,7 +1760,7 @@ class Media with Resource, _$Media {
     FhirDateTime? createdDateTime,
 
     /// [createdDateTimeElement] Extensions for createdDateTime
-    @JsonKey(name: '_createdDateTime') Element? createdDateTimeElement,
+    @JsonKey(name: '_createdDateTime') PrimitiveElement? createdDateTimeElement,
 
     /// [createdPeriod] The date and time(s) at which the media was collected.
     Period? createdPeriod,
@@ -1761,7 +1770,7 @@ class Media with Resource, _$Media {
     FhirInstant? issued,
 
     /// [issuedElement] Extensions for issued
-    @JsonKey(name: '_issued') Element? issuedElement,
+    @JsonKey(name: '_issued') PrimitiveElement? issuedElement,
 
     /// [operator] The person who administered the collection of the image.
     @JsonKey(name: 'operator') Reference? operator_,
@@ -1778,7 +1787,7 @@ class Media with Resource, _$Media {
     String? deviceName,
 
     /// [deviceNameElement] Extensions for deviceName
-    @JsonKey(name: '_deviceName') Element? deviceNameElement,
+    @JsonKey(name: '_deviceName') PrimitiveElement? deviceNameElement,
 
     /// [device] The device used to collect the media.
     Reference? device,
@@ -1787,13 +1796,13 @@ class Media with Resource, _$Media {
     FhirPositiveInt? height,
 
     /// [heightElement] Extensions for height
-    @JsonKey(name: '_height') Element? heightElement,
+    @JsonKey(name: '_height') PrimitiveElement? heightElement,
 
     /// [width] Width of the image in pixels (photo/video).
     FhirPositiveInt? width,
 
     /// [widthElement] Extensions for width
-    @JsonKey(name: '_width') Element? widthElement,
+    @JsonKey(name: '_width') PrimitiveElement? widthElement,
 
     /// [frames] The number of frames in a photo. This is used with a multi-page
     /// fax, or an imaging acquisition context that takes multiple slices in a
@@ -1803,14 +1812,14 @@ class Media with Resource, _$Media {
     FhirPositiveInt? frames,
 
     /// [framesElement] Extensions for frames
-    @JsonKey(name: '_frames') Element? framesElement,
+    @JsonKey(name: '_frames') PrimitiveElement? framesElement,
 
     /// [duration] The duration of the recording in seconds - for audio and
     ///  video.
     FhirDecimal? duration,
 
     /// [durationElement] Extensions for duration
-    @JsonKey(name: '_duration') Element? durationElement,
+    @JsonKey(name: '_duration') PrimitiveElement? durationElement,
 
     /// [content] The actual content of the media - inline or by direct reference
     ///  to the media source file.
@@ -1857,7 +1866,7 @@ class Media with Resource, _$Media {
 
 /// [MolecularSequence] Raw data describing a biological sequence.
 @freezed
-class MolecularSequence with Resource, _$MolecularSequence {
+class MolecularSequence with _$MolecularSequence implements DomainResource {
   /// [MolecularSequence] Raw data describing a biological sequence.
   const MolecularSequence._();
 
@@ -1997,13 +2006,13 @@ class MolecularSequence with Resource, _$MolecularSequence {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -2050,7 +2059,7 @@ class MolecularSequence with Resource, _$MolecularSequence {
     FhirCode? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [coordinateSystem] Whether the sequence is numbered starting at 0
     /// (0-based numbering or coordinates, inclusive start, exclusive end) or
@@ -2058,7 +2067,8 @@ class MolecularSequence with Resource, _$MolecularSequence {
     FhirInteger? coordinateSystem,
 
     /// [coordinateSystemElement] Extensions for coordinateSystem
-    @JsonKey(name: '_coordinateSystem') Element? coordinateSystemElement,
+    @JsonKey(name: '_coordinateSystem')
+    PrimitiveElement? coordinateSystemElement,
 
     /// [patient] The patient whose sequencing results are described by this
     ///  resource.
@@ -2095,7 +2105,7 @@ class MolecularSequence with Resource, _$MolecularSequence {
     String? observedSeq,
 
     /// [observedSeqElement] Extensions for observedSeq
-    @JsonKey(name: '_observedSeq') Element? observedSeqElement,
+    @JsonKey(name: '_observedSeq') PrimitiveElement? observedSeqElement,
 
     /// [quality] An experimental feature attribute that defines the quality of
     /// the feature in a quantitative way, such as a phred quality score
@@ -2107,7 +2117,7 @@ class MolecularSequence with Resource, _$MolecularSequence {
     FhirInteger? readCoverage,
 
     /// [readCoverageElement] Extensions for readCoverage
-    @JsonKey(name: '_readCoverage') Element? readCoverageElement,
+    @JsonKey(name: '_readCoverage') PrimitiveElement? readCoverageElement,
 
     /// [repository] Configurations of the external repository. The repository
     /// shall store target's observedSeq or records related with target's
@@ -2280,7 +2290,7 @@ class MolecularSequenceReferenceSeq
     String? genomeBuild,
 
     /// [genomeBuildElement] Extensions for genomeBuild
-    @JsonKey(name: '_genomeBuild') Element? genomeBuildElement,
+    @JsonKey(name: '_genomeBuild') PrimitiveElement? genomeBuildElement,
 
     /// [orientation] A relative reference to a DNA strand based on gene
     /// orientation. The strand that contains the open reading frame of the gene
@@ -2289,7 +2299,7 @@ class MolecularSequenceReferenceSeq
     FhirCode? orientation,
 
     /// [orientationElement] Extensions for orientation
-    @JsonKey(name: '_orientation') Element? orientationElement,
+    @JsonKey(name: '_orientation') PrimitiveElement? orientationElement,
 
     /// [referenceSeqId] Reference identifier of reference sequence submitted to
     /// NCBI. It must match the type in the MolecularSequence.type field. For
@@ -2305,7 +2315,8 @@ class MolecularSequenceReferenceSeq
     String? referenceSeqString,
 
     /// [referenceSeqStringElement] Extensions for referenceSeqString
-    @JsonKey(name: '_referenceSeqString') Element? referenceSeqStringElement,
+    @JsonKey(name: '_referenceSeqString')
+    PrimitiveElement? referenceSeqStringElement,
 
     /// [strand] An absolute reference to a strand. The Watson strand is the
     /// strand whose 5'-end is on the short arm of the chromosome, and the Crick
@@ -2313,7 +2324,7 @@ class MolecularSequenceReferenceSeq
     FhirCode? strand,
 
     /// [strandElement] Extensions for strand
-    @JsonKey(name: '_strand') Element? strandElement,
+    @JsonKey(name: '_strand') PrimitiveElement? strandElement,
 
     /// [windowStart] Start position of the window on the reference sequence. If
     /// the coordinate system is either 0-based or 1-based, then start position is
@@ -2321,7 +2332,7 @@ class MolecularSequenceReferenceSeq
     FhirInteger? windowStart,
 
     /// [windowStartElement] Extensions for windowStart
-    @JsonKey(name: '_windowStart') Element? windowStartElement,
+    @JsonKey(name: '_windowStart') PrimitiveElement? windowStartElement,
 
     /// [windowEnd] End position of the window on the reference sequence. If the
     /// coordinate system is 0-based then end is exclusive and does not include
@@ -2330,7 +2341,7 @@ class MolecularSequenceReferenceSeq
     FhirInteger? windowEnd,
 
     /// [windowEndElement] Extensions for windowEnd
-    @JsonKey(name: '_windowEnd') Element? windowEndElement,
+    @JsonKey(name: '_windowEnd') PrimitiveElement? windowEndElement,
   }) = _MolecularSequenceReferenceSeq;
 
   @override
@@ -2366,7 +2377,9 @@ class MolecularSequenceReferenceSeq
 
 /// [MolecularSequenceVariant] Raw data describing a biological sequence.
 @freezed
-class MolecularSequenceVariant with BackboneType, _$MolecularSequenceVariant {
+class MolecularSequenceVariant
+    with _$MolecularSequenceVariant
+    implements BackboneElement {
   /// [MolecularSequenceVariant] Raw data describing a biological sequence.
   const MolecularSequenceVariant._();
 
@@ -2471,7 +2484,7 @@ class MolecularSequenceVariant with BackboneType, _$MolecularSequenceVariant {
     FhirInteger? start,
 
     /// [startElement] Extensions for start
-    @JsonKey(name: '_start') Element? startElement,
+    @JsonKey(name: '_start') PrimitiveElement? startElement,
 
     /// [end] End position of the variant on the reference sequence. If the
     /// coordinate system is 0-based then end is exclusive and does not include
@@ -2480,7 +2493,7 @@ class MolecularSequenceVariant with BackboneType, _$MolecularSequenceVariant {
     FhirInteger? end,
 
     /// [endElement] Extensions for end
-    @JsonKey(name: '_end') Element? endElement,
+    @JsonKey(name: '_end') PrimitiveElement? endElement,
 
     /// [observedAllele] An allele is one of a set of coexisting sequence
     /// variants of a gene
@@ -2492,7 +2505,7 @@ class MolecularSequenceVariant with BackboneType, _$MolecularSequenceVariant {
     String? observedAllele,
 
     /// [observedAlleleElement] Extensions for observedAllele
-    @JsonKey(name: '_observedAllele') Element? observedAlleleElement,
+    @JsonKey(name: '_observedAllele') PrimitiveElement? observedAlleleElement,
 
     /// [referenceAllele] An allele is one of a set of coexisting sequence
     /// variants of a gene
@@ -2504,7 +2517,7 @@ class MolecularSequenceVariant with BackboneType, _$MolecularSequenceVariant {
     String? referenceAllele,
 
     /// [referenceAlleleElement] Extensions for referenceAllele
-    @JsonKey(name: '_referenceAllele') Element? referenceAlleleElement,
+    @JsonKey(name: '_referenceAllele') PrimitiveElement? referenceAlleleElement,
 
     /// [cigar] Extended CIGAR string for aligning the sequence with reference
     /// bases. See detailed documentation
@@ -2512,7 +2525,7 @@ class MolecularSequenceVariant with BackboneType, _$MolecularSequenceVariant {
     String? cigar,
 
     /// [cigarElement] Extensions for cigar
-    @JsonKey(name: '_cigar') Element? cigarElement,
+    @JsonKey(name: '_cigar') PrimitiveElement? cigarElement,
 
     /// [variantPointer] A pointer to an Observation containing variant
     ///  information.
@@ -2552,7 +2565,9 @@ class MolecularSequenceVariant with BackboneType, _$MolecularSequenceVariant {
 
 /// [MolecularSequenceQuality] Raw data describing a biological sequence.
 @freezed
-class MolecularSequenceQuality with BackboneType, _$MolecularSequenceQuality {
+class MolecularSequenceQuality
+    with _$MolecularSequenceQuality
+    implements BackboneElement {
   /// [MolecularSequenceQuality] Raw data describing a biological sequence.
   const MolecularSequenceQuality._();
 
@@ -2689,7 +2704,7 @@ class MolecularSequenceQuality with BackboneType, _$MolecularSequenceQuality {
     FhirCode? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [standardSequence] Gold standard sequence used for comparing against.
     CodeableConcept? standardSequence,
@@ -2699,7 +2714,7 @@ class MolecularSequenceQuality with BackboneType, _$MolecularSequenceQuality {
     FhirInteger? start,
 
     /// [startElement] Extensions for start
-    @JsonKey(name: '_start') Element? startElement,
+    @JsonKey(name: '_start') PrimitiveElement? startElement,
 
     /// [end] End position of the sequence. If the coordinate system is 0-based
     /// then end is exclusive and does not include the last position. If the
@@ -2708,7 +2723,7 @@ class MolecularSequenceQuality with BackboneType, _$MolecularSequenceQuality {
     FhirInteger? end,
 
     /// [endElement] Extensions for end
-    @JsonKey(name: '_end') Element? endElement,
+    @JsonKey(name: '_end') PrimitiveElement? endElement,
 
     /// [score] The score of an experimentally derived feature such as a p-value
     /// ([SO:0001685](http://www.sequenceontology.org/browser/current_svn/term/SO:0001685)).
@@ -2725,7 +2740,7 @@ class MolecularSequenceQuality with BackboneType, _$MolecularSequenceQuality {
     FhirDecimal? truthTP,
 
     /// [truthTPElement] Extensions for truthTP
-    @JsonKey(name: '_truthTP') Element? truthTPElement,
+    @JsonKey(name: '_truthTP') PrimitiveElement? truthTPElement,
 
     /// [queryTP] True positives, from the perspective of the query data, i.e.
     /// the number of sites in the Query Call Set for which there are paths
@@ -2735,7 +2750,7 @@ class MolecularSequenceQuality with BackboneType, _$MolecularSequenceQuality {
     FhirDecimal? queryTP,
 
     /// [queryTPElement] Extensions for queryTP
-    @JsonKey(name: '_queryTP') Element? queryTPElement,
+    @JsonKey(name: '_queryTP') PrimitiveElement? queryTPElement,
 
     /// [truthFN] False negatives, i.e. the number of sites in the Truth Call Set
     /// for which there is no path through the Query Call Set that is consistent
@@ -2745,7 +2760,7 @@ class MolecularSequenceQuality with BackboneType, _$MolecularSequenceQuality {
     FhirDecimal? truthFN,
 
     /// [truthFNElement] Extensions for truthFN
-    @JsonKey(name: '_truthFN') Element? truthFNElement,
+    @JsonKey(name: '_truthFN') PrimitiveElement? truthFNElement,
 
     /// [queryFP] False positives, i.e. the number of sites in the Query Call Set
     /// for which there is no path through the Truth Call Set that is consistent
@@ -2754,7 +2769,7 @@ class MolecularSequenceQuality with BackboneType, _$MolecularSequenceQuality {
     FhirDecimal? queryFP,
 
     /// [queryFPElement] Extensions for queryFP
-    @JsonKey(name: '_queryFP') Element? queryFPElement,
+    @JsonKey(name: '_queryFP') PrimitiveElement? queryFPElement,
 
     /// [gtFP] The number of false positives where the non-REF alleles in the
     /// Truth and Query Call Sets match (i.e. cases where the truth is 1/1 and the
@@ -2762,26 +2777,26 @@ class MolecularSequenceQuality with BackboneType, _$MolecularSequenceQuality {
     FhirDecimal? gtFP,
 
     /// [gtFPElement] Extensions for gtFP
-    @JsonKey(name: '_gtFP') Element? gtFPElement,
+    @JsonKey(name: '_gtFP') PrimitiveElement? gtFPElement,
 
     /// [precision] QUERY.TP / (QUERY.TP + QUERY.FP).
     FhirDecimal? precision,
 
     /// [precisionElement] Extensions for precision
-    @JsonKey(name: '_precision') Element? precisionElement,
+    @JsonKey(name: '_precision') PrimitiveElement? precisionElement,
 
     /// [recall] TRUTH.TP / (TRUTH.TP + TRUTH.FN).
     FhirDecimal? recall,
 
     /// [recallElement] Extensions for recall
-    @JsonKey(name: '_recall') Element? recallElement,
+    @JsonKey(name: '_recall') PrimitiveElement? recallElement,
 
     /// [fScore] Harmonic mean of Recall and Precision, computed as: 2 *
     ///  precision * recall / (precision + recall).
     FhirDecimal? fScore,
 
     /// [fScoreElement] Extensions for fScore
-    @JsonKey(name: '_fScore') Element? fScoreElement,
+    @JsonKey(name: '_fScore') PrimitiveElement? fScoreElement,
 
     /// [roc] Receiver Operator Characteristic (ROC) Curve  to give
     ///  sensitivity/specificity tradeoff.
@@ -2821,7 +2836,9 @@ class MolecularSequenceQuality with BackboneType, _$MolecularSequenceQuality {
 
 /// [MolecularSequenceRoc] Raw data describing a biological sequence.
 @freezed
-class MolecularSequenceRoc with BackboneType, _$MolecularSequenceRoc {
+class MolecularSequenceRoc
+    with _$MolecularSequenceRoc
+    implements BackboneElement {
   /// [MolecularSequenceRoc] Raw data describing a biological sequence.
   const MolecularSequenceRoc._();
 
@@ -3090,21 +3107,21 @@ class MolecularSequenceRepository
     FhirCode? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [url] URI of an external repository which contains further details about
     ///  the genetics data.
     FhirUri? url,
 
     /// [urlElement] Extensions for url
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
 
     /// [name] URI of an external repository which contains further details about
     ///  the genetics data.
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [datasetId] Id of the variant in this external repository. The server
     /// will understand how to use this id to call for more info about datasets in
@@ -3112,7 +3129,7 @@ class MolecularSequenceRepository
     String? datasetId,
 
     /// [datasetIdElement] Extensions for datasetId
-    @JsonKey(name: '_datasetId') Element? datasetIdElement,
+    @JsonKey(name: '_datasetId') PrimitiveElement? datasetIdElement,
 
     /// [variantsetId] Id of the variantset in this external repository. The
     /// server will understand how to use this id to call for more info about
@@ -3120,13 +3137,13 @@ class MolecularSequenceRepository
     String? variantsetId,
 
     /// [variantsetIdElement] Extensions for variantsetId
-    @JsonKey(name: '_variantsetId') Element? variantsetIdElement,
+    @JsonKey(name: '_variantsetId') PrimitiveElement? variantsetIdElement,
 
     /// [readsetId] Id of the read in this external repository.
     String? readsetId,
 
     /// [readsetIdElement] Extensions for readsetId
-    @JsonKey(name: '_readsetId') Element? readsetIdElement,
+    @JsonKey(name: '_readsetId') PrimitiveElement? readsetIdElement,
   }) = _MolecularSequenceRepository;
 
   @override
@@ -3244,13 +3261,13 @@ class MolecularSequenceStructureVariant
     FhirBoolean? exact,
 
     /// [exactElement] Extensions for exact
-    @JsonKey(name: '_exact') Element? exactElement,
+    @JsonKey(name: '_exact') PrimitiveElement? exactElement,
 
     /// [length] Length of the variant chromosome.
     FhirInteger? length,
 
     /// [lengthElement] Extensions for length
-    @JsonKey(name: '_length') Element? lengthElement,
+    @JsonKey(name: '_length') PrimitiveElement? lengthElement,
 
     /// [outer] Structural variant outer.
     MolecularSequenceOuter? outer,
@@ -3281,7 +3298,9 @@ class MolecularSequenceStructureVariant
 
 /// [MolecularSequenceOuter] Raw data describing a biological sequence.
 @freezed
-class MolecularSequenceOuter with BackboneType, _$MolecularSequenceOuter {
+class MolecularSequenceOuter
+    with _$MolecularSequenceOuter
+    implements BackboneElement {
   /// [MolecularSequenceOuter] Raw data describing a biological sequence.
   const MolecularSequenceOuter._();
 
@@ -3355,7 +3374,7 @@ class MolecularSequenceOuter with BackboneType, _$MolecularSequenceOuter {
     FhirInteger? start,
 
     /// [startElement] Extensions for start
-    @JsonKey(name: '_start') Element? startElement,
+    @JsonKey(name: '_start') PrimitiveElement? startElement,
 
     /// [end] Structural variant outer end. If the coordinate system is 0-based
     /// then end is exclusive and does not include the last position. If the
@@ -3364,7 +3383,7 @@ class MolecularSequenceOuter with BackboneType, _$MolecularSequenceOuter {
     FhirInteger? end,
 
     /// [endElement] Extensions for end
-    @JsonKey(name: '_end') Element? endElement,
+    @JsonKey(name: '_end') PrimitiveElement? endElement,
   }) = _MolecularSequenceOuter;
 
   @override
@@ -3400,7 +3419,9 @@ class MolecularSequenceOuter with BackboneType, _$MolecularSequenceOuter {
 
 /// [MolecularSequenceInner] Raw data describing a biological sequence.
 @freezed
-class MolecularSequenceInner with BackboneType, _$MolecularSequenceInner {
+class MolecularSequenceInner
+    with _$MolecularSequenceInner
+    implements BackboneElement {
   /// [MolecularSequenceInner] Raw data describing a biological sequence.
   const MolecularSequenceInner._();
 
@@ -3474,7 +3495,7 @@ class MolecularSequenceInner with BackboneType, _$MolecularSequenceInner {
     FhirInteger? start,
 
     /// [startElement] Extensions for start
-    @JsonKey(name: '_start') Element? startElement,
+    @JsonKey(name: '_start') PrimitiveElement? startElement,
 
     /// [end] Structural variant inner end. If the coordinate system is 0-based
     /// then end is exclusive and does not include the last position. If the
@@ -3483,7 +3504,7 @@ class MolecularSequenceInner with BackboneType, _$MolecularSequenceInner {
     FhirInteger? end,
 
     /// [endElement] Extensions for end
-    @JsonKey(name: '_end') Element? endElement,
+    @JsonKey(name: '_end') PrimitiveElement? endElement,
   }) = _MolecularSequenceInner;
 
   @override
@@ -3519,7 +3540,7 @@ class MolecularSequenceInner with BackboneType, _$MolecularSequenceInner {
 
 /// [Observation] Measurements and simple assertions made about a patient,
 @freezed
-class Observation with Resource, _$Observation {
+class Observation with _$Observation implements DomainResource {
   /// [Observation] Measurements and simple assertions made about a patient,
   const Observation._();
 
@@ -3757,13 +3778,13 @@ class Observation with Resource, _$Observation {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -3818,7 +3839,7 @@ class Observation with Resource, _$Observation {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [category] A code that classifies the general type of observation being
     ///  made.
@@ -3860,7 +3881,8 @@ class Observation with Resource, _$Observation {
     FhirDateTime? effectiveDateTime,
 
     /// [effectiveDateTimeElement] Extensions for effectiveDateTime
-    @JsonKey(name: '_effectiveDateTime') Element? effectiveDateTimeElement,
+    @JsonKey(name: '_effectiveDateTime')
+    PrimitiveElement? effectiveDateTimeElement,
 
     /// [effectivePeriod] The time or time-period the observed value is asserted
     /// as being true. For biological subjects - e.g. human patients - this is
@@ -3884,7 +3906,8 @@ class Observation with Resource, _$Observation {
     FhirInstant? effectiveInstant,
 
     /// [effectiveInstantElement] Extensions for effectiveInstant
-    @JsonKey(name: '_effectiveInstant') Element? effectiveInstantElement,
+    @JsonKey(name: '_effectiveInstant')
+    PrimitiveElement? effectiveInstantElement,
 
     /// [issued] The date and time this version of the observation was made
     /// available to providers, typically after the results have been reviewed and
@@ -3892,7 +3915,7 @@ class Observation with Resource, _$Observation {
     FhirInstant? issued,
 
     /// [issuedElement] Extensions for issued
-    @JsonKey(name: '_issued') Element? issuedElement,
+    @JsonKey(name: '_issued') PrimitiveElement? issuedElement,
 
     /// [performer] Who was responsible for asserting the observed value as
     ///  "true".
@@ -3911,21 +3934,21 @@ class Observation with Resource, _$Observation {
     String? valueString,
 
     /// [valueStringElement] Extensions for valueString
-    @JsonKey(name: '_valueString') Element? valueStringElement,
+    @JsonKey(name: '_valueString') PrimitiveElement? valueStringElement,
 
     /// [valueBoolean] The information determined as a result of making the
     ///  observation, if the information has a simple value.
     FhirBoolean? valueBoolean,
 
     /// [valueBooleanElement] Extensions for valueBoolean
-    @JsonKey(name: '_valueBoolean') Element? valueBooleanElement,
+    @JsonKey(name: '_valueBoolean') PrimitiveElement? valueBooleanElement,
 
     /// [valueInteger] The information determined as a result of making the
     ///  observation, if the information has a simple value.
     FhirInteger? valueInteger,
 
     /// [valueIntegerElement] Extensions for valueInteger
-    @JsonKey(name: '_valueInteger') Element? valueIntegerElement,
+    @JsonKey(name: '_valueInteger') PrimitiveElement? valueIntegerElement,
 
     /// [valueRange] The information determined as a result of making the
     ///  observation, if the information has a simple value.
@@ -3944,14 +3967,14 @@ class Observation with Resource, _$Observation {
     FhirTime? valueTime,
 
     /// [valueTimeElement] Extensions for valueTime
-    @JsonKey(name: '_valueTime') Element? valueTimeElement,
+    @JsonKey(name: '_valueTime') PrimitiveElement? valueTimeElement,
 
     /// [valueDateTime] The information determined as a result of making the
     ///  observation, if the information has a simple value.
     FhirDateTime? valueDateTime,
 
     /// [valueDateTimeElement] Extensions for valueDateTime
-    @JsonKey(name: '_valueDateTime') Element? valueDateTimeElement,
+    @JsonKey(name: '_valueDateTime') PrimitiveElement? valueDateTimeElement,
 
     /// [valuePeriod] The information determined as a result of making the
     ///  observation, if the information has a simple value.
@@ -4043,7 +4066,9 @@ class Observation with Resource, _$Observation {
 
 /// [ObservationReferenceRange] Measurements and simple assertions made
 @freezed
-class ObservationReferenceRange with BackboneType, _$ObservationReferenceRange {
+class ObservationReferenceRange
+    with _$ObservationReferenceRange
+    implements BackboneElement {
   /// [ObservationReferenceRange] Measurements and simple assertions made
   const ObservationReferenceRange._();
 
@@ -4166,7 +4191,7 @@ class ObservationReferenceRange with BackboneType, _$ObservationReferenceRange {
     String? text,
 
     /// [textElement] Extensions for text
-    @JsonKey(name: '_text') Element? textElement,
+    @JsonKey(name: '_text') PrimitiveElement? textElement,
   }) = _ObservationReferenceRange;
 
   @override
@@ -4202,7 +4227,9 @@ class ObservationReferenceRange with BackboneType, _$ObservationReferenceRange {
 
 /// [ObservationComponent] Measurements and simple assertions made about a
 @freezed
-class ObservationComponent with BackboneType, _$ObservationComponent {
+class ObservationComponent
+    with _$ObservationComponent
+    implements BackboneElement {
   /// [ObservationComponent] Measurements and simple assertions made about a
   const ObservationComponent._();
 
@@ -4332,21 +4359,21 @@ class ObservationComponent with BackboneType, _$ObservationComponent {
     String? valueString,
 
     /// [valueStringElement] Extensions for valueString
-    @JsonKey(name: '_valueString') Element? valueStringElement,
+    @JsonKey(name: '_valueString') PrimitiveElement? valueStringElement,
 
     /// [valueBoolean] The information determined as a result of making the
     ///  observation, if the information has a simple value.
     FhirBoolean? valueBoolean,
 
     /// [valueBooleanElement] Extensions for valueBoolean
-    @JsonKey(name: '_valueBoolean') Element? valueBooleanElement,
+    @JsonKey(name: '_valueBoolean') PrimitiveElement? valueBooleanElement,
 
     /// [valueInteger] The information determined as a result of making the
     ///  observation, if the information has a simple value.
     FhirInteger? valueInteger,
 
     /// [valueIntegerElement] Extensions for valueInteger
-    @JsonKey(name: '_valueInteger') Element? valueIntegerElement,
+    @JsonKey(name: '_valueInteger') PrimitiveElement? valueIntegerElement,
 
     /// [valueRange] The information determined as a result of making the
     ///  observation, if the information has a simple value.
@@ -4365,14 +4392,14 @@ class ObservationComponent with BackboneType, _$ObservationComponent {
     FhirTime? valueTime,
 
     /// [valueTimeElement] Extensions for valueTime
-    @JsonKey(name: '_valueTime') Element? valueTimeElement,
+    @JsonKey(name: '_valueTime') PrimitiveElement? valueTimeElement,
 
     /// [valueDateTime] The information determined as a result of making the
     ///  observation, if the information has a simple value.
     FhirDateTime? valueDateTime,
 
     /// [valueDateTimeElement] Extensions for valueDateTime
-    @JsonKey(name: '_valueDateTime') Element? valueDateTimeElement,
+    @JsonKey(name: '_valueDateTime') PrimitiveElement? valueDateTimeElement,
 
     /// [valuePeriod] The information determined as a result of making the
     ///  observation, if the information has a simple value.
@@ -4424,7 +4451,9 @@ class ObservationComponent with BackboneType, _$ObservationComponent {
 
 /// [QuestionnaireResponse] A structured set of questions and their answers.
 @freezed
-class QuestionnaireResponse with Resource, _$QuestionnaireResponse {
+class QuestionnaireResponse
+    with _$QuestionnaireResponse
+    implements DomainResource {
   /// [QuestionnaireResponse] A structured set of questions and their answers.
   const QuestionnaireResponse._();
 
@@ -4549,13 +4578,13 @@ class QuestionnaireResponse with Resource, _$QuestionnaireResponse {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -4614,14 +4643,14 @@ class QuestionnaireResponse with Resource, _$QuestionnaireResponse {
     FhirCanonical? questionnaire,
 
     /// [questionnaireElement] Extensions for [questionnaire].
-    @JsonKey(name: '_questionnaire') Element? questionnaireElement,
+    @JsonKey(name: '_questionnaire') PrimitiveElement? questionnaireElement,
 
     /// [status] The position of the questionnaire response within its overall
     ///  lifecycle.
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [subject] The subject of the questionnaire response.  This could be a
     /// patient, organization, practitioner, device, etc.  This is who/what the
@@ -4637,7 +4666,7 @@ class QuestionnaireResponse with Resource, _$QuestionnaireResponse {
     FhirDateTime? authored,
 
     /// [authoredElement] Extensions for authored
-    @JsonKey(name: '_authored') Element? authoredElement,
+    @JsonKey(name: '_authored') PrimitiveElement? authoredElement,
 
     /// [author] Person who received the answers to the questions in the
     ///  QuestionnaireResponse and recorded them in the system.
@@ -4689,7 +4718,9 @@ class QuestionnaireResponse with Resource, _$QuestionnaireResponse {
 
 /// [QuestionnaireResponseItem] A structured set of questions and their
 @freezed
-class QuestionnaireResponseItem with BackboneType, _$QuestionnaireResponseItem {
+class QuestionnaireResponseItem
+    with _$QuestionnaireResponseItem
+    implements BackboneElement {
   /// [QuestionnaireResponseItem] A structured set of questions and their
   const QuestionnaireResponseItem._();
 
@@ -4773,21 +4804,21 @@ class QuestionnaireResponseItem with BackboneType, _$QuestionnaireResponseItem {
     String? linkId,
 
     /// [linkIdElement] Extensions for linkId
-    @JsonKey(name: '_linkId') Element? linkIdElement,
+    @JsonKey(name: '_linkId') PrimitiveElement? linkIdElement,
 
     /// [definition] A reference to an [[[ElementDefinition]]] that provides the
     ///  details for the item.
     FhirUri? definition,
 
     /// [definitionElement] Extensions for definition
-    @JsonKey(name: '_definition') Element? definitionElement,
+    @JsonKey(name: '_definition') PrimitiveElement? definitionElement,
 
     /// [text] Text that is displayed above the contents of the group or as the
     ///  text of the question being answered.
     String? text,
 
     /// [textElement] Extensions for text
-    @JsonKey(name: '_text') Element? textElement,
+    @JsonKey(name: '_text') PrimitiveElement? textElement,
 
     /// [answer] The respondent's answer(s) to the question.
     List<QuestionnaireResponseAnswer>? answer,
@@ -4950,56 +4981,56 @@ class QuestionnaireResponseAnswer
     FhirBoolean? valueBoolean,
 
     /// [valueBooleanElement] Extensions for valueBoolean
-    @JsonKey(name: '_valueBoolean') Element? valueBooleanElement,
+    @JsonKey(name: '_valueBoolean') PrimitiveElement? valueBooleanElement,
 
     /// [valueDecimal] The answer (or one of the answers) provided by the
     ///  respondent to the question.
     FhirDecimal? valueDecimal,
 
     /// [valueDecimalElement] Extensions for valueDecimal
-    @JsonKey(name: '_valueDecimal') Element? valueDecimalElement,
+    @JsonKey(name: '_valueDecimal') PrimitiveElement? valueDecimalElement,
 
     /// [valueInteger] The answer (or one of the answers) provided by the
     ///  respondent to the question.
     FhirInteger? valueInteger,
 
     /// [valueIntegerElement] Extensions for valueInteger
-    @JsonKey(name: '_valueInteger') Element? valueIntegerElement,
+    @JsonKey(name: '_valueInteger') PrimitiveElement? valueIntegerElement,
 
     /// [valueDate] The answer (or one of the answers) provided by the respondent
     ///  to the question.
     FhirDate? valueDate,
 
     /// [valueDateElement] Extensions for valueDate
-    @JsonKey(name: '_valueDate') Element? valueDateElement,
+    @JsonKey(name: '_valueDate') PrimitiveElement? valueDateElement,
 
     /// [valueDateTime] The answer (or one of the answers) provided by the
     ///  respondent to the question.
     FhirDateTime? valueDateTime,
 
     /// [valueDateTimeElement] Extensions for valueDateTime
-    @JsonKey(name: '_valueDateTime') Element? valueDateTimeElement,
+    @JsonKey(name: '_valueDateTime') PrimitiveElement? valueDateTimeElement,
 
     /// [valueTime] The answer (or one of the answers) provided by the respondent
     ///  to the question.
     FhirTime? valueTime,
 
     /// [valueTimeElement] Extensions for valueTime
-    @JsonKey(name: '_valueTime') Element? valueTimeElement,
+    @JsonKey(name: '_valueTime') PrimitiveElement? valueTimeElement,
 
     /// [valueString] The answer (or one of the answers) provided by the
     ///  respondent to the question.
     String? valueString,
 
     /// [valueStringElement] Extensions for valueString
-    @JsonKey(name: '_valueString') Element? valueStringElement,
+    @JsonKey(name: '_valueString') PrimitiveElement? valueStringElement,
 
     /// [valueUri] The answer (or one of the answers) provided by the respondent
     ///  to the question.
     FhirUri? valueUri,
 
     /// [valueUriElement] Extensions for valueUri
-    @JsonKey(name: '_valueUri') Element? valueUriElement,
+    @JsonKey(name: '_valueUri') PrimitiveElement? valueUriElement,
 
     /// [valueAttachment] The answer (or one of the answers) provided by the
     ///  respondent to the question.
@@ -5055,7 +5086,7 @@ class QuestionnaireResponseAnswer
 
 /// [Specimen] A sample to be used for analysis.
 @freezed
-class Specimen with Resource, _$Specimen {
+class Specimen with _$Specimen implements DomainResource {
   /// [Specimen] A sample to be used for analysis.
   const Specimen._();
 
@@ -5177,13 +5208,13 @@ class Specimen with Resource, _$Specimen {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -5234,7 +5265,7 @@ class Specimen with Resource, _$Specimen {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [type] The kind of material that forms the specimen.
     CodeableConcept? type,
@@ -5248,7 +5279,7 @@ class Specimen with Resource, _$Specimen {
     FhirDateTime? receivedTime,
 
     /// [receivedTimeElement] Extensions for receivedTime
-    @JsonKey(name: '_receivedTime') Element? receivedTimeElement,
+    @JsonKey(name: '_receivedTime') PrimitiveElement? receivedTimeElement,
 
     /// [parent] Reference to the parent (source) specimen which is used when the
     ///  specimen was either derived from or a component of another specimen.
@@ -5317,7 +5348,7 @@ class Specimen with Resource, _$Specimen {
 
 /// [SpecimenCollection] A sample to be used for analysis.
 @freezed
-class SpecimenCollection with BackboneType, _$SpecimenCollection {
+class SpecimenCollection with _$SpecimenCollection implements BackboneElement {
   /// [SpecimenCollection] A sample to be used for analysis.
   const SpecimenCollection._();
 
@@ -5412,7 +5443,8 @@ class SpecimenCollection with BackboneType, _$SpecimenCollection {
     FhirDateTime? collectedDateTime,
 
     /// [collectedDateTimeElement] Extensions for collectedDateTime
-    @JsonKey(name: '_collectedDateTime') Element? collectedDateTimeElement,
+    @JsonKey(name: '_collectedDateTime')
+    PrimitiveElement? collectedDateTimeElement,
 
     /// [collectedPeriod] Time when specimen was collected from subject - the
     ///  physiologically relevant time.
@@ -5478,7 +5510,7 @@ class SpecimenCollection with BackboneType, _$SpecimenCollection {
 
 /// [SpecimenProcessing] A sample to be used for analysis.
 @freezed
-class SpecimenProcessing with BackboneType, _$SpecimenProcessing {
+class SpecimenProcessing with _$SpecimenProcessing implements BackboneElement {
   /// [SpecimenProcessing] A sample to be used for analysis.
   const SpecimenProcessing._();
 
@@ -5558,7 +5590,7 @@ class SpecimenProcessing with BackboneType, _$SpecimenProcessing {
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [procedure] A coded value specifying the procedure used to process the
     ///  specimen.
@@ -5573,7 +5605,7 @@ class SpecimenProcessing with BackboneType, _$SpecimenProcessing {
     FhirDateTime? timeDateTime,
 
     /// [timeDateTimeElement] Extensions for timeDateTime
-    @JsonKey(name: '_timeDateTime') Element? timeDateTimeElement,
+    @JsonKey(name: '_timeDateTime') PrimitiveElement? timeDateTimeElement,
 
     /// [timePeriod] A record of the time or period when the specimen processing
     /// occurred.  For example the time of sample fixation or the period of time
@@ -5614,7 +5646,7 @@ class SpecimenProcessing with BackboneType, _$SpecimenProcessing {
 
 /// [SpecimenContainer] A sample to be used for analysis.
 @freezed
-class SpecimenContainer with BackboneType, _$SpecimenContainer {
+class SpecimenContainer with _$SpecimenContainer implements BackboneElement {
   /// [SpecimenContainer] A sample to be used for analysis.
   const SpecimenContainer._();
 
@@ -5704,7 +5736,7 @@ class SpecimenContainer with BackboneType, _$SpecimenContainer {
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [type] The type of container associated with the specimen (e.g. slide,
     ///  aliquot, etc.).

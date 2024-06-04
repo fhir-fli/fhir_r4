@@ -142,7 +142,7 @@ class MarketingStatus with _$MarketingStatus implements Element {
     FhirDateTime? restoreDate,
 
     /// [restoreDateElement] Extensions for restoreDate
-    @JsonKey(name: '_restoreDate') Element? restoreDateElement,
+    @JsonKey(name: '_restoreDate') PrimitiveElement? restoreDateElement,
   }) = _MarketingStatus;
 
   @override

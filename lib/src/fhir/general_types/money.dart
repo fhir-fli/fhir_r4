@@ -55,13 +55,13 @@ class Money with _$Money implements DataType {
     FhirDecimal? value,
 
     /// [valueElement] Extensions for value
-    @JsonKey(name: '_value') Element? valueElement,
+    @JsonKey(name: '_value') PrimitiveElement? valueElement,
 
     /// [currency] ISO 4217 Currency Code.
     FhirCode? currency,
 
     /// [currencyElement] Extensions for currency
-    @JsonKey(name: '_currency') Element? currencyElement,
+    @JsonKey(name: '_currency') PrimitiveElement? currencyElement,
   }) = _Money;
 
   @override

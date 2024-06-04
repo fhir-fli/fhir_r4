@@ -38,7 +38,7 @@ mixin _$ContactDetail {
 
   /// [nameElement] Extensions for name
   @JsonKey(name: '_name')
-  Element? get nameElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get nameElement => throw _privateConstructorUsedError;
 
   /// [telecom] The contact details for the individual (if a name was provided)
   ///  or the organization.
@@ -60,7 +60,7 @@ abstract class $ContactDetailCopyWith<$Res> {
       {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       String? name,
-      @JsonKey(name: '_name') Element? nameElement,
+      @JsonKey(name: '_name') PrimitiveElement? nameElement,
       List<ContactPoint>? telecom});
 }
 
@@ -99,7 +99,7 @@ class _$ContactDetailCopyWithImpl<$Res, $Val extends ContactDetail>
       nameElement: freezed == nameElement
           ? _value.nameElement
           : nameElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       telecom: freezed == telecom
           ? _value.telecom
           : telecom // ignore: cast_nullable_to_non_nullable
@@ -120,7 +120,7 @@ abstract class _$$ContactDetailImplCopyWith<$Res>
       {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       String? name,
-      @JsonKey(name: '_name') Element? nameElement,
+      @JsonKey(name: '_name') PrimitiveElement? nameElement,
       List<ContactPoint>? telecom});
 }
 
@@ -157,7 +157,7 @@ class __$$ContactDetailImplCopyWithImpl<$Res>
       nameElement: freezed == nameElement
           ? _value.nameElement
           : nameElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       telecom: freezed == telecom
           ? _value._telecom
           : telecom // ignore: cast_nullable_to_non_nullable
@@ -218,7 +218,7 @@ class _$ContactDetailImpl extends _ContactDetail {
   /// [nameElement] Extensions for name
   @override
   @JsonKey(name: '_name')
-  final Element? nameElement;
+  final PrimitiveElement? nameElement;
 
   /// [telecom] The contact details for the individual (if a name was provided)
   ///  or the organization.
@@ -283,7 +283,7 @@ abstract class _ContactDetail extends ContactDetail {
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final String? name,
-      @JsonKey(name: '_name') final Element? nameElement,
+      @JsonKey(name: '_name') final PrimitiveElement? nameElement,
       final List<ContactPoint>? telecom}) = _$ContactDetailImpl;
   const _ContactDetail._() : super._();
 
@@ -313,7 +313,7 @@ abstract class _ContactDetail extends ContactDetail {
 
   /// [nameElement] Extensions for name
   @JsonKey(name: '_name')
-  Element? get nameElement;
+  PrimitiveElement? get nameElement;
   @override
 
   /// [telecom] The contact details for the individual (if a name was provided)

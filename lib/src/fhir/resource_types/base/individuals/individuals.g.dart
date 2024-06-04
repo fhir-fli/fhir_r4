@@ -21,12 +21,14 @@ _$FhirGroupImpl _$$FhirGroupImplFromJson(Map<String, dynamic> json) =>
           : FhirUri.fromJson(json['implicitRules']),
       implicitRulesElement: json['_implicitRules'] == null
           ? null
-          : Element.fromJson(json['_implicitRules'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>),
       language:
           json['language'] == null ? null : FhirCode.fromJson(json['language']),
       languageElement: json['_language'] == null
           ? null
-          : Element.fromJson(json['_language'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_language'] as Map<String, dynamic>),
       text: json['text'] == null
           ? null
           : Narrative.fromJson(json['text'] as Map<String, dynamic>),
@@ -46,29 +48,30 @@ _$FhirGroupImpl _$$FhirGroupImplFromJson(Map<String, dynamic> json) =>
           json['active'] == null ? null : FhirBoolean.fromJson(json['active']),
       activeElement: json['_active'] == null
           ? null
-          : Element.fromJson(json['_active'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_active'] as Map<String, dynamic>),
       type: json['type'] == null ? null : FhirCode.fromJson(json['type']),
       typeElement: json['_type'] == null
           ? null
-          : Element.fromJson(json['_type'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_type'] as Map<String, dynamic>),
       actual:
           json['actual'] == null ? null : FhirBoolean.fromJson(json['actual']),
       actualElement: json['_actual'] == null
           ? null
-          : Element.fromJson(json['_actual'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_actual'] as Map<String, dynamic>),
       code: json['code'] == null
           ? null
           : CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
       name: json['name'] as String?,
       nameElement: json['_name'] == null
           ? null
-          : Element.fromJson(json['_name'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_name'] as Map<String, dynamic>),
       quantity: json['quantity'] == null
           ? null
           : FhirUnsignedInt.fromJson(json['quantity']),
       quantityElement: json['_quantity'] == null
           ? null
-          : Element.fromJson(json['_quantity'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_quantity'] as Map<String, dynamic>),
       managingEntity: json['managingEntity'] == null
           ? null
           : Reference.fromJson(json['managingEntity'] as Map<String, dynamic>),
@@ -289,7 +292,8 @@ _$GroupCharacteristicImpl _$$GroupCharacteristicImplFromJson(
           : FhirBoolean.fromJson(json['valueBoolean']),
       valueBooleanElement: json['_valueBoolean'] == null
           ? null
-          : Element.fromJson(json['_valueBoolean'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_valueBoolean'] as Map<String, dynamic>),
       valueQuantity: json['valueQuantity'] == null
           ? null
           : Quantity.fromJson(json['valueQuantity'] as Map<String, dynamic>),
@@ -304,7 +308,7 @@ _$GroupCharacteristicImpl _$$GroupCharacteristicImplFromJson(
           : FhirBoolean.fromJson(json['exclude']),
       excludeElement: json['_exclude'] == null
           ? null
-          : Element.fromJson(json['_exclude'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_exclude'] as Map<String, dynamic>),
       period: json['period'] == null
           ? null
           : Period.fromJson(json['period'] as Map<String, dynamic>),
@@ -356,7 +360,8 @@ _$GroupMemberImpl _$$GroupMemberImplFromJson(Map<String, dynamic> json) =>
           : FhirBoolean.fromJson(json['inactive']),
       inactiveElement: json['_inactive'] == null
           ? null
-          : Element.fromJson(json['_inactive'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_inactive'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$GroupMemberImplToJson(_$GroupMemberImpl instance) {
@@ -395,12 +400,14 @@ _$PatientImpl _$$PatientImplFromJson(Map<String, dynamic> json) =>
           : FhirUri.fromJson(json['implicitRules']),
       implicitRulesElement: json['_implicitRules'] == null
           ? null
-          : Element.fromJson(json['_implicitRules'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>),
       language:
           json['language'] == null ? null : FhirCode.fromJson(json['language']),
       languageElement: json['_language'] == null
           ? null
-          : Element.fromJson(json['_language'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_language'] as Map<String, dynamic>),
       text: json['text'] == null
           ? null
           : Narrative.fromJson(json['text'] as Map<String, dynamic>),
@@ -420,7 +427,7 @@ _$PatientImpl _$$PatientImplFromJson(Map<String, dynamic> json) =>
           json['active'] == null ? null : FhirBoolean.fromJson(json['active']),
       activeElement: json['_active'] == null
           ? null
-          : Element.fromJson(json['_active'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_active'] as Map<String, dynamic>),
       name: (json['name'] as List<dynamic>?)
           ?.map((e) => HumanName.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -430,25 +437,28 @@ _$PatientImpl _$$PatientImplFromJson(Map<String, dynamic> json) =>
       gender: json['gender'] == null ? null : FhirCode.fromJson(json['gender']),
       genderElement: json['_gender'] == null
           ? null
-          : Element.fromJson(json['_gender'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_gender'] as Map<String, dynamic>),
       birthDate: json['birthDate'] == null
           ? null
           : FhirDate.fromJson(json['birthDate'] as String),
       birthDateElement: json['_birthDate'] == null
           ? null
-          : Element.fromJson(json['_birthDate'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_birthDate'] as Map<String, dynamic>),
       deceasedBoolean: json['deceasedBoolean'] == null
           ? null
           : FhirBoolean.fromJson(json['deceasedBoolean']),
       deceasedBooleanElement: json['_deceasedBoolean'] == null
           ? null
-          : Element.fromJson(json['_deceasedBoolean'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_deceasedBoolean'] as Map<String, dynamic>),
       deceasedDateTime: json['deceasedDateTime'] == null
           ? null
           : FhirDateTime.fromJson(json['deceasedDateTime'] as String),
       deceasedDateTimeElement: json['_deceasedDateTime'] == null
           ? null
-          : Element.fromJson(json['_deceasedDateTime'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_deceasedDateTime'] as Map<String, dynamic>),
       address: (json['address'] as List<dynamic>?)
           ?.map((e) => Address.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -461,14 +471,14 @@ _$PatientImpl _$$PatientImplFromJson(Map<String, dynamic> json) =>
           : FhirBoolean.fromJson(json['multipleBirthBoolean']),
       multipleBirthBooleanElement: json['_multipleBirthBoolean'] == null
           ? null
-          : Element.fromJson(
+          : PrimitiveElement.fromJson(
               json['_multipleBirthBoolean'] as Map<String, dynamic>),
       multipleBirthInteger: json['multipleBirthInteger'] == null
           ? null
           : FhirInteger.fromJson(json['multipleBirthInteger']),
       multipleBirthIntegerElement: json['_multipleBirthInteger'] == null
           ? null
-          : Element.fromJson(
+          : PrimitiveElement.fromJson(
               json['_multipleBirthInteger'] as Map<String, dynamic>),
       photo: (json['photo'] as List<dynamic>?)
           ?.map((e) => Attachment.fromJson(e as Map<String, dynamic>))
@@ -572,7 +582,7 @@ _$PatientContactImpl _$$PatientContactImplFromJson(Map<String, dynamic> json) =>
       gender: json['gender'] == null ? null : FhirCode.fromJson(json['gender']),
       genderElement: json['_gender'] == null
           ? null
-          : Element.fromJson(json['_gender'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_gender'] as Map<String, dynamic>),
       organization: json['organization'] == null
           ? null
           : Reference.fromJson(json['organization'] as Map<String, dynamic>),
@@ -625,7 +635,8 @@ _$PatientCommunicationImpl _$$PatientCommunicationImplFromJson(
           : FhirBoolean.fromJson(json['preferred']),
       preferredElement: json['_preferred'] == null
           ? null
-          : Element.fromJson(json['_preferred'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_preferred'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$PatientCommunicationImplToJson(
@@ -662,7 +673,7 @@ _$PatientLinkImpl _$$PatientLinkImplFromJson(Map<String, dynamic> json) =>
       type: json['type'] == null ? null : FhirCode.fromJson(json['type']),
       typeElement: json['_type'] == null
           ? null
-          : Element.fromJson(json['_type'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_type'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$PatientLinkImplToJson(_$PatientLinkImpl instance) {
@@ -699,12 +710,14 @@ _$PersonImpl _$$PersonImplFromJson(Map<String, dynamic> json) => _$PersonImpl(
           : FhirUri.fromJson(json['implicitRules']),
       implicitRulesElement: json['_implicitRules'] == null
           ? null
-          : Element.fromJson(json['_implicitRules'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>),
       language:
           json['language'] == null ? null : FhirCode.fromJson(json['language']),
       languageElement: json['_language'] == null
           ? null
-          : Element.fromJson(json['_language'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_language'] as Map<String, dynamic>),
       text: json['text'] == null
           ? null
           : Narrative.fromJson(json['text'] as Map<String, dynamic>),
@@ -729,13 +742,14 @@ _$PersonImpl _$$PersonImplFromJson(Map<String, dynamic> json) => _$PersonImpl(
       gender: json['gender'] == null ? null : FhirCode.fromJson(json['gender']),
       genderElement: json['_gender'] == null
           ? null
-          : Element.fromJson(json['_gender'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_gender'] as Map<String, dynamic>),
       birthDate: json['birthDate'] == null
           ? null
           : FhirDate.fromJson(json['birthDate'] as String),
       birthDateElement: json['_birthDate'] == null
           ? null
-          : Element.fromJson(json['_birthDate'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_birthDate'] as Map<String, dynamic>),
       address: (json['address'] as List<dynamic>?)
           ?.map((e) => Address.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -750,7 +764,7 @@ _$PersonImpl _$$PersonImplFromJson(Map<String, dynamic> json) => _$PersonImpl(
           json['active'] == null ? null : FhirBoolean.fromJson(json['active']),
       activeElement: json['_active'] == null
           ? null
-          : Element.fromJson(json['_active'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_active'] as Map<String, dynamic>),
       link: (json['link'] as List<dynamic>?)
           ?.map((e) => PersonLink.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -812,7 +826,8 @@ _$PersonLinkImpl _$$PersonLinkImplFromJson(Map<String, dynamic> json) =>
           : FhirCode.fromJson(json['assurance']),
       assuranceElement: json['_assurance'] == null
           ? null
-          : Element.fromJson(json['_assurance'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_assurance'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$PersonLinkImplToJson(_$PersonLinkImpl instance) {
@@ -850,12 +865,14 @@ _$PractitionerImpl _$$PractitionerImplFromJson(Map<String, dynamic> json) =>
           : FhirUri.fromJson(json['implicitRules']),
       implicitRulesElement: json['_implicitRules'] == null
           ? null
-          : Element.fromJson(json['_implicitRules'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>),
       language:
           json['language'] == null ? null : FhirCode.fromJson(json['language']),
       languageElement: json['_language'] == null
           ? null
-          : Element.fromJson(json['_language'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_language'] as Map<String, dynamic>),
       text: json['text'] == null
           ? null
           : Narrative.fromJson(json['text'] as Map<String, dynamic>),
@@ -875,7 +892,7 @@ _$PractitionerImpl _$$PractitionerImplFromJson(Map<String, dynamic> json) =>
           json['active'] == null ? null : FhirBoolean.fromJson(json['active']),
       activeElement: json['_active'] == null
           ? null
-          : Element.fromJson(json['_active'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_active'] as Map<String, dynamic>),
       name: (json['name'] as List<dynamic>?)
           ?.map((e) => HumanName.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -888,13 +905,14 @@ _$PractitionerImpl _$$PractitionerImplFromJson(Map<String, dynamic> json) =>
       gender: json['gender'] == null ? null : FhirCode.fromJson(json['gender']),
       genderElement: json['_gender'] == null
           ? null
-          : Element.fromJson(json['_gender'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_gender'] as Map<String, dynamic>),
       birthDate: json['birthDate'] == null
           ? null
           : FhirDate.fromJson(json['birthDate'] as String),
       birthDateElement: json['_birthDate'] == null
           ? null
-          : Element.fromJson(json['_birthDate'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_birthDate'] as Map<String, dynamic>),
       photo: (json['photo'] as List<dynamic>?)
           ?.map((e) => Attachment.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -1011,12 +1029,14 @@ _$PractitionerRoleImpl _$$PractitionerRoleImplFromJson(
           : FhirUri.fromJson(json['implicitRules']),
       implicitRulesElement: json['_implicitRules'] == null
           ? null
-          : Element.fromJson(json['_implicitRules'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>),
       language:
           json['language'] == null ? null : FhirCode.fromJson(json['language']),
       languageElement: json['_language'] == null
           ? null
-          : Element.fromJson(json['_language'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_language'] as Map<String, dynamic>),
       text: json['text'] == null
           ? null
           : Narrative.fromJson(json['text'] as Map<String, dynamic>),
@@ -1036,7 +1056,7 @@ _$PractitionerRoleImpl _$$PractitionerRoleImplFromJson(
           json['active'] == null ? null : FhirBoolean.fromJson(json['active']),
       activeElement: json['_active'] == null
           ? null
-          : Element.fromJson(json['_active'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_active'] as Map<String, dynamic>),
       period: json['period'] == null
           ? null
           : Period.fromJson(json['period'] as Map<String, dynamic>),
@@ -1072,7 +1092,7 @@ _$PractitionerRoleImpl _$$PractitionerRoleImplFromJson(
       availabilityExceptions: json['availabilityExceptions'] as String?,
       availabilityExceptionsElement: json['_availabilityExceptions'] == null
           ? null
-          : Element.fromJson(
+          : PrimitiveElement.fromJson(
               json['_availabilityExceptions'] as Map<String, dynamic>),
       endpoint: (json['endpoint'] as List<dynamic>?)
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
@@ -1152,20 +1172,21 @@ _$PractitionerRoleAvailableTimeImpl
               : FhirBoolean.fromJson(json['allDay']),
           allDayElement: json['_allDay'] == null
               ? null
-              : Element.fromJson(json['_allDay'] as Map<String, dynamic>),
+              : PrimitiveElement.fromJson(
+                  json['_allDay'] as Map<String, dynamic>),
           availableStartTime: json['availableStartTime'] == null
               ? null
               : FhirTime.fromJson(json['availableStartTime']),
           availableStartTimeElement: json['_availableStartTime'] == null
               ? null
-              : Element.fromJson(
+              : PrimitiveElement.fromJson(
                   json['_availableStartTime'] as Map<String, dynamic>),
           availableEndTime: json['availableEndTime'] == null
               ? null
               : FhirTime.fromJson(json['availableEndTime']),
           availableEndTimeElement: json['_availableEndTime'] == null
               ? null
-              : Element.fromJson(
+              : PrimitiveElement.fromJson(
                   json['_availableEndTime'] as Map<String, dynamic>),
         );
 
@@ -1211,7 +1232,8 @@ _$PractitionerRoleNotAvailableImpl _$$PractitionerRoleNotAvailableImplFromJson(
       description: json['description'] as String?,
       descriptionElement: json['_description'] == null
           ? null
-          : Element.fromJson(json['_description'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_description'] as Map<String, dynamic>),
       during: json['during'] == null
           ? null
           : Period.fromJson(json['during'] as Map<String, dynamic>),
@@ -1253,12 +1275,14 @@ _$RelatedPersonImpl _$$RelatedPersonImplFromJson(Map<String, dynamic> json) =>
           : FhirUri.fromJson(json['implicitRules']),
       implicitRulesElement: json['_implicitRules'] == null
           ? null
-          : Element.fromJson(json['_implicitRules'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>),
       language:
           json['language'] == null ? null : FhirCode.fromJson(json['language']),
       languageElement: json['_language'] == null
           ? null
-          : Element.fromJson(json['_language'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_language'] as Map<String, dynamic>),
       text: json['text'] == null
           ? null
           : Narrative.fromJson(json['text'] as Map<String, dynamic>),
@@ -1278,7 +1302,7 @@ _$RelatedPersonImpl _$$RelatedPersonImplFromJson(Map<String, dynamic> json) =>
           json['active'] == null ? null : FhirBoolean.fromJson(json['active']),
       activeElement: json['_active'] == null
           ? null
-          : Element.fromJson(json['_active'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_active'] as Map<String, dynamic>),
       patient: Reference.fromJson(json['patient'] as Map<String, dynamic>),
       relationship: (json['relationship'] as List<dynamic>?)
           ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
@@ -1292,13 +1316,14 @@ _$RelatedPersonImpl _$$RelatedPersonImplFromJson(Map<String, dynamic> json) =>
       gender: json['gender'] == null ? null : FhirCode.fromJson(json['gender']),
       genderElement: json['_gender'] == null
           ? null
-          : Element.fromJson(json['_gender'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_gender'] as Map<String, dynamic>),
       birthDate: json['birthDate'] == null
           ? null
           : FhirDate.fromJson(json['birthDate'] as String),
       birthDateElement: json['_birthDate'] == null
           ? null
-          : Element.fromJson(json['_birthDate'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_birthDate'] as Map<String, dynamic>),
       address: (json['address'] as List<dynamic>?)
           ?.map((e) => Address.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -1376,7 +1401,8 @@ _$RelatedPersonCommunicationImpl _$$RelatedPersonCommunicationImplFromJson(
           : FhirBoolean.fromJson(json['preferred']),
       preferredElement: json['_preferred'] == null
           ? null
-          : Element.fromJson(json['_preferred'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_preferred'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$RelatedPersonCommunicationImplToJson(

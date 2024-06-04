@@ -20,12 +20,14 @@ _$ClaimImpl _$$ClaimImplFromJson(Map<String, dynamic> json) => _$ClaimImpl(
           : FhirUri.fromJson(json['implicitRules']),
       implicitRulesElement: json['_implicitRules'] == null
           ? null
-          : Element.fromJson(json['_implicitRules'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>),
       language:
           json['language'] == null ? null : FhirCode.fromJson(json['language']),
       languageElement: json['_language'] == null
           ? null
-          : Element.fromJson(json['_language'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_language'] as Map<String, dynamic>),
       text: json['text'] == null
           ? null
           : Narrative.fromJson(json['text'] as Map<String, dynamic>),
@@ -44,7 +46,7 @@ _$ClaimImpl _$$ClaimImplFromJson(Map<String, dynamic> json) => _$ClaimImpl(
       status: json['status'] == null ? null : FhirCode.fromJson(json['status']),
       statusElement: json['_status'] == null
           ? null
-          : Element.fromJson(json['_status'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_status'] as Map<String, dynamic>),
       type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       subType: json['subType'] == null
           ? null
@@ -52,7 +54,7 @@ _$ClaimImpl _$$ClaimImplFromJson(Map<String, dynamic> json) => _$ClaimImpl(
       use: json['use'] == null ? null : FhirCode.fromJson(json['use']),
       useElement: json['_use'] == null
           ? null
-          : Element.fromJson(json['_use'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_use'] as Map<String, dynamic>),
       patient: Reference.fromJson(json['patient'] as Map<String, dynamic>),
       billablePeriod: json['billablePeriod'] == null
           ? null
@@ -62,7 +64,7 @@ _$ClaimImpl _$$ClaimImplFromJson(Map<String, dynamic> json) => _$ClaimImpl(
           : FhirDateTime.fromJson(json['created'] as String),
       createdElement: json['_created'] == null
           ? null
-          : Element.fromJson(json['_created'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_created'] as Map<String, dynamic>),
       enterer: json['enterer'] == null
           ? null
           : Reference.fromJson(json['enterer'] as Map<String, dynamic>),
@@ -416,14 +418,16 @@ _$ClaimCareTeamImpl _$$ClaimCareTeamImplFromJson(Map<String, dynamic> json) =>
           : FhirPositiveInt.fromJson(json['sequence']),
       sequenceElement: json['_sequence'] == null
           ? null
-          : Element.fromJson(json['_sequence'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_sequence'] as Map<String, dynamic>),
       provider: Reference.fromJson(json['provider'] as Map<String, dynamic>),
       responsible: json['responsible'] == null
           ? null
           : FhirBoolean.fromJson(json['responsible']),
       responsibleElement: json['_responsible'] == null
           ? null
-          : Element.fromJson(json['_responsible'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_responsible'] as Map<String, dynamic>),
       role: json['role'] == null
           ? null
           : CodeableConcept.fromJson(json['role'] as Map<String, dynamic>),
@@ -472,7 +476,8 @@ _$ClaimSupportingInfoImpl _$$ClaimSupportingInfoImplFromJson(
           : FhirPositiveInt.fromJson(json['sequence']),
       sequenceElement: json['_sequence'] == null
           ? null
-          : Element.fromJson(json['_sequence'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_sequence'] as Map<String, dynamic>),
       category:
           CodeableConcept.fromJson(json['category'] as Map<String, dynamic>),
       code: json['code'] == null
@@ -483,7 +488,8 @@ _$ClaimSupportingInfoImpl _$$ClaimSupportingInfoImplFromJson(
           : FhirDate.fromJson(json['timingDate'] as String),
       timingDateElement: json['_timingDate'] == null
           ? null
-          : Element.fromJson(json['_timingDate'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_timingDate'] as Map<String, dynamic>),
       timingPeriod: json['timingPeriod'] == null
           ? null
           : Period.fromJson(json['timingPeriod'] as Map<String, dynamic>),
@@ -492,11 +498,13 @@ _$ClaimSupportingInfoImpl _$$ClaimSupportingInfoImplFromJson(
           : FhirBoolean.fromJson(json['valueBoolean']),
       valueBooleanElement: json['_valueBoolean'] == null
           ? null
-          : Element.fromJson(json['_valueBoolean'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_valueBoolean'] as Map<String, dynamic>),
       valueString: json['valueString'] as String?,
       valueStringElement: json['_valueString'] == null
           ? null
-          : Element.fromJson(json['_valueString'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_valueString'] as Map<String, dynamic>),
       valueQuantity: json['valueQuantity'] == null
           ? null
           : Quantity.fromJson(json['valueQuantity'] as Map<String, dynamic>),
@@ -559,7 +567,8 @@ _$ClaimDiagnosisImpl _$$ClaimDiagnosisImplFromJson(Map<String, dynamic> json) =>
           : FhirPositiveInt.fromJson(json['sequence']),
       sequenceElement: json['_sequence'] == null
           ? null
-          : Element.fromJson(json['_sequence'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_sequence'] as Map<String, dynamic>),
       diagnosisCodeableConcept: json['diagnosisCodeableConcept'] == null
           ? null
           : CodeableConcept.fromJson(
@@ -621,7 +630,8 @@ _$ClaimProcedureImpl _$$ClaimProcedureImplFromJson(Map<String, dynamic> json) =>
           : FhirPositiveInt.fromJson(json['sequence']),
       sequenceElement: json['_sequence'] == null
           ? null
-          : Element.fromJson(json['_sequence'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_sequence'] as Map<String, dynamic>),
       type: (json['type'] as List<dynamic>?)
           ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -630,7 +640,7 @@ _$ClaimProcedureImpl _$$ClaimProcedureImplFromJson(Map<String, dynamic> json) =>
           : FhirDateTime.fromJson(json['date'] as String),
       dateElement: json['_date'] == null
           ? null
-          : Element.fromJson(json['_date'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_date'] as Map<String, dynamic>),
       procedureCodeableConcept: json['procedureCodeableConcept'] == null
           ? null
           : CodeableConcept.fromJson(
@@ -685,11 +695,12 @@ _$ClaimInsuranceImpl _$$ClaimInsuranceImplFromJson(Map<String, dynamic> json) =>
           : FhirPositiveInt.fromJson(json['sequence']),
       sequenceElement: json['_sequence'] == null
           ? null
-          : Element.fromJson(json['_sequence'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_sequence'] as Map<String, dynamic>),
       focal: json['focal'] == null ? null : FhirBoolean.fromJson(json['focal']),
       focalElement: json['_focal'] == null
           ? null
-          : Element.fromJson(json['_focal'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_focal'] as Map<String, dynamic>),
       identifier: json['identifier'] == null
           ? null
           : Identifier.fromJson(json['identifier'] as Map<String, dynamic>),
@@ -697,7 +708,7 @@ _$ClaimInsuranceImpl _$$ClaimInsuranceImplFromJson(Map<String, dynamic> json) =>
       businessArrangement: json['businessArrangement'] as String?,
       businessArrangementElement: json['_businessArrangement'] == null
           ? null
-          : Element.fromJson(
+          : PrimitiveElement.fromJson(
               json['_businessArrangement'] as Map<String, dynamic>),
       preAuthRef: (json['preAuthRef'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -756,7 +767,7 @@ _$ClaimAccidentImpl _$$ClaimAccidentImplFromJson(Map<String, dynamic> json) =>
           : FhirDate.fromJson(json['date'] as String),
       dateElement: json['_date'] == null
           ? null
-          : Element.fromJson(json['_date'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_date'] as Map<String, dynamic>),
       type: json['type'] == null
           ? null
           : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
@@ -805,7 +816,8 @@ _$ClaimItemImpl _$$ClaimItemImplFromJson(Map<String, dynamic> json) =>
           : FhirPositiveInt.fromJson(json['sequence']),
       sequenceElement: json['_sequence'] == null
           ? null
-          : Element.fromJson(json['_sequence'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_sequence'] as Map<String, dynamic>),
       careTeamSequence: (json['careTeamSequence'] as List<dynamic>?)
           ?.map(FhirPositiveInt.fromJson)
           .toList(),
@@ -851,7 +863,8 @@ _$ClaimItemImpl _$$ClaimItemImplFromJson(Map<String, dynamic> json) =>
           : FhirDate.fromJson(json['servicedDate'] as String),
       servicedDateElement: json['_servicedDate'] == null
           ? null
-          : Element.fromJson(json['_servicedDate'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_servicedDate'] as Map<String, dynamic>),
       servicedPeriod: json['servicedPeriod'] == null
           ? null
           : Period.fromJson(json['servicedPeriod'] as Map<String, dynamic>),
@@ -876,7 +889,7 @@ _$ClaimItemImpl _$$ClaimItemImplFromJson(Map<String, dynamic> json) =>
           json['factor'] == null ? null : FhirDecimal.fromJson(json['factor']),
       factorElement: json['_factor'] == null
           ? null
-          : Element.fromJson(json['_factor'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_factor'] as Map<String, dynamic>),
       net: json['net'] == null
           ? null
           : Money.fromJson(json['net'] as Map<String, dynamic>),
@@ -970,7 +983,8 @@ _$ClaimDetailImpl _$$ClaimDetailImplFromJson(Map<String, dynamic> json) =>
           : FhirPositiveInt.fromJson(json['sequence']),
       sequenceElement: json['_sequence'] == null
           ? null
-          : Element.fromJson(json['_sequence'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_sequence'] as Map<String, dynamic>),
       revenue: json['revenue'] == null
           ? null
           : CodeableConcept.fromJson(json['revenue'] as Map<String, dynamic>),
@@ -995,7 +1009,7 @@ _$ClaimDetailImpl _$$ClaimDetailImplFromJson(Map<String, dynamic> json) =>
           json['factor'] == null ? null : FhirDecimal.fromJson(json['factor']),
       factorElement: json['_factor'] == null
           ? null
-          : Element.fromJson(json['_factor'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_factor'] as Map<String, dynamic>),
       net: json['net'] == null
           ? null
           : Money.fromJson(json['net'] as Map<String, dynamic>),
@@ -1054,7 +1068,8 @@ _$ClaimSubDetailImpl _$$ClaimSubDetailImplFromJson(Map<String, dynamic> json) =>
           : FhirPositiveInt.fromJson(json['sequence']),
       sequenceElement: json['_sequence'] == null
           ? null
-          : Element.fromJson(json['_sequence'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_sequence'] as Map<String, dynamic>),
       revenue: json['revenue'] == null
           ? null
           : CodeableConcept.fromJson(json['revenue'] as Map<String, dynamic>),
@@ -1079,7 +1094,7 @@ _$ClaimSubDetailImpl _$$ClaimSubDetailImplFromJson(Map<String, dynamic> json) =>
           json['factor'] == null ? null : FhirDecimal.fromJson(json['factor']),
       factorElement: json['_factor'] == null
           ? null
-          : Element.fromJson(json['_factor'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_factor'] as Map<String, dynamic>),
       net: json['net'] == null
           ? null
           : Money.fromJson(json['net'] as Map<String, dynamic>),
@@ -1135,12 +1150,14 @@ _$ClaimResponseImpl _$$ClaimResponseImplFromJson(Map<String, dynamic> json) =>
           : FhirUri.fromJson(json['implicitRules']),
       implicitRulesElement: json['_implicitRules'] == null
           ? null
-          : Element.fromJson(json['_implicitRules'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>),
       language:
           json['language'] == null ? null : FhirCode.fromJson(json['language']),
       languageElement: json['_language'] == null
           ? null
-          : Element.fromJson(json['_language'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_language'] as Map<String, dynamic>),
       text: json['text'] == null
           ? null
           : Narrative.fromJson(json['text'] as Map<String, dynamic>),
@@ -1159,7 +1176,7 @@ _$ClaimResponseImpl _$$ClaimResponseImplFromJson(Map<String, dynamic> json) =>
       status: json['status'] == null ? null : FhirCode.fromJson(json['status']),
       statusElement: json['_status'] == null
           ? null
-          : Element.fromJson(json['_status'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_status'] as Map<String, dynamic>),
       type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       subType: json['subType'] == null
           ? null
@@ -1167,14 +1184,14 @@ _$ClaimResponseImpl _$$ClaimResponseImplFromJson(Map<String, dynamic> json) =>
       use: json['use'] == null ? null : FhirCode.fromJson(json['use']),
       useElement: json['_use'] == null
           ? null
-          : Element.fromJson(json['_use'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_use'] as Map<String, dynamic>),
       patient: Reference.fromJson(json['patient'] as Map<String, dynamic>),
       created: json['created'] == null
           ? null
           : FhirDateTime.fromJson(json['created'] as String),
       createdElement: json['_created'] == null
           ? null
-          : Element.fromJson(json['_created'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_created'] as Map<String, dynamic>),
       insurer: Reference.fromJson(json['insurer'] as Map<String, dynamic>),
       requestor: json['requestor'] == null
           ? null
@@ -1186,15 +1203,17 @@ _$ClaimResponseImpl _$$ClaimResponseImplFromJson(Map<String, dynamic> json) =>
           json['outcome'] == null ? null : FhirCode.fromJson(json['outcome']),
       outcomeElement: json['_outcome'] == null
           ? null
-          : Element.fromJson(json['_outcome'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_outcome'] as Map<String, dynamic>),
       disposition: json['disposition'] as String?,
       dispositionElement: json['_disposition'] == null
           ? null
-          : Element.fromJson(json['_disposition'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_disposition'] as Map<String, dynamic>),
       preAuthRef: json['preAuthRef'] as String?,
       preAuthRefElement: json['_preAuthRef'] == null
           ? null
-          : Element.fromJson(json['_preAuthRef'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_preAuthRef'] as Map<String, dynamic>),
       preAuthPeriod: json['preAuthPeriod'] == null
           ? null
           : Period.fromJson(json['preAuthPeriod'] as Map<String, dynamic>),
@@ -1324,7 +1343,8 @@ _$ClaimResponseItemImpl _$$ClaimResponseItemImplFromJson(
           : FhirPositiveInt.fromJson(json['itemSequence']),
       itemSequenceElement: json['_itemSequence'] == null
           ? null
-          : Element.fromJson(json['_itemSequence'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_itemSequence'] as Map<String, dynamic>),
       noteNumber: (json['noteNumber'] as List<dynamic>?)
           ?.map(FhirPositiveInt.fromJson)
           .toList(),
@@ -1388,7 +1408,7 @@ _$ClaimResponseAdjudicationImpl _$$ClaimResponseAdjudicationImplFromJson(
       value: json['value'] == null ? null : FhirDecimal.fromJson(json['value']),
       valueElement: json['_value'] == null
           ? null
-          : Element.fromJson(json['_value'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_value'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$ClaimResponseAdjudicationImplToJson(
@@ -1429,7 +1449,8 @@ _$ClaimResponseDetailImpl _$$ClaimResponseDetailImplFromJson(
           : FhirPositiveInt.fromJson(json['detailSequence']),
       detailSequenceElement: json['_detailSequence'] == null
           ? null
-          : Element.fromJson(json['_detailSequence'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_detailSequence'] as Map<String, dynamic>),
       noteNumber: (json['noteNumber'] as List<dynamic>?)
           ?.map(FhirPositiveInt.fromJson)
           .toList(),
@@ -1489,7 +1510,7 @@ _$ClaimResponseSubDetailImpl _$$ClaimResponseSubDetailImplFromJson(
           : FhirPositiveInt.fromJson(json['subDetailSequence']),
       subDetailSequenceElement: json['_subDetailSequence'] == null
           ? null
-          : Element.fromJson(
+          : PrimitiveElement.fromJson(
               json['_subDetailSequence'] as Map<String, dynamic>),
       noteNumber: (json['noteNumber'] as List<dynamic>?)
           ?.map(FhirPositiveInt.fromJson)
@@ -1577,7 +1598,8 @@ _$ClaimResponseAddItemImpl _$$ClaimResponseAddItemImplFromJson(
           : FhirDate.fromJson(json['servicedDate'] as String),
       servicedDateElement: json['_servicedDate'] == null
           ? null
-          : Element.fromJson(json['_servicedDate'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_servicedDate'] as Map<String, dynamic>),
       servicedPeriod: json['servicedPeriod'] == null
           ? null
           : Period.fromJson(json['servicedPeriod'] as Map<String, dynamic>),
@@ -1602,7 +1624,7 @@ _$ClaimResponseAddItemImpl _$$ClaimResponseAddItemImplFromJson(
           json['factor'] == null ? null : FhirDecimal.fromJson(json['factor']),
       factorElement: json['_factor'] == null
           ? null
-          : Element.fromJson(json['_factor'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_factor'] as Map<String, dynamic>),
       net: json['net'] == null
           ? null
           : Money.fromJson(json['net'] as Map<String, dynamic>),
@@ -1708,7 +1730,7 @@ _$ClaimResponseDetail1Impl _$$ClaimResponseDetail1ImplFromJson(
           json['factor'] == null ? null : FhirDecimal.fromJson(json['factor']),
       factorElement: json['_factor'] == null
           ? null
-          : Element.fromJson(json['_factor'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_factor'] as Map<String, dynamic>),
       net: json['net'] == null
           ? null
           : Money.fromJson(json['net'] as Map<String, dynamic>),
@@ -1786,7 +1808,7 @@ _$ClaimResponseSubDetail1Impl _$$ClaimResponseSubDetail1ImplFromJson(
           json['factor'] == null ? null : FhirDecimal.fromJson(json['factor']),
       factorElement: json['_factor'] == null
           ? null
-          : Element.fromJson(json['_factor'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_factor'] as Map<String, dynamic>),
       net: json['net'] == null
           ? null
           : Money.fromJson(json['net'] as Map<String, dynamic>),
@@ -1891,7 +1913,7 @@ _$ClaimResponsePaymentImpl _$$ClaimResponsePaymentImplFromJson(
           : FhirDate.fromJson(json['date'] as String),
       dateElement: json['_date'] == null
           ? null
-          : Element.fromJson(json['_date'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_date'] as Map<String, dynamic>),
       amount: Money.fromJson(json['amount'] as Map<String, dynamic>),
       identifier: json['identifier'] == null
           ? null
@@ -1938,15 +1960,15 @@ _$ClaimResponseProcessNoteImpl _$$ClaimResponseProcessNoteImplFromJson(
           : FhirPositiveInt.fromJson(json['number']),
       numberElement: json['_number'] == null
           ? null
-          : Element.fromJson(json['_number'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_number'] as Map<String, dynamic>),
       type: json['type'] == null ? null : FhirCode.fromJson(json['type']),
       typeElement: json['_type'] == null
           ? null
-          : Element.fromJson(json['_type'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_type'] as Map<String, dynamic>),
       text: json['text'] as String?,
       textElement: json['_text'] == null
           ? null
-          : Element.fromJson(json['_text'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_text'] as Map<String, dynamic>),
       language: json['language'] == null
           ? null
           : CodeableConcept.fromJson(json['language'] as Map<String, dynamic>),
@@ -1992,16 +2014,17 @@ _$ClaimResponseInsuranceImpl _$$ClaimResponseInsuranceImplFromJson(
           : FhirPositiveInt.fromJson(json['sequence']),
       sequenceElement: json['_sequence'] == null
           ? null
-          : Element.fromJson(json['_sequence'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_sequence'] as Map<String, dynamic>),
       focal: json['focal'] == null ? null : FhirBoolean.fromJson(json['focal']),
       focalElement: json['_focal'] == null
           ? null
-          : Element.fromJson(json['_focal'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_focal'] as Map<String, dynamic>),
       coverage: Reference.fromJson(json['coverage'] as Map<String, dynamic>),
       businessArrangement: json['businessArrangement'] as String?,
       businessArrangementElement: json['_businessArrangement'] == null
           ? null
-          : Element.fromJson(
+          : PrimitiveElement.fromJson(
               json['_businessArrangement'] as Map<String, dynamic>),
       claimResponse: json['claimResponse'] == null
           ? null
@@ -2050,19 +2073,21 @@ _$ClaimResponseErrorImpl _$$ClaimResponseErrorImplFromJson(
           : FhirPositiveInt.fromJson(json['itemSequence']),
       itemSequenceElement: json['_itemSequence'] == null
           ? null
-          : Element.fromJson(json['_itemSequence'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_itemSequence'] as Map<String, dynamic>),
       detailSequence: json['detailSequence'] == null
           ? null
           : FhirPositiveInt.fromJson(json['detailSequence']),
       detailSequenceElement: json['_detailSequence'] == null
           ? null
-          : Element.fromJson(json['_detailSequence'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_detailSequence'] as Map<String, dynamic>),
       subDetailSequence: json['subDetailSequence'] == null
           ? null
           : FhirPositiveInt.fromJson(json['subDetailSequence']),
       subDetailSequenceElement: json['_subDetailSequence'] == null
           ? null
-          : Element.fromJson(
+          : PrimitiveElement.fromJson(
               json['_subDetailSequence'] as Map<String, dynamic>),
       code: CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
     );
@@ -2108,12 +2133,14 @@ _$InvoiceImpl _$$InvoiceImplFromJson(Map<String, dynamic> json) =>
           : FhirUri.fromJson(json['implicitRules']),
       implicitRulesElement: json['_implicitRules'] == null
           ? null
-          : Element.fromJson(json['_implicitRules'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>),
       language:
           json['language'] == null ? null : FhirCode.fromJson(json['language']),
       languageElement: json['_language'] == null
           ? null
-          : Element.fromJson(json['_language'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_language'] as Map<String, dynamic>),
       text: json['text'] == null
           ? null
           : Narrative.fromJson(json['text'] as Map<String, dynamic>),
@@ -2132,11 +2159,12 @@ _$InvoiceImpl _$$InvoiceImplFromJson(Map<String, dynamic> json) =>
       status: json['status'] == null ? null : FhirCode.fromJson(json['status']),
       statusElement: json['_status'] == null
           ? null
-          : Element.fromJson(json['_status'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_status'] as Map<String, dynamic>),
       cancelledReason: json['cancelledReason'] as String?,
       cancelledReasonElement: json['_cancelledReason'] == null
           ? null
-          : Element.fromJson(json['_cancelledReason'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_cancelledReason'] as Map<String, dynamic>),
       type: json['type'] == null
           ? null
           : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
@@ -2151,7 +2179,7 @@ _$InvoiceImpl _$$InvoiceImplFromJson(Map<String, dynamic> json) =>
           : FhirDateTime.fromJson(json['date'] as String),
       dateElement: json['_date'] == null
           ? null
-          : Element.fromJson(json['_date'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_date'] as Map<String, dynamic>),
       participant: (json['participant'] as List<dynamic>?)
           ?.map((e) => InvoiceParticipant.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -2179,7 +2207,8 @@ _$InvoiceImpl _$$InvoiceImplFromJson(Map<String, dynamic> json) =>
           : FhirMarkdown.fromJson(json['paymentTerms']),
       paymentTermsElement: json['_paymentTerms'] == null
           ? null
-          : Element.fromJson(json['_paymentTerms'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_paymentTerms'] as Map<String, dynamic>),
       note: (json['note'] as List<dynamic>?)
           ?.map((e) => Annotation.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -2286,7 +2315,8 @@ _$InvoiceLineItemImpl _$$InvoiceLineItemImplFromJson(
           : FhirPositiveInt.fromJson(json['sequence']),
       sequenceElement: json['_sequence'] == null
           ? null
-          : Element.fromJson(json['_sequence'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_sequence'] as Map<String, dynamic>),
       chargeItemReference: json['chargeItemReference'] == null
           ? null
           : Reference.fromJson(
@@ -2339,7 +2369,7 @@ _$InvoicePriceComponentImpl _$$InvoicePriceComponentImplFromJson(
       type: json['type'] == null ? null : FhirCode.fromJson(json['type']),
       typeElement: json['_type'] == null
           ? null
-          : Element.fromJson(json['_type'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_type'] as Map<String, dynamic>),
       code: json['code'] == null
           ? null
           : CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
@@ -2347,7 +2377,7 @@ _$InvoicePriceComponentImpl _$$InvoicePriceComponentImplFromJson(
           json['factor'] == null ? null : FhirDecimal.fromJson(json['factor']),
       factorElement: json['_factor'] == null
           ? null
-          : Element.fromJson(json['_factor'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_factor'] as Map<String, dynamic>),
       amount: json['amount'] == null
           ? null
           : Money.fromJson(json['amount'] as Map<String, dynamic>),

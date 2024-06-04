@@ -65,19 +65,19 @@ class Annotation with _$Annotation implements DataType {
     String? authorString,
 
     /// [authorStringElement] Extensions for authorString
-    @JsonKey(name: '_authorString') Element? authorStringElement,
+    @JsonKey(name: '_authorString') PrimitiveElement? authorStringElement,
 
     /// [time] Indicates when this particular annotation was made.
     FhirDateTime? time,
 
     /// [timeElement] Extensions for time
-    @JsonKey(name: '_time') Element? timeElement,
+    @JsonKey(name: '_time') PrimitiveElement? timeElement,
 
     /// [text] The text of the annotation in markdown format.
     FhirMarkdown? text,
 
     /// [textElement] Extensions for text
-    @JsonKey(name: '_text') Element? textElement,
+    @JsonKey(name: '_text') PrimitiveElement? textElement,
   }) = _Annotation;
 
   @override

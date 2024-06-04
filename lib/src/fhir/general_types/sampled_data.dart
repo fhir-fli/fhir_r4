@@ -91,14 +91,14 @@ class SampledData with _$SampledData implements DataType {
     FhirDecimal? period,
 
     /// [periodElement] Extensions for period
-    @JsonKey(name: '_period') Element? periodElement,
+    @JsonKey(name: '_period') PrimitiveElement? periodElement,
 
     /// [factor] A correction factor that is applied to the sampled data points
     ///  before they are added to the origin.
     FhirDecimal? factor,
 
     /// [factorElement] Extensions for factor
-    @JsonKey(name: '_factor') Element? factorElement,
+    @JsonKey(name: '_factor') PrimitiveElement? factorElement,
 
     /// [lowerLimit] The lower limit of detection of the measured points. This is
     /// needed if any of the data points have the value "L" (lower than detection
@@ -106,7 +106,7 @@ class SampledData with _$SampledData implements DataType {
     FhirDecimal? lowerLimit,
 
     /// [lowerLimitElement] Extensions for lowerLimit
-    @JsonKey(name: '_lowerLimit') Element? lowerLimitElement,
+    @JsonKey(name: '_lowerLimit') PrimitiveElement? lowerLimitElement,
 
     /// [upperLimit] The upper limit of detection of the measured points. This is
     /// needed if any of the data points have the value "U" (higher than detection
@@ -114,7 +114,7 @@ class SampledData with _$SampledData implements DataType {
     FhirDecimal? upperLimit,
 
     /// [upperLimitElement] Extensions for upperLimit
-    @JsonKey(name: '_upperLimit') Element? upperLimitElement,
+    @JsonKey(name: '_upperLimit') PrimitiveElement? upperLimitElement,
 
     /// [dimensions] The number of sample points at each time point. If this
     /// value is greater than one, then the dimensions will be interlaced - all
@@ -122,7 +122,7 @@ class SampledData with _$SampledData implements DataType {
     FhirPositiveInt? dimensions,
 
     /// [dimensionsElement] Extensions for dimensions
-    @JsonKey(name: '_dimensions') Element? dimensionsElement,
+    @JsonKey(name: '_dimensions') PrimitiveElement? dimensionsElement,
 
     /// [data] A series of data points which are decimal values separated by a
     /// single space (character u20). The special values "E" (error), "L" (below
@@ -131,7 +131,7 @@ class SampledData with _$SampledData implements DataType {
     String? data,
 
     /// [dataElement] Extensions for data
-    @JsonKey(name: '_data') Element? dataElement,
+    @JsonKey(name: '_data') PrimitiveElement? dataElement,
   }) = _SampledData;
 
   @override

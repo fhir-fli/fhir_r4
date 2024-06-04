@@ -40,14 +40,15 @@ mixin _$Measure {
 
   /// [implicitRulesElement] Extensions for implicitRules
   @JsonKey(name: '_implicitRules')
-  Element? get implicitRulesElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get implicitRulesElement =>
+      throw _privateConstructorUsedError;
 
   /// [language] The base language in which the resource is written.
   FhirCode? get language => throw _privateConstructorUsedError;
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get languageElement => throw _privateConstructorUsedError;
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -99,7 +100,7 @@ mixin _$Measure {
 
   /// [urlElement] Extensions for url
   @JsonKey(name: '_url')
-  Element? get urlElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get urlElement => throw _privateConstructorUsedError;
 
   /// [identifier] A formal identifier that is used to identify this measure
   /// when it is represented in other formats, or referenced in a specification,
@@ -121,7 +122,7 @@ mixin _$Measure {
 
   /// [versionElement] Extensions for version
   @JsonKey(name: '_version')
-  Element? get versionElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get versionElement => throw _privateConstructorUsedError;
 
   /// [name] A natural language name identifying the measure. This name should
   /// be usable as an identifier for the module by machine processing
@@ -130,14 +131,14 @@ mixin _$Measure {
 
   /// [nameElement] Extensions for name
   @JsonKey(name: '_name')
-  Element? get nameElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get nameElement => throw _privateConstructorUsedError;
 
   /// [title] A short, descriptive, user-friendly title for the measure.
   String? get title => throw _privateConstructorUsedError;
 
   /// [titleElement] Extensions for title
   @JsonKey(name: '_title')
-  Element? get titleElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get titleElement => throw _privateConstructorUsedError;
 
   /// [subtitle] An explanatory or alternate title for the measure giving
   ///  additional information about its content.
@@ -145,7 +146,7 @@ mixin _$Measure {
 
   /// [subtitleElement] Extensions for subtitle
   @JsonKey(name: '_subtitle')
-  Element? get subtitleElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get subtitleElement => throw _privateConstructorUsedError;
 
   /// [status] The status of this measure. Enables tracking the life-cycle of
   ///  the content.
@@ -153,7 +154,7 @@ mixin _$Measure {
 
   /// [statusElement] Extensions for status
   @JsonKey(name: '_status')
-  Element? get statusElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get statusElement => throw _privateConstructorUsedError;
 
   /// [experimental] A Boolean value to indicate that this measure is authored
   /// for testing purposes (or education/evaluation/marketing) and is not
@@ -162,7 +163,8 @@ mixin _$Measure {
 
   /// [experimentalElement] Extensions for experimental
   @JsonKey(name: '_experimental')
-  Element? get experimentalElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get experimentalElement =>
+      throw _privateConstructorUsedError;
 
   /// [subjectCodeableConcept] The intended subjects for the measure. If this
   /// element is not provided, a Patient subject is assumed, but the subject of
@@ -183,7 +185,7 @@ mixin _$Measure {
 
   /// [dateElement] Extensions for date
   @JsonKey(name: '_date')
-  Element? get dateElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get dateElement => throw _privateConstructorUsedError;
 
   /// [publisher] The name of the organization or individual that published the
   ///  measure.
@@ -191,7 +193,7 @@ mixin _$Measure {
 
   /// [publisherElement] Extensions for publisher
   @JsonKey(name: '_publisher')
-  Element? get publisherElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get publisherElement => throw _privateConstructorUsedError;
 
   /// [contact] Contact details to assist a user in finding and communicating
   ///  with the publisher.
@@ -203,7 +205,8 @@ mixin _$Measure {
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get descriptionElement =>
+      throw _privateConstructorUsedError;
 
   /// [useContext] The content was developed with a focus and intent of
   /// supporting the contexts that are listed. These contexts may be general
@@ -222,7 +225,7 @@ mixin _$Measure {
 
   /// [purposeElement] Extensions for purpose
   @JsonKey(name: '_purpose')
-  Element? get purposeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get purposeElement => throw _privateConstructorUsedError;
 
   /// [usage] A detailed description, from a clinical perspective, of how the
   ///  measure is used.
@@ -230,7 +233,7 @@ mixin _$Measure {
 
   /// [usageElement] Extensions for usage
   @JsonKey(name: '_usage')
-  Element? get usageElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get usageElement => throw _privateConstructorUsedError;
 
   /// [copyright] A copyright statement relating to the measure and/or its
   /// contents. Copyright statements are generally legal restrictions on the use
@@ -239,7 +242,7 @@ mixin _$Measure {
 
   /// [copyrightElement] Extensions for copyright
   @JsonKey(name: '_copyright')
-  Element? get copyrightElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get copyrightElement => throw _privateConstructorUsedError;
 
   /// [approvalDate] The date on which the resource content was approved by the
   /// publisher. Approval happens once when the content is officially approved
@@ -248,7 +251,8 @@ mixin _$Measure {
 
   /// [approvalDateElement] Extensions for approvalDate
   @JsonKey(name: '_approvalDate')
-  Element? get approvalDateElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get approvalDateElement =>
+      throw _privateConstructorUsedError;
 
   /// [lastReviewDate] The date on which the resource content was last
   /// reviewed. Review happens periodically after approval but does not change
@@ -257,7 +261,8 @@ mixin _$Measure {
 
   /// [lastReviewDateElement] Extensions for lastReviewDate
   @JsonKey(name: '_lastReviewDate')
-  Element? get lastReviewDateElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get lastReviewDateElement =>
+      throw _privateConstructorUsedError;
 
   /// [effectivePeriod] The period during which the measure content was or is
   ///  planned to be in active use.
@@ -301,7 +306,7 @@ mixin _$Measure {
 
   /// [disclaimerElement] Extensions for disclaimer
   @JsonKey(name: '_disclaimer')
-  Element? get disclaimerElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get disclaimerElement => throw _privateConstructorUsedError;
 
   /// [scoring] Indicates how the calculation is performed for the measure,
   /// including proportion, ratio, continuous-variable, and cohort. The value
@@ -325,7 +330,8 @@ mixin _$Measure {
 
   /// [riskAdjustmentElement] Extensions for riskAdjustment
   @JsonKey(name: '_riskAdjustment')
-  Element? get riskAdjustmentElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get riskAdjustmentElement =>
+      throw _privateConstructorUsedError;
 
   /// [rateAggregation] Describes how to combine the information calculated,
   /// based on logic in each of several populations, into one summarized
@@ -334,7 +340,8 @@ mixin _$Measure {
 
   /// [rateAggregationElement] Extensions for rateAggregation
   @JsonKey(name: '_rateAggregation')
-  Element? get rateAggregationElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get rateAggregationElement =>
+      throw _privateConstructorUsedError;
 
   /// [rationale] Provides a succinct statement of the need for the measure.
   /// Usually includes statements pertaining to importance criterion: impact,
@@ -343,14 +350,14 @@ mixin _$Measure {
 
   /// [rationaleElement] Extensions for rationale
   @JsonKey(name: '_rationale')
-  Element? get rationaleElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get rationaleElement => throw _privateConstructorUsedError;
 
   /// [clinicalRecommendationStatement] Provides a summary of relevant clinical
   ///  guidelines or other clinical recommendations supporting the measure.
   FhirMarkdown? get clinicalRecommendationStatement =>
       throw _privateConstructorUsedError;
   @JsonKey(name: '_clinicalRecommendationStatement')
-  Element? get clinicalRecommendationStatementElement =>
+  PrimitiveElement? get clinicalRecommendationStatementElement =>
       throw _privateConstructorUsedError;
 
   /// [improvementNotation] Information on whether an increase or decrease in
@@ -374,7 +381,7 @@ mixin _$Measure {
 
   /// [guidanceElement] Extensions for guidance
   @JsonKey(name: '_guidance')
-  Element? get guidanceElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get guidanceElement => throw _privateConstructorUsedError;
 
   /// [group] A group of population criteria for the measure.
   List<MeasureGroup>? get group => throw _privateConstructorUsedError;
@@ -401,49 +408,49 @@ abstract class $MeasureCopyWith<$Res> {
       String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
       FhirCode? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       Narrative? text,
       List<Resource>? contained,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirUri? url,
-      @JsonKey(name: '_url') Element? urlElement,
+      @JsonKey(name: '_url') PrimitiveElement? urlElement,
       List<Identifier>? identifier,
       String? version,
-      @JsonKey(name: '_version') Element? versionElement,
+      @JsonKey(name: '_version') PrimitiveElement? versionElement,
       String? name,
-      @JsonKey(name: '_name') Element? nameElement,
+      @JsonKey(name: '_name') PrimitiveElement? nameElement,
       String? title,
-      @JsonKey(name: '_title') Element? titleElement,
+      @JsonKey(name: '_title') PrimitiveElement? titleElement,
       String? subtitle,
-      @JsonKey(name: '_subtitle') Element? subtitleElement,
+      @JsonKey(name: '_subtitle') PrimitiveElement? subtitleElement,
       FhirCode? status,
-      @JsonKey(name: '_status') Element? statusElement,
+      @JsonKey(name: '_status') PrimitiveElement? statusElement,
       FhirBoolean? experimental,
-      @JsonKey(name: '_experimental') Element? experimentalElement,
+      @JsonKey(name: '_experimental') PrimitiveElement? experimentalElement,
       CodeableConcept? subjectCodeableConcept,
       Reference? subjectReference,
       FhirDateTime? date,
-      @JsonKey(name: '_date') Element? dateElement,
+      @JsonKey(name: '_date') PrimitiveElement? dateElement,
       String? publisher,
-      @JsonKey(name: '_publisher') Element? publisherElement,
+      @JsonKey(name: '_publisher') PrimitiveElement? publisherElement,
       List<ContactDetail>? contact,
       FhirMarkdown? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       List<UsageContext>? useContext,
       List<CodeableConcept>? jurisdiction,
       FhirMarkdown? purpose,
-      @JsonKey(name: '_purpose') Element? purposeElement,
+      @JsonKey(name: '_purpose') PrimitiveElement? purposeElement,
       String? usage,
-      @JsonKey(name: '_usage') Element? usageElement,
+      @JsonKey(name: '_usage') PrimitiveElement? usageElement,
       FhirMarkdown? copyright,
-      @JsonKey(name: '_copyright') Element? copyrightElement,
+      @JsonKey(name: '_copyright') PrimitiveElement? copyrightElement,
       FhirDate? approvalDate,
-      @JsonKey(name: '_approvalDate') Element? approvalDateElement,
+      @JsonKey(name: '_approvalDate') PrimitiveElement? approvalDateElement,
       FhirDate? lastReviewDate,
-      @JsonKey(name: '_lastReviewDate') Element? lastReviewDateElement,
+      @JsonKey(name: '_lastReviewDate') PrimitiveElement? lastReviewDateElement,
       Period? effectivePeriod,
       List<CodeableConcept>? topic,
       List<ContactDetail>? author,
@@ -453,24 +460,25 @@ abstract class $MeasureCopyWith<$Res> {
       List<RelatedArtifact>? relatedArtifact,
       @JsonKey(name: 'library') List<FhirCanonical>? library_,
       FhirMarkdown? disclaimer,
-      @JsonKey(name: '_disclaimer') Element? disclaimerElement,
+      @JsonKey(name: '_disclaimer') PrimitiveElement? disclaimerElement,
       CodeableConcept? scoring,
       CodeableConcept? compositeScoring,
       List<CodeableConcept>? type,
       String? riskAdjustment,
-      @JsonKey(name: '_riskAdjustment') Element? riskAdjustmentElement,
+      @JsonKey(name: '_riskAdjustment') PrimitiveElement? riskAdjustmentElement,
       String? rateAggregation,
-      @JsonKey(name: '_rateAggregation') Element? rateAggregationElement,
+      @JsonKey(name: '_rateAggregation')
+      PrimitiveElement? rateAggregationElement,
       FhirMarkdown? rationale,
-      @JsonKey(name: '_rationale') Element? rationaleElement,
+      @JsonKey(name: '_rationale') PrimitiveElement? rationaleElement,
       FhirMarkdown? clinicalRecommendationStatement,
       @JsonKey(name: '_clinicalRecommendationStatement')
-      Element? clinicalRecommendationStatementElement,
+      PrimitiveElement? clinicalRecommendationStatementElement,
       CodeableConcept? improvementNotation,
       List<FhirMarkdown>? definition,
       @JsonKey(name: '_definition') List<Element?>? definitionElement,
       FhirMarkdown? guidance,
-      @JsonKey(name: '_guidance') Element? guidanceElement,
+      @JsonKey(name: '_guidance') PrimitiveElement? guidanceElement,
       List<MeasureGroup>? group,
       List<MeasureSupplementalData>? supplementalData});
 
@@ -593,7 +601,7 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
       implicitRulesElement: freezed == implicitRulesElement
           ? _value.implicitRulesElement
           : implicitRulesElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -601,7 +609,7 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -625,7 +633,7 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
       urlElement: freezed == urlElement
           ? _value.urlElement
           : urlElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       identifier: freezed == identifier
           ? _value.identifier
           : identifier // ignore: cast_nullable_to_non_nullable
@@ -637,7 +645,7 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
       versionElement: freezed == versionElement
           ? _value.versionElement
           : versionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -645,7 +653,7 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
       nameElement: freezed == nameElement
           ? _value.nameElement
           : nameElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -653,7 +661,7 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
       titleElement: freezed == titleElement
           ? _value.titleElement
           : titleElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       subtitle: freezed == subtitle
           ? _value.subtitle
           : subtitle // ignore: cast_nullable_to_non_nullable
@@ -661,7 +669,7 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
       subtitleElement: freezed == subtitleElement
           ? _value.subtitleElement
           : subtitleElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -669,7 +677,7 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
       statusElement: freezed == statusElement
           ? _value.statusElement
           : statusElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       experimental: freezed == experimental
           ? _value.experimental
           : experimental // ignore: cast_nullable_to_non_nullable
@@ -677,7 +685,7 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
       experimentalElement: freezed == experimentalElement
           ? _value.experimentalElement
           : experimentalElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       subjectCodeableConcept: freezed == subjectCodeableConcept
           ? _value.subjectCodeableConcept
           : subjectCodeableConcept // ignore: cast_nullable_to_non_nullable
@@ -693,7 +701,7 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
       dateElement: freezed == dateElement
           ? _value.dateElement
           : dateElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       publisher: freezed == publisher
           ? _value.publisher
           : publisher // ignore: cast_nullable_to_non_nullable
@@ -701,7 +709,7 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
       publisherElement: freezed == publisherElement
           ? _value.publisherElement
           : publisherElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       contact: freezed == contact
           ? _value.contact
           : contact // ignore: cast_nullable_to_non_nullable
@@ -713,7 +721,7 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       useContext: freezed == useContext
           ? _value.useContext
           : useContext // ignore: cast_nullable_to_non_nullable
@@ -729,7 +737,7 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
       purposeElement: freezed == purposeElement
           ? _value.purposeElement
           : purposeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       usage: freezed == usage
           ? _value.usage
           : usage // ignore: cast_nullable_to_non_nullable
@@ -737,7 +745,7 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
       usageElement: freezed == usageElement
           ? _value.usageElement
           : usageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       copyright: freezed == copyright
           ? _value.copyright
           : copyright // ignore: cast_nullable_to_non_nullable
@@ -745,7 +753,7 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
       copyrightElement: freezed == copyrightElement
           ? _value.copyrightElement
           : copyrightElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       approvalDate: freezed == approvalDate
           ? _value.approvalDate
           : approvalDate // ignore: cast_nullable_to_non_nullable
@@ -753,7 +761,7 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
       approvalDateElement: freezed == approvalDateElement
           ? _value.approvalDateElement
           : approvalDateElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       lastReviewDate: freezed == lastReviewDate
           ? _value.lastReviewDate
           : lastReviewDate // ignore: cast_nullable_to_non_nullable
@@ -761,7 +769,7 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
       lastReviewDateElement: freezed == lastReviewDateElement
           ? _value.lastReviewDateElement
           : lastReviewDateElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       effectivePeriod: freezed == effectivePeriod
           ? _value.effectivePeriod
           : effectivePeriod // ignore: cast_nullable_to_non_nullable
@@ -801,7 +809,7 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
       disclaimerElement: freezed == disclaimerElement
           ? _value.disclaimerElement
           : disclaimerElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       scoring: freezed == scoring
           ? _value.scoring
           : scoring // ignore: cast_nullable_to_non_nullable
@@ -821,7 +829,7 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
       riskAdjustmentElement: freezed == riskAdjustmentElement
           ? _value.riskAdjustmentElement
           : riskAdjustmentElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       rateAggregation: freezed == rateAggregation
           ? _value.rateAggregation
           : rateAggregation // ignore: cast_nullable_to_non_nullable
@@ -829,7 +837,7 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
       rateAggregationElement: freezed == rateAggregationElement
           ? _value.rateAggregationElement
           : rateAggregationElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       rationale: freezed == rationale
           ? _value.rationale
           : rationale // ignore: cast_nullable_to_non_nullable
@@ -837,7 +845,7 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
       rationaleElement: freezed == rationaleElement
           ? _value.rationaleElement
           : rationaleElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       clinicalRecommendationStatement: freezed ==
               clinicalRecommendationStatement
           ? _value.clinicalRecommendationStatement
@@ -847,7 +855,7 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
               clinicalRecommendationStatementElement
           ? _value.clinicalRecommendationStatementElement
           : clinicalRecommendationStatementElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       improvementNotation: freezed == improvementNotation
           ? _value.improvementNotation
           : improvementNotation // ignore: cast_nullable_to_non_nullable
@@ -867,7 +875,7 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
       guidanceElement: freezed == guidanceElement
           ? _value.guidanceElement
           : guidanceElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       group: freezed == group
           ? _value.group
           : group // ignore: cast_nullable_to_non_nullable
@@ -990,49 +998,49 @@ abstract class _$$MeasureImplCopyWith<$Res> implements $MeasureCopyWith<$Res> {
       String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
       FhirCode? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       Narrative? text,
       List<Resource>? contained,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirUri? url,
-      @JsonKey(name: '_url') Element? urlElement,
+      @JsonKey(name: '_url') PrimitiveElement? urlElement,
       List<Identifier>? identifier,
       String? version,
-      @JsonKey(name: '_version') Element? versionElement,
+      @JsonKey(name: '_version') PrimitiveElement? versionElement,
       String? name,
-      @JsonKey(name: '_name') Element? nameElement,
+      @JsonKey(name: '_name') PrimitiveElement? nameElement,
       String? title,
-      @JsonKey(name: '_title') Element? titleElement,
+      @JsonKey(name: '_title') PrimitiveElement? titleElement,
       String? subtitle,
-      @JsonKey(name: '_subtitle') Element? subtitleElement,
+      @JsonKey(name: '_subtitle') PrimitiveElement? subtitleElement,
       FhirCode? status,
-      @JsonKey(name: '_status') Element? statusElement,
+      @JsonKey(name: '_status') PrimitiveElement? statusElement,
       FhirBoolean? experimental,
-      @JsonKey(name: '_experimental') Element? experimentalElement,
+      @JsonKey(name: '_experimental') PrimitiveElement? experimentalElement,
       CodeableConcept? subjectCodeableConcept,
       Reference? subjectReference,
       FhirDateTime? date,
-      @JsonKey(name: '_date') Element? dateElement,
+      @JsonKey(name: '_date') PrimitiveElement? dateElement,
       String? publisher,
-      @JsonKey(name: '_publisher') Element? publisherElement,
+      @JsonKey(name: '_publisher') PrimitiveElement? publisherElement,
       List<ContactDetail>? contact,
       FhirMarkdown? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       List<UsageContext>? useContext,
       List<CodeableConcept>? jurisdiction,
       FhirMarkdown? purpose,
-      @JsonKey(name: '_purpose') Element? purposeElement,
+      @JsonKey(name: '_purpose') PrimitiveElement? purposeElement,
       String? usage,
-      @JsonKey(name: '_usage') Element? usageElement,
+      @JsonKey(name: '_usage') PrimitiveElement? usageElement,
       FhirMarkdown? copyright,
-      @JsonKey(name: '_copyright') Element? copyrightElement,
+      @JsonKey(name: '_copyright') PrimitiveElement? copyrightElement,
       FhirDate? approvalDate,
-      @JsonKey(name: '_approvalDate') Element? approvalDateElement,
+      @JsonKey(name: '_approvalDate') PrimitiveElement? approvalDateElement,
       FhirDate? lastReviewDate,
-      @JsonKey(name: '_lastReviewDate') Element? lastReviewDateElement,
+      @JsonKey(name: '_lastReviewDate') PrimitiveElement? lastReviewDateElement,
       Period? effectivePeriod,
       List<CodeableConcept>? topic,
       List<ContactDetail>? author,
@@ -1042,24 +1050,25 @@ abstract class _$$MeasureImplCopyWith<$Res> implements $MeasureCopyWith<$Res> {
       List<RelatedArtifact>? relatedArtifact,
       @JsonKey(name: 'library') List<FhirCanonical>? library_,
       FhirMarkdown? disclaimer,
-      @JsonKey(name: '_disclaimer') Element? disclaimerElement,
+      @JsonKey(name: '_disclaimer') PrimitiveElement? disclaimerElement,
       CodeableConcept? scoring,
       CodeableConcept? compositeScoring,
       List<CodeableConcept>? type,
       String? riskAdjustment,
-      @JsonKey(name: '_riskAdjustment') Element? riskAdjustmentElement,
+      @JsonKey(name: '_riskAdjustment') PrimitiveElement? riskAdjustmentElement,
       String? rateAggregation,
-      @JsonKey(name: '_rateAggregation') Element? rateAggregationElement,
+      @JsonKey(name: '_rateAggregation')
+      PrimitiveElement? rateAggregationElement,
       FhirMarkdown? rationale,
-      @JsonKey(name: '_rationale') Element? rationaleElement,
+      @JsonKey(name: '_rationale') PrimitiveElement? rationaleElement,
       FhirMarkdown? clinicalRecommendationStatement,
       @JsonKey(name: '_clinicalRecommendationStatement')
-      Element? clinicalRecommendationStatementElement,
+      PrimitiveElement? clinicalRecommendationStatementElement,
       CodeableConcept? improvementNotation,
       List<FhirMarkdown>? definition,
       @JsonKey(name: '_definition') List<Element?>? definitionElement,
       FhirMarkdown? guidance,
-      @JsonKey(name: '_guidance') Element? guidanceElement,
+      @JsonKey(name: '_guidance') PrimitiveElement? guidanceElement,
       List<MeasureGroup>? group,
       List<MeasureSupplementalData>? supplementalData});
 
@@ -1188,7 +1197,7 @@ class __$$MeasureImplCopyWithImpl<$Res>
       implicitRulesElement: freezed == implicitRulesElement
           ? _value.implicitRulesElement
           : implicitRulesElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -1196,7 +1205,7 @@ class __$$MeasureImplCopyWithImpl<$Res>
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -1220,7 +1229,7 @@ class __$$MeasureImplCopyWithImpl<$Res>
       urlElement: freezed == urlElement
           ? _value.urlElement
           : urlElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       identifier: freezed == identifier
           ? _value._identifier
           : identifier // ignore: cast_nullable_to_non_nullable
@@ -1232,7 +1241,7 @@ class __$$MeasureImplCopyWithImpl<$Res>
       versionElement: freezed == versionElement
           ? _value.versionElement
           : versionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -1240,7 +1249,7 @@ class __$$MeasureImplCopyWithImpl<$Res>
       nameElement: freezed == nameElement
           ? _value.nameElement
           : nameElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -1248,7 +1257,7 @@ class __$$MeasureImplCopyWithImpl<$Res>
       titleElement: freezed == titleElement
           ? _value.titleElement
           : titleElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       subtitle: freezed == subtitle
           ? _value.subtitle
           : subtitle // ignore: cast_nullable_to_non_nullable
@@ -1256,7 +1265,7 @@ class __$$MeasureImplCopyWithImpl<$Res>
       subtitleElement: freezed == subtitleElement
           ? _value.subtitleElement
           : subtitleElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -1264,7 +1273,7 @@ class __$$MeasureImplCopyWithImpl<$Res>
       statusElement: freezed == statusElement
           ? _value.statusElement
           : statusElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       experimental: freezed == experimental
           ? _value.experimental
           : experimental // ignore: cast_nullable_to_non_nullable
@@ -1272,7 +1281,7 @@ class __$$MeasureImplCopyWithImpl<$Res>
       experimentalElement: freezed == experimentalElement
           ? _value.experimentalElement
           : experimentalElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       subjectCodeableConcept: freezed == subjectCodeableConcept
           ? _value.subjectCodeableConcept
           : subjectCodeableConcept // ignore: cast_nullable_to_non_nullable
@@ -1288,7 +1297,7 @@ class __$$MeasureImplCopyWithImpl<$Res>
       dateElement: freezed == dateElement
           ? _value.dateElement
           : dateElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       publisher: freezed == publisher
           ? _value.publisher
           : publisher // ignore: cast_nullable_to_non_nullable
@@ -1296,7 +1305,7 @@ class __$$MeasureImplCopyWithImpl<$Res>
       publisherElement: freezed == publisherElement
           ? _value.publisherElement
           : publisherElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       contact: freezed == contact
           ? _value._contact
           : contact // ignore: cast_nullable_to_non_nullable
@@ -1308,7 +1317,7 @@ class __$$MeasureImplCopyWithImpl<$Res>
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       useContext: freezed == useContext
           ? _value._useContext
           : useContext // ignore: cast_nullable_to_non_nullable
@@ -1324,7 +1333,7 @@ class __$$MeasureImplCopyWithImpl<$Res>
       purposeElement: freezed == purposeElement
           ? _value.purposeElement
           : purposeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       usage: freezed == usage
           ? _value.usage
           : usage // ignore: cast_nullable_to_non_nullable
@@ -1332,7 +1341,7 @@ class __$$MeasureImplCopyWithImpl<$Res>
       usageElement: freezed == usageElement
           ? _value.usageElement
           : usageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       copyright: freezed == copyright
           ? _value.copyright
           : copyright // ignore: cast_nullable_to_non_nullable
@@ -1340,7 +1349,7 @@ class __$$MeasureImplCopyWithImpl<$Res>
       copyrightElement: freezed == copyrightElement
           ? _value.copyrightElement
           : copyrightElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       approvalDate: freezed == approvalDate
           ? _value.approvalDate
           : approvalDate // ignore: cast_nullable_to_non_nullable
@@ -1348,7 +1357,7 @@ class __$$MeasureImplCopyWithImpl<$Res>
       approvalDateElement: freezed == approvalDateElement
           ? _value.approvalDateElement
           : approvalDateElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       lastReviewDate: freezed == lastReviewDate
           ? _value.lastReviewDate
           : lastReviewDate // ignore: cast_nullable_to_non_nullable
@@ -1356,7 +1365,7 @@ class __$$MeasureImplCopyWithImpl<$Res>
       lastReviewDateElement: freezed == lastReviewDateElement
           ? _value.lastReviewDateElement
           : lastReviewDateElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       effectivePeriod: freezed == effectivePeriod
           ? _value.effectivePeriod
           : effectivePeriod // ignore: cast_nullable_to_non_nullable
@@ -1396,7 +1405,7 @@ class __$$MeasureImplCopyWithImpl<$Res>
       disclaimerElement: freezed == disclaimerElement
           ? _value.disclaimerElement
           : disclaimerElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       scoring: freezed == scoring
           ? _value.scoring
           : scoring // ignore: cast_nullable_to_non_nullable
@@ -1416,7 +1425,7 @@ class __$$MeasureImplCopyWithImpl<$Res>
       riskAdjustmentElement: freezed == riskAdjustmentElement
           ? _value.riskAdjustmentElement
           : riskAdjustmentElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       rateAggregation: freezed == rateAggregation
           ? _value.rateAggregation
           : rateAggregation // ignore: cast_nullable_to_non_nullable
@@ -1424,7 +1433,7 @@ class __$$MeasureImplCopyWithImpl<$Res>
       rateAggregationElement: freezed == rateAggregationElement
           ? _value.rateAggregationElement
           : rateAggregationElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       rationale: freezed == rationale
           ? _value.rationale
           : rationale // ignore: cast_nullable_to_non_nullable
@@ -1432,7 +1441,7 @@ class __$$MeasureImplCopyWithImpl<$Res>
       rationaleElement: freezed == rationaleElement
           ? _value.rationaleElement
           : rationaleElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       clinicalRecommendationStatement: freezed ==
               clinicalRecommendationStatement
           ? _value.clinicalRecommendationStatement
@@ -1442,7 +1451,7 @@ class __$$MeasureImplCopyWithImpl<$Res>
               clinicalRecommendationStatementElement
           ? _value.clinicalRecommendationStatementElement
           : clinicalRecommendationStatementElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       improvementNotation: freezed == improvementNotation
           ? _value.improvementNotation
           : improvementNotation // ignore: cast_nullable_to_non_nullable
@@ -1462,7 +1471,7 @@ class __$$MeasureImplCopyWithImpl<$Res>
       guidanceElement: freezed == guidanceElement
           ? _value.guidanceElement
           : guidanceElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       group: freezed == group
           ? _value._group
           : group // ignore: cast_nullable_to_non_nullable
@@ -1605,7 +1614,7 @@ class _$MeasureImpl extends _Measure {
   /// [implicitRulesElement] Extensions for implicitRules
   @override
   @JsonKey(name: '_implicitRules')
-  final Element? implicitRulesElement;
+  final PrimitiveElement? implicitRulesElement;
 
   /// [language] The base language in which the resource is written.
   @override
@@ -1614,7 +1623,7 @@ class _$MeasureImpl extends _Measure {
   /// [languageElement] Extensions for language
   @override
   @JsonKey(name: '_language')
-  final Element? languageElement;
+  final PrimitiveElement? languageElement;
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1719,7 +1728,7 @@ class _$MeasureImpl extends _Measure {
   /// [urlElement] Extensions for url
   @override
   @JsonKey(name: '_url')
-  final Element? urlElement;
+  final PrimitiveElement? urlElement;
 
   /// [identifier] A formal identifier that is used to identify this measure
   /// when it is represented in other formats, or referenced in a specification,
@@ -1755,7 +1764,7 @@ class _$MeasureImpl extends _Measure {
   /// [versionElement] Extensions for version
   @override
   @JsonKey(name: '_version')
-  final Element? versionElement;
+  final PrimitiveElement? versionElement;
 
   /// [name] A natural language name identifying the measure. This name should
   /// be usable as an identifier for the module by machine processing
@@ -1766,7 +1775,7 @@ class _$MeasureImpl extends _Measure {
   /// [nameElement] Extensions for name
   @override
   @JsonKey(name: '_name')
-  final Element? nameElement;
+  final PrimitiveElement? nameElement;
 
   /// [title] A short, descriptive, user-friendly title for the measure.
   @override
@@ -1775,7 +1784,7 @@ class _$MeasureImpl extends _Measure {
   /// [titleElement] Extensions for title
   @override
   @JsonKey(name: '_title')
-  final Element? titleElement;
+  final PrimitiveElement? titleElement;
 
   /// [subtitle] An explanatory or alternate title for the measure giving
   ///  additional information about its content.
@@ -1785,7 +1794,7 @@ class _$MeasureImpl extends _Measure {
   /// [subtitleElement] Extensions for subtitle
   @override
   @JsonKey(name: '_subtitle')
-  final Element? subtitleElement;
+  final PrimitiveElement? subtitleElement;
 
   /// [status] The status of this measure. Enables tracking the life-cycle of
   ///  the content.
@@ -1795,7 +1804,7 @@ class _$MeasureImpl extends _Measure {
   /// [statusElement] Extensions for status
   @override
   @JsonKey(name: '_status')
-  final Element? statusElement;
+  final PrimitiveElement? statusElement;
 
   /// [experimental] A Boolean value to indicate that this measure is authored
   /// for testing purposes (or education/evaluation/marketing) and is not
@@ -1806,7 +1815,7 @@ class _$MeasureImpl extends _Measure {
   /// [experimentalElement] Extensions for experimental
   @override
   @JsonKey(name: '_experimental')
-  final Element? experimentalElement;
+  final PrimitiveElement? experimentalElement;
 
   /// [subjectCodeableConcept] The intended subjects for the measure. If this
   /// element is not provided, a Patient subject is assumed, but the subject of
@@ -1830,7 +1839,7 @@ class _$MeasureImpl extends _Measure {
   /// [dateElement] Extensions for date
   @override
   @JsonKey(name: '_date')
-  final Element? dateElement;
+  final PrimitiveElement? dateElement;
 
   /// [publisher] The name of the organization or individual that published the
   ///  measure.
@@ -1840,7 +1849,7 @@ class _$MeasureImpl extends _Measure {
   /// [publisherElement] Extensions for publisher
   @override
   @JsonKey(name: '_publisher')
-  final Element? publisherElement;
+  final PrimitiveElement? publisherElement;
 
   /// [contact] Contact details to assist a user in finding and communicating
   ///  with the publisher.
@@ -1865,7 +1874,7 @@ class _$MeasureImpl extends _Measure {
   /// [descriptionElement] Extensions for description
   @override
   @JsonKey(name: '_description')
-  final Element? descriptionElement;
+  final PrimitiveElement? descriptionElement;
 
   /// [useContext] The content was developed with a focus and intent of
   /// supporting the contexts that are listed. These contexts may be general
@@ -1911,7 +1920,7 @@ class _$MeasureImpl extends _Measure {
   /// [purposeElement] Extensions for purpose
   @override
   @JsonKey(name: '_purpose')
-  final Element? purposeElement;
+  final PrimitiveElement? purposeElement;
 
   /// [usage] A detailed description, from a clinical perspective, of how the
   ///  measure is used.
@@ -1921,7 +1930,7 @@ class _$MeasureImpl extends _Measure {
   /// [usageElement] Extensions for usage
   @override
   @JsonKey(name: '_usage')
-  final Element? usageElement;
+  final PrimitiveElement? usageElement;
 
   /// [copyright] A copyright statement relating to the measure and/or its
   /// contents. Copyright statements are generally legal restrictions on the use
@@ -1932,7 +1941,7 @@ class _$MeasureImpl extends _Measure {
   /// [copyrightElement] Extensions for copyright
   @override
   @JsonKey(name: '_copyright')
-  final Element? copyrightElement;
+  final PrimitiveElement? copyrightElement;
 
   /// [approvalDate] The date on which the resource content was approved by the
   /// publisher. Approval happens once when the content is officially approved
@@ -1943,7 +1952,7 @@ class _$MeasureImpl extends _Measure {
   /// [approvalDateElement] Extensions for approvalDate
   @override
   @JsonKey(name: '_approvalDate')
-  final Element? approvalDateElement;
+  final PrimitiveElement? approvalDateElement;
 
   /// [lastReviewDate] The date on which the resource content was last
   /// reviewed. Review happens periodically after approval but does not change
@@ -1954,7 +1963,7 @@ class _$MeasureImpl extends _Measure {
   /// [lastReviewDateElement] Extensions for lastReviewDate
   @override
   @JsonKey(name: '_lastReviewDate')
-  final Element? lastReviewDateElement;
+  final PrimitiveElement? lastReviewDateElement;
 
   /// [effectivePeriod] The period during which the measure content was or is
   ///  planned to be in active use.
@@ -2078,7 +2087,7 @@ class _$MeasureImpl extends _Measure {
   /// [disclaimerElement] Extensions for disclaimer
   @override
   @JsonKey(name: '_disclaimer')
-  final Element? disclaimerElement;
+  final PrimitiveElement? disclaimerElement;
 
   /// [scoring] Indicates how the calculation is performed for the measure,
   /// including proportion, ratio, continuous-variable, and cohort. The value
@@ -2118,7 +2127,7 @@ class _$MeasureImpl extends _Measure {
   /// [riskAdjustmentElement] Extensions for riskAdjustment
   @override
   @JsonKey(name: '_riskAdjustment')
-  final Element? riskAdjustmentElement;
+  final PrimitiveElement? riskAdjustmentElement;
 
   /// [rateAggregation] Describes how to combine the information calculated,
   /// based on logic in each of several populations, into one summarized
@@ -2129,7 +2138,7 @@ class _$MeasureImpl extends _Measure {
   /// [rateAggregationElement] Extensions for rateAggregation
   @override
   @JsonKey(name: '_rateAggregation')
-  final Element? rateAggregationElement;
+  final PrimitiveElement? rateAggregationElement;
 
   /// [rationale] Provides a succinct statement of the need for the measure.
   /// Usually includes statements pertaining to importance criterion: impact,
@@ -2140,7 +2149,7 @@ class _$MeasureImpl extends _Measure {
   /// [rationaleElement] Extensions for rationale
   @override
   @JsonKey(name: '_rationale')
-  final Element? rationaleElement;
+  final PrimitiveElement? rationaleElement;
 
   /// [clinicalRecommendationStatement] Provides a summary of relevant clinical
   ///  guidelines or other clinical recommendations supporting the measure.
@@ -2148,7 +2157,7 @@ class _$MeasureImpl extends _Measure {
   final FhirMarkdown? clinicalRecommendationStatement;
   @override
   @JsonKey(name: '_clinicalRecommendationStatement')
-  final Element? clinicalRecommendationStatementElement;
+  final PrimitiveElement? clinicalRecommendationStatementElement;
 
   /// [improvementNotation] Information on whether an increase or decrease in
   /// score is the preferred result (e.g., a higher score indicates better
@@ -2195,7 +2204,7 @@ class _$MeasureImpl extends _Measure {
   /// [guidanceElement] Extensions for guidance
   @override
   @JsonKey(name: '_guidance')
-  final Element? guidanceElement;
+  final PrimitiveElement? guidanceElement;
 
   /// [group] A group of population criteria for the measure.
   final List<MeasureGroup>? _group;
@@ -2460,49 +2469,53 @@ abstract class _Measure extends Measure {
       final String? id,
       final FhirMeta? meta,
       final FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') final Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules')
+      final PrimitiveElement? implicitRulesElement,
       final FhirCode? language,
-      @JsonKey(name: '_language') final Element? languageElement,
+      @JsonKey(name: '_language') final PrimitiveElement? languageElement,
       final Narrative? text,
       final List<Resource>? contained,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirUri? url,
-      @JsonKey(name: '_url') final Element? urlElement,
+      @JsonKey(name: '_url') final PrimitiveElement? urlElement,
       final List<Identifier>? identifier,
       final String? version,
-      @JsonKey(name: '_version') final Element? versionElement,
+      @JsonKey(name: '_version') final PrimitiveElement? versionElement,
       final String? name,
-      @JsonKey(name: '_name') final Element? nameElement,
+      @JsonKey(name: '_name') final PrimitiveElement? nameElement,
       final String? title,
-      @JsonKey(name: '_title') final Element? titleElement,
+      @JsonKey(name: '_title') final PrimitiveElement? titleElement,
       final String? subtitle,
-      @JsonKey(name: '_subtitle') final Element? subtitleElement,
+      @JsonKey(name: '_subtitle') final PrimitiveElement? subtitleElement,
       final FhirCode? status,
-      @JsonKey(name: '_status') final Element? statusElement,
+      @JsonKey(name: '_status') final PrimitiveElement? statusElement,
       final FhirBoolean? experimental,
-      @JsonKey(name: '_experimental') final Element? experimentalElement,
+      @JsonKey(name: '_experimental')
+      final PrimitiveElement? experimentalElement,
       final CodeableConcept? subjectCodeableConcept,
       final Reference? subjectReference,
       final FhirDateTime? date,
-      @JsonKey(name: '_date') final Element? dateElement,
+      @JsonKey(name: '_date') final PrimitiveElement? dateElement,
       final String? publisher,
-      @JsonKey(name: '_publisher') final Element? publisherElement,
+      @JsonKey(name: '_publisher') final PrimitiveElement? publisherElement,
       final List<ContactDetail>? contact,
       final FhirMarkdown? description,
-      @JsonKey(name: '_description') final Element? descriptionElement,
+      @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       final List<UsageContext>? useContext,
       final List<CodeableConcept>? jurisdiction,
       final FhirMarkdown? purpose,
-      @JsonKey(name: '_purpose') final Element? purposeElement,
+      @JsonKey(name: '_purpose') final PrimitiveElement? purposeElement,
       final String? usage,
-      @JsonKey(name: '_usage') final Element? usageElement,
+      @JsonKey(name: '_usage') final PrimitiveElement? usageElement,
       final FhirMarkdown? copyright,
-      @JsonKey(name: '_copyright') final Element? copyrightElement,
+      @JsonKey(name: '_copyright') final PrimitiveElement? copyrightElement,
       final FhirDate? approvalDate,
-      @JsonKey(name: '_approvalDate') final Element? approvalDateElement,
+      @JsonKey(name: '_approvalDate')
+      final PrimitiveElement? approvalDateElement,
       final FhirDate? lastReviewDate,
-      @JsonKey(name: '_lastReviewDate') final Element? lastReviewDateElement,
+      @JsonKey(name: '_lastReviewDate')
+      final PrimitiveElement? lastReviewDateElement,
       final Period? effectivePeriod,
       final List<CodeableConcept>? topic,
       final List<ContactDetail>? author,
@@ -2512,24 +2525,26 @@ abstract class _Measure extends Measure {
       final List<RelatedArtifact>? relatedArtifact,
       @JsonKey(name: 'library') final List<FhirCanonical>? library_,
       final FhirMarkdown? disclaimer,
-      @JsonKey(name: '_disclaimer') final Element? disclaimerElement,
+      @JsonKey(name: '_disclaimer') final PrimitiveElement? disclaimerElement,
       final CodeableConcept? scoring,
       final CodeableConcept? compositeScoring,
       final List<CodeableConcept>? type,
       final String? riskAdjustment,
-      @JsonKey(name: '_riskAdjustment') final Element? riskAdjustmentElement,
+      @JsonKey(name: '_riskAdjustment')
+      final PrimitiveElement? riskAdjustmentElement,
       final String? rateAggregation,
-      @JsonKey(name: '_rateAggregation') final Element? rateAggregationElement,
+      @JsonKey(name: '_rateAggregation')
+      final PrimitiveElement? rateAggregationElement,
       final FhirMarkdown? rationale,
-      @JsonKey(name: '_rationale') final Element? rationaleElement,
+      @JsonKey(name: '_rationale') final PrimitiveElement? rationaleElement,
       final FhirMarkdown? clinicalRecommendationStatement,
       @JsonKey(name: '_clinicalRecommendationStatement')
-      final Element? clinicalRecommendationStatementElement,
+      final PrimitiveElement? clinicalRecommendationStatementElement,
       final CodeableConcept? improvementNotation,
       final List<FhirMarkdown>? definition,
       @JsonKey(name: '_definition') final List<Element?>? definitionElement,
       final FhirMarkdown? guidance,
-      @JsonKey(name: '_guidance') final Element? guidanceElement,
+      @JsonKey(name: '_guidance') final PrimitiveElement? guidanceElement,
       final List<MeasureGroup>? group,
       final List<MeasureSupplementalData>? supplementalData}) = _$MeasureImpl;
   const _Measure._() : super._();
@@ -2561,7 +2576,7 @@ abstract class _Measure extends Measure {
 
   /// [implicitRulesElement] Extensions for implicitRules
   @JsonKey(name: '_implicitRules')
-  Element? get implicitRulesElement;
+  PrimitiveElement? get implicitRulesElement;
   @override
 
   /// [language] The base language in which the resource is written.
@@ -2570,7 +2585,7 @@ abstract class _Measure extends Measure {
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement;
+  PrimitiveElement? get languageElement;
   @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
@@ -2627,7 +2642,7 @@ abstract class _Measure extends Measure {
 
   /// [urlElement] Extensions for url
   @JsonKey(name: '_url')
-  Element? get urlElement;
+  PrimitiveElement? get urlElement;
   @override
 
   /// [identifier] A formal identifier that is used to identify this measure
@@ -2652,7 +2667,7 @@ abstract class _Measure extends Measure {
 
   /// [versionElement] Extensions for version
   @JsonKey(name: '_version')
-  Element? get versionElement;
+  PrimitiveElement? get versionElement;
   @override
 
   /// [name] A natural language name identifying the measure. This name should
@@ -2663,7 +2678,7 @@ abstract class _Measure extends Measure {
 
   /// [nameElement] Extensions for name
   @JsonKey(name: '_name')
-  Element? get nameElement;
+  PrimitiveElement? get nameElement;
   @override
 
   /// [title] A short, descriptive, user-friendly title for the measure.
@@ -2672,7 +2687,7 @@ abstract class _Measure extends Measure {
 
   /// [titleElement] Extensions for title
   @JsonKey(name: '_title')
-  Element? get titleElement;
+  PrimitiveElement? get titleElement;
   @override
 
   /// [subtitle] An explanatory or alternate title for the measure giving
@@ -2682,7 +2697,7 @@ abstract class _Measure extends Measure {
 
   /// [subtitleElement] Extensions for subtitle
   @JsonKey(name: '_subtitle')
-  Element? get subtitleElement;
+  PrimitiveElement? get subtitleElement;
   @override
 
   /// [status] The status of this measure. Enables tracking the life-cycle of
@@ -2692,7 +2707,7 @@ abstract class _Measure extends Measure {
 
   /// [statusElement] Extensions for status
   @JsonKey(name: '_status')
-  Element? get statusElement;
+  PrimitiveElement? get statusElement;
   @override
 
   /// [experimental] A Boolean value to indicate that this measure is authored
@@ -2703,7 +2718,7 @@ abstract class _Measure extends Measure {
 
   /// [experimentalElement] Extensions for experimental
   @JsonKey(name: '_experimental')
-  Element? get experimentalElement;
+  PrimitiveElement? get experimentalElement;
   @override
 
   /// [subjectCodeableConcept] The intended subjects for the measure. If this
@@ -2727,7 +2742,7 @@ abstract class _Measure extends Measure {
 
   /// [dateElement] Extensions for date
   @JsonKey(name: '_date')
-  Element? get dateElement;
+  PrimitiveElement? get dateElement;
   @override
 
   /// [publisher] The name of the organization or individual that published the
@@ -2737,7 +2752,7 @@ abstract class _Measure extends Measure {
 
   /// [publisherElement] Extensions for publisher
   @JsonKey(name: '_publisher')
-  Element? get publisherElement;
+  PrimitiveElement? get publisherElement;
   @override
 
   /// [contact] Contact details to assist a user in finding and communicating
@@ -2752,7 +2767,7 @@ abstract class _Measure extends Measure {
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement;
+  PrimitiveElement? get descriptionElement;
   @override
 
   /// [useContext] The content was developed with a focus and intent of
@@ -2775,7 +2790,7 @@ abstract class _Measure extends Measure {
 
   /// [purposeElement] Extensions for purpose
   @JsonKey(name: '_purpose')
-  Element? get purposeElement;
+  PrimitiveElement? get purposeElement;
   @override
 
   /// [usage] A detailed description, from a clinical perspective, of how the
@@ -2785,7 +2800,7 @@ abstract class _Measure extends Measure {
 
   /// [usageElement] Extensions for usage
   @JsonKey(name: '_usage')
-  Element? get usageElement;
+  PrimitiveElement? get usageElement;
   @override
 
   /// [copyright] A copyright statement relating to the measure and/or its
@@ -2796,7 +2811,7 @@ abstract class _Measure extends Measure {
 
   /// [copyrightElement] Extensions for copyright
   @JsonKey(name: '_copyright')
-  Element? get copyrightElement;
+  PrimitiveElement? get copyrightElement;
   @override
 
   /// [approvalDate] The date on which the resource content was approved by the
@@ -2807,7 +2822,7 @@ abstract class _Measure extends Measure {
 
   /// [approvalDateElement] Extensions for approvalDate
   @JsonKey(name: '_approvalDate')
-  Element? get approvalDateElement;
+  PrimitiveElement? get approvalDateElement;
   @override
 
   /// [lastReviewDate] The date on which the resource content was last
@@ -2818,7 +2833,7 @@ abstract class _Measure extends Measure {
 
   /// [lastReviewDateElement] Extensions for lastReviewDate
   @JsonKey(name: '_lastReviewDate')
-  Element? get lastReviewDateElement;
+  PrimitiveElement? get lastReviewDateElement;
   @override
 
   /// [effectivePeriod] The period during which the measure content was or is
@@ -2871,7 +2886,7 @@ abstract class _Measure extends Measure {
 
   /// [disclaimerElement] Extensions for disclaimer
   @JsonKey(name: '_disclaimer')
-  Element? get disclaimerElement;
+  PrimitiveElement? get disclaimerElement;
   @override
 
   /// [scoring] Indicates how the calculation is performed for the measure,
@@ -2900,7 +2915,7 @@ abstract class _Measure extends Measure {
 
   /// [riskAdjustmentElement] Extensions for riskAdjustment
   @JsonKey(name: '_riskAdjustment')
-  Element? get riskAdjustmentElement;
+  PrimitiveElement? get riskAdjustmentElement;
   @override
 
   /// [rateAggregation] Describes how to combine the information calculated,
@@ -2911,7 +2926,7 @@ abstract class _Measure extends Measure {
 
   /// [rateAggregationElement] Extensions for rateAggregation
   @JsonKey(name: '_rateAggregation')
-  Element? get rateAggregationElement;
+  PrimitiveElement? get rateAggregationElement;
   @override
 
   /// [rationale] Provides a succinct statement of the need for the measure.
@@ -2922,7 +2937,7 @@ abstract class _Measure extends Measure {
 
   /// [rationaleElement] Extensions for rationale
   @JsonKey(name: '_rationale')
-  Element? get rationaleElement;
+  PrimitiveElement? get rationaleElement;
   @override
 
   /// [clinicalRecommendationStatement] Provides a summary of relevant clinical
@@ -2930,7 +2945,7 @@ abstract class _Measure extends Measure {
   FhirMarkdown? get clinicalRecommendationStatement;
   @override
   @JsonKey(name: '_clinicalRecommendationStatement')
-  Element? get clinicalRecommendationStatementElement;
+  PrimitiveElement? get clinicalRecommendationStatementElement;
   @override
 
   /// [improvementNotation] Information on whether an increase or decrease in
@@ -2957,7 +2972,7 @@ abstract class _Measure extends Measure {
 
   /// [guidanceElement] Extensions for guidance
   @JsonKey(name: '_guidance')
-  Element? get guidanceElement;
+  PrimitiveElement? get guidanceElement;
   @override
 
   /// [group] A group of population criteria for the measure.
@@ -3020,7 +3035,8 @@ mixin _$MeasureGroup {
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get descriptionElement =>
+      throw _privateConstructorUsedError;
 
   /// [population] A population criteria for the measure.
   List<MeasurePopulation>? get population => throw _privateConstructorUsedError;
@@ -3048,7 +3064,7 @@ abstract class $MeasureGroupCopyWith<$Res> {
       List<FhirExtension>? modifierExtension,
       CodeableConcept? code,
       String? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       List<MeasurePopulation>? population,
       List<MeasureStratifier>? stratifier});
 
@@ -3101,7 +3117,7 @@ class _$MeasureGroupCopyWithImpl<$Res, $Val extends MeasureGroup>
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       population: freezed == population
           ? _value.population
           : population // ignore: cast_nullable_to_non_nullable
@@ -3140,7 +3156,7 @@ abstract class _$$MeasureGroupImplCopyWith<$Res>
       List<FhirExtension>? modifierExtension,
       CodeableConcept? code,
       String? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       List<MeasurePopulation>? population,
       List<MeasureStratifier>? stratifier});
 
@@ -3192,7 +3208,7 @@ class __$$MeasureGroupImplCopyWithImpl<$Res>
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       population: freezed == population
           ? _value._population
           : population // ignore: cast_nullable_to_non_nullable
@@ -3307,7 +3323,7 @@ class _$MeasureGroupImpl extends _MeasureGroup {
   /// [descriptionElement] Extensions for description
   @override
   @JsonKey(name: '_description')
-  final Element? descriptionElement;
+  final PrimitiveElement? descriptionElement;
 
   /// [population] A population criteria for the measure.
   final List<MeasurePopulation>? _population;
@@ -3399,7 +3415,7 @@ abstract class _MeasureGroup extends MeasureGroup {
       final List<FhirExtension>? modifierExtension,
       final CodeableConcept? code,
       final String? description,
-      @JsonKey(name: '_description') final Element? descriptionElement,
+      @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       final List<MeasurePopulation>? population,
       final List<MeasureStratifier>? stratifier}) = _$MeasureGroupImpl;
   const _MeasureGroup._() : super._();
@@ -3453,7 +3469,7 @@ abstract class _MeasureGroup extends MeasureGroup {
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement;
+  PrimitiveElement? get descriptionElement;
   @override
 
   /// [population] A population criteria for the measure.
@@ -3513,7 +3529,8 @@ mixin _$MeasurePopulation {
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get descriptionElement =>
+      throw _privateConstructorUsedError;
 
   /// [criteria] An expression that specifies the criteria for the population,
   ///  typically the name of an expression in a library.
@@ -3537,7 +3554,7 @@ abstract class $MeasurePopulationCopyWith<$Res> {
       List<FhirExtension>? modifierExtension,
       CodeableConcept? code,
       String? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       FhirExpression criteria});
 
   $CodeableConceptCopyWith<$Res>? get code;
@@ -3589,7 +3606,7 @@ class _$MeasurePopulationCopyWithImpl<$Res, $Val extends MeasurePopulation>
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       criteria: null == criteria
           ? _value.criteria
           : criteria // ignore: cast_nullable_to_non_nullable
@@ -3632,7 +3649,7 @@ abstract class _$$MeasurePopulationImplCopyWith<$Res>
       List<FhirExtension>? modifierExtension,
       CodeableConcept? code,
       String? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       FhirExpression criteria});
 
   @override
@@ -3684,7 +3701,7 @@ class __$$MeasurePopulationImplCopyWithImpl<$Res>
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       criteria: null == criteria
           ? _value.criteria
           : criteria // ignore: cast_nullable_to_non_nullable
@@ -3789,7 +3806,7 @@ class _$MeasurePopulationImpl extends _MeasurePopulation {
   /// [descriptionElement] Extensions for description
   @override
   @JsonKey(name: '_description')
-  final Element? descriptionElement;
+  final PrimitiveElement? descriptionElement;
 
   /// [criteria] An expression that specifies the criteria for the population,
   ///  typically the name of an expression in a library.
@@ -3854,7 +3871,7 @@ abstract class _MeasurePopulation extends MeasurePopulation {
       final List<FhirExtension>? modifierExtension,
       final CodeableConcept? code,
       final String? description,
-      @JsonKey(name: '_description') final Element? descriptionElement,
+      @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       required final FhirExpression criteria}) = _$MeasurePopulationImpl;
   const _MeasurePopulation._() : super._();
 
@@ -3904,7 +3921,7 @@ abstract class _MeasurePopulation extends MeasurePopulation {
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement;
+  PrimitiveElement? get descriptionElement;
   @override
 
   /// [criteria] An expression that specifies the criteria for the population,
@@ -3962,7 +3979,8 @@ mixin _$MeasureStratifier {
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get descriptionElement =>
+      throw _privateConstructorUsedError;
 
   /// [criteria] An expression that specifies the criteria for the stratifier.
   /// This is typically the name of an expression defined within a referenced
@@ -3992,7 +4010,7 @@ abstract class $MeasureStratifierCopyWith<$Res> {
       List<FhirExtension>? modifierExtension,
       CodeableConcept? code,
       String? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       FhirExpression? criteria,
       List<MeasureComponent>? component});
 
@@ -4046,7 +4064,7 @@ class _$MeasureStratifierCopyWithImpl<$Res, $Val extends MeasureStratifier>
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       criteria: freezed == criteria
           ? _value.criteria
           : criteria // ignore: cast_nullable_to_non_nullable
@@ -4097,7 +4115,7 @@ abstract class _$$MeasureStratifierImplCopyWith<$Res>
       List<FhirExtension>? modifierExtension,
       CodeableConcept? code,
       String? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       FhirExpression? criteria,
       List<MeasureComponent>? component});
 
@@ -4151,7 +4169,7 @@ class __$$MeasureStratifierImplCopyWithImpl<$Res>
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       criteria: freezed == criteria
           ? _value.criteria
           : criteria // ignore: cast_nullable_to_non_nullable
@@ -4265,7 +4283,7 @@ class _$MeasureStratifierImpl extends _MeasureStratifier {
   /// [descriptionElement] Extensions for description
   @override
   @JsonKey(name: '_description')
-  final Element? descriptionElement;
+  final PrimitiveElement? descriptionElement;
 
   /// [criteria] An expression that specifies the criteria for the stratifier.
   /// This is typically the name of an expression defined within a referenced
@@ -4351,7 +4369,7 @@ abstract class _MeasureStratifier extends MeasureStratifier {
       final List<FhirExtension>? modifierExtension,
       final CodeableConcept? code,
       final String? description,
-      @JsonKey(name: '_description') final Element? descriptionElement,
+      @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       final FhirExpression? criteria,
       final List<MeasureComponent>? component}) = _$MeasureStratifierImpl;
   const _MeasureStratifier._() : super._();
@@ -4405,7 +4423,7 @@ abstract class _MeasureStratifier extends MeasureStratifier {
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement;
+  PrimitiveElement? get descriptionElement;
   @override
 
   /// [criteria] An expression that specifies the criteria for the stratifier.
@@ -4471,7 +4489,8 @@ mixin _$MeasureComponent {
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get descriptionElement =>
+      throw _privateConstructorUsedError;
 
   /// [criteria] An expression that specifies the criteria for this component
   /// of the stratifier. This is typically the name of an expression defined
@@ -4497,7 +4516,7 @@ abstract class $MeasureComponentCopyWith<$Res> {
       List<FhirExtension>? modifierExtension,
       CodeableConcept? code,
       String? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       FhirExpression criteria});
 
   $CodeableConceptCopyWith<$Res>? get code;
@@ -4549,7 +4568,7 @@ class _$MeasureComponentCopyWithImpl<$Res, $Val extends MeasureComponent>
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       criteria: null == criteria
           ? _value.criteria
           : criteria // ignore: cast_nullable_to_non_nullable
@@ -4592,7 +4611,7 @@ abstract class _$$MeasureComponentImplCopyWith<$Res>
       List<FhirExtension>? modifierExtension,
       CodeableConcept? code,
       String? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       FhirExpression criteria});
 
   @override
@@ -4644,7 +4663,7 @@ class __$$MeasureComponentImplCopyWithImpl<$Res>
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       criteria: null == criteria
           ? _value.criteria
           : criteria // ignore: cast_nullable_to_non_nullable
@@ -4753,7 +4772,7 @@ class _$MeasureComponentImpl extends _MeasureComponent {
   /// [descriptionElement] Extensions for description
   @override
   @JsonKey(name: '_description')
-  final Element? descriptionElement;
+  final PrimitiveElement? descriptionElement;
 
   /// [criteria] An expression that specifies the criteria for this component
   /// of the stratifier. This is typically the name of an expression defined
@@ -4820,7 +4839,7 @@ abstract class _MeasureComponent extends MeasureComponent {
       final List<FhirExtension>? modifierExtension,
       final CodeableConcept? code,
       final String? description,
-      @JsonKey(name: '_description') final Element? descriptionElement,
+      @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       required final FhirExpression criteria}) = _$MeasureComponentImpl;
   const _MeasureComponent._() : super._();
 
@@ -4874,7 +4893,7 @@ abstract class _MeasureComponent extends MeasureComponent {
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement;
+  PrimitiveElement? get descriptionElement;
   @override
 
   /// [criteria] An expression that specifies the criteria for this component
@@ -4942,7 +4961,8 @@ mixin _$MeasureSupplementalData {
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get descriptionElement =>
+      throw _privateConstructorUsedError;
 
   /// [criteria] The criteria for the supplemental data. This is typically the
   /// name of a valid expression defined within a referenced library, but it may
@@ -4969,7 +4989,7 @@ abstract class $MeasureSupplementalDataCopyWith<$Res> {
       CodeableConcept? code,
       List<CodeableConcept>? usage,
       String? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       FhirExpression criteria});
 
   $CodeableConceptCopyWith<$Res>? get code;
@@ -5027,7 +5047,7 @@ class _$MeasureSupplementalDataCopyWithImpl<$Res,
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       criteria: null == criteria
           ? _value.criteria
           : criteria // ignore: cast_nullable_to_non_nullable
@@ -5072,7 +5092,7 @@ abstract class _$$MeasureSupplementalDataImplCopyWith<$Res>
       CodeableConcept? code,
       List<CodeableConcept>? usage,
       String? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       FhirExpression criteria});
 
   @override
@@ -5131,7 +5151,7 @@ class __$$MeasureSupplementalDataImplCopyWithImpl<$Res>
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       criteria: null == criteria
           ? _value.criteria
           : criteria // ignore: cast_nullable_to_non_nullable
@@ -5262,7 +5282,7 @@ class _$MeasureSupplementalDataImpl extends _MeasureSupplementalData {
   /// [descriptionElement] Extensions for description
   @override
   @JsonKey(name: '_description')
-  final Element? descriptionElement;
+  final PrimitiveElement? descriptionElement;
 
   /// [criteria] The criteria for the supplemental data. This is typically the
   /// name of a valid expression defined within a referenced library, but it may
@@ -5332,7 +5352,7 @@ abstract class _MeasureSupplementalData extends MeasureSupplementalData {
       final CodeableConcept? code,
       final List<CodeableConcept>? usage,
       final String? description,
-      @JsonKey(name: '_description') final Element? descriptionElement,
+      @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       required final FhirExpression criteria}) = _$MeasureSupplementalDataImpl;
   const _MeasureSupplementalData._() : super._();
 
@@ -5393,7 +5413,7 @@ abstract class _MeasureSupplementalData extends MeasureSupplementalData {
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement;
+  PrimitiveElement? get descriptionElement;
   @override
 
   /// [criteria] The criteria for the supplemental data. This is typically the
@@ -5433,14 +5453,15 @@ mixin _$MeasureReport {
 
   /// [implicitRulesElement] Extensions for implicitRules
   @JsonKey(name: '_implicitRules')
-  Element? get implicitRulesElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get implicitRulesElement =>
+      throw _privateConstructorUsedError;
 
   /// [language] The base language in which the resource is written.
   FhirCode? get language => throw _privateConstructorUsedError;
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get languageElement => throw _privateConstructorUsedError;
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -5492,7 +5513,7 @@ mixin _$MeasureReport {
 
   /// [statusElement] Extensions for status
   @JsonKey(name: '_status')
-  Element? get statusElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get statusElement => throw _privateConstructorUsedError;
 
   /// [type] The type of measure report. This may be an individual report,
   /// which provides the score for the measure for an individual member of the
@@ -5505,7 +5526,7 @@ mixin _$MeasureReport {
 
   /// [typeElement] Extensions for type
   @JsonKey(name: '_type')
-  Element? get typeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get typeElement => throw _privateConstructorUsedError;
 
   /// [measure] A reference to the Measure that was calculated to produce this
   ///  report.
@@ -5520,7 +5541,7 @@ mixin _$MeasureReport {
 
   /// [dateElement] Extensions for date
   @JsonKey(name: '_date')
-  Element? get dateElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get dateElement => throw _privateConstructorUsedError;
 
   /// [reporter] The individual, location, or organization that is reporting
   ///  the data.
@@ -5560,22 +5581,22 @@ abstract class $MeasureReportCopyWith<$Res> {
       String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
       FhirCode? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       Narrative? text,
       List<Resource>? contained,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<Identifier>? identifier,
       FhirCode? status,
-      @JsonKey(name: '_status') Element? statusElement,
+      @JsonKey(name: '_status') PrimitiveElement? statusElement,
       FhirCode? type,
-      @JsonKey(name: '_type') Element? typeElement,
+      @JsonKey(name: '_type') PrimitiveElement? typeElement,
       FhirCanonical measure,
       Reference? subject,
       FhirDateTime? date,
-      @JsonKey(name: '_date') Element? dateElement,
+      @JsonKey(name: '_date') PrimitiveElement? dateElement,
       Reference? reporter,
       Period period,
       CodeableConcept? improvementNotation,
@@ -5649,7 +5670,7 @@ class _$MeasureReportCopyWithImpl<$Res, $Val extends MeasureReport>
       implicitRulesElement: freezed == implicitRulesElement
           ? _value.implicitRulesElement
           : implicitRulesElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -5657,7 +5678,7 @@ class _$MeasureReportCopyWithImpl<$Res, $Val extends MeasureReport>
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -5685,7 +5706,7 @@ class _$MeasureReportCopyWithImpl<$Res, $Val extends MeasureReport>
       statusElement: freezed == statusElement
           ? _value.statusElement
           : statusElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -5693,7 +5714,7 @@ class _$MeasureReportCopyWithImpl<$Res, $Val extends MeasureReport>
       typeElement: freezed == typeElement
           ? _value.typeElement
           : typeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       measure: null == measure
           ? _value.measure
           : measure // ignore: cast_nullable_to_non_nullable
@@ -5709,7 +5730,7 @@ class _$MeasureReportCopyWithImpl<$Res, $Val extends MeasureReport>
       dateElement: freezed == dateElement
           ? _value.dateElement
           : dateElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       reporter: freezed == reporter
           ? _value.reporter
           : reporter // ignore: cast_nullable_to_non_nullable
@@ -5816,22 +5837,22 @@ abstract class _$$MeasureReportImplCopyWith<$Res>
       String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
       FhirCode? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       Narrative? text,
       List<Resource>? contained,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<Identifier>? identifier,
       FhirCode? status,
-      @JsonKey(name: '_status') Element? statusElement,
+      @JsonKey(name: '_status') PrimitiveElement? statusElement,
       FhirCode? type,
-      @JsonKey(name: '_type') Element? typeElement,
+      @JsonKey(name: '_type') PrimitiveElement? typeElement,
       FhirCanonical measure,
       Reference? subject,
       FhirDateTime? date,
-      @JsonKey(name: '_date') Element? dateElement,
+      @JsonKey(name: '_date') PrimitiveElement? dateElement,
       Reference? reporter,
       Period period,
       CodeableConcept? improvementNotation,
@@ -5909,7 +5930,7 @@ class __$$MeasureReportImplCopyWithImpl<$Res>
       implicitRulesElement: freezed == implicitRulesElement
           ? _value.implicitRulesElement
           : implicitRulesElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -5917,7 +5938,7 @@ class __$$MeasureReportImplCopyWithImpl<$Res>
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -5945,7 +5966,7 @@ class __$$MeasureReportImplCopyWithImpl<$Res>
       statusElement: freezed == statusElement
           ? _value.statusElement
           : statusElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -5953,7 +5974,7 @@ class __$$MeasureReportImplCopyWithImpl<$Res>
       typeElement: freezed == typeElement
           ? _value.typeElement
           : typeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       measure: null == measure
           ? _value.measure
           : measure // ignore: cast_nullable_to_non_nullable
@@ -5969,7 +5990,7 @@ class __$$MeasureReportImplCopyWithImpl<$Res>
       dateElement: freezed == dateElement
           ? _value.dateElement
           : dateElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       reporter: freezed == reporter
           ? _value.reporter
           : reporter // ignore: cast_nullable_to_non_nullable
@@ -6060,7 +6081,7 @@ class _$MeasureReportImpl extends _MeasureReport {
   /// [implicitRulesElement] Extensions for implicitRules
   @override
   @JsonKey(name: '_implicitRules')
-  final Element? implicitRulesElement;
+  final PrimitiveElement? implicitRulesElement;
 
   /// [language] The base language in which the resource is written.
   @override
@@ -6069,7 +6090,7 @@ class _$MeasureReportImpl extends _MeasureReport {
   /// [languageElement] Extensions for language
   @override
   @JsonKey(name: '_language')
-  final Element? languageElement;
+  final PrimitiveElement? languageElement;
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -6186,7 +6207,7 @@ class _$MeasureReportImpl extends _MeasureReport {
   /// [statusElement] Extensions for status
   @override
   @JsonKey(name: '_status')
-  final Element? statusElement;
+  final PrimitiveElement? statusElement;
 
   /// [type] The type of measure report. This may be an individual report,
   /// which provides the score for the measure for an individual member of the
@@ -6201,7 +6222,7 @@ class _$MeasureReportImpl extends _MeasureReport {
   /// [typeElement] Extensions for type
   @override
   @JsonKey(name: '_type')
-  final Element? typeElement;
+  final PrimitiveElement? typeElement;
 
   /// [measure] A reference to the Measure that was calculated to produce this
   ///  report.
@@ -6220,7 +6241,7 @@ class _$MeasureReportImpl extends _MeasureReport {
   /// [dateElement] Extensions for date
   @override
   @JsonKey(name: '_date')
-  final Element? dateElement;
+  final PrimitiveElement? dateElement;
 
   /// [reporter] The individual, location, or organization that is reporting
   ///  the data.
@@ -6371,22 +6392,23 @@ abstract class _MeasureReport extends MeasureReport {
       final String? id,
       final FhirMeta? meta,
       final FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') final Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules')
+      final PrimitiveElement? implicitRulesElement,
       final FhirCode? language,
-      @JsonKey(name: '_language') final Element? languageElement,
+      @JsonKey(name: '_language') final PrimitiveElement? languageElement,
       final Narrative? text,
       final List<Resource>? contained,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final List<Identifier>? identifier,
       final FhirCode? status,
-      @JsonKey(name: '_status') final Element? statusElement,
+      @JsonKey(name: '_status') final PrimitiveElement? statusElement,
       final FhirCode? type,
-      @JsonKey(name: '_type') final Element? typeElement,
+      @JsonKey(name: '_type') final PrimitiveElement? typeElement,
       required final FhirCanonical measure,
       final Reference? subject,
       final FhirDateTime? date,
-      @JsonKey(name: '_date') final Element? dateElement,
+      @JsonKey(name: '_date') final PrimitiveElement? dateElement,
       final Reference? reporter,
       required final Period period,
       final CodeableConcept? improvementNotation,
@@ -6422,7 +6444,7 @@ abstract class _MeasureReport extends MeasureReport {
 
   /// [implicitRulesElement] Extensions for implicitRules
   @JsonKey(name: '_implicitRules')
-  Element? get implicitRulesElement;
+  PrimitiveElement? get implicitRulesElement;
   @override
 
   /// [language] The base language in which the resource is written.
@@ -6431,7 +6453,7 @@ abstract class _MeasureReport extends MeasureReport {
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement;
+  PrimitiveElement? get languageElement;
   @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
@@ -6489,7 +6511,7 @@ abstract class _MeasureReport extends MeasureReport {
 
   /// [statusElement] Extensions for status
   @JsonKey(name: '_status')
-  Element? get statusElement;
+  PrimitiveElement? get statusElement;
   @override
 
   /// [type] The type of measure report. This may be an individual report,
@@ -6504,7 +6526,7 @@ abstract class _MeasureReport extends MeasureReport {
 
   /// [typeElement] Extensions for type
   @JsonKey(name: '_type')
-  Element? get typeElement;
+  PrimitiveElement? get typeElement;
   @override
 
   /// [measure] A reference to the Measure that was calculated to produce this
@@ -6523,7 +6545,7 @@ abstract class _MeasureReport extends MeasureReport {
 
   /// [dateElement] Extensions for date
   @JsonKey(name: '_date')
-  Element? get dateElement;
+  PrimitiveElement? get dateElement;
   @override
 
   /// [reporter] The individual, location, or organization that is reporting
@@ -7082,7 +7104,7 @@ mixin _$MeasureReportPopulation {
 
   /// [countElement] Extensions for count
   @JsonKey(name: '_count')
-  Element? get countElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get countElement => throw _privateConstructorUsedError;
 
   /// [subjectResults] This element refers to a List of subject level
   ///  MeasureReport resources, one for each subject in this population.
@@ -7106,7 +7128,7 @@ abstract class $MeasureReportPopulationCopyWith<$Res> {
       List<FhirExtension>? modifierExtension,
       CodeableConcept? code,
       FhirInteger? count,
-      @JsonKey(name: '_count') Element? countElement,
+      @JsonKey(name: '_count') PrimitiveElement? countElement,
       Reference? subjectResults});
 
   $CodeableConceptCopyWith<$Res>? get code;
@@ -7159,7 +7181,7 @@ class _$MeasureReportPopulationCopyWithImpl<$Res,
       countElement: freezed == countElement
           ? _value.countElement
           : countElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       subjectResults: freezed == subjectResults
           ? _value.subjectResults
           : subjectResults // ignore: cast_nullable_to_non_nullable
@@ -7207,7 +7229,7 @@ abstract class _$$MeasureReportPopulationImplCopyWith<$Res>
       List<FhirExtension>? modifierExtension,
       CodeableConcept? code,
       FhirInteger? count,
-      @JsonKey(name: '_count') Element? countElement,
+      @JsonKey(name: '_count') PrimitiveElement? countElement,
       Reference? subjectResults});
 
   @override
@@ -7261,7 +7283,7 @@ class __$$MeasureReportPopulationImplCopyWithImpl<$Res>
       countElement: freezed == countElement
           ? _value.countElement
           : countElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       subjectResults: freezed == subjectResults
           ? _value.subjectResults
           : subjectResults // ignore: cast_nullable_to_non_nullable
@@ -7366,7 +7388,7 @@ class _$MeasureReportPopulationImpl extends _MeasureReportPopulation {
   /// [countElement] Extensions for count
   @override
   @JsonKey(name: '_count')
-  final Element? countElement;
+  final PrimitiveElement? countElement;
 
   /// [subjectResults] This element refers to a List of subject level
   ///  MeasureReport resources, one for each subject in this population.
@@ -7430,7 +7452,7 @@ abstract class _MeasureReportPopulation extends MeasureReportPopulation {
       final List<FhirExtension>? modifierExtension,
       final CodeableConcept? code,
       final FhirInteger? count,
-      @JsonKey(name: '_count') final Element? countElement,
+      @JsonKey(name: '_count') final PrimitiveElement? countElement,
       final Reference? subjectResults}) = _$MeasureReportPopulationImpl;
   const _MeasureReportPopulation._() : super._();
 
@@ -7480,7 +7502,7 @@ abstract class _MeasureReportPopulation extends MeasureReportPopulation {
 
   /// [countElement] Extensions for count
   @JsonKey(name: '_count')
-  Element? get countElement;
+  PrimitiveElement? get countElement;
   @override
 
   /// [subjectResults] This element refers to a List of subject level
@@ -8797,7 +8819,7 @@ mixin _$MeasureReportPopulation1 {
 
   /// [countElement] Extensions for count
   @JsonKey(name: '_count')
-  Element? get countElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get countElement => throw _privateConstructorUsedError;
 
   /// [subjectResults] This element refers to a List of subject level
   /// MeasureReport resources, one for each subject in this population in this
@@ -8822,7 +8844,7 @@ abstract class $MeasureReportPopulation1CopyWith<$Res> {
       List<FhirExtension>? modifierExtension,
       CodeableConcept? code,
       FhirInteger? count,
-      @JsonKey(name: '_count') Element? countElement,
+      @JsonKey(name: '_count') PrimitiveElement? countElement,
       Reference? subjectResults});
 
   $CodeableConceptCopyWith<$Res>? get code;
@@ -8875,7 +8897,7 @@ class _$MeasureReportPopulation1CopyWithImpl<$Res,
       countElement: freezed == countElement
           ? _value.countElement
           : countElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       subjectResults: freezed == subjectResults
           ? _value.subjectResults
           : subjectResults // ignore: cast_nullable_to_non_nullable
@@ -8923,7 +8945,7 @@ abstract class _$$MeasureReportPopulation1ImplCopyWith<$Res>
       List<FhirExtension>? modifierExtension,
       CodeableConcept? code,
       FhirInteger? count,
-      @JsonKey(name: '_count') Element? countElement,
+      @JsonKey(name: '_count') PrimitiveElement? countElement,
       Reference? subjectResults});
 
   @override
@@ -8977,7 +8999,7 @@ class __$$MeasureReportPopulation1ImplCopyWithImpl<$Res>
       countElement: freezed == countElement
           ? _value.countElement
           : countElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       subjectResults: freezed == subjectResults
           ? _value.subjectResults
           : subjectResults // ignore: cast_nullable_to_non_nullable
@@ -9082,7 +9104,7 @@ class _$MeasureReportPopulation1Impl extends _MeasureReportPopulation1 {
   /// [countElement] Extensions for count
   @override
   @JsonKey(name: '_count')
-  final Element? countElement;
+  final PrimitiveElement? countElement;
 
   /// [subjectResults] This element refers to a List of subject level
   /// MeasureReport resources, one for each subject in this population in this
@@ -9147,7 +9169,7 @@ abstract class _MeasureReportPopulation1 extends MeasureReportPopulation1 {
       final List<FhirExtension>? modifierExtension,
       final CodeableConcept? code,
       final FhirInteger? count,
-      @JsonKey(name: '_count') final Element? countElement,
+      @JsonKey(name: '_count') final PrimitiveElement? countElement,
       final Reference? subjectResults}) = _$MeasureReportPopulation1Impl;
   const _MeasureReportPopulation1._() : super._();
 
@@ -9197,7 +9219,7 @@ abstract class _MeasureReportPopulation1 extends MeasureReportPopulation1 {
 
   /// [countElement] Extensions for count
   @JsonKey(name: '_count')
-  Element? get countElement;
+  PrimitiveElement? get countElement;
   @override
 
   /// [subjectResults] This element refers to a List of subject level
@@ -9236,14 +9258,15 @@ mixin _$TestReport {
 
   /// [implicitRulesElement] Extensions for implicitRules
   @JsonKey(name: '_implicitRules')
-  Element? get implicitRulesElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get implicitRulesElement =>
+      throw _privateConstructorUsedError;
 
   /// [language] The base language in which the resource is written.
   FhirCode? get language => throw _privateConstructorUsedError;
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get languageElement => throw _privateConstructorUsedError;
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -9294,14 +9317,14 @@ mixin _$TestReport {
 
   /// [nameElement] Extensions for name
   @JsonKey(name: '_name')
-  Element? get nameElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get nameElement => throw _privateConstructorUsedError;
 
   /// [status] The current state of this test report.
   FhirCode? get status => throw _privateConstructorUsedError;
 
   /// [statusElement] Extensions for status
   @JsonKey(name: '_status')
-  Element? get statusElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get statusElement => throw _privateConstructorUsedError;
 
   /// [testScript] Ideally this is an absolute URL that is used to identify the
   /// version-specific TestScript that was executed, matching the
@@ -9313,7 +9336,7 @@ mixin _$TestReport {
 
   /// [resultElement] Extensions for result
   @JsonKey(name: '_result')
-  Element? get resultElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get resultElement => throw _privateConstructorUsedError;
 
   /// [score] The final score (percentage of tests passed) resulting from the
   ///  execution of the TestScript.
@@ -9321,7 +9344,7 @@ mixin _$TestReport {
 
   /// [scoreElement] Extensions for score
   @JsonKey(name: '_score')
-  Element? get scoreElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get scoreElement => throw _privateConstructorUsedError;
 
   /// [tester] Name of the tester producing this report (Organization or
   ///  individual).
@@ -9329,7 +9352,7 @@ mixin _$TestReport {
 
   /// [testerElement] Extensions for tester
   @JsonKey(name: '_tester')
-  Element? get testerElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get testerElement => throw _privateConstructorUsedError;
 
   /// [issued] When the TestScript was executed and this TestReport was
   ///  generated.
@@ -9337,7 +9360,7 @@ mixin _$TestReport {
 
   /// [issuedElement] Extensions for issued
   @JsonKey(name: '_issued')
-  Element? get issuedElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get issuedElement => throw _privateConstructorUsedError;
 
   /// [participant] A participant in the test execution, either the execution
   ///  engine, a client, or a server.
@@ -9373,27 +9396,27 @@ abstract class $TestReportCopyWith<$Res> {
       String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
       FhirCode? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       Narrative? text,
       List<Resource>? contained,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       Identifier? identifier,
       String? name,
-      @JsonKey(name: '_name') Element? nameElement,
+      @JsonKey(name: '_name') PrimitiveElement? nameElement,
       FhirCode? status,
-      @JsonKey(name: '_status') Element? statusElement,
+      @JsonKey(name: '_status') PrimitiveElement? statusElement,
       Reference testScript,
       FhirCode? result,
-      @JsonKey(name: '_result') Element? resultElement,
+      @JsonKey(name: '_result') PrimitiveElement? resultElement,
       FhirDecimal? score,
-      @JsonKey(name: '_score') Element? scoreElement,
+      @JsonKey(name: '_score') PrimitiveElement? scoreElement,
       String? tester,
-      @JsonKey(name: '_tester') Element? testerElement,
+      @JsonKey(name: '_tester') PrimitiveElement? testerElement,
       FhirDateTime? issued,
-      @JsonKey(name: '_issued') Element? issuedElement,
+      @JsonKey(name: '_issued') PrimitiveElement? issuedElement,
       List<TestReportParticipant>? participant,
       TestReportSetup? setup,
       List<TestReportTest>? test,
@@ -9470,7 +9493,7 @@ class _$TestReportCopyWithImpl<$Res, $Val extends TestReport>
       implicitRulesElement: freezed == implicitRulesElement
           ? _value.implicitRulesElement
           : implicitRulesElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -9478,7 +9501,7 @@ class _$TestReportCopyWithImpl<$Res, $Val extends TestReport>
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -9506,7 +9529,7 @@ class _$TestReportCopyWithImpl<$Res, $Val extends TestReport>
       nameElement: freezed == nameElement
           ? _value.nameElement
           : nameElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -9514,7 +9537,7 @@ class _$TestReportCopyWithImpl<$Res, $Val extends TestReport>
       statusElement: freezed == statusElement
           ? _value.statusElement
           : statusElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       testScript: null == testScript
           ? _value.testScript
           : testScript // ignore: cast_nullable_to_non_nullable
@@ -9526,7 +9549,7 @@ class _$TestReportCopyWithImpl<$Res, $Val extends TestReport>
       resultElement: freezed == resultElement
           ? _value.resultElement
           : resultElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       score: freezed == score
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
@@ -9534,7 +9557,7 @@ class _$TestReportCopyWithImpl<$Res, $Val extends TestReport>
       scoreElement: freezed == scoreElement
           ? _value.scoreElement
           : scoreElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       tester: freezed == tester
           ? _value.tester
           : tester // ignore: cast_nullable_to_non_nullable
@@ -9542,7 +9565,7 @@ class _$TestReportCopyWithImpl<$Res, $Val extends TestReport>
       testerElement: freezed == testerElement
           ? _value.testerElement
           : testerElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       issued: freezed == issued
           ? _value.issued
           : issued // ignore: cast_nullable_to_non_nullable
@@ -9550,7 +9573,7 @@ class _$TestReportCopyWithImpl<$Res, $Val extends TestReport>
       issuedElement: freezed == issuedElement
           ? _value.issuedElement
           : issuedElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       participant: freezed == participant
           ? _value.participant
           : participant // ignore: cast_nullable_to_non_nullable
@@ -9653,27 +9676,27 @@ abstract class _$$TestReportImplCopyWith<$Res>
       String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
       FhirCode? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       Narrative? text,
       List<Resource>? contained,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       Identifier? identifier,
       String? name,
-      @JsonKey(name: '_name') Element? nameElement,
+      @JsonKey(name: '_name') PrimitiveElement? nameElement,
       FhirCode? status,
-      @JsonKey(name: '_status') Element? statusElement,
+      @JsonKey(name: '_status') PrimitiveElement? statusElement,
       Reference testScript,
       FhirCode? result,
-      @JsonKey(name: '_result') Element? resultElement,
+      @JsonKey(name: '_result') PrimitiveElement? resultElement,
       FhirDecimal? score,
-      @JsonKey(name: '_score') Element? scoreElement,
+      @JsonKey(name: '_score') PrimitiveElement? scoreElement,
       String? tester,
-      @JsonKey(name: '_tester') Element? testerElement,
+      @JsonKey(name: '_tester') PrimitiveElement? testerElement,
       FhirDateTime? issued,
-      @JsonKey(name: '_issued') Element? issuedElement,
+      @JsonKey(name: '_issued') PrimitiveElement? issuedElement,
       List<TestReportParticipant>? participant,
       TestReportSetup? setup,
       List<TestReportTest>? test,
@@ -9754,7 +9777,7 @@ class __$$TestReportImplCopyWithImpl<$Res>
       implicitRulesElement: freezed == implicitRulesElement
           ? _value.implicitRulesElement
           : implicitRulesElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -9762,7 +9785,7 @@ class __$$TestReportImplCopyWithImpl<$Res>
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -9790,7 +9813,7 @@ class __$$TestReportImplCopyWithImpl<$Res>
       nameElement: freezed == nameElement
           ? _value.nameElement
           : nameElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -9798,7 +9821,7 @@ class __$$TestReportImplCopyWithImpl<$Res>
       statusElement: freezed == statusElement
           ? _value.statusElement
           : statusElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       testScript: null == testScript
           ? _value.testScript
           : testScript // ignore: cast_nullable_to_non_nullable
@@ -9810,7 +9833,7 @@ class __$$TestReportImplCopyWithImpl<$Res>
       resultElement: freezed == resultElement
           ? _value.resultElement
           : resultElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       score: freezed == score
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
@@ -9818,7 +9841,7 @@ class __$$TestReportImplCopyWithImpl<$Res>
       scoreElement: freezed == scoreElement
           ? _value.scoreElement
           : scoreElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       tester: freezed == tester
           ? _value.tester
           : tester // ignore: cast_nullable_to_non_nullable
@@ -9826,7 +9849,7 @@ class __$$TestReportImplCopyWithImpl<$Res>
       testerElement: freezed == testerElement
           ? _value.testerElement
           : testerElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       issued: freezed == issued
           ? _value.issued
           : issued // ignore: cast_nullable_to_non_nullable
@@ -9834,7 +9857,7 @@ class __$$TestReportImplCopyWithImpl<$Res>
       issuedElement: freezed == issuedElement
           ? _value.issuedElement
           : issuedElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       participant: freezed == participant
           ? _value._participant
           : participant // ignore: cast_nullable_to_non_nullable
@@ -9924,7 +9947,7 @@ class _$TestReportImpl extends _TestReport {
   /// [implicitRulesElement] Extensions for implicitRules
   @override
   @JsonKey(name: '_implicitRules')
-  final Element? implicitRulesElement;
+  final PrimitiveElement? implicitRulesElement;
 
   /// [language] The base language in which the resource is written.
   @override
@@ -9933,7 +9956,7 @@ class _$TestReportImpl extends _TestReport {
   /// [languageElement] Extensions for language
   @override
   @JsonKey(name: '_language')
-  final Element? languageElement;
+  final PrimitiveElement? languageElement;
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -10038,7 +10061,7 @@ class _$TestReportImpl extends _TestReport {
   /// [nameElement] Extensions for name
   @override
   @JsonKey(name: '_name')
-  final Element? nameElement;
+  final PrimitiveElement? nameElement;
 
   /// [status] The current state of this test report.
   @override
@@ -10047,7 +10070,7 @@ class _$TestReportImpl extends _TestReport {
   /// [statusElement] Extensions for status
   @override
   @JsonKey(name: '_status')
-  final Element? statusElement;
+  final PrimitiveElement? statusElement;
 
   /// [testScript] Ideally this is an absolute URL that is used to identify the
   /// version-specific TestScript that was executed, matching the
@@ -10062,7 +10085,7 @@ class _$TestReportImpl extends _TestReport {
   /// [resultElement] Extensions for result
   @override
   @JsonKey(name: '_result')
-  final Element? resultElement;
+  final PrimitiveElement? resultElement;
 
   /// [score] The final score (percentage of tests passed) resulting from the
   ///  execution of the TestScript.
@@ -10072,7 +10095,7 @@ class _$TestReportImpl extends _TestReport {
   /// [scoreElement] Extensions for score
   @override
   @JsonKey(name: '_score')
-  final Element? scoreElement;
+  final PrimitiveElement? scoreElement;
 
   /// [tester] Name of the tester producing this report (Organization or
   ///  individual).
@@ -10082,7 +10105,7 @@ class _$TestReportImpl extends _TestReport {
   /// [testerElement] Extensions for tester
   @override
   @JsonKey(name: '_tester')
-  final Element? testerElement;
+  final PrimitiveElement? testerElement;
 
   /// [issued] When the TestScript was executed and this TestReport was
   ///  generated.
@@ -10092,7 +10115,7 @@ class _$TestReportImpl extends _TestReport {
   /// [issuedElement] Extensions for issued
   @override
   @JsonKey(name: '_issued')
-  final Element? issuedElement;
+  final PrimitiveElement? issuedElement;
 
   /// [participant] A participant in the test execution, either the execution
   ///  engine, a client, or a server.
@@ -10247,27 +10270,28 @@ abstract class _TestReport extends TestReport {
       final String? id,
       final FhirMeta? meta,
       final FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') final Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules')
+      final PrimitiveElement? implicitRulesElement,
       final FhirCode? language,
-      @JsonKey(name: '_language') final Element? languageElement,
+      @JsonKey(name: '_language') final PrimitiveElement? languageElement,
       final Narrative? text,
       final List<Resource>? contained,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final Identifier? identifier,
       final String? name,
-      @JsonKey(name: '_name') final Element? nameElement,
+      @JsonKey(name: '_name') final PrimitiveElement? nameElement,
       final FhirCode? status,
-      @JsonKey(name: '_status') final Element? statusElement,
+      @JsonKey(name: '_status') final PrimitiveElement? statusElement,
       required final Reference testScript,
       final FhirCode? result,
-      @JsonKey(name: '_result') final Element? resultElement,
+      @JsonKey(name: '_result') final PrimitiveElement? resultElement,
       final FhirDecimal? score,
-      @JsonKey(name: '_score') final Element? scoreElement,
+      @JsonKey(name: '_score') final PrimitiveElement? scoreElement,
       final String? tester,
-      @JsonKey(name: '_tester') final Element? testerElement,
+      @JsonKey(name: '_tester') final PrimitiveElement? testerElement,
       final FhirDateTime? issued,
-      @JsonKey(name: '_issued') final Element? issuedElement,
+      @JsonKey(name: '_issued') final PrimitiveElement? issuedElement,
       final List<TestReportParticipant>? participant,
       final TestReportSetup? setup,
       final List<TestReportTest>? test,
@@ -10302,7 +10326,7 @@ abstract class _TestReport extends TestReport {
 
   /// [implicitRulesElement] Extensions for implicitRules
   @JsonKey(name: '_implicitRules')
-  Element? get implicitRulesElement;
+  PrimitiveElement? get implicitRulesElement;
   @override
 
   /// [language] The base language in which the resource is written.
@@ -10311,7 +10335,7 @@ abstract class _TestReport extends TestReport {
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement;
+  PrimitiveElement? get languageElement;
   @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
@@ -10368,7 +10392,7 @@ abstract class _TestReport extends TestReport {
 
   /// [nameElement] Extensions for name
   @JsonKey(name: '_name')
-  Element? get nameElement;
+  PrimitiveElement? get nameElement;
   @override
 
   /// [status] The current state of this test report.
@@ -10377,7 +10401,7 @@ abstract class _TestReport extends TestReport {
 
   /// [statusElement] Extensions for status
   @JsonKey(name: '_status')
-  Element? get statusElement;
+  PrimitiveElement? get statusElement;
   @override
 
   /// [testScript] Ideally this is an absolute URL that is used to identify the
@@ -10392,7 +10416,7 @@ abstract class _TestReport extends TestReport {
 
   /// [resultElement] Extensions for result
   @JsonKey(name: '_result')
-  Element? get resultElement;
+  PrimitiveElement? get resultElement;
   @override
 
   /// [score] The final score (percentage of tests passed) resulting from the
@@ -10402,7 +10426,7 @@ abstract class _TestReport extends TestReport {
 
   /// [scoreElement] Extensions for score
   @JsonKey(name: '_score')
-  Element? get scoreElement;
+  PrimitiveElement? get scoreElement;
   @override
 
   /// [tester] Name of the tester producing this report (Organization or
@@ -10412,7 +10436,7 @@ abstract class _TestReport extends TestReport {
 
   /// [testerElement] Extensions for tester
   @JsonKey(name: '_tester')
-  Element? get testerElement;
+  PrimitiveElement? get testerElement;
   @override
 
   /// [issued] When the TestScript was executed and this TestReport was
@@ -10422,7 +10446,7 @@ abstract class _TestReport extends TestReport {
 
   /// [issuedElement] Extensions for issued
   @JsonKey(name: '_issued')
-  Element? get issuedElement;
+  PrimitiveElement? get issuedElement;
   @override
 
   /// [participant] A participant in the test execution, either the execution
@@ -10489,21 +10513,21 @@ mixin _$TestReportParticipant {
 
   /// [typeElement] Extensions for type
   @JsonKey(name: '_type')
-  Element? get typeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get typeElement => throw _privateConstructorUsedError;
 
   /// [uri] The uri of the participant. An absolute URL is preferred.
   FhirUri? get uri => throw _privateConstructorUsedError;
 
   /// [uriElement] Extensions for uri
   @JsonKey(name: '_uri')
-  Element? get uriElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get uriElement => throw _privateConstructorUsedError;
 
   /// [display] The display name of the participant.
   String? get display => throw _privateConstructorUsedError;
 
   /// [displayElement] Extensions for display
   @JsonKey(name: '_display')
-  Element? get displayElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get displayElement => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -10522,11 +10546,11 @@ abstract class $TestReportParticipantCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? type,
-      @JsonKey(name: '_type') Element? typeElement,
+      @JsonKey(name: '_type') PrimitiveElement? typeElement,
       FhirUri? uri,
-      @JsonKey(name: '_uri') Element? uriElement,
+      @JsonKey(name: '_uri') PrimitiveElement? uriElement,
       String? display,
-      @JsonKey(name: '_display') Element? displayElement});
+      @JsonKey(name: '_display') PrimitiveElement? displayElement});
 }
 
 /// @nodoc
@@ -10573,7 +10597,7 @@ class _$TestReportParticipantCopyWithImpl<$Res,
       typeElement: freezed == typeElement
           ? _value.typeElement
           : typeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       uri: freezed == uri
           ? _value.uri
           : uri // ignore: cast_nullable_to_non_nullable
@@ -10581,7 +10605,7 @@ class _$TestReportParticipantCopyWithImpl<$Res,
       uriElement: freezed == uriElement
           ? _value.uriElement
           : uriElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       display: freezed == display
           ? _value.display
           : display // ignore: cast_nullable_to_non_nullable
@@ -10589,7 +10613,7 @@ class _$TestReportParticipantCopyWithImpl<$Res,
       displayElement: freezed == displayElement
           ? _value.displayElement
           : displayElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ) as $Val);
   }
 }
@@ -10608,11 +10632,11 @@ abstract class _$$TestReportParticipantImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? type,
-      @JsonKey(name: '_type') Element? typeElement,
+      @JsonKey(name: '_type') PrimitiveElement? typeElement,
       FhirUri? uri,
-      @JsonKey(name: '_uri') Element? uriElement,
+      @JsonKey(name: '_uri') PrimitiveElement? uriElement,
       String? display,
-      @JsonKey(name: '_display') Element? displayElement});
+      @JsonKey(name: '_display') PrimitiveElement? displayElement});
 }
 
 /// @nodoc
@@ -10657,7 +10681,7 @@ class __$$TestReportParticipantImplCopyWithImpl<$Res>
       typeElement: freezed == typeElement
           ? _value.typeElement
           : typeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       uri: freezed == uri
           ? _value.uri
           : uri // ignore: cast_nullable_to_non_nullable
@@ -10665,7 +10689,7 @@ class __$$TestReportParticipantImplCopyWithImpl<$Res>
       uriElement: freezed == uriElement
           ? _value.uriElement
           : uriElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       display: freezed == display
           ? _value.display
           : display // ignore: cast_nullable_to_non_nullable
@@ -10673,7 +10697,7 @@ class __$$TestReportParticipantImplCopyWithImpl<$Res>
       displayElement: freezed == displayElement
           ? _value.displayElement
           : displayElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ));
   }
 }
@@ -10772,7 +10796,7 @@ class _$TestReportParticipantImpl extends _TestReportParticipant {
   /// [typeElement] Extensions for type
   @override
   @JsonKey(name: '_type')
-  final Element? typeElement;
+  final PrimitiveElement? typeElement;
 
   /// [uri] The uri of the participant. An absolute URL is preferred.
   @override
@@ -10781,7 +10805,7 @@ class _$TestReportParticipantImpl extends _TestReportParticipant {
   /// [uriElement] Extensions for uri
   @override
   @JsonKey(name: '_uri')
-  final Element? uriElement;
+  final PrimitiveElement? uriElement;
 
   /// [display] The display name of the participant.
   @override
@@ -10790,7 +10814,7 @@ class _$TestReportParticipantImpl extends _TestReportParticipant {
   /// [displayElement] Extensions for display
   @override
   @JsonKey(name: '_display')
-  final Element? displayElement;
+  final PrimitiveElement? displayElement;
 
   @override
   String toString() {
@@ -10853,11 +10877,11 @@ abstract class _TestReportParticipant extends TestReportParticipant {
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final FhirCode? type,
-          @JsonKey(name: '_type') final Element? typeElement,
+          @JsonKey(name: '_type') final PrimitiveElement? typeElement,
           final FhirUri? uri,
-          @JsonKey(name: '_uri') final Element? uriElement,
+          @JsonKey(name: '_uri') final PrimitiveElement? uriElement,
           final String? display,
-          @JsonKey(name: '_display') final Element? displayElement}) =
+          @JsonKey(name: '_display') final PrimitiveElement? displayElement}) =
       _$TestReportParticipantImpl;
   const _TestReportParticipant._() : super._();
 
@@ -10903,7 +10927,7 @@ abstract class _TestReportParticipant extends TestReportParticipant {
 
   /// [typeElement] Extensions for type
   @JsonKey(name: '_type')
-  Element? get typeElement;
+  PrimitiveElement? get typeElement;
   @override
 
   /// [uri] The uri of the participant. An absolute URL is preferred.
@@ -10912,7 +10936,7 @@ abstract class _TestReportParticipant extends TestReportParticipant {
 
   /// [uriElement] Extensions for uri
   @JsonKey(name: '_uri')
-  Element? get uriElement;
+  PrimitiveElement? get uriElement;
   @override
 
   /// [display] The display name of the participant.
@@ -10921,7 +10945,7 @@ abstract class _TestReportParticipant extends TestReportParticipant {
 
   /// [displayElement] Extensions for display
   @JsonKey(name: '_display')
-  Element? get displayElement;
+  PrimitiveElement? get displayElement;
   @override
   @JsonKey(ignore: true)
   _$$TestReportParticipantImplCopyWith<_$TestReportParticipantImpl>
@@ -11699,21 +11723,21 @@ mixin _$TestReportOperation {
 
   /// [resultElement] Extensions for result
   @JsonKey(name: '_result')
-  Element? get resultElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get resultElement => throw _privateConstructorUsedError;
 
   /// [message] An explanatory message associated with the result.
   FhirMarkdown? get message => throw _privateConstructorUsedError;
 
   /// [messageElement] Extensions for message
   @JsonKey(name: '_message')
-  Element? get messageElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get messageElement => throw _privateConstructorUsedError;
 
   /// [detail] A link to further details on the result.
   FhirUri? get detail => throw _privateConstructorUsedError;
 
   /// [detailElement] Extensions for detail
   @JsonKey(name: '_detail')
-  Element? get detailElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get detailElement => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -11732,11 +11756,11 @@ abstract class $TestReportOperationCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? result,
-      @JsonKey(name: '_result') Element? resultElement,
+      @JsonKey(name: '_result') PrimitiveElement? resultElement,
       FhirMarkdown? message,
-      @JsonKey(name: '_message') Element? messageElement,
+      @JsonKey(name: '_message') PrimitiveElement? messageElement,
       FhirUri? detail,
-      @JsonKey(name: '_detail') Element? detailElement});
+      @JsonKey(name: '_detail') PrimitiveElement? detailElement});
 }
 
 /// @nodoc
@@ -11782,7 +11806,7 @@ class _$TestReportOperationCopyWithImpl<$Res, $Val extends TestReportOperation>
       resultElement: freezed == resultElement
           ? _value.resultElement
           : resultElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -11790,7 +11814,7 @@ class _$TestReportOperationCopyWithImpl<$Res, $Val extends TestReportOperation>
       messageElement: freezed == messageElement
           ? _value.messageElement
           : messageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       detail: freezed == detail
           ? _value.detail
           : detail // ignore: cast_nullable_to_non_nullable
@@ -11798,7 +11822,7 @@ class _$TestReportOperationCopyWithImpl<$Res, $Val extends TestReportOperation>
       detailElement: freezed == detailElement
           ? _value.detailElement
           : detailElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ) as $Val);
   }
 }
@@ -11816,11 +11840,11 @@ abstract class _$$TestReportOperationImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? result,
-      @JsonKey(name: '_result') Element? resultElement,
+      @JsonKey(name: '_result') PrimitiveElement? resultElement,
       FhirMarkdown? message,
-      @JsonKey(name: '_message') Element? messageElement,
+      @JsonKey(name: '_message') PrimitiveElement? messageElement,
       FhirUri? detail,
-      @JsonKey(name: '_detail') Element? detailElement});
+      @JsonKey(name: '_detail') PrimitiveElement? detailElement});
 }
 
 /// @nodoc
@@ -11864,7 +11888,7 @@ class __$$TestReportOperationImplCopyWithImpl<$Res>
       resultElement: freezed == resultElement
           ? _value.resultElement
           : resultElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -11872,7 +11896,7 @@ class __$$TestReportOperationImplCopyWithImpl<$Res>
       messageElement: freezed == messageElement
           ? _value.messageElement
           : messageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       detail: freezed == detail
           ? _value.detail
           : detail // ignore: cast_nullable_to_non_nullable
@@ -11880,7 +11904,7 @@ class __$$TestReportOperationImplCopyWithImpl<$Res>
       detailElement: freezed == detailElement
           ? _value.detailElement
           : detailElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ));
   }
 }
@@ -11979,7 +12003,7 @@ class _$TestReportOperationImpl extends _TestReportOperation {
   /// [resultElement] Extensions for result
   @override
   @JsonKey(name: '_result')
-  final Element? resultElement;
+  final PrimitiveElement? resultElement;
 
   /// [message] An explanatory message associated with the result.
   @override
@@ -11988,7 +12012,7 @@ class _$TestReportOperationImpl extends _TestReportOperation {
   /// [messageElement] Extensions for message
   @override
   @JsonKey(name: '_message')
-  final Element? messageElement;
+  final PrimitiveElement? messageElement;
 
   /// [detail] A link to further details on the result.
   @override
@@ -11997,7 +12021,7 @@ class _$TestReportOperationImpl extends _TestReportOperation {
   /// [detailElement] Extensions for detail
   @override
   @JsonKey(name: '_detail')
-  final Element? detailElement;
+  final PrimitiveElement? detailElement;
 
   @override
   String toString() {
@@ -12060,11 +12084,11 @@ abstract class _TestReportOperation extends TestReportOperation {
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final FhirCode? result,
-          @JsonKey(name: '_result') final Element? resultElement,
+          @JsonKey(name: '_result') final PrimitiveElement? resultElement,
           final FhirMarkdown? message,
-          @JsonKey(name: '_message') final Element? messageElement,
+          @JsonKey(name: '_message') final PrimitiveElement? messageElement,
           final FhirUri? detail,
-          @JsonKey(name: '_detail') final Element? detailElement}) =
+          @JsonKey(name: '_detail') final PrimitiveElement? detailElement}) =
       _$TestReportOperationImpl;
   const _TestReportOperation._() : super._();
 
@@ -12110,7 +12134,7 @@ abstract class _TestReportOperation extends TestReportOperation {
 
   /// [resultElement] Extensions for result
   @JsonKey(name: '_result')
-  Element? get resultElement;
+  PrimitiveElement? get resultElement;
   @override
 
   /// [message] An explanatory message associated with the result.
@@ -12119,7 +12143,7 @@ abstract class _TestReportOperation extends TestReportOperation {
 
   /// [messageElement] Extensions for message
   @JsonKey(name: '_message')
-  Element? get messageElement;
+  PrimitiveElement? get messageElement;
   @override
 
   /// [detail] A link to further details on the result.
@@ -12128,7 +12152,7 @@ abstract class _TestReportOperation extends TestReportOperation {
 
   /// [detailElement] Extensions for detail
   @JsonKey(name: '_detail')
-  Element? get detailElement;
+  PrimitiveElement? get detailElement;
   @override
   @JsonKey(ignore: true)
   _$$TestReportOperationImplCopyWith<_$TestReportOperationImpl> get copyWith =>
@@ -12175,21 +12199,21 @@ mixin _$TestReportAssert {
 
   /// [resultElement] Extensions for result
   @JsonKey(name: '_result')
-  Element? get resultElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get resultElement => throw _privateConstructorUsedError;
 
   /// [message] An explanatory message associated with the result.
   FhirMarkdown? get message => throw _privateConstructorUsedError;
 
   /// [messageElement] Extensions for message
   @JsonKey(name: '_message')
-  Element? get messageElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get messageElement => throw _privateConstructorUsedError;
 
   /// [detail] A link to further details on the result.
   String? get detail => throw _privateConstructorUsedError;
 
   /// [detailElement] Extensions for detail
   @JsonKey(name: '_detail')
-  Element? get detailElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get detailElement => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -12208,11 +12232,11 @@ abstract class $TestReportAssertCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? result,
-      @JsonKey(name: '_result') Element? resultElement,
+      @JsonKey(name: '_result') PrimitiveElement? resultElement,
       FhirMarkdown? message,
-      @JsonKey(name: '_message') Element? messageElement,
+      @JsonKey(name: '_message') PrimitiveElement? messageElement,
       String? detail,
-      @JsonKey(name: '_detail') Element? detailElement});
+      @JsonKey(name: '_detail') PrimitiveElement? detailElement});
 }
 
 /// @nodoc
@@ -12258,7 +12282,7 @@ class _$TestReportAssertCopyWithImpl<$Res, $Val extends TestReportAssert>
       resultElement: freezed == resultElement
           ? _value.resultElement
           : resultElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -12266,7 +12290,7 @@ class _$TestReportAssertCopyWithImpl<$Res, $Val extends TestReportAssert>
       messageElement: freezed == messageElement
           ? _value.messageElement
           : messageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       detail: freezed == detail
           ? _value.detail
           : detail // ignore: cast_nullable_to_non_nullable
@@ -12274,7 +12298,7 @@ class _$TestReportAssertCopyWithImpl<$Res, $Val extends TestReportAssert>
       detailElement: freezed == detailElement
           ? _value.detailElement
           : detailElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ) as $Val);
   }
 }
@@ -12292,11 +12316,11 @@ abstract class _$$TestReportAssertImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? result,
-      @JsonKey(name: '_result') Element? resultElement,
+      @JsonKey(name: '_result') PrimitiveElement? resultElement,
       FhirMarkdown? message,
-      @JsonKey(name: '_message') Element? messageElement,
+      @JsonKey(name: '_message') PrimitiveElement? messageElement,
       String? detail,
-      @JsonKey(name: '_detail') Element? detailElement});
+      @JsonKey(name: '_detail') PrimitiveElement? detailElement});
 }
 
 /// @nodoc
@@ -12340,7 +12364,7 @@ class __$$TestReportAssertImplCopyWithImpl<$Res>
       resultElement: freezed == resultElement
           ? _value.resultElement
           : resultElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -12348,7 +12372,7 @@ class __$$TestReportAssertImplCopyWithImpl<$Res>
       messageElement: freezed == messageElement
           ? _value.messageElement
           : messageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       detail: freezed == detail
           ? _value.detail
           : detail // ignore: cast_nullable_to_non_nullable
@@ -12356,7 +12380,7 @@ class __$$TestReportAssertImplCopyWithImpl<$Res>
       detailElement: freezed == detailElement
           ? _value.detailElement
           : detailElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ));
   }
 }
@@ -12455,7 +12479,7 @@ class _$TestReportAssertImpl extends _TestReportAssert {
   /// [resultElement] Extensions for result
   @override
   @JsonKey(name: '_result')
-  final Element? resultElement;
+  final PrimitiveElement? resultElement;
 
   /// [message] An explanatory message associated with the result.
   @override
@@ -12464,7 +12488,7 @@ class _$TestReportAssertImpl extends _TestReportAssert {
   /// [messageElement] Extensions for message
   @override
   @JsonKey(name: '_message')
-  final Element? messageElement;
+  final PrimitiveElement? messageElement;
 
   /// [detail] A link to further details on the result.
   @override
@@ -12473,7 +12497,7 @@ class _$TestReportAssertImpl extends _TestReportAssert {
   /// [detailElement] Extensions for detail
   @override
   @JsonKey(name: '_detail')
-  final Element? detailElement;
+  final PrimitiveElement? detailElement;
 
   @override
   String toString() {
@@ -12536,11 +12560,11 @@ abstract class _TestReportAssert extends TestReportAssert {
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final FhirCode? result,
-          @JsonKey(name: '_result') final Element? resultElement,
+          @JsonKey(name: '_result') final PrimitiveElement? resultElement,
           final FhirMarkdown? message,
-          @JsonKey(name: '_message') final Element? messageElement,
+          @JsonKey(name: '_message') final PrimitiveElement? messageElement,
           final String? detail,
-          @JsonKey(name: '_detail') final Element? detailElement}) =
+          @JsonKey(name: '_detail') final PrimitiveElement? detailElement}) =
       _$TestReportAssertImpl;
   const _TestReportAssert._() : super._();
 
@@ -12586,7 +12610,7 @@ abstract class _TestReportAssert extends TestReportAssert {
 
   /// [resultElement] Extensions for result
   @JsonKey(name: '_result')
-  Element? get resultElement;
+  PrimitiveElement? get resultElement;
   @override
 
   /// [message] An explanatory message associated with the result.
@@ -12595,7 +12619,7 @@ abstract class _TestReportAssert extends TestReportAssert {
 
   /// [messageElement] Extensions for message
   @JsonKey(name: '_message')
-  Element? get messageElement;
+  PrimitiveElement? get messageElement;
   @override
 
   /// [detail] A link to further details on the result.
@@ -12604,7 +12628,7 @@ abstract class _TestReportAssert extends TestReportAssert {
 
   /// [detailElement] Extensions for detail
   @JsonKey(name: '_detail')
-  Element? get detailElement;
+  PrimitiveElement? get detailElement;
   @override
   @JsonKey(ignore: true)
   _$$TestReportAssertImplCopyWith<_$TestReportAssertImpl> get copyWith =>
@@ -12652,7 +12676,7 @@ mixin _$TestReportTest {
 
   /// [nameElement] Extensions for name
   @JsonKey(name: '_name')
-  Element? get nameElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get nameElement => throw _privateConstructorUsedError;
 
   /// [description] A short description of the test used by test engines for
   ///  tracking and reporting purposes.
@@ -12660,7 +12684,8 @@ mixin _$TestReportTest {
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get descriptionElement =>
+      throw _privateConstructorUsedError;
 
   /// [action] Action would contain either an operation or an assertion.
   List<TestReportAction1> get action => throw _privateConstructorUsedError;
@@ -12682,9 +12707,9 @@ abstract class $TestReportTestCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? name,
-      @JsonKey(name: '_name') Element? nameElement,
+      @JsonKey(name: '_name') PrimitiveElement? nameElement,
       String? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       List<TestReportAction1> action});
 }
 
@@ -12730,7 +12755,7 @@ class _$TestReportTestCopyWithImpl<$Res, $Val extends TestReportTest>
       nameElement: freezed == nameElement
           ? _value.nameElement
           : nameElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -12738,7 +12763,7 @@ class _$TestReportTestCopyWithImpl<$Res, $Val extends TestReportTest>
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       action: null == action
           ? _value.action
           : action // ignore: cast_nullable_to_non_nullable
@@ -12760,9 +12785,9 @@ abstract class _$$TestReportTestImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? name,
-      @JsonKey(name: '_name') Element? nameElement,
+      @JsonKey(name: '_name') PrimitiveElement? nameElement,
       String? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       List<TestReportAction1> action});
 }
 
@@ -12806,7 +12831,7 @@ class __$$TestReportTestImplCopyWithImpl<$Res>
       nameElement: freezed == nameElement
           ? _value.nameElement
           : nameElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -12814,7 +12839,7 @@ class __$$TestReportTestImplCopyWithImpl<$Res>
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       action: null == action
           ? _value._action
           : action // ignore: cast_nullable_to_non_nullable
@@ -12918,7 +12943,7 @@ class _$TestReportTestImpl extends _TestReportTest {
   /// [nameElement] Extensions for name
   @override
   @JsonKey(name: '_name')
-  final Element? nameElement;
+  final PrimitiveElement? nameElement;
 
   /// [description] A short description of the test used by test engines for
   ///  tracking and reporting purposes.
@@ -12928,7 +12953,7 @@ class _$TestReportTestImpl extends _TestReportTest {
   /// [descriptionElement] Extensions for description
   @override
   @JsonKey(name: '_description')
-  final Element? descriptionElement;
+  final PrimitiveElement? descriptionElement;
 
   /// [action] Action would contain either an operation or an assertion.
   final List<TestReportAction1> _action;
@@ -13000,9 +13025,9 @@ abstract class _TestReportTest extends TestReportTest {
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final String? name,
-      @JsonKey(name: '_name') final Element? nameElement,
+      @JsonKey(name: '_name') final PrimitiveElement? nameElement,
       final String? description,
-      @JsonKey(name: '_description') final Element? descriptionElement,
+      @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       required final List<TestReportAction1> action}) = _$TestReportTestImpl;
   const _TestReportTest._() : super._();
 
@@ -13049,7 +13074,7 @@ abstract class _TestReportTest extends TestReportTest {
 
   /// [nameElement] Extensions for name
   @JsonKey(name: '_name')
-  Element? get nameElement;
+  PrimitiveElement? get nameElement;
   @override
 
   /// [description] A short description of the test used by test engines for
@@ -13059,7 +13084,7 @@ abstract class _TestReportTest extends TestReportTest {
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement;
+  PrimitiveElement? get descriptionElement;
   @override
 
   /// [action] Action would contain either an operation or an assertion.
@@ -14170,14 +14195,15 @@ mixin _$TestScript {
 
   /// [implicitRulesElement] Extensions for implicitRules
   @JsonKey(name: '_implicitRules')
-  Element? get implicitRulesElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get implicitRulesElement =>
+      throw _privateConstructorUsedError;
 
   /// [language] The base language in which the resource is written.
   FhirCode? get language => throw _privateConstructorUsedError;
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get languageElement => throw _privateConstructorUsedError;
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -14229,7 +14255,7 @@ mixin _$TestScript {
 
   /// [urlElement] Extensions for url
   @JsonKey(name: '_url')
-  Element? get urlElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get urlElement => throw _privateConstructorUsedError;
 
   /// [identifier] A formal identifier that is used to identify this test
   /// script when it is represented in other formats, or referenced in a
@@ -14247,7 +14273,7 @@ mixin _$TestScript {
 
   /// [versionElement] Extensions for version
   @JsonKey(name: '_version')
-  Element? get versionElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get versionElement => throw _privateConstructorUsedError;
 
   /// [name] A natural language name identifying the test script. This name
   /// should be usable as an identifier for the module by machine processing
@@ -14256,14 +14282,14 @@ mixin _$TestScript {
 
   /// [nameElement] Extensions for name
   @JsonKey(name: '_name')
-  Element? get nameElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get nameElement => throw _privateConstructorUsedError;
 
   /// [title] A short, descriptive, user-friendly title for the test script.
   String? get title => throw _privateConstructorUsedError;
 
   /// [titleElement] Extensions for title
   @JsonKey(name: '_title')
-  Element? get titleElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get titleElement => throw _privateConstructorUsedError;
 
   /// [status] The status of this test script. Enables tracking the life-cycle
   ///  of the content.
@@ -14271,7 +14297,7 @@ mixin _$TestScript {
 
   /// [statusElement] Extensions for status
   @JsonKey(name: '_status')
-  Element? get statusElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get statusElement => throw _privateConstructorUsedError;
 
   /// [experimental] A Boolean value to indicate that this test script is
   /// authored for testing purposes (or education/evaluation/marketing) and is
@@ -14280,7 +14306,8 @@ mixin _$TestScript {
 
   /// [experimentalElement] Extensions for experimental
   @JsonKey(name: '_experimental')
-  Element? get experimentalElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get experimentalElement =>
+      throw _privateConstructorUsedError;
 
   /// [date] The date  (and optionally time) when the test script was
   /// published. The date must change when the business version changes and it
@@ -14290,7 +14317,7 @@ mixin _$TestScript {
 
   /// [dateElement] Extensions for date
   @JsonKey(name: '_date')
-  Element? get dateElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get dateElement => throw _privateConstructorUsedError;
 
   /// [publisher] The name of the organization or individual that published the
   ///  test script.
@@ -14298,7 +14325,7 @@ mixin _$TestScript {
 
   /// [publisherElement] Extensions for publisher
   @JsonKey(name: '_publisher')
-  Element? get publisherElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get publisherElement => throw _privateConstructorUsedError;
 
   /// [contact] Contact details to assist a user in finding and communicating
   ///  with the publisher.
@@ -14310,7 +14337,8 @@ mixin _$TestScript {
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get descriptionElement =>
+      throw _privateConstructorUsedError;
 
   /// [useContext] The content was developed with a focus and intent of
   /// supporting the contexts that are listed. These contexts may be general
@@ -14329,7 +14357,7 @@ mixin _$TestScript {
 
   /// [purposeElement] Extensions for purpose
   @JsonKey(name: '_purpose')
-  Element? get purposeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get purposeElement => throw _privateConstructorUsedError;
 
   /// [copyright] A copyright statement relating to the test script and/or its
   /// contents. Copyright statements are generally legal restrictions on the use
@@ -14338,7 +14366,7 @@ mixin _$TestScript {
 
   /// [copyrightElement] Extensions for copyright
   @JsonKey(name: '_copyright')
-  Element? get copyrightElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get copyrightElement => throw _privateConstructorUsedError;
 
   /// [origin] An abstract server used in operations within this test script in
   ///  the origin element.
@@ -14392,39 +14420,39 @@ abstract class $TestScriptCopyWith<$Res> {
       String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
       FhirCode? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       Narrative? text,
       List<Resource>? contained,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirUri? url,
-      @JsonKey(name: '_url') Element? urlElement,
+      @JsonKey(name: '_url') PrimitiveElement? urlElement,
       Identifier? identifier,
       String? version,
-      @JsonKey(name: '_version') Element? versionElement,
+      @JsonKey(name: '_version') PrimitiveElement? versionElement,
       String? name,
-      @JsonKey(name: '_name') Element? nameElement,
+      @JsonKey(name: '_name') PrimitiveElement? nameElement,
       String? title,
-      @JsonKey(name: '_title') Element? titleElement,
+      @JsonKey(name: '_title') PrimitiveElement? titleElement,
       FhirCode? status,
-      @JsonKey(name: '_status') Element? statusElement,
+      @JsonKey(name: '_status') PrimitiveElement? statusElement,
       FhirBoolean? experimental,
-      @JsonKey(name: '_experimental') Element? experimentalElement,
+      @JsonKey(name: '_experimental') PrimitiveElement? experimentalElement,
       FhirDateTime? date,
-      @JsonKey(name: '_date') Element? dateElement,
+      @JsonKey(name: '_date') PrimitiveElement? dateElement,
       String? publisher,
-      @JsonKey(name: '_publisher') Element? publisherElement,
+      @JsonKey(name: '_publisher') PrimitiveElement? publisherElement,
       List<ContactDetail>? contact,
       FhirMarkdown? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       List<UsageContext>? useContext,
       List<CodeableConcept>? jurisdiction,
       FhirMarkdown? purpose,
-      @JsonKey(name: '_purpose') Element? purposeElement,
+      @JsonKey(name: '_purpose') PrimitiveElement? purposeElement,
       FhirMarkdown? copyright,
-      @JsonKey(name: '_copyright') Element? copyrightElement,
+      @JsonKey(name: '_copyright') PrimitiveElement? copyrightElement,
       List<TestScriptOrigin>? origin,
       List<TestScriptDestination>? destination,
       TestScriptMetadata? metadata,
@@ -14523,7 +14551,7 @@ class _$TestScriptCopyWithImpl<$Res, $Val extends TestScript>
       implicitRulesElement: freezed == implicitRulesElement
           ? _value.implicitRulesElement
           : implicitRulesElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -14531,7 +14559,7 @@ class _$TestScriptCopyWithImpl<$Res, $Val extends TestScript>
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -14555,7 +14583,7 @@ class _$TestScriptCopyWithImpl<$Res, $Val extends TestScript>
       urlElement: freezed == urlElement
           ? _value.urlElement
           : urlElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       identifier: freezed == identifier
           ? _value.identifier
           : identifier // ignore: cast_nullable_to_non_nullable
@@ -14567,7 +14595,7 @@ class _$TestScriptCopyWithImpl<$Res, $Val extends TestScript>
       versionElement: freezed == versionElement
           ? _value.versionElement
           : versionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -14575,7 +14603,7 @@ class _$TestScriptCopyWithImpl<$Res, $Val extends TestScript>
       nameElement: freezed == nameElement
           ? _value.nameElement
           : nameElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -14583,7 +14611,7 @@ class _$TestScriptCopyWithImpl<$Res, $Val extends TestScript>
       titleElement: freezed == titleElement
           ? _value.titleElement
           : titleElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -14591,7 +14619,7 @@ class _$TestScriptCopyWithImpl<$Res, $Val extends TestScript>
       statusElement: freezed == statusElement
           ? _value.statusElement
           : statusElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       experimental: freezed == experimental
           ? _value.experimental
           : experimental // ignore: cast_nullable_to_non_nullable
@@ -14599,7 +14627,7 @@ class _$TestScriptCopyWithImpl<$Res, $Val extends TestScript>
       experimentalElement: freezed == experimentalElement
           ? _value.experimentalElement
           : experimentalElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       date: freezed == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -14607,7 +14635,7 @@ class _$TestScriptCopyWithImpl<$Res, $Val extends TestScript>
       dateElement: freezed == dateElement
           ? _value.dateElement
           : dateElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       publisher: freezed == publisher
           ? _value.publisher
           : publisher // ignore: cast_nullable_to_non_nullable
@@ -14615,7 +14643,7 @@ class _$TestScriptCopyWithImpl<$Res, $Val extends TestScript>
       publisherElement: freezed == publisherElement
           ? _value.publisherElement
           : publisherElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       contact: freezed == contact
           ? _value.contact
           : contact // ignore: cast_nullable_to_non_nullable
@@ -14627,7 +14655,7 @@ class _$TestScriptCopyWithImpl<$Res, $Val extends TestScript>
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       useContext: freezed == useContext
           ? _value.useContext
           : useContext // ignore: cast_nullable_to_non_nullable
@@ -14643,7 +14671,7 @@ class _$TestScriptCopyWithImpl<$Res, $Val extends TestScript>
       purposeElement: freezed == purposeElement
           ? _value.purposeElement
           : purposeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       copyright: freezed == copyright
           ? _value.copyright
           : copyright // ignore: cast_nullable_to_non_nullable
@@ -14651,7 +14679,7 @@ class _$TestScriptCopyWithImpl<$Res, $Val extends TestScript>
       copyrightElement: freezed == copyrightElement
           ? _value.copyrightElement
           : copyrightElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       origin: freezed == origin
           ? _value.origin
           : origin // ignore: cast_nullable_to_non_nullable
@@ -14778,39 +14806,39 @@ abstract class _$$TestScriptImplCopyWith<$Res>
       String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
       FhirCode? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       Narrative? text,
       List<Resource>? contained,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirUri? url,
-      @JsonKey(name: '_url') Element? urlElement,
+      @JsonKey(name: '_url') PrimitiveElement? urlElement,
       Identifier? identifier,
       String? version,
-      @JsonKey(name: '_version') Element? versionElement,
+      @JsonKey(name: '_version') PrimitiveElement? versionElement,
       String? name,
-      @JsonKey(name: '_name') Element? nameElement,
+      @JsonKey(name: '_name') PrimitiveElement? nameElement,
       String? title,
-      @JsonKey(name: '_title') Element? titleElement,
+      @JsonKey(name: '_title') PrimitiveElement? titleElement,
       FhirCode? status,
-      @JsonKey(name: '_status') Element? statusElement,
+      @JsonKey(name: '_status') PrimitiveElement? statusElement,
       FhirBoolean? experimental,
-      @JsonKey(name: '_experimental') Element? experimentalElement,
+      @JsonKey(name: '_experimental') PrimitiveElement? experimentalElement,
       FhirDateTime? date,
-      @JsonKey(name: '_date') Element? dateElement,
+      @JsonKey(name: '_date') PrimitiveElement? dateElement,
       String? publisher,
-      @JsonKey(name: '_publisher') Element? publisherElement,
+      @JsonKey(name: '_publisher') PrimitiveElement? publisherElement,
       List<ContactDetail>? contact,
       FhirMarkdown? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       List<UsageContext>? useContext,
       List<CodeableConcept>? jurisdiction,
       FhirMarkdown? purpose,
-      @JsonKey(name: '_purpose') Element? purposeElement,
+      @JsonKey(name: '_purpose') PrimitiveElement? purposeElement,
       FhirMarkdown? copyright,
-      @JsonKey(name: '_copyright') Element? copyrightElement,
+      @JsonKey(name: '_copyright') PrimitiveElement? copyrightElement,
       List<TestScriptOrigin>? origin,
       List<TestScriptDestination>? destination,
       TestScriptMetadata? metadata,
@@ -14913,7 +14941,7 @@ class __$$TestScriptImplCopyWithImpl<$Res>
       implicitRulesElement: freezed == implicitRulesElement
           ? _value.implicitRulesElement
           : implicitRulesElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -14921,7 +14949,7 @@ class __$$TestScriptImplCopyWithImpl<$Res>
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -14945,7 +14973,7 @@ class __$$TestScriptImplCopyWithImpl<$Res>
       urlElement: freezed == urlElement
           ? _value.urlElement
           : urlElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       identifier: freezed == identifier
           ? _value.identifier
           : identifier // ignore: cast_nullable_to_non_nullable
@@ -14957,7 +14985,7 @@ class __$$TestScriptImplCopyWithImpl<$Res>
       versionElement: freezed == versionElement
           ? _value.versionElement
           : versionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -14965,7 +14993,7 @@ class __$$TestScriptImplCopyWithImpl<$Res>
       nameElement: freezed == nameElement
           ? _value.nameElement
           : nameElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -14973,7 +15001,7 @@ class __$$TestScriptImplCopyWithImpl<$Res>
       titleElement: freezed == titleElement
           ? _value.titleElement
           : titleElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -14981,7 +15009,7 @@ class __$$TestScriptImplCopyWithImpl<$Res>
       statusElement: freezed == statusElement
           ? _value.statusElement
           : statusElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       experimental: freezed == experimental
           ? _value.experimental
           : experimental // ignore: cast_nullable_to_non_nullable
@@ -14989,7 +15017,7 @@ class __$$TestScriptImplCopyWithImpl<$Res>
       experimentalElement: freezed == experimentalElement
           ? _value.experimentalElement
           : experimentalElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       date: freezed == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -14997,7 +15025,7 @@ class __$$TestScriptImplCopyWithImpl<$Res>
       dateElement: freezed == dateElement
           ? _value.dateElement
           : dateElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       publisher: freezed == publisher
           ? _value.publisher
           : publisher // ignore: cast_nullable_to_non_nullable
@@ -15005,7 +15033,7 @@ class __$$TestScriptImplCopyWithImpl<$Res>
       publisherElement: freezed == publisherElement
           ? _value.publisherElement
           : publisherElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       contact: freezed == contact
           ? _value._contact
           : contact // ignore: cast_nullable_to_non_nullable
@@ -15017,7 +15045,7 @@ class __$$TestScriptImplCopyWithImpl<$Res>
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       useContext: freezed == useContext
           ? _value._useContext
           : useContext // ignore: cast_nullable_to_non_nullable
@@ -15033,7 +15061,7 @@ class __$$TestScriptImplCopyWithImpl<$Res>
       purposeElement: freezed == purposeElement
           ? _value.purposeElement
           : purposeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       copyright: freezed == copyright
           ? _value.copyright
           : copyright // ignore: cast_nullable_to_non_nullable
@@ -15041,7 +15069,7 @@ class __$$TestScriptImplCopyWithImpl<$Res>
       copyrightElement: freezed == copyrightElement
           ? _value.copyrightElement
           : copyrightElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       origin: freezed == origin
           ? _value._origin
           : origin // ignore: cast_nullable_to_non_nullable
@@ -15175,7 +15203,7 @@ class _$TestScriptImpl extends _TestScript {
   /// [implicitRulesElement] Extensions for implicitRules
   @override
   @JsonKey(name: '_implicitRules')
-  final Element? implicitRulesElement;
+  final PrimitiveElement? implicitRulesElement;
 
   /// [language] The base language in which the resource is written.
   @override
@@ -15184,7 +15212,7 @@ class _$TestScriptImpl extends _TestScript {
   /// [languageElement] Extensions for language
   @override
   @JsonKey(name: '_language')
-  final Element? languageElement;
+  final PrimitiveElement? languageElement;
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -15289,7 +15317,7 @@ class _$TestScriptImpl extends _TestScript {
   /// [urlElement] Extensions for url
   @override
   @JsonKey(name: '_url')
-  final Element? urlElement;
+  final PrimitiveElement? urlElement;
 
   /// [identifier] A formal identifier that is used to identify this test
   /// script when it is represented in other formats, or referenced in a
@@ -15310,7 +15338,7 @@ class _$TestScriptImpl extends _TestScript {
   /// [versionElement] Extensions for version
   @override
   @JsonKey(name: '_version')
-  final Element? versionElement;
+  final PrimitiveElement? versionElement;
 
   /// [name] A natural language name identifying the test script. This name
   /// should be usable as an identifier for the module by machine processing
@@ -15321,7 +15349,7 @@ class _$TestScriptImpl extends _TestScript {
   /// [nameElement] Extensions for name
   @override
   @JsonKey(name: '_name')
-  final Element? nameElement;
+  final PrimitiveElement? nameElement;
 
   /// [title] A short, descriptive, user-friendly title for the test script.
   @override
@@ -15330,7 +15358,7 @@ class _$TestScriptImpl extends _TestScript {
   /// [titleElement] Extensions for title
   @override
   @JsonKey(name: '_title')
-  final Element? titleElement;
+  final PrimitiveElement? titleElement;
 
   /// [status] The status of this test script. Enables tracking the life-cycle
   ///  of the content.
@@ -15340,7 +15368,7 @@ class _$TestScriptImpl extends _TestScript {
   /// [statusElement] Extensions for status
   @override
   @JsonKey(name: '_status')
-  final Element? statusElement;
+  final PrimitiveElement? statusElement;
 
   /// [experimental] A Boolean value to indicate that this test script is
   /// authored for testing purposes (or education/evaluation/marketing) and is
@@ -15351,7 +15379,7 @@ class _$TestScriptImpl extends _TestScript {
   /// [experimentalElement] Extensions for experimental
   @override
   @JsonKey(name: '_experimental')
-  final Element? experimentalElement;
+  final PrimitiveElement? experimentalElement;
 
   /// [date] The date  (and optionally time) when the test script was
   /// published. The date must change when the business version changes and it
@@ -15363,7 +15391,7 @@ class _$TestScriptImpl extends _TestScript {
   /// [dateElement] Extensions for date
   @override
   @JsonKey(name: '_date')
-  final Element? dateElement;
+  final PrimitiveElement? dateElement;
 
   /// [publisher] The name of the organization or individual that published the
   ///  test script.
@@ -15373,7 +15401,7 @@ class _$TestScriptImpl extends _TestScript {
   /// [publisherElement] Extensions for publisher
   @override
   @JsonKey(name: '_publisher')
-  final Element? publisherElement;
+  final PrimitiveElement? publisherElement;
 
   /// [contact] Contact details to assist a user in finding and communicating
   ///  with the publisher.
@@ -15398,7 +15426,7 @@ class _$TestScriptImpl extends _TestScript {
   /// [descriptionElement] Extensions for description
   @override
   @JsonKey(name: '_description')
-  final Element? descriptionElement;
+  final PrimitiveElement? descriptionElement;
 
   /// [useContext] The content was developed with a focus and intent of
   /// supporting the contexts that are listed. These contexts may be general
@@ -15444,7 +15472,7 @@ class _$TestScriptImpl extends _TestScript {
   /// [purposeElement] Extensions for purpose
   @override
   @JsonKey(name: '_purpose')
-  final Element? purposeElement;
+  final PrimitiveElement? purposeElement;
 
   /// [copyright] A copyright statement relating to the test script and/or its
   /// contents. Copyright statements are generally legal restrictions on the use
@@ -15455,7 +15483,7 @@ class _$TestScriptImpl extends _TestScript {
   /// [copyrightElement] Extensions for copyright
   @override
   @JsonKey(name: '_copyright')
-  final Element? copyrightElement;
+  final PrimitiveElement? copyrightElement;
 
   /// [origin] An abstract server used in operations within this test script in
   ///  the origin element.
@@ -15717,39 +15745,41 @@ abstract class _TestScript extends TestScript {
       final String? id,
       final FhirMeta? meta,
       final FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') final Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules')
+      final PrimitiveElement? implicitRulesElement,
       final FhirCode? language,
-      @JsonKey(name: '_language') final Element? languageElement,
+      @JsonKey(name: '_language') final PrimitiveElement? languageElement,
       final Narrative? text,
       final List<Resource>? contained,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirUri? url,
-      @JsonKey(name: '_url') final Element? urlElement,
+      @JsonKey(name: '_url') final PrimitiveElement? urlElement,
       final Identifier? identifier,
       final String? version,
-      @JsonKey(name: '_version') final Element? versionElement,
+      @JsonKey(name: '_version') final PrimitiveElement? versionElement,
       final String? name,
-      @JsonKey(name: '_name') final Element? nameElement,
+      @JsonKey(name: '_name') final PrimitiveElement? nameElement,
       final String? title,
-      @JsonKey(name: '_title') final Element? titleElement,
+      @JsonKey(name: '_title') final PrimitiveElement? titleElement,
       final FhirCode? status,
-      @JsonKey(name: '_status') final Element? statusElement,
+      @JsonKey(name: '_status') final PrimitiveElement? statusElement,
       final FhirBoolean? experimental,
-      @JsonKey(name: '_experimental') final Element? experimentalElement,
+      @JsonKey(name: '_experimental')
+      final PrimitiveElement? experimentalElement,
       final FhirDateTime? date,
-      @JsonKey(name: '_date') final Element? dateElement,
+      @JsonKey(name: '_date') final PrimitiveElement? dateElement,
       final String? publisher,
-      @JsonKey(name: '_publisher') final Element? publisherElement,
+      @JsonKey(name: '_publisher') final PrimitiveElement? publisherElement,
       final List<ContactDetail>? contact,
       final FhirMarkdown? description,
-      @JsonKey(name: '_description') final Element? descriptionElement,
+      @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       final List<UsageContext>? useContext,
       final List<CodeableConcept>? jurisdiction,
       final FhirMarkdown? purpose,
-      @JsonKey(name: '_purpose') final Element? purposeElement,
+      @JsonKey(name: '_purpose') final PrimitiveElement? purposeElement,
       final FhirMarkdown? copyright,
-      @JsonKey(name: '_copyright') final Element? copyrightElement,
+      @JsonKey(name: '_copyright') final PrimitiveElement? copyrightElement,
       final List<TestScriptOrigin>? origin,
       final List<TestScriptDestination>? destination,
       final TestScriptMetadata? metadata,
@@ -15789,7 +15819,7 @@ abstract class _TestScript extends TestScript {
 
   /// [implicitRulesElement] Extensions for implicitRules
   @JsonKey(name: '_implicitRules')
-  Element? get implicitRulesElement;
+  PrimitiveElement? get implicitRulesElement;
   @override
 
   /// [language] The base language in which the resource is written.
@@ -15798,7 +15828,7 @@ abstract class _TestScript extends TestScript {
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement;
+  PrimitiveElement? get languageElement;
   @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
@@ -15855,7 +15885,7 @@ abstract class _TestScript extends TestScript {
 
   /// [urlElement] Extensions for url
   @JsonKey(name: '_url')
-  Element? get urlElement;
+  PrimitiveElement? get urlElement;
   @override
 
   /// [identifier] A formal identifier that is used to identify this test
@@ -15876,7 +15906,7 @@ abstract class _TestScript extends TestScript {
 
   /// [versionElement] Extensions for version
   @JsonKey(name: '_version')
-  Element? get versionElement;
+  PrimitiveElement? get versionElement;
   @override
 
   /// [name] A natural language name identifying the test script. This name
@@ -15887,7 +15917,7 @@ abstract class _TestScript extends TestScript {
 
   /// [nameElement] Extensions for name
   @JsonKey(name: '_name')
-  Element? get nameElement;
+  PrimitiveElement? get nameElement;
   @override
 
   /// [title] A short, descriptive, user-friendly title for the test script.
@@ -15896,7 +15926,7 @@ abstract class _TestScript extends TestScript {
 
   /// [titleElement] Extensions for title
   @JsonKey(name: '_title')
-  Element? get titleElement;
+  PrimitiveElement? get titleElement;
   @override
 
   /// [status] The status of this test script. Enables tracking the life-cycle
@@ -15906,7 +15936,7 @@ abstract class _TestScript extends TestScript {
 
   /// [statusElement] Extensions for status
   @JsonKey(name: '_status')
-  Element? get statusElement;
+  PrimitiveElement? get statusElement;
   @override
 
   /// [experimental] A Boolean value to indicate that this test script is
@@ -15917,7 +15947,7 @@ abstract class _TestScript extends TestScript {
 
   /// [experimentalElement] Extensions for experimental
   @JsonKey(name: '_experimental')
-  Element? get experimentalElement;
+  PrimitiveElement? get experimentalElement;
   @override
 
   /// [date] The date  (and optionally time) when the test script was
@@ -15929,7 +15959,7 @@ abstract class _TestScript extends TestScript {
 
   /// [dateElement] Extensions for date
   @JsonKey(name: '_date')
-  Element? get dateElement;
+  PrimitiveElement? get dateElement;
   @override
 
   /// [publisher] The name of the organization or individual that published the
@@ -15939,7 +15969,7 @@ abstract class _TestScript extends TestScript {
 
   /// [publisherElement] Extensions for publisher
   @JsonKey(name: '_publisher')
-  Element? get publisherElement;
+  PrimitiveElement? get publisherElement;
   @override
 
   /// [contact] Contact details to assist a user in finding and communicating
@@ -15954,7 +15984,7 @@ abstract class _TestScript extends TestScript {
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement;
+  PrimitiveElement? get descriptionElement;
   @override
 
   /// [useContext] The content was developed with a focus and intent of
@@ -15977,7 +16007,7 @@ abstract class _TestScript extends TestScript {
 
   /// [purposeElement] Extensions for purpose
   @JsonKey(name: '_purpose')
-  Element? get purposeElement;
+  PrimitiveElement? get purposeElement;
   @override
 
   /// [copyright] A copyright statement relating to the test script and/or its
@@ -15988,7 +16018,7 @@ abstract class _TestScript extends TestScript {
 
   /// [copyrightElement] Extensions for copyright
   @JsonKey(name: '_copyright')
-  Element? get copyrightElement;
+  PrimitiveElement? get copyrightElement;
   @override
 
   /// [origin] An abstract server used in operations within this test script in
@@ -16078,7 +16108,7 @@ mixin _$TestScriptOrigin {
 
   /// [indexElement] Extensions for index
   @JsonKey(name: '_index')
-  Element? get indexElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get indexElement => throw _privateConstructorUsedError;
 
   /// [profile] The type of origin profile the test system supports.
   Coding get profile => throw _privateConstructorUsedError;
@@ -16100,7 +16130,7 @@ abstract class $TestScriptOriginCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirInteger? index,
-      @JsonKey(name: '_index') Element? indexElement,
+      @JsonKey(name: '_index') PrimitiveElement? indexElement,
       Coding profile});
 
   $CodingCopyWith<$Res> get profile;
@@ -16146,7 +16176,7 @@ class _$TestScriptOriginCopyWithImpl<$Res, $Val extends TestScriptOrigin>
       indexElement: freezed == indexElement
           ? _value.indexElement
           : indexElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       profile: null == profile
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
@@ -16176,7 +16206,7 @@ abstract class _$$TestScriptOriginImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirInteger? index,
-      @JsonKey(name: '_index') Element? indexElement,
+      @JsonKey(name: '_index') PrimitiveElement? indexElement,
       Coding profile});
 
   @override
@@ -16221,7 +16251,7 @@ class __$$TestScriptOriginImplCopyWithImpl<$Res>
       indexElement: freezed == indexElement
           ? _value.indexElement
           : indexElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       profile: null == profile
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
@@ -16322,7 +16352,7 @@ class _$TestScriptOriginImpl extends _TestScriptOrigin {
   /// [indexElement] Extensions for index
   @override
   @JsonKey(name: '_index')
-  final Element? indexElement;
+  final PrimitiveElement? indexElement;
 
   /// [profile] The type of origin profile the test system supports.
   @override
@@ -16381,7 +16411,7 @@ abstract class _TestScriptOrigin extends TestScriptOrigin {
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirInteger? index,
-      @JsonKey(name: '_index') final Element? indexElement,
+      @JsonKey(name: '_index') final PrimitiveElement? indexElement,
       required final Coding profile}) = _$TestScriptOriginImpl;
   const _TestScriptOrigin._() : super._();
 
@@ -16428,7 +16458,7 @@ abstract class _TestScriptOrigin extends TestScriptOrigin {
 
   /// [indexElement] Extensions for index
   @JsonKey(name: '_index')
-  Element? get indexElement;
+  PrimitiveElement? get indexElement;
   @override
 
   /// [profile] The type of origin profile the test system supports.
@@ -16481,7 +16511,7 @@ mixin _$TestScriptDestination {
 
   /// [indexElement] Extensions for index
   @JsonKey(name: '_index')
-  Element? get indexElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get indexElement => throw _privateConstructorUsedError;
 
   /// [profile] The type of destination profile the test system supports.
   Coding get profile => throw _privateConstructorUsedError;
@@ -16503,7 +16533,7 @@ abstract class $TestScriptDestinationCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirInteger? index,
-      @JsonKey(name: '_index') Element? indexElement,
+      @JsonKey(name: '_index') PrimitiveElement? indexElement,
       Coding profile});
 
   $CodingCopyWith<$Res> get profile;
@@ -16550,7 +16580,7 @@ class _$TestScriptDestinationCopyWithImpl<$Res,
       indexElement: freezed == indexElement
           ? _value.indexElement
           : indexElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       profile: null == profile
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
@@ -16581,7 +16611,7 @@ abstract class _$$TestScriptDestinationImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirInteger? index,
-      @JsonKey(name: '_index') Element? indexElement,
+      @JsonKey(name: '_index') PrimitiveElement? indexElement,
       Coding profile});
 
   @override
@@ -16627,7 +16657,7 @@ class __$$TestScriptDestinationImplCopyWithImpl<$Res>
       indexElement: freezed == indexElement
           ? _value.indexElement
           : indexElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       profile: null == profile
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
@@ -16728,7 +16758,7 @@ class _$TestScriptDestinationImpl extends _TestScriptDestination {
   /// [indexElement] Extensions for index
   @override
   @JsonKey(name: '_index')
-  final Element? indexElement;
+  final PrimitiveElement? indexElement;
 
   /// [profile] The type of destination profile the test system supports.
   @override
@@ -16787,7 +16817,7 @@ abstract class _TestScriptDestination extends TestScriptDestination {
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirInteger? index,
-      @JsonKey(name: '_index') final Element? indexElement,
+      @JsonKey(name: '_index') final PrimitiveElement? indexElement,
       required final Coding profile}) = _$TestScriptDestinationImpl;
   const _TestScriptDestination._() : super._();
 
@@ -16834,7 +16864,7 @@ abstract class _TestScriptDestination extends TestScriptDestination {
 
   /// [indexElement] Extensions for index
   @JsonKey(name: '_index')
-  Element? get indexElement;
+  PrimitiveElement? get indexElement;
   @override
 
   /// [profile] The type of destination profile the test system supports.
@@ -17266,14 +17296,15 @@ mixin _$TestScriptLink {
 
   /// [urlElement] Extensions for url
   @JsonKey(name: '_url')
-  Element? get urlElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get urlElement => throw _privateConstructorUsedError;
 
   /// [description] Short description of the link.
   String? get description => throw _privateConstructorUsedError;
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get descriptionElement =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -17292,9 +17323,9 @@ abstract class $TestScriptLinkCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirUri? url,
-      @JsonKey(name: '_url') Element? urlElement,
+      @JsonKey(name: '_url') PrimitiveElement? urlElement,
       String? description,
-      @JsonKey(name: '_description') Element? descriptionElement});
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement});
 }
 
 /// @nodoc
@@ -17338,7 +17369,7 @@ class _$TestScriptLinkCopyWithImpl<$Res, $Val extends TestScriptLink>
       urlElement: freezed == urlElement
           ? _value.urlElement
           : urlElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -17346,7 +17377,7 @@ class _$TestScriptLinkCopyWithImpl<$Res, $Val extends TestScriptLink>
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ) as $Val);
   }
 }
@@ -17364,9 +17395,9 @@ abstract class _$$TestScriptLinkImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirUri? url,
-      @JsonKey(name: '_url') Element? urlElement,
+      @JsonKey(name: '_url') PrimitiveElement? urlElement,
       String? description,
-      @JsonKey(name: '_description') Element? descriptionElement});
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement});
 }
 
 /// @nodoc
@@ -17408,7 +17439,7 @@ class __$$TestScriptLinkImplCopyWithImpl<$Res>
       urlElement: freezed == urlElement
           ? _value.urlElement
           : urlElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -17416,7 +17447,7 @@ class __$$TestScriptLinkImplCopyWithImpl<$Res>
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ));
   }
 }
@@ -17514,7 +17545,7 @@ class _$TestScriptLinkImpl extends _TestScriptLink {
   /// [urlElement] Extensions for url
   @override
   @JsonKey(name: '_url')
-  final Element? urlElement;
+  final PrimitiveElement? urlElement;
 
   /// [description] Short description of the link.
   @override
@@ -17523,7 +17554,7 @@ class _$TestScriptLinkImpl extends _TestScriptLink {
   /// [descriptionElement] Extensions for description
   @override
   @JsonKey(name: '_description')
-  final Element? descriptionElement;
+  final PrimitiveElement? descriptionElement;
 
   @override
   String toString() {
@@ -17578,14 +17609,14 @@ class _$TestScriptLinkImpl extends _TestScriptLink {
 
 abstract class _TestScriptLink extends TestScriptLink {
   const factory _TestScriptLink(
-          {final String? id,
-          @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
-          final List<FhirExtension>? modifierExtension,
-          final FhirUri? url,
-          @JsonKey(name: '_url') final Element? urlElement,
-          final String? description,
-          @JsonKey(name: '_description') final Element? descriptionElement}) =
-      _$TestScriptLinkImpl;
+      {final String? id,
+      @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
+      final List<FhirExtension>? modifierExtension,
+      final FhirUri? url,
+      @JsonKey(name: '_url') final PrimitiveElement? urlElement,
+      final String? description,
+      @JsonKey(name: '_description')
+      final PrimitiveElement? descriptionElement}) = _$TestScriptLinkImpl;
   const _TestScriptLink._() : super._();
 
   factory _TestScriptLink.fromJson(Map<String, dynamic> json) =
@@ -17631,7 +17662,7 @@ abstract class _TestScriptLink extends TestScriptLink {
 
   /// [urlElement] Extensions for url
   @JsonKey(name: '_url')
-  Element? get urlElement;
+  PrimitiveElement? get urlElement;
   @override
 
   /// [description] Short description of the link.
@@ -17640,7 +17671,7 @@ abstract class _TestScriptLink extends TestScriptLink {
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement;
+  PrimitiveElement? get descriptionElement;
   @override
   @JsonKey(ignore: true)
   _$$TestScriptLinkImplCopyWith<_$TestScriptLinkImpl> get copyWith =>
@@ -17689,7 +17720,7 @@ mixin _$TestScriptCapability {
 
   /// [requiredElement] Extensions for required
   @JsonKey(name: '_required')
-  Element? get requiredElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get requiredElement => throw _privateConstructorUsedError;
 
   /// [validated] Whether or not the test execution will validate the given
   ///  capabilities of the server in order for this test script to execute.
@@ -17697,7 +17728,7 @@ mixin _$TestScriptCapability {
 
   /// [validatedElement] Extensions for validated
   @JsonKey(name: '_validated')
-  Element? get validatedElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get validatedElement => throw _privateConstructorUsedError;
 
   /// [description] Description of the capabilities that this test script is
   ///  requiring the server to support.
@@ -17705,7 +17736,8 @@ mixin _$TestScriptCapability {
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get descriptionElement =>
+      throw _privateConstructorUsedError;
 
   /// [origin] Which origin server these requirements apply to.
   List<FhirInteger>? get origin => throw _privateConstructorUsedError;
@@ -17719,7 +17751,8 @@ mixin _$TestScriptCapability {
 
   /// [destinationElement] Extensions for destination
   @JsonKey(name: '_destination')
-  Element? get destinationElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get destinationElement =>
+      throw _privateConstructorUsedError;
 
   /// [link] Links to the FHIR specification that describes this interaction
   ///  and the resources involved in more detail.
@@ -17752,15 +17785,15 @@ abstract class $TestScriptCapabilityCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       @JsonKey(name: 'required') FhirBoolean? required_,
-      @JsonKey(name: '_required') Element? requiredElement,
+      @JsonKey(name: '_required') PrimitiveElement? requiredElement,
       FhirBoolean? validated,
-      @JsonKey(name: '_validated') Element? validatedElement,
+      @JsonKey(name: '_validated') PrimitiveElement? validatedElement,
       String? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       List<FhirInteger>? origin,
       @JsonKey(name: '_origin') List<Element?>? originElement,
       FhirInteger? destination,
-      @JsonKey(name: '_destination') Element? destinationElement,
+      @JsonKey(name: '_destination') PrimitiveElement? destinationElement,
       List<FhirUri>? link,
       @JsonKey(name: '_link') List<Element?>? linkElement,
       FhirCanonical capabilities});
@@ -17817,7 +17850,7 @@ class _$TestScriptCapabilityCopyWithImpl<$Res,
       requiredElement: freezed == requiredElement
           ? _value.requiredElement
           : requiredElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       validated: freezed == validated
           ? _value.validated
           : validated // ignore: cast_nullable_to_non_nullable
@@ -17825,7 +17858,7 @@ class _$TestScriptCapabilityCopyWithImpl<$Res,
       validatedElement: freezed == validatedElement
           ? _value.validatedElement
           : validatedElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -17833,7 +17866,7 @@ class _$TestScriptCapabilityCopyWithImpl<$Res,
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       origin: freezed == origin
           ? _value.origin
           : origin // ignore: cast_nullable_to_non_nullable
@@ -17849,7 +17882,7 @@ class _$TestScriptCapabilityCopyWithImpl<$Res,
       destinationElement: freezed == destinationElement
           ? _value.destinationElement
           : destinationElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       link: freezed == link
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
@@ -17879,15 +17912,15 @@ abstract class _$$TestScriptCapabilityImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       @JsonKey(name: 'required') FhirBoolean? required_,
-      @JsonKey(name: '_required') Element? requiredElement,
+      @JsonKey(name: '_required') PrimitiveElement? requiredElement,
       FhirBoolean? validated,
-      @JsonKey(name: '_validated') Element? validatedElement,
+      @JsonKey(name: '_validated') PrimitiveElement? validatedElement,
       String? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       List<FhirInteger>? origin,
       @JsonKey(name: '_origin') List<Element?>? originElement,
       FhirInteger? destination,
-      @JsonKey(name: '_destination') Element? destinationElement,
+      @JsonKey(name: '_destination') PrimitiveElement? destinationElement,
       List<FhirUri>? link,
       @JsonKey(name: '_link') List<Element?>? linkElement,
       FhirCanonical capabilities});
@@ -17941,7 +17974,7 @@ class __$$TestScriptCapabilityImplCopyWithImpl<$Res>
       requiredElement: freezed == requiredElement
           ? _value.requiredElement
           : requiredElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       validated: freezed == validated
           ? _value.validated
           : validated // ignore: cast_nullable_to_non_nullable
@@ -17949,7 +17982,7 @@ class __$$TestScriptCapabilityImplCopyWithImpl<$Res>
       validatedElement: freezed == validatedElement
           ? _value.validatedElement
           : validatedElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -17957,7 +17990,7 @@ class __$$TestScriptCapabilityImplCopyWithImpl<$Res>
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       origin: freezed == origin
           ? _value._origin
           : origin // ignore: cast_nullable_to_non_nullable
@@ -17973,7 +18006,7 @@ class __$$TestScriptCapabilityImplCopyWithImpl<$Res>
       destinationElement: freezed == destinationElement
           ? _value.destinationElement
           : destinationElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       link: freezed == link
           ? _value._link
           : link // ignore: cast_nullable_to_non_nullable
@@ -18097,7 +18130,7 @@ class _$TestScriptCapabilityImpl extends _TestScriptCapability {
   /// [requiredElement] Extensions for required
   @override
   @JsonKey(name: '_required')
-  final Element? requiredElement;
+  final PrimitiveElement? requiredElement;
 
   /// [validated] Whether or not the test execution will validate the given
   ///  capabilities of the server in order for this test script to execute.
@@ -18107,7 +18140,7 @@ class _$TestScriptCapabilityImpl extends _TestScriptCapability {
   /// [validatedElement] Extensions for validated
   @override
   @JsonKey(name: '_validated')
-  final Element? validatedElement;
+  final PrimitiveElement? validatedElement;
 
   /// [description] Description of the capabilities that this test script is
   ///  requiring the server to support.
@@ -18117,7 +18150,7 @@ class _$TestScriptCapabilityImpl extends _TestScriptCapability {
   /// [descriptionElement] Extensions for description
   @override
   @JsonKey(name: '_description')
-  final Element? descriptionElement;
+  final PrimitiveElement? descriptionElement;
 
   /// [origin] Which origin server these requirements apply to.
   final List<FhirInteger>? _origin;
@@ -18153,7 +18186,7 @@ class _$TestScriptCapabilityImpl extends _TestScriptCapability {
   /// [destinationElement] Extensions for destination
   @override
   @JsonKey(name: '_destination')
-  final Element? destinationElement;
+  final PrimitiveElement? destinationElement;
 
   /// [link] Links to the FHIR specification that describes this interaction
   ///  and the resources involved in more detail.
@@ -18275,15 +18308,15 @@ abstract class _TestScriptCapability extends TestScriptCapability {
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       @JsonKey(name: 'required') final FhirBoolean? required_,
-      @JsonKey(name: '_required') final Element? requiredElement,
+      @JsonKey(name: '_required') final PrimitiveElement? requiredElement,
       final FhirBoolean? validated,
-      @JsonKey(name: '_validated') final Element? validatedElement,
+      @JsonKey(name: '_validated') final PrimitiveElement? validatedElement,
       final String? description,
-      @JsonKey(name: '_description') final Element? descriptionElement,
+      @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       final List<FhirInteger>? origin,
       @JsonKey(name: '_origin') final List<Element?>? originElement,
       final FhirInteger? destination,
-      @JsonKey(name: '_destination') final Element? destinationElement,
+      @JsonKey(name: '_destination') final PrimitiveElement? destinationElement,
       final List<FhirUri>? link,
       @JsonKey(name: '_link') final List<Element?>? linkElement,
       required final FhirCanonical capabilities}) = _$TestScriptCapabilityImpl;
@@ -18333,7 +18366,7 @@ abstract class _TestScriptCapability extends TestScriptCapability {
 
   /// [requiredElement] Extensions for required
   @JsonKey(name: '_required')
-  Element? get requiredElement;
+  PrimitiveElement? get requiredElement;
   @override
 
   /// [validated] Whether or not the test execution will validate the given
@@ -18343,7 +18376,7 @@ abstract class _TestScriptCapability extends TestScriptCapability {
 
   /// [validatedElement] Extensions for validated
   @JsonKey(name: '_validated')
-  Element? get validatedElement;
+  PrimitiveElement? get validatedElement;
   @override
 
   /// [description] Description of the capabilities that this test script is
@@ -18353,7 +18386,7 @@ abstract class _TestScriptCapability extends TestScriptCapability {
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement;
+  PrimitiveElement? get descriptionElement;
   @override
 
   /// [origin] Which origin server these requirements apply to.
@@ -18371,7 +18404,7 @@ abstract class _TestScriptCapability extends TestScriptCapability {
 
   /// [destinationElement] Extensions for destination
   @JsonKey(name: '_destination')
-  Element? get destinationElement;
+  PrimitiveElement? get destinationElement;
   @override
 
   /// [link] Links to the FHIR specification that describes this interaction
@@ -18438,7 +18471,7 @@ mixin _$TestScriptFixture {
 
   /// [autocreateElement] Extensions for autocreate
   @JsonKey(name: '_autocreate')
-  Element? get autocreateElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get autocreateElement => throw _privateConstructorUsedError;
 
   /// [autodelete] Whether or not to implicitly delete the fixture during
   /// teardown. If true, the fixture is automatically deleted on each server
@@ -18448,7 +18481,7 @@ mixin _$TestScriptFixture {
 
   /// [autodeleteElement] Extensions for autodelete
   @JsonKey(name: '_autodelete')
-  Element? get autodeleteElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get autodeleteElement => throw _privateConstructorUsedError;
 
   /// [resource] Reference to the resource (containing the contents of the
   ///  resource needed for operations).
@@ -18471,9 +18504,9 @@ abstract class $TestScriptFixtureCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirBoolean? autocreate,
-      @JsonKey(name: '_autocreate') Element? autocreateElement,
+      @JsonKey(name: '_autocreate') PrimitiveElement? autocreateElement,
       FhirBoolean? autodelete,
-      @JsonKey(name: '_autodelete') Element? autodeleteElement,
+      @JsonKey(name: '_autodelete') PrimitiveElement? autodeleteElement,
       Reference? resource});
 
   $ReferenceCopyWith<$Res>? get resource;
@@ -18521,7 +18554,7 @@ class _$TestScriptFixtureCopyWithImpl<$Res, $Val extends TestScriptFixture>
       autocreateElement: freezed == autocreateElement
           ? _value.autocreateElement
           : autocreateElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       autodelete: freezed == autodelete
           ? _value.autodelete
           : autodelete // ignore: cast_nullable_to_non_nullable
@@ -18529,7 +18562,7 @@ class _$TestScriptFixtureCopyWithImpl<$Res, $Val extends TestScriptFixture>
       autodeleteElement: freezed == autodeleteElement
           ? _value.autodeleteElement
           : autodeleteElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       resource: freezed == resource
           ? _value.resource
           : resource // ignore: cast_nullable_to_non_nullable
@@ -18563,9 +18596,9 @@ abstract class _$$TestScriptFixtureImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirBoolean? autocreate,
-      @JsonKey(name: '_autocreate') Element? autocreateElement,
+      @JsonKey(name: '_autocreate') PrimitiveElement? autocreateElement,
       FhirBoolean? autodelete,
-      @JsonKey(name: '_autodelete') Element? autodeleteElement,
+      @JsonKey(name: '_autodelete') PrimitiveElement? autodeleteElement,
       Reference? resource});
 
   @override
@@ -18612,7 +18645,7 @@ class __$$TestScriptFixtureImplCopyWithImpl<$Res>
       autocreateElement: freezed == autocreateElement
           ? _value.autocreateElement
           : autocreateElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       autodelete: freezed == autodelete
           ? _value.autodelete
           : autodelete // ignore: cast_nullable_to_non_nullable
@@ -18620,7 +18653,7 @@ class __$$TestScriptFixtureImplCopyWithImpl<$Res>
       autodeleteElement: freezed == autodeleteElement
           ? _value.autodeleteElement
           : autodeleteElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       resource: freezed == resource
           ? _value.resource
           : resource // ignore: cast_nullable_to_non_nullable
@@ -18725,7 +18758,7 @@ class _$TestScriptFixtureImpl extends _TestScriptFixture {
   /// [autocreateElement] Extensions for autocreate
   @override
   @JsonKey(name: '_autocreate')
-  final Element? autocreateElement;
+  final PrimitiveElement? autocreateElement;
 
   /// [autodelete] Whether or not to implicitly delete the fixture during
   /// teardown. If true, the fixture is automatically deleted on each server
@@ -18737,7 +18770,7 @@ class _$TestScriptFixtureImpl extends _TestScriptFixture {
   /// [autodeleteElement] Extensions for autodelete
   @override
   @JsonKey(name: '_autodelete')
-  final Element? autodeleteElement;
+  final PrimitiveElement? autodeleteElement;
 
   /// [resource] Reference to the resource (containing the contents of the
   ///  resource needed for operations).
@@ -18805,9 +18838,9 @@ abstract class _TestScriptFixture extends TestScriptFixture {
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirBoolean? autocreate,
-      @JsonKey(name: '_autocreate') final Element? autocreateElement,
+      @JsonKey(name: '_autocreate') final PrimitiveElement? autocreateElement,
       final FhirBoolean? autodelete,
-      @JsonKey(name: '_autodelete') final Element? autodeleteElement,
+      @JsonKey(name: '_autodelete') final PrimitiveElement? autodeleteElement,
       final Reference? resource}) = _$TestScriptFixtureImpl;
   const _TestScriptFixture._() : super._();
 
@@ -18856,7 +18889,7 @@ abstract class _TestScriptFixture extends TestScriptFixture {
 
   /// [autocreateElement] Extensions for autocreate
   @JsonKey(name: '_autocreate')
-  Element? get autocreateElement;
+  PrimitiveElement? get autocreateElement;
   @override
 
   /// [autodelete] Whether or not to implicitly delete the fixture during
@@ -18868,7 +18901,7 @@ abstract class _TestScriptFixture extends TestScriptFixture {
 
   /// [autodeleteElement] Extensions for autodelete
   @JsonKey(name: '_autodelete')
-  Element? get autodeleteElement;
+  PrimitiveElement? get autodeleteElement;
   @override
 
   /// [resource] Reference to the resource (containing the contents of the
@@ -18920,7 +18953,7 @@ mixin _$TestScriptVariable {
 
   /// [nameElement] Extensions for name
   @JsonKey(name: '_name')
-  Element? get nameElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get nameElement => throw _privateConstructorUsedError;
 
   /// [defaultValue] A default, hard-coded, or user-defined value for this
   ///  variable.
@@ -18928,7 +18961,8 @@ mixin _$TestScriptVariable {
 
   /// [defaultValueElement] Extensions for defaultValue
   @JsonKey(name: '_defaultValue')
-  Element? get defaultValueElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get defaultValueElement =>
+      throw _privateConstructorUsedError;
 
   /// [description] A free text natural language description of the variable
   ///  and its purpose.
@@ -18936,7 +18970,8 @@ mixin _$TestScriptVariable {
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get descriptionElement =>
+      throw _privateConstructorUsedError;
 
   /// [expression] The FHIRPath expression to evaluate against the fixture
   /// body. When variables are defined, only one of either expression,
@@ -18945,7 +18980,7 @@ mixin _$TestScriptVariable {
 
   /// [expressionElement] Extensions for expression
   @JsonKey(name: '_expression')
-  Element? get expressionElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get expressionElement => throw _privateConstructorUsedError;
 
   /// [headerField] Will be used to grab the HTTP header field value from the
   ///  headers that sourceId is pointing to.
@@ -18953,7 +18988,8 @@ mixin _$TestScriptVariable {
 
   /// [headerFieldElement] Extensions for headerField
   @JsonKey(name: '_headerField')
-  Element? get headerFieldElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get headerFieldElement =>
+      throw _privateConstructorUsedError;
 
   /// [hint] Displayable text string with hint help information to the user
   ///  when entering a default value.
@@ -18961,7 +18997,7 @@ mixin _$TestScriptVariable {
 
   /// [hintElement] Extensions for hint
   @JsonKey(name: '_hint')
-  Element? get hintElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get hintElement => throw _privateConstructorUsedError;
 
   /// [path] XPath or JSONPath to evaluate against the fixture body.  When
   /// variables are defined, only one of either expression, headerField or path
@@ -18970,7 +19006,7 @@ mixin _$TestScriptVariable {
 
   /// [pathElement] Extensions for path
   @JsonKey(name: '_path')
-  Element? get pathElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get pathElement => throw _privateConstructorUsedError;
 
   /// [sourceId] Fixture to evaluate the XPath/JSONPath expression or the
   ///  headerField  against within this variable.
@@ -18978,7 +19014,7 @@ mixin _$TestScriptVariable {
 
   /// [sourceIdElement] Extensions for sourceId
   @JsonKey(name: '_sourceId')
-  Element? get sourceIdElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get sourceIdElement => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -18997,21 +19033,21 @@ abstract class $TestScriptVariableCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? name,
-      @JsonKey(name: '_name') Element? nameElement,
+      @JsonKey(name: '_name') PrimitiveElement? nameElement,
       String? defaultValue,
-      @JsonKey(name: '_defaultValue') Element? defaultValueElement,
+      @JsonKey(name: '_defaultValue') PrimitiveElement? defaultValueElement,
       String? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       String? expression,
-      @JsonKey(name: '_expression') Element? expressionElement,
+      @JsonKey(name: '_expression') PrimitiveElement? expressionElement,
       String? headerField,
-      @JsonKey(name: '_headerField') Element? headerFieldElement,
+      @JsonKey(name: '_headerField') PrimitiveElement? headerFieldElement,
       String? hint,
-      @JsonKey(name: '_hint') Element? hintElement,
+      @JsonKey(name: '_hint') PrimitiveElement? hintElement,
       String? path,
-      @JsonKey(name: '_path') Element? pathElement,
+      @JsonKey(name: '_path') PrimitiveElement? pathElement,
       FhirId? sourceId,
-      @JsonKey(name: '_sourceId') Element? sourceIdElement});
+      @JsonKey(name: '_sourceId') PrimitiveElement? sourceIdElement});
 }
 
 /// @nodoc
@@ -19067,7 +19103,7 @@ class _$TestScriptVariableCopyWithImpl<$Res, $Val extends TestScriptVariable>
       nameElement: freezed == nameElement
           ? _value.nameElement
           : nameElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       defaultValue: freezed == defaultValue
           ? _value.defaultValue
           : defaultValue // ignore: cast_nullable_to_non_nullable
@@ -19075,7 +19111,7 @@ class _$TestScriptVariableCopyWithImpl<$Res, $Val extends TestScriptVariable>
       defaultValueElement: freezed == defaultValueElement
           ? _value.defaultValueElement
           : defaultValueElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -19083,7 +19119,7 @@ class _$TestScriptVariableCopyWithImpl<$Res, $Val extends TestScriptVariable>
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       expression: freezed == expression
           ? _value.expression
           : expression // ignore: cast_nullable_to_non_nullable
@@ -19091,7 +19127,7 @@ class _$TestScriptVariableCopyWithImpl<$Res, $Val extends TestScriptVariable>
       expressionElement: freezed == expressionElement
           ? _value.expressionElement
           : expressionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       headerField: freezed == headerField
           ? _value.headerField
           : headerField // ignore: cast_nullable_to_non_nullable
@@ -19099,7 +19135,7 @@ class _$TestScriptVariableCopyWithImpl<$Res, $Val extends TestScriptVariable>
       headerFieldElement: freezed == headerFieldElement
           ? _value.headerFieldElement
           : headerFieldElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       hint: freezed == hint
           ? _value.hint
           : hint // ignore: cast_nullable_to_non_nullable
@@ -19107,7 +19143,7 @@ class _$TestScriptVariableCopyWithImpl<$Res, $Val extends TestScriptVariable>
       hintElement: freezed == hintElement
           ? _value.hintElement
           : hintElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       path: freezed == path
           ? _value.path
           : path // ignore: cast_nullable_to_non_nullable
@@ -19115,7 +19151,7 @@ class _$TestScriptVariableCopyWithImpl<$Res, $Val extends TestScriptVariable>
       pathElement: freezed == pathElement
           ? _value.pathElement
           : pathElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       sourceId: freezed == sourceId
           ? _value.sourceId
           : sourceId // ignore: cast_nullable_to_non_nullable
@@ -19123,7 +19159,7 @@ class _$TestScriptVariableCopyWithImpl<$Res, $Val extends TestScriptVariable>
       sourceIdElement: freezed == sourceIdElement
           ? _value.sourceIdElement
           : sourceIdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ) as $Val);
   }
 }
@@ -19141,21 +19177,21 @@ abstract class _$$TestScriptVariableImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? name,
-      @JsonKey(name: '_name') Element? nameElement,
+      @JsonKey(name: '_name') PrimitiveElement? nameElement,
       String? defaultValue,
-      @JsonKey(name: '_defaultValue') Element? defaultValueElement,
+      @JsonKey(name: '_defaultValue') PrimitiveElement? defaultValueElement,
       String? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       String? expression,
-      @JsonKey(name: '_expression') Element? expressionElement,
+      @JsonKey(name: '_expression') PrimitiveElement? expressionElement,
       String? headerField,
-      @JsonKey(name: '_headerField') Element? headerFieldElement,
+      @JsonKey(name: '_headerField') PrimitiveElement? headerFieldElement,
       String? hint,
-      @JsonKey(name: '_hint') Element? hintElement,
+      @JsonKey(name: '_hint') PrimitiveElement? hintElement,
       String? path,
-      @JsonKey(name: '_path') Element? pathElement,
+      @JsonKey(name: '_path') PrimitiveElement? pathElement,
       FhirId? sourceId,
-      @JsonKey(name: '_sourceId') Element? sourceIdElement});
+      @JsonKey(name: '_sourceId') PrimitiveElement? sourceIdElement});
 }
 
 /// @nodoc
@@ -19209,7 +19245,7 @@ class __$$TestScriptVariableImplCopyWithImpl<$Res>
       nameElement: freezed == nameElement
           ? _value.nameElement
           : nameElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       defaultValue: freezed == defaultValue
           ? _value.defaultValue
           : defaultValue // ignore: cast_nullable_to_non_nullable
@@ -19217,7 +19253,7 @@ class __$$TestScriptVariableImplCopyWithImpl<$Res>
       defaultValueElement: freezed == defaultValueElement
           ? _value.defaultValueElement
           : defaultValueElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -19225,7 +19261,7 @@ class __$$TestScriptVariableImplCopyWithImpl<$Res>
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       expression: freezed == expression
           ? _value.expression
           : expression // ignore: cast_nullable_to_non_nullable
@@ -19233,7 +19269,7 @@ class __$$TestScriptVariableImplCopyWithImpl<$Res>
       expressionElement: freezed == expressionElement
           ? _value.expressionElement
           : expressionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       headerField: freezed == headerField
           ? _value.headerField
           : headerField // ignore: cast_nullable_to_non_nullable
@@ -19241,7 +19277,7 @@ class __$$TestScriptVariableImplCopyWithImpl<$Res>
       headerFieldElement: freezed == headerFieldElement
           ? _value.headerFieldElement
           : headerFieldElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       hint: freezed == hint
           ? _value.hint
           : hint // ignore: cast_nullable_to_non_nullable
@@ -19249,7 +19285,7 @@ class __$$TestScriptVariableImplCopyWithImpl<$Res>
       hintElement: freezed == hintElement
           ? _value.hintElement
           : hintElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       path: freezed == path
           ? _value.path
           : path // ignore: cast_nullable_to_non_nullable
@@ -19257,7 +19293,7 @@ class __$$TestScriptVariableImplCopyWithImpl<$Res>
       pathElement: freezed == pathElement
           ? _value.pathElement
           : pathElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       sourceId: freezed == sourceId
           ? _value.sourceId
           : sourceId // ignore: cast_nullable_to_non_nullable
@@ -19265,7 +19301,7 @@ class __$$TestScriptVariableImplCopyWithImpl<$Res>
       sourceIdElement: freezed == sourceIdElement
           ? _value.sourceIdElement
           : sourceIdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ));
   }
 }
@@ -19374,7 +19410,7 @@ class _$TestScriptVariableImpl extends _TestScriptVariable {
   /// [nameElement] Extensions for name
   @override
   @JsonKey(name: '_name')
-  final Element? nameElement;
+  final PrimitiveElement? nameElement;
 
   /// [defaultValue] A default, hard-coded, or user-defined value for this
   ///  variable.
@@ -19384,7 +19420,7 @@ class _$TestScriptVariableImpl extends _TestScriptVariable {
   /// [defaultValueElement] Extensions for defaultValue
   @override
   @JsonKey(name: '_defaultValue')
-  final Element? defaultValueElement;
+  final PrimitiveElement? defaultValueElement;
 
   /// [description] A free text natural language description of the variable
   ///  and its purpose.
@@ -19394,7 +19430,7 @@ class _$TestScriptVariableImpl extends _TestScriptVariable {
   /// [descriptionElement] Extensions for description
   @override
   @JsonKey(name: '_description')
-  final Element? descriptionElement;
+  final PrimitiveElement? descriptionElement;
 
   /// [expression] The FHIRPath expression to evaluate against the fixture
   /// body. When variables are defined, only one of either expression,
@@ -19405,7 +19441,7 @@ class _$TestScriptVariableImpl extends _TestScriptVariable {
   /// [expressionElement] Extensions for expression
   @override
   @JsonKey(name: '_expression')
-  final Element? expressionElement;
+  final PrimitiveElement? expressionElement;
 
   /// [headerField] Will be used to grab the HTTP header field value from the
   ///  headers that sourceId is pointing to.
@@ -19415,7 +19451,7 @@ class _$TestScriptVariableImpl extends _TestScriptVariable {
   /// [headerFieldElement] Extensions for headerField
   @override
   @JsonKey(name: '_headerField')
-  final Element? headerFieldElement;
+  final PrimitiveElement? headerFieldElement;
 
   /// [hint] Displayable text string with hint help information to the user
   ///  when entering a default value.
@@ -19425,7 +19461,7 @@ class _$TestScriptVariableImpl extends _TestScriptVariable {
   /// [hintElement] Extensions for hint
   @override
   @JsonKey(name: '_hint')
-  final Element? hintElement;
+  final PrimitiveElement? hintElement;
 
   /// [path] XPath or JSONPath to evaluate against the fixture body.  When
   /// variables are defined, only one of either expression, headerField or path
@@ -19436,7 +19472,7 @@ class _$TestScriptVariableImpl extends _TestScriptVariable {
   /// [pathElement] Extensions for path
   @override
   @JsonKey(name: '_path')
-  final Element? pathElement;
+  final PrimitiveElement? pathElement;
 
   /// [sourceId] Fixture to evaluate the XPath/JSONPath expression or the
   ///  headerField  against within this variable.
@@ -19446,7 +19482,7 @@ class _$TestScriptVariableImpl extends _TestScriptVariable {
   /// [sourceIdElement] Extensions for sourceId
   @override
   @JsonKey(name: '_sourceId')
-  final Element? sourceIdElement;
+  final PrimitiveElement? sourceIdElement;
 
   @override
   String toString() {
@@ -19536,26 +19572,27 @@ class _$TestScriptVariableImpl extends _TestScriptVariable {
 
 abstract class _TestScriptVariable extends TestScriptVariable {
   const factory _TestScriptVariable(
-          {final String? id,
-          @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
-          final List<FhirExtension>? modifierExtension,
-          final String? name,
-          @JsonKey(name: '_name') final Element? nameElement,
-          final String? defaultValue,
-          @JsonKey(name: '_defaultValue') final Element? defaultValueElement,
-          final String? description,
-          @JsonKey(name: '_description') final Element? descriptionElement,
-          final String? expression,
-          @JsonKey(name: '_expression') final Element? expressionElement,
-          final String? headerField,
-          @JsonKey(name: '_headerField') final Element? headerFieldElement,
-          final String? hint,
-          @JsonKey(name: '_hint') final Element? hintElement,
-          final String? path,
-          @JsonKey(name: '_path') final Element? pathElement,
-          final FhirId? sourceId,
-          @JsonKey(name: '_sourceId') final Element? sourceIdElement}) =
-      _$TestScriptVariableImpl;
+      {final String? id,
+      @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
+      final List<FhirExtension>? modifierExtension,
+      final String? name,
+      @JsonKey(name: '_name') final PrimitiveElement? nameElement,
+      final String? defaultValue,
+      @JsonKey(name: '_defaultValue')
+      final PrimitiveElement? defaultValueElement,
+      final String? description,
+      @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
+      final String? expression,
+      @JsonKey(name: '_expression') final PrimitiveElement? expressionElement,
+      final String? headerField,
+      @JsonKey(name: '_headerField') final PrimitiveElement? headerFieldElement,
+      final String? hint,
+      @JsonKey(name: '_hint') final PrimitiveElement? hintElement,
+      final String? path,
+      @JsonKey(name: '_path') final PrimitiveElement? pathElement,
+      final FhirId? sourceId,
+      @JsonKey(name: '_sourceId')
+      final PrimitiveElement? sourceIdElement}) = _$TestScriptVariableImpl;
   const _TestScriptVariable._() : super._();
 
   factory _TestScriptVariable.fromJson(Map<String, dynamic> json) =
@@ -19600,7 +19637,7 @@ abstract class _TestScriptVariable extends TestScriptVariable {
 
   /// [nameElement] Extensions for name
   @JsonKey(name: '_name')
-  Element? get nameElement;
+  PrimitiveElement? get nameElement;
   @override
 
   /// [defaultValue] A default, hard-coded, or user-defined value for this
@@ -19610,7 +19647,7 @@ abstract class _TestScriptVariable extends TestScriptVariable {
 
   /// [defaultValueElement] Extensions for defaultValue
   @JsonKey(name: '_defaultValue')
-  Element? get defaultValueElement;
+  PrimitiveElement? get defaultValueElement;
   @override
 
   /// [description] A free text natural language description of the variable
@@ -19620,7 +19657,7 @@ abstract class _TestScriptVariable extends TestScriptVariable {
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement;
+  PrimitiveElement? get descriptionElement;
   @override
 
   /// [expression] The FHIRPath expression to evaluate against the fixture
@@ -19631,7 +19668,7 @@ abstract class _TestScriptVariable extends TestScriptVariable {
 
   /// [expressionElement] Extensions for expression
   @JsonKey(name: '_expression')
-  Element? get expressionElement;
+  PrimitiveElement? get expressionElement;
   @override
 
   /// [headerField] Will be used to grab the HTTP header field value from the
@@ -19641,7 +19678,7 @@ abstract class _TestScriptVariable extends TestScriptVariable {
 
   /// [headerFieldElement] Extensions for headerField
   @JsonKey(name: '_headerField')
-  Element? get headerFieldElement;
+  PrimitiveElement? get headerFieldElement;
   @override
 
   /// [hint] Displayable text string with hint help information to the user
@@ -19651,7 +19688,7 @@ abstract class _TestScriptVariable extends TestScriptVariable {
 
   /// [hintElement] Extensions for hint
   @JsonKey(name: '_hint')
-  Element? get hintElement;
+  PrimitiveElement? get hintElement;
   @override
 
   /// [path] XPath or JSONPath to evaluate against the fixture body.  When
@@ -19662,7 +19699,7 @@ abstract class _TestScriptVariable extends TestScriptVariable {
 
   /// [pathElement] Extensions for path
   @JsonKey(name: '_path')
-  Element? get pathElement;
+  PrimitiveElement? get pathElement;
   @override
 
   /// [sourceId] Fixture to evaluate the XPath/JSONPath expression or the
@@ -19672,7 +19709,7 @@ abstract class _TestScriptVariable extends TestScriptVariable {
 
   /// [sourceIdElement] Extensions for sourceId
   @JsonKey(name: '_sourceId')
-  Element? get sourceIdElement;
+  PrimitiveElement? get sourceIdElement;
   @override
   @JsonKey(ignore: true)
   _$$TestScriptVariableImplCopyWith<_$TestScriptVariableImpl> get copyWith =>
@@ -20454,7 +20491,7 @@ mixin _$TestScriptOperation {
 
   /// [resourceElement] Extensions for resource
   @JsonKey(name: '_resource')
-  Element? get resourceElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get resourceElement => throw _privateConstructorUsedError;
 
   /// [label] The label would be used for tracking/logging purposes by test
   ///  engines.
@@ -20462,7 +20499,7 @@ mixin _$TestScriptOperation {
 
   /// [labelElement] Extensions for label
   @JsonKey(name: '_label')
-  Element? get labelElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get labelElement => throw _privateConstructorUsedError;
 
   /// [description] The description would be used by test engines for tracking
   ///  and reporting purposes.
@@ -20470,7 +20507,8 @@ mixin _$TestScriptOperation {
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get descriptionElement =>
+      throw _privateConstructorUsedError;
 
   /// [accept] The mime-type to use for RESTful operation in the 'Accept'
   ///  header.
@@ -20478,7 +20516,7 @@ mixin _$TestScriptOperation {
 
   /// [acceptElement] Extensions for accept
   @JsonKey(name: '_accept')
-  Element? get acceptElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get acceptElement => throw _privateConstructorUsedError;
 
   /// [contentType] The mime-type to use for RESTful operation in the
   ///  'Content-Type' header.
@@ -20486,7 +20524,8 @@ mixin _$TestScriptOperation {
 
   /// [contentTypeElement] Extensions for contentType
   @JsonKey(name: '_contentType')
-  Element? get contentTypeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get contentTypeElement =>
+      throw _privateConstructorUsedError;
 
   /// [destination] The server where the request message is destined for.  Must
   ///  be one of the server numbers listed in TestScript.destination section.
@@ -20494,7 +20533,8 @@ mixin _$TestScriptOperation {
 
   /// [destinationElement] Extensions for destination
   @JsonKey(name: '_destination')
-  Element? get destinationElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get destinationElement =>
+      throw _privateConstructorUsedError;
 
   /// [encodeRequestUrl] Whether or not to implicitly send the request url in
   /// encoded format. The default is true to match the standard RESTful client
@@ -20504,7 +20544,8 @@ mixin _$TestScriptOperation {
 
   /// [encodeRequestUrlElement] Extensions for encodeRequestUrl
   @JsonKey(name: '_encodeRequestUrl')
-  Element? get encodeRequestUrlElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get encodeRequestUrlElement =>
+      throw _privateConstructorUsedError;
 
   /// [method] The HTTP method the test engine MUST use for this operation
   ///  regardless of any other operation details.
@@ -20512,7 +20553,7 @@ mixin _$TestScriptOperation {
 
   /// [methodElement] Extensions for method
   @JsonKey(name: '_method')
-  Element? get methodElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get methodElement => throw _privateConstructorUsedError;
 
   /// [origin] The server where the request message originates from.  Must be
   ///  one of the server numbers listed in TestScript.origin section.
@@ -20520,7 +20561,7 @@ mixin _$TestScriptOperation {
 
   /// [originElement] Extensions for origin
   @JsonKey(name: '_origin')
-  Element? get originElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get originElement => throw _privateConstructorUsedError;
 
   /// [params] Path plus parameters after [type].  Used to set parts of the
   ///  request URL explicitly.
@@ -20528,7 +20569,7 @@ mixin _$TestScriptOperation {
 
   /// [paramsElement] Extensions for params
   @JsonKey(name: '_params')
-  Element? get paramsElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get paramsElement => throw _privateConstructorUsedError;
 
   /// [requestHeader] Header elements would be used to set HTTP headers.
   List<TestScriptRequestHeader>? get requestHeader =>
@@ -20539,14 +20580,14 @@ mixin _$TestScriptOperation {
 
   /// [requestIdElement] Extensions for requestId
   @JsonKey(name: '_requestId')
-  Element? get requestIdElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get requestIdElement => throw _privateConstructorUsedError;
 
   /// [responseId] The fixture id (maybe new) to map to the response.
   FhirId? get responseId => throw _privateConstructorUsedError;
 
   /// [responseIdElement] Extensions for responseId
   @JsonKey(name: '_responseId')
-  Element? get responseIdElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get responseIdElement => throw _privateConstructorUsedError;
 
   /// [sourceId] The id of the fixture used as the body of a PUT or POST
   ///  request.
@@ -20554,7 +20595,7 @@ mixin _$TestScriptOperation {
 
   /// [sourceIdElement] Extensions for sourceId
   @JsonKey(name: '_sourceId')
-  Element? get sourceIdElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get sourceIdElement => throw _privateConstructorUsedError;
 
   /// [targetId] Id of fixture used for extracting the [id],  [type], and [vid]
   ///  for GET requests.
@@ -20562,14 +20603,14 @@ mixin _$TestScriptOperation {
 
   /// [targetIdElement] Extensions for targetId
   @JsonKey(name: '_targetId')
-  Element? get targetIdElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get targetIdElement => throw _privateConstructorUsedError;
 
   /// [url] Complete request URL.
   String? get url => throw _privateConstructorUsedError;
 
   /// [urlElement] Extensions for url
   @JsonKey(name: '_url')
-  Element? get urlElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get urlElement => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -20589,36 +20630,37 @@ abstract class $TestScriptOperationCopyWith<$Res> {
       List<FhirExtension>? modifierExtension,
       Coding? type,
       FhirCode? resource,
-      @JsonKey(name: '_resource') Element? resourceElement,
+      @JsonKey(name: '_resource') PrimitiveElement? resourceElement,
       String? label,
-      @JsonKey(name: '_label') Element? labelElement,
+      @JsonKey(name: '_label') PrimitiveElement? labelElement,
       String? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       FhirCode? accept,
-      @JsonKey(name: '_accept') Element? acceptElement,
+      @JsonKey(name: '_accept') PrimitiveElement? acceptElement,
       FhirCode? contentType,
-      @JsonKey(name: '_contentType') Element? contentTypeElement,
+      @JsonKey(name: '_contentType') PrimitiveElement? contentTypeElement,
       FhirInteger? destination,
-      @JsonKey(name: '_destination') Element? destinationElement,
+      @JsonKey(name: '_destination') PrimitiveElement? destinationElement,
       FhirBoolean? encodeRequestUrl,
-      @JsonKey(name: '_encodeRequestUrl') Element? encodeRequestUrlElement,
+      @JsonKey(name: '_encodeRequestUrl')
+      PrimitiveElement? encodeRequestUrlElement,
       FhirCode? method,
-      @JsonKey(name: '_method') Element? methodElement,
+      @JsonKey(name: '_method') PrimitiveElement? methodElement,
       FhirInteger? origin,
-      @JsonKey(name: '_origin') Element? originElement,
+      @JsonKey(name: '_origin') PrimitiveElement? originElement,
       String? params,
-      @JsonKey(name: '_params') Element? paramsElement,
+      @JsonKey(name: '_params') PrimitiveElement? paramsElement,
       List<TestScriptRequestHeader>? requestHeader,
       FhirId? requestId,
-      @JsonKey(name: '_requestId') Element? requestIdElement,
+      @JsonKey(name: '_requestId') PrimitiveElement? requestIdElement,
       FhirId? responseId,
-      @JsonKey(name: '_responseId') Element? responseIdElement,
+      @JsonKey(name: '_responseId') PrimitiveElement? responseIdElement,
       FhirId? sourceId,
-      @JsonKey(name: '_sourceId') Element? sourceIdElement,
+      @JsonKey(name: '_sourceId') PrimitiveElement? sourceIdElement,
       FhirId? targetId,
-      @JsonKey(name: '_targetId') Element? targetIdElement,
+      @JsonKey(name: '_targetId') PrimitiveElement? targetIdElement,
       String? url,
-      @JsonKey(name: '_url') Element? urlElement});
+      @JsonKey(name: '_url') PrimitiveElement? urlElement});
 
   $CodingCopyWith<$Res>? get type;
 }
@@ -20696,7 +20738,7 @@ class _$TestScriptOperationCopyWithImpl<$Res, $Val extends TestScriptOperation>
       resourceElement: freezed == resourceElement
           ? _value.resourceElement
           : resourceElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       label: freezed == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
@@ -20704,7 +20746,7 @@ class _$TestScriptOperationCopyWithImpl<$Res, $Val extends TestScriptOperation>
       labelElement: freezed == labelElement
           ? _value.labelElement
           : labelElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -20712,7 +20754,7 @@ class _$TestScriptOperationCopyWithImpl<$Res, $Val extends TestScriptOperation>
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       accept: freezed == accept
           ? _value.accept
           : accept // ignore: cast_nullable_to_non_nullable
@@ -20720,7 +20762,7 @@ class _$TestScriptOperationCopyWithImpl<$Res, $Val extends TestScriptOperation>
       acceptElement: freezed == acceptElement
           ? _value.acceptElement
           : acceptElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       contentType: freezed == contentType
           ? _value.contentType
           : contentType // ignore: cast_nullable_to_non_nullable
@@ -20728,7 +20770,7 @@ class _$TestScriptOperationCopyWithImpl<$Res, $Val extends TestScriptOperation>
       contentTypeElement: freezed == contentTypeElement
           ? _value.contentTypeElement
           : contentTypeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       destination: freezed == destination
           ? _value.destination
           : destination // ignore: cast_nullable_to_non_nullable
@@ -20736,7 +20778,7 @@ class _$TestScriptOperationCopyWithImpl<$Res, $Val extends TestScriptOperation>
       destinationElement: freezed == destinationElement
           ? _value.destinationElement
           : destinationElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       encodeRequestUrl: freezed == encodeRequestUrl
           ? _value.encodeRequestUrl
           : encodeRequestUrl // ignore: cast_nullable_to_non_nullable
@@ -20744,7 +20786,7 @@ class _$TestScriptOperationCopyWithImpl<$Res, $Val extends TestScriptOperation>
       encodeRequestUrlElement: freezed == encodeRequestUrlElement
           ? _value.encodeRequestUrlElement
           : encodeRequestUrlElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       method: freezed == method
           ? _value.method
           : method // ignore: cast_nullable_to_non_nullable
@@ -20752,7 +20794,7 @@ class _$TestScriptOperationCopyWithImpl<$Res, $Val extends TestScriptOperation>
       methodElement: freezed == methodElement
           ? _value.methodElement
           : methodElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       origin: freezed == origin
           ? _value.origin
           : origin // ignore: cast_nullable_to_non_nullable
@@ -20760,7 +20802,7 @@ class _$TestScriptOperationCopyWithImpl<$Res, $Val extends TestScriptOperation>
       originElement: freezed == originElement
           ? _value.originElement
           : originElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       params: freezed == params
           ? _value.params
           : params // ignore: cast_nullable_to_non_nullable
@@ -20768,7 +20810,7 @@ class _$TestScriptOperationCopyWithImpl<$Res, $Val extends TestScriptOperation>
       paramsElement: freezed == paramsElement
           ? _value.paramsElement
           : paramsElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       requestHeader: freezed == requestHeader
           ? _value.requestHeader
           : requestHeader // ignore: cast_nullable_to_non_nullable
@@ -20780,7 +20822,7 @@ class _$TestScriptOperationCopyWithImpl<$Res, $Val extends TestScriptOperation>
       requestIdElement: freezed == requestIdElement
           ? _value.requestIdElement
           : requestIdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       responseId: freezed == responseId
           ? _value.responseId
           : responseId // ignore: cast_nullable_to_non_nullable
@@ -20788,7 +20830,7 @@ class _$TestScriptOperationCopyWithImpl<$Res, $Val extends TestScriptOperation>
       responseIdElement: freezed == responseIdElement
           ? _value.responseIdElement
           : responseIdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       sourceId: freezed == sourceId
           ? _value.sourceId
           : sourceId // ignore: cast_nullable_to_non_nullable
@@ -20796,7 +20838,7 @@ class _$TestScriptOperationCopyWithImpl<$Res, $Val extends TestScriptOperation>
       sourceIdElement: freezed == sourceIdElement
           ? _value.sourceIdElement
           : sourceIdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       targetId: freezed == targetId
           ? _value.targetId
           : targetId // ignore: cast_nullable_to_non_nullable
@@ -20804,7 +20846,7 @@ class _$TestScriptOperationCopyWithImpl<$Res, $Val extends TestScriptOperation>
       targetIdElement: freezed == targetIdElement
           ? _value.targetIdElement
           : targetIdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -20812,7 +20854,7 @@ class _$TestScriptOperationCopyWithImpl<$Res, $Val extends TestScriptOperation>
       urlElement: freezed == urlElement
           ? _value.urlElement
           : urlElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ) as $Val);
   }
 
@@ -20843,36 +20885,37 @@ abstract class _$$TestScriptOperationImplCopyWith<$Res>
       List<FhirExtension>? modifierExtension,
       Coding? type,
       FhirCode? resource,
-      @JsonKey(name: '_resource') Element? resourceElement,
+      @JsonKey(name: '_resource') PrimitiveElement? resourceElement,
       String? label,
-      @JsonKey(name: '_label') Element? labelElement,
+      @JsonKey(name: '_label') PrimitiveElement? labelElement,
       String? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       FhirCode? accept,
-      @JsonKey(name: '_accept') Element? acceptElement,
+      @JsonKey(name: '_accept') PrimitiveElement? acceptElement,
       FhirCode? contentType,
-      @JsonKey(name: '_contentType') Element? contentTypeElement,
+      @JsonKey(name: '_contentType') PrimitiveElement? contentTypeElement,
       FhirInteger? destination,
-      @JsonKey(name: '_destination') Element? destinationElement,
+      @JsonKey(name: '_destination') PrimitiveElement? destinationElement,
       FhirBoolean? encodeRequestUrl,
-      @JsonKey(name: '_encodeRequestUrl') Element? encodeRequestUrlElement,
+      @JsonKey(name: '_encodeRequestUrl')
+      PrimitiveElement? encodeRequestUrlElement,
       FhirCode? method,
-      @JsonKey(name: '_method') Element? methodElement,
+      @JsonKey(name: '_method') PrimitiveElement? methodElement,
       FhirInteger? origin,
-      @JsonKey(name: '_origin') Element? originElement,
+      @JsonKey(name: '_origin') PrimitiveElement? originElement,
       String? params,
-      @JsonKey(name: '_params') Element? paramsElement,
+      @JsonKey(name: '_params') PrimitiveElement? paramsElement,
       List<TestScriptRequestHeader>? requestHeader,
       FhirId? requestId,
-      @JsonKey(name: '_requestId') Element? requestIdElement,
+      @JsonKey(name: '_requestId') PrimitiveElement? requestIdElement,
       FhirId? responseId,
-      @JsonKey(name: '_responseId') Element? responseIdElement,
+      @JsonKey(name: '_responseId') PrimitiveElement? responseIdElement,
       FhirId? sourceId,
-      @JsonKey(name: '_sourceId') Element? sourceIdElement,
+      @JsonKey(name: '_sourceId') PrimitiveElement? sourceIdElement,
       FhirId? targetId,
-      @JsonKey(name: '_targetId') Element? targetIdElement,
+      @JsonKey(name: '_targetId') PrimitiveElement? targetIdElement,
       String? url,
-      @JsonKey(name: '_url') Element? urlElement});
+      @JsonKey(name: '_url') PrimitiveElement? urlElement});
 
   @override
   $CodingCopyWith<$Res>? get type;
@@ -20949,7 +20992,7 @@ class __$$TestScriptOperationImplCopyWithImpl<$Res>
       resourceElement: freezed == resourceElement
           ? _value.resourceElement
           : resourceElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       label: freezed == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
@@ -20957,7 +21000,7 @@ class __$$TestScriptOperationImplCopyWithImpl<$Res>
       labelElement: freezed == labelElement
           ? _value.labelElement
           : labelElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -20965,7 +21008,7 @@ class __$$TestScriptOperationImplCopyWithImpl<$Res>
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       accept: freezed == accept
           ? _value.accept
           : accept // ignore: cast_nullable_to_non_nullable
@@ -20973,7 +21016,7 @@ class __$$TestScriptOperationImplCopyWithImpl<$Res>
       acceptElement: freezed == acceptElement
           ? _value.acceptElement
           : acceptElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       contentType: freezed == contentType
           ? _value.contentType
           : contentType // ignore: cast_nullable_to_non_nullable
@@ -20981,7 +21024,7 @@ class __$$TestScriptOperationImplCopyWithImpl<$Res>
       contentTypeElement: freezed == contentTypeElement
           ? _value.contentTypeElement
           : contentTypeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       destination: freezed == destination
           ? _value.destination
           : destination // ignore: cast_nullable_to_non_nullable
@@ -20989,7 +21032,7 @@ class __$$TestScriptOperationImplCopyWithImpl<$Res>
       destinationElement: freezed == destinationElement
           ? _value.destinationElement
           : destinationElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       encodeRequestUrl: freezed == encodeRequestUrl
           ? _value.encodeRequestUrl
           : encodeRequestUrl // ignore: cast_nullable_to_non_nullable
@@ -20997,7 +21040,7 @@ class __$$TestScriptOperationImplCopyWithImpl<$Res>
       encodeRequestUrlElement: freezed == encodeRequestUrlElement
           ? _value.encodeRequestUrlElement
           : encodeRequestUrlElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       method: freezed == method
           ? _value.method
           : method // ignore: cast_nullable_to_non_nullable
@@ -21005,7 +21048,7 @@ class __$$TestScriptOperationImplCopyWithImpl<$Res>
       methodElement: freezed == methodElement
           ? _value.methodElement
           : methodElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       origin: freezed == origin
           ? _value.origin
           : origin // ignore: cast_nullable_to_non_nullable
@@ -21013,7 +21056,7 @@ class __$$TestScriptOperationImplCopyWithImpl<$Res>
       originElement: freezed == originElement
           ? _value.originElement
           : originElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       params: freezed == params
           ? _value.params
           : params // ignore: cast_nullable_to_non_nullable
@@ -21021,7 +21064,7 @@ class __$$TestScriptOperationImplCopyWithImpl<$Res>
       paramsElement: freezed == paramsElement
           ? _value.paramsElement
           : paramsElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       requestHeader: freezed == requestHeader
           ? _value._requestHeader
           : requestHeader // ignore: cast_nullable_to_non_nullable
@@ -21033,7 +21076,7 @@ class __$$TestScriptOperationImplCopyWithImpl<$Res>
       requestIdElement: freezed == requestIdElement
           ? _value.requestIdElement
           : requestIdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       responseId: freezed == responseId
           ? _value.responseId
           : responseId // ignore: cast_nullable_to_non_nullable
@@ -21041,7 +21084,7 @@ class __$$TestScriptOperationImplCopyWithImpl<$Res>
       responseIdElement: freezed == responseIdElement
           ? _value.responseIdElement
           : responseIdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       sourceId: freezed == sourceId
           ? _value.sourceId
           : sourceId // ignore: cast_nullable_to_non_nullable
@@ -21049,7 +21092,7 @@ class __$$TestScriptOperationImplCopyWithImpl<$Res>
       sourceIdElement: freezed == sourceIdElement
           ? _value.sourceIdElement
           : sourceIdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       targetId: freezed == targetId
           ? _value.targetId
           : targetId // ignore: cast_nullable_to_non_nullable
@@ -21057,7 +21100,7 @@ class __$$TestScriptOperationImplCopyWithImpl<$Res>
       targetIdElement: freezed == targetIdElement
           ? _value.targetIdElement
           : targetIdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -21065,7 +21108,7 @@ class __$$TestScriptOperationImplCopyWithImpl<$Res>
       urlElement: freezed == urlElement
           ? _value.urlElement
           : urlElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ));
   }
 }
@@ -21196,7 +21239,7 @@ class _$TestScriptOperationImpl extends _TestScriptOperation {
   /// [resourceElement] Extensions for resource
   @override
   @JsonKey(name: '_resource')
-  final Element? resourceElement;
+  final PrimitiveElement? resourceElement;
 
   /// [label] The label would be used for tracking/logging purposes by test
   ///  engines.
@@ -21206,7 +21249,7 @@ class _$TestScriptOperationImpl extends _TestScriptOperation {
   /// [labelElement] Extensions for label
   @override
   @JsonKey(name: '_label')
-  final Element? labelElement;
+  final PrimitiveElement? labelElement;
 
   /// [description] The description would be used by test engines for tracking
   ///  and reporting purposes.
@@ -21216,7 +21259,7 @@ class _$TestScriptOperationImpl extends _TestScriptOperation {
   /// [descriptionElement] Extensions for description
   @override
   @JsonKey(name: '_description')
-  final Element? descriptionElement;
+  final PrimitiveElement? descriptionElement;
 
   /// [accept] The mime-type to use for RESTful operation in the 'Accept'
   ///  header.
@@ -21226,7 +21269,7 @@ class _$TestScriptOperationImpl extends _TestScriptOperation {
   /// [acceptElement] Extensions for accept
   @override
   @JsonKey(name: '_accept')
-  final Element? acceptElement;
+  final PrimitiveElement? acceptElement;
 
   /// [contentType] The mime-type to use for RESTful operation in the
   ///  'Content-Type' header.
@@ -21236,7 +21279,7 @@ class _$TestScriptOperationImpl extends _TestScriptOperation {
   /// [contentTypeElement] Extensions for contentType
   @override
   @JsonKey(name: '_contentType')
-  final Element? contentTypeElement;
+  final PrimitiveElement? contentTypeElement;
 
   /// [destination] The server where the request message is destined for.  Must
   ///  be one of the server numbers listed in TestScript.destination section.
@@ -21246,7 +21289,7 @@ class _$TestScriptOperationImpl extends _TestScriptOperation {
   /// [destinationElement] Extensions for destination
   @override
   @JsonKey(name: '_destination')
-  final Element? destinationElement;
+  final PrimitiveElement? destinationElement;
 
   /// [encodeRequestUrl] Whether or not to implicitly send the request url in
   /// encoded format. The default is true to match the standard RESTful client
@@ -21258,7 +21301,7 @@ class _$TestScriptOperationImpl extends _TestScriptOperation {
   /// [encodeRequestUrlElement] Extensions for encodeRequestUrl
   @override
   @JsonKey(name: '_encodeRequestUrl')
-  final Element? encodeRequestUrlElement;
+  final PrimitiveElement? encodeRequestUrlElement;
 
   /// [method] The HTTP method the test engine MUST use for this operation
   ///  regardless of any other operation details.
@@ -21268,7 +21311,7 @@ class _$TestScriptOperationImpl extends _TestScriptOperation {
   /// [methodElement] Extensions for method
   @override
   @JsonKey(name: '_method')
-  final Element? methodElement;
+  final PrimitiveElement? methodElement;
 
   /// [origin] The server where the request message originates from.  Must be
   ///  one of the server numbers listed in TestScript.origin section.
@@ -21278,7 +21321,7 @@ class _$TestScriptOperationImpl extends _TestScriptOperation {
   /// [originElement] Extensions for origin
   @override
   @JsonKey(name: '_origin')
-  final Element? originElement;
+  final PrimitiveElement? originElement;
 
   /// [params] Path plus parameters after [type].  Used to set parts of the
   ///  request URL explicitly.
@@ -21288,7 +21331,7 @@ class _$TestScriptOperationImpl extends _TestScriptOperation {
   /// [paramsElement] Extensions for params
   @override
   @JsonKey(name: '_params')
-  final Element? paramsElement;
+  final PrimitiveElement? paramsElement;
 
   /// [requestHeader] Header elements would be used to set HTTP headers.
   final List<TestScriptRequestHeader>? _requestHeader;
@@ -21310,7 +21353,7 @@ class _$TestScriptOperationImpl extends _TestScriptOperation {
   /// [requestIdElement] Extensions for requestId
   @override
   @JsonKey(name: '_requestId')
-  final Element? requestIdElement;
+  final PrimitiveElement? requestIdElement;
 
   /// [responseId] The fixture id (maybe new) to map to the response.
   @override
@@ -21319,7 +21362,7 @@ class _$TestScriptOperationImpl extends _TestScriptOperation {
   /// [responseIdElement] Extensions for responseId
   @override
   @JsonKey(name: '_responseId')
-  final Element? responseIdElement;
+  final PrimitiveElement? responseIdElement;
 
   /// [sourceId] The id of the fixture used as the body of a PUT or POST
   ///  request.
@@ -21329,7 +21372,7 @@ class _$TestScriptOperationImpl extends _TestScriptOperation {
   /// [sourceIdElement] Extensions for sourceId
   @override
   @JsonKey(name: '_sourceId')
-  final Element? sourceIdElement;
+  final PrimitiveElement? sourceIdElement;
 
   /// [targetId] Id of fixture used for extracting the [id],  [type], and [vid]
   ///  for GET requests.
@@ -21339,7 +21382,7 @@ class _$TestScriptOperationImpl extends _TestScriptOperation {
   /// [targetIdElement] Extensions for targetId
   @override
   @JsonKey(name: '_targetId')
-  final Element? targetIdElement;
+  final PrimitiveElement? targetIdElement;
 
   /// [url] Complete request URL.
   @override
@@ -21348,7 +21391,7 @@ class _$TestScriptOperationImpl extends _TestScriptOperation {
   /// [urlElement] Extensions for url
   @override
   @JsonKey(name: '_url')
-  final Element? urlElement;
+  final PrimitiveElement? urlElement;
 
   @override
   String toString() {
@@ -21483,43 +21526,43 @@ class _$TestScriptOperationImpl extends _TestScriptOperation {
 
 abstract class _TestScriptOperation extends TestScriptOperation {
   const factory _TestScriptOperation(
-          {final String? id,
-          @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
-          final List<FhirExtension>? modifierExtension,
-          final Coding? type,
-          final FhirCode? resource,
-          @JsonKey(name: '_resource') final Element? resourceElement,
-          final String? label,
-          @JsonKey(name: '_label') final Element? labelElement,
-          final String? description,
-          @JsonKey(name: '_description') final Element? descriptionElement,
-          final FhirCode? accept,
-          @JsonKey(name: '_accept') final Element? acceptElement,
-          final FhirCode? contentType,
-          @JsonKey(name: '_contentType') final Element? contentTypeElement,
-          final FhirInteger? destination,
-          @JsonKey(name: '_destination') final Element? destinationElement,
-          final FhirBoolean? encodeRequestUrl,
-          @JsonKey(name: '_encodeRequestUrl')
-          final Element? encodeRequestUrlElement,
-          final FhirCode? method,
-          @JsonKey(name: '_method') final Element? methodElement,
-          final FhirInteger? origin,
-          @JsonKey(name: '_origin') final Element? originElement,
-          final String? params,
-          @JsonKey(name: '_params') final Element? paramsElement,
-          final List<TestScriptRequestHeader>? requestHeader,
-          final FhirId? requestId,
-          @JsonKey(name: '_requestId') final Element? requestIdElement,
-          final FhirId? responseId,
-          @JsonKey(name: '_responseId') final Element? responseIdElement,
-          final FhirId? sourceId,
-          @JsonKey(name: '_sourceId') final Element? sourceIdElement,
-          final FhirId? targetId,
-          @JsonKey(name: '_targetId') final Element? targetIdElement,
-          final String? url,
-          @JsonKey(name: '_url') final Element? urlElement}) =
-      _$TestScriptOperationImpl;
+      {final String? id,
+      @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
+      final List<FhirExtension>? modifierExtension,
+      final Coding? type,
+      final FhirCode? resource,
+      @JsonKey(name: '_resource') final PrimitiveElement? resourceElement,
+      final String? label,
+      @JsonKey(name: '_label') final PrimitiveElement? labelElement,
+      final String? description,
+      @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
+      final FhirCode? accept,
+      @JsonKey(name: '_accept') final PrimitiveElement? acceptElement,
+      final FhirCode? contentType,
+      @JsonKey(name: '_contentType') final PrimitiveElement? contentTypeElement,
+      final FhirInteger? destination,
+      @JsonKey(name: '_destination') final PrimitiveElement? destinationElement,
+      final FhirBoolean? encodeRequestUrl,
+      @JsonKey(name: '_encodeRequestUrl')
+      final PrimitiveElement? encodeRequestUrlElement,
+      final FhirCode? method,
+      @JsonKey(name: '_method') final PrimitiveElement? methodElement,
+      final FhirInteger? origin,
+      @JsonKey(name: '_origin') final PrimitiveElement? originElement,
+      final String? params,
+      @JsonKey(name: '_params') final PrimitiveElement? paramsElement,
+      final List<TestScriptRequestHeader>? requestHeader,
+      final FhirId? requestId,
+      @JsonKey(name: '_requestId') final PrimitiveElement? requestIdElement,
+      final FhirId? responseId,
+      @JsonKey(name: '_responseId') final PrimitiveElement? responseIdElement,
+      final FhirId? sourceId,
+      @JsonKey(name: '_sourceId') final PrimitiveElement? sourceIdElement,
+      final FhirId? targetId,
+      @JsonKey(name: '_targetId') final PrimitiveElement? targetIdElement,
+      final String? url,
+      @JsonKey(name: '_url')
+      final PrimitiveElement? urlElement}) = _$TestScriptOperationImpl;
   const _TestScriptOperation._() : super._();
 
   factory _TestScriptOperation.fromJson(Map<String, dynamic> json) =
@@ -21569,7 +21612,7 @@ abstract class _TestScriptOperation extends TestScriptOperation {
 
   /// [resourceElement] Extensions for resource
   @JsonKey(name: '_resource')
-  Element? get resourceElement;
+  PrimitiveElement? get resourceElement;
   @override
 
   /// [label] The label would be used for tracking/logging purposes by test
@@ -21579,7 +21622,7 @@ abstract class _TestScriptOperation extends TestScriptOperation {
 
   /// [labelElement] Extensions for label
   @JsonKey(name: '_label')
-  Element? get labelElement;
+  PrimitiveElement? get labelElement;
   @override
 
   /// [description] The description would be used by test engines for tracking
@@ -21589,7 +21632,7 @@ abstract class _TestScriptOperation extends TestScriptOperation {
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement;
+  PrimitiveElement? get descriptionElement;
   @override
 
   /// [accept] The mime-type to use for RESTful operation in the 'Accept'
@@ -21599,7 +21642,7 @@ abstract class _TestScriptOperation extends TestScriptOperation {
 
   /// [acceptElement] Extensions for accept
   @JsonKey(name: '_accept')
-  Element? get acceptElement;
+  PrimitiveElement? get acceptElement;
   @override
 
   /// [contentType] The mime-type to use for RESTful operation in the
@@ -21609,7 +21652,7 @@ abstract class _TestScriptOperation extends TestScriptOperation {
 
   /// [contentTypeElement] Extensions for contentType
   @JsonKey(name: '_contentType')
-  Element? get contentTypeElement;
+  PrimitiveElement? get contentTypeElement;
   @override
 
   /// [destination] The server where the request message is destined for.  Must
@@ -21619,7 +21662,7 @@ abstract class _TestScriptOperation extends TestScriptOperation {
 
   /// [destinationElement] Extensions for destination
   @JsonKey(name: '_destination')
-  Element? get destinationElement;
+  PrimitiveElement? get destinationElement;
   @override
 
   /// [encodeRequestUrl] Whether or not to implicitly send the request url in
@@ -21631,7 +21674,7 @@ abstract class _TestScriptOperation extends TestScriptOperation {
 
   /// [encodeRequestUrlElement] Extensions for encodeRequestUrl
   @JsonKey(name: '_encodeRequestUrl')
-  Element? get encodeRequestUrlElement;
+  PrimitiveElement? get encodeRequestUrlElement;
   @override
 
   /// [method] The HTTP method the test engine MUST use for this operation
@@ -21641,7 +21684,7 @@ abstract class _TestScriptOperation extends TestScriptOperation {
 
   /// [methodElement] Extensions for method
   @JsonKey(name: '_method')
-  Element? get methodElement;
+  PrimitiveElement? get methodElement;
   @override
 
   /// [origin] The server where the request message originates from.  Must be
@@ -21651,7 +21694,7 @@ abstract class _TestScriptOperation extends TestScriptOperation {
 
   /// [originElement] Extensions for origin
   @JsonKey(name: '_origin')
-  Element? get originElement;
+  PrimitiveElement? get originElement;
   @override
 
   /// [params] Path plus parameters after [type].  Used to set parts of the
@@ -21661,7 +21704,7 @@ abstract class _TestScriptOperation extends TestScriptOperation {
 
   /// [paramsElement] Extensions for params
   @JsonKey(name: '_params')
-  Element? get paramsElement;
+  PrimitiveElement? get paramsElement;
   @override
 
   /// [requestHeader] Header elements would be used to set HTTP headers.
@@ -21674,7 +21717,7 @@ abstract class _TestScriptOperation extends TestScriptOperation {
 
   /// [requestIdElement] Extensions for requestId
   @JsonKey(name: '_requestId')
-  Element? get requestIdElement;
+  PrimitiveElement? get requestIdElement;
   @override
 
   /// [responseId] The fixture id (maybe new) to map to the response.
@@ -21683,7 +21726,7 @@ abstract class _TestScriptOperation extends TestScriptOperation {
 
   /// [responseIdElement] Extensions for responseId
   @JsonKey(name: '_responseId')
-  Element? get responseIdElement;
+  PrimitiveElement? get responseIdElement;
   @override
 
   /// [sourceId] The id of the fixture used as the body of a PUT or POST
@@ -21693,7 +21736,7 @@ abstract class _TestScriptOperation extends TestScriptOperation {
 
   /// [sourceIdElement] Extensions for sourceId
   @JsonKey(name: '_sourceId')
-  Element? get sourceIdElement;
+  PrimitiveElement? get sourceIdElement;
   @override
 
   /// [targetId] Id of fixture used for extracting the [id],  [type], and [vid]
@@ -21703,7 +21746,7 @@ abstract class _TestScriptOperation extends TestScriptOperation {
 
   /// [targetIdElement] Extensions for targetId
   @JsonKey(name: '_targetId')
-  Element? get targetIdElement;
+  PrimitiveElement? get targetIdElement;
   @override
 
   /// [url] Complete request URL.
@@ -21712,7 +21755,7 @@ abstract class _TestScriptOperation extends TestScriptOperation {
 
   /// [urlElement] Extensions for url
   @JsonKey(name: '_url')
-  Element? get urlElement;
+  PrimitiveElement? get urlElement;
   @override
   @JsonKey(ignore: true)
   _$$TestScriptOperationImplCopyWith<_$TestScriptOperationImpl> get copyWith =>
@@ -21760,14 +21803,14 @@ mixin _$TestScriptRequestHeader {
 
   /// [fieldElement] Extensions for field
   @JsonKey(name: '_field')
-  Element? get fieldElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get fieldElement => throw _privateConstructorUsedError;
 
   /// [value] The value of the header e.g. "application/fhir+xml".
   String? get value => throw _privateConstructorUsedError;
 
   /// [valueElement] Extensions for value
   @JsonKey(name: '_value')
-  Element? get valueElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get valueElement => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -21786,9 +21829,9 @@ abstract class $TestScriptRequestHeaderCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? field,
-      @JsonKey(name: '_field') Element? fieldElement,
+      @JsonKey(name: '_field') PrimitiveElement? fieldElement,
       String? value,
-      @JsonKey(name: '_value') Element? valueElement});
+      @JsonKey(name: '_value') PrimitiveElement? valueElement});
 }
 
 /// @nodoc
@@ -21833,7 +21876,7 @@ class _$TestScriptRequestHeaderCopyWithImpl<$Res,
       fieldElement: freezed == fieldElement
           ? _value.fieldElement
           : fieldElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       value: freezed == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -21841,7 +21884,7 @@ class _$TestScriptRequestHeaderCopyWithImpl<$Res,
       valueElement: freezed == valueElement
           ? _value.valueElement
           : valueElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ) as $Val);
   }
 }
@@ -21860,9 +21903,9 @@ abstract class _$$TestScriptRequestHeaderImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? field,
-      @JsonKey(name: '_field') Element? fieldElement,
+      @JsonKey(name: '_field') PrimitiveElement? fieldElement,
       String? value,
-      @JsonKey(name: '_value') Element? valueElement});
+      @JsonKey(name: '_value') PrimitiveElement? valueElement});
 }
 
 /// @nodoc
@@ -21906,7 +21949,7 @@ class __$$TestScriptRequestHeaderImplCopyWithImpl<$Res>
       fieldElement: freezed == fieldElement
           ? _value.fieldElement
           : fieldElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       value: freezed == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -21914,7 +21957,7 @@ class __$$TestScriptRequestHeaderImplCopyWithImpl<$Res>
       valueElement: freezed == valueElement
           ? _value.valueElement
           : valueElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ));
   }
 }
@@ -22011,7 +22054,7 @@ class _$TestScriptRequestHeaderImpl extends _TestScriptRequestHeader {
   /// [fieldElement] Extensions for field
   @override
   @JsonKey(name: '_field')
-  final Element? fieldElement;
+  final PrimitiveElement? fieldElement;
 
   /// [value] The value of the header e.g. "application/fhir+xml".
   @override
@@ -22020,7 +22063,7 @@ class _$TestScriptRequestHeaderImpl extends _TestScriptRequestHeader {
   /// [valueElement] Extensions for value
   @override
   @JsonKey(name: '_value')
-  final Element? valueElement;
+  final PrimitiveElement? valueElement;
 
   @override
   String toString() {
@@ -22078,9 +22121,9 @@ abstract class _TestScriptRequestHeader extends TestScriptRequestHeader {
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final String? field,
-          @JsonKey(name: '_field') final Element? fieldElement,
+          @JsonKey(name: '_field') final PrimitiveElement? fieldElement,
           final String? value,
-          @JsonKey(name: '_value') final Element? valueElement}) =
+          @JsonKey(name: '_value') final PrimitiveElement? valueElement}) =
       _$TestScriptRequestHeaderImpl;
   const _TestScriptRequestHeader._() : super._();
 
@@ -22126,7 +22169,7 @@ abstract class _TestScriptRequestHeader extends TestScriptRequestHeader {
 
   /// [fieldElement] Extensions for field
   @JsonKey(name: '_field')
-  Element? get fieldElement;
+  PrimitiveElement? get fieldElement;
   @override
 
   /// [value] The value of the header e.g. "application/fhir+xml".
@@ -22135,7 +22178,7 @@ abstract class _TestScriptRequestHeader extends TestScriptRequestHeader {
 
   /// [valueElement] Extensions for value
   @JsonKey(name: '_value')
-  Element? get valueElement;
+  PrimitiveElement? get valueElement;
   @override
   @JsonKey(ignore: true)
   _$$TestScriptRequestHeaderImplCopyWith<_$TestScriptRequestHeaderImpl>
@@ -22183,7 +22226,7 @@ mixin _$TestScriptAssert {
 
   /// [labelElement] Extensions for label
   @JsonKey(name: '_label')
-  Element? get labelElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get labelElement => throw _privateConstructorUsedError;
 
   /// [description] The description would be used by test engines for tracking
   ///  and reporting purposes.
@@ -22191,14 +22234,15 @@ mixin _$TestScriptAssert {
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get descriptionElement =>
+      throw _privateConstructorUsedError;
 
   /// [direction] The direction to use for the assertion.
   FhirCode? get direction => throw _privateConstructorUsedError;
 
   /// [directionElement] Extensions for direction
   @JsonKey(name: '_direction')
-  Element? get directionElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get directionElement => throw _privateConstructorUsedError;
 
   /// [compareToSourceId] Id of the source fixture used as the contents to be
   /// evaluated by either the "source/expression" or "sourceId/path"
@@ -22207,7 +22251,8 @@ mixin _$TestScriptAssert {
 
   /// [compareToSourceIdElement] Extensions for compareToSourceId
   @JsonKey(name: '_compareToSourceId')
-  Element? get compareToSourceIdElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get compareToSourceIdElement =>
+      throw _privateConstructorUsedError;
 
   /// [compareToSourceExpression] The FHIRPath expression to evaluate against
   /// the source fixture. When compareToSourceId is defined, either
@@ -22215,7 +22260,7 @@ mixin _$TestScriptAssert {
   ///  both.
   String? get compareToSourceExpression => throw _privateConstructorUsedError;
   @JsonKey(name: '_compareToSourceExpression')
-  Element? get compareToSourceExpressionElement =>
+  PrimitiveElement? get compareToSourceExpressionElement =>
       throw _privateConstructorUsedError;
 
   /// [compareToSourcePath] XPath or JSONPath expression to evaluate against
@@ -22226,7 +22271,8 @@ mixin _$TestScriptAssert {
 
   /// [compareToSourcePathElement] Extensions for compareToSourcePath
   @JsonKey(name: '_compareToSourcePath')
-  Element? get compareToSourcePathElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get compareToSourcePathElement =>
+      throw _privateConstructorUsedError;
 
   /// [contentType] The mime-type contents to compare against the request or
   ///  response message 'Content-Type' header.
@@ -22234,7 +22280,8 @@ mixin _$TestScriptAssert {
 
   /// [contentTypeElement] Extensions for contentType
   @JsonKey(name: '_contentType')
-  Element? get contentTypeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get contentTypeElement =>
+      throw _privateConstructorUsedError;
 
   /// [expression] The FHIRPath expression to be evaluated against the request
   ///  or response message contents - HTTP headers and payload.
@@ -22242,14 +22289,15 @@ mixin _$TestScriptAssert {
 
   /// [expressionElement] Extensions for expression
   @JsonKey(name: '_expression')
-  Element? get expressionElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get expressionElement => throw _privateConstructorUsedError;
 
   /// [headerField] The HTTP header field name e.g. 'Location'.
   String? get headerField => throw _privateConstructorUsedError;
 
   /// [headerFieldElement] Extensions for headerField
   @JsonKey(name: '_headerField')
-  Element? get headerFieldElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get headerFieldElement =>
+      throw _privateConstructorUsedError;
 
   /// [minimumId] The ID of a fixture.  Asserts that the response contains at a
   ///  minimum the fixture specified by minimumId.
@@ -22257,7 +22305,7 @@ mixin _$TestScriptAssert {
 
   /// [minimumIdElement] Extensions for minimumId
   @JsonKey(name: '_minimumId')
-  Element? get minimumIdElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get minimumIdElement => throw _privateConstructorUsedError;
 
   /// [navigationLinks] Whether or not the test execution performs validation
   ///  on the bundle navigation links.
@@ -22265,7 +22313,8 @@ mixin _$TestScriptAssert {
 
   /// [navigationLinksElement] Extensions for navigationLinks
   @JsonKey(name: '_navigationLinks')
-  Element? get navigationLinksElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get navigationLinksElement =>
+      throw _privateConstructorUsedError;
 
   /// [operator] The operator type defines the conditional behavior of the
   ///  assert. If not defined, the default is equals.
@@ -22274,7 +22323,7 @@ mixin _$TestScriptAssert {
 
   /// [operatorElement] Extensions for operator
   @JsonKey(name: '_operator')
-  Element? get operatorElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get operatorElement => throw _privateConstructorUsedError;
 
   /// [path] The XPath or JSONPath expression to be evaluated against the
   ///  fixture representing the response received from server.
@@ -22282,7 +22331,7 @@ mixin _$TestScriptAssert {
 
   /// [pathElement] Extensions for path
   @JsonKey(name: '_path')
-  Element? get pathElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get pathElement => throw _privateConstructorUsedError;
 
   /// [requestMethod] The request method or HTTP operation code to compare
   ///  against that used by the client system under test.
@@ -22290,7 +22339,8 @@ mixin _$TestScriptAssert {
 
   /// [requestMethodElement] Extensions for requestMethod
   @JsonKey(name: '_requestMethod')
-  Element? get requestMethodElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get requestMethodElement =>
+      throw _privateConstructorUsedError;
 
   /// [requestURL] The value to use in a comparison against the request URL
   ///  path string.
@@ -22298,7 +22348,7 @@ mixin _$TestScriptAssert {
 
   /// [requestURLElement] Extensions for requestURL
   @JsonKey(name: '_requestURL')
-  Element? get requestURLElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get requestURLElement => throw _privateConstructorUsedError;
 
   /// [resource] The type of the resource.  See
   ///  http://build.fhir.org/resourcelist.html.
@@ -22306,7 +22356,7 @@ mixin _$TestScriptAssert {
 
   /// [resourceElement] Extensions for resource
   @JsonKey(name: '_resource')
-  Element? get resourceElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get resourceElement => throw _privateConstructorUsedError;
 
   /// [response] okay | created | noContent | notModified | bad | forbidden |
   /// notFound | methodNotAllowed | conflict | gone | preconditionFailed |
@@ -22315,14 +22365,15 @@ mixin _$TestScriptAssert {
 
   /// [responseElement] Extensions for response
   @JsonKey(name: '_response')
-  Element? get responseElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get responseElement => throw _privateConstructorUsedError;
 
   /// [responseCode] The value of the HTTP response code to be tested.
   String? get responseCode => throw _privateConstructorUsedError;
 
   /// [responseCodeElement] Extensions for responseCode
   @JsonKey(name: '_responseCode')
-  Element? get responseCodeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get responseCodeElement =>
+      throw _privateConstructorUsedError;
 
   /// [sourceId] Fixture to evaluate the XPath/JSONPath expression or the
   ///  headerField  against.
@@ -22330,21 +22381,22 @@ mixin _$TestScriptAssert {
 
   /// [sourceIdElement] Extensions for sourceId
   @JsonKey(name: '_sourceId')
-  Element? get sourceIdElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get sourceIdElement => throw _privateConstructorUsedError;
 
   /// [validateProfileId] The ID of the Profile to validate against.
   FhirId? get validateProfileId => throw _privateConstructorUsedError;
 
   /// [validateProfileIdElement] Extensions for validateProfileId
   @JsonKey(name: '_validateProfileId')
-  Element? get validateProfileIdElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get validateProfileIdElement =>
+      throw _privateConstructorUsedError;
 
   /// [value] The value to compare to.
   String? get value => throw _privateConstructorUsedError;
 
   /// [valueElement] Extensions for value
   @JsonKey(name: '_value')
-  Element? get valueElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get valueElement => throw _privateConstructorUsedError;
 
   /// [warningOnly] Whether or not the test execution will produce a warning
   ///  only on error for this assert.
@@ -22352,7 +22404,8 @@ mixin _$TestScriptAssert {
 
   /// [warningOnlyElement] Extensions for warningOnly
   @JsonKey(name: '_warningOnly')
-  Element? get warningOnlyElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get warningOnlyElement =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -22371,51 +22424,54 @@ abstract class $TestScriptAssertCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? label,
-      @JsonKey(name: '_label') Element? labelElement,
+      @JsonKey(name: '_label') PrimitiveElement? labelElement,
       String? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       FhirCode? direction,
-      @JsonKey(name: '_direction') Element? directionElement,
+      @JsonKey(name: '_direction') PrimitiveElement? directionElement,
       String? compareToSourceId,
-      @JsonKey(name: '_compareToSourceId') Element? compareToSourceIdElement,
+      @JsonKey(name: '_compareToSourceId')
+      PrimitiveElement? compareToSourceIdElement,
       String? compareToSourceExpression,
       @JsonKey(name: '_compareToSourceExpression')
-      Element? compareToSourceExpressionElement,
+      PrimitiveElement? compareToSourceExpressionElement,
       String? compareToSourcePath,
       @JsonKey(name: '_compareToSourcePath')
-      Element? compareToSourcePathElement,
+      PrimitiveElement? compareToSourcePathElement,
       FhirCode? contentType,
-      @JsonKey(name: '_contentType') Element? contentTypeElement,
+      @JsonKey(name: '_contentType') PrimitiveElement? contentTypeElement,
       String? expression,
-      @JsonKey(name: '_expression') Element? expressionElement,
+      @JsonKey(name: '_expression') PrimitiveElement? expressionElement,
       String? headerField,
-      @JsonKey(name: '_headerField') Element? headerFieldElement,
+      @JsonKey(name: '_headerField') PrimitiveElement? headerFieldElement,
       String? minimumId,
-      @JsonKey(name: '_minimumId') Element? minimumIdElement,
+      @JsonKey(name: '_minimumId') PrimitiveElement? minimumIdElement,
       FhirBoolean? navigationLinks,
-      @JsonKey(name: '_navigationLinks') Element? navigationLinksElement,
+      @JsonKey(name: '_navigationLinks')
+      PrimitiveElement? navigationLinksElement,
       @JsonKey(name: 'operator') FhirCode? operator_,
-      @JsonKey(name: '_operator') Element? operatorElement,
+      @JsonKey(name: '_operator') PrimitiveElement? operatorElement,
       String? path,
-      @JsonKey(name: '_path') Element? pathElement,
+      @JsonKey(name: '_path') PrimitiveElement? pathElement,
       FhirCode? requestMethod,
-      @JsonKey(name: '_requestMethod') Element? requestMethodElement,
+      @JsonKey(name: '_requestMethod') PrimitiveElement? requestMethodElement,
       String? requestURL,
-      @JsonKey(name: '_requestURL') Element? requestURLElement,
+      @JsonKey(name: '_requestURL') PrimitiveElement? requestURLElement,
       FhirCode? resource,
-      @JsonKey(name: '_resource') Element? resourceElement,
+      @JsonKey(name: '_resource') PrimitiveElement? resourceElement,
       FhirCode? response,
-      @JsonKey(name: '_response') Element? responseElement,
+      @JsonKey(name: '_response') PrimitiveElement? responseElement,
       String? responseCode,
-      @JsonKey(name: '_responseCode') Element? responseCodeElement,
+      @JsonKey(name: '_responseCode') PrimitiveElement? responseCodeElement,
       FhirId? sourceId,
-      @JsonKey(name: '_sourceId') Element? sourceIdElement,
+      @JsonKey(name: '_sourceId') PrimitiveElement? sourceIdElement,
       FhirId? validateProfileId,
-      @JsonKey(name: '_validateProfileId') Element? validateProfileIdElement,
+      @JsonKey(name: '_validateProfileId')
+      PrimitiveElement? validateProfileIdElement,
       String? value,
-      @JsonKey(name: '_value') Element? valueElement,
+      @JsonKey(name: '_value') PrimitiveElement? valueElement,
       FhirBoolean? warningOnly,
-      @JsonKey(name: '_warningOnly') Element? warningOnlyElement});
+      @JsonKey(name: '_warningOnly') PrimitiveElement? warningOnlyElement});
 }
 
 /// @nodoc
@@ -22499,7 +22555,7 @@ class _$TestScriptAssertCopyWithImpl<$Res, $Val extends TestScriptAssert>
       labelElement: freezed == labelElement
           ? _value.labelElement
           : labelElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -22507,7 +22563,7 @@ class _$TestScriptAssertCopyWithImpl<$Res, $Val extends TestScriptAssert>
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       direction: freezed == direction
           ? _value.direction
           : direction // ignore: cast_nullable_to_non_nullable
@@ -22515,7 +22571,7 @@ class _$TestScriptAssertCopyWithImpl<$Res, $Val extends TestScriptAssert>
       directionElement: freezed == directionElement
           ? _value.directionElement
           : directionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       compareToSourceId: freezed == compareToSourceId
           ? _value.compareToSourceId
           : compareToSourceId // ignore: cast_nullable_to_non_nullable
@@ -22523,7 +22579,7 @@ class _$TestScriptAssertCopyWithImpl<$Res, $Val extends TestScriptAssert>
       compareToSourceIdElement: freezed == compareToSourceIdElement
           ? _value.compareToSourceIdElement
           : compareToSourceIdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       compareToSourceExpression: freezed == compareToSourceExpression
           ? _value.compareToSourceExpression
           : compareToSourceExpression // ignore: cast_nullable_to_non_nullable
@@ -22532,7 +22588,7 @@ class _$TestScriptAssertCopyWithImpl<$Res, $Val extends TestScriptAssert>
               compareToSourceExpressionElement
           ? _value.compareToSourceExpressionElement
           : compareToSourceExpressionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       compareToSourcePath: freezed == compareToSourcePath
           ? _value.compareToSourcePath
           : compareToSourcePath // ignore: cast_nullable_to_non_nullable
@@ -22540,7 +22596,7 @@ class _$TestScriptAssertCopyWithImpl<$Res, $Val extends TestScriptAssert>
       compareToSourcePathElement: freezed == compareToSourcePathElement
           ? _value.compareToSourcePathElement
           : compareToSourcePathElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       contentType: freezed == contentType
           ? _value.contentType
           : contentType // ignore: cast_nullable_to_non_nullable
@@ -22548,7 +22604,7 @@ class _$TestScriptAssertCopyWithImpl<$Res, $Val extends TestScriptAssert>
       contentTypeElement: freezed == contentTypeElement
           ? _value.contentTypeElement
           : contentTypeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       expression: freezed == expression
           ? _value.expression
           : expression // ignore: cast_nullable_to_non_nullable
@@ -22556,7 +22612,7 @@ class _$TestScriptAssertCopyWithImpl<$Res, $Val extends TestScriptAssert>
       expressionElement: freezed == expressionElement
           ? _value.expressionElement
           : expressionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       headerField: freezed == headerField
           ? _value.headerField
           : headerField // ignore: cast_nullable_to_non_nullable
@@ -22564,7 +22620,7 @@ class _$TestScriptAssertCopyWithImpl<$Res, $Val extends TestScriptAssert>
       headerFieldElement: freezed == headerFieldElement
           ? _value.headerFieldElement
           : headerFieldElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       minimumId: freezed == minimumId
           ? _value.minimumId
           : minimumId // ignore: cast_nullable_to_non_nullable
@@ -22572,7 +22628,7 @@ class _$TestScriptAssertCopyWithImpl<$Res, $Val extends TestScriptAssert>
       minimumIdElement: freezed == minimumIdElement
           ? _value.minimumIdElement
           : minimumIdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       navigationLinks: freezed == navigationLinks
           ? _value.navigationLinks
           : navigationLinks // ignore: cast_nullable_to_non_nullable
@@ -22580,7 +22636,7 @@ class _$TestScriptAssertCopyWithImpl<$Res, $Val extends TestScriptAssert>
       navigationLinksElement: freezed == navigationLinksElement
           ? _value.navigationLinksElement
           : navigationLinksElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       operator_: freezed == operator_
           ? _value.operator_
           : operator_ // ignore: cast_nullable_to_non_nullable
@@ -22588,7 +22644,7 @@ class _$TestScriptAssertCopyWithImpl<$Res, $Val extends TestScriptAssert>
       operatorElement: freezed == operatorElement
           ? _value.operatorElement
           : operatorElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       path: freezed == path
           ? _value.path
           : path // ignore: cast_nullable_to_non_nullable
@@ -22596,7 +22652,7 @@ class _$TestScriptAssertCopyWithImpl<$Res, $Val extends TestScriptAssert>
       pathElement: freezed == pathElement
           ? _value.pathElement
           : pathElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       requestMethod: freezed == requestMethod
           ? _value.requestMethod
           : requestMethod // ignore: cast_nullable_to_non_nullable
@@ -22604,7 +22660,7 @@ class _$TestScriptAssertCopyWithImpl<$Res, $Val extends TestScriptAssert>
       requestMethodElement: freezed == requestMethodElement
           ? _value.requestMethodElement
           : requestMethodElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       requestURL: freezed == requestURL
           ? _value.requestURL
           : requestURL // ignore: cast_nullable_to_non_nullable
@@ -22612,7 +22668,7 @@ class _$TestScriptAssertCopyWithImpl<$Res, $Val extends TestScriptAssert>
       requestURLElement: freezed == requestURLElement
           ? _value.requestURLElement
           : requestURLElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       resource: freezed == resource
           ? _value.resource
           : resource // ignore: cast_nullable_to_non_nullable
@@ -22620,7 +22676,7 @@ class _$TestScriptAssertCopyWithImpl<$Res, $Val extends TestScriptAssert>
       resourceElement: freezed == resourceElement
           ? _value.resourceElement
           : resourceElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       response: freezed == response
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
@@ -22628,7 +22684,7 @@ class _$TestScriptAssertCopyWithImpl<$Res, $Val extends TestScriptAssert>
       responseElement: freezed == responseElement
           ? _value.responseElement
           : responseElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       responseCode: freezed == responseCode
           ? _value.responseCode
           : responseCode // ignore: cast_nullable_to_non_nullable
@@ -22636,7 +22692,7 @@ class _$TestScriptAssertCopyWithImpl<$Res, $Val extends TestScriptAssert>
       responseCodeElement: freezed == responseCodeElement
           ? _value.responseCodeElement
           : responseCodeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       sourceId: freezed == sourceId
           ? _value.sourceId
           : sourceId // ignore: cast_nullable_to_non_nullable
@@ -22644,7 +22700,7 @@ class _$TestScriptAssertCopyWithImpl<$Res, $Val extends TestScriptAssert>
       sourceIdElement: freezed == sourceIdElement
           ? _value.sourceIdElement
           : sourceIdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       validateProfileId: freezed == validateProfileId
           ? _value.validateProfileId
           : validateProfileId // ignore: cast_nullable_to_non_nullable
@@ -22652,7 +22708,7 @@ class _$TestScriptAssertCopyWithImpl<$Res, $Val extends TestScriptAssert>
       validateProfileIdElement: freezed == validateProfileIdElement
           ? _value.validateProfileIdElement
           : validateProfileIdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       value: freezed == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -22660,7 +22716,7 @@ class _$TestScriptAssertCopyWithImpl<$Res, $Val extends TestScriptAssert>
       valueElement: freezed == valueElement
           ? _value.valueElement
           : valueElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       warningOnly: freezed == warningOnly
           ? _value.warningOnly
           : warningOnly // ignore: cast_nullable_to_non_nullable
@@ -22668,7 +22724,7 @@ class _$TestScriptAssertCopyWithImpl<$Res, $Val extends TestScriptAssert>
       warningOnlyElement: freezed == warningOnlyElement
           ? _value.warningOnlyElement
           : warningOnlyElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ) as $Val);
   }
 }
@@ -22686,51 +22742,54 @@ abstract class _$$TestScriptAssertImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? label,
-      @JsonKey(name: '_label') Element? labelElement,
+      @JsonKey(name: '_label') PrimitiveElement? labelElement,
       String? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       FhirCode? direction,
-      @JsonKey(name: '_direction') Element? directionElement,
+      @JsonKey(name: '_direction') PrimitiveElement? directionElement,
       String? compareToSourceId,
-      @JsonKey(name: '_compareToSourceId') Element? compareToSourceIdElement,
+      @JsonKey(name: '_compareToSourceId')
+      PrimitiveElement? compareToSourceIdElement,
       String? compareToSourceExpression,
       @JsonKey(name: '_compareToSourceExpression')
-      Element? compareToSourceExpressionElement,
+      PrimitiveElement? compareToSourceExpressionElement,
       String? compareToSourcePath,
       @JsonKey(name: '_compareToSourcePath')
-      Element? compareToSourcePathElement,
+      PrimitiveElement? compareToSourcePathElement,
       FhirCode? contentType,
-      @JsonKey(name: '_contentType') Element? contentTypeElement,
+      @JsonKey(name: '_contentType') PrimitiveElement? contentTypeElement,
       String? expression,
-      @JsonKey(name: '_expression') Element? expressionElement,
+      @JsonKey(name: '_expression') PrimitiveElement? expressionElement,
       String? headerField,
-      @JsonKey(name: '_headerField') Element? headerFieldElement,
+      @JsonKey(name: '_headerField') PrimitiveElement? headerFieldElement,
       String? minimumId,
-      @JsonKey(name: '_minimumId') Element? minimumIdElement,
+      @JsonKey(name: '_minimumId') PrimitiveElement? minimumIdElement,
       FhirBoolean? navigationLinks,
-      @JsonKey(name: '_navigationLinks') Element? navigationLinksElement,
+      @JsonKey(name: '_navigationLinks')
+      PrimitiveElement? navigationLinksElement,
       @JsonKey(name: 'operator') FhirCode? operator_,
-      @JsonKey(name: '_operator') Element? operatorElement,
+      @JsonKey(name: '_operator') PrimitiveElement? operatorElement,
       String? path,
-      @JsonKey(name: '_path') Element? pathElement,
+      @JsonKey(name: '_path') PrimitiveElement? pathElement,
       FhirCode? requestMethod,
-      @JsonKey(name: '_requestMethod') Element? requestMethodElement,
+      @JsonKey(name: '_requestMethod') PrimitiveElement? requestMethodElement,
       String? requestURL,
-      @JsonKey(name: '_requestURL') Element? requestURLElement,
+      @JsonKey(name: '_requestURL') PrimitiveElement? requestURLElement,
       FhirCode? resource,
-      @JsonKey(name: '_resource') Element? resourceElement,
+      @JsonKey(name: '_resource') PrimitiveElement? resourceElement,
       FhirCode? response,
-      @JsonKey(name: '_response') Element? responseElement,
+      @JsonKey(name: '_response') PrimitiveElement? responseElement,
       String? responseCode,
-      @JsonKey(name: '_responseCode') Element? responseCodeElement,
+      @JsonKey(name: '_responseCode') PrimitiveElement? responseCodeElement,
       FhirId? sourceId,
-      @JsonKey(name: '_sourceId') Element? sourceIdElement,
+      @JsonKey(name: '_sourceId') PrimitiveElement? sourceIdElement,
       FhirId? validateProfileId,
-      @JsonKey(name: '_validateProfileId') Element? validateProfileIdElement,
+      @JsonKey(name: '_validateProfileId')
+      PrimitiveElement? validateProfileIdElement,
       String? value,
-      @JsonKey(name: '_value') Element? valueElement,
+      @JsonKey(name: '_value') PrimitiveElement? valueElement,
       FhirBoolean? warningOnly,
-      @JsonKey(name: '_warningOnly') Element? warningOnlyElement});
+      @JsonKey(name: '_warningOnly') PrimitiveElement? warningOnlyElement});
 }
 
 /// @nodoc
@@ -22812,7 +22871,7 @@ class __$$TestScriptAssertImplCopyWithImpl<$Res>
       labelElement: freezed == labelElement
           ? _value.labelElement
           : labelElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -22820,7 +22879,7 @@ class __$$TestScriptAssertImplCopyWithImpl<$Res>
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       direction: freezed == direction
           ? _value.direction
           : direction // ignore: cast_nullable_to_non_nullable
@@ -22828,7 +22887,7 @@ class __$$TestScriptAssertImplCopyWithImpl<$Res>
       directionElement: freezed == directionElement
           ? _value.directionElement
           : directionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       compareToSourceId: freezed == compareToSourceId
           ? _value.compareToSourceId
           : compareToSourceId // ignore: cast_nullable_to_non_nullable
@@ -22836,7 +22895,7 @@ class __$$TestScriptAssertImplCopyWithImpl<$Res>
       compareToSourceIdElement: freezed == compareToSourceIdElement
           ? _value.compareToSourceIdElement
           : compareToSourceIdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       compareToSourceExpression: freezed == compareToSourceExpression
           ? _value.compareToSourceExpression
           : compareToSourceExpression // ignore: cast_nullable_to_non_nullable
@@ -22845,7 +22904,7 @@ class __$$TestScriptAssertImplCopyWithImpl<$Res>
               compareToSourceExpressionElement
           ? _value.compareToSourceExpressionElement
           : compareToSourceExpressionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       compareToSourcePath: freezed == compareToSourcePath
           ? _value.compareToSourcePath
           : compareToSourcePath // ignore: cast_nullable_to_non_nullable
@@ -22853,7 +22912,7 @@ class __$$TestScriptAssertImplCopyWithImpl<$Res>
       compareToSourcePathElement: freezed == compareToSourcePathElement
           ? _value.compareToSourcePathElement
           : compareToSourcePathElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       contentType: freezed == contentType
           ? _value.contentType
           : contentType // ignore: cast_nullable_to_non_nullable
@@ -22861,7 +22920,7 @@ class __$$TestScriptAssertImplCopyWithImpl<$Res>
       contentTypeElement: freezed == contentTypeElement
           ? _value.contentTypeElement
           : contentTypeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       expression: freezed == expression
           ? _value.expression
           : expression // ignore: cast_nullable_to_non_nullable
@@ -22869,7 +22928,7 @@ class __$$TestScriptAssertImplCopyWithImpl<$Res>
       expressionElement: freezed == expressionElement
           ? _value.expressionElement
           : expressionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       headerField: freezed == headerField
           ? _value.headerField
           : headerField // ignore: cast_nullable_to_non_nullable
@@ -22877,7 +22936,7 @@ class __$$TestScriptAssertImplCopyWithImpl<$Res>
       headerFieldElement: freezed == headerFieldElement
           ? _value.headerFieldElement
           : headerFieldElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       minimumId: freezed == minimumId
           ? _value.minimumId
           : minimumId // ignore: cast_nullable_to_non_nullable
@@ -22885,7 +22944,7 @@ class __$$TestScriptAssertImplCopyWithImpl<$Res>
       minimumIdElement: freezed == minimumIdElement
           ? _value.minimumIdElement
           : minimumIdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       navigationLinks: freezed == navigationLinks
           ? _value.navigationLinks
           : navigationLinks // ignore: cast_nullable_to_non_nullable
@@ -22893,7 +22952,7 @@ class __$$TestScriptAssertImplCopyWithImpl<$Res>
       navigationLinksElement: freezed == navigationLinksElement
           ? _value.navigationLinksElement
           : navigationLinksElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       operator_: freezed == operator_
           ? _value.operator_
           : operator_ // ignore: cast_nullable_to_non_nullable
@@ -22901,7 +22960,7 @@ class __$$TestScriptAssertImplCopyWithImpl<$Res>
       operatorElement: freezed == operatorElement
           ? _value.operatorElement
           : operatorElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       path: freezed == path
           ? _value.path
           : path // ignore: cast_nullable_to_non_nullable
@@ -22909,7 +22968,7 @@ class __$$TestScriptAssertImplCopyWithImpl<$Res>
       pathElement: freezed == pathElement
           ? _value.pathElement
           : pathElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       requestMethod: freezed == requestMethod
           ? _value.requestMethod
           : requestMethod // ignore: cast_nullable_to_non_nullable
@@ -22917,7 +22976,7 @@ class __$$TestScriptAssertImplCopyWithImpl<$Res>
       requestMethodElement: freezed == requestMethodElement
           ? _value.requestMethodElement
           : requestMethodElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       requestURL: freezed == requestURL
           ? _value.requestURL
           : requestURL // ignore: cast_nullable_to_non_nullable
@@ -22925,7 +22984,7 @@ class __$$TestScriptAssertImplCopyWithImpl<$Res>
       requestURLElement: freezed == requestURLElement
           ? _value.requestURLElement
           : requestURLElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       resource: freezed == resource
           ? _value.resource
           : resource // ignore: cast_nullable_to_non_nullable
@@ -22933,7 +22992,7 @@ class __$$TestScriptAssertImplCopyWithImpl<$Res>
       resourceElement: freezed == resourceElement
           ? _value.resourceElement
           : resourceElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       response: freezed == response
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
@@ -22941,7 +23000,7 @@ class __$$TestScriptAssertImplCopyWithImpl<$Res>
       responseElement: freezed == responseElement
           ? _value.responseElement
           : responseElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       responseCode: freezed == responseCode
           ? _value.responseCode
           : responseCode // ignore: cast_nullable_to_non_nullable
@@ -22949,7 +23008,7 @@ class __$$TestScriptAssertImplCopyWithImpl<$Res>
       responseCodeElement: freezed == responseCodeElement
           ? _value.responseCodeElement
           : responseCodeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       sourceId: freezed == sourceId
           ? _value.sourceId
           : sourceId // ignore: cast_nullable_to_non_nullable
@@ -22957,7 +23016,7 @@ class __$$TestScriptAssertImplCopyWithImpl<$Res>
       sourceIdElement: freezed == sourceIdElement
           ? _value.sourceIdElement
           : sourceIdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       validateProfileId: freezed == validateProfileId
           ? _value.validateProfileId
           : validateProfileId // ignore: cast_nullable_to_non_nullable
@@ -22965,7 +23024,7 @@ class __$$TestScriptAssertImplCopyWithImpl<$Res>
       validateProfileIdElement: freezed == validateProfileIdElement
           ? _value.validateProfileIdElement
           : validateProfileIdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       value: freezed == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -22973,7 +23032,7 @@ class __$$TestScriptAssertImplCopyWithImpl<$Res>
       valueElement: freezed == valueElement
           ? _value.valueElement
           : valueElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       warningOnly: freezed == warningOnly
           ? _value.warningOnly
           : warningOnly // ignore: cast_nullable_to_non_nullable
@@ -22981,7 +23040,7 @@ class __$$TestScriptAssertImplCopyWithImpl<$Res>
       warningOnlyElement: freezed == warningOnlyElement
           ? _value.warningOnlyElement
           : warningOnlyElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ));
   }
 }
@@ -23120,7 +23179,7 @@ class _$TestScriptAssertImpl extends _TestScriptAssert {
   /// [labelElement] Extensions for label
   @override
   @JsonKey(name: '_label')
-  final Element? labelElement;
+  final PrimitiveElement? labelElement;
 
   /// [description] The description would be used by test engines for tracking
   ///  and reporting purposes.
@@ -23130,7 +23189,7 @@ class _$TestScriptAssertImpl extends _TestScriptAssert {
   /// [descriptionElement] Extensions for description
   @override
   @JsonKey(name: '_description')
-  final Element? descriptionElement;
+  final PrimitiveElement? descriptionElement;
 
   /// [direction] The direction to use for the assertion.
   @override
@@ -23139,7 +23198,7 @@ class _$TestScriptAssertImpl extends _TestScriptAssert {
   /// [directionElement] Extensions for direction
   @override
   @JsonKey(name: '_direction')
-  final Element? directionElement;
+  final PrimitiveElement? directionElement;
 
   /// [compareToSourceId] Id of the source fixture used as the contents to be
   /// evaluated by either the "source/expression" or "sourceId/path"
@@ -23150,7 +23209,7 @@ class _$TestScriptAssertImpl extends _TestScriptAssert {
   /// [compareToSourceIdElement] Extensions for compareToSourceId
   @override
   @JsonKey(name: '_compareToSourceId')
-  final Element? compareToSourceIdElement;
+  final PrimitiveElement? compareToSourceIdElement;
 
   /// [compareToSourceExpression] The FHIRPath expression to evaluate against
   /// the source fixture. When compareToSourceId is defined, either
@@ -23160,7 +23219,7 @@ class _$TestScriptAssertImpl extends _TestScriptAssert {
   final String? compareToSourceExpression;
   @override
   @JsonKey(name: '_compareToSourceExpression')
-  final Element? compareToSourceExpressionElement;
+  final PrimitiveElement? compareToSourceExpressionElement;
 
   /// [compareToSourcePath] XPath or JSONPath expression to evaluate against
   /// the source fixture. When compareToSourceId is defined, either
@@ -23172,7 +23231,7 @@ class _$TestScriptAssertImpl extends _TestScriptAssert {
   /// [compareToSourcePathElement] Extensions for compareToSourcePath
   @override
   @JsonKey(name: '_compareToSourcePath')
-  final Element? compareToSourcePathElement;
+  final PrimitiveElement? compareToSourcePathElement;
 
   /// [contentType] The mime-type contents to compare against the request or
   ///  response message 'Content-Type' header.
@@ -23182,7 +23241,7 @@ class _$TestScriptAssertImpl extends _TestScriptAssert {
   /// [contentTypeElement] Extensions for contentType
   @override
   @JsonKey(name: '_contentType')
-  final Element? contentTypeElement;
+  final PrimitiveElement? contentTypeElement;
 
   /// [expression] The FHIRPath expression to be evaluated against the request
   ///  or response message contents - HTTP headers and payload.
@@ -23192,7 +23251,7 @@ class _$TestScriptAssertImpl extends _TestScriptAssert {
   /// [expressionElement] Extensions for expression
   @override
   @JsonKey(name: '_expression')
-  final Element? expressionElement;
+  final PrimitiveElement? expressionElement;
 
   /// [headerField] The HTTP header field name e.g. 'Location'.
   @override
@@ -23201,7 +23260,7 @@ class _$TestScriptAssertImpl extends _TestScriptAssert {
   /// [headerFieldElement] Extensions for headerField
   @override
   @JsonKey(name: '_headerField')
-  final Element? headerFieldElement;
+  final PrimitiveElement? headerFieldElement;
 
   /// [minimumId] The ID of a fixture.  Asserts that the response contains at a
   ///  minimum the fixture specified by minimumId.
@@ -23211,7 +23270,7 @@ class _$TestScriptAssertImpl extends _TestScriptAssert {
   /// [minimumIdElement] Extensions for minimumId
   @override
   @JsonKey(name: '_minimumId')
-  final Element? minimumIdElement;
+  final PrimitiveElement? minimumIdElement;
 
   /// [navigationLinks] Whether or not the test execution performs validation
   ///  on the bundle navigation links.
@@ -23221,7 +23280,7 @@ class _$TestScriptAssertImpl extends _TestScriptAssert {
   /// [navigationLinksElement] Extensions for navigationLinks
   @override
   @JsonKey(name: '_navigationLinks')
-  final Element? navigationLinksElement;
+  final PrimitiveElement? navigationLinksElement;
 
   /// [operator] The operator type defines the conditional behavior of the
   ///  assert. If not defined, the default is equals.
@@ -23232,7 +23291,7 @@ class _$TestScriptAssertImpl extends _TestScriptAssert {
   /// [operatorElement] Extensions for operator
   @override
   @JsonKey(name: '_operator')
-  final Element? operatorElement;
+  final PrimitiveElement? operatorElement;
 
   /// [path] The XPath or JSONPath expression to be evaluated against the
   ///  fixture representing the response received from server.
@@ -23242,7 +23301,7 @@ class _$TestScriptAssertImpl extends _TestScriptAssert {
   /// [pathElement] Extensions for path
   @override
   @JsonKey(name: '_path')
-  final Element? pathElement;
+  final PrimitiveElement? pathElement;
 
   /// [requestMethod] The request method or HTTP operation code to compare
   ///  against that used by the client system under test.
@@ -23252,7 +23311,7 @@ class _$TestScriptAssertImpl extends _TestScriptAssert {
   /// [requestMethodElement] Extensions for requestMethod
   @override
   @JsonKey(name: '_requestMethod')
-  final Element? requestMethodElement;
+  final PrimitiveElement? requestMethodElement;
 
   /// [requestURL] The value to use in a comparison against the request URL
   ///  path string.
@@ -23262,7 +23321,7 @@ class _$TestScriptAssertImpl extends _TestScriptAssert {
   /// [requestURLElement] Extensions for requestURL
   @override
   @JsonKey(name: '_requestURL')
-  final Element? requestURLElement;
+  final PrimitiveElement? requestURLElement;
 
   /// [resource] The type of the resource.  See
   ///  http://build.fhir.org/resourcelist.html.
@@ -23272,7 +23331,7 @@ class _$TestScriptAssertImpl extends _TestScriptAssert {
   /// [resourceElement] Extensions for resource
   @override
   @JsonKey(name: '_resource')
-  final Element? resourceElement;
+  final PrimitiveElement? resourceElement;
 
   /// [response] okay | created | noContent | notModified | bad | forbidden |
   /// notFound | methodNotAllowed | conflict | gone | preconditionFailed |
@@ -23283,7 +23342,7 @@ class _$TestScriptAssertImpl extends _TestScriptAssert {
   /// [responseElement] Extensions for response
   @override
   @JsonKey(name: '_response')
-  final Element? responseElement;
+  final PrimitiveElement? responseElement;
 
   /// [responseCode] The value of the HTTP response code to be tested.
   @override
@@ -23292,7 +23351,7 @@ class _$TestScriptAssertImpl extends _TestScriptAssert {
   /// [responseCodeElement] Extensions for responseCode
   @override
   @JsonKey(name: '_responseCode')
-  final Element? responseCodeElement;
+  final PrimitiveElement? responseCodeElement;
 
   /// [sourceId] Fixture to evaluate the XPath/JSONPath expression or the
   ///  headerField  against.
@@ -23302,7 +23361,7 @@ class _$TestScriptAssertImpl extends _TestScriptAssert {
   /// [sourceIdElement] Extensions for sourceId
   @override
   @JsonKey(name: '_sourceId')
-  final Element? sourceIdElement;
+  final PrimitiveElement? sourceIdElement;
 
   /// [validateProfileId] The ID of the Profile to validate against.
   @override
@@ -23311,7 +23370,7 @@ class _$TestScriptAssertImpl extends _TestScriptAssert {
   /// [validateProfileIdElement] Extensions for validateProfileId
   @override
   @JsonKey(name: '_validateProfileId')
-  final Element? validateProfileIdElement;
+  final PrimitiveElement? validateProfileIdElement;
 
   /// [value] The value to compare to.
   @override
@@ -23320,7 +23379,7 @@ class _$TestScriptAssertImpl extends _TestScriptAssert {
   /// [valueElement] Extensions for value
   @override
   @JsonKey(name: '_value')
-  final Element? valueElement;
+  final PrimitiveElement? valueElement;
 
   /// [warningOnly] Whether or not the test execution will produce a warning
   ///  only on error for this assert.
@@ -23330,7 +23389,7 @@ class _$TestScriptAssertImpl extends _TestScriptAssert {
   /// [warningOnlyElement] Extensions for warningOnly
   @override
   @JsonKey(name: '_warningOnly')
-  final Element? warningOnlyElement;
+  final PrimitiveElement? warningOnlyElement;
 
   @override
   String toString() {
@@ -23491,54 +23550,57 @@ abstract class _TestScriptAssert extends TestScriptAssert {
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final String? label,
-      @JsonKey(name: '_label') final Element? labelElement,
+      @JsonKey(name: '_label') final PrimitiveElement? labelElement,
       final String? description,
-      @JsonKey(name: '_description') final Element? descriptionElement,
+      @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       final FhirCode? direction,
-      @JsonKey(name: '_direction') final Element? directionElement,
+      @JsonKey(name: '_direction') final PrimitiveElement? directionElement,
       final String? compareToSourceId,
       @JsonKey(name: '_compareToSourceId')
-      final Element? compareToSourceIdElement,
+      final PrimitiveElement? compareToSourceIdElement,
       final String? compareToSourceExpression,
       @JsonKey(name: '_compareToSourceExpression')
-      final Element? compareToSourceExpressionElement,
+      final PrimitiveElement? compareToSourceExpressionElement,
       final String? compareToSourcePath,
       @JsonKey(name: '_compareToSourcePath')
-      final Element? compareToSourcePathElement,
+      final PrimitiveElement? compareToSourcePathElement,
       final FhirCode? contentType,
-      @JsonKey(name: '_contentType') final Element? contentTypeElement,
+      @JsonKey(name: '_contentType') final PrimitiveElement? contentTypeElement,
       final String? expression,
-      @JsonKey(name: '_expression') final Element? expressionElement,
+      @JsonKey(name: '_expression') final PrimitiveElement? expressionElement,
       final String? headerField,
-      @JsonKey(name: '_headerField') final Element? headerFieldElement,
+      @JsonKey(name: '_headerField') final PrimitiveElement? headerFieldElement,
       final String? minimumId,
-      @JsonKey(name: '_minimumId') final Element? minimumIdElement,
+      @JsonKey(name: '_minimumId') final PrimitiveElement? minimumIdElement,
       final FhirBoolean? navigationLinks,
-      @JsonKey(name: '_navigationLinks') final Element? navigationLinksElement,
+      @JsonKey(name: '_navigationLinks')
+      final PrimitiveElement? navigationLinksElement,
       @JsonKey(name: 'operator') final FhirCode? operator_,
-      @JsonKey(name: '_operator') final Element? operatorElement,
+      @JsonKey(name: '_operator') final PrimitiveElement? operatorElement,
       final String? path,
-      @JsonKey(name: '_path') final Element? pathElement,
+      @JsonKey(name: '_path') final PrimitiveElement? pathElement,
       final FhirCode? requestMethod,
-      @JsonKey(name: '_requestMethod') final Element? requestMethodElement,
+      @JsonKey(name: '_requestMethod')
+      final PrimitiveElement? requestMethodElement,
       final String? requestURL,
-      @JsonKey(name: '_requestURL') final Element? requestURLElement,
+      @JsonKey(name: '_requestURL') final PrimitiveElement? requestURLElement,
       final FhirCode? resource,
-      @JsonKey(name: '_resource') final Element? resourceElement,
+      @JsonKey(name: '_resource') final PrimitiveElement? resourceElement,
       final FhirCode? response,
-      @JsonKey(name: '_response') final Element? responseElement,
+      @JsonKey(name: '_response') final PrimitiveElement? responseElement,
       final String? responseCode,
-      @JsonKey(name: '_responseCode') final Element? responseCodeElement,
+      @JsonKey(name: '_responseCode')
+      final PrimitiveElement? responseCodeElement,
       final FhirId? sourceId,
-      @JsonKey(name: '_sourceId') final Element? sourceIdElement,
+      @JsonKey(name: '_sourceId') final PrimitiveElement? sourceIdElement,
       final FhirId? validateProfileId,
       @JsonKey(name: '_validateProfileId')
-      final Element? validateProfileIdElement,
+      final PrimitiveElement? validateProfileIdElement,
       final String? value,
-      @JsonKey(name: '_value') final Element? valueElement,
+      @JsonKey(name: '_value') final PrimitiveElement? valueElement,
       final FhirBoolean? warningOnly,
       @JsonKey(name: '_warningOnly')
-      final Element? warningOnlyElement}) = _$TestScriptAssertImpl;
+      final PrimitiveElement? warningOnlyElement}) = _$TestScriptAssertImpl;
   const _TestScriptAssert._() : super._();
 
   factory _TestScriptAssert.fromJson(Map<String, dynamic> json) =
@@ -23584,7 +23646,7 @@ abstract class _TestScriptAssert extends TestScriptAssert {
 
   /// [labelElement] Extensions for label
   @JsonKey(name: '_label')
-  Element? get labelElement;
+  PrimitiveElement? get labelElement;
   @override
 
   /// [description] The description would be used by test engines for tracking
@@ -23594,7 +23656,7 @@ abstract class _TestScriptAssert extends TestScriptAssert {
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement;
+  PrimitiveElement? get descriptionElement;
   @override
 
   /// [direction] The direction to use for the assertion.
@@ -23603,7 +23665,7 @@ abstract class _TestScriptAssert extends TestScriptAssert {
 
   /// [directionElement] Extensions for direction
   @JsonKey(name: '_direction')
-  Element? get directionElement;
+  PrimitiveElement? get directionElement;
   @override
 
   /// [compareToSourceId] Id of the source fixture used as the contents to be
@@ -23614,7 +23676,7 @@ abstract class _TestScriptAssert extends TestScriptAssert {
 
   /// [compareToSourceIdElement] Extensions for compareToSourceId
   @JsonKey(name: '_compareToSourceId')
-  Element? get compareToSourceIdElement;
+  PrimitiveElement? get compareToSourceIdElement;
   @override
 
   /// [compareToSourceExpression] The FHIRPath expression to evaluate against
@@ -23624,7 +23686,7 @@ abstract class _TestScriptAssert extends TestScriptAssert {
   String? get compareToSourceExpression;
   @override
   @JsonKey(name: '_compareToSourceExpression')
-  Element? get compareToSourceExpressionElement;
+  PrimitiveElement? get compareToSourceExpressionElement;
   @override
 
   /// [compareToSourcePath] XPath or JSONPath expression to evaluate against
@@ -23636,7 +23698,7 @@ abstract class _TestScriptAssert extends TestScriptAssert {
 
   /// [compareToSourcePathElement] Extensions for compareToSourcePath
   @JsonKey(name: '_compareToSourcePath')
-  Element? get compareToSourcePathElement;
+  PrimitiveElement? get compareToSourcePathElement;
   @override
 
   /// [contentType] The mime-type contents to compare against the request or
@@ -23646,7 +23708,7 @@ abstract class _TestScriptAssert extends TestScriptAssert {
 
   /// [contentTypeElement] Extensions for contentType
   @JsonKey(name: '_contentType')
-  Element? get contentTypeElement;
+  PrimitiveElement? get contentTypeElement;
   @override
 
   /// [expression] The FHIRPath expression to be evaluated against the request
@@ -23656,7 +23718,7 @@ abstract class _TestScriptAssert extends TestScriptAssert {
 
   /// [expressionElement] Extensions for expression
   @JsonKey(name: '_expression')
-  Element? get expressionElement;
+  PrimitiveElement? get expressionElement;
   @override
 
   /// [headerField] The HTTP header field name e.g. 'Location'.
@@ -23665,7 +23727,7 @@ abstract class _TestScriptAssert extends TestScriptAssert {
 
   /// [headerFieldElement] Extensions for headerField
   @JsonKey(name: '_headerField')
-  Element? get headerFieldElement;
+  PrimitiveElement? get headerFieldElement;
   @override
 
   /// [minimumId] The ID of a fixture.  Asserts that the response contains at a
@@ -23675,7 +23737,7 @@ abstract class _TestScriptAssert extends TestScriptAssert {
 
   /// [minimumIdElement] Extensions for minimumId
   @JsonKey(name: '_minimumId')
-  Element? get minimumIdElement;
+  PrimitiveElement? get minimumIdElement;
   @override
 
   /// [navigationLinks] Whether or not the test execution performs validation
@@ -23685,7 +23747,7 @@ abstract class _TestScriptAssert extends TestScriptAssert {
 
   /// [navigationLinksElement] Extensions for navigationLinks
   @JsonKey(name: '_navigationLinks')
-  Element? get navigationLinksElement;
+  PrimitiveElement? get navigationLinksElement;
   @override
 
   /// [operator] The operator type defines the conditional behavior of the
@@ -23696,7 +23758,7 @@ abstract class _TestScriptAssert extends TestScriptAssert {
 
   /// [operatorElement] Extensions for operator
   @JsonKey(name: '_operator')
-  Element? get operatorElement;
+  PrimitiveElement? get operatorElement;
   @override
 
   /// [path] The XPath or JSONPath expression to be evaluated against the
@@ -23706,7 +23768,7 @@ abstract class _TestScriptAssert extends TestScriptAssert {
 
   /// [pathElement] Extensions for path
   @JsonKey(name: '_path')
-  Element? get pathElement;
+  PrimitiveElement? get pathElement;
   @override
 
   /// [requestMethod] The request method or HTTP operation code to compare
@@ -23716,7 +23778,7 @@ abstract class _TestScriptAssert extends TestScriptAssert {
 
   /// [requestMethodElement] Extensions for requestMethod
   @JsonKey(name: '_requestMethod')
-  Element? get requestMethodElement;
+  PrimitiveElement? get requestMethodElement;
   @override
 
   /// [requestURL] The value to use in a comparison against the request URL
@@ -23726,7 +23788,7 @@ abstract class _TestScriptAssert extends TestScriptAssert {
 
   /// [requestURLElement] Extensions for requestURL
   @JsonKey(name: '_requestURL')
-  Element? get requestURLElement;
+  PrimitiveElement? get requestURLElement;
   @override
 
   /// [resource] The type of the resource.  See
@@ -23736,7 +23798,7 @@ abstract class _TestScriptAssert extends TestScriptAssert {
 
   /// [resourceElement] Extensions for resource
   @JsonKey(name: '_resource')
-  Element? get resourceElement;
+  PrimitiveElement? get resourceElement;
   @override
 
   /// [response] okay | created | noContent | notModified | bad | forbidden |
@@ -23747,7 +23809,7 @@ abstract class _TestScriptAssert extends TestScriptAssert {
 
   /// [responseElement] Extensions for response
   @JsonKey(name: '_response')
-  Element? get responseElement;
+  PrimitiveElement? get responseElement;
   @override
 
   /// [responseCode] The value of the HTTP response code to be tested.
@@ -23756,7 +23818,7 @@ abstract class _TestScriptAssert extends TestScriptAssert {
 
   /// [responseCodeElement] Extensions for responseCode
   @JsonKey(name: '_responseCode')
-  Element? get responseCodeElement;
+  PrimitiveElement? get responseCodeElement;
   @override
 
   /// [sourceId] Fixture to evaluate the XPath/JSONPath expression or the
@@ -23766,7 +23828,7 @@ abstract class _TestScriptAssert extends TestScriptAssert {
 
   /// [sourceIdElement] Extensions for sourceId
   @JsonKey(name: '_sourceId')
-  Element? get sourceIdElement;
+  PrimitiveElement? get sourceIdElement;
   @override
 
   /// [validateProfileId] The ID of the Profile to validate against.
@@ -23775,7 +23837,7 @@ abstract class _TestScriptAssert extends TestScriptAssert {
 
   /// [validateProfileIdElement] Extensions for validateProfileId
   @JsonKey(name: '_validateProfileId')
-  Element? get validateProfileIdElement;
+  PrimitiveElement? get validateProfileIdElement;
   @override
 
   /// [value] The value to compare to.
@@ -23784,7 +23846,7 @@ abstract class _TestScriptAssert extends TestScriptAssert {
 
   /// [valueElement] Extensions for value
   @JsonKey(name: '_value')
-  Element? get valueElement;
+  PrimitiveElement? get valueElement;
   @override
 
   /// [warningOnly] Whether or not the test execution will produce a warning
@@ -23794,7 +23856,7 @@ abstract class _TestScriptAssert extends TestScriptAssert {
 
   /// [warningOnlyElement] Extensions for warningOnly
   @JsonKey(name: '_warningOnly')
-  Element? get warningOnlyElement;
+  PrimitiveElement? get warningOnlyElement;
   @override
   @JsonKey(ignore: true)
   _$$TestScriptAssertImplCopyWith<_$TestScriptAssertImpl> get copyWith =>
@@ -23842,7 +23904,7 @@ mixin _$TestScriptTest {
 
   /// [nameElement] Extensions for name
   @JsonKey(name: '_name')
-  Element? get nameElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get nameElement => throw _privateConstructorUsedError;
 
   /// [description] A short description of the test used by test engines for
   ///  tracking and reporting purposes.
@@ -23850,7 +23912,8 @@ mixin _$TestScriptTest {
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get descriptionElement =>
+      throw _privateConstructorUsedError;
 
   /// [action] Action would contain either an operation or an assertion.
   List<TestScriptAction1> get action => throw _privateConstructorUsedError;
@@ -23872,9 +23935,9 @@ abstract class $TestScriptTestCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? name,
-      @JsonKey(name: '_name') Element? nameElement,
+      @JsonKey(name: '_name') PrimitiveElement? nameElement,
       String? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       List<TestScriptAction1> action});
 }
 
@@ -23920,7 +23983,7 @@ class _$TestScriptTestCopyWithImpl<$Res, $Val extends TestScriptTest>
       nameElement: freezed == nameElement
           ? _value.nameElement
           : nameElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -23928,7 +23991,7 @@ class _$TestScriptTestCopyWithImpl<$Res, $Val extends TestScriptTest>
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       action: null == action
           ? _value.action
           : action // ignore: cast_nullable_to_non_nullable
@@ -23950,9 +24013,9 @@ abstract class _$$TestScriptTestImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? name,
-      @JsonKey(name: '_name') Element? nameElement,
+      @JsonKey(name: '_name') PrimitiveElement? nameElement,
       String? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       List<TestScriptAction1> action});
 }
 
@@ -23996,7 +24059,7 @@ class __$$TestScriptTestImplCopyWithImpl<$Res>
       nameElement: freezed == nameElement
           ? _value.nameElement
           : nameElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -24004,7 +24067,7 @@ class __$$TestScriptTestImplCopyWithImpl<$Res>
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       action: null == action
           ? _value._action
           : action // ignore: cast_nullable_to_non_nullable
@@ -24108,7 +24171,7 @@ class _$TestScriptTestImpl extends _TestScriptTest {
   /// [nameElement] Extensions for name
   @override
   @JsonKey(name: '_name')
-  final Element? nameElement;
+  final PrimitiveElement? nameElement;
 
   /// [description] A short description of the test used by test engines for
   ///  tracking and reporting purposes.
@@ -24118,7 +24181,7 @@ class _$TestScriptTestImpl extends _TestScriptTest {
   /// [descriptionElement] Extensions for description
   @override
   @JsonKey(name: '_description')
-  final Element? descriptionElement;
+  final PrimitiveElement? descriptionElement;
 
   /// [action] Action would contain either an operation or an assertion.
   final List<TestScriptAction1> _action;
@@ -24190,9 +24253,9 @@ abstract class _TestScriptTest extends TestScriptTest {
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final String? name,
-      @JsonKey(name: '_name') final Element? nameElement,
+      @JsonKey(name: '_name') final PrimitiveElement? nameElement,
       final String? description,
-      @JsonKey(name: '_description') final Element? descriptionElement,
+      @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       required final List<TestScriptAction1> action}) = _$TestScriptTestImpl;
   const _TestScriptTest._() : super._();
 
@@ -24239,7 +24302,7 @@ abstract class _TestScriptTest extends TestScriptTest {
 
   /// [nameElement] Extensions for name
   @JsonKey(name: '_name')
-  Element? get nameElement;
+  PrimitiveElement? get nameElement;
   @override
 
   /// [description] A short description of the test used by test engines for
@@ -24249,7 +24312,7 @@ abstract class _TestScriptTest extends TestScriptTest {
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement;
+  PrimitiveElement? get descriptionElement;
   @override
 
   /// [action] Action would contain either an operation or an assertion.

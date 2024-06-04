@@ -17,25 +17,26 @@ _$RelatedArtifactImpl _$$RelatedArtifactImplFromJson(
           unknownValue: RelatedArtifactType.unknown),
       typeElement: json['_type'] == null
           ? null
-          : Element.fromJson(json['_type'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_type'] as Map<String, dynamic>),
       label: json['label'] as String?,
       labelElement: json['_label'] == null
           ? null
-          : Element.fromJson(json['_label'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_label'] as Map<String, dynamic>),
       display: json['display'] as String?,
       displayElement: json['_display'] == null
           ? null
-          : Element.fromJson(json['_display'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_display'] as Map<String, dynamic>),
       citation: json['citation'] == null
           ? null
           : FhirMarkdown.fromJson(json['citation']),
       citationElement: json['_citation'] == null
           ? null
-          : Element.fromJson(json['_citation'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_citation'] as Map<String, dynamic>),
       url: json['url'] == null ? null : FhirUrl.fromJson(json['url']),
       urlElement: json['_url'] == null
           ? null
-          : Element.fromJson(json['_url'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_url'] as Map<String, dynamic>),
       document: json['document'] == null
           ? null
           : Attachment.fromJson(json['document'] as Map<String, dynamic>),

@@ -40,14 +40,15 @@ mixin _$AuditEvent {
 
   /// [implicitRulesElement] Extensions for implicitRules
   @JsonKey(name: '_implicitRules')
-  Element? get implicitRulesElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get implicitRulesElement =>
+      throw _privateConstructorUsedError;
 
   /// [language] The base language in which the resource is written.
   FhirCode? get language => throw _privateConstructorUsedError;
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get languageElement => throw _privateConstructorUsedError;
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -102,7 +103,7 @@ mixin _$AuditEvent {
 
   /// [actionElement] Extensions for action
   @JsonKey(name: '_action')
-  Element? get actionElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get actionElement => throw _privateConstructorUsedError;
 
   /// [period] The period during which the activity occurred.
   Period? get period => throw _privateConstructorUsedError;
@@ -112,21 +113,22 @@ mixin _$AuditEvent {
 
   /// [recordedElement] Extensions for recorded
   @JsonKey(name: '_recorded')
-  Element? get recordedElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get recordedElement => throw _privateConstructorUsedError;
 
   /// [outcome] Indicates whether the event succeeded or failed.
   FhirCode? get outcome => throw _privateConstructorUsedError;
 
   /// [outcomeElement] Extensions for outcome
   @JsonKey(name: '_outcome')
-  Element? get outcomeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get outcomeElement => throw _privateConstructorUsedError;
 
   /// [outcomeDesc] A free text description of the outcome of the event.
   String? get outcomeDesc => throw _privateConstructorUsedError;
 
   /// [outcomeDescElement] Extensions for outcomeDesc
   @JsonKey(name: '_outcomeDesc')
-  Element? get outcomeDescElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get outcomeDescElement =>
+      throw _privateConstructorUsedError;
 
   /// [purposeOfEvent] The purposeOfUse (reason) that was used during the event
   ///  being recorded.
@@ -161,9 +163,9 @@ abstract class $AuditEventCopyWith<$Res> {
       String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
       FhirCode? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       Narrative? text,
       List<Resource>? contained,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -171,14 +173,14 @@ abstract class $AuditEventCopyWith<$Res> {
       Coding type,
       List<Coding>? subtype,
       FhirCode? action,
-      @JsonKey(name: '_action') Element? actionElement,
+      @JsonKey(name: '_action') PrimitiveElement? actionElement,
       Period? period,
       FhirInstant? recorded,
-      @JsonKey(name: '_recorded') Element? recordedElement,
+      @JsonKey(name: '_recorded') PrimitiveElement? recordedElement,
       FhirCode? outcome,
-      @JsonKey(name: '_outcome') Element? outcomeElement,
+      @JsonKey(name: '_outcome') PrimitiveElement? outcomeElement,
       String? outcomeDesc,
-      @JsonKey(name: '_outcomeDesc') Element? outcomeDescElement,
+      @JsonKey(name: '_outcomeDesc') PrimitiveElement? outcomeDescElement,
       List<CodeableConcept>? purposeOfEvent,
       List<AuditEventAgent> agent,
       AuditEventSource source,
@@ -251,7 +253,7 @@ class _$AuditEventCopyWithImpl<$Res, $Val extends AuditEvent>
       implicitRulesElement: freezed == implicitRulesElement
           ? _value.implicitRulesElement
           : implicitRulesElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -259,7 +261,7 @@ class _$AuditEventCopyWithImpl<$Res, $Val extends AuditEvent>
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -291,7 +293,7 @@ class _$AuditEventCopyWithImpl<$Res, $Val extends AuditEvent>
       actionElement: freezed == actionElement
           ? _value.actionElement
           : actionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       period: freezed == period
           ? _value.period
           : period // ignore: cast_nullable_to_non_nullable
@@ -303,7 +305,7 @@ class _$AuditEventCopyWithImpl<$Res, $Val extends AuditEvent>
       recordedElement: freezed == recordedElement
           ? _value.recordedElement
           : recordedElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       outcome: freezed == outcome
           ? _value.outcome
           : outcome // ignore: cast_nullable_to_non_nullable
@@ -311,7 +313,7 @@ class _$AuditEventCopyWithImpl<$Res, $Val extends AuditEvent>
       outcomeElement: freezed == outcomeElement
           ? _value.outcomeElement
           : outcomeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       outcomeDesc: freezed == outcomeDesc
           ? _value.outcomeDesc
           : outcomeDesc // ignore: cast_nullable_to_non_nullable
@@ -319,7 +321,7 @@ class _$AuditEventCopyWithImpl<$Res, $Val extends AuditEvent>
       outcomeDescElement: freezed == outcomeDescElement
           ? _value.outcomeDescElement
           : outcomeDescElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       purposeOfEvent: freezed == purposeOfEvent
           ? _value.purposeOfEvent
           : purposeOfEvent // ignore: cast_nullable_to_non_nullable
@@ -406,9 +408,9 @@ abstract class _$$AuditEventImplCopyWith<$Res>
       String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
       FhirCode? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       Narrative? text,
       List<Resource>? contained,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -416,14 +418,14 @@ abstract class _$$AuditEventImplCopyWith<$Res>
       Coding type,
       List<Coding>? subtype,
       FhirCode? action,
-      @JsonKey(name: '_action') Element? actionElement,
+      @JsonKey(name: '_action') PrimitiveElement? actionElement,
       Period? period,
       FhirInstant? recorded,
-      @JsonKey(name: '_recorded') Element? recordedElement,
+      @JsonKey(name: '_recorded') PrimitiveElement? recordedElement,
       FhirCode? outcome,
-      @JsonKey(name: '_outcome') Element? outcomeElement,
+      @JsonKey(name: '_outcome') PrimitiveElement? outcomeElement,
       String? outcomeDesc,
-      @JsonKey(name: '_outcomeDesc') Element? outcomeDescElement,
+      @JsonKey(name: '_outcomeDesc') PrimitiveElement? outcomeDescElement,
       List<CodeableConcept>? purposeOfEvent,
       List<AuditEventAgent> agent,
       AuditEventSource source,
@@ -499,7 +501,7 @@ class __$$AuditEventImplCopyWithImpl<$Res>
       implicitRulesElement: freezed == implicitRulesElement
           ? _value.implicitRulesElement
           : implicitRulesElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -507,7 +509,7 @@ class __$$AuditEventImplCopyWithImpl<$Res>
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -539,7 +541,7 @@ class __$$AuditEventImplCopyWithImpl<$Res>
       actionElement: freezed == actionElement
           ? _value.actionElement
           : actionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       period: freezed == period
           ? _value.period
           : period // ignore: cast_nullable_to_non_nullable
@@ -551,7 +553,7 @@ class __$$AuditEventImplCopyWithImpl<$Res>
       recordedElement: freezed == recordedElement
           ? _value.recordedElement
           : recordedElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       outcome: freezed == outcome
           ? _value.outcome
           : outcome // ignore: cast_nullable_to_non_nullable
@@ -559,7 +561,7 @@ class __$$AuditEventImplCopyWithImpl<$Res>
       outcomeElement: freezed == outcomeElement
           ? _value.outcomeElement
           : outcomeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       outcomeDesc: freezed == outcomeDesc
           ? _value.outcomeDesc
           : outcomeDesc // ignore: cast_nullable_to_non_nullable
@@ -567,7 +569,7 @@ class __$$AuditEventImplCopyWithImpl<$Res>
       outcomeDescElement: freezed == outcomeDescElement
           ? _value.outcomeDescElement
           : outcomeDescElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       purposeOfEvent: freezed == purposeOfEvent
           ? _value._purposeOfEvent
           : purposeOfEvent // ignore: cast_nullable_to_non_nullable
@@ -656,7 +658,7 @@ class _$AuditEventImpl extends _AuditEvent {
   /// [implicitRulesElement] Extensions for implicitRules
   @override
   @JsonKey(name: '_implicitRules')
-  final Element? implicitRulesElement;
+  final PrimitiveElement? implicitRulesElement;
 
   /// [language] The base language in which the resource is written.
   @override
@@ -665,7 +667,7 @@ class _$AuditEventImpl extends _AuditEvent {
   /// [languageElement] Extensions for language
   @override
   @JsonKey(name: '_language')
-  final Element? languageElement;
+  final PrimitiveElement? languageElement;
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -784,7 +786,7 @@ class _$AuditEventImpl extends _AuditEvent {
   /// [actionElement] Extensions for action
   @override
   @JsonKey(name: '_action')
-  final Element? actionElement;
+  final PrimitiveElement? actionElement;
 
   /// [period] The period during which the activity occurred.
   @override
@@ -797,7 +799,7 @@ class _$AuditEventImpl extends _AuditEvent {
   /// [recordedElement] Extensions for recorded
   @override
   @JsonKey(name: '_recorded')
-  final Element? recordedElement;
+  final PrimitiveElement? recordedElement;
 
   /// [outcome] Indicates whether the event succeeded or failed.
   @override
@@ -806,7 +808,7 @@ class _$AuditEventImpl extends _AuditEvent {
   /// [outcomeElement] Extensions for outcome
   @override
   @JsonKey(name: '_outcome')
-  final Element? outcomeElement;
+  final PrimitiveElement? outcomeElement;
 
   /// [outcomeDesc] A free text description of the outcome of the event.
   @override
@@ -815,7 +817,7 @@ class _$AuditEventImpl extends _AuditEvent {
   /// [outcomeDescElement] Extensions for outcomeDesc
   @override
   @JsonKey(name: '_outcomeDesc')
-  final Element? outcomeDescElement;
+  final PrimitiveElement? outcomeDescElement;
 
   /// [purposeOfEvent] The purposeOfUse (reason) that was used during the event
   ///  being recorded.
@@ -968,9 +970,10 @@ abstract class _AuditEvent extends AuditEvent {
       final String? id,
       final FhirMeta? meta,
       final FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') final Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules')
+      final PrimitiveElement? implicitRulesElement,
       final FhirCode? language,
-      @JsonKey(name: '_language') final Element? languageElement,
+      @JsonKey(name: '_language') final PrimitiveElement? languageElement,
       final Narrative? text,
       final List<Resource>? contained,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
@@ -978,14 +981,14 @@ abstract class _AuditEvent extends AuditEvent {
       required final Coding type,
       final List<Coding>? subtype,
       final FhirCode? action,
-      @JsonKey(name: '_action') final Element? actionElement,
+      @JsonKey(name: '_action') final PrimitiveElement? actionElement,
       final Period? period,
       final FhirInstant? recorded,
-      @JsonKey(name: '_recorded') final Element? recordedElement,
+      @JsonKey(name: '_recorded') final PrimitiveElement? recordedElement,
       final FhirCode? outcome,
-      @JsonKey(name: '_outcome') final Element? outcomeElement,
+      @JsonKey(name: '_outcome') final PrimitiveElement? outcomeElement,
       final String? outcomeDesc,
-      @JsonKey(name: '_outcomeDesc') final Element? outcomeDescElement,
+      @JsonKey(name: '_outcomeDesc') final PrimitiveElement? outcomeDescElement,
       final List<CodeableConcept>? purposeOfEvent,
       required final List<AuditEventAgent> agent,
       required final AuditEventSource source,
@@ -1020,7 +1023,7 @@ abstract class _AuditEvent extends AuditEvent {
 
   /// [implicitRulesElement] Extensions for implicitRules
   @JsonKey(name: '_implicitRules')
-  Element? get implicitRulesElement;
+  PrimitiveElement? get implicitRulesElement;
   @override
 
   /// [language] The base language in which the resource is written.
@@ -1029,7 +1032,7 @@ abstract class _AuditEvent extends AuditEvent {
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement;
+  PrimitiveElement? get languageElement;
   @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
@@ -1091,7 +1094,7 @@ abstract class _AuditEvent extends AuditEvent {
 
   /// [actionElement] Extensions for action
   @JsonKey(name: '_action')
-  Element? get actionElement;
+  PrimitiveElement? get actionElement;
   @override
 
   /// [period] The period during which the activity occurred.
@@ -1104,7 +1107,7 @@ abstract class _AuditEvent extends AuditEvent {
 
   /// [recordedElement] Extensions for recorded
   @JsonKey(name: '_recorded')
-  Element? get recordedElement;
+  PrimitiveElement? get recordedElement;
   @override
 
   /// [outcome] Indicates whether the event succeeded or failed.
@@ -1113,7 +1116,7 @@ abstract class _AuditEvent extends AuditEvent {
 
   /// [outcomeElement] Extensions for outcome
   @JsonKey(name: '_outcome')
-  Element? get outcomeElement;
+  PrimitiveElement? get outcomeElement;
   @override
 
   /// [outcomeDesc] A free text description of the outcome of the event.
@@ -1122,7 +1125,7 @@ abstract class _AuditEvent extends AuditEvent {
 
   /// [outcomeDescElement] Extensions for outcomeDesc
   @JsonKey(name: '_outcomeDesc')
-  Element? get outcomeDescElement;
+  PrimitiveElement? get outcomeDescElement;
   @override
 
   /// [purposeOfEvent] The purposeOfUse (reason) that was used during the event
@@ -1202,14 +1205,14 @@ mixin _$AuditEventAgent {
 
   /// [altIdElement] Extensions for altId
   @JsonKey(name: '_altId')
-  Element? get altIdElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get altIdElement => throw _privateConstructorUsedError;
 
   /// [name] Human-meaningful name for the agent.
   String? get name => throw _privateConstructorUsedError;
 
   /// [nameElement] Extensions for name
   @JsonKey(name: '_name')
-  Element? get nameElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get nameElement => throw _privateConstructorUsedError;
 
   /// [requestor] Indicator that the user is or is not the requestor, or
   ///  initiator, for the event being audited.
@@ -1217,7 +1220,7 @@ mixin _$AuditEventAgent {
 
   /// [requestorElement] Extensions for requestor
   @JsonKey(name: '_requestor')
-  Element? get requestorElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get requestorElement => throw _privateConstructorUsedError;
 
   /// [location] Where the event occurred.
   Reference? get location => throw _privateConstructorUsedError;
@@ -1264,11 +1267,11 @@ abstract class $AuditEventAgentCopyWith<$Res> {
       List<CodeableConcept>? role,
       Reference? who,
       String? altId,
-      @JsonKey(name: '_altId') Element? altIdElement,
+      @JsonKey(name: '_altId') PrimitiveElement? altIdElement,
       String? name,
-      @JsonKey(name: '_name') Element? nameElement,
+      @JsonKey(name: '_name') PrimitiveElement? nameElement,
       FhirBoolean? requestor,
-      @JsonKey(name: '_requestor') Element? requestorElement,
+      @JsonKey(name: '_requestor') PrimitiveElement? requestorElement,
       Reference? location,
       List<FhirUri>? policy,
       @JsonKey(name: '_policy') List<Element?>? policyElement,
@@ -1347,7 +1350,7 @@ class _$AuditEventAgentCopyWithImpl<$Res, $Val extends AuditEventAgent>
       altIdElement: freezed == altIdElement
           ? _value.altIdElement
           : altIdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -1355,7 +1358,7 @@ class _$AuditEventAgentCopyWithImpl<$Res, $Val extends AuditEventAgent>
       nameElement: freezed == nameElement
           ? _value.nameElement
           : nameElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       requestor: freezed == requestor
           ? _value.requestor
           : requestor // ignore: cast_nullable_to_non_nullable
@@ -1363,7 +1366,7 @@ class _$AuditEventAgentCopyWithImpl<$Res, $Val extends AuditEventAgent>
       requestorElement: freezed == requestorElement
           ? _value.requestorElement
           : requestorElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       location: freezed == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
@@ -1468,11 +1471,11 @@ abstract class _$$AuditEventAgentImplCopyWith<$Res>
       List<CodeableConcept>? role,
       Reference? who,
       String? altId,
-      @JsonKey(name: '_altId') Element? altIdElement,
+      @JsonKey(name: '_altId') PrimitiveElement? altIdElement,
       String? name,
-      @JsonKey(name: '_name') Element? nameElement,
+      @JsonKey(name: '_name') PrimitiveElement? nameElement,
       FhirBoolean? requestor,
-      @JsonKey(name: '_requestor') Element? requestorElement,
+      @JsonKey(name: '_requestor') PrimitiveElement? requestorElement,
       Reference? location,
       List<FhirUri>? policy,
       @JsonKey(name: '_policy') List<Element?>? policyElement,
@@ -1554,7 +1557,7 @@ class __$$AuditEventAgentImplCopyWithImpl<$Res>
       altIdElement: freezed == altIdElement
           ? _value.altIdElement
           : altIdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -1562,7 +1565,7 @@ class __$$AuditEventAgentImplCopyWithImpl<$Res>
       nameElement: freezed == nameElement
           ? _value.nameElement
           : nameElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       requestor: freezed == requestor
           ? _value.requestor
           : requestor // ignore: cast_nullable_to_non_nullable
@@ -1570,7 +1573,7 @@ class __$$AuditEventAgentImplCopyWithImpl<$Res>
       requestorElement: freezed == requestorElement
           ? _value.requestorElement
           : requestorElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       location: freezed == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
@@ -1735,7 +1738,7 @@ class _$AuditEventAgentImpl extends _AuditEventAgent {
   /// [altIdElement] Extensions for altId
   @override
   @JsonKey(name: '_altId')
-  final Element? altIdElement;
+  final PrimitiveElement? altIdElement;
 
   /// [name] Human-meaningful name for the agent.
   @override
@@ -1744,7 +1747,7 @@ class _$AuditEventAgentImpl extends _AuditEventAgent {
   /// [nameElement] Extensions for name
   @override
   @JsonKey(name: '_name')
-  final Element? nameElement;
+  final PrimitiveElement? nameElement;
 
   /// [requestor] Indicator that the user is or is not the requestor, or
   ///  initiator, for the event being audited.
@@ -1754,7 +1757,7 @@ class _$AuditEventAgentImpl extends _AuditEventAgent {
   /// [requestorElement] Extensions for requestor
   @override
   @JsonKey(name: '_requestor')
-  final Element? requestorElement;
+  final PrimitiveElement? requestorElement;
 
   /// [location] Where the event occurred.
   @override
@@ -1904,11 +1907,11 @@ abstract class _AuditEventAgent extends AuditEventAgent {
       final List<CodeableConcept>? role,
       final Reference? who,
       final String? altId,
-      @JsonKey(name: '_altId') final Element? altIdElement,
+      @JsonKey(name: '_altId') final PrimitiveElement? altIdElement,
       final String? name,
-      @JsonKey(name: '_name') final Element? nameElement,
+      @JsonKey(name: '_name') final PrimitiveElement? nameElement,
       final FhirBoolean? requestor,
-      @JsonKey(name: '_requestor') final Element? requestorElement,
+      @JsonKey(name: '_requestor') final PrimitiveElement? requestorElement,
       final Reference? location,
       final List<FhirUri>? policy,
       @JsonKey(name: '_policy') final List<Element?>? policyElement,
@@ -1977,7 +1980,7 @@ abstract class _AuditEventAgent extends AuditEventAgent {
 
   /// [altIdElement] Extensions for altId
   @JsonKey(name: '_altId')
-  Element? get altIdElement;
+  PrimitiveElement? get altIdElement;
   @override
 
   /// [name] Human-meaningful name for the agent.
@@ -1986,7 +1989,7 @@ abstract class _AuditEventAgent extends AuditEventAgent {
 
   /// [nameElement] Extensions for name
   @JsonKey(name: '_name')
-  Element? get nameElement;
+  PrimitiveElement? get nameElement;
   @override
 
   /// [requestor] Indicator that the user is or is not the requestor, or
@@ -1996,7 +1999,7 @@ abstract class _AuditEventAgent extends AuditEventAgent {
 
   /// [requestorElement] Extensions for requestor
   @JsonKey(name: '_requestor')
-  Element? get requestorElement;
+  PrimitiveElement? get requestorElement;
   @override
 
   /// [location] Where the event occurred.
@@ -2075,7 +2078,7 @@ mixin _$AuditEventNetwork {
 
   /// [addressElement] Extensions for address
   @JsonKey(name: '_address')
-  Element? get addressElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get addressElement => throw _privateConstructorUsedError;
 
   /// [type] An identifier for the type of network access point that originated
   ///  the audit event.
@@ -2083,7 +2086,7 @@ mixin _$AuditEventNetwork {
 
   /// [typeElement] Extensions for type
   @JsonKey(name: '_type')
-  Element? get typeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get typeElement => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -2102,9 +2105,9 @@ abstract class $AuditEventNetworkCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? address,
-      @JsonKey(name: '_address') Element? addressElement,
+      @JsonKey(name: '_address') PrimitiveElement? addressElement,
       FhirCode? type,
-      @JsonKey(name: '_type') Element? typeElement});
+      @JsonKey(name: '_type') PrimitiveElement? typeElement});
 }
 
 /// @nodoc
@@ -2148,7 +2151,7 @@ class _$AuditEventNetworkCopyWithImpl<$Res, $Val extends AuditEventNetwork>
       addressElement: freezed == addressElement
           ? _value.addressElement
           : addressElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -2156,7 +2159,7 @@ class _$AuditEventNetworkCopyWithImpl<$Res, $Val extends AuditEventNetwork>
       typeElement: freezed == typeElement
           ? _value.typeElement
           : typeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ) as $Val);
   }
 }
@@ -2174,9 +2177,9 @@ abstract class _$$AuditEventNetworkImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? address,
-      @JsonKey(name: '_address') Element? addressElement,
+      @JsonKey(name: '_address') PrimitiveElement? addressElement,
       FhirCode? type,
-      @JsonKey(name: '_type') Element? typeElement});
+      @JsonKey(name: '_type') PrimitiveElement? typeElement});
 }
 
 /// @nodoc
@@ -2218,7 +2221,7 @@ class __$$AuditEventNetworkImplCopyWithImpl<$Res>
       addressElement: freezed == addressElement
           ? _value.addressElement
           : addressElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -2226,7 +2229,7 @@ class __$$AuditEventNetworkImplCopyWithImpl<$Res>
       typeElement: freezed == typeElement
           ? _value.typeElement
           : typeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ));
   }
 }
@@ -2324,7 +2327,7 @@ class _$AuditEventNetworkImpl extends _AuditEventNetwork {
   /// [addressElement] Extensions for address
   @override
   @JsonKey(name: '_address')
-  final Element? addressElement;
+  final PrimitiveElement? addressElement;
 
   /// [type] An identifier for the type of network access point that originated
   ///  the audit event.
@@ -2334,7 +2337,7 @@ class _$AuditEventNetworkImpl extends _AuditEventNetwork {
   /// [typeElement] Extensions for type
   @override
   @JsonKey(name: '_type')
-  final Element? typeElement;
+  final PrimitiveElement? typeElement;
 
   @override
   String toString() {
@@ -2392,9 +2395,9 @@ abstract class _AuditEventNetwork extends AuditEventNetwork {
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final String? address,
-          @JsonKey(name: '_address') final Element? addressElement,
+          @JsonKey(name: '_address') final PrimitiveElement? addressElement,
           final FhirCode? type,
-          @JsonKey(name: '_type') final Element? typeElement}) =
+          @JsonKey(name: '_type') final PrimitiveElement? typeElement}) =
       _$AuditEventNetworkImpl;
   const _AuditEventNetwork._() : super._();
 
@@ -2441,7 +2444,7 @@ abstract class _AuditEventNetwork extends AuditEventNetwork {
 
   /// [addressElement] Extensions for address
   @JsonKey(name: '_address')
-  Element? get addressElement;
+  PrimitiveElement? get addressElement;
   @override
 
   /// [type] An identifier for the type of network access point that originated
@@ -2451,7 +2454,7 @@ abstract class _AuditEventNetwork extends AuditEventNetwork {
 
   /// [typeElement] Extensions for type
   @JsonKey(name: '_type')
-  Element? get typeElement;
+  PrimitiveElement? get typeElement;
   @override
   @JsonKey(ignore: true)
   _$$AuditEventNetworkImplCopyWith<_$AuditEventNetworkImpl> get copyWith =>
@@ -2500,7 +2503,7 @@ mixin _$AuditEventSource {
 
   /// [siteElement] Extensions for site
   @JsonKey(name: '_site')
-  Element? get siteElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get siteElement => throw _privateConstructorUsedError;
 
   /// [observer] Identifier of the source where the event was detected.
   Reference get observer => throw _privateConstructorUsedError;
@@ -2525,7 +2528,7 @@ abstract class $AuditEventSourceCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? site,
-      @JsonKey(name: '_site') Element? siteElement,
+      @JsonKey(name: '_site') PrimitiveElement? siteElement,
       Reference observer,
       List<Coding>? type});
 
@@ -2573,7 +2576,7 @@ class _$AuditEventSourceCopyWithImpl<$Res, $Val extends AuditEventSource>
       siteElement: freezed == siteElement
           ? _value.siteElement
           : siteElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       observer: null == observer
           ? _value.observer
           : observer // ignore: cast_nullable_to_non_nullable
@@ -2607,7 +2610,7 @@ abstract class _$$AuditEventSourceImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? site,
-      @JsonKey(name: '_site') Element? siteElement,
+      @JsonKey(name: '_site') PrimitiveElement? siteElement,
       Reference observer,
       List<Coding>? type});
 
@@ -2654,7 +2657,7 @@ class __$$AuditEventSourceImplCopyWithImpl<$Res>
       siteElement: freezed == siteElement
           ? _value.siteElement
           : siteElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       observer: null == observer
           ? _value.observer
           : observer // ignore: cast_nullable_to_non_nullable
@@ -2762,7 +2765,7 @@ class _$AuditEventSourceImpl extends _AuditEventSource {
   /// [siteElement] Extensions for site
   @override
   @JsonKey(name: '_site')
-  final Element? siteElement;
+  final PrimitiveElement? siteElement;
 
   /// [observer] Identifier of the source where the event was detected.
   @override
@@ -2837,7 +2840,7 @@ abstract class _AuditEventSource extends AuditEventSource {
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final String? site,
-      @JsonKey(name: '_site') final Element? siteElement,
+      @JsonKey(name: '_site') final PrimitiveElement? siteElement,
       required final Reference observer,
       final List<Coding>? type}) = _$AuditEventSourceImpl;
   const _AuditEventSource._() : super._();
@@ -2886,7 +2889,7 @@ abstract class _AuditEventSource extends AuditEventSource {
 
   /// [siteElement] Extensions for site
   @JsonKey(name: '_site')
-  Element? get siteElement;
+  PrimitiveElement? get siteElement;
   @override
 
   /// [observer] Identifier of the source where the event was detected.
@@ -2958,21 +2961,22 @@ mixin _$AuditEventEntity {
 
   /// [nameElement] Extensions for name
   @JsonKey(name: '_name')
-  Element? get nameElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get nameElement => throw _privateConstructorUsedError;
 
   /// [description] Text that describes the entity in more detail.
   String? get description => throw _privateConstructorUsedError;
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get descriptionElement =>
+      throw _privateConstructorUsedError;
 
   /// [query] The query parameters for a query-type entities.
   FhirBase64Binary? get query => throw _privateConstructorUsedError;
 
   /// [queryElement] Extensions for query
   @JsonKey(name: '_query')
-  Element? get queryElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get queryElement => throw _privateConstructorUsedError;
 
   /// [detail] Tagged value pairs for conveying additional information about
   ///  the entity.
@@ -3000,11 +3004,11 @@ abstract class $AuditEventEntityCopyWith<$Res> {
       Coding? lifecycle,
       List<Coding>? securityLabel,
       String? name,
-      @JsonKey(name: '_name') Element? nameElement,
+      @JsonKey(name: '_name') PrimitiveElement? nameElement,
       String? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       FhirBase64Binary? query,
-      @JsonKey(name: '_query') Element? queryElement,
+      @JsonKey(name: '_query') PrimitiveElement? queryElement,
       List<AuditEventDetail>? detail});
 
   $ReferenceCopyWith<$Res>? get what;
@@ -3082,7 +3086,7 @@ class _$AuditEventEntityCopyWithImpl<$Res, $Val extends AuditEventEntity>
       nameElement: freezed == nameElement
           ? _value.nameElement
           : nameElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -3090,7 +3094,7 @@ class _$AuditEventEntityCopyWithImpl<$Res, $Val extends AuditEventEntity>
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       query: freezed == query
           ? _value.query
           : query // ignore: cast_nullable_to_non_nullable
@@ -3098,7 +3102,7 @@ class _$AuditEventEntityCopyWithImpl<$Res, $Val extends AuditEventEntity>
       queryElement: freezed == queryElement
           ? _value.queryElement
           : queryElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       detail: freezed == detail
           ? _value.detail
           : detail // ignore: cast_nullable_to_non_nullable
@@ -3173,11 +3177,11 @@ abstract class _$$AuditEventEntityImplCopyWith<$Res>
       Coding? lifecycle,
       List<Coding>? securityLabel,
       String? name,
-      @JsonKey(name: '_name') Element? nameElement,
+      @JsonKey(name: '_name') PrimitiveElement? nameElement,
       String? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       FhirBase64Binary? query,
-      @JsonKey(name: '_query') Element? queryElement,
+      @JsonKey(name: '_query') PrimitiveElement? queryElement,
       List<AuditEventDetail>? detail});
 
   @override
@@ -3257,7 +3261,7 @@ class __$$AuditEventEntityImplCopyWithImpl<$Res>
       nameElement: freezed == nameElement
           ? _value.nameElement
           : nameElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -3265,7 +3269,7 @@ class __$$AuditEventEntityImplCopyWithImpl<$Res>
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       query: freezed == query
           ? _value.query
           : query // ignore: cast_nullable_to_non_nullable
@@ -3273,7 +3277,7 @@ class __$$AuditEventEntityImplCopyWithImpl<$Res>
       queryElement: freezed == queryElement
           ? _value.queryElement
           : queryElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       detail: freezed == detail
           ? _value._detail
           : detail // ignore: cast_nullable_to_non_nullable
@@ -3415,7 +3419,7 @@ class _$AuditEventEntityImpl extends _AuditEventEntity {
   /// [nameElement] Extensions for name
   @override
   @JsonKey(name: '_name')
-  final Element? nameElement;
+  final PrimitiveElement? nameElement;
 
   /// [description] Text that describes the entity in more detail.
   @override
@@ -3424,7 +3428,7 @@ class _$AuditEventEntityImpl extends _AuditEventEntity {
   /// [descriptionElement] Extensions for description
   @override
   @JsonKey(name: '_description')
-  final Element? descriptionElement;
+  final PrimitiveElement? descriptionElement;
 
   /// [query] The query parameters for a query-type entities.
   @override
@@ -3433,7 +3437,7 @@ class _$AuditEventEntityImpl extends _AuditEventEntity {
   /// [queryElement] Extensions for query
   @override
   @JsonKey(name: '_query')
-  final Element? queryElement;
+  final PrimitiveElement? queryElement;
 
   /// [detail] Tagged value pairs for conveying additional information about
   ///  the entity.
@@ -3531,11 +3535,11 @@ abstract class _AuditEventEntity extends AuditEventEntity {
       final Coding? lifecycle,
       final List<Coding>? securityLabel,
       final String? name,
-      @JsonKey(name: '_name') final Element? nameElement,
+      @JsonKey(name: '_name') final PrimitiveElement? nameElement,
       final String? description,
-      @JsonKey(name: '_description') final Element? descriptionElement,
+      @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       final FhirBase64Binary? query,
-      @JsonKey(name: '_query') final Element? queryElement,
+      @JsonKey(name: '_query') final PrimitiveElement? queryElement,
       final List<AuditEventDetail>? detail}) = _$AuditEventEntityImpl;
   const _AuditEventEntity._() : super._();
 
@@ -3603,7 +3607,7 @@ abstract class _AuditEventEntity extends AuditEventEntity {
 
   /// [nameElement] Extensions for name
   @JsonKey(name: '_name')
-  Element? get nameElement;
+  PrimitiveElement? get nameElement;
   @override
 
   /// [description] Text that describes the entity in more detail.
@@ -3612,7 +3616,7 @@ abstract class _AuditEventEntity extends AuditEventEntity {
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement;
+  PrimitiveElement? get descriptionElement;
   @override
 
   /// [query] The query parameters for a query-type entities.
@@ -3621,7 +3625,7 @@ abstract class _AuditEventEntity extends AuditEventEntity {
 
   /// [queryElement] Extensions for query
   @JsonKey(name: '_query')
-  Element? get queryElement;
+  PrimitiveElement? get queryElement;
   @override
 
   /// [detail] Tagged value pairs for conveying additional information about
@@ -3673,21 +3677,23 @@ mixin _$AuditEventDetail {
 
   /// [typeElement] Extensions for type
   @JsonKey(name: '_type')
-  Element? get typeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get typeElement => throw _privateConstructorUsedError;
 
   /// [valueString] The  value of the extra detail.
   String? get valueString => throw _privateConstructorUsedError;
 
   /// [valueStringElement] Extensions for valueString
   @JsonKey(name: '_valueString')
-  Element? get valueStringElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get valueStringElement =>
+      throw _privateConstructorUsedError;
 
   /// [valueBase64Binary] The  value of the extra detail.
   FhirBase64Binary? get valueBase64Binary => throw _privateConstructorUsedError;
 
   /// [valueBase64BinaryElement] Extensions for valueBase64Binary
   @JsonKey(name: '_valueBase64Binary')
-  Element? get valueBase64BinaryElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get valueBase64BinaryElement =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -3706,11 +3712,12 @@ abstract class $AuditEventDetailCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? type,
-      @JsonKey(name: '_type') Element? typeElement,
+      @JsonKey(name: '_type') PrimitiveElement? typeElement,
       String? valueString,
-      @JsonKey(name: '_valueString') Element? valueStringElement,
+      @JsonKey(name: '_valueString') PrimitiveElement? valueStringElement,
       FhirBase64Binary? valueBase64Binary,
-      @JsonKey(name: '_valueBase64Binary') Element? valueBase64BinaryElement});
+      @JsonKey(name: '_valueBase64Binary')
+      PrimitiveElement? valueBase64BinaryElement});
 }
 
 /// @nodoc
@@ -3756,7 +3763,7 @@ class _$AuditEventDetailCopyWithImpl<$Res, $Val extends AuditEventDetail>
       typeElement: freezed == typeElement
           ? _value.typeElement
           : typeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       valueString: freezed == valueString
           ? _value.valueString
           : valueString // ignore: cast_nullable_to_non_nullable
@@ -3764,7 +3771,7 @@ class _$AuditEventDetailCopyWithImpl<$Res, $Val extends AuditEventDetail>
       valueStringElement: freezed == valueStringElement
           ? _value.valueStringElement
           : valueStringElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       valueBase64Binary: freezed == valueBase64Binary
           ? _value.valueBase64Binary
           : valueBase64Binary // ignore: cast_nullable_to_non_nullable
@@ -3772,7 +3779,7 @@ class _$AuditEventDetailCopyWithImpl<$Res, $Val extends AuditEventDetail>
       valueBase64BinaryElement: freezed == valueBase64BinaryElement
           ? _value.valueBase64BinaryElement
           : valueBase64BinaryElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ) as $Val);
   }
 }
@@ -3790,11 +3797,12 @@ abstract class _$$AuditEventDetailImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? type,
-      @JsonKey(name: '_type') Element? typeElement,
+      @JsonKey(name: '_type') PrimitiveElement? typeElement,
       String? valueString,
-      @JsonKey(name: '_valueString') Element? valueStringElement,
+      @JsonKey(name: '_valueString') PrimitiveElement? valueStringElement,
       FhirBase64Binary? valueBase64Binary,
-      @JsonKey(name: '_valueBase64Binary') Element? valueBase64BinaryElement});
+      @JsonKey(name: '_valueBase64Binary')
+      PrimitiveElement? valueBase64BinaryElement});
 }
 
 /// @nodoc
@@ -3838,7 +3846,7 @@ class __$$AuditEventDetailImplCopyWithImpl<$Res>
       typeElement: freezed == typeElement
           ? _value.typeElement
           : typeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       valueString: freezed == valueString
           ? _value.valueString
           : valueString // ignore: cast_nullable_to_non_nullable
@@ -3846,7 +3854,7 @@ class __$$AuditEventDetailImplCopyWithImpl<$Res>
       valueStringElement: freezed == valueStringElement
           ? _value.valueStringElement
           : valueStringElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       valueBase64Binary: freezed == valueBase64Binary
           ? _value.valueBase64Binary
           : valueBase64Binary // ignore: cast_nullable_to_non_nullable
@@ -3854,7 +3862,7 @@ class __$$AuditEventDetailImplCopyWithImpl<$Res>
       valueBase64BinaryElement: freezed == valueBase64BinaryElement
           ? _value.valueBase64BinaryElement
           : valueBase64BinaryElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ));
   }
 }
@@ -3953,7 +3961,7 @@ class _$AuditEventDetailImpl extends _AuditEventDetail {
   /// [typeElement] Extensions for type
   @override
   @JsonKey(name: '_type')
-  final Element? typeElement;
+  final PrimitiveElement? typeElement;
 
   /// [valueString] The  value of the extra detail.
   @override
@@ -3962,7 +3970,7 @@ class _$AuditEventDetailImpl extends _AuditEventDetail {
   /// [valueStringElement] Extensions for valueString
   @override
   @JsonKey(name: '_valueString')
-  final Element? valueStringElement;
+  final PrimitiveElement? valueStringElement;
 
   /// [valueBase64Binary] The  value of the extra detail.
   @override
@@ -3971,7 +3979,7 @@ class _$AuditEventDetailImpl extends _AuditEventDetail {
   /// [valueBase64BinaryElement] Extensions for valueBase64Binary
   @override
   @JsonKey(name: '_valueBase64Binary')
-  final Element? valueBase64BinaryElement;
+  final PrimitiveElement? valueBase64BinaryElement;
 
   @override
   String toString() {
@@ -4037,12 +4045,13 @@ abstract class _AuditEventDetail extends AuditEventDetail {
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final String? type,
-      @JsonKey(name: '_type') final Element? typeElement,
+      @JsonKey(name: '_type') final PrimitiveElement? typeElement,
       final String? valueString,
-      @JsonKey(name: '_valueString') final Element? valueStringElement,
+      @JsonKey(name: '_valueString') final PrimitiveElement? valueStringElement,
       final FhirBase64Binary? valueBase64Binary,
       @JsonKey(name: '_valueBase64Binary')
-      final Element? valueBase64BinaryElement}) = _$AuditEventDetailImpl;
+      final PrimitiveElement?
+          valueBase64BinaryElement}) = _$AuditEventDetailImpl;
   const _AuditEventDetail._() : super._();
 
   factory _AuditEventDetail.fromJson(Map<String, dynamic> json) =
@@ -4087,7 +4096,7 @@ abstract class _AuditEventDetail extends AuditEventDetail {
 
   /// [typeElement] Extensions for type
   @JsonKey(name: '_type')
-  Element? get typeElement;
+  PrimitiveElement? get typeElement;
   @override
 
   /// [valueString] The  value of the extra detail.
@@ -4096,7 +4105,7 @@ abstract class _AuditEventDetail extends AuditEventDetail {
 
   /// [valueStringElement] Extensions for valueString
   @JsonKey(name: '_valueString')
-  Element? get valueStringElement;
+  PrimitiveElement? get valueStringElement;
   @override
 
   /// [valueBase64Binary] The  value of the extra detail.
@@ -4105,7 +4114,7 @@ abstract class _AuditEventDetail extends AuditEventDetail {
 
   /// [valueBase64BinaryElement] Extensions for valueBase64Binary
   @JsonKey(name: '_valueBase64Binary')
-  Element? get valueBase64BinaryElement;
+  PrimitiveElement? get valueBase64BinaryElement;
   @override
   @JsonKey(ignore: true)
   _$$AuditEventDetailImplCopyWith<_$AuditEventDetailImpl> get copyWith =>
@@ -4138,14 +4147,15 @@ mixin _$Consent {
 
   /// [implicitRulesElement] Extensions for implicitRules
   @JsonKey(name: '_implicitRules')
-  Element? get implicitRulesElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get implicitRulesElement =>
+      throw _privateConstructorUsedError;
 
   /// [language] The base language in which the resource is written.
   FhirCode? get language => throw _privateConstructorUsedError;
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get languageElement => throw _privateConstructorUsedError;
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -4194,7 +4204,7 @@ mixin _$Consent {
 
   /// [statusElement] Extensions for status
   @JsonKey(name: '_status')
-  Element? get statusElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get statusElement => throw _privateConstructorUsedError;
 
   /// [scope] A selector of the type of consent being presented: ADR, Privacy,
   ///  Treatment, Research.  This list is now extensible.
@@ -4213,7 +4223,7 @@ mixin _$Consent {
 
   /// [dateTimeElement] Extensions for dateTime
   @JsonKey(name: '_dateTime')
-  Element? get dateTimeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get dateTimeElement => throw _privateConstructorUsedError;
 
   /// [performer] Either the Grantor, which is the entity responsible for
   /// granting the rights listed in a Consent Directive or the Grantee, which is
@@ -4273,21 +4283,21 @@ abstract class $ConsentCopyWith<$Res> {
       String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
       FhirCode? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       Narrative? text,
       List<Resource>? contained,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<Identifier>? identifier,
       FhirCode? status,
-      @JsonKey(name: '_status') Element? statusElement,
+      @JsonKey(name: '_status') PrimitiveElement? statusElement,
       CodeableConcept scope,
       List<CodeableConcept> category,
       Reference? patient,
       FhirDateTime? dateTime,
-      @JsonKey(name: '_dateTime') Element? dateTimeElement,
+      @JsonKey(name: '_dateTime') PrimitiveElement? dateTimeElement,
       List<Reference>? performer,
       List<Reference>? organization,
       Attachment? sourceAttachment,
@@ -4368,7 +4378,7 @@ class _$ConsentCopyWithImpl<$Res, $Val extends Consent>
       implicitRulesElement: freezed == implicitRulesElement
           ? _value.implicitRulesElement
           : implicitRulesElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -4376,7 +4386,7 @@ class _$ConsentCopyWithImpl<$Res, $Val extends Consent>
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -4404,7 +4414,7 @@ class _$ConsentCopyWithImpl<$Res, $Val extends Consent>
       statusElement: freezed == statusElement
           ? _value.statusElement
           : statusElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       scope: null == scope
           ? _value.scope
           : scope // ignore: cast_nullable_to_non_nullable
@@ -4424,7 +4434,7 @@ class _$ConsentCopyWithImpl<$Res, $Val extends Consent>
       dateTimeElement: freezed == dateTimeElement
           ? _value.dateTimeElement
           : dateTimeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       performer: freezed == performer
           ? _value.performer
           : performer // ignore: cast_nullable_to_non_nullable
@@ -4566,21 +4576,21 @@ abstract class _$$ConsentImplCopyWith<$Res> implements $ConsentCopyWith<$Res> {
       String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
       FhirCode? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       Narrative? text,
       List<Resource>? contained,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<Identifier>? identifier,
       FhirCode? status,
-      @JsonKey(name: '_status') Element? statusElement,
+      @JsonKey(name: '_status') PrimitiveElement? statusElement,
       CodeableConcept scope,
       List<CodeableConcept> category,
       Reference? patient,
       FhirDateTime? dateTime,
-      @JsonKey(name: '_dateTime') Element? dateTimeElement,
+      @JsonKey(name: '_dateTime') PrimitiveElement? dateTimeElement,
       List<Reference>? performer,
       List<Reference>? organization,
       Attachment? sourceAttachment,
@@ -4667,7 +4677,7 @@ class __$$ConsentImplCopyWithImpl<$Res>
       implicitRulesElement: freezed == implicitRulesElement
           ? _value.implicitRulesElement
           : implicitRulesElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -4675,7 +4685,7 @@ class __$$ConsentImplCopyWithImpl<$Res>
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -4703,7 +4713,7 @@ class __$$ConsentImplCopyWithImpl<$Res>
       statusElement: freezed == statusElement
           ? _value.statusElement
           : statusElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       scope: null == scope
           ? _value.scope
           : scope // ignore: cast_nullable_to_non_nullable
@@ -4723,7 +4733,7 @@ class __$$ConsentImplCopyWithImpl<$Res>
       dateTimeElement: freezed == dateTimeElement
           ? _value.dateTimeElement
           : dateTimeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       performer: freezed == performer
           ? _value._performer
           : performer // ignore: cast_nullable_to_non_nullable
@@ -4831,7 +4841,7 @@ class _$ConsentImpl extends _Consent {
   /// [implicitRulesElement] Extensions for implicitRules
   @override
   @JsonKey(name: '_implicitRules')
-  final Element? implicitRulesElement;
+  final PrimitiveElement? implicitRulesElement;
 
   /// [language] The base language in which the resource is written.
   @override
@@ -4840,7 +4850,7 @@ class _$ConsentImpl extends _Consent {
   /// [languageElement] Extensions for language
   @override
   @JsonKey(name: '_language')
-  final Element? languageElement;
+  final PrimitiveElement? languageElement;
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -4952,7 +4962,7 @@ class _$ConsentImpl extends _Consent {
   /// [statusElement] Extensions for status
   @override
   @JsonKey(name: '_status')
-  final Element? statusElement;
+  final PrimitiveElement? statusElement;
 
   /// [scope] A selector of the type of consent being presented: ADR, Privacy,
   ///  Treatment, Research.  This list is now extensible.
@@ -4985,7 +4995,7 @@ class _$ConsentImpl extends _Consent {
   /// [dateTimeElement] Extensions for dateTime
   @override
   @JsonKey(name: '_dateTime')
-  final Element? dateTimeElement;
+  final PrimitiveElement? dateTimeElement;
 
   /// [performer] Either the Grantor, which is the entity responsible for
   /// granting the rights listed in a Consent Directive or the Grantee, which is
@@ -5193,21 +5203,22 @@ abstract class _Consent extends Consent {
       final String? id,
       final FhirMeta? meta,
       final FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') final Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules')
+      final PrimitiveElement? implicitRulesElement,
       final FhirCode? language,
-      @JsonKey(name: '_language') final Element? languageElement,
+      @JsonKey(name: '_language') final PrimitiveElement? languageElement,
       final Narrative? text,
       final List<Resource>? contained,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final List<Identifier>? identifier,
       final FhirCode? status,
-      @JsonKey(name: '_status') final Element? statusElement,
+      @JsonKey(name: '_status') final PrimitiveElement? statusElement,
       required final CodeableConcept scope,
       required final List<CodeableConcept> category,
       final Reference? patient,
       final FhirDateTime? dateTime,
-      @JsonKey(name: '_dateTime') final Element? dateTimeElement,
+      @JsonKey(name: '_dateTime') final PrimitiveElement? dateTimeElement,
       final List<Reference>? performer,
       final List<Reference>? organization,
       final Attachment? sourceAttachment,
@@ -5245,7 +5256,7 @@ abstract class _Consent extends Consent {
 
   /// [implicitRulesElement] Extensions for implicitRules
   @JsonKey(name: '_implicitRules')
-  Element? get implicitRulesElement;
+  PrimitiveElement? get implicitRulesElement;
   @override
 
   /// [language] The base language in which the resource is written.
@@ -5254,7 +5265,7 @@ abstract class _Consent extends Consent {
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement;
+  PrimitiveElement? get languageElement;
   @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
@@ -5309,7 +5320,7 @@ abstract class _Consent extends Consent {
 
   /// [statusElement] Extensions for status
   @JsonKey(name: '_status')
-  Element? get statusElement;
+  PrimitiveElement? get statusElement;
   @override
 
   /// [scope] A selector of the type of consent being presented: ADR, Privacy,
@@ -5333,7 +5344,7 @@ abstract class _Consent extends Consent {
 
   /// [dateTimeElement] Extensions for dateTime
   @JsonKey(name: '_dateTime')
-  Element? get dateTimeElement;
+  PrimitiveElement? get dateTimeElement;
   @override
 
   /// [performer] Either the Grantor, which is the entity responsible for
@@ -5430,7 +5441,7 @@ mixin _$ConsentPolicy {
 
   /// [authorityElement] Extensions for authority
   @JsonKey(name: '_authority')
-  Element? get authorityElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get authorityElement => throw _privateConstructorUsedError;
 
   /// [uri] The references to the policies that are included in this consent
   /// scope. Policies may be organizational, but are often defined
@@ -5439,7 +5450,7 @@ mixin _$ConsentPolicy {
 
   /// [uriElement] Extensions for uri
   @JsonKey(name: '_uri')
-  Element? get uriElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get uriElement => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -5458,9 +5469,9 @@ abstract class $ConsentPolicyCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirUri? authority,
-      @JsonKey(name: '_authority') Element? authorityElement,
+      @JsonKey(name: '_authority') PrimitiveElement? authorityElement,
       FhirUri? uri,
-      @JsonKey(name: '_uri') Element? uriElement});
+      @JsonKey(name: '_uri') PrimitiveElement? uriElement});
 }
 
 /// @nodoc
@@ -5504,7 +5515,7 @@ class _$ConsentPolicyCopyWithImpl<$Res, $Val extends ConsentPolicy>
       authorityElement: freezed == authorityElement
           ? _value.authorityElement
           : authorityElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       uri: freezed == uri
           ? _value.uri
           : uri // ignore: cast_nullable_to_non_nullable
@@ -5512,7 +5523,7 @@ class _$ConsentPolicyCopyWithImpl<$Res, $Val extends ConsentPolicy>
       uriElement: freezed == uriElement
           ? _value.uriElement
           : uriElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ) as $Val);
   }
 }
@@ -5530,9 +5541,9 @@ abstract class _$$ConsentPolicyImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirUri? authority,
-      @JsonKey(name: '_authority') Element? authorityElement,
+      @JsonKey(name: '_authority') PrimitiveElement? authorityElement,
       FhirUri? uri,
-      @JsonKey(name: '_uri') Element? uriElement});
+      @JsonKey(name: '_uri') PrimitiveElement? uriElement});
 }
 
 /// @nodoc
@@ -5574,7 +5585,7 @@ class __$$ConsentPolicyImplCopyWithImpl<$Res>
       authorityElement: freezed == authorityElement
           ? _value.authorityElement
           : authorityElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       uri: freezed == uri
           ? _value.uri
           : uri // ignore: cast_nullable_to_non_nullable
@@ -5582,7 +5593,7 @@ class __$$ConsentPolicyImplCopyWithImpl<$Res>
       uriElement: freezed == uriElement
           ? _value.uriElement
           : uriElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ));
   }
 }
@@ -5680,7 +5691,7 @@ class _$ConsentPolicyImpl extends _ConsentPolicy {
   /// [authorityElement] Extensions for authority
   @override
   @JsonKey(name: '_authority')
-  final Element? authorityElement;
+  final PrimitiveElement? authorityElement;
 
   /// [uri] The references to the policies that are included in this consent
   /// scope. Policies may be organizational, but are often defined
@@ -5691,7 +5702,7 @@ class _$ConsentPolicyImpl extends _ConsentPolicy {
   /// [uriElement] Extensions for uri
   @override
   @JsonKey(name: '_uri')
-  final Element? uriElement;
+  final PrimitiveElement? uriElement;
 
   @override
   String toString() {
@@ -5745,13 +5756,14 @@ class _$ConsentPolicyImpl extends _ConsentPolicy {
 
 abstract class _ConsentPolicy extends ConsentPolicy {
   const factory _ConsentPolicy(
-      {final String? id,
-      @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
-      final List<FhirExtension>? modifierExtension,
-      final FhirUri? authority,
-      @JsonKey(name: '_authority') final Element? authorityElement,
-      final FhirUri? uri,
-      @JsonKey(name: '_uri') final Element? uriElement}) = _$ConsentPolicyImpl;
+          {final String? id,
+          @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
+          final List<FhirExtension>? modifierExtension,
+          final FhirUri? authority,
+          @JsonKey(name: '_authority') final PrimitiveElement? authorityElement,
+          final FhirUri? uri,
+          @JsonKey(name: '_uri') final PrimitiveElement? uriElement}) =
+      _$ConsentPolicyImpl;
   const _ConsentPolicy._() : super._();
 
   factory _ConsentPolicy.fromJson(Map<String, dynamic> json) =
@@ -5797,7 +5809,7 @@ abstract class _ConsentPolicy extends ConsentPolicy {
 
   /// [authorityElement] Extensions for authority
   @JsonKey(name: '_authority')
-  Element? get authorityElement;
+  PrimitiveElement? get authorityElement;
   @override
 
   /// [uri] The references to the policies that are included in this consent
@@ -5808,7 +5820,7 @@ abstract class _ConsentPolicy extends ConsentPolicy {
 
   /// [uriElement] Extensions for uri
   @JsonKey(name: '_uri')
-  Element? get uriElement;
+  PrimitiveElement? get uriElement;
   @override
   @JsonKey(ignore: true)
   _$$ConsentPolicyImplCopyWith<_$ConsentPolicyImpl> get copyWith =>
@@ -5855,7 +5867,7 @@ mixin _$ConsentVerification {
 
   /// [verifiedElement] Extensions for verified
   @JsonKey(name: '_verified')
-  Element? get verifiedElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get verifiedElement => throw _privateConstructorUsedError;
 
   /// [verifiedWith] Who verified the instruction (Patient, Relative or other
   ///  Authorized Person).
@@ -5866,7 +5878,8 @@ mixin _$ConsentVerification {
 
   /// [verificationDateElement] Extensions for verificationDate
   @JsonKey(name: '_verificationDate')
-  Element? get verificationDateElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get verificationDateElement =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -5885,10 +5898,11 @@ abstract class $ConsentVerificationCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirBoolean? verified,
-      @JsonKey(name: '_verified') Element? verifiedElement,
+      @JsonKey(name: '_verified') PrimitiveElement? verifiedElement,
       Reference? verifiedWith,
       FhirDateTime? verificationDate,
-      @JsonKey(name: '_verificationDate') Element? verificationDateElement});
+      @JsonKey(name: '_verificationDate')
+      PrimitiveElement? verificationDateElement});
 
   $ReferenceCopyWith<$Res>? get verifiedWith;
 }
@@ -5935,7 +5949,7 @@ class _$ConsentVerificationCopyWithImpl<$Res, $Val extends ConsentVerification>
       verifiedElement: freezed == verifiedElement
           ? _value.verifiedElement
           : verifiedElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       verifiedWith: freezed == verifiedWith
           ? _value.verifiedWith
           : verifiedWith // ignore: cast_nullable_to_non_nullable
@@ -5947,7 +5961,7 @@ class _$ConsentVerificationCopyWithImpl<$Res, $Val extends ConsentVerification>
       verificationDateElement: freezed == verificationDateElement
           ? _value.verificationDateElement
           : verificationDateElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ) as $Val);
   }
 
@@ -5977,10 +5991,11 @@ abstract class _$$ConsentVerificationImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirBoolean? verified,
-      @JsonKey(name: '_verified') Element? verifiedElement,
+      @JsonKey(name: '_verified') PrimitiveElement? verifiedElement,
       Reference? verifiedWith,
       FhirDateTime? verificationDate,
-      @JsonKey(name: '_verificationDate') Element? verificationDateElement});
+      @JsonKey(name: '_verificationDate')
+      PrimitiveElement? verificationDateElement});
 
   @override
   $ReferenceCopyWith<$Res>? get verifiedWith;
@@ -6026,7 +6041,7 @@ class __$$ConsentVerificationImplCopyWithImpl<$Res>
       verifiedElement: freezed == verifiedElement
           ? _value.verifiedElement
           : verifiedElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       verifiedWith: freezed == verifiedWith
           ? _value.verifiedWith
           : verifiedWith // ignore: cast_nullable_to_non_nullable
@@ -6038,7 +6053,7 @@ class __$$ConsentVerificationImplCopyWithImpl<$Res>
       verificationDateElement: freezed == verificationDateElement
           ? _value.verificationDateElement
           : verificationDateElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ));
   }
 }
@@ -6136,7 +6151,7 @@ class _$ConsentVerificationImpl extends _ConsentVerification {
   /// [verifiedElement] Extensions for verified
   @override
   @JsonKey(name: '_verified')
-  final Element? verifiedElement;
+  final PrimitiveElement? verifiedElement;
 
   /// [verifiedWith] Who verified the instruction (Patient, Relative or other
   ///  Authorized Person).
@@ -6150,7 +6165,7 @@ class _$ConsentVerificationImpl extends _ConsentVerification {
   /// [verificationDateElement] Extensions for verificationDate
   @override
   @JsonKey(name: '_verificationDate')
-  final Element? verificationDateElement;
+  final PrimitiveElement? verificationDateElement;
 
   @override
   String toString() {
@@ -6210,15 +6225,16 @@ class _$ConsentVerificationImpl extends _ConsentVerification {
 
 abstract class _ConsentVerification extends ConsentVerification {
   const factory _ConsentVerification(
-      {final String? id,
-      @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
-      final List<FhirExtension>? modifierExtension,
-      final FhirBoolean? verified,
-      @JsonKey(name: '_verified') final Element? verifiedElement,
-      final Reference? verifiedWith,
-      final FhirDateTime? verificationDate,
-      @JsonKey(name: '_verificationDate')
-      final Element? verificationDateElement}) = _$ConsentVerificationImpl;
+          {final String? id,
+          @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
+          final List<FhirExtension>? modifierExtension,
+          final FhirBoolean? verified,
+          @JsonKey(name: '_verified') final PrimitiveElement? verifiedElement,
+          final Reference? verifiedWith,
+          final FhirDateTime? verificationDate,
+          @JsonKey(name: '_verificationDate')
+          final PrimitiveElement? verificationDateElement}) =
+      _$ConsentVerificationImpl;
   const _ConsentVerification._() : super._();
 
   factory _ConsentVerification.fromJson(Map<String, dynamic> json) =
@@ -6263,7 +6279,7 @@ abstract class _ConsentVerification extends ConsentVerification {
 
   /// [verifiedElement] Extensions for verified
   @JsonKey(name: '_verified')
-  Element? get verifiedElement;
+  PrimitiveElement? get verifiedElement;
   @override
 
   /// [verifiedWith] Who verified the instruction (Patient, Relative or other
@@ -6277,7 +6293,7 @@ abstract class _ConsentVerification extends ConsentVerification {
 
   /// [verificationDateElement] Extensions for verificationDate
   @JsonKey(name: '_verificationDate')
-  Element? get verificationDateElement;
+  PrimitiveElement? get verificationDateElement;
   @override
   @JsonKey(ignore: true)
   _$$ConsentVerificationImplCopyWith<_$ConsentVerificationImpl> get copyWith =>
@@ -6325,7 +6341,7 @@ mixin _$ConsentProvision {
 
   /// [typeElement] Extensions for type
   @JsonKey(name: '_type')
-  Element? get typeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get typeElement => throw _privateConstructorUsedError;
 
   /// [period] The timeframe in this rule is valid.
   Period? get period => throw _privateConstructorUsedError;
@@ -6383,7 +6399,7 @@ abstract class $ConsentProvisionCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? type,
-      @JsonKey(name: '_type') Element? typeElement,
+      @JsonKey(name: '_type') PrimitiveElement? typeElement,
       Period? period,
       List<ConsentActor>? actor,
       List<CodeableConcept>? action,
@@ -6448,7 +6464,7 @@ class _$ConsentProvisionCopyWithImpl<$Res, $Val extends ConsentProvision>
       typeElement: freezed == typeElement
           ? _value.typeElement
           : typeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       period: freezed == period
           ? _value.period
           : period // ignore: cast_nullable_to_non_nullable
@@ -6530,7 +6546,7 @@ abstract class _$$ConsentProvisionImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? type,
-      @JsonKey(name: '_type') Element? typeElement,
+      @JsonKey(name: '_type') PrimitiveElement? typeElement,
       Period? period,
       List<ConsentActor>? actor,
       List<CodeableConcept>? action,
@@ -6595,7 +6611,7 @@ class __$$ConsentProvisionImplCopyWithImpl<$Res>
       typeElement: freezed == typeElement
           ? _value.typeElement
           : typeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       period: freezed == period
           ? _value.period
           : period // ignore: cast_nullable_to_non_nullable
@@ -6749,7 +6765,7 @@ class _$ConsentProvisionImpl extends _ConsentProvision {
   /// [typeElement] Extensions for type
   @override
   @JsonKey(name: '_type')
-  final Element? typeElement;
+  final PrimitiveElement? typeElement;
 
   /// [period] The timeframe in this rule is valid.
   @override
@@ -6953,7 +6969,7 @@ abstract class _ConsentProvision extends ConsentProvision {
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirCode? type,
-      @JsonKey(name: '_type') final Element? typeElement,
+      @JsonKey(name: '_type') final PrimitiveElement? typeElement,
       final Period? period,
       final List<ConsentActor>? actor,
       final List<CodeableConcept>? action,
@@ -7009,7 +7025,7 @@ abstract class _ConsentProvision extends ConsentProvision {
 
   /// [typeElement] Extensions for type
   @JsonKey(name: '_type')
-  Element? get typeElement;
+  PrimitiveElement? get typeElement;
   @override
 
   /// [period] The timeframe in this rule is valid.
@@ -7494,7 +7510,7 @@ mixin _$ConsentData {
 
   /// [meaningElement] Extensions for meaning
   @JsonKey(name: '_meaning')
-  Element? get meaningElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get meaningElement => throw _privateConstructorUsedError;
 
   /// [reference] A reference to a specific resource that defines which
   ///  resources are covered by this consent.
@@ -7517,7 +7533,7 @@ abstract class $ConsentDataCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? meaning,
-      @JsonKey(name: '_meaning') Element? meaningElement,
+      @JsonKey(name: '_meaning') PrimitiveElement? meaningElement,
       Reference reference});
 
   $ReferenceCopyWith<$Res> get reference;
@@ -7563,7 +7579,7 @@ class _$ConsentDataCopyWithImpl<$Res, $Val extends ConsentData>
       meaningElement: freezed == meaningElement
           ? _value.meaningElement
           : meaningElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       reference: null == reference
           ? _value.reference
           : reference // ignore: cast_nullable_to_non_nullable
@@ -7593,7 +7609,7 @@ abstract class _$$ConsentDataImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? meaning,
-      @JsonKey(name: '_meaning') Element? meaningElement,
+      @JsonKey(name: '_meaning') PrimitiveElement? meaningElement,
       Reference reference});
 
   @override
@@ -7638,7 +7654,7 @@ class __$$ConsentDataImplCopyWithImpl<$Res>
       meaningElement: freezed == meaningElement
           ? _value.meaningElement
           : meaningElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       reference: null == reference
           ? _value.reference
           : reference // ignore: cast_nullable_to_non_nullable
@@ -7739,7 +7755,7 @@ class _$ConsentDataImpl extends _ConsentData {
   /// [meaningElement] Extensions for meaning
   @override
   @JsonKey(name: '_meaning')
-  final Element? meaningElement;
+  final PrimitiveElement? meaningElement;
 
   /// [reference] A reference to a specific resource that defines which
   ///  resources are covered by this consent.
@@ -7799,7 +7815,7 @@ abstract class _ConsentData extends ConsentData {
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirCode? meaning,
-      @JsonKey(name: '_meaning') final Element? meaningElement,
+      @JsonKey(name: '_meaning') final PrimitiveElement? meaningElement,
       required final Reference reference}) = _$ConsentDataImpl;
   const _ConsentData._() : super._();
 
@@ -7846,7 +7862,7 @@ abstract class _ConsentData extends ConsentData {
 
   /// [meaningElement] Extensions for meaning
   @JsonKey(name: '_meaning')
-  Element? get meaningElement;
+  PrimitiveElement? get meaningElement;
   @override
 
   /// [reference] A reference to a specific resource that defines which
@@ -7884,14 +7900,15 @@ mixin _$Provenance {
 
   /// [implicitRulesElement] Extensions for implicitRules
   @JsonKey(name: '_implicitRules')
-  Element? get implicitRulesElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get implicitRulesElement =>
+      throw _privateConstructorUsedError;
 
   /// [language] The base language in which the resource is written.
   FhirCode? get language => throw _privateConstructorUsedError;
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get languageElement => throw _privateConstructorUsedError;
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -7945,14 +7962,15 @@ mixin _$Provenance {
 
   /// [occurredDateTimeElement] Extensions for occurredDateTime
   @JsonKey(name: '_occurredDateTime')
-  Element? get occurredDateTimeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get occurredDateTimeElement =>
+      throw _privateConstructorUsedError;
 
   /// [recorded] The instant of time at which the activity was recorded.
   FhirInstant? get recorded => throw _privateConstructorUsedError;
 
   /// [recordedElement] Extensions for recorded
   @JsonKey(name: '_recorded')
-  Element? get recordedElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get recordedElement => throw _privateConstructorUsedError;
 
   /// [policy] Policy or plan the activity was defined by. Typically, a single
   /// activity may have multiple applicable policy documents, such as patient
@@ -8004,9 +8022,9 @@ abstract class $ProvenanceCopyWith<$Res> {
       String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
       FhirCode? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       Narrative? text,
       List<Resource>? contained,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -8014,9 +8032,10 @@ abstract class $ProvenanceCopyWith<$Res> {
       List<Reference> target,
       Period? occurredPeriod,
       FhirDateTime? occurredDateTime,
-      @JsonKey(name: '_occurredDateTime') Element? occurredDateTimeElement,
+      @JsonKey(name: '_occurredDateTime')
+      PrimitiveElement? occurredDateTimeElement,
       FhirInstant? recorded,
-      @JsonKey(name: '_recorded') Element? recordedElement,
+      @JsonKey(name: '_recorded') PrimitiveElement? recordedElement,
       List<FhirUri>? policy,
       @JsonKey(name: '_policy') List<Element?>? policyElement,
       Reference? location,
@@ -8092,7 +8111,7 @@ class _$ProvenanceCopyWithImpl<$Res, $Val extends Provenance>
       implicitRulesElement: freezed == implicitRulesElement
           ? _value.implicitRulesElement
           : implicitRulesElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -8100,7 +8119,7 @@ class _$ProvenanceCopyWithImpl<$Res, $Val extends Provenance>
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -8132,7 +8151,7 @@ class _$ProvenanceCopyWithImpl<$Res, $Val extends Provenance>
       occurredDateTimeElement: freezed == occurredDateTimeElement
           ? _value.occurredDateTimeElement
           : occurredDateTimeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       recorded: freezed == recorded
           ? _value.recorded
           : recorded // ignore: cast_nullable_to_non_nullable
@@ -8140,7 +8159,7 @@ class _$ProvenanceCopyWithImpl<$Res, $Val extends Provenance>
       recordedElement: freezed == recordedElement
           ? _value.recordedElement
           : recordedElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       policy: freezed == policy
           ? _value.policy
           : policy // ignore: cast_nullable_to_non_nullable
@@ -8251,9 +8270,9 @@ abstract class _$$ProvenanceImplCopyWith<$Res>
       String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
       FhirCode? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       Narrative? text,
       List<Resource>? contained,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
@@ -8261,9 +8280,10 @@ abstract class _$$ProvenanceImplCopyWith<$Res>
       List<Reference> target,
       Period? occurredPeriod,
       FhirDateTime? occurredDateTime,
-      @JsonKey(name: '_occurredDateTime') Element? occurredDateTimeElement,
+      @JsonKey(name: '_occurredDateTime')
+      PrimitiveElement? occurredDateTimeElement,
       FhirInstant? recorded,
-      @JsonKey(name: '_recorded') Element? recordedElement,
+      @JsonKey(name: '_recorded') PrimitiveElement? recordedElement,
       List<FhirUri>? policy,
       @JsonKey(name: '_policy') List<Element?>? policyElement,
       Reference? location,
@@ -8342,7 +8362,7 @@ class __$$ProvenanceImplCopyWithImpl<$Res>
       implicitRulesElement: freezed == implicitRulesElement
           ? _value.implicitRulesElement
           : implicitRulesElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -8350,7 +8370,7 @@ class __$$ProvenanceImplCopyWithImpl<$Res>
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -8382,7 +8402,7 @@ class __$$ProvenanceImplCopyWithImpl<$Res>
       occurredDateTimeElement: freezed == occurredDateTimeElement
           ? _value.occurredDateTimeElement
           : occurredDateTimeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       recorded: freezed == recorded
           ? _value.recorded
           : recorded // ignore: cast_nullable_to_non_nullable
@@ -8390,7 +8410,7 @@ class __$$ProvenanceImplCopyWithImpl<$Res>
       recordedElement: freezed == recordedElement
           ? _value.recordedElement
           : recordedElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       policy: freezed == policy
           ? _value._policy
           : policy // ignore: cast_nullable_to_non_nullable
@@ -8497,7 +8517,7 @@ class _$ProvenanceImpl extends _Provenance {
   /// [implicitRulesElement] Extensions for implicitRules
   @override
   @JsonKey(name: '_implicitRules')
-  final Element? implicitRulesElement;
+  final PrimitiveElement? implicitRulesElement;
 
   /// [language] The base language in which the resource is written.
   @override
@@ -8506,7 +8526,7 @@ class _$ProvenanceImpl extends _Provenance {
   /// [languageElement] Extensions for language
   @override
   @JsonKey(name: '_language')
-  final Element? languageElement;
+  final PrimitiveElement? languageElement;
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -8624,7 +8644,7 @@ class _$ProvenanceImpl extends _Provenance {
   /// [occurredDateTimeElement] Extensions for occurredDateTime
   @override
   @JsonKey(name: '_occurredDateTime')
-  final Element? occurredDateTimeElement;
+  final PrimitiveElement? occurredDateTimeElement;
 
   /// [recorded] The instant of time at which the activity was recorded.
   @override
@@ -8633,7 +8653,7 @@ class _$ProvenanceImpl extends _Provenance {
   /// [recordedElement] Extensions for recorded
   @override
   @JsonKey(name: '_recorded')
-  final Element? recordedElement;
+  final PrimitiveElement? recordedElement;
 
   /// [policy] Policy or plan the activity was defined by. Typically, a single
   /// activity may have multiple applicable policy documents, such as patient
@@ -8839,9 +8859,10 @@ abstract class _Provenance extends Provenance {
       final String? id,
       final FhirMeta? meta,
       final FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') final Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules')
+      final PrimitiveElement? implicitRulesElement,
       final FhirCode? language,
-      @JsonKey(name: '_language') final Element? languageElement,
+      @JsonKey(name: '_language') final PrimitiveElement? languageElement,
       final Narrative? text,
       final List<Resource>? contained,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
@@ -8850,9 +8871,9 @@ abstract class _Provenance extends Provenance {
       final Period? occurredPeriod,
       final FhirDateTime? occurredDateTime,
       @JsonKey(name: '_occurredDateTime')
-      final Element? occurredDateTimeElement,
+      final PrimitiveElement? occurredDateTimeElement,
       final FhirInstant? recorded,
-      @JsonKey(name: '_recorded') final Element? recordedElement,
+      @JsonKey(name: '_recorded') final PrimitiveElement? recordedElement,
       final List<FhirUri>? policy,
       @JsonKey(name: '_policy') final List<Element?>? policyElement,
       final Reference? location,
@@ -8891,7 +8912,7 @@ abstract class _Provenance extends Provenance {
 
   /// [implicitRulesElement] Extensions for implicitRules
   @JsonKey(name: '_implicitRules')
-  Element? get implicitRulesElement;
+  PrimitiveElement? get implicitRulesElement;
   @override
 
   /// [language] The base language in which the resource is written.
@@ -8900,7 +8921,7 @@ abstract class _Provenance extends Provenance {
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement;
+  PrimitiveElement? get languageElement;
   @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
@@ -8961,7 +8982,7 @@ abstract class _Provenance extends Provenance {
 
   /// [occurredDateTimeElement] Extensions for occurredDateTime
   @JsonKey(name: '_occurredDateTime')
-  Element? get occurredDateTimeElement;
+  PrimitiveElement? get occurredDateTimeElement;
   @override
 
   /// [recorded] The instant of time at which the activity was recorded.
@@ -8970,7 +8991,7 @@ abstract class _Provenance extends Provenance {
 
   /// [recordedElement] Extensions for recorded
   @JsonKey(name: '_recorded')
-  Element? get recordedElement;
+  PrimitiveElement? get recordedElement;
   @override
 
   /// [policy] Policy or plan the activity was defined by. Typically, a single
@@ -9530,7 +9551,7 @@ mixin _$ProvenanceEntity {
 
   /// [roleElement] Extensions for role
   @JsonKey(name: '_role')
-  Element? get roleElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get roleElement => throw _privateConstructorUsedError;
 
   /// [what] Identity of the  Entity used. May be a logical or physical uri and
   ///  maybe absolute or relative.
@@ -9559,7 +9580,7 @@ abstract class $ProvenanceEntityCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? role,
-      @JsonKey(name: '_role') Element? roleElement,
+      @JsonKey(name: '_role') PrimitiveElement? roleElement,
       Reference what,
       List<ProvenanceAgent>? agent});
 
@@ -9607,7 +9628,7 @@ class _$ProvenanceEntityCopyWithImpl<$Res, $Val extends ProvenanceEntity>
       roleElement: freezed == roleElement
           ? _value.roleElement
           : roleElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       what: null == what
           ? _value.what
           : what // ignore: cast_nullable_to_non_nullable
@@ -9641,7 +9662,7 @@ abstract class _$$ProvenanceEntityImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? role,
-      @JsonKey(name: '_role') Element? roleElement,
+      @JsonKey(name: '_role') PrimitiveElement? roleElement,
       Reference what,
       List<ProvenanceAgent>? agent});
 
@@ -9688,7 +9709,7 @@ class __$$ProvenanceEntityImplCopyWithImpl<$Res>
       roleElement: freezed == roleElement
           ? _value.roleElement
           : roleElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       what: null == what
           ? _value.what
           : what // ignore: cast_nullable_to_non_nullable
@@ -9794,7 +9815,7 @@ class _$ProvenanceEntityImpl extends _ProvenanceEntity {
   /// [roleElement] Extensions for role
   @override
   @JsonKey(name: '_role')
-  final Element? roleElement;
+  final PrimitiveElement? roleElement;
 
   /// [what] Identity of the  Entity used. May be a logical or physical uri and
   ///  maybe absolute or relative.
@@ -9875,7 +9896,7 @@ abstract class _ProvenanceEntity extends ProvenanceEntity {
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirCode? role,
-      @JsonKey(name: '_role') final Element? roleElement,
+      @JsonKey(name: '_role') final PrimitiveElement? roleElement,
       required final Reference what,
       final List<ProvenanceAgent>? agent}) = _$ProvenanceEntityImpl;
   const _ProvenanceEntity._() : super._();
@@ -9922,7 +9943,7 @@ abstract class _ProvenanceEntity extends ProvenanceEntity {
 
   /// [roleElement] Extensions for role
   @JsonKey(name: '_role')
-  Element? get roleElement;
+  PrimitiveElement? get roleElement;
   @override
 
   /// [what] Identity of the  Entity used. May be a logical or physical uri and

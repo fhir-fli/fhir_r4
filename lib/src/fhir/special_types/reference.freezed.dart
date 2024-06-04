@@ -44,7 +44,7 @@ mixin _$Reference {
 
   /// [referenceElement] Extensions for reference
   @JsonKey(name: '_reference')
-  Element? get referenceElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get referenceElement => throw _privateConstructorUsedError;
 
   /// [type] The expected type of the target of the reference. If both
   /// Reference.type and Reference.reference are populated and
@@ -59,7 +59,7 @@ mixin _$Reference {
 
   /// [typeElement] Extensions for type
   @JsonKey(name: '_type')
-  Element? get typeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get typeElement => throw _privateConstructorUsedError;
 
   /// [identifier] An identifier for the target resource. This is used when
   /// there is no way to reference the other resource directly, either because
@@ -78,7 +78,7 @@ mixin _$Reference {
 
   /// [displayElement] Extensions for display
   @JsonKey(name: '_display')
-  Element? get displayElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get displayElement => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -95,12 +95,12 @@ abstract class $ReferenceCopyWith<$Res> {
       {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       String? reference,
-      @JsonKey(name: '_reference') Element? referenceElement,
+      @JsonKey(name: '_reference') PrimitiveElement? referenceElement,
       FhirUri? type,
-      @JsonKey(name: '_type') Element? typeElement,
+      @JsonKey(name: '_type') PrimitiveElement? typeElement,
       Identifier? identifier,
       String? display,
-      @JsonKey(name: '_display') Element? displayElement});
+      @JsonKey(name: '_display') PrimitiveElement? displayElement});
 
   $IdentifierCopyWith<$Res>? get identifier;
 }
@@ -144,7 +144,7 @@ class _$ReferenceCopyWithImpl<$Res, $Val extends Reference>
       referenceElement: freezed == referenceElement
           ? _value.referenceElement
           : referenceElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -152,7 +152,7 @@ class _$ReferenceCopyWithImpl<$Res, $Val extends Reference>
       typeElement: freezed == typeElement
           ? _value.typeElement
           : typeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       identifier: freezed == identifier
           ? _value.identifier
           : identifier // ignore: cast_nullable_to_non_nullable
@@ -164,7 +164,7 @@ class _$ReferenceCopyWithImpl<$Res, $Val extends Reference>
       displayElement: freezed == displayElement
           ? _value.displayElement
           : displayElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ) as $Val);
   }
 
@@ -193,12 +193,12 @@ abstract class _$$ReferenceImplCopyWith<$Res>
       {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       String? reference,
-      @JsonKey(name: '_reference') Element? referenceElement,
+      @JsonKey(name: '_reference') PrimitiveElement? referenceElement,
       FhirUri? type,
-      @JsonKey(name: '_type') Element? typeElement,
+      @JsonKey(name: '_type') PrimitiveElement? typeElement,
       Identifier? identifier,
       String? display,
-      @JsonKey(name: '_display') Element? displayElement});
+      @JsonKey(name: '_display') PrimitiveElement? displayElement});
 
   @override
   $IdentifierCopyWith<$Res>? get identifier;
@@ -241,7 +241,7 @@ class __$$ReferenceImplCopyWithImpl<$Res>
       referenceElement: freezed == referenceElement
           ? _value.referenceElement
           : referenceElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -249,7 +249,7 @@ class __$$ReferenceImplCopyWithImpl<$Res>
       typeElement: freezed == typeElement
           ? _value.typeElement
           : typeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       identifier: freezed == identifier
           ? _value.identifier
           : identifier // ignore: cast_nullable_to_non_nullable
@@ -261,7 +261,7 @@ class __$$ReferenceImplCopyWithImpl<$Res>
       displayElement: freezed == displayElement
           ? _value.displayElement
           : displayElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ));
   }
 }
@@ -327,7 +327,7 @@ class _$ReferenceImpl extends _Reference {
   /// [referenceElement] Extensions for reference
   @override
   @JsonKey(name: '_reference')
-  final Element? referenceElement;
+  final PrimitiveElement? referenceElement;
 
   /// [type] The expected type of the target of the reference. If both
   /// Reference.type and Reference.reference are populated and
@@ -344,7 +344,7 @@ class _$ReferenceImpl extends _Reference {
   /// [typeElement] Extensions for type
   @override
   @JsonKey(name: '_type')
-  final Element? typeElement;
+  final PrimitiveElement? typeElement;
 
   /// [identifier] An identifier for the target resource. This is used when
   /// there is no way to reference the other resource directly, either because
@@ -366,7 +366,7 @@ class _$ReferenceImpl extends _Reference {
   /// [displayElement] Extensions for display
   @override
   @JsonKey(name: '_display')
-  final Element? displayElement;
+  final PrimitiveElement? displayElement;
 
   @override
   String toString() {
@@ -428,12 +428,12 @@ abstract class _Reference extends Reference {
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final String? reference,
-          @JsonKey(name: '_reference') final Element? referenceElement,
+          @JsonKey(name: '_reference') final PrimitiveElement? referenceElement,
           final FhirUri? type,
-          @JsonKey(name: '_type') final Element? typeElement,
+          @JsonKey(name: '_type') final PrimitiveElement? typeElement,
           final Identifier? identifier,
           final String? display,
-          @JsonKey(name: '_display') final Element? displayElement}) =
+          @JsonKey(name: '_display') final PrimitiveElement? displayElement}) =
       _$ReferenceImpl;
   const _Reference._() : super._();
 
@@ -469,7 +469,7 @@ abstract class _Reference extends Reference {
 
   /// [referenceElement] Extensions for reference
   @JsonKey(name: '_reference')
-  Element? get referenceElement;
+  PrimitiveElement? get referenceElement;
   @override
 
   /// [type] The expected type of the target of the reference. If both
@@ -486,7 +486,7 @@ abstract class _Reference extends Reference {
 
   /// [typeElement] Extensions for type
   @JsonKey(name: '_type')
-  Element? get typeElement;
+  PrimitiveElement? get typeElement;
   @override
 
   /// [identifier] An identifier for the target resource. This is used when
@@ -508,7 +508,7 @@ abstract class _Reference extends Reference {
 
   /// [displayElement] Extensions for display
   @JsonKey(name: '_display')
-  Element? get displayElement;
+  PrimitiveElement? get displayElement;
   @override
   @JsonKey(ignore: true)
   _$$ReferenceImplCopyWith<_$ReferenceImpl> get copyWith =>

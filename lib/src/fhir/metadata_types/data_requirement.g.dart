@@ -16,7 +16,7 @@ _$DataRequirementImpl _$$DataRequirementImplFromJson(
       type: json['type'] == null ? null : FhirCode.fromJson(json['type']),
       typeElement: json['_type'] == null
           ? null
-          : Element.fromJson(json['_type'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_type'] as Map<String, dynamic>),
       profile: (json['profile'] as List<dynamic>?)
           ?.map(FhirCanonical.fromJson)
           .toList(),
@@ -48,7 +48,7 @@ _$DataRequirementImpl _$$DataRequirementImplFromJson(
           : FhirPositiveInt.fromJson(json['limit']),
       limitElement: json['_limit'] == null
           ? null
-          : Element.fromJson(json['_limit'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_limit'] as Map<String, dynamic>),
       sort: (json['sort'] as List<dynamic>?)
           ?.map((e) => DataRequirementSort.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -99,11 +99,12 @@ _$DataRequirementCodeFilterImpl _$$DataRequirementCodeFilterImplFromJson(
       path: json['path'] as String?,
       pathElement: json['_path'] == null
           ? null
-          : Element.fromJson(json['_path'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_path'] as Map<String, dynamic>),
       searchParam: json['searchParam'] as String?,
       searchParamElement: json['_searchParam'] == null
           ? null
-          : Element.fromJson(json['_searchParam'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_searchParam'] as Map<String, dynamic>),
       valueSet: json['valueSet'] == null
           ? null
           : FhirCanonical.fromJson(json['valueSet']),
@@ -149,17 +150,19 @@ _$DataRequirementDateFilterImpl _$$DataRequirementDateFilterImplFromJson(
       path: json['path'] as String?,
       pathElement: json['_path'] == null
           ? null
-          : Element.fromJson(json['_path'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_path'] as Map<String, dynamic>),
       searchParam: json['searchParam'] as String?,
       searchParamElement: json['_searchParam'] == null
           ? null
-          : Element.fromJson(json['_searchParam'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_searchParam'] as Map<String, dynamic>),
       valueDateTime: json['valueDateTime'] == null
           ? null
           : FhirDateTime.fromJson(json['valueDateTime'] as String),
       valueDateTimeElement: json['_valueDateTime'] == null
           ? null
-          : Element.fromJson(json['_valueDateTime'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_valueDateTime'] as Map<String, dynamic>),
       valuePeriod: json['valuePeriod'] == null
           ? null
           : Period.fromJson(json['valuePeriod'] as Map<String, dynamic>),
@@ -208,13 +211,14 @@ _$DataRequirementSortImpl _$$DataRequirementSortImplFromJson(
       path: json['path'] as String?,
       pathElement: json['_path'] == null
           ? null
-          : Element.fromJson(json['_path'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_path'] as Map<String, dynamic>),
       direction: $enumDecodeNullable(
           _$DataRequirementSortDirectionEnumMap, json['direction'],
           unknownValue: DataRequirementSortDirection.unknown),
       directionElement: json['_direction'] == null
           ? null
-          : Element.fromJson(json['_direction'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_direction'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$DataRequirementSortImplToJson(

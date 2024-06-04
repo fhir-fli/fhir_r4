@@ -61,7 +61,7 @@ class CodeableConcept with _$CodeableConcept implements DataType {
     String? text,
 
     /// [textElement] Extensions for text
-    @JsonKey(name: '_text') Element? textElement,
+    @JsonKey(name: '_text') PrimitiveElement? textElement,
   }) = _CodeableConcept;
 
   @override

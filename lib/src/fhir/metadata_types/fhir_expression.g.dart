@@ -15,27 +15,31 @@ _$FhirExpressionImpl _$$FhirExpressionImplFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String?,
       descriptionElement: json['_description'] == null
           ? null
-          : Element.fromJson(json['_description'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_description'] as Map<String, dynamic>),
       name: json['name'] == null ? null : FhirId.fromJson(json['name']),
       nameElement: json['_name'] == null
           ? null
-          : Element.fromJson(json['_name'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_name'] as Map<String, dynamic>),
       language: $enumDecodeNullable(
           _$FhirExpressionLanguageEnumMap, json['language'],
           unknownValue: FhirExpressionLanguage.unknown),
       languageElement: json['_language'] == null
           ? null
-          : Element.fromJson(json['_language'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_language'] as Map<String, dynamic>),
       expression: json['expression'] as String?,
       expressionElement: json['_expression'] == null
           ? null
-          : Element.fromJson(json['_expression'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_expression'] as Map<String, dynamic>),
       reference: json['reference'] == null
           ? null
           : FhirUri.fromJson(json['reference']),
       referenceElement: json['_reference'] == null
           ? null
-          : Element.fromJson(json['_reference'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_reference'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$FhirExpressionImplToJson(

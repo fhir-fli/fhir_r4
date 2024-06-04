@@ -60,14 +60,14 @@ class Contributor with _$Contributor implements DataType {
     @JsonKey(unknownEnumValue: ContributorType.unknown) ContributorType? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [name] The name of the individual or organization responsible for the
     ///  contribution.
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [contact] Contact details to assist a user in finding and communicating
     ///  with the contributor.

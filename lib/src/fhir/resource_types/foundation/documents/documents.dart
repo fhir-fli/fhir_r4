@@ -15,7 +15,7 @@ part 'documents.g.dart';
 
 /// [CatalogEntry] Catalog entries are wrappers that contextualize items
 @freezed
-class CatalogEntry with Resource, _$CatalogEntry {
+class CatalogEntry with _$CatalogEntry implements DomainResource {
   /// [CatalogEntry] Catalog entries are wrappers that contextualize items
   const CatalogEntry._();
 
@@ -139,13 +139,13 @@ class CatalogEntry with Resource, _$CatalogEntry {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -195,7 +195,7 @@ class CatalogEntry with Resource, _$CatalogEntry {
     FhirBoolean? orderable,
 
     /// [orderableElement] Extensions for orderable
-    @JsonKey(name: '_orderable') Element? orderableElement,
+    @JsonKey(name: '_orderable') PrimitiveElement? orderableElement,
 
     /// [referencedItem] The item in a catalog or definition.
     required Reference referencedItem,
@@ -212,7 +212,7 @@ class CatalogEntry with Resource, _$CatalogEntry {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [validityPeriod] The time period in which this catalog entry is expected
     ///  to be active.
@@ -223,14 +223,14 @@ class CatalogEntry with Resource, _$CatalogEntry {
     FhirDateTime? validTo,
 
     /// [validToElement] Extensions for validTo
-    @JsonKey(name: '_validTo') Element? validToElement,
+    @JsonKey(name: '_validTo') PrimitiveElement? validToElement,
 
     /// [lastUpdated] Typically date of issue is different from the beginning of
     ///  the validity. This can be used to see when an item was last updated.
     FhirDateTime? lastUpdated,
 
     /// [lastUpdatedElement] Extensions for lastUpdated
-    @JsonKey(name: '_lastUpdated') Element? lastUpdatedElement,
+    @JsonKey(name: '_lastUpdated') PrimitiveElement? lastUpdatedElement,
 
     /// [additionalCharacteristic] Used for examplefor Out of Formulary, or any
     ///  specifics.
@@ -282,7 +282,9 @@ class CatalogEntry with Resource, _$CatalogEntry {
 
 /// [CatalogEntryRelatedEntry] Catalog entries are wrappers that
 @freezed
-class CatalogEntryRelatedEntry with BackboneType, _$CatalogEntryRelatedEntry {
+class CatalogEntryRelatedEntry
+    with _$CatalogEntryRelatedEntry
+    implements BackboneElement {
   /// [CatalogEntryRelatedEntry] Catalog entries are wrappers that
   const CatalogEntryRelatedEntry._();
 
@@ -352,7 +354,7 @@ class CatalogEntryRelatedEntry with BackboneType, _$CatalogEntryRelatedEntry {
     FhirCode? relationtype,
 
     /// [relationtypeElement] Extensions for relationtype
-    @JsonKey(name: '_relationtype') Element? relationtypeElement,
+    @JsonKey(name: '_relationtype') PrimitiveElement? relationtypeElement,
 
     /// [item] The reference to the related item.
     required Reference item,
@@ -391,7 +393,7 @@ class CatalogEntryRelatedEntry with BackboneType, _$CatalogEntryRelatedEntry {
 
 /// [Composition] A set of healthcare-related information that is assembled
 @freezed
-class Composition with Resource, _$Composition {
+class Composition with _$Composition implements DomainResource {
   /// [Composition] A set of healthcare-related information that is assembled
   const Composition._();
 
@@ -537,13 +539,13 @@ class Composition with Resource, _$Composition {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -591,7 +593,7 @@ class Composition with Resource, _$Composition {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [type] Specifies the particular kind of composition (e.g. History and
     /// Physical, Discharge Summary, Progress Note). This usually equates to the
@@ -618,7 +620,7 @@ class Composition with Resource, _$Composition {
     FhirDateTime? date,
 
     /// [dateElement] Extensions for date
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
 
     /// [author] Identifies who is responsible for the information in the
     ///  composition, not necessarily who typed it in.
@@ -628,14 +630,14 @@ class Composition with Resource, _$Composition {
     String? title,
 
     /// [titleElement] Extensions for title
-    @JsonKey(name: '_title') Element? titleElement,
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
 
     /// [confidentiality] The code specifying the level of confidentiality of the
     ///  Composition.
     FhirCode? confidentiality,
 
     /// [confidentialityElement] Extensions for confidentiality
-    @JsonKey(name: '_confidentiality') Element? confidentialityElement,
+    @JsonKey(name: '_confidentiality') PrimitiveElement? confidentialityElement,
 
     /// [attester] A participant who has attested to the accuracy of the
     ///  composition/document.
@@ -696,7 +698,9 @@ class Composition with Resource, _$Composition {
 
 /// [CompositionAttester] A set of healthcare-related information that is
 @freezed
-class CompositionAttester with BackboneType, _$CompositionAttester {
+class CompositionAttester
+    with _$CompositionAttester
+    implements BackboneElement {
   /// [CompositionAttester] A set of healthcare-related information that is
   const CompositionAttester._();
 
@@ -776,13 +780,13 @@ class CompositionAttester with BackboneType, _$CompositionAttester {
     FhirCode? mode,
 
     /// [modeElement] Extensions for mode
-    @JsonKey(name: '_mode') Element? modeElement,
+    @JsonKey(name: '_mode') PrimitiveElement? modeElement,
 
     /// [time] When the composition was attested by the party.
     FhirDateTime? time,
 
     /// [timeElement] Extensions for time
-    @JsonKey(name: '_time') Element? timeElement,
+    @JsonKey(name: '_time') PrimitiveElement? timeElement,
 
     /// [party] Who attested the composition in the specified way.
     Reference? party,
@@ -821,7 +825,9 @@ class CompositionAttester with BackboneType, _$CompositionAttester {
 
 /// [CompositionRelatesTo] A set of healthcare-related information that is
 @freezed
-class CompositionRelatesTo with BackboneType, _$CompositionRelatesTo {
+class CompositionRelatesTo
+    with _$CompositionRelatesTo
+    implements BackboneElement {
   /// [CompositionRelatesTo] A set of healthcare-related information that is
   const CompositionRelatesTo._();
 
@@ -901,7 +907,7 @@ class CompositionRelatesTo with BackboneType, _$CompositionRelatesTo {
     FhirCode? code,
 
     /// [codeElement] Extensions for code
-    @JsonKey(name: '_code') Element? codeElement,
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
 
     /// [targetIdentifier] The target composition/document of this relationship.
     Identifier? targetIdentifier,
@@ -943,7 +949,7 @@ class CompositionRelatesTo with BackboneType, _$CompositionRelatesTo {
 
 /// [CompositionEvent] A set of healthcare-related information that is
 @freezed
-class CompositionEvent with BackboneType, _$CompositionEvent {
+class CompositionEvent with _$CompositionEvent implements BackboneElement {
   /// [CompositionEvent] A set of healthcare-related information that is
   const CompositionEvent._();
 
@@ -1074,7 +1080,7 @@ class CompositionEvent with BackboneType, _$CompositionEvent {
 
 /// [CompositionSection] A set of healthcare-related information that is
 @freezed
-class CompositionSection with BackboneType, _$CompositionSection {
+class CompositionSection with _$CompositionSection implements BackboneElement {
   /// [CompositionSection] A set of healthcare-related information that is
   const CompositionSection._();
 
@@ -1192,7 +1198,7 @@ class CompositionSection with BackboneType, _$CompositionSection {
     String? title,
 
     /// [titleElement] Extensions for title
-    @JsonKey(name: '_title') Element? titleElement,
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
 
     /// [code] A code identifying the kind of content contained within the
     ///  section. This must be consistent with the section title.
@@ -1227,7 +1233,7 @@ class CompositionSection with BackboneType, _$CompositionSection {
     FhirCode? mode,
 
     /// [modeElement] Extensions for mode
-    @JsonKey(name: '_mode') Element? modeElement,
+    @JsonKey(name: '_mode') PrimitiveElement? modeElement,
 
     /// [orderedBy] Specifies the order applied to the items in the section
     ///  entries.
@@ -1278,7 +1284,7 @@ class CompositionSection with BackboneType, _$CompositionSection {
 
 /// [DocumentManifest] A collection of documents compiled for a purpose
 @freezed
-class DocumentManifest with Resource, _$DocumentManifest {
+class DocumentManifest with _$DocumentManifest implements DomainResource {
   /// [DocumentManifest] A collection of documents compiled for a purpose
   const DocumentManifest._();
 
@@ -1408,13 +1414,13 @@ class DocumentManifest with Resource, _$DocumentManifest {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -1465,7 +1471,7 @@ class DocumentManifest with Resource, _$DocumentManifest {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [type] The code specifying the type of clinical activity that resulted in
     ///  placing the associated content into the DocumentManifest.
@@ -1485,7 +1491,7 @@ class DocumentManifest with Resource, _$DocumentManifest {
     FhirDateTime? created,
 
     /// [createdElement] Extensions for created
-    @JsonKey(name: '_created') Element? createdElement,
+    @JsonKey(name: '_created') PrimitiveElement? createdElement,
 
     /// [author] Identifies who is the author of the manifest. Manifest author is
     ///  not necessarly the author of the references included.
@@ -1500,14 +1506,14 @@ class DocumentManifest with Resource, _$DocumentManifest {
     FhirUri? source,
 
     /// [sourceElement] Extensions for source
-    @JsonKey(name: '_source') Element? sourceElement,
+    @JsonKey(name: '_source') PrimitiveElement? sourceElement,
 
     /// [description] Human-readable description of the source document. This is
     ///  sometimes known as the "title".
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [content] The list of Resources that consist of the parts of this
     ///  manifest.
@@ -1556,7 +1562,9 @@ class DocumentManifest with Resource, _$DocumentManifest {
 
 /// [DocumentManifestRelated] A collection of documents compiled for a
 @freezed
-class DocumentManifestRelated with BackboneType, _$DocumentManifestRelated {
+class DocumentManifestRelated
+    with _$DocumentManifestRelated
+    implements BackboneElement {
   /// [DocumentManifestRelated] A collection of documents compiled for a
   const DocumentManifestRelated._();
 
@@ -1662,7 +1670,7 @@ class DocumentManifestRelated with BackboneType, _$DocumentManifestRelated {
 
 /// [DocumentReference] A reference to a document of any kind for any
 @freezed
-class DocumentReference with Resource, _$DocumentReference {
+class DocumentReference with _$DocumentReference implements DomainResource {
   /// [DocumentReference] A reference to a document of any kind for any
   const DocumentReference._();
 
@@ -1809,13 +1817,13 @@ class DocumentReference with Resource, _$DocumentReference {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -1868,13 +1876,13 @@ class DocumentReference with Resource, _$DocumentReference {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [docStatus] The status of the underlying document.
     FhirCode? docStatus,
 
     /// [docStatusElement] Extensions for docStatus
-    @JsonKey(name: '_docStatus') Element? docStatusElement,
+    @JsonKey(name: '_docStatus') PrimitiveElement? docStatusElement,
 
     /// [type] Specifies the particular kind of document referenced  (e.g.
     /// History and Physical, Discharge Summary, Progress Note). This usually
@@ -1896,7 +1904,7 @@ class DocumentReference with Resource, _$DocumentReference {
     FhirInstant? date,
 
     /// [dateElement] Extensions for date
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
 
     /// [author] Identifies who is responsible for adding the information to the
     ///  document.
@@ -1918,7 +1926,7 @@ class DocumentReference with Resource, _$DocumentReference {
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [securityLabel] A set of Security-Tag codes specifying the level of
     /// privacy/security of the Document. Note that
@@ -2049,7 +2057,7 @@ class DocumentReferenceRelatesTo
     FhirCode? code,
 
     /// [codeElement] Extensions for code
-    @JsonKey(name: '_code') Element? codeElement,
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
 
     /// [target] The target document of this relationship.
     required Reference target,
@@ -2088,7 +2096,9 @@ class DocumentReferenceRelatesTo
 
 /// [DocumentReferenceContent] A reference to a document of any kind for any
 @freezed
-class DocumentReferenceContent with BackboneType, _$DocumentReferenceContent {
+class DocumentReferenceContent
+    with _$DocumentReferenceContent
+    implements BackboneElement {
   /// [DocumentReferenceContent] A reference to a document of any kind for any
   const DocumentReferenceContent._();
 
@@ -2200,7 +2210,9 @@ class DocumentReferenceContent with BackboneType, _$DocumentReferenceContent {
 
 /// [DocumentReferenceContext] A reference to a document of any kind for any
 @freezed
-class DocumentReferenceContext with BackboneType, _$DocumentReferenceContext {
+class DocumentReferenceContext
+    with _$DocumentReferenceContext
+    implements BackboneElement {
   /// [DocumentReferenceContext] A reference to a document of any kind for any
   const DocumentReferenceContext._();
 

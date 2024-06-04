@@ -43,7 +43,7 @@ mixin _$CodeableConcept {
 
   /// [textElement] Extensions for text
   @JsonKey(name: '_text')
-  Element? get textElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get textElement => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -62,7 +62,7 @@ abstract class $CodeableConceptCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<Coding>? coding,
       String? text,
-      @JsonKey(name: '_text') Element? textElement});
+      @JsonKey(name: '_text') PrimitiveElement? textElement});
 }
 
 /// @nodoc
@@ -104,7 +104,7 @@ class _$CodeableConceptCopyWithImpl<$Res, $Val extends CodeableConcept>
       textElement: freezed == textElement
           ? _value.textElement
           : textElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ) as $Val);
   }
 }
@@ -122,7 +122,7 @@ abstract class _$$CodeableConceptImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<Coding>? coding,
       String? text,
-      @JsonKey(name: '_text') Element? textElement});
+      @JsonKey(name: '_text') PrimitiveElement? textElement});
 }
 
 /// @nodoc
@@ -162,7 +162,7 @@ class __$$CodeableConceptImplCopyWithImpl<$Res>
       textElement: freezed == textElement
           ? _value.textElement
           : textElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ));
   }
 }
@@ -234,7 +234,7 @@ class _$CodeableConceptImpl extends _CodeableConcept {
   /// [textElement] Extensions for text
   @override
   @JsonKey(name: '_text')
-  final Element? textElement;
+  final PrimitiveElement? textElement;
 
   @override
   String toString() {
@@ -286,7 +286,7 @@ abstract class _CodeableConcept extends CodeableConcept {
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<Coding>? coding,
           final String? text,
-          @JsonKey(name: '_text') final Element? textElement}) =
+          @JsonKey(name: '_text') final PrimitiveElement? textElement}) =
       _$CodeableConceptImpl;
   const _CodeableConcept._() : super._();
 
@@ -322,7 +322,7 @@ abstract class _CodeableConcept extends CodeableConcept {
 
   /// [textElement] Extensions for text
   @JsonKey(name: '_text')
-  Element? get textElement;
+  PrimitiveElement? get textElement;
   @override
   @JsonKey(ignore: true)
   _$$CodeableConceptImplCopyWith<_$CodeableConceptImpl> get copyWith =>

@@ -78,7 +78,7 @@ class Coding with _$Coding implements DataType {
     FhirUri? system,
 
     /// [systemElement] Extensions for system
-    @JsonKey(name: '_system') Element? systemElement,
+    @JsonKey(name: '_system') PrimitiveElement? systemElement,
 
     /// [version] The version of the code system which was used when choosing
     /// this code. Note that a well-maintained code system does not need the
@@ -89,7 +89,7 @@ class Coding with _$Coding implements DataType {
     String? version,
 
     /// [versionElement] Extensions for version
-    @JsonKey(name: '_version') Element? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
 
     /// [code] A symbol in syntax defined by the system. The symbol may be a
     /// predefined code or an expression in a syntax defined by the coding system
@@ -97,21 +97,21 @@ class Coding with _$Coding implements DataType {
     FhirCode? code,
 
     /// [codeElement] Extensions for code
-    @JsonKey(name: '_code') Element? codeElement,
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
 
     /// [display] A representation of the meaning of the code in the system,
     ///  following the rules of the system.
     String? display,
 
     /// [displayElement] Extensions for display
-    @JsonKey(name: '_display') Element? displayElement,
+    @JsonKey(name: '_display') PrimitiveElement? displayElement,
 
     /// [userSelected] Indicates that this coding was chosen by a user directly -
     ///  e.g. off a pick list of available items (codes or displays).
     FhirBoolean? userSelected,
 
     /// [userSelectedElement] Extensions for userSelected
-    @JsonKey(name: '_userSelected') Element? userSelectedElement,
+    @JsonKey(name: '_userSelected') PrimitiveElement? userSelectedElement,
   }) = _Coding;
 
   @override

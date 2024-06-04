@@ -18,17 +18,18 @@ _$AnnotationImpl _$$AnnotationImplFromJson(Map<String, dynamic> json) =>
       authorString: json['authorString'] as String?,
       authorStringElement: json['_authorString'] == null
           ? null
-          : Element.fromJson(json['_authorString'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_authorString'] as Map<String, dynamic>),
       time: json['time'] == null
           ? null
           : FhirDateTime.fromJson(json['time'] as String),
       timeElement: json['_time'] == null
           ? null
-          : Element.fromJson(json['_time'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_time'] as Map<String, dynamic>),
       text: json['text'] == null ? null : FhirMarkdown.fromJson(json['text']),
       textElement: json['_text'] == null
           ? null
-          : Element.fromJson(json['_text'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_text'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$AnnotationImplToJson(_$AnnotationImpl instance) {

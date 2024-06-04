@@ -69,7 +69,7 @@ class Identifier with _$Identifier implements DataType {
     @JsonKey(unknownEnumValue: IdentifierUse.unknown) IdentifierUse? use,
 
     /// [useElement] Extensions for use
-    @JsonKey(name: '_use') Element? useElement,
+    @JsonKey(name: '_use') PrimitiveElement? useElement,
 
     /// [type] A coded type for the identifier that can be used to determine
     ///  which identifier to use for a specific purpose.
@@ -80,14 +80,14 @@ class Identifier with _$Identifier implements DataType {
     FhirUri? system,
 
     /// [systemElement] Extensions for system
-    @JsonKey(name: '_system') Element? systemElement,
+    @JsonKey(name: '_system') PrimitiveElement? systemElement,
 
     /// [value] The portion of the identifier typically relevant to the user and
     ///  which is unique within the context of the system.
     String? value,
 
     /// [valueElement] Extensions for value
-    @JsonKey(name: '_value') Element? valueElement,
+    @JsonKey(name: '_value') PrimitiveElement? valueElement,
 
     /// [period] Time period during which identifier is/was valid for use.
     Period? period,

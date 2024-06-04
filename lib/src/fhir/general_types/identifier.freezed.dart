@@ -39,7 +39,7 @@ mixin _$Identifier {
 
   /// [useElement] Extensions for use
   @JsonKey(name: '_use')
-  Element? get useElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get useElement => throw _privateConstructorUsedError;
 
   /// [type] A coded type for the identifier that can be used to determine
   ///  which identifier to use for a specific purpose.
@@ -51,7 +51,7 @@ mixin _$Identifier {
 
   /// [systemElement] Extensions for system
   @JsonKey(name: '_system')
-  Element? get systemElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get systemElement => throw _privateConstructorUsedError;
 
   /// [value] The portion of the identifier typically relevant to the user and
   ///  which is unique within the context of the system.
@@ -59,7 +59,7 @@ mixin _$Identifier {
 
   /// [valueElement] Extensions for value
   @JsonKey(name: '_value')
-  Element? get valueElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get valueElement => throw _privateConstructorUsedError;
 
   /// [period] Time period during which identifier is/was valid for use.
   Period? get period => throw _privateConstructorUsedError;
@@ -83,12 +83,12 @@ abstract class $IdentifierCopyWith<$Res> {
       {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: IdentifierUse.unknown) IdentifierUse? use,
-      @JsonKey(name: '_use') Element? useElement,
+      @JsonKey(name: '_use') PrimitiveElement? useElement,
       CodeableConcept? type,
       FhirUri? system,
-      @JsonKey(name: '_system') Element? systemElement,
+      @JsonKey(name: '_system') PrimitiveElement? systemElement,
       String? value,
-      @JsonKey(name: '_value') Element? valueElement,
+      @JsonKey(name: '_value') PrimitiveElement? valueElement,
       Period? period,
       Reference? assigner});
 
@@ -138,7 +138,7 @@ class _$IdentifierCopyWithImpl<$Res, $Val extends Identifier>
       useElement: freezed == useElement
           ? _value.useElement
           : useElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -150,7 +150,7 @@ class _$IdentifierCopyWithImpl<$Res, $Val extends Identifier>
       systemElement: freezed == systemElement
           ? _value.systemElement
           : systemElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       value: freezed == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -158,7 +158,7 @@ class _$IdentifierCopyWithImpl<$Res, $Val extends Identifier>
       valueElement: freezed == valueElement
           ? _value.valueElement
           : valueElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       period: freezed == period
           ? _value.period
           : period // ignore: cast_nullable_to_non_nullable
@@ -219,12 +219,12 @@ abstract class _$$IdentifierImplCopyWith<$Res>
       {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: IdentifierUse.unknown) IdentifierUse? use,
-      @JsonKey(name: '_use') Element? useElement,
+      @JsonKey(name: '_use') PrimitiveElement? useElement,
       CodeableConcept? type,
       FhirUri? system,
-      @JsonKey(name: '_system') Element? systemElement,
+      @JsonKey(name: '_system') PrimitiveElement? systemElement,
       String? value,
-      @JsonKey(name: '_value') Element? valueElement,
+      @JsonKey(name: '_value') PrimitiveElement? valueElement,
       Period? period,
       Reference? assigner});
 
@@ -275,7 +275,7 @@ class __$$IdentifierImplCopyWithImpl<$Res>
       useElement: freezed == useElement
           ? _value.useElement
           : useElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -287,7 +287,7 @@ class __$$IdentifierImplCopyWithImpl<$Res>
       systemElement: freezed == systemElement
           ? _value.systemElement
           : systemElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       value: freezed == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -295,7 +295,7 @@ class __$$IdentifierImplCopyWithImpl<$Res>
       valueElement: freezed == valueElement
           ? _value.valueElement
           : valueElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       period: freezed == period
           ? _value.period
           : period // ignore: cast_nullable_to_non_nullable
@@ -366,7 +366,7 @@ class _$IdentifierImpl extends _Identifier {
   /// [useElement] Extensions for use
   @override
   @JsonKey(name: '_use')
-  final Element? useElement;
+  final PrimitiveElement? useElement;
 
   /// [type] A coded type for the identifier that can be used to determine
   ///  which identifier to use for a specific purpose.
@@ -381,7 +381,7 @@ class _$IdentifierImpl extends _Identifier {
   /// [systemElement] Extensions for system
   @override
   @JsonKey(name: '_system')
-  final Element? systemElement;
+  final PrimitiveElement? systemElement;
 
   /// [value] The portion of the identifier typically relevant to the user and
   ///  which is unique within the context of the system.
@@ -391,7 +391,7 @@ class _$IdentifierImpl extends _Identifier {
   /// [valueElement] Extensions for value
   @override
   @JsonKey(name: '_value')
-  final Element? valueElement;
+  final PrimitiveElement? valueElement;
 
   /// [period] Time period during which identifier is/was valid for use.
   @override
@@ -465,12 +465,12 @@ abstract class _Identifier extends Identifier {
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: IdentifierUse.unknown)
       final IdentifierUse? use,
-      @JsonKey(name: '_use') final Element? useElement,
+      @JsonKey(name: '_use') final PrimitiveElement? useElement,
       final CodeableConcept? type,
       final FhirUri? system,
-      @JsonKey(name: '_system') final Element? systemElement,
+      @JsonKey(name: '_system') final PrimitiveElement? systemElement,
       final String? value,
-      @JsonKey(name: '_value') final Element? valueElement,
+      @JsonKey(name: '_value') final PrimitiveElement? valueElement,
       final Period? period,
       final Reference? assigner}) = _$IdentifierImpl;
   const _Identifier._() : super._();
@@ -502,7 +502,7 @@ abstract class _Identifier extends Identifier {
 
   /// [useElement] Extensions for use
   @JsonKey(name: '_use')
-  Element? get useElement;
+  PrimitiveElement? get useElement;
   @override
 
   /// [type] A coded type for the identifier that can be used to determine
@@ -517,7 +517,7 @@ abstract class _Identifier extends Identifier {
 
   /// [systemElement] Extensions for system
   @JsonKey(name: '_system')
-  Element? get systemElement;
+  PrimitiveElement? get systemElement;
   @override
 
   /// [value] The portion of the identifier typically relevant to the user and
@@ -527,7 +527,7 @@ abstract class _Identifier extends Identifier {
 
   /// [valueElement] Extensions for value
   @JsonKey(name: '_value')
-  Element? get valueElement;
+  PrimitiveElement? get valueElement;
   @override
 
   /// [period] Time period during which identifier is/was valid for use.

@@ -169,7 +169,7 @@ class ProdCharacteristic with _$ProdCharacteristic implements Element {
     String? shape,
 
     /// [shapeElement] Extensions for shape
-    @JsonKey(name: '_shape') Element? shapeElement,
+    @JsonKey(name: '_shape') PrimitiveElement? shapeElement,
 
     /// [color] Where applicable, the color can be specified An appropriate
     /// controlled vocabulary shall be used The term and the term identifier shall
@@ -225,10 +225,9 @@ class ProdCharacteristic with _$ProdCharacteristic implements Element {
     }
   }
 
-    @override
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
   String toYaml() => json2yaml(toJson());
-
 }

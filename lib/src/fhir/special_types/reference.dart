@@ -90,7 +90,7 @@ class Reference with _$Reference implements DataType {
     String? reference,
 
     /// [referenceElement] Extensions for reference
-    @JsonKey(name: '_reference') Element? referenceElement,
+    @JsonKey(name: '_reference') PrimitiveElement? referenceElement,
 
     /// [type] The expected type of the target of the reference. If both
     /// Reference.type and Reference.reference are populated and
@@ -104,7 +104,7 @@ class Reference with _$Reference implements DataType {
     FhirUri? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [identifier] An identifier for the target resource. This is used when
     /// there is no way to reference the other resource directly, either because
@@ -122,7 +122,7 @@ class Reference with _$Reference implements DataType {
     String? display,
 
     /// [displayElement] Extensions for display
-    @JsonKey(name: '_display') Element? displayElement,
+    @JsonKey(name: '_display') PrimitiveElement? displayElement,
   }) = _Reference;
 
   @override

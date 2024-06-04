@@ -82,40 +82,40 @@ class ParameterDefinition with _$ParameterDefinition implements DataType {
     FhirCode? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [use] Whether the parameter is input or output for the module.
     FhirCode? use,
 
     /// [useElement] Extensions for use
-    @JsonKey(name: '_use') Element? useElement,
+    @JsonKey(name: '_use') PrimitiveElement? useElement,
 
     /// [min] The minimum number of times this parameter SHALL appear in the
     ///  request or response.
     FhirInteger? min,
 
     /// [minElement] Extensions for min
-    @JsonKey(name: '_min') Element? minElement,
+    @JsonKey(name: '_min') PrimitiveElement? minElement,
 
     /// [max] The maximum number of times this element is permitted to appear in
     ///  the request or response.
     String? max,
 
     /// [maxElement] Extensions for max
-    @JsonKey(name: '_max') Element? maxElement,
+    @JsonKey(name: '_max') PrimitiveElement? maxElement,
 
     /// [documentation] A brief discussion of what the parameter is for and how
     ///  it is used by the module.
     String? documentation,
 
     /// [documentationElement] Extensions for documentation
-    @JsonKey(name: '_documentation') Element? documentationElement,
+    @JsonKey(name: '_documentation') PrimitiveElement? documentationElement,
 
     /// [type] The type of the parameter.
     FhirCode? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [profile] If specified, this indicates a profile that the input data must
     ///  conform to, or that the output data will conform to.

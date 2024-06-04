@@ -38,14 +38,14 @@ mixin _$Money {
 
   /// [valueElement] Extensions for value
   @JsonKey(name: '_value')
-  Element? get valueElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get valueElement => throw _privateConstructorUsedError;
 
   /// [currency] ISO 4217 Currency Code.
   FhirCode? get currency => throw _privateConstructorUsedError;
 
   /// [currencyElement] Extensions for currency
   @JsonKey(name: '_currency')
-  Element? get currencyElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get currencyElement => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -61,9 +61,9 @@ abstract class $MoneyCopyWith<$Res> {
       {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       FhirDecimal? value,
-      @JsonKey(name: '_value') Element? valueElement,
+      @JsonKey(name: '_value') PrimitiveElement? valueElement,
       FhirCode? currency,
-      @JsonKey(name: '_currency') Element? currencyElement});
+      @JsonKey(name: '_currency') PrimitiveElement? currencyElement});
 }
 
 /// @nodoc
@@ -102,7 +102,7 @@ class _$MoneyCopyWithImpl<$Res, $Val extends Money>
       valueElement: freezed == valueElement
           ? _value.valueElement
           : valueElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       currency: freezed == currency
           ? _value.currency
           : currency // ignore: cast_nullable_to_non_nullable
@@ -110,7 +110,7 @@ class _$MoneyCopyWithImpl<$Res, $Val extends Money>
       currencyElement: freezed == currencyElement
           ? _value.currencyElement
           : currencyElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ) as $Val);
   }
 }
@@ -126,9 +126,9 @@ abstract class _$$MoneyImplCopyWith<$Res> implements $MoneyCopyWith<$Res> {
       {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       FhirDecimal? value,
-      @JsonKey(name: '_value') Element? valueElement,
+      @JsonKey(name: '_value') PrimitiveElement? valueElement,
       FhirCode? currency,
-      @JsonKey(name: '_currency') Element? currencyElement});
+      @JsonKey(name: '_currency') PrimitiveElement? currencyElement});
 }
 
 /// @nodoc
@@ -165,7 +165,7 @@ class __$$MoneyImplCopyWithImpl<$Res>
       valueElement: freezed == valueElement
           ? _value.valueElement
           : valueElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       currency: freezed == currency
           ? _value.currency
           : currency // ignore: cast_nullable_to_non_nullable
@@ -173,7 +173,7 @@ class __$$MoneyImplCopyWithImpl<$Res>
       currencyElement: freezed == currencyElement
           ? _value.currencyElement
           : currencyElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ));
   }
 }
@@ -230,7 +230,7 @@ class _$MoneyImpl extends _Money {
   /// [valueElement] Extensions for value
   @override
   @JsonKey(name: '_value')
-  final Element? valueElement;
+  final PrimitiveElement? valueElement;
 
   /// [currency] ISO 4217 Currency Code.
   @override
@@ -239,7 +239,7 @@ class _$MoneyImpl extends _Money {
   /// [currencyElement] Extensions for currency
   @override
   @JsonKey(name: '_currency')
-  final Element? currencyElement;
+  final PrimitiveElement? currencyElement;
 
   @override
   String toString() {
@@ -290,13 +290,13 @@ class _$MoneyImpl extends _Money {
 
 abstract class _Money extends Money {
   const factory _Money(
-          {final String? id,
-          @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
-          final FhirDecimal? value,
-          @JsonKey(name: '_value') final Element? valueElement,
-          final FhirCode? currency,
-          @JsonKey(name: '_currency') final Element? currencyElement}) =
-      _$MoneyImpl;
+      {final String? id,
+      @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
+      final FhirDecimal? value,
+      @JsonKey(name: '_value') final PrimitiveElement? valueElement,
+      final FhirCode? currency,
+      @JsonKey(name: '_currency')
+      final PrimitiveElement? currencyElement}) = _$MoneyImpl;
   const _Money._() : super._();
 
   factory _Money.fromJson(Map<String, dynamic> json) = _$MoneyImpl.fromJson;
@@ -324,7 +324,7 @@ abstract class _Money extends Money {
 
   /// [valueElement] Extensions for value
   @JsonKey(name: '_value')
-  Element? get valueElement;
+  PrimitiveElement? get valueElement;
   @override
 
   /// [currency] ISO 4217 Currency Code.
@@ -333,7 +333,7 @@ abstract class _Money extends Money {
 
   /// [currencyElement] Extensions for currency
   @JsonKey(name: '_currency')
-  Element? get currencyElement;
+  PrimitiveElement? get currencyElement;
   @override
   @JsonKey(ignore: true)
   _$$MoneyImplCopyWith<_$MoneyImpl> get copyWith =>

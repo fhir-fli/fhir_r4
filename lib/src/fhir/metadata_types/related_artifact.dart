@@ -79,35 +79,35 @@ class RelatedArtifact with _$RelatedArtifact implements DataType {
     RelatedArtifactType? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [label] A short label that can be used to reference the citation from
     ///  elsewhere in the containing artifact, such as a footnote index.
     String? label,
 
     /// [labelElement] Extensions for label
-    @JsonKey(name: '_label') Element? labelElement,
+    @JsonKey(name: '_label') PrimitiveElement? labelElement,
 
     /// [display] A brief description of the document or knowledge resource being
     ///  referenced, suitable for display to a consumer.
     String? display,
 
     /// [displayElement] Extensions for display
-    @JsonKey(name: '_display') Element? displayElement,
+    @JsonKey(name: '_display') PrimitiveElement? displayElement,
 
     /// [citation] A bibliographic citation for the related artifact. This text
     ///  SHOULD be formatted according to an accepted citation format.
     FhirMarkdown? citation,
 
     /// [citationElement] Extensions for citation
-    @JsonKey(name: '_citation') Element? citationElement,
+    @JsonKey(name: '_citation') PrimitiveElement? citationElement,
 
     /// [url] A url for the artifact that can be followed to access the actual
     ///  content.
     FhirUrl? url,
 
     /// [urlElement] Extensions for url
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
 
     /// [document] The document being referenced, represented as an attachment.
     ///  This is exclusive with the resource element.

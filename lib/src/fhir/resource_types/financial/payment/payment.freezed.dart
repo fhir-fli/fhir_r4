@@ -40,14 +40,15 @@ mixin _$PaymentNotice {
 
   /// [implicitRulesElement] Extensions for implicitRules
   @JsonKey(name: '_implicitRules')
-  Element? get implicitRulesElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get implicitRulesElement =>
+      throw _privateConstructorUsedError;
 
   /// [language] The base language in which the resource is written.
   FhirCode? get language => throw _privateConstructorUsedError;
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get languageElement => throw _privateConstructorUsedError;
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -96,7 +97,7 @@ mixin _$PaymentNotice {
 
   /// [statusElement] Extensions for status
   @JsonKey(name: '_status')
-  Element? get statusElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get statusElement => throw _privateConstructorUsedError;
 
   /// [request] Reference of resource for which payment is being made.
   Reference? get request => throw _privateConstructorUsedError;
@@ -110,7 +111,7 @@ mixin _$PaymentNotice {
 
   /// [createdElement] Extensions for created
   @JsonKey(name: '_created')
-  Element? get createdElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get createdElement => throw _privateConstructorUsedError;
 
   /// [provider] The practitioner who is responsible for the services rendered
   ///  to the patient.
@@ -124,7 +125,8 @@ mixin _$PaymentNotice {
 
   /// [paymentDateElement] Extensions for paymentDate
   @JsonKey(name: '_paymentDate')
-  Element? get paymentDateElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get paymentDateElement =>
+      throw _privateConstructorUsedError;
 
   /// [payee] The party who will receive or has received payment that is the
   ///  subject of this notification.
@@ -158,24 +160,24 @@ abstract class $PaymentNoticeCopyWith<$Res> {
       String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
       FhirCode? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       Narrative? text,
       List<Resource>? contained,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<Identifier>? identifier,
       FhirCode? status,
-      @JsonKey(name: '_status') Element? statusElement,
+      @JsonKey(name: '_status') PrimitiveElement? statusElement,
       Reference? request,
       Reference? response,
       FhirDateTime? created,
-      @JsonKey(name: '_created') Element? createdElement,
+      @JsonKey(name: '_created') PrimitiveElement? createdElement,
       Reference? provider,
       Reference payment,
       FhirDate? paymentDate,
-      @JsonKey(name: '_paymentDate') Element? paymentDateElement,
+      @JsonKey(name: '_paymentDate') PrimitiveElement? paymentDateElement,
       Reference? payee,
       Reference recipient,
       Money amount,
@@ -253,7 +255,7 @@ class _$PaymentNoticeCopyWithImpl<$Res, $Val extends PaymentNotice>
       implicitRulesElement: freezed == implicitRulesElement
           ? _value.implicitRulesElement
           : implicitRulesElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -261,7 +263,7 @@ class _$PaymentNoticeCopyWithImpl<$Res, $Val extends PaymentNotice>
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -289,7 +291,7 @@ class _$PaymentNoticeCopyWithImpl<$Res, $Val extends PaymentNotice>
       statusElement: freezed == statusElement
           ? _value.statusElement
           : statusElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       request: freezed == request
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
@@ -305,7 +307,7 @@ class _$PaymentNoticeCopyWithImpl<$Res, $Val extends PaymentNotice>
       createdElement: freezed == createdElement
           ? _value.createdElement
           : createdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       provider: freezed == provider
           ? _value.provider
           : provider // ignore: cast_nullable_to_non_nullable
@@ -321,7 +323,7 @@ class _$PaymentNoticeCopyWithImpl<$Res, $Val extends PaymentNotice>
       paymentDateElement: freezed == paymentDateElement
           ? _value.paymentDateElement
           : paymentDateElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       payee: freezed == payee
           ? _value.payee
           : payee // ignore: cast_nullable_to_non_nullable
@@ -464,24 +466,24 @@ abstract class _$$PaymentNoticeImplCopyWith<$Res>
       String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
       FhirCode? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       Narrative? text,
       List<Resource>? contained,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<Identifier>? identifier,
       FhirCode? status,
-      @JsonKey(name: '_status') Element? statusElement,
+      @JsonKey(name: '_status') PrimitiveElement? statusElement,
       Reference? request,
       Reference? response,
       FhirDateTime? created,
-      @JsonKey(name: '_created') Element? createdElement,
+      @JsonKey(name: '_created') PrimitiveElement? createdElement,
       Reference? provider,
       Reference payment,
       FhirDate? paymentDate,
-      @JsonKey(name: '_paymentDate') Element? paymentDateElement,
+      @JsonKey(name: '_paymentDate') PrimitiveElement? paymentDateElement,
       Reference? payee,
       Reference recipient,
       Money amount,
@@ -567,7 +569,7 @@ class __$$PaymentNoticeImplCopyWithImpl<$Res>
       implicitRulesElement: freezed == implicitRulesElement
           ? _value.implicitRulesElement
           : implicitRulesElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -575,7 +577,7 @@ class __$$PaymentNoticeImplCopyWithImpl<$Res>
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -603,7 +605,7 @@ class __$$PaymentNoticeImplCopyWithImpl<$Res>
       statusElement: freezed == statusElement
           ? _value.statusElement
           : statusElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       request: freezed == request
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
@@ -619,7 +621,7 @@ class __$$PaymentNoticeImplCopyWithImpl<$Res>
       createdElement: freezed == createdElement
           ? _value.createdElement
           : createdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       provider: freezed == provider
           ? _value.provider
           : provider // ignore: cast_nullable_to_non_nullable
@@ -635,7 +637,7 @@ class __$$PaymentNoticeImplCopyWithImpl<$Res>
       paymentDateElement: freezed == paymentDateElement
           ? _value.paymentDateElement
           : paymentDateElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       payee: freezed == payee
           ? _value.payee
           : payee // ignore: cast_nullable_to_non_nullable
@@ -721,7 +723,7 @@ class _$PaymentNoticeImpl extends _PaymentNotice {
   /// [implicitRulesElement] Extensions for implicitRules
   @override
   @JsonKey(name: '_implicitRules')
-  final Element? implicitRulesElement;
+  final PrimitiveElement? implicitRulesElement;
 
   /// [language] The base language in which the resource is written.
   @override
@@ -730,7 +732,7 @@ class _$PaymentNoticeImpl extends _PaymentNotice {
   /// [languageElement] Extensions for language
   @override
   @JsonKey(name: '_language')
-  final Element? languageElement;
+  final PrimitiveElement? languageElement;
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -842,7 +844,7 @@ class _$PaymentNoticeImpl extends _PaymentNotice {
   /// [statusElement] Extensions for status
   @override
   @JsonKey(name: '_status')
-  final Element? statusElement;
+  final PrimitiveElement? statusElement;
 
   /// [request] Reference of resource for which payment is being made.
   @override
@@ -860,7 +862,7 @@ class _$PaymentNoticeImpl extends _PaymentNotice {
   /// [createdElement] Extensions for created
   @override
   @JsonKey(name: '_created')
-  final Element? createdElement;
+  final PrimitiveElement? createdElement;
 
   /// [provider] The practitioner who is responsible for the services rendered
   ///  to the patient.
@@ -878,7 +880,7 @@ class _$PaymentNoticeImpl extends _PaymentNotice {
   /// [paymentDateElement] Extensions for paymentDate
   @override
   @JsonKey(name: '_paymentDate')
-  final Element? paymentDateElement;
+  final PrimitiveElement? paymentDateElement;
 
   /// [payee] The party who will receive or has received payment that is the
   ///  subject of this notification.
@@ -1006,24 +1008,25 @@ abstract class _PaymentNotice extends PaymentNotice {
       final String? id,
       final FhirMeta? meta,
       final FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') final Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules')
+      final PrimitiveElement? implicitRulesElement,
       final FhirCode? language,
-      @JsonKey(name: '_language') final Element? languageElement,
+      @JsonKey(name: '_language') final PrimitiveElement? languageElement,
       final Narrative? text,
       final List<Resource>? contained,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final List<Identifier>? identifier,
       final FhirCode? status,
-      @JsonKey(name: '_status') final Element? statusElement,
+      @JsonKey(name: '_status') final PrimitiveElement? statusElement,
       final Reference? request,
       final Reference? response,
       final FhirDateTime? created,
-      @JsonKey(name: '_created') final Element? createdElement,
+      @JsonKey(name: '_created') final PrimitiveElement? createdElement,
       final Reference? provider,
       required final Reference payment,
       final FhirDate? paymentDate,
-      @JsonKey(name: '_paymentDate') final Element? paymentDateElement,
+      @JsonKey(name: '_paymentDate') final PrimitiveElement? paymentDateElement,
       final Reference? payee,
       required final Reference recipient,
       required final Money amount,
@@ -1058,7 +1061,7 @@ abstract class _PaymentNotice extends PaymentNotice {
 
   /// [implicitRulesElement] Extensions for implicitRules
   @JsonKey(name: '_implicitRules')
-  Element? get implicitRulesElement;
+  PrimitiveElement? get implicitRulesElement;
   @override
 
   /// [language] The base language in which the resource is written.
@@ -1067,7 +1070,7 @@ abstract class _PaymentNotice extends PaymentNotice {
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement;
+  PrimitiveElement? get languageElement;
   @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
@@ -1122,7 +1125,7 @@ abstract class _PaymentNotice extends PaymentNotice {
 
   /// [statusElement] Extensions for status
   @JsonKey(name: '_status')
-  Element? get statusElement;
+  PrimitiveElement? get statusElement;
   @override
 
   /// [request] Reference of resource for which payment is being made.
@@ -1140,7 +1143,7 @@ abstract class _PaymentNotice extends PaymentNotice {
 
   /// [createdElement] Extensions for created
   @JsonKey(name: '_created')
-  Element? get createdElement;
+  PrimitiveElement? get createdElement;
   @override
 
   /// [provider] The practitioner who is responsible for the services rendered
@@ -1158,7 +1161,7 @@ abstract class _PaymentNotice extends PaymentNotice {
 
   /// [paymentDateElement] Extensions for paymentDate
   @JsonKey(name: '_paymentDate')
-  Element? get paymentDateElement;
+  PrimitiveElement? get paymentDateElement;
   @override
 
   /// [payee] The party who will receive or has received payment that is the
@@ -1210,14 +1213,15 @@ mixin _$PaymentReconciliation {
 
   /// [implicitRulesElement] Extensions for implicitRules
   @JsonKey(name: '_implicitRules')
-  Element? get implicitRulesElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get implicitRulesElement =>
+      throw _privateConstructorUsedError;
 
   /// [language] The base language in which the resource is written.
   FhirCode? get language => throw _privateConstructorUsedError;
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get languageElement => throw _privateConstructorUsedError;
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1266,7 +1270,7 @@ mixin _$PaymentReconciliation {
 
   /// [statusElement] Extensions for status
   @JsonKey(name: '_status')
-  Element? get statusElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get statusElement => throw _privateConstructorUsedError;
 
   /// [period] The period of time for which payments have been gathered into
   ///  this bulk payment for settlement.
@@ -1277,7 +1281,7 @@ mixin _$PaymentReconciliation {
 
   /// [createdElement] Extensions for created
   @JsonKey(name: '_created')
-  Element? get createdElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get createdElement => throw _privateConstructorUsedError;
 
   /// [paymentIssuer] The party who generated the payment.
   Reference? get paymentIssuer => throw _privateConstructorUsedError;
@@ -1294,7 +1298,7 @@ mixin _$PaymentReconciliation {
 
   /// [outcomeElement] Extensions for outcome
   @JsonKey(name: '_outcome')
-  Element? get outcomeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get outcomeElement => throw _privateConstructorUsedError;
 
   /// [disposition] A human readable description of the status of the request
   ///  for the reconciliation.
@@ -1302,7 +1306,8 @@ mixin _$PaymentReconciliation {
 
   /// [dispositionElement] Extensions for disposition
   @JsonKey(name: '_disposition')
-  Element? get dispositionElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get dispositionElement =>
+      throw _privateConstructorUsedError;
 
   /// [paymentDate] The date of payment as indicated on the financial
   ///  instrument.
@@ -1310,7 +1315,8 @@ mixin _$PaymentReconciliation {
 
   /// [paymentDateElement] Extensions for paymentDate
   @JsonKey(name: '_paymentDate')
-  Element? get paymentDateElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get paymentDateElement =>
+      throw _privateConstructorUsedError;
 
   /// [paymentAmount] Total payment amount as indicated on the financial
   ///  instrument.
@@ -1351,28 +1357,28 @@ abstract class $PaymentReconciliationCopyWith<$Res> {
       String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
       FhirCode? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       Narrative? text,
       List<Resource>? contained,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<Identifier>? identifier,
       FhirCode? status,
-      @JsonKey(name: '_status') Element? statusElement,
+      @JsonKey(name: '_status') PrimitiveElement? statusElement,
       Period? period,
       FhirDateTime? created,
-      @JsonKey(name: '_created') Element? createdElement,
+      @JsonKey(name: '_created') PrimitiveElement? createdElement,
       Reference? paymentIssuer,
       Reference? request,
       Reference? requestor,
       FhirCode? outcome,
-      @JsonKey(name: '_outcome') Element? outcomeElement,
+      @JsonKey(name: '_outcome') PrimitiveElement? outcomeElement,
       String? disposition,
-      @JsonKey(name: '_disposition') Element? dispositionElement,
+      @JsonKey(name: '_disposition') PrimitiveElement? dispositionElement,
       FhirDate? paymentDate,
-      @JsonKey(name: '_paymentDate') Element? paymentDateElement,
+      @JsonKey(name: '_paymentDate') PrimitiveElement? paymentDateElement,
       Money paymentAmount,
       Identifier? paymentIdentifier,
       List<PaymentReconciliationDetail>? detail,
@@ -1456,7 +1462,7 @@ class _$PaymentReconciliationCopyWithImpl<$Res,
       implicitRulesElement: freezed == implicitRulesElement
           ? _value.implicitRulesElement
           : implicitRulesElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -1464,7 +1470,7 @@ class _$PaymentReconciliationCopyWithImpl<$Res,
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -1492,7 +1498,7 @@ class _$PaymentReconciliationCopyWithImpl<$Res,
       statusElement: freezed == statusElement
           ? _value.statusElement
           : statusElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       period: freezed == period
           ? _value.period
           : period // ignore: cast_nullable_to_non_nullable
@@ -1504,7 +1510,7 @@ class _$PaymentReconciliationCopyWithImpl<$Res,
       createdElement: freezed == createdElement
           ? _value.createdElement
           : createdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       paymentIssuer: freezed == paymentIssuer
           ? _value.paymentIssuer
           : paymentIssuer // ignore: cast_nullable_to_non_nullable
@@ -1524,7 +1530,7 @@ class _$PaymentReconciliationCopyWithImpl<$Res,
       outcomeElement: freezed == outcomeElement
           ? _value.outcomeElement
           : outcomeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       disposition: freezed == disposition
           ? _value.disposition
           : disposition // ignore: cast_nullable_to_non_nullable
@@ -1532,7 +1538,7 @@ class _$PaymentReconciliationCopyWithImpl<$Res,
       dispositionElement: freezed == dispositionElement
           ? _value.dispositionElement
           : dispositionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       paymentDate: freezed == paymentDate
           ? _value.paymentDate
           : paymentDate // ignore: cast_nullable_to_non_nullable
@@ -1540,7 +1546,7 @@ class _$PaymentReconciliationCopyWithImpl<$Res,
       paymentDateElement: freezed == paymentDateElement
           ? _value.paymentDateElement
           : paymentDateElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       paymentAmount: null == paymentAmount
           ? _value.paymentAmount
           : paymentAmount // ignore: cast_nullable_to_non_nullable
@@ -1684,28 +1690,28 @@ abstract class _$$PaymentReconciliationImplCopyWith<$Res>
       String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
       FhirCode? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       Narrative? text,
       List<Resource>? contained,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<Identifier>? identifier,
       FhirCode? status,
-      @JsonKey(name: '_status') Element? statusElement,
+      @JsonKey(name: '_status') PrimitiveElement? statusElement,
       Period? period,
       FhirDateTime? created,
-      @JsonKey(name: '_created') Element? createdElement,
+      @JsonKey(name: '_created') PrimitiveElement? createdElement,
       Reference? paymentIssuer,
       Reference? request,
       Reference? requestor,
       FhirCode? outcome,
-      @JsonKey(name: '_outcome') Element? outcomeElement,
+      @JsonKey(name: '_outcome') PrimitiveElement? outcomeElement,
       String? disposition,
-      @JsonKey(name: '_disposition') Element? dispositionElement,
+      @JsonKey(name: '_disposition') PrimitiveElement? dispositionElement,
       FhirDate? paymentDate,
-      @JsonKey(name: '_paymentDate') Element? paymentDateElement,
+      @JsonKey(name: '_paymentDate') PrimitiveElement? paymentDateElement,
       Money paymentAmount,
       Identifier? paymentIdentifier,
       List<PaymentReconciliationDetail>? detail,
@@ -1796,7 +1802,7 @@ class __$$PaymentReconciliationImplCopyWithImpl<$Res>
       implicitRulesElement: freezed == implicitRulesElement
           ? _value.implicitRulesElement
           : implicitRulesElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -1804,7 +1810,7 @@ class __$$PaymentReconciliationImplCopyWithImpl<$Res>
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -1832,7 +1838,7 @@ class __$$PaymentReconciliationImplCopyWithImpl<$Res>
       statusElement: freezed == statusElement
           ? _value.statusElement
           : statusElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       period: freezed == period
           ? _value.period
           : period // ignore: cast_nullable_to_non_nullable
@@ -1844,7 +1850,7 @@ class __$$PaymentReconciliationImplCopyWithImpl<$Res>
       createdElement: freezed == createdElement
           ? _value.createdElement
           : createdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       paymentIssuer: freezed == paymentIssuer
           ? _value.paymentIssuer
           : paymentIssuer // ignore: cast_nullable_to_non_nullable
@@ -1864,7 +1870,7 @@ class __$$PaymentReconciliationImplCopyWithImpl<$Res>
       outcomeElement: freezed == outcomeElement
           ? _value.outcomeElement
           : outcomeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       disposition: freezed == disposition
           ? _value.disposition
           : disposition // ignore: cast_nullable_to_non_nullable
@@ -1872,7 +1878,7 @@ class __$$PaymentReconciliationImplCopyWithImpl<$Res>
       dispositionElement: freezed == dispositionElement
           ? _value.dispositionElement
           : dispositionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       paymentDate: freezed == paymentDate
           ? _value.paymentDate
           : paymentDate // ignore: cast_nullable_to_non_nullable
@@ -1880,7 +1886,7 @@ class __$$PaymentReconciliationImplCopyWithImpl<$Res>
       paymentDateElement: freezed == paymentDateElement
           ? _value.paymentDateElement
           : paymentDateElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       paymentAmount: null == paymentAmount
           ? _value.paymentAmount
           : paymentAmount // ignore: cast_nullable_to_non_nullable
@@ -1977,7 +1983,7 @@ class _$PaymentReconciliationImpl extends _PaymentReconciliation {
   /// [implicitRulesElement] Extensions for implicitRules
   @override
   @JsonKey(name: '_implicitRules')
-  final Element? implicitRulesElement;
+  final PrimitiveElement? implicitRulesElement;
 
   /// [language] The base language in which the resource is written.
   @override
@@ -1986,7 +1992,7 @@ class _$PaymentReconciliationImpl extends _PaymentReconciliation {
   /// [languageElement] Extensions for language
   @override
   @JsonKey(name: '_language')
-  final Element? languageElement;
+  final PrimitiveElement? languageElement;
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -2098,7 +2104,7 @@ class _$PaymentReconciliationImpl extends _PaymentReconciliation {
   /// [statusElement] Extensions for status
   @override
   @JsonKey(name: '_status')
-  final Element? statusElement;
+  final PrimitiveElement? statusElement;
 
   /// [period] The period of time for which payments have been gathered into
   ///  this bulk payment for settlement.
@@ -2112,7 +2118,7 @@ class _$PaymentReconciliationImpl extends _PaymentReconciliation {
   /// [createdElement] Extensions for created
   @override
   @JsonKey(name: '_created')
-  final Element? createdElement;
+  final PrimitiveElement? createdElement;
 
   /// [paymentIssuer] The party who generated the payment.
   @override
@@ -2134,7 +2140,7 @@ class _$PaymentReconciliationImpl extends _PaymentReconciliation {
   /// [outcomeElement] Extensions for outcome
   @override
   @JsonKey(name: '_outcome')
-  final Element? outcomeElement;
+  final PrimitiveElement? outcomeElement;
 
   /// [disposition] A human readable description of the status of the request
   ///  for the reconciliation.
@@ -2144,7 +2150,7 @@ class _$PaymentReconciliationImpl extends _PaymentReconciliation {
   /// [dispositionElement] Extensions for disposition
   @override
   @JsonKey(name: '_disposition')
-  final Element? dispositionElement;
+  final PrimitiveElement? dispositionElement;
 
   /// [paymentDate] The date of payment as indicated on the financial
   ///  instrument.
@@ -2154,7 +2160,7 @@ class _$PaymentReconciliationImpl extends _PaymentReconciliation {
   /// [paymentDateElement] Extensions for paymentDate
   @override
   @JsonKey(name: '_paymentDate')
-  final Element? paymentDateElement;
+  final PrimitiveElement? paymentDateElement;
 
   /// [paymentAmount] Total payment amount as indicated on the financial
   ///  instrument.
@@ -2319,39 +2325,40 @@ class _$PaymentReconciliationImpl extends _PaymentReconciliation {
 
 abstract class _PaymentReconciliation extends PaymentReconciliation {
   const factory _PaymentReconciliation(
-          {@JsonKey(unknownEnumValue: R4ResourceType.PaymentReconciliation)
-          final R4ResourceType resourceType,
-          final String? id,
-          final FhirMeta? meta,
-          final FhirUri? implicitRules,
-          @JsonKey(name: '_implicitRules') final Element? implicitRulesElement,
-          final FhirCode? language,
-          @JsonKey(name: '_language') final Element? languageElement,
-          final Narrative? text,
-          final List<Resource>? contained,
-          @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
-          final List<FhirExtension>? modifierExtension,
-          final List<Identifier>? identifier,
-          final FhirCode? status,
-          @JsonKey(name: '_status') final Element? statusElement,
-          final Period? period,
-          final FhirDateTime? created,
-          @JsonKey(name: '_created') final Element? createdElement,
-          final Reference? paymentIssuer,
-          final Reference? request,
-          final Reference? requestor,
-          final FhirCode? outcome,
-          @JsonKey(name: '_outcome') final Element? outcomeElement,
-          final String? disposition,
-          @JsonKey(name: '_disposition') final Element? dispositionElement,
-          final FhirDate? paymentDate,
-          @JsonKey(name: '_paymentDate') final Element? paymentDateElement,
-          required final Money paymentAmount,
-          final Identifier? paymentIdentifier,
-          final List<PaymentReconciliationDetail>? detail,
-          final CodeableConcept? formCode,
-          final List<PaymentReconciliationProcessNote>? processNote}) =
-      _$PaymentReconciliationImpl;
+      {@JsonKey(unknownEnumValue: R4ResourceType.PaymentReconciliation)
+      final R4ResourceType resourceType,
+      final String? id,
+      final FhirMeta? meta,
+      final FhirUri? implicitRules,
+      @JsonKey(name: '_implicitRules')
+      final PrimitiveElement? implicitRulesElement,
+      final FhirCode? language,
+      @JsonKey(name: '_language') final PrimitiveElement? languageElement,
+      final Narrative? text,
+      final List<Resource>? contained,
+      @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
+      final List<FhirExtension>? modifierExtension,
+      final List<Identifier>? identifier,
+      final FhirCode? status,
+      @JsonKey(name: '_status') final PrimitiveElement? statusElement,
+      final Period? period,
+      final FhirDateTime? created,
+      @JsonKey(name: '_created') final PrimitiveElement? createdElement,
+      final Reference? paymentIssuer,
+      final Reference? request,
+      final Reference? requestor,
+      final FhirCode? outcome,
+      @JsonKey(name: '_outcome') final PrimitiveElement? outcomeElement,
+      final String? disposition,
+      @JsonKey(name: '_disposition') final PrimitiveElement? dispositionElement,
+      final FhirDate? paymentDate,
+      @JsonKey(name: '_paymentDate') final PrimitiveElement? paymentDateElement,
+      required final Money paymentAmount,
+      final Identifier? paymentIdentifier,
+      final List<PaymentReconciliationDetail>? detail,
+      final CodeableConcept? formCode,
+      final List<PaymentReconciliationProcessNote>?
+          processNote}) = _$PaymentReconciliationImpl;
   const _PaymentReconciliation._() : super._();
 
   factory _PaymentReconciliation.fromJson(Map<String, dynamic> json) =
@@ -2382,7 +2389,7 @@ abstract class _PaymentReconciliation extends PaymentReconciliation {
 
   /// [implicitRulesElement] Extensions for implicitRules
   @JsonKey(name: '_implicitRules')
-  Element? get implicitRulesElement;
+  PrimitiveElement? get implicitRulesElement;
   @override
 
   /// [language] The base language in which the resource is written.
@@ -2391,7 +2398,7 @@ abstract class _PaymentReconciliation extends PaymentReconciliation {
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement;
+  PrimitiveElement? get languageElement;
   @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
@@ -2446,7 +2453,7 @@ abstract class _PaymentReconciliation extends PaymentReconciliation {
 
   /// [statusElement] Extensions for status
   @JsonKey(name: '_status')
-  Element? get statusElement;
+  PrimitiveElement? get statusElement;
   @override
 
   /// [period] The period of time for which payments have been gathered into
@@ -2460,7 +2467,7 @@ abstract class _PaymentReconciliation extends PaymentReconciliation {
 
   /// [createdElement] Extensions for created
   @JsonKey(name: '_created')
-  Element? get createdElement;
+  PrimitiveElement? get createdElement;
   @override
 
   /// [paymentIssuer] The party who generated the payment.
@@ -2482,7 +2489,7 @@ abstract class _PaymentReconciliation extends PaymentReconciliation {
 
   /// [outcomeElement] Extensions for outcome
   @JsonKey(name: '_outcome')
-  Element? get outcomeElement;
+  PrimitiveElement? get outcomeElement;
   @override
 
   /// [disposition] A human readable description of the status of the request
@@ -2492,7 +2499,7 @@ abstract class _PaymentReconciliation extends PaymentReconciliation {
 
   /// [dispositionElement] Extensions for disposition
   @JsonKey(name: '_disposition')
-  Element? get dispositionElement;
+  PrimitiveElement? get dispositionElement;
   @override
 
   /// [paymentDate] The date of payment as indicated on the financial
@@ -2502,7 +2509,7 @@ abstract class _PaymentReconciliation extends PaymentReconciliation {
 
   /// [paymentDateElement] Extensions for paymentDate
   @JsonKey(name: '_paymentDate')
-  Element? get paymentDateElement;
+  PrimitiveElement? get paymentDateElement;
   @override
 
   /// [paymentAmount] Total payment amount as indicated on the financial
@@ -2597,7 +2604,7 @@ mixin _$PaymentReconciliationDetail {
 
   /// [dateElement] Extensions for date
   @JsonKey(name: '_date')
-  Element? get dateElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get dateElement => throw _privateConstructorUsedError;
 
   /// [responsible] A reference to the individual who is responsible for
   ///  inquiries regarding the response and its payment.
@@ -2635,7 +2642,7 @@ abstract class $PaymentReconciliationDetailCopyWith<$Res> {
       Reference? submitter,
       Reference? response,
       FhirDate? date,
-      @JsonKey(name: '_date') Element? dateElement,
+      @JsonKey(name: '_date') PrimitiveElement? dateElement,
       Reference? responsible,
       Reference? payee,
       Money? amount});
@@ -2724,7 +2731,7 @@ class _$PaymentReconciliationDetailCopyWithImpl<$Res,
       dateElement: freezed == dateElement
           ? _value.dateElement
           : dateElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       responsible: freezed == responsible
           ? _value.responsible
           : responsible // ignore: cast_nullable_to_non_nullable
@@ -2865,7 +2872,7 @@ abstract class _$$PaymentReconciliationDetailImplCopyWith<$Res>
       Reference? submitter,
       Reference? response,
       FhirDate? date,
-      @JsonKey(name: '_date') Element? dateElement,
+      @JsonKey(name: '_date') PrimitiveElement? dateElement,
       Reference? responsible,
       Reference? payee,
       Money? amount});
@@ -2962,7 +2969,7 @@ class __$$PaymentReconciliationDetailImplCopyWithImpl<$Res>
       dateElement: freezed == dateElement
           ? _value.dateElement
           : dateElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       responsible: freezed == responsible
           ? _value.responsible
           : responsible // ignore: cast_nullable_to_non_nullable
@@ -3108,7 +3115,7 @@ class _$PaymentReconciliationDetailImpl extends _PaymentReconciliationDetail {
   /// [dateElement] Extensions for date
   @override
   @JsonKey(name: '_date')
-  final Element? dateElement;
+  final PrimitiveElement? dateElement;
 
   /// [responsible] A reference to the individual who is responsible for
   ///  inquiries regarding the response and its payment.
@@ -3205,7 +3212,7 @@ abstract class _PaymentReconciliationDetail
       final Reference? submitter,
       final Reference? response,
       final FhirDate? date,
-      @JsonKey(name: '_date') final Element? dateElement,
+      @JsonKey(name: '_date') final PrimitiveElement? dateElement,
       final Reference? responsible,
       final Reference? payee,
       final Money? amount}) = _$PaymentReconciliationDetailImpl;
@@ -3282,7 +3289,7 @@ abstract class _PaymentReconciliationDetail
 
   /// [dateElement] Extensions for date
   @JsonKey(name: '_date')
-  Element? get dateElement;
+  PrimitiveElement? get dateElement;
   @override
 
   /// [responsible] A reference to the individual who is responsible for
@@ -3344,14 +3351,14 @@ mixin _$PaymentReconciliationProcessNote {
 
   /// [typeElement] Extensions for type
   @JsonKey(name: '_type')
-  Element? get typeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get typeElement => throw _privateConstructorUsedError;
 
   /// [text] The explanation or description associated with the processing.
   String? get text => throw _privateConstructorUsedError;
 
   /// [textElement] Extensions for text
   @JsonKey(name: '_text')
-  Element? get textElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get textElement => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -3372,9 +3379,9 @@ abstract class $PaymentReconciliationProcessNoteCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? type,
-      @JsonKey(name: '_type') Element? typeElement,
+      @JsonKey(name: '_type') PrimitiveElement? typeElement,
       String? text,
-      @JsonKey(name: '_text') Element? textElement});
+      @JsonKey(name: '_text') PrimitiveElement? textElement});
 }
 
 /// @nodoc
@@ -3419,7 +3426,7 @@ class _$PaymentReconciliationProcessNoteCopyWithImpl<$Res,
       typeElement: freezed == typeElement
           ? _value.typeElement
           : typeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -3427,7 +3434,7 @@ class _$PaymentReconciliationProcessNoteCopyWithImpl<$Res,
       textElement: freezed == textElement
           ? _value.textElement
           : textElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ) as $Val);
   }
 }
@@ -3446,9 +3453,9 @@ abstract class _$$PaymentReconciliationProcessNoteImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirCode? type,
-      @JsonKey(name: '_type') Element? typeElement,
+      @JsonKey(name: '_type') PrimitiveElement? typeElement,
       String? text,
-      @JsonKey(name: '_text') Element? textElement});
+      @JsonKey(name: '_text') PrimitiveElement? textElement});
 }
 
 /// @nodoc
@@ -3492,7 +3499,7 @@ class __$$PaymentReconciliationProcessNoteImplCopyWithImpl<$Res>
       typeElement: freezed == typeElement
           ? _value.typeElement
           : typeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -3500,7 +3507,7 @@ class __$$PaymentReconciliationProcessNoteImplCopyWithImpl<$Res>
       textElement: freezed == textElement
           ? _value.textElement
           : textElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ));
   }
 }
@@ -3599,7 +3606,7 @@ class _$PaymentReconciliationProcessNoteImpl
   /// [typeElement] Extensions for type
   @override
   @JsonKey(name: '_type')
-  final Element? typeElement;
+  final PrimitiveElement? typeElement;
 
   /// [text] The explanation or description associated with the processing.
   @override
@@ -3608,7 +3615,7 @@ class _$PaymentReconciliationProcessNoteImpl
   /// [textElement] Extensions for text
   @override
   @JsonKey(name: '_text')
-  final Element? textElement;
+  final PrimitiveElement? textElement;
 
   @override
   String toString() {
@@ -3668,9 +3675,9 @@ abstract class _PaymentReconciliationProcessNote
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final FhirCode? type,
-          @JsonKey(name: '_type') final Element? typeElement,
+          @JsonKey(name: '_type') final PrimitiveElement? typeElement,
           final String? text,
-          @JsonKey(name: '_text') final Element? textElement}) =
+          @JsonKey(name: '_text') final PrimitiveElement? textElement}) =
       _$PaymentReconciliationProcessNoteImpl;
   const _PaymentReconciliationProcessNote._() : super._();
 
@@ -3717,7 +3724,7 @@ abstract class _PaymentReconciliationProcessNote
 
   /// [typeElement] Extensions for type
   @JsonKey(name: '_type')
-  Element? get typeElement;
+  PrimitiveElement? get typeElement;
   @override
 
   /// [text] The explanation or description associated with the processing.
@@ -3726,7 +3733,7 @@ abstract class _PaymentReconciliationProcessNote
 
   /// [textElement] Extensions for text
   @JsonKey(name: '_text')
-  Element? get textElement;
+  PrimitiveElement? get textElement;
   @override
   @JsonKey(ignore: true)
   _$$PaymentReconciliationProcessNoteImplCopyWith<

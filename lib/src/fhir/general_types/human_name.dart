@@ -81,7 +81,7 @@ class HumanName with _$HumanName implements DataType {
     @JsonKey(unknownEnumValue: HumanNameUse.unknown) HumanNameUse? use,
 
     /// [useElement] Extensions for use
-    @JsonKey(name: '_use') Element? useElement,
+    @JsonKey(name: '_use') PrimitiveElement? useElement,
 
     /// [text] Specifies the entire name as it should be displayed e.g. on an
     /// application UI. This may be provided instead of or as well as the specific
@@ -89,14 +89,14 @@ class HumanName with _$HumanName implements DataType {
     String? text,
 
     /// [textElement] Extensions for text
-    @JsonKey(name: '_text') Element? textElement,
+    @JsonKey(name: '_text') PrimitiveElement? textElement,
 
     /// [family] The part of a name that links to the genealogy. In some cultures
     ///  (e.g. Eritrea) the family name of a son is the first name of his father.
     String? family,
 
     /// [familyElement] Extensions for family
-    @JsonKey(name: '_family') Element? familyElement,
+    @JsonKey(name: '_family') PrimitiveElement? familyElement,
 
     /// [given] Given name.
     List<String>? given,

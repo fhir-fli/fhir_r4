@@ -20,7 +20,7 @@ _$SignatureImpl _$$SignatureImplFromJson(Map<String, dynamic> json) =>
           : FhirInstant.fromJson(json['when'] as String),
       whenElement: json['_when'] == null
           ? null
-          : Element.fromJson(json['_when'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_when'] as Map<String, dynamic>),
       who: Reference.fromJson(json['who'] as Map<String, dynamic>),
       onBehalfOf: json['onBehalfOf'] == null
           ? null
@@ -30,18 +30,20 @@ _$SignatureImpl _$$SignatureImplFromJson(Map<String, dynamic> json) =>
           : FhirCode.fromJson(json['targetFormat']),
       targetFormatElement: json['_targetFormat'] == null
           ? null
-          : Element.fromJson(json['_targetFormat'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_targetFormat'] as Map<String, dynamic>),
       sigFormat: json['sigFormat'] == null
           ? null
           : FhirCode.fromJson(json['sigFormat']),
       sigFormatElement: json['_sigFormat'] == null
           ? null
-          : Element.fromJson(json['_sigFormat'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_sigFormat'] as Map<String, dynamic>),
       data:
           json['data'] == null ? null : FhirBase64Binary.fromJson(json['data']),
       dataElement: json['_data'] == null
           ? null
-          : Element.fromJson(json['_data'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$SignatureImplToJson(_$SignatureImpl instance) {

@@ -15,7 +15,7 @@ part 'evidence_based_medicine.g.dart';
 
 /// [Citation] The Citation Resource enables reference to any knowledge
 @freezed
-class Citation with Resource, _$Citation {
+class Citation with _$Citation implements DomainResource {
   /// [Citation] The Citation Resource enables reference to any knowledge
   const Citation._();
 
@@ -199,43 +199,43 @@ class Citation with Resource, _$Citation {
     String? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
     FhirCode? language,
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
     Narrative? text,
     List<Resource>? contained,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUri? url,
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
     List<Identifier>? identifier,
     String? version,
-    @JsonKey(name: '_version') Element? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
     String? name,
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
     String? title,
-    @JsonKey(name: '_title') Element? titleElement,
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
     FhirCode? status,
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
     FhirBoolean? experimental,
-    @JsonKey(name: '_experimental') Element? experimentalElement,
+    @JsonKey(name: '_experimental') PrimitiveElement? experimentalElement,
     FhirDateTime? date,
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
     String? publisher,
-    @JsonKey(name: '_publisher') Element? publisherElement,
+    @JsonKey(name: '_publisher') PrimitiveElement? publisherElement,
     List<ContactDetail>? contact,
     FhirMarkdown? description,
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
     List<UsageContext>? useContext,
     List<CodeableConcept>? jurisdiction,
     FhirMarkdown? purpose,
-    @JsonKey(name: '_purpose') Element? purposeElement,
+    @JsonKey(name: '_purpose') PrimitiveElement? purposeElement,
     FhirMarkdown? copyright,
-    @JsonKey(name: '_copyright') Element? copyrightElement,
+    @JsonKey(name: '_copyright') PrimitiveElement? copyrightElement,
     FhirDate? approvalDate,
-    @JsonKey(name: '_approvalDate') Element? approvalDateElement,
+    @JsonKey(name: '_approvalDate') PrimitiveElement? approvalDateElement,
     FhirDate? lastReviewDate,
-    @JsonKey(name: '_lastReviewDate') Element? lastReviewDateElement,
+    @JsonKey(name: '_lastReviewDate') PrimitiveElement? lastReviewDateElement,
     Period? effectivePeriod,
     // List<CodeableConcept>? topic,
     List<ContactDetail>? author,
@@ -290,7 +290,7 @@ class Citation with Resource, _$Citation {
 
 /// [CitationSummary] The Citation Resource enables reference to any
 @freezed
-class CitationSummary with BackboneType, _$CitationSummary {
+class CitationSummary with _$CitationSummary implements BackboneElement {
   /// [CitationSummary] The Citation Resource enables reference to any
   const CitationSummary._();
 
@@ -334,7 +334,7 @@ class CitationSummary with BackboneType, _$CitationSummary {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? style,
     FhirMarkdown? text,
-    @JsonKey(name: '_text') Element? textElement,
+    @JsonKey(name: '_text') PrimitiveElement? textElement,
   }) = _CitationSummary;
 
   @override
@@ -370,7 +370,9 @@ class CitationSummary with BackboneType, _$CitationSummary {
 
 /// [CitationClassification] The Citation Resource enables reference to any
 @freezed
-class CitationClassification with BackboneType, _$CitationClassification {
+class CitationClassification
+    with _$CitationClassification
+    implements BackboneElement {
   /// [CitationClassification] The Citation Resource enables reference to any
   const CitationClassification._();
 
@@ -447,7 +449,7 @@ class CitationClassification with BackboneType, _$CitationClassification {
 
 /// [CitationStatusDate] The Citation Resource enables reference to any
 @freezed
-class CitationStatusDate with BackboneType, _$CitationStatusDate {
+class CitationStatusDate with _$CitationStatusDate implements BackboneElement {
   /// [CitationStatusDate] The Citation Resource enables reference to any
   const CitationStatusDate._();
 
@@ -493,7 +495,7 @@ class CitationStatusDate with BackboneType, _$CitationStatusDate {
     List<FhirExtension>? modifierExtension,
     required CodeableConcept activity,
     FhirBoolean? actual,
-    @JsonKey(name: '_actual') Element? actualElement,
+    @JsonKey(name: '_actual') PrimitiveElement? actualElement,
     required Period period,
   }) = _CitationStatusDate;
 
@@ -530,7 +532,7 @@ class CitationStatusDate with BackboneType, _$CitationStatusDate {
 
 /// [CitationRelatesTo] The Citation Resource enables reference to any
 @freezed
-class CitationRelatesTo with BackboneType, _$CitationRelatesTo {
+class CitationRelatesTo with _$CitationRelatesTo implements BackboneElement {
   /// [CitationRelatesTo] The Citation Resource enables reference to any
   const CitationRelatesTo._();
 
@@ -587,7 +589,7 @@ class CitationRelatesTo with BackboneType, _$CitationRelatesTo {
     required CodeableConcept relationshipType,
     List<CodeableConcept>? targetClassifier,
     FhirUri? targetUri,
-    @JsonKey(name: '_targetUri') Element? targetUriElement,
+    @JsonKey(name: '_targetUri') PrimitiveElement? targetUriElement,
     Identifier? targetIdentifier,
     Reference? targetReference,
     Attachment? targetAttachment,
@@ -626,7 +628,9 @@ class CitationRelatesTo with BackboneType, _$CitationRelatesTo {
 
 /// [CitationCitedArtifact] The Citation Resource enables reference to any
 @freezed
-class CitationCitedArtifact with BackboneType, _$CitationCitedArtifact {
+class CitationCitedArtifact
+    with _$CitationCitedArtifact
+    implements BackboneElement {
   /// [CitationCitedArtifact] The Citation Resource enables reference to any
   const CitationCitedArtifact._();
 
@@ -703,7 +707,7 @@ class CitationCitedArtifact with BackboneType, _$CitationCitedArtifact {
     List<Identifier>? identifier,
     List<Identifier>? relatedIdentifier,
     FhirDateTime? dateAccessed,
-    @JsonKey(name: '_dateAccessed') Element? dateAccessedElement,
+    @JsonKey(name: '_dateAccessed') PrimitiveElement? dateAccessedElement,
     CitationVersion? version,
     List<CodeableConcept>? currentState,
     List<CitationStatusDate1>? statusDate,
@@ -751,7 +755,7 @@ class CitationCitedArtifact with BackboneType, _$CitationCitedArtifact {
 
 /// [CitationVersion] The Citation Resource enables reference to any
 @freezed
-class CitationVersion with BackboneType, _$CitationVersion {
+class CitationVersion with _$CitationVersion implements BackboneElement {
   /// [CitationVersion] The Citation Resource enables reference to any
   const CitationVersion._();
 
@@ -794,7 +798,7 @@ class CitationVersion with BackboneType, _$CitationVersion {
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     String? value,
-    @JsonKey(name: '_value') Element? valueElement,
+    @JsonKey(name: '_value') PrimitiveElement? valueElement,
     Reference? baseCitation,
   }) = _CitationVersion;
 
@@ -831,7 +835,9 @@ class CitationVersion with BackboneType, _$CitationVersion {
 
 /// [CitationStatusDate1] The Citation Resource enables reference to any
 @freezed
-class CitationStatusDate1 with BackboneType, _$CitationStatusDate1 {
+class CitationStatusDate1
+    with _$CitationStatusDate1
+    implements BackboneElement {
   /// [CitationStatusDate1] The Citation Resource enables reference to any
   const CitationStatusDate1._();
 
@@ -877,7 +883,7 @@ class CitationStatusDate1 with BackboneType, _$CitationStatusDate1 {
     List<FhirExtension>? modifierExtension,
     required CodeableConcept activity,
     FhirBoolean? actual,
-    @JsonKey(name: '_actual') Element? actualElement,
+    @JsonKey(name: '_actual') PrimitiveElement? actualElement,
     required Period period,
   }) = _CitationStatusDate1;
 
@@ -914,7 +920,7 @@ class CitationStatusDate1 with BackboneType, _$CitationStatusDate1 {
 
 /// [CitationTitle] The Citation Resource enables reference to any knowledge
 @freezed
-class CitationTitle with BackboneType, _$CitationTitle {
+class CitationTitle with _$CitationTitle implements BackboneElement {
   /// [CitationTitle] The Citation Resource enables reference to any knowledge
   const CitationTitle._();
 
@@ -961,7 +967,7 @@ class CitationTitle with BackboneType, _$CitationTitle {
     List<CodeableConcept>? type,
     CodeableConcept? language,
     FhirMarkdown? text,
-    @JsonKey(name: '_text') Element? textElement,
+    @JsonKey(name: '_text') PrimitiveElement? textElement,
   }) = _CitationTitle;
 
   @override
@@ -997,7 +1003,7 @@ class CitationTitle with BackboneType, _$CitationTitle {
 
 /// [CitationAbstract] The Citation Resource enables reference to any
 @freezed
-class CitationAbstract with BackboneType, _$CitationAbstract {
+class CitationAbstract with _$CitationAbstract implements BackboneElement {
   /// [CitationAbstract] The Citation Resource enables reference to any
   const CitationAbstract._();
 
@@ -1048,9 +1054,9 @@ class CitationAbstract with BackboneType, _$CitationAbstract {
     CodeableConcept? type,
     CodeableConcept? language,
     FhirMarkdown? text,
-    @JsonKey(name: '_text') Element? textElement,
+    @JsonKey(name: '_text') PrimitiveElement? textElement,
     FhirMarkdown? copyright,
-    @JsonKey(name: '_copyright') Element? copyrightElement,
+    @JsonKey(name: '_copyright') PrimitiveElement? copyrightElement,
   }) = _CitationAbstract;
 
   @override
@@ -1086,7 +1092,7 @@ class CitationAbstract with BackboneType, _$CitationAbstract {
 
 /// [CitationPart] The Citation Resource enables reference to any knowledge
 @freezed
-class CitationPart with BackboneType, _$CitationPart {
+class CitationPart with _$CitationPart implements BackboneElement {
   /// [CitationPart] The Citation Resource enables reference to any knowledge
   const CitationPart._();
 
@@ -1132,7 +1138,7 @@ class CitationPart with BackboneType, _$CitationPart {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
     String? value,
-    @JsonKey(name: '_value') Element? valueElement,
+    @JsonKey(name: '_value') PrimitiveElement? valueElement,
     Reference? baseCitation,
   }) = _CitationPart;
 
@@ -1169,7 +1175,7 @@ class CitationPart with BackboneType, _$CitationPart {
 
 /// [CitationRelatesTo1] The Citation Resource enables reference to any
 @freezed
-class CitationRelatesTo1 with BackboneType, _$CitationRelatesTo1 {
+class CitationRelatesTo1 with _$CitationRelatesTo1 implements BackboneElement {
   /// [CitationRelatesTo1] The Citation Resource enables reference to any
   const CitationRelatesTo1._();
 
@@ -1225,7 +1231,7 @@ class CitationRelatesTo1 with BackboneType, _$CitationRelatesTo1 {
     required CodeableConcept relationshipType,
     List<CodeableConcept>? targetClassifier,
     FhirUri? targetUri,
-    @JsonKey(name: '_targetUri') Element? targetUriElement,
+    @JsonKey(name: '_targetUri') PrimitiveElement? targetUriElement,
     Identifier? targetIdentifier,
     Reference? targetReference,
     Attachment? targetAttachment,
@@ -1264,7 +1270,9 @@ class CitationRelatesTo1 with BackboneType, _$CitationRelatesTo1 {
 
 /// [CitationPublicationForm] The Citation Resource enables reference to any
 @freezed
-class CitationPublicationForm with BackboneType, _$CitationPublicationForm {
+class CitationPublicationForm
+    with _$CitationPublicationForm
+    implements BackboneElement {
   /// [CitationPublicationForm] The Citation Resource enables reference to any
   const CitationPublicationForm._();
 
@@ -1345,22 +1353,23 @@ class CitationPublicationForm with BackboneType, _$CitationPublicationForm {
     CitationPublishedIn? publishedIn,
     CitationPeriodicRelease? periodicRelease,
     FhirDateTime? articleDate,
-    @JsonKey(name: '_articleDate') Element? articleDateElement,
+    @JsonKey(name: '_articleDate') PrimitiveElement? articleDateElement,
     FhirDateTime? lastRevisionDate,
-    @JsonKey(name: '_lastRevisionDate') Element? lastRevisionDateElement,
+    @JsonKey(name: '_lastRevisionDate')
+    PrimitiveElement? lastRevisionDateElement,
     List<CodeableConcept>? language,
     String? accessionNumber,
-    @JsonKey(name: '_accessionNumber') Element? accessionNumberElement,
+    @JsonKey(name: '_accessionNumber') PrimitiveElement? accessionNumberElement,
     String? pageString,
-    @JsonKey(name: '_pageString') Element? pageStringElement,
+    @JsonKey(name: '_pageString') PrimitiveElement? pageStringElement,
     String? firstPage,
-    @JsonKey(name: '_firstPage') Element? firstPageElement,
+    @JsonKey(name: '_firstPage') PrimitiveElement? firstPageElement,
     String? lastPage,
-    @JsonKey(name: '_lastPage') Element? lastPageElement,
+    @JsonKey(name: '_lastPage') PrimitiveElement? lastPageElement,
     String? pageCount,
-    @JsonKey(name: '_pageCount') Element? pageCountElement,
+    @JsonKey(name: '_pageCount') PrimitiveElement? pageCountElement,
     FhirMarkdown? copyright,
-    @JsonKey(name: '_copyright') Element? copyrightElement,
+    @JsonKey(name: '_copyright') PrimitiveElement? copyrightElement,
   }) = _CitationPublicationForm;
 
   @override
@@ -1396,7 +1405,9 @@ class CitationPublicationForm with BackboneType, _$CitationPublicationForm {
 
 /// [CitationPublishedIn] The Citation Resource enables reference to any
 @freezed
-class CitationPublishedIn with BackboneType, _$CitationPublishedIn {
+class CitationPublishedIn
+    with _$CitationPublishedIn
+    implements BackboneElement {
   /// [CitationPublishedIn] The Citation Resource enables reference to any
   const CitationPublishedIn._();
 
@@ -1451,10 +1462,11 @@ class CitationPublishedIn with BackboneType, _$CitationPublishedIn {
     CodeableConcept? type,
     List<Identifier>? identifier,
     String? title,
-    @JsonKey(name: '_title') Element? titleElement,
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
     Reference? publisher,
     String? publisherLocation,
-    @JsonKey(name: '_publisherLocation') Element? publisherLocationElement,
+    @JsonKey(name: '_publisherLocation')
+    PrimitiveElement? publisherLocationElement,
   }) = _CitationPublishedIn;
 
   @override
@@ -1490,7 +1502,9 @@ class CitationPublishedIn with BackboneType, _$CitationPublishedIn {
 
 /// [CitationPeriodicRelease] The Citation Resource enables reference to any
 @freezed
-class CitationPeriodicRelease with BackboneType, _$CitationPeriodicRelease {
+class CitationPeriodicRelease
+    with _$CitationPeriodicRelease
+    implements BackboneElement {
   /// [CitationPeriodicRelease] The Citation Resource enables reference to any
   const CitationPeriodicRelease._();
 
@@ -1543,9 +1557,9 @@ class CitationPeriodicRelease with BackboneType, _$CitationPeriodicRelease {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? citedMedium,
     String? volume,
-    @JsonKey(name: '_volume') Element? volumeElement,
+    @JsonKey(name: '_volume') PrimitiveElement? volumeElement,
     String? issue,
-    @JsonKey(name: '_issue') Element? issueElement,
+    @JsonKey(name: '_issue') PrimitiveElement? issueElement,
     CitationDateOfPublication? dateOfPublication,
   }) = _CitationPeriodicRelease;
 
@@ -1582,7 +1596,9 @@ class CitationPeriodicRelease with BackboneType, _$CitationPeriodicRelease {
 
 /// [CitationDateOfPublication] The Citation Resource enables reference to
 @freezed
-class CitationDateOfPublication with BackboneType, _$CitationDateOfPublication {
+class CitationDateOfPublication
+    with _$CitationDateOfPublication
+    implements BackboneElement {
   /// [CitationDateOfPublication] The Citation Resource enables reference to
   const CitationDateOfPublication._();
 
@@ -1644,17 +1660,17 @@ class CitationDateOfPublication with BackboneType, _$CitationDateOfPublication {
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirDate? date,
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
     String? year,
-    @JsonKey(name: '_year') Element? yearElement,
+    @JsonKey(name: '_year') PrimitiveElement? yearElement,
     String? month,
-    @JsonKey(name: '_month') Element? monthElement,
+    @JsonKey(name: '_month') PrimitiveElement? monthElement,
     String? day,
-    @JsonKey(name: '_day') Element? dayElement,
+    @JsonKey(name: '_day') PrimitiveElement? dayElement,
     String? season,
-    @JsonKey(name: '_season') Element? seasonElement,
+    @JsonKey(name: '_season') PrimitiveElement? seasonElement,
     String? text,
-    @JsonKey(name: '_text') Element? textElement,
+    @JsonKey(name: '_text') PrimitiveElement? textElement,
   }) = _CitationDateOfPublication;
 
   @override
@@ -1690,7 +1706,9 @@ class CitationDateOfPublication with BackboneType, _$CitationDateOfPublication {
 
 /// [CitationWebLocation] The Citation Resource enables reference to any
 @freezed
-class CitationWebLocation with BackboneType, _$CitationWebLocation {
+class CitationWebLocation
+    with _$CitationWebLocation
+    implements BackboneElement {
   /// [CitationWebLocation] The Citation Resource enables reference to any
   const CitationWebLocation._();
 
@@ -1734,7 +1752,7 @@ class CitationWebLocation with BackboneType, _$CitationWebLocation {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
     FhirUri? url,
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
   }) = _CitationWebLocation;
 
   @override
@@ -1770,7 +1788,9 @@ class CitationWebLocation with BackboneType, _$CitationWebLocation {
 
 /// [CitationClassification1] The Citation Resource enables reference to any
 @freezed
-class CitationClassification1 with BackboneType, _$CitationClassification1 {
+class CitationClassification1
+    with _$CitationClassification1
+    implements BackboneElement {
   /// [CitationClassification1] The Citation Resource enables reference to any
   const CitationClassification1._();
 
@@ -1851,7 +1871,9 @@ class CitationClassification1 with BackboneType, _$CitationClassification1 {
 
 /// [CitationWhoClassified] The Citation Resource enables reference to any
 @freezed
-class CitationWhoClassified with BackboneType, _$CitationWhoClassified {
+class CitationWhoClassified
+    with _$CitationWhoClassified
+    implements BackboneElement {
   /// [CitationWhoClassified] The Citation Resource enables reference to any
   const CitationWhoClassified._();
 
@@ -1907,9 +1929,10 @@ class CitationWhoClassified with BackboneType, _$CitationWhoClassified {
     Reference? organization,
     Reference? publisher,
     String? classifierCopyright,
-    @JsonKey(name: '_classifierCopyright') Element? classifierCopyrightElement,
+    @JsonKey(name: '_classifierCopyright')
+    PrimitiveElement? classifierCopyrightElement,
     FhirBoolean? freeToShare,
-    @JsonKey(name: '_freeToShare') Element? freeToShareElement,
+    @JsonKey(name: '_freeToShare') PrimitiveElement? freeToShareElement,
   }) = _CitationWhoClassified;
 
   @override
@@ -1945,7 +1968,9 @@ class CitationWhoClassified with BackboneType, _$CitationWhoClassified {
 
 /// [CitationContributorship] The Citation Resource enables reference to any
 @freezed
-class CitationContributorship with BackboneType, _$CitationContributorship {
+class CitationContributorship
+    with _$CitationContributorship
+    implements BackboneElement {
   /// [CitationContributorship] The Citation Resource enables reference to any
   const CitationContributorship._();
 
@@ -1991,7 +2016,7 @@ class CitationContributorship with BackboneType, _$CitationContributorship {
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirBoolean? complete,
-    @JsonKey(name: '_complete') Element? completeElement,
+    @JsonKey(name: '_complete') PrimitiveElement? completeElement,
     List<CitationEntry>? entry,
     List<CitationSummary1>? summary,
   }) = _CitationContributorship;
@@ -2029,7 +2054,7 @@ class CitationContributorship with BackboneType, _$CitationContributorship {
 
 /// [CitationEntry] The Citation Resource enables reference to any knowledge
 @freezed
-class CitationEntry with BackboneType, _$CitationEntry {
+class CitationEntry with _$CitationEntry implements BackboneElement {
   /// [CitationEntry] The Citation Resource enables reference to any knowledge
   const CitationEntry._();
 
@@ -2102,9 +2127,9 @@ class CitationEntry with BackboneType, _$CitationEntry {
     List<FhirExtension>? modifierExtension,
     HumanName? name,
     String? initials,
-    @JsonKey(name: '_initials') Element? initialsElement,
+    @JsonKey(name: '_initials') PrimitiveElement? initialsElement,
     String? collectiveName,
-    @JsonKey(name: '_collectiveName') Element? collectiveNameElement,
+    @JsonKey(name: '_collectiveName') PrimitiveElement? collectiveNameElement,
     List<Identifier>? identifier,
     List<CitationAffiliationInfo>? affiliationInfo,
     List<Address>? address,
@@ -2114,9 +2139,9 @@ class CitationEntry with BackboneType, _$CitationEntry {
     List<CitationContributionInstance>? contributionInstance,
     FhirBoolean? correspondingContact,
     @JsonKey(name: '_correspondingContact')
-    Element? correspondingContactElement,
+    PrimitiveElement? correspondingContactElement,
     FhirPositiveInt? listOrder,
-    @JsonKey(name: '_listOrder') Element? listOrderElement,
+    @JsonKey(name: '_listOrder') PrimitiveElement? listOrderElement,
   }) = _CitationEntry;
 
   @override
@@ -2400,7 +2425,9 @@ class CitationEntry with BackboneType, _$CitationEntry {
 
 /// [CitationAffiliationInfo] The Citation Resource enables reference to any
 @freezed
-class CitationAffiliationInfo with BackboneType, _$CitationAffiliationInfo {
+class CitationAffiliationInfo
+    with _$CitationAffiliationInfo
+    implements BackboneElement {
   /// [CitationAffiliationInfo] The Citation Resource enables reference to any
   const CitationAffiliationInfo._();
 
@@ -2447,9 +2474,9 @@ class CitationAffiliationInfo with BackboneType, _$CitationAffiliationInfo {
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     String? affiliation,
-    @JsonKey(name: '_affiliation') Element? affiliationElement,
+    @JsonKey(name: '_affiliation') PrimitiveElement? affiliationElement,
     String? role,
-    @JsonKey(name: '_role') Element? roleElement,
+    @JsonKey(name: '_role') PrimitiveElement? roleElement,
     List<Identifier>? identifier,
   }) = _CitationAffiliationInfo;
 
@@ -2531,7 +2558,7 @@ class CitationContributionInstance
     List<FhirExtension>? modifierExtension,
     required CodeableConcept type,
     FhirDateTime? time,
-    @JsonKey(name: '_time') Element? timeElement,
+    @JsonKey(name: '_time') PrimitiveElement? timeElement,
   }) = _CitationContributionInstance;
 
   @override
@@ -2567,7 +2594,7 @@ class CitationContributionInstance
 
 /// [CitationSummary1] The Citation Resource enables reference to any
 @freezed
-class CitationSummary1 with BackboneType, _$CitationSummary1 {
+class CitationSummary1 with _$CitationSummary1 implements BackboneElement {
   /// [CitationSummary1] The Citation Resource enables reference to any
   const CitationSummary1._();
 
@@ -2619,7 +2646,7 @@ class CitationSummary1 with BackboneType, _$CitationSummary1 {
     CodeableConcept? style,
     CodeableConcept? source,
     FhirMarkdown? value,
-    @JsonKey(name: '_value') Element? valueElement,
+    @JsonKey(name: '_value') PrimitiveElement? valueElement,
   }) = _CitationSummary1;
 
   @override
@@ -2655,7 +2682,7 @@ class CitationSummary1 with BackboneType, _$CitationSummary1 {
 
 /// [Evidence] The Evidence resource describes the conditional state
 @freezed
-class Evidence with Resource, _$Evidence {
+class Evidence with _$Evidence implements DomainResource {
   /// [Evidence] The Evidence resource describes the conditional state
   const Evidence._();
 
@@ -2858,34 +2885,34 @@ class Evidence with Resource, _$Evidence {
     String? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
     FhirCode? language,
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
     Narrative? text,
     List<Resource>? contained,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUri? url,
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
     List<Identifier>? identifier,
     String? version,
-    @JsonKey(name: '_version') Element? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
     String? title,
-    @JsonKey(name: '_title') Element? titleElement,
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
     Reference? citeAsReference,
     FhirMarkdown? citAsMarkdown,
-    @JsonKey(name: '_citeAsMarkdown') Element? citeAsMarkdownElement,
+    @JsonKey(name: '_citeAsMarkdown') PrimitiveElement? citeAsMarkdownElement,
     FhirCode? status,
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
     FhirDateTime? date,
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
     List<UsageContext>? useContext,
     FhirDate? approvalDate,
-    @JsonKey(name: '_approvalDate') Element? approvalDateElement,
+    @JsonKey(name: '_approvalDate') PrimitiveElement? approvalDateElement,
     FhirDate? lastReviewDate,
-    @JsonKey(name: '_lastReviewDate') Element? lastReviewDateElement,
+    @JsonKey(name: '_lastReviewDate') PrimitiveElement? lastReviewDateElement,
     String? publisher,
-    @JsonKey(name: '_publisher') Element? publisherElement,
+    @JsonKey(name: '_publisher') PrimitiveElement? publisherElement,
     List<ContactDetail>? contact,
     List<ContactDetail>? author,
     List<ContactDetail>? editor,
@@ -2893,9 +2920,9 @@ class Evidence with Resource, _$Evidence {
     List<ContactDetail>? endorser,
     List<RelatedArtifact>? relatedArtifact,
     FhirMarkdown? description,
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
     FhirMarkdown? assertion,
-    @JsonKey(name: '_assertion') Element? assertionElement,
+    @JsonKey(name: '_assertion') PrimitiveElement? assertionElement,
     List<Annotation>? note,
     required List<EvidenceVariableDefinition> variableDefinition,
     CodeableConcept? synthesisType,
@@ -2976,7 +3003,7 @@ class EvidenceVariableDefinition
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirMarkdown? description,
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
     List<Annotation>? note,
     required CodeableConcept variableRole,
     Reference? observed,
@@ -3017,7 +3044,7 @@ class EvidenceVariableDefinition
 
 /// [EvidenceStatistic] The Evidence Resource provides a machine-interpretable expression of an evidence concept including the evidence variables (e.g., population, exposures/interventions, comparators, outcomes, measured variables, confounding variables), the statistics, and the certainty of this evidence.
 @freezed
-class EvidenceStatistic with BackboneType, _$EvidenceStatistic {
+class EvidenceStatistic with _$EvidenceStatistic implements BackboneElement {
   /// [EvidenceStatistic] The Evidence Resource provides a machine-interpretable expression of an evidence concept including the evidence variables (e.g., population, exposures/interventions, comparators, outcomes, measured variables, confounding variables), the statistics, and the certainty of this evidence.
   const EvidenceStatistic._();
 
@@ -3060,15 +3087,15 @@ class EvidenceStatistic with BackboneType, _$EvidenceStatistic {
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     String? description,
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
     List<Annotation>? note,
     CodeableConcept? statisticType,
     CodeableConcept? category,
     Quantity? quantity,
     FhirUnsignedInt? numberOfEvents,
-    @JsonKey(name: '_numberOfEvents') Element? numberOfEventsElement,
+    @JsonKey(name: '_numberOfEvents') PrimitiveElement? numberOfEventsElement,
     FhirUnsignedInt? numberAffected,
-    @JsonKey(name: '_numberAffected') Element? numberAffectedElement,
+    @JsonKey(name: '_numberAffected') PrimitiveElement? numberAffectedElement,
     EvidenceSampleSize? sampleSize,
     List<EvidenceAttributeEstimate>? attributeEstimate,
     List<EvidenceModelCharacteristic>? modelCharacteristic,
@@ -3107,7 +3134,7 @@ class EvidenceStatistic with BackboneType, _$EvidenceStatistic {
 
 /// [EvidenceSampleSize] The Evidence Resource provides a machine-interpretable expression of an evidence concept including the evidence variables (e.g., population, exposures/interventions, comparators, outcomes, measured variables, confounding variables), the statistics, and the certainty of this evidence.
 @freezed
-class EvidenceSampleSize with BackboneType, _$EvidenceSampleSize {
+class EvidenceSampleSize with _$EvidenceSampleSize implements BackboneElement {
   /// [EvidenceSampleSize] The Evidence Resource provides a machine-interpretable expression of an evidence concept including the evidence variables (e.g., population, exposures/interventions, comparators, outcomes, measured variables, confounding variables), the statistics, and the certainty of this evidence.
   const EvidenceSampleSize._();
 
@@ -3142,15 +3169,15 @@ class EvidenceSampleSize with BackboneType, _$EvidenceSampleSize {
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     String? description,
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
     List<Annotation>? note,
     FhirUnsignedInt? numberOfStudies,
-    @JsonKey(name: '_numberOfStudies') Element? numberOfStudiesElement,
+    @JsonKey(name: '_numberOfStudies') PrimitiveElement? numberOfStudiesElement,
     FhirUnsignedInt? numberOfParticipants,
     @JsonKey(name: '_numberOfParticipants')
-    Element? numberOfParticipantsElement,
+    PrimitiveElement? numberOfParticipantsElement,
     FhirUnsignedInt? knownDataCount,
-    @JsonKey(name: '_knownDataCount') Element? knownDataCountElement,
+    @JsonKey(name: '_knownDataCount') PrimitiveElement? knownDataCountElement,
   }) = _EvidenceSampleSize;
 
   @override
@@ -3186,7 +3213,9 @@ class EvidenceSampleSize with BackboneType, _$EvidenceSampleSize {
 
 /// [EvidenceAttributeEstimate] The Evidence Resource provides a machine-interpretable expression of an evidence concept including the evidence variables (e.g., population, exposures/interventions, comparators, outcomes, measured variables, confounding variables), the statistics, and the certainty of this evidence.
 @freezed
-class EvidenceAttributeEstimate with BackboneType, _$EvidenceAttributeEstimate {
+class EvidenceAttributeEstimate
+    with _$EvidenceAttributeEstimate
+    implements BackboneElement {
   /// [EvidenceAttributeEstimate] The Evidence Resource provides a machine-interpretable expression of an evidence concept including the evidence variables (e.g., population, exposures/interventions, comparators, outcomes, measured variables, confounding variables), the statistics, and the certainty of this evidence.
   const EvidenceAttributeEstimate._();
 
@@ -3221,12 +3250,12 @@ class EvidenceAttributeEstimate with BackboneType, _$EvidenceAttributeEstimate {
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     String? description,
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
     List<Annotation>? note,
     CodeableConcept? type,
     Quantity? quantity,
     FhirDecimal? level,
-    @JsonKey(name: '_level') Element? levelElement,
+    @JsonKey(name: '_level') PrimitiveElement? levelElement,
     Range? range,
     List<EvidenceAttributeEstimate>? attributeEstimate,
   }) = _EvidenceAttributeEstimate;
@@ -3328,7 +3357,7 @@ class EvidenceModelCharacteristic
 
 /// [EvidenceVar] The Evidence Resource provides a machine-interpretable
 @freezed
-class EvidenceVar with BackboneType, _$EvidenceVar {
+class EvidenceVar with _$EvidenceVar implements BackboneElement {
   /// [EvidenceVar] The Evidence Resource provides a machine-interpretable
   const EvidenceVar._();
 
@@ -3366,7 +3395,7 @@ class EvidenceVar with BackboneType, _$EvidenceVar {
     List<FhirExtension>? modifierExtension,
     required Reference variableDefinition,
     FhirCode? handling,
-    @JsonKey(name: '_handling') Element? handlingElement,
+    @JsonKey(name: '_handling') PrimitiveElement? handlingElement,
     List<CodeableConcept>? valueCategory,
     List<Quantity>? valueQuantity,
     List<Range>? valueRange,
@@ -3405,7 +3434,7 @@ class EvidenceVar with BackboneType, _$EvidenceVar {
 
 /// [EvidenceCertainty] The Evidence Resource provides a machine-interpretable expression of an evidence concept including the evidence variables (e.g., population, exposures/interventions, comparators, outcomes, measured variables, confounding variables), the statistics, and the certainty of this evidence.
 @freezed
-class EvidenceCertainty with BackboneType, _$EvidenceCertainty {
+class EvidenceCertainty with _$EvidenceCertainty implements BackboneElement {
   /// [EvidenceCertainty] The Evidence Resource provides a machine-interpretable expression of an evidence concept including the evidence variables (e.g., population, exposures/interventions, comparators, outcomes, measured variables, confounding variables), the statistics, and the certainty of this evidence.
   const EvidenceCertainty._();
 
@@ -3440,12 +3469,12 @@ class EvidenceCertainty with BackboneType, _$EvidenceCertainty {
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     String? description,
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
     List<Annotation>? note,
     CodeableConcept? type,
     CodeableConcept? rating,
     String? rater,
-    @JsonKey(name: '_rater') Element? raterElement,
+    @JsonKey(name: '_rater') PrimitiveElement? raterElement,
     List<EvidenceCertainty>? subcomponent,
   }) = _EvidenceCertainty;
 
@@ -3482,7 +3511,7 @@ class EvidenceCertainty with BackboneType, _$EvidenceCertainty {
 
 /// [EvidenceReport] The EvidenceReport Resource is a specialized container for a collection of resources and codeable concepts, adapted to support compositions of Evidence, EvidenceVariable, and Citation resources and related concepts.
 @freezed
-class EvidenceReport with Resource, _$EvidenceReport {
+class EvidenceReport with _$EvidenceReport implements DomainResource {
   /// [EvidenceReport] The EvidenceReport Resource is a specialized container for a collection of resources and codeable concepts, adapted to support compositions of Evidence, EvidenceVariable, and Citation resources and related concepts.
   const EvidenceReport._();
 
@@ -3609,29 +3638,29 @@ class EvidenceReport with Resource, _$EvidenceReport {
     String? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
     FhirCode? language,
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
     Narrative? text,
     List<Resource>? contained,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUri? url,
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
     FhirCode? status,
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
     List<UsageContext>? useContext,
     List<Identifier>? identifier,
     List<Identifier>? relatedIdentifier,
     Reference? citeAsReference,
     FhirMarkdown? citeAsMarkdown,
-    @JsonKey(name: '_citeAsMarkdown') Element? citeAsMarkdownElement,
+    @JsonKey(name: '_citeAsMarkdown') PrimitiveElement? citeAsMarkdownElement,
     CodeableConcept? type,
     List<Annotation>? note,
     List<RelatedArtifact>? relatedArtifact,
     required EvidenceReportSubject subject,
     String? publisher,
-    @JsonKey(name: '_publisher') Element? publisherElement,
+    @JsonKey(name: '_publisher') PrimitiveElement? publisherElement,
     List<ContactDetail>? contact,
     List<ContactDetail>? author,
     List<ContactDetail>? editor,
@@ -3679,7 +3708,9 @@ class EvidenceReport with Resource, _$EvidenceReport {
 
 /// [EvidenceReportSubject] The EvidenceReport Resource is a specialized container for a collection of resources and codeable concepts, adapted to support compositions of Evidence, EvidenceVariable, and Citation resources and related concepts.
 @freezed
-class EvidenceReportSubject with BackboneType, _$EvidenceReportSubject {
+class EvidenceReportSubject
+    with _$EvidenceReportSubject
+    implements BackboneElement {
   /// [EvidenceReportSubject] The EvidenceReport Resource is a specialized container for a collection of resources and codeable concepts, adapted to support compositions of Evidence, EvidenceVariable, and Citation resources and related concepts.
   const EvidenceReportSubject._();
 
@@ -3781,11 +3812,11 @@ class EvidenceReportCharacteristic
     Reference? valueReference,
     CodeableConcept? valueCodeableConcept,
     FhirBoolean? valueBoolean,
-    @JsonKey(name: '_valueBoolean') Element? valueBooleanElement,
+    @JsonKey(name: '_valueBoolean') PrimitiveElement? valueBooleanElement,
     Quantity? valueQuantity,
     Range? valueRange,
     FhirBoolean? exclude,
-    @JsonKey(name: '_exclude') Element? excludeElement,
+    @JsonKey(name: '_exclude') PrimitiveElement? excludeElement,
     Period? period,
   }) = _EvidenceReportCharacteristic;
 
@@ -3822,7 +3853,9 @@ class EvidenceReportCharacteristic
 
 /// [EvidenceReportRelatesTo] The EvidenceReport Resource is a specialized container for a collection of resources and codeable concepts, adapted to support compositions of Evidence, EvidenceVariable, and Citation resources and related concepts.
 @freezed
-class EvidenceReportRelatesTo with BackboneType, _$EvidenceReportRelatesTo {
+class EvidenceReportRelatesTo
+    with _$EvidenceReportRelatesTo
+    implements BackboneElement {
   /// [EvidenceReportRelatesTo] The EvidenceReport Resource is a specialized container for a collection of resources and codeable concepts, adapted to support compositions of Evidence, EvidenceVariable, and Citation resources and related concepts.
   const EvidenceReportRelatesTo._();
 
@@ -3847,7 +3880,7 @@ class EvidenceReportRelatesTo with BackboneType, _$EvidenceReportRelatesTo {
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirCode? code,
-    @JsonKey(name: '_code') Element? codeElement,
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
     Identifier? targetIdentifier,
     Reference? targetReference,
   }) = _EvidenceReportRelatesTo;
@@ -3885,7 +3918,9 @@ class EvidenceReportRelatesTo with BackboneType, _$EvidenceReportRelatesTo {
 
 /// [EvidenceReportSection] The EvidenceReport Resource is a specialized container for a collection of resources and codeable concepts, adapted to support compositions of Evidence, EvidenceVariable, and Citation resources and related concepts.
 @freezed
-class EvidenceReportSection with BackboneType, _$EvidenceReportSection {
+class EvidenceReportSection
+    with _$EvidenceReportSection
+    implements BackboneElement {
   /// [EvidenceReportSection] The EvidenceReport Resource is a specialized container for a collection of resources and codeable concepts, adapted to support compositions of Evidence, EvidenceVariable, and Citation resources and related concepts.
   const EvidenceReportSection._();
 
@@ -3932,13 +3967,13 @@ class EvidenceReportSection with BackboneType, _$EvidenceReportSection {
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     String? title,
-    @JsonKey(name: '_title') Element? titleElement,
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
     CodeableConcept? focus,
     Reference? focusReference,
     List<Reference>? author,
     Narrative? text,
     FhirCode? mode,
-    @JsonKey(name: '_mode') Element? modeElement,
+    @JsonKey(name: '_mode') PrimitiveElement? modeElement,
     CodeableConcept? orderedBy,
     List<CodeableConcept>? entryClassifier,
     List<Reference>? entryReference,
@@ -3980,7 +4015,7 @@ class EvidenceReportSection with BackboneType, _$EvidenceReportSection {
 
 /// [EvidenceVariable] The EvidenceVariable resource describes a "PICO"
 @freezed
-class EvidenceVariable with Resource, _$EvidenceVariable {
+class EvidenceVariable with _$EvidenceVariable implements DomainResource {
   /// [EvidenceVariable] The EvidenceVariable resource describes a "PICO"
   const EvidenceVariable._();
 
@@ -4183,36 +4218,36 @@ class EvidenceVariable with Resource, _$EvidenceVariable {
     String? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
     FhirCode? language,
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
     Narrative? text,
     List<Resource>? contained,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUri? url,
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
     List<Identifier>? identifier,
     String? version,
-    @JsonKey(name: '_version') Element? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
     String? name,
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
     String? title,
-    @JsonKey(name: '_title') Element? titleElement,
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
     String? shortTitle,
-    @JsonKey(name: '_shortTitle') Element? shortTitleElement,
+    @JsonKey(name: '_shortTitle') PrimitiveElement? shortTitleElement,
     String? subtitle,
-    @JsonKey(name: '_subtitle') Element? subtitleElement,
+    @JsonKey(name: '_subtitle') PrimitiveElement? subtitleElement,
     FhirCode? status,
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
     FhirDateTime? date,
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
     FhirMarkdown? description,
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
     List<Annotation>? note,
     List<UsageContext>? useContext,
     String? publisher,
-    @JsonKey(name: '_publisher') Element? publisherElement,
+    @JsonKey(name: '_publisher') PrimitiveElement? publisherElement,
     List<ContactDetail>? contact,
     List<ContactDetail>? author,
     List<ContactDetail>? editor,
@@ -4220,13 +4255,13 @@ class EvidenceVariable with Resource, _$EvidenceVariable {
     List<ContactDetail>? endorser,
     List<RelatedArtifact>? relatedArtifact,
     FhirBoolean? actual,
-    @JsonKey(name: '_actual') Element? actualElement,
+    @JsonKey(name: '_actual') PrimitiveElement? actualElement,
     FhirCode? characteristicCombination,
     @JsonKey(name: '_characteristicCombination')
-    Element? characteristicCombinationElement,
+    PrimitiveElement? characteristicCombinationElement,
     required List<EvidenceVariableCharacteristic> characteristic,
     FhirCode? handling,
-    @JsonKey(name: '_handling') Element? handlingElement,
+    @JsonKey(name: '_handling') PrimitiveElement? handlingElement,
     List<EvidenceVariableCategory>? category,
   }) = _EvidenceVariable;
 
@@ -4372,17 +4407,18 @@ class EvidenceVariableCharacteristic
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     String? description,
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
     Reference? definitionReference,
     FhirCanonical? definitionCanonical,
-    @JsonKey(name: '_definitionCanonical') Element? definitionCanonicalElement,
+    @JsonKey(name: '_definitionCanonical')
+    PrimitiveElement? definitionCanonicalElement,
     CodeableConcept? definitionCodeableConcept,
     FhirExpression? definitionExpression,
     FhirBoolean? exclude,
-    @JsonKey(name: '_exclude') Element? excludeElement,
+    @JsonKey(name: '_exclude') PrimitiveElement? excludeElement,
     EvidenceVariableTimeFromStart? timeFromStart,
     FhirCode? groupMeasure,
-    @JsonKey(name: '_groupMeasure') Element? groupMeasureElement,
+    @JsonKey(name: '_groupMeasure') PrimitiveElement? groupMeasureElement,
   }) = _EvidenceVariableCharacteristic;
 
   @override
@@ -4466,7 +4502,7 @@ class EvidenceVariableTimeFromStart
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     String? description,
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
     Quantity? quantity,
     Range? range,
     List<Annotation>? note,
@@ -4505,7 +4541,9 @@ class EvidenceVariableTimeFromStart
 
 /// [EvidenceVariableCategory] The EvidenceVariable resource describes an element that knowledge (Evidence) is about.
 @freezed
-class EvidenceVariableCategory with BackboneType, _$EvidenceVariableCategory {
+class EvidenceVariableCategory
+    with _$EvidenceVariableCategory
+    implements BackboneElement {
   /// [EvidenceVariableCategory] The EvidenceVariable resource describes an element that knowledge (Evidence) is about.
   const EvidenceVariableCategory._();
 
@@ -4534,7 +4572,7 @@ class EvidenceVariableCategory with BackboneType, _$EvidenceVariableCategory {
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     String? name,
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
     CodeableConcept? valueCodeableConcept,
     Quantity? valueQuantity,
     Range? valueRange,
@@ -4573,7 +4611,7 @@ class EvidenceVariableCategory with BackboneType, _$EvidenceVariableCategory {
 
 /// [ResearchDefinition] The ResearchDefinition resource describes the
 @freezed
-class ResearchDefinition with Resource, _$ResearchDefinition {
+class ResearchDefinition with _$ResearchDefinition implements DomainResource {
   /// [ResearchDefinition] The ResearchDefinition resource describes the
   const ResearchDefinition._();
 
@@ -4810,53 +4848,53 @@ class ResearchDefinition with Resource, _$ResearchDefinition {
     String? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
     FhirCode? language,
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
     Narrative? text,
     List<Resource>? contained,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUri? url,
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
     List<Identifier>? identifier,
     String? version,
-    @JsonKey(name: '_version') Element? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
     String? name,
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
     String? title,
-    @JsonKey(name: '_title') Element? titleElement,
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
     String? shortTitle,
-    @JsonKey(name: '_shortTitle') Element? shortTitleElement,
+    @JsonKey(name: '_shortTitle') PrimitiveElement? shortTitleElement,
     String? subtitle,
-    @JsonKey(name: '_subtitle') Element? subtitleElement,
+    @JsonKey(name: '_subtitle') PrimitiveElement? subtitleElement,
     FhirCode? status,
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
     FhirBoolean? experimental,
-    @JsonKey(name: '_experimental') Element? experimentalElement,
+    @JsonKey(name: '_experimental') PrimitiveElement? experimentalElement,
     CodeableConcept? subjectCodeableConcept,
     Reference? subjectReference,
     FhirDateTime? date,
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
     String? publisher,
-    @JsonKey(name: '_publisher') Element? publisherElement,
+    @JsonKey(name: '_publisher') PrimitiveElement? publisherElement,
     List<ContactDetail>? contact,
     FhirMarkdown? description,
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
     List<String>? comment,
     @JsonKey(name: '_comment') List<Element?>? commentElement,
     List<UsageContext>? useContext,
     List<CodeableConcept>? jurisdiction,
     FhirMarkdown? purpose,
-    @JsonKey(name: '_purpose') Element? purposeElement,
+    @JsonKey(name: '_purpose') PrimitiveElement? purposeElement,
     String? usage,
-    @JsonKey(name: '_usage') Element? usageElement,
+    @JsonKey(name: '_usage') PrimitiveElement? usageElement,
     FhirMarkdown? copyright,
-    @JsonKey(name: '_copyright') Element? copyrightElement,
+    @JsonKey(name: '_copyright') PrimitiveElement? copyrightElement,
     FhirDate? approvalDate,
-    @JsonKey(name: '_approvalDate') Element? approvalDateElement,
+    @JsonKey(name: '_approvalDate') PrimitiveElement? approvalDateElement,
     FhirDate? lastReviewDate,
-    @JsonKey(name: '_lastReviewDate') Element? lastReviewDateElement,
+    @JsonKey(name: '_lastReviewDate') PrimitiveElement? lastReviewDateElement,
     Period? effectivePeriod,
     List<CodeableConcept>? topic,
     List<ContactDetail>? author,
@@ -4909,7 +4947,9 @@ class ResearchDefinition with Resource, _$ResearchDefinition {
 
 /// [ResearchElementDefinition] The ResearchElementDefinition resource
 @freezed
-class ResearchElementDefinition with Resource, _$ResearchElementDefinition {
+class ResearchElementDefinition
+    with _$ResearchElementDefinition
+    implements DomainResource {
   /// [ResearchElementDefinition] The ResearchElementDefinition resource
   const ResearchElementDefinition._();
 
@@ -5153,53 +5193,53 @@ class ResearchElementDefinition with Resource, _$ResearchElementDefinition {
     String? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
     FhirCode? language,
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
     Narrative? text,
     List<Resource>? contained,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUri? url,
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
     List<Identifier>? identifier,
     String? version,
-    @JsonKey(name: '_version') Element? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
     String? name,
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
     String? title,
-    @JsonKey(name: '_title') Element? titleElement,
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
     String? shortTitle,
-    @JsonKey(name: '_shortTitle') Element? shortTitleElement,
+    @JsonKey(name: '_shortTitle') PrimitiveElement? shortTitleElement,
     String? subtitle,
-    @JsonKey(name: '_subtitle') Element? subtitleElement,
+    @JsonKey(name: '_subtitle') PrimitiveElement? subtitleElement,
     FhirCode? status,
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
     FhirBoolean? experimental,
-    @JsonKey(name: '_experimental') Element? experimentalElement,
+    @JsonKey(name: '_experimental') PrimitiveElement? experimentalElement,
     CodeableConcept? subjectCodeableConcept,
     Reference? subjectReference,
     FhirDateTime? date,
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
     String? publisher,
-    @JsonKey(name: '_publisher') Element? publisherElement,
+    @JsonKey(name: '_publisher') PrimitiveElement? publisherElement,
     List<ContactDetail>? contact,
     FhirMarkdown? description,
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
     List<String>? comment,
     @JsonKey(name: '_comment') List<Element?>? commentElement,
     List<UsageContext>? useContext,
     List<CodeableConcept>? jurisdiction,
     FhirMarkdown? purpose,
-    @JsonKey(name: '_purpose') Element? purposeElement,
+    @JsonKey(name: '_purpose') PrimitiveElement? purposeElement,
     String? usage,
-    @JsonKey(name: '_usage') Element? usageElement,
+    @JsonKey(name: '_usage') PrimitiveElement? usageElement,
     FhirMarkdown? copyright,
-    @JsonKey(name: '_copyright') Element? copyrightElement,
+    @JsonKey(name: '_copyright') PrimitiveElement? copyrightElement,
     FhirDate? approvalDate,
-    @JsonKey(name: '_approvalDate') Element? approvalDateElement,
+    @JsonKey(name: '_approvalDate') PrimitiveElement? approvalDateElement,
     FhirDate? lastReviewDate,
-    @JsonKey(name: '_lastReviewDate') Element? lastReviewDateElement,
+    @JsonKey(name: '_lastReviewDate') PrimitiveElement? lastReviewDateElement,
     Period? effectivePeriod,
     List<CodeableConcept>? topic,
     List<ContactDetail>? author,
@@ -5209,9 +5249,9 @@ class ResearchElementDefinition with Resource, _$ResearchElementDefinition {
     List<RelatedArtifact>? relatedArtifact,
     @JsonKey(name: 'library') List<FhirCanonical>? library_,
     FhirCode? type,
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
     FhirCode? variableType,
-    @JsonKey(name: '_variableType') Element? variableTypeElement,
+    @JsonKey(name: '_variableType') PrimitiveElement? variableTypeElement,
     required List<ResearchElementDefinitionCharacteristic> characteristic,
   }) = _ResearchElementDefinition;
 
@@ -5376,39 +5416,40 @@ class ResearchElementDefinitionCharacteristic
     List<FhirExtension>? modifierExtension,
     CodeableConcept? definitionCodeableConcept,
     FhirCanonical? definitionCanonical,
-    @JsonKey(name: '_definitionCanonical') Element? definitionCanonicalElement,
+    @JsonKey(name: '_definitionCanonical')
+    PrimitiveElement? definitionCanonicalElement,
     FhirExpression? definitionExpression,
     DataRequirement? definitionDataRequirement,
     List<UsageContext>? usageContext,
     FhirBoolean? exclude,
-    @JsonKey(name: '_exclude') Element? excludeElement,
+    @JsonKey(name: '_exclude') PrimitiveElement? excludeElement,
     CodeableConcept? unitOfMeasure,
     String? studyEffectiveDescription,
     @JsonKey(name: '_studyEffectiveDescription')
-    Element? studyEffectiveDescriptionElement,
+    PrimitiveElement? studyEffectiveDescriptionElement,
     FhirDateTime? studyEffectiveDateTime,
     @JsonKey(name: '_studyEffectiveDateTime')
-    Element? studyEffectiveDateTimeElement,
+    PrimitiveElement? studyEffectiveDateTimeElement,
     Period? studyEffectivePeriod,
     FhirDuration? studyEffectiveDuration,
     Timing? studyEffectiveTiming,
     FhirDuration? studyEffectiveTimeFromStart,
     FhirCode? studyEffectiveGroupMeasure,
     @JsonKey(name: '_studyEffectiveGroupMeasure')
-    Element? studyEffectiveGroupMeasureElement,
+    PrimitiveElement? studyEffectiveGroupMeasureElement,
     String? participantEffectiveDescription,
     @JsonKey(name: '_participantEffectiveDescription')
-    Element? participantEffectiveDescriptionElement,
+    PrimitiveElement? participantEffectiveDescriptionElement,
     FhirDateTime? participantEffectiveDateTime,
     @JsonKey(name: '_participantEffectiveDateTime')
-    Element? participantEffectiveDateTimeElement,
+    PrimitiveElement? participantEffectiveDateTimeElement,
     Period? participantEffectivePeriod,
     FhirDuration? participantEffectiveDuration,
     Timing? participantEffectiveTiming,
     FhirDuration? participantEffectiveTimeFromStart,
     FhirCode? participantEffectiveGroupMeasure,
     @JsonKey(name: '_participantEffectiveGroupMeasure')
-    Element? participantEffectiveGroupMeasureElement,
+    PrimitiveElement? participantEffectiveGroupMeasureElement,
   }) = _ResearchElementDefinitionCharacteristic;
 
   @override

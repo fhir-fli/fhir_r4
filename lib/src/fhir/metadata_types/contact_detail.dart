@@ -55,7 +55,7 @@ class ContactDetail with _$ContactDetail implements DataType {
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [telecom] The contact details for the individual (if a name was provided)
     ///  or the organization.

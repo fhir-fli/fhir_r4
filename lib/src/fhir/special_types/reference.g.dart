@@ -15,18 +15,19 @@ _$ReferenceImpl _$$ReferenceImplFromJson(Map<String, dynamic> json) =>
       reference: json['reference'] as String?,
       referenceElement: json['_reference'] == null
           ? null
-          : Element.fromJson(json['_reference'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_reference'] as Map<String, dynamic>),
       type: json['type'] == null ? null : FhirUri.fromJson(json['type']),
       typeElement: json['_type'] == null
           ? null
-          : Element.fromJson(json['_type'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_type'] as Map<String, dynamic>),
       identifier: json['identifier'] == null
           ? null
           : Identifier.fromJson(json['identifier'] as Map<String, dynamic>),
       display: json['display'] as String?,
       displayElement: json['_display'] == null
           ? null
-          : Element.fromJson(json['_display'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_display'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$ReferenceImplToJson(_$ReferenceImpl instance) {

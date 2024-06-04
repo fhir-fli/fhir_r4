@@ -87,53 +87,53 @@ class Attachment with _$Attachment implements DataType {
     FhirCode? contentType,
 
     /// [contentTypeElement] Extensions for contentType
-    @JsonKey(name: '_contentType') Element? contentTypeElement,
+    @JsonKey(name: '_contentType') PrimitiveElement? contentTypeElement,
 
     /// [language] The human language of the content. The value can be any valid
     ///  value according to BCP 47.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [data] The actual data of the attachment - a sequence of bytes, base64
     ///  encoded.
     FhirBase64Binary? data,
 
     /// [dataElement] Extensions for data
-    @JsonKey(name: '_data') Element? dataElement,
+    @JsonKey(name: '_data') PrimitiveElement? dataElement,
 
     /// [url] A location where the data can be accessed.
     FhirUrl? url,
 
     /// [urlElement] Extensions for url
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
 
     /// [size] The number of bytes of data that make up this attachment (before
     ///  base64 encoding, if that is done).
     FhirUnsignedInt? size,
 
     /// [sizeElement] Extensions for size
-    @JsonKey(name: '_size') Element? sizeElement,
+    @JsonKey(name: '_size') PrimitiveElement? sizeElement,
 
     /// [hash] The calculated hash of the data using SHA-1. Represented using
     ///  base64.
     FhirBase64Binary? hash,
 
     /// [hashElement] Extensions for hash
-    @JsonKey(name: '_hash') Element? hashElement,
+    @JsonKey(name: '_hash') PrimitiveElement? hashElement,
 
     /// [title] A label or set of text to display in place of the data.
     String? title,
 
     /// [titleElement] Extensions for title
-    @JsonKey(name: '_title') Element? titleElement,
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
 
     /// [creation] The date that the attachment was first created.
     FhirDateTime? creation,
 
     /// [creationElement] Extensions for creation
-    @JsonKey(name: '_creation') Element? creationElement,
+    @JsonKey(name: '_creation') PrimitiveElement? creationElement,
   }) = _Attachment;
 
   @override

@@ -15,7 +15,7 @@ part 'medications.g.dart';
 
 /// [Immunization] Describes the event of a patient being administered a
 @freezed
-class Immunization with Resource, _$Immunization {
+class Immunization with _$Immunization implements DomainResource {
   /// [Immunization] Describes the event of a patient being administered a
   const Immunization._();
 
@@ -193,13 +193,13 @@ class Immunization with Resource, _$Immunization {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -245,7 +245,7 @@ class Immunization with Resource, _$Immunization {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [statusReason] Indicates the reason the immunization event was not
     ///  performed.
@@ -266,13 +266,15 @@ class Immunization with Resource, _$Immunization {
     FhirDateTime? occurrenceDateTime,
 
     /// [occurrenceDateTimeElement] Extensions for occurrenceDateTime
-    @JsonKey(name: '_occurrenceDateTime') Element? occurrenceDateTimeElement,
+    @JsonKey(name: '_occurrenceDateTime')
+    PrimitiveElement? occurrenceDateTimeElement,
 
     /// [occurrenceString] Date vaccine administered or was to be administered.
     String? occurrenceString,
 
     /// [occurrenceStringElement] Extensions for occurrenceString
-    @JsonKey(name: '_occurrenceString') Element? occurrenceStringElement,
+    @JsonKey(name: '_occurrenceString')
+    PrimitiveElement? occurrenceStringElement,
 
     /// [recorded] The date the occurrence of the immunization was first captured
     /// in the record - potentially significantly after the occurrence of the
@@ -280,7 +282,7 @@ class Immunization with Resource, _$Immunization {
     FhirDateTime? recorded,
 
     /// [recordedElement] Extensions for recorded
-    @JsonKey(name: '_recorded') Element? recordedElement,
+    @JsonKey(name: '_recorded') PrimitiveElement? recordedElement,
 
     /// [primarySource] An indication that the content of the record is based on
     /// information from the person who administered the vaccine. This reflects
@@ -288,7 +290,7 @@ class Immunization with Resource, _$Immunization {
     FhirBoolean? primarySource,
 
     /// [primarySourceElement] Extensions for primarySource
-    @JsonKey(name: '_primarySource') Element? primarySourceElement,
+    @JsonKey(name: '_primarySource') PrimitiveElement? primarySourceElement,
 
     /// [reportOrigin] The source of the data when the report of the immunization
     /// event is not based on information from the person who administered the
@@ -306,13 +308,13 @@ class Immunization with Resource, _$Immunization {
     String? lotNumber,
 
     /// [lotNumberElement] Extensions for lotNumber
-    @JsonKey(name: '_lotNumber') Element? lotNumberElement,
+    @JsonKey(name: '_lotNumber') PrimitiveElement? lotNumberElement,
 
     /// [expirationDate] Date vaccine batch expires.
     FhirDate? expirationDate,
 
     /// [expirationDateElement] Extensions for expirationDate
-    @JsonKey(name: '_expirationDate') Element? expirationDateElement,
+    @JsonKey(name: '_expirationDate') PrimitiveElement? expirationDateElement,
 
     /// [site] Body site where vaccine was administered.
     CodeableConcept? site,
@@ -342,7 +344,7 @@ class Immunization with Resource, _$Immunization {
     FhirBoolean? isSubpotent,
 
     /// [isSubpotentElement] Extensions for isSubpotent
-    @JsonKey(name: '_isSubpotent') Element? isSubpotentElement,
+    @JsonKey(name: '_isSubpotent') PrimitiveElement? isSubpotentElement,
 
     /// [subpotentReason] Reason why a dose is considered to be subpotent.
     List<CodeableConcept>? subpotentReason,
@@ -409,7 +411,9 @@ class Immunization with Resource, _$Immunization {
 
 /// [ImmunizationPerformer] Describes the event of a patient being
 @freezed
-class ImmunizationPerformer with BackboneType, _$ImmunizationPerformer {
+class ImmunizationPerformer
+    with _$ImmunizationPerformer
+    implements BackboneElement {
   /// [ImmunizationPerformer] Describes the event of a patient being
   const ImmunizationPerformer._();
 
@@ -514,7 +518,9 @@ class ImmunizationPerformer with BackboneType, _$ImmunizationPerformer {
 
 /// [ImmunizationEducation] Describes the event of a patient being
 @freezed
-class ImmunizationEducation with BackboneType, _$ImmunizationEducation {
+class ImmunizationEducation
+    with _$ImmunizationEducation
+    implements BackboneElement {
   /// [ImmunizationEducation] Describes the event of a patient being
   const ImmunizationEducation._();
 
@@ -595,27 +601,28 @@ class ImmunizationEducation with BackboneType, _$ImmunizationEducation {
     String? documentType,
 
     /// [documentTypeElement] Extensions for documentType
-    @JsonKey(name: '_documentType') Element? documentTypeElement,
+    @JsonKey(name: '_documentType') PrimitiveElement? documentTypeElement,
 
     /// [reference] Reference pointer to the educational material given to the
     ///  patient if the information was on line.
     FhirUri? reference,
 
     /// [referenceElement] Extensions for reference
-    @JsonKey(name: '_reference') Element? referenceElement,
+    @JsonKey(name: '_reference') PrimitiveElement? referenceElement,
 
     /// [publicationDate] Date the educational material was published.
     FhirDateTime? publicationDate,
 
     /// [publicationDateElement] Extensions for publicationDate
-    @JsonKey(name: '_publicationDate') Element? publicationDateElement,
+    @JsonKey(name: '_publicationDate') PrimitiveElement? publicationDateElement,
 
     /// [presentationDate] Date the educational material was given to the
     ///  patient.
     FhirDateTime? presentationDate,
 
     /// [presentationDateElement] Extensions for presentationDate
-    @JsonKey(name: '_presentationDate') Element? presentationDateElement,
+    @JsonKey(name: '_presentationDate')
+    PrimitiveElement? presentationDateElement,
   }) = _ImmunizationEducation;
 
   @override
@@ -651,7 +658,9 @@ class ImmunizationEducation with BackboneType, _$ImmunizationEducation {
 
 /// [ImmunizationReaction] Describes the event of a patient being
 @freezed
-class ImmunizationReaction with BackboneType, _$ImmunizationReaction {
+class ImmunizationReaction
+    with _$ImmunizationReaction
+    implements BackboneElement {
   /// [ImmunizationReaction] Describes the event of a patient being
   const ImmunizationReaction._();
 
@@ -724,7 +733,7 @@ class ImmunizationReaction with BackboneType, _$ImmunizationReaction {
     FhirDateTime? date,
 
     /// [dateElement] Extensions for date
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
 
     /// [detail] Details of the reaction.
     Reference? detail,
@@ -733,7 +742,7 @@ class ImmunizationReaction with BackboneType, _$ImmunizationReaction {
     FhirBoolean? reported,
 
     /// [reportedElement] Extensions for reported
-    @JsonKey(name: '_reported') Element? reportedElement,
+    @JsonKey(name: '_reported') PrimitiveElement? reportedElement,
   }) = _ImmunizationReaction;
 
   @override
@@ -862,7 +871,7 @@ class ImmunizationProtocolApplied
     String? series,
 
     /// [seriesElement] Extensions for series
-    @JsonKey(name: '_series') Element? seriesElement,
+    @JsonKey(name: '_series') PrimitiveElement? seriesElement,
 
     /// [authority] Indicates the authority who published the protocol (e.g.
     ///  ACIP) that is being followed.
@@ -877,13 +886,14 @@ class ImmunizationProtocolApplied
     @JsonKey(name: '_doseNumberPositiveInt')
 
     /// [doseNumberPositiveIntElement] Extensions for doseNumberPositiveInt
-    Element? doseNumberPositiveIntElement,
+    PrimitiveElement? doseNumberPositiveIntElement,
 
     /// [doseNumberString] Nominal position in a series.
     String? doseNumberString,
 
     /// [doseNumberStringElement] Extensions for doseNumberString
-    @JsonKey(name: '_doseNumberString') Element? doseNumberStringElement,
+    @JsonKey(name: '_doseNumberString')
+    PrimitiveElement? doseNumberStringElement,
 
     /// [seriesDosesPositiveInt] The recommended number of doses to achieve
     ///  immunity.
@@ -891,13 +901,14 @@ class ImmunizationProtocolApplied
     @JsonKey(name: '_seriesDosesPositiveInt')
 
     /// [seriesDosesPositiveIntElement] Extensions for seriesDosesPositiveInt
-    Element? seriesDosesPositiveIntElement,
+    PrimitiveElement? seriesDosesPositiveIntElement,
 
     /// [seriesDosesString] The recommended number of doses to achieve immunity.
     String? seriesDosesString,
 
     /// [seriesDosesStringElement] Extensions for seriesDosesString
-    @JsonKey(name: '_seriesDosesString') Element? seriesDosesStringElement,
+    @JsonKey(name: '_seriesDosesString')
+    PrimitiveElement? seriesDosesStringElement,
   }) = _ImmunizationProtocolApplied;
 
   @override
@@ -933,7 +944,9 @@ class ImmunizationProtocolApplied
 
 /// [ImmunizationEvaluation] Describes a comparison of an immunization event
 @freezed
-class ImmunizationEvaluation with Resource, _$ImmunizationEvaluation {
+class ImmunizationEvaluation
+    with _$ImmunizationEvaluation
+    implements DomainResource {
   /// [ImmunizationEvaluation] Describes a comparison of an immunization event
   const ImmunizationEvaluation._();
 
@@ -1072,13 +1085,13 @@ class ImmunizationEvaluation with Resource, _$ImmunizationEvaluation {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -1126,7 +1139,7 @@ class ImmunizationEvaluation with Resource, _$ImmunizationEvaluation {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [patient] The individual for whom the evaluation is being done.
     required Reference patient,
@@ -1136,7 +1149,7 @@ class ImmunizationEvaluation with Resource, _$ImmunizationEvaluation {
     FhirDateTime? date,
 
     /// [dateElement] Extensions for date
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
 
     /// [authority] Indicates the authority who published the protocol (e.g.
     ///  ACIP).
@@ -1162,27 +1175,28 @@ class ImmunizationEvaluation with Resource, _$ImmunizationEvaluation {
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [series] One possible path to achieve presumed immunity against a disease
     ///  - within the context of an authority.
     String? series,
 
     /// [seriesElement] Extensions for series
-    @JsonKey(name: '_series') Element? seriesElement,
+    @JsonKey(name: '_series') PrimitiveElement? seriesElement,
 
     /// [doseNumberPositiveInt] Nominal position in a series.
     FhirPositiveInt? doseNumberPositiveInt,
     @JsonKey(name: '_doseNumberPositiveInt')
 
     /// [doseNumberPositiveIntElement] Extensions for doseNumberPositiveInt
-    Element? doseNumberPositiveIntElement,
+    PrimitiveElement? doseNumberPositiveIntElement,
 
     /// [doseNumberString] Nominal position in a series.
     String? doseNumberString,
 
     /// [doseNumberStringElement] Extensions for doseNumberString
-    @JsonKey(name: '_doseNumberString') Element? doseNumberStringElement,
+    @JsonKey(name: '_doseNumberString')
+    PrimitiveElement? doseNumberStringElement,
 
     /// [seriesDosesPositiveInt] The recommended number of doses to achieve
     ///  immunity.
@@ -1190,13 +1204,14 @@ class ImmunizationEvaluation with Resource, _$ImmunizationEvaluation {
     @JsonKey(name: '_seriesDosesPositiveInt')
 
     /// [seriesDosesPositiveIntElement] Extensions for seriesDosesPositiveInt
-    Element? seriesDosesPositiveIntElement,
+    PrimitiveElement? seriesDosesPositiveIntElement,
 
     /// [seriesDosesString] The recommended number of doses to achieve immunity.
     String? seriesDosesString,
 
     /// [seriesDosesStringElement] Extensions for seriesDosesString
-    @JsonKey(name: '_seriesDosesString') Element? seriesDosesStringElement,
+    @JsonKey(name: '_seriesDosesString')
+    PrimitiveElement? seriesDosesStringElement,
   }) = _ImmunizationEvaluation;
 
   @override
@@ -1237,7 +1252,9 @@ class ImmunizationEvaluation with Resource, _$ImmunizationEvaluation {
 
 /// [ImmunizationRecommendation] A patient's point-in-time set of
 @freezed
-class ImmunizationRecommendation with Resource, _$ImmunizationRecommendation {
+class ImmunizationRecommendation
+    with _$ImmunizationRecommendation
+    implements DomainResource {
   /// [ImmunizationRecommendation] A patient's point-in-time set of
   const ImmunizationRecommendation._();
 
@@ -1334,13 +1351,13 @@ class ImmunizationRecommendation with Resource, _$ImmunizationRecommendation {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -1390,7 +1407,7 @@ class ImmunizationRecommendation with Resource, _$ImmunizationRecommendation {
     FhirDateTime? date,
 
     /// [dateElement] Extensions for date
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
 
     /// [authority] Indicates the authority who published the protocol (e.g.
     ///  ACIP).
@@ -1575,14 +1592,14 @@ class ImmunizationRecommendationRecommendation
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [series] One possible path to achieve presumed immunity against a disease
     ///  - within the context of an authority.
     String? series,
 
     /// [seriesElement] Extensions for series
-    @JsonKey(name: '_series') Element? seriesElement,
+    @JsonKey(name: '_series') PrimitiveElement? seriesElement,
 
     /// [doseNumberPositiveInt] Nominal position of the recommended dose in a
     ///  series (e.g. dose 2 is the next recommended dose).
@@ -1590,14 +1607,15 @@ class ImmunizationRecommendationRecommendation
     @JsonKey(name: '_doseNumberPositiveInt')
 
     /// [doseNumberPositiveIntElement] Extensions for doseNumberPositiveInt
-    Element? doseNumberPositiveIntElement,
+    PrimitiveElement? doseNumberPositiveIntElement,
 
     /// [doseNumberString] Nominal position of the recommended dose in a series
     ///  (e.g. dose 2 is the next recommended dose).
     String? doseNumberString,
 
     /// [doseNumberStringElement] Extensions for doseNumberString
-    @JsonKey(name: '_doseNumberString') Element? doseNumberStringElement,
+    @JsonKey(name: '_doseNumberString')
+    PrimitiveElement? doseNumberStringElement,
 
     /// [seriesDosesPositiveInt] The recommended number of doses to achieve
     ///  immunity.
@@ -1605,13 +1623,14 @@ class ImmunizationRecommendationRecommendation
     @JsonKey(name: '_seriesDosesPositiveInt')
 
     /// [seriesDosesPositiveIntElement] Extensions for seriesDosesPositiveInt
-    Element? seriesDosesPositiveIntElement,
+    PrimitiveElement? seriesDosesPositiveIntElement,
 
     /// [seriesDosesString] The recommended number of doses to achieve immunity.
     String? seriesDosesString,
 
     /// [seriesDosesStringElement] Extensions for seriesDosesString
-    @JsonKey(name: '_seriesDosesString') Element? seriesDosesStringElement,
+    @JsonKey(name: '_seriesDosesString')
+    PrimitiveElement? seriesDosesStringElement,
 
     /// [supportingImmunization] Immunization event history and/or evaluation
     ///  that supports the status and recommendation.
@@ -1718,7 +1737,7 @@ class ImmunizationRecommendationDateCriterion
     FhirDateTime? value,
 
     /// [valueElement] Extensions for value
-    @JsonKey(name: '_value') Element? valueElement,
+    @JsonKey(name: '_value') PrimitiveElement? valueElement,
   }) = _ImmunizationRecommendationDateCriterion;
 
   @override
@@ -1743,7 +1762,7 @@ class ImmunizationRecommendationDateCriterion
 
 /// [Medication] This resource is primarily used for the identification and
 @freezed
-class Medication with Resource, _$Medication {
+class Medication with _$Medication implements DomainResource {
   /// [Medication] This resource is primarily used for the identification and
   const Medication._();
 
@@ -1856,13 +1875,13 @@ class Medication with Resource, _$Medication {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -1915,7 +1934,7 @@ class Medication with Resource, _$Medication {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [manufacturer] Describes the details of the manufacturer of the
     /// medication product.  This is not intended to represent the distributor of
@@ -1978,7 +1997,9 @@ class Medication with Resource, _$Medication {
 
 /// [MedicationIngredient] This resource is primarily used for the
 @freezed
-class MedicationIngredient with BackboneType, _$MedicationIngredient {
+class MedicationIngredient
+    with _$MedicationIngredient
+    implements BackboneElement {
   /// [MedicationIngredient] This resource is primarily used for the
   const MedicationIngredient._();
 
@@ -2066,7 +2087,7 @@ class MedicationIngredient with BackboneType, _$MedicationIngredient {
     FhirBoolean? isActive,
 
     /// [isActiveElement] Extensions for isActive
-    @JsonKey(name: '_isActive') Element? isActiveElement,
+    @JsonKey(name: '_isActive') PrimitiveElement? isActiveElement,
 
     /// [strength] Specifies how many (or how much) of the items there are in
     /// this Medication.  For example, 250 mg per tablet.  This is expressed as a
@@ -2107,7 +2128,7 @@ class MedicationIngredient with BackboneType, _$MedicationIngredient {
 
 /// [MedicationBatch] This resource is primarily used for the identification
 @freezed
-class MedicationBatch with BackboneType, _$MedicationBatch {
+class MedicationBatch with _$MedicationBatch implements BackboneElement {
   /// [MedicationBatch] This resource is primarily used for the identification
   const MedicationBatch._();
 
@@ -2179,13 +2200,13 @@ class MedicationBatch with BackboneType, _$MedicationBatch {
     String? lotNumber,
 
     /// [lotNumberElement] Extensions for lotNumber
-    @JsonKey(name: '_lotNumber') Element? lotNumberElement,
+    @JsonKey(name: '_lotNumber') PrimitiveElement? lotNumberElement,
 
     /// [expirationDate] When this specific batch of product will expire.
     FhirDateTime? expirationDate,
 
     /// [expirationDateElement] Extensions for expirationDate
-    @JsonKey(name: '_expirationDate') Element? expirationDateElement,
+    @JsonKey(name: '_expirationDate') PrimitiveElement? expirationDateElement,
   }) = _MedicationBatch;
 
   @override
@@ -2221,7 +2242,9 @@ class MedicationBatch with BackboneType, _$MedicationBatch {
 
 /// [MedicationAdministration] Describes the event of a patient consuming or
 @freezed
-class MedicationAdministration with Resource, _$MedicationAdministration {
+class MedicationAdministration
+    with _$MedicationAdministration
+    implements DomainResource {
   /// [MedicationAdministration] Describes the event of a patient consuming or
   const MedicationAdministration._();
 
@@ -2388,13 +2411,13 @@ class MedicationAdministration with Resource, _$MedicationAdministration {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -2459,7 +2482,7 @@ class MedicationAdministration with Resource, _$MedicationAdministration {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [statusReason] A code indicating why the administration was not
     ///  performed.
@@ -2500,7 +2523,8 @@ class MedicationAdministration with Resource, _$MedicationAdministration {
     FhirDateTime? effectiveDateTime,
 
     /// [effectiveDateTimeElement] Extensions for effectiveDateTime
-    @JsonKey(name: '_effectiveDateTime') Element? effectiveDateTimeElement,
+    @JsonKey(name: '_effectiveDateTime')
+    PrimitiveElement? effectiveDateTimeElement,
 
     /// [effectivePeriod] A specific date/time or interval of time during which
     /// the administration took place (or did not take place, when the 'notGiven'
@@ -2779,7 +2803,7 @@ class MedicationAdministrationDosage
     String? text,
 
     /// [textElement] Extensions for text
-    @JsonKey(name: '_text') Element? textElement,
+    @JsonKey(name: '_text') PrimitiveElement? textElement,
 
     /// [site] A coded specification of the anatomic site where the medication
     ///  first entered the body.  For example, "left arm".
@@ -2850,7 +2874,7 @@ class MedicationAdministrationDosage
 
 /// [MedicationDispense] Indicates that a medication product is to be or has
 @freezed
-class MedicationDispense with Resource, _$MedicationDispense {
+class MedicationDispense with _$MedicationDispense implements DomainResource {
   /// [MedicationDispense] Indicates that a medication product is to be or has
   const MedicationDispense._();
 
@@ -3030,13 +3054,13 @@ class MedicationDispense with Resource, _$MedicationDispense {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -3090,7 +3114,7 @@ class MedicationDispense with Resource, _$MedicationDispense {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [statusReasonCodeableConcept] Indicates the reason why a dispense was not
     ///  performed.
@@ -3157,14 +3181,14 @@ class MedicationDispense with Resource, _$MedicationDispense {
     FhirDateTime? whenPrepared,
 
     /// [whenPreparedElement] Extensions for whenPrepared
-    @JsonKey(name: '_whenPrepared') Element? whenPreparedElement,
+    @JsonKey(name: '_whenPrepared') PrimitiveElement? whenPreparedElement,
 
     /// [whenHandedOver] The time the dispensed product was provided to the
     ///  patient or their representative.
     FhirDateTime? whenHandedOver,
 
     /// [whenHandedOverElement] Extensions for whenHandedOver
-    @JsonKey(name: '_whenHandedOver') Element? whenHandedOverElement,
+    @JsonKey(name: '_whenHandedOver') PrimitiveElement? whenHandedOverElement,
 
     /// [destination] Identification of the facility/location where the
     ///  medication was shipped to, as part of the dispense event.
@@ -3429,7 +3453,7 @@ class MedicationDispenseSubstitution
     FhirBoolean? wasSubstituted,
 
     /// [wasSubstitutedElement] Extensions for wasSubstituted
-    @JsonKey(name: '_wasSubstituted') Element? wasSubstitutedElement,
+    @JsonKey(name: '_wasSubstituted') PrimitiveElement? wasSubstitutedElement,
 
     /// [type] A code signifying whether a different drug was dispensed from what
     ///  was prescribed.
@@ -3478,7 +3502,7 @@ class MedicationDispenseSubstitution
 
 /// [MedicationKnowledge] Information about a medication that is used to
 @freezed
-class MedicationKnowledge with Resource, _$MedicationKnowledge {
+class MedicationKnowledge with _$MedicationKnowledge implements DomainResource {
   /// [MedicationKnowledge] Information about a medication that is used to
   const MedicationKnowledge._();
 
@@ -3636,13 +3660,13 @@ class MedicationKnowledge with Resource, _$MedicationKnowledge {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -3694,7 +3718,7 @@ class MedicationKnowledge with Resource, _$MedicationKnowledge {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [manufacturer] Describes the details of the manufacturer of the
     /// medication product.  This is not intended to represent the distributor of
@@ -3746,7 +3770,7 @@ class MedicationKnowledge with Resource, _$MedicationKnowledge {
     @JsonKey(name: '_preparationInstruction')
 
     /// [preparationInstructionElement] Extensions for preparationInstruction
-    Element? preparationInstructionElement,
+    PrimitiveElement? preparationInstructionElement,
 
     /// [intendedRoute] The intended or approved route of administration.
     List<CodeableConcept>? intendedRoute,
@@ -4108,7 +4132,7 @@ class MedicationKnowledgeIngredient
     FhirBoolean? isActive,
 
     /// [isActiveElement] Extensions for isActive
-    @JsonKey(name: '_isActive') Element? isActiveElement,
+    @JsonKey(name: '_isActive') PrimitiveElement? isActiveElement,
 
     /// [strength] Specifies how many (or how much) of the items there are in
     /// this Medication.  For example, 250 mg per tablet.  This is expressed as a
@@ -4149,7 +4173,9 @@ class MedicationKnowledgeIngredient
 
 /// [MedicationKnowledgeCost] Information about a medication that is used to
 @freezed
-class MedicationKnowledgeCost with BackboneType, _$MedicationKnowledgeCost {
+class MedicationKnowledgeCost
+    with _$MedicationKnowledgeCost
+    implements BackboneElement {
   /// [MedicationKnowledgeCost] Information about a medication that is used to
   const MedicationKnowledgeCost._();
 
@@ -4224,7 +4250,7 @@ class MedicationKnowledgeCost with BackboneType, _$MedicationKnowledgeCost {
     String? source,
 
     /// [sourceElement] Extensions for source
-    @JsonKey(name: '_source') Element? sourceElement,
+    @JsonKey(name: '_source') PrimitiveElement? sourceElement,
 
     /// [cost] The price of the medication.
     required Money cost,
@@ -4333,7 +4359,7 @@ class MedicationKnowledgeMonitoringProgram
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
   }) = _MedicationKnowledgeMonitoringProgram;
 
   @override
@@ -4466,7 +4492,9 @@ class MedicationKnowledgeAdministrationGuidelines
 
 /// [MedicationKnowledgeDosage] Information about a medication that is used
 @freezed
-class MedicationKnowledgeDosage with BackboneType, _$MedicationKnowledgeDosage {
+class MedicationKnowledgeDosage
+    with _$MedicationKnowledgeDosage
+    implements BackboneElement {
   /// [MedicationKnowledgeDosage] Information about a medication that is used
   const MedicationKnowledgeDosage._();
 
@@ -4958,7 +4986,7 @@ class MedicationKnowledgeDrugCharacteristic
     String? valueString,
 
     /// [valueStringElement] Extensions for valueString
-    @JsonKey(name: '_valueString') Element? valueStringElement,
+    @JsonKey(name: '_valueString') PrimitiveElement? valueStringElement,
 
     /// [valueQuantity] Description of the characteristic.
     Quantity? valueQuantity,
@@ -4967,7 +4995,8 @@ class MedicationKnowledgeDrugCharacteristic
     FhirBase64Binary? valueBase64Binary,
 
     /// [valueBase64BinaryElement] Extensions for valueBase64Binary
-    @JsonKey(name: '_valueBase64Binary') Element? valueBase64BinaryElement,
+    @JsonKey(name: '_valueBase64Binary')
+    PrimitiveElement? valueBase64BinaryElement,
   }) = _MedicationKnowledgeDrugCharacteristic;
 
   @override
@@ -5183,7 +5212,7 @@ class MedicationKnowledgeSubstitution
     FhirBoolean? allowed,
 
     /// [allowedElement] Extensions for allowed
-    @JsonKey(name: '_allowed') Element? allowedElement,
+    @JsonKey(name: '_allowed') PrimitiveElement? allowedElement,
   }) = _MedicationKnowledgeSubstitution;
 
   @override
@@ -5536,7 +5565,7 @@ class MedicationKnowledgeKinetics
 
 /// [MedicationRequest] An order or request for both supply of the medication
 @freezed
-class MedicationRequest with Resource, _$MedicationRequest {
+class MedicationRequest with _$MedicationRequest implements DomainResource {
   /// [MedicationRequest] An order or request for both supply of the medication
   const MedicationRequest._();
 
@@ -5763,13 +5792,13 @@ class MedicationRequest with Resource, _$MedicationRequest {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -5821,7 +5850,7 @@ class MedicationRequest with Resource, _$MedicationRequest {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [statusReason] Captures the reason for the current state of the
     ///  MedicationRequest.
@@ -5831,7 +5860,7 @@ class MedicationRequest with Resource, _$MedicationRequest {
     FhirCode? intent,
 
     /// [intentElement] Extensions for intent
-    @JsonKey(name: '_intent') Element? intentElement,
+    @JsonKey(name: '_intent') PrimitiveElement? intentElement,
 
     /// [category] Indicates the type of medication request (for example, where
     /// the medication is expected to be consumed or administered (i.e. inpatient
@@ -5843,14 +5872,14 @@ class MedicationRequest with Resource, _$MedicationRequest {
     FhirCode? priority,
 
     /// [priorityElement] Extensions for priority
-    @JsonKey(name: '_priority') Element? priorityElement,
+    @JsonKey(name: '_priority') PrimitiveElement? priorityElement,
 
     /// [doNotPerform] If true indicates that the provider is asking for the
     ///  medication request not to occur.
     FhirBoolean? doNotPerform,
 
     /// [doNotPerformElement] Extensions for doNotPerform
-    @JsonKey(name: '_doNotPerform') Element? doNotPerformElement,
+    @JsonKey(name: '_doNotPerform') PrimitiveElement? doNotPerformElement,
 
     /// [reportedBoolean] Indicates if this record was captured as a secondary
     /// 'reported' record rather than as an original primary source-of-truth
@@ -5858,7 +5887,7 @@ class MedicationRequest with Resource, _$MedicationRequest {
     FhirBoolean? reportedBoolean,
 
     /// [reportedBooleanElement] Extensions for reportedBoolean
-    @JsonKey(name: '_reportedBoolean') Element? reportedBooleanElement,
+    @JsonKey(name: '_reportedBoolean') PrimitiveElement? reportedBooleanElement,
 
     /// [reportedReference] Indicates if this record was captured as a secondary
     /// 'reported' record rather than as an original primary source-of-truth
@@ -5894,7 +5923,7 @@ class MedicationRequest with Resource, _$MedicationRequest {
     FhirDateTime? authoredOn,
 
     /// [authoredOnElement] Extensions for authoredOn
-    @JsonKey(name: '_authoredOn') Element? authoredOnElement,
+    @JsonKey(name: '_authoredOn') PrimitiveElement? authoredOnElement,
 
     /// [requester] The individual, organization, or device that initiated the
     ///  request and has responsibility for its activation.
@@ -6147,7 +6176,7 @@ class MedicationRequestDispenseRequest
     @JsonKey(name: '_numberOfRepeatsAllowed')
 
     /// [numberOfRepeatsAllowedElement] Extensions for numberOfRepeatsAllowed
-    Element? numberOfRepeatsAllowedElement,
+    PrimitiveElement? numberOfRepeatsAllowedElement,
 
     /// [quantity] The amount that is to be dispensed for one fill.
     Quantity? quantity,
@@ -6374,7 +6403,7 @@ class MedicationRequestSubstitution
     FhirBoolean? allowedBoolean,
 
     /// [allowedBooleanElement] Extensions for allowedBoolean
-    @JsonKey(name: '_allowedBoolean') Element? allowedBooleanElement,
+    @JsonKey(name: '_allowedBoolean') PrimitiveElement? allowedBooleanElement,
 
     /// [allowedCodeableConcept] True if the prescriber allows a different drug
     ///  to be dispensed from what was prescribed.
@@ -6418,7 +6447,7 @@ class MedicationRequestSubstitution
 
 /// [MedicationStatement] A record of a medication that is being consumed by
 @freezed
-class MedicationStatement with Resource, _$MedicationStatement {
+class MedicationStatement with _$MedicationStatement implements DomainResource {
   /// [MedicationStatement] A record of a medication that is being consumed by
   const MedicationStatement._();
 
@@ -6596,13 +6625,13 @@ class MedicationStatement with Resource, _$MedicationStatement {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -6663,7 +6692,7 @@ class MedicationStatement with Resource, _$MedicationStatement {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [statusReason] Captures the reason for the current state of the
     ///  MedicationStatement.
@@ -6698,7 +6727,8 @@ class MedicationStatement with Resource, _$MedicationStatement {
     FhirDateTime? effectiveDateTime,
 
     /// [effectiveDateTimeElement] Extensions for effectiveDateTime
-    @JsonKey(name: '_effectiveDateTime') Element? effectiveDateTimeElement,
+    @JsonKey(name: '_effectiveDateTime')
+    PrimitiveElement? effectiveDateTimeElement,
 
     /// [effectivePeriod] The interval of time during which it is being asserted
     /// that the patient is/was/will be taking the medication (or was not taking,
@@ -6710,7 +6740,7 @@ class MedicationStatement with Resource, _$MedicationStatement {
     FhirDateTime? dateAsserted,
 
     /// [dateAssertedElement] Extensions for dateAsserted
-    @JsonKey(name: '_dateAsserted') Element? dateAssertedElement,
+    @JsonKey(name: '_dateAsserted') PrimitiveElement? dateAssertedElement,
 
     /// [informationSource] The person or organization that provided the
     /// information about the taking of this medication. Note: Use derivedFrom

@@ -15,7 +15,7 @@ part 'security.g.dart';
 
 /// [AuditEvent] A record of an event made for purposes of maintaining a
 @freezed
-class AuditEvent with Resource, _$AuditEvent {
+class AuditEvent with _$AuditEvent implements DomainResource {
   /// [AuditEvent] A record of an event made for purposes of maintaining a
   const AuditEvent._();
 
@@ -133,13 +133,13 @@ class AuditEvent with Resource, _$AuditEvent {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -191,7 +191,7 @@ class AuditEvent with Resource, _$AuditEvent {
     FhirCode? action,
 
     /// [actionElement] Extensions for action
-    @JsonKey(name: '_action') Element? actionElement,
+    @JsonKey(name: '_action') PrimitiveElement? actionElement,
 
     /// [period] The period during which the activity occurred.
     Period? period,
@@ -200,19 +200,19 @@ class AuditEvent with Resource, _$AuditEvent {
     FhirInstant? recorded,
 
     /// [recordedElement] Extensions for recorded
-    @JsonKey(name: '_recorded') Element? recordedElement,
+    @JsonKey(name: '_recorded') PrimitiveElement? recordedElement,
 
     /// [outcome] Indicates whether the event succeeded or failed.
     FhirCode? outcome,
 
     /// [outcomeElement] Extensions for outcome
-    @JsonKey(name: '_outcome') Element? outcomeElement,
+    @JsonKey(name: '_outcome') PrimitiveElement? outcomeElement,
 
     /// [outcomeDesc] A free text description of the outcome of the event.
     String? outcomeDesc,
 
     /// [outcomeDescElement] Extensions for outcomeDesc
-    @JsonKey(name: '_outcomeDesc') Element? outcomeDescElement,
+    @JsonKey(name: '_outcomeDesc') PrimitiveElement? outcomeDescElement,
 
     /// [purposeOfEvent] The purposeOfUse (reason) that was used during the event
     ///  being recorded.
@@ -267,7 +267,7 @@ class AuditEvent with Resource, _$AuditEvent {
 
 /// [AuditEventAgent] A record of an event made for purposes of maintaining
 @freezed
-class AuditEventAgent with BackboneType, _$AuditEventAgent {
+class AuditEventAgent with _$AuditEventAgent implements BackboneElement {
   /// [AuditEventAgent] A record of an event made for purposes of maintaining
   const AuditEventAgent._();
 
@@ -388,20 +388,20 @@ class AuditEventAgent with BackboneType, _$AuditEventAgent {
     String? altId,
 
     /// [altIdElement] Extensions for altId
-    @JsonKey(name: '_altId') Element? altIdElement,
+    @JsonKey(name: '_altId') PrimitiveElement? altIdElement,
 
     /// [name] Human-meaningful name for the agent.
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [requestor] Indicator that the user is or is not the requestor, or
     ///  initiator, for the event being audited.
     FhirBoolean? requestor,
 
     /// [requestorElement] Extensions for requestor
-    @JsonKey(name: '_requestor') Element? requestorElement,
+    @JsonKey(name: '_requestor') PrimitiveElement? requestorElement,
 
     /// [location] Where the event occurred.
     Reference? location,
@@ -461,7 +461,7 @@ class AuditEventAgent with BackboneType, _$AuditEventAgent {
 
 /// [AuditEventNetwork] A record of an event made for purposes of
 @freezed
-class AuditEventNetwork with BackboneType, _$AuditEventNetwork {
+class AuditEventNetwork with _$AuditEventNetwork implements BackboneElement {
   /// [AuditEventNetwork] A record of an event made for purposes of
   const AuditEventNetwork._();
 
@@ -535,14 +535,14 @@ class AuditEventNetwork with BackboneType, _$AuditEventNetwork {
     String? address,
 
     /// [addressElement] Extensions for address
-    @JsonKey(name: '_address') Element? addressElement,
+    @JsonKey(name: '_address') PrimitiveElement? addressElement,
 
     /// [type] An identifier for the type of network access point that originated
     ///  the audit event.
     FhirCode? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
   }) = _AuditEventNetwork;
 
   @override
@@ -578,7 +578,7 @@ class AuditEventNetwork with BackboneType, _$AuditEventNetwork {
 
 /// [AuditEventSource] A record of an event made for purposes of maintaining
 @freezed
-class AuditEventSource with BackboneType, _$AuditEventSource {
+class AuditEventSource with _$AuditEventSource implements BackboneElement {
   /// [AuditEventSource] A record of an event made for purposes of maintaining
   const AuditEventSource._();
 
@@ -653,7 +653,7 @@ class AuditEventSource with BackboneType, _$AuditEventSource {
     String? site,
 
     /// [siteElement] Extensions for site
-    @JsonKey(name: '_site') Element? siteElement,
+    @JsonKey(name: '_site') PrimitiveElement? siteElement,
 
     /// [observer] Identifier of the source where the event was detected.
     required Reference observer,
@@ -695,7 +695,7 @@ class AuditEventSource with BackboneType, _$AuditEventSource {
 
 /// [AuditEventEntity] A record of an event made for purposes of maintaining
 @freezed
-class AuditEventEntity with BackboneType, _$AuditEventEntity {
+class AuditEventEntity with _$AuditEventEntity implements BackboneElement {
   /// [AuditEventEntity] A record of an event made for purposes of maintaining
   const AuditEventEntity._();
 
@@ -802,19 +802,19 @@ class AuditEventEntity with BackboneType, _$AuditEventEntity {
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [description] Text that describes the entity in more detail.
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [query] The query parameters for a query-type entities.
     FhirBase64Binary? query,
 
     /// [queryElement] Extensions for query
-    @JsonKey(name: '_query') Element? queryElement,
+    @JsonKey(name: '_query') PrimitiveElement? queryElement,
 
     /// [detail] Tagged value pairs for conveying additional information about
     ///  the entity.
@@ -854,7 +854,7 @@ class AuditEventEntity with BackboneType, _$AuditEventEntity {
 
 /// [AuditEventDetail] A record of an event made for purposes of maintaining
 @freezed
-class AuditEventDetail with BackboneType, _$AuditEventDetail {
+class AuditEventDetail with _$AuditEventDetail implements BackboneElement {
   /// [AuditEventDetail] A record of an event made for purposes of maintaining
   const AuditEventDetail._();
 
@@ -929,19 +929,20 @@ class AuditEventDetail with BackboneType, _$AuditEventDetail {
     String? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [valueString] The  value of the extra detail.
     String? valueString,
 
     /// [valueStringElement] Extensions for valueString
-    @JsonKey(name: '_valueString') Element? valueStringElement,
+    @JsonKey(name: '_valueString') PrimitiveElement? valueStringElement,
 
     /// [valueBase64Binary] The  value of the extra detail.
     FhirBase64Binary? valueBase64Binary,
 
     /// [valueBase64BinaryElement] Extensions for valueBase64Binary
-    @JsonKey(name: '_valueBase64Binary') Element? valueBase64BinaryElement,
+    @JsonKey(name: '_valueBase64Binary')
+    PrimitiveElement? valueBase64BinaryElement,
   }) = _AuditEventDetail;
 
   @override
@@ -977,7 +978,7 @@ class AuditEventDetail with BackboneType, _$AuditEventDetail {
 
 /// [Consent] A record of a healthcare consumer’s  choices, which permits or
 @freezed
-class Consent with Resource, _$Consent {
+class Consent with _$Consent implements DomainResource {
   /// [Consent] A record of a healthcare consumer’s  choices, which permits or
   const Consent._();
 
@@ -1113,13 +1114,13 @@ class Consent with Resource, _$Consent {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -1165,7 +1166,7 @@ class Consent with Resource, _$Consent {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [scope] A selector of the type of consent being presented: ADR, Privacy,
     ///  Treatment, Research.  This list is now extensible.
@@ -1183,7 +1184,7 @@ class Consent with Resource, _$Consent {
     FhirDateTime? dateTime,
 
     /// [dateTimeElement] Extensions for dateTime
-    @JsonKey(name: '_dateTime') Element? dateTimeElement,
+    @JsonKey(name: '_dateTime') PrimitiveElement? dateTimeElement,
 
     /// [performer] Either the Grantor, which is the entity responsible for
     /// granting the rights listed in a Consent Directive or the Grantee, which is
@@ -1265,7 +1266,7 @@ class Consent with Resource, _$Consent {
 
 /// [ConsentPolicy] A record of a healthcare consumer’s  choices, which
 @freezed
-class ConsentPolicy with BackboneType, _$ConsentPolicy {
+class ConsentPolicy with _$ConsentPolicy implements BackboneElement {
   /// [ConsentPolicy] A record of a healthcare consumer’s  choices, which
   const ConsentPolicy._();
 
@@ -1341,7 +1342,7 @@ class ConsentPolicy with BackboneType, _$ConsentPolicy {
     FhirUri? authority,
 
     /// [authorityElement] Extensions for authority
-    @JsonKey(name: '_authority') Element? authorityElement,
+    @JsonKey(name: '_authority') PrimitiveElement? authorityElement,
 
     /// [uri] The references to the policies that are included in this consent
     /// scope. Policies may be organizational, but are often defined
@@ -1349,7 +1350,7 @@ class ConsentPolicy with BackboneType, _$ConsentPolicy {
     FhirUri? uri,
 
     /// [uriElement] Extensions for uri
-    @JsonKey(name: '_uri') Element? uriElement,
+    @JsonKey(name: '_uri') PrimitiveElement? uriElement,
   }) = _ConsentPolicy;
 
   @override
@@ -1385,7 +1386,9 @@ class ConsentPolicy with BackboneType, _$ConsentPolicy {
 
 /// [ConsentVerification] A record of a healthcare consumer’s  choices,
 @freezed
-class ConsentVerification with BackboneType, _$ConsentVerification {
+class ConsentVerification
+    with _$ConsentVerification
+    implements BackboneElement {
   /// [ConsentVerification] A record of a healthcare consumer’s  choices,
   const ConsentVerification._();
 
@@ -1460,7 +1463,7 @@ class ConsentVerification with BackboneType, _$ConsentVerification {
     FhirBoolean? verified,
 
     /// [verifiedElement] Extensions for verified
-    @JsonKey(name: '_verified') Element? verifiedElement,
+    @JsonKey(name: '_verified') PrimitiveElement? verifiedElement,
 
     /// [verifiedWith] Who verified the instruction (Patient, Relative or other
     ///  Authorized Person).
@@ -1470,7 +1473,8 @@ class ConsentVerification with BackboneType, _$ConsentVerification {
     FhirDateTime? verificationDate,
 
     /// [verificationDateElement] Extensions for verificationDate
-    @JsonKey(name: '_verificationDate') Element? verificationDateElement,
+    @JsonKey(name: '_verificationDate')
+    PrimitiveElement? verificationDateElement,
   }) = _ConsentVerification;
 
   @override
@@ -1506,7 +1510,7 @@ class ConsentVerification with BackboneType, _$ConsentVerification {
 
 /// [ConsentProvision] A record of a healthcare consumer’s  choices, which
 @freezed
-class ConsentProvision with BackboneType, _$ConsentProvision {
+class ConsentProvision with _$ConsentProvision implements BackboneElement {
   /// [ConsentProvision] A record of a healthcare consumer’s  choices, which
   const ConsentProvision._();
 
@@ -1604,7 +1608,7 @@ class ConsentProvision with BackboneType, _$ConsentProvision {
     FhirCode? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [period] The timeframe in this rule is valid.
     Period? period,
@@ -1678,7 +1682,7 @@ class ConsentProvision with BackboneType, _$ConsentProvision {
 
 /// [ConsentActor] A record of a healthcare consumer’s  choices, which
 @freezed
-class ConsentActor with BackboneType, _$ConsentActor {
+class ConsentActor with _$ConsentActor implements BackboneElement {
   /// [ConsentActor] A record of a healthcare consumer’s  choices, which
   const ConsentActor._();
 
@@ -1788,7 +1792,7 @@ class ConsentActor with BackboneType, _$ConsentActor {
 
 /// [ConsentData] A record of a healthcare consumer’s  choices, which
 @freezed
-class ConsentData with BackboneType, _$ConsentData {
+class ConsentData with _$ConsentData implements BackboneElement {
   /// [ConsentData] A record of a healthcare consumer’s  choices, which
   const ConsentData._();
 
@@ -1861,7 +1865,7 @@ class ConsentData with BackboneType, _$ConsentData {
     FhirCode? meaning,
 
     /// [meaningElement] Extensions for meaning
-    @JsonKey(name: '_meaning') Element? meaningElement,
+    @JsonKey(name: '_meaning') PrimitiveElement? meaningElement,
 
     /// [reference] A reference to a specific resource that defines which
     ///  resources are covered by this consent.
@@ -1901,7 +1905,7 @@ class ConsentData with BackboneType, _$ConsentData {
 
 /// [Provenance] Provenance of a resource is a record that describes entities
 @freezed
-class Provenance with Resource, _$Provenance {
+class Provenance with _$Provenance implements DomainResource {
   /// [Provenance] Provenance of a resource is a record that describes entities
   const Provenance._();
 
@@ -2028,13 +2032,13 @@ class Provenance with Resource, _$Provenance {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -2085,13 +2089,14 @@ class Provenance with Resource, _$Provenance {
     FhirDateTime? occurredDateTime,
 
     /// [occurredDateTimeElement] Extensions for occurredDateTime
-    @JsonKey(name: '_occurredDateTime') Element? occurredDateTimeElement,
+    @JsonKey(name: '_occurredDateTime')
+    PrimitiveElement? occurredDateTimeElement,
 
     /// [recorded] The instant of time at which the activity was recorded.
     FhirInstant? recorded,
 
     /// [recordedElement] Extensions for recorded
-    @JsonKey(name: '_recorded') Element? recordedElement,
+    @JsonKey(name: '_recorded') PrimitiveElement? recordedElement,
 
     /// [policy] Policy or plan the activity was defined by. Typically, a single
     /// activity may have multiple applicable policy documents, such as patient
@@ -2163,7 +2168,7 @@ class Provenance with Resource, _$Provenance {
 
 /// [ProvenanceAgent] Provenance of a resource is a record that describes
 @freezed
-class ProvenanceAgent with BackboneType, _$ProvenanceAgent {
+class ProvenanceAgent with _$ProvenanceAgent implements BackboneElement {
   /// [ProvenanceAgent] Provenance of a resource is a record that describes
   const ProvenanceAgent._();
 
@@ -2289,7 +2294,7 @@ class ProvenanceAgent with BackboneType, _$ProvenanceAgent {
 
 /// [ProvenanceEntity] Provenance of a resource is a record that describes
 @freezed
-class ProvenanceEntity with BackboneType, _$ProvenanceEntity {
+class ProvenanceEntity with _$ProvenanceEntity implements BackboneElement {
   /// [ProvenanceEntity] Provenance of a resource is a record that describes
   const ProvenanceEntity._();
 
@@ -2371,7 +2376,7 @@ class ProvenanceEntity with BackboneType, _$ProvenanceEntity {
     FhirCode? role,
 
     /// [roleElement] Extensions for role
-    @JsonKey(name: '_role') Element? roleElement,
+    @JsonKey(name: '_role') PrimitiveElement? roleElement,
 
     /// [what] Identity of the  Entity used. May be a logical or physical uri and
     ///  maybe absolute or relative.

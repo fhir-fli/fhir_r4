@@ -40,7 +40,7 @@ mixin _$FhirMeta {
 
   /// [versionIdElement] Extensions for versionId
   @JsonKey(name: '_versionId')
-  Element? get versionIdElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get versionIdElement => throw _privateConstructorUsedError;
 
   /// [lastUpdated] When the resource last changed - e.g. when the version
   ///  changed.
@@ -48,7 +48,8 @@ mixin _$FhirMeta {
 
   /// [lastUpdatedElement] Extensions for lastUpdated
   @JsonKey(name: '_lastUpdated')
-  Element? get lastUpdatedElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get lastUpdatedElement =>
+      throw _privateConstructorUsedError;
 
   /// [source] A uri that identifies the source system of the resource. This
   /// provides a minimal amount of [[[Provenance]]] information that can be used
@@ -59,7 +60,7 @@ mixin _$FhirMeta {
 
   /// [sourceElement] Extensions for source
   @JsonKey(name: '_source')
-  Element? get sourceElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get sourceElement => throw _privateConstructorUsedError;
 
   /// [profile] A list of profiles (references to [[[StructureDefinition]]]
   /// resources) that this resource claims to conform to. The URL is a reference
@@ -91,11 +92,11 @@ abstract class $FhirMetaCopyWith<$Res> {
       {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       FhirId? versionId,
-      @JsonKey(name: '_versionId') Element? versionIdElement,
+      @JsonKey(name: '_versionId') PrimitiveElement? versionIdElement,
       FhirInstant? lastUpdated,
-      @JsonKey(name: '_lastUpdated') Element? lastUpdatedElement,
+      @JsonKey(name: '_lastUpdated') PrimitiveElement? lastUpdatedElement,
       FhirUri? source,
-      @JsonKey(name: '_source') Element? sourceElement,
+      @JsonKey(name: '_source') PrimitiveElement? sourceElement,
       List<FhirCanonical>? profile,
       List<Coding>? security,
       List<Coding>? tag});
@@ -142,7 +143,7 @@ class _$FhirMetaCopyWithImpl<$Res, $Val extends FhirMeta>
       versionIdElement: freezed == versionIdElement
           ? _value.versionIdElement
           : versionIdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       lastUpdated: freezed == lastUpdated
           ? _value.lastUpdated
           : lastUpdated // ignore: cast_nullable_to_non_nullable
@@ -150,7 +151,7 @@ class _$FhirMetaCopyWithImpl<$Res, $Val extends FhirMeta>
       lastUpdatedElement: freezed == lastUpdatedElement
           ? _value.lastUpdatedElement
           : lastUpdatedElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       source: freezed == source
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
@@ -158,7 +159,7 @@ class _$FhirMetaCopyWithImpl<$Res, $Val extends FhirMeta>
       sourceElement: freezed == sourceElement
           ? _value.sourceElement
           : sourceElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       profile: freezed == profile
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
@@ -187,11 +188,11 @@ abstract class _$$FhirMetaImplCopyWith<$Res>
       {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       FhirId? versionId,
-      @JsonKey(name: '_versionId') Element? versionIdElement,
+      @JsonKey(name: '_versionId') PrimitiveElement? versionIdElement,
       FhirInstant? lastUpdated,
-      @JsonKey(name: '_lastUpdated') Element? lastUpdatedElement,
+      @JsonKey(name: '_lastUpdated') PrimitiveElement? lastUpdatedElement,
       FhirUri? source,
-      @JsonKey(name: '_source') Element? sourceElement,
+      @JsonKey(name: '_source') PrimitiveElement? sourceElement,
       List<FhirCanonical>? profile,
       List<Coding>? security,
       List<Coding>? tag});
@@ -236,7 +237,7 @@ class __$$FhirMetaImplCopyWithImpl<$Res>
       versionIdElement: freezed == versionIdElement
           ? _value.versionIdElement
           : versionIdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       lastUpdated: freezed == lastUpdated
           ? _value.lastUpdated
           : lastUpdated // ignore: cast_nullable_to_non_nullable
@@ -244,7 +245,7 @@ class __$$FhirMetaImplCopyWithImpl<$Res>
       lastUpdatedElement: freezed == lastUpdatedElement
           ? _value.lastUpdatedElement
           : lastUpdatedElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       source: freezed == source
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
@@ -252,7 +253,7 @@ class __$$FhirMetaImplCopyWithImpl<$Res>
       sourceElement: freezed == sourceElement
           ? _value.sourceElement
           : sourceElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       profile: freezed == profile
           ? _value._profile
           : profile // ignore: cast_nullable_to_non_nullable
@@ -331,7 +332,7 @@ class _$FhirMetaImpl extends _FhirMeta {
   /// [versionIdElement] Extensions for versionId
   @override
   @JsonKey(name: '_versionId')
-  final Element? versionIdElement;
+  final PrimitiveElement? versionIdElement;
 
   /// [lastUpdated] When the resource last changed - e.g. when the version
   ///  changed.
@@ -341,7 +342,7 @@ class _$FhirMetaImpl extends _FhirMeta {
   /// [lastUpdatedElement] Extensions for lastUpdated
   @override
   @JsonKey(name: '_lastUpdated')
-  final Element? lastUpdatedElement;
+  final PrimitiveElement? lastUpdatedElement;
 
   /// [source] A uri that identifies the source system of the resource. This
   /// provides a minimal amount of [[[Provenance]]] information that can be used
@@ -354,7 +355,7 @@ class _$FhirMetaImpl extends _FhirMeta {
   /// [sourceElement] Extensions for source
   @override
   @JsonKey(name: '_source')
-  final Element? sourceElement;
+  final PrimitiveElement? sourceElement;
 
   /// [profile] A list of profiles (references to [[[StructureDefinition]]]
   /// resources) that this resource claims to conform to. The URL is a reference
@@ -471,11 +472,11 @@ abstract class _FhirMeta extends FhirMeta {
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final FhirId? versionId,
-      @JsonKey(name: '_versionId') final Element? versionIdElement,
+      @JsonKey(name: '_versionId') final PrimitiveElement? versionIdElement,
       final FhirInstant? lastUpdated,
-      @JsonKey(name: '_lastUpdated') final Element? lastUpdatedElement,
+      @JsonKey(name: '_lastUpdated') final PrimitiveElement? lastUpdatedElement,
       final FhirUri? source,
-      @JsonKey(name: '_source') final Element? sourceElement,
+      @JsonKey(name: '_source') final PrimitiveElement? sourceElement,
       final List<FhirCanonical>? profile,
       final List<Coding>? security,
       final List<Coding>? tag}) = _$FhirMetaImpl;
@@ -509,7 +510,7 @@ abstract class _FhirMeta extends FhirMeta {
 
   /// [versionIdElement] Extensions for versionId
   @JsonKey(name: '_versionId')
-  Element? get versionIdElement;
+  PrimitiveElement? get versionIdElement;
   @override
 
   /// [lastUpdated] When the resource last changed - e.g. when the version
@@ -519,7 +520,7 @@ abstract class _FhirMeta extends FhirMeta {
 
   /// [lastUpdatedElement] Extensions for lastUpdated
   @JsonKey(name: '_lastUpdated')
-  Element? get lastUpdatedElement;
+  PrimitiveElement? get lastUpdatedElement;
   @override
 
   /// [source] A uri that identifies the source system of the resource. This
@@ -532,7 +533,7 @@ abstract class _FhirMeta extends FhirMeta {
 
   /// [sourceElement] Extensions for source
   @JsonKey(name: '_source')
-  Element? get sourceElement;
+  PrimitiveElement? get sourceElement;
   @override
 
   /// [profile] A list of profiles (references to [[[StructureDefinition]]]

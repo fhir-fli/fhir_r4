@@ -75,60 +75,68 @@ _$TimingRepeatImpl _$$TimingRepeatImplFromJson(Map<String, dynamic> json) =>
           : FhirPositiveInt.fromJson(json['count']),
       countElement: json['_count'] == null
           ? null
-          : Element.fromJson(json['_count'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_count'] as Map<String, dynamic>),
       countMax: json['countMax'] == null
           ? null
           : FhirPositiveInt.fromJson(json['countMax']),
       countMaxElement: json['_countMax'] == null
           ? null
-          : Element.fromJson(json['_countMax'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_countMax'] as Map<String, dynamic>),
       duration: json['duration'] == null
           ? null
           : FhirDecimal.fromJson(json['duration']),
       durationElement: json['_duration'] == null
           ? null
-          : Element.fromJson(json['_duration'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_duration'] as Map<String, dynamic>),
       durationMax: json['durationMax'] == null
           ? null
           : FhirDecimal.fromJson(json['durationMax']),
       durationMaxElement: json['_durationMax'] == null
           ? null
-          : Element.fromJson(json['_durationMax'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_durationMax'] as Map<String, dynamic>),
       durationUnit: $enumDecodeNullable(
           _$TimingRepeatDurationUnitEnumMap, json['durationUnit'],
           unknownValue: TimingRepeatDurationUnit.unknown),
       durationUnitElement: json['_durationUnit'] == null
           ? null
-          : Element.fromJson(json['_durationUnit'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_durationUnit'] as Map<String, dynamic>),
       frequency: json['frequency'] == null
           ? null
           : FhirPositiveInt.fromJson(json['frequency']),
       frequencyElement: json['_frequency'] == null
           ? null
-          : Element.fromJson(json['_frequency'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_frequency'] as Map<String, dynamic>),
       frequencyMax: json['frequencyMax'] == null
           ? null
           : FhirPositiveInt.fromJson(json['frequencyMax']),
       frequencyMaxElement: json['_frequencyMax'] == null
           ? null
-          : Element.fromJson(json['_frequencyMax'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_frequencyMax'] as Map<String, dynamic>),
       period:
           json['period'] == null ? null : FhirDecimal.fromJson(json['period']),
       periodElement: json['_period'] == null
           ? null
-          : Element.fromJson(json['_period'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_period'] as Map<String, dynamic>),
       periodMax: json['periodMax'] == null
           ? null
           : FhirDecimal.fromJson(json['periodMax']),
       periodMaxElement: json['_periodMax'] == null
           ? null
-          : Element.fromJson(json['_periodMax'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_periodMax'] as Map<String, dynamic>),
       periodUnit: $enumDecodeNullable(
           _$TimingRepeatPeriodUnitEnumMap, json['periodUnit'],
           unknownValue: TimingRepeatPeriodUnit.unknown),
       periodUnitElement: json['_periodUnit'] == null
           ? null
-          : Element.fromJson(json['_periodUnit'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_periodUnit'] as Map<String, dynamic>),
       dayOfWeek: (json['dayOfWeek'] as List<dynamic>?)
           ?.map(FhirCode.fromJson)
           .toList(),
@@ -155,7 +163,7 @@ _$TimingRepeatImpl _$$TimingRepeatImplFromJson(Map<String, dynamic> json) =>
           : FhirUnsignedInt.fromJson(json['offset']),
       offsetElement: json['_offset'] == null
           ? null
-          : Element.fromJson(json['_offset'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_offset'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$TimingRepeatImplToJson(_$TimingRepeatImpl instance) {

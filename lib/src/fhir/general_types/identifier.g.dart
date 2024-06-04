@@ -16,18 +16,18 @@ _$IdentifierImpl _$$IdentifierImplFromJson(Map<String, dynamic> json) =>
           unknownValue: IdentifierUse.unknown),
       useElement: json['_use'] == null
           ? null
-          : Element.fromJson(json['_use'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_use'] as Map<String, dynamic>),
       type: json['type'] == null
           ? null
           : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       system: json['system'] == null ? null : FhirUri.fromJson(json['system']),
       systemElement: json['_system'] == null
           ? null
-          : Element.fromJson(json['_system'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_system'] as Map<String, dynamic>),
       value: json['value'] as String?,
       valueElement: json['_value'] == null
           ? null
-          : Element.fromJson(json['_value'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_value'] as Map<String, dynamic>),
       period: json['period'] == null
           ? null
           : Period.fromJson(json['period'] as Map<String, dynamic>),

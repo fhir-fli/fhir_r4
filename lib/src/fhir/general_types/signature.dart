@@ -89,7 +89,7 @@ class Signature with _$Signature implements DataType {
     FhirInstant? when,
 
     /// [whenElement] Extensions for when
-    @JsonKey(name: '_when') Element? whenElement,
+    @JsonKey(name: '_when') PrimitiveElement? whenElement,
 
     /// [who] A reference to an application-usable description of the identity
     ///  that signed  (e.g. the signature used their private key).
@@ -104,7 +104,7 @@ class Signature with _$Signature implements DataType {
     FhirCode? targetFormat,
 
     /// [targetFormatElement] Extensions for targetFormat
-    @JsonKey(name: '_targetFormat') Element? targetFormatElement,
+    @JsonKey(name: '_targetFormat') PrimitiveElement? targetFormatElement,
 
     /// [sigFormat] A mime type that indicates the technical format of the
     /// signature. Important mime types are application/signature+xml for X ML
@@ -113,14 +113,14 @@ class Signature with _$Signature implements DataType {
     FhirCode? sigFormat,
 
     /// [sigFormatElement] Extensions for sigFormat
-    @JsonKey(name: '_sigFormat') Element? sigFormatElement,
+    @JsonKey(name: '_sigFormat') PrimitiveElement? sigFormatElement,
 
     /// [data] The base64 encoding of the Signature content. When signature is
     ///  not recorded electronically this element would be empty.
     FhirBase64Binary? data,
 
     /// [dataElement] Extensions for data
-    @JsonKey(name: '_data') Element? dataElement,
+    @JsonKey(name: '_data') PrimitiveElement? dataElement,
   }) = _Signature;
 
   @override

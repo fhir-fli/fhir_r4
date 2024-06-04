@@ -55,14 +55,14 @@ mixin _$Dosage {
 
   /// [sequenceElement] Extensions for sequence
   @JsonKey(name: '_sequence')
-  Element? get sequenceElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get sequenceElement => throw _privateConstructorUsedError;
 
   /// [text] Free text dosage instructions e.g. SIG.
   String? get text => throw _privateConstructorUsedError;
 
   /// [textElement] Extensions for text
   @JsonKey(name: '_text')
-  Element? get textElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get textElement => throw _privateConstructorUsedError;
 
   /// [additionalInstruction] Supplemental instructions to the patient on how
   /// to take the medication  (e.g. "with meals" or"take half to one hour before
@@ -77,7 +77,8 @@ mixin _$Dosage {
 
   /// [patientInstructionElement] Extensions for patientInstruction
   @JsonKey(name: '_patientInstruction')
-  Element? get patientInstructionElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get patientInstructionElement =>
+      throw _privateConstructorUsedError;
 
   /// [timing] When medication should be administered.
   Timing? get timing => throw _privateConstructorUsedError;
@@ -89,7 +90,8 @@ mixin _$Dosage {
 
   /// [asNeededBooleanElement] Extensions for asNeededBoolean
   @JsonKey(name: '_asNeededBoolean')
-  Element? get asNeededBooleanElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get asNeededBooleanElement =>
+      throw _privateConstructorUsedError;
 
   /// [asNeededCodeableConcept] Indicates whether the Medication is only taken
   /// when needed within a specific dosing schedule (Boolean option), or it
@@ -135,15 +137,17 @@ abstract class $DosageCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirInteger? sequence,
-      @JsonKey(name: '_sequence') Element? sequenceElement,
+      @JsonKey(name: '_sequence') PrimitiveElement? sequenceElement,
       String? text,
-      @JsonKey(name: '_text') Element? textElement,
+      @JsonKey(name: '_text') PrimitiveElement? textElement,
       List<CodeableConcept>? additionalInstruction,
       String? patientInstruction,
-      @JsonKey(name: '_patientInstruction') Element? patientInstructionElement,
+      @JsonKey(name: '_patientInstruction')
+      PrimitiveElement? patientInstructionElement,
       Timing? timing,
       FhirBoolean? asNeededBoolean,
-      @JsonKey(name: '_asNeededBoolean') Element? asNeededBooleanElement,
+      @JsonKey(name: '_asNeededBoolean')
+      PrimitiveElement? asNeededBooleanElement,
       CodeableConcept? asNeededCodeableConcept,
       CodeableConcept? site,
       CodeableConcept? route,
@@ -218,7 +222,7 @@ class _$DosageCopyWithImpl<$Res, $Val extends Dosage>
       sequenceElement: freezed == sequenceElement
           ? _value.sequenceElement
           : sequenceElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -226,7 +230,7 @@ class _$DosageCopyWithImpl<$Res, $Val extends Dosage>
       textElement: freezed == textElement
           ? _value.textElement
           : textElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       additionalInstruction: freezed == additionalInstruction
           ? _value.additionalInstruction
           : additionalInstruction // ignore: cast_nullable_to_non_nullable
@@ -238,7 +242,7 @@ class _$DosageCopyWithImpl<$Res, $Val extends Dosage>
       patientInstructionElement: freezed == patientInstructionElement
           ? _value.patientInstructionElement
           : patientInstructionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       timing: freezed == timing
           ? _value.timing
           : timing // ignore: cast_nullable_to_non_nullable
@@ -250,7 +254,7 @@ class _$DosageCopyWithImpl<$Res, $Val extends Dosage>
       asNeededBooleanElement: freezed == asNeededBooleanElement
           ? _value.asNeededBooleanElement
           : asNeededBooleanElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       asNeededCodeableConcept: freezed == asNeededCodeableConcept
           ? _value.asNeededCodeableConcept
           : asNeededCodeableConcept // ignore: cast_nullable_to_non_nullable
@@ -396,15 +400,17 @@ abstract class _$$DosageImplCopyWith<$Res> implements $DosageCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirInteger? sequence,
-      @JsonKey(name: '_sequence') Element? sequenceElement,
+      @JsonKey(name: '_sequence') PrimitiveElement? sequenceElement,
       String? text,
-      @JsonKey(name: '_text') Element? textElement,
+      @JsonKey(name: '_text') PrimitiveElement? textElement,
       List<CodeableConcept>? additionalInstruction,
       String? patientInstruction,
-      @JsonKey(name: '_patientInstruction') Element? patientInstructionElement,
+      @JsonKey(name: '_patientInstruction')
+      PrimitiveElement? patientInstructionElement,
       Timing? timing,
       FhirBoolean? asNeededBoolean,
-      @JsonKey(name: '_asNeededBoolean') Element? asNeededBooleanElement,
+      @JsonKey(name: '_asNeededBoolean')
+      PrimitiveElement? asNeededBooleanElement,
       CodeableConcept? asNeededCodeableConcept,
       CodeableConcept? site,
       CodeableConcept? route,
@@ -485,7 +491,7 @@ class __$$DosageImplCopyWithImpl<$Res>
       sequenceElement: freezed == sequenceElement
           ? _value.sequenceElement
           : sequenceElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -493,7 +499,7 @@ class __$$DosageImplCopyWithImpl<$Res>
       textElement: freezed == textElement
           ? _value.textElement
           : textElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       additionalInstruction: freezed == additionalInstruction
           ? _value._additionalInstruction
           : additionalInstruction // ignore: cast_nullable_to_non_nullable
@@ -505,7 +511,7 @@ class __$$DosageImplCopyWithImpl<$Res>
       patientInstructionElement: freezed == patientInstructionElement
           ? _value.patientInstructionElement
           : patientInstructionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       timing: freezed == timing
           ? _value.timing
           : timing // ignore: cast_nullable_to_non_nullable
@@ -517,7 +523,7 @@ class __$$DosageImplCopyWithImpl<$Res>
       asNeededBooleanElement: freezed == asNeededBooleanElement
           ? _value.asNeededBooleanElement
           : asNeededBooleanElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       asNeededCodeableConcept: freezed == asNeededCodeableConcept
           ? _value.asNeededCodeableConcept
           : asNeededCodeableConcept // ignore: cast_nullable_to_non_nullable
@@ -663,7 +669,7 @@ class _$DosageImpl extends _Dosage {
   /// [sequenceElement] Extensions for sequence
   @override
   @JsonKey(name: '_sequence')
-  final Element? sequenceElement;
+  final PrimitiveElement? sequenceElement;
 
   /// [text] Free text dosage instructions e.g. SIG.
   @override
@@ -672,7 +678,7 @@ class _$DosageImpl extends _Dosage {
   /// [textElement] Extensions for text
   @override
   @JsonKey(name: '_text')
-  final Element? textElement;
+  final PrimitiveElement? textElement;
 
   /// [additionalInstruction] Supplemental instructions to the patient on how
   /// to take the medication  (e.g. "with meals" or"take half to one hour before
@@ -702,7 +708,7 @@ class _$DosageImpl extends _Dosage {
   /// [patientInstructionElement] Extensions for patientInstruction
   @override
   @JsonKey(name: '_patientInstruction')
-  final Element? patientInstructionElement;
+  final PrimitiveElement? patientInstructionElement;
 
   /// [timing] When medication should be administered.
   @override
@@ -717,7 +723,7 @@ class _$DosageImpl extends _Dosage {
   /// [asNeededBooleanElement] Extensions for asNeededBoolean
   @override
   @JsonKey(name: '_asNeededBoolean')
-  final Element? asNeededBooleanElement;
+  final PrimitiveElement? asNeededBooleanElement;
 
   /// [asNeededCodeableConcept] Indicates whether the Medication is only taken
   /// when needed within a specific dosing schedule (Boolean option), or it
@@ -861,16 +867,17 @@ abstract class _Dosage extends Dosage {
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirInteger? sequence,
-      @JsonKey(name: '_sequence') final Element? sequenceElement,
+      @JsonKey(name: '_sequence') final PrimitiveElement? sequenceElement,
       final String? text,
-      @JsonKey(name: '_text') final Element? textElement,
+      @JsonKey(name: '_text') final PrimitiveElement? textElement,
       final List<CodeableConcept>? additionalInstruction,
       final String? patientInstruction,
       @JsonKey(name: '_patientInstruction')
-      final Element? patientInstructionElement,
+      final PrimitiveElement? patientInstructionElement,
       final Timing? timing,
       final FhirBoolean? asNeededBoolean,
-      @JsonKey(name: '_asNeededBoolean') final Element? asNeededBooleanElement,
+      @JsonKey(name: '_asNeededBoolean')
+      final PrimitiveElement? asNeededBooleanElement,
       final CodeableConcept? asNeededCodeableConcept,
       final CodeableConcept? site,
       final CodeableConcept? route,
@@ -923,7 +930,7 @@ abstract class _Dosage extends Dosage {
 
   /// [sequenceElement] Extensions for sequence
   @JsonKey(name: '_sequence')
-  Element? get sequenceElement;
+  PrimitiveElement? get sequenceElement;
   @override
 
   /// [text] Free text dosage instructions e.g. SIG.
@@ -932,7 +939,7 @@ abstract class _Dosage extends Dosage {
 
   /// [textElement] Extensions for text
   @JsonKey(name: '_text')
-  Element? get textElement;
+  PrimitiveElement? get textElement;
   @override
 
   /// [additionalInstruction] Supplemental instructions to the patient on how
@@ -949,7 +956,7 @@ abstract class _Dosage extends Dosage {
 
   /// [patientInstructionElement] Extensions for patientInstruction
   @JsonKey(name: '_patientInstruction')
-  Element? get patientInstructionElement;
+  PrimitiveElement? get patientInstructionElement;
   @override
 
   /// [timing] When medication should be administered.
@@ -964,7 +971,7 @@ abstract class _Dosage extends Dosage {
 
   /// [asNeededBooleanElement] Extensions for asNeededBoolean
   @JsonKey(name: '_asNeededBoolean')
-  Element? get asNeededBooleanElement;
+  PrimitiveElement? get asNeededBooleanElement;
   @override
 
   /// [asNeededCodeableConcept] Indicates whether the Medication is only taken

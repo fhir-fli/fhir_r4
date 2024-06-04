@@ -38,7 +38,7 @@ mixin _$Period {
 
   /// [startElement] Extensions for start
   @JsonKey(name: '_start')
-  Element? get startElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get startElement => throw _privateConstructorUsedError;
 
   /// [end] The end of the period. If the end of the period is missing, it
   /// means no end was known or planned at the time the instance was created.
@@ -48,7 +48,7 @@ mixin _$Period {
 
   /// [endElement] Extensions for end
   @JsonKey(name: '_end')
-  Element? get endElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get endElement => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -64,9 +64,9 @@ abstract class $PeriodCopyWith<$Res> {
       {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       FhirDateTime? start,
-      @JsonKey(name: '_start') Element? startElement,
+      @JsonKey(name: '_start') PrimitiveElement? startElement,
       FhirDateTime? end,
-      @JsonKey(name: '_end') Element? endElement});
+      @JsonKey(name: '_end') PrimitiveElement? endElement});
 }
 
 /// @nodoc
@@ -105,7 +105,7 @@ class _$PeriodCopyWithImpl<$Res, $Val extends Period>
       startElement: freezed == startElement
           ? _value.startElement
           : startElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       end: freezed == end
           ? _value.end
           : end // ignore: cast_nullable_to_non_nullable
@@ -113,7 +113,7 @@ class _$PeriodCopyWithImpl<$Res, $Val extends Period>
       endElement: freezed == endElement
           ? _value.endElement
           : endElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ) as $Val);
   }
 }
@@ -129,9 +129,9 @@ abstract class _$$PeriodImplCopyWith<$Res> implements $PeriodCopyWith<$Res> {
       {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       FhirDateTime? start,
-      @JsonKey(name: '_start') Element? startElement,
+      @JsonKey(name: '_start') PrimitiveElement? startElement,
       FhirDateTime? end,
-      @JsonKey(name: '_end') Element? endElement});
+      @JsonKey(name: '_end') PrimitiveElement? endElement});
 }
 
 /// @nodoc
@@ -168,7 +168,7 @@ class __$$PeriodImplCopyWithImpl<$Res>
       startElement: freezed == startElement
           ? _value.startElement
           : startElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       end: freezed == end
           ? _value.end
           : end // ignore: cast_nullable_to_non_nullable
@@ -176,7 +176,7 @@ class __$$PeriodImplCopyWithImpl<$Res>
       endElement: freezed == endElement
           ? _value.endElement
           : endElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ));
   }
 }
@@ -233,7 +233,7 @@ class _$PeriodImpl extends _Period {
   /// [startElement] Extensions for start
   @override
   @JsonKey(name: '_start')
-  final Element? startElement;
+  final PrimitiveElement? startElement;
 
   /// [end] The end of the period. If the end of the period is missing, it
   /// means no end was known or planned at the time the instance was created.
@@ -245,7 +245,7 @@ class _$PeriodImpl extends _Period {
   /// [endElement] Extensions for end
   @override
   @JsonKey(name: '_end')
-  final Element? endElement;
+  final PrimitiveElement? endElement;
 
   @override
   String toString() {
@@ -295,12 +295,13 @@ class _$PeriodImpl extends _Period {
 
 abstract class _Period extends Period {
   const factory _Period(
-      {final String? id,
-      @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
-      final FhirDateTime? start,
-      @JsonKey(name: '_start') final Element? startElement,
-      final FhirDateTime? end,
-      @JsonKey(name: '_end') final Element? endElement}) = _$PeriodImpl;
+          {final String? id,
+          @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
+          final FhirDateTime? start,
+          @JsonKey(name: '_start') final PrimitiveElement? startElement,
+          final FhirDateTime? end,
+          @JsonKey(name: '_end') final PrimitiveElement? endElement}) =
+      _$PeriodImpl;
   const _Period._() : super._();
 
   factory _Period.fromJson(Map<String, dynamic> json) = _$PeriodImpl.fromJson;
@@ -328,7 +329,7 @@ abstract class _Period extends Period {
 
   /// [startElement] Extensions for start
   @JsonKey(name: '_start')
-  Element? get startElement;
+  PrimitiveElement? get startElement;
   @override
 
   /// [end] The end of the period. If the end of the period is missing, it
@@ -340,7 +341,7 @@ abstract class _Period extends Period {
 
   /// [endElement] Extensions for end
   @JsonKey(name: '_end')
-  Element? get endElement;
+  PrimitiveElement? get endElement;
   @override
   @JsonKey(ignore: true)
   _$$PeriodImplCopyWith<_$PeriodImpl> get copyWith =>

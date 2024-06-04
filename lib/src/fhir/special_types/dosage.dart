@@ -124,13 +124,13 @@ class Dosage with _$Dosage implements BackboneType {
     FhirInteger? sequence,
 
     /// [sequenceElement] Extensions for sequence
-    @JsonKey(name: '_sequence') Element? sequenceElement,
+    @JsonKey(name: '_sequence') PrimitiveElement? sequenceElement,
 
     /// [text] Free text dosage instructions e.g. SIG.
     String? text,
 
     /// [textElement] Extensions for text
-    @JsonKey(name: '_text') Element? textElement,
+    @JsonKey(name: '_text') PrimitiveElement? textElement,
 
     /// [additionalInstruction] Supplemental instructions to the patient on how
     /// to take the medication  (e.g. "with meals" or"take half to one hour before
@@ -143,7 +143,8 @@ class Dosage with _$Dosage implements BackboneType {
     String? patientInstruction,
 
     /// [patientInstructionElement] Extensions for patientInstruction
-    @JsonKey(name: '_patientInstruction') Element? patientInstructionElement,
+    @JsonKey(name: '_patientInstruction')
+    PrimitiveElement? patientInstructionElement,
 
     /// [timing] When medication should be administered.
     Timing? timing,
@@ -154,7 +155,7 @@ class Dosage with _$Dosage implements BackboneType {
     FhirBoolean? asNeededBoolean,
 
     /// [asNeededBooleanElement] Extensions for asNeededBoolean
-    @JsonKey(name: '_asNeededBoolean') Element? asNeededBooleanElement,
+    @JsonKey(name: '_asNeededBoolean') PrimitiveElement? asNeededBooleanElement,
 
     /// [asNeededCodeableConcept] Indicates whether the Medication is only taken
     /// when needed within a specific dosing schedule (Boolean option), or it

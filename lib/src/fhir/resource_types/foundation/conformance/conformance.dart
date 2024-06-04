@@ -15,7 +15,7 @@ part 'conformance.g.dart';
 
 /// [CapabilityStatement] A Capability Statement documents a set of
 @freezed
-class CapabilityStatement with Resource, _$CapabilityStatement {
+class CapabilityStatement with _$CapabilityStatement implements DomainResource {
   /// [CapabilityStatement] A Capability Statement documents a set of
   const CapabilityStatement._();
 
@@ -236,13 +236,13 @@ class CapabilityStatement with Resource, _$CapabilityStatement {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -291,7 +291,7 @@ class CapabilityStatement with Resource, _$CapabilityStatement {
     FhirUri? url,
 
     /// [urlElement] Extensions for url
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
 
     /// [version] The identifier that is used to identify this version of the
     /// capability statement when it is referenced in a specification, model,
@@ -303,7 +303,7 @@ class CapabilityStatement with Resource, _$CapabilityStatement {
     String? version,
 
     /// [versionElement] Extensions for version
-    @JsonKey(name: '_version') Element? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
 
     /// [name] A natural language name identifying the capability statement. This
     /// name should be usable as an identifier for the module by machine
@@ -311,21 +311,21 @@ class CapabilityStatement with Resource, _$CapabilityStatement {
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [title] A short, descriptive, user-friendly title for the capability
     ///  statement.
     String? title,
 
     /// [titleElement] Extensions for title
-    @JsonKey(name: '_title') Element? titleElement,
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
 
     /// [status] The status of this capability statement. Enables tracking the
     ///  life-cycle of the content.
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [experimental] A Boolean value to indicate that this capability statement
     /// is authored for testing purposes (or education/evaluation/marketing) and
@@ -333,7 +333,7 @@ class CapabilityStatement with Resource, _$CapabilityStatement {
     FhirBoolean? experimental,
 
     /// [experimentalElement] Extensions for experimental
-    @JsonKey(name: '_experimental') Element? experimentalElement,
+    @JsonKey(name: '_experimental') PrimitiveElement? experimentalElement,
 
     /// [date] The date  (and optionally time) when the capability statement was
     /// published. The date must change when the business version changes and it
@@ -342,14 +342,14 @@ class CapabilityStatement with Resource, _$CapabilityStatement {
     FhirDateTime? date,
 
     /// [dateElement] Extensions for date
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
 
     /// [publisher] The name of the organization or individual that published the
     ///  capability statement.
     String? publisher,
 
     /// [publisherElement] Extensions for publisher
-    @JsonKey(name: '_publisher') Element? publisherElement,
+    @JsonKey(name: '_publisher') PrimitiveElement? publisherElement,
 
     /// [contact] Contact details to assist a user in finding and communicating
     ///  with the publisher.
@@ -362,7 +362,7 @@ class CapabilityStatement with Resource, _$CapabilityStatement {
     FhirMarkdown? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [useContext] The content was developed with a focus and intent of
     /// supporting the contexts that are listed. These contexts may be general
@@ -380,7 +380,7 @@ class CapabilityStatement with Resource, _$CapabilityStatement {
     FhirMarkdown? purpose,
 
     /// [purposeElement] Extensions for purpose
-    @JsonKey(name: '_purpose') Element? purposeElement,
+    @JsonKey(name: '_purpose') PrimitiveElement? purposeElement,
 
     /// [copyright] A copyright statement relating to the capability statement
     /// and/or its contents. Copyright statements are generally legal restrictions
@@ -388,7 +388,7 @@ class CapabilityStatement with Resource, _$CapabilityStatement {
     FhirMarkdown? copyright,
 
     /// [copyrightElement] Extensions for copyright
-    @JsonKey(name: '_copyright') Element? copyrightElement,
+    @JsonKey(name: '_copyright') PrimitiveElement? copyrightElement,
 
     /// [kind] The way that this statement is intended to be used, to describe an
     /// actual running instance of software, a particular product (kind, not
@@ -397,7 +397,7 @@ class CapabilityStatement with Resource, _$CapabilityStatement {
     FhirCode? kind,
 
     /// [kindElement] Extensions for kind
-    @JsonKey(name: '_kind') Element? kindElement,
+    @JsonKey(name: '_kind') PrimitiveElement? kindElement,
 
     /// [instantiates] Reference to a canonical URL of another
     /// CapabilityStatement that this software implements. This capability
@@ -430,7 +430,7 @@ class CapabilityStatement with Resource, _$CapabilityStatement {
     FhirCode? fhirVersion,
 
     /// [fhirVersionElement] Extensions for fhirVersion
-    @JsonKey(name: '_fhirVersion') Element? fhirVersionElement,
+    @JsonKey(name: '_fhirVersion') PrimitiveElement? fhirVersionElement,
 
     /// [format] A list of the formats supported by this implementation using
     ///  their content types.
@@ -576,20 +576,20 @@ class CapabilityStatementSoftware
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [version] The version identifier for the software covered by this
     ///  statement.
     String? version,
 
     /// [versionElement] Extensions for version
-    @JsonKey(name: '_version') Element? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
 
     /// [releaseDate] Date this version of the software was released.
     FhirDateTime? releaseDate,
 
     /// [releaseDateElement] Extensions for releaseDate
-    @JsonKey(name: '_releaseDate') Element? releaseDateElement,
+    @JsonKey(name: '_releaseDate') PrimitiveElement? releaseDateElement,
   }) = _CapabilityStatementSoftware;
 
   @override
@@ -702,14 +702,14 @@ class CapabilityStatementImplementation
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [url] An absolute base URL for the implementation.  This forms the base
     ///  for REST interfaces as well as the mailbox and document interfaces.
     FhirUrl? url,
 
     /// [urlElement] Extensions for url
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
 
     /// [custodian] The organization responsible for the management of the
     ///  instance and oversight of the data on the server at the specified URL.
@@ -741,7 +741,9 @@ class CapabilityStatementImplementation
 /// that may be used as a statement of actual server functionality or a
 ///  statement of required or desired server implementation.
 @freezed
-class CapabilityStatementRest with BackboneType, _$CapabilityStatementRest {
+class CapabilityStatementRest
+    with _$CapabilityStatementRest
+    implements BackboneElement {
   /// [CapabilityStatementRest] A Capability Statement documents a set of
   /// capabilities (behaviors) of a FHIR Server for a particular version of FHIR
   /// that may be used as a statement of actual server functionality or a
@@ -840,14 +842,14 @@ class CapabilityStatementRest with BackboneType, _$CapabilityStatementRest {
     FhirCode? mode,
 
     /// [modeElement] Extensions for mode
-    @JsonKey(name: '_mode') Element? modeElement,
+    @JsonKey(name: '_mode') PrimitiveElement? modeElement,
 
     /// [documentation] Information about the system's restful capabilities that
     ///  apply across all applications, such as security.
     FhirMarkdown? documentation,
 
     /// [documentationElement] Extensions for documentation
-    @JsonKey(name: '_documentation') Element? documentationElement,
+    @JsonKey(name: '_documentation') PrimitiveElement? documentationElement,
 
     /// [security] Information about security implementation from an interface
     ///  perspective - what a client needs to know.
@@ -994,7 +996,7 @@ class CapabilityStatementSecurity
     FhirBoolean? cors,
 
     /// [corsElement] Extensions for cors
-    @JsonKey(name: '_cors') Element? corsElement,
+    @JsonKey(name: '_cors') PrimitiveElement? corsElement,
 
     /// [service] Types of security services that are supported/required by the
     ///  system.
@@ -1004,7 +1006,7 @@ class CapabilityStatementSecurity
     FhirMarkdown? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
   }) = _CapabilityStatementSecurity;
 
   @override
@@ -1201,7 +1203,7 @@ class CapabilityStatementResource
     FhirCode? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [profile] A specification of the profile that describes the solution's
     /// overall support for the resource, including any constraints on
@@ -1224,7 +1226,7 @@ class CapabilityStatementResource
     FhirMarkdown? documentation,
 
     /// [documentationElement] Extensions for documentation
-    @JsonKey(name: '_documentation') Element? documentationElement,
+    @JsonKey(name: '_documentation') PrimitiveElement? documentationElement,
 
     /// [interaction] Identifies a restful operation supported by the solution.
     List<CapabilityStatementInteraction>? interaction,
@@ -1238,14 +1240,14 @@ class CapabilityStatementResource
     FhirCode? versioning,
 
     /// [versioningElement] Extensions for versioning
-    @JsonKey(name: '_versioning') Element? versioningElement,
+    @JsonKey(name: '_versioning') PrimitiveElement? versioningElement,
 
     /// [readHistory] A flag for whether the server is able to return past
     ///  versions as part of the vRead operation.
     FhirBoolean? readHistory,
 
     /// [readHistoryElement] Extensions for readHistory
-    @JsonKey(name: '_readHistory') Element? readHistoryElement,
+    @JsonKey(name: '_readHistory') PrimitiveElement? readHistoryElement,
 
     /// [updateCreate] A flag to indicate that the server allows or needs to
     /// allow the client to create new identities on the server (that is, the
@@ -1255,35 +1257,38 @@ class CapabilityStatementResource
     FhirBoolean? updateCreate,
 
     /// [updateCreateElement] Extensions for updateCreate
-    @JsonKey(name: '_updateCreate') Element? updateCreateElement,
+    @JsonKey(name: '_updateCreate') PrimitiveElement? updateCreateElement,
 
     /// [conditionalCreate] A flag that indicates that the server supports
     ///  conditional create.
     FhirBoolean? conditionalCreate,
 
     /// [conditionalCreateElement] Extensions for conditionalCreate
-    @JsonKey(name: '_conditionalCreate') Element? conditionalCreateElement,
+    @JsonKey(name: '_conditionalCreate')
+    PrimitiveElement? conditionalCreateElement,
 
     /// [conditionalRead] A code that indicates how the server supports
     ///  conditional read.
     FhirCode? conditionalRead,
 
     /// [conditionalReadElement] Extensions for conditionalRead
-    @JsonKey(name: '_conditionalRead') Element? conditionalReadElement,
+    @JsonKey(name: '_conditionalRead') PrimitiveElement? conditionalReadElement,
 
     /// [conditionalUpdate] A flag that indicates that the server supports
     ///  conditional update.
     FhirBoolean? conditionalUpdate,
 
     /// [conditionalUpdateElement] Extensions for conditionalUpdate
-    @JsonKey(name: '_conditionalUpdate') Element? conditionalUpdateElement,
+    @JsonKey(name: '_conditionalUpdate')
+    PrimitiveElement? conditionalUpdateElement,
 
     /// [conditionalDelete] A code that indicates how the server supports
     ///  conditional delete.
     FhirCode? conditionalDelete,
 
     /// [conditionalDeleteElement] Extensions for conditionalDelete
-    @JsonKey(name: '_conditionalDelete') Element? conditionalDeleteElement,
+    @JsonKey(name: '_conditionalDelete')
+    PrimitiveElement? conditionalDeleteElement,
 
     /// [referencePolicy] A set of flags that defines how references are
     ///  supported.
@@ -1434,7 +1439,7 @@ class CapabilityStatementInteraction
     FhirCode? code,
 
     /// [codeElement] Extensions for code
-    @JsonKey(name: '_code') Element? codeElement,
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
 
     /// [documentation] Guidance specific to the implementation of this
     /// operation, such as 'delete is a logical delete' or 'updates are only
@@ -1443,7 +1448,7 @@ class CapabilityStatementInteraction
     FhirMarkdown? documentation,
 
     /// [documentationElement] Extensions for documentation
-    @JsonKey(name: '_documentation') Element? documentationElement,
+    @JsonKey(name: '_documentation') PrimitiveElement? documentationElement,
   }) = _CapabilityStatementInteraction;
 
   @override
@@ -1573,7 +1578,7 @@ class CapabilityStatementSearchParam
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [definition] An absolute URI that is a formal reference to where this
     /// parameter was first defined, so that a client can be confident of the
@@ -1585,14 +1590,14 @@ class CapabilityStatementSearchParam
     FhirCode? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [documentation] This allows documentation of any distinct behaviors about
     ///  how the search parameter is used.  For example, text matching algorithms.
     FhirMarkdown? documentation,
 
     /// [documentationElement] Extensions for documentation
-    @JsonKey(name: '_documentation') Element? documentationElement,
+    @JsonKey(name: '_documentation') PrimitiveElement? documentationElement,
   }) = _CapabilityStatementSearchParam;
 
   @override
@@ -1724,7 +1729,7 @@ class CapabilityStatementOperation
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [definition] Where the formal definition can be found. If a server
     /// references the base definition of an Operation (i.e. from the
@@ -1743,7 +1748,7 @@ class CapabilityStatementOperation
     FhirMarkdown? documentation,
 
     /// [documentationElement] Extensions for documentation
-    @JsonKey(name: '_documentation') Element? documentationElement,
+    @JsonKey(name: '_documentation') PrimitiveElement? documentationElement,
   }) = _CapabilityStatementOperation;
 
   @override
@@ -1860,7 +1865,7 @@ class CapabilityStatementInteraction1
     FhirCode? code,
 
     /// [codeElement] Extensions for code
-    @JsonKey(name: '_code') Element? codeElement,
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
 
     /// [documentation] Guidance specific to the implementation of this
     /// operation, such as limitations on the kind of transactions allowed, or
@@ -1868,7 +1873,7 @@ class CapabilityStatementInteraction1
     FhirMarkdown? documentation,
 
     /// [documentationElement] Extensions for documentation
-    @JsonKey(name: '_documentation') Element? documentationElement,
+    @JsonKey(name: '_documentation') PrimitiveElement? documentationElement,
   }) = _CapabilityStatementInteraction1;
 
   @override
@@ -2001,7 +2006,7 @@ class CapabilityStatementMessaging
     FhirUnsignedInt? reliableCache,
 
     /// [reliableCacheElement] Extensions for reliableCache
-    @JsonKey(name: '_reliableCache') Element? reliableCacheElement,
+    @JsonKey(name: '_reliableCache') PrimitiveElement? reliableCacheElement,
 
     /// [documentation] Documentation about the system's messaging capabilities
     /// for this endpoint not otherwise documented by the capability statement.
@@ -2010,7 +2015,7 @@ class CapabilityStatementMessaging
     FhirMarkdown? documentation,
 
     /// [documentationElement] Extensions for documentation
-    @JsonKey(name: '_documentation') Element? documentationElement,
+    @JsonKey(name: '_documentation') PrimitiveElement? documentationElement,
 
     /// [supportedMessage] References to message definitions for messages this
     ///  system can send or receive.
@@ -2134,7 +2139,7 @@ class CapabilityStatementEndpoint
     FhirUrl? address,
 
     /// [addressElement] Extensions for address
-    @JsonKey(name: '_address') Element? addressElement,
+    @JsonKey(name: '_address') PrimitiveElement? addressElement,
   }) = _CapabilityStatementEndpoint;
 
   @override
@@ -2250,7 +2255,7 @@ class CapabilityStatementSupportedMessage
     FhirCode? mode,
 
     /// [modeElement] Extensions for mode
-    @JsonKey(name: '_mode') Element? modeElement,
+    @JsonKey(name: '_mode') PrimitiveElement? modeElement,
 
     /// [definition] Points to a message definition that identifies the messaging
     ///  event, message structure, allowed responses, etc.
@@ -2365,7 +2370,7 @@ class CapabilityStatementDocument
     FhirCode? mode,
 
     /// [modeElement] Extensions for mode
-    @JsonKey(name: '_mode') Element? modeElement,
+    @JsonKey(name: '_mode') PrimitiveElement? modeElement,
 
     /// [documentation] A description of how the application supports or uses the
     /// specified document profile.  For example, when documents are created, what
@@ -2373,7 +2378,7 @@ class CapabilityStatementDocument
     FhirMarkdown? documentation,
 
     /// [documentationElement] Extensions for documentation
-    @JsonKey(name: '_documentation') Element? documentationElement,
+    @JsonKey(name: '_documentation') PrimitiveElement? documentationElement,
 
     /// [profile] A profile on the document Bundle that constrains which
     ///  resources are present, and their contents.
@@ -2413,7 +2418,9 @@ class CapabilityStatementDocument
 
 /// [CompartmentDefinition] A compartment definition that defines how
 @freezed
-class CompartmentDefinition with Resource, _$CompartmentDefinition {
+class CompartmentDefinition
+    with _$CompartmentDefinition
+    implements DomainResource {
   /// [CompartmentDefinition] A compartment definition that defines how
   const CompartmentDefinition._();
 
@@ -2575,13 +2582,13 @@ class CompartmentDefinition with Resource, _$CompartmentDefinition {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -2630,7 +2637,7 @@ class CompartmentDefinition with Resource, _$CompartmentDefinition {
     FhirUri? url,
 
     /// [urlElement] Extensions for url
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
 
     /// [version] The identifier that is used to identify this version of the
     /// compartment definition when it is referenced in a specification, model,
@@ -2642,7 +2649,7 @@ class CompartmentDefinition with Resource, _$CompartmentDefinition {
     String? version,
 
     /// [versionElement] Extensions for version
-    @JsonKey(name: '_version') Element? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
 
     /// [name] A natural language name identifying the compartment definition.
     /// This name should be usable as an identifier for the module by machine
@@ -2650,14 +2657,14 @@ class CompartmentDefinition with Resource, _$CompartmentDefinition {
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [status] The status of this compartment definition. Enables tracking the
     ///  life-cycle of the content.
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [experimental] A Boolean value to indicate that this compartment
     /// definition is authored for testing purposes (or
@@ -2666,7 +2673,7 @@ class CompartmentDefinition with Resource, _$CompartmentDefinition {
     FhirBoolean? experimental,
 
     /// [experimentalElement] Extensions for experimental
-    @JsonKey(name: '_experimental') Element? experimentalElement,
+    @JsonKey(name: '_experimental') PrimitiveElement? experimentalElement,
 
     /// [date] The date  (and optionally time) when the compartment definition
     /// was published. The date must change when the business version changes and
@@ -2675,14 +2682,14 @@ class CompartmentDefinition with Resource, _$CompartmentDefinition {
     FhirDateTime? date,
 
     /// [dateElement] Extensions for date
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
 
     /// [publisher] The name of the organization or individual that published the
     ///  compartment definition.
     String? publisher,
 
     /// [publisherElement] Extensions for publisher
-    @JsonKey(name: '_publisher') Element? publisherElement,
+    @JsonKey(name: '_publisher') PrimitiveElement? publisherElement,
 
     /// [contact] Contact details to assist a user in finding and communicating
     ///  with the publisher.
@@ -2693,7 +2700,7 @@ class CompartmentDefinition with Resource, _$CompartmentDefinition {
     FhirMarkdown? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [useContext] The content was developed with a focus and intent of
     /// supporting the contexts that are listed. These contexts may be general
@@ -2707,19 +2714,19 @@ class CompartmentDefinition with Resource, _$CompartmentDefinition {
     FhirMarkdown? purpose,
 
     /// [purposeElement] Extensions for purpose
-    @JsonKey(name: '_purpose') Element? purposeElement,
+    @JsonKey(name: '_purpose') PrimitiveElement? purposeElement,
 
     /// [code] Which compartment this definition describes.
     FhirCode? code,
 
     /// [codeElement] Extensions for code
-    @JsonKey(name: '_code') Element? codeElement,
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
 
     /// [search] Whether the search syntax is supported,.
     FhirBoolean? search,
 
     /// [searchElement] Extensions for search
-    @JsonKey(name: '_search') Element? searchElement,
+    @JsonKey(name: '_search') PrimitiveElement? searchElement,
 
     /// [resource] Information about how a resource is related to the
     ///  compartment.
@@ -2842,7 +2849,7 @@ class CompartmentDefinitionResource
     FhirCode? code,
 
     /// [codeElement] Extensions for code
-    @JsonKey(name: '_code') Element? codeElement,
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
 
     /// [param] The name of a search parameter that represents the link to the
     /// compartment. More than one may be listed because a resource may be linked
@@ -2857,7 +2864,7 @@ class CompartmentDefinitionResource
     String? documentation,
 
     /// [documentationElement] Extensions for documentation
-    @JsonKey(name: '_documentation') Element? documentationElement,
+    @JsonKey(name: '_documentation') PrimitiveElement? documentationElement,
   }) = _CompartmentDefinitionResource;
 
   @override
@@ -2893,7 +2900,7 @@ class CompartmentDefinitionResource
 
 /// [ExampleScenario] Example of workflow instance.
 @freezed
-class ExampleScenario with Resource, _$ExampleScenario {
+class ExampleScenario with _$ExampleScenario implements DomainResource {
   /// [ExampleScenario] Example of workflow instance.
   const ExampleScenario._();
 
@@ -3061,13 +3068,13 @@ class ExampleScenario with Resource, _$ExampleScenario {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -3116,7 +3123,7 @@ class ExampleScenario with Resource, _$ExampleScenario {
     FhirUri? url,
 
     /// [urlElement] Extensions for url
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
 
     /// [identifier] A formal identifier that is used to identify this example
     /// scenario when it is represented in other formats, or referenced in a
@@ -3133,7 +3140,7 @@ class ExampleScenario with Resource, _$ExampleScenario {
     String? version,
 
     /// [versionElement] Extensions for version
-    @JsonKey(name: '_version') Element? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
 
     /// [name] A natural language name identifying the example scenario. This
     /// name should be usable as an identifier for the module by machine
@@ -3141,14 +3148,14 @@ class ExampleScenario with Resource, _$ExampleScenario {
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [status] The status of this example scenario. Enables tracking the
     ///  life-cycle of the content.
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [experimental] A Boolean value to indicate that this example scenario is
     /// authored for testing purposes (or education/evaluation/marketing) and is
@@ -3156,7 +3163,7 @@ class ExampleScenario with Resource, _$ExampleScenario {
     FhirBoolean? experimental,
 
     /// [experimentalElement] Extensions for experimental
-    @JsonKey(name: '_experimental') Element? experimentalElement,
+    @JsonKey(name: '_experimental') PrimitiveElement? experimentalElement,
 
     /// [date] The date  (and optionally time) when the example scenario was
     /// published. The date must change when the business version changes and it
@@ -3166,14 +3173,14 @@ class ExampleScenario with Resource, _$ExampleScenario {
     FhirDateTime? date,
 
     /// [dateElement] Extensions for date
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
 
     /// [publisher] The name of the organization or individual that published the
     ///  example scenario.
     String? publisher,
 
     /// [publisherElement] Extensions for publisher
-    @JsonKey(name: '_publisher') Element? publisherElement,
+    @JsonKey(name: '_publisher') PrimitiveElement? publisherElement,
 
     /// [contact] Contact details to assist a user in finding and communicating
     ///  with the publisher.
@@ -3196,7 +3203,7 @@ class ExampleScenario with Resource, _$ExampleScenario {
     FhirMarkdown? copyright,
 
     /// [copyrightElement] Extensions for copyright
-    @JsonKey(name: '_copyright') Element? copyrightElement,
+    @JsonKey(name: '_copyright') PrimitiveElement? copyrightElement,
 
     /// [purpose] What the example scenario resource is created for. This should
     /// not be used to show the business purpose of the scenario itself, but the
@@ -3204,7 +3211,7 @@ class ExampleScenario with Resource, _$ExampleScenario {
     FhirMarkdown? purpose,
 
     /// [purposeElement] Extensions for purpose
-    @JsonKey(name: '_purpose') Element? purposeElement,
+    @JsonKey(name: '_purpose') PrimitiveElement? purposeElement,
 
     /// [actor] Actor participating in the resource.
     List<ExampleScenarioActor>? actor,
@@ -3258,7 +3265,9 @@ class ExampleScenario with Resource, _$ExampleScenario {
 
 /// [ExampleScenarioActor] Example of workflow instance.
 @freezed
-class ExampleScenarioActor with BackboneType, _$ExampleScenarioActor {
+class ExampleScenarioActor
+    with _$ExampleScenarioActor
+    implements BackboneElement {
   /// [ExampleScenarioActor] Example of workflow instance.
   const ExampleScenarioActor._();
 
@@ -3335,25 +3344,25 @@ class ExampleScenarioActor with BackboneType, _$ExampleScenarioActor {
     String? actorId,
 
     /// [actorIdElement] Extensions for actorId
-    @JsonKey(name: '_actorId') Element? actorIdElement,
+    @JsonKey(name: '_actorId') PrimitiveElement? actorIdElement,
 
     /// [type] The type of actor - person or system.
     FhirCode? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [name] The name of the actor as shown in the page.
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [description] The description of the actor.
     FhirMarkdown? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
   }) = _ExampleScenarioActor;
 
   @override
@@ -3389,7 +3398,9 @@ class ExampleScenarioActor with BackboneType, _$ExampleScenarioActor {
 
 /// [ExampleScenarioInstance] Example of workflow instance.
 @freezed
-class ExampleScenarioInstance with BackboneType, _$ExampleScenarioInstance {
+class ExampleScenarioInstance
+    with _$ExampleScenarioInstance
+    implements BackboneElement {
   /// [ExampleScenarioInstance] Example of workflow instance.
   const ExampleScenarioInstance._();
 
@@ -3471,25 +3482,25 @@ class ExampleScenarioInstance with BackboneType, _$ExampleScenarioInstance {
     String? resourceId,
 
     /// [resourceIdElement] Extensions for resourceId
-    @JsonKey(name: '_resourceId') Element? resourceIdElement,
+    @JsonKey(name: '_resourceId') PrimitiveElement? resourceIdElement,
 
     /// [resourceType] The type of the resource.
     FhirCode? resourceType,
 
     /// [resourceTypeElement] Extensions for resourceType
-    @JsonKey(name: '_resourceType') Element? resourceTypeElement,
+    @JsonKey(name: '_resourceType') PrimitiveElement? resourceTypeElement,
 
     /// [name] A short name for the resource instance.
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [description] Human-friendly description of the resource instance.
     FhirMarkdown? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [version] A specific version of the resource.
     List<ExampleScenarioVersion>? version,
@@ -3532,7 +3543,9 @@ class ExampleScenarioInstance with BackboneType, _$ExampleScenarioInstance {
 
 /// [ExampleScenarioVersion] Example of workflow instance.
 @freezed
-class ExampleScenarioVersion with BackboneType, _$ExampleScenarioVersion {
+class ExampleScenarioVersion
+    with _$ExampleScenarioVersion
+    implements BackboneElement {
   /// [ExampleScenarioVersion] Example of workflow instance.
   const ExampleScenarioVersion._();
 
@@ -3601,13 +3614,13 @@ class ExampleScenarioVersion with BackboneType, _$ExampleScenarioVersion {
     String? versionId,
 
     /// [versionIdElement] Extensions for versionId
-    @JsonKey(name: '_versionId') Element? versionIdElement,
+    @JsonKey(name: '_versionId') PrimitiveElement? versionIdElement,
 
     /// [description] The description of the resource version.
     FhirMarkdown? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
   }) = _ExampleScenarioVersion;
 
   @override
@@ -3713,13 +3726,13 @@ class ExampleScenarioContainedInstance
     String? resourceId,
 
     /// [resourceIdElement] Extensions for resourceId
-    @JsonKey(name: '_resourceId') Element? resourceIdElement,
+    @JsonKey(name: '_resourceId') PrimitiveElement? resourceIdElement,
 
     /// [versionId] A specific version of a resource contained in the instance.
     String? versionId,
 
     /// [versionIdElement] Extensions for versionId
-    @JsonKey(name: '_versionId') Element? versionIdElement,
+    @JsonKey(name: '_versionId') PrimitiveElement? versionIdElement,
   }) = _ExampleScenarioContainedInstance;
 
   @override
@@ -3744,7 +3757,9 @@ class ExampleScenarioContainedInstance
 
 /// [ExampleScenarioProcess] Example of workflow instance.
 @freezed
-class ExampleScenarioProcess with BackboneType, _$ExampleScenarioProcess {
+class ExampleScenarioProcess
+    with _$ExampleScenarioProcess
+    implements BackboneElement {
   /// [ExampleScenarioProcess] Example of workflow instance.
   const ExampleScenarioProcess._();
 
@@ -3823,25 +3838,25 @@ class ExampleScenarioProcess with BackboneType, _$ExampleScenarioProcess {
     String? title,
 
     /// [titleElement] Extensions for title
-    @JsonKey(name: '_title') Element? titleElement,
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
 
     /// [description] A longer description of the group of operations.
     FhirMarkdown? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [preConditions] Description of initial status before the process starts.
     FhirMarkdown? preConditions,
 
     /// [preConditionsElement] Extensions for preConditions
-    @JsonKey(name: '_preConditions') Element? preConditionsElement,
+    @JsonKey(name: '_preConditions') PrimitiveElement? preConditionsElement,
 
     /// [postConditions] Description of final status after the process ends.
     FhirMarkdown? postConditions,
 
     /// [postConditionsElement] Extensions for postConditions
-    @JsonKey(name: '_postConditions') Element? postConditionsElement,
+    @JsonKey(name: '_postConditions') PrimitiveElement? postConditionsElement,
 
     /// [step] Each step of the process.
     List<ExampleScenarioStep>? step,
@@ -3880,7 +3895,9 @@ class ExampleScenarioProcess with BackboneType, _$ExampleScenarioProcess {
 
 /// [ExampleScenarioStep] Example of workflow instance.
 @freezed
-class ExampleScenarioStep with BackboneType, _$ExampleScenarioStep {
+class ExampleScenarioStep
+    with _$ExampleScenarioStep
+    implements BackboneElement {
   /// [ExampleScenarioStep] Example of workflow instance.
   const ExampleScenarioStep._();
 
@@ -3955,7 +3972,7 @@ class ExampleScenarioStep with BackboneType, _$ExampleScenarioStep {
     FhirBoolean? pause,
 
     /// [pauseElement] Extensions for pause
-    @JsonKey(name: '_pause') Element? pauseElement,
+    @JsonKey(name: '_pause') PrimitiveElement? pauseElement,
 
     /// [operation] Each interaction or action.
     ExampleScenarioOperation? operation,
@@ -3998,7 +4015,9 @@ class ExampleScenarioStep with BackboneType, _$ExampleScenarioStep {
 
 /// [ExampleScenarioOperation] Example of workflow instance.
 @freezed
-class ExampleScenarioOperation with BackboneType, _$ExampleScenarioOperation {
+class ExampleScenarioOperation
+    with _$ExampleScenarioOperation
+    implements BackboneElement {
   /// [ExampleScenarioOperation] Example of workflow instance.
   const ExampleScenarioOperation._();
 
@@ -4097,51 +4116,51 @@ class ExampleScenarioOperation with BackboneType, _$ExampleScenarioOperation {
     String? number,
 
     /// [numberElement] Extensions for number
-    @JsonKey(name: '_number') Element? numberElement,
+    @JsonKey(name: '_number') PrimitiveElement? numberElement,
 
     /// [type] The type of operation - CRUD.
     String? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [name] The human-friendly name of the interaction.
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [initiator] Who starts the transaction.
     String? initiator,
 
     /// [initiatorElement] Extensions for initiator
-    @JsonKey(name: '_initiator') Element? initiatorElement,
+    @JsonKey(name: '_initiator') PrimitiveElement? initiatorElement,
 
     /// [receiver] Who receives the transaction.
     String? receiver,
 
     /// [receiverElement] Extensions for receiver
-    @JsonKey(name: '_receiver') Element? receiverElement,
+    @JsonKey(name: '_receiver') PrimitiveElement? receiverElement,
 
     /// [description] A comment to be inserted in the diagram.
     FhirMarkdown? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [initiatorActive] Whether the initiator is deactivated right after the
     ///  transaction.
     FhirBoolean? initiatorActive,
 
     /// [initiatorActiveElement] Extensions for initiatorActive
-    @JsonKey(name: '_initiatorActive') Element? initiatorActiveElement,
+    @JsonKey(name: '_initiatorActive') PrimitiveElement? initiatorActiveElement,
 
     /// [receiverActive] Whether the receiver is deactivated right after the
     ///  transaction.
     FhirBoolean? receiverActive,
 
     /// [receiverActiveElement] Extensions for receiverActive
-    @JsonKey(name: '_receiverActive') Element? receiverActiveElement,
+    @JsonKey(name: '_receiverActive') PrimitiveElement? receiverActiveElement,
 
     /// [request] Each resource instance used by the initiator.
     ExampleScenarioContainedInstance? request,
@@ -4258,14 +4277,14 @@ class ExampleScenarioAlternative
     String? title,
 
     /// [titleElement] Extensions for title
-    @JsonKey(name: '_title') Element? titleElement,
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
 
     /// [description] A human-readable description of the alternative explaining
     ///  when the alternative should occur rather than the base step.
     FhirMarkdown? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [step] What happens in each alternative option.
     List<ExampleScenarioStep>? step,
@@ -4304,7 +4323,7 @@ class ExampleScenarioAlternative
 
 /// [GraphDefinition] A formal computable definition of a graph of resources
 @freezed
-class GraphDefinition with Resource, _$GraphDefinition {
+class GraphDefinition with _$GraphDefinition implements DomainResource {
   /// [GraphDefinition] A formal computable definition of a graph of resources
   const GraphDefinition._();
 
@@ -4467,13 +4486,13 @@ class GraphDefinition with Resource, _$GraphDefinition {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -4522,7 +4541,7 @@ class GraphDefinition with Resource, _$GraphDefinition {
     FhirUri? url,
 
     /// [urlElement] Extensions for url
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
 
     /// [version] The identifier that is used to identify this version of the
     /// graph definition when it is referenced in a specification, model, design
@@ -4534,7 +4553,7 @@ class GraphDefinition with Resource, _$GraphDefinition {
     String? version,
 
     /// [versionElement] Extensions for version
-    @JsonKey(name: '_version') Element? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
 
     /// [name] A natural language name identifying the graph definition. This
     /// name should be usable as an identifier for the module by machine
@@ -4542,14 +4561,14 @@ class GraphDefinition with Resource, _$GraphDefinition {
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [status] The status of this graph definition. Enables tracking the
     ///  life-cycle of the content.
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [experimental] A Boolean value to indicate that this graph definition is
     /// authored for testing purposes (or education/evaluation/marketing) and is
@@ -4557,7 +4576,7 @@ class GraphDefinition with Resource, _$GraphDefinition {
     FhirBoolean? experimental,
 
     /// [experimentalElement] Extensions for experimental
-    @JsonKey(name: '_experimental') Element? experimentalElement,
+    @JsonKey(name: '_experimental') PrimitiveElement? experimentalElement,
 
     /// [date] The date  (and optionally time) when the graph definition was
     /// published. The date must change when the business version changes and it
@@ -4566,14 +4585,14 @@ class GraphDefinition with Resource, _$GraphDefinition {
     FhirDateTime? date,
 
     /// [dateElement] Extensions for date
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
 
     /// [publisher] The name of the organization or individual that published the
     ///  graph definition.
     String? publisher,
 
     /// [publisherElement] Extensions for publisher
-    @JsonKey(name: '_publisher') Element? publisherElement,
+    @JsonKey(name: '_publisher') PrimitiveElement? publisherElement,
 
     /// [contact] Contact details to assist a user in finding and communicating
     ///  with the publisher.
@@ -4584,7 +4603,7 @@ class GraphDefinition with Resource, _$GraphDefinition {
     FhirMarkdown? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [useContext] The content was developed with a focus and intent of
     /// supporting the contexts that are listed. These contexts may be general
@@ -4602,13 +4621,13 @@ class GraphDefinition with Resource, _$GraphDefinition {
     FhirMarkdown? purpose,
 
     /// [purposeElement] Extensions for purpose
-    @JsonKey(name: '_purpose') Element? purposeElement,
+    @JsonKey(name: '_purpose') PrimitiveElement? purposeElement,
 
     /// [start] The type of FHIR resource at which instances of this graph start.
     FhirCode? start,
 
     /// [startElement] Extensions for start
-    @JsonKey(name: '_start') Element? startElement,
+    @JsonKey(name: '_start') PrimitiveElement? startElement,
 
     /// [profile] The profile that describes the use of the base resource.
     FhirCanonical? profile,
@@ -4655,7 +4674,9 @@ class GraphDefinition with Resource, _$GraphDefinition {
 
 /// [GraphDefinitionLink] A formal computable definition of a graph of
 @freezed
-class GraphDefinitionLink with BackboneType, _$GraphDefinitionLink {
+class GraphDefinitionLink
+    with _$GraphDefinitionLink
+    implements BackboneElement {
   /// [GraphDefinitionLink] A formal computable definition of a graph of
   const GraphDefinitionLink._();
 
@@ -4744,32 +4765,32 @@ class GraphDefinitionLink with BackboneType, _$GraphDefinitionLink {
     String? path,
 
     /// [pathElement] Extensions for path
-    @JsonKey(name: '_path') Element? pathElement,
+    @JsonKey(name: '_path') PrimitiveElement? pathElement,
 
     /// [sliceName] Which slice (if profiled).
     String? sliceName,
 
     /// [sliceNameElement] Extensions for sliceName
-    @JsonKey(name: '_sliceName') Element? sliceNameElement,
+    @JsonKey(name: '_sliceName') PrimitiveElement? sliceNameElement,
 
     /// [min] Minimum occurrences for this link.
     FhirInteger? min,
 
     /// [minElement] Extensions for min
-    @JsonKey(name: '_min') Element? minElement,
+    @JsonKey(name: '_min') PrimitiveElement? minElement,
 
     /// [max] Maximum occurrences for this link.
     String? max,
 
     /// [maxElement] Extensions for max
-    @JsonKey(name: '_max') Element? maxElement,
+    @JsonKey(name: '_max') PrimitiveElement? maxElement,
 
     /// [description] Information about why this link is of interest in this
     ///  graph definition.
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [target] Potential target for the link.
     List<GraphDefinitionTarget>? target,
@@ -4808,7 +4829,9 @@ class GraphDefinitionLink with BackboneType, _$GraphDefinitionLink {
 
 /// [GraphDefinitionTarget] A formal computable definition of a graph of
 @freezed
-class GraphDefinitionTarget with BackboneType, _$GraphDefinitionTarget {
+class GraphDefinitionTarget
+    with _$GraphDefinitionTarget
+    implements BackboneElement {
   /// [GraphDefinitionTarget] A formal computable definition of a graph of
   const GraphDefinitionTarget._();
 
@@ -4886,13 +4909,13 @@ class GraphDefinitionTarget with BackboneType, _$GraphDefinitionTarget {
     FhirCode? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [params] A set of parameters to look up.
     String? params,
 
     /// [paramsElement] Extensions for params
-    @JsonKey(name: '_params') Element? paramsElement,
+    @JsonKey(name: '_params') PrimitiveElement? paramsElement,
 
     /// [profile] Profile for the target resource.
     FhirCanonical? profile,
@@ -5026,31 +5049,31 @@ class GraphDefinitionCompartment
     FhirCode? use,
 
     /// [useElement] Extensions for use
-    @JsonKey(name: '_use') Element? useElement,
+    @JsonKey(name: '_use') PrimitiveElement? useElement,
 
     /// [code] Identifies the compartment.
     FhirCode? code,
 
     /// [codeElement] Extensions for code
-    @JsonKey(name: '_code') Element? codeElement,
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
 
     /// [rule] identical | matching | different | no-rule | custom.
     FhirCode? rule,
 
     /// [ruleElement] Extensions for rule
-    @JsonKey(name: '_rule') Element? ruleElement,
+    @JsonKey(name: '_rule') PrimitiveElement? ruleElement,
 
     /// [expression] Custom rule, as a FHIRPath expression.
     String? expression,
 
     /// [expressionElement] Extensions for expression
-    @JsonKey(name: '_expression') Element? expressionElement,
+    @JsonKey(name: '_expression') PrimitiveElement? expressionElement,
 
     /// [description] Documentation for FHIRPath expression.
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
   }) = _GraphDefinitionCompartment;
 
   @override
@@ -5086,7 +5109,7 @@ class GraphDefinitionCompartment
 
 /// [ImplementationGuide] A set of rules of how a particular interoperability
 @freezed
-class ImplementationGuide with Resource, _$ImplementationGuide {
+class ImplementationGuide with _$ImplementationGuide implements DomainResource {
   /// [ImplementationGuide] A set of rules of how a particular interoperability
   const ImplementationGuide._();
 
@@ -5281,13 +5304,13 @@ class ImplementationGuide with Resource, _$ImplementationGuide {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -5336,7 +5359,7 @@ class ImplementationGuide with Resource, _$ImplementationGuide {
     FhirUri? url,
 
     /// [urlElement] Extensions for url
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
 
     /// [version] The identifier that is used to identify this version of the
     /// implementation guide when it is referenced in a specification, model,
@@ -5348,7 +5371,7 @@ class ImplementationGuide with Resource, _$ImplementationGuide {
     String? version,
 
     /// [versionElement] Extensions for version
-    @JsonKey(name: '_version') Element? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
 
     /// [name] A natural language name identifying the implementation guide. This
     /// name should be usable as an identifier for the module by machine
@@ -5356,21 +5379,21 @@ class ImplementationGuide with Resource, _$ImplementationGuide {
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [title] A short, descriptive, user-friendly title for the implementation
     ///  guide.
     String? title,
 
     /// [titleElement] Extensions for title
-    @JsonKey(name: '_title') Element? titleElement,
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
 
     /// [status] The status of this implementation guide. Enables tracking the
     ///  life-cycle of the content.
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [experimental] A Boolean value to indicate that this implementation guide
     /// is authored for testing purposes (or education/evaluation/marketing) and
@@ -5378,7 +5401,7 @@ class ImplementationGuide with Resource, _$ImplementationGuide {
     FhirBoolean? experimental,
 
     /// [experimentalElement] Extensions for experimental
-    @JsonKey(name: '_experimental') Element? experimentalElement,
+    @JsonKey(name: '_experimental') PrimitiveElement? experimentalElement,
 
     /// [date] The date  (and optionally time) when the implementation guide was
     /// published. The date must change when the business version changes and it
@@ -5387,14 +5410,14 @@ class ImplementationGuide with Resource, _$ImplementationGuide {
     FhirDateTime? date,
 
     /// [dateElement] Extensions for date
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
 
     /// [publisher] The name of the organization or individual that published the
     ///  implementation guide.
     String? publisher,
 
     /// [publisherElement] Extensions for publisher
-    @JsonKey(name: '_publisher') Element? publisherElement,
+    @JsonKey(name: '_publisher') PrimitiveElement? publisherElement,
 
     /// [contact] Contact details to assist a user in finding and communicating
     ///  with the publisher.
@@ -5405,7 +5428,7 @@ class ImplementationGuide with Resource, _$ImplementationGuide {
     FhirMarkdown? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [useContext] The content was developed with a focus and intent of
     /// supporting the contexts that are listed. These contexts may be general
@@ -5424,7 +5447,7 @@ class ImplementationGuide with Resource, _$ImplementationGuide {
     FhirMarkdown? copyright,
 
     /// [copyrightElement] Extensions for copyright
-    @JsonKey(name: '_copyright') Element? copyrightElement,
+    @JsonKey(name: '_copyright') PrimitiveElement? copyrightElement,
 
     /// [packageId] The NPM package name for this Implementation Guide, used in
     /// the NPM package distribution, which is the primary mechanism by which FHIR
@@ -5433,14 +5456,14 @@ class ImplementationGuide with Resource, _$ImplementationGuide {
     FhirId? packageId,
 
     /// [packageIdElement] Extensions for packageId
-    @JsonKey(name: '_packageId') Element? packageIdElement,
+    @JsonKey(name: '_packageId') PrimitiveElement? packageIdElement,
 
     /// [license] The license that applies to this Implementation Guide, using an
     ///  SPDX license code, or 'not-open-source'.
     FhirCode? license,
 
     /// [licenseElement] Extensions for license
-    @JsonKey(name: '_license') Element? licenseElement,
+    @JsonKey(name: '_license') PrimitiveElement? licenseElement,
 
     /// [fhirVersion] The version(s) of the FHIR specification that this
     /// ImplementationGuide targets - e.g. describes how to use. The value of this
@@ -5592,14 +5615,14 @@ class ImplementationGuideDependsOn
     FhirId? packageId,
 
     /// [packageIdElement] Extensions for packageId
-    @JsonKey(name: '_packageId') Element? packageIdElement,
+    @JsonKey(name: '_packageId') PrimitiveElement? packageIdElement,
 
     /// [version] The version of the IG that is depended on, when the correct
     ///  version is required to understand the IG correctly.
     String? version,
 
     /// [versionElement] Extensions for version
-    @JsonKey(name: '_version') Element? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
   }) = _ImplementationGuideDependsOn;
 
   @override
@@ -5635,7 +5658,9 @@ class ImplementationGuideDependsOn
 
 /// [ImplementationGuideGlobal] A set of rules of how a particular
 @freezed
-class ImplementationGuideGlobal with BackboneType, _$ImplementationGuideGlobal {
+class ImplementationGuideGlobal
+    with _$ImplementationGuideGlobal
+    implements BackboneElement {
   /// [ImplementationGuideGlobal] A set of rules of how a particular
   const ImplementationGuideGlobal._();
 
@@ -5706,7 +5731,7 @@ class ImplementationGuideGlobal with BackboneType, _$ImplementationGuideGlobal {
     FhirCode? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [profile] A reference to the profile that all instances must conform to.
     required FhirCanonical profile,
@@ -5952,13 +5977,13 @@ class ImplementationGuideGrouping
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [description] Human readable text describing the package.
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
   }) = _ImplementationGuideGrouping;
 
   @override
@@ -6109,14 +6134,14 @@ class ImplementationGuideResource
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [description] A description of the reason that a resource has been
     ///  included in the implementation guide.
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [exampleBoolean] If true or a reference, indicates the resource is an
     /// example instance.  If a reference is present, indicates that the example
@@ -6124,7 +6149,7 @@ class ImplementationGuideResource
     FhirBoolean? exampleBoolean,
 
     /// [exampleBooleanElement] Extensions for exampleBoolean
-    @JsonKey(name: '_exampleBoolean') Element? exampleBooleanElement,
+    @JsonKey(name: '_exampleBoolean') PrimitiveElement? exampleBooleanElement,
 
     /// [exampleCanonical] If true or a reference, indicates the resource is an
     /// example instance.  If a reference is present, indicates that the example
@@ -6132,14 +6157,15 @@ class ImplementationGuideResource
     FhirCanonical? exampleCanonical,
 
     /// [exampleCanonicalElement] Extensions for exampleCanonical
-    @JsonKey(name: '_exampleCanonical') Element? exampleCanonicalElement,
+    @JsonKey(name: '_exampleCanonical')
+    PrimitiveElement? exampleCanonicalElement,
 
     /// [groupingId] Reference to the id of the grouping this resource appears
     ///  in.
     FhirId? groupingId,
 
     /// [groupingIdElement] Extensions for groupingId
-    @JsonKey(name: '_groupingId') Element? groupingIdElement,
+    @JsonKey(name: '_groupingId') PrimitiveElement? groupingIdElement,
   }) = _ImplementationGuideResource;
 
   @override
@@ -6175,7 +6201,9 @@ class ImplementationGuideResource
 
 /// [ImplementationGuidePage] A set of rules of how a particular
 @freezed
-class ImplementationGuidePage with BackboneType, _$ImplementationGuidePage {
+class ImplementationGuidePage
+    with _$ImplementationGuidePage
+    implements BackboneElement {
   /// [ImplementationGuidePage] A set of rules of how a particular
   const ImplementationGuidePage._();
 
@@ -6257,7 +6285,7 @@ class ImplementationGuidePage with BackboneType, _$ImplementationGuidePage {
     FhirUrl? nameUrl,
 
     /// [nameUrlElement] Extensions for nameUrl
-    @JsonKey(name: '_nameUrl') Element? nameUrlElement,
+    @JsonKey(name: '_nameUrl') PrimitiveElement? nameUrlElement,
 
     /// [nameReference] The source address for the page.
     Reference? nameReference,
@@ -6267,13 +6295,13 @@ class ImplementationGuidePage with BackboneType, _$ImplementationGuidePage {
     String? title,
 
     /// [titleElement] Extensions for title
-    @JsonKey(name: '_title') Element? titleElement,
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
 
     /// [generation] A code that indicates how the page is generated.
     FhirCode? generation,
 
     /// [generationElement] Extensions for generation
-    @JsonKey(name: '_generation') Element? generationElement,
+    @JsonKey(name: '_generation') PrimitiveElement? generationElement,
 
     /// [page] Nested Pages/Sections under this page.
     List<ImplementationGuidePage>? page,
@@ -6390,13 +6418,13 @@ class ImplementationGuideParameter
     FhirCode? code,
 
     /// [codeElement] Extensions for code
-    @JsonKey(name: '_code') Element? codeElement,
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
 
     /// [value] Value for named type.
     String? value,
 
     /// [valueElement] Extensions for value
-    @JsonKey(name: '_value') Element? valueElement,
+    @JsonKey(name: '_value') PrimitiveElement? valueElement,
   }) = _ImplementationGuideParameter;
 
   @override
@@ -6510,19 +6538,19 @@ class ImplementationGuideTemplate
     FhirCode? code,
 
     /// [codeElement] Extensions for code
-    @JsonKey(name: '_code') Element? codeElement,
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
 
     /// [source] The source location for the template.
     String? source,
 
     /// [sourceElement] Extensions for source
-    @JsonKey(name: '_source') Element? sourceElement,
+    @JsonKey(name: '_source') PrimitiveElement? sourceElement,
 
     /// [scope] The scope in which the template applies.
     String? scope,
 
     /// [scopeElement] Extensions for scope
-    @JsonKey(name: '_scope') Element? scopeElement,
+    @JsonKey(name: '_scope') PrimitiveElement? scopeElement,
   }) = _ImplementationGuideTemplate;
 
   @override
@@ -6647,7 +6675,7 @@ class ImplementationGuideManifest
     FhirUrl? rendering,
 
     /// [renderingElement] Extensions for rendering
-    @JsonKey(name: '_rendering') Element? renderingElement,
+    @JsonKey(name: '_rendering') PrimitiveElement? renderingElement,
 
     /// [resource] A resource that is part of the implementation guide.
     /// Conformance resources (value set, structure definition, capability
@@ -6796,7 +6824,7 @@ class ImplementationGuideResource1
     FhirBoolean? exampleBoolean,
 
     /// [exampleBooleanElement] Extensions for exampleBoolean
-    @JsonKey(name: '_exampleBoolean') Element? exampleBooleanElement,
+    @JsonKey(name: '_exampleBoolean') PrimitiveElement? exampleBooleanElement,
 
     /// [exampleCanonical] If true or a reference, indicates the resource is an
     /// example instance.  If a reference is present, indicates that the example
@@ -6804,14 +6832,15 @@ class ImplementationGuideResource1
     FhirCanonical? exampleCanonical,
 
     /// [exampleCanonicalElement] Extensions for exampleCanonical
-    @JsonKey(name: '_exampleCanonical') Element? exampleCanonicalElement,
+    @JsonKey(name: '_exampleCanonical')
+    PrimitiveElement? exampleCanonicalElement,
 
     /// [relativePath] The relative path for primary page for this resource
     ///  within the IG.
     FhirUrl? relativePath,
 
     /// [relativePathElement] Extensions for relativePath
-    @JsonKey(name: '_relativePath') Element? relativePathElement,
+    @JsonKey(name: '_relativePath') PrimitiveElement? relativePathElement,
   }) = _ImplementationGuideResource1;
 
   @override
@@ -6847,7 +6876,9 @@ class ImplementationGuideResource1
 
 /// [ImplementationGuidePage1] A set of rules of how a particular
 @freezed
-class ImplementationGuidePage1 with BackboneType, _$ImplementationGuidePage1 {
+class ImplementationGuidePage1
+    with _$ImplementationGuidePage1
+    implements BackboneElement {
   /// [ImplementationGuidePage1] A set of rules of how a particular
   const ImplementationGuidePage1._();
 
@@ -6924,13 +6955,13 @@ class ImplementationGuidePage1 with BackboneType, _$ImplementationGuidePage1 {
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [title] Label for the page intended for human display.
     String? title,
 
     /// [titleElement] Extensions for title
-    @JsonKey(name: '_title') Element? titleElement,
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
 
     /// [anchor] The name of an anchor available on the page.
     List<String>? anchor,
@@ -6972,7 +7003,7 @@ class ImplementationGuidePage1 with BackboneType, _$ImplementationGuidePage1 {
 
 /// [MessageDefinition] Defines the characteristics of a message that can be
 @freezed
-class MessageDefinition with Resource, _$MessageDefinition {
+class MessageDefinition with _$MessageDefinition implements DomainResource {
   /// [MessageDefinition] Defines the characteristics of a message that can be
   const MessageDefinition._();
 
@@ -7174,13 +7205,13 @@ class MessageDefinition with Resource, _$MessageDefinition {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -7225,7 +7256,7 @@ class MessageDefinition with Resource, _$MessageDefinition {
     FhirUri? url,
 
     /// [urlElement] Extensions for url
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
 
     /// [identifier] A formal identifier that is used to identify this message
     /// definition when it is represented in other formats, or referenced in a
@@ -7242,7 +7273,7 @@ class MessageDefinition with Resource, _$MessageDefinition {
     String? version,
 
     /// [versionElement] Extensions for version
-    @JsonKey(name: '_version') Element? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
 
     /// [name] A natural language name identifying the message definition. This
     /// name should be usable as an identifier for the module by machine
@@ -7250,14 +7281,14 @@ class MessageDefinition with Resource, _$MessageDefinition {
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [title] A short, descriptive, user-friendly title for the message
     ///  definition.
     String? title,
 
     /// [titleElement] Extensions for title
-    @JsonKey(name: '_title') Element? titleElement,
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
 
     /// [replaces] A MessageDefinition that is superseded by this definition.
     List<FhirCanonical>? replaces,
@@ -7267,7 +7298,7 @@ class MessageDefinition with Resource, _$MessageDefinition {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [experimental] A Boolean value to indicate that this message definition
     /// is authored for testing purposes (or education/evaluation/marketing) and
@@ -7275,7 +7306,7 @@ class MessageDefinition with Resource, _$MessageDefinition {
     FhirBoolean? experimental,
 
     /// [experimentalElement] Extensions for experimental
-    @JsonKey(name: '_experimental') Element? experimentalElement,
+    @JsonKey(name: '_experimental') PrimitiveElement? experimentalElement,
 
     /// [date] The date  (and optionally time) when the message definition was
     /// published. The date must change when the business version changes and it
@@ -7284,14 +7315,14 @@ class MessageDefinition with Resource, _$MessageDefinition {
     FhirDateTime? date,
 
     /// [dateElement] Extensions for date
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
 
     /// [publisher] The name of the organization or individual that published the
     ///  message definition.
     String? publisher,
 
     /// [publisherElement] Extensions for publisher
-    @JsonKey(name: '_publisher') Element? publisherElement,
+    @JsonKey(name: '_publisher') PrimitiveElement? publisherElement,
 
     /// [contact] Contact details to assist a user in finding and communicating
     ///  with the publisher.
@@ -7302,7 +7333,7 @@ class MessageDefinition with Resource, _$MessageDefinition {
     FhirMarkdown? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [useContext] The content was developed with a focus and intent of
     /// supporting the contexts that are listed. These contexts may be general
@@ -7320,7 +7351,7 @@ class MessageDefinition with Resource, _$MessageDefinition {
     FhirMarkdown? purpose,
 
     /// [purposeElement] Extensions for purpose
-    @JsonKey(name: '_purpose') Element? purposeElement,
+    @JsonKey(name: '_purpose') PrimitiveElement? purposeElement,
 
     /// [copyright] A copyright statement relating to the message definition
     /// and/or its contents. Copyright statements are generally legal restrictions
@@ -7328,7 +7359,7 @@ class MessageDefinition with Resource, _$MessageDefinition {
     FhirMarkdown? copyright,
 
     /// [copyrightElement] Extensions for copyright
-    @JsonKey(name: '_copyright') Element? copyrightElement,
+    @JsonKey(name: '_copyright') PrimitiveElement? copyrightElement,
 
     /// [base] The MessageDefinition that is the basis for the contents of this
     ///  resource.
@@ -7345,13 +7376,13 @@ class MessageDefinition with Resource, _$MessageDefinition {
     FhirUri? eventUri,
 
     /// [eventUriElement] Extensions for eventUri
-    @JsonKey(name: '_eventUri') Element? eventUriElement,
+    @JsonKey(name: '_eventUri') PrimitiveElement? eventUriElement,
 
     /// [category] The impact of the content of the message.
     FhirCode? category,
 
     /// [categoryElement] Extensions for category
-    @JsonKey(name: '_category') Element? categoryElement,
+    @JsonKey(name: '_category') PrimitiveElement? categoryElement,
 
     /// [focus] Identifies the resource (or resources) that are being addressed
     /// by the event.  For example, the Encounter for an admit message or two
@@ -7363,7 +7394,8 @@ class MessageDefinition with Resource, _$MessageDefinition {
     FhirCode? responseRequired,
 
     /// [responseRequiredElement] Extensions for responseRequired
-    @JsonKey(name: '_responseRequired') Element? responseRequiredElement,
+    @JsonKey(name: '_responseRequired')
+    PrimitiveElement? responseRequiredElement,
 
     /// [allowedResponse] Indicates what types of messages may be sent as an
     ///  application-level response to this message.
@@ -7415,7 +7447,9 @@ class MessageDefinition with Resource, _$MessageDefinition {
 
 /// [MessageDefinitionFocus] Defines the characteristics of a message that
 @freezed
-class MessageDefinitionFocus with BackboneType, _$MessageDefinitionFocus {
+class MessageDefinitionFocus
+    with _$MessageDefinitionFocus
+    implements BackboneElement {
   /// [MessageDefinitionFocus] Defines the characteristics of a message that
   const MessageDefinitionFocus._();
 
@@ -7498,7 +7532,7 @@ class MessageDefinitionFocus with BackboneType, _$MessageDefinitionFocus {
     FhirCode? code,
 
     /// [codeElement] Extensions for code
-    @JsonKey(name: '_code') Element? codeElement,
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
 
     /// [profile] A profile that reflects constraints for the focal resource (and
     ///  potentially for related resources).
@@ -7510,7 +7544,7 @@ class MessageDefinitionFocus with BackboneType, _$MessageDefinitionFocus {
     FhirUnsignedInt? min,
 
     /// [minElement] Extensions for min
-    @JsonKey(name: '_min') Element? minElement,
+    @JsonKey(name: '_min') PrimitiveElement? minElement,
 
     /// [max] Identifies the maximum number of resources of this type that must
     /// be pointed to by a message in order for it to be valid against this
@@ -7518,7 +7552,7 @@ class MessageDefinitionFocus with BackboneType, _$MessageDefinitionFocus {
     String? max,
 
     /// [maxElement] Extensions for max
-    @JsonKey(name: '_max') Element? maxElement,
+    @JsonKey(name: '_max') PrimitiveElement? maxElement,
   }) = _MessageDefinitionFocus;
 
   @override
@@ -7632,7 +7666,7 @@ class MessageDefinitionAllowedResponse
     FhirMarkdown? situation,
 
     /// [situationElement] Extensions for situation
-    @JsonKey(name: '_situation') Element? situationElement,
+    @JsonKey(name: '_situation') PrimitiveElement? situationElement,
   }) = _MessageDefinitionAllowedResponse;
 
   @override
@@ -7657,7 +7691,7 @@ class MessageDefinitionAllowedResponse
 
 /// [OperationDefinition] A formal computable definition of an operation (on
 @freezed
-class OperationDefinition with Resource, _$OperationDefinition {
+class OperationDefinition with _$OperationDefinition implements DomainResource {
   /// [OperationDefinition] A formal computable definition of an operation (on
   const OperationDefinition._();
 
@@ -7871,13 +7905,13 @@ class OperationDefinition with Resource, _$OperationDefinition {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -7926,7 +7960,7 @@ class OperationDefinition with Resource, _$OperationDefinition {
     FhirUri? url,
 
     /// [urlElement] Extensions for url
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
 
     /// [version] The identifier that is used to identify this version of the
     /// operation definition when it is referenced in a specification, model,
@@ -7938,7 +7972,7 @@ class OperationDefinition with Resource, _$OperationDefinition {
     String? version,
 
     /// [versionElement] Extensions for version
-    @JsonKey(name: '_version') Element? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
 
     /// [name] A natural language name identifying the operation definition. This
     /// name should be usable as an identifier for the module by machine
@@ -7946,27 +7980,27 @@ class OperationDefinition with Resource, _$OperationDefinition {
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [title] A short, descriptive, user-friendly title for the operation
     ///  definition.
     String? title,
 
     /// [titleElement] Extensions for title
-    @JsonKey(name: '_title') Element? titleElement,
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
 
     /// [status] The status of this operation definition. Enables tracking the
     ///  life-cycle of the content.
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [kind] Whether this is an operation or a named query.
     FhirCode? kind,
 
     /// [kindElement] Extensions for kind
-    @JsonKey(name: '_kind') Element? kindElement,
+    @JsonKey(name: '_kind') PrimitiveElement? kindElement,
 
     /// [experimental] A Boolean value to indicate that this operation definition
     /// is authored for testing purposes (or education/evaluation/marketing) and
@@ -7974,7 +8008,7 @@ class OperationDefinition with Resource, _$OperationDefinition {
     FhirBoolean? experimental,
 
     /// [experimentalElement] Extensions for experimental
-    @JsonKey(name: '_experimental') Element? experimentalElement,
+    @JsonKey(name: '_experimental') PrimitiveElement? experimentalElement,
 
     /// [date] The date  (and optionally time) when the operation definition was
     /// published. The date must change when the business version changes and it
@@ -7983,14 +8017,14 @@ class OperationDefinition with Resource, _$OperationDefinition {
     FhirDateTime? date,
 
     /// [dateElement] Extensions for date
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
 
     /// [publisher] The name of the organization or individual that published the
     ///  operation definition.
     String? publisher,
 
     /// [publisherElement] Extensions for publisher
-    @JsonKey(name: '_publisher') Element? publisherElement,
+    @JsonKey(name: '_publisher') PrimitiveElement? publisherElement,
 
     /// [contact] Contact details to assist a user in finding and communicating
     ///  with the publisher.
@@ -8001,7 +8035,7 @@ class OperationDefinition with Resource, _$OperationDefinition {
     FhirMarkdown? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [useContext] The content was developed with a focus and intent of
     /// supporting the contexts that are listed. These contexts may be general
@@ -8019,27 +8053,27 @@ class OperationDefinition with Resource, _$OperationDefinition {
     FhirMarkdown? purpose,
 
     /// [purposeElement] Extensions for purpose
-    @JsonKey(name: '_purpose') Element? purposeElement,
+    @JsonKey(name: '_purpose') PrimitiveElement? purposeElement,
 
     /// [affectsState] Whether the operation affects state. Side effects such as
     ///  producing audit trail entries do not count as 'affecting  state'.
     FhirBoolean? affectsState,
 
     /// [affectsStateElement] Extensions for affectsState
-    @JsonKey(name: '_affectsState') Element? affectsStateElement,
+    @JsonKey(name: '_affectsState') PrimitiveElement? affectsStateElement,
 
     /// [code] The name used to invoke the operation.
     FhirCode? code,
 
     /// [codeElement] Extensions for code
-    @JsonKey(name: '_code') Element? codeElement,
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
 
     /// [comment] Additional information about how to use this operation or named
     ///  query.
     FhirMarkdown? comment,
 
     /// [commentElement] Extensions for comment
-    @JsonKey(name: '_comment') Element? commentElement,
+    @JsonKey(name: '_comment') PrimitiveElement? commentElement,
 
     /// [base] Indicates that this operation definition is a constraining profile
     ///  on the base.
@@ -8057,7 +8091,7 @@ class OperationDefinition with Resource, _$OperationDefinition {
     FhirBoolean? system,
 
     /// [systemElement] Extensions for system
-    @JsonKey(name: '_system') Element? systemElement,
+    @JsonKey(name: '_system') PrimitiveElement? systemElement,
 
     /// [type] Indicates whether this operation or named query can be invoked at
     /// the resource type level for any given resource type level (e.g. without
@@ -8065,14 +8099,14 @@ class OperationDefinition with Resource, _$OperationDefinition {
     FhirBoolean? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [instance] Indicates whether this operation can be invoked on a
     ///  particular instance of one of the given types.
     FhirBoolean? instance,
 
     /// [instanceElement] Extensions for instance
-    @JsonKey(name: '_instance') Element? instanceElement,
+    @JsonKey(name: '_instance') PrimitiveElement? instanceElement,
 
     /// [inputProfile] Additional validation information for the in parameters -
     /// a single profile that covers all the parameters. The profile is a
@@ -8244,39 +8278,39 @@ class OperationDefinitionParameter
     FhirCode? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [use] Whether this is an input or an output parameter.
     FhirCode? use,
 
     /// [useElement] Extensions for use
-    @JsonKey(name: '_use') Element? useElement,
+    @JsonKey(name: '_use') PrimitiveElement? useElement,
 
     /// [min] The minimum number of times this parameter SHALL appear in the
     ///  request or response.
     FhirInteger? min,
 
     /// [minElement] Extensions for min
-    @JsonKey(name: '_min') Element? minElement,
+    @JsonKey(name: '_min') PrimitiveElement? minElement,
 
     /// [max] The maximum number of times this element is permitted to appear in
     ///  the request or response.
     String? max,
 
     /// [maxElement] Extensions for max
-    @JsonKey(name: '_max') Element? maxElement,
+    @JsonKey(name: '_max') PrimitiveElement? maxElement,
 
     /// [documentation] Describes the meaning or use of this parameter.
     String? documentation,
 
     /// [documentationElement] Extensions for documentation
-    @JsonKey(name: '_documentation') Element? documentationElement,
+    @JsonKey(name: '_documentation') PrimitiveElement? documentationElement,
 
     /// [type] The type for this parameter.
     FhirCode? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [targetProfile] Used when the type is "Reference" or "canonical", and
     /// identifies a profile structure or implementation Guide that applies to the
@@ -8294,7 +8328,7 @@ class OperationDefinitionParameter
     FhirCode? searchType,
 
     /// [searchTypeElement] Extensions for searchType
-    @JsonKey(name: '_searchType') Element? searchTypeElement,
+    @JsonKey(name: '_searchType') PrimitiveElement? searchTypeElement,
 
     /// [binding] Binds to a value set if this parameter is coded (code, Coding,
     ///  CodeableConcept).
@@ -8416,7 +8450,7 @@ class OperationDefinitionBinding
     FhirCode? strength,
 
     /// [strengthElement] Extensions for strength
-    @JsonKey(name: '_strength') Element? strengthElement,
+    @JsonKey(name: '_strength') PrimitiveElement? strengthElement,
 
     /// [valueSet] Points to the value set or external definition (e.g. implicit
     ///  value set) that identifies the set of codes to be used.
@@ -8531,14 +8565,14 @@ class OperationDefinitionReferencedFrom
     String? source,
 
     /// [sourceElement] Extensions for source
-    @JsonKey(name: '_source') Element? sourceElement,
+    @JsonKey(name: '_source') PrimitiveElement? sourceElement,
 
     /// [sourceId] The id of the element in the referencing resource that is
     ///  expected to resolve to this resource.
     String? sourceId,
 
     /// [sourceIdElement] Extensions for sourceId
-    @JsonKey(name: '_sourceId') Element? sourceIdElement,
+    @JsonKey(name: '_sourceId') PrimitiveElement? sourceIdElement,
   }) = _OperationDefinitionReferencedFrom;
 
   @override
@@ -8641,7 +8675,7 @@ class OperationDefinitionOverload
     String? comment,
 
     /// [commentElement] Extensions for comment
-    @JsonKey(name: '_comment') Element? commentElement,
+    @JsonKey(name: '_comment') PrimitiveElement? commentElement,
   }) = _OperationDefinitionOverload;
 
   @override
@@ -8677,7 +8711,7 @@ class OperationDefinitionOverload
 
 /// [SearchParameter] A search parameter that defines a named search item
 @freezed
-class SearchParameter with Resource, _$SearchParameter {
+class SearchParameter with _$SearchParameter implements DomainResource {
   /// [SearchParameter] A search parameter that defines a named search item
   const SearchParameter._();
 
@@ -8900,13 +8934,13 @@ class SearchParameter with Resource, _$SearchParameter {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -8955,7 +8989,7 @@ class SearchParameter with Resource, _$SearchParameter {
     FhirUri? url,
 
     /// [urlElement] Extensions for url
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
 
     /// [version] The identifier that is used to identify this version of the
     /// search parameter when it is referenced in a specification, model, design
@@ -8967,7 +9001,7 @@ class SearchParameter with Resource, _$SearchParameter {
     String? version,
 
     /// [versionElement] Extensions for version
-    @JsonKey(name: '_version') Element? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
 
     /// [name] A natural language name identifying the search parameter. This
     /// name should be usable as an identifier for the module by machine
@@ -8975,7 +9009,7 @@ class SearchParameter with Resource, _$SearchParameter {
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [derivedFrom] Where this search parameter is originally defined. If a
     /// derivedFrom is provided, then the details in the search parameter must be
@@ -8989,7 +9023,7 @@ class SearchParameter with Resource, _$SearchParameter {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [experimental] A Boolean value to indicate that this search parameter is
     /// authored for testing purposes (or education/evaluation/marketing) and is
@@ -8997,7 +9031,7 @@ class SearchParameter with Resource, _$SearchParameter {
     FhirBoolean? experimental,
 
     /// [experimentalElement] Extensions for experimental
-    @JsonKey(name: '_experimental') Element? experimentalElement,
+    @JsonKey(name: '_experimental') PrimitiveElement? experimentalElement,
 
     /// [date] The date  (and optionally time) when the search parameter was
     /// published. The date must change when the business version changes and it
@@ -9006,14 +9040,14 @@ class SearchParameter with Resource, _$SearchParameter {
     FhirDateTime? date,
 
     /// [dateElement] Extensions for date
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
 
     /// [publisher] The name of the organization or individual that published the
     ///  search parameter.
     String? publisher,
 
     /// [publisherElement] Extensions for publisher
-    @JsonKey(name: '_publisher') Element? publisherElement,
+    @JsonKey(name: '_publisher') PrimitiveElement? publisherElement,
 
     /// [contact] Contact details to assist a user in finding and communicating
     ///  with the publisher.
@@ -9023,7 +9057,7 @@ class SearchParameter with Resource, _$SearchParameter {
     FhirMarkdown? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [useContext] The content was developed with a focus and intent of
     /// supporting the contexts that are listed. These contexts may be general
@@ -9041,14 +9075,14 @@ class SearchParameter with Resource, _$SearchParameter {
     FhirMarkdown? purpose,
 
     /// [purposeElement] Extensions for purpose
-    @JsonKey(name: '_purpose') Element? purposeElement,
+    @JsonKey(name: '_purpose') PrimitiveElement? purposeElement,
 
     /// [code] The code used in the URL or the parameter name in a parameters
     ///  resource for this search parameter.
     FhirCode? code,
 
     /// [codeElement] Extensions for code
-    @JsonKey(name: '_code') Element? codeElement,
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
 
     /// [base] The base resource type(s) that this search parameter can be used
     ///  against.
@@ -9062,28 +9096,28 @@ class SearchParameter with Resource, _$SearchParameter {
     FhirCode? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [expression] A FHIRPath expression that returns a set of elements for the
     ///  search parameter.
     String? expression,
 
     /// [expressionElement] Extensions for expression
-    @JsonKey(name: '_expression') Element? expressionElement,
+    @JsonKey(name: '_expression') PrimitiveElement? expressionElement,
 
     /// [xpath] An XPath expression that returns a set of elements for the search
     ///  parameter.
     String? xpath,
 
     /// [xpathElement] Extensions for xpath
-    @JsonKey(name: '_xpath') Element? xpathElement,
+    @JsonKey(name: '_xpath') PrimitiveElement? xpathElement,
 
     /// [xpathUsage] How the search parameter relates to the set of elements
     ///  returned by evaluating the xpath query.
     FhirCode? xpathUsage,
 
     /// [xpathUsageElement] Extensions for xpathUsage
-    @JsonKey(name: '_xpathUsage') Element? xpathUsageElement,
+    @JsonKey(name: '_xpathUsage') PrimitiveElement? xpathUsageElement,
 
     /// [target] Types of resource (if a resource is referenced).
     List<FhirCode>? target,
@@ -9097,7 +9131,7 @@ class SearchParameter with Resource, _$SearchParameter {
     FhirBoolean? multipleOr,
 
     /// [multipleOrElement] Extensions for multipleOr
-    @JsonKey(name: '_multipleOr') Element? multipleOrElement,
+    @JsonKey(name: '_multipleOr') PrimitiveElement? multipleOrElement,
 
     /// [multipleAnd] Whether multiple parameters are allowed - e.g. more than
     /// one parameter with the same name. The search matches if all the parameters
@@ -9105,7 +9139,7 @@ class SearchParameter with Resource, _$SearchParameter {
     FhirBoolean? multipleAnd,
 
     /// [multipleAndElement] Extensions for multipleAnd
-    @JsonKey(name: '_multipleAnd') Element? multipleAndElement,
+    @JsonKey(name: '_multipleAnd') PrimitiveElement? multipleAndElement,
 
     /// [comparator] Comparators supported for the search parameter.
     List<FhirCode>? comparator,
@@ -9172,7 +9206,9 @@ class SearchParameter with Resource, _$SearchParameter {
 
 /// [SearchParameterComponent] A search parameter that defines a named
 @freezed
-class SearchParameterComponent with BackboneType, _$SearchParameterComponent {
+class SearchParameterComponent
+    with _$SearchParameterComponent
+    implements BackboneElement {
   /// [SearchParameterComponent] A search parameter that defines a named
   const SearchParameterComponent._();
 
@@ -9247,7 +9283,7 @@ class SearchParameterComponent with BackboneType, _$SearchParameterComponent {
     String? expression,
 
     /// [expressionElement] Extensions for expression
-    @JsonKey(name: '_expression') Element? expressionElement,
+    @JsonKey(name: '_expression') PrimitiveElement? expressionElement,
   }) = _SearchParameterComponent;
 
   @override
@@ -9283,7 +9319,7 @@ class SearchParameterComponent with BackboneType, _$SearchParameterComponent {
 
 /// [StructureDefinition] A definition of a FHIR structure. This resource is
 @freezed
-class StructureDefinition with Resource, _$StructureDefinition {
+class StructureDefinition with _$StructureDefinition implements DomainResource {
   /// [StructureDefinition] A definition of a FHIR structure. This resource is
   const StructureDefinition._();
 
@@ -9512,13 +9548,13 @@ class StructureDefinition with Resource, _$StructureDefinition {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -9567,7 +9603,7 @@ class StructureDefinition with Resource, _$StructureDefinition {
     FhirUri? url,
 
     /// [urlElement] Extensions for url
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
 
     /// [identifier] A formal identifier that is used to identify this structure
     /// definition when it is represented in other formats, or referenced in a
@@ -9584,7 +9620,7 @@ class StructureDefinition with Resource, _$StructureDefinition {
     String? version,
 
     /// [versionElement] Extensions for version
-    @JsonKey(name: '_version') Element? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
 
     /// [name] A natural language name identifying the structure definition. This
     /// name should be usable as an identifier for the module by machine
@@ -9592,21 +9628,21 @@ class StructureDefinition with Resource, _$StructureDefinition {
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [title] A short, descriptive, user-friendly title for the structure
     ///  definition.
     String? title,
 
     /// [titleElement] Extensions for title
-    @JsonKey(name: '_title') Element? titleElement,
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
 
     /// [status] The status of this structure definition. Enables tracking the
     ///  life-cycle of the content.
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [experimental] A Boolean value to indicate that this structure definition
     /// is authored for testing purposes (or education/evaluation/marketing) and
@@ -9614,7 +9650,7 @@ class StructureDefinition with Resource, _$StructureDefinition {
     FhirBoolean? experimental,
 
     /// [experimentalElement] Extensions for experimental
-    @JsonKey(name: '_experimental') Element? experimentalElement,
+    @JsonKey(name: '_experimental') PrimitiveElement? experimentalElement,
 
     /// [date] The date  (and optionally time) when the structure definition was
     /// published. The date must change when the business version changes and it
@@ -9623,14 +9659,14 @@ class StructureDefinition with Resource, _$StructureDefinition {
     FhirDateTime? date,
 
     /// [dateElement] Extensions for date
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
 
     /// [publisher] The name of the organization or individual that published the
     ///  structure definition.
     String? publisher,
 
     /// [publisherElement] Extensions for publisher
-    @JsonKey(name: '_publisher') Element? publisherElement,
+    @JsonKey(name: '_publisher') PrimitiveElement? publisherElement,
 
     /// [contact] Contact details to assist a user in finding and communicating
     ///  with the publisher.
@@ -9641,7 +9677,7 @@ class StructureDefinition with Resource, _$StructureDefinition {
     FhirMarkdown? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [useContext] The content was developed with a focus and intent of
     /// supporting the contexts that are listed. These contexts may be general
@@ -9659,7 +9695,7 @@ class StructureDefinition with Resource, _$StructureDefinition {
     FhirMarkdown? purpose,
 
     /// [purposeElement] Extensions for purpose
-    @JsonKey(name: '_purpose') Element? purposeElement,
+    @JsonKey(name: '_purpose') PrimitiveElement? purposeElement,
 
     /// [copyright] A copyright statement relating to the structure definition
     /// and/or its contents. Copyright statements are generally legal restrictions
@@ -9667,7 +9703,7 @@ class StructureDefinition with Resource, _$StructureDefinition {
     FhirMarkdown? copyright,
 
     /// [copyrightElement] Extensions for copyright
-    @JsonKey(name: '_copyright') Element? copyrightElement,
+    @JsonKey(name: '_copyright') PrimitiveElement? copyrightElement,
 
     /// [keyword] A set of key words or terms from external terminologies that
     /// may be used to assist with indexing and searching of templates nby
@@ -9682,7 +9718,7 @@ class StructureDefinition with Resource, _$StructureDefinition {
     FhirCode? fhirVersion,
 
     /// [fhirVersionElement] Extensions for fhirVersion
-    @JsonKey(name: '_fhirVersion') Element? fhirVersionElement,
+    @JsonKey(name: '_fhirVersion') PrimitiveElement? fhirVersionElement,
 
     /// [mapping] An external specification that the content is mapped to.
     List<StructureDefinitionMapping>? mapping,
@@ -9691,7 +9727,7 @@ class StructureDefinition with Resource, _$StructureDefinition {
     FhirCode? kind,
 
     /// [kindElement] Extensions for kind
-    @JsonKey(name: '_kind') Element? kindElement,
+    @JsonKey(name: '_kind') PrimitiveElement? kindElement,
 
     /// [abstract] Whether structure this definition describes is abstract or not
     /// - that is, whether the structure is not intended to be instantiated. For
@@ -9700,7 +9736,7 @@ class StructureDefinition with Resource, _$StructureDefinition {
     @JsonKey(name: 'abstract') FhirBoolean? abstract_,
 
     /// [abstractElement] Extensions for abstract
-    @JsonKey(name: '_abstract') Element? abstractElement,
+    @JsonKey(name: '_abstract') PrimitiveElement? abstractElement,
 
     /// [context] Identifies the types of resource or data type elements to which
     ///  the extension can be applied.
@@ -9726,18 +9762,18 @@ class StructureDefinition with Resource, _$StructureDefinition {
     FhirUri? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [baseDefinition] An absolute URI that is the base structure from which
     ///  this type is derived, either by specialization or constraint.
     FhirCanonical? baseDefinition,
-    @JsonKey(name: '_baseDefinition') Element? baseDefinitionElement,
+    @JsonKey(name: '_baseDefinition') PrimitiveElement? baseDefinitionElement,
 
     /// [derivation] How the type relates to the baseDefinition.
     FhirCode? derivation,
 
     /// [derivationElement] Extensions for derivation
-    @JsonKey(name: '_derivation') Element? derivationElement,
+    @JsonKey(name: '_derivation') PrimitiveElement? derivationElement,
 
     /// [snapshot] A snapshot view is expressed in a standalone form that can be
     ///  used and interpreted without considering the base StructureDefinition.
@@ -9871,27 +9907,27 @@ class StructureDefinitionMapping
     FhirId? identity,
 
     /// [identityElement] Extensions for identity
-    @JsonKey(name: '_identity') Element? identityElement,
+    @JsonKey(name: '_identity') PrimitiveElement? identityElement,
 
     /// [uri] An absolute URI that identifies the specification that this mapping
     ///  is expressed to.
     FhirUri? uri,
 
     /// [uriElement] Extensions for uri
-    @JsonKey(name: '_uri') Element? uriElement,
+    @JsonKey(name: '_uri') PrimitiveElement? uriElement,
 
     /// [name] A name for the specification that is being mapped to.
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [comment] Comments about this mapping, including version notes, issues,
     ///  scope limitations, and other important notes for usage.
     String? comment,
 
     /// [commentElement] Extensions for comment
-    @JsonKey(name: '_comment') Element? commentElement,
+    @JsonKey(name: '_comment') PrimitiveElement? commentElement,
   }) = _StructureDefinitionMapping;
 
   @override
@@ -10003,14 +10039,14 @@ class StructureDefinitionContext
     FhirCode? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [expression] An expression that defines where an extension can be used in
     ///  resources.
     String? expression,
 
     /// [expressionElement] Extensions for expression
-    @JsonKey(name: '_expression') Element? expressionElement,
+    @JsonKey(name: '_expression') PrimitiveElement? expressionElement,
   }) = _StructureDefinitionContext;
 
   @override
@@ -10247,7 +10283,7 @@ class StructureDefinitionDifferential
 
 /// [StructureMap] A Map of relationships between 2 structures that can be
 @freezed
-class StructureMap with Resource, _$StructureMap {
+class StructureMap with _$StructureMap implements DomainResource {
   /// [StructureMap] A Map of relationships between 2 structures that can be
   const StructureMap._();
 
@@ -10423,13 +10459,13 @@ class StructureMap with Resource, _$StructureMap {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -10478,7 +10514,7 @@ class StructureMap with Resource, _$StructureMap {
     FhirUri? url,
 
     /// [urlElement] Extensions for url
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
 
     /// [identifier] A formal identifier that is used to identify this structure
     /// map when it is represented in other formats, or referenced in a
@@ -10495,7 +10531,7 @@ class StructureMap with Resource, _$StructureMap {
     String? version,
 
     /// [versionElement] Extensions for version
-    @JsonKey(name: '_version') Element? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
 
     /// [name] A natural language name identifying the structure map. This name
     /// should be usable as an identifier for the module by machine processing
@@ -10503,20 +10539,20 @@ class StructureMap with Resource, _$StructureMap {
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [title] A short, descriptive, user-friendly title for the structure map.
     String? title,
 
     /// [titleElement] Extensions for title
-    @JsonKey(name: '_title') Element? titleElement,
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
 
     /// [status] The status of this structure map. Enables tracking the
     ///  life-cycle of the content.
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [experimental] A Boolean value to indicate that this structure map is
     /// authored for testing purposes (or education/evaluation/marketing) and is
@@ -10524,7 +10560,7 @@ class StructureMap with Resource, _$StructureMap {
     FhirBoolean? experimental,
 
     /// [experimentalElement] Extensions for experimental
-    @JsonKey(name: '_experimental') Element? experimentalElement,
+    @JsonKey(name: '_experimental') PrimitiveElement? experimentalElement,
 
     /// [date] The date  (and optionally time) when the structure map was
     /// published. The date must change when the business version changes and it
@@ -10533,14 +10569,14 @@ class StructureMap with Resource, _$StructureMap {
     FhirDateTime? date,
 
     /// [dateElement] Extensions for date
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
 
     /// [publisher] The name of the organization or individual that published the
     ///  structure map.
     String? publisher,
 
     /// [publisherElement] Extensions for publisher
-    @JsonKey(name: '_publisher') Element? publisherElement,
+    @JsonKey(name: '_publisher') PrimitiveElement? publisherElement,
 
     /// [contact] Contact details to assist a user in finding and communicating
     ///  with the publisher.
@@ -10551,7 +10587,7 @@ class StructureMap with Resource, _$StructureMap {
     FhirMarkdown? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [useContext] The content was developed with a focus and intent of
     /// supporting the contexts that are listed. These contexts may be general
@@ -10569,7 +10605,7 @@ class StructureMap with Resource, _$StructureMap {
     FhirMarkdown? purpose,
 
     /// [purposeElement] Extensions for purpose
-    @JsonKey(name: '_purpose') Element? purposeElement,
+    @JsonKey(name: '_purpose') PrimitiveElement? purposeElement,
 
     /// [copyright] A copyright statement relating to the structure map and/or
     /// its contents. Copyright statements are generally legal restrictions on the
@@ -10577,7 +10613,7 @@ class StructureMap with Resource, _$StructureMap {
     FhirMarkdown? copyright,
 
     /// [copyrightElement] Extensions for copyright
-    @JsonKey(name: '_copyright') Element? copyrightElement,
+    @JsonKey(name: '_copyright') PrimitiveElement? copyrightElement,
 
     /// [structure] A structure definition used by this map. The structure
     /// definition may describe instances that are converted, or the instances
@@ -10630,7 +10666,9 @@ class StructureMap with Resource, _$StructureMap {
 
 /// [StructureMapStructure] A Map of relationships between 2 structures that
 @freezed
-class StructureMapStructure with BackboneType, _$StructureMapStructure {
+class StructureMapStructure
+    with _$StructureMapStructure
+    implements BackboneElement {
   /// [StructureMapStructure] A Map of relationships between 2 structures that
   const StructureMapStructure._();
 
@@ -10710,20 +10748,20 @@ class StructureMapStructure with BackboneType, _$StructureMapStructure {
     FhirCode? mode,
 
     /// [modeElement] Extensions for mode
-    @JsonKey(name: '_mode') Element? modeElement,
+    @JsonKey(name: '_mode') PrimitiveElement? modeElement,
 
     /// [alias] The name used for this type in the map.
     String? alias,
 
     /// [aliasElement] Extensions for alias
-    @JsonKey(name: '_alias') Element? aliasElement,
+    @JsonKey(name: '_alias') PrimitiveElement? aliasElement,
 
     /// [documentation] Documentation that describes how the structure is used in
     ///  the mapping.
     String? documentation,
 
     /// [documentationElement] Extensions for documentation
-    @JsonKey(name: '_documentation') Element? documentationElement,
+    @JsonKey(name: '_documentation') PrimitiveElement? documentationElement,
   }) = _StructureMapStructure;
 
   @override
@@ -10759,7 +10797,7 @@ class StructureMapStructure with BackboneType, _$StructureMapStructure {
 
 /// [StructureMapGroup] A Map of relationships between 2 structures that can
 @freezed
-class StructureMapGroup with BackboneType, _$StructureMapGroup {
+class StructureMapGroup with _$StructureMapGroup implements BackboneElement {
   /// [StructureMapGroup] A Map of relationships between 2 structures that can
   const StructureMapGroup._();
 
@@ -10844,27 +10882,27 @@ class StructureMapGroup with BackboneType, _$StructureMapGroup {
     FhirId? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [extends] Another group that this group adds rules to.
     @JsonKey(name: 'extends') FhirId? extends_,
 
     /// [extendsElement] Extensions for extends
-    @JsonKey(name: '_extends') Element? extendsElement,
+    @JsonKey(name: '_extends') PrimitiveElement? extendsElement,
 
     /// [typeMode] If this is the default rule set to apply for the source type
     ///  or this combination of types.
     FhirCode? typeMode,
 
     /// [typeModeElement] Extensions for typeMode
-    @JsonKey(name: '_typeMode') Element? typeModeElement,
+    @JsonKey(name: '_typeMode') PrimitiveElement? typeModeElement,
 
     /// [documentation] Additional supporting documentation that explains the
     ///  purpose of the group and the types of mappings within it.
     String? documentation,
 
     /// [documentationElement] Extensions for documentation
-    @JsonKey(name: '_documentation') Element? documentationElement,
+    @JsonKey(name: '_documentation') PrimitiveElement? documentationElement,
 
     /// [input] A name assigned to an instance of data. The instance must be
     ///  provided when the mapping is invoked.
@@ -10907,7 +10945,7 @@ class StructureMapGroup with BackboneType, _$StructureMapGroup {
 
 /// [StructureMapInput] A Map of relationships between 2 structures that can
 @freezed
-class StructureMapInput with BackboneType, _$StructureMapInput {
+class StructureMapInput with _$StructureMapInput implements BackboneElement {
   /// [StructureMapInput] A Map of relationships between 2 structures that can
   const StructureMapInput._();
 
@@ -10985,25 +11023,25 @@ class StructureMapInput with BackboneType, _$StructureMapInput {
     FhirId? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [type] Type for this instance of data.
     String? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [mode] Mode for this instance of data.
     FhirCode? mode,
 
     /// [modeElement] Extensions for mode
-    @JsonKey(name: '_mode') Element? modeElement,
+    @JsonKey(name: '_mode') PrimitiveElement? modeElement,
 
     /// [documentation] Documentation for this instance of data.
     String? documentation,
 
     /// [documentationElement] Extensions for documentation
-    @JsonKey(name: '_documentation') Element? documentationElement,
+    @JsonKey(name: '_documentation') PrimitiveElement? documentationElement,
   }) = _StructureMapInput;
 
   @override
@@ -11039,7 +11077,7 @@ class StructureMapInput with BackboneType, _$StructureMapInput {
 
 /// [StructureMapRule] A Map of relationships between 2 structures that can
 @freezed
-class StructureMapRule with BackboneType, _$StructureMapRule {
+class StructureMapRule with _$StructureMapRule implements BackboneElement {
   /// [StructureMapRule] A Map of relationships between 2 structures that can
   const StructureMapRule._();
 
@@ -11117,7 +11155,7 @@ class StructureMapRule with BackboneType, _$StructureMapRule {
     FhirId? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [source] Source inputs to the mapping.
     required List<StructureMapSource> source,
@@ -11135,7 +11173,7 @@ class StructureMapRule with BackboneType, _$StructureMapRule {
     String? documentation,
 
     /// [documentationElement] Extensions for documentation
-    @JsonKey(name: '_documentation') Element? documentationElement,
+    @JsonKey(name: '_documentation') PrimitiveElement? documentationElement,
   }) = _StructureMapRule;
 
   @override
@@ -11171,7 +11209,7 @@ class StructureMapRule with BackboneType, _$StructureMapRule {
 
 /// [StructureMapSource] A Map of relationships between 2 structures that
 @freezed
-class StructureMapSource with BackboneType, _$StructureMapSource {
+class StructureMapSource with _$StructureMapSource implements BackboneElement {
   /// [StructureMapSource] A Map of relationships between 2 structures that
   const StructureMapSource._();
 
@@ -11468,14 +11506,14 @@ class StructureMapSource with BackboneType, _$StructureMapSource {
     FhirId? context,
 
     /// [contextElement] Extensions for context
-    @JsonKey(name: '_context') Element? contextElement,
+    @JsonKey(name: '_context') PrimitiveElement? contextElement,
 
     /// [min] Specified minimum cardinality for the element. This is optional; if
     ///  present, it acts an implicit check on the input content.
     FhirInteger? min,
 
     /// [minElement] Extensions for min
-    @JsonKey(name: '_min') Element? minElement,
+    @JsonKey(name: '_min') PrimitiveElement? minElement,
 
     /// [max] Specified maximum cardinality for the element - a number or a "*".
     /// This is optional; if present, it acts an implicit check on the input
@@ -11483,14 +11521,14 @@ class StructureMapSource with BackboneType, _$StructureMapSource {
     String? max,
 
     /// [maxElement] Extensions for max
-    @JsonKey(name: '_max') Element? maxElement,
+    @JsonKey(name: '_max') PrimitiveElement? maxElement,
 
     /// [type] Specified type for the element. This works as a condition on the
     ///  mapping - use for polymorphic elements.
     String? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [defaultValueBase64Binary] A value to use if there is no existing value
     ///  in the source object.
@@ -11498,14 +11536,15 @@ class StructureMapSource with BackboneType, _$StructureMapSource {
     @JsonKey(name: '_defaultValueBase64Binary')
 
     /// [defaultValueBase64BinaryElement] Extensions for defaultValueBase64Binary
-    Element? defaultValueBase64BinaryElement,
+    PrimitiveElement? defaultValueBase64BinaryElement,
 
     /// [defaultValueBoolean] A value to use if there is no existing value in the
     ///  source object.
     FhirBoolean? defaultValueBoolean,
 
     /// [defaultValueBooleanElement] Extensions for defaultValueBoolean
-    @JsonKey(name: '_defaultValueBoolean') Element? defaultValueBooleanElement,
+    @JsonKey(name: '_defaultValueBoolean')
+    PrimitiveElement? defaultValueBooleanElement,
 
     /// [defaultValueCanonical] A value to use if there is no existing value in
     ///  the source object.
@@ -11513,21 +11552,23 @@ class StructureMapSource with BackboneType, _$StructureMapSource {
     @JsonKey(name: '_defaultValueCanonical')
 
     /// [defaultValueCanonicalElement] Extensions for defaultValueCanonical
-    Element? defaultValueCanonicalElement,
+    PrimitiveElement? defaultValueCanonicalElement,
 
     /// [defaultValueCode] A value to use if there is no existing value in the
     ///  source object.
     FhirCode? defaultValueCode,
 
     /// [defaultValueCodeElement] Extensions for defaultValueCode
-    @JsonKey(name: '_defaultValueCode') Element? defaultValueCodeElement,
+    @JsonKey(name: '_defaultValueCode')
+    PrimitiveElement? defaultValueCodeElement,
 
     /// [defaultValueDate] A value to use if there is no existing value in the
     ///  source object.
     FhirDate? defaultValueDate,
 
     /// [defaultValueDateElement] Extensions for defaultValueDate
-    @JsonKey(name: '_defaultValueDate') Element? defaultValueDateElement,
+    @JsonKey(name: '_defaultValueDate')
+    PrimitiveElement? defaultValueDateElement,
 
     /// [defaultValueDateTime] A value to use if there is no existing value in
     ///  the source object.
@@ -11535,35 +11576,38 @@ class StructureMapSource with BackboneType, _$StructureMapSource {
     @JsonKey(name: '_defaultValueDateTime')
 
     /// [defaultValueDateTimeElement] Extensions for defaultValueDateTime
-    Element? defaultValueDateTimeElement,
+    PrimitiveElement? defaultValueDateTimeElement,
 
     /// [defaultValueDecimal] A value to use if there is no existing value in the
     ///  source object.
     FhirDecimal? defaultValueDecimal,
 
     /// [defaultValueDecimalElement] Extensions for defaultValueDecimal
-    @JsonKey(name: '_defaultValueDecimal') Element? defaultValueDecimalElement,
+    @JsonKey(name: '_defaultValueDecimal')
+    PrimitiveElement? defaultValueDecimalElement,
 
     /// [defaultValueId] A value to use if there is no existing value in the
     ///  source object.
     FhirId? defaultValueId,
 
     /// [defaultValueIdElement] Extensions for defaultValueId
-    @JsonKey(name: '_defaultValueId') Element? defaultValueIdElement,
+    @JsonKey(name: '_defaultValueId') PrimitiveElement? defaultValueIdElement,
 
     /// [defaultValueInstant] A value to use if there is no existing value in the
     ///  source object.
     FhirInstant? defaultValueInstant,
 
     /// [defaultValueInstantElement] Extensions for defaultValueInstant
-    @JsonKey(name: '_defaultValueInstant') Element? defaultValueInstantElement,
+    @JsonKey(name: '_defaultValueInstant')
+    PrimitiveElement? defaultValueInstantElement,
 
     /// [defaultValueInteger] A value to use if there is no existing value in the
     ///  source object.
     FhirInteger? defaultValueInteger,
 
     /// [defaultValueIntegerElement] Extensions for defaultValueInteger
-    @JsonKey(name: '_defaultValueInteger') Element? defaultValueIntegerElement,
+    @JsonKey(name: '_defaultValueInteger')
+    PrimitiveElement? defaultValueIntegerElement,
 
     /// [defaultValueMarkdown] A value to use if there is no existing value in
     ///  the source object.
@@ -11571,14 +11615,14 @@ class StructureMapSource with BackboneType, _$StructureMapSource {
     @JsonKey(name: '_defaultValueMarkdown')
 
     /// [defaultValueMarkdownElement] Extensions for defaultValueMarkdown
-    Element? defaultValueMarkdownElement,
+    PrimitiveElement? defaultValueMarkdownElement,
 
     /// [defaultValueOid] A value to use if there is no existing value in the
     ///  source object.
     FhirOid? defaultValueOid,
 
     /// [defaultValueOidElement] Extensions for defaultValueOid
-    @JsonKey(name: '_defaultValueOid') Element? defaultValueOidElement,
+    @JsonKey(name: '_defaultValueOid') PrimitiveElement? defaultValueOidElement,
 
     /// [defaultValuePositiveInt] A value to use if there is no existing value in
     ///  the source object.
@@ -11586,21 +11630,23 @@ class StructureMapSource with BackboneType, _$StructureMapSource {
     @JsonKey(name: '_defaultValuePositiveInt')
 
     /// [defaultValuePositiveIntElement] Extensions for defaultValuePositiveInt
-    Element? defaultValuePositiveIntElement,
+    PrimitiveElement? defaultValuePositiveIntElement,
 
     /// [defaultValueString] A value to use if there is no existing value in the
     ///  source object.
     String? defaultValueString,
 
     /// [defaultValueStringElement] Extensions for defaultValueString
-    @JsonKey(name: '_defaultValueString') Element? defaultValueStringElement,
+    @JsonKey(name: '_defaultValueString')
+    PrimitiveElement? defaultValueStringElement,
 
     /// [defaultValueTime] A value to use if there is no existing value in the
     ///  source object.
     FhirTime? defaultValueTime,
 
     /// [defaultValueTimeElement] Extensions for defaultValueTime
-    @JsonKey(name: '_defaultValueTime') Element? defaultValueTimeElement,
+    @JsonKey(name: '_defaultValueTime')
+    PrimitiveElement? defaultValueTimeElement,
 
     /// [defaultValueUnsignedInt] A value to use if there is no existing value in
     ///  the source object.
@@ -11608,28 +11654,29 @@ class StructureMapSource with BackboneType, _$StructureMapSource {
     @JsonKey(name: '_defaultValueUnsignedInt')
 
     /// [defaultValueUnsignedIntElement] Extensions for defaultValueUnsignedInt
-    Element? defaultValueUnsignedIntElement,
+    PrimitiveElement? defaultValueUnsignedIntElement,
 
     /// [defaultValueUri] A value to use if there is no existing value in the
     ///  source object.
     FhirUri? defaultValueUri,
 
     /// [defaultValueUriElement] Extensions for defaultValueUri
-    @JsonKey(name: '_defaultValueUri') Element? defaultValueUriElement,
+    @JsonKey(name: '_defaultValueUri') PrimitiveElement? defaultValueUriElement,
 
     /// [defaultValueUrl] A value to use if there is no existing value in the
     ///  source object.
     FhirUrl? defaultValueUrl,
 
     /// [defaultValueUrlElement] Extensions for defaultValueUrl
-    @JsonKey(name: '_defaultValueUrl') Element? defaultValueUrlElement,
+    @JsonKey(name: '_defaultValueUrl') PrimitiveElement? defaultValueUrlElement,
 
     /// [defaultValueUuid] A value to use if there is no existing value in the
     ///  source object.
     FhirUuid? defaultValueUuid,
 
     /// [defaultValueUuidElement] Extensions for defaultValueUuid
-    @JsonKey(name: '_defaultValueUuid') Element? defaultValueUuidElement,
+    @JsonKey(name: '_defaultValueUuid')
+    PrimitiveElement? defaultValueUuidElement,
 
     /// [defaultValueAddress] A value to use if there is no existing value in the
     ///  source object.
@@ -11759,40 +11806,40 @@ class StructureMapSource with BackboneType, _$StructureMapSource {
     String? element,
 
     /// [elementElement] Extensions for element
-    @JsonKey(name: '_element') Element? elementElement,
+    @JsonKey(name: '_element') PrimitiveElement? elementElement,
 
     /// [listMode] How to handle the list mode for this element.
     FhirCode? listMode,
 
     /// [listModeElement] Extensions for listMode
-    @JsonKey(name: '_listMode') Element? listModeElement,
+    @JsonKey(name: '_listMode') PrimitiveElement? listModeElement,
 
     /// [variable] Named context for field, if a field is specified.
     FhirId? variable,
 
     /// [variableElement] Extensions for variable
-    @JsonKey(name: '_variable') Element? variableElement,
+    @JsonKey(name: '_variable') PrimitiveElement? variableElement,
 
     /// [condition] FHIRPath expression  - must be true or the rule does not
     ///  apply.
     String? condition,
 
     /// [conditionElement] Extensions for condition
-    @JsonKey(name: '_condition') Element? conditionElement,
+    @JsonKey(name: '_condition') PrimitiveElement? conditionElement,
 
     /// [check] FHIRPath expression  - must be true or the mapping engine throws
     ///  an error instead of completing.
     String? check,
 
     /// [checkElement] Extensions for check
-    @JsonKey(name: '_check') Element? checkElement,
+    @JsonKey(name: '_check') PrimitiveElement? checkElement,
 
     /// [logMessage] A FHIRPath expression which specifies a message to put in
     ///  the transform log when content matching the source rule is found.
     String? logMessage,
 
     /// [logMessageElement] Extensions for logMessage
-    @JsonKey(name: '_logMessage') Element? logMessageElement,
+    @JsonKey(name: '_logMessage') PrimitiveElement? logMessageElement,
   }) = _StructureMapSource;
 
   @override
@@ -11828,7 +11875,7 @@ class StructureMapSource with BackboneType, _$StructureMapSource {
 
 /// [StructureMapTarget] A Map of relationships between 2 structures that
 @freezed
-class StructureMapTarget with BackboneType, _$StructureMapTarget {
+class StructureMapTarget with _$StructureMapTarget implements BackboneElement {
   /// [StructureMapTarget] A Map of relationships between 2 structures that
   const StructureMapTarget._();
 
@@ -11920,25 +11967,25 @@ class StructureMapTarget with BackboneType, _$StructureMapTarget {
     FhirId? context,
 
     /// [contextElement] Extensions for context
-    @JsonKey(name: '_context') Element? contextElement,
+    @JsonKey(name: '_context') PrimitiveElement? contextElement,
 
     /// [contextType] How to interpret the context.
     FhirCode? contextType,
 
     /// [contextTypeElement] Extensions for contextType
-    @JsonKey(name: '_contextType') Element? contextTypeElement,
+    @JsonKey(name: '_contextType') PrimitiveElement? contextTypeElement,
 
     /// [element] Field to create in the context.
     String? element,
 
     /// [elementElement] Extensions for element
-    @JsonKey(name: '_element') Element? elementElement,
+    @JsonKey(name: '_element') PrimitiveElement? elementElement,
 
     /// [variable] Named context for field, if desired, and a field is specified.
     FhirId? variable,
 
     /// [variableElement] Extensions for variable
-    @JsonKey(name: '_variable') Element? variableElement,
+    @JsonKey(name: '_variable') PrimitiveElement? variableElement,
 
     /// [listMode] If field is a list, how to manage the list.
     List<FhirCode>? listMode,
@@ -11950,13 +11997,13 @@ class StructureMapTarget with BackboneType, _$StructureMapTarget {
     FhirId? listRuleId,
 
     /// [listRuleIdElement] Extensions for listRuleId
-    @JsonKey(name: '_listRuleId') Element? listRuleIdElement,
+    @JsonKey(name: '_listRuleId') PrimitiveElement? listRuleIdElement,
 
     /// [transform] How the data is copied / created.
     FhirCode? transform,
 
     /// [transformElement] Extensions for transform
-    @JsonKey(name: '_transform') Element? transformElement,
+    @JsonKey(name: '_transform') PrimitiveElement? transformElement,
 
     /// [parameter] Parameters to the transform.
     List<StructureMapParameter>? parameter,
@@ -11995,7 +12042,9 @@ class StructureMapTarget with BackboneType, _$StructureMapTarget {
 
 /// [StructureMapParameter] A Map of relationships between 2 structures that
 @freezed
-class StructureMapParameter with BackboneType, _$StructureMapParameter {
+class StructureMapParameter
+    with _$StructureMapParameter
+    implements BackboneElement {
   /// [StructureMapParameter] A Map of relationships between 2 structures that
   const StructureMapParameter._();
 
@@ -12077,31 +12126,31 @@ class StructureMapParameter with BackboneType, _$StructureMapParameter {
     FhirId? valueId,
 
     /// [valueIdElement] Extensions for valueId
-    @JsonKey(name: '_valueId') Element? valueIdElement,
+    @JsonKey(name: '_valueId') PrimitiveElement? valueIdElement,
 
     /// [valueString] Parameter value - variable or literal.
     String? valueString,
 
     /// [valueStringElement] Extensions for valueString
-    @JsonKey(name: '_valueString') Element? valueStringElement,
+    @JsonKey(name: '_valueString') PrimitiveElement? valueStringElement,
 
     /// [valueBoolean] Parameter value - variable or literal.
     FhirBoolean? valueBoolean,
 
     /// [valueBooleanElement] Extensions for valueBoolean
-    @JsonKey(name: '_valueBoolean') Element? valueBooleanElement,
+    @JsonKey(name: '_valueBoolean') PrimitiveElement? valueBooleanElement,
 
     /// [valueInteger] Parameter value - variable or literal.
     FhirInteger? valueInteger,
 
     /// [valueIntegerElement] Extensions for valueInteger
-    @JsonKey(name: '_valueInteger') Element? valueIntegerElement,
+    @JsonKey(name: '_valueInteger') PrimitiveElement? valueIntegerElement,
 
     /// [valueDecimal] Parameter value - variable or literal.
     FhirDecimal? valueDecimal,
 
     /// [valueDecimalElement] Extensions for valueDecimal
-    @JsonKey(name: '_valueDecimal') Element? valueDecimalElement,
+    @JsonKey(name: '_valueDecimal') PrimitiveElement? valueDecimalElement,
   }) = _StructureMapParameter;
 
   @override
@@ -12137,7 +12186,9 @@ class StructureMapParameter with BackboneType, _$StructureMapParameter {
 
 /// [StructureMapDependent] A Map of relationships between 2 structures that
 @freezed
-class StructureMapDependent with BackboneType, _$StructureMapDependent {
+class StructureMapDependent
+    with _$StructureMapDependent
+    implements BackboneElement {
   /// [StructureMapDependent] A Map of relationships between 2 structures that
   const StructureMapDependent._();
 
@@ -12207,7 +12258,7 @@ class StructureMapDependent with BackboneType, _$StructureMapDependent {
     FhirId? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [variable] Variable to pass to the rule or group.
     List<String>? variable,

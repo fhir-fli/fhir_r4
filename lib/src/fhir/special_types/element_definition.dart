@@ -1701,7 +1701,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     String? path,
 
     /// [pathElement] Extensions for path
-    @JsonKey(name: '_path') Element? pathElement,
+    @JsonKey(name: '_path') PrimitiveElement? pathElement,
 
     /// [representation] Codes that define how this element is represented in
     ///  instances, when the deviation varies from the normal case.
@@ -1717,7 +1717,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     String? sliceName,
 
     /// [sliceNameElement] Extensions for sliceName
-    @JsonKey(name: '_sliceName') Element? sliceNameElement,
+    @JsonKey(name: '_sliceName') PrimitiveElement? sliceNameElement,
 
     /// [sliceIsConstraining] If true, indicates that this slice definition is
     /// constraining a slice definition with the same name in an inherited
@@ -1727,7 +1727,8 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirBoolean? sliceIsConstraining,
 
     /// [sliceIsConstrainingElement] Extensions for sliceIsConstraining
-    @JsonKey(name: '_sliceIsConstraining') Element? sliceIsConstrainingElement,
+    @JsonKey(name: '_sliceIsConstraining')
+    PrimitiveElement? sliceIsConstrainingElement,
 
     /// [label] A single preferred label which is the text to display beside the
     /// element indicating its meaning or to use to prompt for the element in a
@@ -1735,7 +1736,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     String? label,
 
     /// [labelElement] Extensions for label
-    @JsonKey(name: '_label') Element? labelElement,
+    @JsonKey(name: '_label') PrimitiveElement? labelElement,
 
     /// [code] A code that has the same meaning as the element in a particular
     ///  terminology.
@@ -1755,7 +1756,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     String? short,
 
     /// [shortElement] Extensions for short
-    @JsonKey(name: '_short') Element? shortElement,
+    @JsonKey(name: '_short') PrimitiveElement? shortElement,
 
     /// [definition] Provides a complete explanation of the meaning of the data
     /// element for human readability.  For the case of elements derived from
@@ -1766,7 +1767,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirMarkdown? definition,
 
     /// [definitionElement] Extensions for definition
-    @JsonKey(name: '_definition') Element? definitionElement,
+    @JsonKey(name: '_definition') PrimitiveElement? definitionElement,
 
     /// [comment] Explanatory notes and implementation guidance about the data
     /// element, including notes about how to use the data properly, exceptions to
@@ -1775,7 +1776,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirMarkdown? comment,
 
     /// [commentElement] Extensions for comment
-    @JsonKey(name: '_comment') Element? commentElement,
+    @JsonKey(name: '_comment') PrimitiveElement? commentElement,
 
     /// [requirements] This element is for traceability of why the element was
     /// created and why the constraints exist as they do. This may be used to
@@ -1784,7 +1785,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirMarkdown? requirements,
 
     /// [requirementsElement] Extensions for requirements
-    @JsonKey(name: '_requirements') Element? requirementsElement,
+    @JsonKey(name: '_requirements') PrimitiveElement? requirementsElement,
 
     /// [alias] Identifies additional names by which this element might also be
     ///  known.
@@ -1798,14 +1799,14 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirUnsignedInt? min,
 
     /// [minElement] Extensions for min
-    @JsonKey(name: '_min') Element? minElement,
+    @JsonKey(name: '_min') PrimitiveElement? minElement,
 
     /// [max] The maximum number of times this element is permitted to appear in
     ///  the instance.
     String? max,
 
     /// [maxElement] Extensions for max
-    @JsonKey(name: '_max') Element? maxElement,
+    @JsonKey(name: '_max') PrimitiveElement? maxElement,
 
     /// [base] Information about the base definition of the element, provided to
     /// make it unnecessary for tools to trace the deviation of the element
@@ -1825,7 +1826,8 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirUri? contentReference,
 
     /// [contentReferenceElement] Extensions for contentReference
-    @JsonKey(name: '_contentReference') Element? contentReferenceElement,
+    @JsonKey(name: '_contentReference')
+    PrimitiveElement? contentReferenceElement,
 
     /// [type] The data type or resource that the value of this element is
     ///  permitted to be.
@@ -1838,7 +1840,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     @JsonKey(name: '_defaultValueBase64Binary')
 
     /// [defaultValueBase64BinaryElement] Extensions for defaultValueBase64Binary
-    Element? defaultValueBase64BinaryElement,
+    PrimitiveElement? defaultValueBase64BinaryElement,
 
     /// [defaultValueBoolean] The value that should be used if there is no value
     /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
@@ -1846,7 +1848,8 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirBoolean? defaultValueBoolean,
 
     /// [defaultValueBooleanElement] Extensions for defaultValueBoolean
-    @JsonKey(name: '_defaultValueBoolean') Element? defaultValueBooleanElement,
+    @JsonKey(name: '_defaultValueBoolean')
+    PrimitiveElement? defaultValueBooleanElement,
 
     /// [defaultValueCanonical] The value that should be used if there is no
     /// value stated in the instance (e.g. 'if not otherwise specified, the
@@ -1855,7 +1858,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     @JsonKey(name: '_defaultValueCanonical')
 
     /// [defaultValueCanonicalElement] Extensions for defaultValueCanonical
-    Element? defaultValueCanonicalElement,
+    PrimitiveElement? defaultValueCanonicalElement,
 
     /// [defaultValueCode] The value that should be used if there is no value
     /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
@@ -1863,7 +1866,8 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirCode? defaultValueCode,
 
     /// [defaultValueCodeElement] Extensions for defaultValueCode
-    @JsonKey(name: '_defaultValueCode') Element? defaultValueCodeElement,
+    @JsonKey(name: '_defaultValueCode')
+    PrimitiveElement? defaultValueCodeElement,
 
     /// [defaultValueDate] The value that should be used if there is no value
     /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
@@ -1871,7 +1875,8 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirDate? defaultValueDate,
 
     /// [defaultValueDateElement] Extensions for defaultValueDate
-    @JsonKey(name: '_defaultValueDate') Element? defaultValueDateElement,
+    @JsonKey(name: '_defaultValueDate')
+    PrimitiveElement? defaultValueDateElement,
 
     /// [defaultValueDateTime] The value that should be used if there is no value
     /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
@@ -1880,7 +1885,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     @JsonKey(name: '_defaultValueDateTime')
 
     /// [defaultValueDateTimeElement] Extensions for defaultValueDateTime
-    Element? defaultValueDateTimeElement,
+    PrimitiveElement? defaultValueDateTimeElement,
 
     /// [defaultValueDecimal] The value that should be used if there is no value
     /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
@@ -1888,7 +1893,8 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirDecimal? defaultValueDecimal,
 
     /// [defaultValueDecimalElement] Extensions for defaultValueDecimal
-    @JsonKey(name: '_defaultValueDecimal') Element? defaultValueDecimalElement,
+    @JsonKey(name: '_defaultValueDecimal')
+    PrimitiveElement? defaultValueDecimalElement,
 
     /// [defaultValueId] The value that should be used if there is no value
     /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
@@ -1896,7 +1902,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirId? defaultValueId,
 
     /// [defaultValueIdElement] Extensions for defaultValueId
-    @JsonKey(name: '_defaultValueId') Element? defaultValueIdElement,
+    @JsonKey(name: '_defaultValueId') PrimitiveElement? defaultValueIdElement,
 
     /// [defaultValueInstant] The value that should be used if there is no value
     /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
@@ -1904,7 +1910,8 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirInstant? defaultValueInstant,
 
     /// [defaultValueInstantElement] Extensions for defaultValueInstant
-    @JsonKey(name: '_defaultValueInstant') Element? defaultValueInstantElement,
+    @JsonKey(name: '_defaultValueInstant')
+    PrimitiveElement? defaultValueInstantElement,
 
     /// [defaultValueInteger] The value that should be used if there is no value
     /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
@@ -1912,7 +1919,8 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirInteger? defaultValueInteger,
 
     /// [defaultValueIntegerElement] Extensions for defaultValueInteger
-    @JsonKey(name: '_defaultValueInteger') Element? defaultValueIntegerElement,
+    @JsonKey(name: '_defaultValueInteger')
+    PrimitiveElement? defaultValueIntegerElement,
 
     /// [defaultValueMarkdown] The value that should be used if there is no value
     /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
@@ -1921,7 +1929,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     @JsonKey(name: '_defaultValueMarkdown')
 
     /// [defaultValueMarkdownElement] Extensions for defaultValueMarkdown
-    Element? defaultValueMarkdownElement,
+    PrimitiveElement? defaultValueMarkdownElement,
 
     /// [defaultValueOid] The value that should be used if there is no value
     /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
@@ -1929,7 +1937,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirOid? defaultValueOid,
 
     /// [defaultValueOidElement] Extensions for defaultValueOid
-    @JsonKey(name: '_defaultValueOid') Element? defaultValueOidElement,
+    @JsonKey(name: '_defaultValueOid') PrimitiveElement? defaultValueOidElement,
 
     /// [defaultValuePositiveInt] The value that should be used if there is no
     /// value stated in the instance (e.g. 'if not otherwise specified, the
@@ -1938,7 +1946,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     @JsonKey(name: '_defaultValuePositiveInt')
 
     /// [defaultValuePositiveIntElement] Extensions for defaultValuePositiveInt
-    Element? defaultValuePositiveIntElement,
+    PrimitiveElement? defaultValuePositiveIntElement,
 
     /// [defaultValueString] The value that should be used if there is no value
     /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
@@ -1946,7 +1954,8 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     String? defaultValueString,
 
     /// [defaultValueStringElement] Extensions for defaultValueString
-    @JsonKey(name: '_defaultValueString') Element? defaultValueStringElement,
+    @JsonKey(name: '_defaultValueString')
+    PrimitiveElement? defaultValueStringElement,
 
     /// [defaultValueTime] The value that should be used if there is no value
     /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
@@ -1954,7 +1963,8 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirTime? defaultValueTime,
 
     /// [defaultValueTimeElement] Extensions for defaultValueTime
-    @JsonKey(name: '_defaultValueTime') Element? defaultValueTimeElement,
+    @JsonKey(name: '_defaultValueTime')
+    PrimitiveElement? defaultValueTimeElement,
 
     /// [defaultValueUnsignedInt] The value that should be used if there is no
     /// value stated in the instance (e.g. 'if not otherwise specified, the
@@ -1963,7 +1973,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     @JsonKey(name: '_defaultValueUnsignedInt')
 
     /// [defaultValueUnsignedIntElement] Extensions for defaultValueUnsignedInt
-    Element? defaultValueUnsignedIntElement,
+    PrimitiveElement? defaultValueUnsignedIntElement,
 
     /// [defaultValueUri] The value that should be used if there is no value
     /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
@@ -1971,7 +1981,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirUri? defaultValueUri,
 
     /// [defaultValueUriElement] Extensions for defaultValueUri
-    @JsonKey(name: '_defaultValueUri') Element? defaultValueUriElement,
+    @JsonKey(name: '_defaultValueUri') PrimitiveElement? defaultValueUriElement,
 
     /// [defaultValueUrl] The value that should be used if there is no value
     /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
@@ -1979,7 +1989,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirUrl? defaultValueUrl,
 
     /// [defaultValueUrlElement] Extensions for defaultValueUrl
-    @JsonKey(name: '_defaultValueUrl') Element? defaultValueUrlElement,
+    @JsonKey(name: '_defaultValueUrl') PrimitiveElement? defaultValueUrlElement,
 
     /// [defaultValueUuid] The value that should be used if there is no value
     /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
@@ -1987,7 +1997,8 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirUuid? defaultValueUuid,
 
     /// [defaultValueUuidElement] Extensions for defaultValueUuid
-    @JsonKey(name: '_defaultValueUuid') Element? defaultValueUuidElement,
+    @JsonKey(name: '_defaultValueUuid')
+    PrimitiveElement? defaultValueUuidElement,
 
     /// [defaultValueAddress] The value that should be used if there is no value
     /// stated in the instance (e.g. 'if not otherwise specified, the abstract is
@@ -2147,7 +2158,8 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirMarkdown? meaningWhenMissing,
 
     /// [meaningWhenMissingElement] Extensions for meaningWhenMissing
-    @JsonKey(name: '_meaningWhenMissing') Element? meaningWhenMissingElement,
+    @JsonKey(name: '_meaningWhenMissing')
+    PrimitiveElement? meaningWhenMissingElement,
 
     /// [orderMeaning] If present, indicates that the order of the repeating
     /// element has meaning and describes what that meaning is.  If absent, it
@@ -2155,7 +2167,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     String? orderMeaning,
 
     /// [orderMeaningElement] Extensions for orderMeaning
-    @JsonKey(name: '_orderMeaning') Element? orderMeaningElement,
+    @JsonKey(name: '_orderMeaning') PrimitiveElement? orderMeaningElement,
 
     /// [fixedBase64Binary] Specifies a value that SHALL be exactly the value
     /// for this element in the instance. For purposes of comparison,
@@ -2165,7 +2177,8 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirBase64Binary? fixedBase64Binary,
 
     /// [fixedBase64BinaryElement] Extensions for fixedBase64Binary
-    @JsonKey(name: '_fixedBase64Binary') Element? fixedBase64BinaryElement,
+    @JsonKey(name: '_fixedBase64Binary')
+    PrimitiveElement? fixedBase64BinaryElement,
 
     /// [fixedBoolean] Specifies a value that SHALL be exactly the value  for
     /// this element in the instance. For purposes of comparison, non-significant
@@ -2174,7 +2187,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirBoolean? fixedBoolean,
 
     /// [fixedBooleanElement] Extensions for fixedBoolean
-    @JsonKey(name: '_fixedBoolean') Element? fixedBooleanElement,
+    @JsonKey(name: '_fixedBoolean') PrimitiveElement? fixedBooleanElement,
 
     /// [fixedCanonical] Specifies a value that SHALL be exactly the value  for
     /// this element in the instance. For purposes of comparison, non-significant
@@ -2183,7 +2196,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirCanonical? fixedCanonical,
 
     /// [fixedCanonicalElement] Extensions for fixedCanonical
-    @JsonKey(name: '_fixedCanonical') Element? fixedCanonicalElement,
+    @JsonKey(name: '_fixedCanonical') PrimitiveElement? fixedCanonicalElement,
 
     /// [fixedCode] Specifies a value that SHALL be exactly the value  for this
     /// element in the instance. For purposes of comparison, non-significant
@@ -2192,7 +2205,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirCode? fixedCode,
 
     /// [fixedCodeElement] Extensions for fixedCode
-    @JsonKey(name: '_fixedCode') Element? fixedCodeElement,
+    @JsonKey(name: '_fixedCode') PrimitiveElement? fixedCodeElement,
 
     /// [fixedDate] Specifies a value that SHALL be exactly the value  for this
     /// element in the instance. For purposes of comparison, non-significant
@@ -2201,7 +2214,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirDate? fixedDate,
 
     /// [fixedDateElement] Extensions for fixedDate
-    @JsonKey(name: '_fixedDate') Element? fixedDateElement,
+    @JsonKey(name: '_fixedDate') PrimitiveElement? fixedDateElement,
 
     /// [fixedDateTime] Specifies a value that SHALL be exactly the value  for
     /// this element in the instance. For purposes of comparison, non-significant
@@ -2210,7 +2223,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirDateTime? fixedDateTime,
 
     /// [fixedDateTimeElement] Extensions for fixedDateTime
-    @JsonKey(name: '_fixedDateTime') Element? fixedDateTimeElement,
+    @JsonKey(name: '_fixedDateTime') PrimitiveElement? fixedDateTimeElement,
 
     /// [fixedDecimal] Specifies a value that SHALL be exactly the value  for
     /// this element in the instance. For purposes of comparison, non-significant
@@ -2219,7 +2232,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirDecimal? fixedDecimal,
 
     /// [fixedDecimalElement] Extensions for fixedDecimal
-    @JsonKey(name: '_fixedDecimal') Element? fixedDecimalElement,
+    @JsonKey(name: '_fixedDecimal') PrimitiveElement? fixedDecimalElement,
 
     /// [fixedId] Specifies a value that SHALL be exactly the value  for this
     /// element in the instance. For purposes of comparison, non-significant
@@ -2228,7 +2241,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirId? fixedId,
 
     /// [fixedIdElement] Extensions for fixedId
-    @JsonKey(name: '_fixedId') Element? fixedIdElement,
+    @JsonKey(name: '_fixedId') PrimitiveElement? fixedIdElement,
 
     /// [fixedInstant] Specifies a value that SHALL be exactly the value  for
     /// this element in the instance. For purposes of comparison, non-significant
@@ -2237,7 +2250,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirInstant? fixedInstant,
 
     /// [fixedInstantElement] Extensions for fixedInstant
-    @JsonKey(name: '_fixedInstant') Element? fixedInstantElement,
+    @JsonKey(name: '_fixedInstant') PrimitiveElement? fixedInstantElement,
 
     /// [fixedInteger] Specifies a value that SHALL be exactly the value  for
     /// this element in the instance. For purposes of comparison, non-significant
@@ -2246,7 +2259,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirInteger? fixedInteger,
 
     /// [fixedIntegerElement] Extensions for fixedInteger
-    @JsonKey(name: '_fixedInteger') Element? fixedIntegerElement,
+    @JsonKey(name: '_fixedInteger') PrimitiveElement? fixedIntegerElement,
 
     /// [fixedMarkdown] Specifies a value that SHALL be exactly the value  for
     /// this element in the instance. For purposes of comparison, non-significant
@@ -2255,7 +2268,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirMarkdown? fixedMarkdown,
 
     /// [fixedMarkdownElement] Extensions for fixedMarkdown
-    @JsonKey(name: '_fixedMarkdown') Element? fixedMarkdownElement,
+    @JsonKey(name: '_fixedMarkdown') PrimitiveElement? fixedMarkdownElement,
 
     /// [fixedOid] Specifies a value that SHALL be exactly the value  for this
     /// element in the instance. For purposes of comparison, non-significant
@@ -2264,7 +2277,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirOid? fixedOid,
 
     /// [fixedOidElement] Extensions for fixedOid
-    @JsonKey(name: '_fixedOid') Element? fixedOidElement,
+    @JsonKey(name: '_fixedOid') PrimitiveElement? fixedOidElement,
 
     /// [fixedPositiveInt] Specifies a value that SHALL be exactly the value  for
     /// this element in the instance. For purposes of comparison, non-significant
@@ -2273,7 +2286,8 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirPositiveInt? fixedPositiveInt,
 
     /// [fixedPositiveIntElement] Extensions for fixedPositiveInt
-    @JsonKey(name: '_fixedPositiveInt') Element? fixedPositiveIntElement,
+    @JsonKey(name: '_fixedPositiveInt')
+    PrimitiveElement? fixedPositiveIntElement,
 
     /// [fixedString] Specifies a value that SHALL be exactly the value  for this
     /// element in the instance. For purposes of comparison, non-significant
@@ -2282,7 +2296,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     String? fixedString,
 
     /// [fixedStringElement] Extensions for fixedString
-    @JsonKey(name: '_fixedString') Element? fixedStringElement,
+    @JsonKey(name: '_fixedString') PrimitiveElement? fixedStringElement,
 
     /// [fixedTime] Specifies a value that SHALL be exactly the value  for this
     /// element in the instance. For purposes of comparison, non-significant
@@ -2291,7 +2305,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirTime? fixedTime,
 
     /// [fixedTimeElement] Extensions for fixedTime
-    @JsonKey(name: '_fixedTime') Element? fixedTimeElement,
+    @JsonKey(name: '_fixedTime') PrimitiveElement? fixedTimeElement,
 
     /// [fixedUnsignedInt] Specifies a value that SHALL be exactly the value  for
     /// this element in the instance. For purposes of comparison, non-significant
@@ -2300,7 +2314,8 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirUnsignedInt? fixedUnsignedInt,
 
     /// [fixedUnsignedIntElement] Extensions for fixedUnsignedInt
-    @JsonKey(name: '_fixedUnsignedInt') Element? fixedUnsignedIntElement,
+    @JsonKey(name: '_fixedUnsignedInt')
+    PrimitiveElement? fixedUnsignedIntElement,
 
     /// [fixedUri] Specifies a value that SHALL be exactly the value  for this
     /// element in the instance. For purposes of comparison, non-significant
@@ -2309,7 +2324,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirUri? fixedUri,
 
     /// [fixedUriElement] Extensions for fixedUri
-    @JsonKey(name: '_fixedUri') Element? fixedUriElement,
+    @JsonKey(name: '_fixedUri') PrimitiveElement? fixedUriElement,
 
     /// [fixedUrl] Specifies a value that SHALL be exactly the value  for this
     /// element in the instance. For purposes of comparison, non-significant
@@ -2318,7 +2333,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirUrl? fixedUrl,
 
     /// [fixedUrlElement] Extensions for fixedUrl
-    @JsonKey(name: '_fixedUrl') Element? fixedUrlElement,
+    @JsonKey(name: '_fixedUrl') PrimitiveElement? fixedUrlElement,
 
     /// [fixedUuid] Specifies a value that SHALL be exactly the value  for this
     /// element in the instance. For purposes of comparison, non-significant
@@ -2327,7 +2342,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirUuid? fixedUuid,
 
     /// [fixedUuidElement] Extensions for fixedUuid
-    @JsonKey(name: '_fixedUuid') Element? fixedUuidElement,
+    @JsonKey(name: '_fixedUuid') PrimitiveElement? fixedUuidElement,
 
     /// [fixedAddress] Specifies a value that SHALL be exactly the value  for
     /// this element in the instance. For purposes of comparison, non-significant
@@ -2537,7 +2552,8 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirBase64Binary? patternBase64Binary,
 
     /// [patternBase64BinaryElement] Extensions for patternBase64Binary
-    @JsonKey(name: '_patternBase64Binary') Element? patternBase64BinaryElement,
+    @JsonKey(name: '_patternBase64Binary')
+    PrimitiveElement? patternBase64BinaryElement,
 
     /// [patternBoolean] Specifies a value that the value in the instance SHALL
     /// follow - that is, any value in the pattern must be found in the instance.
@@ -2557,7 +2573,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirBoolean? patternBoolean,
 
     /// [patternBooleanElement] Extensions for patternBoolean
-    @JsonKey(name: '_patternBoolean') Element? patternBooleanElement,
+    @JsonKey(name: '_patternBoolean') PrimitiveElement? patternBooleanElement,
 
     /// [patternCanonical] Specifies a value that the value in the instance SHALL
     /// follow - that is, any value in the pattern must be found in the instance.
@@ -2577,7 +2593,8 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirCanonical? patternCanonical,
 
     /// [patternCanonicalElement] Extensions for patternCanonical
-    @JsonKey(name: '_patternCanonical') Element? patternCanonicalElement,
+    @JsonKey(name: '_patternCanonical')
+    PrimitiveElement? patternCanonicalElement,
 
     /// [patternCode] Specifies a value that the value in the instance SHALL
     /// follow - that is, any value in the pattern must be found in the instance.
@@ -2597,7 +2614,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirCode? patternCode,
 
     /// [patternCodeElement] Extensions for patternCode
-    @JsonKey(name: '_patternCode') Element? patternCodeElement,
+    @JsonKey(name: '_patternCode') PrimitiveElement? patternCodeElement,
 
     /// [patternDate] Specifies a value that the value in the instance SHALL
     /// follow - that is, any value in the pattern must be found in the instance.
@@ -2617,7 +2634,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirDate? patternDate,
 
     /// [patternDateElement] Extensions for patternDate
-    @JsonKey(name: '_patternDate') Element? patternDateElement,
+    @JsonKey(name: '_patternDate') PrimitiveElement? patternDateElement,
 
     /// [patternDateTime] Specifies a value that the value in the instance SHALL
     /// follow - that is, any value in the pattern must be found in the instance.
@@ -2637,7 +2654,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirDateTime? patternDateTime,
 
     /// [patternDateTimeElement] Extensions for patternDateTime
-    @JsonKey(name: '_patternDateTime') Element? patternDateTimeElement,
+    @JsonKey(name: '_patternDateTime') PrimitiveElement? patternDateTimeElement,
 
     /// [patternDecimal] Specifies a value that the value in the instance SHALL
     /// follow - that is, any value in the pattern must be found in the instance.
@@ -2657,7 +2674,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirDecimal? patternDecimal,
 
     /// [patternDecimalElement] Extensions for patternDecimal
-    @JsonKey(name: '_patternDecimal') Element? patternDecimalElement,
+    @JsonKey(name: '_patternDecimal') PrimitiveElement? patternDecimalElement,
 
     /// [patternId] Specifies a value that the value in the instance SHALL follow
     /// - that is, any value in the pattern must be found in the instance. Other
@@ -2677,7 +2694,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirId? patternId,
 
     /// [patternIdElement] Extensions for patternId
-    @JsonKey(name: '_patternId') Element? patternIdElement,
+    @JsonKey(name: '_patternId') PrimitiveElement? patternIdElement,
 
     /// [patternInstant] Specifies a value that the value in the instance SHALL
     /// follow - that is, any value in the pattern must be found in the instance.
@@ -2697,7 +2714,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirInstant? patternInstant,
 
     /// [patternInstantElement] Extensions for patternInstant
-    @JsonKey(name: '_patternInstant') Element? patternInstantElement,
+    @JsonKey(name: '_patternInstant') PrimitiveElement? patternInstantElement,
 
     /// [patternInteger] Specifies a value that the value in the instance SHALL
     /// follow - that is, any value in the pattern must be found in the instance.
@@ -2717,7 +2734,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirInteger? patternInteger,
 
     /// [patternIntegerElement] Extensions for patternInteger
-    @JsonKey(name: '_patternInteger') Element? patternIntegerElement,
+    @JsonKey(name: '_patternInteger') PrimitiveElement? patternIntegerElement,
 
     /// [patternMarkdown] Specifies a value that the value in the instance SHALL
     /// follow - that is, any value in the pattern must be found in the instance.
@@ -2737,7 +2754,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirMarkdown? patternMarkdown,
 
     /// [patternMarkdownElement] Extensions for patternMarkdown
-    @JsonKey(name: '_patternMarkdown') Element? patternMarkdownElement,
+    @JsonKey(name: '_patternMarkdown') PrimitiveElement? patternMarkdownElement,
 
     /// [patternOid] Specifies a value that the value in the instance SHALL
     /// follow - that is, any value in the pattern must be found in the instance.
@@ -2757,7 +2774,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirOid? patternOid,
 
     /// [patternOidElement] Extensions for patternOid
-    @JsonKey(name: '_patternOid') Element? patternOidElement,
+    @JsonKey(name: '_patternOid') PrimitiveElement? patternOidElement,
 
     /// [patternPositiveInt] Specifies a value that the value in the instance
     /// SHALL follow - that is, any value in the pattern must be found in the
@@ -2777,7 +2794,8 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirPositiveInt? patternPositiveInt,
 
     /// [patternPositiveIntElement] Extensions for patternPositiveInt
-    @JsonKey(name: '_patternPositiveInt') Element? patternPositiveIntElement,
+    @JsonKey(name: '_patternPositiveInt')
+    PrimitiveElement? patternPositiveIntElement,
 
     /// [patternString] Specifies a value that the value in the instance SHALL
     /// follow - that is, any value in the pattern must be found in the instance.
@@ -2797,7 +2815,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     String? patternString,
 
     /// [patternStringElement] Extensions for patternString
-    @JsonKey(name: '_patternString') Element? patternStringElement,
+    @JsonKey(name: '_patternString') PrimitiveElement? patternStringElement,
 
     /// [patternTime] Specifies a value that the value in the instance SHALL
     /// follow - that is, any value in the pattern must be found in the instance.
@@ -2817,7 +2835,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirTime? patternTime,
 
     /// [patternTimeElement] Extensions for patternTime
-    @JsonKey(name: '_patternTime') Element? patternTimeElement,
+    @JsonKey(name: '_patternTime') PrimitiveElement? patternTimeElement,
 
     /// [patternUnsignedInt] Specifies a value that the value in the instance
     /// SHALL follow - that is, any value in the pattern must be found in the
@@ -2837,7 +2855,8 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirUnsignedInt? patternUnsignedInt,
 
     /// [patternUnsignedIntElement] Extensions for patternUnsignedInt
-    @JsonKey(name: '_patternUnsignedInt') Element? patternUnsignedIntElement,
+    @JsonKey(name: '_patternUnsignedInt')
+    PrimitiveElement? patternUnsignedIntElement,
 
     /// [patternUri] Specifies a value that the value in the instance SHALL
     /// follow - that is, any value in the pattern must be found in the instance.
@@ -2857,7 +2876,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirUri? patternUri,
 
     /// [patternUriElement] Extensions for patternUri
-    @JsonKey(name: '_patternUri') Element? patternUriElement,
+    @JsonKey(name: '_patternUri') PrimitiveElement? patternUriElement,
 
     /// [patternUrl] Specifies a value that the value in the instance SHALL
     /// follow - that is, any value in the pattern must be found in the instance.
@@ -2877,7 +2896,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirUrl? patternUrl,
 
     /// [patternUrlElement] Extensions for patternUrl
-    @JsonKey(name: '_patternUrl') Element? patternUrlElement,
+    @JsonKey(name: '_patternUrl') PrimitiveElement? patternUrlElement,
 
     /// [patternUuid] Specifies a value that the value in the instance SHALL
     /// follow - that is, any value in the pattern must be found in the instance.
@@ -2897,7 +2916,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirUuid? patternUuid,
 
     /// [patternUuidElement] Extensions for patternUuid
-    @JsonKey(name: '_patternUuid') Element? patternUuidElement,
+    @JsonKey(name: '_patternUuid') PrimitiveElement? patternUuidElement,
 
     /// [patternAddress] Specifies a value that the value in the instance SHALL
     /// follow - that is, any value in the pattern must be found in the instance.
@@ -3421,7 +3440,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirDate? minValueDate,
 
     /// [minValueDateElement] Extensions for minValueDate
-    @JsonKey(name: '_minValueDate') Element? minValueDateElement,
+    @JsonKey(name: '_minValueDate') PrimitiveElement? minValueDateElement,
 
     /// [minValueDateTime] The minimum allowed value for the element. The value
     /// is inclusive. This is allowed for the types date, dateTime, instant, time,
@@ -3429,7 +3448,8 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirDateTime? minValueDateTime,
 
     /// [minValueDateTimeElement] Extensions for minValueDateTime
-    @JsonKey(name: '_minValueDateTime') Element? minValueDateTimeElement,
+    @JsonKey(name: '_minValueDateTime')
+    PrimitiveElement? minValueDateTimeElement,
 
     /// [minValueInstant] The minimum allowed value for the element. The value is
     /// inclusive. This is allowed for the types date, dateTime, instant, time,
@@ -3437,7 +3457,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirInstant? minValueInstant,
 
     /// [minValueInstantElement] Extensions for minValueInstant
-    @JsonKey(name: '_minValueInstant') Element? minValueInstantElement,
+    @JsonKey(name: '_minValueInstant') PrimitiveElement? minValueInstantElement,
 
     /// [minValueTime] The minimum allowed value for the element. The value is
     /// inclusive. This is allowed for the types date, dateTime, instant, time,
@@ -3445,7 +3465,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirTime? minValueTime,
 
     /// [minValueTimeElement] Extensions for minValueTime
-    @JsonKey(name: '_minValueTime') Element? minValueTimeElement,
+    @JsonKey(name: '_minValueTime') PrimitiveElement? minValueTimeElement,
 
     /// [minValueDecimal] The minimum allowed value for the element. The value is
     /// inclusive. This is allowed for the types date, dateTime, instant, time,
@@ -3453,7 +3473,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirDecimal? minValueDecimal,
 
     /// [minValueDecimalElement] Extensions for minValueDecimal
-    @JsonKey(name: '_minValueDecimal') Element? minValueDecimalElement,
+    @JsonKey(name: '_minValueDecimal') PrimitiveElement? minValueDecimalElement,
 
     /// [minValueInteger] The minimum allowed value for the element. The value is
     /// inclusive. This is allowed for the types date, dateTime, instant, time,
@@ -3461,7 +3481,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirInteger? minValueInteger,
 
     /// [minValueIntegerElement] Extensions for minValueInteger
-    @JsonKey(name: '_minValueInteger') Element? minValueIntegerElement,
+    @JsonKey(name: '_minValueInteger') PrimitiveElement? minValueIntegerElement,
 
     /// [minValuePositiveInt] The minimum allowed value for the element. The
     /// value is inclusive. This is allowed for the types date, dateTime, instant,
@@ -3469,7 +3489,8 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirPositiveInt? minValuePositiveInt,
 
     /// [minValuePositiveIntElement] Extensions for minValuePositiveInt
-    @JsonKey(name: '_minValuePositiveInt') Element? minValuePositiveIntElement,
+    @JsonKey(name: '_minValuePositiveInt')
+    PrimitiveElement? minValuePositiveIntElement,
 
     /// [minValueUnsignedInt] The minimum allowed value for the element. The
     /// value is inclusive. This is allowed for the types date, dateTime, instant,
@@ -3477,7 +3498,8 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirUnsignedInt? minValueUnsignedInt,
 
     /// [minValueUnsignedIntElement] Extensions for minValueUnsignedInt
-    @JsonKey(name: '_minValueUnsignedInt') Element? minValueUnsignedIntElement,
+    @JsonKey(name: '_minValueUnsignedInt')
+    PrimitiveElement? minValueUnsignedIntElement,
 
     /// [minValueQuantity] The minimum allowed value for the element. The value
     /// is inclusive. This is allowed for the types date, dateTime, instant, time,
@@ -3490,7 +3512,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirDate? maxValueDate,
 
     /// [maxValueDateElement] Extensions for maxValueDate
-    @JsonKey(name: '_maxValueDate') Element? maxValueDateElement,
+    @JsonKey(name: '_maxValueDate') PrimitiveElement? maxValueDateElement,
 
     /// [maxValueDateTime] The maximum allowed value for the element. The value
     /// is inclusive. This is allowed for the types date, dateTime, instant, time,
@@ -3498,7 +3520,8 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirDateTime? maxValueDateTime,
 
     /// [maxValueDateTimeElement] Extensions for maxValueDateTime
-    @JsonKey(name: '_maxValueDateTime') Element? maxValueDateTimeElement,
+    @JsonKey(name: '_maxValueDateTime')
+    PrimitiveElement? maxValueDateTimeElement,
 
     /// [maxValueInstant] The maximum allowed value for the element. The value is
     /// inclusive. This is allowed for the types date, dateTime, instant, time,
@@ -3506,7 +3529,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirInstant? maxValueInstant,
 
     /// [maxValueInstantElement] Extensions for maxValueInstant
-    @JsonKey(name: '_maxValueInstant') Element? maxValueInstantElement,
+    @JsonKey(name: '_maxValueInstant') PrimitiveElement? maxValueInstantElement,
 
     /// [maxValueTime] The maximum allowed value for the element. The value is
     /// inclusive. This is allowed for the types date, dateTime, instant, time,
@@ -3514,7 +3537,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirTime? maxValueTime,
 
     /// [maxValueTimeElement] Extensions for maxValueTime
-    @JsonKey(name: '_maxValueTime') Element? maxValueTimeElement,
+    @JsonKey(name: '_maxValueTime') PrimitiveElement? maxValueTimeElement,
 
     /// [maxValueDecimal] The maximum allowed value for the element. The value is
     /// inclusive. This is allowed for the types date, dateTime, instant, time,
@@ -3522,7 +3545,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirDecimal? maxValueDecimal,
 
     /// [maxValueDecimalElement] Extensions for maxValueDecimal
-    @JsonKey(name: '_maxValueDecimal') Element? maxValueDecimalElement,
+    @JsonKey(name: '_maxValueDecimal') PrimitiveElement? maxValueDecimalElement,
 
     /// [maxValueInteger] The maximum allowed value for the element. The value is
     /// inclusive. This is allowed for the types date, dateTime, instant, time,
@@ -3530,7 +3553,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirInteger? maxValueInteger,
 
     /// [maxValueIntegerElement] Extensions for maxValueInteger
-    @JsonKey(name: '_maxValueInteger') Element? maxValueIntegerElement,
+    @JsonKey(name: '_maxValueInteger') PrimitiveElement? maxValueIntegerElement,
 
     /// [maxValuePositiveInt] The maximum allowed value for the element. The
     /// value is inclusive. This is allowed for the types date, dateTime, instant,
@@ -3538,7 +3561,8 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirPositiveInt? maxValuePositiveInt,
 
     /// [maxValuePositiveIntElement] Extensions for maxValuePositiveInt
-    @JsonKey(name: '_maxValuePositiveInt') Element? maxValuePositiveIntElement,
+    @JsonKey(name: '_maxValuePositiveInt')
+    PrimitiveElement? maxValuePositiveIntElement,
 
     /// [maxValueUnsignedInt] The maximum allowed value for the element. The
     /// value is inclusive. This is allowed for the types date, dateTime, instant,
@@ -3546,7 +3570,8 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirUnsignedInt? maxValueUnsignedInt,
 
     /// [maxValueUnsignedIntElement] Extensions for maxValueUnsignedInt
-    @JsonKey(name: '_maxValueUnsignedInt') Element? maxValueUnsignedIntElement,
+    @JsonKey(name: '_maxValueUnsignedInt')
+    PrimitiveElement? maxValueUnsignedIntElement,
 
     /// [maxValueQuantity] The maximum allowed value for the element. The value
     /// is inclusive. This is allowed for the types date, dateTime, instant, time,
@@ -3559,7 +3584,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirInteger? maxLength,
 
     /// [maxLengthElement] Extensions for maxLength
-    @JsonKey(name: '_maxLength') Element? maxLengthElement,
+    @JsonKey(name: '_maxLength') PrimitiveElement? maxLengthElement,
 
     /// [condition] A reference to an invariant that may make additional
     ///  statements about the cardinality or value in the instance.
@@ -3581,7 +3606,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirBoolean? mustSupport,
 
     /// [mustSupportElement] Extensions for mustSupport
-    @JsonKey(name: '_mustSupport') Element? mustSupportElement,
+    @JsonKey(name: '_mustSupport') PrimitiveElement? mustSupportElement,
 
     /// [isModifier] If true, the value of this element affects the
     /// interpretation of the element or resource that contains it, and the value
@@ -3593,21 +3618,22 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     FhirBoolean? isModifier,
 
     /// [isModifierElement] Extensions for isModifier
-    @JsonKey(name: '_isModifier') Element? isModifierElement,
+    @JsonKey(name: '_isModifier') PrimitiveElement? isModifierElement,
 
     /// [isModifierReason] Explains how that element affects the interpretation
     ///  of the resource or element that contains it.
     String? isModifierReason,
 
     /// [isModifierReasonElement] Extensions for isModifierReason
-    @JsonKey(name: '_isModifierReason') Element? isModifierReasonElement,
+    @JsonKey(name: '_isModifierReason')
+    PrimitiveElement? isModifierReasonElement,
 
     /// [isSummary] Whether the element should be included if a client requests a
     ///  search with the parameter _summary=true.
     FhirBoolean? isSummary,
 
     /// [isSummaryElement] Extensions for isSummary
-    @JsonKey(name: '_isSummary') Element? isSummaryElement,
+    @JsonKey(name: '_isSummary') PrimitiveElement? isSummaryElement,
 
     /// [binding] Binds to a value set if this element is coded (code, Coding,
     ///  CodeableConcept, Quantity), or the data types (string, uri).
@@ -3757,14 +3783,14 @@ class ElementDefinitionSlicing
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [ordered] If the matching elements have to occur in the same order as
     ///  defined in the profile.
     FhirBoolean? ordered,
 
     /// [orderedElement] Extensions for ordered
-    @JsonKey(name: '_ordered') Element? orderedElement,
+    @JsonKey(name: '_ordered') PrimitiveElement? orderedElement,
     @JsonKey(unknownEnumValue: ElementDefinitionSlicingRules.unknown)
 
     /// [rules] Whether additional slices are allowed or not. When the slices are
@@ -3773,7 +3799,7 @@ class ElementDefinitionSlicing
     ElementDefinitionSlicingRules? rules,
 
     /// [rulesElement] Extensions for rules
-    @JsonKey(name: '_rules') Element? rulesElement,
+    @JsonKey(name: '_rules') PrimitiveElement? rulesElement,
   }) = _ElementDefinitionSlicing;
 
   @override
@@ -3892,7 +3918,7 @@ class ElementDefinitionDiscriminator
     ElementDefinitionDiscriminatorType? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [path] A FHIRPath expression, using [the simple subset of
     /// FHIRPath](fhirpath.html#simple), that is used to identify the element on
@@ -3900,7 +3926,7 @@ class ElementDefinitionDiscriminator
     String? path,
 
     /// [pathElement] Extensions for path
-    @JsonKey(name: '_path') Element? pathElement,
+    @JsonKey(name: '_path') PrimitiveElement? pathElement,
   }) = _ElementDefinitionDiscriminator;
 
   @override
@@ -4023,19 +4049,19 @@ class ElementDefinitionBase with _$ElementDefinitionBase implements Element {
     String? path,
 
     /// [pathElement] Extensions for path
-    @JsonKey(name: '_path') Element? pathElement,
+    @JsonKey(name: '_path') PrimitiveElement? pathElement,
 
     /// [min] Minimum cardinality of the base element identified by the path.
     FhirUnsignedInt? min,
 
     /// [minElement] Extensions for min
-    @JsonKey(name: '_min') Element? minElement,
+    @JsonKey(name: '_min') PrimitiveElement? minElement,
 
     /// [max] Maximum cardinality of the base element identified by the path.
     String? max,
 
     /// [maxElement] Extensions for max
-    @JsonKey(name: '_max') Element? maxElement,
+    @JsonKey(name: '_max') PrimitiveElement? maxElement,
   }) = _ElementDefinitionBase;
 
   @override
@@ -4180,7 +4206,7 @@ class ElementDefinitionType with _$ElementDefinitionType implements Element {
     FhirUri? code,
 
     /// [codeElement] Extensions for code
-    @JsonKey(name: '_code') Element? codeElement,
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
 
     /// [profile] Identifies a profile structure or implementation Guide that
     /// applies to the datatype this element refers to. If any profiles are
@@ -4217,7 +4243,7 @@ class ElementDefinitionType with _$ElementDefinitionType implements Element {
     ElementDefinitionTypeVersioning? versioning,
 
     /// [versioningElement] Extensions for versioning
-    @JsonKey(name: '_versioning') Element? versioningElement,
+    @JsonKey(name: '_versioning') PrimitiveElement? versioningElement,
   }) = _ElementDefinitionType;
 
   @override
@@ -4515,140 +4541,143 @@ class ElementDefinitionExample
     String? label,
 
     /// [labelElement] Extensions for label
-    @JsonKey(name: '_label') Element? labelElement,
+    @JsonKey(name: '_label') PrimitiveElement? labelElement,
 
     /// [valueBase64Binary] The actual value for the element, which must be one
     ///  of the types allowed for this element.
     FhirBase64Binary? valueBase64Binary,
 
     /// [valueBase64BinaryElement] Extensions for valueBase64Binary
-    @JsonKey(name: '_valueBase64Binary') Element? valueBase64BinaryElement,
+    @JsonKey(name: '_valueBase64Binary')
+    PrimitiveElement? valueBase64BinaryElement,
 
     /// [valueBoolean] The actual value for the element, which must be one of the
     ///  types allowed for this element.
     FhirBoolean? valueBoolean,
 
     /// [valueBooleanElement] Extensions for valueBoolean
-    @JsonKey(name: '_valueBoolean') Element? valueBooleanElement,
+    @JsonKey(name: '_valueBoolean') PrimitiveElement? valueBooleanElement,
 
     /// [valueCanonical] The actual value for the element, which must be one of
     ///  the types allowed for this element.
     FhirCanonical? valueCanonical,
 
     /// [valueCanonicalElement] Extensions for valueCanonical
-    @JsonKey(name: '_valueCanonical') Element? valueCanonicalElement,
+    @JsonKey(name: '_valueCanonical') PrimitiveElement? valueCanonicalElement,
 
     /// [valueCode] The actual value for the element, which must be one of the
     ///  types allowed for this element.
     FhirCode? valueCode,
 
     /// [valueCodeElement] Extensions for valueCode
-    @JsonKey(name: '_valueCode') Element? valueCodeElement,
+    @JsonKey(name: '_valueCode') PrimitiveElement? valueCodeElement,
 
     /// [valueDate] The actual value for the element, which must be one of the
     ///  types allowed for this element.
     FhirDate? valueDate,
 
     /// [valueDateElement] Extensions for valueDate
-    @JsonKey(name: '_valueDate') Element? valueDateElement,
+    @JsonKey(name: '_valueDate') PrimitiveElement? valueDateElement,
 
     /// [valueDateTime] The actual value for the element, which must be one of
     ///  the types allowed for this element.
     FhirDateTime? valueDateTime,
 
     /// [valueDateTimeElement] Extensions for valueDateTime
-    @JsonKey(name: '_valueDateTime') Element? valueDateTimeElement,
+    @JsonKey(name: '_valueDateTime') PrimitiveElement? valueDateTimeElement,
 
     /// [valueDecimal] The actual value for the element, which must be one of the
     ///  types allowed for this element.
     FhirDecimal? valueDecimal,
 
     /// [valueDecimalElement] Extensions for valueDecimal
-    @JsonKey(name: '_valueDecimal') Element? valueDecimalElement,
+    @JsonKey(name: '_valueDecimal') PrimitiveElement? valueDecimalElement,
 
     /// [valueId] The actual value for the element, which must be one of the
     ///  types allowed for this element.
     FhirId? valueId,
 
     /// [valueIdElement] Extensions for valueId
-    @JsonKey(name: '_valueId') Element? valueIdElement,
+    @JsonKey(name: '_valueId') PrimitiveElement? valueIdElement,
 
     /// [valueInstant] The actual value for the element, which must be one of the
     ///  types allowed for this element.
     FhirInstant? valueInstant,
 
     /// [valueInstantElement] Extensions for valueInstant
-    @JsonKey(name: '_valueInstant') Element? valueInstantElement,
+    @JsonKey(name: '_valueInstant') PrimitiveElement? valueInstantElement,
 
     /// [valueInteger] The actual value for the element, which must be one of the
     ///  types allowed for this element.
     FhirInteger? valueInteger,
 
     /// [valueIntegerElement] Extensions for valueInteger
-    @JsonKey(name: '_valueInteger') Element? valueIntegerElement,
+    @JsonKey(name: '_valueInteger') PrimitiveElement? valueIntegerElement,
 
     /// [valueMarkdown] The actual value for the element, which must be one of
     ///  the types allowed for this element.
     FhirMarkdown? valueMarkdown,
 
     /// [valueMarkdownElement] Extensions for valueMarkdown
-    @JsonKey(name: '_valueMarkdown') Element? valueMarkdownElement,
+    @JsonKey(name: '_valueMarkdown') PrimitiveElement? valueMarkdownElement,
 
     /// [valueOid] The actual value for the element, which must be one of the
     ///  types allowed for this element.
     FhirOid? valueOid,
 
     /// [valueOidElement] Extensions for valueOid
-    @JsonKey(name: '_valueOid') Element? valueOidElement,
+    @JsonKey(name: '_valueOid') PrimitiveElement? valueOidElement,
 
     /// [valuePositiveInt] The actual value for the element, which must be one of
     ///  the types allowed for this element.
     FhirPositiveInt? valuePositiveInt,
 
     /// [valuePositiveIntElement] Extensions for valuePositiveInt
-    @JsonKey(name: '_valuePositiveInt') Element? valuePositiveIntElement,
+    @JsonKey(name: '_valuePositiveInt')
+    PrimitiveElement? valuePositiveIntElement,
 
     /// [valueString] The actual value for the element, which must be one of the
     ///  types allowed for this element.
     String? valueString,
 
     /// [valueStringElement] Extensions for valueString
-    @JsonKey(name: '_valueString') Element? valueStringElement,
+    @JsonKey(name: '_valueString') PrimitiveElement? valueStringElement,
 
     /// [valueTime] The actual value for the element, which must be one of the
     ///  types allowed for this element.
     FhirTime? valueTime,
 
     /// [valueTimeElement] Extensions for valueTime
-    @JsonKey(name: '_valueTime') Element? valueTimeElement,
+    @JsonKey(name: '_valueTime') PrimitiveElement? valueTimeElement,
 
     /// [valueUnsignedInt] The actual value for the element, which must be one of
     ///  the types allowed for this element.
     FhirUnsignedInt? valueUnsignedInt,
 
     /// [valueUnsignedIntElement] Extensions for valueUnsignedInt
-    @JsonKey(name: '_valueUnsignedInt') Element? valueUnsignedIntElement,
+    @JsonKey(name: '_valueUnsignedInt')
+    PrimitiveElement? valueUnsignedIntElement,
 
     /// [valueUri] The actual value for the element, which must be one of the
     ///  types allowed for this element.
     FhirUri? valueUri,
 
     /// [valueUriElement] Extensions for valueUri
-    @JsonKey(name: '_valueUri') Element? valueUriElement,
+    @JsonKey(name: '_valueUri') PrimitiveElement? valueUriElement,
 
     /// [valueUrl] The actual value for the element, which must be one of the
     ///  types allowed for this element.
     FhirUrl? valueUrl,
 
     /// [valueUrlElement] Extensions for valueUrl
-    @JsonKey(name: '_valueUrl') Element? valueUrlElement,
+    @JsonKey(name: '_valueUrl') PrimitiveElement? valueUrlElement,
 
     /// [valueUuid] The actual value for the element, which must be one of the
     ///  types allowed for this element.
     FhirUuid? valueUuid,
 
     /// [valueUuidElement] Extensions for valueUuid
-    @JsonKey(name: '_valueUuid') Element? valueUuidElement,
+    @JsonKey(name: '_valueUuid') PrimitiveElement? valueUuidElement,
 
     /// [valueAddress] The actual value for the element, which must be one of the
     ///  types allowed for this element.
@@ -4916,14 +4945,14 @@ class ElementDefinitionConstraint
     FhirId? key,
 
     /// [keyElement] Extensions for key
-    @JsonKey(name: '_key') Element? keyElement,
+    @JsonKey(name: '_key') PrimitiveElement? keyElement,
 
     /// [requirements] Description of why this constraint is necessary or
     ///  appropriate.
     String? requirements,
 
     /// [requirementsElement] Extensions for requirements
-    @JsonKey(name: '_requirements') Element? requirementsElement,
+    @JsonKey(name: '_requirements') PrimitiveElement? requirementsElement,
     @JsonKey(unknownEnumValue: ElementDefinitionConstraintSeverity.unknown)
 
     /// [severity] Identifies the impact constraint violation has on the
@@ -4931,28 +4960,28 @@ class ElementDefinitionConstraint
     ElementDefinitionConstraintSeverity? severity,
 
     /// [severityElement] Extensions for severity
-    @JsonKey(name: '_severity') Element? severityElement,
+    @JsonKey(name: '_severity') PrimitiveElement? severityElement,
 
     /// [human] Text that can be used to describe the constraint in messages
     ///  identifying that the constraint has been violated.
     String? human,
 
     /// [humanElement] Extensions for human
-    @JsonKey(name: '_human') Element? humanElement,
+    @JsonKey(name: '_human') PrimitiveElement? humanElement,
 
     /// [expression] A [FHIRPath](fhirpath.html) expression of constraint that
     ///  can be executed to see if this constraint is met.
     String? expression,
 
     /// [expressionElement] Extensions for expression
-    @JsonKey(name: '_expression') Element? expressionElement,
+    @JsonKey(name: '_expression') PrimitiveElement? expressionElement,
 
     /// [xpath] An XPath expression of constraint that can be executed to see if
     ///  this constraint is met.
     String? xpath,
 
     /// [xpathElement] Extensions for xpath
-    @JsonKey(name: '_xpath') Element? xpathElement,
+    @JsonKey(name: '_xpath') PrimitiveElement? xpathElement,
 
     /// [source] A reference to the original source of the constraint, for
     ///  traceability purposes.
@@ -5078,13 +5107,13 @@ class ElementDefinitionBinding
     ElementDefinitionBindingStrength? strength,
 
     /// [strengthElement] Extensions for strength
-    @JsonKey(name: '_strength') Element? strengthElement,
+    @JsonKey(name: '_strength') PrimitiveElement? strengthElement,
 
     /// [description] Describes the intended use of this particular set of codes.
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [valueSet] Refers to the value set that identifies the set of codes the
     ///  binding refers to.
@@ -5212,27 +5241,27 @@ class ElementDefinitionMapping
     FhirId? identity,
 
     /// [identityElement] Extensions for identity
-    @JsonKey(name: '_identity') Element? identityElement,
+    @JsonKey(name: '_identity') PrimitiveElement? identityElement,
 
     /// [language] Identifies the computable language in which mapping.map is
     ///  expressed.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [map] Expresses what part of the target specification corresponds to this
     ///  element.
     String? map,
 
     /// [mapElement] Extensions for map
-    @JsonKey(name: '_map') Element? mapElement,
+    @JsonKey(name: '_map') PrimitiveElement? mapElement,
 
     /// [comment] Comments that provide information about the mapping or its use.
     String? comment,
 
     /// [commentElement] Extensions for comment
-    @JsonKey(name: '_comment') Element? commentElement,
+    @JsonKey(name: '_comment') PrimitiveElement? commentElement,
   }) = _ElementDefinitionMapping;
 
   @override

@@ -15,7 +15,7 @@ part 'payment.g.dart';
 
 /// [PaymentNotice] This resource provides the status of the payment for
 @freezed
-class PaymentNotice with Resource, _$PaymentNotice {
+class PaymentNotice with _$PaymentNotice implements DomainResource {
   /// [PaymentNotice] This resource provides the status of the payment for
   const PaymentNotice._();
 
@@ -132,13 +132,13 @@ class PaymentNotice with Resource, _$PaymentNotice {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -184,7 +184,7 @@ class PaymentNotice with Resource, _$PaymentNotice {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [request] Reference of resource for which payment is being made.
     Reference? request,
@@ -197,7 +197,7 @@ class PaymentNotice with Resource, _$PaymentNotice {
     FhirDateTime? created,
 
     /// [createdElement] Extensions for created
-    @JsonKey(name: '_created') Element? createdElement,
+    @JsonKey(name: '_created') PrimitiveElement? createdElement,
 
     /// [provider] The practitioner who is responsible for the services rendered
     ///  to the patient.
@@ -210,7 +210,7 @@ class PaymentNotice with Resource, _$PaymentNotice {
     FhirDate? paymentDate,
 
     /// [paymentDateElement] Extensions for paymentDate
-    @JsonKey(name: '_paymentDate') Element? paymentDateElement,
+    @JsonKey(name: '_paymentDate') PrimitiveElement? paymentDateElement,
 
     /// [payee] The party who will receive or has received payment that is the
     ///  subject of this notification.
@@ -265,7 +265,9 @@ class PaymentNotice with Resource, _$PaymentNotice {
 
 /// [PaymentReconciliation] This resource provides the details including
 @freezed
-class PaymentReconciliation with Resource, _$PaymentReconciliation {
+class PaymentReconciliation
+    with _$PaymentReconciliation
+    implements DomainResource {
   /// [PaymentReconciliation] This resource provides the details including
   const PaymentReconciliation._();
 
@@ -395,13 +397,13 @@ class PaymentReconciliation with Resource, _$PaymentReconciliation {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -447,7 +449,7 @@ class PaymentReconciliation with Resource, _$PaymentReconciliation {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [period] The period of time for which payments have been gathered into
     ///  this bulk payment for settlement.
@@ -457,7 +459,7 @@ class PaymentReconciliation with Resource, _$PaymentReconciliation {
     FhirDateTime? created,
 
     /// [createdElement] Extensions for created
-    @JsonKey(name: '_created') Element? createdElement,
+    @JsonKey(name: '_created') PrimitiveElement? createdElement,
 
     /// [paymentIssuer] The party who generated the payment.
     Reference? paymentIssuer,
@@ -473,21 +475,21 @@ class PaymentReconciliation with Resource, _$PaymentReconciliation {
     FhirCode? outcome,
 
     /// [outcomeElement] Extensions for outcome
-    @JsonKey(name: '_outcome') Element? outcomeElement,
+    @JsonKey(name: '_outcome') PrimitiveElement? outcomeElement,
 
     /// [disposition] A human readable description of the status of the request
     ///  for the reconciliation.
     String? disposition,
 
     /// [dispositionElement] Extensions for disposition
-    @JsonKey(name: '_disposition') Element? dispositionElement,
+    @JsonKey(name: '_disposition') PrimitiveElement? dispositionElement,
 
     /// [paymentDate] The date of payment as indicated on the financial
     ///  instrument.
     FhirDate? paymentDate,
 
     /// [paymentDateElement] Extensions for paymentDate
-    @JsonKey(name: '_paymentDate') Element? paymentDateElement,
+    @JsonKey(name: '_paymentDate') PrimitiveElement? paymentDateElement,
 
     /// [paymentAmount] Total payment amount as indicated on the financial
     ///  instrument.
@@ -662,7 +664,7 @@ class PaymentReconciliationDetail
     FhirDate? date,
 
     /// [dateElement] Extensions for date
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
 
     /// [responsible] A reference to the individual who is responsible for
     ///  inquiries regarding the response and its payment.
@@ -780,13 +782,13 @@ class PaymentReconciliationProcessNote
     FhirCode? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [text] The explanation or description associated with the processing.
     String? text,
 
     /// [textElement] Extensions for text
-    @JsonKey(name: '_text') Element? textElement,
+    @JsonKey(name: '_text') PrimitiveElement? textElement,
   }) = _PaymentReconciliationProcessNote;
 
   @override

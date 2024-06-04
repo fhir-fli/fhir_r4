@@ -43,7 +43,7 @@ mixin _$SampledData {
 
   /// [periodElement] Extensions for period
   @JsonKey(name: '_period')
-  Element? get periodElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get periodElement => throw _privateConstructorUsedError;
 
   /// [factor] A correction factor that is applied to the sampled data points
   ///  before they are added to the origin.
@@ -51,7 +51,7 @@ mixin _$SampledData {
 
   /// [factorElement] Extensions for factor
   @JsonKey(name: '_factor')
-  Element? get factorElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get factorElement => throw _privateConstructorUsedError;
 
   /// [lowerLimit] The lower limit of detection of the measured points. This is
   /// needed if any of the data points have the value "L" (lower than detection
@@ -60,7 +60,7 @@ mixin _$SampledData {
 
   /// [lowerLimitElement] Extensions for lowerLimit
   @JsonKey(name: '_lowerLimit')
-  Element? get lowerLimitElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get lowerLimitElement => throw _privateConstructorUsedError;
 
   /// [upperLimit] The upper limit of detection of the measured points. This is
   /// needed if any of the data points have the value "U" (higher than detection
@@ -69,7 +69,7 @@ mixin _$SampledData {
 
   /// [upperLimitElement] Extensions for upperLimit
   @JsonKey(name: '_upperLimit')
-  Element? get upperLimitElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get upperLimitElement => throw _privateConstructorUsedError;
 
   /// [dimensions] The number of sample points at each time point. If this
   /// value is greater than one, then the dimensions will be interlaced - all
@@ -78,7 +78,7 @@ mixin _$SampledData {
 
   /// [dimensionsElement] Extensions for dimensions
   @JsonKey(name: '_dimensions')
-  Element? get dimensionsElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get dimensionsElement => throw _privateConstructorUsedError;
 
   /// [data] A series of data points which are decimal values separated by a
   /// single space (character u20). The special values "E" (error), "L" (below
@@ -88,7 +88,7 @@ mixin _$SampledData {
 
   /// [dataElement] Extensions for data
   @JsonKey(name: '_data')
-  Element? get dataElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get dataElement => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -107,17 +107,17 @@ abstract class $SampledDataCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       Quantity origin,
       FhirDecimal? period,
-      @JsonKey(name: '_period') Element? periodElement,
+      @JsonKey(name: '_period') PrimitiveElement? periodElement,
       FhirDecimal? factor,
-      @JsonKey(name: '_factor') Element? factorElement,
+      @JsonKey(name: '_factor') PrimitiveElement? factorElement,
       FhirDecimal? lowerLimit,
-      @JsonKey(name: '_lowerLimit') Element? lowerLimitElement,
+      @JsonKey(name: '_lowerLimit') PrimitiveElement? lowerLimitElement,
       FhirDecimal? upperLimit,
-      @JsonKey(name: '_upperLimit') Element? upperLimitElement,
+      @JsonKey(name: '_upperLimit') PrimitiveElement? upperLimitElement,
       FhirPositiveInt? dimensions,
-      @JsonKey(name: '_dimensions') Element? dimensionsElement,
+      @JsonKey(name: '_dimensions') PrimitiveElement? dimensionsElement,
       String? data,
-      @JsonKey(name: '_data') Element? dataElement});
+      @JsonKey(name: '_data') PrimitiveElement? dataElement});
 
   $QuantityCopyWith<$Res> get origin;
 }
@@ -171,7 +171,7 @@ class _$SampledDataCopyWithImpl<$Res, $Val extends SampledData>
       periodElement: freezed == periodElement
           ? _value.periodElement
           : periodElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       factor: freezed == factor
           ? _value.factor
           : factor // ignore: cast_nullable_to_non_nullable
@@ -179,7 +179,7 @@ class _$SampledDataCopyWithImpl<$Res, $Val extends SampledData>
       factorElement: freezed == factorElement
           ? _value.factorElement
           : factorElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       lowerLimit: freezed == lowerLimit
           ? _value.lowerLimit
           : lowerLimit // ignore: cast_nullable_to_non_nullable
@@ -187,7 +187,7 @@ class _$SampledDataCopyWithImpl<$Res, $Val extends SampledData>
       lowerLimitElement: freezed == lowerLimitElement
           ? _value.lowerLimitElement
           : lowerLimitElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       upperLimit: freezed == upperLimit
           ? _value.upperLimit
           : upperLimit // ignore: cast_nullable_to_non_nullable
@@ -195,7 +195,7 @@ class _$SampledDataCopyWithImpl<$Res, $Val extends SampledData>
       upperLimitElement: freezed == upperLimitElement
           ? _value.upperLimitElement
           : upperLimitElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       dimensions: freezed == dimensions
           ? _value.dimensions
           : dimensions // ignore: cast_nullable_to_non_nullable
@@ -203,7 +203,7 @@ class _$SampledDataCopyWithImpl<$Res, $Val extends SampledData>
       dimensionsElement: freezed == dimensionsElement
           ? _value.dimensionsElement
           : dimensionsElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -211,7 +211,7 @@ class _$SampledDataCopyWithImpl<$Res, $Val extends SampledData>
       dataElement: freezed == dataElement
           ? _value.dataElement
           : dataElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ) as $Val);
   }
 
@@ -237,17 +237,17 @@ abstract class _$$SampledDataImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       Quantity origin,
       FhirDecimal? period,
-      @JsonKey(name: '_period') Element? periodElement,
+      @JsonKey(name: '_period') PrimitiveElement? periodElement,
       FhirDecimal? factor,
-      @JsonKey(name: '_factor') Element? factorElement,
+      @JsonKey(name: '_factor') PrimitiveElement? factorElement,
       FhirDecimal? lowerLimit,
-      @JsonKey(name: '_lowerLimit') Element? lowerLimitElement,
+      @JsonKey(name: '_lowerLimit') PrimitiveElement? lowerLimitElement,
       FhirDecimal? upperLimit,
-      @JsonKey(name: '_upperLimit') Element? upperLimitElement,
+      @JsonKey(name: '_upperLimit') PrimitiveElement? upperLimitElement,
       FhirPositiveInt? dimensions,
-      @JsonKey(name: '_dimensions') Element? dimensionsElement,
+      @JsonKey(name: '_dimensions') PrimitiveElement? dimensionsElement,
       String? data,
-      @JsonKey(name: '_data') Element? dataElement});
+      @JsonKey(name: '_data') PrimitiveElement? dataElement});
 
   @override
   $QuantityCopyWith<$Res> get origin;
@@ -300,7 +300,7 @@ class __$$SampledDataImplCopyWithImpl<$Res>
       periodElement: freezed == periodElement
           ? _value.periodElement
           : periodElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       factor: freezed == factor
           ? _value.factor
           : factor // ignore: cast_nullable_to_non_nullable
@@ -308,7 +308,7 @@ class __$$SampledDataImplCopyWithImpl<$Res>
       factorElement: freezed == factorElement
           ? _value.factorElement
           : factorElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       lowerLimit: freezed == lowerLimit
           ? _value.lowerLimit
           : lowerLimit // ignore: cast_nullable_to_non_nullable
@@ -316,7 +316,7 @@ class __$$SampledDataImplCopyWithImpl<$Res>
       lowerLimitElement: freezed == lowerLimitElement
           ? _value.lowerLimitElement
           : lowerLimitElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       upperLimit: freezed == upperLimit
           ? _value.upperLimit
           : upperLimit // ignore: cast_nullable_to_non_nullable
@@ -324,7 +324,7 @@ class __$$SampledDataImplCopyWithImpl<$Res>
       upperLimitElement: freezed == upperLimitElement
           ? _value.upperLimitElement
           : upperLimitElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       dimensions: freezed == dimensions
           ? _value.dimensions
           : dimensions // ignore: cast_nullable_to_non_nullable
@@ -332,7 +332,7 @@ class __$$SampledDataImplCopyWithImpl<$Res>
       dimensionsElement: freezed == dimensionsElement
           ? _value.dimensionsElement
           : dimensionsElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -340,7 +340,7 @@ class __$$SampledDataImplCopyWithImpl<$Res>
       dataElement: freezed == dataElement
           ? _value.dataElement
           : dataElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ));
   }
 }
@@ -412,7 +412,7 @@ class _$SampledDataImpl extends _SampledData {
   /// [periodElement] Extensions for period
   @override
   @JsonKey(name: '_period')
-  final Element? periodElement;
+  final PrimitiveElement? periodElement;
 
   /// [factor] A correction factor that is applied to the sampled data points
   ///  before they are added to the origin.
@@ -422,7 +422,7 @@ class _$SampledDataImpl extends _SampledData {
   /// [factorElement] Extensions for factor
   @override
   @JsonKey(name: '_factor')
-  final Element? factorElement;
+  final PrimitiveElement? factorElement;
 
   /// [lowerLimit] The lower limit of detection of the measured points. This is
   /// needed if any of the data points have the value "L" (lower than detection
@@ -433,7 +433,7 @@ class _$SampledDataImpl extends _SampledData {
   /// [lowerLimitElement] Extensions for lowerLimit
   @override
   @JsonKey(name: '_lowerLimit')
-  final Element? lowerLimitElement;
+  final PrimitiveElement? lowerLimitElement;
 
   /// [upperLimit] The upper limit of detection of the measured points. This is
   /// needed if any of the data points have the value "U" (higher than detection
@@ -444,7 +444,7 @@ class _$SampledDataImpl extends _SampledData {
   /// [upperLimitElement] Extensions for upperLimit
   @override
   @JsonKey(name: '_upperLimit')
-  final Element? upperLimitElement;
+  final PrimitiveElement? upperLimitElement;
 
   /// [dimensions] The number of sample points at each time point. If this
   /// value is greater than one, then the dimensions will be interlaced - all
@@ -455,7 +455,7 @@ class _$SampledDataImpl extends _SampledData {
   /// [dimensionsElement] Extensions for dimensions
   @override
   @JsonKey(name: '_dimensions')
-  final Element? dimensionsElement;
+  final PrimitiveElement? dimensionsElement;
 
   /// [data] A series of data points which are decimal values separated by a
   /// single space (character u20). The special values "E" (error), "L" (below
@@ -467,7 +467,7 @@ class _$SampledDataImpl extends _SampledData {
   /// [dataElement] Extensions for data
   @override
   @JsonKey(name: '_data')
-  final Element? dataElement;
+  final PrimitiveElement? dataElement;
 
   @override
   String toString() {
@@ -546,17 +546,18 @@ abstract class _SampledData extends SampledData {
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       required final Quantity origin,
       final FhirDecimal? period,
-      @JsonKey(name: '_period') final Element? periodElement,
+      @JsonKey(name: '_period') final PrimitiveElement? periodElement,
       final FhirDecimal? factor,
-      @JsonKey(name: '_factor') final Element? factorElement,
+      @JsonKey(name: '_factor') final PrimitiveElement? factorElement,
       final FhirDecimal? lowerLimit,
-      @JsonKey(name: '_lowerLimit') final Element? lowerLimitElement,
+      @JsonKey(name: '_lowerLimit') final PrimitiveElement? lowerLimitElement,
       final FhirDecimal? upperLimit,
-      @JsonKey(name: '_upperLimit') final Element? upperLimitElement,
+      @JsonKey(name: '_upperLimit') final PrimitiveElement? upperLimitElement,
       final FhirPositiveInt? dimensions,
-      @JsonKey(name: '_dimensions') final Element? dimensionsElement,
+      @JsonKey(name: '_dimensions') final PrimitiveElement? dimensionsElement,
       final String? data,
-      @JsonKey(name: '_data') final Element? dataElement}) = _$SampledDataImpl;
+      @JsonKey(name: '_data')
+      final PrimitiveElement? dataElement}) = _$SampledDataImpl;
   const _SampledData._() : super._();
 
   factory _SampledData.fromJson(Map<String, dynamic> json) =
@@ -591,7 +592,7 @@ abstract class _SampledData extends SampledData {
 
   /// [periodElement] Extensions for period
   @JsonKey(name: '_period')
-  Element? get periodElement;
+  PrimitiveElement? get periodElement;
   @override
 
   /// [factor] A correction factor that is applied to the sampled data points
@@ -601,7 +602,7 @@ abstract class _SampledData extends SampledData {
 
   /// [factorElement] Extensions for factor
   @JsonKey(name: '_factor')
-  Element? get factorElement;
+  PrimitiveElement? get factorElement;
   @override
 
   /// [lowerLimit] The lower limit of detection of the measured points. This is
@@ -612,7 +613,7 @@ abstract class _SampledData extends SampledData {
 
   /// [lowerLimitElement] Extensions for lowerLimit
   @JsonKey(name: '_lowerLimit')
-  Element? get lowerLimitElement;
+  PrimitiveElement? get lowerLimitElement;
   @override
 
   /// [upperLimit] The upper limit of detection of the measured points. This is
@@ -623,7 +624,7 @@ abstract class _SampledData extends SampledData {
 
   /// [upperLimitElement] Extensions for upperLimit
   @JsonKey(name: '_upperLimit')
-  Element? get upperLimitElement;
+  PrimitiveElement? get upperLimitElement;
   @override
 
   /// [dimensions] The number of sample points at each time point. If this
@@ -634,7 +635,7 @@ abstract class _SampledData extends SampledData {
 
   /// [dimensionsElement] Extensions for dimensions
   @JsonKey(name: '_dimensions')
-  Element? get dimensionsElement;
+  PrimitiveElement? get dimensionsElement;
   @override
 
   /// [data] A series of data points which are decimal values separated by a
@@ -646,7 +647,7 @@ abstract class _SampledData extends SampledData {
 
   /// [dataElement] Extensions for data
   @JsonKey(name: '_data')
-  Element? get dataElement;
+  PrimitiveElement? get dataElement;
   @override
   @JsonKey(ignore: true)
   _$$SampledDataImplCopyWith<_$SampledDataImpl> get copyWith =>

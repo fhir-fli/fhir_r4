@@ -17,41 +17,44 @@ _$AttachmentImpl _$$AttachmentImplFromJson(Map<String, dynamic> json) =>
           : FhirCode.fromJson(json['contentType']),
       contentTypeElement: json['_contentType'] == null
           ? null
-          : Element.fromJson(json['_contentType'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_contentType'] as Map<String, dynamic>),
       language:
           json['language'] == null ? null : FhirCode.fromJson(json['language']),
       languageElement: json['_language'] == null
           ? null
-          : Element.fromJson(json['_language'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_language'] as Map<String, dynamic>),
       data:
           json['data'] == null ? null : FhirBase64Binary.fromJson(json['data']),
       dataElement: json['_data'] == null
           ? null
-          : Element.fromJson(json['_data'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_data'] as Map<String, dynamic>),
       url: json['url'] == null ? null : FhirUrl.fromJson(json['url']),
       urlElement: json['_url'] == null
           ? null
-          : Element.fromJson(json['_url'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_url'] as Map<String, dynamic>),
       size:
           json['size'] == null ? null : FhirUnsignedInt.fromJson(json['size']),
       sizeElement: json['_size'] == null
           ? null
-          : Element.fromJson(json['_size'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_size'] as Map<String, dynamic>),
       hash:
           json['hash'] == null ? null : FhirBase64Binary.fromJson(json['hash']),
       hashElement: json['_hash'] == null
           ? null
-          : Element.fromJson(json['_hash'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_hash'] as Map<String, dynamic>),
       title: json['title'] as String?,
       titleElement: json['_title'] == null
           ? null
-          : Element.fromJson(json['_title'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_title'] as Map<String, dynamic>),
       creation: json['creation'] == null
           ? null
           : FhirDateTime.fromJson(json['creation'] as String),
       creationElement: json['_creation'] == null
           ? null
-          : Element.fromJson(json['_creation'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_creation'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$AttachmentImplToJson(_$AttachmentImpl instance) {

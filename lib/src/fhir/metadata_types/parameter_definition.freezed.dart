@@ -39,14 +39,14 @@ mixin _$ParameterDefinition {
 
   /// [nameElement] Extensions for name
   @JsonKey(name: '_name')
-  Element? get nameElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get nameElement => throw _privateConstructorUsedError;
 
   /// [use] Whether the parameter is input or output for the module.
   FhirCode? get use => throw _privateConstructorUsedError;
 
   /// [useElement] Extensions for use
   @JsonKey(name: '_use')
-  Element? get useElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get useElement => throw _privateConstructorUsedError;
 
   /// [min] The minimum number of times this parameter SHALL appear in the
   ///  request or response.
@@ -54,7 +54,7 @@ mixin _$ParameterDefinition {
 
   /// [minElement] Extensions for min
   @JsonKey(name: '_min')
-  Element? get minElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get minElement => throw _privateConstructorUsedError;
 
   /// [max] The maximum number of times this element is permitted to appear in
   ///  the request or response.
@@ -62,7 +62,7 @@ mixin _$ParameterDefinition {
 
   /// [maxElement] Extensions for max
   @JsonKey(name: '_max')
-  Element? get maxElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get maxElement => throw _privateConstructorUsedError;
 
   /// [documentation] A brief discussion of what the parameter is for and how
   ///  it is used by the module.
@@ -70,14 +70,15 @@ mixin _$ParameterDefinition {
 
   /// [documentationElement] Extensions for documentation
   @JsonKey(name: '_documentation')
-  Element? get documentationElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get documentationElement =>
+      throw _privateConstructorUsedError;
 
   /// [type] The type of the parameter.
   FhirCode? get type => throw _privateConstructorUsedError;
 
   /// [typeElement] Extensions for type
   @JsonKey(name: '_type')
-  Element? get typeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get typeElement => throw _privateConstructorUsedError;
 
   /// [profile] If specified, this indicates a profile that the input data must
   ///  conform to, or that the output data will conform to.
@@ -99,17 +100,17 @@ abstract class $ParameterDefinitionCopyWith<$Res> {
       {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       FhirCode? name,
-      @JsonKey(name: '_name') Element? nameElement,
+      @JsonKey(name: '_name') PrimitiveElement? nameElement,
       FhirCode? use,
-      @JsonKey(name: '_use') Element? useElement,
+      @JsonKey(name: '_use') PrimitiveElement? useElement,
       FhirInteger? min,
-      @JsonKey(name: '_min') Element? minElement,
+      @JsonKey(name: '_min') PrimitiveElement? minElement,
       String? max,
-      @JsonKey(name: '_max') Element? maxElement,
+      @JsonKey(name: '_max') PrimitiveElement? maxElement,
       String? documentation,
-      @JsonKey(name: '_documentation') Element? documentationElement,
+      @JsonKey(name: '_documentation') PrimitiveElement? documentationElement,
       FhirCode? type,
-      @JsonKey(name: '_type') Element? typeElement,
+      @JsonKey(name: '_type') PrimitiveElement? typeElement,
       FhirCanonical? profile});
 }
 
@@ -158,7 +159,7 @@ class _$ParameterDefinitionCopyWithImpl<$Res, $Val extends ParameterDefinition>
       nameElement: freezed == nameElement
           ? _value.nameElement
           : nameElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       use: freezed == use
           ? _value.use
           : use // ignore: cast_nullable_to_non_nullable
@@ -166,7 +167,7 @@ class _$ParameterDefinitionCopyWithImpl<$Res, $Val extends ParameterDefinition>
       useElement: freezed == useElement
           ? _value.useElement
           : useElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       min: freezed == min
           ? _value.min
           : min // ignore: cast_nullable_to_non_nullable
@@ -174,7 +175,7 @@ class _$ParameterDefinitionCopyWithImpl<$Res, $Val extends ParameterDefinition>
       minElement: freezed == minElement
           ? _value.minElement
           : minElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       max: freezed == max
           ? _value.max
           : max // ignore: cast_nullable_to_non_nullable
@@ -182,7 +183,7 @@ class _$ParameterDefinitionCopyWithImpl<$Res, $Val extends ParameterDefinition>
       maxElement: freezed == maxElement
           ? _value.maxElement
           : maxElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       documentation: freezed == documentation
           ? _value.documentation
           : documentation // ignore: cast_nullable_to_non_nullable
@@ -190,7 +191,7 @@ class _$ParameterDefinitionCopyWithImpl<$Res, $Val extends ParameterDefinition>
       documentationElement: freezed == documentationElement
           ? _value.documentationElement
           : documentationElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -198,7 +199,7 @@ class _$ParameterDefinitionCopyWithImpl<$Res, $Val extends ParameterDefinition>
       typeElement: freezed == typeElement
           ? _value.typeElement
           : typeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       profile: freezed == profile
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
@@ -219,17 +220,17 @@ abstract class _$$ParameterDefinitionImplCopyWith<$Res>
       {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       FhirCode? name,
-      @JsonKey(name: '_name') Element? nameElement,
+      @JsonKey(name: '_name') PrimitiveElement? nameElement,
       FhirCode? use,
-      @JsonKey(name: '_use') Element? useElement,
+      @JsonKey(name: '_use') PrimitiveElement? useElement,
       FhirInteger? min,
-      @JsonKey(name: '_min') Element? minElement,
+      @JsonKey(name: '_min') PrimitiveElement? minElement,
       String? max,
-      @JsonKey(name: '_max') Element? maxElement,
+      @JsonKey(name: '_max') PrimitiveElement? maxElement,
       String? documentation,
-      @JsonKey(name: '_documentation') Element? documentationElement,
+      @JsonKey(name: '_documentation') PrimitiveElement? documentationElement,
       FhirCode? type,
-      @JsonKey(name: '_type') Element? typeElement,
+      @JsonKey(name: '_type') PrimitiveElement? typeElement,
       FhirCanonical? profile});
 }
 
@@ -276,7 +277,7 @@ class __$$ParameterDefinitionImplCopyWithImpl<$Res>
       nameElement: freezed == nameElement
           ? _value.nameElement
           : nameElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       use: freezed == use
           ? _value.use
           : use // ignore: cast_nullable_to_non_nullable
@@ -284,7 +285,7 @@ class __$$ParameterDefinitionImplCopyWithImpl<$Res>
       useElement: freezed == useElement
           ? _value.useElement
           : useElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       min: freezed == min
           ? _value.min
           : min // ignore: cast_nullable_to_non_nullable
@@ -292,7 +293,7 @@ class __$$ParameterDefinitionImplCopyWithImpl<$Res>
       minElement: freezed == minElement
           ? _value.minElement
           : minElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       max: freezed == max
           ? _value.max
           : max // ignore: cast_nullable_to_non_nullable
@@ -300,7 +301,7 @@ class __$$ParameterDefinitionImplCopyWithImpl<$Res>
       maxElement: freezed == maxElement
           ? _value.maxElement
           : maxElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       documentation: freezed == documentation
           ? _value.documentation
           : documentation // ignore: cast_nullable_to_non_nullable
@@ -308,7 +309,7 @@ class __$$ParameterDefinitionImplCopyWithImpl<$Res>
       documentationElement: freezed == documentationElement
           ? _value.documentationElement
           : documentationElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -316,7 +317,7 @@ class __$$ParameterDefinitionImplCopyWithImpl<$Res>
       typeElement: freezed == typeElement
           ? _value.typeElement
           : typeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       profile: freezed == profile
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
@@ -387,7 +388,7 @@ class _$ParameterDefinitionImpl extends _ParameterDefinition {
   /// [nameElement] Extensions for name
   @override
   @JsonKey(name: '_name')
-  final Element? nameElement;
+  final PrimitiveElement? nameElement;
 
   /// [use] Whether the parameter is input or output for the module.
   @override
@@ -396,7 +397,7 @@ class _$ParameterDefinitionImpl extends _ParameterDefinition {
   /// [useElement] Extensions for use
   @override
   @JsonKey(name: '_use')
-  final Element? useElement;
+  final PrimitiveElement? useElement;
 
   /// [min] The minimum number of times this parameter SHALL appear in the
   ///  request or response.
@@ -406,7 +407,7 @@ class _$ParameterDefinitionImpl extends _ParameterDefinition {
   /// [minElement] Extensions for min
   @override
   @JsonKey(name: '_min')
-  final Element? minElement;
+  final PrimitiveElement? minElement;
 
   /// [max] The maximum number of times this element is permitted to appear in
   ///  the request or response.
@@ -416,7 +417,7 @@ class _$ParameterDefinitionImpl extends _ParameterDefinition {
   /// [maxElement] Extensions for max
   @override
   @JsonKey(name: '_max')
-  final Element? maxElement;
+  final PrimitiveElement? maxElement;
 
   /// [documentation] A brief discussion of what the parameter is for and how
   ///  it is used by the module.
@@ -426,7 +427,7 @@ class _$ParameterDefinitionImpl extends _ParameterDefinition {
   /// [documentationElement] Extensions for documentation
   @override
   @JsonKey(name: '_documentation')
-  final Element? documentationElement;
+  final PrimitiveElement? documentationElement;
 
   /// [type] The type of the parameter.
   @override
@@ -435,7 +436,7 @@ class _$ParameterDefinitionImpl extends _ParameterDefinition {
   /// [typeElement] Extensions for type
   @override
   @JsonKey(name: '_type')
-  final Element? typeElement;
+  final PrimitiveElement? typeElement;
 
   /// [profile] If specified, this indicates a profile that the input data must
   ///  conform to, or that the output data will conform to.
@@ -517,17 +518,18 @@ abstract class _ParameterDefinition extends ParameterDefinition {
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final FhirCode? name,
-      @JsonKey(name: '_name') final Element? nameElement,
+      @JsonKey(name: '_name') final PrimitiveElement? nameElement,
       final FhirCode? use,
-      @JsonKey(name: '_use') final Element? useElement,
+      @JsonKey(name: '_use') final PrimitiveElement? useElement,
       final FhirInteger? min,
-      @JsonKey(name: '_min') final Element? minElement,
+      @JsonKey(name: '_min') final PrimitiveElement? minElement,
       final String? max,
-      @JsonKey(name: '_max') final Element? maxElement,
+      @JsonKey(name: '_max') final PrimitiveElement? maxElement,
       final String? documentation,
-      @JsonKey(name: '_documentation') final Element? documentationElement,
+      @JsonKey(name: '_documentation')
+      final PrimitiveElement? documentationElement,
       final FhirCode? type,
-      @JsonKey(name: '_type') final Element? typeElement,
+      @JsonKey(name: '_type') final PrimitiveElement? typeElement,
       final FhirCanonical? profile}) = _$ParameterDefinitionImpl;
   const _ParameterDefinition._() : super._();
 
@@ -558,7 +560,7 @@ abstract class _ParameterDefinition extends ParameterDefinition {
 
   /// [nameElement] Extensions for name
   @JsonKey(name: '_name')
-  Element? get nameElement;
+  PrimitiveElement? get nameElement;
   @override
 
   /// [use] Whether the parameter is input or output for the module.
@@ -567,7 +569,7 @@ abstract class _ParameterDefinition extends ParameterDefinition {
 
   /// [useElement] Extensions for use
   @JsonKey(name: '_use')
-  Element? get useElement;
+  PrimitiveElement? get useElement;
   @override
 
   /// [min] The minimum number of times this parameter SHALL appear in the
@@ -577,7 +579,7 @@ abstract class _ParameterDefinition extends ParameterDefinition {
 
   /// [minElement] Extensions for min
   @JsonKey(name: '_min')
-  Element? get minElement;
+  PrimitiveElement? get minElement;
   @override
 
   /// [max] The maximum number of times this element is permitted to appear in
@@ -587,7 +589,7 @@ abstract class _ParameterDefinition extends ParameterDefinition {
 
   /// [maxElement] Extensions for max
   @JsonKey(name: '_max')
-  Element? get maxElement;
+  PrimitiveElement? get maxElement;
   @override
 
   /// [documentation] A brief discussion of what the parameter is for and how
@@ -597,7 +599,7 @@ abstract class _ParameterDefinition extends ParameterDefinition {
 
   /// [documentationElement] Extensions for documentation
   @JsonKey(name: '_documentation')
-  Element? get documentationElement;
+  PrimitiveElement? get documentationElement;
   @override
 
   /// [type] The type of the parameter.
@@ -606,7 +608,7 @@ abstract class _ParameterDefinition extends ParameterDefinition {
 
   /// [typeElement] Extensions for type
   @JsonKey(name: '_type')
-  Element? get typeElement;
+  PrimitiveElement? get typeElement;
   @override
 
   /// [profile] If specified, this indicates a profile that the input data must

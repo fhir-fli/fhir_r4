@@ -39,7 +39,7 @@ mixin _$Address {
 
   /// [useElement] Extensions for use
   @JsonKey(name: '_use')
-  Element? get useElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get useElement => throw _privateConstructorUsedError;
 
   /// [type] Distinguishes between physical addresses (those you can visit) and
   /// mailing addresses (e.g. PO Boxes and care-of addresses). Most addresses
@@ -49,7 +49,7 @@ mixin _$Address {
 
   /// [typeElement] Extensions for type
   @JsonKey(name: '_type')
-  Element? get typeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get typeElement => throw _privateConstructorUsedError;
 
   /// [text] Specifies the entire address as it should be displayed e.g. on a
   /// postal label. This may be provided instead of or as well as the specific
@@ -58,7 +58,7 @@ mixin _$Address {
 
   /// [textElement] Extensions for text
   @JsonKey(name: '_text')
-  Element? get textElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get textElement => throw _privateConstructorUsedError;
 
   /// [line] This component contains the house number, apartment number, street
   /// name, street direction,  P.O. Box number, delivery hints, and similar
@@ -75,14 +75,14 @@ mixin _$Address {
 
   /// [cityElement] Extensions for city
   @JsonKey(name: '_city')
-  Element? get cityElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get cityElement => throw _privateConstructorUsedError;
 
   /// [district] The name of the administrative area (county).
   String? get district => throw _privateConstructorUsedError;
 
   /// [districtElement] Extensions for district
   @JsonKey(name: '_district')
-  Element? get districtElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get districtElement => throw _privateConstructorUsedError;
 
   /// [state] Sub-unit of a country with limited sovereignty in a federally
   /// organized country. A code may be used if codes are in common use (e.g. US
@@ -91,7 +91,7 @@ mixin _$Address {
 
   /// [stateElement] Extensions for state
   @JsonKey(name: '_state')
-  Element? get stateElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get stateElement => throw _privateConstructorUsedError;
 
   /// [postalCode] A postal code designating a region defined by the postal
   ///  service.
@@ -99,7 +99,7 @@ mixin _$Address {
 
   /// [postalCodeElement] Extensions for postalCode
   @JsonKey(name: '_postalCode')
-  Element? get postalCodeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get postalCodeElement => throw _privateConstructorUsedError;
 
   /// [country] Country - a nation as commonly understood or generally
   ///  accepted.
@@ -107,7 +107,7 @@ mixin _$Address {
 
   /// [countryElement] Extensions for country
   @JsonKey(name: '_country')
-  Element? get countryElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get countryElement => throw _privateConstructorUsedError;
 
   /// [period] Time period when address was/is in use.
   Period? get period => throw _privateConstructorUsedError;
@@ -126,23 +126,23 @@ abstract class $AddressCopyWith<$Res> {
       {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: AddressUse.unknown) AddressUse? use,
-      @JsonKey(name: '_use') Element? useElement,
+      @JsonKey(name: '_use') PrimitiveElement? useElement,
       @JsonKey(unknownEnumValue: AddressType.unknown) AddressType? type,
-      @JsonKey(name: '_type') Element? typeElement,
+      @JsonKey(name: '_type') PrimitiveElement? typeElement,
       String? text,
-      @JsonKey(name: '_text') Element? textElement,
+      @JsonKey(name: '_text') PrimitiveElement? textElement,
       List<String>? line,
       @JsonKey(name: '_line') List<Element?>? lineElement,
       String? city,
-      @JsonKey(name: '_city') Element? cityElement,
+      @JsonKey(name: '_city') PrimitiveElement? cityElement,
       String? district,
-      @JsonKey(name: '_district') Element? districtElement,
+      @JsonKey(name: '_district') PrimitiveElement? districtElement,
       String? state,
-      @JsonKey(name: '_state') Element? stateElement,
+      @JsonKey(name: '_state') PrimitiveElement? stateElement,
       String? postalCode,
-      @JsonKey(name: '_postalCode') Element? postalCodeElement,
+      @JsonKey(name: '_postalCode') PrimitiveElement? postalCodeElement,
       String? country,
-      @JsonKey(name: '_country') Element? countryElement,
+      @JsonKey(name: '_country') PrimitiveElement? countryElement,
       Period? period});
 
   $PeriodCopyWith<$Res>? get period;
@@ -199,7 +199,7 @@ class _$AddressCopyWithImpl<$Res, $Val extends Address>
       useElement: freezed == useElement
           ? _value.useElement
           : useElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -207,7 +207,7 @@ class _$AddressCopyWithImpl<$Res, $Val extends Address>
       typeElement: freezed == typeElement
           ? _value.typeElement
           : typeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -215,7 +215,7 @@ class _$AddressCopyWithImpl<$Res, $Val extends Address>
       textElement: freezed == textElement
           ? _value.textElement
           : textElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       line: freezed == line
           ? _value.line
           : line // ignore: cast_nullable_to_non_nullable
@@ -231,7 +231,7 @@ class _$AddressCopyWithImpl<$Res, $Val extends Address>
       cityElement: freezed == cityElement
           ? _value.cityElement
           : cityElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       district: freezed == district
           ? _value.district
           : district // ignore: cast_nullable_to_non_nullable
@@ -239,7 +239,7 @@ class _$AddressCopyWithImpl<$Res, $Val extends Address>
       districtElement: freezed == districtElement
           ? _value.districtElement
           : districtElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       state: freezed == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
@@ -247,7 +247,7 @@ class _$AddressCopyWithImpl<$Res, $Val extends Address>
       stateElement: freezed == stateElement
           ? _value.stateElement
           : stateElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       postalCode: freezed == postalCode
           ? _value.postalCode
           : postalCode // ignore: cast_nullable_to_non_nullable
@@ -255,7 +255,7 @@ class _$AddressCopyWithImpl<$Res, $Val extends Address>
       postalCodeElement: freezed == postalCodeElement
           ? _value.postalCodeElement
           : postalCodeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       country: freezed == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
@@ -263,7 +263,7 @@ class _$AddressCopyWithImpl<$Res, $Val extends Address>
       countryElement: freezed == countryElement
           ? _value.countryElement
           : countryElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       period: freezed == period
           ? _value.period
           : period // ignore: cast_nullable_to_non_nullable
@@ -295,23 +295,23 @@ abstract class _$$AddressImplCopyWith<$Res> implements $AddressCopyWith<$Res> {
       {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: AddressUse.unknown) AddressUse? use,
-      @JsonKey(name: '_use') Element? useElement,
+      @JsonKey(name: '_use') PrimitiveElement? useElement,
       @JsonKey(unknownEnumValue: AddressType.unknown) AddressType? type,
-      @JsonKey(name: '_type') Element? typeElement,
+      @JsonKey(name: '_type') PrimitiveElement? typeElement,
       String? text,
-      @JsonKey(name: '_text') Element? textElement,
+      @JsonKey(name: '_text') PrimitiveElement? textElement,
       List<String>? line,
       @JsonKey(name: '_line') List<Element?>? lineElement,
       String? city,
-      @JsonKey(name: '_city') Element? cityElement,
+      @JsonKey(name: '_city') PrimitiveElement? cityElement,
       String? district,
-      @JsonKey(name: '_district') Element? districtElement,
+      @JsonKey(name: '_district') PrimitiveElement? districtElement,
       String? state,
-      @JsonKey(name: '_state') Element? stateElement,
+      @JsonKey(name: '_state') PrimitiveElement? stateElement,
       String? postalCode,
-      @JsonKey(name: '_postalCode') Element? postalCodeElement,
+      @JsonKey(name: '_postalCode') PrimitiveElement? postalCodeElement,
       String? country,
-      @JsonKey(name: '_country') Element? countryElement,
+      @JsonKey(name: '_country') PrimitiveElement? countryElement,
       Period? period});
 
   @override
@@ -367,7 +367,7 @@ class __$$AddressImplCopyWithImpl<$Res>
       useElement: freezed == useElement
           ? _value.useElement
           : useElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -375,7 +375,7 @@ class __$$AddressImplCopyWithImpl<$Res>
       typeElement: freezed == typeElement
           ? _value.typeElement
           : typeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -383,7 +383,7 @@ class __$$AddressImplCopyWithImpl<$Res>
       textElement: freezed == textElement
           ? _value.textElement
           : textElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       line: freezed == line
           ? _value._line
           : line // ignore: cast_nullable_to_non_nullable
@@ -399,7 +399,7 @@ class __$$AddressImplCopyWithImpl<$Res>
       cityElement: freezed == cityElement
           ? _value.cityElement
           : cityElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       district: freezed == district
           ? _value.district
           : district // ignore: cast_nullable_to_non_nullable
@@ -407,7 +407,7 @@ class __$$AddressImplCopyWithImpl<$Res>
       districtElement: freezed == districtElement
           ? _value.districtElement
           : districtElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       state: freezed == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
@@ -415,7 +415,7 @@ class __$$AddressImplCopyWithImpl<$Res>
       stateElement: freezed == stateElement
           ? _value.stateElement
           : stateElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       postalCode: freezed == postalCode
           ? _value.postalCode
           : postalCode // ignore: cast_nullable_to_non_nullable
@@ -423,7 +423,7 @@ class __$$AddressImplCopyWithImpl<$Res>
       postalCodeElement: freezed == postalCodeElement
           ? _value.postalCodeElement
           : postalCodeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       country: freezed == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
@@ -431,7 +431,7 @@ class __$$AddressImplCopyWithImpl<$Res>
       countryElement: freezed == countryElement
           ? _value.countryElement
           : countryElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       period: freezed == period
           ? _value.period
           : period // ignore: cast_nullable_to_non_nullable
@@ -510,7 +510,7 @@ class _$AddressImpl extends _Address {
   /// [useElement] Extensions for use
   @override
   @JsonKey(name: '_use')
-  final Element? useElement;
+  final PrimitiveElement? useElement;
 
   /// [type] Distinguishes between physical addresses (those you can visit) and
   /// mailing addresses (e.g. PO Boxes and care-of addresses). Most addresses
@@ -522,7 +522,7 @@ class _$AddressImpl extends _Address {
   /// [typeElement] Extensions for type
   @override
   @JsonKey(name: '_type')
-  final Element? typeElement;
+  final PrimitiveElement? typeElement;
 
   /// [text] Specifies the entire address as it should be displayed e.g. on a
   /// postal label. This may be provided instead of or as well as the specific
@@ -533,7 +533,7 @@ class _$AddressImpl extends _Address {
   /// [textElement] Extensions for text
   @override
   @JsonKey(name: '_text')
-  final Element? textElement;
+  final PrimitiveElement? textElement;
 
   /// [line] This component contains the house number, apartment number, street
   /// name, street direction,  P.O. Box number, delivery hints, and similar
@@ -574,7 +574,7 @@ class _$AddressImpl extends _Address {
   /// [cityElement] Extensions for city
   @override
   @JsonKey(name: '_city')
-  final Element? cityElement;
+  final PrimitiveElement? cityElement;
 
   /// [district] The name of the administrative area (county).
   @override
@@ -583,7 +583,7 @@ class _$AddressImpl extends _Address {
   /// [districtElement] Extensions for district
   @override
   @JsonKey(name: '_district')
-  final Element? districtElement;
+  final PrimitiveElement? districtElement;
 
   /// [state] Sub-unit of a country with limited sovereignty in a federally
   /// organized country. A code may be used if codes are in common use (e.g. US
@@ -594,7 +594,7 @@ class _$AddressImpl extends _Address {
   /// [stateElement] Extensions for state
   @override
   @JsonKey(name: '_state')
-  final Element? stateElement;
+  final PrimitiveElement? stateElement;
 
   /// [postalCode] A postal code designating a region defined by the postal
   ///  service.
@@ -604,7 +604,7 @@ class _$AddressImpl extends _Address {
   /// [postalCodeElement] Extensions for postalCode
   @override
   @JsonKey(name: '_postalCode')
-  final Element? postalCodeElement;
+  final PrimitiveElement? postalCodeElement;
 
   /// [country] Country - a nation as commonly understood or generally
   ///  accepted.
@@ -614,7 +614,7 @@ class _$AddressImpl extends _Address {
   /// [countryElement] Extensions for country
   @override
   @JsonKey(name: '_country')
-  final Element? countryElement;
+  final PrimitiveElement? countryElement;
 
   /// [period] Time period when address was/is in use.
   @override
@@ -711,23 +711,23 @@ abstract class _Address extends Address {
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: AddressUse.unknown) final AddressUse? use,
-      @JsonKey(name: '_use') final Element? useElement,
+      @JsonKey(name: '_use') final PrimitiveElement? useElement,
       @JsonKey(unknownEnumValue: AddressType.unknown) final AddressType? type,
-      @JsonKey(name: '_type') final Element? typeElement,
+      @JsonKey(name: '_type') final PrimitiveElement? typeElement,
       final String? text,
-      @JsonKey(name: '_text') final Element? textElement,
+      @JsonKey(name: '_text') final PrimitiveElement? textElement,
       final List<String>? line,
       @JsonKey(name: '_line') final List<Element?>? lineElement,
       final String? city,
-      @JsonKey(name: '_city') final Element? cityElement,
+      @JsonKey(name: '_city') final PrimitiveElement? cityElement,
       final String? district,
-      @JsonKey(name: '_district') final Element? districtElement,
+      @JsonKey(name: '_district') final PrimitiveElement? districtElement,
       final String? state,
-      @JsonKey(name: '_state') final Element? stateElement,
+      @JsonKey(name: '_state') final PrimitiveElement? stateElement,
       final String? postalCode,
-      @JsonKey(name: '_postalCode') final Element? postalCodeElement,
+      @JsonKey(name: '_postalCode') final PrimitiveElement? postalCodeElement,
       final String? country,
-      @JsonKey(name: '_country') final Element? countryElement,
+      @JsonKey(name: '_country') final PrimitiveElement? countryElement,
       final Period? period}) = _$AddressImpl;
   const _Address._() : super._();
 
@@ -757,7 +757,7 @@ abstract class _Address extends Address {
 
   /// [useElement] Extensions for use
   @JsonKey(name: '_use')
-  Element? get useElement;
+  PrimitiveElement? get useElement;
   @override
 
   /// [type] Distinguishes between physical addresses (those you can visit) and
@@ -769,7 +769,7 @@ abstract class _Address extends Address {
 
   /// [typeElement] Extensions for type
   @JsonKey(name: '_type')
-  Element? get typeElement;
+  PrimitiveElement? get typeElement;
   @override
 
   /// [text] Specifies the entire address as it should be displayed e.g. on a
@@ -780,7 +780,7 @@ abstract class _Address extends Address {
 
   /// [textElement] Extensions for text
   @JsonKey(name: '_text')
-  Element? get textElement;
+  PrimitiveElement? get textElement;
   @override
 
   /// [line] This component contains the house number, apartment number, street
@@ -801,7 +801,7 @@ abstract class _Address extends Address {
 
   /// [cityElement] Extensions for city
   @JsonKey(name: '_city')
-  Element? get cityElement;
+  PrimitiveElement? get cityElement;
   @override
 
   /// [district] The name of the administrative area (county).
@@ -810,7 +810,7 @@ abstract class _Address extends Address {
 
   /// [districtElement] Extensions for district
   @JsonKey(name: '_district')
-  Element? get districtElement;
+  PrimitiveElement? get districtElement;
   @override
 
   /// [state] Sub-unit of a country with limited sovereignty in a federally
@@ -821,7 +821,7 @@ abstract class _Address extends Address {
 
   /// [stateElement] Extensions for state
   @JsonKey(name: '_state')
-  Element? get stateElement;
+  PrimitiveElement? get stateElement;
   @override
 
   /// [postalCode] A postal code designating a region defined by the postal
@@ -831,7 +831,7 @@ abstract class _Address extends Address {
 
   /// [postalCodeElement] Extensions for postalCode
   @JsonKey(name: '_postalCode')
-  Element? get postalCodeElement;
+  PrimitiveElement? get postalCodeElement;
   @override
 
   /// [country] Country - a nation as commonly understood or generally
@@ -841,7 +841,7 @@ abstract class _Address extends Address {
 
   /// [countryElement] Extensions for country
   @JsonKey(name: '_country')
-  Element? get countryElement;
+  PrimitiveElement? get countryElement;
   @override
 
   /// [period] Time period when address was/is in use.

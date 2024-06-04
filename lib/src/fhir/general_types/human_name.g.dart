@@ -16,15 +16,15 @@ _$HumanNameImpl _$$HumanNameImplFromJson(Map<String, dynamic> json) =>
           unknownValue: HumanNameUse.unknown),
       useElement: json['_use'] == null
           ? null
-          : Element.fromJson(json['_use'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_use'] as Map<String, dynamic>),
       text: json['text'] as String?,
       textElement: json['_text'] == null
           ? null
-          : Element.fromJson(json['_text'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_text'] as Map<String, dynamic>),
       family: json['family'] as String?,
       familyElement: json['_family'] == null
           ? null
-          : Element.fromJson(json['_family'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_family'] as Map<String, dynamic>),
       given:
           (json['given'] as List<dynamic>?)?.map((e) => e as String).toList(),
       givenElement: (json['_given'] as List<dynamic>?)

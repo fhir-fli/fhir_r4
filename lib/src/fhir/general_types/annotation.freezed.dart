@@ -41,21 +41,22 @@ mixin _$Annotation {
 
   /// [authorStringElement] Extensions for authorString
   @JsonKey(name: '_authorString')
-  Element? get authorStringElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get authorStringElement =>
+      throw _privateConstructorUsedError;
 
   /// [time] Indicates when this particular annotation was made.
   FhirDateTime? get time => throw _privateConstructorUsedError;
 
   /// [timeElement] Extensions for time
   @JsonKey(name: '_time')
-  Element? get timeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get timeElement => throw _privateConstructorUsedError;
 
   /// [text] The text of the annotation in markdown format.
   FhirMarkdown? get text => throw _privateConstructorUsedError;
 
   /// [textElement] Extensions for text
   @JsonKey(name: '_text')
-  Element? get textElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get textElement => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -74,11 +75,11 @@ abstract class $AnnotationCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       Reference? authorReference,
       String? authorString,
-      @JsonKey(name: '_authorString') Element? authorStringElement,
+      @JsonKey(name: '_authorString') PrimitiveElement? authorStringElement,
       FhirDateTime? time,
-      @JsonKey(name: '_time') Element? timeElement,
+      @JsonKey(name: '_time') PrimitiveElement? timeElement,
       FhirMarkdown? text,
-      @JsonKey(name: '_text') Element? textElement});
+      @JsonKey(name: '_text') PrimitiveElement? textElement});
 
   $ReferenceCopyWith<$Res>? get authorReference;
 }
@@ -126,7 +127,7 @@ class _$AnnotationCopyWithImpl<$Res, $Val extends Annotation>
       authorStringElement: freezed == authorStringElement
           ? _value.authorStringElement
           : authorStringElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       time: freezed == time
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
@@ -134,7 +135,7 @@ class _$AnnotationCopyWithImpl<$Res, $Val extends Annotation>
       timeElement: freezed == timeElement
           ? _value.timeElement
           : timeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -142,7 +143,7 @@ class _$AnnotationCopyWithImpl<$Res, $Val extends Annotation>
       textElement: freezed == textElement
           ? _value.textElement
           : textElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ) as $Val);
   }
 
@@ -172,11 +173,11 @@ abstract class _$$AnnotationImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       Reference? authorReference,
       String? authorString,
-      @JsonKey(name: '_authorString') Element? authorStringElement,
+      @JsonKey(name: '_authorString') PrimitiveElement? authorStringElement,
       FhirDateTime? time,
-      @JsonKey(name: '_time') Element? timeElement,
+      @JsonKey(name: '_time') PrimitiveElement? timeElement,
       FhirMarkdown? text,
-      @JsonKey(name: '_text') Element? textElement});
+      @JsonKey(name: '_text') PrimitiveElement? textElement});
 
   @override
   $ReferenceCopyWith<$Res>? get authorReference;
@@ -223,7 +224,7 @@ class __$$AnnotationImplCopyWithImpl<$Res>
       authorStringElement: freezed == authorStringElement
           ? _value.authorStringElement
           : authorStringElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       time: freezed == time
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
@@ -231,7 +232,7 @@ class __$$AnnotationImplCopyWithImpl<$Res>
       timeElement: freezed == timeElement
           ? _value.timeElement
           : timeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -239,7 +240,7 @@ class __$$AnnotationImplCopyWithImpl<$Res>
       textElement: freezed == textElement
           ? _value.textElement
           : textElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ));
   }
 }
@@ -303,7 +304,7 @@ class _$AnnotationImpl extends _Annotation {
   /// [authorStringElement] Extensions for authorString
   @override
   @JsonKey(name: '_authorString')
-  final Element? authorStringElement;
+  final PrimitiveElement? authorStringElement;
 
   /// [time] Indicates when this particular annotation was made.
   @override
@@ -312,7 +313,7 @@ class _$AnnotationImpl extends _Annotation {
   /// [timeElement] Extensions for time
   @override
   @JsonKey(name: '_time')
-  final Element? timeElement;
+  final PrimitiveElement? timeElement;
 
   /// [text] The text of the annotation in markdown format.
   @override
@@ -321,7 +322,7 @@ class _$AnnotationImpl extends _Annotation {
   /// [textElement] Extensions for text
   @override
   @JsonKey(name: '_text')
-  final Element? textElement;
+  final PrimitiveElement? textElement;
 
   @override
   String toString() {
@@ -380,15 +381,17 @@ class _$AnnotationImpl extends _Annotation {
 
 abstract class _Annotation extends Annotation {
   const factory _Annotation(
-      {final String? id,
-      @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
-      final Reference? authorReference,
-      final String? authorString,
-      @JsonKey(name: '_authorString') final Element? authorStringElement,
-      final FhirDateTime? time,
-      @JsonKey(name: '_time') final Element? timeElement,
-      final FhirMarkdown? text,
-      @JsonKey(name: '_text') final Element? textElement}) = _$AnnotationImpl;
+          {final String? id,
+          @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
+          final Reference? authorReference,
+          final String? authorString,
+          @JsonKey(name: '_authorString')
+          final PrimitiveElement? authorStringElement,
+          final FhirDateTime? time,
+          @JsonKey(name: '_time') final PrimitiveElement? timeElement,
+          final FhirMarkdown? text,
+          @JsonKey(name: '_text') final PrimitiveElement? textElement}) =
+      _$AnnotationImpl;
   const _Annotation._() : super._();
 
   factory _Annotation.fromJson(Map<String, dynamic> json) =
@@ -421,7 +424,7 @@ abstract class _Annotation extends Annotation {
 
   /// [authorStringElement] Extensions for authorString
   @JsonKey(name: '_authorString')
-  Element? get authorStringElement;
+  PrimitiveElement? get authorStringElement;
   @override
 
   /// [time] Indicates when this particular annotation was made.
@@ -430,7 +433,7 @@ abstract class _Annotation extends Annotation {
 
   /// [timeElement] Extensions for time
   @JsonKey(name: '_time')
-  Element? get timeElement;
+  PrimitiveElement? get timeElement;
   @override
 
   /// [text] The text of the annotation in markdown format.
@@ -439,7 +442,7 @@ abstract class _Annotation extends Annotation {
 
   /// [textElement] Extensions for text
   @JsonKey(name: '_text')
-  Element? get textElement;
+  PrimitiveElement? get textElement;
   @override
   @JsonKey(ignore: true)
   _$$AnnotationImplCopyWith<_$AnnotationImpl> get copyWith =>

@@ -81,7 +81,7 @@ class TriggerDefinition with _$TriggerDefinition implements DataType {
     TriggerDefinitionType? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [name] A formal name for the event. This may be an absolute URI that
     /// identifies the event formally (e.g. from a trigger registry), or a simple
@@ -89,7 +89,7 @@ class TriggerDefinition with _$TriggerDefinition implements DataType {
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [timingTiming] The timing of the event (if this is a periodic trigger).
     Timing? timingTiming,
@@ -102,13 +102,13 @@ class TriggerDefinition with _$TriggerDefinition implements DataType {
     FhirDate? timingDate,
 
     /// [timingDateElement] Extensions for timingDate
-    @JsonKey(name: '_timingDate') Element? timingDateElement,
+    @JsonKey(name: '_timingDate') PrimitiveElement? timingDateElement,
 
     /// [timingDateTime] The timing of the event (if this is a periodic trigger).
     FhirDateTime? timingDateTime,
 
     /// [timingDateTimeElement] Extensions for timingDateTime
-    @JsonKey(name: '_timingDateTime') Element? timingDateTimeElement,
+    @JsonKey(name: '_timingDateTime') PrimitiveElement? timingDateTimeElement,
 
     /// [data] The triggering data of the event (if this is a data trigger). If
     /// more than one data is requirement is specified, then all the data

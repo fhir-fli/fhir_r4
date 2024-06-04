@@ -63,13 +63,13 @@ class AdministrableProductDefinition
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] (_implicitRules): Extensions for implicitRules;
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.;
     FhirCode? language,
 
     /// [languageElement] (_language): Extensions for language;
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.;
     Narrative? text,
@@ -90,7 +90,7 @@ class AdministrableProductDefinition
     FhirCode? status,
 
     /// [statusElement] (_status): Extensions for status;
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
     List<Reference>? formOf,
     CodeableConcept? administrableDoseForm,
     CodeableConcept? unitOfPresentation,
@@ -196,13 +196,13 @@ class AdministrableProductDefinitionProperty
     FhirDate? valueDate,
 
     /// [valueDateElement] (_valueDate): Extensions for valueDate;
-    @JsonKey(name: '_valueDate') Element? valueDateElement,
+    @JsonKey(name: '_valueDate') PrimitiveElement? valueDateElement,
 
     /// [valueBoolean] A value for the characteristic.;
     FhirBoolean? valueBoolean,
 
     /// [valueBooleanElement] (_valueBoolean): Extensions for valueBoolean;
-    @JsonKey(name: '_valueBoolean') Element? valueBooleanElement,
+    @JsonKey(name: '_valueBoolean') PrimitiveElement? valueBooleanElement,
 
     /// [valueAttachment] A value for the characteristic.;
     Attachment? valueAttachment,
@@ -458,7 +458,7 @@ class AdministrableProductDefinitionWithdrawalPeriod
     @JsonKey(name: '_supportingInformation')
 
     /// [supportingInformationElement] (_supportingInformation): Extensions for supportingInformation;
-    Element? supportingInformationElement,
+    PrimitiveElement? supportingInformationElement,
   }) = _AdministrableProductDefinitionWithdrawalPeriod;
 
   @override
@@ -498,7 +498,7 @@ class AdministrableProductDefinitionWithdrawalPeriod
 
 /// [Ingredient] An ingredient of a manufactured item or pharmaceutical product.
 @freezed
-class Ingredient with Resource, _$Ingredient {
+class Ingredient with _$Ingredient implements DomainResource {
   /// [Ingredient] An ingredient of a manufactured item or pharmaceutical product.
   const Ingredient._();
 
@@ -564,13 +564,13 @@ class Ingredient with Resource, _$Ingredient {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] (_implicitRules): Extensions for implicitRules;
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.;
     FhirCode? language,
 
     /// [languageElement] (_language): Extensions for language;
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.;
     Narrative? text,
@@ -592,7 +592,7 @@ class Ingredient with Resource, _$Ingredient {
     FhirCode? status,
 
     /// [statusElement] (_status): Extensions for status;
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [for] The product which this ingredient is a constituent part of.;
     @JsonKey(name: 'for') List<Reference>? for_,
@@ -610,7 +610,8 @@ class Ingredient with Resource, _$Ingredient {
     FhirBoolean? allergenicIndicator,
 
     /// [allergenicIndicatorElement] (_allergenicIndicator): Extensions for allergenicIndicator;
-    @JsonKey(name: '_allergenicIndicator') Element? allergenicIndicatorElement,
+    @JsonKey(name: '_allergenicIndicator')
+    PrimitiveElement? allergenicIndicatorElement,
 
     /// [manufacturer] The organization(s) that manufacture this ingredient. Can be used to indicate:         1) Organizations we are aware of that manufacture this ingredient         2) Specific Manufacturer(s) currently being used         3) Set of organisations allowed to manufacture this ingredient for this product         Users must be clear on the application of context relevant to their use case.;
     List<IngredientManufacturer>? manufacturer,
@@ -657,7 +658,9 @@ class Ingredient with Resource, _$Ingredient {
 
 /// [IngredientManufacturer] An ingredient of a manufactured item or pharmaceutical product.
 @freezed
-class IngredientManufacturer with BackboneType, _$IngredientManufacturer {
+class IngredientManufacturer
+    with _$IngredientManufacturer
+    implements BackboneElement {
   /// [IngredientManufacturer] An ingredient of a manufactured item or pharmaceutical product.
   const IngredientManufacturer._();
 
@@ -689,7 +692,7 @@ class IngredientManufacturer with BackboneType, _$IngredientManufacturer {
     FhirCode? role,
 
     /// [roleElement] (_role): Extensions for role;
-    @JsonKey(name: '_role') Element? roleElement,
+    @JsonKey(name: '_role') PrimitiveElement? roleElement,
 
     /// [manufacturer] An organization that manufactures this ingredient.;
     required Reference manufacturer,
@@ -728,7 +731,9 @@ class IngredientManufacturer with BackboneType, _$IngredientManufacturer {
 
 /// [IngredientSubstance] An ingredient of a manufactured item or pharmaceutical product.
 @freezed
-class IngredientSubstance with BackboneType, _$IngredientSubstance {
+class IngredientSubstance
+    with _$IngredientSubstance
+    implements BackboneElement {
   /// [IngredientSubstance] An ingredient of a manufactured item or pharmaceutical product.
   const IngredientSubstance._();
 
@@ -797,7 +802,7 @@ class IngredientSubstance with BackboneType, _$IngredientSubstance {
 
 /// [IngredientStrength] An ingredient of a manufactured item or pharmaceutical product.
 @freezed
-class IngredientStrength with BackboneType, _$IngredientStrength {
+class IngredientStrength with _$IngredientStrength implements BackboneElement {
   /// [IngredientStrength] An ingredient of a manufactured item or pharmaceutical product.
   const IngredientStrength._();
 
@@ -856,7 +861,8 @@ class IngredientStrength with BackboneType, _$IngredientStrength {
     String? textPresentation,
 
     /// [textPresentationElement] (_textPresentation): Extensions for textPresentation;
-    @JsonKey(name: '_textPresentation') Element? textPresentationElement,
+    @JsonKey(name: '_textPresentation')
+    PrimitiveElement? textPresentationElement,
 
     /// [concentrationRatio] The strength per unitary volume (or mass).;
     Ratio? concentrationRatio,
@@ -868,13 +874,15 @@ class IngredientStrength with BackboneType, _$IngredientStrength {
     String? textConcentration,
 
     /// [textConcentrationElement] (_textConcentration): Extensions for textConcentration;
-    @JsonKey(name: '_textConcentration') Element? textConcentrationElement,
+    @JsonKey(name: '_textConcentration')
+    PrimitiveElement? textConcentrationElement,
 
     /// [measurementPoint] For when strength is measured at a particular point or distance. There are products where strength is measured at a particular point. For example, the strength of the ingredient in some inhalers is measured at a particular position relative to the point of aerosolization.;
     String? measurementPoint,
 
     /// [measurementPointElement] (_measurementPoint): Extensions for measurementPoint;
-    @JsonKey(name: '_measurementPoint') Element? measurementPointElement,
+    @JsonKey(name: '_measurementPoint')
+    PrimitiveElement? measurementPointElement,
 
     /// [country] The country or countries for which the strength range applies.;
     List<CodeableConcept>? country,
@@ -972,7 +980,8 @@ class IngredientReferenceStrength
     String? measurementPoint,
 
     /// [measurementPointElement] (_measurementPoint): Extensions for measurementPoint;
-    @JsonKey(name: '_measurementPoint') Element? measurementPointElement,
+    @JsonKey(name: '_measurementPoint')
+    PrimitiveElement? measurementPointElement,
 
     /// [country] The country or countries for which the strength range applies.;
     List<CodeableConcept>? country,
@@ -1011,7 +1020,9 @@ class IngredientReferenceStrength
 
 /// [ClinicalUseDefinition] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 @freezed
-class ClinicalUseDefinition with Resource, _$ClinicalUseDefinition {
+class ClinicalUseDefinition
+    with _$ClinicalUseDefinition
+    implements DomainResource {
   /// [ClinicalUseDefinition] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
   const ClinicalUseDefinition._();
 
@@ -1077,13 +1088,13 @@ class ClinicalUseDefinition with Resource, _$ClinicalUseDefinition {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] (_implicitRules): Extensions for implicitRules;
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.;
     FhirCode? language,
 
     /// [languageElement] (_language): Extensions for language;
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.;
     Narrative? text,
@@ -1104,7 +1115,7 @@ class ClinicalUseDefinition with Resource, _$ClinicalUseDefinition {
     FhirCode? type,
 
     /// [typeElement] (_type): Extensions for type;
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [category] A categorisation of the issue, primarily for dividing warnings into subject heading areas such as "Pregnancy and Lactation", "Overdose", "Effects on Ability to Drive and Use Machines".;
     List<CodeableConcept>? category,
@@ -1381,7 +1392,7 @@ class ClinicalUseDefinitionIndication
     FhirMarkdown? durationString,
 
     /// [durationStringElement] (_durationString): Extensions for durationString;
-    @JsonKey(name: '_durationString') Element? durationStringElement,
+    @JsonKey(name: '_durationString') PrimitiveElement? durationStringElement,
 
     /// [undesirableEffect] An unwanted side effect or negative outcome that may happen if you use the drug (or other subject of this resource) for this indication.;
     List<Reference>? undesirableEffect,
@@ -1682,7 +1693,7 @@ class ClinicalUseDefinitionWarning
     FhirMarkdown? description,
 
     /// [descriptionElement] (_description): Extensions for description;
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [code] A coded or unformatted textual definition of this warning.;
     CodeableConcept? code,
@@ -1721,7 +1732,9 @@ class ClinicalUseDefinitionWarning
 
 /// [ManufacturedItemDefinition] The definition and characteristics of a medicinal manufactured item, such as a tablet or capsule, as contained in a packaged medicinal product.
 @freezed
-class ManufacturedItemDefinition with Resource, _$ManufacturedItemDefinition {
+class ManufacturedItemDefinition
+    with _$ManufacturedItemDefinition
+    implements DomainResource {
   /// [ManufacturedItemDefinition] The definition and characteristics of a medicinal manufactured item, such as a tablet or capsule, as contained in a packaged medicinal product.
   const ManufacturedItemDefinition._();
 
@@ -1783,13 +1796,13 @@ class ManufacturedItemDefinition with Resource, _$ManufacturedItemDefinition {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] (_implicitRules): Extensions for implicitRules;
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.;
     FhirCode? language,
 
     /// [languageElement] (_language): Extensions for language;
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.;
     Narrative? text,
@@ -1811,7 +1824,7 @@ class ManufacturedItemDefinition with Resource, _$ManufacturedItemDefinition {
     FhirCode? status,
 
     /// [statusElement] (_status): Extensions for status;
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [manufacturedDoseForm] Dose form as manufactured and before any transformation into the pharmaceutical product.;
     required CodeableConcept manufacturedDoseForm,
@@ -1920,13 +1933,13 @@ class ManufacturedItemDefinitionProperty
     FhirDate? valueDate,
 
     /// [valueDateElement] (_valueDate): Extensions for valueDate;
-    @JsonKey(name: '_valueDate') Element? valueDateElement,
+    @JsonKey(name: '_valueDate') PrimitiveElement? valueDateElement,
 
     /// [valueBoolean] A value for the characteristic.;
     FhirBoolean? valueBoolean,
 
     /// [valueBooleanElement] (_valueBoolean): Extensions for valueBoolean;
-    @JsonKey(name: '_valueBoolean') Element? valueBooleanElement,
+    @JsonKey(name: '_valueBoolean') PrimitiveElement? valueBooleanElement,
 
     /// [valueAttachment] A value for the characteristic.;
     Attachment? valueAttachment,
@@ -1967,7 +1980,9 @@ class ManufacturedItemDefinitionProperty
 
 /// [MedicinalProductDefinition] A medicinal product, being a substance or combination of substances that is intended to treat, prevent or diagnose a disease, or to restore, correct or modify physiological functions by exerting a pharmacological, immunological or metabolic action. This resource is intended to define and detail such products and their properties, for uses other than direct patient care (e.g. regulatory use, or drug catalogs).
 @freezed
-class MedicinalProductDefinition with Resource, _$MedicinalProductDefinition {
+class MedicinalProductDefinition
+    with _$MedicinalProductDefinition
+    implements DomainResource {
   /// [MedicinalProductDefinition] A medicinal product, being a substance or combination of substances that is intended to treat, prevent or diagnose a disease, or to restore, correct or modify physiological functions by exerting a pharmacological, immunological or metabolic action. This resource is intended to define and detail such products and their properties, for uses other than direct patient care (e.g. regulatory use, or drug catalogs).
   const MedicinalProductDefinition._();
 
@@ -2076,13 +2091,13 @@ class MedicinalProductDefinition with Resource, _$MedicinalProductDefinition {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] (_implicitRules): Extensions for implicitRules;
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.;
     FhirCode? language,
 
     /// [languageElement] (_language): Extensions for language;
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.;
     Narrative? text,
@@ -2110,7 +2125,7 @@ class MedicinalProductDefinition with Resource, _$MedicinalProductDefinition {
     String? version,
 
     /// [versionElement] (_version): Extensions for version;
-    @JsonKey(name: '_version') Element? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
 
     /// [status] The status within the lifecycle of this product record. A high-level status, this is not intended to duplicate details carried elsewhere such as legal status, or authorization status.;
     CodeableConcept? status,
@@ -2119,13 +2134,13 @@ class MedicinalProductDefinition with Resource, _$MedicinalProductDefinition {
     FhirDateTime? statusDate,
 
     /// [statusDateElement] (_statusDate): Extensions for statusDate;
-    @JsonKey(name: '_statusDate') Element? statusDateElement,
+    @JsonKey(name: '_statusDate') PrimitiveElement? statusDateElement,
 
     /// [description] General description of this product.;
     FhirMarkdown? description,
 
     /// [descriptionElement] (_description): Extensions for description;
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [combinedPharmaceuticalDoseForm] The dose form for a single part product, or combined form of a multiple part product. This is one concept that describes all the components. It does not represent the form with components physically mixed, if that might be necessary, for which see (AdministrableProductDefinition.administrableDoseForm).;
     CodeableConcept? combinedPharmaceuticalDoseForm,
@@ -2137,7 +2152,7 @@ class MedicinalProductDefinition with Resource, _$MedicinalProductDefinition {
     FhirMarkdown? indication,
 
     /// [indicationElement] (_indication): Extensions for indication;
-    @JsonKey(name: '_indication') Element? indicationElement,
+    @JsonKey(name: '_indication') PrimitiveElement? indicationElement,
 
     /// [legalStatusOfSupply] The legal status of supply of the medicinal product as classified by the regulator.;
     CodeableConcept? legalStatusOfSupply,
@@ -2342,7 +2357,7 @@ class MedicinalProductDefinitionName
     String? productName,
 
     /// [productNameElement] (_productName): Extensions for productName;
-    @JsonKey(name: '_productName') Element? productNameElement,
+    @JsonKey(name: '_productName') PrimitiveElement? productNameElement,
 
     /// [type] Type of product name, such as rINN, BAN, Proprietary, Non-Proprietary.;
     CodeableConcept? type,
@@ -2422,7 +2437,7 @@ class MedicinalProductDefinitionNamePart
     @JsonKey(name: 'part') String? part_,
 
     /// [partElement] (_part): Extensions for part;
-    @JsonKey(name: '_part') Element? partElement,
+    @JsonKey(name: '_part') PrimitiveElement? partElement,
 
     /// [type] Identifying type for this part of the name (e.g. strength part).;
     required CodeableConcept type,
@@ -2743,13 +2758,13 @@ class MedicinalProductDefinitionCharacteristic
     FhirDate? valueDate,
 
     /// [valueDateElement] (_valueDate): Extensions for valueDate;
-    @JsonKey(name: '_valueDate') Element? valueDateElement,
+    @JsonKey(name: '_valueDate') PrimitiveElement? valueDateElement,
 
     /// [valueBoolean] A value for the characteristic.text.;
     FhirBoolean? valueBoolean,
 
     /// [valueBooleanElement] (_valueBoolean): Extensions for valueBoolean;
-    @JsonKey(name: '_valueBoolean') Element? valueBooleanElement,
+    @JsonKey(name: '_valueBoolean') PrimitiveElement? valueBooleanElement,
 
     /// [valueAttachment] A value for the characteristic.text.;
     Attachment? valueAttachment,
@@ -2791,7 +2806,9 @@ class MedicinalProductDefinitionCharacteristic
 
 /// [PackagedProductDefinition] A medically related item or items, in a container or package.
 @freezed
-class PackagedProductDefinition with Resource, _$PackagedProductDefinition {
+class PackagedProductDefinition
+    with _$PackagedProductDefinition
+    implements DomainResource {
   /// [PackagedProductDefinition] A medically related item or items, in a container or package.
   const PackagedProductDefinition._();
 
@@ -2873,13 +2890,13 @@ class PackagedProductDefinition with Resource, _$PackagedProductDefinition {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] (_implicitRules): Extensions for implicitRules;
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.;
     FhirCode? language,
 
     /// [languageElement] (_language): Extensions for language;
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.;
     Narrative? text,
@@ -2901,7 +2918,7 @@ class PackagedProductDefinition with Resource, _$PackagedProductDefinition {
     String? name,
 
     /// [nameElement] (_name): Extensions for name;
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [type] A high level category e.g. medicinal product, raw material, shipping/transport container, etc.;
     CodeableConcept? type,
@@ -2916,7 +2933,7 @@ class PackagedProductDefinition with Resource, _$PackagedProductDefinition {
     FhirDateTime? statusDate,
 
     /// [statusDateElement] (_statusDate): Extensions for statusDate;
-    @JsonKey(name: '_statusDate') Element? statusDateElement,
+    @JsonKey(name: '_statusDate') PrimitiveElement? statusDateElement,
 
     /// [containedItemQuantity] A total of the complete count of contained items of a particular type/form, independent of sub-packaging or organization. This can be considered as the pack size. This attribute differs from containedItem.amount in that it can give a single aggregated count of all tablet types in a pack, even when these are different manufactured items. For example a pill pack of 21 tablets plus 7 sugar tablets, can be denoted here as '28 tablets'. This attribute is repeatable so that the different item types in one pack type can be counted (e.g. a count of vials and count of syringes). Each repeat must have different units, so that it is clear what the different sets of counted items are, and it is not intended to allow different counts of similar items (e.g. not '2 tubes and 3 tubes'). Repeats are not to be used to represent different pack sizes (e.g. 20 pack vs. 50 pack) - which would be different instances of this resource.;
     List<Quantity>? containedItemQuantity,
@@ -2925,7 +2942,7 @@ class PackagedProductDefinition with Resource, _$PackagedProductDefinition {
     FhirMarkdown? description,
 
     /// [descriptionElement] (_description): Extensions for description;
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [legalStatusOfSupply] The legal status of supply of the packaged item as classified by the regulator.;
     List<PackagedProductDefinitionLegalStatusOfSupply>? legalStatusOfSupply,
@@ -2940,7 +2957,8 @@ class PackagedProductDefinition with Resource, _$PackagedProductDefinition {
     FhirBoolean? copackagedIndicator,
 
     /// [copackagedIndicatorElement] (_copackagedIndicator): Extensions for copackagedIndicator;
-    @JsonKey(name: '_copackagedIndicator') Element? copackagedIndicatorElement,
+    @JsonKey(name: '_copackagedIndicator')
+    PrimitiveElement? copackagedIndicatorElement,
 
     /// [manufacturer] Manufacturer of this package type. When there are multiple it means these are all possible manufacturers.;
     List<Reference>? manufacturer,
@@ -3116,7 +3134,7 @@ class PackagedProductDefinitionPackage
     FhirInteger? quantity,
 
     /// [quantityElement] (_quantity): Extensions for quantity;
-    @JsonKey(name: '_quantity') Element? quantityElement,
+    @JsonKey(name: '_quantity') PrimitiveElement? quantityElement,
 
     /// [material] Material type of the package item.;
     List<CodeableConcept>? material,
@@ -3285,7 +3303,7 @@ class PackagedProductDefinitionShelfLifeStorage
     String? periodString,
 
     /// [periodStringElement] (_periodString) Extensions for periodString
-    @JsonKey(name: '_periodString') Element? periodStringElement,
+    @JsonKey(name: '_periodString') PrimitiveElement? periodStringElement,
 
     /// [specialPrecautionsForStorage] Special precautions for storage, if any,
     /// can be specified using an appropriate controlled vocabulary The controlled
@@ -3382,13 +3400,13 @@ class PackagedProductDefinitionProperty
     FhirDate? valueDate,
 
     /// [valueDateElement] (_valueDate): Extensions for valueDate;
-    @JsonKey(name: '_valueDate') Element? valueDateElement,
+    @JsonKey(name: '_valueDate') PrimitiveElement? valueDateElement,
 
     /// [valueBoolean] A value for the characteristic.;
     FhirBoolean? valueBoolean,
 
     /// [valueBooleanElement] (_valueBoolean): Extensions for valueBoolean;
-    @JsonKey(name: '_valueBoolean') Element? valueBooleanElement,
+    @JsonKey(name: '_valueBoolean') PrimitiveElement? valueBooleanElement,
 
     /// [valueAttachment] A value for the characteristic.;
     Attachment? valueAttachment,
@@ -3499,7 +3517,9 @@ class PackagedProductDefinitionContainedItem
 
 /// [RegulatedAuthorization] Regulatory approval, clearance or licencing related to a regulated product, treatment, facility or activity that is cited in a guidance, regulation, rule or legislative act. An example is Market Authorization relating to a Medicinal Product.
 @freezed
-class RegulatedAuthorization with Resource, _$RegulatedAuthorization {
+class RegulatedAuthorization
+    with _$RegulatedAuthorization
+    implements DomainResource {
   /// [RegulatedAuthorization] Regulatory approval, clearance or licencing related to a regulated product, treatment, facility or activity that is cited in a guidance, regulation, rule or legislative act. An example is Market Authorization relating to a Medicinal Product.
   const RegulatedAuthorization._();
 
@@ -3575,13 +3595,13 @@ class RegulatedAuthorization with Resource, _$RegulatedAuthorization {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] (_implicitRules): Extensions for implicitRules;
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.;
     FhirCode? language,
 
     /// [languageElement] (_language): Extensions for language;
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.;
     Narrative? text,
@@ -3609,7 +3629,7 @@ class RegulatedAuthorization with Resource, _$RegulatedAuthorization {
     FhirMarkdown? description,
 
     /// [descriptionElement] (_description): Extensions for description;
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [region] The territory (e.g., country, jurisdiction etc.) in which the authorization has been granted.;
     List<CodeableConcept>? region,
@@ -3621,7 +3641,7 @@ class RegulatedAuthorization with Resource, _$RegulatedAuthorization {
     FhirDateTime? statusDate,
 
     /// [statusDateElement] (_statusDate): Extensions for statusDate;
-    @JsonKey(name: '_statusDate') Element? statusDateElement,
+    @JsonKey(name: '_statusDate') PrimitiveElement? statusDateElement,
 
     /// [validityPeriod] The time period in which the regulatory approval, clearance or licencing is in effect. As an example, a Marketing Authorization includes the date of authorization and/or an expiration date.;
     Period? validityPeriod,
@@ -3739,7 +3759,7 @@ class RegulatedAuthorizationCase
     FhirDateTime? dateDateTime,
 
     /// [dateDateTimeElement] (_dateDateTime): Extensions for dateDateTime;
-    @JsonKey(name: '_dateDateTime') Element? dateDateTimeElement,
+    @JsonKey(name: '_dateDateTime') PrimitiveElement? dateDateTimeElement,
 
     /// [application] A regulatory submission from an organization to a regulator, as part of an assessing case. Multiple applications may occur over time, with more or different information to support or modify the submission or the authorization. The applications can be considered as steps within the longer running case or procedure for this authorization process.;
     List<RegulatedAuthorizationCase>? application,
@@ -3778,7 +3798,7 @@ class RegulatedAuthorizationCase
 
 /// [SubstanceDefinition] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 @freezed
-class SubstanceDefinition with Resource, _$SubstanceDefinition {
+class SubstanceDefinition with _$SubstanceDefinition implements DomainResource {
   /// [SubstanceDefinition] The detailed description of a substance, typically at a level beyond what is used for prescribing.
   const SubstanceDefinition._();
 
@@ -3864,13 +3884,13 @@ class SubstanceDefinition with Resource, _$SubstanceDefinition {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] (_implicitRules): Extensions for implicitRules;
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.;
     FhirCode? language,
 
     /// [languageElement] (_language): Extensions for language;
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.;
     Narrative? text,
@@ -3892,7 +3912,7 @@ class SubstanceDefinition with Resource, _$SubstanceDefinition {
     String? version,
 
     /// [versionElement] (_version): Extensions for version;
-    @JsonKey(name: '_version') Element? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
 
     /// [status] Status of substance within the catalogue e.g. active, retired.;
     CodeableConcept? status,
@@ -3910,7 +3930,7 @@ class SubstanceDefinition with Resource, _$SubstanceDefinition {
     FhirMarkdown? description,
 
     /// [descriptionElement] (_description): Extensions for description;
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [informationSource] Supporting literature.;
     List<Reference>? informationSource,
@@ -3987,7 +4007,9 @@ class SubstanceDefinition with Resource, _$SubstanceDefinition {
 
 /// [SubstanceDefinitionMoiety] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 @freezed
-class SubstanceDefinitionMoiety with BackboneType, _$SubstanceDefinitionMoiety {
+class SubstanceDefinitionMoiety
+    with _$SubstanceDefinitionMoiety
+    implements BackboneElement {
   /// [SubstanceDefinitionMoiety] The detailed description of a substance, typically at a level beyond what is used for prescribing.
   const SubstanceDefinitionMoiety._();
 
@@ -4046,7 +4068,7 @@ class SubstanceDefinitionMoiety with BackboneType, _$SubstanceDefinitionMoiety {
     String? name,
 
     /// [nameElement] (_name): Extensions for name;
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [stereochemistry] Stereochemistry type.;
     CodeableConcept? stereochemistry,
@@ -4058,7 +4080,8 @@ class SubstanceDefinitionMoiety with BackboneType, _$SubstanceDefinitionMoiety {
     String? molecularFormula,
 
     /// [molecularFormulaElement] (_molecularFormula): Extensions for molecularFormula;
-    @JsonKey(name: '_molecularFormula') Element? molecularFormulaElement,
+    @JsonKey(name: '_molecularFormula')
+    PrimitiveElement? molecularFormulaElement,
 
     /// [amountQuantity] Quantitative value for this moiety.;
     Quantity? amountQuantity,
@@ -4067,7 +4090,7 @@ class SubstanceDefinitionMoiety with BackboneType, _$SubstanceDefinitionMoiety {
     FhirMarkdown? amountString,
 
     /// [amountStringElement] (_amountString): Extensions for amountString;
-    @JsonKey(name: '_amountString') Element? amountStringElement,
+    @JsonKey(name: '_amountString') PrimitiveElement? amountStringElement,
 
     /// [measurementType] The measurement type of the quantitative value. In capturing the actual relative amounts of substances or molecular fragments it may be necessary to indicate whether the amount refers to, for example, a mole ratio or weight ratio.;
     CodeableConcept? measurementType,
@@ -4161,13 +4184,13 @@ class SubstanceDefinitionProperty
     FhirDate? valueDate,
 
     /// [valueDateElement] (_valueDate): Extensions for valueDate;
-    @JsonKey(name: '_valueDate') Element? valueDateElement,
+    @JsonKey(name: '_valueDate') PrimitiveElement? valueDateElement,
 
     /// [valueBoolean] A value for the property.;
     FhirBoolean? valueBoolean,
 
     /// [valueBooleanElement] (_valueBoolean): Extensions for valueBoolean;
-    @JsonKey(name: '_valueBoolean') Element? valueBooleanElement,
+    @JsonKey(name: '_valueBoolean') PrimitiveElement? valueBooleanElement,
 
     /// [valueAttachment] A value for the property.;
     Attachment? valueAttachment,
@@ -4337,14 +4360,15 @@ class SubstanceDefinitionStructure
     String? molecularFormula,
 
     /// [molecularFormulaElement] (_molecularFormula): Extensions for molecularFormula;
-    @JsonKey(name: '_molecularFormula') Element? molecularFormulaElement,
+    @JsonKey(name: '_molecularFormula')
+    PrimitiveElement? molecularFormulaElement,
 
     /// [molecularFormulaByMoiety] Specified per moiety according to the Hill system, i.e. first C, then H, then alphabetical, each moiety separated by a dot.;
     String? molecularFormulaByMoiety,
     @JsonKey(name: '_molecularFormulaByMoiety')
 
     /// [molecularFormulaByMoietyElement] (_molecularFormulaByMoiety): Extensions for molecularFormulaByMoiety;
-    Element? molecularFormulaByMoietyElement,
+    PrimitiveElement? molecularFormulaByMoietyElement,
 
     /// [molecularWeight] The molecular weight or weight range (for proteins, polymers or nucleic acids).;
     SubstanceDefinitionMolecularWeight? molecularWeight,
@@ -4433,7 +4457,7 @@ class SubstanceDefinitionRepresentation
     String? representation,
 
     /// [representationElement] (_representation): Extensions for representation;
-    @JsonKey(name: '_representation') Element? representationElement,
+    @JsonKey(name: '_representation') PrimitiveElement? representationElement,
 
     /// [format] The format of the representation e.g. InChI, SMILES, MOLFILE, CDX, SDF, PDB, mmCIF. The logical content type rather than the physical file format of a document.;
     CodeableConcept? format,
@@ -4477,7 +4501,9 @@ class SubstanceDefinitionRepresentation
 
 /// [SubstanceDefinitionCode] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 @freezed
-class SubstanceDefinitionCode with BackboneType, _$SubstanceDefinitionCode {
+class SubstanceDefinitionCode
+    with _$SubstanceDefinitionCode
+    implements BackboneElement {
   /// [SubstanceDefinitionCode] The detailed description of a substance, typically at a level beyond what is used for prescribing.
   const SubstanceDefinitionCode._();
 
@@ -4524,7 +4550,7 @@ class SubstanceDefinitionCode with BackboneType, _$SubstanceDefinitionCode {
     FhirDateTime? statusDate,
 
     /// [statusDateElement] (_statusDate): Extensions for statusDate;
-    @JsonKey(name: '_statusDate') Element? statusDateElement,
+    @JsonKey(name: '_statusDate') PrimitiveElement? statusDateElement,
 
     /// [note] Any comment can be provided in this field, if necessary.;
     List<Annotation>? note,
@@ -4566,7 +4592,9 @@ class SubstanceDefinitionCode with BackboneType, _$SubstanceDefinitionCode {
 
 /// [SubstanceDefinitionName] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 @freezed
-class SubstanceDefinitionName with BackboneType, _$SubstanceDefinitionName {
+class SubstanceDefinitionName
+    with _$SubstanceDefinitionName
+    implements BackboneElement {
   /// [SubstanceDefinitionName] The detailed description of a substance, typically at a level beyond what is used for prescribing.
   const SubstanceDefinitionName._();
 
@@ -4621,7 +4649,7 @@ class SubstanceDefinitionName with BackboneType, _$SubstanceDefinitionName {
     String? name,
 
     /// [nameElement] (_name): Extensions for name;
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [type] Name type, for example 'systematic',  'scientific, 'brand'.;
     CodeableConcept? type,
@@ -4633,7 +4661,7 @@ class SubstanceDefinitionName with BackboneType, _$SubstanceDefinitionName {
     FhirBoolean? preferred,
 
     /// [preferredElement] (_preferred): Extensions for preferred;
-    @JsonKey(name: '_preferred') Element? preferredElement,
+    @JsonKey(name: '_preferred') PrimitiveElement? preferredElement,
 
     /// [language] Human language that the name is written in.;
     List<CodeableConcept>? language,
@@ -4734,7 +4762,7 @@ class SubstanceDefinitionOfficial
     FhirDateTime? date,
 
     /// [dateElement] (_date): Extensions for date;
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
   }) = _SubstanceDefinitionOfficial;
 
   @override
@@ -4833,7 +4861,7 @@ class SubstanceDefinitionRelationship
     FhirBoolean? isDefining,
 
     /// [isDefiningElement] (_isDefining): Extensions for isDefining;
-    @JsonKey(name: '_isDefining') Element? isDefiningElement,
+    @JsonKey(name: '_isDefining') PrimitiveElement? isDefiningElement,
 
     /// [amountQuantity] A numeric factor for the relationship, for instance to express that the salt of a substance has some percentage of the active substance in relation to some other.;
     Quantity? amountQuantity,
@@ -4845,7 +4873,7 @@ class SubstanceDefinitionRelationship
     FhirMarkdown? amountString,
 
     /// [amountStringElement] (_amountString): Extensions for amountString;
-    @JsonKey(name: '_amountString') Element? amountStringElement,
+    @JsonKey(name: '_amountString') PrimitiveElement? amountStringElement,
 
     /// [ratioHighLimitAmount] For use when the numeric has an uncertain range.;
     Ratio? ratioHighLimitAmount,

@@ -15,7 +15,7 @@ part 'quality_reporting_and_testing.g.dart';
 
 /// [Measure] The Measure resource provides the definition of a quality
 @freezed
-class Measure with Resource, _$Measure {
+class Measure with _$Measure implements DomainResource {
   /// [Measure] The Measure resource provides the definition of a quality
   const Measure._();
 
@@ -304,13 +304,13 @@ class Measure with Resource, _$Measure {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -359,7 +359,7 @@ class Measure with Resource, _$Measure {
     FhirUri? url,
 
     /// [urlElement] Extensions for url
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
 
     /// [identifier] A formal identifier that is used to identify this measure
     /// when it is represented in other formats, or referenced in a specification,
@@ -380,7 +380,7 @@ class Measure with Resource, _$Measure {
     String? version,
 
     /// [versionElement] Extensions for version
-    @JsonKey(name: '_version') Element? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
 
     /// [name] A natural language name identifying the measure. This name should
     /// be usable as an identifier for the module by machine processing
@@ -388,27 +388,27 @@ class Measure with Resource, _$Measure {
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [title] A short, descriptive, user-friendly title for the measure.
     String? title,
 
     /// [titleElement] Extensions for title
-    @JsonKey(name: '_title') Element? titleElement,
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
 
     /// [subtitle] An explanatory or alternate title for the measure giving
     ///  additional information about its content.
     String? subtitle,
 
     /// [subtitleElement] Extensions for subtitle
-    @JsonKey(name: '_subtitle') Element? subtitleElement,
+    @JsonKey(name: '_subtitle') PrimitiveElement? subtitleElement,
 
     /// [status] The status of this measure. Enables tracking the life-cycle of
     ///  the content.
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [experimental] A Boolean value to indicate that this measure is authored
     /// for testing purposes (or education/evaluation/marketing) and is not
@@ -416,7 +416,7 @@ class Measure with Resource, _$Measure {
     FhirBoolean? experimental,
 
     /// [experimentalElement] Extensions for experimental
-    @JsonKey(name: '_experimental') Element? experimentalElement,
+    @JsonKey(name: '_experimental') PrimitiveElement? experimentalElement,
 
     /// [subjectCodeableConcept] The intended subjects for the measure. If this
     /// element is not provided, a Patient subject is assumed, but the subject of
@@ -435,14 +435,14 @@ class Measure with Resource, _$Measure {
     FhirDateTime? date,
 
     /// [dateElement] Extensions for date
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
 
     /// [publisher] The name of the organization or individual that published the
     ///  measure.
     String? publisher,
 
     /// [publisherElement] Extensions for publisher
-    @JsonKey(name: '_publisher') Element? publisherElement,
+    @JsonKey(name: '_publisher') PrimitiveElement? publisherElement,
 
     /// [contact] Contact details to assist a user in finding and communicating
     ///  with the publisher.
@@ -453,7 +453,7 @@ class Measure with Resource, _$Measure {
     FhirMarkdown? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [useContext] The content was developed with a focus and intent of
     /// supporting the contexts that are listed. These contexts may be general
@@ -471,14 +471,14 @@ class Measure with Resource, _$Measure {
     FhirMarkdown? purpose,
 
     /// [purposeElement] Extensions for purpose
-    @JsonKey(name: '_purpose') Element? purposeElement,
+    @JsonKey(name: '_purpose') PrimitiveElement? purposeElement,
 
     /// [usage] A detailed description, from a clinical perspective, of how the
     ///  measure is used.
     String? usage,
 
     /// [usageElement] Extensions for usage
-    @JsonKey(name: '_usage') Element? usageElement,
+    @JsonKey(name: '_usage') PrimitiveElement? usageElement,
 
     /// [copyright] A copyright statement relating to the measure and/or its
     /// contents. Copyright statements are generally legal restrictions on the use
@@ -486,7 +486,7 @@ class Measure with Resource, _$Measure {
     FhirMarkdown? copyright,
 
     /// [copyrightElement] Extensions for copyright
-    @JsonKey(name: '_copyright') Element? copyrightElement,
+    @JsonKey(name: '_copyright') PrimitiveElement? copyrightElement,
 
     /// [approvalDate] The date on which the resource content was approved by the
     /// publisher. Approval happens once when the content is officially approved
@@ -494,7 +494,7 @@ class Measure with Resource, _$Measure {
     FhirDate? approvalDate,
 
     /// [approvalDateElement] Extensions for approvalDate
-    @JsonKey(name: '_approvalDate') Element? approvalDateElement,
+    @JsonKey(name: '_approvalDate') PrimitiveElement? approvalDateElement,
 
     /// [lastReviewDate] The date on which the resource content was last
     /// reviewed. Review happens periodically after approval but does not change
@@ -502,7 +502,7 @@ class Measure with Resource, _$Measure {
     FhirDate? lastReviewDate,
 
     /// [lastReviewDateElement] Extensions for lastReviewDate
-    @JsonKey(name: '_lastReviewDate') Element? lastReviewDateElement,
+    @JsonKey(name: '_lastReviewDate') PrimitiveElement? lastReviewDateElement,
 
     /// [effectivePeriod] The period during which the measure content was or is
     ///  planned to be in active use.
@@ -543,7 +543,7 @@ class Measure with Resource, _$Measure {
     FhirMarkdown? disclaimer,
 
     /// [disclaimerElement] Extensions for disclaimer
-    @JsonKey(name: '_disclaimer') Element? disclaimerElement,
+    @JsonKey(name: '_disclaimer') PrimitiveElement? disclaimerElement,
 
     /// [scoring] Indicates how the calculation is performed for the measure,
     /// including proportion, ratio, continuous-variable, and cohort. The value
@@ -566,7 +566,7 @@ class Measure with Resource, _$Measure {
     String? riskAdjustment,
 
     /// [riskAdjustmentElement] Extensions for riskAdjustment
-    @JsonKey(name: '_riskAdjustment') Element? riskAdjustmentElement,
+    @JsonKey(name: '_riskAdjustment') PrimitiveElement? riskAdjustmentElement,
 
     /// [rateAggregation] Describes how to combine the information calculated,
     /// based on logic in each of several populations, into one summarized
@@ -574,7 +574,7 @@ class Measure with Resource, _$Measure {
     String? rateAggregation,
 
     /// [rateAggregationElement] Extensions for rateAggregation
-    @JsonKey(name: '_rateAggregation') Element? rateAggregationElement,
+    @JsonKey(name: '_rateAggregation') PrimitiveElement? rateAggregationElement,
 
     /// [rationale] Provides a succinct statement of the need for the measure.
     /// Usually includes statements pertaining to importance criterion: impact,
@@ -582,7 +582,7 @@ class Measure with Resource, _$Measure {
     FhirMarkdown? rationale,
 
     /// [rationaleElement] Extensions for rationale
-    @JsonKey(name: '_rationale') Element? rationaleElement,
+    @JsonKey(name: '_rationale') PrimitiveElement? rationaleElement,
 
     /// [clinicalRecommendationStatement] Provides a summary of relevant clinical
     ///  guidelines or other clinical recommendations supporting the measure.
@@ -591,7 +591,7 @@ class Measure with Resource, _$Measure {
 
     /// [clinicalRecommendationStatementElement] Extensions for
     ///  clinicalRecommendationStatement
-    Element? clinicalRecommendationStatementElement,
+    PrimitiveElement? clinicalRecommendationStatementElement,
 
     /// [improvementNotation] Information on whether an increase or decrease in
     /// score is the preferred result (e.g., a higher score indicates better
@@ -611,7 +611,7 @@ class Measure with Resource, _$Measure {
     FhirMarkdown? guidance,
 
     /// [guidanceElement] Extensions for guidance
-    @JsonKey(name: '_guidance') Element? guidanceElement,
+    @JsonKey(name: '_guidance') PrimitiveElement? guidanceElement,
 
     /// [group] A group of population criteria for the measure.
     List<MeasureGroup>? group,
@@ -660,7 +660,7 @@ class Measure with Resource, _$Measure {
 
 /// [MeasureGroup] The Measure resource provides the definition of a quality
 @freezed
-class MeasureGroup with BackboneType, _$MeasureGroup {
+class MeasureGroup with _$MeasureGroup implements BackboneElement {
   /// [MeasureGroup] The Measure resource provides the definition of a quality
   const MeasureGroup._();
 
@@ -743,7 +743,7 @@ class MeasureGroup with BackboneType, _$MeasureGroup {
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [population] A population criteria for the measure.
     List<MeasurePopulation>? population,
@@ -787,7 +787,7 @@ class MeasureGroup with BackboneType, _$MeasureGroup {
 
 /// [MeasurePopulation] The Measure resource provides the definition of a
 @freezed
-class MeasurePopulation with BackboneType, _$MeasurePopulation {
+class MeasurePopulation with _$MeasurePopulation implements BackboneElement {
   /// [MeasurePopulation] The Measure resource provides the definition of a
   const MeasurePopulation._();
 
@@ -861,7 +861,7 @@ class MeasurePopulation with BackboneType, _$MeasurePopulation {
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [criteria] An expression that specifies the criteria for the population,
     ///  typically the name of an expression in a library.
@@ -901,7 +901,7 @@ class MeasurePopulation with BackboneType, _$MeasurePopulation {
 
 /// [MeasureStratifier] The Measure resource provides the definition of a
 @freezed
-class MeasureStratifier with BackboneType, _$MeasureStratifier {
+class MeasureStratifier with _$MeasureStratifier implements BackboneElement {
   /// [MeasureStratifier] The Measure resource provides the definition of a
   const MeasureStratifier._();
 
@@ -986,7 +986,7 @@ class MeasureStratifier with BackboneType, _$MeasureStratifier {
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [criteria] An expression that specifies the criteria for the stratifier.
     /// This is typically the name of an expression defined within a referenced
@@ -1032,7 +1032,7 @@ class MeasureStratifier with BackboneType, _$MeasureStratifier {
 
 /// [MeasureComponent] The Measure resource provides the definition of a
 @freezed
-class MeasureComponent with BackboneType, _$MeasureComponent {
+class MeasureComponent with _$MeasureComponent implements BackboneElement {
   /// [MeasureComponent] The Measure resource provides the definition of a
   const MeasureComponent._();
 
@@ -1116,7 +1116,7 @@ class MeasureComponent with BackboneType, _$MeasureComponent {
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [criteria] An expression that specifies the criteria for this component
     /// of the stratifier. This is typically the name of an expression defined
@@ -1158,7 +1158,9 @@ class MeasureComponent with BackboneType, _$MeasureComponent {
 
 /// [MeasureSupplementalData] The Measure resource provides the definition
 @freezed
-class MeasureSupplementalData with BackboneType, _$MeasureSupplementalData {
+class MeasureSupplementalData
+    with _$MeasureSupplementalData
+    implements BackboneElement {
   /// [MeasureSupplementalData] The Measure resource provides the definition
   const MeasureSupplementalData._();
 
@@ -1253,7 +1255,7 @@ class MeasureSupplementalData with BackboneType, _$MeasureSupplementalData {
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [criteria] The criteria for the supplemental data. This is typically the
     /// name of a valid expression defined within a referenced library, but it may
@@ -1295,7 +1297,7 @@ class MeasureSupplementalData with BackboneType, _$MeasureSupplementalData {
 
 /// [MeasureReport] The MeasureReport resource contains the results of the
 @freezed
-class MeasureReport with Resource, _$MeasureReport {
+class MeasureReport with _$MeasureReport implements DomainResource {
   /// [MeasureReport] The MeasureReport resource contains the results of the
   const MeasureReport._();
 
@@ -1421,13 +1423,13 @@ class MeasureReport with Resource, _$MeasureReport {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -1476,7 +1478,7 @@ class MeasureReport with Resource, _$MeasureReport {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [type] The type of measure report. This may be an individual report,
     /// which provides the score for the measure for an individual member of the
@@ -1488,7 +1490,7 @@ class MeasureReport with Resource, _$MeasureReport {
     FhirCode? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [measure] A reference to the Measure that was calculated to produce this
     ///  report.
@@ -1502,7 +1504,7 @@ class MeasureReport with Resource, _$MeasureReport {
     FhirDateTime? date,
 
     /// [dateElement] Extensions for date
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
 
     /// [reporter] The individual, location, or organization that is reporting
     ///  the data.
@@ -1562,7 +1564,7 @@ class MeasureReport with Resource, _$MeasureReport {
 
 /// [MeasureReportGroup] The MeasureReport resource contains the results of
 @freezed
-class MeasureReportGroup with BackboneType, _$MeasureReportGroup {
+class MeasureReportGroup with _$MeasureReportGroup implements BackboneElement {
   /// [MeasureReportGroup] The MeasureReport resource contains the results of
   const MeasureReportGroup._();
 
@@ -1685,7 +1687,9 @@ class MeasureReportGroup with BackboneType, _$MeasureReportGroup {
 
 /// [MeasureReportPopulation] The MeasureReport resource contains the
 @freezed
-class MeasureReportPopulation with BackboneType, _$MeasureReportPopulation {
+class MeasureReportPopulation
+    with _$MeasureReportPopulation
+    implements BackboneElement {
   /// [MeasureReportPopulation] The MeasureReport resource contains the
   const MeasureReportPopulation._();
 
@@ -1760,7 +1764,7 @@ class MeasureReportPopulation with BackboneType, _$MeasureReportPopulation {
     FhirInteger? count,
 
     /// [countElement] Extensions for count
-    @JsonKey(name: '_count') Element? countElement,
+    @JsonKey(name: '_count') PrimitiveElement? countElement,
 
     /// [subjectResults] This element refers to a List of subject level
     ///  MeasureReport resources, one for each subject in this population.
@@ -1800,7 +1804,9 @@ class MeasureReportPopulation with BackboneType, _$MeasureReportPopulation {
 
 /// [MeasureReportStratifier] The MeasureReport resource contains the
 @freezed
-class MeasureReportStratifier with BackboneType, _$MeasureReportStratifier {
+class MeasureReportStratifier
+    with _$MeasureReportStratifier
+    implements BackboneElement {
   /// [MeasureReportStratifier] The MeasureReport resource contains the
   const MeasureReportStratifier._();
 
@@ -1909,7 +1915,9 @@ class MeasureReportStratifier with BackboneType, _$MeasureReportStratifier {
 
 /// [MeasureReportStratum] The MeasureReport resource contains the results
 @freezed
-class MeasureReportStratum with BackboneType, _$MeasureReportStratum {
+class MeasureReportStratum
+    with _$MeasureReportStratum
+    implements BackboneElement {
   /// [MeasureReportStratum] The MeasureReport resource contains the results
   const MeasureReportStratum._();
 
@@ -2032,7 +2040,9 @@ class MeasureReportStratum with BackboneType, _$MeasureReportStratum {
 
 /// [MeasureReportComponent] The MeasureReport resource contains the results
 @freezed
-class MeasureReportComponent with BackboneType, _$MeasureReportComponent {
+class MeasureReportComponent
+    with _$MeasureReportComponent
+    implements BackboneElement {
   /// [MeasureReportComponent] The MeasureReport resource contains the results
   const MeasureReportComponent._();
 
@@ -2135,7 +2145,9 @@ class MeasureReportComponent with BackboneType, _$MeasureReportComponent {
 
 /// [MeasureReportPopulation1] The MeasureReport resource contains the
 @freezed
-class MeasureReportPopulation1 with BackboneType, _$MeasureReportPopulation1 {
+class MeasureReportPopulation1
+    with _$MeasureReportPopulation1
+    implements BackboneElement {
   /// [MeasureReportPopulation1] The MeasureReport resource contains the
   const MeasureReportPopulation1._();
 
@@ -2211,7 +2223,7 @@ class MeasureReportPopulation1 with BackboneType, _$MeasureReportPopulation1 {
     FhirInteger? count,
 
     /// [countElement] Extensions for count
-    @JsonKey(name: '_count') Element? countElement,
+    @JsonKey(name: '_count') PrimitiveElement? countElement,
 
     /// [subjectResults] This element refers to a List of subject level
     /// MeasureReport resources, one for each subject in this population in this
@@ -2252,7 +2264,7 @@ class MeasureReportPopulation1 with BackboneType, _$MeasureReportPopulation1 {
 
 /// [TestReport] A summary of information based on the results of executing a
 @freezed
-class TestReport with Resource, _$TestReport {
+class TestReport with _$TestReport implements DomainResource {
   /// [TestReport] A summary of information based on the results of executing a
   const TestReport._();
 
@@ -2380,13 +2392,13 @@ class TestReport with Resource, _$TestReport {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -2434,13 +2446,13 @@ class TestReport with Resource, _$TestReport {
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [status] The current state of this test report.
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [testScript] Ideally this is an absolute URL that is used to identify the
     /// version-specific TestScript that was executed, matching the
@@ -2451,28 +2463,28 @@ class TestReport with Resource, _$TestReport {
     FhirCode? result,
 
     /// [resultElement] Extensions for result
-    @JsonKey(name: '_result') Element? resultElement,
+    @JsonKey(name: '_result') PrimitiveElement? resultElement,
 
     /// [score] The final score (percentage of tests passed) resulting from the
     ///  execution of the TestScript.
     FhirDecimal? score,
 
     /// [scoreElement] Extensions for score
-    @JsonKey(name: '_score') Element? scoreElement,
+    @JsonKey(name: '_score') PrimitiveElement? scoreElement,
 
     /// [tester] Name of the tester producing this report (Organization or
     ///  individual).
     String? tester,
 
     /// [testerElement] Extensions for tester
-    @JsonKey(name: '_tester') Element? testerElement,
+    @JsonKey(name: '_tester') PrimitiveElement? testerElement,
 
     /// [issued] When the TestScript was executed and this TestReport was
     ///  generated.
     FhirDateTime? issued,
 
     /// [issuedElement] Extensions for issued
-    @JsonKey(name: '_issued') Element? issuedElement,
+    @JsonKey(name: '_issued') PrimitiveElement? issuedElement,
 
     /// [participant] A participant in the test execution, either the execution
     ///  engine, a client, or a server.
@@ -2528,7 +2540,9 @@ class TestReport with Resource, _$TestReport {
 
 /// [TestReportParticipant] A summary of information based on the results of
 @freezed
-class TestReportParticipant with BackboneType, _$TestReportParticipant {
+class TestReportParticipant
+    with _$TestReportParticipant
+    implements BackboneElement {
   /// [TestReportParticipant] A summary of information based on the results of
   const TestReportParticipant._();
 
@@ -2602,19 +2616,19 @@ class TestReportParticipant with BackboneType, _$TestReportParticipant {
     FhirCode? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [uri] The uri of the participant. An absolute URL is preferred.
     FhirUri? uri,
 
     /// [uriElement] Extensions for uri
-    @JsonKey(name: '_uri') Element? uriElement,
+    @JsonKey(name: '_uri') PrimitiveElement? uriElement,
 
     /// [display] The display name of the participant.
     String? display,
 
     /// [displayElement] Extensions for display
-    @JsonKey(name: '_display') Element? displayElement,
+    @JsonKey(name: '_display') PrimitiveElement? displayElement,
   }) = _TestReportParticipant;
 
   @override
@@ -2650,7 +2664,7 @@ class TestReportParticipant with BackboneType, _$TestReportParticipant {
 
 /// [TestReportSetup] A summary of information based on the results of
 @freezed
-class TestReportSetup with BackboneType, _$TestReportSetup {
+class TestReportSetup with _$TestReportSetup implements BackboneElement {
   /// [TestReportSetup] A summary of information based on the results of
   const TestReportSetup._();
 
@@ -2747,7 +2761,7 @@ class TestReportSetup with BackboneType, _$TestReportSetup {
 
 /// [TestReportAction] A summary of information based on the results of
 @freezed
-class TestReportAction with BackboneType, _$TestReportAction {
+class TestReportAction with _$TestReportAction implements BackboneElement {
   /// [TestReportAction] A summary of information based on the results of
   const TestReportAction._();
 
@@ -2851,7 +2865,9 @@ class TestReportAction with BackboneType, _$TestReportAction {
 
 /// [TestReportOperation] A summary of information based on the results of
 @freezed
-class TestReportOperation with BackboneType, _$TestReportOperation {
+class TestReportOperation
+    with _$TestReportOperation
+    implements BackboneElement {
   /// [TestReportOperation] A summary of information based on the results of
   const TestReportOperation._();
 
@@ -2925,19 +2941,19 @@ class TestReportOperation with BackboneType, _$TestReportOperation {
     FhirCode? result,
 
     /// [resultElement] Extensions for result
-    @JsonKey(name: '_result') Element? resultElement,
+    @JsonKey(name: '_result') PrimitiveElement? resultElement,
 
     /// [message] An explanatory message associated with the result.
     FhirMarkdown? message,
 
     /// [messageElement] Extensions for message
-    @JsonKey(name: '_message') Element? messageElement,
+    @JsonKey(name: '_message') PrimitiveElement? messageElement,
 
     /// [detail] A link to further details on the result.
     FhirUri? detail,
 
     /// [detailElement] Extensions for detail
-    @JsonKey(name: '_detail') Element? detailElement,
+    @JsonKey(name: '_detail') PrimitiveElement? detailElement,
   }) = _TestReportOperation;
 
   @override
@@ -2973,7 +2989,7 @@ class TestReportOperation with BackboneType, _$TestReportOperation {
 
 /// [TestReportAssert] A summary of information based on the results of
 @freezed
-class TestReportAssert with BackboneType, _$TestReportAssert {
+class TestReportAssert with _$TestReportAssert implements BackboneElement {
   /// [TestReportAssert] A summary of information based on the results of
   const TestReportAssert._();
 
@@ -3047,19 +3063,19 @@ class TestReportAssert with BackboneType, _$TestReportAssert {
     FhirCode? result,
 
     /// [resultElement] Extensions for result
-    @JsonKey(name: '_result') Element? resultElement,
+    @JsonKey(name: '_result') PrimitiveElement? resultElement,
 
     /// [message] An explanatory message associated with the result.
     FhirMarkdown? message,
 
     /// [messageElement] Extensions for message
-    @JsonKey(name: '_message') Element? messageElement,
+    @JsonKey(name: '_message') PrimitiveElement? messageElement,
 
     /// [detail] A link to further details on the result.
     String? detail,
 
     /// [detailElement] Extensions for detail
-    @JsonKey(name: '_detail') Element? detailElement,
+    @JsonKey(name: '_detail') PrimitiveElement? detailElement,
   }) = _TestReportAssert;
 
   @override
@@ -3095,7 +3111,7 @@ class TestReportAssert with BackboneType, _$TestReportAssert {
 
 /// [TestReportTest] A summary of information based on the results of
 @freezed
-class TestReportTest with BackboneType, _$TestReportTest {
+class TestReportTest with _$TestReportTest implements BackboneElement {
   /// [TestReportTest] A summary of information based on the results of
   const TestReportTest._();
 
@@ -3170,14 +3186,14 @@ class TestReportTest with BackboneType, _$TestReportTest {
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [description] A short description of the test used by test engines for
     ///  tracking and reporting purposes.
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [action] Action would contain either an operation or an assertion.
     required List<TestReportAction1> action,
@@ -3216,7 +3232,7 @@ class TestReportTest with BackboneType, _$TestReportTest {
 
 /// [TestReportAction1] A summary of information based on the results of
 @freezed
-class TestReportAction1 with BackboneType, _$TestReportAction1 {
+class TestReportAction1 with _$TestReportAction1 implements BackboneElement {
   /// [TestReportAction1] A summary of information based on the results of
   const TestReportAction1._();
 
@@ -3320,7 +3336,7 @@ class TestReportAction1 with BackboneType, _$TestReportAction1 {
 
 /// [TestReportTeardown] A summary of information based on the results of
 @freezed
-class TestReportTeardown with BackboneType, _$TestReportTeardown {
+class TestReportTeardown with _$TestReportTeardown implements BackboneElement {
   /// [TestReportTeardown] A summary of information based on the results of
   const TestReportTeardown._();
 
@@ -3417,7 +3433,7 @@ class TestReportTeardown with BackboneType, _$TestReportTeardown {
 
 /// [TestReportAction2] A summary of information based on the results of
 @freezed
-class TestReportAction2 with BackboneType, _$TestReportAction2 {
+class TestReportAction2 with _$TestReportAction2 implements BackboneElement {
   /// [TestReportAction2] A summary of information based on the results of
   const TestReportAction2._();
 
@@ -3514,7 +3530,7 @@ class TestReportAction2 with BackboneType, _$TestReportAction2 {
 
 /// [TestScript] A structured set of tests against a FHIR server or client
 @freezed
-class TestScript with Resource, _$TestScript {
+class TestScript with _$TestScript implements DomainResource {
   /// [TestScript] A structured set of tests against a FHIR server or client
   const TestScript._();
 
@@ -3705,13 +3721,13 @@ class TestScript with Resource, _$TestScript {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -3760,7 +3776,7 @@ class TestScript with Resource, _$TestScript {
     FhirUri? url,
 
     /// [urlElement] Extensions for url
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
 
     /// [identifier] A formal identifier that is used to identify this test
     /// script when it is represented in other formats, or referenced in a
@@ -3777,7 +3793,7 @@ class TestScript with Resource, _$TestScript {
     String? version,
 
     /// [versionElement] Extensions for version
-    @JsonKey(name: '_version') Element? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
 
     /// [name] A natural language name identifying the test script. This name
     /// should be usable as an identifier for the module by machine processing
@@ -3785,20 +3801,20 @@ class TestScript with Resource, _$TestScript {
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [title] A short, descriptive, user-friendly title for the test script.
     String? title,
 
     /// [titleElement] Extensions for title
-    @JsonKey(name: '_title') Element? titleElement,
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
 
     /// [status] The status of this test script. Enables tracking the life-cycle
     ///  of the content.
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [experimental] A Boolean value to indicate that this test script is
     /// authored for testing purposes (or education/evaluation/marketing) and is
@@ -3806,7 +3822,7 @@ class TestScript with Resource, _$TestScript {
     FhirBoolean? experimental,
 
     /// [experimentalElement] Extensions for experimental
-    @JsonKey(name: '_experimental') Element? experimentalElement,
+    @JsonKey(name: '_experimental') PrimitiveElement? experimentalElement,
 
     /// [date] The date  (and optionally time) when the test script was
     /// published. The date must change when the business version changes and it
@@ -3815,14 +3831,14 @@ class TestScript with Resource, _$TestScript {
     FhirDateTime? date,
 
     /// [dateElement] Extensions for date
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
 
     /// [publisher] The name of the organization or individual that published the
     ///  test script.
     String? publisher,
 
     /// [publisherElement] Extensions for publisher
-    @JsonKey(name: '_publisher') Element? publisherElement,
+    @JsonKey(name: '_publisher') PrimitiveElement? publisherElement,
 
     /// [contact] Contact details to assist a user in finding and communicating
     ///  with the publisher.
@@ -3833,7 +3849,7 @@ class TestScript with Resource, _$TestScript {
     FhirMarkdown? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [useContext] The content was developed with a focus and intent of
     /// supporting the contexts that are listed. These contexts may be general
@@ -3851,7 +3867,7 @@ class TestScript with Resource, _$TestScript {
     FhirMarkdown? purpose,
 
     /// [purposeElement] Extensions for purpose
-    @JsonKey(name: '_purpose') Element? purposeElement,
+    @JsonKey(name: '_purpose') PrimitiveElement? purposeElement,
 
     /// [copyright] A copyright statement relating to the test script and/or its
     /// contents. Copyright statements are generally legal restrictions on the use
@@ -3859,7 +3875,7 @@ class TestScript with Resource, _$TestScript {
     FhirMarkdown? copyright,
 
     /// [copyrightElement] Extensions for copyright
-    @JsonKey(name: '_copyright') Element? copyrightElement,
+    @JsonKey(name: '_copyright') PrimitiveElement? copyrightElement,
 
     /// [origin] An abstract server used in operations within this test script in
     ///  the origin element.
@@ -3933,7 +3949,7 @@ class TestScript with Resource, _$TestScript {
 
 /// [TestScriptOrigin] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptOrigin with BackboneType, _$TestScriptOrigin {
+class TestScriptOrigin with _$TestScriptOrigin implements BackboneElement {
   /// [TestScriptOrigin] A structured set of tests against a FHIR server or
   const TestScriptOrigin._();
 
@@ -4004,7 +4020,7 @@ class TestScriptOrigin with BackboneType, _$TestScriptOrigin {
     FhirInteger? index,
 
     /// [indexElement] Extensions for index
-    @JsonKey(name: '_index') Element? indexElement,
+    @JsonKey(name: '_index') PrimitiveElement? indexElement,
 
     /// [profile] The type of origin profile the test system supports.
     required Coding profile,
@@ -4043,7 +4059,9 @@ class TestScriptOrigin with BackboneType, _$TestScriptOrigin {
 
 /// [TestScriptDestination] A structured set of tests against a FHIR server
 @freezed
-class TestScriptDestination with BackboneType, _$TestScriptDestination {
+class TestScriptDestination
+    with _$TestScriptDestination
+    implements BackboneElement {
   /// [TestScriptDestination] A structured set of tests against a FHIR server
   const TestScriptDestination._();
 
@@ -4114,7 +4132,7 @@ class TestScriptDestination with BackboneType, _$TestScriptDestination {
     FhirInteger? index,
 
     /// [indexElement] Extensions for index
-    @JsonKey(name: '_index') Element? indexElement,
+    @JsonKey(name: '_index') PrimitiveElement? indexElement,
 
     /// [profile] The type of destination profile the test system supports.
     required Coding profile,
@@ -4153,7 +4171,7 @@ class TestScriptDestination with BackboneType, _$TestScriptDestination {
 
 /// [TestScriptMetadata] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptMetadata with BackboneType, _$TestScriptMetadata {
+class TestScriptMetadata with _$TestScriptMetadata implements BackboneElement {
   /// [TestScriptMetadata] A structured set of tests against a FHIR server or
   const TestScriptMetadata._();
 
@@ -4258,7 +4276,7 @@ class TestScriptMetadata with BackboneType, _$TestScriptMetadata {
 
 /// [TestScriptLink] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptLink with BackboneType, _$TestScriptLink {
+class TestScriptLink with _$TestScriptLink implements BackboneElement {
   /// [TestScriptLink] A structured set of tests against a FHIR server or
   const TestScriptLink._();
 
@@ -4331,13 +4349,13 @@ class TestScriptLink with BackboneType, _$TestScriptLink {
     FhirUri? url,
 
     /// [urlElement] Extensions for url
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
 
     /// [description] Short description of the link.
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
   }) = _TestScriptLink;
 
   @override
@@ -4373,7 +4391,9 @@ class TestScriptLink with BackboneType, _$TestScriptLink {
 
 /// [TestScriptCapability] A structured set of tests against a FHIR server
 @freezed
-class TestScriptCapability with BackboneType, _$TestScriptCapability {
+class TestScriptCapability
+    with _$TestScriptCapability
+    implements BackboneElement {
   /// [TestScriptCapability] A structured set of tests against a FHIR server
   const TestScriptCapability._();
 
@@ -4470,21 +4490,21 @@ class TestScriptCapability with BackboneType, _$TestScriptCapability {
     @JsonKey(name: 'required') FhirBoolean? required_,
 
     /// [requiredElement] Extensions for required
-    @JsonKey(name: '_required') Element? requiredElement,
+    @JsonKey(name: '_required') PrimitiveElement? requiredElement,
 
     /// [validated] Whether or not the test execution will validate the given
     ///  capabilities of the server in order for this test script to execute.
     FhirBoolean? validated,
 
     /// [validatedElement] Extensions for validated
-    @JsonKey(name: '_validated') Element? validatedElement,
+    @JsonKey(name: '_validated') PrimitiveElement? validatedElement,
 
     /// [description] Description of the capabilities that this test script is
     ///  requiring the server to support.
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [origin] Which origin server these requirements apply to.
     List<FhirInteger>? origin,
@@ -4496,7 +4516,7 @@ class TestScriptCapability with BackboneType, _$TestScriptCapability {
     FhirInteger? destination,
 
     /// [destinationElement] Extensions for destination
-    @JsonKey(name: '_destination') Element? destinationElement,
+    @JsonKey(name: '_destination') PrimitiveElement? destinationElement,
 
     /// [link] Links to the FHIR specification that describes this interaction
     ///  and the resources involved in more detail.
@@ -4545,7 +4565,7 @@ class TestScriptCapability with BackboneType, _$TestScriptCapability {
 
 /// [TestScriptFixture] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptFixture with BackboneType, _$TestScriptFixture {
+class TestScriptFixture with _$TestScriptFixture implements BackboneElement {
   /// [TestScriptFixture] A structured set of tests against a FHIR server or
   const TestScriptFixture._();
 
@@ -4628,7 +4648,7 @@ class TestScriptFixture with BackboneType, _$TestScriptFixture {
     FhirBoolean? autocreate,
 
     /// [autocreateElement] Extensions for autocreate
-    @JsonKey(name: '_autocreate') Element? autocreateElement,
+    @JsonKey(name: '_autocreate') PrimitiveElement? autocreateElement,
 
     /// [autodelete] Whether or not to implicitly delete the fixture during
     /// teardown. If true, the fixture is automatically deleted on each server
@@ -4637,7 +4657,7 @@ class TestScriptFixture with BackboneType, _$TestScriptFixture {
     FhirBoolean? autodelete,
 
     /// [autodeleteElement] Extensions for autodelete
-    @JsonKey(name: '_autodelete') Element? autodeleteElement,
+    @JsonKey(name: '_autodelete') PrimitiveElement? autodeleteElement,
 
     /// [resource] Reference to the resource (containing the contents of the
     ///  resource needed for operations).
@@ -4677,7 +4697,7 @@ class TestScriptFixture with BackboneType, _$TestScriptFixture {
 
 /// [TestScriptVariable] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptVariable with BackboneType, _$TestScriptVariable {
+class TestScriptVariable with _$TestScriptVariable implements BackboneElement {
   /// [TestScriptVariable] A structured set of tests against a FHIR server or
   const TestScriptVariable._();
 
@@ -4781,21 +4801,21 @@ class TestScriptVariable with BackboneType, _$TestScriptVariable {
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [defaultValue] A default, hard-coded, or user-defined value for this
     ///  variable.
     String? defaultValue,
 
     /// [defaultValueElement] Extensions for defaultValue
-    @JsonKey(name: '_defaultValue') Element? defaultValueElement,
+    @JsonKey(name: '_defaultValue') PrimitiveElement? defaultValueElement,
 
     /// [description] A free text natural language description of the variable
     ///  and its purpose.
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [expression] The FHIRPath expression to evaluate against the fixture
     /// body. When variables are defined, only one of either expression,
@@ -4803,21 +4823,21 @@ class TestScriptVariable with BackboneType, _$TestScriptVariable {
     String? expression,
 
     /// [expressionElement] Extensions for expression
-    @JsonKey(name: '_expression') Element? expressionElement,
+    @JsonKey(name: '_expression') PrimitiveElement? expressionElement,
 
     /// [headerField] Will be used to grab the HTTP header field value from the
     ///  headers that sourceId is pointing to.
     String? headerField,
 
     /// [headerFieldElement] Extensions for headerField
-    @JsonKey(name: '_headerField') Element? headerFieldElement,
+    @JsonKey(name: '_headerField') PrimitiveElement? headerFieldElement,
 
     /// [hint] Displayable text string with hint help information to the user
     ///  when entering a default value.
     String? hint,
 
     /// [hintElement] Extensions for hint
-    @JsonKey(name: '_hint') Element? hintElement,
+    @JsonKey(name: '_hint') PrimitiveElement? hintElement,
 
     /// [path] XPath or JSONPath to evaluate against the fixture body.  When
     /// variables are defined, only one of either expression, headerField or path
@@ -4825,14 +4845,14 @@ class TestScriptVariable with BackboneType, _$TestScriptVariable {
     String? path,
 
     /// [pathElement] Extensions for path
-    @JsonKey(name: '_path') Element? pathElement,
+    @JsonKey(name: '_path') PrimitiveElement? pathElement,
 
     /// [sourceId] Fixture to evaluate the XPath/JSONPath expression or the
     ///  headerField  against within this variable.
     FhirId? sourceId,
 
     /// [sourceIdElement] Extensions for sourceId
-    @JsonKey(name: '_sourceId') Element? sourceIdElement,
+    @JsonKey(name: '_sourceId') PrimitiveElement? sourceIdElement,
   }) = _TestScriptVariable;
 
   @override
@@ -4868,7 +4888,7 @@ class TestScriptVariable with BackboneType, _$TestScriptVariable {
 
 /// [TestScriptSetup] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptSetup with BackboneType, _$TestScriptSetup {
+class TestScriptSetup with _$TestScriptSetup implements BackboneElement {
   /// [TestScriptSetup] A structured set of tests against a FHIR server or
   const TestScriptSetup._();
 
@@ -4966,7 +4986,7 @@ class TestScriptSetup with BackboneType, _$TestScriptSetup {
 
 /// [TestScriptAction] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptAction with BackboneType, _$TestScriptAction {
+class TestScriptAction with _$TestScriptAction implements BackboneElement {
   /// [TestScriptAction] A structured set of tests against a FHIR server or
   const TestScriptAction._();
 
@@ -5071,7 +5091,9 @@ class TestScriptAction with BackboneType, _$TestScriptAction {
 
 /// [TestScriptOperation] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptOperation with BackboneType, _$TestScriptOperation {
+class TestScriptOperation
+    with _$TestScriptOperation
+    implements BackboneElement {
   /// [TestScriptOperation] A structured set of tests against a FHIR server or
   const TestScriptOperation._();
 
@@ -5216,42 +5238,42 @@ class TestScriptOperation with BackboneType, _$TestScriptOperation {
     FhirCode? resource,
 
     /// [resourceElement] Extensions for resource
-    @JsonKey(name: '_resource') Element? resourceElement,
+    @JsonKey(name: '_resource') PrimitiveElement? resourceElement,
 
     /// [label] The label would be used for tracking/logging purposes by test
     ///  engines.
     String? label,
 
     /// [labelElement] Extensions for label
-    @JsonKey(name: '_label') Element? labelElement,
+    @JsonKey(name: '_label') PrimitiveElement? labelElement,
 
     /// [description] The description would be used by test engines for tracking
     ///  and reporting purposes.
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [accept] The mime-type to use for RESTful operation in the 'Accept'
     ///  header.
     FhirCode? accept,
 
     /// [acceptElement] Extensions for accept
-    @JsonKey(name: '_accept') Element? acceptElement,
+    @JsonKey(name: '_accept') PrimitiveElement? acceptElement,
 
     /// [contentType] The mime-type to use for RESTful operation in the
     ///  'Content-Type' header.
     FhirCode? contentType,
 
     /// [contentTypeElement] Extensions for contentType
-    @JsonKey(name: '_contentType') Element? contentTypeElement,
+    @JsonKey(name: '_contentType') PrimitiveElement? contentTypeElement,
 
     /// [destination] The server where the request message is destined for.  Must
     ///  be one of the server numbers listed in TestScript.destination section.
     FhirInteger? destination,
 
     /// [destinationElement] Extensions for destination
-    @JsonKey(name: '_destination') Element? destinationElement,
+    @JsonKey(name: '_destination') PrimitiveElement? destinationElement,
 
     /// [encodeRequestUrl] Whether or not to implicitly send the request url in
     /// encoded format. The default is true to match the standard RESTful client
@@ -5260,28 +5282,29 @@ class TestScriptOperation with BackboneType, _$TestScriptOperation {
     FhirBoolean? encodeRequestUrl,
 
     /// [encodeRequestUrlElement] Extensions for encodeRequestUrl
-    @JsonKey(name: '_encodeRequestUrl') Element? encodeRequestUrlElement,
+    @JsonKey(name: '_encodeRequestUrl')
+    PrimitiveElement? encodeRequestUrlElement,
 
     /// [method] The HTTP method the test engine MUST use for this operation
     ///  regardless of any other operation details.
     FhirCode? method,
 
     /// [methodElement] Extensions for method
-    @JsonKey(name: '_method') Element? methodElement,
+    @JsonKey(name: '_method') PrimitiveElement? methodElement,
 
     /// [origin] The server where the request message originates from.  Must be
     ///  one of the server numbers listed in TestScript.origin section.
     FhirInteger? origin,
 
     /// [originElement] Extensions for origin
-    @JsonKey(name: '_origin') Element? originElement,
+    @JsonKey(name: '_origin') PrimitiveElement? originElement,
 
     /// [params] Path plus parameters after [type].  Used to set parts of the
     ///  request URL explicitly.
     String? params,
 
     /// [paramsElement] Extensions for params
-    @JsonKey(name: '_params') Element? paramsElement,
+    @JsonKey(name: '_params') PrimitiveElement? paramsElement,
 
     /// [requestHeader] Header elements would be used to set HTTP headers.
     List<TestScriptRequestHeader>? requestHeader,
@@ -5290,33 +5313,33 @@ class TestScriptOperation with BackboneType, _$TestScriptOperation {
     FhirId? requestId,
 
     /// [requestIdElement] Extensions for requestId
-    @JsonKey(name: '_requestId') Element? requestIdElement,
+    @JsonKey(name: '_requestId') PrimitiveElement? requestIdElement,
 
     /// [responseId] The fixture id (maybe new) to map to the response.
     FhirId? responseId,
 
     /// [responseIdElement] Extensions for responseId
-    @JsonKey(name: '_responseId') Element? responseIdElement,
+    @JsonKey(name: '_responseId') PrimitiveElement? responseIdElement,
 
     /// [sourceId] The id of the fixture used as the body of a PUT or POST
     ///  request.
     FhirId? sourceId,
 
     /// [sourceIdElement] Extensions for sourceId
-    @JsonKey(name: '_sourceId') Element? sourceIdElement,
+    @JsonKey(name: '_sourceId') PrimitiveElement? sourceIdElement,
 
     /// [targetId] Id of fixture used for extracting the [id],  [type], and [vid]
     ///  for GET requests.
     FhirId? targetId,
 
     /// [targetIdElement] Extensions for targetId
-    @JsonKey(name: '_targetId') Element? targetIdElement,
+    @JsonKey(name: '_targetId') PrimitiveElement? targetIdElement,
 
     /// [url] Complete request URL.
     String? url,
 
     /// [urlElement] Extensions for url
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
   }) = _TestScriptOperation;
 
   @override
@@ -5352,7 +5375,9 @@ class TestScriptOperation with BackboneType, _$TestScriptOperation {
 
 /// [TestScriptRequestHeader] A structured set of tests against a FHIR
 @freezed
-class TestScriptRequestHeader with BackboneType, _$TestScriptRequestHeader {
+class TestScriptRequestHeader
+    with _$TestScriptRequestHeader
+    implements BackboneElement {
   /// [TestScriptRequestHeader] A structured set of tests against a FHIR
   const TestScriptRequestHeader._();
 
@@ -5423,13 +5448,13 @@ class TestScriptRequestHeader with BackboneType, _$TestScriptRequestHeader {
     String? field,
 
     /// [fieldElement] Extensions for field
-    @JsonKey(name: '_field') Element? fieldElement,
+    @JsonKey(name: '_field') PrimitiveElement? fieldElement,
 
     /// [value] The value of the header e.g. "application/fhir+xml".
     String? value,
 
     /// [valueElement] Extensions for value
-    @JsonKey(name: '_value') Element? valueElement,
+    @JsonKey(name: '_value') PrimitiveElement? valueElement,
   }) = _TestScriptRequestHeader;
 
   @override
@@ -5465,7 +5490,7 @@ class TestScriptRequestHeader with BackboneType, _$TestScriptRequestHeader {
 
 /// [TestScriptAssert] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptAssert with BackboneType, _$TestScriptAssert {
+class TestScriptAssert with _$TestScriptAssert implements BackboneElement {
   /// [TestScriptAssert] A structured set of tests against a FHIR server or
   const TestScriptAssert._();
 
@@ -5640,20 +5665,20 @@ class TestScriptAssert with BackboneType, _$TestScriptAssert {
     String? label,
 
     /// [labelElement] Extensions for label
-    @JsonKey(name: '_label') Element? labelElement,
+    @JsonKey(name: '_label') PrimitiveElement? labelElement,
 
     /// [description] The description would be used by test engines for tracking
     ///  and reporting purposes.
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [direction] The direction to use for the assertion.
     FhirCode? direction,
 
     /// [directionElement] Extensions for direction
-    @JsonKey(name: '_direction') Element? directionElement,
+    @JsonKey(name: '_direction') PrimitiveElement? directionElement,
 
     /// [compareToSourceId] Id of the source fixture used as the contents to be
     /// evaluated by either the "source/expression" or "sourceId/path"
@@ -5661,7 +5686,8 @@ class TestScriptAssert with BackboneType, _$TestScriptAssert {
     String? compareToSourceId,
 
     /// [compareToSourceIdElement] Extensions for compareToSourceId
-    @JsonKey(name: '_compareToSourceId') Element? compareToSourceIdElement,
+    @JsonKey(name: '_compareToSourceId')
+    PrimitiveElement? compareToSourceIdElement,
 
     /// [compareToSourceExpression] The FHIRPath expression to evaluate against
     /// the source fixture. When compareToSourceId is defined, either
@@ -5671,7 +5697,7 @@ class TestScriptAssert with BackboneType, _$TestScriptAssert {
     @JsonKey(name: '_compareToSourceExpression')
 
     /// [compareToSourceExpressionElement] Extensions for compareToSourceExpression
-    Element? compareToSourceExpressionElement,
+    PrimitiveElement? compareToSourceExpressionElement,
 
     /// [compareToSourcePath] XPath or JSONPath expression to evaluate against
     /// the source fixture. When compareToSourceId is defined, either
@@ -5680,76 +5706,77 @@ class TestScriptAssert with BackboneType, _$TestScriptAssert {
     String? compareToSourcePath,
 
     /// [compareToSourcePathElement] Extensions for compareToSourcePath
-    @JsonKey(name: '_compareToSourcePath') Element? compareToSourcePathElement,
+    @JsonKey(name: '_compareToSourcePath')
+    PrimitiveElement? compareToSourcePathElement,
 
     /// [contentType] The mime-type contents to compare against the request or
     ///  response message 'Content-Type' header.
     FhirCode? contentType,
 
     /// [contentTypeElement] Extensions for contentType
-    @JsonKey(name: '_contentType') Element? contentTypeElement,
+    @JsonKey(name: '_contentType') PrimitiveElement? contentTypeElement,
 
     /// [expression] The FHIRPath expression to be evaluated against the request
     ///  or response message contents - HTTP headers and payload.
     String? expression,
 
     /// [expressionElement] Extensions for expression
-    @JsonKey(name: '_expression') Element? expressionElement,
+    @JsonKey(name: '_expression') PrimitiveElement? expressionElement,
 
     /// [headerField] The HTTP header field name e.g. 'Location'.
     String? headerField,
 
     /// [headerFieldElement] Extensions for headerField
-    @JsonKey(name: '_headerField') Element? headerFieldElement,
+    @JsonKey(name: '_headerField') PrimitiveElement? headerFieldElement,
 
     /// [minimumId] The ID of a fixture.  Asserts that the response contains at a
     ///  minimum the fixture specified by minimumId.
     String? minimumId,
 
     /// [minimumIdElement] Extensions for minimumId
-    @JsonKey(name: '_minimumId') Element? minimumIdElement,
+    @JsonKey(name: '_minimumId') PrimitiveElement? minimumIdElement,
 
     /// [navigationLinks] Whether or not the test execution performs validation
     ///  on the bundle navigation links.
     FhirBoolean? navigationLinks,
 
     /// [navigationLinksElement] Extensions for navigationLinks
-    @JsonKey(name: '_navigationLinks') Element? navigationLinksElement,
+    @JsonKey(name: '_navigationLinks') PrimitiveElement? navigationLinksElement,
 
     /// [operator] The operator type defines the conditional behavior of the
     ///  assert. If not defined, the default is equals.
     @JsonKey(name: 'operator') FhirCode? operator_,
 
     /// [operatorElement] Extensions for operator
-    @JsonKey(name: '_operator') Element? operatorElement,
+    @JsonKey(name: '_operator') PrimitiveElement? operatorElement,
 
     /// [path] The XPath or JSONPath expression to be evaluated against the
     ///  fixture representing the response received from server.
     String? path,
 
     /// [pathElement] Extensions for path
-    @JsonKey(name: '_path') Element? pathElement,
+    @JsonKey(name: '_path') PrimitiveElement? pathElement,
 
     /// [requestMethod] The request method or HTTP operation code to compare
     ///  against that used by the client system under test.
     FhirCode? requestMethod,
 
     /// [requestMethodElement] Extensions for requestMethod
-    @JsonKey(name: '_requestMethod') Element? requestMethodElement,
+    @JsonKey(name: '_requestMethod') PrimitiveElement? requestMethodElement,
 
     /// [requestURL] The value to use in a comparison against the request URL
     ///  path string.
     String? requestURL,
 
     /// [requestURLElement] Extensions for requestURL
-    @JsonKey(name: '_requestURL') Element? requestURLElement,
+    @JsonKey(name: '_requestURL') PrimitiveElement? requestURLElement,
 
     /// [resource] The type of the resource.  See
     ///  http://build.fhir.org/resourcelist.html.
     FhirCode? resource,
 
     /// [resourceElement] Extensions for resource
-    @JsonKey(name: '_resource') Element? resourceElement,
+    @JsonKey(name: '_resource') PrimitiveElement? resourceElement,
 
     /// [response] okay | created | noContent | notModified | bad | forbidden |
     /// notFound | methodNotAllowed | conflict | gone | preconditionFailed |
@@ -5757,39 +5784,40 @@ class TestScriptAssert with BackboneType, _$TestScriptAssert {
     FhirCode? response,
 
     /// [responseElement] Extensions for response
-    @JsonKey(name: '_response') Element? responseElement,
+    @JsonKey(name: '_response') PrimitiveElement? responseElement,
 
     /// [responseCode] The value of the HTTP response code to be tested.
     String? responseCode,
 
     /// [responseCodeElement] Extensions for responseCode
-    @JsonKey(name: '_responseCode') Element? responseCodeElement,
+    @JsonKey(name: '_responseCode') PrimitiveElement? responseCodeElement,
 
     /// [sourceId] Fixture to evaluate the XPath/JSONPath expression or the
     ///  headerField  against.
     FhirId? sourceId,
 
     /// [sourceIdElement] Extensions for sourceId
-    @JsonKey(name: '_sourceId') Element? sourceIdElement,
+    @JsonKey(name: '_sourceId') PrimitiveElement? sourceIdElement,
 
     /// [validateProfileId] The ID of the Profile to validate against.
     FhirId? validateProfileId,
 
     /// [validateProfileIdElement] Extensions for validateProfileId
-    @JsonKey(name: '_validateProfileId') Element? validateProfileIdElement,
+    @JsonKey(name: '_validateProfileId')
+    PrimitiveElement? validateProfileIdElement,
 
     /// [value] The value to compare to.
     String? value,
 
     /// [valueElement] Extensions for value
-    @JsonKey(name: '_value') Element? valueElement,
+    @JsonKey(name: '_value') PrimitiveElement? valueElement,
 
     /// [warningOnly] Whether or not the test execution will produce a warning
     ///  only on error for this assert.
     FhirBoolean? warningOnly,
 
     /// [warningOnlyElement] Extensions for warningOnly
-    @JsonKey(name: '_warningOnly') Element? warningOnlyElement,
+    @JsonKey(name: '_warningOnly') PrimitiveElement? warningOnlyElement,
   }) = _TestScriptAssert;
 
   @override
@@ -5825,7 +5853,7 @@ class TestScriptAssert with BackboneType, _$TestScriptAssert {
 
 /// [TestScriptTest] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptTest with BackboneType, _$TestScriptTest {
+class TestScriptTest with _$TestScriptTest implements BackboneElement {
   /// [TestScriptTest] A structured set of tests against a FHIR server or
   const TestScriptTest._();
 
@@ -5901,14 +5929,14 @@ class TestScriptTest with BackboneType, _$TestScriptTest {
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [description] A short description of the test used by test engines for
     ///  tracking and reporting purposes.
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [action] Action would contain either an operation or an assertion.
     required List<TestScriptAction1> action,
@@ -5947,7 +5975,7 @@ class TestScriptTest with BackboneType, _$TestScriptTest {
 
 /// [TestScriptAction1] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptAction1 with BackboneType, _$TestScriptAction1 {
+class TestScriptAction1 with _$TestScriptAction1 implements BackboneElement {
   /// [TestScriptAction1] A structured set of tests against a FHIR server or
   const TestScriptAction1._();
 
@@ -6052,7 +6080,7 @@ class TestScriptAction1 with BackboneType, _$TestScriptAction1 {
 
 /// [TestScriptTeardown] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptTeardown with BackboneType, _$TestScriptTeardown {
+class TestScriptTeardown with _$TestScriptTeardown implements BackboneElement {
   /// [TestScriptTeardown] A structured set of tests against a FHIR server or
   const TestScriptTeardown._();
 
@@ -6150,7 +6178,7 @@ class TestScriptTeardown with BackboneType, _$TestScriptTeardown {
 
 /// [TestScriptAction2] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptAction2 with BackboneType, _$TestScriptAction2 {
+class TestScriptAction2 with _$TestScriptAction2 implements BackboneElement {
   /// [TestScriptAction2] A structured set of tests against a FHIR server or
   const TestScriptAction2._();
 

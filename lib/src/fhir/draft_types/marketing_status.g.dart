@@ -32,7 +32,8 @@ _$MarketingStatusImpl _$$MarketingStatusImplFromJson(
           : FhirDateTime.fromJson(json['restoreDate'] as String),
       restoreDateElement: json['_restoreDate'] == null
           ? null
-          : Element.fromJson(json['_restoreDate'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_restoreDate'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$MarketingStatusImplToJson(

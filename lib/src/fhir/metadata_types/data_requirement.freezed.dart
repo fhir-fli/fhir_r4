@@ -40,7 +40,7 @@ mixin _$DataRequirement {
 
   /// [typeElement] Extensions for type
   @JsonKey(name: '_type')
-  Element? get typeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get typeElement => throw _privateConstructorUsedError;
 
   /// [profile] The profile of the required data, specified as the uri of the
   ///  profile definition.
@@ -90,7 +90,7 @@ mixin _$DataRequirement {
 
   /// [limitElement] Extensions for limit
   @JsonKey(name: '_limit')
-  Element? get limitElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get limitElement => throw _privateConstructorUsedError;
 
   /// [sort] Specifies the order of the results to be returned.
   List<DataRequirementSort>? get sort => throw _privateConstructorUsedError;
@@ -111,7 +111,7 @@ abstract class $DataRequirementCopyWith<$Res> {
       {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       FhirCode? type,
-      @JsonKey(name: '_type') Element? typeElement,
+      @JsonKey(name: '_type') PrimitiveElement? typeElement,
       List<FhirCanonical>? profile,
       CodeableConcept? subjectCodeableConcept,
       Reference? subjectReference,
@@ -120,7 +120,7 @@ abstract class $DataRequirementCopyWith<$Res> {
       List<DataRequirementCodeFilter>? codeFilter,
       List<DataRequirementDateFilter>? dateFilter,
       FhirPositiveInt? limit,
-      @JsonKey(name: '_limit') Element? limitElement,
+      @JsonKey(name: '_limit') PrimitiveElement? limitElement,
       List<DataRequirementSort>? sort});
 
   $CodeableConceptCopyWith<$Res>? get subjectCodeableConcept;
@@ -171,7 +171,7 @@ class _$DataRequirementCopyWithImpl<$Res, $Val extends DataRequirement>
       typeElement: freezed == typeElement
           ? _value.typeElement
           : typeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       profile: freezed == profile
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
@@ -207,7 +207,7 @@ class _$DataRequirementCopyWithImpl<$Res, $Val extends DataRequirement>
       limitElement: freezed == limitElement
           ? _value.limitElement
           : limitElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       sort: freezed == sort
           ? _value.sort
           : sort // ignore: cast_nullable_to_non_nullable
@@ -253,7 +253,7 @@ abstract class _$$DataRequirementImplCopyWith<$Res>
       {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       FhirCode? type,
-      @JsonKey(name: '_type') Element? typeElement,
+      @JsonKey(name: '_type') PrimitiveElement? typeElement,
       List<FhirCanonical>? profile,
       CodeableConcept? subjectCodeableConcept,
       Reference? subjectReference,
@@ -262,7 +262,7 @@ abstract class _$$DataRequirementImplCopyWith<$Res>
       List<DataRequirementCodeFilter>? codeFilter,
       List<DataRequirementDateFilter>? dateFilter,
       FhirPositiveInt? limit,
-      @JsonKey(name: '_limit') Element? limitElement,
+      @JsonKey(name: '_limit') PrimitiveElement? limitElement,
       List<DataRequirementSort>? sort});
 
   @override
@@ -313,7 +313,7 @@ class __$$DataRequirementImplCopyWithImpl<$Res>
       typeElement: freezed == typeElement
           ? _value.typeElement
           : typeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       profile: freezed == profile
           ? _value._profile
           : profile // ignore: cast_nullable_to_non_nullable
@@ -349,7 +349,7 @@ class __$$DataRequirementImplCopyWithImpl<$Res>
       limitElement: freezed == limitElement
           ? _value.limitElement
           : limitElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       sort: freezed == sort
           ? _value._sort
           : sort // ignore: cast_nullable_to_non_nullable
@@ -426,7 +426,7 @@ class _$DataRequirementImpl extends _DataRequirement {
   /// [typeElement] Extensions for type
   @override
   @JsonKey(name: '_type')
-  final Element? typeElement;
+  final PrimitiveElement? typeElement;
 
   /// [profile] The profile of the required data, specified as the uri of the
   ///  profile definition.
@@ -543,7 +543,7 @@ class _$DataRequirementImpl extends _DataRequirement {
   /// [limitElement] Extensions for limit
   @override
   @JsonKey(name: '_limit')
-  final Element? limitElement;
+  final PrimitiveElement? limitElement;
 
   /// [sort] Specifies the order of the results to be returned.
   final List<DataRequirementSort>? _sort;
@@ -632,7 +632,7 @@ abstract class _DataRequirement extends DataRequirement {
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final FhirCode? type,
-      @JsonKey(name: '_type') final Element? typeElement,
+      @JsonKey(name: '_type') final PrimitiveElement? typeElement,
       final List<FhirCanonical>? profile,
       final CodeableConcept? subjectCodeableConcept,
       final Reference? subjectReference,
@@ -641,7 +641,7 @@ abstract class _DataRequirement extends DataRequirement {
       final List<DataRequirementCodeFilter>? codeFilter,
       final List<DataRequirementDateFilter>? dateFilter,
       final FhirPositiveInt? limit,
-      @JsonKey(name: '_limit') final Element? limitElement,
+      @JsonKey(name: '_limit') final PrimitiveElement? limitElement,
       final List<DataRequirementSort>? sort}) = _$DataRequirementImpl;
   const _DataRequirement._() : super._();
 
@@ -673,7 +673,7 @@ abstract class _DataRequirement extends DataRequirement {
 
   /// [typeElement] Extensions for type
   @JsonKey(name: '_type')
-  Element? get typeElement;
+  PrimitiveElement? get typeElement;
   @override
 
   /// [profile] The profile of the required data, specified as the uri of the
@@ -729,7 +729,7 @@ abstract class _DataRequirement extends DataRequirement {
 
   /// [limitElement] Extensions for limit
   @JsonKey(name: '_limit')
-  Element? get limitElement;
+  PrimitiveElement? get limitElement;
   @override
 
   /// [sort] Specifies the order of the results to be returned.
@@ -788,7 +788,7 @@ mixin _$DataRequirementCodeFilter {
 
   /// [pathElement] Extensions for path
   @JsonKey(name: '_path')
-  Element? get pathElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get pathElement => throw _privateConstructorUsedError;
 
   /// [searchParam] A token parameter that refers to a search parameter defined
   /// on the specified type of the DataRequirement, and which searches on
@@ -797,7 +797,8 @@ mixin _$DataRequirementCodeFilter {
 
   /// [searchParamElement] Extensions for searchParam
   @JsonKey(name: '_searchParam')
-  Element? get searchParamElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get searchParamElement =>
+      throw _privateConstructorUsedError;
 
   /// [valueSet] The valueset for the code filter. The valueSet and code
   /// elements are additive. If valueSet is specified, the filter will return
@@ -829,9 +830,9 @@ abstract class $DataRequirementCodeFilterCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? path,
-      @JsonKey(name: '_path') Element? pathElement,
+      @JsonKey(name: '_path') PrimitiveElement? pathElement,
       String? searchParam,
-      @JsonKey(name: '_searchParam') Element? searchParamElement,
+      @JsonKey(name: '_searchParam') PrimitiveElement? searchParamElement,
       FhirCanonical? valueSet,
       List<Coding>? code});
 }
@@ -880,7 +881,7 @@ class _$DataRequirementCodeFilterCopyWithImpl<$Res,
       pathElement: freezed == pathElement
           ? _value.pathElement
           : pathElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       searchParam: freezed == searchParam
           ? _value.searchParam
           : searchParam // ignore: cast_nullable_to_non_nullable
@@ -888,7 +889,7 @@ class _$DataRequirementCodeFilterCopyWithImpl<$Res,
       searchParamElement: freezed == searchParamElement
           ? _value.searchParamElement
           : searchParamElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       valueSet: freezed == valueSet
           ? _value.valueSet
           : valueSet // ignore: cast_nullable_to_non_nullable
@@ -915,9 +916,9 @@ abstract class _$$DataRequirementCodeFilterImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? path,
-      @JsonKey(name: '_path') Element? pathElement,
+      @JsonKey(name: '_path') PrimitiveElement? pathElement,
       String? searchParam,
-      @JsonKey(name: '_searchParam') Element? searchParamElement,
+      @JsonKey(name: '_searchParam') PrimitiveElement? searchParamElement,
       FhirCanonical? valueSet,
       List<Coding>? code});
 }
@@ -965,7 +966,7 @@ class __$$DataRequirementCodeFilterImplCopyWithImpl<$Res>
       pathElement: freezed == pathElement
           ? _value.pathElement
           : pathElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       searchParam: freezed == searchParam
           ? _value.searchParam
           : searchParam // ignore: cast_nullable_to_non_nullable
@@ -973,7 +974,7 @@ class __$$DataRequirementCodeFilterImplCopyWithImpl<$Res>
       searchParamElement: freezed == searchParamElement
           ? _value.searchParamElement
           : searchParamElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       valueSet: freezed == valueSet
           ? _value.valueSet
           : valueSet // ignore: cast_nullable_to_non_nullable
@@ -1088,7 +1089,7 @@ class _$DataRequirementCodeFilterImpl extends _DataRequirementCodeFilter {
   /// [pathElement] Extensions for path
   @override
   @JsonKey(name: '_path')
-  final Element? pathElement;
+  final PrimitiveElement? pathElement;
 
   /// [searchParam] A token parameter that refers to a search parameter defined
   /// on the specified type of the DataRequirement, and which searches on
@@ -1099,7 +1100,7 @@ class _$DataRequirementCodeFilterImpl extends _DataRequirementCodeFilter {
   /// [searchParamElement] Extensions for searchParam
   @override
   @JsonKey(name: '_searchParam')
-  final Element? searchParamElement;
+  final PrimitiveElement? searchParamElement;
 
   /// [valueSet] The valueset for the code filter. The valueSet and code
   /// elements are additive. If valueSet is specified, the filter will return
@@ -1191,9 +1192,9 @@ abstract class _DataRequirementCodeFilter extends DataRequirementCodeFilter {
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final String? path,
-      @JsonKey(name: '_path') final Element? pathElement,
+      @JsonKey(name: '_path') final PrimitiveElement? pathElement,
       final String? searchParam,
-      @JsonKey(name: '_searchParam') final Element? searchParamElement,
+      @JsonKey(name: '_searchParam') final PrimitiveElement? searchParamElement,
       final FhirCanonical? valueSet,
       final List<Coding>? code}) = _$DataRequirementCodeFilterImpl;
   const _DataRequirementCodeFilter._() : super._();
@@ -1247,7 +1248,7 @@ abstract class _DataRequirementCodeFilter extends DataRequirementCodeFilter {
 
   /// [pathElement] Extensions for path
   @JsonKey(name: '_path')
-  Element? get pathElement;
+  PrimitiveElement? get pathElement;
   @override
 
   /// [searchParam] A token parameter that refers to a search parameter defined
@@ -1258,7 +1259,7 @@ abstract class _DataRequirementCodeFilter extends DataRequirementCodeFilter {
 
   /// [searchParamElement] Extensions for searchParam
   @JsonKey(name: '_searchParam')
-  Element? get searchParamElement;
+  PrimitiveElement? get searchParamElement;
   @override
 
   /// [valueSet] The valueset for the code filter. The valueSet and code
@@ -1328,7 +1329,7 @@ mixin _$DataRequirementDateFilter {
 
   /// [pathElement] Extensions for path
   @JsonKey(name: '_path')
-  Element? get pathElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get pathElement => throw _privateConstructorUsedError;
 
   /// [searchParam] A date parameter that refers to a search parameter defined
   /// on the specified type of the DataRequirement, and which searches on
@@ -1337,7 +1338,8 @@ mixin _$DataRequirementDateFilter {
 
   /// [searchParamElement] Extensions for searchParam
   @JsonKey(name: '_searchParam')
-  Element? get searchParamElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get searchParamElement =>
+      throw _privateConstructorUsedError;
 
   /// [valueDateTime] The value of the filter. If period is specified, the
   /// filter will return only those data items that fall within the bounds
@@ -1349,7 +1351,8 @@ mixin _$DataRequirementDateFilter {
 
   /// [valueDateTimeElement] Extensions for valueDateTime
   @JsonKey(name: '_valueDateTime')
-  Element? get valueDateTimeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get valueDateTimeElement =>
+      throw _privateConstructorUsedError;
 
   /// [valuePeriod] The value of the filter. If period is specified, the filter
   /// will return only those data items that fall within the bounds determined
@@ -1384,11 +1387,11 @@ abstract class $DataRequirementDateFilterCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? path,
-      @JsonKey(name: '_path') Element? pathElement,
+      @JsonKey(name: '_path') PrimitiveElement? pathElement,
       String? searchParam,
-      @JsonKey(name: '_searchParam') Element? searchParamElement,
+      @JsonKey(name: '_searchParam') PrimitiveElement? searchParamElement,
       FhirDateTime? valueDateTime,
-      @JsonKey(name: '_valueDateTime') Element? valueDateTimeElement,
+      @JsonKey(name: '_valueDateTime') PrimitiveElement? valueDateTimeElement,
       Period? valuePeriod,
       FhirDuration? valueDuration});
 
@@ -1442,7 +1445,7 @@ class _$DataRequirementDateFilterCopyWithImpl<$Res,
       pathElement: freezed == pathElement
           ? _value.pathElement
           : pathElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       searchParam: freezed == searchParam
           ? _value.searchParam
           : searchParam // ignore: cast_nullable_to_non_nullable
@@ -1450,7 +1453,7 @@ class _$DataRequirementDateFilterCopyWithImpl<$Res,
       searchParamElement: freezed == searchParamElement
           ? _value.searchParamElement
           : searchParamElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       valueDateTime: freezed == valueDateTime
           ? _value.valueDateTime
           : valueDateTime // ignore: cast_nullable_to_non_nullable
@@ -1458,7 +1461,7 @@ class _$DataRequirementDateFilterCopyWithImpl<$Res,
       valueDateTimeElement: freezed == valueDateTimeElement
           ? _value.valueDateTimeElement
           : valueDateTimeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       valuePeriod: freezed == valuePeriod
           ? _value.valuePeriod
           : valuePeriod // ignore: cast_nullable_to_non_nullable
@@ -1509,11 +1512,11 @@ abstract class _$$DataRequirementDateFilterImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? path,
-      @JsonKey(name: '_path') Element? pathElement,
+      @JsonKey(name: '_path') PrimitiveElement? pathElement,
       String? searchParam,
-      @JsonKey(name: '_searchParam') Element? searchParamElement,
+      @JsonKey(name: '_searchParam') PrimitiveElement? searchParamElement,
       FhirDateTime? valueDateTime,
-      @JsonKey(name: '_valueDateTime') Element? valueDateTimeElement,
+      @JsonKey(name: '_valueDateTime') PrimitiveElement? valueDateTimeElement,
       Period? valuePeriod,
       FhirDuration? valueDuration});
 
@@ -1568,7 +1571,7 @@ class __$$DataRequirementDateFilterImplCopyWithImpl<$Res>
       pathElement: freezed == pathElement
           ? _value.pathElement
           : pathElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       searchParam: freezed == searchParam
           ? _value.searchParam
           : searchParam // ignore: cast_nullable_to_non_nullable
@@ -1576,7 +1579,7 @@ class __$$DataRequirementDateFilterImplCopyWithImpl<$Res>
       searchParamElement: freezed == searchParamElement
           ? _value.searchParamElement
           : searchParamElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       valueDateTime: freezed == valueDateTime
           ? _value.valueDateTime
           : valueDateTime // ignore: cast_nullable_to_non_nullable
@@ -1584,7 +1587,7 @@ class __$$DataRequirementDateFilterImplCopyWithImpl<$Res>
       valueDateTimeElement: freezed == valueDateTimeElement
           ? _value.valueDateTimeElement
           : valueDateTimeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       valuePeriod: freezed == valuePeriod
           ? _value.valuePeriod
           : valuePeriod // ignore: cast_nullable_to_non_nullable
@@ -1700,7 +1703,7 @@ class _$DataRequirementDateFilterImpl extends _DataRequirementDateFilter {
   /// [pathElement] Extensions for path
   @override
   @JsonKey(name: '_path')
-  final Element? pathElement;
+  final PrimitiveElement? pathElement;
 
   /// [searchParam] A date parameter that refers to a search parameter defined
   /// on the specified type of the DataRequirement, and which searches on
@@ -1711,7 +1714,7 @@ class _$DataRequirementDateFilterImpl extends _DataRequirementDateFilter {
   /// [searchParamElement] Extensions for searchParam
   @override
   @JsonKey(name: '_searchParam')
-  final Element? searchParamElement;
+  final PrimitiveElement? searchParamElement;
 
   /// [valueDateTime] The value of the filter. If period is specified, the
   /// filter will return only those data items that fall within the bounds
@@ -1725,7 +1728,7 @@ class _$DataRequirementDateFilterImpl extends _DataRequirementDateFilter {
   /// [valueDateTimeElement] Extensions for valueDateTime
   @override
   @JsonKey(name: '_valueDateTime')
-  final Element? valueDateTimeElement;
+  final PrimitiveElement? valueDateTimeElement;
 
   /// [valuePeriod] The value of the filter. If period is specified, the filter
   /// will return only those data items that fall within the bounds determined
@@ -1814,11 +1817,12 @@ abstract class _DataRequirementDateFilter extends DataRequirementDateFilter {
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final String? path,
-      @JsonKey(name: '_path') final Element? pathElement,
+      @JsonKey(name: '_path') final PrimitiveElement? pathElement,
       final String? searchParam,
-      @JsonKey(name: '_searchParam') final Element? searchParamElement,
+      @JsonKey(name: '_searchParam') final PrimitiveElement? searchParamElement,
       final FhirDateTime? valueDateTime,
-      @JsonKey(name: '_valueDateTime') final Element? valueDateTimeElement,
+      @JsonKey(name: '_valueDateTime')
+      final PrimitiveElement? valueDateTimeElement,
       final Period? valuePeriod,
       final FhirDuration? valueDuration}) = _$DataRequirementDateFilterImpl;
   const _DataRequirementDateFilter._() : super._();
@@ -1872,7 +1876,7 @@ abstract class _DataRequirementDateFilter extends DataRequirementDateFilter {
 
   /// [pathElement] Extensions for path
   @JsonKey(name: '_path')
-  Element? get pathElement;
+  PrimitiveElement? get pathElement;
   @override
 
   /// [searchParam] A date parameter that refers to a search parameter defined
@@ -1883,7 +1887,7 @@ abstract class _DataRequirementDateFilter extends DataRequirementDateFilter {
 
   /// [searchParamElement] Extensions for searchParam
   @JsonKey(name: '_searchParam')
-  Element? get searchParamElement;
+  PrimitiveElement? get searchParamElement;
   @override
 
   /// [valueDateTime] The value of the filter. If period is specified, the
@@ -1897,7 +1901,7 @@ abstract class _DataRequirementDateFilter extends DataRequirementDateFilter {
 
   /// [valueDateTimeElement] Extensions for valueDateTime
   @JsonKey(name: '_valueDateTime')
-  Element? get valueDateTimeElement;
+  PrimitiveElement? get valueDateTimeElement;
   @override
 
   /// [valuePeriod] The value of the filter. If period is specified, the filter
@@ -1966,14 +1970,14 @@ mixin _$DataRequirementSort {
 
   /// [pathElement] Extensions for path
   @JsonKey(name: '_path')
-  Element? get pathElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get pathElement => throw _privateConstructorUsedError;
   @JsonKey(unknownEnumValue: DataRequirementSortDirection.unknown)
   DataRequirementSortDirection? get direction =>
       throw _privateConstructorUsedError;
 
   /// [directionElement] Extensions for direction
   @JsonKey(name: '_direction')
-  Element? get directionElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get directionElement => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1992,10 +1996,10 @@ abstract class $DataRequirementSortCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? path,
-      @JsonKey(name: '_path') Element? pathElement,
+      @JsonKey(name: '_path') PrimitiveElement? pathElement,
       @JsonKey(unknownEnumValue: DataRequirementSortDirection.unknown)
       DataRequirementSortDirection? direction,
-      @JsonKey(name: '_direction') Element? directionElement});
+      @JsonKey(name: '_direction') PrimitiveElement? directionElement});
 }
 
 /// @nodoc
@@ -2039,7 +2043,7 @@ class _$DataRequirementSortCopyWithImpl<$Res, $Val extends DataRequirementSort>
       pathElement: freezed == pathElement
           ? _value.pathElement
           : pathElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       direction: freezed == direction
           ? _value.direction
           : direction // ignore: cast_nullable_to_non_nullable
@@ -2047,7 +2051,7 @@ class _$DataRequirementSortCopyWithImpl<$Res, $Val extends DataRequirementSort>
       directionElement: freezed == directionElement
           ? _value.directionElement
           : directionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ) as $Val);
   }
 }
@@ -2065,10 +2069,10 @@ abstract class _$$DataRequirementSortImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       String? path,
-      @JsonKey(name: '_path') Element? pathElement,
+      @JsonKey(name: '_path') PrimitiveElement? pathElement,
       @JsonKey(unknownEnumValue: DataRequirementSortDirection.unknown)
       DataRequirementSortDirection? direction,
-      @JsonKey(name: '_direction') Element? directionElement});
+      @JsonKey(name: '_direction') PrimitiveElement? directionElement});
 }
 
 /// @nodoc
@@ -2110,7 +2114,7 @@ class __$$DataRequirementSortImplCopyWithImpl<$Res>
       pathElement: freezed == pathElement
           ? _value.pathElement
           : pathElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       direction: freezed == direction
           ? _value.direction
           : direction // ignore: cast_nullable_to_non_nullable
@@ -2118,7 +2122,7 @@ class __$$DataRequirementSortImplCopyWithImpl<$Res>
       directionElement: freezed == directionElement
           ? _value.directionElement
           : directionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ));
   }
 }
@@ -2220,7 +2224,7 @@ class _$DataRequirementSortImpl extends _DataRequirementSort {
   /// [pathElement] Extensions for path
   @override
   @JsonKey(name: '_path')
-  final Element? pathElement;
+  final PrimitiveElement? pathElement;
   @override
   @JsonKey(unknownEnumValue: DataRequirementSortDirection.unknown)
   final DataRequirementSortDirection? direction;
@@ -2228,7 +2232,7 @@ class _$DataRequirementSortImpl extends _DataRequirementSort {
   /// [directionElement] Extensions for direction
   @override
   @JsonKey(name: '_direction')
-  final Element? directionElement;
+  final PrimitiveElement? directionElement;
 
   @override
   String toString() {
@@ -2283,15 +2287,15 @@ class _$DataRequirementSortImpl extends _DataRequirementSort {
 
 abstract class _DataRequirementSort extends DataRequirementSort {
   const factory _DataRequirementSort(
-          {final String? id,
-          @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
-          final List<FhirExtension>? modifierExtension,
-          final String? path,
-          @JsonKey(name: '_path') final Element? pathElement,
-          @JsonKey(unknownEnumValue: DataRequirementSortDirection.unknown)
-          final DataRequirementSortDirection? direction,
-          @JsonKey(name: '_direction') final Element? directionElement}) =
-      _$DataRequirementSortImpl;
+      {final String? id,
+      @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
+      final List<FhirExtension>? modifierExtension,
+      final String? path,
+      @JsonKey(name: '_path') final PrimitiveElement? pathElement,
+      @JsonKey(unknownEnumValue: DataRequirementSortDirection.unknown)
+      final DataRequirementSortDirection? direction,
+      @JsonKey(name: '_direction')
+      final PrimitiveElement? directionElement}) = _$DataRequirementSortImpl;
   const _DataRequirementSort._() : super._();
 
   factory _DataRequirementSort.fromJson(Map<String, dynamic> json) =
@@ -2340,7 +2344,7 @@ abstract class _DataRequirementSort extends DataRequirementSort {
 
   /// [pathElement] Extensions for path
   @JsonKey(name: '_path')
-  Element? get pathElement;
+  PrimitiveElement? get pathElement;
   @override
   @JsonKey(unknownEnumValue: DataRequirementSortDirection.unknown)
   DataRequirementSortDirection? get direction;
@@ -2348,7 +2352,7 @@ abstract class _DataRequirementSort extends DataRequirementSort {
 
   /// [directionElement] Extensions for direction
   @JsonKey(name: '_direction')
-  Element? get directionElement;
+  PrimitiveElement? get directionElement;
   @override
   @JsonKey(ignore: true)
   _$$DataRequirementSortImplCopyWith<_$DataRequirementSortImpl> get copyWith =>

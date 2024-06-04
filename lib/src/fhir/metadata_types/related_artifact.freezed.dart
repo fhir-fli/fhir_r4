@@ -37,7 +37,7 @@ mixin _$RelatedArtifact {
 
   /// [typeElement] Extensions for type
   @JsonKey(name: '_type')
-  Element? get typeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get typeElement => throw _privateConstructorUsedError;
 
   /// [label] A short label that can be used to reference the citation from
   ///  elsewhere in the containing artifact, such as a footnote index.
@@ -45,7 +45,7 @@ mixin _$RelatedArtifact {
 
   /// [labelElement] Extensions for label
   @JsonKey(name: '_label')
-  Element? get labelElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get labelElement => throw _privateConstructorUsedError;
 
   /// [display] A brief description of the document or knowledge resource being
   ///  referenced, suitable for display to a consumer.
@@ -53,7 +53,7 @@ mixin _$RelatedArtifact {
 
   /// [displayElement] Extensions for display
   @JsonKey(name: '_display')
-  Element? get displayElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get displayElement => throw _privateConstructorUsedError;
 
   /// [citation] A bibliographic citation for the related artifact. This text
   ///  SHOULD be formatted according to an accepted citation format.
@@ -61,7 +61,7 @@ mixin _$RelatedArtifact {
 
   /// [citationElement] Extensions for citation
   @JsonKey(name: '_citation')
-  Element? get citationElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get citationElement => throw _privateConstructorUsedError;
 
   /// [url] A url for the artifact that can be followed to access the actual
   ///  content.
@@ -69,7 +69,7 @@ mixin _$RelatedArtifact {
 
   /// [urlElement] Extensions for url
   @JsonKey(name: '_url')
-  Element? get urlElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get urlElement => throw _privateConstructorUsedError;
 
   /// [document] The document being referenced, represented as an attachment.
   ///  This is exclusive with the resource element.
@@ -96,15 +96,15 @@ abstract class $RelatedArtifactCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: RelatedArtifactType.unknown)
       RelatedArtifactType? type,
-      @JsonKey(name: '_type') Element? typeElement,
+      @JsonKey(name: '_type') PrimitiveElement? typeElement,
       String? label,
-      @JsonKey(name: '_label') Element? labelElement,
+      @JsonKey(name: '_label') PrimitiveElement? labelElement,
       String? display,
-      @JsonKey(name: '_display') Element? displayElement,
+      @JsonKey(name: '_display') PrimitiveElement? displayElement,
       FhirMarkdown? citation,
-      @JsonKey(name: '_citation') Element? citationElement,
+      @JsonKey(name: '_citation') PrimitiveElement? citationElement,
       FhirUrl? url,
-      @JsonKey(name: '_url') Element? urlElement,
+      @JsonKey(name: '_url') PrimitiveElement? urlElement,
       Attachment? document,
       FhirCanonical? resource});
 
@@ -155,7 +155,7 @@ class _$RelatedArtifactCopyWithImpl<$Res, $Val extends RelatedArtifact>
       typeElement: freezed == typeElement
           ? _value.typeElement
           : typeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       label: freezed == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
@@ -163,7 +163,7 @@ class _$RelatedArtifactCopyWithImpl<$Res, $Val extends RelatedArtifact>
       labelElement: freezed == labelElement
           ? _value.labelElement
           : labelElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       display: freezed == display
           ? _value.display
           : display // ignore: cast_nullable_to_non_nullable
@@ -171,7 +171,7 @@ class _$RelatedArtifactCopyWithImpl<$Res, $Val extends RelatedArtifact>
       displayElement: freezed == displayElement
           ? _value.displayElement
           : displayElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       citation: freezed == citation
           ? _value.citation
           : citation // ignore: cast_nullable_to_non_nullable
@@ -179,7 +179,7 @@ class _$RelatedArtifactCopyWithImpl<$Res, $Val extends RelatedArtifact>
       citationElement: freezed == citationElement
           ? _value.citationElement
           : citationElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -187,7 +187,7 @@ class _$RelatedArtifactCopyWithImpl<$Res, $Val extends RelatedArtifact>
       urlElement: freezed == urlElement
           ? _value.urlElement
           : urlElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       document: freezed == document
           ? _value.document
           : document // ignore: cast_nullable_to_non_nullable
@@ -225,15 +225,15 @@ abstract class _$$RelatedArtifactImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: RelatedArtifactType.unknown)
       RelatedArtifactType? type,
-      @JsonKey(name: '_type') Element? typeElement,
+      @JsonKey(name: '_type') PrimitiveElement? typeElement,
       String? label,
-      @JsonKey(name: '_label') Element? labelElement,
+      @JsonKey(name: '_label') PrimitiveElement? labelElement,
       String? display,
-      @JsonKey(name: '_display') Element? displayElement,
+      @JsonKey(name: '_display') PrimitiveElement? displayElement,
       FhirMarkdown? citation,
-      @JsonKey(name: '_citation') Element? citationElement,
+      @JsonKey(name: '_citation') PrimitiveElement? citationElement,
       FhirUrl? url,
-      @JsonKey(name: '_url') Element? urlElement,
+      @JsonKey(name: '_url') PrimitiveElement? urlElement,
       Attachment? document,
       FhirCanonical? resource});
 
@@ -283,7 +283,7 @@ class __$$RelatedArtifactImplCopyWithImpl<$Res>
       typeElement: freezed == typeElement
           ? _value.typeElement
           : typeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       label: freezed == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
@@ -291,7 +291,7 @@ class __$$RelatedArtifactImplCopyWithImpl<$Res>
       labelElement: freezed == labelElement
           ? _value.labelElement
           : labelElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       display: freezed == display
           ? _value.display
           : display // ignore: cast_nullable_to_non_nullable
@@ -299,7 +299,7 @@ class __$$RelatedArtifactImplCopyWithImpl<$Res>
       displayElement: freezed == displayElement
           ? _value.displayElement
           : displayElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       citation: freezed == citation
           ? _value.citation
           : citation // ignore: cast_nullable_to_non_nullable
@@ -307,7 +307,7 @@ class __$$RelatedArtifactImplCopyWithImpl<$Res>
       citationElement: freezed == citationElement
           ? _value.citationElement
           : citationElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -315,7 +315,7 @@ class __$$RelatedArtifactImplCopyWithImpl<$Res>
       urlElement: freezed == urlElement
           ? _value.urlElement
           : urlElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       document: freezed == document
           ? _value.document
           : document // ignore: cast_nullable_to_non_nullable
@@ -388,7 +388,7 @@ class _$RelatedArtifactImpl extends _RelatedArtifact {
   /// [typeElement] Extensions for type
   @override
   @JsonKey(name: '_type')
-  final Element? typeElement;
+  final PrimitiveElement? typeElement;
 
   /// [label] A short label that can be used to reference the citation from
   ///  elsewhere in the containing artifact, such as a footnote index.
@@ -398,7 +398,7 @@ class _$RelatedArtifactImpl extends _RelatedArtifact {
   /// [labelElement] Extensions for label
   @override
   @JsonKey(name: '_label')
-  final Element? labelElement;
+  final PrimitiveElement? labelElement;
 
   /// [display] A brief description of the document or knowledge resource being
   ///  referenced, suitable for display to a consumer.
@@ -408,7 +408,7 @@ class _$RelatedArtifactImpl extends _RelatedArtifact {
   /// [displayElement] Extensions for display
   @override
   @JsonKey(name: '_display')
-  final Element? displayElement;
+  final PrimitiveElement? displayElement;
 
   /// [citation] A bibliographic citation for the related artifact. This text
   ///  SHOULD be formatted according to an accepted citation format.
@@ -418,7 +418,7 @@ class _$RelatedArtifactImpl extends _RelatedArtifact {
   /// [citationElement] Extensions for citation
   @override
   @JsonKey(name: '_citation')
-  final Element? citationElement;
+  final PrimitiveElement? citationElement;
 
   /// [url] A url for the artifact that can be followed to access the actual
   ///  content.
@@ -428,7 +428,7 @@ class _$RelatedArtifactImpl extends _RelatedArtifact {
   /// [urlElement] Extensions for url
   @override
   @JsonKey(name: '_url')
-  final Element? urlElement;
+  final PrimitiveElement? urlElement;
 
   /// [document] The document being referenced, represented as an attachment.
   ///  This is exclusive with the resource element.
@@ -515,15 +515,15 @@ abstract class _RelatedArtifact extends RelatedArtifact {
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: RelatedArtifactType.unknown)
       final RelatedArtifactType? type,
-      @JsonKey(name: '_type') final Element? typeElement,
+      @JsonKey(name: '_type') final PrimitiveElement? typeElement,
       final String? label,
-      @JsonKey(name: '_label') final Element? labelElement,
+      @JsonKey(name: '_label') final PrimitiveElement? labelElement,
       final String? display,
-      @JsonKey(name: '_display') final Element? displayElement,
+      @JsonKey(name: '_display') final PrimitiveElement? displayElement,
       final FhirMarkdown? citation,
-      @JsonKey(name: '_citation') final Element? citationElement,
+      @JsonKey(name: '_citation') final PrimitiveElement? citationElement,
       final FhirUrl? url,
-      @JsonKey(name: '_url') final Element? urlElement,
+      @JsonKey(name: '_url') final PrimitiveElement? urlElement,
       final Attachment? document,
       final FhirCanonical? resource}) = _$RelatedArtifactImpl;
   const _RelatedArtifact._() : super._();
@@ -553,7 +553,7 @@ abstract class _RelatedArtifact extends RelatedArtifact {
 
   /// [typeElement] Extensions for type
   @JsonKey(name: '_type')
-  Element? get typeElement;
+  PrimitiveElement? get typeElement;
   @override
 
   /// [label] A short label that can be used to reference the citation from
@@ -563,7 +563,7 @@ abstract class _RelatedArtifact extends RelatedArtifact {
 
   /// [labelElement] Extensions for label
   @JsonKey(name: '_label')
-  Element? get labelElement;
+  PrimitiveElement? get labelElement;
   @override
 
   /// [display] A brief description of the document or knowledge resource being
@@ -573,7 +573,7 @@ abstract class _RelatedArtifact extends RelatedArtifact {
 
   /// [displayElement] Extensions for display
   @JsonKey(name: '_display')
-  Element? get displayElement;
+  PrimitiveElement? get displayElement;
   @override
 
   /// [citation] A bibliographic citation for the related artifact. This text
@@ -583,7 +583,7 @@ abstract class _RelatedArtifact extends RelatedArtifact {
 
   /// [citationElement] Extensions for citation
   @JsonKey(name: '_citation')
-  Element? get citationElement;
+  PrimitiveElement? get citationElement;
   @override
 
   /// [url] A url for the artifact that can be followed to access the actual
@@ -593,7 +593,7 @@ abstract class _RelatedArtifact extends RelatedArtifact {
 
   /// [urlElement] Extensions for url
   @JsonKey(name: '_url')
-  Element? get urlElement;
+  PrimitiveElement? get urlElement;
   @override
 
   /// [document] The document being referenced, represented as an attachment.

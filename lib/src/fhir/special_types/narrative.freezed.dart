@@ -41,7 +41,7 @@ mixin _$Narrative {
 
   /// [statusElement] (_status) Extensions for status
   @JsonKey(name: '_status')
-  Element? get statusElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get statusElement => throw _privateConstructorUsedError;
 
   /// [div] The actual narrative content, a stripped down version of XHTML.
   String get div => throw _privateConstructorUsedError;
@@ -62,7 +62,7 @@ abstract class $NarrativeCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: NarrativeStatus.unknown)
       NarrativeStatus? status,
-      @JsonKey(name: '_status') Element? statusElement,
+      @JsonKey(name: '_status') PrimitiveElement? statusElement,
       String div});
 }
 
@@ -101,7 +101,7 @@ class _$NarrativeCopyWithImpl<$Res, $Val extends Narrative>
       statusElement: freezed == statusElement
           ? _value.statusElement
           : statusElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       div: null == div
           ? _value.div
           : div // ignore: cast_nullable_to_non_nullable
@@ -123,7 +123,7 @@ abstract class _$$NarrativeImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: NarrativeStatus.unknown)
       NarrativeStatus? status,
-      @JsonKey(name: '_status') Element? statusElement,
+      @JsonKey(name: '_status') PrimitiveElement? statusElement,
       String div});
 }
 
@@ -160,7 +160,7 @@ class __$$NarrativeImplCopyWithImpl<$Res>
       statusElement: freezed == statusElement
           ? _value.statusElement
           : statusElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       div: null == div
           ? _value.div
           : div // ignore: cast_nullable_to_non_nullable
@@ -223,7 +223,7 @@ class _$NarrativeImpl extends _Narrative {
   /// [statusElement] (_status) Extensions for status
   @override
   @JsonKey(name: '_status')
-  final Element? statusElement;
+  final PrimitiveElement? statusElement;
 
   /// [div] The actual narrative content, a stripped down version of XHTML.
   @override
@@ -278,7 +278,7 @@ abstract class _Narrative extends Narrative {
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: NarrativeStatus.unknown)
       final NarrativeStatus? status,
-      @JsonKey(name: '_status') final Element? statusElement,
+      @JsonKey(name: '_status') final PrimitiveElement? statusElement,
       required final String div}) = _$NarrativeImpl;
   const _Narrative._() : super._();
 
@@ -311,7 +311,7 @@ abstract class _Narrative extends Narrative {
 
   /// [statusElement] (_status) Extensions for status
   @JsonKey(name: '_status')
-  Element? get statusElement;
+  PrimitiveElement? get statusElement;
   @override
 
   /// [div] The actual narrative content, a stripped down version of XHTML.

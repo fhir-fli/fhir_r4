@@ -15,7 +15,7 @@ part 'workflow.g.dart';
 
 /// [Appointment] A booking of a healthcare event among patient(s),
 @freezed
-class Appointment with Resource, _$Appointment {
+class Appointment with _$Appointment implements DomainResource {
   /// [Appointment] A booking of a healthcare event among patient(s),
   const Appointment._();
 
@@ -200,13 +200,13 @@ class Appointment with Resource, _$Appointment {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -257,7 +257,7 @@ class Appointment with Resource, _$Appointment {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [cancelationReason] The coded reason for the appointment being cancelled.
     /// This is often used in reporting/billing/futher processing to determine if
@@ -297,7 +297,7 @@ class Appointment with Resource, _$Appointment {
     FhirUnsignedInt? priority,
 
     /// [priorityElement] Extensions for priority
-    @JsonKey(name: '_priority') Element? priorityElement,
+    @JsonKey(name: '_priority') PrimitiveElement? priorityElement,
 
     /// [description] The brief description of the appointment as would be shown
     /// on a subject line in a meeting request, or appointment list. Detailed or
@@ -305,7 +305,7 @@ class Appointment with Resource, _$Appointment {
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [supportingInformation] Additional information to support the appointment
     ///  provided when making the appointment.
@@ -315,13 +315,13 @@ class Appointment with Resource, _$Appointment {
     FhirInstant? start,
 
     /// [startElement] Extensions for start
-    @JsonKey(name: '_start') Element? startElement,
+    @JsonKey(name: '_start') PrimitiveElement? startElement,
 
     /// [end] Date/Time that the appointment is to conclude.
     FhirInstant? end,
 
     /// [endElement] Extensions for end
-    @JsonKey(name: '_end') Element? endElement,
+    @JsonKey(name: '_end') PrimitiveElement? endElement,
 
     /// [minutesDuration] Number of minutes that the appointment is to take. This
     /// can be less than the duration between the start and end times.  For
@@ -333,7 +333,7 @@ class Appointment with Resource, _$Appointment {
     FhirPositiveInt? minutesDuration,
 
     /// [minutesDurationElement] Extensions for minutesDuration
-    @JsonKey(name: '_minutesDuration') Element? minutesDurationElement,
+    @JsonKey(name: '_minutesDuration') PrimitiveElement? minutesDurationElement,
 
     /// [slot] The slots from the participants' schedules that will be filled by
     ///  the appointment.
@@ -346,13 +346,13 @@ class Appointment with Resource, _$Appointment {
     FhirDateTime? created,
 
     /// [createdElement] Extensions for created
-    @JsonKey(name: '_created') Element? createdElement,
+    @JsonKey(name: '_created') PrimitiveElement? createdElement,
 
     /// [comment] Additional comments about the appointment.
     String? comment,
 
     /// [commentElement] Extensions for comment
-    @JsonKey(name: '_comment') Element? commentElement,
+    @JsonKey(name: '_comment') PrimitiveElement? commentElement,
 
     /// [patientInstruction] While Appointment.comment contains information for
     /// internal use, Appointment.patientInstructions is used to capture patient
@@ -361,7 +361,8 @@ class Appointment with Resource, _$Appointment {
     String? patientInstruction,
 
     /// [patientInstructionElement] Extensions for patientInstruction
-    @JsonKey(name: '_patientInstruction') Element? patientInstructionElement,
+    @JsonKey(name: '_patientInstruction')
+    PrimitiveElement? patientInstructionElement,
 
     /// [basedOn] The service request this appointment is allocated to assess
     ///  (e.g. incoming referral or procedure request).
@@ -413,11 +414,36 @@ class Appointment with Resource, _$Appointment {
   /// data as a String and not a Map
   @override
   String toJsonString() => jsonEncode(toJson());
+
+  @override
+  Resource newId() => copyWith(id: generateNewUuidString());
+
+  @override
+  Resource newIdIfNoId() => id == null ? newId() : this;
+
+  @override
+  String get path => 'Appointment/$id';
+
+  @override
+  String get resourceTypeString => 'Appointment';
+
+  @override
+  Reference get thisReference =>
+      Reference(reference: path, type: FhirUri(resourceTypeString));
+
+  @override
+  String toYaml() => json2yaml(toJson());
+
+  @override
+  Resource updateVersion({FhirMeta? oldMeta}) =>
+      copyWith(meta: updateFhirMetaVersion(meta));
 }
 
 /// [AppointmentParticipant] A booking of a healthcare event among
 @freezed
-class AppointmentParticipant with BackboneType, _$AppointmentParticipant {
+class AppointmentParticipant
+    with _$AppointmentParticipant
+    implements BackboneElement {
   /// [AppointmentParticipant] A booking of a healthcare event among
   const AppointmentParticipant._();
 
@@ -508,13 +534,13 @@ class AppointmentParticipant with BackboneType, _$AppointmentParticipant {
     @JsonKey(name: 'required') FhirCode? required_,
 
     /// [requiredElement] Extensions for required
-    @JsonKey(name: '_required') Element? requiredElement,
+    @JsonKey(name: '_required') PrimitiveElement? requiredElement,
 
     /// [status] Participation status of the actor.
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [period] Participation period of the actor.
     Period? period,
@@ -553,7 +579,7 @@ class AppointmentParticipant with BackboneType, _$AppointmentParticipant {
 
 /// [AppointmentResponse] A reply to an appointment request for a patient
 @freezed
-class AppointmentResponse with Resource, _$AppointmentResponse {
+class AppointmentResponse with _$AppointmentResponse implements DomainResource {
   /// [AppointmentResponse] A reply to an appointment request for a patient
   const AppointmentResponse._();
 
@@ -670,13 +696,13 @@ class AppointmentResponse with Resource, _$AppointmentResponse {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -729,7 +755,7 @@ class AppointmentResponse with Resource, _$AppointmentResponse {
     FhirInstant? start,
 
     /// [startElement] Extensions for start
-    @JsonKey(name: '_start') Element? startElement,
+    @JsonKey(name: '_start') PrimitiveElement? startElement,
 
     /// [end] This may be either the same as the appointment request to confirm
     /// the details of the appointment, or alternately a new time to request a
@@ -737,7 +763,7 @@ class AppointmentResponse with Resource, _$AppointmentResponse {
     FhirInstant? end,
 
     /// [endElement] Extensions for end
-    @JsonKey(name: '_end') Element? endElement,
+    @JsonKey(name: '_end') PrimitiveElement? endElement,
 
     /// [participantType] Role of participant in the appointment.
     List<CodeableConcept>? participantType,
@@ -754,13 +780,14 @@ class AppointmentResponse with Resource, _$AppointmentResponse {
     FhirCode? participantStatus,
 
     /// [participantStatusElement] Extensions for participantStatus
-    @JsonKey(name: '_participantStatus') Element? participantStatusElement,
+    @JsonKey(name: '_participantStatus')
+    PrimitiveElement? participantStatusElement,
 
     /// [comment] Additional comments about the appointment.
     String? comment,
 
     /// [commentElement] Extensions for comment
-    @JsonKey(name: '_comment') Element? commentElement,
+    @JsonKey(name: '_comment') PrimitiveElement? commentElement,
   }) = _AppointmentResponse;
 
   @override
@@ -801,7 +828,7 @@ class AppointmentResponse with Resource, _$AppointmentResponse {
 
 /// [Schedule] A container for slots of time that may be available for
 @freezed
-class Schedule with Resource, _$Schedule {
+class Schedule with _$Schedule implements DomainResource {
   /// [Schedule] A container for slots of time that may be available for
   const Schedule._();
 
@@ -914,13 +941,13 @@ class Schedule with Resource, _$Schedule {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -967,7 +994,7 @@ class Schedule with Resource, _$Schedule {
     FhirBoolean? active,
 
     /// [activeElement] Extensions for active
-    @JsonKey(name: '_active') Element? activeElement,
+    @JsonKey(name: '_active') PrimitiveElement? activeElement,
 
     /// [serviceCategory] A broad categorization of the service that is to be
     ///  performed during this appointment.
@@ -998,7 +1025,7 @@ class Schedule with Resource, _$Schedule {
     String? comment,
 
     /// [commentElement] Extensions for comment
-    @JsonKey(name: '_comment') Element? commentElement,
+    @JsonKey(name: '_comment') PrimitiveElement? commentElement,
   }) = _Schedule;
 
   @override
@@ -1039,7 +1066,7 @@ class Schedule with Resource, _$Schedule {
 
 /// [Slot] A slot of time on a schedule that may be available for booking
 @freezed
-class Slot with Resource, _$Slot {
+class Slot with _$Slot implements DomainResource {
   /// [Slot] A slot of time on a schedule that may be available for booking
   const Slot._();
 
@@ -1163,13 +1190,13 @@ class Slot with Resource, _$Slot {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -1238,33 +1265,33 @@ class Slot with Resource, _$Slot {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [start] Date/Time that the slot is to begin.
     FhirInstant? start,
 
     /// [startElement] Extensions for start
-    @JsonKey(name: '_start') Element? startElement,
+    @JsonKey(name: '_start') PrimitiveElement? startElement,
 
     /// [end] Date/Time that the slot is to conclude.
     FhirInstant? end,
 
     /// [endElement] Extensions for end
-    @JsonKey(name: '_end') Element? endElement,
+    @JsonKey(name: '_end') PrimitiveElement? endElement,
 
     /// [overbooked] This slot has already been overbooked, appointments are
     ///  unlikely to be accepted for this time.
     FhirBoolean? overbooked,
 
     /// [overbookedElement] Extensions for overbooked
-    @JsonKey(name: '_overbooked') Element? overbookedElement,
+    @JsonKey(name: '_overbooked') PrimitiveElement? overbookedElement,
 
     /// [comment] Comments on the slot to describe any extended information. Such
     ///  as custom constraints on the slot.
     String? comment,
 
     /// [commentElement] Extensions for comment
-    @JsonKey(name: '_comment') Element? commentElement,
+    @JsonKey(name: '_comment') PrimitiveElement? commentElement,
   }) = _Slot;
 
   @override
@@ -1303,7 +1330,7 @@ class Slot with Resource, _$Slot {
 
 /// [Task] A task to be performed.
 @freezed
-class Task with Resource, _$Task {
+class Task with _$Task implements DomainResource {
   /// [Task] A task to be performed.
   const Task._();
 
@@ -1492,13 +1519,13 @@ class Task with Resource, _$Task {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -1551,7 +1578,7 @@ class Task with Resource, _$Task {
     FhirUri? instantiatesUri,
 
     /// [instantiatesUriElement] Extensions for instantiatesUri
-    @JsonKey(name: '_instantiatesUri') Element? instantiatesUriElement,
+    @JsonKey(name: '_instantiatesUri') PrimitiveElement? instantiatesUriElement,
 
     /// [basedOn] BasedOn refers to a higher-level authorization that triggered
     /// the creation of the task.  It references a "request" resource such as a
@@ -1573,7 +1600,7 @@ class Task with Resource, _$Task {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [statusReason] An explanation as to why this task is held, failed, was
     ///  refused, etc.
@@ -1589,14 +1616,14 @@ class Task with Resource, _$Task {
     FhirCode? intent,
 
     /// [intentElement] Extensions for intent
-    @JsonKey(name: '_intent') Element? intentElement,
+    @JsonKey(name: '_intent') PrimitiveElement? intentElement,
 
     /// [priority] Indicates how quickly the Task should be addressed with
     ///  respect to other requests.
     FhirCode? priority,
 
     /// [priorityElement] Extensions for priority
-    @JsonKey(name: '_priority') Element? priorityElement,
+    @JsonKey(name: '_priority') PrimitiveElement? priorityElement,
 
     /// [code] A name or code (or both) briefly describing what the task
     ///  involves.
@@ -1606,7 +1633,7 @@ class Task with Resource, _$Task {
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [focus] The request being actioned or the resource being manipulated by
     ///  this task.
@@ -1629,13 +1656,13 @@ class Task with Resource, _$Task {
     FhirDateTime? authoredOn,
 
     /// [authoredOnElement] Extensions for authoredOn
-    @JsonKey(name: '_authoredOn') Element? authoredOnElement,
+    @JsonKey(name: '_authoredOn') PrimitiveElement? authoredOnElement,
 
     /// [lastModified] The date and time of last modification to this task.
     FhirDateTime? lastModified,
 
     /// [lastModifiedElement] Extensions for lastModified
-    @JsonKey(name: '_lastModified') Element? lastModifiedElement,
+    @JsonKey(name: '_lastModified') PrimitiveElement? lastModifiedElement,
 
     /// [requester] The creator of the task.
     Reference? requester,
@@ -1720,7 +1747,7 @@ class Task with Resource, _$Task {
 
 /// [TaskRestriction] A task to be performed.
 @freezed
-class TaskRestriction with BackboneType, _$TaskRestriction {
+class TaskRestriction with _$TaskRestriction implements BackboneElement {
   /// [TaskRestriction] A task to be performed.
   const TaskRestriction._();
 
@@ -1792,7 +1819,7 @@ class TaskRestriction with BackboneType, _$TaskRestriction {
     FhirPositiveInt? repetitions,
 
     /// [repetitionsElement] Extensions for repetitions
-    @JsonKey(name: '_repetitions') Element? repetitionsElement,
+    @JsonKey(name: '_repetitions') PrimitiveElement? repetitionsElement,
 
     /// [period] Over what time-period is fulfillment sought.
     Period? period,
@@ -1835,7 +1862,7 @@ class TaskRestriction with BackboneType, _$TaskRestriction {
 
 /// [TaskInput] A task to be performed.
 @freezed
-class TaskInput with BackboneType, _$TaskInput {
+class TaskInput with _$TaskInput implements BackboneElement {
   /// [TaskInput] A task to be performed.
   const TaskInput._();
 
@@ -2043,115 +2070,118 @@ class TaskInput with BackboneType, _$TaskInput {
     FhirBase64Binary? valueBase64Binary,
 
     /// [valueBase64BinaryElement] Extensions for valueBase64Binary
-    @JsonKey(name: '_valueBase64Binary') Element? valueBase64BinaryElement,
+    @JsonKey(name: '_valueBase64Binary')
+    PrimitiveElement? valueBase64BinaryElement,
 
     /// [valueBoolean] The value of the input parameter as a basic type.
     FhirBoolean? valueBoolean,
 
     /// [valueBooleanElement] Extensions for valueBoolean
-    @JsonKey(name: '_valueBoolean') Element? valueBooleanElement,
+    @JsonKey(name: '_valueBoolean') PrimitiveElement? valueBooleanElement,
 
     /// [valueCanonical] The value of the input parameter as a basic type.
     FhirCanonical? valueCanonical,
 
     /// [valueCanonicalElement] Extensions for valueCanonical
-    @JsonKey(name: '_valueCanonical') Element? valueCanonicalElement,
+    @JsonKey(name: '_valueCanonical') PrimitiveElement? valueCanonicalElement,
 
     /// [valueCode] The value of the input parameter as a basic type.
     FhirCode? valueCode,
 
     /// [valueCodeElement] Extensions for valueCode
-    @JsonKey(name: '_valueCode') Element? valueCodeElement,
+    @JsonKey(name: '_valueCode') PrimitiveElement? valueCodeElement,
 
     /// [valueDate] The value of the input parameter as a basic type.
     FhirDate? valueDate,
 
     /// [valueDateElement] Extensions for valueDate
-    @JsonKey(name: '_valueDate') Element? valueDateElement,
+    @JsonKey(name: '_valueDate') PrimitiveElement? valueDateElement,
 
     /// [valueDateTime] The value of the input parameter as a basic type.
     FhirDateTime? valueDateTime,
 
     /// [valueDateTimeElement] Extensions for valueDateTime
-    @JsonKey(name: '_valueDateTime') Element? valueDateTimeElement,
+    @JsonKey(name: '_valueDateTime') PrimitiveElement? valueDateTimeElement,
 
     /// [valueDecimal] The value of the input parameter as a basic type.
     FhirDecimal? valueDecimal,
 
     /// [valueDecimalElement] Extensions for valueDecimal
-    @JsonKey(name: '_valueDecimal') Element? valueDecimalElement,
+    @JsonKey(name: '_valueDecimal') PrimitiveElement? valueDecimalElement,
 
     /// [valueId] The value of the input parameter as a basic type.
     FhirId? valueId,
 
     /// [valueIdElement] Extensions for valueId
-    @JsonKey(name: '_valueId') Element? valueIdElement,
+    @JsonKey(name: '_valueId') PrimitiveElement? valueIdElement,
 
     /// [valueInstant] The value of the input parameter as a basic type.
     FhirInstant? valueInstant,
 
     /// [valueInstantElement] Extensions for valueInstant
-    @JsonKey(name: '_valueInstant') Element? valueInstantElement,
+    @JsonKey(name: '_valueInstant') PrimitiveElement? valueInstantElement,
 
     /// [valueInteger] The value of the input parameter as a basic type.
     FhirInteger? valueInteger,
 
     /// [valueIntegerElement] Extensions for valueInteger
-    @JsonKey(name: '_valueInteger') Element? valueIntegerElement,
+    @JsonKey(name: '_valueInteger') PrimitiveElement? valueIntegerElement,
 
     /// [valueMarkdown] The value of the input parameter as a basic type.
     FhirMarkdown? valueMarkdown,
 
     /// [valueMarkdownElement] Extensions for valueMarkdown
-    @JsonKey(name: '_valueMarkdown') Element? valueMarkdownElement,
+    @JsonKey(name: '_valueMarkdown') PrimitiveElement? valueMarkdownElement,
 
     /// [valueOid] The value of the input parameter as a basic type.
     FhirOid? valueOid,
 
     /// [valueOidElement] Extensions for valueOid
-    @JsonKey(name: '_valueOid') Element? valueOidElement,
+    @JsonKey(name: '_valueOid') PrimitiveElement? valueOidElement,
 
     /// [valuePositiveInt] The value of the input parameter as a basic type.
     FhirPositiveInt? valuePositiveInt,
 
     /// [valuePositiveIntElement] Extensions for valuePositiveInt
-    @JsonKey(name: '_valuePositiveInt') Element? valuePositiveIntElement,
+    @JsonKey(name: '_valuePositiveInt')
+    PrimitiveElement? valuePositiveIntElement,
 
     /// [valueString] The value of the input parameter as a basic type.
     String? valueString,
 
     /// [valueStringElement] Extensions for valueString
-    @JsonKey(name: '_valueString') Element? valueStringElement,
+    @JsonKey(name: '_valueString') PrimitiveElement? valueStringElement,
 
     /// [valueTime] The value of the input parameter as a basic type.
     FhirTime? valueTime,
 
     /// [valueTimeElement] Extensions for valueTime
-    @JsonKey(name: '_valueTime') Element? valueTimeElement,
+    @JsonKey(name: '_valueTime') PrimitiveElement? valueTimeElement,
 
     /// [valueUnsignedInt] The value of the input parameter as a basic type.
     FhirUnsignedInt? valueUnsignedInt,
 
     /// [valueUnsignedIntElement] Extensions for valueUnsignedInt
-    @JsonKey(name: '_valueUnsignedInt') Element? valueUnsignedIntElement,
+    @JsonKey(name: '_valueUnsignedInt')
+    PrimitiveElement? valueUnsignedIntElement,
 
     /// [valueUri] The value of the input parameter as a basic type.
     FhirUri? valueUri,
 
     /// [valueUriElement] Extensions for valueUri
-    @JsonKey(name: '_valueUri') Element? valueUriElement,
+    @JsonKey(name: '_valueUri') PrimitiveElement? valueUriElement,
 
     /// [valueUrl] The value of the input parameter as a basic type.
     FhirUrl? valueUrl,
 
     /// [valueUrlElement] Extensions for valueUrl
-    @JsonKey(name: '_valueUrl') Element? valueUrlElement,
+    @JsonKey(name: '_valueUrl') PrimitiveElement? valueUrlElement,
 
     /// [valueUuid] The value of the input parameter as a basic type.
     FhirUuid? valueUuid,
 
     /// [valueUuidElement] Extensions for valueUuid
-    @JsonKey(name: '_valueUuid') Element? valueUuidElement,
+    @JsonKey(name: '_valueUuid') PrimitiveElement? valueUuidElement,
 
     /// [valueAddress] The value of the input parameter as a basic type.
     Address? valueAddress,
@@ -2282,7 +2312,7 @@ class TaskInput with BackboneType, _$TaskInput {
 
 /// [TaskOutput] A task to be performed.
 @freezed
-class TaskOutput with BackboneType, _$TaskOutput {
+class TaskOutput with _$TaskOutput implements BackboneElement {
   /// [TaskOutput] A task to be performed.
   const TaskOutput._();
 
@@ -2488,115 +2518,118 @@ class TaskOutput with BackboneType, _$TaskOutput {
     FhirBase64Binary? valueBase64Binary,
 
     /// [valueBase64BinaryElement] Extensions for valueBase64Binary
-    @JsonKey(name: '_valueBase64Binary') Element? valueBase64BinaryElement,
+    @JsonKey(name: '_valueBase64Binary')
+    PrimitiveElement? valueBase64BinaryElement,
 
     /// [valueBoolean] The value of the Output parameter as a basic type.
     FhirBoolean? valueBoolean,
 
     /// [valueBooleanElement] Extensions for valueBoolean
-    @JsonKey(name: '_valueBoolean') Element? valueBooleanElement,
+    @JsonKey(name: '_valueBoolean') PrimitiveElement? valueBooleanElement,
 
     /// [valueCanonical] The value of the Output parameter as a basic type.
     FhirCanonical? valueCanonical,
 
     /// [valueCanonicalElement] Extensions for valueCanonical
-    @JsonKey(name: '_valueCanonical') Element? valueCanonicalElement,
+    @JsonKey(name: '_valueCanonical') PrimitiveElement? valueCanonicalElement,
 
     /// [valueCode] The value of the Output parameter as a basic type.
     FhirCode? valueCode,
 
     /// [valueCodeElement] Extensions for valueCode
-    @JsonKey(name: '_valueCode') Element? valueCodeElement,
+    @JsonKey(name: '_valueCode') PrimitiveElement? valueCodeElement,
 
     /// [valueDate] The value of the Output parameter as a basic type.
     FhirDate? valueDate,
 
     /// [valueDateElement] Extensions for valueDate
-    @JsonKey(name: '_valueDate') Element? valueDateElement,
+    @JsonKey(name: '_valueDate') PrimitiveElement? valueDateElement,
 
     /// [valueDateTime] The value of the Output parameter as a basic type.
     FhirDateTime? valueDateTime,
 
     /// [valueDateTimeElement] Extensions for valueDateTime
-    @JsonKey(name: '_valueDateTime') Element? valueDateTimeElement,
+    @JsonKey(name: '_valueDateTime') PrimitiveElement? valueDateTimeElement,
 
     /// [valueDecimal] The value of the Output parameter as a basic type.
     FhirDecimal? valueDecimal,
 
     /// [valueDecimalElement] Extensions for valueDecimal
-    @JsonKey(name: '_valueDecimal') Element? valueDecimalElement,
+    @JsonKey(name: '_valueDecimal') PrimitiveElement? valueDecimalElement,
 
     /// [valueId] The value of the Output parameter as a basic type.
     FhirId? valueId,
 
     /// [valueIdElement] Extensions for valueId
-    @JsonKey(name: '_valueId') Element? valueIdElement,
+    @JsonKey(name: '_valueId') PrimitiveElement? valueIdElement,
 
     /// [valueInstant] The value of the Output parameter as a basic type.
     FhirInstant? valueInstant,
 
     /// [valueInstantElement] Extensions for valueInstant
-    @JsonKey(name: '_valueInstant') Element? valueInstantElement,
+    @JsonKey(name: '_valueInstant') PrimitiveElement? valueInstantElement,
 
     /// [valueInteger] The value of the Output parameter as a basic type.
     FhirInteger? valueInteger,
 
     /// [valueIntegerElement] Extensions for valueInteger
-    @JsonKey(name: '_valueInteger') Element? valueIntegerElement,
+    @JsonKey(name: '_valueInteger') PrimitiveElement? valueIntegerElement,
 
     /// [valueMarkdown] The value of the Output parameter as a basic type.
     FhirMarkdown? valueMarkdown,
 
     /// [valueMarkdownElement] Extensions for valueMarkdown
-    @JsonKey(name: '_valueMarkdown') Element? valueMarkdownElement,
+    @JsonKey(name: '_valueMarkdown') PrimitiveElement? valueMarkdownElement,
 
     /// [valueOid] The value of the Output parameter as a basic type.
     FhirOid? valueOid,
 
     /// [valueOidElement] Extensions for valueOid
-    @JsonKey(name: '_valueOid') Element? valueOidElement,
+    @JsonKey(name: '_valueOid') PrimitiveElement? valueOidElement,
 
     /// [valuePositiveInt] The value of the Output parameter as a basic type.
     FhirPositiveInt? valuePositiveInt,
 
     /// [valuePositiveIntElement] Extensions for valuePositiveInt
-    @JsonKey(name: '_valuePositiveInt') Element? valuePositiveIntElement,
+    @JsonKey(name: '_valuePositiveInt')
+    PrimitiveElement? valuePositiveIntElement,
 
     /// [valueString] The value of the Output parameter as a basic type.
     String? valueString,
 
     /// [valueStringElement] Extensions for valueString
-    @JsonKey(name: '_valueString') Element? valueStringElement,
+    @JsonKey(name: '_valueString') PrimitiveElement? valueStringElement,
 
     /// [valueTime] The value of the Output parameter as a basic type.
     FhirTime? valueTime,
 
     /// [valueTimeElement] Extensions for valueTime
-    @JsonKey(name: '_valueTime') Element? valueTimeElement,
+    @JsonKey(name: '_valueTime') PrimitiveElement? valueTimeElement,
 
     /// [valueUnsignedInt] The value of the Output parameter as a basic type.
     FhirUnsignedInt? valueUnsignedInt,
 
     /// [valueUnsignedIntElement] Extensions for valueUnsignedInt
-    @JsonKey(name: '_valueUnsignedInt') Element? valueUnsignedIntElement,
+    @JsonKey(name: '_valueUnsignedInt')
+    PrimitiveElement? valueUnsignedIntElement,
 
     /// [valueUri] The value of the Output parameter as a basic type.
     FhirUri? valueUri,
 
     /// [valueUriElement] Extensions for valueUri
-    @JsonKey(name: '_valueUri') Element? valueUriElement,
+    @JsonKey(name: '_valueUri') PrimitiveElement? valueUriElement,
 
     /// [valueUrl] The value of the Output parameter as a basic type.
     FhirUrl? valueUrl,
 
     /// [valueUrlElement] Extensions for valueUrl
-    @JsonKey(name: '_valueUrl') Element? valueUrlElement,
+    @JsonKey(name: '_valueUrl') PrimitiveElement? valueUrlElement,
 
     /// [valueUuid] The value of the Output parameter as a basic type.
     FhirUuid? valueUuid,
 
     /// [valueUuidElement] Extensions for valueUuid
-    @JsonKey(name: '_valueUuid') Element? valueUuidElement,
+    @JsonKey(name: '_valueUuid') PrimitiveElement? valueUuidElement,
 
     /// [valueAddress] The value of the Output parameter as a basic type.
     Address? valueAddress,
@@ -2727,7 +2760,7 @@ class TaskOutput with BackboneType, _$TaskOutput {
 
 /// [VerificationResult] Describes validation requirements, source(s), status
 @freezed
-class VerificationResult with Resource, _$VerificationResult {
+class VerificationResult with _$VerificationResult implements DomainResource {
   /// [VerificationResult] Describes validation requirements, source(s), status
   const VerificationResult._();
 
@@ -2856,13 +2889,13 @@ class VerificationResult with Resource, _$VerificationResult {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -2920,13 +2953,13 @@ class VerificationResult with Resource, _$VerificationResult {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [statusDate] When the validation status was updated.
     FhirDateTime? statusDate,
 
     /// [statusDateElement] Extensions for statusDate
-    @JsonKey(name: '_statusDate') Element? statusDateElement,
+    @JsonKey(name: '_statusDate') PrimitiveElement? statusDateElement,
 
     /// [validationType] What the target is validated against (nothing; primary
     ///  source; multiple sources).
@@ -2945,13 +2978,13 @@ class VerificationResult with Resource, _$VerificationResult {
     FhirDateTime? lastPerformed,
 
     /// [lastPerformedElement] Extensions for lastPerformed
-    @JsonKey(name: '_lastPerformed') Element? lastPerformedElement,
+    @JsonKey(name: '_lastPerformed') PrimitiveElement? lastPerformedElement,
 
     /// [nextScheduled] The date when target is next validated, if appropriate.
     FhirDate? nextScheduled,
 
     /// [nextScheduledElement] Extensions for nextScheduled
-    @JsonKey(name: '_nextScheduled') Element? nextScheduledElement,
+    @JsonKey(name: '_nextScheduled') PrimitiveElement? nextScheduledElement,
 
     /// [failureAction] The result if validation fails (fatal; warning; record
     ///  only; none).
@@ -3109,7 +3142,7 @@ class VerificationResultPrimarySource
     FhirDateTime? validationDate,
 
     /// [validationDateElement] Extensions for validationDate
-    @JsonKey(name: '_validationDate') Element? validationDateElement,
+    @JsonKey(name: '_validationDate') PrimitiveElement? validationDateElement,
 
     /// [canPushUpdates] Ability of the primary source to push updates/alerts
     ///  (yes; no; undetermined).
@@ -3258,7 +3291,7 @@ class VerificationResultAttestation
     FhirDate? date,
 
     /// [dateElement] Extensions for date
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
 
     /// [sourceIdentityCertificate] A digital identity certificate associated
     ///  with the attestation source.
@@ -3266,7 +3299,7 @@ class VerificationResultAttestation
     @JsonKey(name: '_sourceIdentityCertificate')
 
     /// [sourceIdentityCertificateElement] Extensions for sourceIdentityCertificate
-    Element? sourceIdentityCertificateElement,
+    PrimitiveElement? sourceIdentityCertificateElement,
 
     /// [proxyIdentityCertificate] A digital identity certificate associated with
     /// the proxy entity submitting attested information on behalf of the
@@ -3275,7 +3308,7 @@ class VerificationResultAttestation
     @JsonKey(name: '_proxyIdentityCertificate')
 
     /// [proxyIdentityCertificateElement] Extensions for proxyIdentityCertificate
-    Element? proxyIdentityCertificateElement,
+    PrimitiveElement? proxyIdentityCertificateElement,
 
     /// [proxySignature] Signed assertion by the proxy entity indicating that
     /// they have the right to submit attested information on behalf of the
@@ -3397,7 +3430,8 @@ class VerificationResultValidator
     String? identityCertificate,
 
     /// [identityCertificateElement] Extensions for identityCertificate
-    @JsonKey(name: '_identityCertificate') Element? identityCertificateElement,
+    @JsonKey(name: '_identityCertificate')
+    PrimitiveElement? identityCertificateElement,
 
     /// [attestationSignature] Signed assertion by the validator that they have
     ///  validated the information.

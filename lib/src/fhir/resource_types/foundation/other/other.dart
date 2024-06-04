@@ -15,7 +15,7 @@ part 'other.g.dart';
 
 /// [Basic] Basic is used for handling concepts not yet defined in FHIR,
 @freezed
-class Basic with Resource, _$Basic {
+class Basic with _$Basic implements DomainResource {
   /// [Basic] Basic is used for handling concepts not yet defined in FHIR,
   const Basic._();
 
@@ -114,13 +114,13 @@ class Basic with Resource, _$Basic {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -175,7 +175,7 @@ class Basic with Resource, _$Basic {
     FhirDate? created,
 
     /// [createdElement] Extensions for created
-    @JsonKey(name: '_created') Element? createdElement,
+    @JsonKey(name: '_created') PrimitiveElement? createdElement,
 
     /// [author] Indicates who was responsible for creating the resource
     ///  instance.
@@ -218,7 +218,7 @@ class Basic with Resource, _$Basic {
 
 /// [Binary] A resource that represents the data of a single raw artifact as
 @freezed
-class Binary with Resource, _$Binary {
+class Binary with _$Binary implements DomainResource {
   /// [Binary] A resource that represents the data of a single raw artifact as
   const Binary._();
 
@@ -289,13 +289,13 @@ class Binary with Resource, _$Binary {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -339,7 +339,7 @@ class Binary with Resource, _$Binary {
     FhirCode? contentType,
 
     /// [contentTypeElement] Extensions for contentType
-    @JsonKey(name: '_contentType') Element? contentTypeElement,
+    @JsonKey(name: '_contentType') PrimitiveElement? contentTypeElement,
 
     /// [securityContext] This element identifies another resource that can be
     /// used as a proxy of the security sensitivity to use when deciding and
@@ -358,7 +358,7 @@ class Binary with Resource, _$Binary {
     FhirBase64Binary? data,
 
     /// [dataElement] Extensions for data
-    @JsonKey(name: '_data') Element? dataElement,
+    @JsonKey(name: '_data') PrimitiveElement? dataElement,
   }) = _Binary;
 
   @override
@@ -398,7 +398,7 @@ class Binary with Resource, _$Binary {
 
 /// [Bundle] A container for a collection of resources.
 @freezed
-class Bundle with Resource, _$Bundle {
+class Bundle with _$Bundle implements DomainResource {
   /// [Bundle] A container for a collection of resources.
   const Bundle._();
 
@@ -473,13 +473,13 @@ class Bundle with Resource, _$Bundle {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -527,14 +527,14 @@ class Bundle with Resource, _$Bundle {
     FhirCode? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [timestamp] The date/time that the bundle was assembled - i.e. when the
     ///  resources were placed in the bundle.
     FhirInstant? timestamp,
 
     /// [timestampElement] Extensions for timestamp
-    @JsonKey(name: '_timestamp') Element? timestampElement,
+    @JsonKey(name: '_timestamp') PrimitiveElement? timestampElement,
 
     /// [total] If a set of search matches, this is the total number of entries
     /// of type 'match' across all pages in the search.  It does not include
@@ -543,7 +543,7 @@ class Bundle with Resource, _$Bundle {
     FhirUnsignedInt? total,
 
     /// [totalElement] Extensions for total
-    @JsonKey(name: '_total') Element? totalElement,
+    @JsonKey(name: '_total') PrimitiveElement? totalElement,
 
     /// [link] A series of links that provide context to this bundle.
     List<BundleLink>? link,
@@ -593,7 +593,7 @@ class Bundle with Resource, _$Bundle {
 
 /// [BundleLink] A container for a collection of resources.
 @freezed
-class BundleLink with BackboneType, _$BundleLink {
+class BundleLink with _$BundleLink implements BackboneElement {
   /// [BundleLink] A container for a collection of resources.
   const BundleLink._();
 
@@ -664,13 +664,13 @@ class BundleLink with BackboneType, _$BundleLink {
     String? relation,
 
     /// [relationElement] Extensions for relation
-    @JsonKey(name: '_relation') Element? relationElement,
+    @JsonKey(name: '_relation') PrimitiveElement? relationElement,
 
     /// [url] The reference details for the link.
     FhirUri? url,
 
     /// [urlElement] Extensions for url
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
   }) = _BundleLink;
 
   @override
@@ -706,7 +706,7 @@ class BundleLink with BackboneType, _$BundleLink {
 
 /// [BundleEntry] A container for a collection of resources.
 @freezed
-class BundleEntry with BackboneType, _$BundleEntry {
+class BundleEntry with _$BundleEntry implements BackboneElement {
   /// [BundleEntry] A container for a collection of resources.
   const BundleEntry._();
 
@@ -804,7 +804,7 @@ class BundleEntry with BackboneType, _$BundleEntry {
     FhirUri? fullUrl,
 
     /// [fullUrlElement] Extensions for fullUrl
-    @JsonKey(name: '_fullUrl') Element? fullUrlElement,
+    @JsonKey(name: '_fullUrl') PrimitiveElement? fullUrlElement,
 
     /// [resource] The Resource for the entry. The purpose/meaning of the
     ///  resource is determined by the Bundle.type.
@@ -914,7 +914,7 @@ class BundleEntry with BackboneType, _$BundleEntry {
 
 /// [BundleSearch] A container for a collection of resources.
 @freezed
-class BundleSearch with BackboneType, _$BundleSearch {
+class BundleSearch with _$BundleSearch implements BackboneElement {
   /// [BundleSearch] A container for a collection of resources.
   const BundleSearch._();
 
@@ -987,13 +987,13 @@ class BundleSearch with BackboneType, _$BundleSearch {
     FhirCode? mode,
 
     /// [modeElement] Extensions for mode
-    @JsonKey(name: '_mode') Element? modeElement,
+    @JsonKey(name: '_mode') PrimitiveElement? modeElement,
 
     /// [score] When searching, the server's search ranking score for the entry.
     FhirDecimal? score,
 
     /// [scoreElement] Extensions for score
-    @JsonKey(name: '_score') Element? scoreElement,
+    @JsonKey(name: '_score') PrimitiveElement? scoreElement,
   }) = _BundleSearch;
 
   @override
@@ -1029,7 +1029,7 @@ class BundleSearch with BackboneType, _$BundleSearch {
 
 /// [BundleRequest] A container for a collection of resources.
 @freezed
-class BundleRequest with BackboneType, _$BundleRequest {
+class BundleRequest with _$BundleRequest implements BackboneElement {
   /// [BundleRequest] A container for a collection of resources.
   const BundleRequest._();
 
@@ -1128,21 +1128,21 @@ class BundleRequest with BackboneType, _$BundleRequest {
     FhirCode? method,
 
     /// [methodElement] Extensions for method
-    @JsonKey(name: '_method') Element? methodElement,
+    @JsonKey(name: '_method') PrimitiveElement? methodElement,
 
     /// [url] The URL for this entry, relative to the root (the address to which
     ///  the request is posted).
     FhirUri? url,
 
     /// [urlElement] Extensions for url
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
 
     /// [ifNoneMatch] If the ETag values match, return a 304 Not Modified status.
     ///  See the API documentation for ["Conditional Read"](http.html#cread).
     String? ifNoneMatch,
 
     /// [ifNoneMatchElement] Extensions for ifNoneMatch
-    @JsonKey(name: '_ifNoneMatch') Element? ifNoneMatchElement,
+    @JsonKey(name: '_ifNoneMatch') PrimitiveElement? ifNoneMatchElement,
 
     /// [ifModifiedSince] Only perform the operation if the last updated date
     /// matches. See the API documentation for ["Conditional
@@ -1150,7 +1150,7 @@ class BundleRequest with BackboneType, _$BundleRequest {
     FhirInstant? ifModifiedSince,
 
     /// [ifModifiedSinceElement] Extensions for ifModifiedSince
-    @JsonKey(name: '_ifModifiedSince') Element? ifModifiedSinceElement,
+    @JsonKey(name: '_ifModifiedSince') PrimitiveElement? ifModifiedSinceElement,
 
     /// [ifMatch] Only perform the operation if the Etag value matches. For more
     /// information, see the API section ["Managing Resource
@@ -1158,7 +1158,7 @@ class BundleRequest with BackboneType, _$BundleRequest {
     String? ifMatch,
 
     /// [ifMatchElement] Extensions for ifMatch
-    @JsonKey(name: '_ifMatch') Element? ifMatchElement,
+    @JsonKey(name: '_ifMatch') PrimitiveElement? ifMatchElement,
 
     /// [ifNoneExist] Instruct the server not to perform the create if a
     /// specified resource already exists. For further information, see the API
@@ -1168,7 +1168,7 @@ class BundleRequest with BackboneType, _$BundleRequest {
     String? ifNoneExist,
 
     /// [ifNoneExistElement] Extensions for ifNoneExist
-    @JsonKey(name: '_ifNoneExist') Element? ifNoneExistElement,
+    @JsonKey(name: '_ifNoneExist') PrimitiveElement? ifNoneExistElement,
   }) = _BundleRequest;
 
   @override
@@ -1204,7 +1204,7 @@ class BundleRequest with BackboneType, _$BundleRequest {
 
 /// [BundleResponse] A container for a collection of resources.
 @freezed
-class BundleResponse with BackboneType, _$BundleResponse {
+class BundleResponse with _$BundleResponse implements BackboneElement {
   /// [BundleResponse] A container for a collection of resources.
   const BundleResponse._();
 
@@ -1293,14 +1293,14 @@ class BundleResponse with BackboneType, _$BundleResponse {
     String? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [location] The location header created by processing this operation,
     ///  populated if the operation returns a location.
     FhirUri? location,
 
     /// [locationElement] Extensions for location
-    @JsonKey(name: '_location') Element? locationElement,
+    @JsonKey(name: '_location') PrimitiveElement? locationElement,
 
     /// [etag] The Etag for the resource, if the operation for the entry produced
     /// a versioned resource (see [Resource Metadata and
@@ -1309,14 +1309,14 @@ class BundleResponse with BackboneType, _$BundleResponse {
     String? etag,
 
     /// [etagElement] Extensions for etag
-    @JsonKey(name: '_etag') Element? etagElement,
+    @JsonKey(name: '_etag') PrimitiveElement? etagElement,
 
     /// [lastModified] The date/time that the resource was modified on the
     ///  server.
     FhirInstant? lastModified,
 
     /// [lastModifiedElement] Extensions for lastModified
-    @JsonKey(name: '_lastModified') Element? lastModifiedElement,
+    @JsonKey(name: '_lastModified') PrimitiveElement? lastModifiedElement,
 
     /// [outcome] An OperationOutcome containing hints and warnings produced as
     ///  part of processing this entry in a batch or transaction.
@@ -1356,7 +1356,7 @@ class BundleResponse with BackboneType, _$BundleResponse {
 
 /// [Linkage] Identifies two or more records (resource instances) that refer
 @freezed
-class Linkage with Resource, _$Linkage {
+class Linkage with _$Linkage implements DomainResource {
   /// [Linkage] Identifies two or more records (resource instances) that refer
   const Linkage._();
 
@@ -1451,13 +1451,13 @@ class Linkage with Resource, _$Linkage {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -1501,7 +1501,7 @@ class Linkage with Resource, _$Linkage {
     FhirBoolean? active,
 
     /// [activeElement] Extensions for active
-    @JsonKey(name: '_active') Element? activeElement,
+    @JsonKey(name: '_active') PrimitiveElement? activeElement,
 
     /// [author] Identifies the user or organization responsible for asserting
     /// the linkages as well as the user or organization who establishes the
@@ -1552,7 +1552,7 @@ class Linkage with Resource, _$Linkage {
 
 /// [LinkageItem] Identifies two or more records (resource instances) that
 @freezed
-class LinkageItem with BackboneType, _$LinkageItem {
+class LinkageItem with _$LinkageItem implements BackboneElement {
   /// [LinkageItem] Identifies two or more records (resource instances) that
   const LinkageItem._();
 
@@ -1622,7 +1622,7 @@ class LinkageItem with BackboneType, _$LinkageItem {
     FhirCode? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [resource] The resource instance being linked as part of the group.
     required Reference resource,
@@ -1661,7 +1661,7 @@ class LinkageItem with BackboneType, _$LinkageItem {
 
 /// [MessageHeader] The header for a message exchange that is either
 @freezed
-class MessageHeader with Resource, _$MessageHeader {
+class MessageHeader with _$MessageHeader implements DomainResource {
   /// [MessageHeader] The header for a message exchange that is either
   const MessageHeader._();
 
@@ -1792,13 +1792,13 @@ class MessageHeader with Resource, _$MessageHeader {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -1852,7 +1852,7 @@ class MessageHeader with Resource, _$MessageHeader {
     FhirUri? eventUri,
 
     /// [eventUriElement] Extensions for eventUri
-    @JsonKey(name: '_eventUri') Element? eventUriElement,
+    @JsonKey(name: '_eventUri') PrimitiveElement? eventUriElement,
 
     /// [destination] The destination application which the message is intended
     ///  for.
@@ -1935,7 +1935,9 @@ class MessageHeader with Resource, _$MessageHeader {
 
 /// [MessageHeaderDestination] The header for a message exchange that is
 @freezed
-class MessageHeaderDestination with BackboneType, _$MessageHeaderDestination {
+class MessageHeaderDestination
+    with _$MessageHeaderDestination
+    implements BackboneElement {
   /// [MessageHeaderDestination] The header for a message exchange that is
   const MessageHeaderDestination._();
 
@@ -2015,7 +2017,7 @@ class MessageHeaderDestination with BackboneType, _$MessageHeaderDestination {
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [target] Identifies the target end system in situations where the initial
     ///  message transmission is to an intermediary system.
@@ -2025,7 +2027,7 @@ class MessageHeaderDestination with BackboneType, _$MessageHeaderDestination {
     FhirUrl? endpoint,
 
     /// [endpointElement] Extensions for endpoint
-    @JsonKey(name: '_endpoint') Element? endpointElement,
+    @JsonKey(name: '_endpoint') PrimitiveElement? endpointElement,
 
     /// [receiver] Allows data conveyed by a message to be addressed to a
     /// particular person or department when routing to a specific application
@@ -2066,7 +2068,9 @@ class MessageHeaderDestination with BackboneType, _$MessageHeaderDestination {
 
 /// [MessageHeaderSource] The header for a message exchange that is either
 @freezed
-class MessageHeaderSource with BackboneType, _$MessageHeaderSource {
+class MessageHeaderSource
+    with _$MessageHeaderSource
+    implements BackboneElement {
   /// [MessageHeaderSource] The header for a message exchange that is either
   const MessageHeaderSource._();
 
@@ -2152,21 +2156,21 @@ class MessageHeaderSource with BackboneType, _$MessageHeaderSource {
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [software] May include configuration or other information useful in
     ///  debugging.
     String? software,
 
     /// [softwareElement] Extensions for software
-    @JsonKey(name: '_software') Element? softwareElement,
+    @JsonKey(name: '_software') PrimitiveElement? softwareElement,
 
     /// [version] Can convey versions of multiple systems in situations where a
     ///  message passes through multiple hands.
     String? version,
 
     /// [versionElement] Extensions for version
-    @JsonKey(name: '_version') Element? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
 
     /// [contact] An e-mail, phone, website or other contact point to use to
     ///  resolve issues with message communications.
@@ -2176,7 +2180,7 @@ class MessageHeaderSource with BackboneType, _$MessageHeaderSource {
     FhirUrl? endpoint,
 
     /// [endpointElement] Extensions for endpoint
-    @JsonKey(name: '_endpoint') Element? endpointElement,
+    @JsonKey(name: '_endpoint') PrimitiveElement? endpointElement,
   }) = _MessageHeaderSource;
 
   @override
@@ -2247,7 +2251,9 @@ class MessageHeaderSource with BackboneType, _$MessageHeaderSource {
 
 /// [MessageHeaderResponse] The header for a message exchange that is either
 @freezed
-class MessageHeaderResponse with BackboneType, _$MessageHeaderResponse {
+class MessageHeaderResponse
+    with _$MessageHeaderResponse
+    implements BackboneElement {
   /// [MessageHeaderResponse] The header for a message exchange that is either
   const MessageHeaderResponse._();
 
@@ -2325,14 +2331,14 @@ class MessageHeaderResponse with BackboneType, _$MessageHeaderResponse {
     FhirId? identifier,
 
     /// [identifierElement] Extensions for identifier
-    @JsonKey(name: '_identifier') Element? identifierElement,
+    @JsonKey(name: '_identifier') PrimitiveElement? identifierElement,
 
     /// [code] Code that identifies the type of response to the message - whether
     ///  it was successful or not, and whether it should be resent or not.
     FhirCode? code,
 
     /// [codeElement] Extensions for code
-    @JsonKey(name: '_code') Element? codeElement,
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
 
     /// [details] Full details of any issues found in the message.
     Reference? details,
@@ -2371,7 +2377,7 @@ class MessageHeaderResponse with BackboneType, _$MessageHeaderResponse {
 
 /// [OperationOutcome] A collection of error, warning, or information
 @freezed
-class OperationOutcome with Resource, _$OperationOutcome {
+class OperationOutcome with _$OperationOutcome implements DomainResource {
   /// [OperationOutcome] A collection of error, warning, or information
   const OperationOutcome._();
 
@@ -2456,13 +2462,13 @@ class OperationOutcome with Resource, _$OperationOutcome {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -2547,7 +2553,9 @@ class OperationOutcome with Resource, _$OperationOutcome {
 
 /// [OperationOutcomeIssue] A collection of error, warning, or information
 @freezed
-class OperationOutcomeIssue with BackboneType, _$OperationOutcomeIssue {
+class OperationOutcomeIssue
+    with _$OperationOutcomeIssue
+    implements BackboneElement {
   /// [OperationOutcomeIssue] A collection of error, warning, or information
   const OperationOutcomeIssue._();
 
@@ -2646,7 +2654,7 @@ class OperationOutcomeIssue with BackboneType, _$OperationOutcomeIssue {
     FhirCode? severity,
 
     /// [severityElement] Extensions for severity
-    @JsonKey(name: '_severity') Element? severityElement,
+    @JsonKey(name: '_severity') PrimitiveElement? severityElement,
 
     /// [code] Describes the type of the issue. The system that creates an
     /// OperationOutcome SHALL choose the most applicable code from the IssueType
@@ -2655,7 +2663,7 @@ class OperationOutcomeIssue with BackboneType, _$OperationOutcomeIssue {
     FhirCode? code,
 
     /// [codeElement] Extensions for code
-    @JsonKey(name: '_code') Element? codeElement,
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
 
     /// [details] Additional details about the error. This may be a text
     ///  description of the error or a system code that identifies the error.
@@ -2665,7 +2673,7 @@ class OperationOutcomeIssue with BackboneType, _$OperationOutcomeIssue {
     String? diagnostics,
 
     /// [diagnosticsElement] Extensions for diagnostics
-    @JsonKey(name: '_diagnostics') Element? diagnosticsElement,
+    @JsonKey(name: '_diagnostics') PrimitiveElement? diagnosticsElement,
 
     /// [location] This element is deprecated because it is XML specific. It is
     /// replaced by issue.expression, which is format independent, and simpler to
@@ -2722,7 +2730,7 @@ class OperationOutcomeIssue with BackboneType, _$OperationOutcomeIssue {
 
 /// [Parameters] This resource is a non-persisted resource used to pass
 @freezed
-class Parameters with Resource, _$Parameters {
+class Parameters with _$Parameters implements DomainResource {
   /// [Parameters] This resource is a non-persisted resource used to pass
   const Parameters._();
 
@@ -2774,13 +2782,13 @@ class Parameters with Resource, _$Parameters {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -2861,7 +2869,9 @@ class Parameters with Resource, _$Parameters {
 
 /// [ParametersParameter] This resource is a non-persisted resource used to
 @freezed
-class ParametersParameter with BackboneType, _$ParametersParameter {
+class ParametersParameter
+    with _$ParametersParameter
+    implements BackboneElement {
   /// [ParametersParameter] This resource is a non-persisted resource used to
   const ParametersParameter._();
 
@@ -3070,121 +3080,124 @@ class ParametersParameter with BackboneType, _$ParametersParameter {
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [valueBase64Binary] If the parameter is a data type.
     FhirBase64Binary? valueBase64Binary,
 
     /// [valueBase64BinaryElement] Extensions for valueBase64Binary
-    @JsonKey(name: '_valueBase64Binary') Element? valueBase64BinaryElement,
+    @JsonKey(name: '_valueBase64Binary')
+    PrimitiveElement? valueBase64BinaryElement,
 
     /// [valueBoolean] If the parameter is a data type.
     FhirBoolean? valueBoolean,
 
     /// [valueBooleanElement] Extensions for valueBoolean
-    @JsonKey(name: '_valueBoolean') Element? valueBooleanElement,
+    @JsonKey(name: '_valueBoolean') PrimitiveElement? valueBooleanElement,
 
     /// [valueCanonical] If the parameter is a data type.
     FhirCanonical? valueCanonical,
 
     /// [valueCanonicalElement] Extensions for valueCanonical
-    @JsonKey(name: '_valueCanonical') Element? valueCanonicalElement,
+    @JsonKey(name: '_valueCanonical') PrimitiveElement? valueCanonicalElement,
 
     /// [valueCode] If the parameter is a data type.
     FhirCode? valueCode,
 
     /// [valueCodeElement] Extensions for valueCode
-    @JsonKey(name: '_valueCode') Element? valueCodeElement,
+    @JsonKey(name: '_valueCode') PrimitiveElement? valueCodeElement,
 
     /// [valueDate] If the parameter is a data type.
     FhirDate? valueDate,
 
     /// [valueDateElement] Extensions for valueDate
-    @JsonKey(name: '_valueDate') Element? valueDateElement,
+    @JsonKey(name: '_valueDate') PrimitiveElement? valueDateElement,
 
     /// [valueDateTime] If the parameter is a data type.
     FhirDateTime? valueDateTime,
 
     /// [valueDateTimeElement] Extensions for valueDateTime
-    @JsonKey(name: '_valueDateTime') Element? valueDateTimeElement,
+    @JsonKey(name: '_valueDateTime') PrimitiveElement? valueDateTimeElement,
 
     /// [valueDecimal] If the parameter is a data type.
     FhirDecimal? valueDecimal,
 
     /// [valueDecimalElement] Extensions for valueDecimal
-    @JsonKey(name: '_valueDecimal') Element? valueDecimalElement,
+    @JsonKey(name: '_valueDecimal') PrimitiveElement? valueDecimalElement,
 
     /// [valueId] If the parameter is a data type.
     FhirId? valueId,
 
     /// [valueIdElement] Extensions for valueId
-    @JsonKey(name: '_valueId') Element? valueIdElement,
+    @JsonKey(name: '_valueId') PrimitiveElement? valueIdElement,
 
     /// [valueInstant] If the parameter is a data type.
     FhirInstant? valueInstant,
 
     /// [valueInstantElement] Extensions for valueInstant
-    @JsonKey(name: '_valueInstant') Element? valueInstantElement,
+    @JsonKey(name: '_valueInstant') PrimitiveElement? valueInstantElement,
 
     /// [valueInteger] If the parameter is a data type.
     FhirInteger? valueInteger,
 
     /// [valueIntegerElement] Extensions for valueInteger
-    @JsonKey(name: '_valueInteger') Element? valueIntegerElement,
+    @JsonKey(name: '_valueInteger') PrimitiveElement? valueIntegerElement,
 
     /// [valueMarkdown] If the parameter is a data type.
     FhirMarkdown? valueMarkdown,
 
     /// [valueMarkdownElement] Extensions for valueMarkdown
-    @JsonKey(name: '_valueMarkdown') Element? valueMarkdownElement,
+    @JsonKey(name: '_valueMarkdown') PrimitiveElement? valueMarkdownElement,
 
     /// [valueOid] If the parameter is a data type.
     FhirOid? valueOid,
 
     /// [valueOidElement] Extensions for valueOid
-    @JsonKey(name: '_valueOid') Element? valueOidElement,
+    @JsonKey(name: '_valueOid') PrimitiveElement? valueOidElement,
 
     /// [valuePositiveInt] If the parameter is a data type.
     FhirPositiveInt? valuePositiveInt,
 
     /// [valuePositiveIntElement] Extensions for valuePositiveInt
-    @JsonKey(name: '_valuePositiveInt') Element? valuePositiveIntElement,
+    @JsonKey(name: '_valuePositiveInt')
+    PrimitiveElement? valuePositiveIntElement,
 
     /// [valueString] If the parameter is a data type.
     String? valueString,
 
     /// [valueStringElement] Extensions for valueString
-    @JsonKey(name: '_valueString') Element? valueStringElement,
+    @JsonKey(name: '_valueString') PrimitiveElement? valueStringElement,
 
     /// [valueTime] If the parameter is a data type.
     FhirTime? valueTime,
 
     /// [valueTimeElement] Extensions for valueTime
-    @JsonKey(name: '_valueTime') Element? valueTimeElement,
+    @JsonKey(name: '_valueTime') PrimitiveElement? valueTimeElement,
 
     /// [valueUnsignedInt] If the parameter is a data type.
     FhirUnsignedInt? valueUnsignedInt,
 
     /// [valueUnsignedIntElement] Extensions for valueUnsignedInt
-    @JsonKey(name: '_valueUnsignedInt') Element? valueUnsignedIntElement,
+    @JsonKey(name: '_valueUnsignedInt')
+    PrimitiveElement? valueUnsignedIntElement,
 
     /// [valueUri] If the parameter is a data type.
     FhirUri? valueUri,
 
     /// [valueUriElement] Extensions for valueUri
-    @JsonKey(name: '_valueUri') Element? valueUriElement,
+    @JsonKey(name: '_valueUri') PrimitiveElement? valueUriElement,
 
     /// [valueUrl] If the parameter is a data type.
     FhirUrl? valueUrl,
 
     /// [valueUrlElement] Extensions for valueUrl
-    @JsonKey(name: '_valueUrl') Element? valueUrlElement,
+    @JsonKey(name: '_valueUrl') PrimitiveElement? valueUrlElement,
 
     /// [valueUuid] If the parameter is a data type.
     FhirUuid? valueUuid,
 
     /// [valueUuidElement] Extensions for valueUuid
-    @JsonKey(name: '_valueUuid') Element? valueUuidElement,
+    @JsonKey(name: '_valueUuid') PrimitiveElement? valueUuidElement,
 
     /// [valueAddress] If the parameter is a data type.
     Address? valueAddress,
@@ -3319,7 +3332,7 @@ class ParametersParameter with BackboneType, _$ParametersParameter {
 
 /// [Subscription] The subscription resource is used to define a push-based
 @freezed
-class Subscription with Resource, _$Subscription {
+class Subscription with _$Subscription implements DomainResource {
   /// [Subscription] The subscription resource is used to define a push-based
   const Subscription._();
 
@@ -3434,13 +3447,13 @@ class Subscription with Resource, _$Subscription {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -3484,7 +3497,7 @@ class Subscription with Resource, _$Subscription {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [contact] Contact details for a human to contact about the subscription.
     ///  The primary use of this for system administrator troubleshooting.
@@ -3494,27 +3507,27 @@ class Subscription with Resource, _$Subscription {
     FhirInstant? end,
 
     /// [endElement] Extensions for end
-    @JsonKey(name: '_end') Element? endElement,
+    @JsonKey(name: '_end') PrimitiveElement? endElement,
 
     /// [reason] A description of why this subscription is defined.
     String? reason,
 
     /// [reasonElement] Extensions for reason
-    @JsonKey(name: '_reason') Element? reasonElement,
+    @JsonKey(name: '_reason') PrimitiveElement? reasonElement,
 
     /// [criteria] The rules that the server should use to determine when to
     ///  generate notifications for this subscription.
     String? criteria,
 
     /// [criteriaElement] Extensions for criteria
-    @JsonKey(name: '_criteria') Element? criteriaElement,
+    @JsonKey(name: '_criteria') PrimitiveElement? criteriaElement,
 
     /// [error] A record of the last error that occurred when the server
     ///  processed a notification.
     String? error,
 
     /// [errorElement] Extensions for error
-    @JsonKey(name: '_error') Element? errorElement,
+    @JsonKey(name: '_error') PrimitiveElement? errorElement,
 
     /// [channel] Details where to send notifications when resources are received
     ///  that meet the criteria.
@@ -3635,7 +3648,9 @@ class Subscription with Resource, _$Subscription {
 
 /// [SubscriptionChannel] The subscription resource is used to define a
 @freezed
-class SubscriptionChannel with BackboneType, _$SubscriptionChannel {
+class SubscriptionChannel
+    with _$SubscriptionChannel
+    implements BackboneElement {
   /// [SubscriptionChannel] The subscription resource is used to define a
   const SubscriptionChannel._();
 
@@ -3723,14 +3738,14 @@ class SubscriptionChannel with BackboneType, _$SubscriptionChannel {
     FhirCode? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [endpoint] The url that describes the actual end-point to send messages
     ///  to.
     FhirUrl? endpoint,
 
     /// [endpointElement] Extensions for endpoint
-    @JsonKey(name: '_endpoint') Element? endpointElement,
+    @JsonKey(name: '_endpoint') PrimitiveElement? endpointElement,
 
     /// [payload] The mime type to send the payload in - either
     /// application/fhir+xml, or application/fhir+json. If the payload is not
@@ -3740,7 +3755,7 @@ class SubscriptionChannel with BackboneType, _$SubscriptionChannel {
     FhirCode? payload,
 
     /// [payloadElement] Extensions for payload
-    @JsonKey(name: '_payload') Element? payloadElement,
+    @JsonKey(name: '_payload') PrimitiveElement? payloadElement,
 
     /// [header] Additional headers / information to send as part of the
     ///  notification.
@@ -3783,7 +3798,7 @@ class SubscriptionChannel with BackboneType, _$SubscriptionChannel {
 
 /// [SubscriptionStatus] The SubscriptionStatus resource describes the state of a Subscription during notifications.
 @freezed
-class SubscriptionStatus with Resource, _$SubscriptionStatus {
+class SubscriptionStatus with _$SubscriptionStatus implements DomainResource {
   /// [SubscriptionStatus] The SubscriptionStatus resource describes the state of a Subscription during notifications.
   const SubscriptionStatus._();
 
@@ -3847,13 +3862,13 @@ class SubscriptionStatus with Resource, _$SubscriptionStatus {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] (_implicitRules): Extensions for implicitRules;
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.;
     FhirCode? language,
 
     /// [languageElement] (_language): Extensions for language;
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.;
     Narrative? text,
@@ -3872,20 +3887,20 @@ class SubscriptionStatus with Resource, _$SubscriptionStatus {
     FhirCode? status,
 
     /// [statusElement] (_status): Extensions for status;
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [type] The type of event being conveyed with this notificaiton.;
     FhirCode? type,
 
     /// [typeElement] (_type): Extensions for type;
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [eventsSinceSubscriptionStart] The total number of actual events which have been generated since the Subscription was created (inclusive of this notification) - regardless of how many have been successfully communicated.  This number is NOT incremented for handshake and heartbeat notifications.;
     FhirInteger64? eventsSinceSubscriptionStart,
     @JsonKey(name: '_eventsSinceSubscriptionStart')
 
     /// [eventsSinceSubscriptionStartElement] (_eventsSinceSubscriptionStart): Extensions for eventsSinceSubscriptionStart;
-    Element? eventsSinceSubscriptionStartElement,
+    PrimitiveElement? eventsSinceSubscriptionStartElement,
 
     /// [notificationEvent] Detailed information about events relevant to this subscription notification.;
     List<SubscriptionStatusNotificationEvent>? notificationEvent,
@@ -3975,13 +3990,13 @@ class SubscriptionStatusNotificationEvent
     FhirInteger64? eventNumber,
 
     /// [eventNumberElement] (_eventNumber): Extensions for eventNumber;
-    @JsonKey(name: '_eventNumber') Element? eventNumberElement,
+    @JsonKey(name: '_eventNumber') PrimitiveElement? eventNumberElement,
 
     /// [timestamp] The actual time this event occured on the server.;
     FhirInstant? timestamp,
 
     /// [timestampElement] (_timestamp): Extensions for timestamp;
-    @JsonKey(name: '_timestamp') Element? timestampElement,
+    @JsonKey(name: '_timestamp') PrimitiveElement? timestampElement,
 
     /// [focus] The focus of this event. While this will usually be a reference to the focus resource of the event, it MAY contain a reference to a non-FHIR object.;
     Reference? focus,
@@ -4025,7 +4040,7 @@ class SubscriptionStatusNotificationEvent
 
 /// [SubscriptionTopic] Describes a stream of resource state changes or events and annotated with labels useful to filter projections from this topic.
 @freezed
-class SubscriptionTopic with Resource, _$SubscriptionTopic {
+class SubscriptionTopic with _$SubscriptionTopic implements DomainResource {
   /// [SubscriptionTopic] Describes a stream of resource state changes or events and annotated with labels useful to filter projections from this topic.
   const SubscriptionTopic._();
 
@@ -4137,13 +4152,13 @@ class SubscriptionTopic with Resource, _$SubscriptionTopic {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] (_implicitRules): Extensions for implicitRules;
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.;
     FhirCode? language,
 
     /// [languageElement] (_language): Extensions for language;
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.;
     Narrative? text,
@@ -4162,7 +4177,7 @@ class SubscriptionTopic with Resource, _$SubscriptionTopic {
     FhirUri? url,
 
     /// [urlElement] (_url): Extensions for url;
-    @JsonKey(name: '_url') Element? urlElement,
+    @JsonKey(name: '_url') PrimitiveElement? urlElement,
 
     /// [identifier] Business identifiers assigned to this subscription topic by the performer and/or other systems.  These identifiers remain constant as the resource is updated and propagates from server to server.;
     List<Identifier>? identifier,
@@ -4171,38 +4186,38 @@ class SubscriptionTopic with Resource, _$SubscriptionTopic {
     String? version,
 
     /// [versionElement] (_version): Extensions for version;
-    @JsonKey(name: '_version') Element? versionElement,
+    @JsonKey(name: '_version') PrimitiveElement? versionElement,
 
     /// [title] A short, descriptive, user-friendly title for the SubscriptionTopic, for example, "admission".;
     String? title,
 
     /// [titleElement] (_title): Extensions for title;
-    @JsonKey(name: '_title') Element? titleElement,
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
     List<FhirCanonical>? derivedFrom,
 
     /// [status] The current state of the SubscriptionTopic.;
     FhirCode? status,
 
     /// [statusElement] (_status): Extensions for status;
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [experimental] A flag to indicate that this TopSubscriptionTopicic is authored for testing purposes (or education/evaluation/marketing), and is not intended to be used for genuine usage.;
     FhirBoolean? experimental,
 
     /// [experimentalElement] (_experimental): Extensions for experimental;
-    @JsonKey(name: '_experimental') Element? experimentalElement,
+    @JsonKey(name: '_experimental') PrimitiveElement? experimentalElement,
 
     /// [date] For draft definitions, indicates the date of initial creation.  For active definitions, represents the date of activation.  For withdrawn definitions, indicates the date of withdrawal.;
     FhirDateTime? date,
 
     /// [dateElement] (_date): Extensions for date;
-    @JsonKey(name: '_date') Element? dateElement,
+    @JsonKey(name: '_date') PrimitiveElement? dateElement,
 
     /// [publisher] Helps establish the "authority/credibility" of the SubscriptionTopic.  May also allow for contact.;
     String? publisher,
 
     /// [publisherElement] (_publisher): Extensions for publisher;
-    @JsonKey(name: '_publisher') Element? publisherElement,
+    @JsonKey(name: '_publisher') PrimitiveElement? publisherElement,
 
     /// [contact] Contact details to assist a user in finding and communicating with the publisher.;
     List<ContactDetail>? contact,
@@ -4211,7 +4226,7 @@ class SubscriptionTopic with Resource, _$SubscriptionTopic {
     FhirMarkdown? description,
 
     /// [descriptionElement] (_description): Extensions for description;
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [useContext] The content was developed with a focus and intent of supporting the contexts that are listed. These terms may be used to assist with indexing and searching of code system definitions.;
     List<UsageContext>? useContext,
@@ -4223,17 +4238,17 @@ class SubscriptionTopic with Resource, _$SubscriptionTopic {
     FhirMarkdown? purpose,
 
     /// [purposeElement] (_purpose): Extensions for purpose;
-    @JsonKey(name: '_purpose') Element? purposeElement,
+    @JsonKey(name: '_purpose') PrimitiveElement? purposeElement,
 
     /// [copyright] A copyright statement relating to the SubscriptionTopic and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the SubscriptionTopic.;
     FhirMarkdown? copyright,
 
     /// [copyrightElement] (_copyright): Extensions for copyright;
-    @JsonKey(name: '_copyright') Element? copyrightElement,
+    @JsonKey(name: '_copyright') PrimitiveElement? copyrightElement,
     FhirDate? approvalDate,
-    @JsonKey(name: '_approvalDate') Element? approvalDateElement,
+    @JsonKey(name: '_approvalDate') PrimitiveElement? approvalDateElement,
     FhirDate? lastReviewDate,
-    @JsonKey(name: '_lastReviewDate') Element? lastReviewDateElement,
+    @JsonKey(name: '_lastReviewDate') PrimitiveElement? lastReviewDateElement,
     Period? effectivePeriod,
     List<SubscriptionTopicResourceTrigger>? resourceTrigger,
     List<SubscriptionTopicEventTrigger>? eventTrigger,
@@ -4317,15 +4332,16 @@ class SubscriptionTopicResourceTrigger
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirMarkdown? description,
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
     FhirUri? resource,
-    @JsonKey(name: '_resource') Element? resourceElement,
+    @JsonKey(name: '_resource') PrimitiveElement? resourceElement,
     List<FhirCode>? supportedInteraction,
     @JsonKey(name: '_supportedInteraction')
     List<Element>? supportedInteractionElement,
     SubscriptionTopicQueryCriteria? queryCriteria,
     String? fhirPathCriteria,
-    @JsonKey(name: '_fhirPathCriteria') Element? fhirPathCriteriaElement,
+    @JsonKey(name: '_fhirPathCriteria')
+    PrimitiveElement? fhirPathCriteriaElement,
   }) = _SubscriptionTopicResourceTrigger;
 
   @override
@@ -4403,15 +4419,15 @@ class SubscriptionTopicQueryCriteria
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     String? previous,
-    @JsonKey(name: '_previous') Element? previousElement,
+    @JsonKey(name: '_previous') PrimitiveElement? previousElement,
     FhirCode? resultForCreate,
-    @JsonKey(name: '_resultForCreate') Element? resultForCreateElement,
+    @JsonKey(name: '_resultForCreate') PrimitiveElement? resultForCreateElement,
     String? current,
-    @JsonKey(name: '_current') Element? currentElement,
+    @JsonKey(name: '_current') PrimitiveElement? currentElement,
     FhirCode? resultForDelete,
-    @JsonKey(name: '_resultForDelete') Element? resultForDeleteElement,
+    @JsonKey(name: '_resultForDelete') PrimitiveElement? resultForDeleteElement,
     FhirBoolean? requireBoth,
-    @JsonKey(name: '_requireBoth') Element? requireBothElement,
+    @JsonKey(name: '_requireBoth') PrimitiveElement? requireBothElement,
   }) = _SubscriptionTopicQueryCriteria;
 
   @override
@@ -4478,10 +4494,10 @@ class SubscriptionTopicEventTrigger
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirMarkdown? description,
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
     required CodeableConcept event,
     FhirUri? resource,
-    @JsonKey(name: '_resource') Element? resourceElement,
+    @JsonKey(name: '_resource') PrimitiveElement? resourceElement,
   }) = _SubscriptionTopicEventTrigger;
 
   @override
@@ -4557,13 +4573,14 @@ class SubscriptionTopicCanFilterBy
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirMarkdown? description,
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
     FhirUri? resource,
-    @JsonKey(name: '_resource') Element? resourceElement,
+    @JsonKey(name: '_resource') PrimitiveElement? resourceElement,
     String? filterParameter,
-    @JsonKey(name: '_filterParameter') Element? filterParameterElement,
+    @JsonKey(name: '_filterParameter') PrimitiveElement? filterParameterElement,
     FhirUri? filterDefinition,
-    @JsonKey(name: '_filterDefinition') Element? filterDefinitionElement,
+    @JsonKey(name: '_filterDefinition')
+    PrimitiveElement? filterDefinitionElement,
     List<FhirCode>? modifier,
     @JsonKey(name: '_modifier') List<Element>? modifierElement,
   }) = _SubscriptionTopicCanFilterBy;
@@ -4631,7 +4648,7 @@ class SubscriptionTopicNotificationShape
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUri? resource,
-    @JsonKey(name: '_resource') Element? resourceElement,
+    @JsonKey(name: '_resource') PrimitiveElement? resourceElement,
     List<String>? include,
     @JsonKey(name: '_include') List<Element>? includeElement,
     List<String>? revInclude,

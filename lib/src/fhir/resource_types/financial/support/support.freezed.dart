@@ -40,14 +40,15 @@ mixin _$Coverage {
 
   /// [implicitRulesElement] Extensions for implicitRules
   @JsonKey(name: '_implicitRules')
-  Element? get implicitRulesElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get implicitRulesElement =>
+      throw _privateConstructorUsedError;
 
   /// [language] The base language in which the resource is written.
   FhirCode? get language => throw _privateConstructorUsedError;
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get languageElement => throw _privateConstructorUsedError;
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -96,7 +97,7 @@ mixin _$Coverage {
 
   /// [statusElement] Extensions for status
   @JsonKey(name: '_status')
-  Element? get statusElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get statusElement => throw _privateConstructorUsedError;
 
   /// [type] The type of coverage: social program, medical plan, accident
   /// coverage (workers compensation, auto), group health or payment by an
@@ -116,7 +117,8 @@ mixin _$Coverage {
 
   /// [subscriberIdElement] Extensions for subscriberId
   @JsonKey(name: '_subscriberId')
-  Element? get subscriberIdElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get subscriberIdElement =>
+      throw _privateConstructorUsedError;
 
   /// [beneficiary] The party who benefits from the insurance coverage; the
   ///  patient when products and/or services are provided.
@@ -127,7 +129,7 @@ mixin _$Coverage {
 
   /// [dependentElement] Extensions for dependent
   @JsonKey(name: '_dependent')
-  Element? get dependentElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get dependentElement => throw _privateConstructorUsedError;
 
   /// [relationship] The relationship of beneficiary (patient) to the
   ///  subscriber.
@@ -154,7 +156,7 @@ mixin _$Coverage {
 
   /// [orderElement] Extensions for order
   @JsonKey(name: '_order')
-  Element? get orderElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get orderElement => throw _privateConstructorUsedError;
 
   /// [network] The insurer-specific identifier for the insurer-defined network
   /// of providers to which the beneficiary may seek treatment which will be
@@ -164,7 +166,7 @@ mixin _$Coverage {
 
   /// [networkElement] Extensions for network
   @JsonKey(name: '_network')
-  Element? get networkElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get networkElement => throw _privateConstructorUsedError;
 
   /// [costToBeneficiary] A suite of codes indicating the cost category and
   /// associated amount which have been detailed in the policy and may have been
@@ -179,7 +181,8 @@ mixin _$Coverage {
 
   /// [subrogationElement] Extensions for subrogation
   @JsonKey(name: '_subrogation')
-  Element? get subrogationElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get subrogationElement =>
+      throw _privateConstructorUsedError;
 
   /// [contract] The policy(s) which constitute this insurance coverage.
   List<Reference>? get contract => throw _privateConstructorUsedError;
@@ -201,35 +204,35 @@ abstract class $CoverageCopyWith<$Res> {
       String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
       FhirCode? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       Narrative? text,
       List<Resource>? contained,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<Identifier>? identifier,
       FhirCode? status,
-      @JsonKey(name: '_status') Element? statusElement,
+      @JsonKey(name: '_status') PrimitiveElement? statusElement,
       CodeableConcept? type,
       Reference? policyHolder,
       Reference? subscriber,
       String? subscriberId,
-      @JsonKey(name: '_subscriberId') Element? subscriberIdElement,
+      @JsonKey(name: '_subscriberId') PrimitiveElement? subscriberIdElement,
       Reference beneficiary,
       String? dependent,
-      @JsonKey(name: '_dependent') Element? dependentElement,
+      @JsonKey(name: '_dependent') PrimitiveElement? dependentElement,
       CodeableConcept? relationship,
       Period? period,
       List<Reference> payor,
       @JsonKey(name: 'class') List<CoverageClass>? class_,
       FhirPositiveInt? order,
-      @JsonKey(name: '_order') Element? orderElement,
+      @JsonKey(name: '_order') PrimitiveElement? orderElement,
       String? network,
-      @JsonKey(name: '_network') Element? networkElement,
+      @JsonKey(name: '_network') PrimitiveElement? networkElement,
       List<CoverageCostToBeneficiary>? costToBeneficiary,
       FhirBoolean? subrogation,
-      @JsonKey(name: '_subrogation') Element? subrogationElement,
+      @JsonKey(name: '_subrogation') PrimitiveElement? subrogationElement,
       List<Reference>? contract});
 
   $FhirMetaCopyWith<$Res>? get meta;
@@ -310,7 +313,7 @@ class _$CoverageCopyWithImpl<$Res, $Val extends Coverage>
       implicitRulesElement: freezed == implicitRulesElement
           ? _value.implicitRulesElement
           : implicitRulesElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -318,7 +321,7 @@ class _$CoverageCopyWithImpl<$Res, $Val extends Coverage>
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -346,7 +349,7 @@ class _$CoverageCopyWithImpl<$Res, $Val extends Coverage>
       statusElement: freezed == statusElement
           ? _value.statusElement
           : statusElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -366,7 +369,7 @@ class _$CoverageCopyWithImpl<$Res, $Val extends Coverage>
       subscriberIdElement: freezed == subscriberIdElement
           ? _value.subscriberIdElement
           : subscriberIdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       beneficiary: null == beneficiary
           ? _value.beneficiary
           : beneficiary // ignore: cast_nullable_to_non_nullable
@@ -378,7 +381,7 @@ class _$CoverageCopyWithImpl<$Res, $Val extends Coverage>
       dependentElement: freezed == dependentElement
           ? _value.dependentElement
           : dependentElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       relationship: freezed == relationship
           ? _value.relationship
           : relationship // ignore: cast_nullable_to_non_nullable
@@ -402,7 +405,7 @@ class _$CoverageCopyWithImpl<$Res, $Val extends Coverage>
       orderElement: freezed == orderElement
           ? _value.orderElement
           : orderElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       network: freezed == network
           ? _value.network
           : network // ignore: cast_nullable_to_non_nullable
@@ -410,7 +413,7 @@ class _$CoverageCopyWithImpl<$Res, $Val extends Coverage>
       networkElement: freezed == networkElement
           ? _value.networkElement
           : networkElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       costToBeneficiary: freezed == costToBeneficiary
           ? _value.costToBeneficiary
           : costToBeneficiary // ignore: cast_nullable_to_non_nullable
@@ -422,7 +425,7 @@ class _$CoverageCopyWithImpl<$Res, $Val extends Coverage>
       subrogationElement: freezed == subrogationElement
           ? _value.subrogationElement
           : subrogationElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       contract: freezed == contract
           ? _value.contract
           : contract // ignore: cast_nullable_to_non_nullable
@@ -537,35 +540,35 @@ abstract class _$$CoverageImplCopyWith<$Res>
       String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
       FhirCode? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       Narrative? text,
       List<Resource>? contained,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<Identifier>? identifier,
       FhirCode? status,
-      @JsonKey(name: '_status') Element? statusElement,
+      @JsonKey(name: '_status') PrimitiveElement? statusElement,
       CodeableConcept? type,
       Reference? policyHolder,
       Reference? subscriber,
       String? subscriberId,
-      @JsonKey(name: '_subscriberId') Element? subscriberIdElement,
+      @JsonKey(name: '_subscriberId') PrimitiveElement? subscriberIdElement,
       Reference beneficiary,
       String? dependent,
-      @JsonKey(name: '_dependent') Element? dependentElement,
+      @JsonKey(name: '_dependent') PrimitiveElement? dependentElement,
       CodeableConcept? relationship,
       Period? period,
       List<Reference> payor,
       @JsonKey(name: 'class') List<CoverageClass>? class_,
       FhirPositiveInt? order,
-      @JsonKey(name: '_order') Element? orderElement,
+      @JsonKey(name: '_order') PrimitiveElement? orderElement,
       String? network,
-      @JsonKey(name: '_network') Element? networkElement,
+      @JsonKey(name: '_network') PrimitiveElement? networkElement,
       List<CoverageCostToBeneficiary>? costToBeneficiary,
       FhirBoolean? subrogation,
-      @JsonKey(name: '_subrogation') Element? subrogationElement,
+      @JsonKey(name: '_subrogation') PrimitiveElement? subrogationElement,
       List<Reference>? contract});
 
   @override
@@ -652,7 +655,7 @@ class __$$CoverageImplCopyWithImpl<$Res>
       implicitRulesElement: freezed == implicitRulesElement
           ? _value.implicitRulesElement
           : implicitRulesElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -660,7 +663,7 @@ class __$$CoverageImplCopyWithImpl<$Res>
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -688,7 +691,7 @@ class __$$CoverageImplCopyWithImpl<$Res>
       statusElement: freezed == statusElement
           ? _value.statusElement
           : statusElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -708,7 +711,7 @@ class __$$CoverageImplCopyWithImpl<$Res>
       subscriberIdElement: freezed == subscriberIdElement
           ? _value.subscriberIdElement
           : subscriberIdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       beneficiary: null == beneficiary
           ? _value.beneficiary
           : beneficiary // ignore: cast_nullable_to_non_nullable
@@ -720,7 +723,7 @@ class __$$CoverageImplCopyWithImpl<$Res>
       dependentElement: freezed == dependentElement
           ? _value.dependentElement
           : dependentElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       relationship: freezed == relationship
           ? _value.relationship
           : relationship // ignore: cast_nullable_to_non_nullable
@@ -744,7 +747,7 @@ class __$$CoverageImplCopyWithImpl<$Res>
       orderElement: freezed == orderElement
           ? _value.orderElement
           : orderElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       network: freezed == network
           ? _value.network
           : network // ignore: cast_nullable_to_non_nullable
@@ -752,7 +755,7 @@ class __$$CoverageImplCopyWithImpl<$Res>
       networkElement: freezed == networkElement
           ? _value.networkElement
           : networkElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       costToBeneficiary: freezed == costToBeneficiary
           ? _value._costToBeneficiary
           : costToBeneficiary // ignore: cast_nullable_to_non_nullable
@@ -764,7 +767,7 @@ class __$$CoverageImplCopyWithImpl<$Res>
       subrogationElement: freezed == subrogationElement
           ? _value.subrogationElement
           : subrogationElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       contract: freezed == contract
           ? _value._contract
           : contract // ignore: cast_nullable_to_non_nullable
@@ -850,7 +853,7 @@ class _$CoverageImpl extends _Coverage {
   /// [implicitRulesElement] Extensions for implicitRules
   @override
   @JsonKey(name: '_implicitRules')
-  final Element? implicitRulesElement;
+  final PrimitiveElement? implicitRulesElement;
 
   /// [language] The base language in which the resource is written.
   @override
@@ -859,7 +862,7 @@ class _$CoverageImpl extends _Coverage {
   /// [languageElement] Extensions for language
   @override
   @JsonKey(name: '_language')
-  final Element? languageElement;
+  final PrimitiveElement? languageElement;
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -971,7 +974,7 @@ class _$CoverageImpl extends _Coverage {
   /// [statusElement] Extensions for status
   @override
   @JsonKey(name: '_status')
-  final Element? statusElement;
+  final PrimitiveElement? statusElement;
 
   /// [type] The type of coverage: social program, medical plan, accident
   /// coverage (workers compensation, auto), group health or payment by an
@@ -996,7 +999,7 @@ class _$CoverageImpl extends _Coverage {
   /// [subscriberIdElement] Extensions for subscriberId
   @override
   @JsonKey(name: '_subscriberId')
-  final Element? subscriberIdElement;
+  final PrimitiveElement? subscriberIdElement;
 
   /// [beneficiary] The party who benefits from the insurance coverage; the
   ///  patient when products and/or services are provided.
@@ -1010,7 +1013,7 @@ class _$CoverageImpl extends _Coverage {
   /// [dependentElement] Extensions for dependent
   @override
   @JsonKey(name: '_dependent')
-  final Element? dependentElement;
+  final PrimitiveElement? dependentElement;
 
   /// [relationship] The relationship of beneficiary (patient) to the
   ///  subscriber.
@@ -1060,7 +1063,7 @@ class _$CoverageImpl extends _Coverage {
   /// [orderElement] Extensions for order
   @override
   @JsonKey(name: '_order')
-  final Element? orderElement;
+  final PrimitiveElement? orderElement;
 
   /// [network] The insurer-specific identifier for the insurer-defined network
   /// of providers to which the beneficiary may seek treatment which will be
@@ -1072,7 +1075,7 @@ class _$CoverageImpl extends _Coverage {
   /// [networkElement] Extensions for network
   @override
   @JsonKey(name: '_network')
-  final Element? networkElement;
+  final PrimitiveElement? networkElement;
 
   /// [costToBeneficiary] A suite of codes indicating the cost category and
   /// associated amount which have been detailed in the policy and may have been
@@ -1101,7 +1104,7 @@ class _$CoverageImpl extends _Coverage {
   /// [subrogationElement] Extensions for subrogation
   @override
   @JsonKey(name: '_subrogation')
-  final Element? subrogationElement;
+  final PrimitiveElement? subrogationElement;
 
   /// [contract] The policy(s) which constitute this insurance coverage.
   final List<Reference>? _contract;
@@ -1246,35 +1249,37 @@ abstract class _Coverage extends Coverage {
       final String? id,
       final FhirMeta? meta,
       final FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') final Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules')
+      final PrimitiveElement? implicitRulesElement,
       final FhirCode? language,
-      @JsonKey(name: '_language') final Element? languageElement,
+      @JsonKey(name: '_language') final PrimitiveElement? languageElement,
       final Narrative? text,
       final List<Resource>? contained,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final List<Identifier>? identifier,
       final FhirCode? status,
-      @JsonKey(name: '_status') final Element? statusElement,
+      @JsonKey(name: '_status') final PrimitiveElement? statusElement,
       final CodeableConcept? type,
       final Reference? policyHolder,
       final Reference? subscriber,
       final String? subscriberId,
-      @JsonKey(name: '_subscriberId') final Element? subscriberIdElement,
+      @JsonKey(name: '_subscriberId')
+      final PrimitiveElement? subscriberIdElement,
       required final Reference beneficiary,
       final String? dependent,
-      @JsonKey(name: '_dependent') final Element? dependentElement,
+      @JsonKey(name: '_dependent') final PrimitiveElement? dependentElement,
       final CodeableConcept? relationship,
       final Period? period,
       required final List<Reference> payor,
       @JsonKey(name: 'class') final List<CoverageClass>? class_,
       final FhirPositiveInt? order,
-      @JsonKey(name: '_order') final Element? orderElement,
+      @JsonKey(name: '_order') final PrimitiveElement? orderElement,
       final String? network,
-      @JsonKey(name: '_network') final Element? networkElement,
+      @JsonKey(name: '_network') final PrimitiveElement? networkElement,
       final List<CoverageCostToBeneficiary>? costToBeneficiary,
       final FhirBoolean? subrogation,
-      @JsonKey(name: '_subrogation') final Element? subrogationElement,
+      @JsonKey(name: '_subrogation') final PrimitiveElement? subrogationElement,
       final List<Reference>? contract}) = _$CoverageImpl;
   const _Coverage._() : super._();
 
@@ -1306,7 +1311,7 @@ abstract class _Coverage extends Coverage {
 
   /// [implicitRulesElement] Extensions for implicitRules
   @JsonKey(name: '_implicitRules')
-  Element? get implicitRulesElement;
+  PrimitiveElement? get implicitRulesElement;
   @override
 
   /// [language] The base language in which the resource is written.
@@ -1315,7 +1320,7 @@ abstract class _Coverage extends Coverage {
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement;
+  PrimitiveElement? get languageElement;
   @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
@@ -1370,7 +1375,7 @@ abstract class _Coverage extends Coverage {
 
   /// [statusElement] Extensions for status
   @JsonKey(name: '_status')
-  Element? get statusElement;
+  PrimitiveElement? get statusElement;
   @override
 
   /// [type] The type of coverage: social program, medical plan, accident
@@ -1395,7 +1400,7 @@ abstract class _Coverage extends Coverage {
 
   /// [subscriberIdElement] Extensions for subscriberId
   @JsonKey(name: '_subscriberId')
-  Element? get subscriberIdElement;
+  PrimitiveElement? get subscriberIdElement;
   @override
 
   /// [beneficiary] The party who benefits from the insurance coverage; the
@@ -1409,7 +1414,7 @@ abstract class _Coverage extends Coverage {
 
   /// [dependentElement] Extensions for dependent
   @JsonKey(name: '_dependent')
-  Element? get dependentElement;
+  PrimitiveElement? get dependentElement;
   @override
 
   /// [relationship] The relationship of beneficiary (patient) to the
@@ -1442,7 +1447,7 @@ abstract class _Coverage extends Coverage {
 
   /// [orderElement] Extensions for order
   @JsonKey(name: '_order')
-  Element? get orderElement;
+  PrimitiveElement? get orderElement;
   @override
 
   /// [network] The insurer-specific identifier for the insurer-defined network
@@ -1454,7 +1459,7 @@ abstract class _Coverage extends Coverage {
 
   /// [networkElement] Extensions for network
   @JsonKey(name: '_network')
-  Element? get networkElement;
+  PrimitiveElement? get networkElement;
   @override
 
   /// [costToBeneficiary] A suite of codes indicating the cost category and
@@ -1471,7 +1476,7 @@ abstract class _Coverage extends Coverage {
 
   /// [subrogationElement] Extensions for subrogation
   @JsonKey(name: '_subrogation')
-  Element? get subrogationElement;
+  PrimitiveElement? get subrogationElement;
   @override
 
   /// [contract] The policy(s) which constitute this insurance coverage.
@@ -1528,14 +1533,14 @@ mixin _$CoverageClass {
 
   /// [valueElement] Extensions for value
   @JsonKey(name: '_value')
-  Element? get valueElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get valueElement => throw _privateConstructorUsedError;
 
   /// [name] A short description for the class.
   String? get name => throw _privateConstructorUsedError;
 
   /// [nameElement] Extensions for name
   @JsonKey(name: '_name')
-  Element? get nameElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get nameElement => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1555,9 +1560,9 @@ abstract class $CoverageClassCopyWith<$Res> {
       List<FhirExtension>? modifierExtension,
       CodeableConcept type,
       String? value,
-      @JsonKey(name: '_value') Element? valueElement,
+      @JsonKey(name: '_value') PrimitiveElement? valueElement,
       String? name,
-      @JsonKey(name: '_name') Element? nameElement});
+      @JsonKey(name: '_name') PrimitiveElement? nameElement});
 
   $CodeableConceptCopyWith<$Res> get type;
 }
@@ -1608,7 +1613,7 @@ class _$CoverageClassCopyWithImpl<$Res, $Val extends CoverageClass>
       valueElement: freezed == valueElement
           ? _value.valueElement
           : valueElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -1616,7 +1621,7 @@ class _$CoverageClassCopyWithImpl<$Res, $Val extends CoverageClass>
       nameElement: freezed == nameElement
           ? _value.nameElement
           : nameElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ) as $Val);
   }
 
@@ -1643,9 +1648,9 @@ abstract class _$$CoverageClassImplCopyWith<$Res>
       List<FhirExtension>? modifierExtension,
       CodeableConcept type,
       String? value,
-      @JsonKey(name: '_value') Element? valueElement,
+      @JsonKey(name: '_value') PrimitiveElement? valueElement,
       String? name,
-      @JsonKey(name: '_name') Element? nameElement});
+      @JsonKey(name: '_name') PrimitiveElement? nameElement});
 
   @override
   $CodeableConceptCopyWith<$Res> get type;
@@ -1695,7 +1700,7 @@ class __$$CoverageClassImplCopyWithImpl<$Res>
       valueElement: freezed == valueElement
           ? _value.valueElement
           : valueElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -1703,7 +1708,7 @@ class __$$CoverageClassImplCopyWithImpl<$Res>
       nameElement: freezed == nameElement
           ? _value.nameElement
           : nameElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ));
   }
 }
@@ -1808,7 +1813,7 @@ class _$CoverageClassImpl extends _CoverageClass {
   /// [valueElement] Extensions for value
   @override
   @JsonKey(name: '_value')
-  final Element? valueElement;
+  final PrimitiveElement? valueElement;
 
   /// [name] A short description for the class.
   @override
@@ -1817,7 +1822,7 @@ class _$CoverageClassImpl extends _CoverageClass {
   /// [nameElement] Extensions for name
   @override
   @JsonKey(name: '_name')
-  final Element? nameElement;
+  final PrimitiveElement? nameElement;
 
   @override
   String toString() {
@@ -1877,9 +1882,9 @@ abstract class _CoverageClass extends CoverageClass {
           final List<FhirExtension>? modifierExtension,
           required final CodeableConcept type,
           final String? value,
-          @JsonKey(name: '_value') final Element? valueElement,
+          @JsonKey(name: '_value') final PrimitiveElement? valueElement,
           final String? name,
-          @JsonKey(name: '_name') final Element? nameElement}) =
+          @JsonKey(name: '_name') final PrimitiveElement? nameElement}) =
       _$CoverageClassImpl;
   const _CoverageClass._() : super._();
 
@@ -1932,7 +1937,7 @@ abstract class _CoverageClass extends CoverageClass {
 
   /// [valueElement] Extensions for value
   @JsonKey(name: '_value')
-  Element? get valueElement;
+  PrimitiveElement? get valueElement;
   @override
 
   /// [name] A short description for the class.
@@ -1941,7 +1946,7 @@ abstract class _CoverageClass extends CoverageClass {
 
   /// [nameElement] Extensions for name
   @JsonKey(name: '_name')
-  Element? get nameElement;
+  PrimitiveElement? get nameElement;
   @override
   @JsonKey(ignore: true)
   _$$CoverageClassImplCopyWith<_$CoverageClassImpl> get copyWith =>
@@ -2837,14 +2842,15 @@ mixin _$CoverageEligibilityRequest {
 
   /// [implicitRulesElement] Extensions for implicitRules
   @JsonKey(name: '_implicitRules')
-  Element? get implicitRulesElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get implicitRulesElement =>
+      throw _privateConstructorUsedError;
 
   /// [language] The base language in which the resource is written.
   FhirCode? get language => throw _privateConstructorUsedError;
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get languageElement => throw _privateConstructorUsedError;
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -2894,7 +2900,7 @@ mixin _$CoverageEligibilityRequest {
 
   /// [statusElement] Extensions for status
   @JsonKey(name: '_status')
-  Element? get statusElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get statusElement => throw _privateConstructorUsedError;
 
   /// [priority] When the requestor expects the processor to complete
   ///  processing.
@@ -2921,7 +2927,8 @@ mixin _$CoverageEligibilityRequest {
 
   /// [servicedDateElement] Extensions for servicedDate
   @JsonKey(name: '_servicedDate')
-  Element? get servicedDateElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get servicedDateElement =>
+      throw _privateConstructorUsedError;
 
   /// [servicedPeriod] The date or dates when the enclosed suite of services
   ///  were performed or completed.
@@ -2932,7 +2939,7 @@ mixin _$CoverageEligibilityRequest {
 
   /// [createdElement] Extensions for created
   @JsonKey(name: '_created')
-  Element? get createdElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get createdElement => throw _privateConstructorUsedError;
 
   /// [enterer] Person who created the request.
   Reference? get enterer => throw _privateConstructorUsedError;
@@ -2983,25 +2990,25 @@ abstract class $CoverageEligibilityRequestCopyWith<$Res> {
       String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
       FhirCode? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       Narrative? text,
       List<Resource>? contained,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<Identifier>? identifier,
       FhirCode? status,
-      @JsonKey(name: '_status') Element? statusElement,
+      @JsonKey(name: '_status') PrimitiveElement? statusElement,
       CodeableConcept? priority,
       List<FhirCode>? purpose,
       @JsonKey(name: '_purpose') List<Element?>? purposeElement,
       Reference patient,
       FhirDate? servicedDate,
-      @JsonKey(name: '_servicedDate') Element? servicedDateElement,
+      @JsonKey(name: '_servicedDate') PrimitiveElement? servicedDateElement,
       Period? servicedPeriod,
       FhirDateTime? created,
-      @JsonKey(name: '_created') Element? createdElement,
+      @JsonKey(name: '_created') PrimitiveElement? createdElement,
       Reference? enterer,
       Reference? provider,
       Reference insurer,
@@ -3086,7 +3093,7 @@ class _$CoverageEligibilityRequestCopyWithImpl<$Res,
       implicitRulesElement: freezed == implicitRulesElement
           ? _value.implicitRulesElement
           : implicitRulesElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -3094,7 +3101,7 @@ class _$CoverageEligibilityRequestCopyWithImpl<$Res,
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -3122,7 +3129,7 @@ class _$CoverageEligibilityRequestCopyWithImpl<$Res,
       statusElement: freezed == statusElement
           ? _value.statusElement
           : statusElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       priority: freezed == priority
           ? _value.priority
           : priority // ignore: cast_nullable_to_non_nullable
@@ -3146,7 +3153,7 @@ class _$CoverageEligibilityRequestCopyWithImpl<$Res,
       servicedDateElement: freezed == servicedDateElement
           ? _value.servicedDateElement
           : servicedDateElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       servicedPeriod: freezed == servicedPeriod
           ? _value.servicedPeriod
           : servicedPeriod // ignore: cast_nullable_to_non_nullable
@@ -3158,7 +3165,7 @@ class _$CoverageEligibilityRequestCopyWithImpl<$Res,
       createdElement: freezed == createdElement
           ? _value.createdElement
           : createdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       enterer: freezed == enterer
           ? _value.enterer
           : enterer // ignore: cast_nullable_to_non_nullable
@@ -3306,25 +3313,25 @@ abstract class _$$CoverageEligibilityRequestImplCopyWith<$Res>
       String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
       FhirCode? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       Narrative? text,
       List<Resource>? contained,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<Identifier>? identifier,
       FhirCode? status,
-      @JsonKey(name: '_status') Element? statusElement,
+      @JsonKey(name: '_status') PrimitiveElement? statusElement,
       CodeableConcept? priority,
       List<FhirCode>? purpose,
       @JsonKey(name: '_purpose') List<Element?>? purposeElement,
       Reference patient,
       FhirDate? servicedDate,
-      @JsonKey(name: '_servicedDate') Element? servicedDateElement,
+      @JsonKey(name: '_servicedDate') PrimitiveElement? servicedDateElement,
       Period? servicedPeriod,
       FhirDateTime? created,
-      @JsonKey(name: '_created') Element? createdElement,
+      @JsonKey(name: '_created') PrimitiveElement? createdElement,
       Reference? enterer,
       Reference? provider,
       Reference insurer,
@@ -3417,7 +3424,7 @@ class __$$CoverageEligibilityRequestImplCopyWithImpl<$Res>
       implicitRulesElement: freezed == implicitRulesElement
           ? _value.implicitRulesElement
           : implicitRulesElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -3425,7 +3432,7 @@ class __$$CoverageEligibilityRequestImplCopyWithImpl<$Res>
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -3453,7 +3460,7 @@ class __$$CoverageEligibilityRequestImplCopyWithImpl<$Res>
       statusElement: freezed == statusElement
           ? _value.statusElement
           : statusElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       priority: freezed == priority
           ? _value.priority
           : priority // ignore: cast_nullable_to_non_nullable
@@ -3477,7 +3484,7 @@ class __$$CoverageEligibilityRequestImplCopyWithImpl<$Res>
       servicedDateElement: freezed == servicedDateElement
           ? _value.servicedDateElement
           : servicedDateElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       servicedPeriod: freezed == servicedPeriod
           ? _value.servicedPeriod
           : servicedPeriod // ignore: cast_nullable_to_non_nullable
@@ -3489,7 +3496,7 @@ class __$$CoverageEligibilityRequestImplCopyWithImpl<$Res>
       createdElement: freezed == createdElement
           ? _value.createdElement
           : createdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       enterer: freezed == enterer
           ? _value.enterer
           : enterer // ignore: cast_nullable_to_non_nullable
@@ -3597,7 +3604,7 @@ class _$CoverageEligibilityRequestImpl extends _CoverageEligibilityRequest {
   /// [implicitRulesElement] Extensions for implicitRules
   @override
   @JsonKey(name: '_implicitRules')
-  final Element? implicitRulesElement;
+  final PrimitiveElement? implicitRulesElement;
 
   /// [language] The base language in which the resource is written.
   @override
@@ -3606,7 +3613,7 @@ class _$CoverageEligibilityRequestImpl extends _CoverageEligibilityRequest {
   /// [languageElement] Extensions for language
   @override
   @JsonKey(name: '_language')
-  final Element? languageElement;
+  final PrimitiveElement? languageElement;
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -3720,7 +3727,7 @@ class _$CoverageEligibilityRequestImpl extends _CoverageEligibilityRequest {
   /// [statusElement] Extensions for status
   @override
   @JsonKey(name: '_status')
-  final Element? statusElement;
+  final PrimitiveElement? statusElement;
 
   /// [priority] When the requestor expects the processor to complete
   ///  processing.
@@ -3775,7 +3782,7 @@ class _$CoverageEligibilityRequestImpl extends _CoverageEligibilityRequest {
   /// [servicedDateElement] Extensions for servicedDate
   @override
   @JsonKey(name: '_servicedDate')
-  final Element? servicedDateElement;
+  final PrimitiveElement? servicedDateElement;
 
   /// [servicedPeriod] The date or dates when the enclosed suite of services
   ///  were performed or completed.
@@ -3789,7 +3796,7 @@ class _$CoverageEligibilityRequestImpl extends _CoverageEligibilityRequest {
   /// [createdElement] Extensions for created
   @override
   @JsonKey(name: '_created')
-  final Element? createdElement;
+  final PrimitiveElement? createdElement;
 
   /// [enterer] Person who created the request.
   @override
@@ -3977,25 +3984,27 @@ abstract class _CoverageEligibilityRequest extends CoverageEligibilityRequest {
           final String? id,
           final FhirMeta? meta,
           final FhirUri? implicitRules,
-          @JsonKey(name: '_implicitRules') final Element? implicitRulesElement,
+          @JsonKey(name: '_implicitRules')
+          final PrimitiveElement? implicitRulesElement,
           final FhirCode? language,
-          @JsonKey(name: '_language') final Element? languageElement,
+          @JsonKey(name: '_language') final PrimitiveElement? languageElement,
           final Narrative? text,
           final List<Resource>? contained,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final List<Identifier>? identifier,
           final FhirCode? status,
-          @JsonKey(name: '_status') final Element? statusElement,
+          @JsonKey(name: '_status') final PrimitiveElement? statusElement,
           final CodeableConcept? priority,
           final List<FhirCode>? purpose,
           @JsonKey(name: '_purpose') final List<Element?>? purposeElement,
           required final Reference patient,
           final FhirDate? servicedDate,
-          @JsonKey(name: '_servicedDate') final Element? servicedDateElement,
+          @JsonKey(name: '_servicedDate')
+          final PrimitiveElement? servicedDateElement,
           final Period? servicedPeriod,
           final FhirDateTime? created,
-          @JsonKey(name: '_created') final Element? createdElement,
+          @JsonKey(name: '_created') final PrimitiveElement? createdElement,
           final Reference? enterer,
           final Reference? provider,
           required final Reference insurer,
@@ -4034,7 +4043,7 @@ abstract class _CoverageEligibilityRequest extends CoverageEligibilityRequest {
 
   /// [implicitRulesElement] Extensions for implicitRules
   @JsonKey(name: '_implicitRules')
-  Element? get implicitRulesElement;
+  PrimitiveElement? get implicitRulesElement;
   @override
 
   /// [language] The base language in which the resource is written.
@@ -4043,7 +4052,7 @@ abstract class _CoverageEligibilityRequest extends CoverageEligibilityRequest {
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement;
+  PrimitiveElement? get languageElement;
   @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
@@ -4099,7 +4108,7 @@ abstract class _CoverageEligibilityRequest extends CoverageEligibilityRequest {
 
   /// [statusElement] Extensions for status
   @JsonKey(name: '_status')
-  Element? get statusElement;
+  PrimitiveElement? get statusElement;
   @override
 
   /// [priority] When the requestor expects the processor to complete
@@ -4132,7 +4141,7 @@ abstract class _CoverageEligibilityRequest extends CoverageEligibilityRequest {
 
   /// [servicedDateElement] Extensions for servicedDate
   @JsonKey(name: '_servicedDate')
-  Element? get servicedDateElement;
+  PrimitiveElement? get servicedDateElement;
   @override
 
   /// [servicedPeriod] The date or dates when the enclosed suite of services
@@ -4146,7 +4155,7 @@ abstract class _CoverageEligibilityRequest extends CoverageEligibilityRequest {
 
   /// [createdElement] Extensions for created
   @JsonKey(name: '_created')
-  Element? get createdElement;
+  PrimitiveElement? get createdElement;
   @override
 
   /// [enterer] Person who created the request.
@@ -4229,7 +4238,7 @@ mixin _$CoverageEligibilityRequestSupportingInfo {
 
   /// [sequenceElement] Extensions for sequence
   @JsonKey(name: '_sequence')
-  Element? get sequenceElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get sequenceElement => throw _privateConstructorUsedError;
 
   /// [information] Additional data or information such as resources,
   /// documents, images etc. including references to the data or the actual
@@ -4242,7 +4251,8 @@ mixin _$CoverageEligibilityRequestSupportingInfo {
 
   /// [appliesToAllElement] Extensions for appliesToAll
   @JsonKey(name: '_appliesToAll')
-  Element? get appliesToAllElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get appliesToAllElement =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -4264,10 +4274,10 @@ abstract class $CoverageEligibilityRequestSupportingInfoCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirPositiveInt? sequence,
-      @JsonKey(name: '_sequence') Element? sequenceElement,
+      @JsonKey(name: '_sequence') PrimitiveElement? sequenceElement,
       Reference information,
       FhirBoolean? appliesToAll,
-      @JsonKey(name: '_appliesToAll') Element? appliesToAllElement});
+      @JsonKey(name: '_appliesToAll') PrimitiveElement? appliesToAllElement});
 
   $ReferenceCopyWith<$Res> get information;
 }
@@ -4316,7 +4326,7 @@ class _$CoverageEligibilityRequestSupportingInfoCopyWithImpl<$Res,
       sequenceElement: freezed == sequenceElement
           ? _value.sequenceElement
           : sequenceElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       information: null == information
           ? _value.information
           : information // ignore: cast_nullable_to_non_nullable
@@ -4328,7 +4338,7 @@ class _$CoverageEligibilityRequestSupportingInfoCopyWithImpl<$Res,
       appliesToAllElement: freezed == appliesToAllElement
           ? _value.appliesToAllElement
           : appliesToAllElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ) as $Val);
   }
 
@@ -4355,10 +4365,10 @@ abstract class _$$CoverageEligibilityRequestSupportingInfoImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirPositiveInt? sequence,
-      @JsonKey(name: '_sequence') Element? sequenceElement,
+      @JsonKey(name: '_sequence') PrimitiveElement? sequenceElement,
       Reference information,
       FhirBoolean? appliesToAll,
-      @JsonKey(name: '_appliesToAll') Element? appliesToAllElement});
+      @JsonKey(name: '_appliesToAll') PrimitiveElement? appliesToAllElement});
 
   @override
   $ReferenceCopyWith<$Res> get information;
@@ -4406,7 +4416,7 @@ class __$$CoverageEligibilityRequestSupportingInfoImplCopyWithImpl<$Res>
       sequenceElement: freezed == sequenceElement
           ? _value.sequenceElement
           : sequenceElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       information: null == information
           ? _value.information
           : information // ignore: cast_nullable_to_non_nullable
@@ -4418,7 +4428,7 @@ class __$$CoverageEligibilityRequestSupportingInfoImplCopyWithImpl<$Res>
       appliesToAllElement: freezed == appliesToAllElement
           ? _value.appliesToAllElement
           : appliesToAllElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ));
   }
 }
@@ -4518,7 +4528,7 @@ class _$CoverageEligibilityRequestSupportingInfoImpl
   /// [sequenceElement] Extensions for sequence
   @override
   @JsonKey(name: '_sequence')
-  final Element? sequenceElement;
+  final PrimitiveElement? sequenceElement;
 
   /// [information] Additional data or information such as resources,
   /// documents, images etc. including references to the data or the actual
@@ -4534,7 +4544,7 @@ class _$CoverageEligibilityRequestSupportingInfoImpl
   /// [appliesToAllElement] Extensions for appliesToAll
   @override
   @JsonKey(name: '_appliesToAll')
-  final Element? appliesToAllElement;
+  final PrimitiveElement? appliesToAllElement;
 
   @override
   String toString() {
@@ -4600,10 +4610,11 @@ abstract class _CoverageEligibilityRequestSupportingInfo
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final FhirPositiveInt? sequence,
-          @JsonKey(name: '_sequence') final Element? sequenceElement,
+          @JsonKey(name: '_sequence') final PrimitiveElement? sequenceElement,
           required final Reference information,
           final FhirBoolean? appliesToAll,
-          @JsonKey(name: '_appliesToAll') final Element? appliesToAllElement}) =
+          @JsonKey(name: '_appliesToAll')
+          final PrimitiveElement? appliesToAllElement}) =
       _$CoverageEligibilityRequestSupportingInfoImpl;
   const _CoverageEligibilityRequestSupportingInfo._() : super._();
 
@@ -4650,7 +4661,7 @@ abstract class _CoverageEligibilityRequestSupportingInfo
 
   /// [sequenceElement] Extensions for sequence
   @JsonKey(name: '_sequence')
-  Element? get sequenceElement;
+  PrimitiveElement? get sequenceElement;
   @override
 
   /// [information] Additional data or information such as resources,
@@ -4666,7 +4677,7 @@ abstract class _CoverageEligibilityRequestSupportingInfo
 
   /// [appliesToAllElement] Extensions for appliesToAll
   @JsonKey(name: '_appliesToAll')
-  Element? get appliesToAllElement;
+  PrimitiveElement? get appliesToAllElement;
   @override
   @JsonKey(ignore: true)
   _$$CoverageEligibilityRequestSupportingInfoImplCopyWith<
@@ -4716,7 +4727,7 @@ mixin _$CoverageEligibilityRequestInsurance {
 
   /// [focalElement] Extensions for focal
   @JsonKey(name: '_focal')
-  Element? get focalElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get focalElement => throw _privateConstructorUsedError;
 
   /// [coverage] Reference to the insurance card level information contained in
   /// the Coverage resource. The coverage issuing insurer will use these details
@@ -4730,7 +4741,8 @@ mixin _$CoverageEligibilityRequestInsurance {
 
   /// [businessArrangementElement] Extensions for businessArrangement
   @JsonKey(name: '_businessArrangement')
-  Element? get businessArrangementElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get businessArrangementElement =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -4752,11 +4764,11 @@ abstract class $CoverageEligibilityRequestInsuranceCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirBoolean? focal,
-      @JsonKey(name: '_focal') Element? focalElement,
+      @JsonKey(name: '_focal') PrimitiveElement? focalElement,
       Reference coverage,
       String? businessArrangement,
       @JsonKey(name: '_businessArrangement')
-      Element? businessArrangementElement});
+      PrimitiveElement? businessArrangementElement});
 
   $ReferenceCopyWith<$Res> get coverage;
 }
@@ -4804,7 +4816,7 @@ class _$CoverageEligibilityRequestInsuranceCopyWithImpl<$Res,
       focalElement: freezed == focalElement
           ? _value.focalElement
           : focalElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       coverage: null == coverage
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
@@ -4816,7 +4828,7 @@ class _$CoverageEligibilityRequestInsuranceCopyWithImpl<$Res,
       businessArrangementElement: freezed == businessArrangementElement
           ? _value.businessArrangementElement
           : businessArrangementElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ) as $Val);
   }
 
@@ -4843,11 +4855,11 @@ abstract class _$$CoverageEligibilityRequestInsuranceImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       FhirBoolean? focal,
-      @JsonKey(name: '_focal') Element? focalElement,
+      @JsonKey(name: '_focal') PrimitiveElement? focalElement,
       Reference coverage,
       String? businessArrangement,
       @JsonKey(name: '_businessArrangement')
-      Element? businessArrangementElement});
+      PrimitiveElement? businessArrangementElement});
 
   @override
   $ReferenceCopyWith<$Res> get coverage;
@@ -4895,7 +4907,7 @@ class __$$CoverageEligibilityRequestInsuranceImplCopyWithImpl<$Res>
       focalElement: freezed == focalElement
           ? _value.focalElement
           : focalElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       coverage: null == coverage
           ? _value.coverage
           : coverage // ignore: cast_nullable_to_non_nullable
@@ -4907,7 +4919,7 @@ class __$$CoverageEligibilityRequestInsuranceImplCopyWithImpl<$Res>
       businessArrangementElement: freezed == businessArrangementElement
           ? _value.businessArrangementElement
           : businessArrangementElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ));
   }
 }
@@ -5008,7 +5020,7 @@ class _$CoverageEligibilityRequestInsuranceImpl
   /// [focalElement] Extensions for focal
   @override
   @JsonKey(name: '_focal')
-  final Element? focalElement;
+  final PrimitiveElement? focalElement;
 
   /// [coverage] Reference to the insurance card level information contained in
   /// the Coverage resource. The coverage issuing insurer will use these details
@@ -5025,7 +5037,7 @@ class _$CoverageEligibilityRequestInsuranceImpl
   /// [businessArrangementElement] Extensions for businessArrangement
   @override
   @JsonKey(name: '_businessArrangement')
-  final Element? businessArrangementElement;
+  final PrimitiveElement? businessArrangementElement;
 
   @override
   String toString() {
@@ -5091,11 +5103,11 @@ abstract class _CoverageEligibilityRequestInsurance
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final FhirBoolean? focal,
-          @JsonKey(name: '_focal') final Element? focalElement,
+          @JsonKey(name: '_focal') final PrimitiveElement? focalElement,
           required final Reference coverage,
           final String? businessArrangement,
           @JsonKey(name: '_businessArrangement')
-          final Element? businessArrangementElement}) =
+          final PrimitiveElement? businessArrangementElement}) =
       _$CoverageEligibilityRequestInsuranceImpl;
   const _CoverageEligibilityRequestInsurance._() : super._();
 
@@ -5143,7 +5155,7 @@ abstract class _CoverageEligibilityRequestInsurance
 
   /// [focalElement] Extensions for focal
   @JsonKey(name: '_focal')
-  Element? get focalElement;
+  PrimitiveElement? get focalElement;
   @override
 
   /// [coverage] Reference to the insurance card level information contained in
@@ -5160,7 +5172,7 @@ abstract class _CoverageEligibilityRequestInsurance
 
   /// [businessArrangementElement] Extensions for businessArrangement
   @JsonKey(name: '_businessArrangement')
-  Element? get businessArrangementElement;
+  PrimitiveElement? get businessArrangementElement;
   @override
   @JsonKey(ignore: true)
   _$$CoverageEligibilityRequestInsuranceImplCopyWith<
@@ -6399,14 +6411,15 @@ mixin _$CoverageEligibilityResponse {
 
   /// [implicitRulesElement] Extensions for implicitRules
   @JsonKey(name: '_implicitRules')
-  Element? get implicitRulesElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get implicitRulesElement =>
+      throw _privateConstructorUsedError;
 
   /// [language] The base language in which the resource is written.
   FhirCode? get language => throw _privateConstructorUsedError;
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get languageElement => throw _privateConstructorUsedError;
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -6456,7 +6469,7 @@ mixin _$CoverageEligibilityResponse {
 
   /// [statusElement] Extensions for status
   @JsonKey(name: '_status')
-  Element? get statusElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get statusElement => throw _privateConstructorUsedError;
 
   /// [purpose] Code to specify whether requesting: prior authorization
   /// requirements for some service categories or billing codes; benefits for
@@ -6479,7 +6492,8 @@ mixin _$CoverageEligibilityResponse {
 
   /// [servicedDateElement] Extensions for servicedDate
   @JsonKey(name: '_servicedDate')
-  Element? get servicedDateElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get servicedDateElement =>
+      throw _privateConstructorUsedError;
 
   /// [servicedPeriod] The date or dates when the enclosed suite of services
   ///  were performed or completed.
@@ -6490,7 +6504,7 @@ mixin _$CoverageEligibilityResponse {
 
   /// [createdElement] Extensions for created
   @JsonKey(name: '_created')
-  Element? get createdElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get createdElement => throw _privateConstructorUsedError;
 
   /// [requestor] The provider which is responsible for the request.
   Reference? get requestor => throw _privateConstructorUsedError;
@@ -6503,7 +6517,7 @@ mixin _$CoverageEligibilityResponse {
 
   /// [outcomeElement] Extensions for outcome
   @JsonKey(name: '_outcome')
-  Element? get outcomeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get outcomeElement => throw _privateConstructorUsedError;
 
   /// [disposition] A human readable description of the status of the
   ///  adjudication.
@@ -6511,7 +6525,8 @@ mixin _$CoverageEligibilityResponse {
 
   /// [dispositionElement] Extensions for disposition
   @JsonKey(name: '_disposition')
-  Element? get dispositionElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get dispositionElement =>
+      throw _privateConstructorUsedError;
 
   /// [insurer] The Insurer who issued the coverage in question and is the
   ///  author of the response.
@@ -6529,7 +6544,7 @@ mixin _$CoverageEligibilityResponse {
 
   /// [preAuthRefElement] Extensions for preAuthRef
   @JsonKey(name: '_preAuthRef')
-  Element? get preAuthRefElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get preAuthRefElement => throw _privateConstructorUsedError;
 
   /// [form] A code for the form to be used for printing the content.
   CodeableConcept? get form => throw _privateConstructorUsedError;
@@ -6558,34 +6573,34 @@ abstract class $CoverageEligibilityResponseCopyWith<$Res> {
       String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
       FhirCode? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       Narrative? text,
       List<Resource>? contained,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<Identifier>? identifier,
       FhirCode? status,
-      @JsonKey(name: '_status') Element? statusElement,
+      @JsonKey(name: '_status') PrimitiveElement? statusElement,
       List<FhirCode>? purpose,
       @JsonKey(name: '_purpose') List<Element?>? purposeElement,
       Reference patient,
       FhirDate? servicedDate,
-      @JsonKey(name: '_servicedDate') Element? servicedDateElement,
+      @JsonKey(name: '_servicedDate') PrimitiveElement? servicedDateElement,
       Period? servicedPeriod,
       FhirDateTime? created,
-      @JsonKey(name: '_created') Element? createdElement,
+      @JsonKey(name: '_created') PrimitiveElement? createdElement,
       Reference? requestor,
       Reference request,
       FhirCode? outcome,
-      @JsonKey(name: '_outcome') Element? outcomeElement,
+      @JsonKey(name: '_outcome') PrimitiveElement? outcomeElement,
       String? disposition,
-      @JsonKey(name: '_disposition') Element? dispositionElement,
+      @JsonKey(name: '_disposition') PrimitiveElement? dispositionElement,
       Reference insurer,
       List<CoverageEligibilityResponseInsurance>? insurance,
       String? preAuthRef,
-      @JsonKey(name: '_preAuthRef') Element? preAuthRefElement,
+      @JsonKey(name: '_preAuthRef') PrimitiveElement? preAuthRefElement,
       CodeableConcept? form,
       List<CoverageEligibilityResponseError>? error});
 
@@ -6668,7 +6683,7 @@ class _$CoverageEligibilityResponseCopyWithImpl<$Res,
       implicitRulesElement: freezed == implicitRulesElement
           ? _value.implicitRulesElement
           : implicitRulesElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -6676,7 +6691,7 @@ class _$CoverageEligibilityResponseCopyWithImpl<$Res,
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -6704,7 +6719,7 @@ class _$CoverageEligibilityResponseCopyWithImpl<$Res,
       statusElement: freezed == statusElement
           ? _value.statusElement
           : statusElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       purpose: freezed == purpose
           ? _value.purpose
           : purpose // ignore: cast_nullable_to_non_nullable
@@ -6724,7 +6739,7 @@ class _$CoverageEligibilityResponseCopyWithImpl<$Res,
       servicedDateElement: freezed == servicedDateElement
           ? _value.servicedDateElement
           : servicedDateElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       servicedPeriod: freezed == servicedPeriod
           ? _value.servicedPeriod
           : servicedPeriod // ignore: cast_nullable_to_non_nullable
@@ -6736,7 +6751,7 @@ class _$CoverageEligibilityResponseCopyWithImpl<$Res,
       createdElement: freezed == createdElement
           ? _value.createdElement
           : createdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       requestor: freezed == requestor
           ? _value.requestor
           : requestor // ignore: cast_nullable_to_non_nullable
@@ -6752,7 +6767,7 @@ class _$CoverageEligibilityResponseCopyWithImpl<$Res,
       outcomeElement: freezed == outcomeElement
           ? _value.outcomeElement
           : outcomeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       disposition: freezed == disposition
           ? _value.disposition
           : disposition // ignore: cast_nullable_to_non_nullable
@@ -6760,7 +6775,7 @@ class _$CoverageEligibilityResponseCopyWithImpl<$Res,
       dispositionElement: freezed == dispositionElement
           ? _value.dispositionElement
           : dispositionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       insurer: null == insurer
           ? _value.insurer
           : insurer // ignore: cast_nullable_to_non_nullable
@@ -6776,7 +6791,7 @@ class _$CoverageEligibilityResponseCopyWithImpl<$Res,
       preAuthRefElement: freezed == preAuthRefElement
           ? _value.preAuthRefElement
           : preAuthRefElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       form: freezed == form
           ? _value.form
           : form // ignore: cast_nullable_to_non_nullable
@@ -6888,34 +6903,34 @@ abstract class _$$CoverageEligibilityResponseImplCopyWith<$Res>
       String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
       FhirCode? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       Narrative? text,
       List<Resource>? contained,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<Identifier>? identifier,
       FhirCode? status,
-      @JsonKey(name: '_status') Element? statusElement,
+      @JsonKey(name: '_status') PrimitiveElement? statusElement,
       List<FhirCode>? purpose,
       @JsonKey(name: '_purpose') List<Element?>? purposeElement,
       Reference patient,
       FhirDate? servicedDate,
-      @JsonKey(name: '_servicedDate') Element? servicedDateElement,
+      @JsonKey(name: '_servicedDate') PrimitiveElement? servicedDateElement,
       Period? servicedPeriod,
       FhirDateTime? created,
-      @JsonKey(name: '_created') Element? createdElement,
+      @JsonKey(name: '_created') PrimitiveElement? createdElement,
       Reference? requestor,
       Reference request,
       FhirCode? outcome,
-      @JsonKey(name: '_outcome') Element? outcomeElement,
+      @JsonKey(name: '_outcome') PrimitiveElement? outcomeElement,
       String? disposition,
-      @JsonKey(name: '_disposition') Element? dispositionElement,
+      @JsonKey(name: '_disposition') PrimitiveElement? dispositionElement,
       Reference insurer,
       List<CoverageEligibilityResponseInsurance>? insurance,
       String? preAuthRef,
-      @JsonKey(name: '_preAuthRef') Element? preAuthRefElement,
+      @JsonKey(name: '_preAuthRef') PrimitiveElement? preAuthRefElement,
       CodeableConcept? form,
       List<CoverageEligibilityResponseError>? error});
 
@@ -7005,7 +7020,7 @@ class __$$CoverageEligibilityResponseImplCopyWithImpl<$Res>
       implicitRulesElement: freezed == implicitRulesElement
           ? _value.implicitRulesElement
           : implicitRulesElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -7013,7 +7028,7 @@ class __$$CoverageEligibilityResponseImplCopyWithImpl<$Res>
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -7041,7 +7056,7 @@ class __$$CoverageEligibilityResponseImplCopyWithImpl<$Res>
       statusElement: freezed == statusElement
           ? _value.statusElement
           : statusElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       purpose: freezed == purpose
           ? _value._purpose
           : purpose // ignore: cast_nullable_to_non_nullable
@@ -7061,7 +7076,7 @@ class __$$CoverageEligibilityResponseImplCopyWithImpl<$Res>
       servicedDateElement: freezed == servicedDateElement
           ? _value.servicedDateElement
           : servicedDateElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       servicedPeriod: freezed == servicedPeriod
           ? _value.servicedPeriod
           : servicedPeriod // ignore: cast_nullable_to_non_nullable
@@ -7073,7 +7088,7 @@ class __$$CoverageEligibilityResponseImplCopyWithImpl<$Res>
       createdElement: freezed == createdElement
           ? _value.createdElement
           : createdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       requestor: freezed == requestor
           ? _value.requestor
           : requestor // ignore: cast_nullable_to_non_nullable
@@ -7089,7 +7104,7 @@ class __$$CoverageEligibilityResponseImplCopyWithImpl<$Res>
       outcomeElement: freezed == outcomeElement
           ? _value.outcomeElement
           : outcomeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       disposition: freezed == disposition
           ? _value.disposition
           : disposition // ignore: cast_nullable_to_non_nullable
@@ -7097,7 +7112,7 @@ class __$$CoverageEligibilityResponseImplCopyWithImpl<$Res>
       dispositionElement: freezed == dispositionElement
           ? _value.dispositionElement
           : dispositionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       insurer: null == insurer
           ? _value.insurer
           : insurer // ignore: cast_nullable_to_non_nullable
@@ -7113,7 +7128,7 @@ class __$$CoverageEligibilityResponseImplCopyWithImpl<$Res>
       preAuthRefElement: freezed == preAuthRefElement
           ? _value.preAuthRefElement
           : preAuthRefElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       form: freezed == form
           ? _value.form
           : form // ignore: cast_nullable_to_non_nullable
@@ -7204,7 +7219,7 @@ class _$CoverageEligibilityResponseImpl extends _CoverageEligibilityResponse {
   /// [implicitRulesElement] Extensions for implicitRules
   @override
   @JsonKey(name: '_implicitRules')
-  final Element? implicitRulesElement;
+  final PrimitiveElement? implicitRulesElement;
 
   /// [language] The base language in which the resource is written.
   @override
@@ -7213,7 +7228,7 @@ class _$CoverageEligibilityResponseImpl extends _CoverageEligibilityResponse {
   /// [languageElement] Extensions for language
   @override
   @JsonKey(name: '_language')
-  final Element? languageElement;
+  final PrimitiveElement? languageElement;
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -7327,7 +7342,7 @@ class _$CoverageEligibilityResponseImpl extends _CoverageEligibilityResponse {
   /// [statusElement] Extensions for status
   @override
   @JsonKey(name: '_status')
-  final Element? statusElement;
+  final PrimitiveElement? statusElement;
 
   /// [purpose] Code to specify whether requesting: prior authorization
   /// requirements for some service categories or billing codes; benefits for
@@ -7377,7 +7392,7 @@ class _$CoverageEligibilityResponseImpl extends _CoverageEligibilityResponse {
   /// [servicedDateElement] Extensions for servicedDate
   @override
   @JsonKey(name: '_servicedDate')
-  final Element? servicedDateElement;
+  final PrimitiveElement? servicedDateElement;
 
   /// [servicedPeriod] The date or dates when the enclosed suite of services
   ///  were performed or completed.
@@ -7391,7 +7406,7 @@ class _$CoverageEligibilityResponseImpl extends _CoverageEligibilityResponse {
   /// [createdElement] Extensions for created
   @override
   @JsonKey(name: '_created')
-  final Element? createdElement;
+  final PrimitiveElement? createdElement;
 
   /// [requestor] The provider which is responsible for the request.
   @override
@@ -7408,7 +7423,7 @@ class _$CoverageEligibilityResponseImpl extends _CoverageEligibilityResponse {
   /// [outcomeElement] Extensions for outcome
   @override
   @JsonKey(name: '_outcome')
-  final Element? outcomeElement;
+  final PrimitiveElement? outcomeElement;
 
   /// [disposition] A human readable description of the status of the
   ///  adjudication.
@@ -7418,7 +7433,7 @@ class _$CoverageEligibilityResponseImpl extends _CoverageEligibilityResponse {
   /// [dispositionElement] Extensions for disposition
   @override
   @JsonKey(name: '_disposition')
-  final Element? dispositionElement;
+  final PrimitiveElement? dispositionElement;
 
   /// [insurer] The Insurer who issued the coverage in question and is the
   ///  author of the response.
@@ -7449,7 +7464,7 @@ class _$CoverageEligibilityResponseImpl extends _CoverageEligibilityResponse {
   /// [preAuthRefElement] Extensions for preAuthRef
   @override
   @JsonKey(name: '_preAuthRef')
-  final Element? preAuthRefElement;
+  final PrimitiveElement? preAuthRefElement;
 
   /// [form] A code for the form to be used for printing the content.
   @override
@@ -7594,43 +7609,44 @@ class _$CoverageEligibilityResponseImpl extends _CoverageEligibilityResponse {
 abstract class _CoverageEligibilityResponse
     extends CoverageEligibilityResponse {
   const factory _CoverageEligibilityResponse(
-          {@JsonKey(
-              unknownEnumValue: R4ResourceType.CoverageEligibilityResponse)
-          final R4ResourceType resourceType,
-          final String? id,
-          final FhirMeta? meta,
-          final FhirUri? implicitRules,
-          @JsonKey(name: '_implicitRules') final Element? implicitRulesElement,
-          final FhirCode? language,
-          @JsonKey(name: '_language') final Element? languageElement,
-          final Narrative? text,
-          final List<Resource>? contained,
-          @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
-          final List<FhirExtension>? modifierExtension,
-          final List<Identifier>? identifier,
-          final FhirCode? status,
-          @JsonKey(name: '_status') final Element? statusElement,
-          final List<FhirCode>? purpose,
-          @JsonKey(name: '_purpose') final List<Element?>? purposeElement,
-          required final Reference patient,
-          final FhirDate? servicedDate,
-          @JsonKey(name: '_servicedDate') final Element? servicedDateElement,
-          final Period? servicedPeriod,
-          final FhirDateTime? created,
-          @JsonKey(name: '_created') final Element? createdElement,
-          final Reference? requestor,
-          required final Reference request,
-          final FhirCode? outcome,
-          @JsonKey(name: '_outcome') final Element? outcomeElement,
-          final String? disposition,
-          @JsonKey(name: '_disposition') final Element? dispositionElement,
-          required final Reference insurer,
-          final List<CoverageEligibilityResponseInsurance>? insurance,
-          final String? preAuthRef,
-          @JsonKey(name: '_preAuthRef') final Element? preAuthRefElement,
-          final CodeableConcept? form,
-          final List<CoverageEligibilityResponseError>? error}) =
-      _$CoverageEligibilityResponseImpl;
+      {@JsonKey(unknownEnumValue: R4ResourceType.CoverageEligibilityResponse)
+      final R4ResourceType resourceType,
+      final String? id,
+      final FhirMeta? meta,
+      final FhirUri? implicitRules,
+      @JsonKey(name: '_implicitRules')
+      final PrimitiveElement? implicitRulesElement,
+      final FhirCode? language,
+      @JsonKey(name: '_language') final PrimitiveElement? languageElement,
+      final Narrative? text,
+      final List<Resource>? contained,
+      @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
+      final List<FhirExtension>? modifierExtension,
+      final List<Identifier>? identifier,
+      final FhirCode? status,
+      @JsonKey(name: '_status') final PrimitiveElement? statusElement,
+      final List<FhirCode>? purpose,
+      @JsonKey(name: '_purpose') final List<Element?>? purposeElement,
+      required final Reference patient,
+      final FhirDate? servicedDate,
+      @JsonKey(name: '_servicedDate')
+      final PrimitiveElement? servicedDateElement,
+      final Period? servicedPeriod,
+      final FhirDateTime? created,
+      @JsonKey(name: '_created') final PrimitiveElement? createdElement,
+      final Reference? requestor,
+      required final Reference request,
+      final FhirCode? outcome,
+      @JsonKey(name: '_outcome') final PrimitiveElement? outcomeElement,
+      final String? disposition,
+      @JsonKey(name: '_disposition') final PrimitiveElement? dispositionElement,
+      required final Reference insurer,
+      final List<CoverageEligibilityResponseInsurance>? insurance,
+      final String? preAuthRef,
+      @JsonKey(name: '_preAuthRef') final PrimitiveElement? preAuthRefElement,
+      final CodeableConcept? form,
+      final List<CoverageEligibilityResponseError>?
+          error}) = _$CoverageEligibilityResponseImpl;
   const _CoverageEligibilityResponse._() : super._();
 
   factory _CoverageEligibilityResponse.fromJson(Map<String, dynamic> json) =
@@ -7661,7 +7677,7 @@ abstract class _CoverageEligibilityResponse
 
   /// [implicitRulesElement] Extensions for implicitRules
   @JsonKey(name: '_implicitRules')
-  Element? get implicitRulesElement;
+  PrimitiveElement? get implicitRulesElement;
   @override
 
   /// [language] The base language in which the resource is written.
@@ -7670,7 +7686,7 @@ abstract class _CoverageEligibilityResponse
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement;
+  PrimitiveElement? get languageElement;
   @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
@@ -7726,7 +7742,7 @@ abstract class _CoverageEligibilityResponse
 
   /// [statusElement] Extensions for status
   @JsonKey(name: '_status')
-  Element? get statusElement;
+  PrimitiveElement? get statusElement;
   @override
 
   /// [purpose] Code to specify whether requesting: prior authorization
@@ -7754,7 +7770,7 @@ abstract class _CoverageEligibilityResponse
 
   /// [servicedDateElement] Extensions for servicedDate
   @JsonKey(name: '_servicedDate')
-  Element? get servicedDateElement;
+  PrimitiveElement? get servicedDateElement;
   @override
 
   /// [servicedPeriod] The date or dates when the enclosed suite of services
@@ -7768,7 +7784,7 @@ abstract class _CoverageEligibilityResponse
 
   /// [createdElement] Extensions for created
   @JsonKey(name: '_created')
-  Element? get createdElement;
+  PrimitiveElement? get createdElement;
   @override
 
   /// [requestor] The provider which is responsible for the request.
@@ -7785,7 +7801,7 @@ abstract class _CoverageEligibilityResponse
 
   /// [outcomeElement] Extensions for outcome
   @JsonKey(name: '_outcome')
-  Element? get outcomeElement;
+  PrimitiveElement? get outcomeElement;
   @override
 
   /// [disposition] A human readable description of the status of the
@@ -7795,7 +7811,7 @@ abstract class _CoverageEligibilityResponse
 
   /// [dispositionElement] Extensions for disposition
   @JsonKey(name: '_disposition')
-  Element? get dispositionElement;
+  PrimitiveElement? get dispositionElement;
   @override
 
   /// [insurer] The Insurer who issued the coverage in question and is the
@@ -7816,7 +7832,7 @@ abstract class _CoverageEligibilityResponse
 
   /// [preAuthRefElement] Extensions for preAuthRef
   @JsonKey(name: '_preAuthRef')
-  Element? get preAuthRefElement;
+  PrimitiveElement? get preAuthRefElement;
   @override
 
   /// [form] A code for the form to be used for printing the content.
@@ -7880,7 +7896,7 @@ mixin _$CoverageEligibilityResponseInsurance {
 
   /// [inforceElement] Extensions for inforce
   @JsonKey(name: '_inforce')
-  Element? get inforceElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get inforceElement => throw _privateConstructorUsedError;
 
   /// [benefitPeriod] The term of the benefits documented in this response.
   Period? get benefitPeriod => throw _privateConstructorUsedError;
@@ -7911,7 +7927,7 @@ abstract class $CoverageEligibilityResponseInsuranceCopyWith<$Res> {
       List<FhirExtension>? modifierExtension,
       Reference coverage,
       FhirBoolean? inforce,
-      @JsonKey(name: '_inforce') Element? inforceElement,
+      @JsonKey(name: '_inforce') PrimitiveElement? inforceElement,
       Period? benefitPeriod,
       List<CoverageEligibilityResponseItem>? item});
 
@@ -7966,7 +7982,7 @@ class _$CoverageEligibilityResponseInsuranceCopyWithImpl<$Res,
       inforceElement: freezed == inforceElement
           ? _value.inforceElement
           : inforceElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       benefitPeriod: freezed == benefitPeriod
           ? _value.benefitPeriod
           : benefitPeriod // ignore: cast_nullable_to_non_nullable
@@ -8014,7 +8030,7 @@ abstract class _$$CoverageEligibilityResponseInsuranceImplCopyWith<$Res>
       List<FhirExtension>? modifierExtension,
       Reference coverage,
       FhirBoolean? inforce,
-      @JsonKey(name: '_inforce') Element? inforceElement,
+      @JsonKey(name: '_inforce') PrimitiveElement? inforceElement,
       Period? benefitPeriod,
       List<CoverageEligibilityResponseItem>? item});
 
@@ -8070,7 +8086,7 @@ class __$$CoverageEligibilityResponseInsuranceImplCopyWithImpl<$Res>
       inforceElement: freezed == inforceElement
           ? _value.inforceElement
           : inforceElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       benefitPeriod: freezed == benefitPeriod
           ? _value.benefitPeriod
           : benefitPeriod // ignore: cast_nullable_to_non_nullable
@@ -8188,7 +8204,7 @@ class _$CoverageEligibilityResponseInsuranceImpl
   /// [inforceElement] Extensions for inforce
   @override
   @JsonKey(name: '_inforce')
-  final Element? inforceElement;
+  final PrimitiveElement? inforceElement;
 
   /// [benefitPeriod] The term of the benefits documented in this response.
   @override
@@ -8271,7 +8287,7 @@ abstract class _CoverageEligibilityResponseInsurance
           final List<FhirExtension>? modifierExtension,
           required final Reference coverage,
           final FhirBoolean? inforce,
-          @JsonKey(name: '_inforce') final Element? inforceElement,
+          @JsonKey(name: '_inforce') final PrimitiveElement? inforceElement,
           final Period? benefitPeriod,
           final List<CoverageEligibilityResponseItem>? item}) =
       _$CoverageEligibilityResponseInsuranceImpl;
@@ -8329,7 +8345,7 @@ abstract class _CoverageEligibilityResponseInsurance
 
   /// [inforceElement] Extensions for inforce
   @JsonKey(name: '_inforce')
-  Element? get inforceElement;
+  PrimitiveElement? get inforceElement;
   @override
 
   /// [benefitPeriod] The term of the benefits documented in this response.
@@ -8405,21 +8421,22 @@ mixin _$CoverageEligibilityResponseItem {
 
   /// [excludedElement] Extensions for excluded
   @JsonKey(name: '_excluded')
-  Element? get excludedElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get excludedElement => throw _privateConstructorUsedError;
 
   /// [name] A short name or tag for the benefit.
   String? get name => throw _privateConstructorUsedError;
 
   /// [nameElement] Extensions for name
   @JsonKey(name: '_name')
-  Element? get nameElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get nameElement => throw _privateConstructorUsedError;
 
   /// [description] A richer description of the benefit or services covered.
   String? get description => throw _privateConstructorUsedError;
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get descriptionElement =>
+      throw _privateConstructorUsedError;
 
   /// [network] Is a flag to indicate whether the benefits refer to in-network
   ///  providers or out-of-network providers.
@@ -8440,7 +8457,7 @@ mixin _$CoverageEligibilityResponseItem {
   ///  preauthorization is required prior to actual service delivery.
   FhirBoolean? get authorizationRequired => throw _privateConstructorUsedError;
   @JsonKey(name: '_authorizationRequired')
-  Element? get authorizationRequiredElement =>
+  PrimitiveElement? get authorizationRequiredElement =>
       throw _privateConstructorUsedError;
 
   /// [authorizationSupporting] Codes or comments regarding information or
@@ -8454,7 +8471,8 @@ mixin _$CoverageEligibilityResponseItem {
 
   /// [authorizationUrlElement] Extensions for authorizationUrl
   @JsonKey(name: '_authorizationUrl')
-  Element? get authorizationUrlElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get authorizationUrlElement =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -8479,21 +8497,22 @@ abstract class $CoverageEligibilityResponseItemCopyWith<$Res> {
       List<CodeableConcept>? modifier,
       Reference? provider,
       FhirBoolean? excluded,
-      @JsonKey(name: '_excluded') Element? excludedElement,
+      @JsonKey(name: '_excluded') PrimitiveElement? excludedElement,
       String? name,
-      @JsonKey(name: '_name') Element? nameElement,
+      @JsonKey(name: '_name') PrimitiveElement? nameElement,
       String? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       CodeableConcept? network,
       CodeableConcept? unit,
       CodeableConcept? term,
       List<CoverageEligibilityResponseBenefit>? benefit,
       FhirBoolean? authorizationRequired,
       @JsonKey(name: '_authorizationRequired')
-      Element? authorizationRequiredElement,
+      PrimitiveElement? authorizationRequiredElement,
       List<CodeableConcept>? authorizationSupporting,
       FhirUri? authorizationUrl,
-      @JsonKey(name: '_authorizationUrl') Element? authorizationUrlElement});
+      @JsonKey(name: '_authorizationUrl')
+      PrimitiveElement? authorizationUrlElement});
 
   $CodeableConceptCopyWith<$Res>? get category;
   $CodeableConceptCopyWith<$Res>? get productOrService;
@@ -8576,7 +8595,7 @@ class _$CoverageEligibilityResponseItemCopyWithImpl<$Res,
       excludedElement: freezed == excludedElement
           ? _value.excludedElement
           : excludedElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -8584,7 +8603,7 @@ class _$CoverageEligibilityResponseItemCopyWithImpl<$Res,
       nameElement: freezed == nameElement
           ? _value.nameElement
           : nameElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -8592,7 +8611,7 @@ class _$CoverageEligibilityResponseItemCopyWithImpl<$Res,
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       network: freezed == network
           ? _value.network
           : network // ignore: cast_nullable_to_non_nullable
@@ -8616,7 +8635,7 @@ class _$CoverageEligibilityResponseItemCopyWithImpl<$Res,
       authorizationRequiredElement: freezed == authorizationRequiredElement
           ? _value.authorizationRequiredElement
           : authorizationRequiredElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       authorizationSupporting: freezed == authorizationSupporting
           ? _value.authorizationSupporting
           : authorizationSupporting // ignore: cast_nullable_to_non_nullable
@@ -8628,7 +8647,7 @@ class _$CoverageEligibilityResponseItemCopyWithImpl<$Res,
       authorizationUrlElement: freezed == authorizationUrlElement
           ? _value.authorizationUrlElement
           : authorizationUrlElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ) as $Val);
   }
 
@@ -8723,21 +8742,22 @@ abstract class _$$CoverageEligibilityResponseItemImplCopyWith<$Res>
       List<CodeableConcept>? modifier,
       Reference? provider,
       FhirBoolean? excluded,
-      @JsonKey(name: '_excluded') Element? excludedElement,
+      @JsonKey(name: '_excluded') PrimitiveElement? excludedElement,
       String? name,
-      @JsonKey(name: '_name') Element? nameElement,
+      @JsonKey(name: '_name') PrimitiveElement? nameElement,
       String? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       CodeableConcept? network,
       CodeableConcept? unit,
       CodeableConcept? term,
       List<CoverageEligibilityResponseBenefit>? benefit,
       FhirBoolean? authorizationRequired,
       @JsonKey(name: '_authorizationRequired')
-      Element? authorizationRequiredElement,
+      PrimitiveElement? authorizationRequiredElement,
       List<CodeableConcept>? authorizationSupporting,
       FhirUri? authorizationUrl,
-      @JsonKey(name: '_authorizationUrl') Element? authorizationUrlElement});
+      @JsonKey(name: '_authorizationUrl')
+      PrimitiveElement? authorizationUrlElement});
 
   @override
   $CodeableConceptCopyWith<$Res>? get category;
@@ -8825,7 +8845,7 @@ class __$$CoverageEligibilityResponseItemImplCopyWithImpl<$Res>
       excludedElement: freezed == excludedElement
           ? _value.excludedElement
           : excludedElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -8833,7 +8853,7 @@ class __$$CoverageEligibilityResponseItemImplCopyWithImpl<$Res>
       nameElement: freezed == nameElement
           ? _value.nameElement
           : nameElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -8841,7 +8861,7 @@ class __$$CoverageEligibilityResponseItemImplCopyWithImpl<$Res>
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       network: freezed == network
           ? _value.network
           : network // ignore: cast_nullable_to_non_nullable
@@ -8865,7 +8885,7 @@ class __$$CoverageEligibilityResponseItemImplCopyWithImpl<$Res>
       authorizationRequiredElement: freezed == authorizationRequiredElement
           ? _value.authorizationRequiredElement
           : authorizationRequiredElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       authorizationSupporting: freezed == authorizationSupporting
           ? _value._authorizationSupporting
           : authorizationSupporting // ignore: cast_nullable_to_non_nullable
@@ -8877,7 +8897,7 @@ class __$$CoverageEligibilityResponseItemImplCopyWithImpl<$Res>
       authorizationUrlElement: freezed == authorizationUrlElement
           ? _value.authorizationUrlElement
           : authorizationUrlElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ));
   }
 }
@@ -9027,7 +9047,7 @@ class _$CoverageEligibilityResponseItemImpl
   /// [excludedElement] Extensions for excluded
   @override
   @JsonKey(name: '_excluded')
-  final Element? excludedElement;
+  final PrimitiveElement? excludedElement;
 
   /// [name] A short name or tag for the benefit.
   @override
@@ -9036,7 +9056,7 @@ class _$CoverageEligibilityResponseItemImpl
   /// [nameElement] Extensions for name
   @override
   @JsonKey(name: '_name')
-  final Element? nameElement;
+  final PrimitiveElement? nameElement;
 
   /// [description] A richer description of the benefit or services covered.
   @override
@@ -9045,7 +9065,7 @@ class _$CoverageEligibilityResponseItemImpl
   /// [descriptionElement] Extensions for description
   @override
   @JsonKey(name: '_description')
-  final Element? descriptionElement;
+  final PrimitiveElement? descriptionElement;
 
   /// [network] Is a flag to indicate whether the benefits refer to in-network
   ///  providers or out-of-network providers.
@@ -9080,7 +9100,7 @@ class _$CoverageEligibilityResponseItemImpl
   final FhirBoolean? authorizationRequired;
   @override
   @JsonKey(name: '_authorizationRequired')
-  final Element? authorizationRequiredElement;
+  final PrimitiveElement? authorizationRequiredElement;
 
   /// [authorizationSupporting] Codes or comments regarding information or
   ///  actions associated with the preauthorization.
@@ -9106,7 +9126,7 @@ class _$CoverageEligibilityResponseItemImpl
   /// [authorizationUrlElement] Extensions for authorizationUrl
   @override
   @JsonKey(name: '_authorizationUrl')
-  final Element? authorizationUrlElement;
+  final PrimitiveElement? authorizationUrlElement;
 
   @override
   String toString() {
@@ -9207,31 +9227,31 @@ class _$CoverageEligibilityResponseItemImpl
 abstract class _CoverageEligibilityResponseItem
     extends CoverageEligibilityResponseItem {
   const factory _CoverageEligibilityResponseItem(
-          {final String? id,
-          @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
-          final List<FhirExtension>? modifierExtension,
-          final CodeableConcept? category,
-          final CodeableConcept? productOrService,
-          final List<CodeableConcept>? modifier,
-          final Reference? provider,
-          final FhirBoolean? excluded,
-          @JsonKey(name: '_excluded') final Element? excludedElement,
-          final String? name,
-          @JsonKey(name: '_name') final Element? nameElement,
-          final String? description,
-          @JsonKey(name: '_description') final Element? descriptionElement,
-          final CodeableConcept? network,
-          final CodeableConcept? unit,
-          final CodeableConcept? term,
-          final List<CoverageEligibilityResponseBenefit>? benefit,
-          final FhirBoolean? authorizationRequired,
-          @JsonKey(name: '_authorizationRequired')
-          final Element? authorizationRequiredElement,
-          final List<CodeableConcept>? authorizationSupporting,
-          final FhirUri? authorizationUrl,
-          @JsonKey(name: '_authorizationUrl')
-          final Element? authorizationUrlElement}) =
-      _$CoverageEligibilityResponseItemImpl;
+      {final String? id,
+      @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
+      final List<FhirExtension>? modifierExtension,
+      final CodeableConcept? category,
+      final CodeableConcept? productOrService,
+      final List<CodeableConcept>? modifier,
+      final Reference? provider,
+      final FhirBoolean? excluded,
+      @JsonKey(name: '_excluded') final PrimitiveElement? excludedElement,
+      final String? name,
+      @JsonKey(name: '_name') final PrimitiveElement? nameElement,
+      final String? description,
+      @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
+      final CodeableConcept? network,
+      final CodeableConcept? unit,
+      final CodeableConcept? term,
+      final List<CoverageEligibilityResponseBenefit>? benefit,
+      final FhirBoolean? authorizationRequired,
+      @JsonKey(name: '_authorizationRequired')
+      final PrimitiveElement? authorizationRequiredElement,
+      final List<CodeableConcept>? authorizationSupporting,
+      final FhirUri? authorizationUrl,
+      @JsonKey(name: '_authorizationUrl')
+      final PrimitiveElement?
+          authorizationUrlElement}) = _$CoverageEligibilityResponseItemImpl;
   const _CoverageEligibilityResponseItem._() : super._();
 
   factory _CoverageEligibilityResponseItem.fromJson(Map<String, dynamic> json) =
@@ -9298,7 +9318,7 @@ abstract class _CoverageEligibilityResponseItem
 
   /// [excludedElement] Extensions for excluded
   @JsonKey(name: '_excluded')
-  Element? get excludedElement;
+  PrimitiveElement? get excludedElement;
   @override
 
   /// [name] A short name or tag for the benefit.
@@ -9307,7 +9327,7 @@ abstract class _CoverageEligibilityResponseItem
 
   /// [nameElement] Extensions for name
   @JsonKey(name: '_name')
-  Element? get nameElement;
+  PrimitiveElement? get nameElement;
   @override
 
   /// [description] A richer description of the benefit or services covered.
@@ -9316,7 +9336,7 @@ abstract class _CoverageEligibilityResponseItem
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement;
+  PrimitiveElement? get descriptionElement;
   @override
 
   /// [network] Is a flag to indicate whether the benefits refer to in-network
@@ -9342,7 +9362,7 @@ abstract class _CoverageEligibilityResponseItem
   FhirBoolean? get authorizationRequired;
   @override
   @JsonKey(name: '_authorizationRequired')
-  Element? get authorizationRequiredElement;
+  PrimitiveElement? get authorizationRequiredElement;
   @override
 
   /// [authorizationSupporting] Codes or comments regarding information or
@@ -9357,7 +9377,7 @@ abstract class _CoverageEligibilityResponseItem
 
   /// [authorizationUrlElement] Extensions for authorizationUrl
   @JsonKey(name: '_authorizationUrl')
-  Element? get authorizationUrlElement;
+  PrimitiveElement? get authorizationUrlElement;
   @override
   @JsonKey(ignore: true)
   _$$CoverageEligibilityResponseItemImplCopyWith<
@@ -9410,7 +9430,8 @@ mixin _$CoverageEligibilityResponseBenefit {
 
   /// [allowedUnsignedIntElement] Extensions for allowedUnsignedInt
   @JsonKey(name: '_allowedUnsignedInt')
-  Element? get allowedUnsignedIntElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get allowedUnsignedIntElement =>
+      throw _privateConstructorUsedError;
 
   /// [allowedString] The quantity of the benefit which is permitted under the
   ///  coverage.
@@ -9418,7 +9439,8 @@ mixin _$CoverageEligibilityResponseBenefit {
 
   /// [allowedStringElement] Extensions for allowedString
   @JsonKey(name: '_allowedString')
-  Element? get allowedStringElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get allowedStringElement =>
+      throw _privateConstructorUsedError;
 
   /// [allowedMoney] The quantity of the benefit which is permitted under the
   ///  coverage.
@@ -9430,7 +9452,8 @@ mixin _$CoverageEligibilityResponseBenefit {
 
   /// [usedUnsignedIntElement] Extensions for usedUnsignedInt
   @JsonKey(name: '_usedUnsignedInt')
-  Element? get usedUnsignedIntElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get usedUnsignedIntElement =>
+      throw _privateConstructorUsedError;
 
   /// [usedString] The quantity of the benefit which have been consumed to
   ///  date.
@@ -9438,7 +9461,7 @@ mixin _$CoverageEligibilityResponseBenefit {
 
   /// [usedStringElement] Extensions for usedString
   @JsonKey(name: '_usedString')
-  Element? get usedStringElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get usedStringElement => throw _privateConstructorUsedError;
 
   /// [usedMoney] The quantity of the benefit which have been consumed to date.
   Money? get usedMoney => throw _privateConstructorUsedError;
@@ -9464,14 +9487,16 @@ abstract class $CoverageEligibilityResponseBenefitCopyWith<$Res> {
       List<FhirExtension>? modifierExtension,
       CodeableConcept type,
       FhirUnsignedInt? allowedUnsignedInt,
-      @JsonKey(name: '_allowedUnsignedInt') Element? allowedUnsignedIntElement,
+      @JsonKey(name: '_allowedUnsignedInt')
+      PrimitiveElement? allowedUnsignedIntElement,
       String? allowedString,
-      @JsonKey(name: '_allowedString') Element? allowedStringElement,
+      @JsonKey(name: '_allowedString') PrimitiveElement? allowedStringElement,
       Money? allowedMoney,
       FhirUnsignedInt? usedUnsignedInt,
-      @JsonKey(name: '_usedUnsignedInt') Element? usedUnsignedIntElement,
+      @JsonKey(name: '_usedUnsignedInt')
+      PrimitiveElement? usedUnsignedIntElement,
       String? usedString,
-      @JsonKey(name: '_usedString') Element? usedStringElement,
+      @JsonKey(name: '_usedString') PrimitiveElement? usedStringElement,
       Money? usedMoney});
 
   $CodeableConceptCopyWith<$Res> get type;
@@ -9532,7 +9557,7 @@ class _$CoverageEligibilityResponseBenefitCopyWithImpl<$Res,
       allowedUnsignedIntElement: freezed == allowedUnsignedIntElement
           ? _value.allowedUnsignedIntElement
           : allowedUnsignedIntElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       allowedString: freezed == allowedString
           ? _value.allowedString
           : allowedString // ignore: cast_nullable_to_non_nullable
@@ -9540,7 +9565,7 @@ class _$CoverageEligibilityResponseBenefitCopyWithImpl<$Res,
       allowedStringElement: freezed == allowedStringElement
           ? _value.allowedStringElement
           : allowedStringElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       allowedMoney: freezed == allowedMoney
           ? _value.allowedMoney
           : allowedMoney // ignore: cast_nullable_to_non_nullable
@@ -9552,7 +9577,7 @@ class _$CoverageEligibilityResponseBenefitCopyWithImpl<$Res,
       usedUnsignedIntElement: freezed == usedUnsignedIntElement
           ? _value.usedUnsignedIntElement
           : usedUnsignedIntElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       usedString: freezed == usedString
           ? _value.usedString
           : usedString // ignore: cast_nullable_to_non_nullable
@@ -9560,7 +9585,7 @@ class _$CoverageEligibilityResponseBenefitCopyWithImpl<$Res,
       usedStringElement: freezed == usedStringElement
           ? _value.usedStringElement
           : usedStringElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       usedMoney: freezed == usedMoney
           ? _value.usedMoney
           : usedMoney // ignore: cast_nullable_to_non_nullable
@@ -9616,14 +9641,16 @@ abstract class _$$CoverageEligibilityResponseBenefitImplCopyWith<$Res>
       List<FhirExtension>? modifierExtension,
       CodeableConcept type,
       FhirUnsignedInt? allowedUnsignedInt,
-      @JsonKey(name: '_allowedUnsignedInt') Element? allowedUnsignedIntElement,
+      @JsonKey(name: '_allowedUnsignedInt')
+      PrimitiveElement? allowedUnsignedIntElement,
       String? allowedString,
-      @JsonKey(name: '_allowedString') Element? allowedStringElement,
+      @JsonKey(name: '_allowedString') PrimitiveElement? allowedStringElement,
       Money? allowedMoney,
       FhirUnsignedInt? usedUnsignedInt,
-      @JsonKey(name: '_usedUnsignedInt') Element? usedUnsignedIntElement,
+      @JsonKey(name: '_usedUnsignedInt')
+      PrimitiveElement? usedUnsignedIntElement,
       String? usedString,
-      @JsonKey(name: '_usedString') Element? usedStringElement,
+      @JsonKey(name: '_usedString') PrimitiveElement? usedStringElement,
       Money? usedMoney});
 
   @override
@@ -9686,7 +9713,7 @@ class __$$CoverageEligibilityResponseBenefitImplCopyWithImpl<$Res>
       allowedUnsignedIntElement: freezed == allowedUnsignedIntElement
           ? _value.allowedUnsignedIntElement
           : allowedUnsignedIntElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       allowedString: freezed == allowedString
           ? _value.allowedString
           : allowedString // ignore: cast_nullable_to_non_nullable
@@ -9694,7 +9721,7 @@ class __$$CoverageEligibilityResponseBenefitImplCopyWithImpl<$Res>
       allowedStringElement: freezed == allowedStringElement
           ? _value.allowedStringElement
           : allowedStringElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       allowedMoney: freezed == allowedMoney
           ? _value.allowedMoney
           : allowedMoney // ignore: cast_nullable_to_non_nullable
@@ -9706,7 +9733,7 @@ class __$$CoverageEligibilityResponseBenefitImplCopyWithImpl<$Res>
       usedUnsignedIntElement: freezed == usedUnsignedIntElement
           ? _value.usedUnsignedIntElement
           : usedUnsignedIntElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       usedString: freezed == usedString
           ? _value.usedString
           : usedString // ignore: cast_nullable_to_non_nullable
@@ -9714,7 +9741,7 @@ class __$$CoverageEligibilityResponseBenefitImplCopyWithImpl<$Res>
       usedStringElement: freezed == usedStringElement
           ? _value.usedStringElement
           : usedStringElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       usedMoney: freezed == usedMoney
           ? _value.usedMoney
           : usedMoney // ignore: cast_nullable_to_non_nullable
@@ -9829,7 +9856,7 @@ class _$CoverageEligibilityResponseBenefitImpl
   /// [allowedUnsignedIntElement] Extensions for allowedUnsignedInt
   @override
   @JsonKey(name: '_allowedUnsignedInt')
-  final Element? allowedUnsignedIntElement;
+  final PrimitiveElement? allowedUnsignedIntElement;
 
   /// [allowedString] The quantity of the benefit which is permitted under the
   ///  coverage.
@@ -9839,7 +9866,7 @@ class _$CoverageEligibilityResponseBenefitImpl
   /// [allowedStringElement] Extensions for allowedString
   @override
   @JsonKey(name: '_allowedString')
-  final Element? allowedStringElement;
+  final PrimitiveElement? allowedStringElement;
 
   /// [allowedMoney] The quantity of the benefit which is permitted under the
   ///  coverage.
@@ -9854,7 +9881,7 @@ class _$CoverageEligibilityResponseBenefitImpl
   /// [usedUnsignedIntElement] Extensions for usedUnsignedInt
   @override
   @JsonKey(name: '_usedUnsignedInt')
-  final Element? usedUnsignedIntElement;
+  final PrimitiveElement? usedUnsignedIntElement;
 
   /// [usedString] The quantity of the benefit which have been consumed to
   ///  date.
@@ -9864,7 +9891,7 @@ class _$CoverageEligibilityResponseBenefitImpl
   /// [usedStringElement] Extensions for usedString
   @override
   @JsonKey(name: '_usedString')
-  final Element? usedStringElement;
+  final PrimitiveElement? usedStringElement;
 
   /// [usedMoney] The quantity of the benefit which have been consumed to date.
   @override
@@ -9953,14 +9980,16 @@ abstract class _CoverageEligibilityResponseBenefit
       required final CodeableConcept type,
       final FhirUnsignedInt? allowedUnsignedInt,
       @JsonKey(name: '_allowedUnsignedInt')
-      final Element? allowedUnsignedIntElement,
+      final PrimitiveElement? allowedUnsignedIntElement,
       final String? allowedString,
-      @JsonKey(name: '_allowedString') final Element? allowedStringElement,
+      @JsonKey(name: '_allowedString')
+      final PrimitiveElement? allowedStringElement,
       final Money? allowedMoney,
       final FhirUnsignedInt? usedUnsignedInt,
-      @JsonKey(name: '_usedUnsignedInt') final Element? usedUnsignedIntElement,
+      @JsonKey(name: '_usedUnsignedInt')
+      final PrimitiveElement? usedUnsignedIntElement,
       final String? usedString,
-      @JsonKey(name: '_usedString') final Element? usedStringElement,
+      @JsonKey(name: '_usedString') final PrimitiveElement? usedStringElement,
       final Money? usedMoney}) = _$CoverageEligibilityResponseBenefitImpl;
   const _CoverageEligibilityResponseBenefit._() : super._();
 
@@ -10012,7 +10041,7 @@ abstract class _CoverageEligibilityResponseBenefit
 
   /// [allowedUnsignedIntElement] Extensions for allowedUnsignedInt
   @JsonKey(name: '_allowedUnsignedInt')
-  Element? get allowedUnsignedIntElement;
+  PrimitiveElement? get allowedUnsignedIntElement;
   @override
 
   /// [allowedString] The quantity of the benefit which is permitted under the
@@ -10022,7 +10051,7 @@ abstract class _CoverageEligibilityResponseBenefit
 
   /// [allowedStringElement] Extensions for allowedString
   @JsonKey(name: '_allowedString')
-  Element? get allowedStringElement;
+  PrimitiveElement? get allowedStringElement;
   @override
 
   /// [allowedMoney] The quantity of the benefit which is permitted under the
@@ -10037,7 +10066,7 @@ abstract class _CoverageEligibilityResponseBenefit
 
   /// [usedUnsignedIntElement] Extensions for usedUnsignedInt
   @JsonKey(name: '_usedUnsignedInt')
-  Element? get usedUnsignedIntElement;
+  PrimitiveElement? get usedUnsignedIntElement;
   @override
 
   /// [usedString] The quantity of the benefit which have been consumed to
@@ -10047,7 +10076,7 @@ abstract class _CoverageEligibilityResponseBenefit
 
   /// [usedStringElement] Extensions for usedString
   @JsonKey(name: '_usedString')
-  Element? get usedStringElement;
+  PrimitiveElement? get usedStringElement;
   @override
 
   /// [usedMoney] The quantity of the benefit which have been consumed to date.
@@ -10443,14 +10472,15 @@ mixin _$EnrollmentRequest {
 
   /// [implicitRulesElement] Extensions for implicitRules
   @JsonKey(name: '_implicitRules')
-  Element? get implicitRulesElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get implicitRulesElement =>
+      throw _privateConstructorUsedError;
 
   /// [language] The base language in which the resource is written.
   FhirCode? get language => throw _privateConstructorUsedError;
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get languageElement => throw _privateConstructorUsedError;
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -10499,14 +10529,14 @@ mixin _$EnrollmentRequest {
 
   /// [statusElement] Extensions for status
   @JsonKey(name: '_status')
-  Element? get statusElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get statusElement => throw _privateConstructorUsedError;
 
   /// [created] The date when this resource was created.
   FhirDateTime? get created => throw _privateConstructorUsedError;
 
   /// [createdElement] Extensions for created
   @JsonKey(name: '_created')
-  Element? get createdElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get createdElement => throw _privateConstructorUsedError;
 
   /// [insurer] The Insurer who is target  of the request.
   Reference? get insurer => throw _privateConstructorUsedError;
@@ -10540,18 +10570,18 @@ abstract class $EnrollmentRequestCopyWith<$Res> {
       String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
       FhirCode? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       Narrative? text,
       List<Resource>? contained,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<Identifier>? identifier,
       FhirCode? status,
-      @JsonKey(name: '_status') Element? statusElement,
+      @JsonKey(name: '_status') PrimitiveElement? statusElement,
       FhirDateTime? created,
-      @JsonKey(name: '_created') Element? createdElement,
+      @JsonKey(name: '_created') PrimitiveElement? createdElement,
       Reference? insurer,
       Reference? provider,
       Reference? candidate,
@@ -10619,7 +10649,7 @@ class _$EnrollmentRequestCopyWithImpl<$Res, $Val extends EnrollmentRequest>
       implicitRulesElement: freezed == implicitRulesElement
           ? _value.implicitRulesElement
           : implicitRulesElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -10627,7 +10657,7 @@ class _$EnrollmentRequestCopyWithImpl<$Res, $Val extends EnrollmentRequest>
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -10655,7 +10685,7 @@ class _$EnrollmentRequestCopyWithImpl<$Res, $Val extends EnrollmentRequest>
       statusElement: freezed == statusElement
           ? _value.statusElement
           : statusElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       created: freezed == created
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
@@ -10663,7 +10693,7 @@ class _$EnrollmentRequestCopyWithImpl<$Res, $Val extends EnrollmentRequest>
       createdElement: freezed == createdElement
           ? _value.createdElement
           : createdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       insurer: freezed == insurer
           ? _value.insurer
           : insurer // ignore: cast_nullable_to_non_nullable
@@ -10770,18 +10800,18 @@ abstract class _$$EnrollmentRequestImplCopyWith<$Res>
       String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
       FhirCode? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       Narrative? text,
       List<Resource>? contained,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<Identifier>? identifier,
       FhirCode? status,
-      @JsonKey(name: '_status') Element? statusElement,
+      @JsonKey(name: '_status') PrimitiveElement? statusElement,
       FhirDateTime? created,
-      @JsonKey(name: '_created') Element? createdElement,
+      @JsonKey(name: '_created') PrimitiveElement? createdElement,
       Reference? insurer,
       Reference? provider,
       Reference? candidate,
@@ -10853,7 +10883,7 @@ class __$$EnrollmentRequestImplCopyWithImpl<$Res>
       implicitRulesElement: freezed == implicitRulesElement
           ? _value.implicitRulesElement
           : implicitRulesElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -10861,7 +10891,7 @@ class __$$EnrollmentRequestImplCopyWithImpl<$Res>
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -10889,7 +10919,7 @@ class __$$EnrollmentRequestImplCopyWithImpl<$Res>
       statusElement: freezed == statusElement
           ? _value.statusElement
           : statusElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       created: freezed == created
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
@@ -10897,7 +10927,7 @@ class __$$EnrollmentRequestImplCopyWithImpl<$Res>
       createdElement: freezed == createdElement
           ? _value.createdElement
           : createdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       insurer: freezed == insurer
           ? _value.insurer
           : insurer // ignore: cast_nullable_to_non_nullable
@@ -10977,7 +11007,7 @@ class _$EnrollmentRequestImpl extends _EnrollmentRequest {
   /// [implicitRulesElement] Extensions for implicitRules
   @override
   @JsonKey(name: '_implicitRules')
-  final Element? implicitRulesElement;
+  final PrimitiveElement? implicitRulesElement;
 
   /// [language] The base language in which the resource is written.
   @override
@@ -10986,7 +11016,7 @@ class _$EnrollmentRequestImpl extends _EnrollmentRequest {
   /// [languageElement] Extensions for language
   @override
   @JsonKey(name: '_language')
-  final Element? languageElement;
+  final PrimitiveElement? languageElement;
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -11098,7 +11128,7 @@ class _$EnrollmentRequestImpl extends _EnrollmentRequest {
   /// [statusElement] Extensions for status
   @override
   @JsonKey(name: '_status')
-  final Element? statusElement;
+  final PrimitiveElement? statusElement;
 
   /// [created] The date when this resource was created.
   @override
@@ -11107,7 +11137,7 @@ class _$EnrollmentRequestImpl extends _EnrollmentRequest {
   /// [createdElement] Extensions for created
   @override
   @JsonKey(name: '_created')
-  final Element? createdElement;
+  final PrimitiveElement? createdElement;
 
   /// [insurer] The Insurer who is target  of the request.
   @override
@@ -11221,18 +11251,19 @@ abstract class _EnrollmentRequest extends EnrollmentRequest {
       final String? id,
       final FhirMeta? meta,
       final FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') final Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules')
+      final PrimitiveElement? implicitRulesElement,
       final FhirCode? language,
-      @JsonKey(name: '_language') final Element? languageElement,
+      @JsonKey(name: '_language') final PrimitiveElement? languageElement,
       final Narrative? text,
       final List<Resource>? contained,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final List<Identifier>? identifier,
       final FhirCode? status,
-      @JsonKey(name: '_status') final Element? statusElement,
+      @JsonKey(name: '_status') final PrimitiveElement? statusElement,
       final FhirDateTime? created,
-      @JsonKey(name: '_created') final Element? createdElement,
+      @JsonKey(name: '_created') final PrimitiveElement? createdElement,
       final Reference? insurer,
       final Reference? provider,
       final Reference? candidate,
@@ -11267,7 +11298,7 @@ abstract class _EnrollmentRequest extends EnrollmentRequest {
 
   /// [implicitRulesElement] Extensions for implicitRules
   @JsonKey(name: '_implicitRules')
-  Element? get implicitRulesElement;
+  PrimitiveElement? get implicitRulesElement;
   @override
 
   /// [language] The base language in which the resource is written.
@@ -11276,7 +11307,7 @@ abstract class _EnrollmentRequest extends EnrollmentRequest {
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement;
+  PrimitiveElement? get languageElement;
   @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
@@ -11331,7 +11362,7 @@ abstract class _EnrollmentRequest extends EnrollmentRequest {
 
   /// [statusElement] Extensions for status
   @JsonKey(name: '_status')
-  Element? get statusElement;
+  PrimitiveElement? get statusElement;
   @override
 
   /// [created] The date when this resource was created.
@@ -11340,7 +11371,7 @@ abstract class _EnrollmentRequest extends EnrollmentRequest {
 
   /// [createdElement] Extensions for created
   @JsonKey(name: '_created')
-  Element? get createdElement;
+  PrimitiveElement? get createdElement;
   @override
 
   /// [insurer] The Insurer who is target  of the request.
@@ -11391,14 +11422,15 @@ mixin _$EnrollmentResponse {
 
   /// [implicitRulesElement] Extensions for implicitRules
   @JsonKey(name: '_implicitRules')
-  Element? get implicitRulesElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get implicitRulesElement =>
+      throw _privateConstructorUsedError;
 
   /// [language] The base language in which the resource is written.
   FhirCode? get language => throw _privateConstructorUsedError;
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get languageElement => throw _privateConstructorUsedError;
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -11447,7 +11479,7 @@ mixin _$EnrollmentResponse {
 
   /// [statusElement] Extensions for status
   @JsonKey(name: '_status')
-  Element? get statusElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get statusElement => throw _privateConstructorUsedError;
 
   /// [request] Original request resource reference.
   Reference? get request => throw _privateConstructorUsedError;
@@ -11457,14 +11489,15 @@ mixin _$EnrollmentResponse {
 
   /// [outcomeElement] Extensions for outcome
   @JsonKey(name: '_outcome')
-  Element? get outcomeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get outcomeElement => throw _privateConstructorUsedError;
 
   /// [disposition] A description of the status of the adjudication.
   String? get disposition => throw _privateConstructorUsedError;
 
   /// [dispositionElement] Extensions for disposition
   @JsonKey(name: '_disposition')
-  Element? get dispositionElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get dispositionElement =>
+      throw _privateConstructorUsedError;
 
   /// [created] The date when the enclosed suite of services were performed or
   ///  completed.
@@ -11472,7 +11505,7 @@ mixin _$EnrollmentResponse {
 
   /// [createdElement] Extensions for created
   @JsonKey(name: '_created')
-  Element? get createdElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get createdElement => throw _privateConstructorUsedError;
 
   /// [organization] The Insurer who produced this adjudicated response.
   Reference? get organization => throw _privateConstructorUsedError;
@@ -11499,23 +11532,23 @@ abstract class $EnrollmentResponseCopyWith<$Res> {
       String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
       FhirCode? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       Narrative? text,
       List<Resource>? contained,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<Identifier>? identifier,
       FhirCode? status,
-      @JsonKey(name: '_status') Element? statusElement,
+      @JsonKey(name: '_status') PrimitiveElement? statusElement,
       Reference? request,
       FhirCode? outcome,
-      @JsonKey(name: '_outcome') Element? outcomeElement,
+      @JsonKey(name: '_outcome') PrimitiveElement? outcomeElement,
       String? disposition,
-      @JsonKey(name: '_disposition') Element? dispositionElement,
+      @JsonKey(name: '_disposition') PrimitiveElement? dispositionElement,
       FhirDateTime? created,
-      @JsonKey(name: '_created') Element? createdElement,
+      @JsonKey(name: '_created') PrimitiveElement? createdElement,
       Reference? organization,
       Reference? requestProvider});
 
@@ -11583,7 +11616,7 @@ class _$EnrollmentResponseCopyWithImpl<$Res, $Val extends EnrollmentResponse>
       implicitRulesElement: freezed == implicitRulesElement
           ? _value.implicitRulesElement
           : implicitRulesElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -11591,7 +11624,7 @@ class _$EnrollmentResponseCopyWithImpl<$Res, $Val extends EnrollmentResponse>
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -11619,7 +11652,7 @@ class _$EnrollmentResponseCopyWithImpl<$Res, $Val extends EnrollmentResponse>
       statusElement: freezed == statusElement
           ? _value.statusElement
           : statusElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       request: freezed == request
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
@@ -11631,7 +11664,7 @@ class _$EnrollmentResponseCopyWithImpl<$Res, $Val extends EnrollmentResponse>
       outcomeElement: freezed == outcomeElement
           ? _value.outcomeElement
           : outcomeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       disposition: freezed == disposition
           ? _value.disposition
           : disposition // ignore: cast_nullable_to_non_nullable
@@ -11639,7 +11672,7 @@ class _$EnrollmentResponseCopyWithImpl<$Res, $Val extends EnrollmentResponse>
       dispositionElement: freezed == dispositionElement
           ? _value.dispositionElement
           : dispositionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       created: freezed == created
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
@@ -11647,7 +11680,7 @@ class _$EnrollmentResponseCopyWithImpl<$Res, $Val extends EnrollmentResponse>
       createdElement: freezed == createdElement
           ? _value.createdElement
           : createdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       organization: freezed == organization
           ? _value.organization
           : organization // ignore: cast_nullable_to_non_nullable
@@ -11734,23 +11767,23 @@ abstract class _$$EnrollmentResponseImplCopyWith<$Res>
       String? id,
       FhirMeta? meta,
       FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
       FhirCode? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       Narrative? text,
       List<Resource>? contained,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<Identifier>? identifier,
       FhirCode? status,
-      @JsonKey(name: '_status') Element? statusElement,
+      @JsonKey(name: '_status') PrimitiveElement? statusElement,
       Reference? request,
       FhirCode? outcome,
-      @JsonKey(name: '_outcome') Element? outcomeElement,
+      @JsonKey(name: '_outcome') PrimitiveElement? outcomeElement,
       String? disposition,
-      @JsonKey(name: '_disposition') Element? dispositionElement,
+      @JsonKey(name: '_disposition') PrimitiveElement? dispositionElement,
       FhirDateTime? created,
-      @JsonKey(name: '_created') Element? createdElement,
+      @JsonKey(name: '_created') PrimitiveElement? createdElement,
       Reference? organization,
       Reference? requestProvider});
 
@@ -11821,7 +11854,7 @@ class __$$EnrollmentResponseImplCopyWithImpl<$Res>
       implicitRulesElement: freezed == implicitRulesElement
           ? _value.implicitRulesElement
           : implicitRulesElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -11829,7 +11862,7 @@ class __$$EnrollmentResponseImplCopyWithImpl<$Res>
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -11857,7 +11890,7 @@ class __$$EnrollmentResponseImplCopyWithImpl<$Res>
       statusElement: freezed == statusElement
           ? _value.statusElement
           : statusElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       request: freezed == request
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
@@ -11869,7 +11902,7 @@ class __$$EnrollmentResponseImplCopyWithImpl<$Res>
       outcomeElement: freezed == outcomeElement
           ? _value.outcomeElement
           : outcomeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       disposition: freezed == disposition
           ? _value.disposition
           : disposition // ignore: cast_nullable_to_non_nullable
@@ -11877,7 +11910,7 @@ class __$$EnrollmentResponseImplCopyWithImpl<$Res>
       dispositionElement: freezed == dispositionElement
           ? _value.dispositionElement
           : dispositionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       created: freezed == created
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
@@ -11885,7 +11918,7 @@ class __$$EnrollmentResponseImplCopyWithImpl<$Res>
       createdElement: freezed == createdElement
           ? _value.createdElement
           : createdElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       organization: freezed == organization
           ? _value.organization
           : organization // ignore: cast_nullable_to_non_nullable
@@ -11960,7 +11993,7 @@ class _$EnrollmentResponseImpl extends _EnrollmentResponse {
   /// [implicitRulesElement] Extensions for implicitRules
   @override
   @JsonKey(name: '_implicitRules')
-  final Element? implicitRulesElement;
+  final PrimitiveElement? implicitRulesElement;
 
   /// [language] The base language in which the resource is written.
   @override
@@ -11969,7 +12002,7 @@ class _$EnrollmentResponseImpl extends _EnrollmentResponse {
   /// [languageElement] Extensions for language
   @override
   @JsonKey(name: '_language')
-  final Element? languageElement;
+  final PrimitiveElement? languageElement;
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -12081,7 +12114,7 @@ class _$EnrollmentResponseImpl extends _EnrollmentResponse {
   /// [statusElement] Extensions for status
   @override
   @JsonKey(name: '_status')
-  final Element? statusElement;
+  final PrimitiveElement? statusElement;
 
   /// [request] Original request resource reference.
   @override
@@ -12094,7 +12127,7 @@ class _$EnrollmentResponseImpl extends _EnrollmentResponse {
   /// [outcomeElement] Extensions for outcome
   @override
   @JsonKey(name: '_outcome')
-  final Element? outcomeElement;
+  final PrimitiveElement? outcomeElement;
 
   /// [disposition] A description of the status of the adjudication.
   @override
@@ -12103,7 +12136,7 @@ class _$EnrollmentResponseImpl extends _EnrollmentResponse {
   /// [dispositionElement] Extensions for disposition
   @override
   @JsonKey(name: '_disposition')
-  final Element? dispositionElement;
+  final PrimitiveElement? dispositionElement;
 
   /// [created] The date when the enclosed suite of services were performed or
   ///  completed.
@@ -12113,7 +12146,7 @@ class _$EnrollmentResponseImpl extends _EnrollmentResponse {
   /// [createdElement] Extensions for created
   @override
   @JsonKey(name: '_created')
-  final Element? createdElement;
+  final PrimitiveElement? createdElement;
 
   /// [organization] The Insurer who produced this adjudicated response.
   @override
@@ -12226,23 +12259,24 @@ abstract class _EnrollmentResponse extends EnrollmentResponse {
       final String? id,
       final FhirMeta? meta,
       final FhirUri? implicitRules,
-      @JsonKey(name: '_implicitRules') final Element? implicitRulesElement,
+      @JsonKey(name: '_implicitRules')
+      final PrimitiveElement? implicitRulesElement,
       final FhirCode? language,
-      @JsonKey(name: '_language') final Element? languageElement,
+      @JsonKey(name: '_language') final PrimitiveElement? languageElement,
       final Narrative? text,
       final List<Resource>? contained,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final List<Identifier>? identifier,
       final FhirCode? status,
-      @JsonKey(name: '_status') final Element? statusElement,
+      @JsonKey(name: '_status') final PrimitiveElement? statusElement,
       final Reference? request,
       final FhirCode? outcome,
-      @JsonKey(name: '_outcome') final Element? outcomeElement,
+      @JsonKey(name: '_outcome') final PrimitiveElement? outcomeElement,
       final String? disposition,
-      @JsonKey(name: '_disposition') final Element? dispositionElement,
+      @JsonKey(name: '_disposition') final PrimitiveElement? dispositionElement,
       final FhirDateTime? created,
-      @JsonKey(name: '_created') final Element? createdElement,
+      @JsonKey(name: '_created') final PrimitiveElement? createdElement,
       final Reference? organization,
       final Reference? requestProvider}) = _$EnrollmentResponseImpl;
   const _EnrollmentResponse._() : super._();
@@ -12275,7 +12309,7 @@ abstract class _EnrollmentResponse extends EnrollmentResponse {
 
   /// [implicitRulesElement] Extensions for implicitRules
   @JsonKey(name: '_implicitRules')
-  Element? get implicitRulesElement;
+  PrimitiveElement? get implicitRulesElement;
   @override
 
   /// [language] The base language in which the resource is written.
@@ -12284,7 +12318,7 @@ abstract class _EnrollmentResponse extends EnrollmentResponse {
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement;
+  PrimitiveElement? get languageElement;
   @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
@@ -12339,7 +12373,7 @@ abstract class _EnrollmentResponse extends EnrollmentResponse {
 
   /// [statusElement] Extensions for status
   @JsonKey(name: '_status')
-  Element? get statusElement;
+  PrimitiveElement? get statusElement;
   @override
 
   /// [request] Original request resource reference.
@@ -12352,7 +12386,7 @@ abstract class _EnrollmentResponse extends EnrollmentResponse {
 
   /// [outcomeElement] Extensions for outcome
   @JsonKey(name: '_outcome')
-  Element? get outcomeElement;
+  PrimitiveElement? get outcomeElement;
   @override
 
   /// [disposition] A description of the status of the adjudication.
@@ -12361,7 +12395,7 @@ abstract class _EnrollmentResponse extends EnrollmentResponse {
 
   /// [dispositionElement] Extensions for disposition
   @JsonKey(name: '_disposition')
-  Element? get dispositionElement;
+  PrimitiveElement? get dispositionElement;
   @override
 
   /// [created] The date when the enclosed suite of services were performed or
@@ -12371,7 +12405,7 @@ abstract class _EnrollmentResponse extends EnrollmentResponse {
 
   /// [createdElement] Extensions for created
   @JsonKey(name: '_created')
-  Element? get createdElement;
+  PrimitiveElement? get createdElement;
   @override
 
   /// [organization] The Insurer who produced this adjudicated response.

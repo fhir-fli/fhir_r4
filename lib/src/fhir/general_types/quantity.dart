@@ -77,7 +77,7 @@ class Quantity with _$Quantity implements DataType {
     FhirDecimal? value,
 
     /// [valueElement] Extensions for value
-    @JsonKey(name: '_value') Element? valueElement,
+    @JsonKey(name: '_value') PrimitiveElement? valueElement,
     @JsonKey(unknownEnumValue: QuantityComparator.unknown)
 
     /// [comparator] How the value should be understood and represented - whether
@@ -87,27 +87,27 @@ class Quantity with _$Quantity implements DataType {
     QuantityComparator? comparator,
 
     /// [comparatorElement] Extensions for comparator
-    @JsonKey(name: '_comparator') Element? comparatorElement,
+    @JsonKey(name: '_comparator') PrimitiveElement? comparatorElement,
 
     /// [unit] A human-readable form of the unit.
     String? unit,
 
     /// [unitElement] Extensions for unit
-    @JsonKey(name: '_unit') Element? unitElement,
+    @JsonKey(name: '_unit') PrimitiveElement? unitElement,
 
     /// [system] The identification of the system that provides the coded form of
     ///  the unit.
     FhirUri? system,
 
     /// [systemElement] Extensions for system
-    @JsonKey(name: '_system') Element? systemElement,
+    @JsonKey(name: '_system') PrimitiveElement? systemElement,
 
     /// [code] A computer processable form of the unit in some unit
     ///  representation system.
     FhirCode? code,
 
     /// [codeElement] Extensions for code
-    @JsonKey(name: '_code') Element? codeElement,
+    @JsonKey(name: '_code') PrimitiveElement? codeElement,
   }) = _Quantity;
 
   @override

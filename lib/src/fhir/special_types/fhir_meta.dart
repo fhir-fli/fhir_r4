@@ -82,14 +82,14 @@ class FhirMeta with _$FhirMeta implements DataType {
     FhirId? versionId,
 
     /// [versionIdElement] Extensions for versionId
-    @JsonKey(name: '_versionId') Element? versionIdElement,
+    @JsonKey(name: '_versionId') PrimitiveElement? versionIdElement,
 
     /// [lastUpdated] When the resource last changed - e.g. when the version
     ///  changed.
     FhirInstant? lastUpdated,
 
     /// [lastUpdatedElement] Extensions for lastUpdated
-    @JsonKey(name: '_lastUpdated') Element? lastUpdatedElement,
+    @JsonKey(name: '_lastUpdated') PrimitiveElement? lastUpdatedElement,
 
     /// [source] A uri that identifies the source system of the resource. This
     /// provides a minimal amount of [[[Provenance]]] information that can be used
@@ -99,7 +99,7 @@ class FhirMeta with _$FhirMeta implements DataType {
     FhirUri? source,
 
     /// [sourceElement] Extensions for source
-    @JsonKey(name: '_source') Element? sourceElement,
+    @JsonKey(name: '_source') PrimitiveElement? sourceElement,
 
     /// [profile] A list of profiles (references to [[[StructureDefinition]]]
     /// resources) that this resource claims to conform to. The URL is a reference

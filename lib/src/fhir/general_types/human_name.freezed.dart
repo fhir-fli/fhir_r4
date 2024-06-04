@@ -39,7 +39,7 @@ mixin _$HumanName {
 
   /// [useElement] Extensions for use
   @JsonKey(name: '_use')
-  Element? get useElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get useElement => throw _privateConstructorUsedError;
 
   /// [text] Specifies the entire name as it should be displayed e.g. on an
   /// application UI. This may be provided instead of or as well as the specific
@@ -48,7 +48,7 @@ mixin _$HumanName {
 
   /// [textElement] Extensions for text
   @JsonKey(name: '_text')
-  Element? get textElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get textElement => throw _privateConstructorUsedError;
 
   /// [family] The part of a name that links to the genealogy. In some cultures
   ///  (e.g. Eritrea) the family name of a son is the first name of his father.
@@ -56,7 +56,7 @@ mixin _$HumanName {
 
   /// [familyElement] Extensions for family
   @JsonKey(name: '_family')
-  Element? get familyElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get familyElement => throw _privateConstructorUsedError;
 
   /// [given] Given name.
   List<String>? get given => throw _privateConstructorUsedError;
@@ -102,11 +102,11 @@ abstract class $HumanNameCopyWith<$Res> {
       {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: HumanNameUse.unknown) HumanNameUse? use,
-      @JsonKey(name: '_use') Element? useElement,
+      @JsonKey(name: '_use') PrimitiveElement? useElement,
       String? text,
-      @JsonKey(name: '_text') Element? textElement,
+      @JsonKey(name: '_text') PrimitiveElement? textElement,
       String? family,
-      @JsonKey(name: '_family') Element? familyElement,
+      @JsonKey(name: '_family') PrimitiveElement? familyElement,
       List<String>? given,
       @JsonKey(name: '_given') List<Element?>? givenElement,
       List<String>? prefix,
@@ -163,7 +163,7 @@ class _$HumanNameCopyWithImpl<$Res, $Val extends HumanName>
       useElement: freezed == useElement
           ? _value.useElement
           : useElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -171,7 +171,7 @@ class _$HumanNameCopyWithImpl<$Res, $Val extends HumanName>
       textElement: freezed == textElement
           ? _value.textElement
           : textElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       family: freezed == family
           ? _value.family
           : family // ignore: cast_nullable_to_non_nullable
@@ -179,7 +179,7 @@ class _$HumanNameCopyWithImpl<$Res, $Val extends HumanName>
       familyElement: freezed == familyElement
           ? _value.familyElement
           : familyElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       given: freezed == given
           ? _value.given
           : given // ignore: cast_nullable_to_non_nullable
@@ -236,11 +236,11 @@ abstract class _$$HumanNameImplCopyWith<$Res>
       {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: HumanNameUse.unknown) HumanNameUse? use,
-      @JsonKey(name: '_use') Element? useElement,
+      @JsonKey(name: '_use') PrimitiveElement? useElement,
       String? text,
-      @JsonKey(name: '_text') Element? textElement,
+      @JsonKey(name: '_text') PrimitiveElement? textElement,
       String? family,
-      @JsonKey(name: '_family') Element? familyElement,
+      @JsonKey(name: '_family') PrimitiveElement? familyElement,
       List<String>? given,
       @JsonKey(name: '_given') List<Element?>? givenElement,
       List<String>? prefix,
@@ -296,7 +296,7 @@ class __$$HumanNameImplCopyWithImpl<$Res>
       useElement: freezed == useElement
           ? _value.useElement
           : useElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -304,7 +304,7 @@ class __$$HumanNameImplCopyWithImpl<$Res>
       textElement: freezed == textElement
           ? _value.textElement
           : textElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       family: freezed == family
           ? _value.family
           : family // ignore: cast_nullable_to_non_nullable
@@ -312,7 +312,7 @@ class __$$HumanNameImplCopyWithImpl<$Res>
       familyElement: freezed == familyElement
           ? _value.familyElement
           : familyElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       given: freezed == given
           ? _value._given
           : given // ignore: cast_nullable_to_non_nullable
@@ -413,7 +413,7 @@ class _$HumanNameImpl extends _HumanName {
   /// [useElement] Extensions for use
   @override
   @JsonKey(name: '_use')
-  final Element? useElement;
+  final PrimitiveElement? useElement;
 
   /// [text] Specifies the entire name as it should be displayed e.g. on an
   /// application UI. This may be provided instead of or as well as the specific
@@ -424,7 +424,7 @@ class _$HumanNameImpl extends _HumanName {
   /// [textElement] Extensions for text
   @override
   @JsonKey(name: '_text')
-  final Element? textElement;
+  final PrimitiveElement? textElement;
 
   /// [family] The part of a name that links to the genealogy. In some cultures
   ///  (e.g. Eritrea) the family name of a son is the first name of his father.
@@ -434,7 +434,7 @@ class _$HumanNameImpl extends _HumanName {
   /// [familyElement] Extensions for family
   @override
   @JsonKey(name: '_family')
-  final Element? familyElement;
+  final PrimitiveElement? familyElement;
 
   /// [given] Given name.
   final List<String>? _given;
@@ -603,11 +603,11 @@ abstract class _HumanName extends HumanName {
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: HumanNameUse.unknown) final HumanNameUse? use,
-      @JsonKey(name: '_use') final Element? useElement,
+      @JsonKey(name: '_use') final PrimitiveElement? useElement,
       final String? text,
-      @JsonKey(name: '_text') final Element? textElement,
+      @JsonKey(name: '_text') final PrimitiveElement? textElement,
       final String? family,
-      @JsonKey(name: '_family') final Element? familyElement,
+      @JsonKey(name: '_family') final PrimitiveElement? familyElement,
       final List<String>? given,
       @JsonKey(name: '_given') final List<Element?>? givenElement,
       final List<String>? prefix,
@@ -644,7 +644,7 @@ abstract class _HumanName extends HumanName {
 
   /// [useElement] Extensions for use
   @JsonKey(name: '_use')
-  Element? get useElement;
+  PrimitiveElement? get useElement;
   @override
 
   /// [text] Specifies the entire name as it should be displayed e.g. on an
@@ -655,7 +655,7 @@ abstract class _HumanName extends HumanName {
 
   /// [textElement] Extensions for text
   @JsonKey(name: '_text')
-  Element? get textElement;
+  PrimitiveElement? get textElement;
   @override
 
   /// [family] The part of a name that links to the genealogy. In some cultures
@@ -665,7 +665,7 @@ abstract class _HumanName extends HumanName {
 
   /// [familyElement] Extensions for family
   @JsonKey(name: '_family')
-  Element? get familyElement;
+  PrimitiveElement? get familyElement;
   @override
 
   /// [given] Given name.

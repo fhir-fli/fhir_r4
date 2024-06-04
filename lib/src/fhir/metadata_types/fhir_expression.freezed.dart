@@ -39,7 +39,8 @@ mixin _$FhirExpression {
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get descriptionElement =>
+      throw _privateConstructorUsedError;
 
   /// [name] A short name assigned to the expression to allow for multiple
   ///  reuse of the expression in the context where it is defined.
@@ -47,13 +48,13 @@ mixin _$FhirExpression {
 
   /// [nameElement] Extensions for name
   @JsonKey(name: '_name')
-  Element? get nameElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get nameElement => throw _privateConstructorUsedError;
   @JsonKey(unknownEnumValue: FhirExpressionLanguage.unknown)
   FhirExpressionLanguage? get language => throw _privateConstructorUsedError;
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get languageElement => throw _privateConstructorUsedError;
 
   /// [expression] An expression in the specified language that returns a
   ///  value.
@@ -61,14 +62,14 @@ mixin _$FhirExpression {
 
   /// [expressionElement] Extensions for expression
   @JsonKey(name: '_expression')
-  Element? get expressionElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get expressionElement => throw _privateConstructorUsedError;
 
   /// [reference] A URI that defines where the expression is found.
   FhirUri? get reference => throw _privateConstructorUsedError;
 
   /// [referenceElement] Extensions for reference
   @JsonKey(name: '_reference')
-  Element? get referenceElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get referenceElement => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -86,16 +87,16 @@ abstract class $FhirExpressionCopyWith<$Res> {
       {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       String? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       FhirId? name,
-      @JsonKey(name: '_name') Element? nameElement,
+      @JsonKey(name: '_name') PrimitiveElement? nameElement,
       @JsonKey(unknownEnumValue: FhirExpressionLanguage.unknown)
       FhirExpressionLanguage? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       String? expression,
-      @JsonKey(name: '_expression') Element? expressionElement,
+      @JsonKey(name: '_expression') PrimitiveElement? expressionElement,
       FhirUri? reference,
-      @JsonKey(name: '_reference') Element? referenceElement});
+      @JsonKey(name: '_reference') PrimitiveElement? referenceElement});
 }
 
 /// @nodoc
@@ -140,7 +141,7 @@ class _$FhirExpressionCopyWithImpl<$Res, $Val extends FhirExpression>
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -148,7 +149,7 @@ class _$FhirExpressionCopyWithImpl<$Res, $Val extends FhirExpression>
       nameElement: freezed == nameElement
           ? _value.nameElement
           : nameElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -156,7 +157,7 @@ class _$FhirExpressionCopyWithImpl<$Res, $Val extends FhirExpression>
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       expression: freezed == expression
           ? _value.expression
           : expression // ignore: cast_nullable_to_non_nullable
@@ -164,7 +165,7 @@ class _$FhirExpressionCopyWithImpl<$Res, $Val extends FhirExpression>
       expressionElement: freezed == expressionElement
           ? _value.expressionElement
           : expressionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       reference: freezed == reference
           ? _value.reference
           : reference // ignore: cast_nullable_to_non_nullable
@@ -172,7 +173,7 @@ class _$FhirExpressionCopyWithImpl<$Res, $Val extends FhirExpression>
       referenceElement: freezed == referenceElement
           ? _value.referenceElement
           : referenceElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ) as $Val);
   }
 }
@@ -189,16 +190,16 @@ abstract class _$$FhirExpressionImplCopyWith<$Res>
       {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       String? description,
-      @JsonKey(name: '_description') Element? descriptionElement,
+      @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       FhirId? name,
-      @JsonKey(name: '_name') Element? nameElement,
+      @JsonKey(name: '_name') PrimitiveElement? nameElement,
       @JsonKey(unknownEnumValue: FhirExpressionLanguage.unknown)
       FhirExpressionLanguage? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       String? expression,
-      @JsonKey(name: '_expression') Element? expressionElement,
+      @JsonKey(name: '_expression') PrimitiveElement? expressionElement,
       FhirUri? reference,
-      @JsonKey(name: '_reference') Element? referenceElement});
+      @JsonKey(name: '_reference') PrimitiveElement? referenceElement});
 }
 
 /// @nodoc
@@ -241,7 +242,7 @@ class __$$FhirExpressionImplCopyWithImpl<$Res>
       descriptionElement: freezed == descriptionElement
           ? _value.descriptionElement
           : descriptionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -249,7 +250,7 @@ class __$$FhirExpressionImplCopyWithImpl<$Res>
       nameElement: freezed == nameElement
           ? _value.nameElement
           : nameElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -257,7 +258,7 @@ class __$$FhirExpressionImplCopyWithImpl<$Res>
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       expression: freezed == expression
           ? _value.expression
           : expression // ignore: cast_nullable_to_non_nullable
@@ -265,7 +266,7 @@ class __$$FhirExpressionImplCopyWithImpl<$Res>
       expressionElement: freezed == expressionElement
           ? _value.expressionElement
           : expressionElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       reference: freezed == reference
           ? _value.reference
           : reference // ignore: cast_nullable_to_non_nullable
@@ -273,7 +274,7 @@ class __$$FhirExpressionImplCopyWithImpl<$Res>
       referenceElement: freezed == referenceElement
           ? _value.referenceElement
           : referenceElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ));
   }
 }
@@ -337,7 +338,7 @@ class _$FhirExpressionImpl extends _FhirExpression {
   /// [descriptionElement] Extensions for description
   @override
   @JsonKey(name: '_description')
-  final Element? descriptionElement;
+  final PrimitiveElement? descriptionElement;
 
   /// [name] A short name assigned to the expression to allow for multiple
   ///  reuse of the expression in the context where it is defined.
@@ -347,7 +348,7 @@ class _$FhirExpressionImpl extends _FhirExpression {
   /// [nameElement] Extensions for name
   @override
   @JsonKey(name: '_name')
-  final Element? nameElement;
+  final PrimitiveElement? nameElement;
   @override
   @JsonKey(unknownEnumValue: FhirExpressionLanguage.unknown)
   final FhirExpressionLanguage? language;
@@ -355,7 +356,7 @@ class _$FhirExpressionImpl extends _FhirExpression {
   /// [languageElement] Extensions for language
   @override
   @JsonKey(name: '_language')
-  final Element? languageElement;
+  final PrimitiveElement? languageElement;
 
   /// [expression] An expression in the specified language that returns a
   ///  value.
@@ -365,7 +366,7 @@ class _$FhirExpressionImpl extends _FhirExpression {
   /// [expressionElement] Extensions for expression
   @override
   @JsonKey(name: '_expression')
-  final Element? expressionElement;
+  final PrimitiveElement? expressionElement;
 
   /// [reference] A URI that defines where the expression is found.
   @override
@@ -374,7 +375,7 @@ class _$FhirExpressionImpl extends _FhirExpression {
   /// [referenceElement] Extensions for reference
   @override
   @JsonKey(name: '_reference')
-  final Element? referenceElement;
+  final PrimitiveElement? referenceElement;
 
   @override
   String toString() {
@@ -444,20 +445,20 @@ class _$FhirExpressionImpl extends _FhirExpression {
 
 abstract class _FhirExpression extends FhirExpression {
   const factory _FhirExpression(
-          {final String? id,
-          @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
-          final String? description,
-          @JsonKey(name: '_description') final Element? descriptionElement,
-          final FhirId? name,
-          @JsonKey(name: '_name') final Element? nameElement,
-          @JsonKey(unknownEnumValue: FhirExpressionLanguage.unknown)
-          final FhirExpressionLanguage? language,
-          @JsonKey(name: '_language') final Element? languageElement,
-          final String? expression,
-          @JsonKey(name: '_expression') final Element? expressionElement,
-          final FhirUri? reference,
-          @JsonKey(name: '_reference') final Element? referenceElement}) =
-      _$FhirExpressionImpl;
+      {final String? id,
+      @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
+      final String? description,
+      @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
+      final FhirId? name,
+      @JsonKey(name: '_name') final PrimitiveElement? nameElement,
+      @JsonKey(unknownEnumValue: FhirExpressionLanguage.unknown)
+      final FhirExpressionLanguage? language,
+      @JsonKey(name: '_language') final PrimitiveElement? languageElement,
+      final String? expression,
+      @JsonKey(name: '_expression') final PrimitiveElement? expressionElement,
+      final FhirUri? reference,
+      @JsonKey(name: '_reference')
+      final PrimitiveElement? referenceElement}) = _$FhirExpressionImpl;
   const _FhirExpression._() : super._();
 
   factory _FhirExpression.fromJson(Map<String, dynamic> json) =
@@ -487,7 +488,7 @@ abstract class _FhirExpression extends FhirExpression {
 
   /// [descriptionElement] Extensions for description
   @JsonKey(name: '_description')
-  Element? get descriptionElement;
+  PrimitiveElement? get descriptionElement;
   @override
 
   /// [name] A short name assigned to the expression to allow for multiple
@@ -497,7 +498,7 @@ abstract class _FhirExpression extends FhirExpression {
 
   /// [nameElement] Extensions for name
   @JsonKey(name: '_name')
-  Element? get nameElement;
+  PrimitiveElement? get nameElement;
   @override
   @JsonKey(unknownEnumValue: FhirExpressionLanguage.unknown)
   FhirExpressionLanguage? get language;
@@ -505,7 +506,7 @@ abstract class _FhirExpression extends FhirExpression {
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement;
+  PrimitiveElement? get languageElement;
   @override
 
   /// [expression] An expression in the specified language that returns a
@@ -515,7 +516,7 @@ abstract class _FhirExpression extends FhirExpression {
 
   /// [expressionElement] Extensions for expression
   @JsonKey(name: '_expression')
-  Element? get expressionElement;
+  PrimitiveElement? get expressionElement;
   @override
 
   /// [reference] A URI that defines where the expression is found.
@@ -524,7 +525,7 @@ abstract class _FhirExpression extends FhirExpression {
 
   /// [referenceElement] Extensions for reference
   @JsonKey(name: '_reference')
-  Element? get referenceElement;
+  PrimitiveElement? get referenceElement;
   @override
   @JsonKey(ignore: true)
   _$$FhirExpressionImplCopyWith<_$FhirExpressionImpl> get copyWith =>

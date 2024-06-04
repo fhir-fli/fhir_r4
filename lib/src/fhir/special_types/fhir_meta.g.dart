@@ -16,17 +16,19 @@ _$FhirMetaImpl _$$FhirMetaImplFromJson(Map<String, dynamic> json) =>
           json['versionId'] == null ? null : FhirId.fromJson(json['versionId']),
       versionIdElement: json['_versionId'] == null
           ? null
-          : Element.fromJson(json['_versionId'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_versionId'] as Map<String, dynamic>),
       lastUpdated: json['lastUpdated'] == null
           ? null
           : FhirInstant.fromJson(json['lastUpdated'] as String),
       lastUpdatedElement: json['_lastUpdated'] == null
           ? null
-          : Element.fromJson(json['_lastUpdated'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_lastUpdated'] as Map<String, dynamic>),
       source: json['source'] == null ? null : FhirUri.fromJson(json['source']),
       sourceElement: json['_source'] == null
           ? null
-          : Element.fromJson(json['_source'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_source'] as Map<String, dynamic>),
       profile: (json['profile'] as List<dynamic>?)
           ?.map(FhirCanonical.fromJson)
           .toList(),

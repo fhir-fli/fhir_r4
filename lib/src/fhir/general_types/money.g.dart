@@ -14,12 +14,13 @@ _$MoneyImpl _$$MoneyImplFromJson(Map<String, dynamic> json) => _$MoneyImpl(
       value: json['value'] == null ? null : FhirDecimal.fromJson(json['value']),
       valueElement: json['_value'] == null
           ? null
-          : Element.fromJson(json['_value'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_value'] as Map<String, dynamic>),
       currency:
           json['currency'] == null ? null : FhirCode.fromJson(json['currency']),
       currencyElement: json['_currency'] == null
           ? null
-          : Element.fromJson(json['_currency'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_currency'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$MoneyImplToJson(_$MoneyImpl instance) {

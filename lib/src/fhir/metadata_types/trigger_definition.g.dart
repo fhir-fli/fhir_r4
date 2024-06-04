@@ -17,11 +17,11 @@ _$TriggerDefinitionImpl _$$TriggerDefinitionImplFromJson(
           unknownValue: TriggerDefinitionType.unknown),
       typeElement: json['_type'] == null
           ? null
-          : Element.fromJson(json['_type'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_type'] as Map<String, dynamic>),
       name: json['name'] as String?,
       nameElement: json['_name'] == null
           ? null
-          : Element.fromJson(json['_name'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_name'] as Map<String, dynamic>),
       timingTiming: json['timingTiming'] == null
           ? null
           : Timing.fromJson(json['timingTiming'] as Map<String, dynamic>),
@@ -33,13 +33,15 @@ _$TriggerDefinitionImpl _$$TriggerDefinitionImplFromJson(
           : FhirDate.fromJson(json['timingDate'] as String),
       timingDateElement: json['_timingDate'] == null
           ? null
-          : Element.fromJson(json['_timingDate'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_timingDate'] as Map<String, dynamic>),
       timingDateTime: json['timingDateTime'] == null
           ? null
           : FhirDateTime.fromJson(json['timingDateTime'] as String),
       timingDateTimeElement: json['_timingDateTime'] == null
           ? null
-          : Element.fromJson(json['_timingDateTime'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_timingDateTime'] as Map<String, dynamic>),
       data: (json['data'] as List<dynamic>?)
           ?.map((e) => DataRequirement.fromJson(e as Map<String, dynamic>))
           .toList(),

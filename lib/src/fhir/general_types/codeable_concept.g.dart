@@ -19,7 +19,7 @@ _$CodeableConceptImpl _$$CodeableConceptImplFromJson(
       text: json['text'] as String?,
       textElement: json['_text'] == null
           ? null
-          : Element.fromJson(json['_text'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_text'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$CodeableConceptImplToJson(

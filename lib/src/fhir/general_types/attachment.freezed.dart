@@ -40,7 +40,8 @@ mixin _$Attachment {
 
   /// [contentTypeElement] Extensions for contentType
   @JsonKey(name: '_contentType')
-  Element? get contentTypeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get contentTypeElement =>
+      throw _privateConstructorUsedError;
 
   /// [language] The human language of the content. The value can be any valid
   ///  value according to BCP 47.
@@ -48,7 +49,7 @@ mixin _$Attachment {
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get languageElement => throw _privateConstructorUsedError;
 
   /// [data] The actual data of the attachment - a sequence of bytes, base64
   ///  encoded.
@@ -56,14 +57,14 @@ mixin _$Attachment {
 
   /// [dataElement] Extensions for data
   @JsonKey(name: '_data')
-  Element? get dataElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get dataElement => throw _privateConstructorUsedError;
 
   /// [url] A location where the data can be accessed.
   FhirUrl? get url => throw _privateConstructorUsedError;
 
   /// [urlElement] Extensions for url
   @JsonKey(name: '_url')
-  Element? get urlElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get urlElement => throw _privateConstructorUsedError;
 
   /// [size] The number of bytes of data that make up this attachment (before
   ///  base64 encoding, if that is done).
@@ -71,7 +72,7 @@ mixin _$Attachment {
 
   /// [sizeElement] Extensions for size
   @JsonKey(name: '_size')
-  Element? get sizeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get sizeElement => throw _privateConstructorUsedError;
 
   /// [hash] The calculated hash of the data using SHA-1. Represented using
   ///  base64.
@@ -79,21 +80,21 @@ mixin _$Attachment {
 
   /// [hashElement] Extensions for hash
   @JsonKey(name: '_hash')
-  Element? get hashElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get hashElement => throw _privateConstructorUsedError;
 
   /// [title] A label or set of text to display in place of the data.
   String? get title => throw _privateConstructorUsedError;
 
   /// [titleElement] Extensions for title
   @JsonKey(name: '_title')
-  Element? get titleElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get titleElement => throw _privateConstructorUsedError;
 
   /// [creation] The date that the attachment was first created.
   FhirDateTime? get creation => throw _privateConstructorUsedError;
 
   /// [creationElement] Extensions for creation
   @JsonKey(name: '_creation')
-  Element? get creationElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get creationElement => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -111,21 +112,21 @@ abstract class $AttachmentCopyWith<$Res> {
       {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       FhirCode? contentType,
-      @JsonKey(name: '_contentType') Element? contentTypeElement,
+      @JsonKey(name: '_contentType') PrimitiveElement? contentTypeElement,
       FhirCode? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       FhirBase64Binary? data,
-      @JsonKey(name: '_data') Element? dataElement,
+      @JsonKey(name: '_data') PrimitiveElement? dataElement,
       FhirUrl? url,
-      @JsonKey(name: '_url') Element? urlElement,
+      @JsonKey(name: '_url') PrimitiveElement? urlElement,
       FhirUnsignedInt? size,
-      @JsonKey(name: '_size') Element? sizeElement,
+      @JsonKey(name: '_size') PrimitiveElement? sizeElement,
       FhirBase64Binary? hash,
-      @JsonKey(name: '_hash') Element? hashElement,
+      @JsonKey(name: '_hash') PrimitiveElement? hashElement,
       String? title,
-      @JsonKey(name: '_title') Element? titleElement,
+      @JsonKey(name: '_title') PrimitiveElement? titleElement,
       FhirDateTime? creation,
-      @JsonKey(name: '_creation') Element? creationElement});
+      @JsonKey(name: '_creation') PrimitiveElement? creationElement});
 }
 
 /// @nodoc
@@ -176,7 +177,7 @@ class _$AttachmentCopyWithImpl<$Res, $Val extends Attachment>
       contentTypeElement: freezed == contentTypeElement
           ? _value.contentTypeElement
           : contentTypeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -184,7 +185,7 @@ class _$AttachmentCopyWithImpl<$Res, $Val extends Attachment>
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -192,7 +193,7 @@ class _$AttachmentCopyWithImpl<$Res, $Val extends Attachment>
       dataElement: freezed == dataElement
           ? _value.dataElement
           : dataElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -200,7 +201,7 @@ class _$AttachmentCopyWithImpl<$Res, $Val extends Attachment>
       urlElement: freezed == urlElement
           ? _value.urlElement
           : urlElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       size: freezed == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
@@ -208,7 +209,7 @@ class _$AttachmentCopyWithImpl<$Res, $Val extends Attachment>
       sizeElement: freezed == sizeElement
           ? _value.sizeElement
           : sizeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       hash: freezed == hash
           ? _value.hash
           : hash // ignore: cast_nullable_to_non_nullable
@@ -216,7 +217,7 @@ class _$AttachmentCopyWithImpl<$Res, $Val extends Attachment>
       hashElement: freezed == hashElement
           ? _value.hashElement
           : hashElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -224,7 +225,7 @@ class _$AttachmentCopyWithImpl<$Res, $Val extends Attachment>
       titleElement: freezed == titleElement
           ? _value.titleElement
           : titleElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       creation: freezed == creation
           ? _value.creation
           : creation // ignore: cast_nullable_to_non_nullable
@@ -232,7 +233,7 @@ class _$AttachmentCopyWithImpl<$Res, $Val extends Attachment>
       creationElement: freezed == creationElement
           ? _value.creationElement
           : creationElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ) as $Val);
   }
 }
@@ -249,21 +250,21 @@ abstract class _$$AttachmentImplCopyWith<$Res>
       {String? id,
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       FhirCode? contentType,
-      @JsonKey(name: '_contentType') Element? contentTypeElement,
+      @JsonKey(name: '_contentType') PrimitiveElement? contentTypeElement,
       FhirCode? language,
-      @JsonKey(name: '_language') Element? languageElement,
+      @JsonKey(name: '_language') PrimitiveElement? languageElement,
       FhirBase64Binary? data,
-      @JsonKey(name: '_data') Element? dataElement,
+      @JsonKey(name: '_data') PrimitiveElement? dataElement,
       FhirUrl? url,
-      @JsonKey(name: '_url') Element? urlElement,
+      @JsonKey(name: '_url') PrimitiveElement? urlElement,
       FhirUnsignedInt? size,
-      @JsonKey(name: '_size') Element? sizeElement,
+      @JsonKey(name: '_size') PrimitiveElement? sizeElement,
       FhirBase64Binary? hash,
-      @JsonKey(name: '_hash') Element? hashElement,
+      @JsonKey(name: '_hash') PrimitiveElement? hashElement,
       String? title,
-      @JsonKey(name: '_title') Element? titleElement,
+      @JsonKey(name: '_title') PrimitiveElement? titleElement,
       FhirDateTime? creation,
-      @JsonKey(name: '_creation') Element? creationElement});
+      @JsonKey(name: '_creation') PrimitiveElement? creationElement});
 }
 
 /// @nodoc
@@ -312,7 +313,7 @@ class __$$AttachmentImplCopyWithImpl<$Res>
       contentTypeElement: freezed == contentTypeElement
           ? _value.contentTypeElement
           : contentTypeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -320,7 +321,7 @@ class __$$AttachmentImplCopyWithImpl<$Res>
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -328,7 +329,7 @@ class __$$AttachmentImplCopyWithImpl<$Res>
       dataElement: freezed == dataElement
           ? _value.dataElement
           : dataElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -336,7 +337,7 @@ class __$$AttachmentImplCopyWithImpl<$Res>
       urlElement: freezed == urlElement
           ? _value.urlElement
           : urlElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       size: freezed == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
@@ -344,7 +345,7 @@ class __$$AttachmentImplCopyWithImpl<$Res>
       sizeElement: freezed == sizeElement
           ? _value.sizeElement
           : sizeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       hash: freezed == hash
           ? _value.hash
           : hash // ignore: cast_nullable_to_non_nullable
@@ -352,7 +353,7 @@ class __$$AttachmentImplCopyWithImpl<$Res>
       hashElement: freezed == hashElement
           ? _value.hashElement
           : hashElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -360,7 +361,7 @@ class __$$AttachmentImplCopyWithImpl<$Res>
       titleElement: freezed == titleElement
           ? _value.titleElement
           : titleElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       creation: freezed == creation
           ? _value.creation
           : creation // ignore: cast_nullable_to_non_nullable
@@ -368,7 +369,7 @@ class __$$AttachmentImplCopyWithImpl<$Res>
       creationElement: freezed == creationElement
           ? _value.creationElement
           : creationElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ));
   }
 }
@@ -439,7 +440,7 @@ class _$AttachmentImpl extends _Attachment {
   /// [contentTypeElement] Extensions for contentType
   @override
   @JsonKey(name: '_contentType')
-  final Element? contentTypeElement;
+  final PrimitiveElement? contentTypeElement;
 
   /// [language] The human language of the content. The value can be any valid
   ///  value according to BCP 47.
@@ -449,7 +450,7 @@ class _$AttachmentImpl extends _Attachment {
   /// [languageElement] Extensions for language
   @override
   @JsonKey(name: '_language')
-  final Element? languageElement;
+  final PrimitiveElement? languageElement;
 
   /// [data] The actual data of the attachment - a sequence of bytes, base64
   ///  encoded.
@@ -459,7 +460,7 @@ class _$AttachmentImpl extends _Attachment {
   /// [dataElement] Extensions for data
   @override
   @JsonKey(name: '_data')
-  final Element? dataElement;
+  final PrimitiveElement? dataElement;
 
   /// [url] A location where the data can be accessed.
   @override
@@ -468,7 +469,7 @@ class _$AttachmentImpl extends _Attachment {
   /// [urlElement] Extensions for url
   @override
   @JsonKey(name: '_url')
-  final Element? urlElement;
+  final PrimitiveElement? urlElement;
 
   /// [size] The number of bytes of data that make up this attachment (before
   ///  base64 encoding, if that is done).
@@ -478,7 +479,7 @@ class _$AttachmentImpl extends _Attachment {
   /// [sizeElement] Extensions for size
   @override
   @JsonKey(name: '_size')
-  final Element? sizeElement;
+  final PrimitiveElement? sizeElement;
 
   /// [hash] The calculated hash of the data using SHA-1. Represented using
   ///  base64.
@@ -488,7 +489,7 @@ class _$AttachmentImpl extends _Attachment {
   /// [hashElement] Extensions for hash
   @override
   @JsonKey(name: '_hash')
-  final Element? hashElement;
+  final PrimitiveElement? hashElement;
 
   /// [title] A label or set of text to display in place of the data.
   @override
@@ -497,7 +498,7 @@ class _$AttachmentImpl extends _Attachment {
   /// [titleElement] Extensions for title
   @override
   @JsonKey(name: '_title')
-  final Element? titleElement;
+  final PrimitiveElement? titleElement;
 
   /// [creation] The date that the attachment was first created.
   @override
@@ -506,7 +507,7 @@ class _$AttachmentImpl extends _Attachment {
   /// [creationElement] Extensions for creation
   @override
   @JsonKey(name: '_creation')
-  final Element? creationElement;
+  final PrimitiveElement? creationElement;
 
   @override
   String toString() {
@@ -589,25 +590,25 @@ class _$AttachmentImpl extends _Attachment {
 
 abstract class _Attachment extends Attachment {
   const factory _Attachment(
-          {final String? id,
-          @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
-          final FhirCode? contentType,
-          @JsonKey(name: '_contentType') final Element? contentTypeElement,
-          final FhirCode? language,
-          @JsonKey(name: '_language') final Element? languageElement,
-          final FhirBase64Binary? data,
-          @JsonKey(name: '_data') final Element? dataElement,
-          final FhirUrl? url,
-          @JsonKey(name: '_url') final Element? urlElement,
-          final FhirUnsignedInt? size,
-          @JsonKey(name: '_size') final Element? sizeElement,
-          final FhirBase64Binary? hash,
-          @JsonKey(name: '_hash') final Element? hashElement,
-          final String? title,
-          @JsonKey(name: '_title') final Element? titleElement,
-          final FhirDateTime? creation,
-          @JsonKey(name: '_creation') final Element? creationElement}) =
-      _$AttachmentImpl;
+      {final String? id,
+      @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
+      final FhirCode? contentType,
+      @JsonKey(name: '_contentType') final PrimitiveElement? contentTypeElement,
+      final FhirCode? language,
+      @JsonKey(name: '_language') final PrimitiveElement? languageElement,
+      final FhirBase64Binary? data,
+      @JsonKey(name: '_data') final PrimitiveElement? dataElement,
+      final FhirUrl? url,
+      @JsonKey(name: '_url') final PrimitiveElement? urlElement,
+      final FhirUnsignedInt? size,
+      @JsonKey(name: '_size') final PrimitiveElement? sizeElement,
+      final FhirBase64Binary? hash,
+      @JsonKey(name: '_hash') final PrimitiveElement? hashElement,
+      final String? title,
+      @JsonKey(name: '_title') final PrimitiveElement? titleElement,
+      final FhirDateTime? creation,
+      @JsonKey(name: '_creation')
+      final PrimitiveElement? creationElement}) = _$AttachmentImpl;
   const _Attachment._() : super._();
 
   factory _Attachment.fromJson(Map<String, dynamic> json) =
@@ -638,7 +639,7 @@ abstract class _Attachment extends Attachment {
 
   /// [contentTypeElement] Extensions for contentType
   @JsonKey(name: '_contentType')
-  Element? get contentTypeElement;
+  PrimitiveElement? get contentTypeElement;
   @override
 
   /// [language] The human language of the content. The value can be any valid
@@ -648,7 +649,7 @@ abstract class _Attachment extends Attachment {
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  Element? get languageElement;
+  PrimitiveElement? get languageElement;
   @override
 
   /// [data] The actual data of the attachment - a sequence of bytes, base64
@@ -658,7 +659,7 @@ abstract class _Attachment extends Attachment {
 
   /// [dataElement] Extensions for data
   @JsonKey(name: '_data')
-  Element? get dataElement;
+  PrimitiveElement? get dataElement;
   @override
 
   /// [url] A location where the data can be accessed.
@@ -667,7 +668,7 @@ abstract class _Attachment extends Attachment {
 
   /// [urlElement] Extensions for url
   @JsonKey(name: '_url')
-  Element? get urlElement;
+  PrimitiveElement? get urlElement;
   @override
 
   /// [size] The number of bytes of data that make up this attachment (before
@@ -677,7 +678,7 @@ abstract class _Attachment extends Attachment {
 
   /// [sizeElement] Extensions for size
   @JsonKey(name: '_size')
-  Element? get sizeElement;
+  PrimitiveElement? get sizeElement;
   @override
 
   /// [hash] The calculated hash of the data using SHA-1. Represented using
@@ -687,7 +688,7 @@ abstract class _Attachment extends Attachment {
 
   /// [hashElement] Extensions for hash
   @JsonKey(name: '_hash')
-  Element? get hashElement;
+  PrimitiveElement? get hashElement;
   @override
 
   /// [title] A label or set of text to display in place of the data.
@@ -696,7 +697,7 @@ abstract class _Attachment extends Attachment {
 
   /// [titleElement] Extensions for title
   @JsonKey(name: '_title')
-  Element? get titleElement;
+  PrimitiveElement? get titleElement;
   @override
 
   /// [creation] The date that the attachment was first created.
@@ -705,7 +706,7 @@ abstract class _Attachment extends Attachment {
 
   /// [creationElement] Extensions for creation
   @JsonKey(name: '_creation')
-  Element? get creationElement;
+  PrimitiveElement? get creationElement;
   @override
   @JsonKey(ignore: true)
   _$$AttachmentImplCopyWith<_$AttachmentImpl> get copyWith =>

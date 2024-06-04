@@ -15,7 +15,7 @@ part 'public_health_and_research.g.dart';
 
 /// [ResearchStudy] A process where a researcher or organization plans and
 @freezed
-class ResearchStudy with Resource, _$ResearchStudy {
+class ResearchStudy with _$ResearchStudy implements DomainResource {
   /// [ResearchStudy] A process where a researcher or organization plans and
   const ResearchStudy._();
 
@@ -183,13 +183,13 @@ class ResearchStudy with Resource, _$ResearchStudy {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -236,7 +236,7 @@ class ResearchStudy with Resource, _$ResearchStudy {
     String? title,
 
     /// [titleElement] Extensions for title
-    @JsonKey(name: '_title') Element? titleElement,
+    @JsonKey(name: '_title') PrimitiveElement? titleElement,
 
     /// [protocol] The set of steps expected to be performed as part of the
     ///  execution of the study.
@@ -250,7 +250,7 @@ class ResearchStudy with Resource, _$ResearchStudy {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [primaryPurposeType] The type of study based upon the intent of the
     ///  study's activities. A classification of the intent of the study.
@@ -294,7 +294,7 @@ class ResearchStudy with Resource, _$ResearchStudy {
     FhirMarkdown? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [enrollment] Reference to a Group that defines the criteria for and
     /// quantity of subjects participating in the study.  E.g. " 200 female
@@ -375,7 +375,7 @@ class ResearchStudy with Resource, _$ResearchStudy {
 
 /// [ResearchStudyArm] A process where a researcher or organization plans
 @freezed
-class ResearchStudyArm with BackboneType, _$ResearchStudyArm {
+class ResearchStudyArm with _$ResearchStudyArm implements BackboneElement {
   /// [ResearchStudyArm] A process where a researcher or organization plans
   const ResearchStudyArm._();
 
@@ -454,7 +454,7 @@ class ResearchStudyArm with BackboneType, _$ResearchStudyArm {
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [type] Categorization of study arm, e.g. experimental, active comparator,
     ///  placebo comparater.
@@ -465,7 +465,7 @@ class ResearchStudyArm with BackboneType, _$ResearchStudyArm {
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
   }) = _ResearchStudyArm;
 
   @override
@@ -501,7 +501,9 @@ class ResearchStudyArm with BackboneType, _$ResearchStudyArm {
 
 /// [ResearchStudyObjective] A process where a researcher or organization
 @freezed
-class ResearchStudyObjective with BackboneType, _$ResearchStudyObjective {
+class ResearchStudyObjective
+    with _$ResearchStudyObjective
+    implements BackboneElement {
   /// [ResearchStudyObjective] A process where a researcher or organization
   const ResearchStudyObjective._();
 
@@ -574,7 +576,7 @@ class ResearchStudyObjective with BackboneType, _$ResearchStudyObjective {
     String? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
 
     /// [type] The kind of study objective.
     CodeableConcept? type,
@@ -613,7 +615,7 @@ class ResearchStudyObjective with BackboneType, _$ResearchStudyObjective {
 
 /// [ResearchSubject] A physical entity which is the primary unit of
 @freezed
-class ResearchSubject with Resource, _$ResearchSubject {
+class ResearchSubject with _$ResearchSubject implements DomainResource {
   /// [ResearchSubject] A physical entity which is the primary unit of
   const ResearchSubject._();
 
@@ -722,13 +724,13 @@ class ResearchSubject with Resource, _$ResearchSubject {
     FhirUri? implicitRules,
 
     /// [implicitRulesElement] Extensions for implicitRules
-    @JsonKey(name: '_implicitRules') Element? implicitRulesElement,
+    @JsonKey(name: '_implicitRules') PrimitiveElement? implicitRulesElement,
 
     /// [language] The base language in which the resource is written.
     FhirCode? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [text] A human-readable narrative that contains a summary of the resource
     /// and can be used to represent the content of the resource to a human. The
@@ -774,7 +776,7 @@ class ResearchSubject with Resource, _$ResearchSubject {
     FhirCode? status,
 
     /// [statusElement] Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [period] The dates the subject began and ended their participation in the
     ///  study.
@@ -792,14 +794,14 @@ class ResearchSubject with Resource, _$ResearchSubject {
     String? assignedArm,
 
     /// [assignedArmElement] Extensions for assignedArm
-    @JsonKey(name: '_assignedArm') Element? assignedArmElement,
+    @JsonKey(name: '_assignedArm') PrimitiveElement? assignedArmElement,
 
     /// [actualArm] The name of the arm in the study the subject actually
     ///  followed as part of this study.
     String? actualArm,
 
     /// [actualArmElement] Extensions for actualArm
-    @JsonKey(name: '_actualArm') Element? actualArmElement,
+    @JsonKey(name: '_actualArm') PrimitiveElement? actualArmElement,
 
     /// [consent] A record of the patient's informed agreement to participate in
     ///  the study.

@@ -61,7 +61,7 @@ class Narrative with _$Narrative implements DataType {
     @JsonKey(unknownEnumValue: NarrativeStatus.unknown) NarrativeStatus? status,
 
     /// [statusElement] (_status) Extensions for status
-    @JsonKey(name: '_status') Element? statusElement,
+    @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [div] The actual narrative content, a stripped down version of XHTML.
     required String div,

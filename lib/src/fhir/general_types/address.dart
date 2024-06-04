@@ -100,7 +100,7 @@ class Address with _$Address implements DataType {
     @JsonKey(unknownEnumValue: AddressUse.unknown) AddressUse? use,
 
     /// [useElement] Extensions for use
-    @JsonKey(name: '_use') Element? useElement,
+    @JsonKey(name: '_use') PrimitiveElement? useElement,
 
     /// [type] Distinguishes between physical addresses (those you can visit) and
     /// mailing addresses (e.g. PO Boxes and care-of addresses). Most addresses
@@ -108,7 +108,7 @@ class Address with _$Address implements DataType {
     @JsonKey(unknownEnumValue: AddressType.unknown) AddressType? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [text] Specifies the entire address as it should be displayed e.g. on a
     /// postal label. This may be provided instead of or as well as the specific
@@ -116,7 +116,7 @@ class Address with _$Address implements DataType {
     String? text,
 
     /// [textElement] Extensions for text
-    @JsonKey(name: '_text') Element? textElement,
+    @JsonKey(name: '_text') PrimitiveElement? textElement,
 
     /// [line] This component contains the house number, apartment number, street
     /// name, street direction,  P.O. Box number, delivery hints, and similar
@@ -131,13 +131,13 @@ class Address with _$Address implements DataType {
     String? city,
 
     /// [cityElement] Extensions for city
-    @JsonKey(name: '_city') Element? cityElement,
+    @JsonKey(name: '_city') PrimitiveElement? cityElement,
 
     /// [district] The name of the administrative area (county).
     String? district,
 
     /// [districtElement] Extensions for district
-    @JsonKey(name: '_district') Element? districtElement,
+    @JsonKey(name: '_district') PrimitiveElement? districtElement,
 
     /// [state] Sub-unit of a country with limited sovereignty in a federally
     /// organized country. A code may be used if codes are in common use (e.g. US
@@ -145,21 +145,21 @@ class Address with _$Address implements DataType {
     String? state,
 
     /// [stateElement] Extensions for state
-    @JsonKey(name: '_state') Element? stateElement,
+    @JsonKey(name: '_state') PrimitiveElement? stateElement,
 
     /// [postalCode] A postal code designating a region defined by the postal
     ///  service.
     String? postalCode,
 
     /// [postalCodeElement] Extensions for postalCode
-    @JsonKey(name: '_postalCode') Element? postalCodeElement,
+    @JsonKey(name: '_postalCode') PrimitiveElement? postalCodeElement,
 
     /// [country] Country - a nation as commonly understood or generally
     ///  accepted.
     String? country,
 
     /// [countryElement] Extensions for country
-    @JsonKey(name: '_country') Element? countryElement,
+    @JsonKey(name: '_country') PrimitiveElement? countryElement,
 
     /// [period] Time period when address was/is in use.
     Period? period,

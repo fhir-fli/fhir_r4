@@ -86,7 +86,8 @@ mixin _$MarketingStatus {
 
   /// [restoreDateElement] Extensions for restoreDate
   @JsonKey(name: '_restoreDate')
-  Element? get restoreDateElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get restoreDateElement =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -109,7 +110,7 @@ abstract class $MarketingStatusCopyWith<$Res> {
       CodeableConcept status,
       Period? dateRange,
       FhirDateTime? restoreDate,
-      @JsonKey(name: '_restoreDate') Element? restoreDateElement});
+      @JsonKey(name: '_restoreDate') PrimitiveElement? restoreDateElement});
 
   $CodeableConceptCopyWith<$Res>? get country;
   $CodeableConceptCopyWith<$Res>? get jurisdiction;
@@ -176,7 +177,7 @@ class _$MarketingStatusCopyWithImpl<$Res, $Val extends MarketingStatus>
       restoreDateElement: freezed == restoreDateElement
           ? _value.restoreDateElement
           : restoreDateElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ) as $Val);
   }
 
@@ -242,7 +243,7 @@ abstract class _$$MarketingStatusImplCopyWith<$Res>
       CodeableConcept status,
       Period? dateRange,
       FhirDateTime? restoreDate,
-      @JsonKey(name: '_restoreDate') Element? restoreDateElement});
+      @JsonKey(name: '_restoreDate') PrimitiveElement? restoreDateElement});
 
   @override
   $CodeableConceptCopyWith<$Res>? get country;
@@ -311,7 +312,7 @@ class __$$MarketingStatusImplCopyWithImpl<$Res>
       restoreDateElement: freezed == restoreDateElement
           ? _value.restoreDateElement
           : restoreDateElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ));
   }
 }
@@ -446,7 +447,7 @@ class _$MarketingStatusImpl extends _MarketingStatus {
   /// [restoreDateElement] Extensions for restoreDate
   @override
   @JsonKey(name: '_restoreDate')
-  final Element? restoreDateElement;
+  final PrimitiveElement? restoreDateElement;
 
   @override
   String toString() {
@@ -506,16 +507,16 @@ class _$MarketingStatusImpl extends _MarketingStatus {
 
 abstract class _MarketingStatus extends MarketingStatus {
   const factory _MarketingStatus(
-          {final String? id,
-          @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
-          final List<FhirExtension>? modifierExtension,
-          final CodeableConcept? country,
-          final CodeableConcept? jurisdiction,
-          required final CodeableConcept status,
-          final Period? dateRange,
-          final FhirDateTime? restoreDate,
-          @JsonKey(name: '_restoreDate') final Element? restoreDateElement}) =
-      _$MarketingStatusImpl;
+      {final String? id,
+      @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
+      final List<FhirExtension>? modifierExtension,
+      final CodeableConcept? country,
+      final CodeableConcept? jurisdiction,
+      required final CodeableConcept status,
+      final Period? dateRange,
+      final FhirDateTime? restoreDate,
+      @JsonKey(name: '_restoreDate')
+      final PrimitiveElement? restoreDateElement}) = _$MarketingStatusImpl;
   const _MarketingStatus._() : super._();
 
   factory _MarketingStatus.fromJson(Map<String, dynamic> json) =
@@ -596,7 +597,7 @@ abstract class _MarketingStatus extends MarketingStatus {
 
   /// [restoreDateElement] Extensions for restoreDate
   @JsonKey(name: '_restoreDate')
-  Element? get restoreDateElement;
+  PrimitiveElement? get restoreDateElement;
   @override
   @JsonKey(ignore: true)
   _$$MarketingStatusImplCopyWith<_$MarketingStatusImpl> get copyWith =>

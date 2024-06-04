@@ -16,21 +16,21 @@ _$ContactPointImpl _$$ContactPointImplFromJson(Map<String, dynamic> json) =>
           unknownValue: ContactPointSystem.unknown),
       systemElement: json['_system'] == null
           ? null
-          : Element.fromJson(json['_system'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_system'] as Map<String, dynamic>),
       value: json['value'] as String?,
       valueElement: json['_value'] == null
           ? null
-          : Element.fromJson(json['_value'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_value'] as Map<String, dynamic>),
       use: $enumDecodeNullable(_$ContactPointUseEnumMap, json['use'],
           unknownValue: ContactPointUse.unknown),
       useElement: json['_use'] == null
           ? null
-          : Element.fromJson(json['_use'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_use'] as Map<String, dynamic>),
       rank:
           json['rank'] == null ? null : FhirPositiveInt.fromJson(json['rank']),
       rankElement: json['_rank'] == null
           ? null
-          : Element.fromJson(json['_rank'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_rank'] as Map<String, dynamic>),
       period: json['period'] == null
           ? null
           : Period.fromJson(json['period'] as Map<String, dynamic>),

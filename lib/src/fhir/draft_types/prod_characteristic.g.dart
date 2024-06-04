@@ -37,7 +37,7 @@ _$ProdCharacteristicImpl _$$ProdCharacteristicImplFromJson(
       shape: json['shape'] as String?,
       shapeElement: json['_shape'] == null
           ? null
-          : Element.fromJson(json['_shape'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_shape'] as Map<String, dynamic>),
       color:
           (json['color'] as List<dynamic>?)?.map((e) => e as String).toList(),
       colorElement: (json['_color'] as List<dynamic>?)

@@ -72,20 +72,20 @@ class ContactPoint with _$ContactPoint implements DataType {
     ContactPointSystem? system,
 
     /// [systemElement] Extensions for system
-    @JsonKey(name: '_system') Element? systemElement,
+    @JsonKey(name: '_system') PrimitiveElement? systemElement,
 
     /// [value] The actual contact point details, in a form that is meaningful to
     ///  the designated communication system (i.e. phone number or email address).
     String? value,
 
     /// [valueElement] Extensions for value
-    @JsonKey(name: '_value') Element? valueElement,
+    @JsonKey(name: '_value') PrimitiveElement? valueElement,
 
     /// [use] Identifies the purpose for the contact point.
     @JsonKey(unknownEnumValue: ContactPointUse.unknown) ContactPointUse? use,
 
     /// [useElement] Extensions for use
-    @JsonKey(name: '_use') Element? useElement,
+    @JsonKey(name: '_use') PrimitiveElement? useElement,
 
     /// [rank] Specifies a preferred order in which to use a set of contacts.
     /// ContactPoints with lower rank values are more preferred than those with
@@ -93,7 +93,7 @@ class ContactPoint with _$ContactPoint implements DataType {
     FhirPositiveInt? rank,
 
     /// [rankElement] Extensions for rank
-    @JsonKey(name: '_rank') Element? rankElement,
+    @JsonKey(name: '_rank') PrimitiveElement? rankElement,
 
     /// [period] Time period when the contact point was/is in use.
     Period? period,

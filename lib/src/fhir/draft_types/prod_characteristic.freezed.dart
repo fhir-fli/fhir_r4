@@ -92,7 +92,7 @@ mixin _$ProdCharacteristic {
 
   /// [shapeElement] Extensions for shape
   @JsonKey(name: '_shape')
-  Element? get shapeElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get shapeElement => throw _privateConstructorUsedError;
 
   /// [color] Where applicable, the color can be specified An appropriate
   /// controlled vocabulary shall be used The term and the term identifier shall
@@ -142,7 +142,7 @@ abstract class $ProdCharacteristicCopyWith<$Res> {
       Quantity? nominalVolume,
       Quantity? externalDiameter,
       String? shape,
-      @JsonKey(name: '_shape') Element? shapeElement,
+      @JsonKey(name: '_shape') PrimitiveElement? shapeElement,
       List<String>? color,
       @JsonKey(name: '_color') List<Element?>? colorElement,
       List<String>? imprint,
@@ -234,7 +234,7 @@ class _$ProdCharacteristicCopyWithImpl<$Res, $Val extends ProdCharacteristic>
       shapeElement: freezed == shapeElement
           ? _value.shapeElement
           : shapeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       color: freezed == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
@@ -366,7 +366,7 @@ abstract class _$$ProdCharacteristicImplCopyWith<$Res>
       Quantity? nominalVolume,
       Quantity? externalDiameter,
       String? shape,
-      @JsonKey(name: '_shape') Element? shapeElement,
+      @JsonKey(name: '_shape') PrimitiveElement? shapeElement,
       List<String>? color,
       @JsonKey(name: '_color') List<Element?>? colorElement,
       List<String>? imprint,
@@ -463,7 +463,7 @@ class __$$ProdCharacteristicImplCopyWithImpl<$Res>
       shapeElement: freezed == shapeElement
           ? _value.shapeElement
           : shapeElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       color: freezed == color
           ? _value._color
           : color // ignore: cast_nullable_to_non_nullable
@@ -643,7 +643,7 @@ class _$ProdCharacteristicImpl extends _ProdCharacteristic {
   /// [shapeElement] Extensions for shape
   @override
   @JsonKey(name: '_shape')
-  final Element? shapeElement;
+  final PrimitiveElement? shapeElement;
 
   /// [color] Where applicable, the color can be specified An appropriate
   /// controlled vocabulary shall be used The term and the term identifier shall
@@ -809,7 +809,7 @@ abstract class _ProdCharacteristic extends ProdCharacteristic {
       final Quantity? nominalVolume,
       final Quantity? externalDiameter,
       final String? shape,
-      @JsonKey(name: '_shape') final Element? shapeElement,
+      @JsonKey(name: '_shape') final PrimitiveElement? shapeElement,
       final List<String>? color,
       @JsonKey(name: '_color') final List<Element?>? colorElement,
       final List<String>? imprint,
@@ -904,7 +904,7 @@ abstract class _ProdCharacteristic extends ProdCharacteristic {
 
   /// [shapeElement] Extensions for shape
   @JsonKey(name: '_shape')
-  Element? get shapeElement;
+  PrimitiveElement? get shapeElement;
   @override
 
   /// [color] Where applicable, the color can be specified An appropriate

@@ -16,13 +16,13 @@ _$PeriodImpl _$$PeriodImplFromJson(Map<String, dynamic> json) => _$PeriodImpl(
           : FhirDateTime.fromJson(json['start'] as String),
       startElement: json['_start'] == null
           ? null
-          : Element.fromJson(json['_start'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_start'] as Map<String, dynamic>),
       end: json['end'] == null
           ? null
           : FhirDateTime.fromJson(json['end'] as String),
       endElement: json['_end'] == null
           ? null
-          : Element.fromJson(json['_end'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_end'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$PeriodImplToJson(_$PeriodImpl instance) {

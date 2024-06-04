@@ -17,34 +17,37 @@ _$SampledDataImpl _$$SampledDataImplFromJson(Map<String, dynamic> json) =>
           json['period'] == null ? null : FhirDecimal.fromJson(json['period']),
       periodElement: json['_period'] == null
           ? null
-          : Element.fromJson(json['_period'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_period'] as Map<String, dynamic>),
       factor:
           json['factor'] == null ? null : FhirDecimal.fromJson(json['factor']),
       factorElement: json['_factor'] == null
           ? null
-          : Element.fromJson(json['_factor'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_factor'] as Map<String, dynamic>),
       lowerLimit: json['lowerLimit'] == null
           ? null
           : FhirDecimal.fromJson(json['lowerLimit']),
       lowerLimitElement: json['_lowerLimit'] == null
           ? null
-          : Element.fromJson(json['_lowerLimit'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_lowerLimit'] as Map<String, dynamic>),
       upperLimit: json['upperLimit'] == null
           ? null
           : FhirDecimal.fromJson(json['upperLimit']),
       upperLimitElement: json['_upperLimit'] == null
           ? null
-          : Element.fromJson(json['_upperLimit'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_upperLimit'] as Map<String, dynamic>),
       dimensions: json['dimensions'] == null
           ? null
           : FhirPositiveInt.fromJson(json['dimensions']),
       dimensionsElement: json['_dimensions'] == null
           ? null
-          : Element.fromJson(json['_dimensions'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_dimensions'] as Map<String, dynamic>),
       data: json['data'] as String?,
       dataElement: json['_data'] == null
           ? null
-          : Element.fromJson(json['_data'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$SampledDataImplToJson(_$SampledDataImpl instance) {

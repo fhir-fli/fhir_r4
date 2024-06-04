@@ -14,25 +14,26 @@ _$CountImpl _$$CountImplFromJson(Map<String, dynamic> json) => _$CountImpl(
       value: json['value'] == null ? null : FhirDecimal.fromJson(json['value']),
       valueElement: json['_value'] == null
           ? null
-          : Element.fromJson(json['_value'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_value'] as Map<String, dynamic>),
       comparator: $enumDecodeNullable(
           _$CountComparatorEnumMap, json['comparator'],
           unknownValue: CountComparator.unknown),
       comparatorElement: json['_comparator'] == null
           ? null
-          : Element.fromJson(json['_comparator'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(
+              json['_comparator'] as Map<String, dynamic>),
       unit: json['unit'] as String?,
       unitElement: json['_unit'] == null
           ? null
-          : Element.fromJson(json['_unit'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_unit'] as Map<String, dynamic>),
       system: json['system'] == null ? null : FhirUri.fromJson(json['system']),
       systemElement: json['_system'] == null
           ? null
-          : Element.fromJson(json['_system'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_system'] as Map<String, dynamic>),
       code: json['code'] == null ? null : FhirCode.fromJson(json['code']),
       codeElement: json['_code'] == null
           ? null
-          : Element.fromJson(json['_code'] as Map<String, dynamic>),
+          : PrimitiveElement.fromJson(json['_code'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$CountImplToJson(_$CountImpl instance) {

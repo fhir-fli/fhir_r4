@@ -94,7 +94,7 @@ class DataRequirement with _$DataRequirement implements DataType {
     FhirCode? type,
 
     /// [typeElement] Extensions for type
-    @JsonKey(name: '_type') Element? typeElement,
+    @JsonKey(name: '_type') PrimitiveElement? typeElement,
 
     /// [profile] The profile of the required data, specified as the uri of the
     ///  profile definition.
@@ -139,7 +139,7 @@ class DataRequirement with _$DataRequirement implements DataType {
     FhirPositiveInt? limit,
 
     /// [limitElement] Extensions for limit
-    @JsonKey(name: '_limit') Element? limitElement,
+    @JsonKey(name: '_limit') PrimitiveElement? limitElement,
 
     /// [sort] Specifies the order of the results to be returned.
     List<DataRequirementSort>? sort,
@@ -284,7 +284,7 @@ class DataRequirementCodeFilter
     String? path,
 
     /// [pathElement] Extensions for path
-    @JsonKey(name: '_path') Element? pathElement,
+    @JsonKey(name: '_path') PrimitiveElement? pathElement,
 
     /// [searchParam] A token parameter that refers to a search parameter defined
     /// on the specified type of the DataRequirement, and which searches on
@@ -292,7 +292,7 @@ class DataRequirementCodeFilter
     String? searchParam,
 
     /// [searchParamElement] Extensions for searchParam
-    @JsonKey(name: '_searchParam') Element? searchParamElement,
+    @JsonKey(name: '_searchParam') PrimitiveElement? searchParamElement,
 
     /// [valueSet] The valueset for the code filter. The valueSet and code
     /// elements are additive. If valueSet is specified, the filter will return
@@ -459,7 +459,7 @@ class DataRequirementDateFilter
     String? path,
 
     /// [pathElement] Extensions for path
-    @JsonKey(name: '_path') Element? pathElement,
+    @JsonKey(name: '_path') PrimitiveElement? pathElement,
 
     /// [searchParam] A date parameter that refers to a search parameter defined
     /// on the specified type of the DataRequirement, and which searches on
@@ -467,7 +467,7 @@ class DataRequirementDateFilter
     String? searchParam,
 
     /// [searchParamElement] Extensions for searchParam
-    @JsonKey(name: '_searchParam') Element? searchParamElement,
+    @JsonKey(name: '_searchParam') PrimitiveElement? searchParamElement,
 
     /// [valueDateTime] The value of the filter. If period is specified, the
     /// filter will return only those data items that fall within the bounds
@@ -478,7 +478,7 @@ class DataRequirementDateFilter
     FhirDateTime? valueDateTime,
 
     /// [valueDateTimeElement] Extensions for valueDateTime
-    @JsonKey(name: '_valueDateTime') Element? valueDateTimeElement,
+    @JsonKey(name: '_valueDateTime') PrimitiveElement? valueDateTimeElement,
 
     /// [valuePeriod] The value of the filter. If period is specified, the filter
     /// will return only those data items that fall within the bounds determined
@@ -615,14 +615,14 @@ class DataRequirementSort with _$DataRequirementSort implements Element {
     String? path,
 
     /// [pathElement] Extensions for path
-    @JsonKey(name: '_path') Element? pathElement,
+    @JsonKey(name: '_path') PrimitiveElement? pathElement,
     @JsonKey(unknownEnumValue: DataRequirementSortDirection.unknown)
 
     /// [direction] The direction of the sort, ascending or descending.
     DataRequirementSortDirection? direction,
 
     /// [directionElement] Extensions for direction
-    @JsonKey(name: '_direction') Element? directionElement,
+    @JsonKey(name: '_direction') PrimitiveElement? directionElement,
   }) = _DataRequirementSort;
 
   @override

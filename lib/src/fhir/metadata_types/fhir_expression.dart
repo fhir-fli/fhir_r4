@@ -74,34 +74,34 @@ class FhirExpression with _$FhirExpression implements DataType {
     String? description,
 
     /// [descriptionElement] Extensions for description
-    @JsonKey(name: '_description') Element? descriptionElement,
+    @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
 
     /// [name] A short name assigned to the expression to allow for multiple
     ///  reuse of the expression in the context where it is defined.
     FhirId? name,
 
     /// [nameElement] Extensions for name
-    @JsonKey(name: '_name') Element? nameElement,
+    @JsonKey(name: '_name') PrimitiveElement? nameElement,
     @JsonKey(unknownEnumValue: FhirExpressionLanguage.unknown)
 
     /// [language] The media type of the language for the expression.
     FhirExpressionLanguage? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') Element? languageElement,
+    @JsonKey(name: '_language') PrimitiveElement? languageElement,
 
     /// [expression] An expression in the specified language that returns a
     ///  value.
     String? expression,
 
     /// [expressionElement] Extensions for expression
-    @JsonKey(name: '_expression') Element? expressionElement,
+    @JsonKey(name: '_expression') PrimitiveElement? expressionElement,
 
     /// [reference] A URI that defines where the expression is found.
     FhirUri? reference,
 
     /// [referenceElement] Extensions for reference
-    @JsonKey(name: '_reference') Element? referenceElement,
+    @JsonKey(name: '_reference') PrimitiveElement? referenceElement,
   }) = _FhirExpression;
 
   @override

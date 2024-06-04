@@ -44,7 +44,7 @@ mixin _$Signature {
 
   /// [whenElement] Extensions for when
   @JsonKey(name: '_when')
-  Element? get whenElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get whenElement => throw _privateConstructorUsedError;
 
   /// [who] A reference to an application-usable description of the identity
   ///  that signed  (e.g. the signature used their private key).
@@ -60,7 +60,8 @@ mixin _$Signature {
 
   /// [targetFormatElement] Extensions for targetFormat
   @JsonKey(name: '_targetFormat')
-  Element? get targetFormatElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get targetFormatElement =>
+      throw _privateConstructorUsedError;
 
   /// [sigFormat] A mime type that indicates the technical format of the
   /// signature. Important mime types are application/signature+xml for X ML
@@ -70,7 +71,7 @@ mixin _$Signature {
 
   /// [sigFormatElement] Extensions for sigFormat
   @JsonKey(name: '_sigFormat')
-  Element? get sigFormatElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get sigFormatElement => throw _privateConstructorUsedError;
 
   /// [data] The base64 encoding of the Signature content. When signature is
   ///  not recorded electronically this element would be empty.
@@ -78,7 +79,7 @@ mixin _$Signature {
 
   /// [dataElement] Extensions for data
   @JsonKey(name: '_data')
-  Element? get dataElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get dataElement => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -96,15 +97,15 @@ abstract class $SignatureCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<Coding> type,
       FhirInstant? when,
-      @JsonKey(name: '_when') Element? whenElement,
+      @JsonKey(name: '_when') PrimitiveElement? whenElement,
       Reference who,
       Reference? onBehalfOf,
       FhirCode? targetFormat,
-      @JsonKey(name: '_targetFormat') Element? targetFormatElement,
+      @JsonKey(name: '_targetFormat') PrimitiveElement? targetFormatElement,
       FhirCode? sigFormat,
-      @JsonKey(name: '_sigFormat') Element? sigFormatElement,
+      @JsonKey(name: '_sigFormat') PrimitiveElement? sigFormatElement,
       FhirBase64Binary? data,
-      @JsonKey(name: '_data') Element? dataElement});
+      @JsonKey(name: '_data') PrimitiveElement? dataElement});
 
   $ReferenceCopyWith<$Res> get who;
   $ReferenceCopyWith<$Res>? get onBehalfOf;
@@ -157,7 +158,7 @@ class _$SignatureCopyWithImpl<$Res, $Val extends Signature>
       whenElement: freezed == whenElement
           ? _value.whenElement
           : whenElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       who: null == who
           ? _value.who
           : who // ignore: cast_nullable_to_non_nullable
@@ -173,7 +174,7 @@ class _$SignatureCopyWithImpl<$Res, $Val extends Signature>
       targetFormatElement: freezed == targetFormatElement
           ? _value.targetFormatElement
           : targetFormatElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       sigFormat: freezed == sigFormat
           ? _value.sigFormat
           : sigFormat // ignore: cast_nullable_to_non_nullable
@@ -181,7 +182,7 @@ class _$SignatureCopyWithImpl<$Res, $Val extends Signature>
       sigFormatElement: freezed == sigFormatElement
           ? _value.sigFormatElement
           : sigFormatElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -189,7 +190,7 @@ class _$SignatureCopyWithImpl<$Res, $Val extends Signature>
       dataElement: freezed == dataElement
           ? _value.dataElement
           : dataElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ) as $Val);
   }
 
@@ -227,15 +228,15 @@ abstract class _$$SignatureImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<Coding> type,
       FhirInstant? when,
-      @JsonKey(name: '_when') Element? whenElement,
+      @JsonKey(name: '_when') PrimitiveElement? whenElement,
       Reference who,
       Reference? onBehalfOf,
       FhirCode? targetFormat,
-      @JsonKey(name: '_targetFormat') Element? targetFormatElement,
+      @JsonKey(name: '_targetFormat') PrimitiveElement? targetFormatElement,
       FhirCode? sigFormat,
-      @JsonKey(name: '_sigFormat') Element? sigFormatElement,
+      @JsonKey(name: '_sigFormat') PrimitiveElement? sigFormatElement,
       FhirBase64Binary? data,
-      @JsonKey(name: '_data') Element? dataElement});
+      @JsonKey(name: '_data') PrimitiveElement? dataElement});
 
   @override
   $ReferenceCopyWith<$Res> get who;
@@ -288,7 +289,7 @@ class __$$SignatureImplCopyWithImpl<$Res>
       whenElement: freezed == whenElement
           ? _value.whenElement
           : whenElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       who: null == who
           ? _value.who
           : who // ignore: cast_nullable_to_non_nullable
@@ -304,7 +305,7 @@ class __$$SignatureImplCopyWithImpl<$Res>
       targetFormatElement: freezed == targetFormatElement
           ? _value.targetFormatElement
           : targetFormatElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       sigFormat: freezed == sigFormat
           ? _value.sigFormat
           : sigFormat // ignore: cast_nullable_to_non_nullable
@@ -312,7 +313,7 @@ class __$$SignatureImplCopyWithImpl<$Res>
       sigFormatElement: freezed == sigFormatElement
           ? _value.sigFormatElement
           : sigFormatElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -320,7 +321,7 @@ class __$$SignatureImplCopyWithImpl<$Res>
       dataElement: freezed == dataElement
           ? _value.dataElement
           : dataElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ));
   }
 }
@@ -402,7 +403,7 @@ class _$SignatureImpl extends _Signature {
   /// [whenElement] Extensions for when
   @override
   @JsonKey(name: '_when')
-  final Element? whenElement;
+  final PrimitiveElement? whenElement;
 
   /// [who] A reference to an application-usable description of the identity
   ///  that signed  (e.g. the signature used their private key).
@@ -422,7 +423,7 @@ class _$SignatureImpl extends _Signature {
   /// [targetFormatElement] Extensions for targetFormat
   @override
   @JsonKey(name: '_targetFormat')
-  final Element? targetFormatElement;
+  final PrimitiveElement? targetFormatElement;
 
   /// [sigFormat] A mime type that indicates the technical format of the
   /// signature. Important mime types are application/signature+xml for X ML
@@ -434,7 +435,7 @@ class _$SignatureImpl extends _Signature {
   /// [sigFormatElement] Extensions for sigFormat
   @override
   @JsonKey(name: '_sigFormat')
-  final Element? sigFormatElement;
+  final PrimitiveElement? sigFormatElement;
 
   /// [data] The base64 encoding of the Signature content. When signature is
   ///  not recorded electronically this element would be empty.
@@ -444,7 +445,7 @@ class _$SignatureImpl extends _Signature {
   /// [dataElement] Extensions for data
   @override
   @JsonKey(name: '_data')
-  final Element? dataElement;
+  final PrimitiveElement? dataElement;
 
   @override
   String toString() {
@@ -513,19 +514,21 @@ class _$SignatureImpl extends _Signature {
 
 abstract class _Signature extends Signature {
   const factory _Signature(
-      {final String? id,
-      @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
-      required final List<Coding> type,
-      final FhirInstant? when,
-      @JsonKey(name: '_when') final Element? whenElement,
-      required final Reference who,
-      final Reference? onBehalfOf,
-      final FhirCode? targetFormat,
-      @JsonKey(name: '_targetFormat') final Element? targetFormatElement,
-      final FhirCode? sigFormat,
-      @JsonKey(name: '_sigFormat') final Element? sigFormatElement,
-      final FhirBase64Binary? data,
-      @JsonKey(name: '_data') final Element? dataElement}) = _$SignatureImpl;
+          {final String? id,
+          @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
+          required final List<Coding> type,
+          final FhirInstant? when,
+          @JsonKey(name: '_when') final PrimitiveElement? whenElement,
+          required final Reference who,
+          final Reference? onBehalfOf,
+          final FhirCode? targetFormat,
+          @JsonKey(name: '_targetFormat')
+          final PrimitiveElement? targetFormatElement,
+          final FhirCode? sigFormat,
+          @JsonKey(name: '_sigFormat') final PrimitiveElement? sigFormatElement,
+          final FhirBase64Binary? data,
+          @JsonKey(name: '_data') final PrimitiveElement? dataElement}) =
+      _$SignatureImpl;
   const _Signature._() : super._();
 
   factory _Signature.fromJson(Map<String, dynamic> json) =
@@ -561,7 +564,7 @@ abstract class _Signature extends Signature {
 
   /// [whenElement] Extensions for when
   @JsonKey(name: '_when')
-  Element? get whenElement;
+  PrimitiveElement? get whenElement;
   @override
 
   /// [who] A reference to an application-usable description of the identity
@@ -581,7 +584,7 @@ abstract class _Signature extends Signature {
 
   /// [targetFormatElement] Extensions for targetFormat
   @JsonKey(name: '_targetFormat')
-  Element? get targetFormatElement;
+  PrimitiveElement? get targetFormatElement;
   @override
 
   /// [sigFormat] A mime type that indicates the technical format of the
@@ -593,7 +596,7 @@ abstract class _Signature extends Signature {
 
   /// [sigFormatElement] Extensions for sigFormat
   @JsonKey(name: '_sigFormat')
-  Element? get sigFormatElement;
+  PrimitiveElement? get sigFormatElement;
   @override
 
   /// [data] The base64 encoding of the Signature content. When signature is
@@ -603,7 +606,7 @@ abstract class _Signature extends Signature {
 
   /// [dataElement] Extensions for data
   @JsonKey(name: '_data')
-  Element? get dataElement;
+  PrimitiveElement? get dataElement;
   @override
   @JsonKey(ignore: true)
   _$$SignatureImplCopyWith<_$SignatureImpl> get copyWith =>

@@ -59,7 +59,7 @@ class Period with _$Period implements DataType {
     FhirDateTime? start,
 
     /// [startElement] Extensions for start
-    @JsonKey(name: '_start') Element? startElement,
+    @JsonKey(name: '_start') PrimitiveElement? startElement,
 
     /// [end] The end of the period. If the end of the period is missing, it
     /// means no end was known or planned at the time the instance was created.
@@ -68,7 +68,7 @@ class Period with _$Period implements DataType {
     FhirDateTime? end,
 
     /// [endElement] Extensions for end
-    @JsonKey(name: '_end') Element? endElement,
+    @JsonKey(name: '_end') PrimitiveElement? endElement,
   }) = _Period;
 
   @override

@@ -549,7 +549,7 @@ mixin _$TimingRepeat {
 
   /// [countElement] Extensions for count
   @JsonKey(name: '_count')
-  Element? get countElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get countElement => throw _privateConstructorUsedError;
 
   /// [countMax] If present, indicates that the count is a range - so to
   ///  perform the action between [count] and [countMax] times.
@@ -557,7 +557,7 @@ mixin _$TimingRepeat {
 
   /// [countMaxElement] Extensions for countMax
   @JsonKey(name: '_countMax')
-  Element? get countMaxElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get countMaxElement => throw _privateConstructorUsedError;
 
   /// [duration] How long this thing happens for when it happens. If
   /// durationMax is present, this element indicates the lower bound of the
@@ -566,7 +566,7 @@ mixin _$TimingRepeat {
 
   /// [durationElement] Extensions for duration
   @JsonKey(name: '_duration')
-  Element? get durationElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get durationElement => throw _privateConstructorUsedError;
 
   /// [durationMax] If present, indicates that the duration is a range - so to
   ///  perform the action between [duration] and [durationMax] time length.
@@ -574,14 +574,16 @@ mixin _$TimingRepeat {
 
   /// [durationMaxElement] Extensions for durationMax
   @JsonKey(name: '_durationMax')
-  Element? get durationMaxElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get durationMaxElement =>
+      throw _privateConstructorUsedError;
   @JsonKey(unknownEnumValue: TimingRepeatDurationUnit.unknown)
   TimingRepeatDurationUnit? get durationUnit =>
       throw _privateConstructorUsedError;
 
   /// [durationUnitElement] Extensions for durationUnit
   @JsonKey(name: '_durationUnit')
-  Element? get durationUnitElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get durationUnitElement =>
+      throw _privateConstructorUsedError;
 
   /// [frequency] The number of times to repeat the action within the specified
   /// period. If frequencyMax is present, this element indicates the lower bound
@@ -590,7 +592,7 @@ mixin _$TimingRepeat {
 
   /// [frequencyElement] Extensions for frequency
   @JsonKey(name: '_frequency')
-  Element? get frequencyElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get frequencyElement => throw _privateConstructorUsedError;
 
   /// [frequencyMax] If present, indicates that the frequency is a range - so
   /// to repeat between [frequency] and [frequencyMax] times within the period
@@ -599,7 +601,8 @@ mixin _$TimingRepeat {
 
   /// [frequencyMaxElement] Extensions for frequencyMax
   @JsonKey(name: '_frequencyMax')
-  Element? get frequencyMaxElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get frequencyMaxElement =>
+      throw _privateConstructorUsedError;
 
   /// [period] Indicates the duration of time over which repetitions are to
   /// occur; e.g. to express "3 times per day", 3 would be the frequency and "1
@@ -609,7 +612,7 @@ mixin _$TimingRepeat {
 
   /// [periodElement] Extensions for period
   @JsonKey(name: '_period')
-  Element? get periodElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get periodElement => throw _privateConstructorUsedError;
 
   /// [periodMax] If present, indicates that the period is a range from [period]
   /// to [periodMax], allowing expressing concepts such as "do this once every
@@ -618,13 +621,13 @@ mixin _$TimingRepeat {
 
   /// [periodMaxElement] Extensions for periodMax
   @JsonKey(name: '_periodMax')
-  Element? get periodMaxElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get periodMaxElement => throw _privateConstructorUsedError;
   @JsonKey(unknownEnumValue: TimingRepeatPeriodUnit.unknown)
   TimingRepeatPeriodUnit? get periodUnit => throw _privateConstructorUsedError;
 
   /// [periodUnitElement] Extensions for periodUnit
   @JsonKey(name: '_periodUnit')
-  Element? get periodUnitElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get periodUnitElement => throw _privateConstructorUsedError;
 
   /// [dayOfWeek] If one or more days of week is provided, then the action
   ///  happens only on the specified day(s).
@@ -656,7 +659,7 @@ mixin _$TimingRepeat {
 
   /// [offsetElement] Extensions for offset
   @JsonKey(name: '_offset')
-  Element? get offsetElement => throw _privateConstructorUsedError;
+  PrimitiveElement? get offsetElement => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -678,27 +681,27 @@ abstract class $TimingRepeatCopyWith<$Res> {
       Range? boundsRange,
       Period? boundsPeriod,
       FhirPositiveInt? count,
-      @JsonKey(name: '_count') Element? countElement,
+      @JsonKey(name: '_count') PrimitiveElement? countElement,
       FhirPositiveInt? countMax,
-      @JsonKey(name: '_countMax') Element? countMaxElement,
+      @JsonKey(name: '_countMax') PrimitiveElement? countMaxElement,
       FhirDecimal? duration,
-      @JsonKey(name: '_duration') Element? durationElement,
+      @JsonKey(name: '_duration') PrimitiveElement? durationElement,
       FhirDecimal? durationMax,
-      @JsonKey(name: '_durationMax') Element? durationMaxElement,
+      @JsonKey(name: '_durationMax') PrimitiveElement? durationMaxElement,
       @JsonKey(unknownEnumValue: TimingRepeatDurationUnit.unknown)
       TimingRepeatDurationUnit? durationUnit,
-      @JsonKey(name: '_durationUnit') Element? durationUnitElement,
+      @JsonKey(name: '_durationUnit') PrimitiveElement? durationUnitElement,
       FhirPositiveInt? frequency,
-      @JsonKey(name: '_frequency') Element? frequencyElement,
+      @JsonKey(name: '_frequency') PrimitiveElement? frequencyElement,
       FhirPositiveInt? frequencyMax,
-      @JsonKey(name: '_frequencyMax') Element? frequencyMaxElement,
+      @JsonKey(name: '_frequencyMax') PrimitiveElement? frequencyMaxElement,
       FhirDecimal? period,
-      @JsonKey(name: '_period') Element? periodElement,
+      @JsonKey(name: '_period') PrimitiveElement? periodElement,
       FhirDecimal? periodMax,
-      @JsonKey(name: '_periodMax') Element? periodMaxElement,
+      @JsonKey(name: '_periodMax') PrimitiveElement? periodMaxElement,
       @JsonKey(unknownEnumValue: TimingRepeatPeriodUnit.unknown)
       TimingRepeatPeriodUnit? periodUnit,
-      @JsonKey(name: '_periodUnit') Element? periodUnitElement,
+      @JsonKey(name: '_periodUnit') PrimitiveElement? periodUnitElement,
       List<FhirCode>? dayOfWeek,
       @JsonKey(name: '_dayOfWeek') List<Element?>? dayOfWeekElement,
       List<FhirTime>? timeOfDay,
@@ -706,7 +709,7 @@ abstract class $TimingRepeatCopyWith<$Res> {
       List<TimingRepeatWhen>? when,
       @JsonKey(name: '_when') List<Element?>? whenElement,
       FhirUnsignedInt? offset,
-      @JsonKey(name: '_offset') Element? offsetElement});
+      @JsonKey(name: '_offset') PrimitiveElement? offsetElement});
 
   $FhirDurationCopyWith<$Res>? get boundsDuration;
   $RangeCopyWith<$Res>? get boundsRange;
@@ -793,7 +796,7 @@ class _$TimingRepeatCopyWithImpl<$Res, $Val extends TimingRepeat>
       countElement: freezed == countElement
           ? _value.countElement
           : countElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       countMax: freezed == countMax
           ? _value.countMax
           : countMax // ignore: cast_nullable_to_non_nullable
@@ -801,7 +804,7 @@ class _$TimingRepeatCopyWithImpl<$Res, $Val extends TimingRepeat>
       countMaxElement: freezed == countMaxElement
           ? _value.countMaxElement
           : countMaxElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       duration: freezed == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
@@ -809,7 +812,7 @@ class _$TimingRepeatCopyWithImpl<$Res, $Val extends TimingRepeat>
       durationElement: freezed == durationElement
           ? _value.durationElement
           : durationElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       durationMax: freezed == durationMax
           ? _value.durationMax
           : durationMax // ignore: cast_nullable_to_non_nullable
@@ -817,7 +820,7 @@ class _$TimingRepeatCopyWithImpl<$Res, $Val extends TimingRepeat>
       durationMaxElement: freezed == durationMaxElement
           ? _value.durationMaxElement
           : durationMaxElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       durationUnit: freezed == durationUnit
           ? _value.durationUnit
           : durationUnit // ignore: cast_nullable_to_non_nullable
@@ -825,7 +828,7 @@ class _$TimingRepeatCopyWithImpl<$Res, $Val extends TimingRepeat>
       durationUnitElement: freezed == durationUnitElement
           ? _value.durationUnitElement
           : durationUnitElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       frequency: freezed == frequency
           ? _value.frequency
           : frequency // ignore: cast_nullable_to_non_nullable
@@ -833,7 +836,7 @@ class _$TimingRepeatCopyWithImpl<$Res, $Val extends TimingRepeat>
       frequencyElement: freezed == frequencyElement
           ? _value.frequencyElement
           : frequencyElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       frequencyMax: freezed == frequencyMax
           ? _value.frequencyMax
           : frequencyMax // ignore: cast_nullable_to_non_nullable
@@ -841,7 +844,7 @@ class _$TimingRepeatCopyWithImpl<$Res, $Val extends TimingRepeat>
       frequencyMaxElement: freezed == frequencyMaxElement
           ? _value.frequencyMaxElement
           : frequencyMaxElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       period: freezed == period
           ? _value.period
           : period // ignore: cast_nullable_to_non_nullable
@@ -849,7 +852,7 @@ class _$TimingRepeatCopyWithImpl<$Res, $Val extends TimingRepeat>
       periodElement: freezed == periodElement
           ? _value.periodElement
           : periodElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       periodMax: freezed == periodMax
           ? _value.periodMax
           : periodMax // ignore: cast_nullable_to_non_nullable
@@ -857,7 +860,7 @@ class _$TimingRepeatCopyWithImpl<$Res, $Val extends TimingRepeat>
       periodMaxElement: freezed == periodMaxElement
           ? _value.periodMaxElement
           : periodMaxElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       periodUnit: freezed == periodUnit
           ? _value.periodUnit
           : periodUnit // ignore: cast_nullable_to_non_nullable
@@ -865,7 +868,7 @@ class _$TimingRepeatCopyWithImpl<$Res, $Val extends TimingRepeat>
       periodUnitElement: freezed == periodUnitElement
           ? _value.periodUnitElement
           : periodUnitElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       dayOfWeek: freezed == dayOfWeek
           ? _value.dayOfWeek
           : dayOfWeek // ignore: cast_nullable_to_non_nullable
@@ -897,7 +900,7 @@ class _$TimingRepeatCopyWithImpl<$Res, $Val extends TimingRepeat>
       offsetElement: freezed == offsetElement
           ? _value.offsetElement
           : offsetElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ) as $Val);
   }
 
@@ -954,27 +957,27 @@ abstract class _$$TimingRepeatImplCopyWith<$Res>
       Range? boundsRange,
       Period? boundsPeriod,
       FhirPositiveInt? count,
-      @JsonKey(name: '_count') Element? countElement,
+      @JsonKey(name: '_count') PrimitiveElement? countElement,
       FhirPositiveInt? countMax,
-      @JsonKey(name: '_countMax') Element? countMaxElement,
+      @JsonKey(name: '_countMax') PrimitiveElement? countMaxElement,
       FhirDecimal? duration,
-      @JsonKey(name: '_duration') Element? durationElement,
+      @JsonKey(name: '_duration') PrimitiveElement? durationElement,
       FhirDecimal? durationMax,
-      @JsonKey(name: '_durationMax') Element? durationMaxElement,
+      @JsonKey(name: '_durationMax') PrimitiveElement? durationMaxElement,
       @JsonKey(unknownEnumValue: TimingRepeatDurationUnit.unknown)
       TimingRepeatDurationUnit? durationUnit,
-      @JsonKey(name: '_durationUnit') Element? durationUnitElement,
+      @JsonKey(name: '_durationUnit') PrimitiveElement? durationUnitElement,
       FhirPositiveInt? frequency,
-      @JsonKey(name: '_frequency') Element? frequencyElement,
+      @JsonKey(name: '_frequency') PrimitiveElement? frequencyElement,
       FhirPositiveInt? frequencyMax,
-      @JsonKey(name: '_frequencyMax') Element? frequencyMaxElement,
+      @JsonKey(name: '_frequencyMax') PrimitiveElement? frequencyMaxElement,
       FhirDecimal? period,
-      @JsonKey(name: '_period') Element? periodElement,
+      @JsonKey(name: '_period') PrimitiveElement? periodElement,
       FhirDecimal? periodMax,
-      @JsonKey(name: '_periodMax') Element? periodMaxElement,
+      @JsonKey(name: '_periodMax') PrimitiveElement? periodMaxElement,
       @JsonKey(unknownEnumValue: TimingRepeatPeriodUnit.unknown)
       TimingRepeatPeriodUnit? periodUnit,
-      @JsonKey(name: '_periodUnit') Element? periodUnitElement,
+      @JsonKey(name: '_periodUnit') PrimitiveElement? periodUnitElement,
       List<FhirCode>? dayOfWeek,
       @JsonKey(name: '_dayOfWeek') List<Element?>? dayOfWeekElement,
       List<FhirTime>? timeOfDay,
@@ -982,7 +985,7 @@ abstract class _$$TimingRepeatImplCopyWith<$Res>
       List<TimingRepeatWhen>? when,
       @JsonKey(name: '_when') List<Element?>? whenElement,
       FhirUnsignedInt? offset,
-      @JsonKey(name: '_offset') Element? offsetElement});
+      @JsonKey(name: '_offset') PrimitiveElement? offsetElement});
 
   @override
   $FhirDurationCopyWith<$Res>? get boundsDuration;
@@ -1070,7 +1073,7 @@ class __$$TimingRepeatImplCopyWithImpl<$Res>
       countElement: freezed == countElement
           ? _value.countElement
           : countElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       countMax: freezed == countMax
           ? _value.countMax
           : countMax // ignore: cast_nullable_to_non_nullable
@@ -1078,7 +1081,7 @@ class __$$TimingRepeatImplCopyWithImpl<$Res>
       countMaxElement: freezed == countMaxElement
           ? _value.countMaxElement
           : countMaxElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       duration: freezed == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
@@ -1086,7 +1089,7 @@ class __$$TimingRepeatImplCopyWithImpl<$Res>
       durationElement: freezed == durationElement
           ? _value.durationElement
           : durationElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       durationMax: freezed == durationMax
           ? _value.durationMax
           : durationMax // ignore: cast_nullable_to_non_nullable
@@ -1094,7 +1097,7 @@ class __$$TimingRepeatImplCopyWithImpl<$Res>
       durationMaxElement: freezed == durationMaxElement
           ? _value.durationMaxElement
           : durationMaxElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       durationUnit: freezed == durationUnit
           ? _value.durationUnit
           : durationUnit // ignore: cast_nullable_to_non_nullable
@@ -1102,7 +1105,7 @@ class __$$TimingRepeatImplCopyWithImpl<$Res>
       durationUnitElement: freezed == durationUnitElement
           ? _value.durationUnitElement
           : durationUnitElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       frequency: freezed == frequency
           ? _value.frequency
           : frequency // ignore: cast_nullable_to_non_nullable
@@ -1110,7 +1113,7 @@ class __$$TimingRepeatImplCopyWithImpl<$Res>
       frequencyElement: freezed == frequencyElement
           ? _value.frequencyElement
           : frequencyElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       frequencyMax: freezed == frequencyMax
           ? _value.frequencyMax
           : frequencyMax // ignore: cast_nullable_to_non_nullable
@@ -1118,7 +1121,7 @@ class __$$TimingRepeatImplCopyWithImpl<$Res>
       frequencyMaxElement: freezed == frequencyMaxElement
           ? _value.frequencyMaxElement
           : frequencyMaxElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       period: freezed == period
           ? _value.period
           : period // ignore: cast_nullable_to_non_nullable
@@ -1126,7 +1129,7 @@ class __$$TimingRepeatImplCopyWithImpl<$Res>
       periodElement: freezed == periodElement
           ? _value.periodElement
           : periodElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       periodMax: freezed == periodMax
           ? _value.periodMax
           : periodMax // ignore: cast_nullable_to_non_nullable
@@ -1134,7 +1137,7 @@ class __$$TimingRepeatImplCopyWithImpl<$Res>
       periodMaxElement: freezed == periodMaxElement
           ? _value.periodMaxElement
           : periodMaxElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       periodUnit: freezed == periodUnit
           ? _value.periodUnit
           : periodUnit // ignore: cast_nullable_to_non_nullable
@@ -1142,7 +1145,7 @@ class __$$TimingRepeatImplCopyWithImpl<$Res>
       periodUnitElement: freezed == periodUnitElement
           ? _value.periodUnitElement
           : periodUnitElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
       dayOfWeek: freezed == dayOfWeek
           ? _value._dayOfWeek
           : dayOfWeek // ignore: cast_nullable_to_non_nullable
@@ -1174,7 +1177,7 @@ class __$$TimingRepeatImplCopyWithImpl<$Res>
       offsetElement: freezed == offsetElement
           ? _value.offsetElement
           : offsetElement // ignore: cast_nullable_to_non_nullable
-              as Element?,
+              as PrimitiveElement?,
     ));
   }
 }
@@ -1326,7 +1329,7 @@ class _$TimingRepeatImpl extends _TimingRepeat {
   /// [countElement] Extensions for count
   @override
   @JsonKey(name: '_count')
-  final Element? countElement;
+  final PrimitiveElement? countElement;
 
   /// [countMax] If present, indicates that the count is a range - so to
   ///  perform the action between [count] and [countMax] times.
@@ -1336,7 +1339,7 @@ class _$TimingRepeatImpl extends _TimingRepeat {
   /// [countMaxElement] Extensions for countMax
   @override
   @JsonKey(name: '_countMax')
-  final Element? countMaxElement;
+  final PrimitiveElement? countMaxElement;
 
   /// [duration] How long this thing happens for when it happens. If
   /// durationMax is present, this element indicates the lower bound of the
@@ -1347,7 +1350,7 @@ class _$TimingRepeatImpl extends _TimingRepeat {
   /// [durationElement] Extensions for duration
   @override
   @JsonKey(name: '_duration')
-  final Element? durationElement;
+  final PrimitiveElement? durationElement;
 
   /// [durationMax] If present, indicates that the duration is a range - so to
   ///  perform the action between [duration] and [durationMax] time length.
@@ -1357,7 +1360,7 @@ class _$TimingRepeatImpl extends _TimingRepeat {
   /// [durationMaxElement] Extensions for durationMax
   @override
   @JsonKey(name: '_durationMax')
-  final Element? durationMaxElement;
+  final PrimitiveElement? durationMaxElement;
   @override
   @JsonKey(unknownEnumValue: TimingRepeatDurationUnit.unknown)
   final TimingRepeatDurationUnit? durationUnit;
@@ -1365,7 +1368,7 @@ class _$TimingRepeatImpl extends _TimingRepeat {
   /// [durationUnitElement] Extensions for durationUnit
   @override
   @JsonKey(name: '_durationUnit')
-  final Element? durationUnitElement;
+  final PrimitiveElement? durationUnitElement;
 
   /// [frequency] The number of times to repeat the action within the specified
   /// period. If frequencyMax is present, this element indicates the lower bound
@@ -1376,7 +1379,7 @@ class _$TimingRepeatImpl extends _TimingRepeat {
   /// [frequencyElement] Extensions for frequency
   @override
   @JsonKey(name: '_frequency')
-  final Element? frequencyElement;
+  final PrimitiveElement? frequencyElement;
 
   /// [frequencyMax] If present, indicates that the frequency is a range - so
   /// to repeat between [frequency] and [frequencyMax] times within the period
@@ -1387,7 +1390,7 @@ class _$TimingRepeatImpl extends _TimingRepeat {
   /// [frequencyMaxElement] Extensions for frequencyMax
   @override
   @JsonKey(name: '_frequencyMax')
-  final Element? frequencyMaxElement;
+  final PrimitiveElement? frequencyMaxElement;
 
   /// [period] Indicates the duration of time over which repetitions are to
   /// occur; e.g. to express "3 times per day", 3 would be the frequency and "1
@@ -1399,7 +1402,7 @@ class _$TimingRepeatImpl extends _TimingRepeat {
   /// [periodElement] Extensions for period
   @override
   @JsonKey(name: '_period')
-  final Element? periodElement;
+  final PrimitiveElement? periodElement;
 
   /// [periodMax] If present, indicates that the period is a range from [period]
   /// to [periodMax], allowing expressing concepts such as "do this once every
@@ -1410,7 +1413,7 @@ class _$TimingRepeatImpl extends _TimingRepeat {
   /// [periodMaxElement] Extensions for periodMax
   @override
   @JsonKey(name: '_periodMax')
-  final Element? periodMaxElement;
+  final PrimitiveElement? periodMaxElement;
   @override
   @JsonKey(unknownEnumValue: TimingRepeatPeriodUnit.unknown)
   final TimingRepeatPeriodUnit? periodUnit;
@@ -1418,7 +1421,7 @@ class _$TimingRepeatImpl extends _TimingRepeat {
   /// [periodUnitElement] Extensions for periodUnit
   @override
   @JsonKey(name: '_periodUnit')
-  final Element? periodUnitElement;
+  final PrimitiveElement? periodUnitElement;
 
   /// [dayOfWeek] If one or more days of week is provided, then the action
   ///  happens only on the specified day(s).
@@ -1516,7 +1519,7 @@ class _$TimingRepeatImpl extends _TimingRepeat {
   /// [offsetElement] Extensions for offset
   @override
   @JsonKey(name: '_offset')
-  final Element? offsetElement;
+  final PrimitiveElement? offsetElement;
 
   @override
   String toString() {
@@ -1649,43 +1652,45 @@ class _$TimingRepeatImpl extends _TimingRepeat {
 
 abstract class _TimingRepeat extends TimingRepeat {
   const factory _TimingRepeat(
-          {final String? id,
-          @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
-          final List<FhirExtension>? modifierExtension,
-          final FhirDuration? boundsDuration,
-          final Range? boundsRange,
-          final Period? boundsPeriod,
-          final FhirPositiveInt? count,
-          @JsonKey(name: '_count') final Element? countElement,
-          final FhirPositiveInt? countMax,
-          @JsonKey(name: '_countMax') final Element? countMaxElement,
-          final FhirDecimal? duration,
-          @JsonKey(name: '_duration') final Element? durationElement,
-          final FhirDecimal? durationMax,
-          @JsonKey(name: '_durationMax') final Element? durationMaxElement,
-          @JsonKey(unknownEnumValue: TimingRepeatDurationUnit.unknown)
-          final TimingRepeatDurationUnit? durationUnit,
-          @JsonKey(name: '_durationUnit') final Element? durationUnitElement,
-          final FhirPositiveInt? frequency,
-          @JsonKey(name: '_frequency') final Element? frequencyElement,
-          final FhirPositiveInt? frequencyMax,
-          @JsonKey(name: '_frequencyMax') final Element? frequencyMaxElement,
-          final FhirDecimal? period,
-          @JsonKey(name: '_period') final Element? periodElement,
-          final FhirDecimal? periodMax,
-          @JsonKey(name: '_periodMax') final Element? periodMaxElement,
-          @JsonKey(unknownEnumValue: TimingRepeatPeriodUnit.unknown)
-          final TimingRepeatPeriodUnit? periodUnit,
-          @JsonKey(name: '_periodUnit') final Element? periodUnitElement,
-          final List<FhirCode>? dayOfWeek,
-          @JsonKey(name: '_dayOfWeek') final List<Element?>? dayOfWeekElement,
-          final List<FhirTime>? timeOfDay,
-          @JsonKey(name: '_timeOfDay') final List<Element?>? timeOfDayElement,
-          final List<TimingRepeatWhen>? when,
-          @JsonKey(name: '_when') final List<Element?>? whenElement,
-          final FhirUnsignedInt? offset,
-          @JsonKey(name: '_offset') final Element? offsetElement}) =
-      _$TimingRepeatImpl;
+      {final String? id,
+      @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
+      final List<FhirExtension>? modifierExtension,
+      final FhirDuration? boundsDuration,
+      final Range? boundsRange,
+      final Period? boundsPeriod,
+      final FhirPositiveInt? count,
+      @JsonKey(name: '_count') final PrimitiveElement? countElement,
+      final FhirPositiveInt? countMax,
+      @JsonKey(name: '_countMax') final PrimitiveElement? countMaxElement,
+      final FhirDecimal? duration,
+      @JsonKey(name: '_duration') final PrimitiveElement? durationElement,
+      final FhirDecimal? durationMax,
+      @JsonKey(name: '_durationMax') final PrimitiveElement? durationMaxElement,
+      @JsonKey(unknownEnumValue: TimingRepeatDurationUnit.unknown)
+      final TimingRepeatDurationUnit? durationUnit,
+      @JsonKey(name: '_durationUnit')
+      final PrimitiveElement? durationUnitElement,
+      final FhirPositiveInt? frequency,
+      @JsonKey(name: '_frequency') final PrimitiveElement? frequencyElement,
+      final FhirPositiveInt? frequencyMax,
+      @JsonKey(name: '_frequencyMax')
+      final PrimitiveElement? frequencyMaxElement,
+      final FhirDecimal? period,
+      @JsonKey(name: '_period') final PrimitiveElement? periodElement,
+      final FhirDecimal? periodMax,
+      @JsonKey(name: '_periodMax') final PrimitiveElement? periodMaxElement,
+      @JsonKey(unknownEnumValue: TimingRepeatPeriodUnit.unknown)
+      final TimingRepeatPeriodUnit? periodUnit,
+      @JsonKey(name: '_periodUnit') final PrimitiveElement? periodUnitElement,
+      final List<FhirCode>? dayOfWeek,
+      @JsonKey(name: '_dayOfWeek') final List<Element?>? dayOfWeekElement,
+      final List<FhirTime>? timeOfDay,
+      @JsonKey(name: '_timeOfDay') final List<Element?>? timeOfDayElement,
+      final List<TimingRepeatWhen>? when,
+      @JsonKey(name: '_when') final List<Element?>? whenElement,
+      final FhirUnsignedInt? offset,
+      @JsonKey(name: '_offset')
+      final PrimitiveElement? offsetElement}) = _$TimingRepeatImpl;
   const _TimingRepeat._() : super._();
 
   factory _TimingRepeat.fromJson(Map<String, dynamic> json) =
@@ -1750,7 +1755,7 @@ abstract class _TimingRepeat extends TimingRepeat {
 
   /// [countElement] Extensions for count
   @JsonKey(name: '_count')
-  Element? get countElement;
+  PrimitiveElement? get countElement;
   @override
 
   /// [countMax] If present, indicates that the count is a range - so to
@@ -1760,7 +1765,7 @@ abstract class _TimingRepeat extends TimingRepeat {
 
   /// [countMaxElement] Extensions for countMax
   @JsonKey(name: '_countMax')
-  Element? get countMaxElement;
+  PrimitiveElement? get countMaxElement;
   @override
 
   /// [duration] How long this thing happens for when it happens. If
@@ -1771,7 +1776,7 @@ abstract class _TimingRepeat extends TimingRepeat {
 
   /// [durationElement] Extensions for duration
   @JsonKey(name: '_duration')
-  Element? get durationElement;
+  PrimitiveElement? get durationElement;
   @override
 
   /// [durationMax] If present, indicates that the duration is a range - so to
@@ -1781,7 +1786,7 @@ abstract class _TimingRepeat extends TimingRepeat {
 
   /// [durationMaxElement] Extensions for durationMax
   @JsonKey(name: '_durationMax')
-  Element? get durationMaxElement;
+  PrimitiveElement? get durationMaxElement;
   @override
   @JsonKey(unknownEnumValue: TimingRepeatDurationUnit.unknown)
   TimingRepeatDurationUnit? get durationUnit;
@@ -1789,7 +1794,7 @@ abstract class _TimingRepeat extends TimingRepeat {
 
   /// [durationUnitElement] Extensions for durationUnit
   @JsonKey(name: '_durationUnit')
-  Element? get durationUnitElement;
+  PrimitiveElement? get durationUnitElement;
   @override
 
   /// [frequency] The number of times to repeat the action within the specified
@@ -1800,7 +1805,7 @@ abstract class _TimingRepeat extends TimingRepeat {
 
   /// [frequencyElement] Extensions for frequency
   @JsonKey(name: '_frequency')
-  Element? get frequencyElement;
+  PrimitiveElement? get frequencyElement;
   @override
 
   /// [frequencyMax] If present, indicates that the frequency is a range - so
@@ -1811,7 +1816,7 @@ abstract class _TimingRepeat extends TimingRepeat {
 
   /// [frequencyMaxElement] Extensions for frequencyMax
   @JsonKey(name: '_frequencyMax')
-  Element? get frequencyMaxElement;
+  PrimitiveElement? get frequencyMaxElement;
   @override
 
   /// [period] Indicates the duration of time over which repetitions are to
@@ -1823,7 +1828,7 @@ abstract class _TimingRepeat extends TimingRepeat {
 
   /// [periodElement] Extensions for period
   @JsonKey(name: '_period')
-  Element? get periodElement;
+  PrimitiveElement? get periodElement;
   @override
 
   /// [periodMax] If present, indicates that the period is a range from [period]
@@ -1834,7 +1839,7 @@ abstract class _TimingRepeat extends TimingRepeat {
 
   /// [periodMaxElement] Extensions for periodMax
   @JsonKey(name: '_periodMax')
-  Element? get periodMaxElement;
+  PrimitiveElement? get periodMaxElement;
   @override
   @JsonKey(unknownEnumValue: TimingRepeatPeriodUnit.unknown)
   TimingRepeatPeriodUnit? get periodUnit;
@@ -1842,7 +1847,7 @@ abstract class _TimingRepeat extends TimingRepeat {
 
   /// [periodUnitElement] Extensions for periodUnit
   @JsonKey(name: '_periodUnit')
-  Element? get periodUnitElement;
+  PrimitiveElement? get periodUnitElement;
   @override
 
   /// [dayOfWeek] If one or more days of week is provided, then the action
@@ -1882,7 +1887,7 @@ abstract class _TimingRepeat extends TimingRepeat {
 
   /// [offsetElement] Extensions for offset
   @JsonKey(name: '_offset')
-  Element? get offsetElement;
+  PrimitiveElement? get offsetElement;
   @override
   @JsonKey(ignore: true)
   _$$TimingRepeatImplCopyWith<_$TimingRepeatImpl> get copyWith =>
