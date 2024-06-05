@@ -7,7 +7,7 @@ import 'package:test/test.dart';
 dynamic walkPath(String arg) =>
     walkFhirPath(context: resource.toJson(), pathExpression: arg).toString();
 
-void testQuestionnaire() {
+void main() {
   group('Questionnaire Logic', () {
     final response = QuestionnaireResponse.fromJson(questionnaireResponse);
     test('Partial Score', () {

@@ -9,7 +9,7 @@ import 'package:test/test.dart';
 
 import 'ndjson/ndjson.dart';
 
-void compressTest() {
+void main() {
   group('FHIR Bulk From File/s:', () {
     test('From Accounts ndjson file', () async {
       final List<Resource> resources =

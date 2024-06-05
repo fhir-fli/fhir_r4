@@ -13,7 +13,7 @@ import 'package:test/test.dart';
 
 dynamic walkPath(dynamic arg) => arg;
 
-void testArgFxns() {
+void main() {
   group('Functions with Arguments: ', () {
     test('%variables', () {
       expect(

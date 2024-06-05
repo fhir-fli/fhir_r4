@@ -1,5 +1,4 @@
-// ignore_for_file: invalid_annotation_target, sort_unnamed_constructors_first, sort_constructors_first, prefer_mixin
-
+// ignore_for_file: invalid_annotation_target
 // Dart imports:
 import 'dart:convert';
 
@@ -280,10 +279,10 @@ class FhirGroup with _$FhirGroup implements DomainResource {
   Resource newIdIfNoId() => id == null ? newId() : this;
 
   @override
-  String get path => 'Group/$id';
+  String get path => '$fhirType/$id';
 
   @override
-  String get resourceTypeString => 'Group';
+  String get resourceTypeString => fhirType;
 
   @override
   Reference get thisReference =>
@@ -455,6 +454,14 @@ class GroupCharacteristic
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  /// Another convenience method because more and more I'm transmitting FHIR
+  /// data as a String and not a Map
+  @override
+  String toJsonString() => jsonEncode(toJson());
+
+  @override
+  String toYaml() => json2yaml(toJson());
 }
 
 /// [GroupMember] Represents a defined collection of entities that may be
@@ -575,4 +582,12 @@ class GroupMember with _$GroupMember implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  /// Another convenience method because more and more I'm transmitting FHIR
+  /// data as a String and not a Map
+  @override
+  String toJsonString() => jsonEncode(toJson());
+
+  @override
+  String toYaml() => json2yaml(toJson());
 }

@@ -7,7 +7,7 @@ import 'package:test/test.dart';
 dynamic walkPath(String arg) =>
     walkFhirPath(context: resource.toJson(), pathExpression: arg).toString();
 
-void testPaths() {
+void main() {
   group('Path Test', () {
     test('Patient Name', () {
       expect(

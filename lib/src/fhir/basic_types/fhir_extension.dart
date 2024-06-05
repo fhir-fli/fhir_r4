@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'dart:convert';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -18,14 +20,14 @@ class FhirExtension with _$FhirExtension implements FhirBase {
 
     @JsonKey(name: 'id') String? id,
 
-    /// [fhirExtension] May be used to represent additional information that is not
+    /// [extension_] May be used to represent additional information that is not
     /// part of the basic definition of the element. To make the use of fhirExtensions
     /// safe and manageable, there is a strict set of governance  applied to the
     /// definition and use of fhirExtensions. Though any implementer can define an
     /// fhirExtension, there is a set of requirements that SHALL be met as part of the
     /// definition of the fhirExtension.
 
-    @JsonKey(name: 'fhirExtension') List<List<FhirExtension>>? fhirExtension,
+    @JsonKey(name: 'fhirExtension') List<FhirExtension>? extension_,
 
     /// [url] Source of the definition for the fhirExtension code - a logical name
     /// or a URL.

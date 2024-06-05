@@ -75,14 +75,14 @@ abstract class Resource extends FhirBase {
   String toYaml() => json2yaml(toJson());
 
   /// produce a string of the [resourceType]
-  String get resourceTypeString => resourceType.toString();
+  String get resourceTypeString => fhirType;
 
   /// Convenience method to return a [Reference] referring to that [Resource]
   Reference get thisReference =>
       Reference(reference: path, type: FhirUri(resourceTypeString));
 
   /// Local Reference for this Resource, form is "ResourceType/Id"
-  String get path => '$resourceTypeString/$id';
+  String get path => '$fhirType/$id';
 
   /// returns the same resource with a new ID if there is no current ID
   Resource newIdIfNoId() => id == null ? _newId(this) : this;

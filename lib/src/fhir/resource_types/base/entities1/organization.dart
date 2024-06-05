@@ -1,5 +1,4 @@
-// ignore_for_file: invalid_annotation_target, sort_unnamed_constructors_first, sort_constructors_first, prefer_mixin
-
+// ignore_for_file: invalid_annotation_target
 // Dart imports:
 import 'dart:convert';
 
@@ -477,10 +476,10 @@ class Organization with _$Organization implements DomainResource {
   Resource newIdIfNoId() => id == null ? newId() : this;
 
   @override
-  String get path => 'Organization/$id';
+  String get path => '$fhirType/$id';
 
   @override
-  String get resourceTypeString => 'Organization';
+  String get resourceTypeString => fhirType;
 
   @override
   Reference get thisReference =>

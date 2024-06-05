@@ -4,7 +4,7 @@
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 
-void testDateTimes() {
+void main() {
   group('DateTime Arithmetic', () {
     final response = QuestionnaireResponse.fromJson(questionnaireResponse);
     test('Basic Date Addition/Subtraction', () {

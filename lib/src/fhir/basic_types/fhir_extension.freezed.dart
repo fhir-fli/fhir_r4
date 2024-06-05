@@ -25,15 +25,14 @@ mixin _$FhirExtension {
   @JsonKey(name: 'id')
   String? get id => throw _privateConstructorUsedError;
 
-  /// [fhirExtension] May be used to represent additional information that is not
+  /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of fhirExtensions
   /// safe and manageable, there is a strict set of governance  applied to the
   /// definition and use of fhirExtensions. Though any implementer can define an
   /// fhirExtension, there is a set of requirements that SHALL be met as part of the
   /// definition of the fhirExtension.
   @JsonKey(name: 'fhirExtension')
-  List<List<FhirExtension>>? get fhirExtension =>
-      throw _privateConstructorUsedError;
+  List<FhirExtension>? get extension_ => throw _privateConstructorUsedError;
 
   /// [url] Source of the definition for the fhirExtension code - a logical name
   /// or a URL.
@@ -412,7 +411,7 @@ abstract class $FhirExtensionCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'fhirExtension') List<List<FhirExtension>>? fhirExtension,
+      @JsonKey(name: 'fhirExtension') List<FhirExtension>? extension_,
       @JsonKey(name: 'url') FhirUri? url,
       @JsonKey(name: '_url') PrimitiveElement? urlElement,
       @JsonKey(name: 'valueBase64Binary') String? valueBase64Binary,
@@ -543,7 +542,7 @@ class _$FhirExtensionCopyWithImpl<$Res, $Val extends FhirExtension>
   @override
   $Res call({
     Object? id = freezed,
-    Object? fhirExtension = freezed,
+    Object? extension_ = freezed,
     Object? url = freezed,
     Object? urlElement = freezed,
     Object? valueBase64Binary = freezed,
@@ -622,10 +621,10 @@ class _$FhirExtensionCopyWithImpl<$Res, $Val extends FhirExtension>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      fhirExtension: freezed == fhirExtension
-          ? _value.fhirExtension
-          : fhirExtension // ignore: cast_nullable_to_non_nullable
-              as List<List<FhirExtension>>?,
+      extension_: freezed == extension_
+          ? _value.extension_
+          : extension_ // ignore: cast_nullable_to_non_nullable
+              as List<FhirExtension>?,
       url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -1318,7 +1317,7 @@ abstract class _$$FhirExtensionImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'fhirExtension') List<List<FhirExtension>>? fhirExtension,
+      @JsonKey(name: 'fhirExtension') List<FhirExtension>? extension_,
       @JsonKey(name: 'url') FhirUri? url,
       @JsonKey(name: '_url') PrimitiveElement? urlElement,
       @JsonKey(name: 'valueBase64Binary') String? valueBase64Binary,
@@ -1479,7 +1478,7 @@ class __$$FhirExtensionImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? fhirExtension = freezed,
+    Object? extension_ = freezed,
     Object? url = freezed,
     Object? urlElement = freezed,
     Object? valueBase64Binary = freezed,
@@ -1558,10 +1557,10 @@ class __$$FhirExtensionImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      fhirExtension: freezed == fhirExtension
-          ? _value._fhirExtension
-          : fhirExtension // ignore: cast_nullable_to_non_nullable
-              as List<List<FhirExtension>>?,
+      extension_: freezed == extension_
+          ? _value._extension_
+          : extension_ // ignore: cast_nullable_to_non_nullable
+              as List<FhirExtension>?,
       url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -1859,8 +1858,7 @@ class __$$FhirExtensionImplCopyWithImpl<$Res>
 class _$FhirExtensionImpl extends _FhirExtension {
   const _$FhirExtensionImpl(
       {@JsonKey(name: 'id') this.id,
-      @JsonKey(name: 'fhirExtension')
-      final List<List<FhirExtension>>? fhirExtension,
+      @JsonKey(name: 'fhirExtension') final List<FhirExtension>? extension_,
       @JsonKey(name: 'url') this.url,
       @JsonKey(name: '_url') this.urlElement,
       @JsonKey(name: 'valueBase64Binary') this.valueBase64Binary,
@@ -1933,7 +1931,7 @@ class _$FhirExtensionImpl extends _FhirExtension {
       @JsonKey(name: 'valueTriggerDefinition') this.valueTriggerDefinition,
       @JsonKey(name: 'valueUsageContext') this.valueUsageContext,
       @JsonKey(name: 'valueDosage') this.valueDosage})
-      : _fhirExtension = fhirExtension,
+      : _extension_ = extension_,
         super._();
 
   factory _$FhirExtensionImpl.fromJson(Map<String, dynamic> json) =>
@@ -1945,15 +1943,15 @@ class _$FhirExtensionImpl extends _FhirExtension {
   @JsonKey(name: 'id')
   final String? id;
 
-  /// [fhirExtension] May be used to represent additional information that is not
+  /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of fhirExtensions
   /// safe and manageable, there is a strict set of governance  applied to the
   /// definition and use of fhirExtensions. Though any implementer can define an
   /// fhirExtension, there is a set of requirements that SHALL be met as part of the
   /// definition of the fhirExtension.
-  final List<List<FhirExtension>>? _fhirExtension;
+  final List<FhirExtension>? _extension_;
 
-  /// [fhirExtension] May be used to represent additional information that is not
+  /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of fhirExtensions
   /// safe and manageable, there is a strict set of governance  applied to the
   /// definition and use of fhirExtensions. Though any implementer can define an
@@ -1961,10 +1959,10 @@ class _$FhirExtensionImpl extends _FhirExtension {
   /// definition of the fhirExtension.
   @override
   @JsonKey(name: 'fhirExtension')
-  List<List<FhirExtension>>? get fhirExtension {
-    final value = _fhirExtension;
+  List<FhirExtension>? get extension_ {
+    final value = _extension_;
     if (value == null) return null;
-    if (_fhirExtension is EqualUnmodifiableListView) return _fhirExtension;
+    if (_extension_ is EqualUnmodifiableListView) return _extension_;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -2389,7 +2387,7 @@ class _$FhirExtensionImpl extends _FhirExtension {
 
   @override
   String toString() {
-    return 'FhirExtension(id: $id, fhirExtension: $fhirExtension, url: $url, urlElement: $urlElement, valueBase64Binary: $valueBase64Binary, valueBase64BinaryElement: $valueBase64BinaryElement, valueBoolean: $valueBoolean, valueBooleanElement: $valueBooleanElement, valueCanonical: $valueCanonical, valueCanonicalElement: $valueCanonicalElement, valueCode: $valueCode, valueCodeElement: $valueCodeElement, valueDate: $valueDate, valueDateElement: $valueDateElement, valueDateTime: $valueDateTime, valueDateTimeElement: $valueDateTimeElement, valueDecimal: $valueDecimal, valueDecimalElement: $valueDecimalElement, valueId: $valueId, valueIdElement: $valueIdElement, valueInstant: $valueInstant, valueInstantElement: $valueInstantElement, valueInteger: $valueInteger, valueIntegerElement: $valueIntegerElement, valueMarkdown: $valueMarkdown, valueMarkdownElement: $valueMarkdownElement, valueOid: $valueOid, valueOidElement: $valueOidElement, valuePositiveInt: $valuePositiveInt, valuePositiveIntElement: $valuePositiveIntElement, valueString: $valueString, valueStringElement: $valueStringElement, valueTime: $valueTime, valueTimeElement: $valueTimeElement, valueUnsignedInt: $valueUnsignedInt, valueUnsignedIntElement: $valueUnsignedIntElement, valueUri: $valueUri, valueUriElement: $valueUriElement, valueUrl: $valueUrl, valueUrlElement: $valueUrlElement, valueUuid: $valueUuid, valueUuidElement: $valueUuidElement, valueAddress: $valueAddress, valueAge: $valueAge, valueAnnotation: $valueAnnotation, valueAttachment: $valueAttachment, valueCodeableConcept: $valueCodeableConcept, valueCodeableReference: $valueCodeableReference, valueCoding: $valueCoding, valueContactPoint: $valueContactPoint, valueCount: $valueCount, valueDistance: $valueDistance, valueDuration: $valueDuration, valueHumanName: $valueHumanName, valueIdentifier: $valueIdentifier, valueMoney: $valueMoney, valuePeriod: $valuePeriod, valueQuantity: $valueQuantity, valueRange: $valueRange, valueRatio: $valueRatio, valueRatioRange: $valueRatioRange, valueReference: $valueReference, valueSampledData: $valueSampledData, valueSignature: $valueSignature, valueTiming: $valueTiming, valueContactDetail: $valueContactDetail, valueContributor: $valueContributor, valueDataRequirement: $valueDataRequirement, valueExpression: $valueExpression, valueParameterDefinition: $valueParameterDefinition, valueRelatedArtifact: $valueRelatedArtifact, valueTriggerDefinition: $valueTriggerDefinition, valueUsageContext: $valueUsageContext, valueDosage: $valueDosage)';
+    return 'FhirExtension(id: $id, extension_: $extension_, url: $url, urlElement: $urlElement, valueBase64Binary: $valueBase64Binary, valueBase64BinaryElement: $valueBase64BinaryElement, valueBoolean: $valueBoolean, valueBooleanElement: $valueBooleanElement, valueCanonical: $valueCanonical, valueCanonicalElement: $valueCanonicalElement, valueCode: $valueCode, valueCodeElement: $valueCodeElement, valueDate: $valueDate, valueDateElement: $valueDateElement, valueDateTime: $valueDateTime, valueDateTimeElement: $valueDateTimeElement, valueDecimal: $valueDecimal, valueDecimalElement: $valueDecimalElement, valueId: $valueId, valueIdElement: $valueIdElement, valueInstant: $valueInstant, valueInstantElement: $valueInstantElement, valueInteger: $valueInteger, valueIntegerElement: $valueIntegerElement, valueMarkdown: $valueMarkdown, valueMarkdownElement: $valueMarkdownElement, valueOid: $valueOid, valueOidElement: $valueOidElement, valuePositiveInt: $valuePositiveInt, valuePositiveIntElement: $valuePositiveIntElement, valueString: $valueString, valueStringElement: $valueStringElement, valueTime: $valueTime, valueTimeElement: $valueTimeElement, valueUnsignedInt: $valueUnsignedInt, valueUnsignedIntElement: $valueUnsignedIntElement, valueUri: $valueUri, valueUriElement: $valueUriElement, valueUrl: $valueUrl, valueUrlElement: $valueUrlElement, valueUuid: $valueUuid, valueUuidElement: $valueUuidElement, valueAddress: $valueAddress, valueAge: $valueAge, valueAnnotation: $valueAnnotation, valueAttachment: $valueAttachment, valueCodeableConcept: $valueCodeableConcept, valueCodeableReference: $valueCodeableReference, valueCoding: $valueCoding, valueContactPoint: $valueContactPoint, valueCount: $valueCount, valueDistance: $valueDistance, valueDuration: $valueDuration, valueHumanName: $valueHumanName, valueIdentifier: $valueIdentifier, valueMoney: $valueMoney, valuePeriod: $valuePeriod, valueQuantity: $valueQuantity, valueRange: $valueRange, valueRatio: $valueRatio, valueRatioRange: $valueRatioRange, valueReference: $valueReference, valueSampledData: $valueSampledData, valueSignature: $valueSignature, valueTiming: $valueTiming, valueContactDetail: $valueContactDetail, valueContributor: $valueContributor, valueDataRequirement: $valueDataRequirement, valueExpression: $valueExpression, valueParameterDefinition: $valueParameterDefinition, valueRelatedArtifact: $valueRelatedArtifact, valueTriggerDefinition: $valueTriggerDefinition, valueUsageContext: $valueUsageContext, valueDosage: $valueDosage)';
   }
 
   @override
@@ -2399,7 +2397,7 @@ class _$FhirExtensionImpl extends _FhirExtension {
             other is _$FhirExtensionImpl &&
             (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
-                .equals(other._fhirExtension, _fhirExtension) &&
+                .equals(other._extension_, _extension_) &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.urlElement, urlElement) ||
                 other.urlElement == urlElement) &&
@@ -2510,7 +2508,7 @@ class _$FhirExtensionImpl extends _FhirExtension {
   int get hashCode => Object.hashAll([
         runtimeType,
         id,
-        const DeepCollectionEquality().hash(_fhirExtension),
+        const DeepCollectionEquality().hash(_extension_),
         url,
         urlElement,
         valueBase64Binary,
@@ -2602,8 +2600,7 @@ class _$FhirExtensionImpl extends _FhirExtension {
 abstract class _FhirExtension extends FhirExtension {
   const factory _FhirExtension(
       {@JsonKey(name: 'id') final String? id,
-      @JsonKey(name: 'fhirExtension')
-      final List<List<FhirExtension>>? fhirExtension,
+      @JsonKey(name: 'fhirExtension') final List<FhirExtension>? extension_,
       @JsonKey(name: 'url') final FhirUri? url,
       @JsonKey(name: '_url') final PrimitiveElement? urlElement,
       @JsonKey(name: 'valueBase64Binary') final String? valueBase64Binary,
@@ -2709,14 +2706,14 @@ abstract class _FhirExtension extends FhirExtension {
   String? get id;
   @override
 
-  /// [fhirExtension] May be used to represent additional information that is not
+  /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of fhirExtensions
   /// safe and manageable, there is a strict set of governance  applied to the
   /// definition and use of fhirExtensions. Though any implementer can define an
   /// fhirExtension, there is a set of requirements that SHALL be met as part of the
   /// definition of the fhirExtension.
   @JsonKey(name: 'fhirExtension')
-  List<List<FhirExtension>>? get fhirExtension;
+  List<FhirExtension>? get extension_;
   @override
 
   /// [url] Source of the definition for the fhirExtension code - a logical name

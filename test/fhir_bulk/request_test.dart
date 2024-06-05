@@ -4,7 +4,7 @@
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 
-void requestTest() {
+void main() {
   group('FHIR Bulk Request Patient:', () {
     test('Basic Patient Bulk Request', () async {
       final BulkRequest request = BulkRequest.patient(

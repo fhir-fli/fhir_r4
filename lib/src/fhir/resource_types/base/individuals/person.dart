@@ -1,5 +1,4 @@
-// ignore_for_file: invalid_annotation_target, sort_unnamed_constructors_first, sort_constructors_first, prefer_mixin
-
+// ignore_for_file: invalid_annotation_target
 // Dart imports:
 import 'dart:convert';
 
@@ -10,8 +9,8 @@ import 'package:yaml/yaml.dart';
 // Project imports:
 import '../../../../../fhir_r4.dart';
 
-part 'individuals.freezed.dart';
-part 'individuals.g.dart';
+part 'person.freezed.dart';
+part 'person.g.dart';
 
 /// [Person] Demographics and administrative information about a person
 @freezed
@@ -247,6 +246,29 @@ class Person with _$Person implements DomainResource {
   /// data as a String and not a Map
   @override
   String toJsonString() => jsonEncode(toJson());
+
+  @override
+  Resource newId() => copyWith(id: generateNewUuidString());
+
+  @override
+  Resource newIdIfNoId() => id == null ? newId() : this;
+
+  @override
+  String get path => '$fhirType/$id';
+
+  @override
+  String get resourceTypeString => fhirType;
+
+  @override
+  Reference get thisReference =>
+      Reference(reference: path, type: FhirUri(resourceTypeString));
+
+  @override
+  String toYaml() => json2yaml(toJson());
+
+  @override
+  Resource updateVersion({FhirMeta? oldMeta}) =>
+      copyWith(meta: updateFhirMetaVersion(meta));
 
   Person updateHumanNameUse(HumanNameUse use, [int index = 0]) {
     if (name == null || name!.isEmpty) {
@@ -672,4 +694,12 @@ class PersonLink with _$PersonLink implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  /// Another convenience method because more and more I'm transmitting FHIR
+  /// data as a String and not a Map
+  @override
+  String toJsonString() => jsonEncode(toJson());
+
+  @override
+  String toYaml() => json2yaml(toJson());
 }

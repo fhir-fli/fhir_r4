@@ -1,5 +1,4 @@
-// ignore_for_file: invalid_annotation_target, sort_unnamed_constructors_first, sort_constructors_first, prefer_mixin
-
+// ignore_for_file: invalid_annotation_target
 // Dart imports:
 import 'dart:convert';
 
@@ -167,10 +166,10 @@ class Substance with _$Substance implements DomainResource {
   Resource newIdIfNoId() => id == null ? newId() : this;
 
   @override
-  String get path => 'Substance/$id';
+  String get path => '$fhirType/$id';
 
   @override
-  String get resourceTypeString => 'Substance';
+  String get resourceTypeString => fhirType;
 
   @override
   Reference get thisReference =>
@@ -264,6 +263,14 @@ class SubstanceInstance with _$SubstanceInstance implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  /// Another convenience method because more and more I'm transmitting FHIR
+  /// data as a String and not a Map
+  @override
+  String toJsonString() => jsonEncode(toJson());
+
+  @override
+  String toYaml() => json2yaml(toJson());
 }
 
 /// [SubstanceIngredient] A homogeneous material with a definite
@@ -347,4 +354,12 @@ class SubstanceIngredient
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  /// Another convenience method because more and more I'm transmitting FHIR
+  /// data as a String and not a Map
+  @override
+  String toJsonString() => jsonEncode(toJson());
+
+  @override
+  String toYaml() => json2yaml(toJson());
 }

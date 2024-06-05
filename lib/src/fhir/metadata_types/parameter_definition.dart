@@ -1,5 +1,4 @@
-// ignore_for_file: invalid_annotation_target, sort_unnamed_constructors_first, sort_constructors_first, prefer_mixin
-
+// ignore_for_file: invalid_annotation_target
 // Dart imports:
 import 'dart:convert';
 

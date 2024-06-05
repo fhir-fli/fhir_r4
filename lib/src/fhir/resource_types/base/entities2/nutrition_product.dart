@@ -1,5 +1,4 @@
-// ignore_for_file: invalid_annotation_target, sort_unnamed_constructors_first, sort_constructors_first, prefer_mixin
-
+// ignore_for_file: invalid_annotation_target
 // Dart imports:
 import 'dart:convert';
 
@@ -172,10 +171,10 @@ class NutritionProduct with _$NutritionProduct implements DomainResource {
   Resource newIdIfNoId() => id == null ? newId() : this;
 
   @override
-  String get path => 'NutritionProduct/$id';
+  String get path => '$fhirType/$id';
 
   @override
-  String get resourceTypeString => 'NutritionProduct';
+  String get resourceTypeString => fhirType;
 
   @override
   Reference get thisReference =>
@@ -261,12 +260,21 @@ class NutritionProductNutrient
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  /// Another convenience method because more and more I'm transmitting FHIR
+  /// data as a String and not a Map
+  @override
+  String toJsonString() => jsonEncode(toJson());
+
+  @override
+  String toYaml() => json2yaml(toJson());
 }
 
 /// [NutritionProductIngredient] A food or supplement that is consumed by patients.
 @freezed
 class NutritionProductIngredient
-    with BackboneType, _$NutritionProductIngredient {
+    with _$NutritionProductIngredient
+    implements BackboneElement {
   /// [NutritionProductIngredient] A food or supplement that is consumed by patients.
   const NutritionProductIngredient._();
 
@@ -334,12 +342,21 @@ class NutritionProductIngredient
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  /// Another convenience method because more and more I'm transmitting FHIR
+  /// data as a String and not a Map
+  @override
+  String toJsonString() => jsonEncode(toJson());
+
+  @override
+  String toYaml() => json2yaml(toJson());
 }
 
 /// [NutritionProductCharacteristic] A food or supplement that is consumed by patients.
 @freezed
 class NutritionProductCharacteristic
-    with BackboneType, _$NutritionProductCharacteristic {
+    with _$NutritionProductCharacteristic
+    implements BackboneElement {
   /// [NutritionProductCharacteristic] A food or supplement that is consumed by patients.
   const NutritionProductCharacteristic._();
 
@@ -454,6 +471,14 @@ class NutritionProductCharacteristic
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  /// Another convenience method because more and more I'm transmitting FHIR
+  /// data as a String and not a Map
+  @override
+  String toJsonString() => jsonEncode(toJson());
+
+  @override
+  String toYaml() => json2yaml(toJson());
 }
 
 /// [NutritionProductInstance] A food or supplement that is consumed by patients.
@@ -540,4 +565,12 @@ class NutritionProductInstance
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  /// Another convenience method because more and more I'm transmitting FHIR
+  /// data as a String and not a Map
+  @override
+  String toJsonString() => jsonEncode(toJson());
+
+  @override
+  String toYaml() => json2yaml(toJson());
 }

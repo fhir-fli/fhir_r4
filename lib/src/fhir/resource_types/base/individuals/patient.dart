@@ -1,5 +1,4 @@
-// ignore_for_file: invalid_annotation_target, sort_unnamed_constructors_first, sort_constructors_first, prefer_mixin
-
+// ignore_for_file: invalid_annotation_target
 // Dart imports:
 import 'dart:convert';
 
@@ -662,6 +661,29 @@ class Patient with _$Patient implements DomainResource {
       ]);
     }
   }
+
+  @override
+  Resource newId() => copyWith(id: generateNewUuidString());
+
+  @override
+  Resource newIdIfNoId() => id == null ? newId() : this;
+
+  @override
+  String get path => '$fhirType/$id';
+
+  @override
+  String get resourceTypeString => fhirType;
+
+  @override
+  Reference get thisReference =>
+      Reference(reference: path, type: FhirUri(resourceTypeString));
+
+  @override
+  String toYaml() => json2yaml(toJson());
+
+  @override
+  Resource updateVersion({FhirMeta? oldMeta}) =>
+      copyWith(meta: updateFhirMetaVersion(meta));
 }
 
 /// [PatientContact] Demographics and other administrative information about
@@ -804,6 +826,14 @@ class PatientContact with _$PatientContact implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  /// Another convenience method because more and more I'm transmitting FHIR
+  /// data as a String and not a Map
+  @override
+  String toJsonString() => jsonEncode(toJson());
+
+  @override
+  String toYaml() => json2yaml(toJson());
 
   PatientContact updateHumanNameUse(HumanNameUse use) =>
       copyWith(name: name == null ? HumanName(use: use) : name!.updateUse(use));
@@ -1067,6 +1097,14 @@ class PatientCommunication
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  /// Another convenience method because more and more I'm transmitting FHIR
+  /// data as a String and not a Map
+  @override
+  String toJsonString() => jsonEncode(toJson());
+
+  @override
+  String toYaml() => json2yaml(toJson());
 }
 
 /// [PatientLink] Demographics and other administrative information about an
@@ -1176,4 +1214,12 @@ class PatientLink with _$PatientLink implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  /// Another convenience method because more and more I'm transmitting FHIR
+  /// data as a String and not a Map
+  @override
+  String toJsonString() => jsonEncode(toJson());
+
+  @override
+  String toYaml() => json2yaml(toJson());
 }

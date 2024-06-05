@@ -1,5 +1,4 @@
-// ignore_for_file: invalid_annotation_target, sort_unnamed_constructors_first, sort_constructors_first, prefer_mixin
-
+// ignore_for_file: invalid_annotation_target
 // Dart imports:
 import 'dart:convert';
 
@@ -278,10 +277,10 @@ class BiologicallyDerivedProduct
   Resource newIdIfNoId() => id == null ? newId() : this;
 
   @override
-  String get path => 'BiologicallyDerivedProduct/$id';
+  String get path => '$fhirType/$id';
 
   @override
-  String get resourceTypeString => 'BiologicallyDerivedProduct';
+  String get resourceTypeString => fhirType;
 
   @override
   Reference get thisReference =>
@@ -403,6 +402,14 @@ class BiologicallyDerivedProductCollection
   factory BiologicallyDerivedProductCollection.fromJson(
           Map<String, dynamic> json) =>
       _$BiologicallyDerivedProductCollectionFromJson(json);
+
+  /// Another convenience method because more and more I'm transmitting FHIR
+  /// data as a String and not a Map
+  @override
+  String toJsonString() => jsonEncode(toJson());
+
+  @override
+  String toYaml() => json2yaml(toJson());
 }
 
 @freezed
@@ -520,6 +527,14 @@ class BiologicallyDerivedProductProcessing
   factory BiologicallyDerivedProductProcessing.fromJson(
           Map<String, dynamic> json) =>
       _$BiologicallyDerivedProductProcessingFromJson(json);
+
+  /// Another convenience method because more and more I'm transmitting FHIR
+  /// data as a String and not a Map
+  @override
+  String toJsonString() => jsonEncode(toJson());
+
+  @override
+  String toYaml() => json2yaml(toJson());
 }
 
 @freezed
@@ -628,6 +643,14 @@ class BiologicallyDerivedProductManipulation
   factory BiologicallyDerivedProductManipulation.fromJson(
           Map<String, dynamic> json) =>
       _$BiologicallyDerivedProductManipulationFromJson(json);
+
+  /// Another convenience method because more and more I'm transmitting FHIR
+  /// data as a String and not a Map
+  @override
+  String toJsonString() => jsonEncode(toJson());
+
+  @override
+  String toYaml() => json2yaml(toJson());
 }
 
 @freezed
@@ -745,4 +768,12 @@ class BiologicallyDerivedProductStorage
   factory BiologicallyDerivedProductStorage.fromJson(
           Map<String, dynamic> json) =>
       _$BiologicallyDerivedProductStorageFromJson(json);
+
+  /// Another convenience method because more and more I'm transmitting FHIR
+  /// data as a String and not a Map
+  @override
+  String toJsonString() => jsonEncode(toJson());
+
+  @override
+  String toYaml() => json2yaml(toJson());
 }

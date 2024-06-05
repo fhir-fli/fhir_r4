@@ -1,5 +1,4 @@
-// ignore_for_file: invalid_annotation_target, sort_unnamed_constructors_first, sort_constructors_first, prefer_mixin
-
+// ignore_for_file: invalid_annotation_target
 // Dart imports:
 import 'dart:convert';
 
@@ -406,10 +405,10 @@ class Device with _$Device implements DomainResource {
   Resource newIdIfNoId() => id == null ? newId() : this;
 
   @override
-  String get path => 'Device/$id';
+  String get path => '$fhirType/$id';
 
   @override
-  String get resourceTypeString => 'Device';
+  String get resourceTypeString => fhirType;
 
   @override
   Reference get thisReference =>
@@ -692,6 +691,14 @@ class DeviceUdiCarrier with _$DeviceUdiCarrier implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  /// Another convenience method because more and more I'm transmitting FHIR
+  /// data as a String and not a Map
+  @override
+  String toJsonString() => jsonEncode(toJson());
+
+  @override
+  String toYaml() => json2yaml(toJson());
 }
 
 /// [DeviceDeviceName] A type of a manufactured item that is used in the
@@ -809,6 +816,14 @@ class DeviceDeviceName with _$DeviceDeviceName implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  /// Another convenience method because more and more I'm transmitting FHIR
+  /// data as a String and not a Map
+  @override
+  String toJsonString() => jsonEncode(toJson());
+
+  @override
+  String toYaml() => json2yaml(toJson());
 }
 
 /// [DeviceSpecialization] A type of a manufactured item that is used in the
@@ -921,6 +936,14 @@ class DeviceSpecialization
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  /// Another convenience method because more and more I'm transmitting FHIR
+  /// data as a String and not a Map
+  @override
+  String toJsonString() => jsonEncode(toJson());
+
+  @override
+  String toYaml() => json2yaml(toJson());
 }
 
 /// [DeviceVersion] A type of a manufactured item that is used in the
@@ -1034,6 +1057,14 @@ class DeviceVersion with _$DeviceVersion implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  /// Another convenience method because more and more I'm transmitting FHIR
+  /// data as a String and not a Map
+  @override
+  String toJsonString() => jsonEncode(toJson());
+
+  @override
+  String toYaml() => json2yaml(toJson());
 }
 
 /// [DeviceProperty] A type of a manufactured item that is used in the
@@ -1144,4 +1175,12 @@ class DeviceProperty with _$DeviceProperty implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  /// Another convenience method because more and more I'm transmitting FHIR
+  /// data as a String and not a Map
+  @override
+  String toJsonString() => jsonEncode(toJson());
+
+  @override
+  String toYaml() => json2yaml(toJson());
 }
