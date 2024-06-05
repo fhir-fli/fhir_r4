@@ -7,7 +7,7 @@ import '../../../fhir_r4.dart';
 
 /// [Element] Base definition for all FHIR elements.
 @JsonSerializable()
-abstract class Element extends FhirBase {
+abstract class Element implements FhirBase {
   String? get id;
   List<FhirExtension>? get extension_;
 
@@ -44,5 +44,6 @@ abstract class Element extends FhirBase {
     }
   }
 
+  @override
   String toJsonString() => jsonEncode(toJson());
 }

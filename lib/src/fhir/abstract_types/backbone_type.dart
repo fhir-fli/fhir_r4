@@ -8,7 +8,7 @@ import '../../../fhir_r4.dart';
 /// [BackboneType] Base definition for the few data types that are allowed to
 /// carry modifier extensions.
 @JsonSerializable()
-abstract class BackboneType extends DataType {
+abstract class BackboneType implements DataType {
   List<FhirExtension>? get modifierExtension;
 
   @override

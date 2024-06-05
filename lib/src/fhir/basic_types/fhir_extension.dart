@@ -411,6 +411,7 @@ class FhirExtension with _$FhirExtension implements FhirBase {
     }
   }
 
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override

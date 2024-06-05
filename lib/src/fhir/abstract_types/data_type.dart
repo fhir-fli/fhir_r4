@@ -8,7 +8,7 @@ import '../../../fhir_r4.dart';
 /// [DataType] Base definition for the few data types that are allowed to
 /// carry modifier extensions.
 @JsonSerializable()
-abstract class DataType extends Element {
+abstract class DataType implements Element {
   /// [DataType] Base definition for the few data types that are allowed to
   /// carry modifier extensions.
 
