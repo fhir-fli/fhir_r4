@@ -124,7 +124,7 @@ class Address with _$Address implements DataType {
     List<String>? line,
 
     /// [lineElement] Extensions for line
-    @JsonKey(name: '_line') List<Element?>? lineElement,
+    @JsonKey(name: '_line') List<PrimitiveElement>? lineElement,
 
     /// [city] The name of the city, town, suburb, village or other community or
     ///  delivery center.

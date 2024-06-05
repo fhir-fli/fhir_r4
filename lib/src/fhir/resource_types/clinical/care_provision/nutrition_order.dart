@@ -232,7 +232,8 @@ class NutritionOrder with _$NutritionOrder implements DomainResource {
     List<FhirUri>? instantiatesUri,
 
     /// [instantiatesUriElement] Extensions for instantiatesUri
-    @JsonKey(name: '_instantiatesUri') List<Element?>? instantiatesUriElement,
+    @JsonKey(name: '_instantiatesUri')
+    List<PrimitiveElement>? instantiatesUriElement,
 
     /// [instantiates] The URL pointing to a protocol, guideline, orderset or
     /// other definition that is adhered to in whole or in part by this
@@ -240,7 +241,7 @@ class NutritionOrder with _$NutritionOrder implements DomainResource {
     List<FhirUri>? instantiates,
 
     /// [instantiatesElement] Extensions for instantiates
-    @JsonKey(name: '_instantiates') List<Element?>? instantiatesElement,
+    @JsonKey(name: '_instantiates') List<PrimitiveElement>? instantiatesElement,
 
     /// [status] The workflow status of the nutrition order/request.
     FhirCode? status,

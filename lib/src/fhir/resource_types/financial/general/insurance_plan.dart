@@ -215,7 +215,7 @@ class InsurancePlan with _$InsurancePlan implements DomainResource {
     List<String>? alias,
 
     /// [aliasElement] Extensions for alias
-    @JsonKey(name: '_alias') List<Element?>? aliasElement,
+    @JsonKey(name: '_alias') List<PrimitiveElement>? aliasElement,
 
     /// [period] The period of time that the health insurance product is
     ///  available.

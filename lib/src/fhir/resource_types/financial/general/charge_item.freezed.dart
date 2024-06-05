@@ -99,7 +99,7 @@ mixin _$ChargeItem {
 
   /// [definitionUriElement] Extensions for definitionUri
   @JsonKey(name: '_definitionUri')
-  List<Element?>? get definitionUriElement =>
+  List<PrimitiveElement>? get definitionUriElement =>
       throw _privateConstructorUsedError;
 
   /// [definitionCanonical] References the source of pricing information, rules
@@ -255,7 +255,8 @@ abstract class $ChargeItemCopyWith<$Res> {
       List<FhirExtension>? modifierExtension,
       List<Identifier>? identifier,
       List<FhirUri>? definitionUri,
-      @JsonKey(name: '_definitionUri') List<Element?>? definitionUriElement,
+      @JsonKey(name: '_definitionUri')
+      List<PrimitiveElement>? definitionUriElement,
       List<FhirCanonical>? definitionCanonical,
       FhirCode? status,
       @JsonKey(name: '_status') PrimitiveElement? statusElement,
@@ -423,7 +424,7 @@ class _$ChargeItemCopyWithImpl<$Res, $Val extends ChargeItem>
       definitionUriElement: freezed == definitionUriElement
           ? _value.definitionUriElement
           : definitionUriElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       definitionCanonical: freezed == definitionCanonical
           ? _value.definitionCanonical
           : definitionCanonical // ignore: cast_nullable_to_non_nullable
@@ -752,7 +753,8 @@ abstract class _$$ChargeItemImplCopyWith<$Res>
       List<FhirExtension>? modifierExtension,
       List<Identifier>? identifier,
       List<FhirUri>? definitionUri,
-      @JsonKey(name: '_definitionUri') List<Element?>? definitionUriElement,
+      @JsonKey(name: '_definitionUri')
+      List<PrimitiveElement>? definitionUriElement,
       List<FhirCanonical>? definitionCanonical,
       FhirCode? status,
       @JsonKey(name: '_status') PrimitiveElement? statusElement,
@@ -933,7 +935,7 @@ class __$$ChargeItemImplCopyWithImpl<$Res>
       definitionUriElement: freezed == definitionUriElement
           ? _value._definitionUriElement
           : definitionUriElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       definitionCanonical: freezed == definitionCanonical
           ? _value._definitionCanonical
           : definitionCanonical // ignore: cast_nullable_to_non_nullable
@@ -1085,7 +1087,7 @@ class _$ChargeItemImpl extends _ChargeItem {
       final List<Identifier>? identifier,
       final List<FhirUri>? definitionUri,
       @JsonKey(name: '_definitionUri')
-      final List<Element?>? definitionUriElement,
+      final List<PrimitiveElement>? definitionUriElement,
       final List<FhirCanonical>? definitionCanonical,
       this.status,
       @JsonKey(name: '_status') this.statusElement,
@@ -1295,12 +1297,12 @@ class _$ChargeItemImpl extends _ChargeItem {
   }
 
   /// [definitionUriElement] Extensions for definitionUri
-  final List<Element?>? _definitionUriElement;
+  final List<PrimitiveElement>? _definitionUriElement;
 
   /// [definitionUriElement] Extensions for definitionUri
   @override
   @JsonKey(name: '_definitionUri')
-  List<Element?>? get definitionUriElement {
+  List<PrimitiveElement>? get definitionUriElement {
     final value = _definitionUriElement;
     if (value == null) return null;
     if (_definitionUriElement is EqualUnmodifiableListView)
@@ -1722,7 +1724,7 @@ abstract class _ChargeItem extends ChargeItem {
       final List<Identifier>? identifier,
       final List<FhirUri>? definitionUri,
       @JsonKey(name: '_definitionUri')
-      final List<Element?>? definitionUriElement,
+      final List<PrimitiveElement>? definitionUriElement,
       final List<FhirCanonical>? definitionCanonical,
       final FhirCode? status,
       @JsonKey(name: '_status') final PrimitiveElement? statusElement,
@@ -1854,7 +1856,7 @@ abstract class _ChargeItem extends ChargeItem {
 
   /// [definitionUriElement] Extensions for definitionUri
   @JsonKey(name: '_definitionUri')
-  List<Element?>? get definitionUriElement;
+  List<PrimitiveElement>? get definitionUriElement;
   @override
 
   /// [definitionCanonical] References the source of pricing information, rules

@@ -3589,7 +3589,8 @@ mixin _$TestScriptCapability {
 
   /// [originElement] Extensions for origin
   @JsonKey(name: '_origin')
-  List<Element?>? get originElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get originElement =>
+      throw _privateConstructorUsedError;
 
   /// [destination] Which server these requirements apply to.
   FhirInteger? get destination => throw _privateConstructorUsedError;
@@ -3605,7 +3606,7 @@ mixin _$TestScriptCapability {
 
   /// [linkElement] Extensions for link
   @JsonKey(name: '_link')
-  List<Element?>? get linkElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get linkElement => throw _privateConstructorUsedError;
 
   /// [capabilities] Minimum capabilities required of server for test script to
   /// execute successfully.   If server does not meet at a minimum the
@@ -3636,11 +3637,11 @@ abstract class $TestScriptCapabilityCopyWith<$Res> {
       String? description,
       @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       List<FhirInteger>? origin,
-      @JsonKey(name: '_origin') List<Element?>? originElement,
+      @JsonKey(name: '_origin') List<PrimitiveElement>? originElement,
       FhirInteger? destination,
       @JsonKey(name: '_destination') PrimitiveElement? destinationElement,
       List<FhirUri>? link,
-      @JsonKey(name: '_link') List<Element?>? linkElement,
+      @JsonKey(name: '_link') List<PrimitiveElement>? linkElement,
       FhirCanonical capabilities});
 }
 
@@ -3719,7 +3720,7 @@ class _$TestScriptCapabilityCopyWithImpl<$Res,
       originElement: freezed == originElement
           ? _value.originElement
           : originElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       destination: freezed == destination
           ? _value.destination
           : destination // ignore: cast_nullable_to_non_nullable
@@ -3735,7 +3736,7 @@ class _$TestScriptCapabilityCopyWithImpl<$Res,
       linkElement: freezed == linkElement
           ? _value.linkElement
           : linkElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       capabilities: null == capabilities
           ? _value.capabilities
           : capabilities // ignore: cast_nullable_to_non_nullable
@@ -3763,11 +3764,11 @@ abstract class _$$TestScriptCapabilityImplCopyWith<$Res>
       String? description,
       @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       List<FhirInteger>? origin,
-      @JsonKey(name: '_origin') List<Element?>? originElement,
+      @JsonKey(name: '_origin') List<PrimitiveElement>? originElement,
       FhirInteger? destination,
       @JsonKey(name: '_destination') PrimitiveElement? destinationElement,
       List<FhirUri>? link,
-      @JsonKey(name: '_link') List<Element?>? linkElement,
+      @JsonKey(name: '_link') List<PrimitiveElement>? linkElement,
       FhirCanonical capabilities});
 }
 
@@ -3843,7 +3844,7 @@ class __$$TestScriptCapabilityImplCopyWithImpl<$Res>
       originElement: freezed == originElement
           ? _value._originElement
           : originElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       destination: freezed == destination
           ? _value.destination
           : destination // ignore: cast_nullable_to_non_nullable
@@ -3859,7 +3860,7 @@ class __$$TestScriptCapabilityImplCopyWithImpl<$Res>
       linkElement: freezed == linkElement
           ? _value._linkElement
           : linkElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       capabilities: null == capabilities
           ? _value.capabilities
           : capabilities // ignore: cast_nullable_to_non_nullable
@@ -3882,11 +3883,11 @@ class _$TestScriptCapabilityImpl extends _TestScriptCapability {
       this.description,
       @JsonKey(name: '_description') this.descriptionElement,
       final List<FhirInteger>? origin,
-      @JsonKey(name: '_origin') final List<Element?>? originElement,
+      @JsonKey(name: '_origin') final List<PrimitiveElement>? originElement,
       this.destination,
       @JsonKey(name: '_destination') this.destinationElement,
       final List<FhirUri>? link,
-      @JsonKey(name: '_link') final List<Element?>? linkElement,
+      @JsonKey(name: '_link') final List<PrimitiveElement>? linkElement,
       required this.capabilities})
       : _extension_ = extension_,
         _modifierExtension = modifierExtension,
@@ -4011,12 +4012,12 @@ class _$TestScriptCapabilityImpl extends _TestScriptCapability {
   }
 
   /// [originElement] Extensions for origin
-  final List<Element?>? _originElement;
+  final List<PrimitiveElement>? _originElement;
 
   /// [originElement] Extensions for origin
   @override
   @JsonKey(name: '_origin')
-  List<Element?>? get originElement {
+  List<PrimitiveElement>? get originElement {
     final value = _originElement;
     if (value == null) return null;
     if (_originElement is EqualUnmodifiableListView) return _originElement;
@@ -4049,12 +4050,12 @@ class _$TestScriptCapabilityImpl extends _TestScriptCapability {
   }
 
   /// [linkElement] Extensions for link
-  final List<Element?>? _linkElement;
+  final List<PrimitiveElement>? _linkElement;
 
   /// [linkElement] Extensions for link
   @override
   @JsonKey(name: '_link')
-  List<Element?>? get linkElement {
+  List<PrimitiveElement>? get linkElement {
     final value = _linkElement;
     if (value == null) return null;
     if (_linkElement is EqualUnmodifiableListView) return _linkElement;
@@ -4159,11 +4160,11 @@ abstract class _TestScriptCapability extends TestScriptCapability {
       final String? description,
       @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       final List<FhirInteger>? origin,
-      @JsonKey(name: '_origin') final List<Element?>? originElement,
+      @JsonKey(name: '_origin') final List<PrimitiveElement>? originElement,
       final FhirInteger? destination,
       @JsonKey(name: '_destination') final PrimitiveElement? destinationElement,
       final List<FhirUri>? link,
-      @JsonKey(name: '_link') final List<Element?>? linkElement,
+      @JsonKey(name: '_link') final List<PrimitiveElement>? linkElement,
       required final FhirCanonical capabilities}) = _$TestScriptCapabilityImpl;
   const _TestScriptCapability._() : super._();
 
@@ -4240,7 +4241,7 @@ abstract class _TestScriptCapability extends TestScriptCapability {
 
   /// [originElement] Extensions for origin
   @JsonKey(name: '_origin')
-  List<Element?>? get originElement;
+  List<PrimitiveElement>? get originElement;
   @override
 
   /// [destination] Which server these requirements apply to.
@@ -4259,7 +4260,7 @@ abstract class _TestScriptCapability extends TestScriptCapability {
 
   /// [linkElement] Extensions for link
   @JsonKey(name: '_link')
-  List<Element?>? get linkElement;
+  List<PrimitiveElement>? get linkElement;
   @override
 
   /// [capabilities] Minimum capabilities required of server for test script to

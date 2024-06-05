@@ -952,7 +952,7 @@ class TerminologyCapabilitiesVersion
     List<FhirCode>? language,
 
     /// [languageElement] Extensions for language
-    @JsonKey(name: '_language') List<Element?>? languageElement,
+    @JsonKey(name: '_language') List<PrimitiveElement>? languageElement,
 
     /// [filter] Filter Properties supported.
     List<TerminologyCapabilitiesFilter>? filter,
@@ -961,7 +961,7 @@ class TerminologyCapabilitiesVersion
     List<FhirCode>? property,
 
     /// [propertyElement] Extensions for property
-    @JsonKey(name: '_property') List<Element?>? propertyElement,
+    @JsonKey(name: '_property') List<PrimitiveElement>? propertyElement,
   }) = _TerminologyCapabilitiesVersion;
 
   @override
@@ -1087,7 +1087,7 @@ class TerminologyCapabilitiesFilter
     List<FhirCode>? op,
 
     /// [opElement] Extensions for op
-    @JsonKey(name: '_op') List<Element?>? opElement,
+    @JsonKey(name: '_op') List<PrimitiveElement>? opElement,
   }) = _TerminologyCapabilitiesFilter;
 
   @override

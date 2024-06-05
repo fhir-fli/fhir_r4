@@ -192,7 +192,8 @@ class FamilyMemberHistory with _$FamilyMemberHistory implements DomainResource {
     List<Identifier>? identifier,
     List<FhirCanonical>? instantiatesCanonical,
     List<FhirUri>? instantiatesUri,
-    @JsonKey(name: '_instantiatesUri') List<Element?>? instantiatesUriElement,
+    @JsonKey(name: '_instantiatesUri')
+    List<PrimitiveElement>? instantiatesUriElement,
     FhirCode? status,
     @JsonKey(name: '_status') PrimitiveElement? statusElement,
     CodeableConcept? dataAbsentReason,

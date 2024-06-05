@@ -243,7 +243,8 @@ class CarePlan with _$CarePlan implements DomainResource {
     List<FhirUri>? instantiatesUri,
 
     /// [instantiatesUriElement] Extensions for instantiatesUri
-    @JsonKey(name: '_instantiatesUri') List<Element?>? instantiatesUriElement,
+    @JsonKey(name: '_instantiatesUri')
+    List<PrimitiveElement>? instantiatesUriElement,
 
     /// [basedOn] A care plan that is fulfilled in whole or in part by this care
     ///  plan.
@@ -714,7 +715,8 @@ class CarePlanDetail with _$CarePlanDetail implements BackboneElement {
     List<FhirUri>? instantiatesUri,
 
     /// [instantiatesUriElement] Extensions for instantiatesUri
-    @JsonKey(name: '_instantiatesUri') List<Element?>? instantiatesUriElement,
+    @JsonKey(name: '_instantiatesUri')
+    List<PrimitiveElement>? instantiatesUriElement,
 
     /// [code] Detailed description of the type of planned activity; e.g. what
     ///  lab test, what procedure, what kind of encounter.

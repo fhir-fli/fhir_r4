@@ -98,7 +98,7 @@ mixin _$VerificationResult {
 
   /// [targetLocationElement] Extensions for targetLocation
   @JsonKey(name: '_targetLocation')
-  List<Element?>? get targetLocationElement =>
+  List<PrimitiveElement>? get targetLocationElement =>
       throw _privateConstructorUsedError;
 
   /// [need] The frequency with which the target must be validated (none;
@@ -194,7 +194,8 @@ abstract class $VerificationResultCopyWith<$Res> {
       List<FhirExtension>? modifierExtension,
       List<Reference>? target,
       List<String>? targetLocation,
-      @JsonKey(name: '_targetLocation') List<Element?>? targetLocationElement,
+      @JsonKey(name: '_targetLocation')
+      List<PrimitiveElement>? targetLocationElement,
       CodeableConcept? need,
       FhirCode? status,
       @JsonKey(name: '_status') PrimitiveElement? statusElement,
@@ -321,7 +322,7 @@ class _$VerificationResultCopyWithImpl<$Res, $Val extends VerificationResult>
       targetLocationElement: freezed == targetLocationElement
           ? _value.targetLocationElement
           : targetLocationElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       need: freezed == need
           ? _value.need
           : need // ignore: cast_nullable_to_non_nullable
@@ -498,7 +499,8 @@ abstract class _$$VerificationResultImplCopyWith<$Res>
       List<FhirExtension>? modifierExtension,
       List<Reference>? target,
       List<String>? targetLocation,
-      @JsonKey(name: '_targetLocation') List<Element?>? targetLocationElement,
+      @JsonKey(name: '_targetLocation')
+      List<PrimitiveElement>? targetLocationElement,
       CodeableConcept? need,
       FhirCode? status,
       @JsonKey(name: '_status') PrimitiveElement? statusElement,
@@ -630,7 +632,7 @@ class __$$VerificationResultImplCopyWithImpl<$Res>
       targetLocationElement: freezed == targetLocationElement
           ? _value._targetLocationElement
           : targetLocationElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       need: freezed == need
           ? _value.need
           : need // ignore: cast_nullable_to_non_nullable
@@ -718,7 +720,7 @@ class _$VerificationResultImpl extends _VerificationResult {
       final List<Reference>? target,
       final List<String>? targetLocation,
       @JsonKey(name: '_targetLocation')
-      final List<Element?>? targetLocationElement,
+      final List<PrimitiveElement>? targetLocationElement,
       this.need,
       this.status,
       @JsonKey(name: '_status') this.statusElement,
@@ -904,12 +906,12 @@ class _$VerificationResultImpl extends _VerificationResult {
   }
 
   /// [targetLocationElement] Extensions for targetLocation
-  final List<Element?>? _targetLocationElement;
+  final List<PrimitiveElement>? _targetLocationElement;
 
   /// [targetLocationElement] Extensions for targetLocation
   @override
   @JsonKey(name: '_targetLocation')
-  List<Element?>? get targetLocationElement {
+  List<PrimitiveElement>? get targetLocationElement {
     final value = _targetLocationElement;
     if (value == null) return null;
     if (_targetLocationElement is EqualUnmodifiableListView)
@@ -1160,7 +1162,7 @@ abstract class _VerificationResult extends VerificationResult {
       final List<Reference>? target,
       final List<String>? targetLocation,
       @JsonKey(name: '_targetLocation')
-      final List<Element?>? targetLocationElement,
+      final List<PrimitiveElement>? targetLocationElement,
       final CodeableConcept? need,
       final FhirCode? status,
       @JsonKey(name: '_status') final PrimitiveElement? statusElement,
@@ -1275,7 +1277,7 @@ abstract class _VerificationResult extends VerificationResult {
 
   /// [targetLocationElement] Extensions for targetLocation
   @JsonKey(name: '_targetLocation')
-  List<Element?>? get targetLocationElement;
+  List<PrimitiveElement>? get targetLocationElement;
   @override
 
   /// [need] The frequency with which the target must be validated (none;

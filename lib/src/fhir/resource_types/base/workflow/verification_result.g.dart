@@ -49,8 +49,7 @@ _$VerificationResultImpl _$$VerificationResultImplFromJson(
           ?.map((e) => e as String)
           .toList(),
       targetLocationElement: (json['_targetLocation'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       need: json['need'] == null
           ? null
@@ -136,7 +135,7 @@ Map<String, dynamic> _$$VerificationResultImplToJson(
   writeNotNull('target', instance.target?.map((e) => e.toJson()).toList());
   writeNotNull('targetLocation', instance.targetLocation);
   writeNotNull('_targetLocation',
-      instance.targetLocationElement?.map((e) => e?.toJson()).toList());
+      instance.targetLocationElement?.map((e) => e.toJson()).toList());
   writeNotNull('need', instance.need?.toJson());
   writeNotNull('status', instance.status?.toJson());
   writeNotNull('_status', instance.statusElement?.toJson());

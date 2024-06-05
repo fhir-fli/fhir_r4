@@ -101,7 +101,7 @@ class HumanName with _$HumanName implements DataType {
     List<String>? given,
 
     /// [givenElement] Extensions for given
-    @JsonKey(name: '_given') List<Element?>? givenElement,
+    @JsonKey(name: '_given') List<PrimitiveElement>? givenElement,
 
     /// [prefix] Part of the name that is acquired as a title due to academic,
     /// legal, employment or nobility status, etc. and that appears at the start
@@ -109,7 +109,7 @@ class HumanName with _$HumanName implements DataType {
     List<String>? prefix,
 
     /// [prefixElement] Extensions for prefix
-    @JsonKey(name: '_prefix') List<Element?>? prefixElement,
+    @JsonKey(name: '_prefix') List<PrimitiveElement>? prefixElement,
 
     /// [suffix] Part of the name that is acquired as a title due to academic,
     /// legal, employment or nobility status, etc. and that appears at the end of
@@ -117,7 +117,7 @@ class HumanName with _$HumanName implements DataType {
     List<String>? suffix,
 
     /// [suffixElement] Extensions for suffix
-    @JsonKey(name: '_suffix') List<Element?>? suffixElement,
+    @JsonKey(name: '_suffix') List<PrimitiveElement>? suffixElement,
 
     /// [period] Indicates the period of time when this name was valid for the
     ///  named person.

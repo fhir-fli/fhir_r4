@@ -176,13 +176,13 @@ class ProdCharacteristic with _$ProdCharacteristic implements Element {
     List<String>? color,
 
     /// [colorElement] Extensions for color
-    @JsonKey(name: '_color') List<Element?>? colorElement,
+    @JsonKey(name: '_color') List<PrimitiveElement>? colorElement,
 
     /// [imprint] Where applicable, the imprint can be specified as text.
     List<String>? imprint,
 
     /// [imprintElement] Extensions for imprint
-    @JsonKey(name: '_imprint') List<Element?>? imprintElement,
+    @JsonKey(name: '_imprint') List<PrimitiveElement>? imprintElement,
 
     /// [image] Where applicable, the image can be provided The format of the
     ///  image attachment shall be specified by regional implementations.

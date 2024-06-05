@@ -71,8 +71,7 @@ _$FhirEndpointImpl _$$FhirEndpointImplFromJson(Map<String, dynamic> json) =>
           ?.map(FhirCode.fromJson)
           .toList(),
       payloadMimeTypeElement: (json['_payloadMimeType'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       address:
           json['address'] == null ? null : FhirUrl.fromJson(json['address']),
@@ -82,8 +81,7 @@ _$FhirEndpointImpl _$$FhirEndpointImplFromJson(Map<String, dynamic> json) =>
       header:
           (json['header'] as List<dynamic>?)?.map((e) => e as String).toList(),
       headerElement: (json['_header'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -125,12 +123,12 @@ Map<String, dynamic> _$$FhirEndpointImplToJson(_$FhirEndpointImpl instance) {
   writeNotNull('payloadMimeType',
       instance.payloadMimeType?.map((e) => e.toJson()).toList());
   writeNotNull('_payloadMimeType',
-      instance.payloadMimeTypeElement?.map((e) => e?.toJson()).toList());
+      instance.payloadMimeTypeElement?.map((e) => e.toJson()).toList());
   writeNotNull('address', instance.address?.toJson());
   writeNotNull('_address', instance.addressElement?.toJson());
   writeNotNull('header', instance.header);
   writeNotNull(
-      '_header', instance.headerElement?.map((e) => e?.toJson()).toList());
+      '_header', instance.headerElement?.map((e) => e.toJson()).toList());
   return val;
 }
 

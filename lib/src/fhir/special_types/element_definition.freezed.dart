@@ -65,7 +65,7 @@ mixin _$ElementDefinition {
 
   /// [representationElement] Extensions for representation
   @JsonKey(name: '_representation')
-  List<Element?>? get representationElement =>
+  List<PrimitiveElement>? get representationElement =>
       throw _privateConstructorUsedError;
 
   /// [sliceName] The name of this element definition slice, when slicing is
@@ -159,7 +159,8 @@ mixin _$ElementDefinition {
 
   /// [aliasElement] Extensions for alias
   @JsonKey(name: '_alias')
-  List<Element?>? get aliasElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get aliasElement =>
+      throw _privateConstructorUsedError;
 
   /// [min] The minimum number of times this element SHALL appear in the
   ///  instance.
@@ -2094,7 +2095,8 @@ mixin _$ElementDefinition {
 
   /// [conditionElement] Extensions for condition
   @JsonKey(name: '_condition')
-  List<Element?>? get conditionElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get conditionElement =>
+      throw _privateConstructorUsedError;
 
   /// [constraint] Formal constraints such as co-occurrence and other
   /// constraints that can be computationally evaluated within the context of
@@ -2172,7 +2174,8 @@ abstract class $ElementDefinitionCopyWith<$Res> {
       String? path,
       @JsonKey(name: '_path') PrimitiveElement? pathElement,
       List<ElementDefinitionRepresentation>? representation,
-      @JsonKey(name: '_representation') List<Element?>? representationElement,
+      @JsonKey(name: '_representation')
+      List<PrimitiveElement>? representationElement,
       String? sliceName,
       @JsonKey(name: '_sliceName') PrimitiveElement? sliceNameElement,
       FhirBoolean? sliceIsConstraining,
@@ -2191,7 +2194,7 @@ abstract class $ElementDefinitionCopyWith<$Res> {
       FhirMarkdown? requirements,
       @JsonKey(name: '_requirements') PrimitiveElement? requirementsElement,
       List<String>? alias,
-      @JsonKey(name: '_alias') List<Element?>? aliasElement,
+      @JsonKey(name: '_alias') List<PrimitiveElement>? aliasElement,
       FhirUnsignedInt? min,
       @JsonKey(name: '_min') PrimitiveElement? minElement,
       String? max,
@@ -2493,7 +2496,7 @@ abstract class $ElementDefinitionCopyWith<$Res> {
       FhirInteger? maxLength,
       @JsonKey(name: '_maxLength') PrimitiveElement? maxLengthElement,
       List<FhirId>? condition,
-      @JsonKey(name: '_condition') List<Element?>? conditionElement,
+      @JsonKey(name: '_condition') List<PrimitiveElement>? conditionElement,
       List<ElementDefinitionConstraint>? constraint,
       FhirBoolean? mustSupport,
       @JsonKey(name: '_mustSupport') PrimitiveElement? mustSupportElement,
@@ -2949,7 +2952,7 @@ class _$ElementDefinitionCopyWithImpl<$Res, $Val extends ElementDefinition>
       representationElement: freezed == representationElement
           ? _value.representationElement
           : representationElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       sliceName: freezed == sliceName
           ? _value.sliceName
           : sliceName // ignore: cast_nullable_to_non_nullable
@@ -3021,7 +3024,7 @@ class _$ElementDefinitionCopyWithImpl<$Res, $Val extends ElementDefinition>
       aliasElement: freezed == aliasElement
           ? _value.aliasElement
           : aliasElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       min: freezed == min
           ? _value.min
           : min // ignore: cast_nullable_to_non_nullable
@@ -4067,7 +4070,7 @@ class _$ElementDefinitionCopyWithImpl<$Res, $Val extends ElementDefinition>
       conditionElement: freezed == conditionElement
           ? _value.conditionElement
           : conditionElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       constraint: freezed == constraint
           ? _value.constraint
           : constraint // ignore: cast_nullable_to_non_nullable
@@ -5368,7 +5371,8 @@ abstract class _$$ElementDefinitionImplCopyWith<$Res>
       String? path,
       @JsonKey(name: '_path') PrimitiveElement? pathElement,
       List<ElementDefinitionRepresentation>? representation,
-      @JsonKey(name: '_representation') List<Element?>? representationElement,
+      @JsonKey(name: '_representation')
+      List<PrimitiveElement>? representationElement,
       String? sliceName,
       @JsonKey(name: '_sliceName') PrimitiveElement? sliceNameElement,
       FhirBoolean? sliceIsConstraining,
@@ -5387,7 +5391,7 @@ abstract class _$$ElementDefinitionImplCopyWith<$Res>
       FhirMarkdown? requirements,
       @JsonKey(name: '_requirements') PrimitiveElement? requirementsElement,
       List<String>? alias,
-      @JsonKey(name: '_alias') List<Element?>? aliasElement,
+      @JsonKey(name: '_alias') List<PrimitiveElement>? aliasElement,
       FhirUnsignedInt? min,
       @JsonKey(name: '_min') PrimitiveElement? minElement,
       String? max,
@@ -5689,7 +5693,7 @@ abstract class _$$ElementDefinitionImplCopyWith<$Res>
       FhirInteger? maxLength,
       @JsonKey(name: '_maxLength') PrimitiveElement? maxLengthElement,
       List<FhirId>? condition,
-      @JsonKey(name: '_condition') List<Element?>? conditionElement,
+      @JsonKey(name: '_condition') List<PrimitiveElement>? conditionElement,
       List<ElementDefinitionConstraint>? constraint,
       FhirBoolean? mustSupport,
       @JsonKey(name: '_mustSupport') PrimitiveElement? mustSupportElement,
@@ -6244,7 +6248,7 @@ class __$$ElementDefinitionImplCopyWithImpl<$Res>
       representationElement: freezed == representationElement
           ? _value._representationElement
           : representationElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       sliceName: freezed == sliceName
           ? _value.sliceName
           : sliceName // ignore: cast_nullable_to_non_nullable
@@ -6316,7 +6320,7 @@ class __$$ElementDefinitionImplCopyWithImpl<$Res>
       aliasElement: freezed == aliasElement
           ? _value._aliasElement
           : aliasElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       min: freezed == min
           ? _value.min
           : min // ignore: cast_nullable_to_non_nullable
@@ -7362,7 +7366,7 @@ class __$$ElementDefinitionImplCopyWithImpl<$Res>
       conditionElement: freezed == conditionElement
           ? _value._conditionElement
           : conditionElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       constraint: freezed == constraint
           ? _value._constraint
           : constraint // ignore: cast_nullable_to_non_nullable
@@ -7422,7 +7426,7 @@ class _$ElementDefinitionImpl extends _ElementDefinition {
       @JsonKey(name: '_path') this.pathElement,
       final List<ElementDefinitionRepresentation>? representation,
       @JsonKey(name: '_representation')
-      final List<Element?>? representationElement,
+      final List<PrimitiveElement>? representationElement,
       this.sliceName,
       @JsonKey(name: '_sliceName') this.sliceNameElement,
       this.sliceIsConstraining,
@@ -7440,7 +7444,7 @@ class _$ElementDefinitionImpl extends _ElementDefinition {
       this.requirements,
       @JsonKey(name: '_requirements') this.requirementsElement,
       final List<String>? alias,
-      @JsonKey(name: '_alias') final List<Element?>? aliasElement,
+      @JsonKey(name: '_alias') final List<PrimitiveElement>? aliasElement,
       this.min,
       @JsonKey(name: '_min') this.minElement,
       this.max,
@@ -7705,7 +7709,8 @@ class _$ElementDefinitionImpl extends _ElementDefinition {
       this.maxLength,
       @JsonKey(name: '_maxLength') this.maxLengthElement,
       final List<FhirId>? condition,
-      @JsonKey(name: '_condition') final List<Element?>? conditionElement,
+      @JsonKey(name: '_condition')
+      final List<PrimitiveElement>? conditionElement,
       final List<ElementDefinitionConstraint>? constraint,
       this.mustSupport,
       @JsonKey(name: '_mustSupport') this.mustSupportElement,
@@ -7829,12 +7834,12 @@ class _$ElementDefinitionImpl extends _ElementDefinition {
   }
 
   /// [representationElement] Extensions for representation
-  final List<Element?>? _representationElement;
+  final List<PrimitiveElement>? _representationElement;
 
   /// [representationElement] Extensions for representation
   @override
   @JsonKey(name: '_representation')
-  List<Element?>? get representationElement {
+  List<PrimitiveElement>? get representationElement {
     final value = _representationElement;
     if (value == null) return null;
     if (_representationElement is EqualUnmodifiableListView)
@@ -7968,12 +7973,12 @@ class _$ElementDefinitionImpl extends _ElementDefinition {
   }
 
   /// [aliasElement] Extensions for alias
-  final List<Element?>? _aliasElement;
+  final List<PrimitiveElement>? _aliasElement;
 
   /// [aliasElement] Extensions for alias
   @override
   @JsonKey(name: '_alias')
-  List<Element?>? get aliasElement {
+  List<PrimitiveElement>? get aliasElement {
     final value = _aliasElement;
     if (value == null) return null;
     if (_aliasElement is EqualUnmodifiableListView) return _aliasElement;
@@ -10105,12 +10110,12 @@ class _$ElementDefinitionImpl extends _ElementDefinition {
   }
 
   /// [conditionElement] Extensions for condition
-  final List<Element?>? _conditionElement;
+  final List<PrimitiveElement>? _conditionElement;
 
   /// [conditionElement] Extensions for condition
   @override
   @JsonKey(name: '_condition')
-  List<Element?>? get conditionElement {
+  List<PrimitiveElement>? get conditionElement {
     final value = _conditionElement;
     if (value == null) return null;
     if (_conditionElement is EqualUnmodifiableListView)
@@ -10873,7 +10878,7 @@ abstract class _ElementDefinition extends ElementDefinition {
       @JsonKey(name: '_path') final PrimitiveElement? pathElement,
       final List<ElementDefinitionRepresentation>? representation,
       @JsonKey(name: '_representation')
-      final List<Element?>? representationElement,
+      final List<PrimitiveElement>? representationElement,
       final String? sliceName,
       @JsonKey(name: '_sliceName') final PrimitiveElement? sliceNameElement,
       final FhirBoolean? sliceIsConstraining,
@@ -10893,7 +10898,7 @@ abstract class _ElementDefinition extends ElementDefinition {
       @JsonKey(name: '_requirements')
       final PrimitiveElement? requirementsElement,
       final List<String>? alias,
-      @JsonKey(name: '_alias') final List<Element?>? aliasElement,
+      @JsonKey(name: '_alias') final List<PrimitiveElement>? aliasElement,
       final FhirUnsignedInt? min,
       @JsonKey(name: '_min') final PrimitiveElement? minElement,
       final String? max,
@@ -11213,7 +11218,8 @@ abstract class _ElementDefinition extends ElementDefinition {
       final FhirInteger? maxLength,
       @JsonKey(name: '_maxLength') final PrimitiveElement? maxLengthElement,
       final List<FhirId>? condition,
-      @JsonKey(name: '_condition') final List<Element?>? conditionElement,
+      @JsonKey(name: '_condition')
+      final List<PrimitiveElement>? conditionElement,
       final List<ElementDefinitionConstraint>? constraint,
       final FhirBoolean? mustSupport,
       @JsonKey(name: '_mustSupport') final PrimitiveElement? mustSupportElement,
@@ -11282,7 +11288,7 @@ abstract class _ElementDefinition extends ElementDefinition {
 
   /// [representationElement] Extensions for representation
   @JsonKey(name: '_representation')
-  List<Element?>? get representationElement;
+  List<PrimitiveElement>? get representationElement;
   @override
 
   /// [sliceName] The name of this element definition slice, when slicing is
@@ -11391,7 +11397,7 @@ abstract class _ElementDefinition extends ElementDefinition {
 
   /// [aliasElement] Extensions for alias
   @JsonKey(name: '_alias')
-  List<Element?>? get aliasElement;
+  List<PrimitiveElement>? get aliasElement;
   @override
 
   /// [min] The minimum number of times this element SHALL appear in the
@@ -13489,7 +13495,7 @@ abstract class _ElementDefinition extends ElementDefinition {
 
   /// [conditionElement] Extensions for condition
   @JsonKey(name: '_condition')
-  List<Element?>? get conditionElement;
+  List<PrimitiveElement>? get conditionElement;
   @override
 
   /// [constraint] Formal constraints such as co-occurrence and other
@@ -15100,7 +15106,8 @@ mixin _$ElementDefinitionType {
   ///  conform to at least one profile defined in the implementation guide.
   List<FhirCanonical>? get profile => throw _privateConstructorUsedError;
   @JsonKey(name: '_profile')
-  List<Element?>? get profileElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get profileElement =>
+      throw _privateConstructorUsedError;
 
   /// [targetProfile] Used when the type is "Reference" or "canonical", and
   /// identifies a profile structure or implementation Guide that applies to the
@@ -15121,7 +15128,8 @@ mixin _$ElementDefinitionType {
 
   /// [aggregationElement] Extensions for aggregation
   @JsonKey(name: '_aggregation')
-  List<Element?>? get aggregationElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get aggregationElement =>
+      throw _privateConstructorUsedError;
   @JsonKey(unknownEnumValue: ElementDefinitionTypeVersioning.unknown)
   ElementDefinitionTypeVersioning? get versioning =>
       throw _privateConstructorUsedError;
@@ -15149,10 +15157,10 @@ abstract class $ElementDefinitionTypeCopyWith<$Res> {
       FhirUri? code,
       @JsonKey(name: '_code') PrimitiveElement? codeElement,
       List<FhirCanonical>? profile,
-      @JsonKey(name: '_profile') List<Element?>? profileElement,
+      @JsonKey(name: '_profile') List<PrimitiveElement>? profileElement,
       List<FhirCanonical>? targetProfile,
       List<ElementDefinitionTypeAggregation>? aggregation,
-      @JsonKey(name: '_aggregation') List<Element?>? aggregationElement,
+      @JsonKey(name: '_aggregation') List<PrimitiveElement>? aggregationElement,
       @JsonKey(unknownEnumValue: ElementDefinitionTypeVersioning.unknown)
       ElementDefinitionTypeVersioning? versioning,
       @JsonKey(name: '_versioning') PrimitiveElement? versioningElement});
@@ -15213,7 +15221,7 @@ class _$ElementDefinitionTypeCopyWithImpl<$Res,
       profileElement: freezed == profileElement
           ? _value.profileElement
           : profileElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       targetProfile: freezed == targetProfile
           ? _value.targetProfile
           : targetProfile // ignore: cast_nullable_to_non_nullable
@@ -15225,7 +15233,7 @@ class _$ElementDefinitionTypeCopyWithImpl<$Res,
       aggregationElement: freezed == aggregationElement
           ? _value.aggregationElement
           : aggregationElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       versioning: freezed == versioning
           ? _value.versioning
           : versioning // ignore: cast_nullable_to_non_nullable
@@ -15254,10 +15262,10 @@ abstract class _$$ElementDefinitionTypeImplCopyWith<$Res>
       FhirUri? code,
       @JsonKey(name: '_code') PrimitiveElement? codeElement,
       List<FhirCanonical>? profile,
-      @JsonKey(name: '_profile') List<Element?>? profileElement,
+      @JsonKey(name: '_profile') List<PrimitiveElement>? profileElement,
       List<FhirCanonical>? targetProfile,
       List<ElementDefinitionTypeAggregation>? aggregation,
-      @JsonKey(name: '_aggregation') List<Element?>? aggregationElement,
+      @JsonKey(name: '_aggregation') List<PrimitiveElement>? aggregationElement,
       @JsonKey(unknownEnumValue: ElementDefinitionTypeVersioning.unknown)
       ElementDefinitionTypeVersioning? versioning,
       @JsonKey(name: '_versioning') PrimitiveElement? versioningElement});
@@ -15316,7 +15324,7 @@ class __$$ElementDefinitionTypeImplCopyWithImpl<$Res>
       profileElement: freezed == profileElement
           ? _value._profileElement
           : profileElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       targetProfile: freezed == targetProfile
           ? _value._targetProfile
           : targetProfile // ignore: cast_nullable_to_non_nullable
@@ -15328,7 +15336,7 @@ class __$$ElementDefinitionTypeImplCopyWithImpl<$Res>
       aggregationElement: freezed == aggregationElement
           ? _value._aggregationElement
           : aggregationElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       versioning: freezed == versioning
           ? _value.versioning
           : versioning // ignore: cast_nullable_to_non_nullable
@@ -15351,10 +15359,11 @@ class _$ElementDefinitionTypeImpl extends _ElementDefinitionType {
       this.code,
       @JsonKey(name: '_code') this.codeElement,
       final List<FhirCanonical>? profile,
-      @JsonKey(name: '_profile') final List<Element?>? profileElement,
+      @JsonKey(name: '_profile') final List<PrimitiveElement>? profileElement,
       final List<FhirCanonical>? targetProfile,
       final List<ElementDefinitionTypeAggregation>? aggregation,
-      @JsonKey(name: '_aggregation') final List<Element?>? aggregationElement,
+      @JsonKey(name: '_aggregation')
+      final List<PrimitiveElement>? aggregationElement,
       @JsonKey(unknownEnumValue: ElementDefinitionTypeVersioning.unknown)
       this.versioning,
       @JsonKey(name: '_versioning') this.versioningElement})
@@ -15475,10 +15484,10 @@ class _$ElementDefinitionTypeImpl extends _ElementDefinitionType {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<Element?>? _profileElement;
+  final List<PrimitiveElement>? _profileElement;
   @override
   @JsonKey(name: '_profile')
-  List<Element?>? get profileElement {
+  List<PrimitiveElement>? get profileElement {
     final value = _profileElement;
     if (value == null) return null;
     if (_profileElement is EqualUnmodifiableListView) return _profileElement;
@@ -15533,12 +15542,12 @@ class _$ElementDefinitionTypeImpl extends _ElementDefinitionType {
   }
 
   /// [aggregationElement] Extensions for aggregation
-  final List<Element?>? _aggregationElement;
+  final List<PrimitiveElement>? _aggregationElement;
 
   /// [aggregationElement] Extensions for aggregation
   @override
   @JsonKey(name: '_aggregation')
-  List<Element?>? get aggregationElement {
+  List<PrimitiveElement>? get aggregationElement {
     final value = _aggregationElement;
     if (value == null) return null;
     if (_aggregationElement is EqualUnmodifiableListView)
@@ -15629,10 +15638,11 @@ abstract class _ElementDefinitionType extends ElementDefinitionType {
       final FhirUri? code,
       @JsonKey(name: '_code') final PrimitiveElement? codeElement,
       final List<FhirCanonical>? profile,
-      @JsonKey(name: '_profile') final List<Element?>? profileElement,
+      @JsonKey(name: '_profile') final List<PrimitiveElement>? profileElement,
       final List<FhirCanonical>? targetProfile,
       final List<ElementDefinitionTypeAggregation>? aggregation,
-      @JsonKey(name: '_aggregation') final List<Element?>? aggregationElement,
+      @JsonKey(name: '_aggregation')
+      final List<PrimitiveElement>? aggregationElement,
       @JsonKey(unknownEnumValue: ElementDefinitionTypeVersioning.unknown)
       final ElementDefinitionTypeVersioning? versioning,
       @JsonKey(name: '_versioning')
@@ -15698,7 +15708,7 @@ abstract class _ElementDefinitionType extends ElementDefinitionType {
   List<FhirCanonical>? get profile;
   @override
   @JsonKey(name: '_profile')
-  List<Element?>? get profileElement;
+  List<PrimitiveElement>? get profileElement;
   @override
 
   /// [targetProfile] Used when the type is "Reference" or "canonical", and
@@ -15721,7 +15731,7 @@ abstract class _ElementDefinitionType extends ElementDefinitionType {
 
   /// [aggregationElement] Extensions for aggregation
   @JsonKey(name: '_aggregation')
-  List<Element?>? get aggregationElement;
+  List<PrimitiveElement>? get aggregationElement;
   @override
   @JsonKey(unknownEnumValue: ElementDefinitionTypeVersioning.unknown)
   ElementDefinitionTypeVersioning? get versioning;

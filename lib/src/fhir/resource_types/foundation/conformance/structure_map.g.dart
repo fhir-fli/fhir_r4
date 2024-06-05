@@ -1042,8 +1042,7 @@ _$StructureMapTargetImpl _$$StructureMapTargetImplFromJson(
       listMode:
           (json['listMode'] as List<dynamic>?)?.map(FhirCode.fromJson).toList(),
       listModeElement: (json['_listMode'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       listRuleId: json['listRuleId'] == null
           ? null
@@ -1090,7 +1089,7 @@ Map<String, dynamic> _$$StructureMapTargetImplToJson(
   writeNotNull('_variable', instance.variableElement?.toJson());
   writeNotNull('listMode', instance.listMode?.map((e) => e.toJson()).toList());
   writeNotNull(
-      '_listMode', instance.listModeElement?.map((e) => e?.toJson()).toList());
+      '_listMode', instance.listModeElement?.map((e) => e.toJson()).toList());
   writeNotNull('listRuleId', instance.listRuleId?.toJson());
   writeNotNull('_listRuleId', instance.listRuleIdElement?.toJson());
   writeNotNull('transform', instance.transform?.toJson());
@@ -1189,8 +1188,7 @@ _$StructureMapDependentImpl _$$StructureMapDependentImplFromJson(
           ?.map((e) => e as String)
           .toList(),
       variableElement: (json['_variable'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -1213,6 +1211,6 @@ Map<String, dynamic> _$$StructureMapDependentImplToJson(
   writeNotNull('_name', instance.nameElement?.toJson());
   writeNotNull('variable', instance.variable);
   writeNotNull(
-      '_variable', instance.variableElement?.map((e) => e?.toJson()).toList());
+      '_variable', instance.variableElement?.map((e) => e.toJson()).toList());
   return val;
 }

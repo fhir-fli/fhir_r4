@@ -437,14 +437,14 @@ class CapabilityStatement with _$CapabilityStatement implements DomainResource {
     List<FhirCode>? format,
 
     /// [formatElement] Extensions for format
-    @JsonKey(name: '_format') List<Element?>? formatElement,
+    @JsonKey(name: '_format') List<PrimitiveElement>? formatElement,
 
     /// [patchFormat] A list of the patch formats supported by this
     ///  implementation using their content types.
     List<FhirCode>? patchFormat,
 
     /// [patchFormatElement] Extensions for patchFormat
-    @JsonKey(name: '_patchFormat') List<Element?>? patchFormatElement,
+    @JsonKey(name: '_patchFormat') List<PrimitiveElement>? patchFormatElement,
 
     /// [implementationGuide] A list of implementation guides that the server
     ///  does (or should) support in their entirety.
@@ -1359,20 +1359,23 @@ class CapabilityStatementResource
     List<FhirCode>? referencePolicy,
 
     /// [referencePolicyElement] Extensions for referencePolicy
-    @JsonKey(name: '_referencePolicy') List<Element?>? referencePolicyElement,
+    @JsonKey(name: '_referencePolicy')
+    List<PrimitiveElement>? referencePolicyElement,
 
     /// [searchInclude] A list of _include values supported by the server.
     List<String>? searchInclude,
 
     /// [searchIncludeElement] Extensions for searchInclude
-    @JsonKey(name: '_searchInclude') List<Element?>? searchIncludeElement,
+    @JsonKey(name: '_searchInclude')
+    List<PrimitiveElement>? searchIncludeElement,
 
     /// [searchRevInclude] A list of _revinclude (reverse include) values
     ///  supported by the server.
     List<String>? searchRevInclude,
 
     /// [searchRevIncludeElement] Extensions for searchRevInclude
-    @JsonKey(name: '_searchRevInclude') List<Element?>? searchRevIncludeElement,
+    @JsonKey(name: '_searchRevInclude')
+    List<PrimitiveElement>? searchRevIncludeElement,
 
     /// [searchParam] Search parameters for implementations to support and/or
     /// make use of - either references to ones defined in the specification, or

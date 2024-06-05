@@ -45,7 +45,8 @@ mixin _$AllergyIntolerance {
   PrimitiveElement? get typeElement => throw _privateConstructorUsedError;
   List<FhirCode>? get category => throw _privateConstructorUsedError;
   @JsonKey(name: '_category')
-  List<Element?>? get categoryElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get categoryElement =>
+      throw _privateConstructorUsedError;
   FhirCode? get criticality => throw _privateConstructorUsedError;
   @JsonKey(name: '_criticality')
   PrimitiveElement? get criticalityElement =>
@@ -109,7 +110,7 @@ abstract class $AllergyIntoleranceCopyWith<$Res> {
       FhirCode? type,
       @JsonKey(name: '_type') PrimitiveElement? typeElement,
       List<FhirCode>? category,
-      @JsonKey(name: '_category') List<Element?>? categoryElement,
+      @JsonKey(name: '_category') List<PrimitiveElement>? categoryElement,
       FhirCode? criticality,
       @JsonKey(name: '_criticality') PrimitiveElement? criticalityElement,
       CodeableConcept? code,
@@ -269,7 +270,7 @@ class _$AllergyIntoleranceCopyWithImpl<$Res, $Val extends AllergyIntolerance>
       categoryElement: freezed == categoryElement
           ? _value.categoryElement
           : categoryElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       criticality: freezed == criticality
           ? _value.criticality
           : criticality // ignore: cast_nullable_to_non_nullable
@@ -521,7 +522,7 @@ abstract class _$$AllergyIntoleranceImplCopyWith<$Res>
       FhirCode? type,
       @JsonKey(name: '_type') PrimitiveElement? typeElement,
       List<FhirCode>? category,
-      @JsonKey(name: '_category') List<Element?>? categoryElement,
+      @JsonKey(name: '_category') List<PrimitiveElement>? categoryElement,
       FhirCode? criticality,
       @JsonKey(name: '_criticality') PrimitiveElement? criticalityElement,
       CodeableConcept? code,
@@ -691,7 +692,7 @@ class __$$AllergyIntoleranceImplCopyWithImpl<$Res>
       categoryElement: freezed == categoryElement
           ? _value._categoryElement
           : categoryElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       criticality: freezed == criticality
           ? _value.criticality
           : criticality // ignore: cast_nullable_to_non_nullable
@@ -798,7 +799,7 @@ class _$AllergyIntoleranceImpl extends _AllergyIntolerance {
       this.type,
       @JsonKey(name: '_type') this.typeElement,
       final List<FhirCode>? category,
-      @JsonKey(name: '_category') final List<Element?>? categoryElement,
+      @JsonKey(name: '_category') final List<PrimitiveElement>? categoryElement,
       this.criticality,
       @JsonKey(name: '_criticality') this.criticalityElement,
       this.code,
@@ -912,10 +913,10 @@ class _$AllergyIntoleranceImpl extends _AllergyIntolerance {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<Element?>? _categoryElement;
+  final List<PrimitiveElement>? _categoryElement;
   @override
   @JsonKey(name: '_category')
-  List<Element?>? get categoryElement {
+  List<PrimitiveElement>? get categoryElement {
     final value = _categoryElement;
     if (value == null) return null;
     if (_categoryElement is EqualUnmodifiableListView) return _categoryElement;
@@ -1143,7 +1144,7 @@ abstract class _AllergyIntolerance extends AllergyIntolerance {
       final FhirCode? type,
       @JsonKey(name: '_type') final PrimitiveElement? typeElement,
       final List<FhirCode>? category,
-      @JsonKey(name: '_category') final List<Element?>? categoryElement,
+      @JsonKey(name: '_category') final List<PrimitiveElement>? categoryElement,
       final FhirCode? criticality,
       @JsonKey(name: '_criticality') final PrimitiveElement? criticalityElement,
       final CodeableConcept? code,
@@ -1214,7 +1215,7 @@ abstract class _AllergyIntolerance extends AllergyIntolerance {
   List<FhirCode>? get category;
   @override
   @JsonKey(name: '_category')
-  List<Element?>? get categoryElement;
+  List<PrimitiveElement>? get categoryElement;
   @override
   FhirCode? get criticality;
   @override

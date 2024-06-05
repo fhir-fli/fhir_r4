@@ -241,7 +241,8 @@ class Communication with _$Communication implements DomainResource {
     List<FhirUri>? instantiatesUri,
 
     /// [instantiatesUriElement] Extensions for instantiatesUri
-    @JsonKey(name: '_instantiatesUri') List<Element?>? instantiatesUriElement,
+    @JsonKey(name: '_instantiatesUri')
+    List<PrimitiveElement>? instantiatesUriElement,
 
     /// [basedOn] An order, proposal or plan fulfilled in whole or in part by
     ///  this Communication.

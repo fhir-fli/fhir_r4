@@ -61,8 +61,7 @@ _$ChargeItemDefinitionImpl _$$ChargeItemDefinitionImplFromJson(
           ?.map(FhirUri.fromJson)
           .toList(),
       derivedFromUriElement: (json['_derivedFromUri'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       partOf: (json['partOf'] as List<dynamic>?)
           ?.map(FhirCanonical.fromJson)
@@ -184,7 +183,7 @@ Map<String, dynamic> _$$ChargeItemDefinitionImplToJson(
   writeNotNull('derivedFromUri',
       instance.derivedFromUri?.map((e) => e.toJson()).toList());
   writeNotNull('_derivedFromUri',
-      instance.derivedFromUriElement?.map((e) => e?.toJson()).toList());
+      instance.derivedFromUriElement?.map((e) => e.toJson()).toList());
   writeNotNull('partOf', instance.partOf?.map((e) => e.toJson()).toList());
   writeNotNull('replaces', instance.replaces?.map((e) => e.toJson()).toList());
   writeNotNull('status', instance.status?.toJson());

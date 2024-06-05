@@ -214,7 +214,7 @@ class Provenance with _$Provenance implements DomainResource {
     List<FhirUri>? policy,
 
     /// [policyElement] Extensions for policy
-    @JsonKey(name: '_policy') List<Element?>? policyElement,
+    @JsonKey(name: '_policy') List<PrimitiveElement>? policyElement,
 
     /// [location] Where the activity occurred, if relevant.
     Reference? location,

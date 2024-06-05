@@ -116,8 +116,7 @@ _$ContractImpl _$$ContractImplFromJson(Map<String, dynamic> json) =>
       alias:
           (json['alias'] as List<dynamic>?)?.map((e) => e as String).toList(),
       aliasElement: (json['_alias'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       author: json['author'] == null
           ? null
@@ -228,7 +227,7 @@ Map<String, dynamic> _$$ContractImplToJson(_$ContractImpl instance) {
   writeNotNull('_subtitle', instance.subtitleElement?.toJson());
   writeNotNull('alias', instance.alias);
   writeNotNull(
-      '_alias', instance.aliasElement?.map((e) => e?.toJson()).toList());
+      '_alias', instance.aliasElement?.map((e) => e.toJson()).toList());
   writeNotNull('author', instance.author?.toJson());
   writeNotNull('scope', instance.scope?.toJson());
   writeNotNull('topicCodeableConcept', instance.topicCodeableConcept?.toJson());
@@ -566,8 +565,7 @@ _$ContractSecurityLabelImpl _$$ContractSecurityLabelImplFromJson(
           ?.map(FhirUnsignedInt.fromJson)
           .toList(),
       numberElement: (json['_number'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       classification:
           Coding.fromJson(json['classification'] as Map<String, dynamic>),
@@ -596,7 +594,7 @@ Map<String, dynamic> _$$ContractSecurityLabelImplToJson(
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('number', instance.number?.map((e) => e.toJson()).toList());
   writeNotNull(
-      '_number', instance.numberElement?.map((e) => e?.toJson()).toList());
+      '_number', instance.numberElement?.map((e) => e.toJson()).toList());
   val['classification'] = instance.classification.toJson();
   writeNotNull('category', instance.category?.map((e) => e.toJson()).toList());
   writeNotNull('control', instance.control?.map((e) => e.toJson()).toList());
@@ -640,8 +638,7 @@ _$ContractOfferImpl _$$ContractOfferImplFromJson(Map<String, dynamic> json) =>
       linkId:
           (json['linkId'] as List<dynamic>?)?.map((e) => e as String).toList(),
       linkIdElement: (json['_linkId'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       securityLabelNumber: (json['securityLabelNumber'] as List<dynamic>?)
           ?.map(FhirUnsignedInt.fromJson)
@@ -679,7 +676,7 @@ Map<String, dynamic> _$$ContractOfferImplToJson(_$ContractOfferImpl instance) {
   writeNotNull('_text', instance.textElement?.toJson());
   writeNotNull('linkId', instance.linkId);
   writeNotNull(
-      '_linkId', instance.linkIdElement?.map((e) => e?.toJson()).toList());
+      '_linkId', instance.linkIdElement?.map((e) => e.toJson()).toList());
   writeNotNull('securityLabelNumber',
       instance.securityLabelNumber?.map((e) => e.toJson()).toList());
   writeNotNull('_securityLabelNumber',
@@ -884,8 +881,7 @@ _$ContractAssetImpl _$$ContractAssetImplFromJson(Map<String, dynamic> json) =>
       linkId:
           (json['linkId'] as List<dynamic>?)?.map((e) => e as String).toList(),
       linkIdElement: (json['_linkId'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       answer: (json['answer'] as List<dynamic>?)
           ?.map((e) => ContractAnswer.fromJson(e as Map<String, dynamic>))
@@ -934,7 +930,7 @@ Map<String, dynamic> _$$ContractAssetImplToJson(_$ContractAssetImpl instance) {
   writeNotNull('_text', instance.textElement?.toJson());
   writeNotNull('linkId', instance.linkId);
   writeNotNull(
-      '_linkId', instance.linkIdElement?.map((e) => e?.toJson()).toList());
+      '_linkId', instance.linkIdElement?.map((e) => e.toJson()).toList());
   writeNotNull('answer', instance.answer?.map((e) => e.toJson()).toList());
   writeNotNull('securityLabelNumber',
       instance.securityLabelNumber?.map((e) => e.toJson()).toList());
@@ -1055,8 +1051,7 @@ _$ContractValuedItemImpl _$$ContractValuedItemImplFromJson(
       linkId:
           (json['linkId'] as List<dynamic>?)?.map((e) => e as String).toList(),
       linkIdElement: (json['_linkId'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       securityLabelNumber: (json['securityLabelNumber'] as List<dynamic>?)
           ?.map(FhirUnsignedInt.fromJson)
@@ -1103,7 +1098,7 @@ Map<String, dynamic> _$$ContractValuedItemImplToJson(
   writeNotNull('recipient', instance.recipient?.toJson());
   writeNotNull('linkId', instance.linkId);
   writeNotNull(
-      '_linkId', instance.linkIdElement?.map((e) => e?.toJson()).toList());
+      '_linkId', instance.linkIdElement?.map((e) => e.toJson()).toList());
   writeNotNull('securityLabelNumber',
       instance.securityLabelNumber?.map((e) => e.toJson()).toList());
   writeNotNull('_securityLabelNumber',
@@ -1135,8 +1130,7 @@ _$ContractActionImpl _$$ContractActionImplFromJson(Map<String, dynamic> json) =>
       linkId:
           (json['linkId'] as List<dynamic>?)?.map((e) => e as String).toList(),
       linkIdElement: (json['_linkId'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       status: CodeableConcept.fromJson(json['status'] as Map<String, dynamic>),
       context: json['context'] == null
@@ -1146,8 +1140,7 @@ _$ContractActionImpl _$$ContractActionImplFromJson(Map<String, dynamic> json) =>
           ?.map((e) => e as String)
           .toList(),
       contextLinkIdElement: (json['_contextLinkId'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       occurrenceDateTime: json['occurrenceDateTime'] == null
           ? null
@@ -1169,8 +1162,7 @@ _$ContractActionImpl _$$ContractActionImplFromJson(Map<String, dynamic> json) =>
           ?.map((e) => e as String)
           .toList(),
       requesterLinkIdElement: (json['_requesterLinkId'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       performerType: (json['performerType'] as List<dynamic>?)
           ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
@@ -1186,8 +1178,7 @@ _$ContractActionImpl _$$ContractActionImplFromJson(Map<String, dynamic> json) =>
           ?.map((e) => e as String)
           .toList(),
       performerLinkIdElement: (json['_performerLinkId'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
           ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
@@ -1198,15 +1189,13 @@ _$ContractActionImpl _$$ContractActionImplFromJson(Map<String, dynamic> json) =>
       reason:
           (json['reason'] as List<dynamic>?)?.map((e) => e as String).toList(),
       reasonElement: (json['_reason'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       reasonLinkId: (json['reasonLinkId'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
       reasonLinkIdElement: (json['_reasonLinkId'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       note: (json['note'] as List<dynamic>?)
           ?.map((e) => Annotation.fromJson(e as Map<String, dynamic>))
@@ -1242,12 +1231,12 @@ Map<String, dynamic> _$$ContractActionImplToJson(
   val['intent'] = instance.intent.toJson();
   writeNotNull('linkId', instance.linkId);
   writeNotNull(
-      '_linkId', instance.linkIdElement?.map((e) => e?.toJson()).toList());
+      '_linkId', instance.linkIdElement?.map((e) => e.toJson()).toList());
   val['status'] = instance.status.toJson();
   writeNotNull('context', instance.context?.toJson());
   writeNotNull('contextLinkId', instance.contextLinkId);
   writeNotNull('_contextLinkId',
-      instance.contextLinkIdElement?.map((e) => e?.toJson()).toList());
+      instance.contextLinkIdElement?.map((e) => e.toJson()).toList());
   writeNotNull('occurrenceDateTime', instance.occurrenceDateTime?.toJson());
   writeNotNull(
       '_occurrenceDateTime', instance.occurrenceDateTimeElement?.toJson());
@@ -1257,24 +1246,24 @@ Map<String, dynamic> _$$ContractActionImplToJson(
       'requester', instance.requester?.map((e) => e.toJson()).toList());
   writeNotNull('requesterLinkId', instance.requesterLinkId);
   writeNotNull('_requesterLinkId',
-      instance.requesterLinkIdElement?.map((e) => e?.toJson()).toList());
+      instance.requesterLinkIdElement?.map((e) => e.toJson()).toList());
   writeNotNull(
       'performerType', instance.performerType?.map((e) => e.toJson()).toList());
   writeNotNull('performerRole', instance.performerRole?.toJson());
   writeNotNull('performer', instance.performer?.toJson());
   writeNotNull('performerLinkId', instance.performerLinkId);
   writeNotNull('_performerLinkId',
-      instance.performerLinkIdElement?.map((e) => e?.toJson()).toList());
+      instance.performerLinkIdElement?.map((e) => e.toJson()).toList());
   writeNotNull(
       'reasonCode', instance.reasonCode?.map((e) => e.toJson()).toList());
   writeNotNull('reasonReference',
       instance.reasonReference?.map((e) => e.toJson()).toList());
   writeNotNull('reason', instance.reason);
   writeNotNull(
-      '_reason', instance.reasonElement?.map((e) => e?.toJson()).toList());
+      '_reason', instance.reasonElement?.map((e) => e.toJson()).toList());
   writeNotNull('reasonLinkId', instance.reasonLinkId);
   writeNotNull('_reasonLinkId',
-      instance.reasonLinkIdElement?.map((e) => e?.toJson()).toList());
+      instance.reasonLinkIdElement?.map((e) => e.toJson()).toList());
   writeNotNull('note', instance.note?.map((e) => e.toJson()).toList());
   writeNotNull('securityLabelNumber',
       instance.securityLabelNumber?.map((e) => e.toJson()).toList());

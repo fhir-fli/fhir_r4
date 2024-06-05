@@ -42,7 +42,7 @@ mixin _$FamilyMemberHistory {
       throw _privateConstructorUsedError;
   List<FhirUri>? get instantiatesUri => throw _privateConstructorUsedError;
   @JsonKey(name: '_instantiatesUri')
-  List<Element?>? get instantiatesUriElement =>
+  List<PrimitiveElement>? get instantiatesUriElement =>
       throw _privateConstructorUsedError;
   FhirCode? get status => throw _privateConstructorUsedError;
   @JsonKey(name: '_status')
@@ -121,7 +121,8 @@ abstract class $FamilyMemberHistoryCopyWith<$Res> {
       List<Identifier>? identifier,
       List<FhirCanonical>? instantiatesCanonical,
       List<FhirUri>? instantiatesUri,
-      @JsonKey(name: '_instantiatesUri') List<Element?>? instantiatesUriElement,
+      @JsonKey(name: '_instantiatesUri')
+      List<PrimitiveElement>? instantiatesUriElement,
       FhirCode? status,
       @JsonKey(name: '_status') PrimitiveElement? statusElement,
       CodeableConcept? dataAbsentReason,
@@ -292,7 +293,7 @@ class _$FamilyMemberHistoryCopyWithImpl<$Res, $Val extends FamilyMemberHistory>
       instantiatesUriElement: freezed == instantiatesUriElement
           ? _value.instantiatesUriElement
           : instantiatesUriElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -577,7 +578,8 @@ abstract class _$$FamilyMemberHistoryImplCopyWith<$Res>
       List<Identifier>? identifier,
       List<FhirCanonical>? instantiatesCanonical,
       List<FhirUri>? instantiatesUri,
-      @JsonKey(name: '_instantiatesUri') List<Element?>? instantiatesUriElement,
+      @JsonKey(name: '_instantiatesUri')
+      List<PrimitiveElement>? instantiatesUriElement,
       FhirCode? status,
       @JsonKey(name: '_status') PrimitiveElement? statusElement,
       CodeableConcept? dataAbsentReason,
@@ -757,7 +759,7 @@ class __$$FamilyMemberHistoryImplCopyWithImpl<$Res>
       instantiatesUriElement: freezed == instantiatesUriElement
           ? _value._instantiatesUriElement
           : instantiatesUriElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -914,7 +916,7 @@ class _$FamilyMemberHistoryImpl extends _FamilyMemberHistory {
       final List<FhirCanonical>? instantiatesCanonical,
       final List<FhirUri>? instantiatesUri,
       @JsonKey(name: '_instantiatesUri')
-      final List<Element?>? instantiatesUriElement,
+      final List<PrimitiveElement>? instantiatesUriElement,
       this.status,
       @JsonKey(name: '_status') this.statusElement,
       this.dataAbsentReason,
@@ -1046,10 +1048,10 @@ class _$FamilyMemberHistoryImpl extends _FamilyMemberHistory {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<Element?>? _instantiatesUriElement;
+  final List<PrimitiveElement>? _instantiatesUriElement;
   @override
   @JsonKey(name: '_instantiatesUri')
-  List<Element?>? get instantiatesUriElement {
+  List<PrimitiveElement>? get instantiatesUriElement {
     final value = _instantiatesUriElement;
     if (value == null) return null;
     if (_instantiatesUriElement is EqualUnmodifiableListView)
@@ -1352,7 +1354,7 @@ abstract class _FamilyMemberHistory extends FamilyMemberHistory {
       final List<FhirCanonical>? instantiatesCanonical,
       final List<FhirUri>? instantiatesUri,
       @JsonKey(name: '_instantiatesUri')
-      final List<Element?>? instantiatesUriElement,
+      final List<PrimitiveElement>? instantiatesUriElement,
       final FhirCode? status,
       @JsonKey(name: '_status') final PrimitiveElement? statusElement,
       final CodeableConcept? dataAbsentReason,
@@ -1430,7 +1432,7 @@ abstract class _FamilyMemberHistory extends FamilyMemberHistory {
   List<FhirUri>? get instantiatesUri;
   @override
   @JsonKey(name: '_instantiatesUri')
-  List<Element?>? get instantiatesUriElement;
+  List<PrimitiveElement>? get instantiatesUriElement;
   @override
   FhirCode? get status;
   @override

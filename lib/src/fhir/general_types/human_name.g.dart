@@ -28,20 +28,17 @@ _$HumanNameImpl _$$HumanNameImplFromJson(Map<String, dynamic> json) =>
       given:
           (json['given'] as List<dynamic>?)?.map((e) => e as String).toList(),
       givenElement: (json['_given'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       prefix:
           (json['prefix'] as List<dynamic>?)?.map((e) => e as String).toList(),
       prefixElement: (json['_prefix'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       suffix:
           (json['suffix'] as List<dynamic>?)?.map((e) => e as String).toList(),
       suffixElement: (json['_suffix'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       period: json['period'] == null
           ? null
@@ -68,13 +65,13 @@ Map<String, dynamic> _$$HumanNameImplToJson(_$HumanNameImpl instance) {
   writeNotNull('_family', instance.familyElement?.toJson());
   writeNotNull('given', instance.given);
   writeNotNull(
-      '_given', instance.givenElement?.map((e) => e?.toJson()).toList());
+      '_given', instance.givenElement?.map((e) => e.toJson()).toList());
   writeNotNull('prefix', instance.prefix);
   writeNotNull(
-      '_prefix', instance.prefixElement?.map((e) => e?.toJson()).toList());
+      '_prefix', instance.prefixElement?.map((e) => e.toJson()).toList());
   writeNotNull('suffix', instance.suffix);
   writeNotNull(
-      '_suffix', instance.suffixElement?.map((e) => e?.toJson()).toList());
+      '_suffix', instance.suffixElement?.map((e) => e.toJson()).toList());
   writeNotNull('period', instance.period?.toJson());
   return val;
 }

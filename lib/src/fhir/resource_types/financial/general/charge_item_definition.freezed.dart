@@ -138,7 +138,7 @@ mixin _$ChargeItemDefinition {
 
   /// [derivedFromUriElement] Extensions for derivedFromUri
   @JsonKey(name: '_derivedFromUri')
-  List<Element?>? get derivedFromUriElement =>
+  List<PrimitiveElement>? get derivedFromUriElement =>
       throw _privateConstructorUsedError;
 
   /// [partOf] A larger definition of which this particular definition is a
@@ -294,7 +294,8 @@ abstract class $ChargeItemDefinitionCopyWith<$Res> {
       String? title,
       @JsonKey(name: '_title') PrimitiveElement? titleElement,
       List<FhirUri>? derivedFromUri,
-      @JsonKey(name: '_derivedFromUri') List<Element?>? derivedFromUriElement,
+      @JsonKey(name: '_derivedFromUri')
+      List<PrimitiveElement>? derivedFromUriElement,
       List<FhirCanonical>? partOf,
       List<FhirCanonical>? replaces,
       FhirCode? status,
@@ -469,7 +470,7 @@ class _$ChargeItemDefinitionCopyWithImpl<$Res,
       derivedFromUriElement: freezed == derivedFromUriElement
           ? _value.derivedFromUriElement
           : derivedFromUriElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       partOf: freezed == partOf
           ? _value.partOf
           : partOf // ignore: cast_nullable_to_non_nullable
@@ -655,7 +656,8 @@ abstract class _$$ChargeItemDefinitionImplCopyWith<$Res>
       String? title,
       @JsonKey(name: '_title') PrimitiveElement? titleElement,
       List<FhirUri>? derivedFromUri,
-      @JsonKey(name: '_derivedFromUri') List<Element?>? derivedFromUriElement,
+      @JsonKey(name: '_derivedFromUri')
+      List<PrimitiveElement>? derivedFromUriElement,
       List<FhirCanonical>? partOf,
       List<FhirCanonical>? replaces,
       FhirCode? status,
@@ -831,7 +833,7 @@ class __$$ChargeItemDefinitionImplCopyWithImpl<$Res>
       derivedFromUriElement: freezed == derivedFromUriElement
           ? _value._derivedFromUriElement
           : derivedFromUriElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       partOf: freezed == partOf
           ? _value._partOf
           : partOf // ignore: cast_nullable_to_non_nullable
@@ -965,7 +967,7 @@ class _$ChargeItemDefinitionImpl extends _ChargeItemDefinition {
       @JsonKey(name: '_title') this.titleElement,
       final List<FhirUri>? derivedFromUri,
       @JsonKey(name: '_derivedFromUri')
-      final List<Element?>? derivedFromUriElement,
+      final List<PrimitiveElement>? derivedFromUriElement,
       final List<FhirCanonical>? partOf,
       final List<FhirCanonical>? replaces,
       this.status,
@@ -1214,12 +1216,12 @@ class _$ChargeItemDefinitionImpl extends _ChargeItemDefinition {
   }
 
   /// [derivedFromUriElement] Extensions for derivedFromUri
-  final List<Element?>? _derivedFromUriElement;
+  final List<PrimitiveElement>? _derivedFromUriElement;
 
   /// [derivedFromUriElement] Extensions for derivedFromUri
   @override
   @JsonKey(name: '_derivedFromUri')
-  List<Element?>? get derivedFromUriElement {
+  List<PrimitiveElement>? get derivedFromUriElement {
     final value = _derivedFromUriElement;
     if (value == null) return null;
     if (_derivedFromUriElement is EqualUnmodifiableListView)
@@ -1635,7 +1637,7 @@ abstract class _ChargeItemDefinition extends ChargeItemDefinition {
       @JsonKey(name: '_title') final PrimitiveElement? titleElement,
       final List<FhirUri>? derivedFromUri,
       @JsonKey(name: '_derivedFromUri')
-      final List<Element?>? derivedFromUriElement,
+      final List<PrimitiveElement>? derivedFromUriElement,
       final List<FhirCanonical>? partOf,
       final List<FhirCanonical>? replaces,
       final FhirCode? status,
@@ -1807,7 +1809,7 @@ abstract class _ChargeItemDefinition extends ChargeItemDefinition {
 
   /// [derivedFromUriElement] Extensions for derivedFromUri
   @JsonKey(name: '_derivedFromUri')
-  List<Element?>? get derivedFromUriElement;
+  List<PrimitiveElement>? get derivedFromUriElement;
   @override
 
   /// [partOf] A larger definition of which this particular definition is a

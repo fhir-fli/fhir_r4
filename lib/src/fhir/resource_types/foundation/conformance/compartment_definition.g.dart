@@ -328,9 +328,7 @@ _$CompartmentDefinitionResourceImpl
               ?.map((e) => e as String)
               .toList(),
           paramElement: (json['_param'] as List<dynamic>?)
-              ?.map((e) => e == null
-                  ? null
-                  : Element.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
               .toList(),
           documentation: json['documentation'] as String?,
           documentationElement: json['_documentation'] == null
@@ -358,7 +356,7 @@ Map<String, dynamic> _$$CompartmentDefinitionResourceImplToJson(
   writeNotNull('_code', instance.codeElement?.toJson());
   writeNotNull('param', instance.param);
   writeNotNull(
-      '_param', instance.paramElement?.map((e) => e?.toJson()).toList());
+      '_param', instance.paramElement?.map((e) => e.toJson()).toList());
   writeNotNull('documentation', instance.documentation);
   writeNotNull('_documentation', instance.documentationElement?.toJson());
   return val;

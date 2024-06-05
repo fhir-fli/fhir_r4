@@ -283,8 +283,7 @@ _$SubscriptionChannelImpl _$$SubscriptionChannelImplFromJson(
       header:
           (json['header'] as List<dynamic>?)?.map((e) => e as String).toList(),
       headerElement: (json['_header'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -311,6 +310,6 @@ Map<String, dynamic> _$$SubscriptionChannelImplToJson(
   writeNotNull('_payload', instance.payloadElement?.toJson());
   writeNotNull('header', instance.header);
   writeNotNull(
-      '_header', instance.headerElement?.map((e) => e?.toJson()).toList());
+      '_header', instance.headerElement?.map((e) => e.toJson()).toList());
   return val;
 }

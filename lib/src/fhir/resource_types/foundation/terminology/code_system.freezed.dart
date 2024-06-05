@@ -2171,7 +2171,8 @@ mixin _$CodeSystemFilter {
 
   /// [operatorElement] Extensions for operator
   @JsonKey(name: '_operator')
-  List<Element?>? get operatorElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get operatorElement =>
+      throw _privateConstructorUsedError;
 
   /// [value] A description of what the value for the filter should be.
   String? get value => throw _privateConstructorUsedError;
@@ -2201,7 +2202,7 @@ abstract class $CodeSystemFilterCopyWith<$Res> {
       String? description,
       @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       @JsonKey(name: 'operator') List<FhirCode>? operator_,
-      @JsonKey(name: '_operator') List<Element?>? operatorElement,
+      @JsonKey(name: '_operator') List<PrimitiveElement>? operatorElement,
       String? value,
       @JsonKey(name: '_value') PrimitiveElement? valueElement});
 }
@@ -2267,7 +2268,7 @@ class _$CodeSystemFilterCopyWithImpl<$Res, $Val extends CodeSystemFilter>
       operatorElement: freezed == operatorElement
           ? _value.operatorElement
           : operatorElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       value: freezed == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -2297,7 +2298,7 @@ abstract class _$$CodeSystemFilterImplCopyWith<$Res>
       String? description,
       @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       @JsonKey(name: 'operator') List<FhirCode>? operator_,
-      @JsonKey(name: '_operator') List<Element?>? operatorElement,
+      @JsonKey(name: '_operator') List<PrimitiveElement>? operatorElement,
       String? value,
       @JsonKey(name: '_value') PrimitiveElement? valueElement});
 }
@@ -2361,7 +2362,7 @@ class __$$CodeSystemFilterImplCopyWithImpl<$Res>
       operatorElement: freezed == operatorElement
           ? _value._operatorElement
           : operatorElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       value: freezed == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -2386,7 +2387,7 @@ class _$CodeSystemFilterImpl extends _CodeSystemFilter {
       this.description,
       @JsonKey(name: '_description') this.descriptionElement,
       @JsonKey(name: 'operator') final List<FhirCode>? operator_,
-      @JsonKey(name: '_operator') final List<Element?>? operatorElement,
+      @JsonKey(name: '_operator') final List<PrimitiveElement>? operatorElement,
       this.value,
       @JsonKey(name: '_value') this.valueElement})
       : _extension_ = extension_,
@@ -2499,12 +2500,12 @@ class _$CodeSystemFilterImpl extends _CodeSystemFilter {
   }
 
   /// [operatorElement] Extensions for operator
-  final List<Element?>? _operatorElement;
+  final List<PrimitiveElement>? _operatorElement;
 
   /// [operatorElement] Extensions for operator
   @override
   @JsonKey(name: '_operator')
-  List<Element?>? get operatorElement {
+  List<PrimitiveElement>? get operatorElement {
     final value = _operatorElement;
     if (value == null) return null;
     if (_operatorElement is EqualUnmodifiableListView) return _operatorElement;
@@ -2593,7 +2594,7 @@ abstract class _CodeSystemFilter extends CodeSystemFilter {
       final String? description,
       @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       @JsonKey(name: 'operator') final List<FhirCode>? operator_,
-      @JsonKey(name: '_operator') final List<Element?>? operatorElement,
+      @JsonKey(name: '_operator') final List<PrimitiveElement>? operatorElement,
       final String? value,
       @JsonKey(name: '_value')
       final PrimitiveElement? valueElement}) = _$CodeSystemFilterImpl;
@@ -2661,7 +2662,7 @@ abstract class _CodeSystemFilter extends CodeSystemFilter {
 
   /// [operatorElement] Extensions for operator
   @JsonKey(name: '_operator')
-  List<Element?>? get operatorElement;
+  List<PrimitiveElement>? get operatorElement;
   @override
 
   /// [value] A description of what the value for the filter should be.

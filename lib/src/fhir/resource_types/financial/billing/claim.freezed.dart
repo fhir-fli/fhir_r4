@@ -5355,7 +5355,8 @@ mixin _$ClaimInsurance {
 
   /// [preAuthRefElement] Extensions for preAuthRef
   @JsonKey(name: '_preAuthRef')
-  List<Element?>? get preAuthRefElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get preAuthRefElement =>
+      throw _privateConstructorUsedError;
 
   /// [claimResponse] The result of the adjudication of the line items for the
   ///  Coverage specified in this insurance.
@@ -5387,7 +5388,7 @@ abstract class $ClaimInsuranceCopyWith<$Res> {
       @JsonKey(name: '_businessArrangement')
       PrimitiveElement? businessArrangementElement,
       List<String>? preAuthRef,
-      @JsonKey(name: '_preAuthRef') List<Element?>? preAuthRefElement,
+      @JsonKey(name: '_preAuthRef') List<PrimitiveElement>? preAuthRefElement,
       Reference? claimResponse});
 
   $IdentifierCopyWith<$Res>? get identifier;
@@ -5475,7 +5476,7 @@ class _$ClaimInsuranceCopyWithImpl<$Res, $Val extends ClaimInsurance>
       preAuthRefElement: freezed == preAuthRefElement
           ? _value.preAuthRefElement
           : preAuthRefElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       claimResponse: freezed == claimResponse
           ? _value.claimResponse
           : claimResponse // ignore: cast_nullable_to_non_nullable
@@ -5538,7 +5539,7 @@ abstract class _$$ClaimInsuranceImplCopyWith<$Res>
       @JsonKey(name: '_businessArrangement')
       PrimitiveElement? businessArrangementElement,
       List<String>? preAuthRef,
-      @JsonKey(name: '_preAuthRef') List<Element?>? preAuthRefElement,
+      @JsonKey(name: '_preAuthRef') List<PrimitiveElement>? preAuthRefElement,
       Reference? claimResponse});
 
   @override
@@ -5627,7 +5628,7 @@ class __$$ClaimInsuranceImplCopyWithImpl<$Res>
       preAuthRefElement: freezed == preAuthRefElement
           ? _value._preAuthRefElement
           : preAuthRefElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       claimResponse: freezed == claimResponse
           ? _value.claimResponse
           : claimResponse // ignore: cast_nullable_to_non_nullable
@@ -5652,7 +5653,8 @@ class _$ClaimInsuranceImpl extends _ClaimInsurance {
       this.businessArrangement,
       @JsonKey(name: '_businessArrangement') this.businessArrangementElement,
       final List<String>? preAuthRef,
-      @JsonKey(name: '_preAuthRef') final List<Element?>? preAuthRefElement,
+      @JsonKey(name: '_preAuthRef')
+      final List<PrimitiveElement>? preAuthRefElement,
       this.claimResponse})
       : _extension_ = extension_,
         _modifierExtension = modifierExtension,
@@ -5790,12 +5792,12 @@ class _$ClaimInsuranceImpl extends _ClaimInsurance {
   }
 
   /// [preAuthRefElement] Extensions for preAuthRef
-  final List<Element?>? _preAuthRefElement;
+  final List<PrimitiveElement>? _preAuthRefElement;
 
   /// [preAuthRefElement] Extensions for preAuthRef
   @override
   @JsonKey(name: '_preAuthRef')
-  List<Element?>? get preAuthRefElement {
+  List<PrimitiveElement>? get preAuthRefElement {
     final value = _preAuthRefElement;
     if (value == null) return null;
     if (_preAuthRefElement is EqualUnmodifiableListView)
@@ -5898,7 +5900,8 @@ abstract class _ClaimInsurance extends ClaimInsurance {
       @JsonKey(name: '_businessArrangement')
       final PrimitiveElement? businessArrangementElement,
       final List<String>? preAuthRef,
-      @JsonKey(name: '_preAuthRef') final List<Element?>? preAuthRefElement,
+      @JsonKey(name: '_preAuthRef')
+      final List<PrimitiveElement>? preAuthRefElement,
       final Reference? claimResponse}) = _$ClaimInsuranceImpl;
   const _ClaimInsurance._() : super._();
 
@@ -5988,7 +5991,7 @@ abstract class _ClaimInsurance extends ClaimInsurance {
 
   /// [preAuthRefElement] Extensions for preAuthRef
   @JsonKey(name: '_preAuthRef')
-  List<Element?>? get preAuthRefElement;
+  List<PrimitiveElement>? get preAuthRefElement;
   @override
 
   /// [claimResponse] The result of the adjudication of the line items for the
@@ -6545,7 +6548,7 @@ mixin _$ClaimItem {
 
   /// [careTeamSequenceElement] Extensions for careTeamSequence
   @JsonKey(name: '_careTeamSequence')
-  List<Element?>? get careTeamSequenceElement =>
+  List<PrimitiveElement>? get careTeamSequenceElement =>
       throw _privateConstructorUsedError;
 
   /// [diagnosisSequence] Diagnosis applicable for this service or product.
@@ -6672,7 +6675,7 @@ abstract class $ClaimItemCopyWith<$Res> {
       @JsonKey(name: '_sequence') PrimitiveElement? sequenceElement,
       List<FhirPositiveInt>? careTeamSequence,
       @JsonKey(name: '_careTeamSequence')
-      List<Element?>? careTeamSequenceElement,
+      List<PrimitiveElement>? careTeamSequenceElement,
       List<FhirPositiveInt>? diagnosisSequence,
       @JsonKey(name: '_diagnosisSequence')
       List<Element>? diagnosisSequenceElement,
@@ -6793,7 +6796,7 @@ class _$ClaimItemCopyWithImpl<$Res, $Val extends ClaimItem>
       careTeamSequenceElement: freezed == careTeamSequenceElement
           ? _value.careTeamSequenceElement
           : careTeamSequenceElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       diagnosisSequence: freezed == diagnosisSequence
           ? _value.diagnosisSequence
           : diagnosisSequence // ignore: cast_nullable_to_non_nullable
@@ -7051,7 +7054,7 @@ abstract class _$$ClaimItemImplCopyWith<$Res>
       @JsonKey(name: '_sequence') PrimitiveElement? sequenceElement,
       List<FhirPositiveInt>? careTeamSequence,
       @JsonKey(name: '_careTeamSequence')
-      List<Element?>? careTeamSequenceElement,
+      List<PrimitiveElement>? careTeamSequenceElement,
       List<FhirPositiveInt>? diagnosisSequence,
       @JsonKey(name: '_diagnosisSequence')
       List<Element>? diagnosisSequenceElement,
@@ -7181,7 +7184,7 @@ class __$$ClaimItemImplCopyWithImpl<$Res>
       careTeamSequenceElement: freezed == careTeamSequenceElement
           ? _value._careTeamSequenceElement
           : careTeamSequenceElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       diagnosisSequence: freezed == diagnosisSequence
           ? _value._diagnosisSequence
           : diagnosisSequence // ignore: cast_nullable_to_non_nullable
@@ -7305,7 +7308,7 @@ class _$ClaimItemImpl extends _ClaimItem {
       @JsonKey(name: '_sequence') this.sequenceElement,
       final List<FhirPositiveInt>? careTeamSequence,
       @JsonKey(name: '_careTeamSequence')
-      final List<Element?>? careTeamSequenceElement,
+      final List<PrimitiveElement>? careTeamSequenceElement,
       final List<FhirPositiveInt>? diagnosisSequence,
       @JsonKey(name: '_diagnosisSequence')
       final List<Element>? diagnosisSequenceElement,
@@ -7448,12 +7451,12 @@ class _$ClaimItemImpl extends _ClaimItem {
   }
 
   /// [careTeamSequenceElement] Extensions for careTeamSequence
-  final List<Element?>? _careTeamSequenceElement;
+  final List<PrimitiveElement>? _careTeamSequenceElement;
 
   /// [careTeamSequenceElement] Extensions for careTeamSequence
   @override
   @JsonKey(name: '_careTeamSequence')
-  List<Element?>? get careTeamSequenceElement {
+  List<PrimitiveElement>? get careTeamSequenceElement {
     final value = _careTeamSequenceElement;
     if (value == null) return null;
     if (_careTeamSequenceElement is EqualUnmodifiableListView)
@@ -7839,7 +7842,7 @@ abstract class _ClaimItem extends ClaimItem {
       @JsonKey(name: '_sequence') final PrimitiveElement? sequenceElement,
       final List<FhirPositiveInt>? careTeamSequence,
       @JsonKey(name: '_careTeamSequence')
-      final List<Element?>? careTeamSequenceElement,
+      final List<PrimitiveElement>? careTeamSequenceElement,
       final List<FhirPositiveInt>? diagnosisSequence,
       @JsonKey(name: '_diagnosisSequence')
       final List<Element>? diagnosisSequenceElement,
@@ -7924,7 +7927,7 @@ abstract class _ClaimItem extends ClaimItem {
 
   /// [careTeamSequenceElement] Extensions for careTeamSequence
   @JsonKey(name: '_careTeamSequence')
-  List<Element?>? get careTeamSequenceElement;
+  List<PrimitiveElement>? get careTeamSequenceElement;
   @override
 
   /// [diagnosisSequence] Diagnosis applicable for this service or product.

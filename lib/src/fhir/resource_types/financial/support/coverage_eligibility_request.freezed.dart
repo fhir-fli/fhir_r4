@@ -114,7 +114,8 @@ mixin _$CoverageEligibilityRequest {
 
   /// [purposeElement] Extensions for purpose
   @JsonKey(name: '_purpose')
-  List<Element?>? get purposeElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get purposeElement =>
+      throw _privateConstructorUsedError;
 
   /// [patient] The party who is the beneficiary of the supplied coverage and
   ///  for whom eligibility is sought.
@@ -201,7 +202,7 @@ abstract class $CoverageEligibilityRequestCopyWith<$Res> {
       @JsonKey(name: '_status') PrimitiveElement? statusElement,
       CodeableConcept? priority,
       List<FhirCode>? purpose,
-      @JsonKey(name: '_purpose') List<Element?>? purposeElement,
+      @JsonKey(name: '_purpose') List<PrimitiveElement>? purposeElement,
       Reference patient,
       FhirDate? servicedDate,
       @JsonKey(name: '_servicedDate') PrimitiveElement? servicedDateElement,
@@ -340,7 +341,7 @@ class _$CoverageEligibilityRequestCopyWithImpl<$Res,
       purposeElement: freezed == purposeElement
           ? _value.purposeElement
           : purposeElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       patient: null == patient
           ? _value.patient
           : patient // ignore: cast_nullable_to_non_nullable
@@ -524,7 +525,7 @@ abstract class _$$CoverageEligibilityRequestImplCopyWith<$Res>
       @JsonKey(name: '_status') PrimitiveElement? statusElement,
       CodeableConcept? priority,
       List<FhirCode>? purpose,
-      @JsonKey(name: '_purpose') List<Element?>? purposeElement,
+      @JsonKey(name: '_purpose') List<PrimitiveElement>? purposeElement,
       Reference patient,
       FhirDate? servicedDate,
       @JsonKey(name: '_servicedDate') PrimitiveElement? servicedDateElement,
@@ -671,7 +672,7 @@ class __$$CoverageEligibilityRequestImplCopyWithImpl<$Res>
       purposeElement: freezed == purposeElement
           ? _value._purposeElement
           : purposeElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       patient: null == patient
           ? _value.patient
           : patient // ignore: cast_nullable_to_non_nullable
@@ -749,7 +750,7 @@ class _$CoverageEligibilityRequestImpl extends _CoverageEligibilityRequest {
       @JsonKey(name: '_status') this.statusElement,
       this.priority,
       final List<FhirCode>? purpose,
-      @JsonKey(name: '_purpose') final List<Element?>? purposeElement,
+      @JsonKey(name: '_purpose') final List<PrimitiveElement>? purposeElement,
       required this.patient,
       this.servicedDate,
       @JsonKey(name: '_servicedDate') this.servicedDateElement,
@@ -955,12 +956,12 @@ class _$CoverageEligibilityRequestImpl extends _CoverageEligibilityRequest {
   }
 
   /// [purposeElement] Extensions for purpose
-  final List<Element?>? _purposeElement;
+  final List<PrimitiveElement>? _purposeElement;
 
   /// [purposeElement] Extensions for purpose
   @override
   @JsonKey(name: '_purpose')
-  List<Element?>? get purposeElement {
+  List<PrimitiveElement>? get purposeElement {
     final value = _purposeElement;
     if (value == null) return null;
     if (_purposeElement is EqualUnmodifiableListView) return _purposeElement;
@@ -1178,40 +1179,40 @@ class _$CoverageEligibilityRequestImpl extends _CoverageEligibilityRequest {
 
 abstract class _CoverageEligibilityRequest extends CoverageEligibilityRequest {
   const factory _CoverageEligibilityRequest(
-          {@JsonKey(unknownEnumValue: R4ResourceType.CoverageEligibilityRequest)
-          final R4ResourceType resourceType,
-          final String? id,
-          final FhirMeta? meta,
-          final FhirUri? implicitRules,
-          @JsonKey(name: '_implicitRules')
-          final PrimitiveElement? implicitRulesElement,
-          final FhirCode? language,
-          @JsonKey(name: '_language') final PrimitiveElement? languageElement,
-          final Narrative? text,
-          final List<Resource>? contained,
-          @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
-          final List<FhirExtension>? modifierExtension,
-          final List<Identifier>? identifier,
-          final FhirCode? status,
-          @JsonKey(name: '_status') final PrimitiveElement? statusElement,
-          final CodeableConcept? priority,
-          final List<FhirCode>? purpose,
-          @JsonKey(name: '_purpose') final List<Element?>? purposeElement,
-          required final Reference patient,
-          final FhirDate? servicedDate,
-          @JsonKey(name: '_servicedDate')
-          final PrimitiveElement? servicedDateElement,
-          final Period? servicedPeriod,
-          final FhirDateTime? created,
-          @JsonKey(name: '_created') final PrimitiveElement? createdElement,
-          final Reference? enterer,
-          final Reference? provider,
-          required final Reference insurer,
-          final Reference? facility,
-          final List<CoverageEligibilityRequestSupportingInfo>? supportingInfo,
-          final List<CoverageEligibilityRequestInsurance>? insurance,
-          final List<CoverageEligibilityRequestItem>? item}) =
-      _$CoverageEligibilityRequestImpl;
+      {@JsonKey(unknownEnumValue: R4ResourceType.CoverageEligibilityRequest)
+      final R4ResourceType resourceType,
+      final String? id,
+      final FhirMeta? meta,
+      final FhirUri? implicitRules,
+      @JsonKey(name: '_implicitRules')
+      final PrimitiveElement? implicitRulesElement,
+      final FhirCode? language,
+      @JsonKey(name: '_language') final PrimitiveElement? languageElement,
+      final Narrative? text,
+      final List<Resource>? contained,
+      @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
+      final List<FhirExtension>? modifierExtension,
+      final List<Identifier>? identifier,
+      final FhirCode? status,
+      @JsonKey(name: '_status') final PrimitiveElement? statusElement,
+      final CodeableConcept? priority,
+      final List<FhirCode>? purpose,
+      @JsonKey(name: '_purpose') final List<PrimitiveElement>? purposeElement,
+      required final Reference patient,
+      final FhirDate? servicedDate,
+      @JsonKey(name: '_servicedDate')
+      final PrimitiveElement? servicedDateElement,
+      final Period? servicedPeriod,
+      final FhirDateTime? created,
+      @JsonKey(name: '_created') final PrimitiveElement? createdElement,
+      final Reference? enterer,
+      final Reference? provider,
+      required final Reference insurer,
+      final Reference? facility,
+      final List<CoverageEligibilityRequestSupportingInfo>? supportingInfo,
+      final List<CoverageEligibilityRequestInsurance>? insurance,
+      final List<CoverageEligibilityRequestItem>?
+          item}) = _$CoverageEligibilityRequestImpl;
   const _CoverageEligibilityRequest._() : super._();
 
   factory _CoverageEligibilityRequest.fromJson(Map<String, dynamic> json) =
@@ -1325,7 +1326,7 @@ abstract class _CoverageEligibilityRequest extends CoverageEligibilityRequest {
 
   /// [purposeElement] Extensions for purpose
   @JsonKey(name: '_purpose')
-  List<Element?>? get purposeElement;
+  List<PrimitiveElement>? get purposeElement;
   @override
 
   /// [patient] The party who is the beneficiary of the supplied coverage and

@@ -164,7 +164,8 @@ mixin _$Questionnaire {
 
   /// [subjectTypeElement] Extensions for subjectType
   @JsonKey(name: '_subjectType')
-  List<Element?>? get subjectTypeElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get subjectTypeElement =>
+      throw _privateConstructorUsedError;
 
   /// [date] The date  (and optionally time) when the questionnaire was
   /// published. The date must change when the business version changes and it
@@ -297,7 +298,7 @@ abstract class $QuestionnaireCopyWith<$Res> {
       FhirBoolean? experimental,
       @JsonKey(name: '_experimental') PrimitiveElement? experimentalElement,
       List<FhirCode>? subjectType,
-      @JsonKey(name: '_subjectType') List<Element?>? subjectTypeElement,
+      @JsonKey(name: '_subjectType') List<PrimitiveElement>? subjectTypeElement,
       FhirDateTime? date,
       @JsonKey(name: '_date') PrimitiveElement? dateElement,
       String? publisher,
@@ -493,7 +494,7 @@ class _$QuestionnaireCopyWithImpl<$Res, $Val extends Questionnaire>
       subjectTypeElement: freezed == subjectTypeElement
           ? _value.subjectTypeElement
           : subjectTypeElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       date: freezed == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -650,7 +651,7 @@ abstract class _$$QuestionnaireImplCopyWith<$Res>
       FhirBoolean? experimental,
       @JsonKey(name: '_experimental') PrimitiveElement? experimentalElement,
       List<FhirCode>? subjectType,
-      @JsonKey(name: '_subjectType') List<Element?>? subjectTypeElement,
+      @JsonKey(name: '_subjectType') List<PrimitiveElement>? subjectTypeElement,
       FhirDateTime? date,
       @JsonKey(name: '_date') PrimitiveElement? dateElement,
       String? publisher,
@@ -847,7 +848,7 @@ class __$$QuestionnaireImplCopyWithImpl<$Res>
       subjectTypeElement: freezed == subjectTypeElement
           ? _value._subjectTypeElement
           : subjectTypeElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       date: freezed == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -963,7 +964,8 @@ class _$QuestionnaireImpl extends _Questionnaire {
       this.experimental,
       @JsonKey(name: '_experimental') this.experimentalElement,
       final List<FhirCode>? subjectType,
-      @JsonKey(name: '_subjectType') final List<Element?>? subjectTypeElement,
+      @JsonKey(name: '_subjectType')
+      final List<PrimitiveElement>? subjectTypeElement,
       this.date,
       @JsonKey(name: '_date') this.dateElement,
       this.publisher,
@@ -1246,12 +1248,12 @@ class _$QuestionnaireImpl extends _Questionnaire {
   }
 
   /// [subjectTypeElement] Extensions for subjectType
-  final List<Element?>? _subjectTypeElement;
+  final List<PrimitiveElement>? _subjectTypeElement;
 
   /// [subjectTypeElement] Extensions for subjectType
   @override
   @JsonKey(name: '_subjectType')
-  List<Element?>? get subjectTypeElement {
+  List<PrimitiveElement>? get subjectTypeElement {
     final value = _subjectTypeElement;
     if (value == null) return null;
     if (_subjectTypeElement is EqualUnmodifiableListView)
@@ -1612,7 +1614,8 @@ abstract class _Questionnaire extends Questionnaire {
       @JsonKey(name: '_experimental')
       final PrimitiveElement? experimentalElement,
       final List<FhirCode>? subjectType,
-      @JsonKey(name: '_subjectType') final List<Element?>? subjectTypeElement,
+      @JsonKey(name: '_subjectType')
+      final List<PrimitiveElement>? subjectTypeElement,
       final FhirDateTime? date,
       @JsonKey(name: '_date') final PrimitiveElement? dateElement,
       final String? publisher,
@@ -1808,7 +1811,7 @@ abstract class _Questionnaire extends Questionnaire {
 
   /// [subjectTypeElement] Extensions for subjectType
   @JsonKey(name: '_subjectType')
-  List<Element?>? get subjectTypeElement;
+  List<PrimitiveElement>? get subjectTypeElement;
   @override
 
   /// [date] The date  (and optionally time) when the questionnaire was

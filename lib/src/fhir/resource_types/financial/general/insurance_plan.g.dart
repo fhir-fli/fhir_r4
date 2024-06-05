@@ -58,8 +58,7 @@ _$InsurancePlanImpl _$$InsurancePlanImplFromJson(Map<String, dynamic> json) =>
       alias:
           (json['alias'] as List<dynamic>?)?.map((e) => e as String).toList(),
       aliasElement: (json['_alias'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       period: json['period'] == null
           ? null
@@ -124,7 +123,7 @@ Map<String, dynamic> _$$InsurancePlanImplToJson(_$InsurancePlanImpl instance) {
   writeNotNull('_name', instance.nameElement?.toJson());
   writeNotNull('alias', instance.alias);
   writeNotNull(
-      '_alias', instance.aliasElement?.map((e) => e?.toJson()).toList());
+      '_alias', instance.aliasElement?.map((e) => e.toJson()).toList());
   writeNotNull('period', instance.period?.toJson());
   writeNotNull('ownedBy', instance.ownedBy?.toJson());
   writeNotNull('administeredBy', instance.administeredBy?.toJson());

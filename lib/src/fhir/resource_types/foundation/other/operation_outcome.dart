@@ -349,7 +349,7 @@ class OperationOutcomeIssue
     List<String>? location,
 
     /// [locationElement] Extensions for location
-    @JsonKey(name: '_location') List<Element?>? locationElement,
+    @JsonKey(name: '_location') List<PrimitiveElement>? locationElement,
 
     /// [expression] A [simple subset of FHIRPath](fhirpath.html#simple) limited
     /// to element names, repetition indicators and the default child accessor
@@ -358,7 +358,7 @@ class OperationOutcomeIssue
     List<String>? expression,
 
     /// [expressionElement] Extensions for expression
-    @JsonKey(name: '_expression') List<Element?>? expressionElement,
+    @JsonKey(name: '_expression') List<PrimitiveElement>? expressionElement,
   }) = _OperationOutcomeIssue;
 
   @override

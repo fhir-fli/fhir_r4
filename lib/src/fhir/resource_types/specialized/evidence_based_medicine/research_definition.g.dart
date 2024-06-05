@@ -114,8 +114,7 @@ _$ResearchDefinitionImpl _$$ResearchDefinitionImplFromJson(
       comment:
           (json['comment'] as List<dynamic>?)?.map((e) => e as String).toList(),
       commentElement: (json['_comment'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       useContext: (json['useContext'] as List<dynamic>?)
           ?.map((e) => UsageContext.fromJson(e as Map<String, dynamic>))
@@ -247,7 +246,7 @@ Map<String, dynamic> _$$ResearchDefinitionImplToJson(
   writeNotNull('_description', instance.descriptionElement?.toJson());
   writeNotNull('comment', instance.comment);
   writeNotNull(
-      '_comment', instance.commentElement?.map((e) => e?.toJson()).toList());
+      '_comment', instance.commentElement?.map((e) => e.toJson()).toList());
   writeNotNull(
       'useContext', instance.useContext?.map((e) => e.toJson()).toList());
   writeNotNull(

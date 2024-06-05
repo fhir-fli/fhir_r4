@@ -714,8 +714,7 @@ _$ClaimInsuranceImpl _$$ClaimInsuranceImplFromJson(Map<String, dynamic> json) =>
           ?.map((e) => e as String)
           .toList(),
       preAuthRefElement: (json['_preAuthRef'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       claimResponse: json['claimResponse'] == null
           ? null
@@ -748,7 +747,7 @@ Map<String, dynamic> _$$ClaimInsuranceImplToJson(
       '_businessArrangement', instance.businessArrangementElement?.toJson());
   writeNotNull('preAuthRef', instance.preAuthRef);
   writeNotNull('_preAuthRef',
-      instance.preAuthRefElement?.map((e) => e?.toJson()).toList());
+      instance.preAuthRefElement?.map((e) => e.toJson()).toList());
   writeNotNull('claimResponse', instance.claimResponse?.toJson());
   return val;
 }
@@ -822,8 +821,7 @@ _$ClaimItemImpl _$$ClaimItemImplFromJson(Map<String, dynamic> json) =>
           ?.map(FhirPositiveInt.fromJson)
           .toList(),
       careTeamSequenceElement: (json['_careTeamSequence'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       diagnosisSequence: (json['diagnosisSequence'] as List<dynamic>?)
           ?.map(FhirPositiveInt.fromJson)
@@ -929,7 +927,7 @@ Map<String, dynamic> _$$ClaimItemImplToJson(_$ClaimItemImpl instance) {
   writeNotNull('careTeamSequence',
       instance.careTeamSequence?.map((e) => e.toJson()).toList());
   writeNotNull('_careTeamSequence',
-      instance.careTeamSequenceElement?.map((e) => e?.toJson()).toList());
+      instance.careTeamSequenceElement?.map((e) => e.toJson()).toList());
   writeNotNull('diagnosisSequence',
       instance.diagnosisSequence?.map((e) => e.toJson()).toList());
   writeNotNull('_diagnosisSequence',

@@ -407,7 +407,7 @@ class OperationDefinition with _$OperationDefinition implements DomainResource {
     List<FhirCode>? resource,
 
     /// [resourceElement] Extensions for resource
-    @JsonKey(name: '_resource') List<Element?>? resourceElement,
+    @JsonKey(name: '_resource') List<PrimitiveElement>? resourceElement,
 
     /// [system] Indicates whether this operation or named query can be invoked
     /// at the system level (e.g. without needing to choose a resource type for
@@ -1048,7 +1048,8 @@ class OperationDefinitionOverload
     List<String>? parameterName,
 
     /// [parameterNameElement] Extensions for parameterName
-    @JsonKey(name: '_parameterName') List<Element?>? parameterNameElement,
+    @JsonKey(name: '_parameterName')
+    List<PrimitiveElement>? parameterNameElement,
 
     /// [comment] Comments to go on overload.
     String? comment,

@@ -55,8 +55,7 @@ _$CoverageEligibilityRequestImpl _$$CoverageEligibilityRequestImplFromJson(
       purpose:
           (json['purpose'] as List<dynamic>?)?.map(FhirCode.fromJson).toList(),
       purposeElement: (json['_purpose'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       patient: Reference.fromJson(json['patient'] as Map<String, dynamic>),
       servicedDate: json['servicedDate'] == null
@@ -131,7 +130,7 @@ Map<String, dynamic> _$$CoverageEligibilityRequestImplToJson(
   writeNotNull('priority', instance.priority?.toJson());
   writeNotNull('purpose', instance.purpose?.map((e) => e.toJson()).toList());
   writeNotNull(
-      '_purpose', instance.purposeElement?.map((e) => e?.toJson()).toList());
+      '_purpose', instance.purposeElement?.map((e) => e.toJson()).toList());
   val['patient'] = instance.patient.toJson();
   writeNotNull('servicedDate', instance.servicedDate?.toJson());
   writeNotNull('_servicedDate', instance.servicedDateElement?.toJson());

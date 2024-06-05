@@ -18,8 +18,7 @@ _$TimingImpl _$$TimingImplFromJson(Map<String, dynamic> json) => _$TimingImpl(
           ?.map((e) => FhirDateTime.fromJson(e as String))
           .toList(),
       eventElement: (json['_event'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       repeat: json['repeat'] == null
           ? null
@@ -45,7 +44,7 @@ Map<String, dynamic> _$$TimingImplToJson(_$TimingImpl instance) {
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('event', instance.event?.map((e) => e.toJson()).toList());
   writeNotNull(
-      '_event', instance.eventElement?.map((e) => e?.toJson()).toList());
+      '_event', instance.eventElement?.map((e) => e.toJson()).toList());
   writeNotNull('repeat', instance.repeat?.toJson());
   writeNotNull('code', instance.code?.toJson());
   return val;
@@ -141,22 +140,19 @@ _$TimingRepeatImpl _$$TimingRepeatImplFromJson(Map<String, dynamic> json) =>
           ?.map(FhirCode.fromJson)
           .toList(),
       dayOfWeekElement: (json['_dayOfWeek'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       timeOfDay: (json['timeOfDay'] as List<dynamic>?)
           ?.map(FhirTime.fromJson)
           .toList(),
       timeOfDayElement: (json['_timeOfDay'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       when: (json['when'] as List<dynamic>?)
           ?.map((e) => $enumDecode(_$TimingRepeatWhenEnumMap, e))
           .toList(),
       whenElement: (json['_when'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       offset: json['offset'] == null
           ? null
@@ -207,15 +203,15 @@ Map<String, dynamic> _$$TimingRepeatImplToJson(_$TimingRepeatImpl instance) {
   writeNotNull('_periodUnit', instance.periodUnitElement?.toJson());
   writeNotNull(
       'dayOfWeek', instance.dayOfWeek?.map((e) => e.toJson()).toList());
-  writeNotNull('_dayOfWeek',
-      instance.dayOfWeekElement?.map((e) => e?.toJson()).toList());
+  writeNotNull(
+      '_dayOfWeek', instance.dayOfWeekElement?.map((e) => e.toJson()).toList());
   writeNotNull(
       'timeOfDay', instance.timeOfDay?.map((e) => e.toJson()).toList());
-  writeNotNull('_timeOfDay',
-      instance.timeOfDayElement?.map((e) => e?.toJson()).toList());
+  writeNotNull(
+      '_timeOfDay', instance.timeOfDayElement?.map((e) => e.toJson()).toList());
   writeNotNull('when',
       instance.when?.map((e) => _$TimingRepeatWhenEnumMap[e]!).toList());
-  writeNotNull('_when', instance.whenElement?.map((e) => e?.toJson()).toList());
+  writeNotNull('_when', instance.whenElement?.map((e) => e.toJson()).toList());
   writeNotNull('offset', instance.offset?.toJson());
   writeNotNull('_offset', instance.offsetElement?.toJson());
   return val;

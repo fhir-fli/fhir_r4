@@ -243,7 +243,8 @@ class ChargeItem with _$ChargeItem implements DomainResource {
     List<FhirUri>? definitionUri,
 
     /// [definitionUriElement] Extensions for definitionUri
-    @JsonKey(name: '_definitionUri') List<Element?>? definitionUriElement,
+    @JsonKey(name: '_definitionUri')
+    List<PrimitiveElement>? definitionUriElement,
 
     /// [definitionCanonical] References the source of pricing information, rules
     ///  of application for the code this ChargeItem uses.

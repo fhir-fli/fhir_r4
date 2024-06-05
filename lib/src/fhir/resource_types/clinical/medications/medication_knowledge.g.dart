@@ -61,8 +61,7 @@ _$MedicationKnowledgeImpl _$$MedicationKnowledgeImplFromJson(
       synonym:
           (json['synonym'] as List<dynamic>?)?.map((e) => e as String).toList(),
       synonymElement: (json['_synonym'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       relatedMedicationKnowledge: (json['relatedMedicationKnowledge']
               as List<dynamic>?)
@@ -164,7 +163,7 @@ Map<String, dynamic> _$$MedicationKnowledgeImplToJson(
   writeNotNull('amount', instance.amount?.toJson());
   writeNotNull('synonym', instance.synonym);
   writeNotNull(
-      '_synonym', instance.synonymElement?.map((e) => e?.toJson()).toList());
+      '_synonym', instance.synonymElement?.map((e) => e.toJson()).toList());
   writeNotNull('relatedMedicationKnowledge',
       instance.relatedMedicationKnowledge?.map((e) => e.toJson()).toList());
   writeNotNull('associatedMedication',
@@ -669,9 +668,7 @@ _$MedicationKnowledgePatientCharacteristicsImpl
               ?.map((e) => e as String)
               .toList(),
           valueElement: (json['_value'] as List<dynamic>?)
-              ?.map((e) => e == null
-                  ? null
-                  : Element.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
               .toList(),
         );
 
@@ -696,7 +693,7 @@ Map<String, dynamic> _$$MedicationKnowledgePatientCharacteristicsImplToJson(
       'characteristicQuantity', instance.characteristicQuantity?.toJson());
   writeNotNull('value', instance.value);
   writeNotNull(
-      '_value', instance.valueElement?.map((e) => e?.toJson()).toList());
+      '_value', instance.valueElement?.map((e) => e.toJson()).toList());
   return val;
 }
 

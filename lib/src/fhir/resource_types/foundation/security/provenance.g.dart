@@ -64,8 +64,7 @@ _$ProvenanceImpl _$$ProvenanceImplFromJson(Map<String, dynamic> json) =>
       policy:
           (json['policy'] as List<dynamic>?)?.map(FhirUri.fromJson).toList(),
       policyElement: (json['_policy'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       location: json['location'] == null
           ? null
@@ -119,7 +118,7 @@ Map<String, dynamic> _$$ProvenanceImplToJson(_$ProvenanceImpl instance) {
   writeNotNull('_recorded', instance.recordedElement?.toJson());
   writeNotNull('policy', instance.policy?.map((e) => e.toJson()).toList());
   writeNotNull(
-      '_policy', instance.policyElement?.map((e) => e?.toJson()).toList());
+      '_policy', instance.policyElement?.map((e) => e.toJson()).toList());
   writeNotNull('location', instance.location?.toJson());
   writeNotNull('reason', instance.reason?.map((e) => e.toJson()).toList());
   writeNotNull('activity', instance.activity?.toJson());

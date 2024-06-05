@@ -471,7 +471,7 @@ class SubscriptionChannel
     List<String>? header,
 
     /// [headerElement] Extensions for header
-    @JsonKey(name: '_header') List<Element?>? headerElement,
+    @JsonKey(name: '_header') List<PrimitiveElement>? headerElement,
   }) = _SubscriptionChannel;
 
   @override

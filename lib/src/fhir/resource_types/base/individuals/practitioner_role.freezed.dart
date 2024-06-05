@@ -1300,7 +1300,8 @@ mixin _$PractitionerRoleAvailableTime {
 
   /// [daysOfWeekElement] Extensions for daysOfWeek
   @JsonKey(name: '_daysOfWeek')
-  List<Element?>? get daysOfWeekElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get daysOfWeekElement =>
+      throw _privateConstructorUsedError;
 
   /// [allDay] Is this always available? (hence times are irrelevant) e.g. 24
   ///  hour service.
@@ -1347,7 +1348,7 @@ abstract class $PractitionerRoleAvailableTimeCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<FhirCode>? daysOfWeek,
-      @JsonKey(name: '_daysOfWeek') List<Element?>? daysOfWeekElement,
+      @JsonKey(name: '_daysOfWeek') List<PrimitiveElement>? daysOfWeekElement,
       FhirBoolean? allDay,
       @JsonKey(name: '_allDay') PrimitiveElement? allDayElement,
       FhirTime? availableStartTime,
@@ -1404,7 +1405,7 @@ class _$PractitionerRoleAvailableTimeCopyWithImpl<$Res,
       daysOfWeekElement: freezed == daysOfWeekElement
           ? _value.daysOfWeekElement
           : daysOfWeekElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       allDay: freezed == allDay
           ? _value.allDay
           : allDay // ignore: cast_nullable_to_non_nullable
@@ -1447,7 +1448,7 @@ abstract class _$$PractitionerRoleAvailableTimeImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<FhirCode>? daysOfWeek,
-      @JsonKey(name: '_daysOfWeek') List<Element?>? daysOfWeekElement,
+      @JsonKey(name: '_daysOfWeek') List<PrimitiveElement>? daysOfWeekElement,
       FhirBoolean? allDay,
       @JsonKey(name: '_allDay') PrimitiveElement? allDayElement,
       FhirTime? availableStartTime,
@@ -1503,7 +1504,7 @@ class __$$PractitionerRoleAvailableTimeImplCopyWithImpl<$Res>
       daysOfWeekElement: freezed == daysOfWeekElement
           ? _value._daysOfWeekElement
           : daysOfWeekElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       allDay: freezed == allDay
           ? _value.allDay
           : allDay // ignore: cast_nullable_to_non_nullable
@@ -1541,7 +1542,8 @@ class _$PractitionerRoleAvailableTimeImpl
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final List<FhirCode>? daysOfWeek,
-      @JsonKey(name: '_daysOfWeek') final List<Element?>? daysOfWeekElement,
+      @JsonKey(name: '_daysOfWeek')
+      final List<PrimitiveElement>? daysOfWeekElement,
       this.allDay,
       @JsonKey(name: '_allDay') this.allDayElement,
       this.availableStartTime,
@@ -1641,12 +1643,12 @@ class _$PractitionerRoleAvailableTimeImpl
   }
 
   /// [daysOfWeekElement] Extensions for daysOfWeek
-  final List<Element?>? _daysOfWeekElement;
+  final List<PrimitiveElement>? _daysOfWeekElement;
 
   /// [daysOfWeekElement] Extensions for daysOfWeek
   @override
   @JsonKey(name: '_daysOfWeek')
-  List<Element?>? get daysOfWeekElement {
+  List<PrimitiveElement>? get daysOfWeekElement {
     final value = _daysOfWeekElement;
     if (value == null) return null;
     if (_daysOfWeekElement is EqualUnmodifiableListView)
@@ -1758,7 +1760,8 @@ abstract class _PractitionerRoleAvailableTime
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final List<FhirCode>? daysOfWeek,
-          @JsonKey(name: '_daysOfWeek') final List<Element?>? daysOfWeekElement,
+          @JsonKey(name: '_daysOfWeek')
+          final List<PrimitiveElement>? daysOfWeekElement,
           final FhirBoolean? allDay,
           @JsonKey(name: '_allDay') final PrimitiveElement? allDayElement,
           final FhirTime? availableStartTime,
@@ -1813,7 +1816,7 @@ abstract class _PractitionerRoleAvailableTime
 
   /// [daysOfWeekElement] Extensions for daysOfWeek
   @JsonKey(name: '_daysOfWeek')
-  List<Element?>? get daysOfWeekElement;
+  List<PrimitiveElement>? get daysOfWeekElement;
   @override
 
   /// [allDay] Is this always available? (hence times are irrelevant) e.g. 24

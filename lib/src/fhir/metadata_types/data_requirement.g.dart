@@ -32,8 +32,7 @@ _$DataRequirementImpl _$$DataRequirementImplFromJson(
           ?.map((e) => e as String)
           .toList(),
       mustSupportElement: (json['_mustSupport'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       codeFilter: (json['codeFilter'] as List<dynamic>?)
           ?.map((e) =>
@@ -75,7 +74,7 @@ Map<String, dynamic> _$$DataRequirementImplToJson(
   writeNotNull('subjectReference', instance.subjectReference?.toJson());
   writeNotNull('mustSupport', instance.mustSupport);
   writeNotNull('_mustSupport',
-      instance.mustSupportElement?.map((e) => e?.toJson()).toList());
+      instance.mustSupportElement?.map((e) => e.toJson()).toList());
   writeNotNull(
       'codeFilter', instance.codeFilter?.map((e) => e.toJson()).toList());
   writeNotNull(

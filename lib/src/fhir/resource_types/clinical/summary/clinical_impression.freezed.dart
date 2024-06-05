@@ -64,7 +64,8 @@ mixin _$ClinicalImpression {
       throw _privateConstructorUsedError;
   List<FhirUri>? get protocol => throw _privateConstructorUsedError;
   @JsonKey(name: '_protocol')
-  List<Element?>? get protocolElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get protocolElement =>
+      throw _privateConstructorUsedError;
   String? get summary => throw _privateConstructorUsedError;
   @JsonKey(name: '_summary')
   PrimitiveElement? get summaryElement => throw _privateConstructorUsedError;
@@ -121,7 +122,7 @@ abstract class $ClinicalImpressionCopyWith<$Res> {
       List<Reference>? problem,
       List<ClinicalImpressionInvestigation>? investigation,
       List<FhirUri>? protocol,
-      @JsonKey(name: '_protocol') List<Element?>? protocolElement,
+      @JsonKey(name: '_protocol') List<PrimitiveElement>? protocolElement,
       String? summary,
       @JsonKey(name: '_summary') PrimitiveElement? summaryElement,
       List<ClinicalImpressionFinding>? finding,
@@ -317,7 +318,7 @@ class _$ClinicalImpressionCopyWithImpl<$Res, $Val extends ClinicalImpression>
       protocolElement: freezed == protocolElement
           ? _value.protocolElement
           : protocolElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       summary: freezed == summary
           ? _value.summary
           : summary // ignore: cast_nullable_to_non_nullable
@@ -495,7 +496,7 @@ abstract class _$$ClinicalImpressionImplCopyWith<$Res>
       List<Reference>? problem,
       List<ClinicalImpressionInvestigation>? investigation,
       List<FhirUri>? protocol,
-      @JsonKey(name: '_protocol') List<Element?>? protocolElement,
+      @JsonKey(name: '_protocol') List<PrimitiveElement>? protocolElement,
       String? summary,
       @JsonKey(name: '_summary') PrimitiveElement? summaryElement,
       List<ClinicalImpressionFinding>? finding,
@@ -698,7 +699,7 @@ class __$$ClinicalImpressionImplCopyWithImpl<$Res>
       protocolElement: freezed == protocolElement
           ? _value._protocolElement
           : protocolElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       summary: freezed == summary
           ? _value.summary
           : summary // ignore: cast_nullable_to_non_nullable
@@ -766,7 +767,7 @@ class _$ClinicalImpressionImpl extends _ClinicalImpression {
       final List<Reference>? problem,
       final List<ClinicalImpressionInvestigation>? investigation,
       final List<FhirUri>? protocol,
-      @JsonKey(name: '_protocol') final List<Element?>? protocolElement,
+      @JsonKey(name: '_protocol') final List<PrimitiveElement>? protocolElement,
       this.summary,
       @JsonKey(name: '_summary') this.summaryElement,
       final List<ClinicalImpressionFinding>? finding,
@@ -917,10 +918,10 @@ class _$ClinicalImpressionImpl extends _ClinicalImpression {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<Element?>? _protocolElement;
+  final List<PrimitiveElement>? _protocolElement;
   @override
   @JsonKey(name: '_protocol')
-  List<Element?>? get protocolElement {
+  List<PrimitiveElement>? get protocolElement {
     final value = _protocolElement;
     if (value == null) return null;
     if (_protocolElement is EqualUnmodifiableListView) return _protocolElement;
@@ -1156,7 +1157,7 @@ abstract class _ClinicalImpression extends ClinicalImpression {
       final List<Reference>? problem,
       final List<ClinicalImpressionInvestigation>? investigation,
       final List<FhirUri>? protocol,
-      @JsonKey(name: '_protocol') final List<Element?>? protocolElement,
+      @JsonKey(name: '_protocol') final List<PrimitiveElement>? protocolElement,
       final String? summary,
       @JsonKey(name: '_summary') final PrimitiveElement? summaryElement,
       final List<ClinicalImpressionFinding>? finding,
@@ -1239,7 +1240,7 @@ abstract class _ClinicalImpression extends ClinicalImpression {
   List<FhirUri>? get protocol;
   @override
   @JsonKey(name: '_protocol')
-  List<Element?>? get protocolElement;
+  List<PrimitiveElement>? get protocolElement;
   @override
   String? get summary;
   @override

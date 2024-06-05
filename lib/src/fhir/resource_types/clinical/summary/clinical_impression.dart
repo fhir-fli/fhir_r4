@@ -188,7 +188,7 @@ class ClinicalImpression with _$ClinicalImpression implements DomainResource {
     List<Reference>? problem,
     List<ClinicalImpressionInvestigation>? investigation,
     List<FhirUri>? protocol,
-    @JsonKey(name: '_protocol') List<Element?>? protocolElement,
+    @JsonKey(name: '_protocol') List<PrimitiveElement>? protocolElement,
     String? summary,
     @JsonKey(name: '_summary') PrimitiveElement? summaryElement,
     List<ClinicalImpressionFinding>? finding,

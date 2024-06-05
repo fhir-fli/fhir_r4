@@ -48,8 +48,7 @@ _$ChargeItemImpl _$$ChargeItemImplFromJson(Map<String, dynamic> json) =>
           ?.map(FhirUri.fromJson)
           .toList(),
       definitionUriElement: (json['_definitionUri'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       definitionCanonical: (json['definitionCanonical'] as List<dynamic>?)
           ?.map(FhirCanonical.fromJson)
@@ -178,7 +177,7 @@ Map<String, dynamic> _$$ChargeItemImplToJson(_$ChargeItemImpl instance) {
   writeNotNull(
       'definitionUri', instance.definitionUri?.map((e) => e.toJson()).toList());
   writeNotNull('_definitionUri',
-      instance.definitionUriElement?.map((e) => e?.toJson()).toList());
+      instance.definitionUriElement?.map((e) => e.toJson()).toList());
   writeNotNull('definitionCanonical',
       instance.definitionCanonical?.map((e) => e.toJson()).toList());
   writeNotNull('status', instance.status?.toJson());

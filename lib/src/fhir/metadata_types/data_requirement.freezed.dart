@@ -68,7 +68,8 @@ mixin _$DataRequirement {
 
   /// [mustSupportElement] Extensions for mustSupport
   @JsonKey(name: '_mustSupport')
-  List<Element?>? get mustSupportElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get mustSupportElement =>
+      throw _privateConstructorUsedError;
 
   /// [codeFilter] Code filters specify additional constraints on the data,
   /// specifying the value set of interest for a particular element of the data.
@@ -116,7 +117,7 @@ abstract class $DataRequirementCopyWith<$Res> {
       CodeableConcept? subjectCodeableConcept,
       Reference? subjectReference,
       List<String>? mustSupport,
-      @JsonKey(name: '_mustSupport') List<Element?>? mustSupportElement,
+      @JsonKey(name: '_mustSupport') List<PrimitiveElement>? mustSupportElement,
       List<DataRequirementCodeFilter>? codeFilter,
       List<DataRequirementDateFilter>? dateFilter,
       FhirPositiveInt? limit,
@@ -191,7 +192,7 @@ class _$DataRequirementCopyWithImpl<$Res, $Val extends DataRequirement>
       mustSupportElement: freezed == mustSupportElement
           ? _value.mustSupportElement
           : mustSupportElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       codeFilter: freezed == codeFilter
           ? _value.codeFilter
           : codeFilter // ignore: cast_nullable_to_non_nullable
@@ -258,7 +259,7 @@ abstract class _$$DataRequirementImplCopyWith<$Res>
       CodeableConcept? subjectCodeableConcept,
       Reference? subjectReference,
       List<String>? mustSupport,
-      @JsonKey(name: '_mustSupport') List<Element?>? mustSupportElement,
+      @JsonKey(name: '_mustSupport') List<PrimitiveElement>? mustSupportElement,
       List<DataRequirementCodeFilter>? codeFilter,
       List<DataRequirementDateFilter>? dateFilter,
       FhirPositiveInt? limit,
@@ -333,7 +334,7 @@ class __$$DataRequirementImplCopyWithImpl<$Res>
       mustSupportElement: freezed == mustSupportElement
           ? _value._mustSupportElement
           : mustSupportElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       codeFilter: freezed == codeFilter
           ? _value._codeFilter
           : codeFilter // ignore: cast_nullable_to_non_nullable
@@ -370,7 +371,8 @@ class _$DataRequirementImpl extends _DataRequirement {
       this.subjectCodeableConcept,
       this.subjectReference,
       final List<String>? mustSupport,
-      @JsonKey(name: '_mustSupport') final List<Element?>? mustSupportElement,
+      @JsonKey(name: '_mustSupport')
+      final List<PrimitiveElement>? mustSupportElement,
       final List<DataRequirementCodeFilter>? codeFilter,
       final List<DataRequirementDateFilter>? dateFilter,
       this.limit,
@@ -483,12 +485,12 @@ class _$DataRequirementImpl extends _DataRequirement {
   }
 
   /// [mustSupportElement] Extensions for mustSupport
-  final List<Element?>? _mustSupportElement;
+  final List<PrimitiveElement>? _mustSupportElement;
 
   /// [mustSupportElement] Extensions for mustSupport
   @override
   @JsonKey(name: '_mustSupport')
-  List<Element?>? get mustSupportElement {
+  List<PrimitiveElement>? get mustSupportElement {
     final value = _mustSupportElement;
     if (value == null) return null;
     if (_mustSupportElement is EqualUnmodifiableListView)
@@ -637,7 +639,8 @@ abstract class _DataRequirement extends DataRequirement {
       final CodeableConcept? subjectCodeableConcept,
       final Reference? subjectReference,
       final List<String>? mustSupport,
-      @JsonKey(name: '_mustSupport') final List<Element?>? mustSupportElement,
+      @JsonKey(name: '_mustSupport')
+      final List<PrimitiveElement>? mustSupportElement,
       final List<DataRequirementCodeFilter>? codeFilter,
       final List<DataRequirementDateFilter>? dateFilter,
       final FhirPositiveInt? limit,
@@ -705,7 +708,7 @@ abstract class _DataRequirement extends DataRequirement {
 
   /// [mustSupportElement] Extensions for mustSupport
   @JsonKey(name: '_mustSupport')
-  List<Element?>? get mustSupportElement;
+  List<PrimitiveElement>? get mustSupportElement;
   @override
 
   /// [codeFilter] Code filters specify additional constraints on the data,

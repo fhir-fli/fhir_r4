@@ -106,7 +106,7 @@ mixin _$NutritionOrder {
 
   /// [instantiatesUriElement] Extensions for instantiatesUri
   @JsonKey(name: '_instantiatesUri')
-  List<Element?>? get instantiatesUriElement =>
+  List<PrimitiveElement>? get instantiatesUriElement =>
       throw _privateConstructorUsedError;
 
   /// [instantiates] The URL pointing to a protocol, guideline, orderset or
@@ -116,7 +116,8 @@ mixin _$NutritionOrder {
 
   /// [instantiatesElement] Extensions for instantiates
   @JsonKey(name: '_instantiates')
-  List<Element?>? get instantiatesElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get instantiatesElement =>
+      throw _privateConstructorUsedError;
 
   /// [status] The workflow status of the nutrition order/request.
   FhirCode? get status => throw _privateConstructorUsedError;
@@ -225,9 +226,11 @@ abstract class $NutritionOrderCopyWith<$Res> {
       List<Identifier>? identifier,
       List<FhirCanonical>? instantiatesCanonical,
       List<FhirUri>? instantiatesUri,
-      @JsonKey(name: '_instantiatesUri') List<Element?>? instantiatesUriElement,
+      @JsonKey(name: '_instantiatesUri')
+      List<PrimitiveElement>? instantiatesUriElement,
       List<FhirUri>? instantiates,
-      @JsonKey(name: '_instantiates') List<Element?>? instantiatesElement,
+      @JsonKey(name: '_instantiates')
+      List<PrimitiveElement>? instantiatesElement,
       FhirCode? status,
       @JsonKey(name: '_status') PrimitiveElement? statusElement,
       FhirCode? intent,
@@ -361,7 +364,7 @@ class _$NutritionOrderCopyWithImpl<$Res, $Val extends NutritionOrder>
       instantiatesUriElement: freezed == instantiatesUriElement
           ? _value.instantiatesUriElement
           : instantiatesUriElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       instantiates: freezed == instantiates
           ? _value.instantiates
           : instantiates // ignore: cast_nullable_to_non_nullable
@@ -369,7 +372,7 @@ class _$NutritionOrderCopyWithImpl<$Res, $Val extends NutritionOrder>
       instantiatesElement: freezed == instantiatesElement
           ? _value.instantiatesElement
           : instantiatesElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -543,9 +546,11 @@ abstract class _$$NutritionOrderImplCopyWith<$Res>
       List<Identifier>? identifier,
       List<FhirCanonical>? instantiatesCanonical,
       List<FhirUri>? instantiatesUri,
-      @JsonKey(name: '_instantiatesUri') List<Element?>? instantiatesUriElement,
+      @JsonKey(name: '_instantiatesUri')
+      List<PrimitiveElement>? instantiatesUriElement,
       List<FhirUri>? instantiates,
-      @JsonKey(name: '_instantiates') List<Element?>? instantiatesElement,
+      @JsonKey(name: '_instantiates')
+      List<PrimitiveElement>? instantiatesElement,
       FhirCode? status,
       @JsonKey(name: '_status') PrimitiveElement? statusElement,
       FhirCode? intent,
@@ -684,7 +689,7 @@ class __$$NutritionOrderImplCopyWithImpl<$Res>
       instantiatesUriElement: freezed == instantiatesUriElement
           ? _value._instantiatesUriElement
           : instantiatesUriElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       instantiates: freezed == instantiates
           ? _value._instantiates
           : instantiates // ignore: cast_nullable_to_non_nullable
@@ -692,7 +697,7 @@ class __$$NutritionOrderImplCopyWithImpl<$Res>
       instantiatesElement: freezed == instantiatesElement
           ? _value._instantiatesElement
           : instantiatesElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -781,9 +786,10 @@ class _$NutritionOrderImpl extends _NutritionOrder {
       final List<FhirCanonical>? instantiatesCanonical,
       final List<FhirUri>? instantiatesUri,
       @JsonKey(name: '_instantiatesUri')
-      final List<Element?>? instantiatesUriElement,
+      final List<PrimitiveElement>? instantiatesUriElement,
       final List<FhirUri>? instantiates,
-      @JsonKey(name: '_instantiates') final List<Element?>? instantiatesElement,
+      @JsonKey(name: '_instantiates')
+      final List<PrimitiveElement>? instantiatesElement,
       this.status,
       @JsonKey(name: '_status') this.statusElement,
       this.intent,
@@ -996,12 +1002,12 @@ class _$NutritionOrderImpl extends _NutritionOrder {
   }
 
   /// [instantiatesUriElement] Extensions for instantiatesUri
-  final List<Element?>? _instantiatesUriElement;
+  final List<PrimitiveElement>? _instantiatesUriElement;
 
   /// [instantiatesUriElement] Extensions for instantiatesUri
   @override
   @JsonKey(name: '_instantiatesUri')
-  List<Element?>? get instantiatesUriElement {
+  List<PrimitiveElement>? get instantiatesUriElement {
     final value = _instantiatesUriElement;
     if (value == null) return null;
     if (_instantiatesUriElement is EqualUnmodifiableListView)
@@ -1028,12 +1034,12 @@ class _$NutritionOrderImpl extends _NutritionOrder {
   }
 
   /// [instantiatesElement] Extensions for instantiates
-  final List<Element?>? _instantiatesElement;
+  final List<PrimitiveElement>? _instantiatesElement;
 
   /// [instantiatesElement] Extensions for instantiates
   @override
   @JsonKey(name: '_instantiates')
-  List<Element?>? get instantiatesElement {
+  List<PrimitiveElement>? get instantiatesElement {
     final value = _instantiatesElement;
     if (value == null) return null;
     if (_instantiatesElement is EqualUnmodifiableListView)
@@ -1342,9 +1348,10 @@ abstract class _NutritionOrder extends NutritionOrder {
       final List<FhirCanonical>? instantiatesCanonical,
       final List<FhirUri>? instantiatesUri,
       @JsonKey(name: '_instantiatesUri')
-      final List<Element?>? instantiatesUriElement,
+      final List<PrimitiveElement>? instantiatesUriElement,
       final List<FhirUri>? instantiates,
-      @JsonKey(name: '_instantiates') final List<Element?>? instantiatesElement,
+      @JsonKey(name: '_instantiates')
+      final List<PrimitiveElement>? instantiatesElement,
       final FhirCode? status,
       @JsonKey(name: '_status') final PrimitiveElement? statusElement,
       final FhirCode? intent,
@@ -1464,7 +1471,7 @@ abstract class _NutritionOrder extends NutritionOrder {
 
   /// [instantiatesUriElement] Extensions for instantiatesUri
   @JsonKey(name: '_instantiatesUri')
-  List<Element?>? get instantiatesUriElement;
+  List<PrimitiveElement>? get instantiatesUriElement;
   @override
 
   /// [instantiates] The URL pointing to a protocol, guideline, orderset or
@@ -1475,7 +1482,7 @@ abstract class _NutritionOrder extends NutritionOrder {
 
   /// [instantiatesElement] Extensions for instantiates
   @JsonKey(name: '_instantiates')
-  List<Element?>? get instantiatesElement;
+  List<PrimitiveElement>? get instantiatesElement;
   @override
 
   /// [status] The workflow status of the nutrition order/request.

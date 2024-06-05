@@ -4236,7 +4236,8 @@ mixin _$MolecularSequenceRoc {
 
   /// [scoreElement] Extensions for score
   @JsonKey(name: '_score')
-  List<Element?>? get scoreElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get scoreElement =>
+      throw _privateConstructorUsedError;
 
   /// [numTP] The number of true positives if the GQ score threshold was set to
   ///  "score" field value.
@@ -4244,7 +4245,8 @@ mixin _$MolecularSequenceRoc {
 
   /// [numTPElement] Extensions for numTP
   @JsonKey(name: '_numTP')
-  List<Element?>? get numTPElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get numTPElement =>
+      throw _privateConstructorUsedError;
 
   /// [numFP] The number of false positives if the GQ score threshold was set
   ///  to "score" field value.
@@ -4252,7 +4254,8 @@ mixin _$MolecularSequenceRoc {
 
   /// [numFPElement] Extensions for numFP
   @JsonKey(name: '_numFP')
-  List<Element?>? get numFPElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get numFPElement =>
+      throw _privateConstructorUsedError;
 
   /// [numFN] The number of false negatives if the GQ score threshold was set
   ///  to "score" field value.
@@ -4260,7 +4263,8 @@ mixin _$MolecularSequenceRoc {
 
   /// [numFNElement] Extensions for numFN
   @JsonKey(name: '_numFN')
-  List<Element?>? get numFNElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get numFNElement =>
+      throw _privateConstructorUsedError;
 
   /// [precision] Calculated precision if the GQ score threshold was set to
   ///  "score" field value.
@@ -4268,7 +4272,8 @@ mixin _$MolecularSequenceRoc {
 
   /// [precisionElement] Extensions for precision
   @JsonKey(name: '_precision')
-  List<Element?>? get precisionElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get precisionElement =>
+      throw _privateConstructorUsedError;
 
   /// [sensitivity] Calculated sensitivity if the GQ score threshold was set to
   ///  "score" field value.
@@ -4276,7 +4281,8 @@ mixin _$MolecularSequenceRoc {
 
   /// [sensitivityElement] Extensions for sensitivity
   @JsonKey(name: '_sensitivity')
-  List<Element?>? get sensitivityElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get sensitivityElement =>
+      throw _privateConstructorUsedError;
 
   /// [fMeasure] Calculated fScore if the GQ score threshold was set to "score"
   ///  field value.
@@ -4284,7 +4290,8 @@ mixin _$MolecularSequenceRoc {
 
   /// [fMeasureElement] Extensions for fMeasure
   @JsonKey(name: '_fMeasure')
-  List<Element?>? get fMeasureElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get fMeasureElement =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -4303,19 +4310,19 @@ abstract class $MolecularSequenceRocCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<FhirInteger>? score,
-      @JsonKey(name: '_score') List<Element?>? scoreElement,
+      @JsonKey(name: '_score') List<PrimitiveElement>? scoreElement,
       List<FhirInteger>? numTP,
-      @JsonKey(name: '_numTP') List<Element?>? numTPElement,
+      @JsonKey(name: '_numTP') List<PrimitiveElement>? numTPElement,
       List<FhirInteger>? numFP,
-      @JsonKey(name: '_numFP') List<Element?>? numFPElement,
+      @JsonKey(name: '_numFP') List<PrimitiveElement>? numFPElement,
       List<FhirInteger>? numFN,
-      @JsonKey(name: '_numFN') List<Element?>? numFNElement,
+      @JsonKey(name: '_numFN') List<PrimitiveElement>? numFNElement,
       List<FhirDecimal>? precision,
-      @JsonKey(name: '_precision') List<Element?>? precisionElement,
+      @JsonKey(name: '_precision') List<PrimitiveElement>? precisionElement,
       List<FhirDecimal>? sensitivity,
-      @JsonKey(name: '_sensitivity') List<Element?>? sensitivityElement,
+      @JsonKey(name: '_sensitivity') List<PrimitiveElement>? sensitivityElement,
       List<FhirDecimal>? fMeasure,
-      @JsonKey(name: '_fMeasure') List<Element?>? fMeasureElement});
+      @JsonKey(name: '_fMeasure') List<PrimitiveElement>? fMeasureElement});
 }
 
 /// @nodoc
@@ -4370,7 +4377,7 @@ class _$MolecularSequenceRocCopyWithImpl<$Res,
       scoreElement: freezed == scoreElement
           ? _value.scoreElement
           : scoreElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       numTP: freezed == numTP
           ? _value.numTP
           : numTP // ignore: cast_nullable_to_non_nullable
@@ -4378,7 +4385,7 @@ class _$MolecularSequenceRocCopyWithImpl<$Res,
       numTPElement: freezed == numTPElement
           ? _value.numTPElement
           : numTPElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       numFP: freezed == numFP
           ? _value.numFP
           : numFP // ignore: cast_nullable_to_non_nullable
@@ -4386,7 +4393,7 @@ class _$MolecularSequenceRocCopyWithImpl<$Res,
       numFPElement: freezed == numFPElement
           ? _value.numFPElement
           : numFPElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       numFN: freezed == numFN
           ? _value.numFN
           : numFN // ignore: cast_nullable_to_non_nullable
@@ -4394,7 +4401,7 @@ class _$MolecularSequenceRocCopyWithImpl<$Res,
       numFNElement: freezed == numFNElement
           ? _value.numFNElement
           : numFNElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       precision: freezed == precision
           ? _value.precision
           : precision // ignore: cast_nullable_to_non_nullable
@@ -4402,7 +4409,7 @@ class _$MolecularSequenceRocCopyWithImpl<$Res,
       precisionElement: freezed == precisionElement
           ? _value.precisionElement
           : precisionElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       sensitivity: freezed == sensitivity
           ? _value.sensitivity
           : sensitivity // ignore: cast_nullable_to_non_nullable
@@ -4410,7 +4417,7 @@ class _$MolecularSequenceRocCopyWithImpl<$Res,
       sensitivityElement: freezed == sensitivityElement
           ? _value.sensitivityElement
           : sensitivityElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       fMeasure: freezed == fMeasure
           ? _value.fMeasure
           : fMeasure // ignore: cast_nullable_to_non_nullable
@@ -4418,7 +4425,7 @@ class _$MolecularSequenceRocCopyWithImpl<$Res,
       fMeasureElement: freezed == fMeasureElement
           ? _value.fMeasureElement
           : fMeasureElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
     ) as $Val);
   }
 }
@@ -4436,19 +4443,19 @@ abstract class _$$MolecularSequenceRocImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<FhirInteger>? score,
-      @JsonKey(name: '_score') List<Element?>? scoreElement,
+      @JsonKey(name: '_score') List<PrimitiveElement>? scoreElement,
       List<FhirInteger>? numTP,
-      @JsonKey(name: '_numTP') List<Element?>? numTPElement,
+      @JsonKey(name: '_numTP') List<PrimitiveElement>? numTPElement,
       List<FhirInteger>? numFP,
-      @JsonKey(name: '_numFP') List<Element?>? numFPElement,
+      @JsonKey(name: '_numFP') List<PrimitiveElement>? numFPElement,
       List<FhirInteger>? numFN,
-      @JsonKey(name: '_numFN') List<Element?>? numFNElement,
+      @JsonKey(name: '_numFN') List<PrimitiveElement>? numFNElement,
       List<FhirDecimal>? precision,
-      @JsonKey(name: '_precision') List<Element?>? precisionElement,
+      @JsonKey(name: '_precision') List<PrimitiveElement>? precisionElement,
       List<FhirDecimal>? sensitivity,
-      @JsonKey(name: '_sensitivity') List<Element?>? sensitivityElement,
+      @JsonKey(name: '_sensitivity') List<PrimitiveElement>? sensitivityElement,
       List<FhirDecimal>? fMeasure,
-      @JsonKey(name: '_fMeasure') List<Element?>? fMeasureElement});
+      @JsonKey(name: '_fMeasure') List<PrimitiveElement>? fMeasureElement});
 }
 
 /// @nodoc
@@ -4500,7 +4507,7 @@ class __$$MolecularSequenceRocImplCopyWithImpl<$Res>
       scoreElement: freezed == scoreElement
           ? _value._scoreElement
           : scoreElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       numTP: freezed == numTP
           ? _value._numTP
           : numTP // ignore: cast_nullable_to_non_nullable
@@ -4508,7 +4515,7 @@ class __$$MolecularSequenceRocImplCopyWithImpl<$Res>
       numTPElement: freezed == numTPElement
           ? _value._numTPElement
           : numTPElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       numFP: freezed == numFP
           ? _value._numFP
           : numFP // ignore: cast_nullable_to_non_nullable
@@ -4516,7 +4523,7 @@ class __$$MolecularSequenceRocImplCopyWithImpl<$Res>
       numFPElement: freezed == numFPElement
           ? _value._numFPElement
           : numFPElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       numFN: freezed == numFN
           ? _value._numFN
           : numFN // ignore: cast_nullable_to_non_nullable
@@ -4524,7 +4531,7 @@ class __$$MolecularSequenceRocImplCopyWithImpl<$Res>
       numFNElement: freezed == numFNElement
           ? _value._numFNElement
           : numFNElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       precision: freezed == precision
           ? _value._precision
           : precision // ignore: cast_nullable_to_non_nullable
@@ -4532,7 +4539,7 @@ class __$$MolecularSequenceRocImplCopyWithImpl<$Res>
       precisionElement: freezed == precisionElement
           ? _value._precisionElement
           : precisionElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       sensitivity: freezed == sensitivity
           ? _value._sensitivity
           : sensitivity // ignore: cast_nullable_to_non_nullable
@@ -4540,7 +4547,7 @@ class __$$MolecularSequenceRocImplCopyWithImpl<$Res>
       sensitivityElement: freezed == sensitivityElement
           ? _value._sensitivityElement
           : sensitivityElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       fMeasure: freezed == fMeasure
           ? _value._fMeasure
           : fMeasure // ignore: cast_nullable_to_non_nullable
@@ -4548,7 +4555,7 @@ class __$$MolecularSequenceRocImplCopyWithImpl<$Res>
       fMeasureElement: freezed == fMeasureElement
           ? _value._fMeasureElement
           : fMeasureElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
     ));
   }
 }
@@ -4561,19 +4568,22 @@ class _$MolecularSequenceRocImpl extends _MolecularSequenceRoc {
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final List<FhirInteger>? score,
-      @JsonKey(name: '_score') final List<Element?>? scoreElement,
+      @JsonKey(name: '_score') final List<PrimitiveElement>? scoreElement,
       final List<FhirInteger>? numTP,
-      @JsonKey(name: '_numTP') final List<Element?>? numTPElement,
+      @JsonKey(name: '_numTP') final List<PrimitiveElement>? numTPElement,
       final List<FhirInteger>? numFP,
-      @JsonKey(name: '_numFP') final List<Element?>? numFPElement,
+      @JsonKey(name: '_numFP') final List<PrimitiveElement>? numFPElement,
       final List<FhirInteger>? numFN,
-      @JsonKey(name: '_numFN') final List<Element?>? numFNElement,
+      @JsonKey(name: '_numFN') final List<PrimitiveElement>? numFNElement,
       final List<FhirDecimal>? precision,
-      @JsonKey(name: '_precision') final List<Element?>? precisionElement,
+      @JsonKey(name: '_precision')
+      final List<PrimitiveElement>? precisionElement,
       final List<FhirDecimal>? sensitivity,
-      @JsonKey(name: '_sensitivity') final List<Element?>? sensitivityElement,
+      @JsonKey(name: '_sensitivity')
+      final List<PrimitiveElement>? sensitivityElement,
       final List<FhirDecimal>? fMeasure,
-      @JsonKey(name: '_fMeasure') final List<Element?>? fMeasureElement})
+      @JsonKey(name: '_fMeasure')
+      final List<PrimitiveElement>? fMeasureElement})
       : _extension_ = extension_,
         _modifierExtension = modifierExtension,
         _score = score,
@@ -4678,12 +4688,12 @@ class _$MolecularSequenceRocImpl extends _MolecularSequenceRoc {
   }
 
   /// [scoreElement] Extensions for score
-  final List<Element?>? _scoreElement;
+  final List<PrimitiveElement>? _scoreElement;
 
   /// [scoreElement] Extensions for score
   @override
   @JsonKey(name: '_score')
-  List<Element?>? get scoreElement {
+  List<PrimitiveElement>? get scoreElement {
     final value = _scoreElement;
     if (value == null) return null;
     if (_scoreElement is EqualUnmodifiableListView) return _scoreElement;
@@ -4707,12 +4717,12 @@ class _$MolecularSequenceRocImpl extends _MolecularSequenceRoc {
   }
 
   /// [numTPElement] Extensions for numTP
-  final List<Element?>? _numTPElement;
+  final List<PrimitiveElement>? _numTPElement;
 
   /// [numTPElement] Extensions for numTP
   @override
   @JsonKey(name: '_numTP')
-  List<Element?>? get numTPElement {
+  List<PrimitiveElement>? get numTPElement {
     final value = _numTPElement;
     if (value == null) return null;
     if (_numTPElement is EqualUnmodifiableListView) return _numTPElement;
@@ -4736,12 +4746,12 @@ class _$MolecularSequenceRocImpl extends _MolecularSequenceRoc {
   }
 
   /// [numFPElement] Extensions for numFP
-  final List<Element?>? _numFPElement;
+  final List<PrimitiveElement>? _numFPElement;
 
   /// [numFPElement] Extensions for numFP
   @override
   @JsonKey(name: '_numFP')
-  List<Element?>? get numFPElement {
+  List<PrimitiveElement>? get numFPElement {
     final value = _numFPElement;
     if (value == null) return null;
     if (_numFPElement is EqualUnmodifiableListView) return _numFPElement;
@@ -4765,12 +4775,12 @@ class _$MolecularSequenceRocImpl extends _MolecularSequenceRoc {
   }
 
   /// [numFNElement] Extensions for numFN
-  final List<Element?>? _numFNElement;
+  final List<PrimitiveElement>? _numFNElement;
 
   /// [numFNElement] Extensions for numFN
   @override
   @JsonKey(name: '_numFN')
-  List<Element?>? get numFNElement {
+  List<PrimitiveElement>? get numFNElement {
     final value = _numFNElement;
     if (value == null) return null;
     if (_numFNElement is EqualUnmodifiableListView) return _numFNElement;
@@ -4794,12 +4804,12 @@ class _$MolecularSequenceRocImpl extends _MolecularSequenceRoc {
   }
 
   /// [precisionElement] Extensions for precision
-  final List<Element?>? _precisionElement;
+  final List<PrimitiveElement>? _precisionElement;
 
   /// [precisionElement] Extensions for precision
   @override
   @JsonKey(name: '_precision')
-  List<Element?>? get precisionElement {
+  List<PrimitiveElement>? get precisionElement {
     final value = _precisionElement;
     if (value == null) return null;
     if (_precisionElement is EqualUnmodifiableListView)
@@ -4824,12 +4834,12 @@ class _$MolecularSequenceRocImpl extends _MolecularSequenceRoc {
   }
 
   /// [sensitivityElement] Extensions for sensitivity
-  final List<Element?>? _sensitivityElement;
+  final List<PrimitiveElement>? _sensitivityElement;
 
   /// [sensitivityElement] Extensions for sensitivity
   @override
   @JsonKey(name: '_sensitivity')
-  List<Element?>? get sensitivityElement {
+  List<PrimitiveElement>? get sensitivityElement {
     final value = _sensitivityElement;
     if (value == null) return null;
     if (_sensitivityElement is EqualUnmodifiableListView)
@@ -4854,12 +4864,12 @@ class _$MolecularSequenceRocImpl extends _MolecularSequenceRoc {
   }
 
   /// [fMeasureElement] Extensions for fMeasure
-  final List<Element?>? _fMeasureElement;
+  final List<PrimitiveElement>? _fMeasureElement;
 
   /// [fMeasureElement] Extensions for fMeasure
   @override
   @JsonKey(name: '_fMeasure')
-  List<Element?>? get fMeasureElement {
+  List<PrimitiveElement>? get fMeasureElement {
     final value = _fMeasureElement;
     if (value == null) return null;
     if (_fMeasureElement is EqualUnmodifiableListView) return _fMeasureElement;
@@ -4947,24 +4957,27 @@ class _$MolecularSequenceRocImpl extends _MolecularSequenceRoc {
 
 abstract class _MolecularSequenceRoc extends MolecularSequenceRoc {
   const factory _MolecularSequenceRoc(
-      {final String? id,
-      @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
-      final List<FhirExtension>? modifierExtension,
-      final List<FhirInteger>? score,
-      @JsonKey(name: '_score') final List<Element?>? scoreElement,
-      final List<FhirInteger>? numTP,
-      @JsonKey(name: '_numTP') final List<Element?>? numTPElement,
-      final List<FhirInteger>? numFP,
-      @JsonKey(name: '_numFP') final List<Element?>? numFPElement,
-      final List<FhirInteger>? numFN,
-      @JsonKey(name: '_numFN') final List<Element?>? numFNElement,
-      final List<FhirDecimal>? precision,
-      @JsonKey(name: '_precision') final List<Element?>? precisionElement,
-      final List<FhirDecimal>? sensitivity,
-      @JsonKey(name: '_sensitivity') final List<Element?>? sensitivityElement,
-      final List<FhirDecimal>? fMeasure,
-      @JsonKey(name: '_fMeasure')
-      final List<Element?>? fMeasureElement}) = _$MolecularSequenceRocImpl;
+          {final String? id,
+          @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
+          final List<FhirExtension>? modifierExtension,
+          final List<FhirInteger>? score,
+          @JsonKey(name: '_score') final List<PrimitiveElement>? scoreElement,
+          final List<FhirInteger>? numTP,
+          @JsonKey(name: '_numTP') final List<PrimitiveElement>? numTPElement,
+          final List<FhirInteger>? numFP,
+          @JsonKey(name: '_numFP') final List<PrimitiveElement>? numFPElement,
+          final List<FhirInteger>? numFN,
+          @JsonKey(name: '_numFN') final List<PrimitiveElement>? numFNElement,
+          final List<FhirDecimal>? precision,
+          @JsonKey(name: '_precision')
+          final List<PrimitiveElement>? precisionElement,
+          final List<FhirDecimal>? sensitivity,
+          @JsonKey(name: '_sensitivity')
+          final List<PrimitiveElement>? sensitivityElement,
+          final List<FhirDecimal>? fMeasure,
+          @JsonKey(name: '_fMeasure')
+          final List<PrimitiveElement>? fMeasureElement}) =
+      _$MolecularSequenceRocImpl;
   const _MolecularSequenceRoc._() : super._();
 
   factory _MolecularSequenceRoc.fromJson(Map<String, dynamic> json) =
@@ -5010,7 +5023,7 @@ abstract class _MolecularSequenceRoc extends MolecularSequenceRoc {
 
   /// [scoreElement] Extensions for score
   @JsonKey(name: '_score')
-  List<Element?>? get scoreElement;
+  List<PrimitiveElement>? get scoreElement;
   @override
 
   /// [numTP] The number of true positives if the GQ score threshold was set to
@@ -5020,7 +5033,7 @@ abstract class _MolecularSequenceRoc extends MolecularSequenceRoc {
 
   /// [numTPElement] Extensions for numTP
   @JsonKey(name: '_numTP')
-  List<Element?>? get numTPElement;
+  List<PrimitiveElement>? get numTPElement;
   @override
 
   /// [numFP] The number of false positives if the GQ score threshold was set
@@ -5030,7 +5043,7 @@ abstract class _MolecularSequenceRoc extends MolecularSequenceRoc {
 
   /// [numFPElement] Extensions for numFP
   @JsonKey(name: '_numFP')
-  List<Element?>? get numFPElement;
+  List<PrimitiveElement>? get numFPElement;
   @override
 
   /// [numFN] The number of false negatives if the GQ score threshold was set
@@ -5040,7 +5053,7 @@ abstract class _MolecularSequenceRoc extends MolecularSequenceRoc {
 
   /// [numFNElement] Extensions for numFN
   @JsonKey(name: '_numFN')
-  List<Element?>? get numFNElement;
+  List<PrimitiveElement>? get numFNElement;
   @override
 
   /// [precision] Calculated precision if the GQ score threshold was set to
@@ -5050,7 +5063,7 @@ abstract class _MolecularSequenceRoc extends MolecularSequenceRoc {
 
   /// [precisionElement] Extensions for precision
   @JsonKey(name: '_precision')
-  List<Element?>? get precisionElement;
+  List<PrimitiveElement>? get precisionElement;
   @override
 
   /// [sensitivity] Calculated sensitivity if the GQ score threshold was set to
@@ -5060,7 +5073,7 @@ abstract class _MolecularSequenceRoc extends MolecularSequenceRoc {
 
   /// [sensitivityElement] Extensions for sensitivity
   @JsonKey(name: '_sensitivity')
-  List<Element?>? get sensitivityElement;
+  List<PrimitiveElement>? get sensitivityElement;
   @override
 
   /// [fMeasure] Calculated fScore if the GQ score threshold was set to "score"
@@ -5070,7 +5083,7 @@ abstract class _MolecularSequenceRoc extends MolecularSequenceRoc {
 
   /// [fMeasureElement] Extensions for fMeasure
   @JsonKey(name: '_fMeasure')
-  List<Element?>? get fMeasureElement;
+  List<PrimitiveElement>? get fMeasureElement;
   @override
   @JsonKey(ignore: true)
   _$$MolecularSequenceRocImplCopyWith<_$MolecularSequenceRocImpl>

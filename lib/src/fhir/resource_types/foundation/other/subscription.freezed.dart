@@ -1081,7 +1081,8 @@ mixin _$SubscriptionChannel {
 
   /// [headerElement] Extensions for header
   @JsonKey(name: '_header')
-  List<Element?>? get headerElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get headerElement =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1106,7 +1107,7 @@ abstract class $SubscriptionChannelCopyWith<$Res> {
       FhirCode? payload,
       @JsonKey(name: '_payload') PrimitiveElement? payloadElement,
       List<String>? header,
-      @JsonKey(name: '_header') List<Element?>? headerElement});
+      @JsonKey(name: '_header') List<PrimitiveElement>? headerElement});
 }
 
 /// @nodoc
@@ -1178,7 +1179,7 @@ class _$SubscriptionChannelCopyWithImpl<$Res, $Val extends SubscriptionChannel>
       headerElement: freezed == headerElement
           ? _value.headerElement
           : headerElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
     ) as $Val);
   }
 }
@@ -1202,7 +1203,7 @@ abstract class _$$SubscriptionChannelImplCopyWith<$Res>
       FhirCode? payload,
       @JsonKey(name: '_payload') PrimitiveElement? payloadElement,
       List<String>? header,
-      @JsonKey(name: '_header') List<Element?>? headerElement});
+      @JsonKey(name: '_header') List<PrimitiveElement>? headerElement});
 }
 
 /// @nodoc
@@ -1272,7 +1273,7 @@ class __$$SubscriptionChannelImplCopyWithImpl<$Res>
       headerElement: freezed == headerElement
           ? _value._headerElement
           : headerElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
     ));
   }
 }
@@ -1291,7 +1292,7 @@ class _$SubscriptionChannelImpl extends _SubscriptionChannel {
       this.payload,
       @JsonKey(name: '_payload') this.payloadElement,
       final List<String>? header,
-      @JsonKey(name: '_header') final List<Element?>? headerElement})
+      @JsonKey(name: '_header') final List<PrimitiveElement>? headerElement})
       : _extension_ = extension_,
         _modifierExtension = modifierExtension,
         _header = header,
@@ -1416,12 +1417,12 @@ class _$SubscriptionChannelImpl extends _SubscriptionChannel {
   }
 
   /// [headerElement] Extensions for header
-  final List<Element?>? _headerElement;
+  final List<PrimitiveElement>? _headerElement;
 
   /// [headerElement] Extensions for header
   @override
   @JsonKey(name: '_header')
-  List<Element?>? get headerElement {
+  List<PrimitiveElement>? get headerElement {
     final value = _headerElement;
     if (value == null) return null;
     if (_headerElement is EqualUnmodifiableListView) return _headerElement;
@@ -1492,18 +1493,18 @@ class _$SubscriptionChannelImpl extends _SubscriptionChannel {
 
 abstract class _SubscriptionChannel extends SubscriptionChannel {
   const factory _SubscriptionChannel(
-          {final String? id,
-          @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
-          final List<FhirExtension>? modifierExtension,
-          final FhirCode? type,
-          @JsonKey(name: '_type') final PrimitiveElement? typeElement,
-          final FhirUrl? endpoint,
-          @JsonKey(name: '_endpoint') final PrimitiveElement? endpointElement,
-          final FhirCode? payload,
-          @JsonKey(name: '_payload') final PrimitiveElement? payloadElement,
-          final List<String>? header,
-          @JsonKey(name: '_header') final List<Element?>? headerElement}) =
-      _$SubscriptionChannelImpl;
+      {final String? id,
+      @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
+      final List<FhirExtension>? modifierExtension,
+      final FhirCode? type,
+      @JsonKey(name: '_type') final PrimitiveElement? typeElement,
+      final FhirUrl? endpoint,
+      @JsonKey(name: '_endpoint') final PrimitiveElement? endpointElement,
+      final FhirCode? payload,
+      @JsonKey(name: '_payload') final PrimitiveElement? payloadElement,
+      final List<String>? header,
+      @JsonKey(name: '_header')
+      final List<PrimitiveElement>? headerElement}) = _$SubscriptionChannelImpl;
   const _SubscriptionChannel._() : super._();
 
   factory _SubscriptionChannel.fromJson(Map<String, dynamic> json) =
@@ -1581,7 +1582,7 @@ abstract class _SubscriptionChannel extends SubscriptionChannel {
 
   /// [headerElement] Extensions for header
   @JsonKey(name: '_header')
-  List<Element?>? get headerElement;
+  List<PrimitiveElement>? get headerElement;
   @override
   @JsonKey(ignore: true)
   _$$SubscriptionChannelImplCopyWith<_$SubscriptionChannelImpl> get copyWith =>

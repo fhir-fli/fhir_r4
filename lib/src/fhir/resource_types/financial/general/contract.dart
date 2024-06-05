@@ -404,7 +404,7 @@ class Contract with _$Contract implements DomainResource {
     List<String>? alias,
 
     /// [aliasElement] Extensions for alias
-    @JsonKey(name: '_alias') List<Element?>? aliasElement,
+    @JsonKey(name: '_alias') List<PrimitiveElement>? aliasElement,
 
     /// [author] The individual or organization that authored the Contract
     ///  definition, derivative, or instance in any legal state.
@@ -998,7 +998,7 @@ class ContractSecurityLabel
     List<FhirUnsignedInt>? number,
 
     /// [numberElement] Extensions for number
-    @JsonKey(name: '_number') List<Element?>? numberElement,
+    @JsonKey(name: '_number') List<PrimitiveElement>? numberElement,
 
     /// [classification] Security label privacy tag that species the level of
     ///  confidentiality protection required for this term and/or term elements.
@@ -1182,7 +1182,7 @@ class ContractOffer with _$ContractOffer implements BackboneElement {
     List<String>? linkId,
 
     /// [linkIdElement] Extensions for linkId
-    @JsonKey(name: '_linkId') List<Element?>? linkIdElement,
+    @JsonKey(name: '_linkId') List<PrimitiveElement>? linkIdElement,
 
     /// [securityLabelNumber] Security labels that protects the offer.
     List<FhirUnsignedInt>? securityLabelNumber,
@@ -1775,7 +1775,7 @@ class ContractAsset with _$ContractAsset implements BackboneElement {
     List<String>? linkId,
 
     /// [linkIdElement] Extensions for linkId
-    @JsonKey(name: '_linkId') List<Element?>? linkIdElement,
+    @JsonKey(name: '_linkId') List<PrimitiveElement>? linkIdElement,
 
     /// [answer] Response to assets.
     List<ContractAnswer>? answer,
@@ -2157,7 +2157,7 @@ class ContractValuedItem with _$ContractValuedItem implements BackboneElement {
     List<String>? linkId,
 
     /// [linkIdElement] Extensions for linkId
-    @JsonKey(name: '_linkId') List<Element?>? linkIdElement,
+    @JsonKey(name: '_linkId') List<PrimitiveElement>? linkIdElement,
 
     /// [securityLabelNumber] A set of security labels that define which terms
     ///  are controlled by this condition.
@@ -2376,7 +2376,7 @@ class ContractAction with _$ContractAction implements BackboneElement {
     List<String>? linkId,
 
     /// [linkIdElement] Extensions for linkId
-    @JsonKey(name: '_linkId') List<Element?>? linkIdElement,
+    @JsonKey(name: '_linkId') List<PrimitiveElement>? linkIdElement,
 
     /// [status] Current state of the term action.
     required CodeableConcept status,
@@ -2391,7 +2391,8 @@ class ContractAction with _$ContractAction implements BackboneElement {
     List<String>? contextLinkId,
 
     /// [contextLinkIdElement] Extensions for contextLinkId
-    @JsonKey(name: '_contextLinkId') List<Element?>? contextLinkIdElement,
+    @JsonKey(name: '_contextLinkId')
+    List<PrimitiveElement>? contextLinkIdElement,
 
     /// [occurrenceDateTime] When action happens.
     FhirDateTime? occurrenceDateTime,
@@ -2416,7 +2417,8 @@ class ContractAction with _$ContractAction implements BackboneElement {
     List<String>? requesterLinkId,
 
     /// [requesterLinkIdElement] Extensions for requesterLinkId
-    @JsonKey(name: '_requesterLinkId') List<Element?>? requesterLinkIdElement,
+    @JsonKey(name: '_requesterLinkId')
+    List<PrimitiveElement>? requesterLinkIdElement,
 
     /// [performerType] The type of individual that is desired or required to
     ///  perform or not perform the action.
@@ -2436,7 +2438,8 @@ class ContractAction with _$ContractAction implements BackboneElement {
     List<String>? performerLinkId,
 
     /// [performerLinkIdElement] Extensions for performerLinkId
-    @JsonKey(name: '_performerLinkId') List<Element?>? performerLinkIdElement,
+    @JsonKey(name: '_performerLinkId')
+    List<PrimitiveElement>? performerLinkIdElement,
 
     /// [reasonCode] Rationale for the action to be performed or not performed.
     ///  Describes why the action is permitted or prohibited.
@@ -2451,7 +2454,7 @@ class ContractAction with _$ContractAction implements BackboneElement {
     List<String>? reason,
 
     /// [reasonElement] Extensions for reason
-    @JsonKey(name: '_reason') List<Element?>? reasonElement,
+    @JsonKey(name: '_reason') List<PrimitiveElement>? reasonElement,
 
     /// [reasonLinkId] Id [Identifier]?? of the clause or question text related
     /// to the reason type or reference of this  action in the referenced form or
@@ -2459,7 +2462,7 @@ class ContractAction with _$ContractAction implements BackboneElement {
     List<String>? reasonLinkId,
 
     /// [reasonLinkIdElement] Extensions for reasonLinkId
-    @JsonKey(name: '_reasonLinkId') List<Element?>? reasonLinkIdElement,
+    @JsonKey(name: '_reasonLinkId') List<PrimitiveElement>? reasonLinkIdElement,
 
     /// [note] Comments made about the term action made by the requester,
     ///  performer, subject or other participants.

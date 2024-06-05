@@ -444,7 +444,8 @@ class StructureDefinition with _$StructureDefinition implements DomainResource {
     List<String>? contextInvariant,
 
     /// [contextInvariantElement] Extensions for contextInvariant
-    @JsonKey(name: '_contextInvariant') List<Element?>? contextInvariantElement,
+    @JsonKey(name: '_contextInvariant')
+    List<PrimitiveElement>? contextInvariantElement,
 
     /// [type] The type this structure describes. If the derivation kind is
     /// 'specialization' then this is the master definition for a type, and there

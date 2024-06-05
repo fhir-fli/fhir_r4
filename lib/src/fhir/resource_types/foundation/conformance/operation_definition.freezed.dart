@@ -240,7 +240,8 @@ mixin _$OperationDefinition {
 
   /// [resourceElement] Extensions for resource
   @JsonKey(name: '_resource')
-  List<Element?>? get resourceElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get resourceElement =>
+      throw _privateConstructorUsedError;
 
   /// [system] Indicates whether this operation or named query can be invoked
   /// at the system level (e.g. without needing to choose a resource type for
@@ -346,7 +347,7 @@ abstract class $OperationDefinitionCopyWith<$Res> {
       @JsonKey(name: '_comment') PrimitiveElement? commentElement,
       FhirCanonical? base,
       List<FhirCode>? resource,
-      @JsonKey(name: '_resource') List<Element?>? resourceElement,
+      @JsonKey(name: '_resource') List<PrimitiveElement>? resourceElement,
       FhirBoolean? system,
       @JsonKey(name: '_system') PrimitiveElement? systemElement,
       FhirBoolean? type,
@@ -611,7 +612,7 @@ class _$OperationDefinitionCopyWithImpl<$Res, $Val extends OperationDefinition>
       resourceElement: freezed == resourceElement
           ? _value.resourceElement
           : resourceElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       system: freezed == system
           ? _value.system
           : system // ignore: cast_nullable_to_non_nullable
@@ -734,7 +735,7 @@ abstract class _$$OperationDefinitionImplCopyWith<$Res>
       @JsonKey(name: '_comment') PrimitiveElement? commentElement,
       FhirCanonical? base,
       List<FhirCode>? resource,
-      @JsonKey(name: '_resource') List<Element?>? resourceElement,
+      @JsonKey(name: '_resource') List<PrimitiveElement>? resourceElement,
       FhirBoolean? system,
       @JsonKey(name: '_system') PrimitiveElement? systemElement,
       FhirBoolean? type,
@@ -999,7 +1000,7 @@ class __$$OperationDefinitionImplCopyWithImpl<$Res>
       resourceElement: freezed == resourceElement
           ? _value._resourceElement
           : resourceElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       system: freezed == system
           ? _value.system
           : system // ignore: cast_nullable_to_non_nullable
@@ -1093,7 +1094,7 @@ class _$OperationDefinitionImpl extends _OperationDefinition {
       @JsonKey(name: '_comment') this.commentElement,
       this.base,
       final List<FhirCode>? resource,
-      @JsonKey(name: '_resource') final List<Element?>? resourceElement,
+      @JsonKey(name: '_resource') final List<PrimitiveElement>? resourceElement,
       this.system,
       @JsonKey(name: '_system') this.systemElement,
       this.type,
@@ -1467,12 +1468,12 @@ class _$OperationDefinitionImpl extends _OperationDefinition {
   }
 
   /// [resourceElement] Extensions for resource
-  final List<Element?>? _resourceElement;
+  final List<PrimitiveElement>? _resourceElement;
 
   /// [resourceElement] Extensions for resource
   @override
   @JsonKey(name: '_resource')
-  List<Element?>? get resourceElement {
+  List<PrimitiveElement>? get resourceElement {
     final value = _resourceElement;
     if (value == null) return null;
     if (_resourceElement is EqualUnmodifiableListView) return _resourceElement;
@@ -1783,7 +1784,7 @@ abstract class _OperationDefinition extends OperationDefinition {
       @JsonKey(name: '_comment') final PrimitiveElement? commentElement,
       final FhirCanonical? base,
       final List<FhirCode>? resource,
-      @JsonKey(name: '_resource') final List<Element?>? resourceElement,
+      @JsonKey(name: '_resource') final List<PrimitiveElement>? resourceElement,
       final FhirBoolean? system,
       @JsonKey(name: '_system') final PrimitiveElement? systemElement,
       final FhirBoolean? type,
@@ -2060,7 +2061,7 @@ abstract class _OperationDefinition extends OperationDefinition {
 
   /// [resourceElement] Extensions for resource
   @JsonKey(name: '_resource')
-  List<Element?>? get resourceElement;
+  List<PrimitiveElement>? get resourceElement;
   @override
 
   /// [system] Indicates whether this operation or named query can be invoked
@@ -3944,7 +3945,7 @@ mixin _$OperationDefinitionOverload {
 
   /// [parameterNameElement] Extensions for parameterName
   @JsonKey(name: '_parameterName')
-  List<Element?>? get parameterNameElement =>
+  List<PrimitiveElement>? get parameterNameElement =>
       throw _privateConstructorUsedError;
 
   /// [comment] Comments to go on overload.
@@ -3973,7 +3974,8 @@ abstract class $OperationDefinitionOverloadCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<String>? parameterName,
-      @JsonKey(name: '_parameterName') List<Element?>? parameterNameElement,
+      @JsonKey(name: '_parameterName')
+      List<PrimitiveElement>? parameterNameElement,
       String? comment,
       @JsonKey(name: '_comment') PrimitiveElement? commentElement});
 }
@@ -4020,7 +4022,7 @@ class _$OperationDefinitionOverloadCopyWithImpl<$Res,
       parameterNameElement: freezed == parameterNameElement
           ? _value.parameterNameElement
           : parameterNameElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       comment: freezed == comment
           ? _value.comment
           : comment // ignore: cast_nullable_to_non_nullable
@@ -4047,7 +4049,8 @@ abstract class _$$OperationDefinitionOverloadImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<String>? parameterName,
-      @JsonKey(name: '_parameterName') List<Element?>? parameterNameElement,
+      @JsonKey(name: '_parameterName')
+      List<PrimitiveElement>? parameterNameElement,
       String? comment,
       @JsonKey(name: '_comment') PrimitiveElement? commentElement});
 }
@@ -4093,7 +4096,7 @@ class __$$OperationDefinitionOverloadImplCopyWithImpl<$Res>
       parameterNameElement: freezed == parameterNameElement
           ? _value._parameterNameElement
           : parameterNameElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       comment: freezed == comment
           ? _value.comment
           : comment // ignore: cast_nullable_to_non_nullable
@@ -4115,7 +4118,7 @@ class _$OperationDefinitionOverloadImpl extends _OperationDefinitionOverload {
       final List<FhirExtension>? modifierExtension,
       final List<String>? parameterName,
       @JsonKey(name: '_parameterName')
-      final List<Element?>? parameterNameElement,
+      final List<PrimitiveElement>? parameterNameElement,
       this.comment,
       @JsonKey(name: '_comment') this.commentElement})
       : _extension_ = extension_,
@@ -4209,12 +4212,12 @@ class _$OperationDefinitionOverloadImpl extends _OperationDefinitionOverload {
   }
 
   /// [parameterNameElement] Extensions for parameterName
-  final List<Element?>? _parameterNameElement;
+  final List<PrimitiveElement>? _parameterNameElement;
 
   /// [parameterNameElement] Extensions for parameterName
   @override
   @JsonKey(name: '_parameterName')
-  List<Element?>? get parameterNameElement {
+  List<PrimitiveElement>? get parameterNameElement {
     final value = _parameterNameElement;
     if (value == null) return null;
     if (_parameterNameElement is EqualUnmodifiableListView)
@@ -4291,7 +4294,7 @@ abstract class _OperationDefinitionOverload
           final List<FhirExtension>? modifierExtension,
           final List<String>? parameterName,
           @JsonKey(name: '_parameterName')
-          final List<Element?>? parameterNameElement,
+          final List<PrimitiveElement>? parameterNameElement,
           final String? comment,
           @JsonKey(name: '_comment') final PrimitiveElement? commentElement}) =
       _$OperationDefinitionOverloadImpl;
@@ -4339,7 +4342,7 @@ abstract class _OperationDefinitionOverload
 
   /// [parameterNameElement] Extensions for parameterName
   @JsonKey(name: '_parameterName')
-  List<Element?>? get parameterNameElement;
+  List<PrimitiveElement>? get parameterNameElement;
   @override
 
   /// [comment] Comments to go on overload.

@@ -373,7 +373,8 @@ mixin _$Measure {
 
   /// [definitionElement] Extensions for definition
   @JsonKey(name: '_definition')
-  List<Element?>? get definitionElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get definitionElement =>
+      throw _privateConstructorUsedError;
 
   /// [guidance] Additional guidance for the measure including how it can be
   ///  used in a clinical context, and the intent of the measure.
@@ -476,7 +477,7 @@ abstract class $MeasureCopyWith<$Res> {
       PrimitiveElement? clinicalRecommendationStatementElement,
       CodeableConcept? improvementNotation,
       List<FhirMarkdown>? definition,
-      @JsonKey(name: '_definition') List<Element?>? definitionElement,
+      @JsonKey(name: '_definition') List<PrimitiveElement>? definitionElement,
       FhirMarkdown? guidance,
       @JsonKey(name: '_guidance') PrimitiveElement? guidanceElement,
       List<MeasureGroup>? group,
@@ -867,7 +868,7 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
       definitionElement: freezed == definitionElement
           ? _value.definitionElement
           : definitionElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       guidance: freezed == guidance
           ? _value.guidance
           : guidance // ignore: cast_nullable_to_non_nullable
@@ -1066,7 +1067,7 @@ abstract class _$$MeasureImplCopyWith<$Res> implements $MeasureCopyWith<$Res> {
       PrimitiveElement? clinicalRecommendationStatementElement,
       CodeableConcept? improvementNotation,
       List<FhirMarkdown>? definition,
-      @JsonKey(name: '_definition') List<Element?>? definitionElement,
+      @JsonKey(name: '_definition') List<PrimitiveElement>? definitionElement,
       FhirMarkdown? guidance,
       @JsonKey(name: '_guidance') PrimitiveElement? guidanceElement,
       List<MeasureGroup>? group,
@@ -1463,7 +1464,7 @@ class __$$MeasureImplCopyWithImpl<$Res>
       definitionElement: freezed == definitionElement
           ? _value._definitionElement
           : definitionElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       guidance: freezed == guidance
           ? _value.guidance
           : guidance // ignore: cast_nullable_to_non_nullable
@@ -1560,7 +1561,8 @@ class _$MeasureImpl extends _Measure {
       this.clinicalRecommendationStatementElement,
       this.improvementNotation,
       final List<FhirMarkdown>? definition,
-      @JsonKey(name: '_definition') final List<Element?>? definitionElement,
+      @JsonKey(name: '_definition')
+      final List<PrimitiveElement>? definitionElement,
       this.guidance,
       @JsonKey(name: '_guidance') this.guidanceElement,
       final List<MeasureGroup>? group,
@@ -2182,12 +2184,12 @@ class _$MeasureImpl extends _Measure {
   }
 
   /// [definitionElement] Extensions for definition
-  final List<Element?>? _definitionElement;
+  final List<PrimitiveElement>? _definitionElement;
 
   /// [definitionElement] Extensions for definition
   @override
   @JsonKey(name: '_definition')
-  List<Element?>? get definitionElement {
+  List<PrimitiveElement>? get definitionElement {
     final value = _definitionElement;
     if (value == null) return null;
     if (_definitionElement is EqualUnmodifiableListView)
@@ -2542,7 +2544,8 @@ abstract class _Measure extends Measure {
       final PrimitiveElement? clinicalRecommendationStatementElement,
       final CodeableConcept? improvementNotation,
       final List<FhirMarkdown>? definition,
-      @JsonKey(name: '_definition') final List<Element?>? definitionElement,
+      @JsonKey(name: '_definition')
+      final List<PrimitiveElement>? definitionElement,
       final FhirMarkdown? guidance,
       @JsonKey(name: '_guidance') final PrimitiveElement? guidanceElement,
       final List<MeasureGroup>? group,
@@ -2962,7 +2965,7 @@ abstract class _Measure extends Measure {
 
   /// [definitionElement] Extensions for definition
   @JsonKey(name: '_definition')
-  List<Element?>? get definitionElement;
+  List<PrimitiveElement>? get definitionElement;
   @override
 
   /// [guidance] Additional guidance for the measure including how it can be

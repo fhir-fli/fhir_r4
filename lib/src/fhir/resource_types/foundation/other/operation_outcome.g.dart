@@ -253,15 +253,13 @@ _$OperationOutcomeIssueImpl _$$OperationOutcomeIssueImplFromJson(
           ?.map((e) => e as String)
           .toList(),
       locationElement: (json['_location'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       expression: (json['expression'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
       expressionElement: (json['_expression'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -289,9 +287,9 @@ Map<String, dynamic> _$$OperationOutcomeIssueImplToJson(
   writeNotNull('_diagnostics', instance.diagnosticsElement?.toJson());
   writeNotNull('location', instance.location);
   writeNotNull(
-      '_location', instance.locationElement?.map((e) => e?.toJson()).toList());
+      '_location', instance.locationElement?.map((e) => e.toJson()).toList());
   writeNotNull('expression', instance.expression);
   writeNotNull('_expression',
-      instance.expressionElement?.map((e) => e?.toJson()).toList());
+      instance.expressionElement?.map((e) => e.toJson()).toList());
   return val;
 }

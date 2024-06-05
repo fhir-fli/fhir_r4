@@ -402,7 +402,7 @@ class ExplanationOfBenefit
     List<String>? preAuthRef,
 
     /// [preAuthRefElement] Extensions for preAuthRef
-    @JsonKey(name: '_preAuthRef') List<Element?>? preAuthRefElement,
+    @JsonKey(name: '_preAuthRef') List<PrimitiveElement>? preAuthRefElement,
 
     /// [preAuthRefPeriod] The timeframe during which the supplied
     /// preauthorization reference may be quoted on claims to obtain the
@@ -1526,7 +1526,7 @@ class ExplanationOfBenefitInsurance
     List<String>? preAuthRef,
 
     /// [preAuthRefElement] Extensions for preAuthRef
-    @JsonKey(name: '_preAuthRef') List<Element?>? preAuthRefElement,
+    @JsonKey(name: '_preAuthRef') List<PrimitiveElement>? preAuthRefElement,
   }) = _ExplanationOfBenefitInsurance;
 
   @override
@@ -1870,7 +1870,8 @@ class ExplanationOfBenefitItem
     List<FhirPositiveInt>? careTeamSequence,
 
     /// [careTeamSequenceElement] Extensions for careTeamSequence
-    @JsonKey(name: '_careTeamSequence') List<Element?>? careTeamSequenceElement,
+    @JsonKey(name: '_careTeamSequence')
+    List<PrimitiveElement>? careTeamSequenceElement,
 
     /// [diagnosisSequence] Diagnoses applicable for this service or product.
     List<FhirPositiveInt>? diagnosisSequence,
@@ -1974,7 +1975,7 @@ class ExplanationOfBenefitItem
     List<FhirPositiveInt>? noteNumber,
 
     /// [noteNumberElement] Extensions for noteNumber
-    @JsonKey(name: '_noteNumber') List<Element?>? noteNumberElement,
+    @JsonKey(name: '_noteNumber') List<PrimitiveElement>? noteNumberElement,
 
     /// [adjudication] If this item is a group then the values here are a summary
     /// of the adjudication of the detail items. If this item is a simple product
@@ -2327,7 +2328,7 @@ class ExplanationOfBenefitDetail
     List<FhirPositiveInt>? noteNumber,
 
     /// [noteNumberElement] Extensions for noteNumber
-    @JsonKey(name: '_noteNumber') List<Element?>? noteNumberElement,
+    @JsonKey(name: '_noteNumber') List<PrimitiveElement>? noteNumberElement,
 
     /// [adjudication] The adjudication results.
     List<ExplanationOfBenefitAdjudication>? adjudication,
@@ -2543,7 +2544,7 @@ class ExplanationOfBenefitSubDetail
     List<FhirPositiveInt>? noteNumber,
 
     /// [noteNumberElement] Extensions for noteNumber
-    @JsonKey(name: '_noteNumber') List<Element?>? noteNumberElement,
+    @JsonKey(name: '_noteNumber') List<PrimitiveElement>? noteNumberElement,
 
     /// [adjudication] The adjudication results.
     List<ExplanationOfBenefitAdjudication>? adjudication,
@@ -2731,14 +2732,15 @@ class ExplanationOfBenefitAddItem
     List<FhirPositiveInt>? itemSequence,
 
     /// [itemSequenceElement] Extensions for itemSequence
-    @JsonKey(name: '_itemSequence') List<Element?>? itemSequenceElement,
+    @JsonKey(name: '_itemSequence') List<PrimitiveElement>? itemSequenceElement,
 
     /// [detailSequence] The sequence number of the details within the claim item
     ///  which this line is intended to replace.
     List<FhirPositiveInt>? detailSequence,
 
     /// [detailSequenceElement] Extensions for detailSequence
-    @JsonKey(name: '_detailSequence') List<Element?>? detailSequenceElement,
+    @JsonKey(name: '_detailSequence')
+    List<PrimitiveElement>? detailSequenceElement,
 
     /// [subDetailSequence] The sequence number of the sub-details woithin the
     ///  details within the claim item which this line is intended to replace.
@@ -2817,7 +2819,7 @@ class ExplanationOfBenefitAddItem
     List<FhirPositiveInt>? noteNumber,
 
     /// [noteNumberElement] Extensions for noteNumber
-    @JsonKey(name: '_noteNumber') List<Element?>? noteNumberElement,
+    @JsonKey(name: '_noteNumber') List<PrimitiveElement>? noteNumberElement,
 
     /// [adjudication] The adjudication results.
     List<ExplanationOfBenefitAdjudication>? adjudication,
@@ -3000,7 +3002,7 @@ class ExplanationOfBenefitDetail1
     List<FhirPositiveInt>? noteNumber,
 
     /// [noteNumberElement] Extensions for noteNumber
-    @JsonKey(name: '_noteNumber') List<Element?>? noteNumberElement,
+    @JsonKey(name: '_noteNumber') List<PrimitiveElement>? noteNumberElement,
 
     /// [adjudication] The adjudication results.
     List<ExplanationOfBenefitAdjudication>? adjudication,
@@ -3181,7 +3183,7 @@ class ExplanationOfBenefitSubDetail1
     List<FhirPositiveInt>? noteNumber,
 
     /// [noteNumberElement] Extensions for noteNumber
-    @JsonKey(name: '_noteNumber') List<Element?>? noteNumberElement,
+    @JsonKey(name: '_noteNumber') List<PrimitiveElement>? noteNumberElement,
 
     /// [adjudication] The adjudication results.
     List<ExplanationOfBenefitAdjudication>? adjudication,

@@ -255,7 +255,7 @@ class DeviceDefinition with _$DeviceDefinition implements DomainResource {
     List<String>? version,
 
     /// [versionElement] Extensions for version
-    @JsonKey(name: '_version') List<Element?>? versionElement,
+    @JsonKey(name: '_version') List<PrimitiveElement>? versionElement,
 
     /// [safety] Safety characteristics of the device.
     List<CodeableConcept>? safety,

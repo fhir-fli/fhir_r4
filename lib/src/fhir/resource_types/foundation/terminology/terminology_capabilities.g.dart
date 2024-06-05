@@ -539,9 +539,7 @@ _$TerminologyCapabilitiesVersionImpl
               ?.map(FhirCode.fromJson)
               .toList(),
           languageElement: (json['_language'] as List<dynamic>?)
-              ?.map((e) => e == null
-                  ? null
-                  : Element.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
               .toList(),
           filter: (json['filter'] as List<dynamic>?)
               ?.map((e) => TerminologyCapabilitiesFilter.fromJson(
@@ -551,9 +549,7 @@ _$TerminologyCapabilitiesVersionImpl
               ?.map(FhirCode.fromJson)
               .toList(),
           propertyElement: (json['_property'] as List<dynamic>?)
-              ?.map((e) => e == null
-                  ? null
-                  : Element.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
               .toList(),
         );
 
@@ -580,11 +576,11 @@ Map<String, dynamic> _$$TerminologyCapabilitiesVersionImplToJson(
   writeNotNull('_compositional', instance.compositionalElement?.toJson());
   writeNotNull('language', instance.language?.map((e) => e.toJson()).toList());
   writeNotNull(
-      '_language', instance.languageElement?.map((e) => e?.toJson()).toList());
+      '_language', instance.languageElement?.map((e) => e.toJson()).toList());
   writeNotNull('filter', instance.filter?.map((e) => e.toJson()).toList());
   writeNotNull('property', instance.property?.map((e) => e.toJson()).toList());
   writeNotNull(
-      '_property', instance.propertyElement?.map((e) => e?.toJson()).toList());
+      '_property', instance.propertyElement?.map((e) => e.toJson()).toList());
   return val;
 }
 
@@ -605,9 +601,7 @@ _$TerminologyCapabilitiesFilterImpl
                   json['_code'] as Map<String, dynamic>),
           op: (json['op'] as List<dynamic>?)?.map(FhirCode.fromJson).toList(),
           opElement: (json['_op'] as List<dynamic>?)
-              ?.map((e) => e == null
-                  ? null
-                  : Element.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
               .toList(),
         );
 
@@ -629,7 +623,7 @@ Map<String, dynamic> _$$TerminologyCapabilitiesFilterImplToJson(
   writeNotNull('code', instance.code?.toJson());
   writeNotNull('_code', instance.codeElement?.toJson());
   writeNotNull('op', instance.op?.map((e) => e.toJson()).toList());
-  writeNotNull('_op', instance.opElement?.map((e) => e?.toJson()).toList());
+  writeNotNull('_op', instance.opElement?.map((e) => e.toJson()).toList());
   return val;
 }
 

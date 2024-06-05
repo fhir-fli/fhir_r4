@@ -567,8 +567,7 @@ _$PlanDefinitionActionImpl _$$PlanDefinitionActionImplFromJson(
           .toList(),
       goalId: (json['goalId'] as List<dynamic>?)?.map(FhirId.fromJson).toList(),
       goalIdElement: (json['_goalId'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       subjectCodeableConcept: json['subjectCodeableConcept'] == null
           ? null
@@ -582,8 +581,7 @@ _$PlanDefinitionActionImpl _$$PlanDefinitionActionImplFromJson(
           ? null
           : FhirCanonical.fromJson(json['subjectCanonical']),
       subjectCanonicalElement: (json['_subjectCanonical'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       trigger: (json['trigger'] as List<dynamic>?)
           ?.map((e) => TriggerDefinition.fromJson(e as Map<String, dynamic>))
@@ -724,13 +722,13 @@ Map<String, dynamic> _$$PlanDefinitionActionImplToJson(
       'documentation', instance.documentation?.map((e) => e.toJson()).toList());
   writeNotNull('goalId', instance.goalId?.map((e) => e.toJson()).toList());
   writeNotNull(
-      '_goalId', instance.goalIdElement?.map((e) => e?.toJson()).toList());
+      '_goalId', instance.goalIdElement?.map((e) => e.toJson()).toList());
   writeNotNull(
       'subjectCodeableConcept', instance.subjectCodeableConcept?.toJson());
   writeNotNull('subjectReference', instance.subjectReference?.toJson());
   writeNotNull('subjectCanonical', instance.subjectCanonical?.toJson());
   writeNotNull('_subjectCanonical',
-      instance.subjectCanonicalElement?.map((e) => e?.toJson()).toList());
+      instance.subjectCanonicalElement?.map((e) => e.toJson()).toList());
   writeNotNull('trigger', instance.trigger?.map((e) => e.toJson()).toList());
   writeNotNull(
       'condition', instance.condition?.map((e) => e.toJson()).toList());

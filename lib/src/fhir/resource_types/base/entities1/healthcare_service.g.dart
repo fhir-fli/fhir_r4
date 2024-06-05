@@ -405,9 +405,7 @@ _$HealthcareServiceAvailableTimeImpl
                   _$HealthcareServiceAvailableTimeDaysOfWeekEnumMap, e))
               .toList(),
           daysOfWeekElement: (json['_daysOfWeek'] as List<dynamic>?)
-              ?.map((e) => e == null
-                  ? null
-                  : Element.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
               .toList(),
           allDay: json['allDay'] == null
               ? null
@@ -453,7 +451,7 @@ Map<String, dynamic> _$$HealthcareServiceAvailableTimeImplToJson(
           ?.map((e) => _$HealthcareServiceAvailableTimeDaysOfWeekEnumMap[e]!)
           .toList());
   writeNotNull('_daysOfWeek',
-      instance.daysOfWeekElement?.map((e) => e?.toJson()).toList());
+      instance.daysOfWeekElement?.map((e) => e.toJson()).toList());
   writeNotNull('allDay', instance.allDay?.toJson());
   writeNotNull('_allDay', instance.allDayElement?.toJson());
   writeNotNull('availableStartTime', instance.availableStartTime?.toJson());

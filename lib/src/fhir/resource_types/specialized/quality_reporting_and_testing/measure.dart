@@ -604,7 +604,7 @@ class Measure with _$Measure implements DomainResource {
     List<FhirMarkdown>? definition,
 
     /// [definitionElement] Extensions for definition
-    @JsonKey(name: '_definition') List<Element?>? definitionElement,
+    @JsonKey(name: '_definition') List<PrimitiveElement>? definitionElement,
 
     /// [guidance] Additional guidance for the measure including how it can be
     ///  used in a clinical context, and the intent of the measure.

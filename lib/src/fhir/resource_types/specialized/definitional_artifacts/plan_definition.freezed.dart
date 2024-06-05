@@ -3703,7 +3703,8 @@ mixin _$PlanDefinitionAction {
 
   /// [goalIdElement] Extensions for goalId
   @JsonKey(name: '_goalId')
-  List<Element?>? get goalIdElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get goalIdElement =>
+      throw _privateConstructorUsedError;
 
   /// [subjectCodeableConcept] A code or group definition that describes the
   ///  intended subject of the action and its children, if any.
@@ -3715,7 +3716,7 @@ mixin _$PlanDefinitionAction {
   Reference? get subjectReference => throw _privateConstructorUsedError;
   FhirCanonical? get subjectCanonical => throw _privateConstructorUsedError;
   @JsonKey(name: '_subjectCanonical')
-  List<Element?>? get subjectCanonicalElement =>
+  List<PrimitiveElement>? get subjectCanonicalElement =>
       throw _privateConstructorUsedError;
 
   /// [trigger] A description of when the action should be triggered.
@@ -3888,12 +3889,12 @@ abstract class $PlanDefinitionActionCopyWith<$Res> {
       List<CodeableConcept>? reason,
       List<RelatedArtifact>? documentation,
       List<FhirId>? goalId,
-      @JsonKey(name: '_goalId') List<Element?>? goalIdElement,
+      @JsonKey(name: '_goalId') List<PrimitiveElement>? goalIdElement,
       CodeableConcept? subjectCodeableConcept,
       Reference? subjectReference,
       FhirCanonical? subjectCanonical,
       @JsonKey(name: '_subjectCanonical')
-      List<Element?>? subjectCanonicalElement,
+      List<PrimitiveElement>? subjectCanonicalElement,
       List<TriggerDefinition>? trigger,
       List<PlanDefinitionCondition>? condition,
       List<DataRequirement>? input,
@@ -4082,7 +4083,7 @@ class _$PlanDefinitionActionCopyWithImpl<$Res,
       goalIdElement: freezed == goalIdElement
           ? _value.goalIdElement
           : goalIdElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       subjectCodeableConcept: freezed == subjectCodeableConcept
           ? _value.subjectCodeableConcept
           : subjectCodeableConcept // ignore: cast_nullable_to_non_nullable
@@ -4098,7 +4099,7 @@ class _$PlanDefinitionActionCopyWithImpl<$Res,
       subjectCanonicalElement: freezed == subjectCanonicalElement
           ? _value.subjectCanonicalElement
           : subjectCanonicalElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       trigger: freezed == trigger
           ? _value.trigger
           : trigger // ignore: cast_nullable_to_non_nullable
@@ -4350,12 +4351,12 @@ abstract class _$$PlanDefinitionActionImplCopyWith<$Res>
       List<CodeableConcept>? reason,
       List<RelatedArtifact>? documentation,
       List<FhirId>? goalId,
-      @JsonKey(name: '_goalId') List<Element?>? goalIdElement,
+      @JsonKey(name: '_goalId') List<PrimitiveElement>? goalIdElement,
       CodeableConcept? subjectCodeableConcept,
       Reference? subjectReference,
       FhirCanonical? subjectCanonical,
       @JsonKey(name: '_subjectCanonical')
-      List<Element?>? subjectCanonicalElement,
+      List<PrimitiveElement>? subjectCanonicalElement,
       List<TriggerDefinition>? trigger,
       List<PlanDefinitionCondition>? condition,
       List<DataRequirement>? input,
@@ -4549,7 +4550,7 @@ class __$$PlanDefinitionActionImplCopyWithImpl<$Res>
       goalIdElement: freezed == goalIdElement
           ? _value._goalIdElement
           : goalIdElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       subjectCodeableConcept: freezed == subjectCodeableConcept
           ? _value.subjectCodeableConcept
           : subjectCodeableConcept // ignore: cast_nullable_to_non_nullable
@@ -4565,7 +4566,7 @@ class __$$PlanDefinitionActionImplCopyWithImpl<$Res>
       subjectCanonicalElement: freezed == subjectCanonicalElement
           ? _value._subjectCanonicalElement
           : subjectCanonicalElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       trigger: freezed == trigger
           ? _value._trigger
           : trigger // ignore: cast_nullable_to_non_nullable
@@ -4715,12 +4716,12 @@ class _$PlanDefinitionActionImpl extends _PlanDefinitionAction {
       final List<CodeableConcept>? reason,
       final List<RelatedArtifact>? documentation,
       final List<FhirId>? goalId,
-      @JsonKey(name: '_goalId') final List<Element?>? goalIdElement,
+      @JsonKey(name: '_goalId') final List<PrimitiveElement>? goalIdElement,
       this.subjectCodeableConcept,
       this.subjectReference,
       this.subjectCanonical,
       @JsonKey(name: '_subjectCanonical')
-      final List<Element?>? subjectCanonicalElement,
+      final List<PrimitiveElement>? subjectCanonicalElement,
       final List<TriggerDefinition>? trigger,
       final List<PlanDefinitionCondition>? condition,
       final List<DataRequirement>? input,
@@ -4953,12 +4954,12 @@ class _$PlanDefinitionActionImpl extends _PlanDefinitionAction {
   }
 
   /// [goalIdElement] Extensions for goalId
-  final List<Element?>? _goalIdElement;
+  final List<PrimitiveElement>? _goalIdElement;
 
   /// [goalIdElement] Extensions for goalId
   @override
   @JsonKey(name: '_goalId')
-  List<Element?>? get goalIdElement {
+  List<PrimitiveElement>? get goalIdElement {
     final value = _goalIdElement;
     if (value == null) return null;
     if (_goalIdElement is EqualUnmodifiableListView) return _goalIdElement;
@@ -4977,10 +4978,10 @@ class _$PlanDefinitionActionImpl extends _PlanDefinitionAction {
   final Reference? subjectReference;
   @override
   final FhirCanonical? subjectCanonical;
-  final List<Element?>? _subjectCanonicalElement;
+  final List<PrimitiveElement>? _subjectCanonicalElement;
   @override
   @JsonKey(name: '_subjectCanonical')
-  List<Element?>? get subjectCanonicalElement {
+  List<PrimitiveElement>? get subjectCanonicalElement {
     final value = _subjectCanonicalElement;
     if (value == null) return null;
     if (_subjectCanonicalElement is EqualUnmodifiableListView)
@@ -5431,12 +5432,12 @@ abstract class _PlanDefinitionAction extends PlanDefinitionAction {
       final List<CodeableConcept>? reason,
       final List<RelatedArtifact>? documentation,
       final List<FhirId>? goalId,
-      @JsonKey(name: '_goalId') final List<Element?>? goalIdElement,
+      @JsonKey(name: '_goalId') final List<PrimitiveElement>? goalIdElement,
       final CodeableConcept? subjectCodeableConcept,
       final Reference? subjectReference,
       final FhirCanonical? subjectCanonical,
       @JsonKey(name: '_subjectCanonical')
-      final List<Element?>? subjectCanonicalElement,
+      final List<PrimitiveElement>? subjectCanonicalElement,
       final List<TriggerDefinition>? trigger,
       final List<PlanDefinitionCondition>? condition,
       final List<DataRequirement>? input,
@@ -5587,7 +5588,7 @@ abstract class _PlanDefinitionAction extends PlanDefinitionAction {
 
   /// [goalIdElement] Extensions for goalId
   @JsonKey(name: '_goalId')
-  List<Element?>? get goalIdElement;
+  List<PrimitiveElement>? get goalIdElement;
   @override
 
   /// [subjectCodeableConcept] A code or group definition that describes the
@@ -5602,7 +5603,7 @@ abstract class _PlanDefinitionAction extends PlanDefinitionAction {
   FhirCanonical? get subjectCanonical;
   @override
   @JsonKey(name: '_subjectCanonical')
-  List<Element?>? get subjectCanonicalElement;
+  List<PrimitiveElement>? get subjectCanonicalElement;
   @override
 
   /// [trigger] A description of when the action should be triggered.

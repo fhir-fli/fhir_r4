@@ -325,7 +325,7 @@ class Questionnaire with _$Questionnaire implements DomainResource {
     List<FhirCode>? subjectType,
 
     /// [subjectTypeElement] Extensions for subjectType
-    @JsonKey(name: '_subjectType') List<Element?>? subjectTypeElement,
+    @JsonKey(name: '_subjectType') List<PrimitiveElement>? subjectTypeElement,
 
     /// [date] The date  (and optionally time) when the questionnaire was
     /// published. The date must change when the business version changes and it

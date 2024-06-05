@@ -431,7 +431,7 @@ class TestScript with _$TestScript implements DomainResource {
   @override
   String toJsonString() => jsonEncode(toJson());
 
-    @override
+  @override
   Resource newId() => copyWith(id: generateNewUuidString());
 
   @override
@@ -1057,7 +1057,7 @@ class TestScriptCapability
     List<FhirInteger>? origin,
 
     /// [originElement] Extensions for origin
-    @JsonKey(name: '_origin') List<Element?>? originElement,
+    @JsonKey(name: '_origin') List<PrimitiveElement>? originElement,
 
     /// [destination] Which server these requirements apply to.
     FhirInteger? destination,
@@ -1070,7 +1070,7 @@ class TestScriptCapability
     List<FhirUri>? link,
 
     /// [linkElement] Extensions for link
-    @JsonKey(name: '_link') List<Element?>? linkElement,
+    @JsonKey(name: '_link') List<PrimitiveElement>? linkElement,
 
     /// [capabilities] Minimum capabilities required of server for test script to
     /// execute successfully.   If server does not meet at a minimum the

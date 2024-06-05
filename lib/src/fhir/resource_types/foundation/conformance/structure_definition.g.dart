@@ -145,8 +145,7 @@ _$StructureDefinitionImpl _$$StructureDefinitionImplFromJson(
           ?.map((e) => e as String)
           .toList(),
       contextInvariantElement: (json['_contextInvariant'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       type: json['type'] == null ? null : FhirUri.fromJson(json['type']),
       typeElement: json['_type'] == null
@@ -241,7 +240,7 @@ Map<String, dynamic> _$$StructureDefinitionImplToJson(
   writeNotNull('context', instance.context?.map((e) => e.toJson()).toList());
   writeNotNull('contextInvariant', instance.contextInvariant);
   writeNotNull('_contextInvariant',
-      instance.contextInvariantElement?.map((e) => e?.toJson()).toList());
+      instance.contextInvariantElement?.map((e) => e.toJson()).toList());
   writeNotNull('type', instance.type?.toJson());
   writeNotNull('_type', instance.typeElement?.toJson());
   writeNotNull('baseDefinition', instance.baseDefinition?.toJson());

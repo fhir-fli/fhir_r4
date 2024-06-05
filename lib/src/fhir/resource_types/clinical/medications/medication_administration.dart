@@ -242,7 +242,7 @@ class MedicationAdministration
     List<FhirUri>? instantiates,
 
     /// [instantiatesElement] Extensions for instantiates
-    @JsonKey(name: '_instantiates') List<Element?>? instantiatesElement,
+    @JsonKey(name: '_instantiates') List<PrimitiveElement>? instantiatesElement,
 
     /// [partOf] A larger event of which this particular event is a component or
     ///  step.

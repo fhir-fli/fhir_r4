@@ -254,7 +254,7 @@ class MedicationKnowledge with _$MedicationKnowledge implements DomainResource {
     List<String>? synonym,
 
     /// [synonymElement] Extensions for synonym
-    @JsonKey(name: '_synonym') List<Element?>? synonymElement,
+    @JsonKey(name: '_synonym') List<PrimitiveElement>? synonymElement,
     List<MedicationKnowledgeRelatedMedicationKnowledge>?
 
         /// [relatedMedicationKnowledge] Associated or related knowledge about a
@@ -1277,7 +1277,7 @@ class MedicationKnowledgePatientCharacteristics
     List<String>? value,
 
     /// [valueElement] Extensions for value
-    @JsonKey(name: '_value') List<Element?>? valueElement,
+    @JsonKey(name: '_value') List<PrimitiveElement>? valueElement,
   }) = _MedicationKnowledgePatientCharacteristics;
 
   @override

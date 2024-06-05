@@ -127,8 +127,7 @@ _$OperationDefinitionImpl _$$OperationDefinitionImplFromJson(
       resource:
           (json['resource'] as List<dynamic>?)?.map(FhirCode.fromJson).toList(),
       resourceElement: (json['_resource'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       system:
           json['system'] == null ? null : FhirBoolean.fromJson(json['system']),
@@ -223,7 +222,7 @@ Map<String, dynamic> _$$OperationDefinitionImplToJson(
   writeNotNull('base', instance.base?.toJson());
   writeNotNull('resource', instance.resource?.map((e) => e.toJson()).toList());
   writeNotNull(
-      '_resource', instance.resourceElement?.map((e) => e?.toJson()).toList());
+      '_resource', instance.resourceElement?.map((e) => e.toJson()).toList());
   writeNotNull('system', instance.system?.toJson());
   writeNotNull('_system', instance.systemElement?.toJson());
   writeNotNull('type', instance.type?.toJson());
@@ -579,8 +578,7 @@ _$OperationDefinitionOverloadImpl _$$OperationDefinitionOverloadImplFromJson(
           ?.map((e) => e as String)
           .toList(),
       parameterNameElement: (json['_parameterName'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       comment: json['comment'] as String?,
       commentElement: json['_comment'] == null
@@ -605,7 +603,7 @@ Map<String, dynamic> _$$OperationDefinitionOverloadImplToJson(
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('parameterName', instance.parameterName);
   writeNotNull('_parameterName',
-      instance.parameterNameElement?.map((e) => e?.toJson()).toList());
+      instance.parameterNameElement?.map((e) => e.toJson()).toList());
   writeNotNull('comment', instance.comment);
   writeNotNull('_comment', instance.commentElement?.toJson());
   return val;

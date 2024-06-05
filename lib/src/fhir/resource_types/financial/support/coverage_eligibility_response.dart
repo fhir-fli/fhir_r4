@@ -220,7 +220,7 @@ class CoverageEligibilityResponse
     List<FhirCode>? purpose,
 
     /// [purposeElement] Extensions for purpose
-    @JsonKey(name: '_purpose') List<Element?>? purposeElement,
+    @JsonKey(name: '_purpose') List<PrimitiveElement>? purposeElement,
 
     /// [patient] The party who is the beneficiary of the supplied coverage and
     ///  for whom eligibility is sought.

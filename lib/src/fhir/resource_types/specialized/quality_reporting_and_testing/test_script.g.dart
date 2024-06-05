@@ -542,8 +542,7 @@ _$TestScriptCapabilityImpl _$$TestScriptCapabilityImplFromJson(
           ?.map(FhirInteger.fromJson)
           .toList(),
       originElement: (json['_origin'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       destination: json['destination'] == null
           ? null
@@ -554,8 +553,7 @@ _$TestScriptCapabilityImpl _$$TestScriptCapabilityImplFromJson(
               json['_destination'] as Map<String, dynamic>),
       link: (json['link'] as List<dynamic>?)?.map(FhirUri.fromJson).toList(),
       linkElement: (json['_link'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       capabilities: FhirCanonical.fromJson(json['capabilities']),
     );
@@ -583,11 +581,11 @@ Map<String, dynamic> _$$TestScriptCapabilityImplToJson(
   writeNotNull('_description', instance.descriptionElement?.toJson());
   writeNotNull('origin', instance.origin?.map((e) => e.toJson()).toList());
   writeNotNull(
-      '_origin', instance.originElement?.map((e) => e?.toJson()).toList());
+      '_origin', instance.originElement?.map((e) => e.toJson()).toList());
   writeNotNull('destination', instance.destination?.toJson());
   writeNotNull('_destination', instance.destinationElement?.toJson());
   writeNotNull('link', instance.link?.map((e) => e.toJson()).toList());
-  writeNotNull('_link', instance.linkElement?.map((e) => e?.toJson()).toList());
+  writeNotNull('_link', instance.linkElement?.map((e) => e.toJson()).toList());
   val['capabilities'] = instance.capabilities.toJson();
   return val;
 }

@@ -182,7 +182,7 @@ class AllergyIntolerance with _$AllergyIntolerance implements DomainResource {
     FhirCode? type,
     @JsonKey(name: '_type') PrimitiveElement? typeElement,
     List<FhirCode>? category,
-    @JsonKey(name: '_category') List<Element?>? categoryElement,
+    @JsonKey(name: '_category') List<PrimitiveElement>? categoryElement,
     FhirCode? criticality,
     @JsonKey(name: '_criticality') PrimitiveElement? criticalityElement,
     CodeableConcept? code,

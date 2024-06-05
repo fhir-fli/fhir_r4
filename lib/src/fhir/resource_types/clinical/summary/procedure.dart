@@ -212,7 +212,8 @@ class Procedure with _$Procedure implements DomainResource {
     List<Identifier>? identifier,
     List<FhirCanonical>? instantiatesCanonical,
     List<FhirUri>? instantiatesUri,
-    @JsonKey(name: '_instantiatesUri') List<Element?>? instantiatesUriElement,
+    @JsonKey(name: '_instantiatesUri')
+    List<PrimitiveElement>? instantiatesUriElement,
     List<Reference>? basedOn,
     List<Reference>? partOf,
     FhirCode? status,

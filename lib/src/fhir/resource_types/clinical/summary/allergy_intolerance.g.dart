@@ -60,8 +60,7 @@ _$AllergyIntoleranceImpl _$$AllergyIntoleranceImplFromJson(
       category:
           (json['category'] as List<dynamic>?)?.map(FhirCode.fromJson).toList(),
       categoryElement: (json['_category'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       criticality: json['criticality'] == null
           ? null
@@ -160,7 +159,7 @@ Map<String, dynamic> _$$AllergyIntoleranceImplToJson(
   writeNotNull('_type', instance.typeElement?.toJson());
   writeNotNull('category', instance.category?.map((e) => e.toJson()).toList());
   writeNotNull(
-      '_category', instance.categoryElement?.map((e) => e?.toJson()).toList());
+      '_category', instance.categoryElement?.map((e) => e.toJson()).toList());
   writeNotNull('criticality', instance.criticality?.toJson());
   writeNotNull('_criticality', instance.criticalityElement?.toJson());
   writeNotNull('code', instance.code?.toJson());

@@ -286,7 +286,7 @@ class ResearchDefinition with _$ResearchDefinition implements DomainResource {
     FhirMarkdown? description,
     @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
     List<String>? comment,
-    @JsonKey(name: '_comment') List<Element?>? commentElement,
+    @JsonKey(name: '_comment') List<PrimitiveElement>? commentElement,
     List<UsageContext>? useContext,
     List<CodeableConcept>? jurisdiction,
     FhirMarkdown? purpose,

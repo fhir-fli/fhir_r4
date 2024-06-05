@@ -80,7 +80,8 @@ mixin _$ResearchElementDefinition {
       throw _privateConstructorUsedError;
   List<String>? get comment => throw _privateConstructorUsedError;
   @JsonKey(name: '_comment')
-  List<Element?>? get commentElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get commentElement =>
+      throw _privateConstructorUsedError;
   List<UsageContext>? get useContext => throw _privateConstructorUsedError;
   List<CodeableConcept>? get jurisdiction => throw _privateConstructorUsedError;
   FhirMarkdown? get purpose => throw _privateConstructorUsedError;
@@ -172,7 +173,7 @@ abstract class $ResearchElementDefinitionCopyWith<$Res> {
       FhirMarkdown? description,
       @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       List<String>? comment,
-      @JsonKey(name: '_comment') List<Element?>? commentElement,
+      @JsonKey(name: '_comment') List<PrimitiveElement>? commentElement,
       List<UsageContext>? useContext,
       List<CodeableConcept>? jurisdiction,
       FhirMarkdown? purpose,
@@ -441,7 +442,7 @@ class _$ResearchElementDefinitionCopyWithImpl<$Res,
       commentElement: freezed == commentElement
           ? _value.commentElement
           : commentElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       useContext: freezed == useContext
           ? _value.useContext
           : useContext // ignore: cast_nullable_to_non_nullable
@@ -656,7 +657,7 @@ abstract class _$$ResearchElementDefinitionImplCopyWith<$Res>
       FhirMarkdown? description,
       @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       List<String>? comment,
-      @JsonKey(name: '_comment') List<Element?>? commentElement,
+      @JsonKey(name: '_comment') List<PrimitiveElement>? commentElement,
       List<UsageContext>? useContext,
       List<CodeableConcept>? jurisdiction,
       FhirMarkdown? purpose,
@@ -929,7 +930,7 @@ class __$$ResearchElementDefinitionImplCopyWithImpl<$Res>
       commentElement: freezed == commentElement
           ? _value._commentElement
           : commentElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       useContext: freezed == useContext
           ? _value._useContext
           : useContext // ignore: cast_nullable_to_non_nullable
@@ -1077,7 +1078,7 @@ class _$ResearchElementDefinitionImpl extends _ResearchElementDefinition {
       this.description,
       @JsonKey(name: '_description') this.descriptionElement,
       final List<String>? comment,
-      @JsonKey(name: '_comment') final List<Element?>? commentElement,
+      @JsonKey(name: '_comment') final List<PrimitiveElement>? commentElement,
       final List<UsageContext>? useContext,
       final List<CodeableConcept>? jurisdiction,
       this.purpose,
@@ -1266,10 +1267,10 @@ class _$ResearchElementDefinitionImpl extends _ResearchElementDefinition {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<Element?>? _commentElement;
+  final List<PrimitiveElement>? _commentElement;
   @override
   @JsonKey(name: '_comment')
-  List<Element?>? get commentElement {
+  List<PrimitiveElement>? get commentElement {
     final value = _commentElement;
     if (value == null) return null;
     if (_commentElement is EqualUnmodifiableListView) return _commentElement;
@@ -1660,7 +1661,7 @@ abstract class _ResearchElementDefinition extends ResearchElementDefinition {
       final FhirMarkdown? description,
       @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       final List<String>? comment,
-      @JsonKey(name: '_comment') final List<Element?>? commentElement,
+      @JsonKey(name: '_comment') final List<PrimitiveElement>? commentElement,
       final List<UsageContext>? useContext,
       final List<CodeableConcept>? jurisdiction,
       final FhirMarkdown? purpose,
@@ -1788,7 +1789,7 @@ abstract class _ResearchElementDefinition extends ResearchElementDefinition {
   List<String>? get comment;
   @override
   @JsonKey(name: '_comment')
-  List<Element?>? get commentElement;
+  List<PrimitiveElement>? get commentElement;
   @override
   List<UsageContext>? get useContext;
   @override

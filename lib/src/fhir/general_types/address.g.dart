@@ -28,8 +28,7 @@ _$AddressImpl _$$AddressImplFromJson(Map<String, dynamic> json) =>
           : PrimitiveElement.fromJson(json['_text'] as Map<String, dynamic>),
       line: (json['line'] as List<dynamic>?)?.map((e) => e as String).toList(),
       lineElement: (json['_line'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       city: json['city'] as String?,
       cityElement: json['_city'] == null
@@ -77,7 +76,7 @@ Map<String, dynamic> _$$AddressImplToJson(_$AddressImpl instance) {
   writeNotNull('text', instance.text);
   writeNotNull('_text', instance.textElement?.toJson());
   writeNotNull('line', instance.line);
-  writeNotNull('_line', instance.lineElement?.map((e) => e?.toJson()).toList());
+  writeNotNull('_line', instance.lineElement?.map((e) => e.toJson()).toList());
   writeNotNull('city', instance.city);
   writeNotNull('_city', instance.cityElement?.toJson());
   writeNotNull('district', instance.district);

@@ -1138,49 +1138,49 @@ class MolecularSequenceRoc
     List<FhirInteger>? score,
 
     /// [scoreElement] Extensions for score
-    @JsonKey(name: '_score') List<Element?>? scoreElement,
+    @JsonKey(name: '_score') List<PrimitiveElement>? scoreElement,
 
     /// [numTP] The number of true positives if the GQ score threshold was set to
     ///  "score" field value.
     List<FhirInteger>? numTP,
 
     /// [numTPElement] Extensions for numTP
-    @JsonKey(name: '_numTP') List<Element?>? numTPElement,
+    @JsonKey(name: '_numTP') List<PrimitiveElement>? numTPElement,
 
     /// [numFP] The number of false positives if the GQ score threshold was set
     ///  to "score" field value.
     List<FhirInteger>? numFP,
 
     /// [numFPElement] Extensions for numFP
-    @JsonKey(name: '_numFP') List<Element?>? numFPElement,
+    @JsonKey(name: '_numFP') List<PrimitiveElement>? numFPElement,
 
     /// [numFN] The number of false negatives if the GQ score threshold was set
     ///  to "score" field value.
     List<FhirInteger>? numFN,
 
     /// [numFNElement] Extensions for numFN
-    @JsonKey(name: '_numFN') List<Element?>? numFNElement,
+    @JsonKey(name: '_numFN') List<PrimitiveElement>? numFNElement,
 
     /// [precision] Calculated precision if the GQ score threshold was set to
     ///  "score" field value.
     List<FhirDecimal>? precision,
 
     /// [precisionElement] Extensions for precision
-    @JsonKey(name: '_precision') List<Element?>? precisionElement,
+    @JsonKey(name: '_precision') List<PrimitiveElement>? precisionElement,
 
     /// [sensitivity] Calculated sensitivity if the GQ score threshold was set to
     ///  "score" field value.
     List<FhirDecimal>? sensitivity,
 
     /// [sensitivityElement] Extensions for sensitivity
-    @JsonKey(name: '_sensitivity') List<Element?>? sensitivityElement,
+    @JsonKey(name: '_sensitivity') List<PrimitiveElement>? sensitivityElement,
 
     /// [fMeasure] Calculated fScore if the GQ score threshold was set to "score"
     ///  field value.
     List<FhirDecimal>? fMeasure,
 
     /// [fMeasureElement] Extensions for fMeasure
-    @JsonKey(name: '_fMeasure') List<Element?>? fMeasureElement,
+    @JsonKey(name: '_fMeasure') List<PrimitiveElement>? fMeasureElement,
   }) = _MolecularSequenceRoc;
 
   @override

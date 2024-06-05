@@ -1135,7 +1135,7 @@ class PlanDefinitionAction
     List<FhirId>? goalId,
 
     /// [goalIdElement] Extensions for goalId
-    @JsonKey(name: '_goalId') List<Element?>? goalIdElement,
+    @JsonKey(name: '_goalId') List<PrimitiveElement>? goalIdElement,
 
     /// [subjectCodeableConcept] A code or group definition that describes the
     ///  intended subject of the action and its children, if any.
@@ -1145,7 +1145,8 @@ class PlanDefinitionAction
     ///  subject of the action and its children, if any.
     Reference? subjectReference,
     FhirCanonical? subjectCanonical,
-    @JsonKey(name: '_subjectCanonical') List<Element?>? subjectCanonicalElement,
+    @JsonKey(name: '_subjectCanonical')
+    List<PrimitiveElement>? subjectCanonicalElement,
 
     /// [trigger] A description of when the action should be triggered.
     List<TriggerDefinition>? trigger,

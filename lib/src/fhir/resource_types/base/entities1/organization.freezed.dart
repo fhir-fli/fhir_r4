@@ -116,7 +116,8 @@ mixin _$Organization {
 
   /// [aliasElement] Extensions for alias
   @JsonKey(name: '_alias')
-  List<Element?>? get aliasElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get aliasElement =>
+      throw _privateConstructorUsedError;
 
   /// [telecom] A contact detail for the organization.
   List<ContactPoint>? get telecom => throw _privateConstructorUsedError;
@@ -166,7 +167,7 @@ abstract class $OrganizationCopyWith<$Res> {
       String? name,
       @JsonKey(name: '_name') PrimitiveElement? nameElement,
       List<String>? alias,
-      @JsonKey(name: '_alias') List<Element?>? aliasElement,
+      @JsonKey(name: '_alias') List<PrimitiveElement>? aliasElement,
       List<ContactPoint>? telecom,
       List<Address>? address,
       Reference? partOf,
@@ -292,7 +293,7 @@ class _$OrganizationCopyWithImpl<$Res, $Val extends Organization>
       aliasElement: freezed == aliasElement
           ? _value.aliasElement
           : aliasElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       telecom: freezed == telecom
           ? _value.telecom
           : telecom // ignore: cast_nullable_to_non_nullable
@@ -381,7 +382,7 @@ abstract class _$$OrganizationImplCopyWith<$Res>
       String? name,
       @JsonKey(name: '_name') PrimitiveElement? nameElement,
       List<String>? alias,
-      @JsonKey(name: '_alias') List<Element?>? aliasElement,
+      @JsonKey(name: '_alias') List<PrimitiveElement>? aliasElement,
       List<ContactPoint>? telecom,
       List<Address>? address,
       Reference? partOf,
@@ -508,7 +509,7 @@ class __$$OrganizationImplCopyWithImpl<$Res>
       aliasElement: freezed == aliasElement
           ? _value._aliasElement
           : aliasElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       telecom: freezed == telecom
           ? _value._telecom
           : telecom // ignore: cast_nullable_to_non_nullable
@@ -556,7 +557,7 @@ class _$OrganizationImpl extends _Organization {
       this.name,
       @JsonKey(name: '_name') this.nameElement,
       final List<String>? alias,
-      @JsonKey(name: '_alias') final List<Element?>? aliasElement,
+      @JsonKey(name: '_alias') final List<PrimitiveElement>? aliasElement,
       final List<ContactPoint>? telecom,
       final List<Address>? address,
       this.partOf,
@@ -766,12 +767,12 @@ class _$OrganizationImpl extends _Organization {
   }
 
   /// [aliasElement] Extensions for alias
-  final List<Element?>? _aliasElement;
+  final List<PrimitiveElement>? _aliasElement;
 
   /// [aliasElement] Extensions for alias
   @override
   @JsonKey(name: '_alias')
-  List<Element?>? get aliasElement {
+  List<PrimitiveElement>? get aliasElement {
     final value = _aliasElement;
     if (value == null) return null;
     if (_aliasElement is EqualUnmodifiableListView) return _aliasElement;
@@ -951,7 +952,7 @@ abstract class _Organization extends Organization {
       final String? name,
       @JsonKey(name: '_name') final PrimitiveElement? nameElement,
       final List<String>? alias,
-      @JsonKey(name: '_alias') final List<Element?>? aliasElement,
+      @JsonKey(name: '_alias') final List<PrimitiveElement>? aliasElement,
       final List<ContactPoint>? telecom,
       final List<Address>? address,
       final Reference? partOf,
@@ -1075,7 +1076,7 @@ abstract class _Organization extends Organization {
 
   /// [aliasElement] Extensions for alias
   @JsonKey(name: '_alias')
-  List<Element?>? get aliasElement;
+  List<PrimitiveElement>? get aliasElement;
   @override
 
   /// [telecom] A contact detail for the organization.

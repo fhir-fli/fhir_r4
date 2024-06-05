@@ -79,7 +79,8 @@ mixin _$ResearchDefinition {
       throw _privateConstructorUsedError;
   List<String>? get comment => throw _privateConstructorUsedError;
   @JsonKey(name: '_comment')
-  List<Element?>? get commentElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get commentElement =>
+      throw _privateConstructorUsedError;
   List<UsageContext>? get useContext => throw _privateConstructorUsedError;
   List<CodeableConcept>? get jurisdiction => throw _privateConstructorUsedError;
   FhirMarkdown? get purpose => throw _privateConstructorUsedError;
@@ -166,7 +167,7 @@ abstract class $ResearchDefinitionCopyWith<$Res> {
       FhirMarkdown? description,
       @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       List<String>? comment,
-      @JsonKey(name: '_comment') List<Element?>? commentElement,
+      @JsonKey(name: '_comment') List<PrimitiveElement>? commentElement,
       List<UsageContext>? useContext,
       List<CodeableConcept>? jurisdiction,
       FhirMarkdown? purpose,
@@ -436,7 +437,7 @@ class _$ResearchDefinitionCopyWithImpl<$Res, $Val extends ResearchDefinition>
       commentElement: freezed == commentElement
           ? _value.commentElement
           : commentElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       useContext: freezed == useContext
           ? _value.useContext
           : useContext // ignore: cast_nullable_to_non_nullable
@@ -690,7 +691,7 @@ abstract class _$$ResearchDefinitionImplCopyWith<$Res>
       FhirMarkdown? description,
       @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       List<String>? comment,
-      @JsonKey(name: '_comment') List<Element?>? commentElement,
+      @JsonKey(name: '_comment') List<PrimitiveElement>? commentElement,
       List<UsageContext>? useContext,
       List<CodeableConcept>? jurisdiction,
       FhirMarkdown? purpose,
@@ -967,7 +968,7 @@ class __$$ResearchDefinitionImplCopyWithImpl<$Res>
       commentElement: freezed == commentElement
           ? _value._commentElement
           : commentElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       useContext: freezed == useContext
           ? _value._useContext
           : useContext // ignore: cast_nullable_to_non_nullable
@@ -1111,7 +1112,7 @@ class _$ResearchDefinitionImpl extends _ResearchDefinition {
       this.description,
       @JsonKey(name: '_description') this.descriptionElement,
       final List<String>? comment,
-      @JsonKey(name: '_comment') final List<Element?>? commentElement,
+      @JsonKey(name: '_comment') final List<PrimitiveElement>? commentElement,
       final List<UsageContext>? useContext,
       final List<CodeableConcept>? jurisdiction,
       this.purpose,
@@ -1297,10 +1298,10 @@ class _$ResearchDefinitionImpl extends _ResearchDefinition {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<Element?>? _commentElement;
+  final List<PrimitiveElement>? _commentElement;
   @override
   @JsonKey(name: '_comment')
-  List<Element?>? get commentElement {
+  List<PrimitiveElement>? get commentElement {
     final value = _commentElement;
     if (value == null) return null;
     if (_commentElement is EqualUnmodifiableListView) return _commentElement;
@@ -1680,7 +1681,7 @@ abstract class _ResearchDefinition extends ResearchDefinition {
       final FhirMarkdown? description,
       @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       final List<String>? comment,
-      @JsonKey(name: '_comment') final List<Element?>? commentElement,
+      @JsonKey(name: '_comment') final List<PrimitiveElement>? commentElement,
       final List<UsageContext>? useContext,
       final List<CodeableConcept>? jurisdiction,
       final FhirMarkdown? purpose,
@@ -1805,7 +1806,7 @@ abstract class _ResearchDefinition extends ResearchDefinition {
   List<String>? get comment;
   @override
   @JsonKey(name: '_comment')
-  List<Element?>? get commentElement;
+  List<PrimitiveElement>? get commentElement;
   @override
   List<UsageContext>? get useContext;
   @override

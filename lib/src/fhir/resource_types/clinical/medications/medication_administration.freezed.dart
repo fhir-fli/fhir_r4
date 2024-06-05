@@ -104,7 +104,8 @@ mixin _$MedicationAdministration {
 
   /// [instantiatesElement] Extensions for instantiates
   @JsonKey(name: '_instantiates')
-  List<Element?>? get instantiatesElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get instantiatesElement =>
+      throw _privateConstructorUsedError;
 
   /// [partOf] A larger event of which this particular event is a component or
   ///  step.
@@ -231,7 +232,8 @@ abstract class $MedicationAdministrationCopyWith<$Res> {
       List<FhirExtension>? modifierExtension,
       List<Identifier>? identifier,
       List<FhirUri>? instantiates,
-      @JsonKey(name: '_instantiates') List<Element?>? instantiatesElement,
+      @JsonKey(name: '_instantiates')
+      List<PrimitiveElement>? instantiatesElement,
       List<Reference>? partOf,
       FhirCode? status,
       @JsonKey(name: '_status') PrimitiveElement? statusElement,
@@ -373,7 +375,7 @@ class _$MedicationAdministrationCopyWithImpl<$Res,
       instantiatesElement: freezed == instantiatesElement
           ? _value.instantiatesElement
           : instantiatesElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       partOf: freezed == partOf
           ? _value.partOf
           : partOf // ignore: cast_nullable_to_non_nullable
@@ -604,7 +606,8 @@ abstract class _$$MedicationAdministrationImplCopyWith<$Res>
       List<FhirExtension>? modifierExtension,
       List<Identifier>? identifier,
       List<FhirUri>? instantiates,
-      @JsonKey(name: '_instantiates') List<Element?>? instantiatesElement,
+      @JsonKey(name: '_instantiates')
+      List<PrimitiveElement>? instantiatesElement,
       List<Reference>? partOf,
       FhirCode? status,
       @JsonKey(name: '_status') PrimitiveElement? statusElement,
@@ -755,7 +758,7 @@ class __$$MedicationAdministrationImplCopyWithImpl<$Res>
       instantiatesElement: freezed == instantiatesElement
           ? _value._instantiatesElement
           : instantiatesElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       partOf: freezed == partOf
           ? _value._partOf
           : partOf // ignore: cast_nullable_to_non_nullable
@@ -862,7 +865,8 @@ class _$MedicationAdministrationImpl extends _MedicationAdministration {
       final List<FhirExtension>? modifierExtension,
       final List<Identifier>? identifier,
       final List<FhirUri>? instantiates,
-      @JsonKey(name: '_instantiates') final List<Element?>? instantiatesElement,
+      @JsonKey(name: '_instantiates')
+      final List<PrimitiveElement>? instantiatesElement,
       final List<Reference>? partOf,
       this.status,
       @JsonKey(name: '_status') this.statusElement,
@@ -1069,12 +1073,12 @@ class _$MedicationAdministrationImpl extends _MedicationAdministration {
   }
 
   /// [instantiatesElement] Extensions for instantiates
-  final List<Element?>? _instantiatesElement;
+  final List<PrimitiveElement>? _instantiatesElement;
 
   /// [instantiatesElement] Extensions for instantiates
   @override
   @JsonKey(name: '_instantiates')
-  List<Element?>? get instantiatesElement {
+  List<PrimitiveElement>? get instantiatesElement {
     final value = _instantiatesElement;
     if (value == null) return null;
     if (_instantiatesElement is EqualUnmodifiableListView)
@@ -1433,7 +1437,8 @@ abstract class _MedicationAdministration extends MedicationAdministration {
       final List<FhirExtension>? modifierExtension,
       final List<Identifier>? identifier,
       final List<FhirUri>? instantiates,
-      @JsonKey(name: '_instantiates') final List<Element?>? instantiatesElement,
+      @JsonKey(name: '_instantiates')
+      final List<PrimitiveElement>? instantiatesElement,
       final List<Reference>? partOf,
       final FhirCode? status,
       @JsonKey(name: '_status') final PrimitiveElement? statusElement,
@@ -1556,7 +1561,7 @@ abstract class _MedicationAdministration extends MedicationAdministration {
 
   /// [instantiatesElement] Extensions for instantiates
   @JsonKey(name: '_instantiates')
-  List<Element?>? get instantiatesElement;
+  List<PrimitiveElement>? get instantiatesElement;
   @override
 
   /// [partOf] A larger event of which this particular event is a component or

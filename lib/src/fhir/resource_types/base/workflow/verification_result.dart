@@ -196,7 +196,8 @@ class VerificationResult with _$VerificationResult implements DomainResource {
     List<String>? targetLocation,
 
     /// [targetLocationElement] Extensions for targetLocation
-    @JsonKey(name: '_targetLocation') List<Element?>? targetLocationElement,
+    @JsonKey(name: '_targetLocation')
+    List<PrimitiveElement>? targetLocationElement,
 
     /// [need] The frequency with which the target must be validated (none;
     ///  initial; periodic).

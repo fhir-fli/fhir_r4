@@ -1707,7 +1707,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     List<ElementDefinitionRepresentation>? representation,
 
     /// [representationElement] Extensions for representation
-    @JsonKey(name: '_representation') List<Element?>? representationElement,
+    @JsonKey(name: '_representation') List<PrimitiveElement>? representationElement,
 
     /// [sliceName] The name of this element definition slice, when slicing is
     /// working. The name must be a token with no dots or spaces. This is a unique
@@ -1791,7 +1791,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     List<String>? alias,
 
     /// [aliasElement] Extensions for alias
-    @JsonKey(name: '_alias') List<Element?>? aliasElement,
+    @JsonKey(name: '_alias') List<PrimitiveElement>? aliasElement,
 
     /// [min] The minimum number of times this element SHALL appear in the
     ///  instance.
@@ -3590,7 +3590,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     List<FhirId>? condition,
 
     /// [conditionElement] Extensions for condition
-    @JsonKey(name: '_condition') List<Element?>? conditionElement,
+    @JsonKey(name: '_condition') List<PrimitiveElement>? conditionElement,
 
     /// [constraint] Formal constraints such as co-occurrence and other
     /// constraints that can be computationally evaluated within the context of
@@ -4215,7 +4215,7 @@ class ElementDefinitionType with _$ElementDefinitionType implements Element {
     /// canonical URL. When an implementation guide is specified, the type SHALL
     ///  conform to at least one profile defined in the implementation guide.
     List<FhirCanonical>? profile,
-    @JsonKey(name: '_profile') List<Element?>? profileElement,
+    @JsonKey(name: '_profile') List<PrimitiveElement>? profileElement,
 
     /// [targetProfile] Used when the type is "Reference" or "canonical", and
     /// identifies a profile structure or implementation Guide that applies to the
@@ -4234,7 +4234,7 @@ class ElementDefinitionType with _$ElementDefinitionType implements Element {
     List<ElementDefinitionTypeAggregation>? aggregation,
 
     /// [aggregationElement] Extensions for aggregation
-    @JsonKey(name: '_aggregation') List<Element?>? aggregationElement,
+    @JsonKey(name: '_aggregation') List<PrimitiveElement>? aggregationElement,
     @JsonKey(unknownEnumValue: ElementDefinitionTypeVersioning.unknown)
 
     /// [versioning] Whether this reference needs to be version specific or

@@ -122,7 +122,8 @@ mixin _$Location {
 
   /// [aliasElement] Extensions for alias
   @JsonKey(name: '_alias')
-  List<Element?>? get aliasElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get aliasElement =>
+      throw _privateConstructorUsedError;
 
   /// [description] Description of the Location, which helps in finding or
   ///  referencing the place.
@@ -216,7 +217,7 @@ abstract class $LocationCopyWith<$Res> {
       String? name,
       @JsonKey(name: '_name') PrimitiveElement? nameElement,
       List<String>? alias,
-      @JsonKey(name: '_alias') List<Element?>? aliasElement,
+      @JsonKey(name: '_alias') List<PrimitiveElement>? aliasElement,
       String? description,
       @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       LocationMode? mode,
@@ -368,7 +369,7 @@ class _$LocationCopyWithImpl<$Res, $Val extends Location>
       aliasElement: freezed == aliasElement
           ? _value.aliasElement
           : aliasElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -557,7 +558,7 @@ abstract class _$$LocationImplCopyWith<$Res>
       String? name,
       @JsonKey(name: '_name') PrimitiveElement? nameElement,
       List<String>? alias,
-      @JsonKey(name: '_alias') List<Element?>? aliasElement,
+      @JsonKey(name: '_alias') List<PrimitiveElement>? aliasElement,
       String? description,
       @JsonKey(name: '_description') PrimitiveElement? descriptionElement,
       LocationMode? mode,
@@ -715,7 +716,7 @@ class __$$LocationImplCopyWithImpl<$Res>
       aliasElement: freezed == aliasElement
           ? _value._aliasElement
           : aliasElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -803,7 +804,7 @@ class _$LocationImpl extends _Location {
       this.name,
       @JsonKey(name: '_name') this.nameElement,
       final List<String>? alias,
-      @JsonKey(name: '_alias') final List<Element?>? aliasElement,
+      @JsonKey(name: '_alias') final List<PrimitiveElement>? aliasElement,
       this.description,
       @JsonKey(name: '_description') this.descriptionElement,
       this.mode,
@@ -1019,12 +1020,12 @@ class _$LocationImpl extends _Location {
   }
 
   /// [aliasElement] Extensions for alias
-  final List<Element?>? _aliasElement;
+  final List<PrimitiveElement>? _aliasElement;
 
   /// [aliasElement] Extensions for alias
   @override
   @JsonKey(name: '_alias')
-  List<Element?>? get aliasElement {
+  List<PrimitiveElement>? get aliasElement {
     final value = _aliasElement;
     if (value == null) return null;
     if (_aliasElement is EqualUnmodifiableListView) return _aliasElement;
@@ -1292,7 +1293,7 @@ abstract class _Location extends Location {
       final String? name,
       @JsonKey(name: '_name') final PrimitiveElement? nameElement,
       final List<String>? alias,
-      @JsonKey(name: '_alias') final List<Element?>? aliasElement,
+      @JsonKey(name: '_alias') final List<PrimitiveElement>? aliasElement,
       final String? description,
       @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       final LocationMode? mode,
@@ -1433,7 +1434,7 @@ abstract class _Location extends Location {
 
   /// [aliasElement] Extensions for alias
   @JsonKey(name: '_alias')
-  List<Element?>? get aliasElement;
+  List<PrimitiveElement>? get aliasElement;
   @override
 
   /// [description] Description of the Location, which helps in finding or
@@ -2043,7 +2044,8 @@ mixin _$LocationHoursOfOperation {
 
   /// [daysOfWeekElement] Extensions for daysOfWeek
   @JsonKey(name: '_daysOfWeek')
-  List<Element?>? get daysOfWeekElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get daysOfWeekElement =>
+      throw _privateConstructorUsedError;
 
   /// [allDay] The Location is open all day.
   FhirBoolean? get allDay => throw _privateConstructorUsedError;
@@ -2085,7 +2087,7 @@ abstract class $LocationHoursOfOperationCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<FhirCode>? daysOfWeek,
-      @JsonKey(name: '_daysOfWeek') List<Element?>? daysOfWeekElement,
+      @JsonKey(name: '_daysOfWeek') List<PrimitiveElement>? daysOfWeekElement,
       FhirBoolean? allDay,
       @JsonKey(name: '_allDay') PrimitiveElement? allDayElement,
       FhirTime? openingTime,
@@ -2140,7 +2142,7 @@ class _$LocationHoursOfOperationCopyWithImpl<$Res,
       daysOfWeekElement: freezed == daysOfWeekElement
           ? _value.daysOfWeekElement
           : daysOfWeekElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       allDay: freezed == allDay
           ? _value.allDay
           : allDay // ignore: cast_nullable_to_non_nullable
@@ -2183,7 +2185,7 @@ abstract class _$$LocationHoursOfOperationImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       List<FhirCode>? daysOfWeek,
-      @JsonKey(name: '_daysOfWeek') List<Element?>? daysOfWeekElement,
+      @JsonKey(name: '_daysOfWeek') List<PrimitiveElement>? daysOfWeekElement,
       FhirBoolean? allDay,
       @JsonKey(name: '_allDay') PrimitiveElement? allDayElement,
       FhirTime? openingTime,
@@ -2237,7 +2239,7 @@ class __$$LocationHoursOfOperationImplCopyWithImpl<$Res>
       daysOfWeekElement: freezed == daysOfWeekElement
           ? _value._daysOfWeekElement
           : daysOfWeekElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       allDay: freezed == allDay
           ? _value.allDay
           : allDay // ignore: cast_nullable_to_non_nullable
@@ -2274,7 +2276,8 @@ class _$LocationHoursOfOperationImpl extends _LocationHoursOfOperation {
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final List<FhirCode>? daysOfWeek,
-      @JsonKey(name: '_daysOfWeek') final List<Element?>? daysOfWeekElement,
+      @JsonKey(name: '_daysOfWeek')
+      final List<PrimitiveElement>? daysOfWeekElement,
       this.allDay,
       @JsonKey(name: '_allDay') this.allDayElement,
       this.openingTime,
@@ -2373,12 +2376,12 @@ class _$LocationHoursOfOperationImpl extends _LocationHoursOfOperation {
   }
 
   /// [daysOfWeekElement] Extensions for daysOfWeek
-  final List<Element?>? _daysOfWeekElement;
+  final List<PrimitiveElement>? _daysOfWeekElement;
 
   /// [daysOfWeekElement] Extensions for daysOfWeek
   @override
   @JsonKey(name: '_daysOfWeek')
-  List<Element?>? get daysOfWeekElement {
+  List<PrimitiveElement>? get daysOfWeekElement {
     final value = _daysOfWeekElement;
     if (value == null) return null;
     if (_daysOfWeekElement is EqualUnmodifiableListView)
@@ -2483,7 +2486,8 @@ abstract class _LocationHoursOfOperation extends LocationHoursOfOperation {
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final List<FhirCode>? daysOfWeek,
-      @JsonKey(name: '_daysOfWeek') final List<Element?>? daysOfWeekElement,
+      @JsonKey(name: '_daysOfWeek')
+      final List<PrimitiveElement>? daysOfWeekElement,
       final FhirBoolean? allDay,
       @JsonKey(name: '_allDay') final PrimitiveElement? allDayElement,
       final FhirTime? openingTime,
@@ -2537,7 +2541,7 @@ abstract class _LocationHoursOfOperation extends LocationHoursOfOperation {
 
   /// [daysOfWeekElement] Extensions for daysOfWeek
   @JsonKey(name: '_daysOfWeek')
-  List<Element?>? get daysOfWeekElement;
+  List<PrimitiveElement>? get daysOfWeekElement;
   @override
 
   /// [allDay] The Location is open all day.

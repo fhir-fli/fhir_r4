@@ -118,8 +118,7 @@ _$ImplementationGuideImpl _$$ImplementationGuideImplFromJson(
           ?.map(FhirCode.fromJson)
           .toList(),
       fhirVersionElement: (json['_fhirVersion'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       dependsOn: (json['dependsOn'] as List<dynamic>?)
           ?.map((e) =>
@@ -196,7 +195,7 @@ Map<String, dynamic> _$$ImplementationGuideImplToJson(
   writeNotNull(
       'fhirVersion', instance.fhirVersion?.map((e) => e.toJson()).toList());
   writeNotNull('_fhirVersion',
-      instance.fhirVersionElement?.map((e) => e?.toJson()).toList());
+      instance.fhirVersionElement?.map((e) => e.toJson()).toList());
   writeNotNull(
       'dependsOn', instance.dependsOn?.map((e) => e.toJson()).toList());
   writeNotNull('global', instance.global?.map((e) => e.toJson()).toList());
@@ -548,8 +547,7 @@ _$ImplementationGuideResourceImpl _$$ImplementationGuideResourceImplFromJson(
           ?.map(FhirCode.fromJson)
           .toList(),
       fhirVersionElement: (json['_fhirVersion'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       name: json['name'] as String?,
       nameElement: json['_name'] == null
@@ -602,7 +600,7 @@ Map<String, dynamic> _$$ImplementationGuideResourceImplToJson(
   writeNotNull(
       'fhirVersion', instance.fhirVersion?.map((e) => e.toJson()).toList());
   writeNotNull('_fhirVersion',
-      instance.fhirVersionElement?.map((e) => e?.toJson()).toList());
+      instance.fhirVersionElement?.map((e) => e.toJson()).toList());
   writeNotNull('name', instance.name);
   writeNotNull('_name', instance.nameElement?.toJson());
   writeNotNull('description', instance.description);
@@ -795,14 +793,12 @@ _$ImplementationGuideManifestImpl _$$ImplementationGuideManifestImplFromJson(
       image:
           (json['image'] as List<dynamic>?)?.map((e) => e as String).toList(),
       imageElement: (json['_image'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       other:
           (json['other'] as List<dynamic>?)?.map((e) => e as String).toList(),
       otherElement: (json['_other'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -827,10 +823,10 @@ Map<String, dynamic> _$$ImplementationGuideManifestImplToJson(
   writeNotNull('page', instance.page?.map((e) => e.toJson()).toList());
   writeNotNull('image', instance.image);
   writeNotNull(
-      '_image', instance.imageElement?.map((e) => e?.toJson()).toList());
+      '_image', instance.imageElement?.map((e) => e.toJson()).toList());
   writeNotNull('other', instance.other);
   writeNotNull(
-      '_other', instance.otherElement?.map((e) => e?.toJson()).toList());
+      '_other', instance.otherElement?.map((e) => e.toJson()).toList());
   return val;
 }
 
@@ -914,8 +910,7 @@ _$ImplementationGuidePage1Impl _$$ImplementationGuidePage1ImplFromJson(
       anchor:
           (json['anchor'] as List<dynamic>?)?.map((e) => e as String).toList(),
       anchorElement: (json['_anchor'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -940,6 +935,6 @@ Map<String, dynamic> _$$ImplementationGuidePage1ImplToJson(
   writeNotNull('_title', instance.titleElement?.toJson());
   writeNotNull('anchor', instance.anchor);
   writeNotNull(
-      '_anchor', instance.anchorElement?.map((e) => e?.toJson()).toList());
+      '_anchor', instance.anchorElement?.map((e) => e.toJson()).toList());
   return val;
 }

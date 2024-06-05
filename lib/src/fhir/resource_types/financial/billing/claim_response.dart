@@ -504,7 +504,7 @@ class ClaimResponseItem with _$ClaimResponseItem implements BackboneElement {
     List<FhirPositiveInt>? noteNumber,
 
     /// [noteNumberElement] Extensions for noteNumber
-    @JsonKey(name: '_noteNumber') List<Element?>? noteNumberElement,
+    @JsonKey(name: '_noteNumber') List<PrimitiveElement>? noteNumberElement,
 
     /// [adjudication] If this item is a group then the values here are a summary
     /// of the adjudication of the detail items. If this item is a simple product
@@ -786,7 +786,7 @@ class ClaimResponseDetail
     List<FhirPositiveInt>? noteNumber,
 
     /// [noteNumberElement] Extensions for noteNumber
-    @JsonKey(name: '_noteNumber') List<Element?>? noteNumberElement,
+    @JsonKey(name: '_noteNumber') List<PrimitiveElement>? noteNumberElement,
 
     /// [adjudication] The adjudication results.
     required List<ClaimResponseAdjudication> adjudication,
@@ -924,7 +924,7 @@ class ClaimResponseSubDetail
     List<FhirPositiveInt>? noteNumber,
 
     /// [noteNumberElement] Extensions for noteNumber
-    @JsonKey(name: '_noteNumber') List<Element?>? noteNumberElement,
+    @JsonKey(name: '_noteNumber') List<PrimitiveElement>? noteNumberElement,
 
     /// [adjudication] The adjudication results.
     List<ClaimResponseAdjudication>? adjudication,
@@ -1110,14 +1110,15 @@ class ClaimResponseAddItem
     List<FhirPositiveInt>? itemSequence,
 
     /// [itemSequenceElement] Extensions for itemSequence
-    @JsonKey(name: '_itemSequence') List<Element?>? itemSequenceElement,
+    @JsonKey(name: '_itemSequence') List<PrimitiveElement>? itemSequenceElement,
 
     /// [detailSequence] The sequence number of the details within the claim item
     ///  which this line is intended to replace.
     List<FhirPositiveInt>? detailSequence,
 
     /// [detailSequenceElement] Extensions for detailSequence
-    @JsonKey(name: '_detailSequence') List<Element?>? detailSequenceElement,
+    @JsonKey(name: '_detailSequence')
+    List<PrimitiveElement>? detailSequenceElement,
 
     /// [subdetailSequence] The sequence number of the sub-details within the
     ///  details within the claim item which this line is intended to replace.
@@ -1196,7 +1197,7 @@ class ClaimResponseAddItem
     List<FhirPositiveInt>? noteNumber,
 
     /// [noteNumberElement] Extensions for noteNumber
-    @JsonKey(name: '_noteNumber') List<Element?>? noteNumberElement,
+    @JsonKey(name: '_noteNumber') List<PrimitiveElement>? noteNumberElement,
 
     /// [adjudication] The adjudication results.
     required List<ClaimResponseAdjudication> adjudication,
@@ -1377,7 +1378,7 @@ class ClaimResponseDetail1
     List<FhirPositiveInt>? noteNumber,
 
     /// [noteNumberElement] Extensions for noteNumber
-    @JsonKey(name: '_noteNumber') List<Element?>? noteNumberElement,
+    @JsonKey(name: '_noteNumber') List<PrimitiveElement>? noteNumberElement,
 
     /// [adjudication] The adjudication results.
     required List<ClaimResponseAdjudication> adjudication,
@@ -1556,7 +1557,7 @@ class ClaimResponseSubDetail1
     List<FhirPositiveInt>? noteNumber,
 
     /// [noteNumberElement] Extensions for noteNumber
-    @JsonKey(name: '_noteNumber') List<Element?>? noteNumberElement,
+    @JsonKey(name: '_noteNumber') List<PrimitiveElement>? noteNumberElement,
 
     /// [adjudication] The adjudication results.
     required List<ClaimResponseAdjudication> adjudication,

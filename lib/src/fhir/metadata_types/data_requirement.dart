@@ -119,7 +119,7 @@ class DataRequirement with _$DataRequirement implements DataType {
     List<String>? mustSupport,
 
     /// [mustSupportElement] Extensions for mustSupport
-    @JsonKey(name: '_mustSupport') List<Element?>? mustSupportElement,
+    @JsonKey(name: '_mustSupport') List<PrimitiveElement>? mustSupportElement,
 
     /// [codeFilter] Code filters specify additional constraints on the data,
     /// specifying the value set of interest for a particular element of the data.

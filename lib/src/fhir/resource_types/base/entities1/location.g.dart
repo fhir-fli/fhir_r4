@@ -58,8 +58,7 @@ _$LocationImpl _$$LocationImplFromJson(Map<String, dynamic> json) =>
       alias:
           (json['alias'] as List<dynamic>?)?.map((e) => e as String).toList(),
       aliasElement: (json['_alias'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       description: json['description'] as String?,
       descriptionElement: json['_description'] == null
@@ -140,7 +139,7 @@ Map<String, dynamic> _$$LocationImplToJson(_$LocationImpl instance) {
   writeNotNull('_name', instance.nameElement?.toJson());
   writeNotNull('alias', instance.alias);
   writeNotNull(
-      '_alias', instance.aliasElement?.map((e) => e?.toJson()).toList());
+      '_alias', instance.aliasElement?.map((e) => e.toJson()).toList());
   writeNotNull('description', instance.description);
   writeNotNull('_description', instance.descriptionElement?.toJson());
   writeNotNull('mode', _$LocationModeEnumMap[instance.mode]);
@@ -390,8 +389,7 @@ _$LocationHoursOfOperationImpl _$$LocationHoursOfOperationImplFromJson(
           ?.map(FhirCode.fromJson)
           .toList(),
       daysOfWeekElement: (json['_daysOfWeek'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       allDay:
           json['allDay'] == null ? null : FhirBoolean.fromJson(json['allDay']),
@@ -432,7 +430,7 @@ Map<String, dynamic> _$$LocationHoursOfOperationImplToJson(
   writeNotNull(
       'daysOfWeek', instance.daysOfWeek?.map((e) => e.toJson()).toList());
   writeNotNull('_daysOfWeek',
-      instance.daysOfWeekElement?.map((e) => e?.toJson()).toList());
+      instance.daysOfWeekElement?.map((e) => e.toJson()).toList());
   writeNotNull('allDay', instance.allDay?.toJson());
   writeNotNull('_allDay', instance.allDayElement?.toJson());
   writeNotNull('openingTime', instance.openingTime?.toJson());

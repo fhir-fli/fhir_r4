@@ -1422,7 +1422,7 @@ class ClaimInsurance with _$ClaimInsurance implements BackboneElement {
     List<String>? preAuthRef,
 
     /// [preAuthRefElement] Extensions for preAuthRef
-    @JsonKey(name: '_preAuthRef') List<Element?>? preAuthRefElement,
+    @JsonKey(name: '_preAuthRef') List<PrimitiveElement>? preAuthRefElement,
 
     /// [claimResponse] The result of the adjudication of the line items for the
     ///  Coverage specified in this insurance.
@@ -1756,7 +1756,8 @@ class ClaimItem with _$ClaimItem implements BackboneElement {
     List<FhirPositiveInt>? careTeamSequence,
 
     /// [careTeamSequenceElement] Extensions for careTeamSequence
-    @JsonKey(name: '_careTeamSequence') List<Element?>? careTeamSequenceElement,
+    @JsonKey(name: '_careTeamSequence')
+    List<PrimitiveElement>? careTeamSequenceElement,
 
     /// [diagnosisSequence] Diagnosis applicable for this service or product.
     List<FhirPositiveInt>? diagnosisSequence,

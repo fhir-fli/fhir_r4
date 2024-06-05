@@ -137,7 +137,7 @@ mixin _$FhirEndpoint {
 
   /// [payloadMimeTypeElement] Extensions for payloadMimeType
   @JsonKey(name: '_payloadMimeType')
-  List<Element?>? get payloadMimeTypeElement =>
+  List<PrimitiveElement>? get payloadMimeTypeElement =>
       throw _privateConstructorUsedError;
 
   /// [address] The uri that describes the actual end-point to connect to.
@@ -153,7 +153,8 @@ mixin _$FhirEndpoint {
 
   /// [headerElement] Extensions for header
   @JsonKey(name: '_header')
-  List<Element?>? get headerElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get headerElement =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -191,11 +192,12 @@ abstract class $FhirEndpointCopyWith<$Res> {
       Period? period,
       List<CodeableConcept> payloadType,
       List<FhirCode>? payloadMimeType,
-      @JsonKey(name: '_payloadMimeType') List<Element?>? payloadMimeTypeElement,
+      @JsonKey(name: '_payloadMimeType')
+      List<PrimitiveElement>? payloadMimeTypeElement,
       FhirUrl? address,
       @JsonKey(name: '_address') PrimitiveElement? addressElement,
       List<String>? header,
-      @JsonKey(name: '_header') List<Element?>? headerElement});
+      @JsonKey(name: '_header') List<PrimitiveElement>? headerElement});
 
   $FhirMetaCopyWith<$Res>? get meta;
   $NarrativeCopyWith<$Res>? get text;
@@ -337,7 +339,7 @@ class _$FhirEndpointCopyWithImpl<$Res, $Val extends FhirEndpoint>
       payloadMimeTypeElement: freezed == payloadMimeTypeElement
           ? _value.payloadMimeTypeElement
           : payloadMimeTypeElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -353,7 +355,7 @@ class _$FhirEndpointCopyWithImpl<$Res, $Val extends FhirEndpoint>
       headerElement: freezed == headerElement
           ? _value.headerElement
           : headerElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
     ) as $Val);
   }
 
@@ -446,11 +448,12 @@ abstract class _$$FhirEndpointImplCopyWith<$Res>
       Period? period,
       List<CodeableConcept> payloadType,
       List<FhirCode>? payloadMimeType,
-      @JsonKey(name: '_payloadMimeType') List<Element?>? payloadMimeTypeElement,
+      @JsonKey(name: '_payloadMimeType')
+      List<PrimitiveElement>? payloadMimeTypeElement,
       FhirUrl? address,
       @JsonKey(name: '_address') PrimitiveElement? addressElement,
       List<String>? header,
-      @JsonKey(name: '_header') List<Element?>? headerElement});
+      @JsonKey(name: '_header') List<PrimitiveElement>? headerElement});
 
   @override
   $FhirMetaCopyWith<$Res>? get meta;
@@ -595,7 +598,7 @@ class __$$FhirEndpointImplCopyWithImpl<$Res>
       payloadMimeTypeElement: freezed == payloadMimeTypeElement
           ? _value._payloadMimeTypeElement
           : payloadMimeTypeElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -611,7 +614,7 @@ class __$$FhirEndpointImplCopyWithImpl<$Res>
       headerElement: freezed == headerElement
           ? _value._headerElement
           : headerElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
     ));
   }
 }
@@ -644,11 +647,11 @@ class _$FhirEndpointImpl extends _FhirEndpoint {
       required final List<CodeableConcept> payloadType,
       final List<FhirCode>? payloadMimeType,
       @JsonKey(name: '_payloadMimeType')
-      final List<Element?>? payloadMimeTypeElement,
+      final List<PrimitiveElement>? payloadMimeTypeElement,
       this.address,
       @JsonKey(name: '_address') this.addressElement,
       final List<String>? header,
-      @JsonKey(name: '_header') final List<Element?>? headerElement})
+      @JsonKey(name: '_header') final List<PrimitiveElement>? headerElement})
       : _contained = contained,
         _extension_ = extension_,
         _modifierExtension = modifierExtension,
@@ -888,12 +891,12 @@ class _$FhirEndpointImpl extends _FhirEndpoint {
   }
 
   /// [payloadMimeTypeElement] Extensions for payloadMimeType
-  final List<Element?>? _payloadMimeTypeElement;
+  final List<PrimitiveElement>? _payloadMimeTypeElement;
 
   /// [payloadMimeTypeElement] Extensions for payloadMimeType
   @override
   @JsonKey(name: '_payloadMimeType')
-  List<Element?>? get payloadMimeTypeElement {
+  List<PrimitiveElement>? get payloadMimeTypeElement {
     final value = _payloadMimeTypeElement;
     if (value == null) return null;
     if (_payloadMimeTypeElement is EqualUnmodifiableListView)
@@ -927,12 +930,12 @@ class _$FhirEndpointImpl extends _FhirEndpoint {
   }
 
   /// [headerElement] Extensions for header
-  final List<Element?>? _headerElement;
+  final List<PrimitiveElement>? _headerElement;
 
   /// [headerElement] Extensions for header
   @override
   @JsonKey(name: '_header')
-  List<Element?>? get headerElement {
+  List<PrimitiveElement>? get headerElement {
     final value = _headerElement;
     if (value == null) return null;
     if (_headerElement is EqualUnmodifiableListView) return _headerElement;
@@ -1046,37 +1049,37 @@ class _$FhirEndpointImpl extends _FhirEndpoint {
 
 abstract class _FhirEndpoint extends FhirEndpoint {
   const factory _FhirEndpoint(
-          {@JsonKey(unknownEnumValue: R4ResourceType.Endpoint)
-          final R4ResourceType resourceType,
-          final String? id,
-          final FhirMeta? meta,
-          final FhirUri? implicitRules,
-          @JsonKey(name: '_implicitRules')
-          final PrimitiveElement? implicitRulesElement,
-          final FhirCode? language,
-          @JsonKey(name: '_language') final PrimitiveElement? languageElement,
-          final Narrative? text,
-          final List<Resource>? contained,
-          @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
-          final List<FhirExtension>? modifierExtension,
-          final List<Identifier>? identifier,
-          final EndpointStatus? status,
-          @JsonKey(name: '_status') final PrimitiveElement? statusElement,
-          required final Coding connectionType,
-          final String? name,
-          @JsonKey(name: '_name') final PrimitiveElement? nameElement,
-          final Reference? managingOrganization,
-          final List<ContactPoint>? contact,
-          final Period? period,
-          required final List<CodeableConcept> payloadType,
-          final List<FhirCode>? payloadMimeType,
-          @JsonKey(name: '_payloadMimeType')
-          final List<Element?>? payloadMimeTypeElement,
-          final FhirUrl? address,
-          @JsonKey(name: '_address') final PrimitiveElement? addressElement,
-          final List<String>? header,
-          @JsonKey(name: '_header') final List<Element?>? headerElement}) =
-      _$FhirEndpointImpl;
+      {@JsonKey(unknownEnumValue: R4ResourceType.Endpoint)
+      final R4ResourceType resourceType,
+      final String? id,
+      final FhirMeta? meta,
+      final FhirUri? implicitRules,
+      @JsonKey(name: '_implicitRules')
+      final PrimitiveElement? implicitRulesElement,
+      final FhirCode? language,
+      @JsonKey(name: '_language') final PrimitiveElement? languageElement,
+      final Narrative? text,
+      final List<Resource>? contained,
+      @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
+      final List<FhirExtension>? modifierExtension,
+      final List<Identifier>? identifier,
+      final EndpointStatus? status,
+      @JsonKey(name: '_status') final PrimitiveElement? statusElement,
+      required final Coding connectionType,
+      final String? name,
+      @JsonKey(name: '_name') final PrimitiveElement? nameElement,
+      final Reference? managingOrganization,
+      final List<ContactPoint>? contact,
+      final Period? period,
+      required final List<CodeableConcept> payloadType,
+      final List<FhirCode>? payloadMimeType,
+      @JsonKey(name: '_payloadMimeType')
+      final List<PrimitiveElement>? payloadMimeTypeElement,
+      final FhirUrl? address,
+      @JsonKey(name: '_address') final PrimitiveElement? addressElement,
+      final List<String>? header,
+      @JsonKey(name: '_header')
+      final List<PrimitiveElement>? headerElement}) = _$FhirEndpointImpl;
   const _FhirEndpoint._() : super._();
 
   factory _FhirEndpoint.fromJson(Map<String, dynamic> json) =
@@ -1220,7 +1223,7 @@ abstract class _FhirEndpoint extends FhirEndpoint {
 
   /// [payloadMimeTypeElement] Extensions for payloadMimeType
   @JsonKey(name: '_payloadMimeType')
-  List<Element?>? get payloadMimeTypeElement;
+  List<PrimitiveElement>? get payloadMimeTypeElement;
   @override
 
   /// [address] The uri that describes the actual end-point to connect to.
@@ -1239,7 +1242,7 @@ abstract class _FhirEndpoint extends FhirEndpoint {
 
   /// [headerElement] Extensions for header
   @JsonKey(name: '_header')
-  List<Element?>? get headerElement;
+  List<PrimitiveElement>? get headerElement;
   @override
   @JsonKey(ignore: true)
   _$$FhirEndpointImplCopyWith<_$FhirEndpointImpl> get copyWith =>

@@ -212,7 +212,7 @@ mixin _$SearchParameter {
 
   /// [baseElement] Extensions for base
   @JsonKey(name: '_base')
-  List<Element?>? get baseElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get baseElement => throw _privateConstructorUsedError;
 
   /// [type] The type of value that a search parameter may contain, and how the
   ///  content is interpreted.
@@ -251,7 +251,8 @@ mixin _$SearchParameter {
 
   /// [targetElement] Extensions for target
   @JsonKey(name: '_target')
-  List<Element?>? get targetElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get targetElement =>
+      throw _privateConstructorUsedError;
 
   /// [multipleOr] Whether multiple values are allowed for each time the
   /// parameter exists. Values are separated by commas, and the parameter
@@ -277,14 +278,16 @@ mixin _$SearchParameter {
 
   /// [comparatorElement] Extensions for comparator
   @JsonKey(name: '_comparator')
-  List<Element?>? get comparatorElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get comparatorElement =>
+      throw _privateConstructorUsedError;
 
   /// [modifier] A modifier supported for the search parameter.
   List<FhirCode>? get modifier => throw _privateConstructorUsedError;
 
   /// [modifierElement] Extensions for modifier
   @JsonKey(name: '_modifier')
-  List<Element?>? get modifierElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get modifierElement =>
+      throw _privateConstructorUsedError;
 
   /// [chain] Contains the names of any search parameters which may be chained
   /// to the containing search parameter. Chained parameters may be added to
@@ -296,7 +299,8 @@ mixin _$SearchParameter {
 
   /// [chainElement] Extensions for chain
   @JsonKey(name: '_chain')
-  List<Element?>? get chainElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get chainElement =>
+      throw _privateConstructorUsedError;
 
   /// [component] Used to define the parts of a composite search parameter.
   List<SearchParameterComponent>? get component =>
@@ -352,7 +356,7 @@ abstract class $SearchParameterCopyWith<$Res> {
       FhirCode? code,
       @JsonKey(name: '_code') PrimitiveElement? codeElement,
       List<FhirCode>? base,
-      @JsonKey(name: '_base') List<Element?>? baseElement,
+      @JsonKey(name: '_base') List<PrimitiveElement>? baseElement,
       FhirCode? type,
       @JsonKey(name: '_type') PrimitiveElement? typeElement,
       String? expression,
@@ -362,17 +366,17 @@ abstract class $SearchParameterCopyWith<$Res> {
       FhirCode? xpathUsage,
       @JsonKey(name: '_xpathUsage') PrimitiveElement? xpathUsageElement,
       List<FhirCode>? target,
-      @JsonKey(name: '_target') List<Element?>? targetElement,
+      @JsonKey(name: '_target') List<PrimitiveElement>? targetElement,
       FhirBoolean? multipleOr,
       @JsonKey(name: '_multipleOr') PrimitiveElement? multipleOrElement,
       FhirBoolean? multipleAnd,
       @JsonKey(name: '_multipleAnd') PrimitiveElement? multipleAndElement,
       List<FhirCode>? comparator,
-      @JsonKey(name: '_comparator') List<Element?>? comparatorElement,
+      @JsonKey(name: '_comparator') List<PrimitiveElement>? comparatorElement,
       List<FhirCode>? modifier,
-      @JsonKey(name: '_modifier') List<Element?>? modifierElement,
+      @JsonKey(name: '_modifier') List<PrimitiveElement>? modifierElement,
       List<String>? chain,
-      @JsonKey(name: '_chain') List<Element?>? chainElement,
+      @JsonKey(name: '_chain') List<PrimitiveElement>? chainElement,
       List<SearchParameterComponent>? component});
 
   $FhirMetaCopyWith<$Res>? get meta;
@@ -599,7 +603,7 @@ class _$SearchParameterCopyWithImpl<$Res, $Val extends SearchParameter>
       baseElement: freezed == baseElement
           ? _value.baseElement
           : baseElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -639,7 +643,7 @@ class _$SearchParameterCopyWithImpl<$Res, $Val extends SearchParameter>
       targetElement: freezed == targetElement
           ? _value.targetElement
           : targetElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       multipleOr: freezed == multipleOr
           ? _value.multipleOr
           : multipleOr // ignore: cast_nullable_to_non_nullable
@@ -663,7 +667,7 @@ class _$SearchParameterCopyWithImpl<$Res, $Val extends SearchParameter>
       comparatorElement: freezed == comparatorElement
           ? _value.comparatorElement
           : comparatorElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       modifier: freezed == modifier
           ? _value.modifier
           : modifier // ignore: cast_nullable_to_non_nullable
@@ -671,7 +675,7 @@ class _$SearchParameterCopyWithImpl<$Res, $Val extends SearchParameter>
       modifierElement: freezed == modifierElement
           ? _value.modifierElement
           : modifierElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       chain: freezed == chain
           ? _value.chain
           : chain // ignore: cast_nullable_to_non_nullable
@@ -679,7 +683,7 @@ class _$SearchParameterCopyWithImpl<$Res, $Val extends SearchParameter>
       chainElement: freezed == chainElement
           ? _value.chainElement
           : chainElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       component: freezed == component
           ? _value.component
           : component // ignore: cast_nullable_to_non_nullable
@@ -758,7 +762,7 @@ abstract class _$$SearchParameterImplCopyWith<$Res>
       FhirCode? code,
       @JsonKey(name: '_code') PrimitiveElement? codeElement,
       List<FhirCode>? base,
-      @JsonKey(name: '_base') List<Element?>? baseElement,
+      @JsonKey(name: '_base') List<PrimitiveElement>? baseElement,
       FhirCode? type,
       @JsonKey(name: '_type') PrimitiveElement? typeElement,
       String? expression,
@@ -768,17 +772,17 @@ abstract class _$$SearchParameterImplCopyWith<$Res>
       FhirCode? xpathUsage,
       @JsonKey(name: '_xpathUsage') PrimitiveElement? xpathUsageElement,
       List<FhirCode>? target,
-      @JsonKey(name: '_target') List<Element?>? targetElement,
+      @JsonKey(name: '_target') List<PrimitiveElement>? targetElement,
       FhirBoolean? multipleOr,
       @JsonKey(name: '_multipleOr') PrimitiveElement? multipleOrElement,
       FhirBoolean? multipleAnd,
       @JsonKey(name: '_multipleAnd') PrimitiveElement? multipleAndElement,
       List<FhirCode>? comparator,
-      @JsonKey(name: '_comparator') List<Element?>? comparatorElement,
+      @JsonKey(name: '_comparator') List<PrimitiveElement>? comparatorElement,
       List<FhirCode>? modifier,
-      @JsonKey(name: '_modifier') List<Element?>? modifierElement,
+      @JsonKey(name: '_modifier') List<PrimitiveElement>? modifierElement,
       List<String>? chain,
-      @JsonKey(name: '_chain') List<Element?>? chainElement,
+      @JsonKey(name: '_chain') List<PrimitiveElement>? chainElement,
       List<SearchParameterComponent>? component});
 
   @override
@@ -1005,7 +1009,7 @@ class __$$SearchParameterImplCopyWithImpl<$Res>
       baseElement: freezed == baseElement
           ? _value._baseElement
           : baseElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -1045,7 +1049,7 @@ class __$$SearchParameterImplCopyWithImpl<$Res>
       targetElement: freezed == targetElement
           ? _value._targetElement
           : targetElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       multipleOr: freezed == multipleOr
           ? _value.multipleOr
           : multipleOr // ignore: cast_nullable_to_non_nullable
@@ -1069,7 +1073,7 @@ class __$$SearchParameterImplCopyWithImpl<$Res>
       comparatorElement: freezed == comparatorElement
           ? _value._comparatorElement
           : comparatorElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       modifier: freezed == modifier
           ? _value._modifier
           : modifier // ignore: cast_nullable_to_non_nullable
@@ -1077,7 +1081,7 @@ class __$$SearchParameterImplCopyWithImpl<$Res>
       modifierElement: freezed == modifierElement
           ? _value._modifierElement
           : modifierElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       chain: freezed == chain
           ? _value._chain
           : chain // ignore: cast_nullable_to_non_nullable
@@ -1085,7 +1089,7 @@ class __$$SearchParameterImplCopyWithImpl<$Res>
       chainElement: freezed == chainElement
           ? _value._chainElement
           : chainElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       component: freezed == component
           ? _value._component
           : component // ignore: cast_nullable_to_non_nullable
@@ -1135,7 +1139,7 @@ class _$SearchParameterImpl extends _SearchParameter {
       this.code,
       @JsonKey(name: '_code') this.codeElement,
       final List<FhirCode>? base,
-      @JsonKey(name: '_base') final List<Element?>? baseElement,
+      @JsonKey(name: '_base') final List<PrimitiveElement>? baseElement,
       this.type,
       @JsonKey(name: '_type') this.typeElement,
       this.expression,
@@ -1145,17 +1149,18 @@ class _$SearchParameterImpl extends _SearchParameter {
       this.xpathUsage,
       @JsonKey(name: '_xpathUsage') this.xpathUsageElement,
       final List<FhirCode>? target,
-      @JsonKey(name: '_target') final List<Element?>? targetElement,
+      @JsonKey(name: '_target') final List<PrimitiveElement>? targetElement,
       this.multipleOr,
       @JsonKey(name: '_multipleOr') this.multipleOrElement,
       this.multipleAnd,
       @JsonKey(name: '_multipleAnd') this.multipleAndElement,
       final List<FhirCode>? comparator,
-      @JsonKey(name: '_comparator') final List<Element?>? comparatorElement,
+      @JsonKey(name: '_comparator')
+      final List<PrimitiveElement>? comparatorElement,
       final List<FhirCode>? modifier,
-      @JsonKey(name: '_modifier') final List<Element?>? modifierElement,
+      @JsonKey(name: '_modifier') final List<PrimitiveElement>? modifierElement,
       final List<String>? chain,
-      @JsonKey(name: '_chain') final List<Element?>? chainElement,
+      @JsonKey(name: '_chain') final List<PrimitiveElement>? chainElement,
       final List<SearchParameterComponent>? component})
       : _contained = contained,
         _extension_ = extension_,
@@ -1493,12 +1498,12 @@ class _$SearchParameterImpl extends _SearchParameter {
   }
 
   /// [baseElement] Extensions for base
-  final List<Element?>? _baseElement;
+  final List<PrimitiveElement>? _baseElement;
 
   /// [baseElement] Extensions for base
   @override
   @JsonKey(name: '_base')
-  List<Element?>? get baseElement {
+  List<PrimitiveElement>? get baseElement {
     final value = _baseElement;
     if (value == null) return null;
     if (_baseElement is EqualUnmodifiableListView) return _baseElement;
@@ -1560,12 +1565,12 @@ class _$SearchParameterImpl extends _SearchParameter {
   }
 
   /// [targetElement] Extensions for target
-  final List<Element?>? _targetElement;
+  final List<PrimitiveElement>? _targetElement;
 
   /// [targetElement] Extensions for target
   @override
   @JsonKey(name: '_target')
-  List<Element?>? get targetElement {
+  List<PrimitiveElement>? get targetElement {
     final value = _targetElement;
     if (value == null) return null;
     if (_targetElement is EqualUnmodifiableListView) return _targetElement;
@@ -1609,12 +1614,12 @@ class _$SearchParameterImpl extends _SearchParameter {
   }
 
   /// [comparatorElement] Extensions for comparator
-  final List<Element?>? _comparatorElement;
+  final List<PrimitiveElement>? _comparatorElement;
 
   /// [comparatorElement] Extensions for comparator
   @override
   @JsonKey(name: '_comparator')
-  List<Element?>? get comparatorElement {
+  List<PrimitiveElement>? get comparatorElement {
     final value = _comparatorElement;
     if (value == null) return null;
     if (_comparatorElement is EqualUnmodifiableListView)
@@ -1637,12 +1642,12 @@ class _$SearchParameterImpl extends _SearchParameter {
   }
 
   /// [modifierElement] Extensions for modifier
-  final List<Element?>? _modifierElement;
+  final List<PrimitiveElement>? _modifierElement;
 
   /// [modifierElement] Extensions for modifier
   @override
   @JsonKey(name: '_modifier')
-  List<Element?>? get modifierElement {
+  List<PrimitiveElement>? get modifierElement {
     final value = _modifierElement;
     if (value == null) return null;
     if (_modifierElement is EqualUnmodifiableListView) return _modifierElement;
@@ -1674,12 +1679,12 @@ class _$SearchParameterImpl extends _SearchParameter {
   }
 
   /// [chainElement] Extensions for chain
-  final List<Element?>? _chainElement;
+  final List<PrimitiveElement>? _chainElement;
 
   /// [chainElement] Extensions for chain
   @override
   @JsonKey(name: '_chain')
-  List<Element?>? get chainElement {
+  List<PrimitiveElement>? get chainElement {
     final value = _chainElement;
     if (value == null) return null;
     if (_chainElement is EqualUnmodifiableListView) return _chainElement;
@@ -1931,7 +1936,7 @@ abstract class _SearchParameter extends SearchParameter {
       final FhirCode? code,
       @JsonKey(name: '_code') final PrimitiveElement? codeElement,
       final List<FhirCode>? base,
-      @JsonKey(name: '_base') final List<Element?>? baseElement,
+      @JsonKey(name: '_base') final List<PrimitiveElement>? baseElement,
       final FhirCode? type,
       @JsonKey(name: '_type') final PrimitiveElement? typeElement,
       final String? expression,
@@ -1941,17 +1946,18 @@ abstract class _SearchParameter extends SearchParameter {
       final FhirCode? xpathUsage,
       @JsonKey(name: '_xpathUsage') final PrimitiveElement? xpathUsageElement,
       final List<FhirCode>? target,
-      @JsonKey(name: '_target') final List<Element?>? targetElement,
+      @JsonKey(name: '_target') final List<PrimitiveElement>? targetElement,
       final FhirBoolean? multipleOr,
       @JsonKey(name: '_multipleOr') final PrimitiveElement? multipleOrElement,
       final FhirBoolean? multipleAnd,
       @JsonKey(name: '_multipleAnd') final PrimitiveElement? multipleAndElement,
       final List<FhirCode>? comparator,
-      @JsonKey(name: '_comparator') final List<Element?>? comparatorElement,
+      @JsonKey(name: '_comparator')
+      final List<PrimitiveElement>? comparatorElement,
       final List<FhirCode>? modifier,
-      @JsonKey(name: '_modifier') final List<Element?>? modifierElement,
+      @JsonKey(name: '_modifier') final List<PrimitiveElement>? modifierElement,
       final List<String>? chain,
-      @JsonKey(name: '_chain') final List<Element?>? chainElement,
+      @JsonKey(name: '_chain') final List<PrimitiveElement>? chainElement,
       final List<SearchParameterComponent>? component}) = _$SearchParameterImpl;
   const _SearchParameter._() : super._();
 
@@ -2183,7 +2189,7 @@ abstract class _SearchParameter extends SearchParameter {
 
   /// [baseElement] Extensions for base
   @JsonKey(name: '_base')
-  List<Element?>? get baseElement;
+  List<PrimitiveElement>? get baseElement;
   @override
 
   /// [type] The type of value that a search parameter may contain, and how the
@@ -2232,7 +2238,7 @@ abstract class _SearchParameter extends SearchParameter {
 
   /// [targetElement] Extensions for target
   @JsonKey(name: '_target')
-  List<Element?>? get targetElement;
+  List<PrimitiveElement>? get targetElement;
   @override
 
   /// [multipleOr] Whether multiple values are allowed for each time the
@@ -2263,7 +2269,7 @@ abstract class _SearchParameter extends SearchParameter {
 
   /// [comparatorElement] Extensions for comparator
   @JsonKey(name: '_comparator')
-  List<Element?>? get comparatorElement;
+  List<PrimitiveElement>? get comparatorElement;
   @override
 
   /// [modifier] A modifier supported for the search parameter.
@@ -2272,7 +2278,7 @@ abstract class _SearchParameter extends SearchParameter {
 
   /// [modifierElement] Extensions for modifier
   @JsonKey(name: '_modifier')
-  List<Element?>? get modifierElement;
+  List<PrimitiveElement>? get modifierElement;
   @override
 
   /// [chain] Contains the names of any search parameters which may be chained
@@ -2286,7 +2292,7 @@ abstract class _SearchParameter extends SearchParameter {
 
   /// [chainElement] Extensions for chain
   @JsonKey(name: '_chain')
-  List<Element?>? get chainElement;
+  List<PrimitiveElement>? get chainElement;
   @override
 
   /// [component] Used to define the parts of a composite search parameter.

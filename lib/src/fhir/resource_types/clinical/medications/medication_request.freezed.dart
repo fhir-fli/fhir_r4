@@ -227,7 +227,7 @@ mixin _$MedicationRequest {
 
   /// [instantiatesUriElement] Extensions for instantiatesUri
   @JsonKey(name: '_instantiatesUri')
-  List<Element?>? get instantiatesUriElement =>
+  List<PrimitiveElement>? get instantiatesUriElement =>
       throw _privateConstructorUsedError;
 
   /// [basedOn] A plan or request that is fulfilled in whole or in part by this
@@ -345,7 +345,8 @@ abstract class $MedicationRequestCopyWith<$Res> {
       @JsonKey(name: '_instantiatesCanonical')
       List<Element>? instantiatesCanonicalElement,
       List<FhirUri>? instantiatesUri,
-      @JsonKey(name: '_instantiatesUri') List<Element?>? instantiatesUriElement,
+      @JsonKey(name: '_instantiatesUri')
+      List<PrimitiveElement>? instantiatesUriElement,
       List<Reference>? basedOn,
       Identifier? groupIdentifier,
       CodeableConcept? courseOfTherapyType,
@@ -612,7 +613,7 @@ class _$MedicationRequestCopyWithImpl<$Res, $Val extends MedicationRequest>
       instantiatesUriElement: freezed == instantiatesUriElement
           ? _value.instantiatesUriElement
           : instantiatesUriElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       basedOn: freezed == basedOn
           ? _value.basedOn
           : basedOn // ignore: cast_nullable_to_non_nullable
@@ -917,7 +918,8 @@ abstract class _$$MedicationRequestImplCopyWith<$Res>
       @JsonKey(name: '_instantiatesCanonical')
       List<Element>? instantiatesCanonicalElement,
       List<FhirUri>? instantiatesUri,
-      @JsonKey(name: '_instantiatesUri') List<Element?>? instantiatesUriElement,
+      @JsonKey(name: '_instantiatesUri')
+      List<PrimitiveElement>? instantiatesUriElement,
       List<Reference>? basedOn,
       Identifier? groupIdentifier,
       CodeableConcept? courseOfTherapyType,
@@ -1199,7 +1201,7 @@ class __$$MedicationRequestImplCopyWithImpl<$Res>
       instantiatesUriElement: freezed == instantiatesUriElement
           ? _value._instantiatesUriElement
           : instantiatesUriElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       basedOn: freezed == basedOn
           ? _value._basedOn
           : basedOn // ignore: cast_nullable_to_non_nullable
@@ -1296,7 +1298,7 @@ class _$MedicationRequestImpl extends _MedicationRequest {
       final List<Element>? instantiatesCanonicalElement,
       final List<FhirUri>? instantiatesUri,
       @JsonKey(name: '_instantiatesUri')
-      final List<Element?>? instantiatesUriElement,
+      final List<PrimitiveElement>? instantiatesUriElement,
       final List<Reference>? basedOn,
       this.groupIdentifier,
       this.courseOfTherapyType,
@@ -1706,12 +1708,12 @@ class _$MedicationRequestImpl extends _MedicationRequest {
   }
 
   /// [instantiatesUriElement] Extensions for instantiatesUri
-  final List<Element?>? _instantiatesUriElement;
+  final List<PrimitiveElement>? _instantiatesUriElement;
 
   /// [instantiatesUriElement] Extensions for instantiatesUri
   @override
   @JsonKey(name: '_instantiatesUri')
-  List<Element?>? get instantiatesUriElement {
+  List<PrimitiveElement>? get instantiatesUriElement {
     final value = _instantiatesUriElement;
     if (value == null) return null;
     if (_instantiatesUriElement is EqualUnmodifiableListView)
@@ -2077,7 +2079,7 @@ abstract class _MedicationRequest extends MedicationRequest {
       final List<Element>? instantiatesCanonicalElement,
       final List<FhirUri>? instantiatesUri,
       @JsonKey(name: '_instantiatesUri')
-      final List<Element?>? instantiatesUriElement,
+      final List<PrimitiveElement>? instantiatesUriElement,
       final List<Reference>? basedOn,
       final Identifier? groupIdentifier,
       final CodeableConcept? courseOfTherapyType,
@@ -2335,7 +2337,7 @@ abstract class _MedicationRequest extends MedicationRequest {
 
   /// [instantiatesUriElement] Extensions for instantiatesUri
   @JsonKey(name: '_instantiatesUri')
-  List<Element?>? get instantiatesUriElement;
+  List<PrimitiveElement>? get instantiatesUriElement;
   @override
 
   /// [basedOn] A plan or request that is fulfilled in whole or in part by this

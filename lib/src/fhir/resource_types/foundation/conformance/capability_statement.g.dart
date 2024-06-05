@@ -137,15 +137,13 @@ _$CapabilityStatementImpl _$$CapabilityStatementImplFromJson(
       format:
           (json['format'] as List<dynamic>?)?.map(FhirCode.fromJson).toList(),
       formatElement: (json['_format'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       patchFormat: (json['patchFormat'] as List<dynamic>?)
           ?.map(FhirCode.fromJson)
           .toList(),
       patchFormatElement: (json['_patchFormat'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       implementationGuide: (json['implementationGuide'] as List<dynamic>?)
           ?.map(FhirCanonical.fromJson)
@@ -227,11 +225,11 @@ Map<String, dynamic> _$$CapabilityStatementImplToJson(
   writeNotNull('_fhirVersion', instance.fhirVersionElement?.toJson());
   writeNotNull('format', instance.format?.map((e) => e.toJson()).toList());
   writeNotNull(
-      '_format', instance.formatElement?.map((e) => e?.toJson()).toList());
+      '_format', instance.formatElement?.map((e) => e.toJson()).toList());
   writeNotNull(
       'patchFormat', instance.patchFormat?.map((e) => e.toJson()).toList());
   writeNotNull('_patchFormat',
-      instance.patchFormatElement?.map((e) => e?.toJson()).toList());
+      instance.patchFormatElement?.map((e) => e.toJson()).toList());
   writeNotNull('implementationGuide',
       instance.implementationGuide?.map((e) => e.toJson()).toList());
   writeNotNull('rest', instance.rest?.map((e) => e.toJson()).toList());
@@ -696,22 +694,19 @@ _$CapabilityStatementResourceImpl _$$CapabilityStatementResourceImplFromJson(
           ?.map(FhirCode.fromJson)
           .toList(),
       referencePolicyElement: (json['_referencePolicy'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       searchInclude: (json['searchInclude'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
       searchIncludeElement: (json['_searchInclude'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       searchRevInclude: (json['searchRevInclude'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
       searchRevIncludeElement: (json['_searchRevInclude'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       searchParam: (json['searchParam'] as List<dynamic>?)
           ?.map((e) => CapabilityStatementSearchParam.fromJson(
@@ -767,13 +762,13 @@ Map<String, dynamic> _$$CapabilityStatementResourceImplToJson(
   writeNotNull('referencePolicy',
       instance.referencePolicy?.map((e) => e.toJson()).toList());
   writeNotNull('_referencePolicy',
-      instance.referencePolicyElement?.map((e) => e?.toJson()).toList());
+      instance.referencePolicyElement?.map((e) => e.toJson()).toList());
   writeNotNull('searchInclude', instance.searchInclude);
   writeNotNull('_searchInclude',
-      instance.searchIncludeElement?.map((e) => e?.toJson()).toList());
+      instance.searchIncludeElement?.map((e) => e.toJson()).toList());
   writeNotNull('searchRevInclude', instance.searchRevInclude);
   writeNotNull('_searchRevInclude',
-      instance.searchRevIncludeElement?.map((e) => e?.toJson()).toList());
+      instance.searchRevIncludeElement?.map((e) => e.toJson()).toList());
   writeNotNull(
       'searchParam', instance.searchParam?.map((e) => e.toJson()).toList());
   writeNotNull(

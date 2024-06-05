@@ -78,8 +78,7 @@ _$QuestionnaireImpl _$$QuestionnaireImplFromJson(Map<String, dynamic> json) =>
           ?.map(FhirCode.fromJson)
           .toList(),
       subjectTypeElement: (json['_subjectType'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       date: json['date'] == null
           ? null
@@ -189,7 +188,7 @@ Map<String, dynamic> _$$QuestionnaireImplToJson(_$QuestionnaireImpl instance) {
   writeNotNull(
       'subjectType', instance.subjectType?.map((e) => e.toJson()).toList());
   writeNotNull('_subjectType',
-      instance.subjectTypeElement?.map((e) => e?.toJson()).toList());
+      instance.subjectTypeElement?.map((e) => e.toJson()).toList());
   writeNotNull('date', instance.date?.toJson());
   writeNotNull('_date', instance.dateElement?.toJson());
   writeNotNull('publisher', instance.publisher);

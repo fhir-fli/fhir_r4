@@ -232,7 +232,8 @@ class FhirEndpoint with _$FhirEndpoint implements DomainResource {
     List<FhirCode>? payloadMimeType,
 
     /// [payloadMimeTypeElement] Extensions for payloadMimeType
-    @JsonKey(name: '_payloadMimeType') List<Element?>? payloadMimeTypeElement,
+    @JsonKey(name: '_payloadMimeType')
+    List<PrimitiveElement>? payloadMimeTypeElement,
 
     /// [address] The uri that describes the actual end-point to connect to.
     FhirUrl? address,
@@ -245,7 +246,7 @@ class FhirEndpoint with _$FhirEndpoint implements DomainResource {
     List<String>? header,
 
     /// [headerElement] Extensions for header
-    @JsonKey(name: '_header') List<Element?>? headerElement,
+    @JsonKey(name: '_header') List<PrimitiveElement>? headerElement,
   }) = _FhirEndpoint;
 
   @override

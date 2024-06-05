@@ -107,8 +107,7 @@ _$SearchParameterImpl _$$SearchParameterImplFromJson(
           : PrimitiveElement.fromJson(json['_code'] as Map<String, dynamic>),
       base: (json['base'] as List<dynamic>?)?.map(FhirCode.fromJson).toList(),
       baseElement: (json['_base'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       type: json['type'] == null ? null : FhirCode.fromJson(json['type']),
       typeElement: json['_type'] == null
@@ -133,8 +132,7 @@ _$SearchParameterImpl _$$SearchParameterImplFromJson(
       target:
           (json['target'] as List<dynamic>?)?.map(FhirCode.fromJson).toList(),
       targetElement: (json['_target'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       multipleOr: json['multipleOr'] == null
           ? null
@@ -154,20 +152,17 @@ _$SearchParameterImpl _$$SearchParameterImplFromJson(
           ?.map(FhirCode.fromJson)
           .toList(),
       comparatorElement: (json['_comparator'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifier:
           (json['modifier'] as List<dynamic>?)?.map(FhirCode.fromJson).toList(),
       modifierElement: (json['_modifier'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       chain:
           (json['chain'] as List<dynamic>?)?.map((e) => e as String).toList(),
       chainElement: (json['_chain'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       component: (json['component'] as List<dynamic>?)
           ?.map((e) =>
@@ -227,7 +222,7 @@ Map<String, dynamic> _$$SearchParameterImplToJson(
   writeNotNull('code', instance.code?.toJson());
   writeNotNull('_code', instance.codeElement?.toJson());
   writeNotNull('base', instance.base?.map((e) => e.toJson()).toList());
-  writeNotNull('_base', instance.baseElement?.map((e) => e?.toJson()).toList());
+  writeNotNull('_base', instance.baseElement?.map((e) => e.toJson()).toList());
   writeNotNull('type', instance.type?.toJson());
   writeNotNull('_type', instance.typeElement?.toJson());
   writeNotNull('expression', instance.expression);
@@ -238,7 +233,7 @@ Map<String, dynamic> _$$SearchParameterImplToJson(
   writeNotNull('_xpathUsage', instance.xpathUsageElement?.toJson());
   writeNotNull('target', instance.target?.map((e) => e.toJson()).toList());
   writeNotNull(
-      '_target', instance.targetElement?.map((e) => e?.toJson()).toList());
+      '_target', instance.targetElement?.map((e) => e.toJson()).toList());
   writeNotNull('multipleOr', instance.multipleOr?.toJson());
   writeNotNull('_multipleOr', instance.multipleOrElement?.toJson());
   writeNotNull('multipleAnd', instance.multipleAnd?.toJson());
@@ -246,13 +241,13 @@ Map<String, dynamic> _$$SearchParameterImplToJson(
   writeNotNull(
       'comparator', instance.comparator?.map((e) => e.toJson()).toList());
   writeNotNull('_comparator',
-      instance.comparatorElement?.map((e) => e?.toJson()).toList());
+      instance.comparatorElement?.map((e) => e.toJson()).toList());
   writeNotNull('modifier', instance.modifier?.map((e) => e.toJson()).toList());
   writeNotNull(
-      '_modifier', instance.modifierElement?.map((e) => e?.toJson()).toList());
+      '_modifier', instance.modifierElement?.map((e) => e.toJson()).toList());
   writeNotNull('chain', instance.chain);
   writeNotNull(
-      '_chain', instance.chainElement?.map((e) => e?.toJson()).toList());
+      '_chain', instance.chainElement?.map((e) => e.toJson()).toList());
   writeNotNull(
       'component', instance.component?.map((e) => e.toJson()).toList());
   return val;

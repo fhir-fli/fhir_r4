@@ -264,7 +264,8 @@ mixin _$CapabilityStatement {
 
   /// [formatElement] Extensions for format
   @JsonKey(name: '_format')
-  List<Element?>? get formatElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get formatElement =>
+      throw _privateConstructorUsedError;
 
   /// [patchFormat] A list of the patch formats supported by this
   ///  implementation using their content types.
@@ -272,7 +273,8 @@ mixin _$CapabilityStatement {
 
   /// [patchFormatElement] Extensions for patchFormat
   @JsonKey(name: '_patchFormat')
-  List<Element?>? get patchFormatElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get patchFormatElement =>
+      throw _privateConstructorUsedError;
 
   /// [implementationGuide] A list of implementation guides that the server
   ///  does (or should) support in their entirety.
@@ -349,9 +351,9 @@ abstract class $CapabilityStatementCopyWith<$Res> {
       FhirCode? fhirVersion,
       @JsonKey(name: '_fhirVersion') PrimitiveElement? fhirVersionElement,
       List<FhirCode>? format,
-      @JsonKey(name: '_format') List<Element?>? formatElement,
+      @JsonKey(name: '_format') List<PrimitiveElement>? formatElement,
       List<FhirCode>? patchFormat,
-      @JsonKey(name: '_patchFormat') List<Element?>? patchFormatElement,
+      @JsonKey(name: '_patchFormat') List<PrimitiveElement>? patchFormatElement,
       List<FhirCanonical>? implementationGuide,
       List<CapabilityStatementRest>? rest,
       List<CapabilityStatementMessaging>? messaging,
@@ -613,7 +615,7 @@ class _$CapabilityStatementCopyWithImpl<$Res, $Val extends CapabilityStatement>
       formatElement: freezed == formatElement
           ? _value.formatElement
           : formatElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       patchFormat: freezed == patchFormat
           ? _value.patchFormat
           : patchFormat // ignore: cast_nullable_to_non_nullable
@@ -621,7 +623,7 @@ class _$CapabilityStatementCopyWithImpl<$Res, $Val extends CapabilityStatement>
       patchFormatElement: freezed == patchFormatElement
           ? _value.patchFormatElement
           : patchFormatElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       implementationGuide: freezed == implementationGuide
           ? _value.implementationGuide
           : implementationGuide // ignore: cast_nullable_to_non_nullable
@@ -747,9 +749,9 @@ abstract class _$$CapabilityStatementImplCopyWith<$Res>
       FhirCode? fhirVersion,
       @JsonKey(name: '_fhirVersion') PrimitiveElement? fhirVersionElement,
       List<FhirCode>? format,
-      @JsonKey(name: '_format') List<Element?>? formatElement,
+      @JsonKey(name: '_format') List<PrimitiveElement>? formatElement,
       List<FhirCode>? patchFormat,
-      @JsonKey(name: '_patchFormat') List<Element?>? patchFormatElement,
+      @JsonKey(name: '_patchFormat') List<PrimitiveElement>? patchFormatElement,
       List<FhirCanonical>? implementationGuide,
       List<CapabilityStatementRest>? rest,
       List<CapabilityStatementMessaging>? messaging,
@@ -1013,7 +1015,7 @@ class __$$CapabilityStatementImplCopyWithImpl<$Res>
       formatElement: freezed == formatElement
           ? _value._formatElement
           : formatElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       patchFormat: freezed == patchFormat
           ? _value._patchFormat
           : patchFormat // ignore: cast_nullable_to_non_nullable
@@ -1021,7 +1023,7 @@ class __$$CapabilityStatementImplCopyWithImpl<$Res>
       patchFormatElement: freezed == patchFormatElement
           ? _value._patchFormatElement
           : patchFormatElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       implementationGuide: freezed == implementationGuide
           ? _value._implementationGuide
           : implementationGuide // ignore: cast_nullable_to_non_nullable
@@ -1092,9 +1094,10 @@ class _$CapabilityStatementImpl extends _CapabilityStatement {
       this.fhirVersion,
       @JsonKey(name: '_fhirVersion') this.fhirVersionElement,
       final List<FhirCode>? format,
-      @JsonKey(name: '_format') final List<Element?>? formatElement,
+      @JsonKey(name: '_format') final List<PrimitiveElement>? formatElement,
       final List<FhirCode>? patchFormat,
-      @JsonKey(name: '_patchFormat') final List<Element?>? patchFormatElement,
+      @JsonKey(name: '_patchFormat')
+      final List<PrimitiveElement>? patchFormatElement,
       final List<FhirCanonical>? implementationGuide,
       final List<CapabilityStatementRest>? rest,
       final List<CapabilityStatementMessaging>? messaging,
@@ -1519,12 +1522,12 @@ class _$CapabilityStatementImpl extends _CapabilityStatement {
   }
 
   /// [formatElement] Extensions for format
-  final List<Element?>? _formatElement;
+  final List<PrimitiveElement>? _formatElement;
 
   /// [formatElement] Extensions for format
   @override
   @JsonKey(name: '_format')
-  List<Element?>? get formatElement {
+  List<PrimitiveElement>? get formatElement {
     final value = _formatElement;
     if (value == null) return null;
     if (_formatElement is EqualUnmodifiableListView) return _formatElement;
@@ -1548,12 +1551,12 @@ class _$CapabilityStatementImpl extends _CapabilityStatement {
   }
 
   /// [patchFormatElement] Extensions for patchFormat
-  final List<Element?>? _patchFormatElement;
+  final List<PrimitiveElement>? _patchFormatElement;
 
   /// [patchFormatElement] Extensions for patchFormat
   @override
   @JsonKey(name: '_patchFormat')
-  List<Element?>? get patchFormatElement {
+  List<PrimitiveElement>? get patchFormatElement {
     final value = _patchFormatElement;
     if (value == null) return null;
     if (_patchFormatElement is EqualUnmodifiableListView)
@@ -1840,9 +1843,10 @@ abstract class _CapabilityStatement extends CapabilityStatement {
       final FhirCode? fhirVersion,
       @JsonKey(name: '_fhirVersion') final PrimitiveElement? fhirVersionElement,
       final List<FhirCode>? format,
-      @JsonKey(name: '_format') final List<Element?>? formatElement,
+      @JsonKey(name: '_format') final List<PrimitiveElement>? formatElement,
       final List<FhirCode>? patchFormat,
-      @JsonKey(name: '_patchFormat') final List<Element?>? patchFormatElement,
+      @JsonKey(name: '_patchFormat')
+      final List<PrimitiveElement>? patchFormatElement,
       final List<FhirCanonical>? implementationGuide,
       final List<CapabilityStatementRest>? rest,
       final List<CapabilityStatementMessaging>? messaging,
@@ -2136,7 +2140,7 @@ abstract class _CapabilityStatement extends CapabilityStatement {
 
   /// [formatElement] Extensions for format
   @JsonKey(name: '_format')
-  List<Element?>? get formatElement;
+  List<PrimitiveElement>? get formatElement;
   @override
 
   /// [patchFormat] A list of the patch formats supported by this
@@ -2146,7 +2150,7 @@ abstract class _CapabilityStatement extends CapabilityStatement {
 
   /// [patchFormatElement] Extensions for patchFormat
   @JsonKey(name: '_patchFormat')
-  List<Element?>? get patchFormatElement;
+  List<PrimitiveElement>? get patchFormatElement;
   @override
 
   /// [implementationGuide] A list of implementation guides that the server
@@ -4475,7 +4479,7 @@ mixin _$CapabilityStatementResource {
 
   /// [referencePolicyElement] Extensions for referencePolicy
   @JsonKey(name: '_referencePolicy')
-  List<Element?>? get referencePolicyElement =>
+  List<PrimitiveElement>? get referencePolicyElement =>
       throw _privateConstructorUsedError;
 
   /// [searchInclude] A list of _include values supported by the server.
@@ -4483,7 +4487,7 @@ mixin _$CapabilityStatementResource {
 
   /// [searchIncludeElement] Extensions for searchInclude
   @JsonKey(name: '_searchInclude')
-  List<Element?>? get searchIncludeElement =>
+  List<PrimitiveElement>? get searchIncludeElement =>
       throw _privateConstructorUsedError;
 
   /// [searchRevInclude] A list of _revinclude (reverse include) values
@@ -4492,7 +4496,7 @@ mixin _$CapabilityStatementResource {
 
   /// [searchRevIncludeElement] Extensions for searchRevInclude
   @JsonKey(name: '_searchRevInclude')
-  List<Element?>? get searchRevIncludeElement =>
+  List<PrimitiveElement>? get searchRevIncludeElement =>
       throw _privateConstructorUsedError;
 
   /// [searchParam] Search parameters for implementations to support and/or
@@ -4552,12 +4556,14 @@ abstract class $CapabilityStatementResourceCopyWith<$Res> {
       @JsonKey(name: '_conditionalDelete')
       PrimitiveElement? conditionalDeleteElement,
       List<FhirCode>? referencePolicy,
-      @JsonKey(name: '_referencePolicy') List<Element?>? referencePolicyElement,
+      @JsonKey(name: '_referencePolicy')
+      List<PrimitiveElement>? referencePolicyElement,
       List<String>? searchInclude,
-      @JsonKey(name: '_searchInclude') List<Element?>? searchIncludeElement,
+      @JsonKey(name: '_searchInclude')
+      List<PrimitiveElement>? searchIncludeElement,
       List<String>? searchRevInclude,
       @JsonKey(name: '_searchRevInclude')
-      List<Element?>? searchRevIncludeElement,
+      List<PrimitiveElement>? searchRevIncludeElement,
       List<CapabilityStatementSearchParam>? searchParam,
       List<CapabilityStatementOperation>? operation});
 }
@@ -4713,7 +4719,7 @@ class _$CapabilityStatementResourceCopyWithImpl<$Res,
       referencePolicyElement: freezed == referencePolicyElement
           ? _value.referencePolicyElement
           : referencePolicyElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       searchInclude: freezed == searchInclude
           ? _value.searchInclude
           : searchInclude // ignore: cast_nullable_to_non_nullable
@@ -4721,7 +4727,7 @@ class _$CapabilityStatementResourceCopyWithImpl<$Res,
       searchIncludeElement: freezed == searchIncludeElement
           ? _value.searchIncludeElement
           : searchIncludeElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       searchRevInclude: freezed == searchRevInclude
           ? _value.searchRevInclude
           : searchRevInclude // ignore: cast_nullable_to_non_nullable
@@ -4729,7 +4735,7 @@ class _$CapabilityStatementResourceCopyWithImpl<$Res,
       searchRevIncludeElement: freezed == searchRevIncludeElement
           ? _value.searchRevIncludeElement
           : searchRevIncludeElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       searchParam: freezed == searchParam
           ? _value.searchParam
           : searchParam // ignore: cast_nullable_to_non_nullable
@@ -4781,12 +4787,14 @@ abstract class _$$CapabilityStatementResourceImplCopyWith<$Res>
       @JsonKey(name: '_conditionalDelete')
       PrimitiveElement? conditionalDeleteElement,
       List<FhirCode>? referencePolicy,
-      @JsonKey(name: '_referencePolicy') List<Element?>? referencePolicyElement,
+      @JsonKey(name: '_referencePolicy')
+      List<PrimitiveElement>? referencePolicyElement,
       List<String>? searchInclude,
-      @JsonKey(name: '_searchInclude') List<Element?>? searchIncludeElement,
+      @JsonKey(name: '_searchInclude')
+      List<PrimitiveElement>? searchIncludeElement,
       List<String>? searchRevInclude,
       @JsonKey(name: '_searchRevInclude')
-      List<Element?>? searchRevIncludeElement,
+      List<PrimitiveElement>? searchRevIncludeElement,
       List<CapabilityStatementSearchParam>? searchParam,
       List<CapabilityStatementOperation>? operation});
 }
@@ -4941,7 +4949,7 @@ class __$$CapabilityStatementResourceImplCopyWithImpl<$Res>
       referencePolicyElement: freezed == referencePolicyElement
           ? _value._referencePolicyElement
           : referencePolicyElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       searchInclude: freezed == searchInclude
           ? _value._searchInclude
           : searchInclude // ignore: cast_nullable_to_non_nullable
@@ -4949,7 +4957,7 @@ class __$$CapabilityStatementResourceImplCopyWithImpl<$Res>
       searchIncludeElement: freezed == searchIncludeElement
           ? _value._searchIncludeElement
           : searchIncludeElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       searchRevInclude: freezed == searchRevInclude
           ? _value._searchRevInclude
           : searchRevInclude // ignore: cast_nullable_to_non_nullable
@@ -4957,7 +4965,7 @@ class __$$CapabilityStatementResourceImplCopyWithImpl<$Res>
       searchRevIncludeElement: freezed == searchRevIncludeElement
           ? _value._searchRevIncludeElement
           : searchRevIncludeElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       searchParam: freezed == searchParam
           ? _value._searchParam
           : searchParam // ignore: cast_nullable_to_non_nullable
@@ -5000,13 +5008,13 @@ class _$CapabilityStatementResourceImpl extends _CapabilityStatementResource {
       @JsonKey(name: '_conditionalDelete') this.conditionalDeleteElement,
       final List<FhirCode>? referencePolicy,
       @JsonKey(name: '_referencePolicy')
-      final List<Element?>? referencePolicyElement,
+      final List<PrimitiveElement>? referencePolicyElement,
       final List<String>? searchInclude,
       @JsonKey(name: '_searchInclude')
-      final List<Element?>? searchIncludeElement,
+      final List<PrimitiveElement>? searchIncludeElement,
       final List<String>? searchRevInclude,
       @JsonKey(name: '_searchRevInclude')
-      final List<Element?>? searchRevIncludeElement,
+      final List<PrimitiveElement>? searchRevIncludeElement,
       final List<CapabilityStatementSearchParam>? searchParam,
       final List<CapabilityStatementOperation>? operation})
       : _extension_ = extension_,
@@ -5254,12 +5262,12 @@ class _$CapabilityStatementResourceImpl extends _CapabilityStatementResource {
   }
 
   /// [referencePolicyElement] Extensions for referencePolicy
-  final List<Element?>? _referencePolicyElement;
+  final List<PrimitiveElement>? _referencePolicyElement;
 
   /// [referencePolicyElement] Extensions for referencePolicy
   @override
   @JsonKey(name: '_referencePolicy')
-  List<Element?>? get referencePolicyElement {
+  List<PrimitiveElement>? get referencePolicyElement {
     final value = _referencePolicyElement;
     if (value == null) return null;
     if (_referencePolicyElement is EqualUnmodifiableListView)
@@ -5282,12 +5290,12 @@ class _$CapabilityStatementResourceImpl extends _CapabilityStatementResource {
   }
 
   /// [searchIncludeElement] Extensions for searchInclude
-  final List<Element?>? _searchIncludeElement;
+  final List<PrimitiveElement>? _searchIncludeElement;
 
   /// [searchIncludeElement] Extensions for searchInclude
   @override
   @JsonKey(name: '_searchInclude')
-  List<Element?>? get searchIncludeElement {
+  List<PrimitiveElement>? get searchIncludeElement {
     final value = _searchIncludeElement;
     if (value == null) return null;
     if (_searchIncludeElement is EqualUnmodifiableListView)
@@ -5313,12 +5321,12 @@ class _$CapabilityStatementResourceImpl extends _CapabilityStatementResource {
   }
 
   /// [searchRevIncludeElement] Extensions for searchRevInclude
-  final List<Element?>? _searchRevIncludeElement;
+  final List<PrimitiveElement>? _searchRevIncludeElement;
 
   /// [searchRevIncludeElement] Extensions for searchRevInclude
   @override
   @JsonKey(name: '_searchRevInclude')
-  List<Element?>? get searchRevIncludeElement {
+  List<PrimitiveElement>? get searchRevIncludeElement {
     final value = _searchRevIncludeElement;
     if (value == null) return null;
     if (_searchRevIncludeElement is EqualUnmodifiableListView)
@@ -5527,13 +5535,13 @@ abstract class _CapabilityStatementResource
       final PrimitiveElement? conditionalDeleteElement,
       final List<FhirCode>? referencePolicy,
       @JsonKey(name: '_referencePolicy')
-      final List<Element?>? referencePolicyElement,
+      final List<PrimitiveElement>? referencePolicyElement,
       final List<String>? searchInclude,
       @JsonKey(name: '_searchInclude')
-      final List<Element?>? searchIncludeElement,
+      final List<PrimitiveElement>? searchIncludeElement,
       final List<String>? searchRevInclude,
       @JsonKey(name: '_searchRevInclude')
-      final List<Element?>? searchRevIncludeElement,
+      final List<PrimitiveElement>? searchRevIncludeElement,
       final List<CapabilityStatementSearchParam>? searchParam,
       final List<CapabilityStatementOperation>?
           operation}) = _$CapabilityStatementResourceImpl;
@@ -5700,7 +5708,7 @@ abstract class _CapabilityStatementResource
 
   /// [referencePolicyElement] Extensions for referencePolicy
   @JsonKey(name: '_referencePolicy')
-  List<Element?>? get referencePolicyElement;
+  List<PrimitiveElement>? get referencePolicyElement;
   @override
 
   /// [searchInclude] A list of _include values supported by the server.
@@ -5709,7 +5717,7 @@ abstract class _CapabilityStatementResource
 
   /// [searchIncludeElement] Extensions for searchInclude
   @JsonKey(name: '_searchInclude')
-  List<Element?>? get searchIncludeElement;
+  List<PrimitiveElement>? get searchIncludeElement;
   @override
 
   /// [searchRevInclude] A list of _revinclude (reverse include) values
@@ -5719,7 +5727,7 @@ abstract class _CapabilityStatementResource
 
   /// [searchRevIncludeElement] Extensions for searchRevInclude
   @JsonKey(name: '_searchRevInclude')
-  List<Element?>? get searchRevIncludeElement;
+  List<PrimitiveElement>? get searchRevIncludeElement;
   @override
 
   /// [searchParam] Search parameters for implementations to support and/or

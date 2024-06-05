@@ -109,7 +109,7 @@ mixin _$RequestGroup {
 
   /// [instantiatesUriElement] Extensions for instantiatesUri
   @JsonKey(name: '_instantiatesUri')
-  List<Element?>? get instantiatesUriElement =>
+  List<PrimitiveElement>? get instantiatesUriElement =>
       throw _privateConstructorUsedError;
 
   /// [basedOn] A plan, proposal or order that is fulfilled in whole or in part
@@ -213,7 +213,8 @@ abstract class $RequestGroupCopyWith<$Res> {
       @JsonKey(name: '_instantiatesCanonical')
       List<Element>? instantiatesCanonicalElement,
       List<FhirUri>? instantiatesUri,
-      @JsonKey(name: '_instantiatesUri') List<Element?>? instantiatesUriElement,
+      @JsonKey(name: '_instantiatesUri')
+      List<PrimitiveElement>? instantiatesUriElement,
       List<Reference>? basedOn,
       List<Reference>? replaces,
       Identifier? groupIdentifier,
@@ -356,7 +357,7 @@ class _$RequestGroupCopyWithImpl<$Res, $Val extends RequestGroup>
       instantiatesUriElement: freezed == instantiatesUriElement
           ? _value.instantiatesUriElement
           : instantiatesUriElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       basedOn: freezed == basedOn
           ? _value.basedOn
           : basedOn // ignore: cast_nullable_to_non_nullable
@@ -547,7 +548,8 @@ abstract class _$$RequestGroupImplCopyWith<$Res>
       @JsonKey(name: '_instantiatesCanonical')
       List<Element>? instantiatesCanonicalElement,
       List<FhirUri>? instantiatesUri,
-      @JsonKey(name: '_instantiatesUri') List<Element?>? instantiatesUriElement,
+      @JsonKey(name: '_instantiatesUri')
+      List<PrimitiveElement>? instantiatesUriElement,
       List<Reference>? basedOn,
       List<Reference>? replaces,
       Identifier? groupIdentifier,
@@ -695,7 +697,7 @@ class __$$RequestGroupImplCopyWithImpl<$Res>
       instantiatesUriElement: freezed == instantiatesUriElement
           ? _value._instantiatesUriElement
           : instantiatesUriElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       basedOn: freezed == basedOn
           ? _value._basedOn
           : basedOn // ignore: cast_nullable_to_non_nullable
@@ -798,7 +800,7 @@ class _$RequestGroupImpl extends _RequestGroup {
       final List<Element>? instantiatesCanonicalElement,
       final List<FhirUri>? instantiatesUri,
       @JsonKey(name: '_instantiatesUri')
-      final List<Element?>? instantiatesUriElement,
+      final List<PrimitiveElement>? instantiatesUriElement,
       final List<Reference>? basedOn,
       final List<Reference>? replaces,
       this.groupIdentifier,
@@ -1026,12 +1028,12 @@ class _$RequestGroupImpl extends _RequestGroup {
   }
 
   /// [instantiatesUriElement] Extensions for instantiatesUri
-  final List<Element?>? _instantiatesUriElement;
+  final List<PrimitiveElement>? _instantiatesUriElement;
 
   /// [instantiatesUriElement] Extensions for instantiatesUri
   @override
   @JsonKey(name: '_instantiatesUri')
-  List<Element?>? get instantiatesUriElement {
+  List<PrimitiveElement>? get instantiatesUriElement {
     final value = _instantiatesUriElement;
     if (value == null) return null;
     if (_instantiatesUriElement is EqualUnmodifiableListView)
@@ -1336,7 +1338,7 @@ abstract class _RequestGroup extends RequestGroup {
       final List<Element>? instantiatesCanonicalElement,
       final List<FhirUri>? instantiatesUri,
       @JsonKey(name: '_instantiatesUri')
-      final List<Element?>? instantiatesUriElement,
+      final List<PrimitiveElement>? instantiatesUriElement,
       final List<Reference>? basedOn,
       final List<Reference>? replaces,
       final Identifier? groupIdentifier,
@@ -1462,7 +1464,7 @@ abstract class _RequestGroup extends RequestGroup {
 
   /// [instantiatesUriElement] Extensions for instantiatesUri
   @JsonKey(name: '_instantiatesUri')
-  List<Element?>? get instantiatesUriElement;
+  List<PrimitiveElement>? get instantiatesUriElement;
   @override
 
   /// [basedOn] A plan, proposal or order that is fulfilled in whole or in part

@@ -439,7 +439,7 @@ class AuditEventAgent with _$AuditEventAgent implements BackboneElement {
     List<FhirUri>? policy,
 
     /// [policyElement] Extensions for policy
-    @JsonKey(name: '_policy') List<Element?>? policyElement,
+    @JsonKey(name: '_policy') List<PrimitiveElement>? policyElement,
 
     /// [media] Type of media involved. Used when the event is about
     ///  exporting/importing onto media.

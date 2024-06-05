@@ -1794,7 +1794,7 @@ class StructureMapTarget with _$StructureMapTarget implements BackboneElement {
     List<FhirCode>? listMode,
 
     /// [listModeElement] Extensions for listMode
-    @JsonKey(name: '_listMode') List<Element?>? listModeElement,
+    @JsonKey(name: '_listMode') List<PrimitiveElement>? listModeElement,
 
     /// [listRuleId] Internal rule reference for shared list items.
     FhirId? listRuleId,
@@ -2085,7 +2085,7 @@ class StructureMapDependent
     List<String>? variable,
 
     /// [variableElement] Extensions for variable
-    @JsonKey(name: '_variable') List<Element?>? variableElement,
+    @JsonKey(name: '_variable') List<PrimitiveElement>? variableElement,
   }) = _StructureMapDependent;
 
   @override

@@ -218,8 +218,7 @@ _$MeasureImpl _$$MeasureImplFromJson(Map<String, dynamic> json) =>
           ?.map(FhirMarkdown.fromJson)
           .toList(),
       definitionElement: (json['_definition'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       guidance: json['guidance'] == null
           ? null
@@ -329,7 +328,7 @@ Map<String, dynamic> _$$MeasureImplToJson(_$MeasureImpl instance) {
   writeNotNull(
       'definition', instance.definition?.map((e) => e.toJson()).toList());
   writeNotNull('_definition',
-      instance.definitionElement?.map((e) => e?.toJson()).toList());
+      instance.definitionElement?.map((e) => e.toJson()).toList());
   writeNotNull('guidance', instance.guidance?.toJson());
   writeNotNull('_guidance', instance.guidanceElement?.toJson());
   writeNotNull('group', instance.group?.map((e) => e.toJson()).toList());

@@ -407,8 +407,7 @@ _$CodeSystemFilterImpl _$$CodeSystemFilterImplFromJson(
       operator_:
           (json['operator'] as List<dynamic>?)?.map(FhirCode.fromJson).toList(),
       operatorElement: (json['_operator'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       value: json['value'] as String?,
       valueElement: json['_value'] == null
@@ -437,7 +436,7 @@ Map<String, dynamic> _$$CodeSystemFilterImplToJson(
   writeNotNull('_description', instance.descriptionElement?.toJson());
   writeNotNull('operator', instance.operator_?.map((e) => e.toJson()).toList());
   writeNotNull(
-      '_operator', instance.operatorElement?.map((e) => e?.toJson()).toList());
+      '_operator', instance.operatorElement?.map((e) => e.toJson()).toList());
   writeNotNull('value', instance.value);
   writeNotNull('_value', instance.valueElement?.toJson());
   return val;

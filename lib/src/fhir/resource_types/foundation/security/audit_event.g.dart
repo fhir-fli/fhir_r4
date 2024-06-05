@@ -309,8 +309,7 @@ _$AuditEventAgentImpl _$$AuditEventAgentImplFromJson(
       policy:
           (json['policy'] as List<dynamic>?)?.map(FhirUri.fromJson).toList(),
       policyElement: (json['_policy'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       media: json['media'] == null
           ? null
@@ -350,7 +349,7 @@ Map<String, dynamic> _$$AuditEventAgentImplToJson(
   writeNotNull('location', instance.location?.toJson());
   writeNotNull('policy', instance.policy?.map((e) => e.toJson()).toList());
   writeNotNull(
-      '_policy', instance.policyElement?.map((e) => e?.toJson()).toList());
+      '_policy', instance.policyElement?.map((e) => e.toJson()).toList());
   writeNotNull('media', instance.media?.toJson());
   writeNotNull('network', instance.network?.toJson());
   writeNotNull(

@@ -110,7 +110,8 @@ mixin _$CoverageEligibilityResponse {
 
   /// [purposeElement] Extensions for purpose
   @JsonKey(name: '_purpose')
-  List<Element?>? get purposeElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get purposeElement =>
+      throw _privateConstructorUsedError;
 
   /// [patient] The party who is the beneficiary of the supplied coverage and
   ///  for whom eligibility is sought.
@@ -214,7 +215,7 @@ abstract class $CoverageEligibilityResponseCopyWith<$Res> {
       FhirCode? status,
       @JsonKey(name: '_status') PrimitiveElement? statusElement,
       List<FhirCode>? purpose,
-      @JsonKey(name: '_purpose') List<Element?>? purposeElement,
+      @JsonKey(name: '_purpose') List<PrimitiveElement>? purposeElement,
       Reference patient,
       FhirDate? servicedDate,
       @JsonKey(name: '_servicedDate') PrimitiveElement? servicedDateElement,
@@ -357,7 +358,7 @@ class _$CoverageEligibilityResponseCopyWithImpl<$Res,
       purposeElement: freezed == purposeElement
           ? _value.purposeElement
           : purposeElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       patient: null == patient
           ? _value.patient
           : patient // ignore: cast_nullable_to_non_nullable
@@ -544,7 +545,7 @@ abstract class _$$CoverageEligibilityResponseImplCopyWith<$Res>
       FhirCode? status,
       @JsonKey(name: '_status') PrimitiveElement? statusElement,
       List<FhirCode>? purpose,
-      @JsonKey(name: '_purpose') List<Element?>? purposeElement,
+      @JsonKey(name: '_purpose') List<PrimitiveElement>? purposeElement,
       Reference patient,
       FhirDate? servicedDate,
       @JsonKey(name: '_servicedDate') PrimitiveElement? servicedDateElement,
@@ -694,7 +695,7 @@ class __$$CoverageEligibilityResponseImplCopyWithImpl<$Res>
       purposeElement: freezed == purposeElement
           ? _value._purposeElement
           : purposeElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       patient: null == patient
           ? _value.patient
           : patient // ignore: cast_nullable_to_non_nullable
@@ -791,7 +792,7 @@ class _$CoverageEligibilityResponseImpl extends _CoverageEligibilityResponse {
       this.status,
       @JsonKey(name: '_status') this.statusElement,
       final List<FhirCode>? purpose,
-      @JsonKey(name: '_purpose') final List<Element?>? purposeElement,
+      @JsonKey(name: '_purpose') final List<PrimitiveElement>? purposeElement,
       required this.patient,
       this.servicedDate,
       @JsonKey(name: '_servicedDate') this.servicedDateElement,
@@ -996,12 +997,12 @@ class _$CoverageEligibilityResponseImpl extends _CoverageEligibilityResponse {
   }
 
   /// [purposeElement] Extensions for purpose
-  final List<Element?>? _purposeElement;
+  final List<PrimitiveElement>? _purposeElement;
 
   /// [purposeElement] Extensions for purpose
   @override
   @JsonKey(name: '_purpose')
-  List<Element?>? get purposeElement {
+  List<PrimitiveElement>? get purposeElement {
     final value = _purposeElement;
     if (value == null) return null;
     if (_purposeElement is EqualUnmodifiableListView) return _purposeElement;
@@ -1256,7 +1257,7 @@ abstract class _CoverageEligibilityResponse
       final FhirCode? status,
       @JsonKey(name: '_status') final PrimitiveElement? statusElement,
       final List<FhirCode>? purpose,
-      @JsonKey(name: '_purpose') final List<Element?>? purposeElement,
+      @JsonKey(name: '_purpose') final List<PrimitiveElement>? purposeElement,
       required final Reference patient,
       final FhirDate? servicedDate,
       @JsonKey(name: '_servicedDate')
@@ -1385,7 +1386,7 @@ abstract class _CoverageEligibilityResponse
 
   /// [purposeElement] Extensions for purpose
   @JsonKey(name: '_purpose')
-  List<Element?>? get purposeElement;
+  List<PrimitiveElement>? get purposeElement;
   @override
 
   /// [patient] The party who is the beneficiary of the supplied coverage and

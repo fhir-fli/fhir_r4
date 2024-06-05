@@ -225,7 +225,8 @@ class RequestGroup with _$RequestGroup implements DomainResource {
     List<FhirUri>? instantiatesUri,
 
     /// [instantiatesUriElement] Extensions for instantiatesUri
-    @JsonKey(name: '_instantiatesUri') List<Element?>? instantiatesUriElement,
+    @JsonKey(name: '_instantiatesUri')
+    List<PrimitiveElement>? instantiatesUriElement,
 
     /// [basedOn] A plan, proposal or order that is fulfilled in whole or in part
     ///  by this request.

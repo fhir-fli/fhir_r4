@@ -3402,7 +3402,8 @@ mixin _$TerminologyCapabilitiesVersion {
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  List<Element?>? get languageElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get languageElement =>
+      throw _privateConstructorUsedError;
 
   /// [filter] Filter Properties supported.
   List<TerminologyCapabilitiesFilter>? get filter =>
@@ -3413,7 +3414,8 @@ mixin _$TerminologyCapabilitiesVersion {
 
   /// [propertyElement] Extensions for property
   @JsonKey(name: '_property')
-  List<Element?>? get propertyElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get propertyElement =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -3440,10 +3442,10 @@ abstract class $TerminologyCapabilitiesVersionCopyWith<$Res> {
       FhirBoolean? compositional,
       @JsonKey(name: '_compositional') PrimitiveElement? compositionalElement,
       List<FhirCode>? language,
-      @JsonKey(name: '_language') List<Element?>? languageElement,
+      @JsonKey(name: '_language') List<PrimitiveElement>? languageElement,
       List<TerminologyCapabilitiesFilter>? filter,
       List<FhirCode>? property,
-      @JsonKey(name: '_property') List<Element?>? propertyElement});
+      @JsonKey(name: '_property') List<PrimitiveElement>? propertyElement});
 }
 
 /// @nodoc
@@ -3519,7 +3521,7 @@ class _$TerminologyCapabilitiesVersionCopyWithImpl<$Res,
       languageElement: freezed == languageElement
           ? _value.languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       filter: freezed == filter
           ? _value.filter
           : filter // ignore: cast_nullable_to_non_nullable
@@ -3531,7 +3533,7 @@ class _$TerminologyCapabilitiesVersionCopyWithImpl<$Res,
       propertyElement: freezed == propertyElement
           ? _value.propertyElement
           : propertyElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
     ) as $Val);
   }
 }
@@ -3556,10 +3558,10 @@ abstract class _$$TerminologyCapabilitiesVersionImplCopyWith<$Res>
       FhirBoolean? compositional,
       @JsonKey(name: '_compositional') PrimitiveElement? compositionalElement,
       List<FhirCode>? language,
-      @JsonKey(name: '_language') List<Element?>? languageElement,
+      @JsonKey(name: '_language') List<PrimitiveElement>? languageElement,
       List<TerminologyCapabilitiesFilter>? filter,
       List<FhirCode>? property,
-      @JsonKey(name: '_property') List<Element?>? propertyElement});
+      @JsonKey(name: '_property') List<PrimitiveElement>? propertyElement});
 }
 
 /// @nodoc
@@ -3634,7 +3636,7 @@ class __$$TerminologyCapabilitiesVersionImplCopyWithImpl<$Res>
       languageElement: freezed == languageElement
           ? _value._languageElement
           : languageElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       filter: freezed == filter
           ? _value._filter
           : filter // ignore: cast_nullable_to_non_nullable
@@ -3646,7 +3648,7 @@ class __$$TerminologyCapabilitiesVersionImplCopyWithImpl<$Res>
       propertyElement: freezed == propertyElement
           ? _value._propertyElement
           : propertyElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
     ));
   }
 }
@@ -3666,10 +3668,11 @@ class _$TerminologyCapabilitiesVersionImpl
       this.compositional,
       @JsonKey(name: '_compositional') this.compositionalElement,
       final List<FhirCode>? language,
-      @JsonKey(name: '_language') final List<Element?>? languageElement,
+      @JsonKey(name: '_language') final List<PrimitiveElement>? languageElement,
       final List<TerminologyCapabilitiesFilter>? filter,
       final List<FhirCode>? property,
-      @JsonKey(name: '_property') final List<Element?>? propertyElement})
+      @JsonKey(name: '_property')
+      final List<PrimitiveElement>? propertyElement})
       : _extension_ = extension_,
         _modifierExtension = modifierExtension,
         _language = language,
@@ -3793,12 +3796,12 @@ class _$TerminologyCapabilitiesVersionImpl
   }
 
   /// [languageElement] Extensions for language
-  final List<Element?>? _languageElement;
+  final List<PrimitiveElement>? _languageElement;
 
   /// [languageElement] Extensions for language
   @override
   @JsonKey(name: '_language')
-  List<Element?>? get languageElement {
+  List<PrimitiveElement>? get languageElement {
     final value = _languageElement;
     if (value == null) return null;
     if (_languageElement is EqualUnmodifiableListView) return _languageElement;
@@ -3833,12 +3836,12 @@ class _$TerminologyCapabilitiesVersionImpl
   }
 
   /// [propertyElement] Extensions for property
-  final List<Element?>? _propertyElement;
+  final List<PrimitiveElement>? _propertyElement;
 
   /// [propertyElement] Extensions for property
   @override
   @JsonKey(name: '_property')
-  List<Element?>? get propertyElement {
+  List<PrimitiveElement>? get propertyElement {
     final value = _propertyElement;
     if (value == null) return null;
     if (_propertyElement is EqualUnmodifiableListView) return _propertyElement;
@@ -3919,22 +3922,23 @@ class _$TerminologyCapabilitiesVersionImpl
 abstract class _TerminologyCapabilitiesVersion
     extends TerminologyCapabilitiesVersion {
   const factory _TerminologyCapabilitiesVersion(
-          {final String? id,
-          @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
-          final List<FhirExtension>? modifierExtension,
-          final String? code,
-          @JsonKey(name: '_code') final PrimitiveElement? codeElement,
-          final FhirBoolean? isDefault,
-          @JsonKey(name: '_isDefault') final PrimitiveElement? isDefaultElement,
-          final FhirBoolean? compositional,
-          @JsonKey(name: '_compositional')
-          final PrimitiveElement? compositionalElement,
-          final List<FhirCode>? language,
-          @JsonKey(name: '_language') final List<Element?>? languageElement,
-          final List<TerminologyCapabilitiesFilter>? filter,
-          final List<FhirCode>? property,
-          @JsonKey(name: '_property') final List<Element?>? propertyElement}) =
-      _$TerminologyCapabilitiesVersionImpl;
+      {final String? id,
+      @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
+      final List<FhirExtension>? modifierExtension,
+      final String? code,
+      @JsonKey(name: '_code') final PrimitiveElement? codeElement,
+      final FhirBoolean? isDefault,
+      @JsonKey(name: '_isDefault') final PrimitiveElement? isDefaultElement,
+      final FhirBoolean? compositional,
+      @JsonKey(name: '_compositional')
+      final PrimitiveElement? compositionalElement,
+      final List<FhirCode>? language,
+      @JsonKey(name: '_language') final List<PrimitiveElement>? languageElement,
+      final List<TerminologyCapabilitiesFilter>? filter,
+      final List<FhirCode>? property,
+      @JsonKey(name: '_property')
+      final List<PrimitiveElement>?
+          propertyElement}) = _$TerminologyCapabilitiesVersionImpl;
   const _TerminologyCapabilitiesVersion._() : super._();
 
   factory _TerminologyCapabilitiesVersion.fromJson(Map<String, dynamic> json) =
@@ -4008,7 +4012,7 @@ abstract class _TerminologyCapabilitiesVersion
 
   /// [languageElement] Extensions for language
   @JsonKey(name: '_language')
-  List<Element?>? get languageElement;
+  List<PrimitiveElement>? get languageElement;
   @override
 
   /// [filter] Filter Properties supported.
@@ -4021,7 +4025,7 @@ abstract class _TerminologyCapabilitiesVersion
 
   /// [propertyElement] Extensions for property
   @JsonKey(name: '_property')
-  List<Element?>? get propertyElement;
+  List<PrimitiveElement>? get propertyElement;
   @override
   @JsonKey(ignore: true)
   _$$TerminologyCapabilitiesVersionImplCopyWith<
@@ -4077,7 +4081,7 @@ mixin _$TerminologyCapabilitiesFilter {
 
   /// [opElement] Extensions for op
   @JsonKey(name: '_op')
-  List<Element?>? get opElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get opElement => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -4100,7 +4104,7 @@ abstract class $TerminologyCapabilitiesFilterCopyWith<$Res> {
       FhirCode? code,
       @JsonKey(name: '_code') PrimitiveElement? codeElement,
       List<FhirCode>? op,
-      @JsonKey(name: '_op') List<Element?>? opElement});
+      @JsonKey(name: '_op') List<PrimitiveElement>? opElement});
 }
 
 /// @nodoc
@@ -4153,7 +4157,7 @@ class _$TerminologyCapabilitiesFilterCopyWithImpl<$Res,
       opElement: freezed == opElement
           ? _value.opElement
           : opElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
     ) as $Val);
   }
 }
@@ -4174,7 +4178,7 @@ abstract class _$$TerminologyCapabilitiesFilterImplCopyWith<$Res>
       FhirCode? code,
       @JsonKey(name: '_code') PrimitiveElement? codeElement,
       List<FhirCode>? op,
-      @JsonKey(name: '_op') List<Element?>? opElement});
+      @JsonKey(name: '_op') List<PrimitiveElement>? opElement});
 }
 
 /// @nodoc
@@ -4226,7 +4230,7 @@ class __$$TerminologyCapabilitiesFilterImplCopyWithImpl<$Res>
       opElement: freezed == opElement
           ? _value._opElement
           : opElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
     ));
   }
 }
@@ -4242,7 +4246,7 @@ class _$TerminologyCapabilitiesFilterImpl
       this.code,
       @JsonKey(name: '_code') this.codeElement,
       final List<FhirCode>? op,
-      @JsonKey(name: '_op') final List<Element?>? opElement})
+      @JsonKey(name: '_op') final List<PrimitiveElement>? opElement})
       : _extension_ = extension_,
         _modifierExtension = modifierExtension,
         _op = op,
@@ -4343,12 +4347,12 @@ class _$TerminologyCapabilitiesFilterImpl
   }
 
   /// [opElement] Extensions for op
-  final List<Element?>? _opElement;
+  final List<PrimitiveElement>? _opElement;
 
   /// [opElement] Extensions for op
   @override
   @JsonKey(name: '_op')
-  List<Element?>? get opElement {
+  List<PrimitiveElement>? get opElement {
     final value = _opElement;
     if (value == null) return null;
     if (_opElement is EqualUnmodifiableListView) return _opElement;
@@ -4416,7 +4420,7 @@ abstract class _TerminologyCapabilitiesFilter
           final FhirCode? code,
           @JsonKey(name: '_code') final PrimitiveElement? codeElement,
           final List<FhirCode>? op,
-          @JsonKey(name: '_op') final List<Element?>? opElement}) =
+          @JsonKey(name: '_op') final List<PrimitiveElement>? opElement}) =
       _$TerminologyCapabilitiesFilterImpl;
   const _TerminologyCapabilitiesFilter._() : super._();
 
@@ -4471,7 +4475,7 @@ abstract class _TerminologyCapabilitiesFilter
 
   /// [opElement] Extensions for op
   @JsonKey(name: '_op')
-  List<Element?>? get opElement;
+  List<PrimitiveElement>? get opElement;
   @override
   @JsonKey(ignore: true)
   _$$TerminologyCapabilitiesFilterImplCopyWith<

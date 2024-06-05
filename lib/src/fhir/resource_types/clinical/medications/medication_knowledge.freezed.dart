@@ -127,7 +127,8 @@ mixin _$MedicationKnowledge {
 
   /// [synonymElement] Extensions for synonym
   @JsonKey(name: '_synonym')
-  List<Element?>? get synonymElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get synonymElement =>
+      throw _privateConstructorUsedError;
   List<MedicationKnowledgeRelatedMedicationKnowledge>?
       get relatedMedicationKnowledge => throw _privateConstructorUsedError;
 
@@ -234,7 +235,7 @@ abstract class $MedicationKnowledgeCopyWith<$Res> {
       CodeableConcept? doseForm,
       Quantity? amount,
       List<String>? synonym,
-      @JsonKey(name: '_synonym') List<Element?>? synonymElement,
+      @JsonKey(name: '_synonym') List<PrimitiveElement>? synonymElement,
       List<MedicationKnowledgeRelatedMedicationKnowledge>?
           relatedMedicationKnowledge,
       List<Reference>? associatedMedication,
@@ -391,7 +392,7 @@ class _$MedicationKnowledgeCopyWithImpl<$Res, $Val extends MedicationKnowledge>
       synonymElement: freezed == synonymElement
           ? _value.synonymElement
           : synonymElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       relatedMedicationKnowledge: freezed == relatedMedicationKnowledge
           ? _value.relatedMedicationKnowledge
           : relatedMedicationKnowledge // ignore: cast_nullable_to_non_nullable
@@ -577,7 +578,7 @@ abstract class _$$MedicationKnowledgeImplCopyWith<$Res>
       CodeableConcept? doseForm,
       Quantity? amount,
       List<String>? synonym,
-      @JsonKey(name: '_synonym') List<Element?>? synonymElement,
+      @JsonKey(name: '_synonym') List<PrimitiveElement>? synonymElement,
       List<MedicationKnowledgeRelatedMedicationKnowledge>?
           relatedMedicationKnowledge,
       List<Reference>? associatedMedication,
@@ -739,7 +740,7 @@ class __$$MedicationKnowledgeImplCopyWithImpl<$Res>
       synonymElement: freezed == synonymElement
           ? _value._synonymElement
           : synonymElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       relatedMedicationKnowledge: freezed == relatedMedicationKnowledge
           ? _value._relatedMedicationKnowledge
           : relatedMedicationKnowledge // ignore: cast_nullable_to_non_nullable
@@ -835,7 +836,7 @@ class _$MedicationKnowledgeImpl extends _MedicationKnowledge {
       this.doseForm,
       this.amount,
       final List<String>? synonym,
-      @JsonKey(name: '_synonym') final List<Element?>? synonymElement,
+      @JsonKey(name: '_synonym') final List<PrimitiveElement>? synonymElement,
       final List<MedicationKnowledgeRelatedMedicationKnowledge>?
           relatedMedicationKnowledge,
       final List<Reference>? associatedMedication,
@@ -1062,12 +1063,12 @@ class _$MedicationKnowledgeImpl extends _MedicationKnowledge {
   }
 
   /// [synonymElement] Extensions for synonym
-  final List<Element?>? _synonymElement;
+  final List<PrimitiveElement>? _synonymElement;
 
   /// [synonymElement] Extensions for synonym
   @override
   @JsonKey(name: '_synonym')
-  List<Element?>? get synonymElement {
+  List<PrimitiveElement>? get synonymElement {
     final value = _synonymElement;
     if (value == null) return null;
     if (_synonymElement is EqualUnmodifiableListView) return _synonymElement;
@@ -1436,49 +1437,49 @@ class _$MedicationKnowledgeImpl extends _MedicationKnowledge {
 
 abstract class _MedicationKnowledge extends MedicationKnowledge {
   const factory _MedicationKnowledge(
-          {@JsonKey(unknownEnumValue: R4ResourceType.MedicationKnowledge)
-          final R4ResourceType resourceType,
-          final String? id,
-          final FhirMeta? meta,
-          final FhirUri? implicitRules,
-          @JsonKey(name: '_implicitRules')
-          final PrimitiveElement? implicitRulesElement,
-          final FhirCode? language,
-          @JsonKey(name: '_language') final PrimitiveElement? languageElement,
-          final Narrative? text,
-          final List<Resource>? contained,
-          @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
-          final List<FhirExtension>? modifierExtension,
-          final CodeableConcept? code,
-          final FhirCode? status,
-          @JsonKey(name: '_status') final PrimitiveElement? statusElement,
-          final Reference? manufacturer,
-          final CodeableConcept? doseForm,
-          final Quantity? amount,
-          final List<String>? synonym,
-          @JsonKey(name: '_synonym') final List<Element?>? synonymElement,
-          final List<MedicationKnowledgeRelatedMedicationKnowledge>?
-              relatedMedicationKnowledge,
-          final List<Reference>? associatedMedication,
-          final List<CodeableConcept>? productType,
-          final List<MedicationKnowledgeMonograph>? monograph,
-          final List<MedicationKnowledgeIngredient>? ingredient,
-          final FhirMarkdown? preparationInstruction,
-          @JsonKey(name: '_preparationInstruction')
-          final PrimitiveElement? preparationInstructionElement,
-          final List<CodeableConcept>? intendedRoute,
-          final List<MedicationKnowledgeCost>? cost,
-          final List<MedicationKnowledgeMonitoringProgram>? monitoringProgram,
-          final List<MedicationKnowledgeAdministrationGuidelines>?
-              administrationGuidelines,
-          final List<MedicationKnowledgeMedicineClassification>?
-              medicineClassification,
-          final MedicationKnowledgePackaging? packaging,
-          final List<MedicationKnowledgeDrugCharacteristic>? drugCharacteristic,
-          final List<Reference>? contraindication,
-          final List<MedicationKnowledgeRegulatory>? regulatory,
-          final List<MedicationKnowledgeKinetics>? kinetics}) =
-      _$MedicationKnowledgeImpl;
+      {@JsonKey(unknownEnumValue: R4ResourceType.MedicationKnowledge)
+      final R4ResourceType resourceType,
+      final String? id,
+      final FhirMeta? meta,
+      final FhirUri? implicitRules,
+      @JsonKey(name: '_implicitRules')
+      final PrimitiveElement? implicitRulesElement,
+      final FhirCode? language,
+      @JsonKey(name: '_language') final PrimitiveElement? languageElement,
+      final Narrative? text,
+      final List<Resource>? contained,
+      @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
+      final List<FhirExtension>? modifierExtension,
+      final CodeableConcept? code,
+      final FhirCode? status,
+      @JsonKey(name: '_status') final PrimitiveElement? statusElement,
+      final Reference? manufacturer,
+      final CodeableConcept? doseForm,
+      final Quantity? amount,
+      final List<String>? synonym,
+      @JsonKey(name: '_synonym') final List<PrimitiveElement>? synonymElement,
+      final List<MedicationKnowledgeRelatedMedicationKnowledge>?
+          relatedMedicationKnowledge,
+      final List<Reference>? associatedMedication,
+      final List<CodeableConcept>? productType,
+      final List<MedicationKnowledgeMonograph>? monograph,
+      final List<MedicationKnowledgeIngredient>? ingredient,
+      final FhirMarkdown? preparationInstruction,
+      @JsonKey(name: '_preparationInstruction')
+      final PrimitiveElement? preparationInstructionElement,
+      final List<CodeableConcept>? intendedRoute,
+      final List<MedicationKnowledgeCost>? cost,
+      final List<MedicationKnowledgeMonitoringProgram>? monitoringProgram,
+      final List<MedicationKnowledgeAdministrationGuidelines>?
+          administrationGuidelines,
+      final List<MedicationKnowledgeMedicineClassification>?
+          medicineClassification,
+      final MedicationKnowledgePackaging? packaging,
+      final List<MedicationKnowledgeDrugCharacteristic>? drugCharacteristic,
+      final List<Reference>? contraindication,
+      final List<MedicationKnowledgeRegulatory>? regulatory,
+      final List<MedicationKnowledgeKinetics>?
+          kinetics}) = _$MedicationKnowledgeImpl;
   const _MedicationKnowledge._() : super._();
 
   factory _MedicationKnowledge.fromJson(Map<String, dynamic> json) =
@@ -1608,7 +1609,7 @@ abstract class _MedicationKnowledge extends MedicationKnowledge {
 
   /// [synonymElement] Extensions for synonym
   @JsonKey(name: '_synonym')
-  List<Element?>? get synonymElement;
+  List<PrimitiveElement>? get synonymElement;
   @override
   List<MedicationKnowledgeRelatedMedicationKnowledge>?
       get relatedMedicationKnowledge;
@@ -4822,7 +4823,8 @@ mixin _$MedicationKnowledgePatientCharacteristics {
 
   /// [valueElement] Extensions for value
   @JsonKey(name: '_value')
-  List<Element?>? get valueElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get valueElement =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -4846,7 +4848,7 @@ abstract class $MedicationKnowledgePatientCharacteristicsCopyWith<$Res> {
       CodeableConcept? characteristicCodeableConcept,
       Quantity? characteristicQuantity,
       List<String>? value,
-      @JsonKey(name: '_value') List<Element?>? valueElement});
+      @JsonKey(name: '_value') List<PrimitiveElement>? valueElement});
 
   $CodeableConceptCopyWith<$Res>? get characteristicCodeableConcept;
   $QuantityCopyWith<$Res>? get characteristicQuantity;
@@ -4903,7 +4905,7 @@ class _$MedicationKnowledgePatientCharacteristicsCopyWithImpl<$Res,
       valueElement: freezed == valueElement
           ? _value.valueElement
           : valueElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
     ) as $Val);
   }
 
@@ -4950,7 +4952,7 @@ abstract class _$$MedicationKnowledgePatientCharacteristicsImplCopyWith<$Res>
       CodeableConcept? characteristicCodeableConcept,
       Quantity? characteristicQuantity,
       List<String>? value,
-      @JsonKey(name: '_value') List<Element?>? valueElement});
+      @JsonKey(name: '_value') List<PrimitiveElement>? valueElement});
 
   @override
   $CodeableConceptCopyWith<$Res>? get characteristicCodeableConcept;
@@ -5007,7 +5009,7 @@ class __$$MedicationKnowledgePatientCharacteristicsImplCopyWithImpl<$Res>
       valueElement: freezed == valueElement
           ? _value._valueElement
           : valueElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
     ));
   }
 }
@@ -5023,7 +5025,7 @@ class _$MedicationKnowledgePatientCharacteristicsImpl
       this.characteristicCodeableConcept,
       this.characteristicQuantity,
       final List<String>? value,
-      @JsonKey(name: '_value') final List<Element?>? valueElement})
+      @JsonKey(name: '_value') final List<PrimitiveElement>? valueElement})
       : _extension_ = extension_,
         _modifierExtension = modifierExtension,
         _value = value,
@@ -5125,12 +5127,12 @@ class _$MedicationKnowledgePatientCharacteristicsImpl
   }
 
   /// [valueElement] Extensions for value
-  final List<Element?>? _valueElement;
+  final List<PrimitiveElement>? _valueElement;
 
   /// [valueElement] Extensions for value
   @override
   @JsonKey(name: '_value')
-  List<Element?>? get valueElement {
+  List<PrimitiveElement>? get valueElement {
     final value = _valueElement;
     if (value == null) return null;
     if (_valueElement is EqualUnmodifiableListView) return _valueElement;
@@ -5203,7 +5205,8 @@ abstract class _MedicationKnowledgePatientCharacteristics
           final CodeableConcept? characteristicCodeableConcept,
           final Quantity? characteristicQuantity,
           final List<String>? value,
-          @JsonKey(name: '_value') final List<Element?>? valueElement}) =
+          @JsonKey(name: '_value')
+          final List<PrimitiveElement>? valueElement}) =
       _$MedicationKnowledgePatientCharacteristicsImpl;
   const _MedicationKnowledgePatientCharacteristics._() : super._();
 
@@ -5260,7 +5263,7 @@ abstract class _MedicationKnowledgePatientCharacteristics
 
   /// [valueElement] Extensions for value
   @JsonKey(name: '_value')
-  List<Element?>? get valueElement;
+  List<PrimitiveElement>? get valueElement;
   @override
   @JsonKey(ignore: true)
   _$$MedicationKnowledgePatientCharacteristicsImplCopyWith<

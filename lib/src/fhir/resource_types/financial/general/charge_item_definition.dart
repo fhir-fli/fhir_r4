@@ -309,7 +309,8 @@ class ChargeItemDefinition
     List<FhirUri>? derivedFromUri,
 
     /// [derivedFromUriElement] Extensions for derivedFromUri
-    @JsonKey(name: '_derivedFromUri') List<Element?>? derivedFromUriElement,
+    @JsonKey(name: '_derivedFromUri')
+    List<PrimitiveElement>? derivedFromUriElement,
 
     /// [partOf] A larger definition of which this particular definition is a
     ///  component or step.

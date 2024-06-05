@@ -138,7 +138,8 @@ mixin _$DeviceDefinition {
 
   /// [versionElement] Extensions for version
   @JsonKey(name: '_version')
-  List<Element?>? get versionElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get versionElement =>
+      throw _privateConstructorUsedError;
 
   /// [safety] Safety characteristics of the device.
   List<CodeableConcept>? get safety => throw _privateConstructorUsedError;
@@ -241,7 +242,7 @@ abstract class $DeviceDefinitionCopyWith<$Res> {
       CodeableConcept? type,
       List<DeviceDefinitionSpecialization>? specialization,
       List<String>? version,
-      @JsonKey(name: '_version') List<Element?>? versionElement,
+      @JsonKey(name: '_version') List<PrimitiveElement>? versionElement,
       List<CodeableConcept>? safety,
       List<ProductShelfLife>? shelfLifeStorage,
       ProdCharacteristic? physicalCharacteristics,
@@ -415,7 +416,7 @@ class _$DeviceDefinitionCopyWithImpl<$Res, $Val extends DeviceDefinition>
       versionElement: freezed == versionElement
           ? _value.versionElement
           : versionElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       safety: freezed == safety
           ? _value.safety
           : safety // ignore: cast_nullable_to_non_nullable
@@ -614,7 +615,7 @@ abstract class _$$DeviceDefinitionImplCopyWith<$Res>
       CodeableConcept? type,
       List<DeviceDefinitionSpecialization>? specialization,
       List<String>? version,
-      @JsonKey(name: '_version') List<Element?>? versionElement,
+      @JsonKey(name: '_version') List<PrimitiveElement>? versionElement,
       List<CodeableConcept>? safety,
       List<ProductShelfLife>? shelfLifeStorage,
       ProdCharacteristic? physicalCharacteristics,
@@ -794,7 +795,7 @@ class __$$DeviceDefinitionImplCopyWithImpl<$Res>
       versionElement: freezed == versionElement
           ? _value._versionElement
           : versionElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       safety: freezed == safety
           ? _value._safety
           : safety // ignore: cast_nullable_to_non_nullable
@@ -890,7 +891,7 @@ class _$DeviceDefinitionImpl extends _DeviceDefinition {
       this.type,
       final List<DeviceDefinitionSpecialization>? specialization,
       final List<String>? version,
-      @JsonKey(name: '_version') final List<Element?>? versionElement,
+      @JsonKey(name: '_version') final List<PrimitiveElement>? versionElement,
       final List<CodeableConcept>? safety,
       final List<ProductShelfLife>? shelfLifeStorage,
       this.physicalCharacteristics,
@@ -1162,12 +1163,12 @@ class _$DeviceDefinitionImpl extends _DeviceDefinition {
   }
 
   /// [versionElement] Extensions for version
-  final List<Element?>? _versionElement;
+  final List<PrimitiveElement>? _versionElement;
 
   /// [versionElement] Extensions for version
   @override
   @JsonKey(name: '_version')
-  List<Element?>? get versionElement {
+  List<PrimitiveElement>? get versionElement {
     final value = _versionElement;
     if (value == null) return null;
     if (_versionElement is EqualUnmodifiableListView) return _versionElement;
@@ -1495,7 +1496,7 @@ abstract class _DeviceDefinition extends DeviceDefinition {
       final CodeableConcept? type,
       final List<DeviceDefinitionSpecialization>? specialization,
       final List<String>? version,
-      @JsonKey(name: '_version') final List<Element?>? versionElement,
+      @JsonKey(name: '_version') final List<PrimitiveElement>? versionElement,
       final List<CodeableConcept>? safety,
       final List<ProductShelfLife>? shelfLifeStorage,
       final ProdCharacteristic? physicalCharacteristics,
@@ -1652,7 +1653,7 @@ abstract class _DeviceDefinition extends DeviceDefinition {
 
   /// [versionElement] Extensions for version
   @JsonKey(name: '_version')
-  List<Element?>? get versionElement;
+  List<PrimitiveElement>? get versionElement;
   @override
 
   /// [safety] Safety characteristics of the device.

@@ -107,7 +107,7 @@ mixin _$CarePlan {
 
   /// [instantiatesUriElement] Extensions for instantiatesUri
   @JsonKey(name: '_instantiatesUri')
-  List<Element?>? get instantiatesUriElement =>
+  List<PrimitiveElement>? get instantiatesUriElement =>
       throw _privateConstructorUsedError;
 
   /// [basedOn] A care plan that is fulfilled in whole or in part by this care
@@ -237,7 +237,8 @@ abstract class $CarePlanCopyWith<$Res> {
       List<Identifier>? identifier,
       List<FhirCanonical>? instantiatesCanonical,
       List<FhirUri>? instantiatesUri,
-      @JsonKey(name: '_instantiatesUri') List<Element?>? instantiatesUriElement,
+      @JsonKey(name: '_instantiatesUri')
+      List<PrimitiveElement>? instantiatesUriElement,
       List<Reference>? basedOn,
       List<Reference>? replaces,
       List<Reference>? partOf,
@@ -386,7 +387,7 @@ class _$CarePlanCopyWithImpl<$Res, $Val extends CarePlan>
       instantiatesUriElement: freezed == instantiatesUriElement
           ? _value.instantiatesUriElement
           : instantiatesUriElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       basedOn: freezed == basedOn
           ? _value.basedOn
           : basedOn // ignore: cast_nullable_to_non_nullable
@@ -583,7 +584,8 @@ abstract class _$$CarePlanImplCopyWith<$Res>
       List<Identifier>? identifier,
       List<FhirCanonical>? instantiatesCanonical,
       List<FhirUri>? instantiatesUri,
-      @JsonKey(name: '_instantiatesUri') List<Element?>? instantiatesUriElement,
+      @JsonKey(name: '_instantiatesUri')
+      List<PrimitiveElement>? instantiatesUriElement,
       List<Reference>? basedOn,
       List<Reference>? replaces,
       List<Reference>? partOf,
@@ -736,7 +738,7 @@ class __$$CarePlanImplCopyWithImpl<$Res>
       instantiatesUriElement: freezed == instantiatesUriElement
           ? _value._instantiatesUriElement
           : instantiatesUriElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       basedOn: freezed == basedOn
           ? _value._basedOn
           : basedOn // ignore: cast_nullable_to_non_nullable
@@ -861,7 +863,7 @@ class _$CarePlanImpl extends _CarePlan {
       final List<FhirCanonical>? instantiatesCanonical,
       final List<FhirUri>? instantiatesUri,
       @JsonKey(name: '_instantiatesUri')
-      final List<Element?>? instantiatesUriElement,
+      final List<PrimitiveElement>? instantiatesUriElement,
       final List<Reference>? basedOn,
       final List<Reference>? replaces,
       final List<Reference>? partOf,
@@ -1089,12 +1091,12 @@ class _$CarePlanImpl extends _CarePlan {
   }
 
   /// [instantiatesUriElement] Extensions for instantiatesUri
-  final List<Element?>? _instantiatesUriElement;
+  final List<PrimitiveElement>? _instantiatesUriElement;
 
   /// [instantiatesUriElement] Extensions for instantiatesUri
   @override
   @JsonKey(name: '_instantiatesUri')
-  List<Element?>? get instantiatesUriElement {
+  List<PrimitiveElement>? get instantiatesUriElement {
     final value = _instantiatesUriElement;
     if (value == null) return null;
     if (_instantiatesUriElement is EqualUnmodifiableListView)
@@ -1491,7 +1493,7 @@ abstract class _CarePlan extends CarePlan {
       final List<FhirCanonical>? instantiatesCanonical,
       final List<FhirUri>? instantiatesUri,
       @JsonKey(name: '_instantiatesUri')
-      final List<Element?>? instantiatesUriElement,
+      final List<PrimitiveElement>? instantiatesUriElement,
       final List<Reference>? basedOn,
       final List<Reference>? replaces,
       final List<Reference>? partOf,
@@ -1621,7 +1623,7 @@ abstract class _CarePlan extends CarePlan {
 
   /// [instantiatesUriElement] Extensions for instantiatesUri
   @JsonKey(name: '_instantiatesUri')
-  List<Element?>? get instantiatesUriElement;
+  List<PrimitiveElement>? get instantiatesUriElement;
   @override
 
   /// [basedOn] A care plan that is fulfilled in whole or in part by this care
@@ -2348,7 +2350,7 @@ mixin _$CarePlanDetail {
 
   /// [instantiatesUriElement] Extensions for instantiatesUri
   @JsonKey(name: '_instantiatesUri')
-  List<Element?>? get instantiatesUriElement =>
+  List<PrimitiveElement>? get instantiatesUriElement =>
       throw _privateConstructorUsedError;
 
   /// [code] Detailed description of the type of planned activity; e.g. what
@@ -2465,7 +2467,8 @@ abstract class $CarePlanDetailCopyWith<$Res> {
       @JsonKey(name: '_kind') PrimitiveElement? kindElement,
       List<FhirCanonical>? instantiatesCanonical,
       List<FhirUri>? instantiatesUri,
-      @JsonKey(name: '_instantiatesUri') List<Element?>? instantiatesUriElement,
+      @JsonKey(name: '_instantiatesUri')
+      List<PrimitiveElement>? instantiatesUriElement,
       CodeableConcept? code,
       List<CodeableConcept>? reasonCode,
       List<Reference>? reasonReference,
@@ -2575,7 +2578,7 @@ class _$CarePlanDetailCopyWithImpl<$Res, $Val extends CarePlanDetail>
       instantiatesUriElement: freezed == instantiatesUriElement
           ? _value.instantiatesUriElement
           : instantiatesUriElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -2789,7 +2792,8 @@ abstract class _$$CarePlanDetailImplCopyWith<$Res>
       @JsonKey(name: '_kind') PrimitiveElement? kindElement,
       List<FhirCanonical>? instantiatesCanonical,
       List<FhirUri>? instantiatesUri,
-      @JsonKey(name: '_instantiatesUri') List<Element?>? instantiatesUriElement,
+      @JsonKey(name: '_instantiatesUri')
+      List<PrimitiveElement>? instantiatesUriElement,
       CodeableConcept? code,
       List<CodeableConcept>? reasonCode,
       List<Reference>? reasonReference,
@@ -2906,7 +2910,7 @@ class __$$CarePlanDetailImplCopyWithImpl<$Res>
       instantiatesUriElement: freezed == instantiatesUriElement
           ? _value._instantiatesUriElement
           : instantiatesUriElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -3007,7 +3011,7 @@ class _$CarePlanDetailImpl extends _CarePlanDetail {
       final List<FhirCanonical>? instantiatesCanonical,
       final List<FhirUri>? instantiatesUri,
       @JsonKey(name: '_instantiatesUri')
-      final List<Element?>? instantiatesUriElement,
+      final List<PrimitiveElement>? instantiatesUriElement,
       this.code,
       final List<CodeableConcept>? reasonCode,
       final List<Reference>? reasonReference,
@@ -3159,12 +3163,12 @@ class _$CarePlanDetailImpl extends _CarePlanDetail {
   }
 
   /// [instantiatesUriElement] Extensions for instantiatesUri
-  final List<Element?>? _instantiatesUriElement;
+  final List<PrimitiveElement>? _instantiatesUriElement;
 
   /// [instantiatesUriElement] Extensions for instantiatesUri
   @override
   @JsonKey(name: '_instantiatesUri')
-  List<Element?>? get instantiatesUriElement {
+  List<PrimitiveElement>? get instantiatesUriElement {
     final value = _instantiatesUriElement;
     if (value == null) return null;
     if (_instantiatesUriElement is EqualUnmodifiableListView)
@@ -3450,7 +3454,7 @@ abstract class _CarePlanDetail extends CarePlanDetail {
       final List<FhirCanonical>? instantiatesCanonical,
       final List<FhirUri>? instantiatesUri,
       @JsonKey(name: '_instantiatesUri')
-      final List<Element?>? instantiatesUriElement,
+      final List<PrimitiveElement>? instantiatesUriElement,
       final CodeableConcept? code,
       final List<CodeableConcept>? reasonCode,
       final List<Reference>? reasonReference,
@@ -3540,7 +3544,7 @@ abstract class _CarePlanDetail extends CarePlanDetail {
 
   /// [instantiatesUriElement] Extensions for instantiatesUri
   @JsonKey(name: '_instantiatesUri')
-  List<Element?>? get instantiatesUriElement;
+  List<PrimitiveElement>? get instantiatesUriElement;
   @override
 
   /// [code] Detailed description of the type of planned activity; e.g. what

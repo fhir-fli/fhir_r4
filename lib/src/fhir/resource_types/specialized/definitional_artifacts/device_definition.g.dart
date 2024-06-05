@@ -77,8 +77,7 @@ _$DeviceDefinitionImpl _$$DeviceDefinitionImplFromJson(
       version:
           (json['version'] as List<dynamic>?)?.map((e) => e as String).toList(),
       versionElement: (json['_version'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       safety: (json['safety'] as List<dynamic>?)
           ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
@@ -176,7 +175,7 @@ Map<String, dynamic> _$$DeviceDefinitionImplToJson(
       instance.specialization?.map((e) => e.toJson()).toList());
   writeNotNull('version', instance.version);
   writeNotNull(
-      '_version', instance.versionElement?.map((e) => e?.toJson()).toList());
+      '_version', instance.versionElement?.map((e) => e.toJson()).toList());
   writeNotNull('safety', instance.safety?.map((e) => e.toJson()).toList());
   writeNotNull('shelfLifeStorage',
       instance.shelfLifeStorage?.map((e) => e.toJson()).toList());

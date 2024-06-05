@@ -196,7 +196,7 @@ class Organization with _$Organization implements DomainResource {
     List<String>? alias,
 
     /// [aliasElement] Extensions for alias
-    @JsonKey(name: '_alias') List<Element?>? aliasElement,
+    @JsonKey(name: '_alias') List<PrimitiveElement>? aliasElement,
 
     /// [telecom] A contact detail for the organization.
     List<ContactPoint>? telecom,

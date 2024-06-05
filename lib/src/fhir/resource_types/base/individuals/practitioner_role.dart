@@ -469,7 +469,7 @@ class PractitionerRoleAvailableTime
     List<FhirCode>? daysOfWeek,
 
     /// [daysOfWeekElement] Extensions for daysOfWeek
-    @JsonKey(name: '_daysOfWeek') List<Element?>? daysOfWeekElement,
+    @JsonKey(name: '_daysOfWeek') List<PrimitiveElement>? daysOfWeekElement,
 
     /// [allDay] Is this always available? (hence times are irrelevant) e.g. 24
     ///  hour service.

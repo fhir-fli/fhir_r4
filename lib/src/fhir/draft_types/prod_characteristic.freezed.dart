@@ -101,14 +101,16 @@ mixin _$ProdCharacteristic {
 
   /// [colorElement] Extensions for color
   @JsonKey(name: '_color')
-  List<Element?>? get colorElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get colorElement =>
+      throw _privateConstructorUsedError;
 
   /// [imprint] Where applicable, the imprint can be specified as text.
   List<String>? get imprint => throw _privateConstructorUsedError;
 
   /// [imprintElement] Extensions for imprint
   @JsonKey(name: '_imprint')
-  List<Element?>? get imprintElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get imprintElement =>
+      throw _privateConstructorUsedError;
 
   /// [image] Where applicable, the image can be provided The format of the
   ///  image attachment shall be specified by regional implementations.
@@ -144,9 +146,9 @@ abstract class $ProdCharacteristicCopyWith<$Res> {
       String? shape,
       @JsonKey(name: '_shape') PrimitiveElement? shapeElement,
       List<String>? color,
-      @JsonKey(name: '_color') List<Element?>? colorElement,
+      @JsonKey(name: '_color') List<PrimitiveElement>? colorElement,
       List<String>? imprint,
-      @JsonKey(name: '_imprint') List<Element?>? imprintElement,
+      @JsonKey(name: '_imprint') List<PrimitiveElement>? imprintElement,
       List<Attachment>? image,
       CodeableConcept? scoring});
 
@@ -242,7 +244,7 @@ class _$ProdCharacteristicCopyWithImpl<$Res, $Val extends ProdCharacteristic>
       colorElement: freezed == colorElement
           ? _value.colorElement
           : colorElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       imprint: freezed == imprint
           ? _value.imprint
           : imprint // ignore: cast_nullable_to_non_nullable
@@ -250,7 +252,7 @@ class _$ProdCharacteristicCopyWithImpl<$Res, $Val extends ProdCharacteristic>
       imprintElement: freezed == imprintElement
           ? _value.imprintElement
           : imprintElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -368,9 +370,9 @@ abstract class _$$ProdCharacteristicImplCopyWith<$Res>
       String? shape,
       @JsonKey(name: '_shape') PrimitiveElement? shapeElement,
       List<String>? color,
-      @JsonKey(name: '_color') List<Element?>? colorElement,
+      @JsonKey(name: '_color') List<PrimitiveElement>? colorElement,
       List<String>? imprint,
-      @JsonKey(name: '_imprint') List<Element?>? imprintElement,
+      @JsonKey(name: '_imprint') List<PrimitiveElement>? imprintElement,
       List<Attachment>? image,
       CodeableConcept? scoring});
 
@@ -471,7 +473,7 @@ class __$$ProdCharacteristicImplCopyWithImpl<$Res>
       colorElement: freezed == colorElement
           ? _value._colorElement
           : colorElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       imprint: freezed == imprint
           ? _value._imprint
           : imprint // ignore: cast_nullable_to_non_nullable
@@ -479,7 +481,7 @@ class __$$ProdCharacteristicImplCopyWithImpl<$Res>
       imprintElement: freezed == imprintElement
           ? _value._imprintElement
           : imprintElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       image: freezed == image
           ? _value._image
           : image // ignore: cast_nullable_to_non_nullable
@@ -508,9 +510,9 @@ class _$ProdCharacteristicImpl extends _ProdCharacteristic {
       this.shape,
       @JsonKey(name: '_shape') this.shapeElement,
       final List<String>? color,
-      @JsonKey(name: '_color') final List<Element?>? colorElement,
+      @JsonKey(name: '_color') final List<PrimitiveElement>? colorElement,
       final List<String>? imprint,
-      @JsonKey(name: '_imprint') final List<Element?>? imprintElement,
+      @JsonKey(name: '_imprint') final List<PrimitiveElement>? imprintElement,
       final List<Attachment>? image,
       this.scoring})
       : _extension_ = extension_,
@@ -663,12 +665,12 @@ class _$ProdCharacteristicImpl extends _ProdCharacteristic {
   }
 
   /// [colorElement] Extensions for color
-  final List<Element?>? _colorElement;
+  final List<PrimitiveElement>? _colorElement;
 
   /// [colorElement] Extensions for color
   @override
   @JsonKey(name: '_color')
-  List<Element?>? get colorElement {
+  List<PrimitiveElement>? get colorElement {
     final value = _colorElement;
     if (value == null) return null;
     if (_colorElement is EqualUnmodifiableListView) return _colorElement;
@@ -690,12 +692,12 @@ class _$ProdCharacteristicImpl extends _ProdCharacteristic {
   }
 
   /// [imprintElement] Extensions for imprint
-  final List<Element?>? _imprintElement;
+  final List<PrimitiveElement>? _imprintElement;
 
   /// [imprintElement] Extensions for imprint
   @override
   @JsonKey(name: '_imprint')
-  List<Element?>? get imprintElement {
+  List<PrimitiveElement>? get imprintElement {
     final value = _imprintElement;
     if (value == null) return null;
     if (_imprintElement is EqualUnmodifiableListView) return _imprintElement;
@@ -811,9 +813,9 @@ abstract class _ProdCharacteristic extends ProdCharacteristic {
       final String? shape,
       @JsonKey(name: '_shape') final PrimitiveElement? shapeElement,
       final List<String>? color,
-      @JsonKey(name: '_color') final List<Element?>? colorElement,
+      @JsonKey(name: '_color') final List<PrimitiveElement>? colorElement,
       final List<String>? imprint,
-      @JsonKey(name: '_imprint') final List<Element?>? imprintElement,
+      @JsonKey(name: '_imprint') final List<PrimitiveElement>? imprintElement,
       final List<Attachment>? image,
       final CodeableConcept? scoring}) = _$ProdCharacteristicImpl;
   const _ProdCharacteristic._() : super._();
@@ -915,7 +917,7 @@ abstract class _ProdCharacteristic extends ProdCharacteristic {
 
   /// [colorElement] Extensions for color
   @JsonKey(name: '_color')
-  List<Element?>? get colorElement;
+  List<PrimitiveElement>? get colorElement;
   @override
 
   /// [imprint] Where applicable, the imprint can be specified as text.
@@ -924,7 +926,7 @@ abstract class _ProdCharacteristic extends ProdCharacteristic {
 
   /// [imprintElement] Extensions for imprint
   @JsonKey(name: '_imprint')
-  List<Element?>? get imprintElement;
+  List<PrimitiveElement>? get imprintElement;
   @override
 
   /// [image] Where applicable, the image can be provided The format of the

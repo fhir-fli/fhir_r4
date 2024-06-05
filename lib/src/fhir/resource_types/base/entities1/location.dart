@@ -238,7 +238,7 @@ class Location with _$Location implements DomainResource {
     List<String>? alias,
 
     /// [aliasElement] Extensions for alias
-    @JsonKey(name: '_alias') List<Element?>? aliasElement,
+    @JsonKey(name: '_alias') List<PrimitiveElement>? aliasElement,
 
     /// [description] Description of the Location, which helps in finding or
     ///  referencing the place.
@@ -694,7 +694,7 @@ class LocationHoursOfOperation
     List<FhirCode>? daysOfWeek,
 
     /// [daysOfWeekElement] Extensions for daysOfWeek
-    @JsonKey(name: '_daysOfWeek') List<Element?>? daysOfWeekElement,
+    @JsonKey(name: '_daysOfWeek') List<PrimitiveElement>? daysOfWeekElement,
 
     /// [allDay] The Location is open all day.
     FhirBoolean? allDay,

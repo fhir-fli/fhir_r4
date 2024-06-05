@@ -228,7 +228,8 @@ mixin _$ImplementationGuide {
 
   /// [fhirVersionElement] Extensions for fhirVersion
   @JsonKey(name: '_fhirVersion')
-  List<Element?>? get fhirVersionElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get fhirVersionElement =>
+      throw _privateConstructorUsedError;
 
   /// [dependsOn] Another implementation guide that this implementation depends
   /// on. Typically, an implementation guide uses value sets, profiles
@@ -304,7 +305,7 @@ abstract class $ImplementationGuideCopyWith<$Res> {
       FhirCode? license,
       @JsonKey(name: '_license') PrimitiveElement? licenseElement,
       List<FhirCode>? fhirVersion,
-      @JsonKey(name: '_fhirVersion') List<Element?>? fhirVersionElement,
+      @JsonKey(name: '_fhirVersion') List<PrimitiveElement>? fhirVersionElement,
       List<ImplementationGuideDependsOn>? dependsOn,
       List<ImplementationGuideGlobal>? global,
       ImplementationGuideDefinition? definition,
@@ -534,7 +535,7 @@ class _$ImplementationGuideCopyWithImpl<$Res, $Val extends ImplementationGuide>
       fhirVersionElement: freezed == fhirVersionElement
           ? _value.fhirVersionElement
           : fhirVersionElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       dependsOn: freezed == dependsOn
           ? _value.dependsOn
           : dependsOn // ignore: cast_nullable_to_non_nullable
@@ -654,7 +655,7 @@ abstract class _$$ImplementationGuideImplCopyWith<$Res>
       FhirCode? license,
       @JsonKey(name: '_license') PrimitiveElement? licenseElement,
       List<FhirCode>? fhirVersion,
-      @JsonKey(name: '_fhirVersion') List<Element?>? fhirVersionElement,
+      @JsonKey(name: '_fhirVersion') List<PrimitiveElement>? fhirVersionElement,
       List<ImplementationGuideDependsOn>? dependsOn,
       List<ImplementationGuideGlobal>? global,
       ImplementationGuideDefinition? definition,
@@ -886,7 +887,7 @@ class __$$ImplementationGuideImplCopyWithImpl<$Res>
       fhirVersionElement: freezed == fhirVersionElement
           ? _value._fhirVersionElement
           : fhirVersionElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       dependsOn: freezed == dependsOn
           ? _value._dependsOn
           : dependsOn // ignore: cast_nullable_to_non_nullable
@@ -951,7 +952,8 @@ class _$ImplementationGuideImpl extends _ImplementationGuide {
       this.license,
       @JsonKey(name: '_license') this.licenseElement,
       final List<FhirCode>? fhirVersion,
-      @JsonKey(name: '_fhirVersion') final List<Element?>? fhirVersionElement,
+      @JsonKey(name: '_fhirVersion')
+      final List<PrimitiveElement>? fhirVersionElement,
       final List<ImplementationGuideDependsOn>? dependsOn,
       final List<ImplementationGuideGlobal>? global,
       this.definition,
@@ -1307,12 +1309,12 @@ class _$ImplementationGuideImpl extends _ImplementationGuide {
   }
 
   /// [fhirVersionElement] Extensions for fhirVersion
-  final List<Element?>? _fhirVersionElement;
+  final List<PrimitiveElement>? _fhirVersionElement;
 
   /// [fhirVersionElement] Extensions for fhirVersion
   @override
   @JsonKey(name: '_fhirVersion')
-  List<Element?>? get fhirVersionElement {
+  List<PrimitiveElement>? get fhirVersionElement {
     final value = _fhirVersionElement;
     if (value == null) return null;
     if (_fhirVersionElement is EqualUnmodifiableListView)
@@ -1560,7 +1562,8 @@ abstract class _ImplementationGuide extends ImplementationGuide {
       final FhirCode? license,
       @JsonKey(name: '_license') final PrimitiveElement? licenseElement,
       final List<FhirCode>? fhirVersion,
-      @JsonKey(name: '_fhirVersion') final List<Element?>? fhirVersionElement,
+      @JsonKey(name: '_fhirVersion')
+      final List<PrimitiveElement>? fhirVersionElement,
       final List<ImplementationGuideDependsOn>? dependsOn,
       final List<ImplementationGuideGlobal>? global,
       final ImplementationGuideDefinition? definition,
@@ -1814,7 +1817,7 @@ abstract class _ImplementationGuide extends ImplementationGuide {
 
   /// [fhirVersionElement] Extensions for fhirVersion
   @JsonKey(name: '_fhirVersion')
-  List<Element?>? get fhirVersionElement;
+  List<PrimitiveElement>? get fhirVersionElement;
   @override
 
   /// [dependsOn] Another implementation guide that this implementation depends
@@ -3706,7 +3709,8 @@ mixin _$ImplementationGuideResource {
 
   /// [fhirVersionElement] Extensions for fhirVersion
   @JsonKey(name: '_fhirVersion')
-  List<Element?>? get fhirVersionElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get fhirVersionElement =>
+      throw _privateConstructorUsedError;
 
   /// [name] A human assigned name for the resource. All resources SHOULD have
   /// a name, but the name may be extracted from the resource (e.g.
@@ -3774,7 +3778,7 @@ abstract class $ImplementationGuideResourceCopyWith<$Res> {
       List<FhirExtension>? modifierExtension,
       Reference reference,
       List<FhirCode>? fhirVersion,
-      @JsonKey(name: '_fhirVersion') List<Element?>? fhirVersionElement,
+      @JsonKey(name: '_fhirVersion') List<PrimitiveElement>? fhirVersionElement,
       String? name,
       @JsonKey(name: '_name') PrimitiveElement? nameElement,
       String? description,
@@ -3845,7 +3849,7 @@ class _$ImplementationGuideResourceCopyWithImpl<$Res,
       fhirVersionElement: freezed == fhirVersionElement
           ? _value.fhirVersionElement
           : fhirVersionElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -3913,7 +3917,7 @@ abstract class _$$ImplementationGuideResourceImplCopyWith<$Res>
       List<FhirExtension>? modifierExtension,
       Reference reference,
       List<FhirCode>? fhirVersion,
-      @JsonKey(name: '_fhirVersion') List<Element?>? fhirVersionElement,
+      @JsonKey(name: '_fhirVersion') List<PrimitiveElement>? fhirVersionElement,
       String? name,
       @JsonKey(name: '_name') PrimitiveElement? nameElement,
       String? description,
@@ -3984,7 +3988,7 @@ class __$$ImplementationGuideResourceImplCopyWithImpl<$Res>
       fhirVersionElement: freezed == fhirVersionElement
           ? _value._fhirVersionElement
           : fhirVersionElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -4038,7 +4042,8 @@ class _$ImplementationGuideResourceImpl extends _ImplementationGuideResource {
       final List<FhirExtension>? modifierExtension,
       required this.reference,
       final List<FhirCode>? fhirVersion,
-      @JsonKey(name: '_fhirVersion') final List<Element?>? fhirVersionElement,
+      @JsonKey(name: '_fhirVersion')
+      final List<PrimitiveElement>? fhirVersionElement,
       this.name,
       @JsonKey(name: '_name') this.nameElement,
       this.description,
@@ -4148,12 +4153,12 @@ class _$ImplementationGuideResourceImpl extends _ImplementationGuideResource {
   }
 
   /// [fhirVersionElement] Extensions for fhirVersion
-  final List<Element?>? _fhirVersionElement;
+  final List<PrimitiveElement>? _fhirVersionElement;
 
   /// [fhirVersionElement] Extensions for fhirVersion
   @override
   @JsonKey(name: '_fhirVersion')
-  List<Element?>? get fhirVersionElement {
+  List<PrimitiveElement>? get fhirVersionElement {
     final value = _fhirVersionElement;
     if (value == null) return null;
     if (_fhirVersionElement is EqualUnmodifiableListView)
@@ -4302,7 +4307,8 @@ abstract class _ImplementationGuideResource
       final List<FhirExtension>? modifierExtension,
       required final Reference reference,
       final List<FhirCode>? fhirVersion,
-      @JsonKey(name: '_fhirVersion') final List<Element?>? fhirVersionElement,
+      @JsonKey(name: '_fhirVersion')
+      final List<PrimitiveElement>? fhirVersionElement,
       final String? name,
       @JsonKey(name: '_name') final PrimitiveElement? nameElement,
       final String? description,
@@ -4367,7 +4373,7 @@ abstract class _ImplementationGuideResource
 
   /// [fhirVersionElement] Extensions for fhirVersion
   @JsonKey(name: '_fhirVersion')
-  List<Element?>? get fhirVersionElement;
+  List<PrimitiveElement>? get fhirVersionElement;
   @override
 
   /// [name] A human assigned name for the resource. All resources SHOULD have
@@ -5974,7 +5980,8 @@ mixin _$ImplementationGuideManifest {
 
   /// [imageElement] Extensions for image
   @JsonKey(name: '_image')
-  List<Element?>? get imageElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get imageElement =>
+      throw _privateConstructorUsedError;
 
   /// [other] Indicates the relative path of an additional non-page, non-image
   /// file that is part of the IG - e.g. zip, jar and similar files that could
@@ -5983,7 +5990,8 @@ mixin _$ImplementationGuideManifest {
 
   /// [otherElement] Extensions for other
   @JsonKey(name: '_other')
-  List<Element?>? get otherElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get otherElement =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -6008,9 +6016,9 @@ abstract class $ImplementationGuideManifestCopyWith<$Res> {
       List<ImplementationGuideResource1> resource,
       List<ImplementationGuidePage1>? page,
       List<String>? image,
-      @JsonKey(name: '_image') List<Element?>? imageElement,
+      @JsonKey(name: '_image') List<PrimitiveElement>? imageElement,
       List<String>? other,
-      @JsonKey(name: '_other') List<Element?>? otherElement});
+      @JsonKey(name: '_other') List<PrimitiveElement>? otherElement});
 }
 
 /// @nodoc
@@ -6075,7 +6083,7 @@ class _$ImplementationGuideManifestCopyWithImpl<$Res,
       imageElement: freezed == imageElement
           ? _value.imageElement
           : imageElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       other: freezed == other
           ? _value.other
           : other // ignore: cast_nullable_to_non_nullable
@@ -6083,7 +6091,7 @@ class _$ImplementationGuideManifestCopyWithImpl<$Res,
       otherElement: freezed == otherElement
           ? _value.otherElement
           : otherElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
     ) as $Val);
   }
 }
@@ -6106,9 +6114,9 @@ abstract class _$$ImplementationGuideManifestImplCopyWith<$Res>
       List<ImplementationGuideResource1> resource,
       List<ImplementationGuidePage1>? page,
       List<String>? image,
-      @JsonKey(name: '_image') List<Element?>? imageElement,
+      @JsonKey(name: '_image') List<PrimitiveElement>? imageElement,
       List<String>? other,
-      @JsonKey(name: '_other') List<Element?>? otherElement});
+      @JsonKey(name: '_other') List<PrimitiveElement>? otherElement});
 }
 
 /// @nodoc
@@ -6172,7 +6180,7 @@ class __$$ImplementationGuideManifestImplCopyWithImpl<$Res>
       imageElement: freezed == imageElement
           ? _value._imageElement
           : imageElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
       other: freezed == other
           ? _value._other
           : other // ignore: cast_nullable_to_non_nullable
@@ -6180,7 +6188,7 @@ class __$$ImplementationGuideManifestImplCopyWithImpl<$Res>
       otherElement: freezed == otherElement
           ? _value._otherElement
           : otherElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
     ));
   }
 }
@@ -6197,9 +6205,9 @@ class _$ImplementationGuideManifestImpl extends _ImplementationGuideManifest {
       required final List<ImplementationGuideResource1> resource,
       final List<ImplementationGuidePage1>? page,
       final List<String>? image,
-      @JsonKey(name: '_image') final List<Element?>? imageElement,
+      @JsonKey(name: '_image') final List<PrimitiveElement>? imageElement,
       final List<String>? other,
-      @JsonKey(name: '_other') final List<Element?>? otherElement})
+      @JsonKey(name: '_other') final List<PrimitiveElement>? otherElement})
       : _extension_ = extension_,
         _modifierExtension = modifierExtension,
         _resource = resource,
@@ -6335,12 +6343,12 @@ class _$ImplementationGuideManifestImpl extends _ImplementationGuideManifest {
   }
 
   /// [imageElement] Extensions for image
-  final List<Element?>? _imageElement;
+  final List<PrimitiveElement>? _imageElement;
 
   /// [imageElement] Extensions for image
   @override
   @JsonKey(name: '_image')
-  List<Element?>? get imageElement {
+  List<PrimitiveElement>? get imageElement {
     final value = _imageElement;
     if (value == null) return null;
     if (_imageElement is EqualUnmodifiableListView) return _imageElement;
@@ -6366,12 +6374,12 @@ class _$ImplementationGuideManifestImpl extends _ImplementationGuideManifest {
   }
 
   /// [otherElement] Extensions for other
-  final List<Element?>? _otherElement;
+  final List<PrimitiveElement>? _otherElement;
 
   /// [otherElement] Extensions for other
   @override
   @JsonKey(name: '_other')
-  List<Element?>? get otherElement {
+  List<PrimitiveElement>? get otherElement {
     final value = _otherElement;
     if (value == null) return null;
     if (_otherElement is EqualUnmodifiableListView) return _otherElement;
@@ -6450,9 +6458,10 @@ abstract class _ImplementationGuideManifest
           required final List<ImplementationGuideResource1> resource,
           final List<ImplementationGuidePage1>? page,
           final List<String>? image,
-          @JsonKey(name: '_image') final List<Element?>? imageElement,
+          @JsonKey(name: '_image') final List<PrimitiveElement>? imageElement,
           final List<String>? other,
-          @JsonKey(name: '_other') final List<Element?>? otherElement}) =
+          @JsonKey(name: '_other')
+          final List<PrimitiveElement>? otherElement}) =
       _$ImplementationGuideManifestImpl;
   const _ImplementationGuideManifest._() : super._();
 
@@ -6519,7 +6528,7 @@ abstract class _ImplementationGuideManifest
 
   /// [imageElement] Extensions for image
   @JsonKey(name: '_image')
-  List<Element?>? get imageElement;
+  List<PrimitiveElement>? get imageElement;
   @override
 
   /// [other] Indicates the relative path of an additional non-page, non-image
@@ -6530,7 +6539,7 @@ abstract class _ImplementationGuideManifest
 
   /// [otherElement] Extensions for other
   @JsonKey(name: '_other')
-  List<Element?>? get otherElement;
+  List<PrimitiveElement>? get otherElement;
   @override
   @JsonKey(ignore: true)
   _$$ImplementationGuideManifestImplCopyWith<_$ImplementationGuideManifestImpl>
@@ -7147,7 +7156,8 @@ mixin _$ImplementationGuidePage1 {
 
   /// [anchorElement] Extensions for anchor
   @JsonKey(name: '_anchor')
-  List<Element?>? get anchorElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get anchorElement =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -7170,7 +7180,7 @@ abstract class $ImplementationGuidePage1CopyWith<$Res> {
       String? title,
       @JsonKey(name: '_title') PrimitiveElement? titleElement,
       List<String>? anchor,
-      @JsonKey(name: '_anchor') List<Element?>? anchorElement});
+      @JsonKey(name: '_anchor') List<PrimitiveElement>? anchorElement});
 }
 
 /// @nodoc
@@ -7233,7 +7243,7 @@ class _$ImplementationGuidePage1CopyWithImpl<$Res,
       anchorElement: freezed == anchorElement
           ? _value.anchorElement
           : anchorElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
     ) as $Val);
   }
 }
@@ -7256,7 +7266,7 @@ abstract class _$$ImplementationGuidePage1ImplCopyWith<$Res>
       String? title,
       @JsonKey(name: '_title') PrimitiveElement? titleElement,
       List<String>? anchor,
-      @JsonKey(name: '_anchor') List<Element?>? anchorElement});
+      @JsonKey(name: '_anchor') List<PrimitiveElement>? anchorElement});
 }
 
 /// @nodoc
@@ -7318,7 +7328,7 @@ class __$$ImplementationGuidePage1ImplCopyWithImpl<$Res>
       anchorElement: freezed == anchorElement
           ? _value._anchorElement
           : anchorElement // ignore: cast_nullable_to_non_nullable
-              as List<Element?>?,
+              as List<PrimitiveElement>?,
     ));
   }
 }
@@ -7335,7 +7345,7 @@ class _$ImplementationGuidePage1Impl extends _ImplementationGuidePage1 {
       this.title,
       @JsonKey(name: '_title') this.titleElement,
       final List<String>? anchor,
-      @JsonKey(name: '_anchor') final List<Element?>? anchorElement})
+      @JsonKey(name: '_anchor') final List<PrimitiveElement>? anchorElement})
       : _extension_ = extension_,
         _modifierExtension = modifierExtension,
         _anchor = anchor,
@@ -7444,12 +7454,12 @@ class _$ImplementationGuidePage1Impl extends _ImplementationGuidePage1 {
   }
 
   /// [anchorElement] Extensions for anchor
-  final List<Element?>? _anchorElement;
+  final List<PrimitiveElement>? _anchorElement;
 
   /// [anchorElement] Extensions for anchor
   @override
   @JsonKey(name: '_anchor')
-  List<Element?>? get anchorElement {
+  List<PrimitiveElement>? get anchorElement {
     final value = _anchorElement;
     if (value == null) return null;
     if (_anchorElement is EqualUnmodifiableListView) return _anchorElement;
@@ -7522,7 +7532,8 @@ abstract class _ImplementationGuidePage1 extends ImplementationGuidePage1 {
           final String? title,
           @JsonKey(name: '_title') final PrimitiveElement? titleElement,
           final List<String>? anchor,
-          @JsonKey(name: '_anchor') final List<Element?>? anchorElement}) =
+          @JsonKey(name: '_anchor')
+          final List<PrimitiveElement>? anchorElement}) =
       _$ImplementationGuidePage1Impl;
   const _ImplementationGuidePage1._() : super._();
 
@@ -7586,7 +7597,7 @@ abstract class _ImplementationGuidePage1 extends ImplementationGuidePage1 {
 
   /// [anchorElement] Extensions for anchor
   @JsonKey(name: '_anchor')
-  List<Element?>? get anchorElement;
+  List<PrimitiveElement>? get anchorElement;
   @override
   @JsonKey(ignore: true)
   _$$ImplementationGuidePage1ImplCopyWith<_$ImplementationGuidePage1Impl>

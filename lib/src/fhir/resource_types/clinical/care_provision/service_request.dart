@@ -309,7 +309,8 @@ class ServiceRequest with _$ServiceRequest implements DomainResource {
     List<FhirUri>? instantiatesUri,
 
     /// [instantiatesUriElement] Extensions for instantiatesUri
-    @JsonKey(name: '_instantiatesUri') List<Element?>? instantiatesUriElement,
+    @JsonKey(name: '_instantiatesUri')
+    List<PrimitiveElement>? instantiatesUriElement,
 
     /// [basedOn] Plan/proposal/order fulfilled by this request.
     List<Reference>? basedOn,
