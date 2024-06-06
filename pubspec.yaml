@@ -29,6 +29,7 @@ dependencies:
   json_annotation: ^4.9.0
   mime: ^1.0.5
   mockito: ^5.4.4
+  objectbox: ^4.0.1
   petitparser: ^6.0.2
   rxdart: ^0.27.3
   ucum: ^0.5.0
@@ -40,7 +41,5 @@ dependencies:
 dev_dependencies:
   build_runner: ^2.4.9
   freezed: ^2.5.2
-  # dart run import_sorter:main
-  import_sorter: ^4.6.0
   json_serializable: ^6.8.0
   test: ^1.25.4

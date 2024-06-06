@@ -1,134 +1,109 @@
 import 'dart:io';
-import 'package:path/path.dart' as path;
 
-void main(List<String> args) async {
-  if (args.length < 2) {
-    print(
-        'Usage: dart generate_objectbox_classes.dart <source_directory> <destination_directory>');
-    return;
+void main() {
+  final sourceDirectory =
+      Directory('./fhir'); // Source directory for your FHIR classes
+  final targetDirectory =
+      Directory('./fhir_db_objects'); // Target directory for ObjectBox classes
+  if (!targetDirectory.existsSync()) {
+    targetDirectory.createSync(recursive: true);
   }
-
-  final sourceDirectoryPath = args[0];
-  final destinationDirectoryPath = args[1];
-  final sourceDirectory = Directory(sourceDirectoryPath);
-
-  if (!await sourceDirectory.exists()) {
-    print('Source directory does not exist: $sourceDirectoryPath');
-    return;
-  }
-
-  final files = await findDartFiles(sourceDirectory);
-
-  for (final file in files) {
-    final content = await file.readAsString();
-    if (isFreezedFile(content)) {
-      final classes = extractFreezedClasses(content);
-      final objectBoxClasses = generateObjectBoxClasses(classes);
-      final relativePath = path.relative(file.path, from: sourceDirectoryPath);
-      final destinationFilePath =
-          path.join(destinationDirectoryPath, relativePath);
-      final destinationFileDirectory =
-          Directory(path.dirname(destinationFilePath));
-
-      if (!await destinationFileDirectory.exists()) {
-        await destinationFileDirectory.create(recursive: true);
-      }
-
-      final objectBoxFilePath =
-          destinationFilePath.replaceAll('.dart', '_objectbox.dart');
-      await File(objectBoxFilePath).writeAsString(objectBoxClasses);
-    }
-  }
+  processDirectory(sourceDirectory, targetDirectory);
+  createExportFiles(targetDirectory);
 }
 
-Future<List<File>> findDartFiles(Directory directory) async {
-  final List<File> dartFiles = [];
-  await for (final entity in directory.list(recursive: true)) {
+void processDirectory(Directory sourceDir, Directory targetDir) {
+  final entities = sourceDir.listSync(recursive: true);
+
+  for (var entity in entities) {
     if (entity is File &&
-        entity.path.endsWith('.dart') &&
         !entity.path.endsWith('.freezed.dart') &&
-        !entity.path.endsWith('.g.dart')) {
-      dartFiles.add(entity);
+        !entity.path.endsWith('.g.dart') &&
+        !entity.path.endsWith('.enums.dart')) {
+      final relativePath = entity.path.replaceFirst(sourceDir.path, '');
+      final targetFile = File('${targetDir.path}$relativePath'
+          .replaceFirst('.dart', '_objectbox.dart'));
+      targetFile.createSync(recursive: true);
+      processFile(entity, targetFile);
+    } else if (entity is Directory) {
+      final relativePath = entity.path.replaceFirst(sourceDir.path, '');
+      final targetSubDir = Directory('${targetDir.path}$relativePath');
+      if (!targetSubDir.existsSync()) {
+        targetSubDir.createSync(recursive: true);
+      }
     }
   }
-  return dartFiles;
 }
 
-bool isFreezedFile(String content) {
-  return content.contains('@freezed');
-}
+void processFile(File sourceFile, File targetFile) {
+  final lines = sourceFile.readAsLinesSync();
+  final newLines = <String>[];
 
-Map<String, List<String>> extractFreezedClasses(String content) {
-  final classes = <String, List<String>>{};
-  final classRegExp = RegExp(
-      r'@freezed\s+class\s+(\w+)\s+with\s+\$_\w+\s*{([^}]*)}',
-      multiLine: true);
-  final variableRegExp = RegExp(r'final\s+(\w+)\s+(\w+);');
+  final classNameRegex = RegExp(r'class (\w+) ');
+  final complexTypeRegex = RegExp(r'(\w+)<(\w+)> (\w+);');
 
-  for (final match in classRegExp.allMatches(content)) {
-    final className = match.group(1)!;
-    final classBody = match.group(2)!;
-    final variables = <String>[];
-
-    for (final variableMatch in variableRegExp.allMatches(classBody)) {
-      final variableType = variableMatch.group(1)!;
-      final variableName = variableMatch.group(2)!;
-      variables.add('$variableType $variableName;');
+  String? className;
+  for (var line in lines) {
+    if (classNameRegex.hasMatch(line)) {
+      className = classNameRegex.firstMatch(line)!.group(1)!;
+      newLines.add("import 'package:objectbox/objectbox.dart';");
+      newLines.add('');
+      newLines.add('@Entity()');
     }
 
-    classes[className] = variables;
+    if (className != null && complexTypeRegex.hasMatch(line)) {
+      final match = complexTypeRegex.firstMatch(line)!;
+      final type = match.group(2)!;
+      final variable = match.group(3)!;
+
+      if (type == 'String') {
+        newLines.add('  @Property(type: PropertyType.string)');
+        newLines.add('  $type? $variable;');
+      } else if (type == 'bool') {
+        newLines.add('  @Property(type: PropertyType.bool)');
+        newLines.add('  $type? $variable;');
+      } else {
+        newLines.add('  final $variable = ToOne<${type}Db>();');
+      }
+    } else {
+      newLines.add(line);
+    }
   }
 
-  return classes;
+  targetFile.writeAsStringSync(newLines.join('\n'));
 }
 
-String generateObjectBoxClasses(Map<String, List<String>> classes) {
-  final buffer = StringBuffer();
+void createExportFiles(Directory directory) {
+  final subDirectories = directory.listSync().whereType<Directory>();
 
-  for (final entry in classes.entries) {
-    final className = entry.key;
-    final variables = entry.value;
-
-    buffer.writeln('@Entity()');
-    buffer.writeln('class ${className}Entity {');
-    buffer.writeln('  @Id(assignable: true)');
-    buffer.writeln('  int? dbId;');
-    buffer.writeln('  @Unique()');
-    buffer.writeln('  late String id;');
-
-    for (final variable in variables) {
-      buffer.writeln('  late $variable');
-    }
-
-    buffer.writeln();
-    buffer.writeln('  ${className}Entity();');
-    buffer.writeln();
-    buffer
-      ..writeln('  ${className}Entity.from$className($className instance)')
-      ..writeln('      : dbId = null,')
-      ..writeln('        id = instance.id,');
-
-    for (final variable in variables) {
-      final variableName = variable.split(' ')[1].replaceAll(';', '');
-      buffer.writeln('        $variableName = instance.$variableName,');
-    }
-
-    buffer.writeln(';');
-    buffer.writeln();
-    buffer
-      ..writeln('  $className to$className() {')
-      ..writeln('    return $className(');
-
-    for (final variable in variables) {
-      final variableName = variable.split(' ')[1].replaceAll(';', '');
-      buffer.writeln('      $variableName: $variableName,');
-    }
-
-    buffer.writeln('    );');
-    buffer.writeln('  }');
-    buffer.writeln('}');
-    buffer.writeln();
+  for (var subDirectory in subDirectories) {
+    createExportFile(subDirectory);
   }
 
-  return buffer.toString();
+  createExportFile(directory); // Create export file for the top-level directory
+}
+
+void createExportFile(Directory directory) {
+  final entities = directory.listSync().whereType<File>();
+  final exportLines = <String>[];
+
+  for (var entity in entities) {
+    if (entity.path.endsWith('_objectbox.dart')) {
+      final fileName = entity.uri.pathSegments.last;
+      exportLines.add("export '$fileName';");
+    }
+  }
+
+  final subDirectories = directory.listSync().whereType<Directory>();
+
+  for (var subDirectory in subDirectories) {
+    final dirName = subDirectory.uri.pathSegments
+        .lastWhere((segment) => segment.isNotEmpty);
+    exportLines.add("export '$dirName/$dirName.dart';");
+  }
+
+  final exportFileName = directory.path.endsWith('/')
+      ? '${directory.path}export.dart'
+      : '${directory.path}/export.dart';
+  File(exportFileName).writeAsStringSync(exportLines.join('\n'));
 }
