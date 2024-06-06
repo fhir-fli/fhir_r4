@@ -93,6 +93,20 @@ Future<List<String>> r4Validation() async {
       if (!const DeepCollectionEquality()
           .equals(jsonDecode(contents), resource.toJson())) {
         string.add(file.path);
+        String fileString = await File('./test/fhir/wrong.txt').readAsString();
+        fileString += '***************************************************';
+        fileString += file.path;
+        fileString += '\n$contents\n\n${jsonEncode(resource.toJson())}';
+        fileString += '\n***************************************************';
+        await File('./test/fhir/wrong.txt').writeAsString(fileString);
+        await File(
+                './test/fhir/wrong/${file.path.split('/').last.replaceAll('.json', '1.json')}')
+            .writeAsString(contents);
+        await File(
+                './test/fhir/wrong/${file.path.split('/').last.replaceAll('.json', '2.json')}')
+            .writeAsString(jsonEncode(resource.toJson()));
+        throw Exception('Error with file $file\nResource: '
+            '${resource.resourceType}/${resource.id}');
       }
     } catch (e) {
       final dynamic errorContents = jsonDecode(contents);
@@ -122,6 +136,18 @@ Future<List<String>> r4ValidationYaml() async {
       if (!const DeepCollectionEquality()
           .equals(jsonDecode(contents), resource.toJson())) {
         string.add(file.path);
+        String fileString = await File('./test/fhir/wrong.txt').readAsString();
+        fileString += '***************************************************';
+        fileString += file.path;
+        fileString += '\n$contents\n\n${jsonEncode(resource.toJson())}';
+        fileString += '\n***************************************************';
+        await File('./test/fhir/wrong.txt').writeAsString(fileString);
+        await File(
+                './test/fhir/wrong/${file.path.split('/').last.replaceAll('.json', '1.json')}')
+            .writeAsString(contents);
+        await File(
+                './test/fhir/wrong/${file.path.split('/').last.replaceAll('.json', '2.json')}')
+            .writeAsString(jsonEncode(resource.toJson()));
       }
     } catch (e) {
       final dynamic errorContents = jsonDecode(contents);
