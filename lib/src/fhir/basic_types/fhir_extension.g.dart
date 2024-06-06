@@ -9,7 +9,7 @@ part of 'fhir_extension.dart';
 _$FhirExtensionImpl _$$FhirExtensionImplFromJson(Map<String, dynamic> json) =>
     _$FhirExtensionImpl(
       id: json['id'] as String?,
-      extension_: (json['fhirExtension'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       url: json['url'] == null ? null : FhirUri.fromJson(json['url']),
@@ -258,7 +258,7 @@ Map<String, dynamic> _$$FhirExtensionImplToJson(_$FhirExtensionImpl instance) {
 
   writeNotNull('id', instance.id);
   writeNotNull(
-      'fhirExtension', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('url', instance.url?.toJson());
   writeNotNull('_url', instance.urlElement?.toJson());
   writeNotNull('valueBase64Binary', instance.valueBase64Binary);

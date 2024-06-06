@@ -44,7 +44,7 @@ mixin _$Narrative {
   PrimitiveElement? get statusElement => throw _privateConstructorUsedError;
 
   /// [div] The actual narrative content, a stripped down version of XHTML.
-  String get div => throw _privateConstructorUsedError;
+  FhirXhtml get div => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -63,7 +63,7 @@ abstract class $NarrativeCopyWith<$Res> {
       @JsonKey(unknownEnumValue: NarrativeStatus.unknown)
       NarrativeStatus? status,
       @JsonKey(name: '_status') PrimitiveElement? statusElement,
-      String div});
+      FhirXhtml div});
 }
 
 /// @nodoc
@@ -105,7 +105,7 @@ class _$NarrativeCopyWithImpl<$Res, $Val extends Narrative>
       div: null == div
           ? _value.div
           : div // ignore: cast_nullable_to_non_nullable
-              as String,
+              as FhirXhtml,
     ) as $Val);
   }
 }
@@ -124,7 +124,7 @@ abstract class _$$NarrativeImplCopyWith<$Res>
       @JsonKey(unknownEnumValue: NarrativeStatus.unknown)
       NarrativeStatus? status,
       @JsonKey(name: '_status') PrimitiveElement? statusElement,
-      String div});
+      FhirXhtml div});
 }
 
 /// @nodoc
@@ -164,7 +164,7 @@ class __$$NarrativeImplCopyWithImpl<$Res>
       div: null == div
           ? _value.div
           : div // ignore: cast_nullable_to_non_nullable
-              as String,
+              as FhirXhtml,
     ));
   }
 }
@@ -227,7 +227,7 @@ class _$NarrativeImpl extends _Narrative {
 
   /// [div] The actual narrative content, a stripped down version of XHTML.
   @override
-  final String div;
+  final FhirXhtml div;
 
   @override
   String toString() {
@@ -279,7 +279,7 @@ abstract class _Narrative extends Narrative {
       @JsonKey(unknownEnumValue: NarrativeStatus.unknown)
       final NarrativeStatus? status,
       @JsonKey(name: '_status') final PrimitiveElement? statusElement,
-      required final String div}) = _$NarrativeImpl;
+      required final FhirXhtml div}) = _$NarrativeImpl;
   const _Narrative._() : super._();
 
   factory _Narrative.fromJson(Map<String, dynamic> json) =
@@ -315,7 +315,7 @@ abstract class _Narrative extends Narrative {
   @override
 
   /// [div] The actual narrative content, a stripped down version of XHTML.
-  String get div;
+  FhirXhtml get div;
   @override
   @JsonKey(ignore: true)
   _$$NarrativeImplCopyWith<_$NarrativeImpl> get copyWith =>

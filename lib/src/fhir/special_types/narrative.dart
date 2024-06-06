@@ -63,7 +63,7 @@ class Narrative with _$Narrative implements DataType {
     @JsonKey(name: '_status') PrimitiveElement? statusElement,
 
     /// [div] The actual narrative content, a stripped down version of XHTML.
-    required String div,
+    required FhirXhtml div,
   }) = _Narrative;
 
   @override

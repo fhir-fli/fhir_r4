@@ -17,7 +17,7 @@ _$NarrativeImpl _$$NarrativeImplFromJson(Map<String, dynamic> json) =>
       statusElement: json['_status'] == null
           ? null
           : PrimitiveElement.fromJson(json['_status'] as Map<String, dynamic>),
-      div: json['div'] as String,
+      div: FhirXhtml.fromJson(json['div']),
     );
 
 Map<String, dynamic> _$$NarrativeImplToJson(_$NarrativeImpl instance) {
@@ -34,7 +34,7 @@ Map<String, dynamic> _$$NarrativeImplToJson(_$NarrativeImpl instance) {
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('status', _$NarrativeStatusEnumMap[instance.status]);
   writeNotNull('_status', instance.statusElement?.toJson());
-  val['div'] = instance.div;
+  val['div'] = instance.div.toJson();
   return val;
 }
 

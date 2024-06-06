@@ -31,7 +31,7 @@ mixin _$FhirExtension {
   /// definition and use of fhirExtensions. Though any implementer can define an
   /// fhirExtension, there is a set of requirements that SHALL be met as part of the
   /// definition of the fhirExtension.
-  @JsonKey(name: 'fhirExtension')
+  @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_ => throw _privateConstructorUsedError;
 
   /// [url] Source of the definition for the fhirExtension code - a logical name
@@ -411,7 +411,7 @@ abstract class $FhirExtensionCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'fhirExtension') List<FhirExtension>? extension_,
+      @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       @JsonKey(name: 'url') FhirUri? url,
       @JsonKey(name: '_url') PrimitiveElement? urlElement,
       @JsonKey(name: 'valueBase64Binary') String? valueBase64Binary,
@@ -1317,7 +1317,7 @@ abstract class _$$FhirExtensionImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'fhirExtension') List<FhirExtension>? extension_,
+      @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       @JsonKey(name: 'url') FhirUri? url,
       @JsonKey(name: '_url') PrimitiveElement? urlElement,
       @JsonKey(name: 'valueBase64Binary') String? valueBase64Binary,
@@ -1858,7 +1858,7 @@ class __$$FhirExtensionImplCopyWithImpl<$Res>
 class _$FhirExtensionImpl extends _FhirExtension {
   const _$FhirExtensionImpl(
       {@JsonKey(name: 'id') this.id,
-      @JsonKey(name: 'fhirExtension') final List<FhirExtension>? extension_,
+      @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(name: 'url') this.url,
       @JsonKey(name: '_url') this.urlElement,
       @JsonKey(name: 'valueBase64Binary') this.valueBase64Binary,
@@ -1958,7 +1958,7 @@ class _$FhirExtensionImpl extends _FhirExtension {
   /// fhirExtension, there is a set of requirements that SHALL be met as part of the
   /// definition of the fhirExtension.
   @override
-  @JsonKey(name: 'fhirExtension')
+  @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_ {
     final value = _extension_;
     if (value == null) return null;
@@ -2600,7 +2600,7 @@ class _$FhirExtensionImpl extends _FhirExtension {
 abstract class _FhirExtension extends FhirExtension {
   const factory _FhirExtension(
       {@JsonKey(name: 'id') final String? id,
-      @JsonKey(name: 'fhirExtension') final List<FhirExtension>? extension_,
+      @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(name: 'url') final FhirUri? url,
       @JsonKey(name: '_url') final PrimitiveElement? urlElement,
       @JsonKey(name: 'valueBase64Binary') final String? valueBase64Binary,
@@ -2712,7 +2712,7 @@ abstract class _FhirExtension extends FhirExtension {
   /// definition and use of fhirExtensions. Though any implementer can define an
   /// fhirExtension, there is a set of requirements that SHALL be met as part of the
   /// definition of the fhirExtension.
-  @JsonKey(name: 'fhirExtension')
+  @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
   @override
 

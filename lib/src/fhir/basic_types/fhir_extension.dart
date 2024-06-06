@@ -27,7 +27,7 @@ class FhirExtension with _$FhirExtension implements FhirBase {
     /// fhirExtension, there is a set of requirements that SHALL be met as part of the
     /// definition of the fhirExtension.
 
-    @JsonKey(name: 'fhirExtension') List<FhirExtension>? extension_,
+    @JsonKey(name: 'extension') List<FhirExtension>? extension_,
 
     /// [url] Source of the definition for the fhirExtension code - a logical name
     /// or a URL.
