@@ -41,7 +41,7 @@ class FhirExtension with _$FhirExtension implements FhirBase {
     /// [valueBase64Binary] Value of fhirExtension - must be one of a constrained
     /// set of the data types (see [Extensibility](extensibility.html) for a list).
 
-    @JsonKey(name: 'valueBase64Binary') String? valueBase64Binary,
+    @JsonKey(name: 'valueBase64Binary') FhirBase64Binary? valueBase64Binary,
 
     /// [_valueBase64Binary] Extensions for valueBase64Binary
 
@@ -69,7 +69,7 @@ class FhirExtension with _$FhirExtension implements FhirBase {
     /// [valueCode] Value of fhirExtension - must be one of a constrained set of
     /// the data types (see [Extensibility](extensibility.html) for a list).
 
-    @JsonKey(name: 'valueCode') String? valueCode,
+    @JsonKey(name: 'valueCode') FhirCode? valueCode,
 
     /// [_valueCode] Extensions for valueCode
 
@@ -87,7 +87,7 @@ class FhirExtension with _$FhirExtension implements FhirBase {
     /// [valueDateTime] Value of fhirExtension - must be one of a constrained set
     /// of the data types (see [Extensibility](extensibility.html) for a list).
 
-    @JsonKey(name: 'valueDateTime') String? valueDateTime,
+    @JsonKey(name: 'valueDateTime') FhirDateTime? valueDateTime,
 
     /// [_valueDateTime] Extensions for valueDateTime
 
@@ -114,7 +114,7 @@ class FhirExtension with _$FhirExtension implements FhirBase {
     /// [valueInstant] Value of fhirExtension - must be one of a constrained set of
     /// the data types (see [Extensibility](extensibility.html) for a list).
 
-    @JsonKey(name: 'valueInstant') String? valueInstant,
+    @JsonKey(name: 'valueInstant') FhirInstant? valueInstant,
 
     /// [_valueInstant] Extensions for valueInstant
 
@@ -169,7 +169,7 @@ class FhirExtension with _$FhirExtension implements FhirBase {
     /// [valueTime] Value of fhirExtension - must be one of a constrained set of
     /// the data types (see [Extensibility](extensibility.html) for a list).
 
-    @JsonKey(name: 'valueTime') String? valueTime,
+    @JsonKey(name: 'valueTime') FhirTime? valueTime,
 
     /// [_valueTime] Extensions for valueTime
 

@@ -1,29 +1,34 @@
 import 'package:objectbox/objectbox.dart';
-
 import '../../../fhir_r4.dart';
+import '../fhir_db_objects.dart';
 
 @Entity()
 class PrimitiveElementDbObject {
-  @Id()
+  @Id(assignable: true)
   int id;
+  final ToMany<FhirExtensionDbObject> extension_ =
+      ToMany<FhirExtensionDbObject>();
 
-  List<FhirExtensionDbObject>? extension_ = [];
+  PrimitiveElementDbObject({this.id = 0});
 
-  PrimitiveElementDbObject({this.id = 0, this.extension_});
-
-  // Convert to FHIR FhirExtension
+  // Convert to FHIR PrimitiveElement
   PrimitiveElement toFhir() {
     return PrimitiveElement(
-      extension_: extension_?.map((e) => e.toFhir()).toList(),
+      extension_:
+          extension_.map((FhirExtensionDbObject e) => e.toFhir()).toList(),
     );
   }
 
-  // Convert from FHIR FhirExtension
+  // Convert from FHIR PrimitiveElement
   factory PrimitiveElementDbObject.fromFhir(PrimitiveElement primitiveElement) {
-    return PrimitiveElementDbObject(
-      extension_: primitiveElement.extension_
-          ?.map((FhirExtension e) => FhirExtensionDbObject.fromFhir(e))
-          .toList(),
-    );
+    final PrimitiveElementDbObject primitiveElementDbObject =
+        PrimitiveElementDbObject();
+    if (primitiveElement.extension_ != null) {
+      primitiveElementDbObject.extension_.addAll(
+        primitiveElement.extension_!
+            .map((FhirExtension e) => FhirExtensionDbObject.fromFhir(e)),
+      );
+    }
+    return primitiveElementDbObject;
   }
 }
