@@ -1,109 +1,171 @@
 import 'dart:io';
 
-void main() {
-  final sourceDirectory =
-      Directory('./fhir'); // Source directory for your FHIR classes
-  final targetDirectory =
-      Directory('./fhir_db_objects'); // Target directory for ObjectBox classes
-  if (!targetDirectory.existsSync()) {
-    targetDirectory.createSync(recursive: true);
+void main() async {
+  final Directory sourceDir = Directory('./fhir');
+  final Directory targetDir = Directory('./fhir_db_objects');
+
+  if (!targetDir.existsSync()) {
+    targetDir.createSync(recursive: true);
   }
-  processDirectory(sourceDirectory, targetDirectory);
-  createExportFiles(targetDirectory);
+
+  await processDirectory(sourceDir, targetDir);
 }
 
-void processDirectory(Directory sourceDir, Directory targetDir) {
-  final entities = sourceDir.listSync(recursive: true);
-
-  for (var entity in entities) {
-    if (entity is File &&
-        !entity.path.endsWith('.freezed.dart') &&
-        !entity.path.endsWith('.g.dart') &&
-        !entity.path.endsWith('.enums.dart')) {
-      final relativePath = entity.path.replaceFirst(sourceDir.path, '');
-      final targetFile = File('${targetDir.path}$relativePath'
-          .replaceFirst('.dart', '_objectbox.dart'));
-      targetFile.createSync(recursive: true);
-      processFile(entity, targetFile);
-    } else if (entity is Directory) {
-      final relativePath = entity.path.replaceFirst(sourceDir.path, '');
-      final targetSubDir = Directory('${targetDir.path}$relativePath');
-      if (!targetSubDir.existsSync()) {
-        targetSubDir.createSync(recursive: true);
+Future<void> processDirectory(Directory sourceDir, Directory targetDir) async {
+  await for (final FileSystemEntity entity
+      in sourceDir.list(recursive: true, followLinks: false)) {
+    if (entity is File && entity.path.endsWith('.dart')) {
+      if (shouldProcessFile(entity)) {
+        await processFile(entity, sourceDir, targetDir);
       }
     }
   }
 }
 
-void processFile(File sourceFile, File targetFile) {
-  final lines = sourceFile.readAsLinesSync();
-  final newLines = <String>[];
+bool shouldProcessFile(File file) {
+  final String name = file.uri.pathSegments.last;
+  return !(name.endsWith('.freezed.dart') ||
+      name.endsWith('.g.dart') ||
+      name.endsWith('.enums.dart'));
+}
 
-  final classNameRegex = RegExp(r'class (\w+) ');
-  final complexTypeRegex = RegExp(r'(\w+)<(\w+)> (\w+);');
+Future<void> processFile(
+    File file, Directory sourceDir, Directory targetDir) async {
+  final String content = await file.readAsString();
+  final String newContent = transformToObjectBox(content);
 
+  final String relativePath = file.path.substring(sourceDir.path.length);
+  final String newFilePath =
+      targetDir.path + relativePath.replaceFirst('.dart', '_db_object.dart');
+  final File newFile = File(newFilePath);
+
+  if (!newFile.parent.existsSync()) {
+    newFile.parent.createSync(recursive: true);
+  }
+
+  await newFile.writeAsString(newContent);
+}
+
+String transformToObjectBox(String content) {
+  final StringBuffer buffer = StringBuffer();
+  buffer.writeln("import 'package:objectbox/objectbox.dart';");
+  final List<String> lines = content.split('\n');
+  bool insideFreezedClass = false;
+  bool insideConstructor = false;
   String? className;
-  for (var line in lines) {
-    if (classNameRegex.hasMatch(line)) {
-      className = classNameRegex.firstMatch(line)!.group(1)!;
-      newLines.add("import 'package:objectbox/objectbox.dart';");
-      newLines.add('');
-      newLines.add('@Entity()');
+  bool hasStringId = false;
+
+  for (String line in lines) {
+    line = line.trim();
+
+    // Skip comment lines
+    if (line.startsWith('//') ||
+        line.startsWith('/*') ||
+        line.startsWith('*')) {
+      continue;
     }
 
-    if (className != null && complexTypeRegex.hasMatch(line)) {
-      final match = complexTypeRegex.firstMatch(line)!;
-      final type = match.group(2)!;
-      final variable = match.group(3)!;
+    // Handle multiline comments
+    if (line.contains('/*')) {
+      continue;
+    }
 
-      if (type == 'String') {
-        newLines.add('  @Property(type: PropertyType.string)');
-        newLines.add('  $type? $variable;');
-      } else if (type == 'bool') {
-        newLines.add('  @Property(type: PropertyType.bool)');
-        newLines.add('  $type? $variable;');
-      } else {
-        newLines.add('  final $variable = ToOne<${type}Db>();');
+    if (line.contains('*/')) {
+      continue;
+    }
+
+    // Remove @JsonKey and @Default annotations
+    line = line.replaceAll(RegExp(r'@JsonKey\(.*?\)'), '');
+    line = line.replaceAll(RegExp(r'@Default\(.*?\)'), '');
+
+    if (line.contains('@freezed')) {
+      insideFreezedClass = true;
+    }
+
+    if (insideFreezedClass) {
+      if (line.contains('class')) {
+        className = line.split(' ')[1];
+        buffer.writeln('@Entity()');
+        buffer.writeln('class ${className}DbObject {');
+        buffer.writeln('  @Id(assignable: true)');
+        buffer.writeln('  int id;');
+      } else if (line.contains('const factory')) {
+        insideConstructor = true;
+      } else if (line.contains('}) = _')) {
+        if (hasStringId) {
+          buffer.writeln(
+              '  final ToOne<StringDbObject> fhirId = ToOne<StringDbObject>();');
+        }
+        buffer.writeln('  ${className}DbObject({required this.id});');
+        buffer.writeln('}');
+        insideConstructor = false;
+        insideFreezedClass = false;
+        hasStringId = false;
+      } else if (insideConstructor) {
+        final String propertyLine =
+            convertToObjectBoxProperty(line, hasStringId);
+        if (propertyLine.contains('final String')) {
+          hasStringId = true;
+        }
+        buffer.writeln(propertyLine);
       }
+    }
+  }
+
+  return formatContent(buffer.toString());
+}
+
+String convertToObjectBoxProperty(String line, bool hasStringId) {
+  // Remove the const factory line
+  if (line.contains('const factory')) {
+    return '';
+  }
+
+  // Extract the variable name and type
+  final RegExp regex = RegExp(r'([A-Za-z0-9_?<>]+) ([A-Za-z0-9_]+),');
+  final Match? match = regex.firstMatch(line);
+  if (match != null) {
+    String type = match.group(1)!.replaceAll('?', '');
+    String name = match.group(2)!;
+
+    if (type == 'String' && name == 'id') {
+      type = 'ToOne<StringDbObject>';
+      name = 'fhirId';
     } else {
-      newLines.add(line);
+      type = getTransformedType(type);
+    }
+    return '  final $type $name = $type();';
+  }
+
+  return line;
+}
+
+String getTransformedType(String type) {
+  final bool isList = type.startsWith('List<');
+  final String baseType = isList ? type.substring(5, type.length - 1) : type;
+
+  if (baseType == 'String') {
+    return 'ToOne<StringDbObject>';
+  }
+
+  if (<String>['int', 'bool'].contains(baseType)) {
+    return baseType;
+  }
+
+  final String transformedType = '${baseType}DbObject';
+
+  return isList ? 'ToMany<$transformedType>' : 'ToOne<$transformedType>';
+}
+
+String formatContent(String content) {
+  final StringBuffer buffer = StringBuffer();
+  final List<String> lines = content.split('\n');
+
+  for (final String line in lines) {
+    if (line.isNotEmpty) {
+      buffer.writeln(line);
     }
   }
 
-  targetFile.writeAsStringSync(newLines.join('\n'));
-}
-
-void createExportFiles(Directory directory) {
-  final subDirectories = directory.listSync().whereType<Directory>();
-
-  for (var subDirectory in subDirectories) {
-    createExportFile(subDirectory);
-  }
-
-  createExportFile(directory); // Create export file for the top-level directory
-}
-
-void createExportFile(Directory directory) {
-  final entities = directory.listSync().whereType<File>();
-  final exportLines = <String>[];
-
-  for (var entity in entities) {
-    if (entity.path.endsWith('_objectbox.dart')) {
-      final fileName = entity.uri.pathSegments.last;
-      exportLines.add("export '$fileName';");
-    }
-  }
-
-  final subDirectories = directory.listSync().whereType<Directory>();
-
-  for (var subDirectory in subDirectories) {
-    final dirName = subDirectory.uri.pathSegments
-        .lastWhere((segment) => segment.isNotEmpty);
-    exportLines.add("export '$dirName/$dirName.dart';");
-  }
-
-  final exportFileName = directory.path.endsWith('/')
-      ? '${directory.path}export.dart'
-      : '${directory.path}/export.dart';
-  File(exportFileName).writeAsStringSync(exportLines.join('\n'));
+  return buffer.toString();
 }

@@ -1,41 +1,80 @@
 import 'package:objectbox/objectbox.dart';
-import '../../../fhir_r4.dart';
+
 import '../fhir_db_objects.dart';
-import '../general_types/address_db_object.dart';
 
 @Entity()
 class FhirExtensionDbObject {
   @Id(assignable: true)
   int id;
-  String? fhirId;
+  final ToOne<StringDbObject> fhirId = ToOne<StringDbObject>();
   final ToMany<FhirExtensionDbObject> extension_ =
       ToMany<FhirExtensionDbObject>();
   final ToOne<FhirUriDbObject> url = ToOne<FhirUriDbObject>();
+  final ToOne<PrimitiveElementDbObject> urlElement =
+      ToOne<PrimitiveElementDbObject>();
   final ToOne<FhirBase64BinaryDbObject> valueBase64Binary =
       ToOne<FhirBase64BinaryDbObject>();
+  final ToOne<PrimitiveElementDbObject> valueBase64BinaryElement =
+      ToOne<PrimitiveElementDbObject>();
   final ToOne<FhirBooleanDbObject> valueBoolean = ToOne<FhirBooleanDbObject>();
+  final ToOne<PrimitiveElementDbObject> valueBooleanElement =
+      ToOne<PrimitiveElementDbObject>();
   final ToOne<FhirCanonicalDbObject> valueCanonical =
       ToOne<FhirCanonicalDbObject>();
+  final ToOne<PrimitiveElementDbObject> valueCanonicalElement =
+      ToOne<PrimitiveElementDbObject>();
   final ToOne<FhirCodeDbObject> valueCode = ToOne<FhirCodeDbObject>();
+  final ToOne<PrimitiveElementDbObject> valueCodeElement =
+      ToOne<PrimitiveElementDbObject>();
   final ToOne<FhirDateDbObject> valueDate = ToOne<FhirDateDbObject>();
+  final ToOne<PrimitiveElementDbObject> valueDateElement =
+      ToOne<PrimitiveElementDbObject>();
   final ToOne<FhirDateTimeDbObject> valueDateTime =
       ToOne<FhirDateTimeDbObject>();
+  final ToOne<PrimitiveElementDbObject> valueDateTimeElement =
+      ToOne<PrimitiveElementDbObject>();
   final ToOne<FhirDecimalDbObject> valueDecimal = ToOne<FhirDecimalDbObject>();
+  final ToOne<PrimitiveElementDbObject> valueDecimalElement =
+      ToOne<PrimitiveElementDbObject>();
   final ToOne<FhirIdDbObject> valueId = ToOne<FhirIdDbObject>();
+  final ToOne<PrimitiveElementDbObject> valueIdElement =
+      ToOne<PrimitiveElementDbObject>();
   final ToOne<FhirInstantDbObject> valueInstant = ToOne<FhirInstantDbObject>();
+  final ToOne<PrimitiveElementDbObject> valueInstantElement =
+      ToOne<PrimitiveElementDbObject>();
   final ToOne<FhirIntegerDbObject> valueInteger = ToOne<FhirIntegerDbObject>();
+  final ToOne<PrimitiveElementDbObject> valueIntegerElement =
+      ToOne<PrimitiveElementDbObject>();
   final ToOne<FhirMarkdownDbObject> valueMarkdown =
       ToOne<FhirMarkdownDbObject>();
+  final ToOne<PrimitiveElementDbObject> valueMarkdownElement =
+      ToOne<PrimitiveElementDbObject>();
   final ToOne<FhirOidDbObject> valueOid = ToOne<FhirOidDbObject>();
+  final ToOne<PrimitiveElementDbObject> valueOidElement =
+      ToOne<PrimitiveElementDbObject>();
   final ToOne<FhirPositiveIntDbObject> valuePositiveInt =
       ToOne<FhirPositiveIntDbObject>();
+  final ToOne<PrimitiveElementDbObject> valuePositiveIntElement =
+      ToOne<PrimitiveElementDbObject>();
   final ToOne<StringDbObject> valueString = ToOne<StringDbObject>();
+  final ToOne<PrimitiveElementDbObject> valueStringElement =
+      ToOne<PrimitiveElementDbObject>();
   final ToOne<FhirTimeDbObject> valueTime = ToOne<FhirTimeDbObject>();
+  final ToOne<PrimitiveElementDbObject> valueTimeElement =
+      ToOne<PrimitiveElementDbObject>();
   final ToOne<FhirUnsignedIntDbObject> valueUnsignedInt =
       ToOne<FhirUnsignedIntDbObject>();
+  final ToOne<PrimitiveElementDbObject> valueUnsignedIntElement =
+      ToOne<PrimitiveElementDbObject>();
   final ToOne<FhirUriDbObject> valueUri = ToOne<FhirUriDbObject>();
+  final ToOne<PrimitiveElementDbObject> valueUriElement =
+      ToOne<PrimitiveElementDbObject>();
   final ToOne<FhirUrlDbObject> valueUrl = ToOne<FhirUrlDbObject>();
+  final ToOne<PrimitiveElementDbObject> valueUrlElement =
+      ToOne<PrimitiveElementDbObject>();
   final ToOne<FhirUuidDbObject> valueUuid = ToOne<FhirUuidDbObject>();
+  final ToOne<PrimitiveElementDbObject> valueUuidElement =
+      ToOne<PrimitiveElementDbObject>();
   final ToOne<AddressDbObject> valueAddress = ToOne<AddressDbObject>();
   final ToOne<AgeDbObject> valueAge = ToOne<AgeDbObject>();
   final ToOne<AnnotationDbObject> valueAnnotation = ToOne<AnnotationDbObject>();
@@ -70,7 +109,8 @@ class FhirExtensionDbObject {
       ToOne<ContributorDbObject>();
   final ToOne<DataRequirementDbObject> valueDataRequirement =
       ToOne<DataRequirementDbObject>();
-  final ToOne<ExpressionDbObject> valueExpression = ToOne<ExpressionDbObject>();
+  final ToOne<FhirExpressionDbObject> valueExpression =
+      ToOne<FhirExpressionDbObject>();
   final ToOne<ParameterDefinitionDbObject> valueParameterDefinition =
       ToOne<ParameterDefinitionDbObject>();
   final ToOne<RelatedArtifactDbObject> valueRelatedArtifact =
@@ -80,7 +120,6 @@ class FhirExtensionDbObject {
   final ToOne<UsageContextDbObject> valueUsageContext =
       ToOne<UsageContextDbObject>();
   final ToOne<DosageDbObject> valueDosage = ToOne<DosageDbObject>();
-
   FhirExtensionDbObject({
     required this.id,
     this.fhirId,
