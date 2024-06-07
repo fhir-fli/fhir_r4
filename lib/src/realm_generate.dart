@@ -59,7 +59,7 @@ Future<void> processFile(
 
   final String relativePath = file.path.substring(sourceDir.path.length);
   final String newFilePath =
-      targetDir.path + relativePath.replaceFirst('.dart', '_db_object.dart');
+      targetDir.path + relativePath.replaceFirst('.dart', '_realm.dart');
   final File newFile = File(newFilePath);
 
   if (!newFile.parent.existsSync()) {
@@ -77,12 +77,11 @@ String transformToRealm(String content, String filePath) {
       filePath.contains('/general_types/') ||
       filePath.contains('/metadata_types/') ||
       filePath.contains('/special_types/')) {
-    buffer.writeln("import '../fhir_db_objects.dart';");
+    buffer.writeln("ToMany<PrimitiveElementDbObject>");
   }
 
   final List<String> lines = content.split('\n');
   bool insideFreezedClass = false;
-  bool insideConstructor = false;
   String? className;
 
   for (String line in lines) {
@@ -108,25 +107,22 @@ String transformToRealm(String content, String filePath) {
     line = line.replaceAll(RegExp(r'@JsonKey\(.*?\)'), '');
     line = line.replaceAll(RegExp(r'@Default\(.*?\)'), '');
 
+    // Skip @freezed annotation
     if (line.contains('@freezed')) {
-      insideFreezedClass = true;
+      continue;
     }
 
-    if (insideFreezedClass) {
-      if (line.contains('class')) {
-        className = line.split(' ')[1];
-        buffer.writeln('@RealmModel()');
-        buffer.writeln(
-            'class ${className}DbObject extends _${className}DbObject {');
-      } else if (line.contains('const factory')) {
-        insideConstructor = true;
-      } else if (line.contains('}) = _')) {
-        buffer.writeln('  ${className}DbObject();');
-        buffer.writeln('}');
-        insideConstructor = false;
-        insideFreezedClass = false;
-      } else if (insideConstructor) {
-        final String propertyLine = convertToRealmProperty(line);
+    if (line.contains('class')) {
+      className = line.split(' ')[1];
+      buffer.writeln('@RealmModel()');
+      buffer.writeln('class _${className}Realm {');
+      insideFreezedClass = true;
+    } else if (line.contains('}) = _')) {
+      buffer.writeln('}');
+      insideFreezedClass = false;
+    } else if (insideFreezedClass) {
+      final String propertyLine = convertToRealmProperty(line);
+      if (propertyLine.isNotEmpty) {
         buffer.writeln(propertyLine);
       }
     }
@@ -136,11 +132,6 @@ String transformToRealm(String content, String filePath) {
 }
 
 String convertToRealmProperty(String line) {
-  // Remove the const factory line
-  if (line.contains('const factory')) {
-    return '';
-  }
-
   // Extract the variable name and type
   final RegExp regex = RegExp(r'([A-Za-z0-9_?<>]+) ([A-Za-z0-9_]+),');
   final Match? match = regex.firstMatch(line);
@@ -148,12 +139,16 @@ String convertToRealmProperty(String line) {
     String type = match.group(1)!.replaceAll('?', '');
     String name = match.group(2)!;
 
+    if (name == 'id') {
+      return '  @PrimaryKey() late $type $name;';
+    }
+
     type = getTransformedType(type);
 
-    return '  @RealmProperty() $type $name;';
+    return '  late $type $name;';
   }
 
-  return line;
+  return '';
 }
 
 String getTransformedType(String type) {
@@ -168,7 +163,7 @@ String getTransformedType(String type) {
     return baseType;
   }
 
-  final String transformedType = '${baseType}DbObject';
+  final String transformedType = '_${baseType}Realm';
 
   return isList ? 'List<$transformedType>' : transformedType;
 }

@@ -1,0 +1,71 @@
+import 'package:realm/realm.dart';
+@RealmModel()
+class _SearchParameterRealm {
+  late _R4ResourceTypeRealm resourceType;
+  @PrimaryKey() late String id;
+  late _FhirMetaRealm meta;
+  late _FhirUriRealm implicitRules;
+  late _PrimitiveElementRealm implicitRulesElement;
+  late _FhirCodeRealm language;
+  late _PrimitiveElementRealm languageElement;
+  late _NarrativeRealm text;
+  late List<_ResourceRealm> contained;
+  late List<_FhirExtensionRealm> extension_;
+  late List<_FhirExtensionRealm> modifierExtension;
+  late _FhirUriRealm url;
+  late _PrimitiveElementRealm urlElement;
+  late String version;
+  late _PrimitiveElementRealm versionElement;
+  late String name;
+  late _PrimitiveElementRealm nameElement;
+  late _FhirCanonicalRealm derivedFrom;
+  late _FhirCodeRealm status;
+  late _PrimitiveElementRealm statusElement;
+  late _FhirBooleanRealm experimental;
+  late _PrimitiveElementRealm experimentalElement;
+  late String date;
+  late _PrimitiveElementRealm dateElement;
+  late String publisher;
+  late _PrimitiveElementRealm publisherElement;
+  late List<_ContactDetailRealm> contact;
+  late _FhirMarkdownRealm description;
+  late _PrimitiveElementRealm descriptionElement;
+  late List<_UsageContextRealm> useContext;
+  late List<_CodeableConceptRealm> jurisdiction;
+  late _FhirMarkdownRealm purpose;
+  late _PrimitiveElementRealm purposeElement;
+  late _FhirCodeRealm code;
+  late _PrimitiveElementRealm codeElement;
+  late List<_FhirCodeRealm> base;
+  late List<_PrimitiveElementRealm> baseElement;
+  late _FhirCodeRealm type;
+  late _PrimitiveElementRealm typeElement;
+  late String expression;
+  late _PrimitiveElementRealm expressionElement;
+  late String xpath;
+  late _PrimitiveElementRealm xpathElement;
+  late _FhirCodeRealm xpathUsage;
+  late _PrimitiveElementRealm xpathUsageElement;
+  late List<_FhirCodeRealm> target;
+  late List<_PrimitiveElementRealm> targetElement;
+  late _FhirBooleanRealm multipleOr;
+  late _PrimitiveElementRealm multipleOrElement;
+  late _FhirBooleanRealm multipleAnd;
+  late _PrimitiveElementRealm multipleAndElement;
+  late List<_FhirCodeRealm> comparator;
+  late List<_PrimitiveElementRealm> comparatorElement;
+  late List<_FhirCodeRealm> modifier;
+  late List<_PrimitiveElementRealm> modifierElement;
+  late String chain;
+  late List<_PrimitiveElementRealm> chainElement;
+  late List<_SearchParameterComponentRealm> component;
+}
+@RealmModel()
+class _SearchParameterComponentRealm {
+  @PrimaryKey() late String id;
+  late List<_FhirExtensionRealm> extension_;
+  late List<_FhirExtensionRealm> modifierExtension;
+  late _FhirCanonicalRealm definition;
+  late String expression;
+  late _PrimitiveElementRealm expressionElement;
+}

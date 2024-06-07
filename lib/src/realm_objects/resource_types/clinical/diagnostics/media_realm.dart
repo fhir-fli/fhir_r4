@@ -1,0 +1,46 @@
+import 'package:realm/realm.dart';
+@RealmModel()
+class _MediaRealm {
+  late _R4ResourceTypeRealm resourceType;
+  @PrimaryKey() late String id;
+  late _FhirMetaRealm meta;
+  late _FhirUriRealm implicitRules;
+  late _PrimitiveElementRealm implicitRulesElement;
+  late _FhirCodeRealm language;
+  late _PrimitiveElementRealm languageElement;
+  late _NarrativeRealm text;
+  late List<_ResourceRealm> contained;
+  late List<_FhirExtensionRealm> extension_;
+  late List<_FhirExtensionRealm> modifierExtension;
+  late List<_IdentifierRealm> identifier;
+  late List<_ReferenceRealm> basedOn;
+  late List<_ReferenceRealm> partOf;
+  late _FhirCodeRealm status;
+  late _PrimitiveElementRealm statusElement;
+  late _CodeableConceptRealm type;
+  late _CodeableConceptRealm modality;
+  late _CodeableConceptRealm view;
+  late _ReferenceRealm subject;
+  late _ReferenceRealm encounter;
+  late String createdDateTime;
+  late _PrimitiveElementRealm createdDateTimeElement;
+  late _PeriodRealm createdPeriod;
+  late _FhirInstantRealm issued;
+  late _PrimitiveElementRealm issuedElement;
+  late _ReferenceRealm operator_;
+  late List<_CodeableConceptRealm> reasonCode;
+  late _CodeableConceptRealm bodySite;
+  late String deviceName;
+  late _PrimitiveElementRealm deviceNameElement;
+  late _ReferenceRealm device;
+  late _FhirPositiveIntRealm height;
+  late _PrimitiveElementRealm heightElement;
+  late _FhirPositiveIntRealm width;
+  late _PrimitiveElementRealm widthElement;
+  late _FhirPositiveIntRealm frames;
+  late _PrimitiveElementRealm framesElement;
+  late _FhirDecimalRealm duration;
+  late _PrimitiveElementRealm durationElement;
+  late _AttachmentRealm content;
+  late List<_AnnotationRealm> note;
+}
