@@ -3,7 +3,7 @@ import 'package:objectbox/objectbox.dart';
 class CitationDbObject {
   @Id(assignable: true)
   int id;
-  final ToOne<R4ResourceTypeDbObject> resourceType = ToOne<R4ResourceTypeDbObject>();
+  final ToOne<StringDbObject> resourceType = ToOne<StringDbObject>();
   final ToOne<StringDbObject> fhirId = ToOne<StringDbObject>();
   final ToOne<FhirMetaDbObject> meta = ToOne<FhirMetaDbObject>();
   final ToOne<FhirUriDbObject> implicitRules = ToOne<FhirUriDbObject>();
@@ -59,7 +59,7 @@ class classification,DbObject {
   final ToMany<CitationStatusDateDbObject> statusDate = ToMany<CitationStatusDateDbObject>();
   final ToMany<CitationRelatesToDbObject> relatesTo = ToMany<CitationRelatesToDbObject>();
   final ToOne<CitationCitedArtifactDbObject> citedArtifact = ToOne<CitationCitedArtifactDbObject>();
-  classification,DbObject({required this.id});
+  classification,DbObject(<>{required this.id});
 }
 @Entity()
 class CitationSummaryDbObject {

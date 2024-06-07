@@ -24,15 +24,38 @@ Future<void> processDirectory(Directory sourceDir, Directory targetDir) async {
 
 bool shouldProcessFile(File file) {
   final String name = file.uri.pathSegments.last;
+  final List<String> excludedFiles = <String>[
+    'basic_types.dart',
+    'fhir_extension.dart',
+    'primitive_element.dart',
+    'draft_types.dart',
+    'general_types.dart',
+    'metadata_types.dart',
+    'special_types.dart',
+    'domain_resource.dart',
+    'fhir_field_map.dart',
+    'resource_from_json.dart',
+    'resource_new_id.dart',
+    'resource_new_version.dart',
+    'resource_types_enums.dart',
+    'resource_types.dart',
+    'resource.dart',
+  ];
+
+  final bool isInAbstractTypesDirectory =
+      file.path.contains('/abstract_types/');
+
   return !(name.endsWith('.freezed.dart') ||
       name.endsWith('.g.dart') ||
-      name.endsWith('.enums.dart'));
+      name.endsWith('.enums.dart') ||
+      excludedFiles.contains(name) ||
+      isInAbstractTypesDirectory);
 }
 
 Future<void> processFile(
     File file, Directory sourceDir, Directory targetDir) async {
   final String content = await file.readAsString();
-  final String newContent = transformToObjectBox(content);
+  final String newContent = transformToObjectBox(content, file.path);
 
   final String relativePath = file.path.substring(sourceDir.path.length);
   final String newFilePath =
@@ -46,9 +69,17 @@ Future<void> processFile(
   await newFile.writeAsString(newContent);
 }
 
-String transformToObjectBox(String content) {
+String transformToObjectBox(String content, String filePath) {
   final StringBuffer buffer = StringBuffer();
   buffer.writeln("import 'package:objectbox/objectbox.dart';");
+
+  if (filePath.contains('/draft_types/') ||
+      filePath.contains('/general_types/') ||
+      filePath.contains('/metadata_types/') ||
+      filePath.contains('/special_types/')) {
+    buffer.writeln("import '../fhir_db_objects.dart';");
+  }
+
   final List<String> lines = content.split('\n');
   bool insideFreezedClass = false;
   bool insideConstructor = false;
@@ -92,10 +123,6 @@ String transformToObjectBox(String content) {
       } else if (line.contains('const factory')) {
         insideConstructor = true;
       } else if (line.contains('}) = _')) {
-        if (hasStringId) {
-          buffer.writeln(
-              '  final ToOne<StringDbObject> fhirId = ToOne<StringDbObject>();');
-        }
         buffer.writeln('  ${className}DbObject({required this.id});');
         buffer.writeln('}');
         insideConstructor = false;
@@ -104,7 +131,7 @@ String transformToObjectBox(String content) {
       } else if (insideConstructor) {
         final String propertyLine =
             convertToObjectBoxProperty(line, hasStringId);
-        if (propertyLine.contains('final String')) {
+        if (propertyLine.contains('final ToOne<StringDbObject> fhirId')) {
           hasStringId = true;
         }
         buffer.writeln(propertyLine);
@@ -128,9 +155,12 @@ String convertToObjectBoxProperty(String line, bool hasStringId) {
     String type = match.group(1)!.replaceAll('?', '');
     String name = match.group(2)!;
 
-    if (type == 'String' && name == 'id') {
+    if (type == 'String' && name == 'id' && !hasStringId) {
       type = 'ToOne<StringDbObject>';
       name = 'fhirId';
+      hasStringId = true;
+    } else if (type == 'String') {
+      type = 'ToOne<StringDbObject>';
     } else {
       type = getTransformedType(type);
     }

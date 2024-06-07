@@ -1,5 +1,6 @@
 import 'package:objectbox/objectbox.dart';
 
+import '../../../fhir_r4.dart';
 import '../fhir_db_objects.dart';
 
 @Entity()
@@ -120,6 +121,7 @@ class FhirExtensionDbObject {
   final ToOne<UsageContextDbObject> valueUsageContext =
       ToOne<UsageContextDbObject>();
   final ToOne<DosageDbObject> valueDosage = ToOne<DosageDbObject>();
+
   FhirExtensionDbObject({
     required this.id,
     this.fhirId,

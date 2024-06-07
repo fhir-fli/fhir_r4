@@ -1,4 +1,5 @@
 import 'package:objectbox/objectbox.dart';
+import '../fhir_db_objects.dart';
 @Entity()
 class ParameterDefinitionDbObject {
   @Id(assignable: true)

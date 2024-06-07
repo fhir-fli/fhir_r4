@@ -1,9 +1,11 @@
 import 'package:objectbox/objectbox.dart';
+
+import '../../../fhir_db_objects.dart';
 @Entity()
 class EncounterDbObject {
   @Id(assignable: true)
   int id;
-  final ToOne<R4ResourceTypeDbObject> resourceType = ToOne<R4ResourceTypeDbObject>();
+  final ToOne<StringDbObject> resourceType = ToOne<StringDbObject>();
   final ToOne<StringDbObject> fhirId = ToOne<StringDbObject>();
   final ToOne<FhirMetaDbObject> meta = ToOne<FhirMetaDbObject>();
   final ToOne<FhirUriDbObject> implicitRules = ToOne<FhirUriDbObject>();

@@ -3,7 +3,7 @@ import 'package:objectbox/objectbox.dart';
 class ConsentDbObject {
   @Id(assignable: true)
   int id;
-  final ToOne<R4ResourceTypeDbObject> resourceType = ToOne<R4ResourceTypeDbObject>();
+  final ToOne<StringDbObject> resourceType = ToOne<StringDbObject>();
   final ToOne<StringDbObject> fhirId = ToOne<StringDbObject>();
   final ToOne<FhirMetaDbObject> meta = ToOne<FhirMetaDbObject>();
   final ToOne<FhirUriDbObject> implicitRules = ToOne<FhirUriDbObject>();
@@ -81,7 +81,7 @@ class List<Coding>?DbObject {
   final ToOne<PeriodDbObject> dataPeriod = ToOne<PeriodDbObject>();
   final ToMany<ConsentDataDbObject> data = ToMany<ConsentDataDbObject>();
   final ToMany<ConsentProvisionDbObject> provision = ToMany<ConsentProvisionDbObject>();
-  List<Coding>?DbObject({required this.id});
+  List<Coding>?DbObject<>{required this.id};
 }
 @Entity()
 class ConsentActorDbObject {

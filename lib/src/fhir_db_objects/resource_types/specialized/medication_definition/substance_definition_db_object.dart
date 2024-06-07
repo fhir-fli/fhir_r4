@@ -3,7 +3,7 @@ import 'package:objectbox/objectbox.dart';
 class SubstanceDefinitionDbObject {
   @Id(assignable: true)
   int id;
-  final ToOne<R4ResourceTypeDbObject> resourceType = ToOne<R4ResourceTypeDbObject>();
+  final ToOne<StringDbObject> resourceType = ToOne<StringDbObject>();
   final ToOne<StringDbObject> fhirId = ToOne<StringDbObject>();
   final ToOne<FhirMetaDbObject> meta = ToOne<FhirMetaDbObject>();
   final ToOne<FhirUriDbObject> implicitRules = ToOne<FhirUriDbObject>();
@@ -38,7 +38,7 @@ class classification,DbObject {
   final ToMany<SubstanceDefinitionNameDbObject> name = ToMany<SubstanceDefinitionNameDbObject>();
   final ToMany<SubstanceDefinitionRelationshipDbObject> relationship = ToMany<SubstanceDefinitionRelationshipDbObject>();
   final ToOne<SubstanceDefinitionSourceMaterialDbObject> sourceMaterial = ToOne<SubstanceDefinitionSourceMaterialDbObject>();
-  classification,DbObject({required this.id});
+  classification,DbObject(<>{required this.id});
 }
 @Entity()
 class SubstanceDefinitionMoietyDbObject {

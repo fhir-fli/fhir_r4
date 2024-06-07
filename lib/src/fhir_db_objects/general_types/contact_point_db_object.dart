@@ -1,18 +1,25 @@
 import 'package:objectbox/objectbox.dart';
+import '../fhir_db_objects.dart';
+
 @Entity()
 class ContactPointDbObject {
   @Id(assignable: true)
   int id;
   final ToOne<StringDbObject> fhirId = ToOne<StringDbObject>();
-  final ToMany<FhirExtensionDbObject> extension_ = ToMany<FhirExtensionDbObject>();
-  final ToOne<ContactPointSystemDbObject> system = ToOne<ContactPointSystemDbObject>();
-  final ToOne<PrimitiveElementDbObject> systemElement = ToOne<PrimitiveElementDbObject>();
+  final ToMany<FhirExtensionDbObject> extension_ =
+      ToMany<FhirExtensionDbObject>();
+  final ToOne<FhirCodeDbObject> system = ToOne<FhirCodeDbObject>();
+  final ToOne<PrimitiveElementDbObject> systemElement =
+      ToOne<PrimitiveElementDbObject>();
   final ToOne<StringDbObject> value = ToOne<StringDbObject>();
-  final ToOne<PrimitiveElementDbObject> valueElement = ToOne<PrimitiveElementDbObject>();
-  final ToOne<ContactPointUseDbObject> use = ToOne<ContactPointUseDbObject>();
-  final ToOne<PrimitiveElementDbObject> useElement = ToOne<PrimitiveElementDbObject>();
+  final ToOne<PrimitiveElementDbObject> valueElement =
+      ToOne<PrimitiveElementDbObject>();
+  final ToOne<FhirCodeDbObject> use = ToOne<FhirCodeDbObject>();
+  final ToOne<PrimitiveElementDbObject> useElement =
+      ToOne<PrimitiveElementDbObject>();
   final ToOne<FhirPositiveIntDbObject> rank = ToOne<FhirPositiveIntDbObject>();
-  final ToOne<PrimitiveElementDbObject> rankElement = ToOne<PrimitiveElementDbObject>();
+  final ToOne<PrimitiveElementDbObject> rankElement =
+      ToOne<PrimitiveElementDbObject>();
   final ToOne<PeriodDbObject> period = ToOne<PeriodDbObject>();
   ContactPointDbObject({required this.id});
 }

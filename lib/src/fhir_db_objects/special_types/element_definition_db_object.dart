@@ -1,5 +1,4 @@
 import 'package:objectbox/objectbox.dart';
-
 import '../fhir_db_objects.dart';
 
 @Entity()
@@ -14,8 +13,7 @@ class ElementDefinitionDbObject {
   final ToOne<StringDbObject> path = ToOne<StringDbObject>();
   final ToOne<PrimitiveElementDbObject> pathElement =
       ToOne<PrimitiveElementDbObject>();
-  final ToMany<ElementDefinitionRepresentationDbObject> representation =
-      ToMany<ElementDefinitionRepresentationDbObject>();
+  final ToMany<FhirCodeDbObject> representation = ToMany<FhirCodeDbObject>();
   final ToMany<PrimitiveElementDbObject> representationElement =
       ToMany<PrimitiveElementDbObject>();
   final ToOne<StringDbObject> sliceName = ToOne<StringDbObject>();
@@ -520,8 +518,7 @@ class ElementDefinitionSlicingDbObject {
   final ToOne<FhirBooleanDbObject> ordered = ToOne<FhirBooleanDbObject>();
   final ToOne<PrimitiveElementDbObject> orderedElement =
       ToOne<PrimitiveElementDbObject>();
-  final ToOne<ElementDefinitionSlicingRulesDbObject> rules =
-      ToOne<ElementDefinitionSlicingRulesDbObject>();
+  final ToOne<FhirCodeDbObject> rules = ToOne<FhirCodeDbObject>();
   final ToOne<PrimitiveElementDbObject> rulesElement =
       ToOne<PrimitiveElementDbObject>();
   ElementDefinitionSlicingDbObject({required this.id});
@@ -536,8 +533,7 @@ class ElementDefinitionDiscriminatorDbObject {
       ToMany<FhirExtensionDbObject>();
   final ToMany<FhirExtensionDbObject> modifierExtension =
       ToMany<FhirExtensionDbObject>();
-  final ToOne<ElementDefinitionDiscriminatorTypeDbObject> type =
-      ToOne<ElementDefinitionDiscriminatorTypeDbObject>();
+  final ToOne<FhirCodeDbObject> type = ToOne<FhirCodeDbObject>();
   final ToOne<PrimitiveElementDbObject> typeElement =
       ToOne<PrimitiveElementDbObject>();
   final ToOne<StringDbObject> path = ToOne<StringDbObject>();
@@ -584,12 +580,10 @@ class ElementDefinitionTypeDbObject {
       ToMany<PrimitiveElementDbObject>();
   final ToMany<FhirCanonicalDbObject> targetProfile =
       ToMany<FhirCanonicalDbObject>();
-  final ToMany<ElementDefinitionTypeAggregationDbObject> aggregation =
-      ToMany<ElementDefinitionTypeAggregationDbObject>();
+  final ToMany<FhirCodeDbObject> aggregation = ToMany<FhirCodeDbObject>();
   final ToMany<PrimitiveElementDbObject> aggregationElement =
       ToMany<PrimitiveElementDbObject>();
-  final ToOne<ElementDefinitionTypeVersioningDbObject> versioning =
-      ToOne<ElementDefinitionTypeVersioningDbObject>();
+  final ToOne<FhirCodeDbObject> versioning = ToOne<FhirCodeDbObject>();
   final ToOne<PrimitiveElementDbObject> versioningElement =
       ToOne<PrimitiveElementDbObject>();
   ElementDefinitionTypeDbObject({required this.id});
@@ -734,8 +728,7 @@ class ElementDefinitionConstraintDbObject {
   final ToOne<StringDbObject> requirements = ToOne<StringDbObject>();
   final ToOne<PrimitiveElementDbObject> requirementsElement =
       ToOne<PrimitiveElementDbObject>();
-  final ToOne<ElementDefinitionConstraintSeverityDbObject> severity =
-      ToOne<ElementDefinitionConstraintSeverityDbObject>();
+  final ToOne<FhirCodeDbObject> severity = ToOne<FhirCodeDbObject>();
   final ToOne<PrimitiveElementDbObject> severityElement =
       ToOne<PrimitiveElementDbObject>();
   final ToOne<StringDbObject> human = ToOne<StringDbObject>();
@@ -760,8 +753,7 @@ class ElementDefinitionBindingDbObject {
       ToMany<FhirExtensionDbObject>();
   final ToMany<FhirExtensionDbObject> modifierExtension =
       ToMany<FhirExtensionDbObject>();
-  final ToOne<ElementDefinitionBindingStrengthDbObject> strength =
-      ToOne<ElementDefinitionBindingStrengthDbObject>();
+  final ToOne<FhirCodeDbObject> strength = ToOne<FhirCodeDbObject>();
   final ToOne<PrimitiveElementDbObject> strengthElement =
       ToOne<PrimitiveElementDbObject>();
   final ToOne<StringDbObject> description = ToOne<StringDbObject>();

@@ -3,7 +3,7 @@ import 'package:objectbox/objectbox.dart';
 class MedicinalProductDefinitionDbObject {
   @Id(assignable: true)
   int id;
-  final ToOne<R4ResourceTypeDbObject> resourceType = ToOne<R4ResourceTypeDbObject>();
+  final ToOne<StringDbObject> resourceType = ToOne<StringDbObject>();
   final ToOne<StringDbObject> fhirId = ToOne<StringDbObject>();
   final ToOne<FhirMetaDbObject> meta = ToOne<FhirMetaDbObject>();
   final ToOne<FhirUriDbObject> implicitRules = ToOne<FhirUriDbObject>();
@@ -49,7 +49,7 @@ class classification,DbObject {
   final ToMany<MedicinalProductDefinitionCrossReferenceDbObject> crossReference = ToMany<MedicinalProductDefinitionCrossReferenceDbObject>();
   final ToMany<MedicinalProductDefinitionOperationDbObject> operation = ToMany<MedicinalProductDefinitionOperationDbObject>();
   final ToMany<MedicinalProductDefinitionCharacteristicDbObject> characteristic = ToMany<MedicinalProductDefinitionCharacteristicDbObject>();
-  classification,DbObject({required this.id});
+  classification,DbObject(<>{required this.id});
 }
 @Entity()
 class MedicinalProductDefinitionContactDbObject {

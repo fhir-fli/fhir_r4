@@ -3,7 +3,7 @@ import 'package:objectbox/objectbox.dart';
 class CoverageDbObject {
   @Id(assignable: true)
   int id;
-  final ToOne<R4ResourceTypeDbObject> resourceType = ToOne<R4ResourceTypeDbObject>();
+  final ToOne<StringDbObject> resourceType = ToOne<StringDbObject>();
   final ToOne<StringDbObject> fhirId = ToOne<StringDbObject>();
   final ToOne<FhirMetaDbObject> meta = ToOne<FhirMetaDbObject>();
   final ToOne<FhirUriDbObject> implicitRules = ToOne<FhirUriDbObject>();
@@ -40,7 +40,7 @@ class List<CoverageClass>?DbObject {
   final ToOne<FhirBooleanDbObject> subrogation = ToOne<FhirBooleanDbObject>();
   final ToOne<PrimitiveElementDbObject> subrogationElement = ToOne<PrimitiveElementDbObject>();
   final ToMany<ReferenceDbObject> contract = ToMany<ReferenceDbObject>();
-  List<CoverageClass>?DbObject({required this.id});
+  List<CoverageClass>?DbObject<>{required this.id};
 }
 @Entity()
 class CoverageClassDbObject {
