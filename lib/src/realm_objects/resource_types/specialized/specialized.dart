@@ -1,5 +1,0 @@
-export 'definitional_artifacts/definitional_artifacts_realm.dart';
-export 'evidence_based_medicine/evidence_based_medicine_realm.dart';
-export 'medication_definition/medication_definition_realm.dart';
-export 'public_health_and_research/public_health_and_research_realm.dart';
-export 'quality_reporting_and_testing/quality_reporting_and_testing_realm.dart';
