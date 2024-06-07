@@ -26,16 +26,13 @@ class DeviceMetricDbObject {
   final ToOne<CodeableConceptDbObject> unit = ToOne<CodeableConceptDbObject>();
   final ToOne<ReferenceDbObject> source = ToOne<ReferenceDbObject>();
   final ToOne<ReferenceDbObject> parent = ToOne<ReferenceDbObject>();
-  final ToOne<DeviceMetricOperationalStatusDbObject> operationalStatus =
-      ToOne<DeviceMetricOperationalStatusDbObject>();
+  final ToOne<FhirCodeDbObject> operationalStatus = ToOne<FhirCodeDbObject>();
   final ToOne<PrimitiveElementDbObject> operationalStatusElement =
       ToOne<PrimitiveElementDbObject>();
-  final ToOne<DeviceMetricColorDbObject> color =
-      ToOne<DeviceMetricColorDbObject>();
+  final ToOne<FhirCodeDbObject> color = ToOne<FhirCodeDbObject>();
   final ToOne<PrimitiveElementDbObject> colorElement =
       ToOne<PrimitiveElementDbObject>();
-  final ToOne<DeviceMetricCategoryDbObject> category =
-      ToOne<DeviceMetricCategoryDbObject>();
+  final ToOne<FhirCodeDbObject> category = ToOne<FhirCodeDbObject>();
   final ToOne<PrimitiveElementDbObject> categoryElement =
       ToOne<PrimitiveElementDbObject>();
   final ToOne<TimingDbObject> measurementPeriod = ToOne<TimingDbObject>();
@@ -53,12 +50,10 @@ class DeviceMetricCalibrationDbObject {
       ToMany<FhirExtensionDbObject>();
   final ToMany<FhirExtensionDbObject> modifierExtension =
       ToMany<FhirExtensionDbObject>();
-  final ToOne<DeviceMetricCalibrationTypeDbObject> type =
-      ToOne<DeviceMetricCalibrationTypeDbObject>();
+  final ToOne<FhirCodeDbObject> type = ToOne<FhirCodeDbObject>();
   final ToOne<PrimitiveElementDbObject> typeElement =
       ToOne<PrimitiveElementDbObject>();
-  final ToOne<DeviceMetricCalibrationStateDbObject> state =
-      ToOne<DeviceMetricCalibrationStateDbObject>();
+  final ToOne<FhirCodeDbObject> state = ToOne<FhirCodeDbObject>();
   final ToOne<PrimitiveElementDbObject> stateElement =
       ToOne<PrimitiveElementDbObject>();
   final ToOne<FhirInstantDbObject> time = ToOne<FhirInstantDbObject>();

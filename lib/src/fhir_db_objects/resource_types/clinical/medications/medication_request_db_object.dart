@@ -64,8 +64,8 @@ class MedicationRequestDbObject {
   final ToMany<ReferenceDbObject> reasonReference = ToMany<ReferenceDbObject>();
   final ToMany<FhirCanonicalDbObject> instantiatesCanonical =
       ToMany<FhirCanonicalDbObject>();
-  final ToMany<ElementDbObject> instantiatesCanonicalElement =
-      ToMany<ElementDbObject>();
+  final ToMany<PrimitiveElementDbObject> instantiatesCanonicalElement =
+      ToMany<PrimitiveElementDbObject>();
   final ToMany<FhirUriDbObject> instantiatesUri = ToMany<FhirUriDbObject>();
   final ToMany<PrimitiveElementDbObject> instantiatesUriElement =
       ToMany<PrimitiveElementDbObject>();

@@ -185,8 +185,8 @@ class ClaimResponseAddItemDbObject {
       ToMany<PrimitiveElementDbObject>();
   final ToMany<FhirPositiveIntDbObject> subdetailSequence =
       ToMany<FhirPositiveIntDbObject>();
-  final ToMany<ElementDbObject> subdetailSequenceElement =
-      ToMany<ElementDbObject>();
+  final ToMany<PrimitiveElementDbObject> subdetailSequenceElement =
+      ToMany<PrimitiveElementDbObject>();
   final ToMany<ReferenceDbObject> provider = ToMany<ReferenceDbObject>();
   final ToOne<CodeableConceptDbObject> productOrService =
       ToOne<CodeableConceptDbObject>();

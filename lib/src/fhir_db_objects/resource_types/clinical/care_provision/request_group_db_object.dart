@@ -24,8 +24,8 @@ class RequestGroupDbObject {
   final ToMany<IdentifierDbObject> identifier = ToMany<IdentifierDbObject>();
   final ToMany<FhirCanonicalDbObject> instantiatesCanonical =
       ToMany<FhirCanonicalDbObject>();
-  final ToMany<ElementDbObject> instantiatesCanonicalElement =
-      ToMany<ElementDbObject>();
+  final ToMany<FhirCodeDbObject> instantiatesCanonicalElement =
+      ToMany<FhirCodeDbObject>();
   final ToMany<FhirUriDbObject> instantiatesUri = ToMany<FhirUriDbObject>();
   final ToMany<PrimitiveElementDbObject> instantiatesUriElement =
       ToMany<PrimitiveElementDbObject>();

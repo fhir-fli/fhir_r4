@@ -297,16 +297,16 @@ class ExplanationOfBenefitItemDbObject {
       ToMany<PrimitiveElementDbObject>();
   final ToMany<FhirPositiveIntDbObject> diagnosisSequence =
       ToMany<FhirPositiveIntDbObject>();
-  final ToMany<ElementDbObject> diagnosisSequenceElement =
-      ToMany<ElementDbObject>();
+  final ToMany<PrimitiveElementDbObject> diagnosisSequenceElement =
+      ToMany<PrimitiveElementDbObject>();
   final ToMany<FhirPositiveIntDbObject> procedureSequence =
       ToMany<FhirPositiveIntDbObject>();
-  final ToMany<ElementDbObject> procedureSequenceElement =
-      ToMany<ElementDbObject>();
+  final ToMany<PrimitiveElementDbObject> procedureSequenceElement =
+      ToMany<PrimitiveElementDbObject>();
   final ToMany<FhirPositiveIntDbObject> informationSequence =
       ToMany<FhirPositiveIntDbObject>();
-  final ToMany<ElementDbObject> informationSequenceElement =
-      ToMany<ElementDbObject>();
+  final ToMany<PrimitiveElementDbObject> informationSequenceElement =
+      ToMany<PrimitiveElementDbObject>();
   final ToOne<CodeableConceptDbObject> revenue =
       ToOne<CodeableConceptDbObject>();
   final ToOne<CodeableConceptDbObject> category =
@@ -467,8 +467,8 @@ class ExplanationOfBenefitAddItemDbObject {
       ToMany<PrimitiveElementDbObject>();
   final ToMany<FhirPositiveIntDbObject> subDetailSequence =
       ToMany<FhirPositiveIntDbObject>();
-  final ToMany<ElementDbObject> subDetailSequenceElement =
-      ToMany<ElementDbObject>();
+  final ToMany<PrimitiveElementDbObject> subDetailSequenceElement =
+      ToMany<PrimitiveElementDbObject>();
   final ToMany<ReferenceDbObject> provider = ToMany<ReferenceDbObject>();
   final ToOne<CodeableConceptDbObject> productOrService =
       ToOne<CodeableConceptDbObject>();

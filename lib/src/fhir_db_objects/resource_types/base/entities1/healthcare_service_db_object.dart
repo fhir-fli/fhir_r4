@@ -98,8 +98,7 @@ class HealthcareServiceAvailableTimeDbObject {
       ToMany<FhirExtensionDbObject>();
   final ToMany<FhirExtensionDbObject> modifierExtension =
       ToMany<FhirExtensionDbObject>();
-  final ToMany<HealthcareServiceAvailableTimeDaysOfWeekDbObject> daysOfWeek =
-      ToMany<HealthcareServiceAvailableTimeDaysOfWeekDbObject>();
+  final ToMany<FhirCodeDbObject> daysOfWeek = ToMany<FhirCodeDbObject>();
   final ToMany<PrimitiveElementDbObject> daysOfWeekElement =
       ToMany<PrimitiveElementDbObject>();
   final ToOne<FhirBooleanDbObject> allDay = ToOne<FhirBooleanDbObject>();

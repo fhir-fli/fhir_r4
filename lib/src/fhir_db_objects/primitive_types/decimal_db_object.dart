@@ -1,7 +1,5 @@
 import 'package:objectbox/objectbox.dart';
 
-import '../../../fhir_db_objects.dart';
-
 @Entity()
 class FhirDecimalDbObject {
   @Id(assignable: true)

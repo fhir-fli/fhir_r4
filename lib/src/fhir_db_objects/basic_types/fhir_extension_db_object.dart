@@ -122,15 +122,12 @@ class FhirExtensionDbObject {
       ToOne<UsageContextDbObject>();
   final ToOne<DosageDbObject> valueDosage = ToOne<DosageDbObject>();
 
-  FhirExtensionDbObject({
-    required this.id,
-    this.fhirId,
-  });
+  FhirExtensionDbObject({required this.id});
 
   // Convert to FHIR FhirExtension
   FhirExtension toFhir() {
     return FhirExtension(
-      id: fhirId,
+      id: fhirId.target?.value,
       extension_:
           extension_.map((FhirExtensionDbObject e) => e.toFhir()).toList(),
       url: url.target?.value != null ? FhirUri(url.target!.value) : null,

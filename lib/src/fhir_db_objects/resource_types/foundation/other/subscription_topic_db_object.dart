@@ -94,8 +94,8 @@ class SubscriptionTopicResourceTriggerDbObject {
       ToOne<PrimitiveElementDbObject>();
   final ToMany<FhirCodeDbObject> supportedInteraction =
       ToMany<FhirCodeDbObject>();
-  final ToMany<ElementDbObject> supportedInteractionElement =
-      ToMany<ElementDbObject>();
+  final ToMany<PrimitiveElementDbObject> supportedInteractionElement =
+      ToMany<PrimitiveElementDbObject>();
   final ToOne<SubscriptionTopicQueryCriteriaDbObject> queryCriteria =
       ToOne<SubscriptionTopicQueryCriteriaDbObject>();
   final ToOne<StringDbObject> fhirPathCriteria = ToOne<StringDbObject>();
@@ -172,7 +172,8 @@ class SubscriptionTopicCanFilterByDbObject {
   final ToOne<PrimitiveElementDbObject> filterDefinitionElement =
       ToOne<PrimitiveElementDbObject>();
   final ToMany<FhirCodeDbObject> modifier = ToMany<FhirCodeDbObject>();
-  final ToMany<ElementDbObject> modifierElement = ToMany<ElementDbObject>();
+  final ToMany<PrimitiveElementDbObject> modifierElement =
+      ToMany<PrimitiveElementDbObject>();
   SubscriptionTopicCanFilterByDbObject({required this.id});
 }
 
@@ -189,8 +190,10 @@ class SubscriptionTopicNotificationShapeDbObject {
   final ToOne<PrimitiveElementDbObject> resourceElement =
       ToOne<PrimitiveElementDbObject>();
   final ToOne<StringDbObject> include = ToOne<StringDbObject>();
-  final ToMany<ElementDbObject> includeElement = ToMany<ElementDbObject>();
+  final ToMany<PrimitiveElementDbObject> includeElement =
+      ToMany<PrimitiveElementDbObject>();
   final ToOne<StringDbObject> revInclude = ToOne<StringDbObject>();
-  final ToMany<ElementDbObject> revIncludeElement = ToMany<ElementDbObject>();
+  final ToMany<PrimitiveElementDbObject> revIncludeElement =
+      ToMany<PrimitiveElementDbObject>();
   SubscriptionTopicNotificationShapeDbObject({required this.id});
 }

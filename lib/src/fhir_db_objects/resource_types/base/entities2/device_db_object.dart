@@ -25,7 +25,7 @@ class DeviceDbObject {
   final ToOne<ReferenceDbObject> definition = ToOne<ReferenceDbObject>();
   final ToMany<DeviceUdiCarrierDbObject> udiCarrier =
       ToMany<DeviceUdiCarrierDbObject>();
-  final ToOne<DeviceStatusDbObject> status = ToOne<DeviceStatusDbObject>();
+  final ToOne<FhirCodeDbObject> status = ToOne<FhirCodeDbObject>();
   final ToOne<PrimitiveElementDbObject> statusElement =
       ToOne<PrimitiveElementDbObject>();
   final ToMany<CodeableConceptDbObject> statusReason =
@@ -103,8 +103,7 @@ class DeviceUdiCarrierDbObject {
   final ToOne<StringDbObject> carrierHRF = ToOne<StringDbObject>();
   final ToOne<PrimitiveElementDbObject> carrierHRFElement =
       ToOne<PrimitiveElementDbObject>();
-  final ToOne<DeviceUdiCarrierEntryTypeDbObject> entryType =
-      ToOne<DeviceUdiCarrierEntryTypeDbObject>();
+  final ToOne<FhirCodeDbObject> entryType = ToOne<FhirCodeDbObject>();
   final ToOne<PrimitiveElementDbObject> entryTypeElement =
       ToOne<PrimitiveElementDbObject>();
   DeviceUdiCarrierDbObject({required this.id});
@@ -122,8 +121,7 @@ class DeviceDeviceNameDbObject {
   final ToOne<StringDbObject> name = ToOne<StringDbObject>();
   final ToOne<PrimitiveElementDbObject> nameElement =
       ToOne<PrimitiveElementDbObject>();
-  final ToOne<DeviceDeviceNameTypeDbObject> type =
-      ToOne<DeviceDeviceNameTypeDbObject>();
+  final ToOne<FhirCodeDbObject> type = ToOne<FhirCodeDbObject>();
   final ToOne<PrimitiveElementDbObject> typeElement =
       ToOne<PrimitiveElementDbObject>();
   DeviceDeviceNameDbObject({required this.id});

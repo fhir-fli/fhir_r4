@@ -22,7 +22,7 @@ class LocationDbObject {
   final ToMany<FhirExtensionDbObject> modifierExtension =
       ToMany<FhirExtensionDbObject>();
   final ToMany<IdentifierDbObject> identifier = ToMany<IdentifierDbObject>();
-  final ToOne<LocationStatusDbObject> status = ToOne<LocationStatusDbObject>();
+  final ToOne<FhirCodeDbObject> status = ToOne<FhirCodeDbObject>();
   final ToOne<PrimitiveElementDbObject> statusElement =
       ToOne<PrimitiveElementDbObject>();
   final ToOne<CodingDbObject> operationalStatus = ToOne<CodingDbObject>();
@@ -35,7 +35,7 @@ class LocationDbObject {
   final ToOne<StringDbObject> description = ToOne<StringDbObject>();
   final ToOne<PrimitiveElementDbObject> descriptionElement =
       ToOne<PrimitiveElementDbObject>();
-  final ToOne<LocationModeDbObject> mode = ToOne<LocationModeDbObject>();
+  final ToOne<FhirCodeDbObject> mode = ToOne<FhirCodeDbObject>();
   final ToOne<PrimitiveElementDbObject> modeElement =
       ToOne<PrimitiveElementDbObject>();
   final ToMany<CodeableConceptDbObject> type =

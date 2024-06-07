@@ -102,8 +102,8 @@ class CoverageEligibilityRequestItemDbObject {
       ToMany<FhirExtensionDbObject>();
   final ToMany<FhirPositiveIntDbObject> supportingInfoSequence =
       ToMany<FhirPositiveIntDbObject>();
-  final ToMany<ElementDbObject> supportingInfoSequenceElement =
-      ToMany<ElementDbObject>();
+  final ToMany<PrimitiveElementDbObject> supportingInfoSequenceElement =
+      ToMany<PrimitiveElementDbObject>();
   final ToOne<CodeableConceptDbObject> category =
       ToOne<CodeableConceptDbObject>();
   final ToOne<CodeableConceptDbObject> productOrService =

@@ -26,8 +26,8 @@ class ObservationDefinitionDbObject {
   final ToOne<CodeableConceptDbObject> code = ToOne<CodeableConceptDbObject>();
   final ToMany<IdentifierDbObject> identifier = ToMany<IdentifierDbObject>();
   final ToMany<FhirCodeDbObject> permittedDataType = ToMany<FhirCodeDbObject>();
-  final ToMany<ElementDbObject> permittedDataTypeElement =
-      ToMany<ElementDbObject>();
+  final ToMany<PrimitiveElementDbObject> permittedDataTypeElement =
+      ToMany<PrimitiveElementDbObject>();
   final ToOne<FhirBooleanDbObject> multipleResultsAllowed =
       ToOne<FhirBooleanDbObject>();
   final ToOne<PrimitiveElementDbObject> multipleResultsAllowedElement =

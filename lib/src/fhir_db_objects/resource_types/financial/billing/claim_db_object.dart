@@ -270,16 +270,16 @@ class ClaimItemDbObject {
       ToMany<PrimitiveElementDbObject>();
   final ToMany<FhirPositiveIntDbObject> diagnosisSequence =
       ToMany<FhirPositiveIntDbObject>();
-  final ToMany<ElementDbObject> diagnosisSequenceElement =
-      ToMany<ElementDbObject>();
+  final ToMany<PrimitiveElementDbObject> diagnosisSequenceElement =
+      ToMany<PrimitiveElementDbObject>();
   final ToMany<FhirPositiveIntDbObject> procedureSequence =
       ToMany<FhirPositiveIntDbObject>();
-  final ToMany<ElementDbObject> procedureSequenceElement =
-      ToMany<ElementDbObject>();
+  final ToMany<PrimitiveElementDbObject> procedureSequenceElement =
+      ToMany<PrimitiveElementDbObject>();
   final ToMany<FhirPositiveIntDbObject> informationSequence =
       ToMany<FhirPositiveIntDbObject>();
-  final ToMany<ElementDbObject> informationSequenceElement =
-      ToMany<ElementDbObject>();
+  final ToMany<PrimitiveElementDbObject> informationSequenceElement =
+      ToMany<PrimitiveElementDbObject>();
   final ToOne<CodeableConceptDbObject> revenue =
       ToOne<CodeableConceptDbObject>();
   final ToOne<CodeableConceptDbObject> category =

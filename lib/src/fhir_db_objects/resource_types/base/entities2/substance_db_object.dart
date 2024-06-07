@@ -22,8 +22,7 @@ class SubstanceDbObject {
   final ToMany<FhirExtensionDbObject> modifierExtension =
       ToMany<FhirExtensionDbObject>();
   final ToMany<IdentifierDbObject> identifier = ToMany<IdentifierDbObject>();
-  final ToOne<SubstanceStatusDbObject> status =
-      ToOne<SubstanceStatusDbObject>();
+  final ToOne<FhirCodeDbObject> status = ToOne<FhirCodeDbObject>();
   final ToOne<PrimitiveElementDbObject> statusElement =
       ToOne<PrimitiveElementDbObject>();
   final ToMany<CodeableConceptDbObject> category =

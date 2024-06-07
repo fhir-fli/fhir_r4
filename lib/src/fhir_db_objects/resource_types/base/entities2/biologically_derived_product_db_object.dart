@@ -22,14 +22,12 @@ class BiologicallyDerivedProductDbObject {
   final ToMany<FhirExtensionDbObject> modifierExtension =
       ToMany<FhirExtensionDbObject>();
   final ToMany<IdentifierDbObject> identifier = ToMany<IdentifierDbObject>();
-  final ToOne<BiologicallyDerivedProductCategoryDbObject> productCategory =
-      ToOne<BiologicallyDerivedProductCategoryDbObject>();
+  final ToOne<FhirCodeDbObject> productCategory = ToOne<FhirCodeDbObject>();
   final ToOne<PrimitiveElementDbObject> productCategoryElement =
       ToOne<PrimitiveElementDbObject>();
   final ToOne<CodeableConceptDbObject> productCode =
       ToOne<CodeableConceptDbObject>();
-  final ToOne<BiologicallyDerivedProductStatusDbObject> status =
-      ToOne<BiologicallyDerivedProductStatusDbObject>();
+  final ToOne<FhirCodeDbObject> status = ToOne<FhirCodeDbObject>();
   final ToOne<PrimitiveElementDbObject> statusElement =
       ToOne<PrimitiveElementDbObject>();
   final ToMany<ReferenceDbObject> request = ToMany<ReferenceDbObject>();
@@ -125,8 +123,7 @@ class BiologicallyDerivedProductStorageDbObject {
   final ToOne<FhirDecimalDbObject> temperature = ToOne<FhirDecimalDbObject>();
   final ToOne<PrimitiveElementDbObject> temperatureElement =
       ToOne<PrimitiveElementDbObject>();
-  final ToOne<BiologicallyDerivedProductStorageScaleDbObject> scale =
-      ToOne<BiologicallyDerivedProductStorageScaleDbObject>();
+  final ToOne<FhirCodeDbObject> scale = ToOne<FhirCodeDbObject>();
   final ToOne<PrimitiveElementDbObject> scaleElement =
       ToOne<PrimitiveElementDbObject>();
   final ToOne<PeriodDbObject> duration = ToOne<PeriodDbObject>();
