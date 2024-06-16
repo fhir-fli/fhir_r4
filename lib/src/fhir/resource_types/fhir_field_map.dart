@@ -1,5 +1,3 @@
-part of 'resource.dart';
-
 class FhirField {
   const FhirField(this.isList, this.type);
   final bool isList;
