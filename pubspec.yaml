@@ -1,5 +1,5 @@
 name: fhir_r4
-description: FHIR library for supporing the R4 Version of FHIR for Dart & Flutter.
+description: FHIR library for supporing the R5 Version of FHIR for Dart & Flutter.
 version: 0.1.0
 homepage: https://www.fhirfli.dev/
 repository: https://github.com/fhir-fli/fhir_r4
@@ -14,26 +14,34 @@ platforms:
   windows:
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
+  sdk: ">=3.4.0 <4.0.0"
 
 dependencies:
   archive: ^3.6.1
-  collection: ^1.19.0
-  # fhir_primitives: ^0.1.0
+  collection: ^1.18.0
+  crypto: ^3.0.3
   fhir_primitives:
     path: ../fhir_primitives
+  flutter:
+    sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+  flutter_web_auth_2: ^3.1.2
   freezed_annotation: ^2.4.4
+  google_sign_in: ^6.2.1
   hive: ^2.2.3
   http: ^1.2.2
+  http_parser: ^4.0.2
   intl: ^0.19.0
   json_annotation: ^4.9.0
+  jwt_decoder: ^2.0.1
   mime: ^1.0.5
-  mockito: ^5.4.4
-  objectbox: ^4.0.1
+  oauth2: ^2.0.2
   petitparser: ^6.0.2
   rxdart: ^0.28.0
   ucum: ^0.5.0
   universal_io: ^2.2.2
+  url_launcher: ^6.3.0
   uuid: ^4.4.2
   xml: ^6.5.0
   yaml: ^3.1.2
@@ -43,3 +51,8 @@ dev_dependencies:
   freezed: ^2.5.7
   json_serializable: ^6.8.0
   test: ^1.25.8
+  mockito: ^5.4.4
+
+dependency_overrides:
+  meta: ^1.12.0
+
