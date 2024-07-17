@@ -298,7 +298,7 @@ class FhirList with _$FhirList implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [FhirListEntry] A list is a curated collection of resources.

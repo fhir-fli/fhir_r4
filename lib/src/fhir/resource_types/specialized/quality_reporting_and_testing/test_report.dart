@@ -309,7 +309,7 @@ class TestReport with _$TestReport implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [TestReportParticipant] A summary of information based on the results of

@@ -397,7 +397,7 @@ class Claim with _$Claim implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [ClaimRelated] A provider issued list of professional services and

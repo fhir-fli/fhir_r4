@@ -236,7 +236,7 @@ class SpecimenDefinition with _$SpecimenDefinition implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [SpecimenDefinitionTypeTested] A kind of specimen with associated set of

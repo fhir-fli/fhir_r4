@@ -375,5 +375,5 @@ class GuidanceResponse with _$GuidanceResponse implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }

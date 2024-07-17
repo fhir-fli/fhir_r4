@@ -41,8 +41,12 @@ mixin _$ProductShelfLife {
   List<CodeableConcept>? get specialPrecautionsForStorage =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this ProductShelfLife to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProductShelfLife
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ProductShelfLifeCopyWith<ProductShelfLife> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -77,6 +81,8 @@ class _$ProductShelfLifeCopyWithImpl<$Res, $Val extends ProductShelfLife>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ProductShelfLife
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -120,6 +126,8 @@ class _$ProductShelfLifeCopyWithImpl<$Res, $Val extends ProductShelfLife>
     ) as $Val);
   }
 
+  /// Create a copy of ProductShelfLife
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $IdentifierCopyWith<$Res>? get identifier {
@@ -132,6 +140,8 @@ class _$ProductShelfLifeCopyWithImpl<$Res, $Val extends ProductShelfLife>
     });
   }
 
+  /// Create a copy of ProductShelfLife
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get type {
@@ -144,6 +154,8 @@ class _$ProductShelfLifeCopyWithImpl<$Res, $Val extends ProductShelfLife>
     });
   }
 
+  /// Create a copy of ProductShelfLife
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get period {
@@ -190,6 +202,8 @@ class __$$ProductShelfLifeImplCopyWithImpl<$Res>
       $Res Function(_$ProductShelfLifeImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProductShelfLife
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -334,7 +348,7 @@ class _$ProductShelfLifeImpl extends _ProductShelfLife {
                 _specialPrecautionsForStorage));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -346,7 +360,9 @@ class _$ProductShelfLifeImpl extends _ProductShelfLife {
       period,
       const DeepCollectionEquality().hash(_specialPrecautionsForStorage));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProductShelfLife
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProductShelfLifeImplCopyWith<_$ProductShelfLifeImpl> get copyWith =>
@@ -376,34 +392,36 @@ abstract class _ProductShelfLife extends ProductShelfLife {
   factory _ProductShelfLife.fromJson(Map<String, dynamic> json) =
       _$ProductShelfLifeImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.
   /// Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).;
+  @override
   List<FhirExtension>? get modifierExtension;
   @override
   Identifier? get identifier;
-  @override
 
   /// [type] This describes the shelf life, taking into account various scenarios such as shelf life of the packaged Medicinal Product itself, shelf life after transformation where necessary and shelf life after the first opening of a bottle, etc. The shelf life type shall be specified using an appropriate controlled vocabulary The controlled term and the controlled term identifier shall be specified.;
+  @override
   CodeableConcept? get type;
   @override
   Quantity? get period;
-  @override
 
   /// [specialPrecautionsForStorage] Special precautions for storage, if any, can be specified using an appropriate controlled vocabulary The controlled term and the controlled term identifier shall be specified.;
-  List<CodeableConcept>? get specialPrecautionsForStorage;
   @override
-  @JsonKey(ignore: true)
+  List<CodeableConcept>? get specialPrecautionsForStorage;
+
+  /// Create a copy of ProductShelfLife
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProductShelfLifeImplCopyWith<_$ProductShelfLifeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

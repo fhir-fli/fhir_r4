@@ -305,7 +305,7 @@ class Procedure with _$Procedure implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [ProcedurePerformer] An action that is or was performed on or for a

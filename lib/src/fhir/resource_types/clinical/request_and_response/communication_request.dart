@@ -390,7 +390,7 @@ class CommunicationRequest
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [CommunicationRequestPayload] A request to convey information; e.g. the

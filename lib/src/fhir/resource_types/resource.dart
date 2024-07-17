@@ -101,5 +101,6 @@ abstract class Resource extends FhirBase {
 
   static String resourceTypeToString(R4ResourceType type) => type.toString();
 
+  @override
   String toJsonString() => jsonEncode(toJson());
 }

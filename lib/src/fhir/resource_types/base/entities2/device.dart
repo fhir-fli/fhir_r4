@@ -419,7 +419,7 @@ class Device with _$Device implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 
   Device updateContactPointSystem(ContactPointSystem system, [int index = 0]) {
     if (contact == null || contact!.isEmpty) {

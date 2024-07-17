@@ -209,7 +209,7 @@ class OperationOutcome with _$OperationOutcome implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [OperationOutcomeIssue] A collection of error, warning, or information

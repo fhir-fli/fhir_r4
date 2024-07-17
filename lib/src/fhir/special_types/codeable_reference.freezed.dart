@@ -41,8 +41,12 @@ mixin _$CodeableReference {
   /// information being referenced.
   Reference? get reference => throw _privateConstructorUsedError;
 
+  /// Serializes this CodeableReference to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CodeableReference
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CodeableReferenceCopyWith<CodeableReference> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -73,6 +77,8 @@ class _$CodeableReferenceCopyWithImpl<$Res, $Val extends CodeableReference>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CodeableReference
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -101,6 +107,8 @@ class _$CodeableReferenceCopyWithImpl<$Res, $Val extends CodeableReference>
     ) as $Val);
   }
 
+  /// Create a copy of CodeableReference
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get concept {
@@ -113,6 +121,8 @@ class _$CodeableReferenceCopyWithImpl<$Res, $Val extends CodeableReference>
     });
   }
 
+  /// Create a copy of CodeableReference
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get reference {
@@ -154,6 +164,8 @@ class __$$CodeableReferenceImplCopyWithImpl<$Res>
       $Res Function(_$CodeableReferenceImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CodeableReference
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -254,12 +266,14 @@ class _$CodeableReferenceImpl extends _CodeableReference {
                 other.reference == reference));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id,
       const DeepCollectionEquality().hash(_extension_), concept, reference);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CodeableReference
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CodeableReferenceImplCopyWith<_$CodeableReferenceImpl> get copyWith =>
@@ -285,12 +299,10 @@ abstract class _CodeableReference extends CodeableReference {
   factory _CodeableReference.fromJson(Map<String, dynamic> json) =
       _$CodeableReferenceImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.",
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -298,20 +310,24 @@ abstract class _CodeableReference extends CodeableReference {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   /// definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [concept] A reference to a concept - e.g. the information is identified by
   /// its general class to the degree of precision found in the terminology.",
-  CodeableConcept? get concept;
   @override
+  CodeableConcept? get concept;
 
   /// [reference] A reference to a resource the provides exact details about the
   /// information being referenced.
-  Reference? get reference;
   @override
-  @JsonKey(ignore: true)
+  Reference? get reference;
+
+  /// Create a copy of CodeableReference
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CodeableReferenceImplCopyWith<_$CodeableReferenceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

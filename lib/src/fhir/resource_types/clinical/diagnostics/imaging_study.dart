@@ -377,7 +377,7 @@ class ImagingStudy with _$ImagingStudy implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [ImagingStudySeries] Representation of the content produced in a DICOM

@@ -452,7 +452,7 @@ class TestScript with _$TestScript implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [TestScriptOrigin] A structured set of tests against a FHIR server or

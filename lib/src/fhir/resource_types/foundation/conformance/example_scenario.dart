@@ -398,7 +398,7 @@ class ExampleScenario with _$ExampleScenario implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [ExampleScenarioActor] Example of workflow instance.

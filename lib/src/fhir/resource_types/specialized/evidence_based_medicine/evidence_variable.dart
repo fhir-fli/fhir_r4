@@ -321,7 +321,7 @@ class EvidenceVariable with _$EvidenceVariable implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [EvidenceVariableCharacteristic] The EvidenceVariable resource describes

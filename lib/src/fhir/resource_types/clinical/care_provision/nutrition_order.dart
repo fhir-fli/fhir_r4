@@ -372,7 +372,7 @@ class NutritionOrder with _$NutritionOrder implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [NutritionOrderOralDiet] A request to supply a diet, formula feeding

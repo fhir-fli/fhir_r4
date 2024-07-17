@@ -307,7 +307,7 @@ class MessageHeader with _$MessageHeader implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [MessageHeaderDestination] The header for a message exchange that is

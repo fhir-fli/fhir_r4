@@ -397,7 +397,7 @@ class CarePlan with _$CarePlan implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [CarePlanActivity] Describes the intention of how one or more

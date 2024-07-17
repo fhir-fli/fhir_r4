@@ -39,8 +39,12 @@ mixin _$Ratio {
   /// [denominator] The value of the denominator.
   Quantity? get denominator => throw _privateConstructorUsedError;
 
+  /// Serializes this Ratio to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Ratio
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RatioCopyWith<Ratio> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -69,6 +73,8 @@ class _$RatioCopyWithImpl<$Res, $Val extends Ratio>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Ratio
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -97,6 +103,8 @@ class _$RatioCopyWithImpl<$Res, $Val extends Ratio>
     ) as $Val);
   }
 
+  /// Create a copy of Ratio
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get numerator {
@@ -109,6 +117,8 @@ class _$RatioCopyWithImpl<$Res, $Val extends Ratio>
     });
   }
 
+  /// Create a copy of Ratio
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get denominator {
@@ -149,6 +159,8 @@ class __$$RatioImplCopyWithImpl<$Res>
       _$RatioImpl _value, $Res Function(_$RatioImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Ratio
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -248,12 +260,14 @@ class _$RatioImpl extends _Ratio {
                 other.denominator == denominator));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id,
       const DeepCollectionEquality().hash(_extension_), numerator, denominator);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Ratio
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RatioImplCopyWith<_$RatioImpl> get copyWith =>
@@ -277,12 +291,10 @@ abstract class _Ratio extends Ratio {
 
   factory _Ratio.fromJson(Map<String, dynamic> json) = _$RatioImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -290,18 +302,22 @@ abstract class _Ratio extends Ratio {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [numerator] The value of the numerator.
-  Quantity? get numerator;
   @override
+  Quantity? get numerator;
 
   /// [denominator] The value of the denominator.
-  Quantity? get denominator;
   @override
-  @JsonKey(ignore: true)
+  Quantity? get denominator;
+
+  /// Create a copy of Ratio
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RatioImplCopyWith<_$RatioImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

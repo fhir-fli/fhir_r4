@@ -287,7 +287,7 @@ class Account with _$Account implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [AccountCoverage] A financial tool for tracking value accrued for a

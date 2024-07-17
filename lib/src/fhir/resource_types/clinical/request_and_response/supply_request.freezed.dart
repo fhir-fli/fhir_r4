@@ -171,8 +171,12 @@ mixin _$SupplyRequest {
   /// [deliverTo] Where the supply is destined to go.
   Reference? get deliverTo => throw _privateConstructorUsedError;
 
+  /// Serializes this SupplyRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SupplyRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SupplyRequestCopyWith<SupplyRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -243,6 +247,8 @@ class _$SupplyRequestCopyWithImpl<$Res, $Val extends SupplyRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SupplyRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -416,6 +422,8 @@ class _$SupplyRequestCopyWithImpl<$Res, $Val extends SupplyRequest>
     ) as $Val);
   }
 
+  /// Create a copy of SupplyRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -428,6 +436,8 @@ class _$SupplyRequestCopyWithImpl<$Res, $Val extends SupplyRequest>
     });
   }
 
+  /// Create a copy of SupplyRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -440,6 +450,8 @@ class _$SupplyRequestCopyWithImpl<$Res, $Val extends SupplyRequest>
     });
   }
 
+  /// Create a copy of SupplyRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get category {
@@ -452,6 +464,8 @@ class _$SupplyRequestCopyWithImpl<$Res, $Val extends SupplyRequest>
     });
   }
 
+  /// Create a copy of SupplyRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get itemCodeableConcept {
@@ -464,6 +478,8 @@ class _$SupplyRequestCopyWithImpl<$Res, $Val extends SupplyRequest>
     });
   }
 
+  /// Create a copy of SupplyRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get itemReference {
@@ -476,6 +492,8 @@ class _$SupplyRequestCopyWithImpl<$Res, $Val extends SupplyRequest>
     });
   }
 
+  /// Create a copy of SupplyRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res> get quantity {
@@ -484,6 +502,8 @@ class _$SupplyRequestCopyWithImpl<$Res, $Val extends SupplyRequest>
     });
   }
 
+  /// Create a copy of SupplyRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get occurrencePeriod {
@@ -496,6 +516,8 @@ class _$SupplyRequestCopyWithImpl<$Res, $Val extends SupplyRequest>
     });
   }
 
+  /// Create a copy of SupplyRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TimingCopyWith<$Res>? get occurrenceTiming {
@@ -508,6 +530,8 @@ class _$SupplyRequestCopyWithImpl<$Res, $Val extends SupplyRequest>
     });
   }
 
+  /// Create a copy of SupplyRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get requester {
@@ -520,6 +544,8 @@ class _$SupplyRequestCopyWithImpl<$Res, $Val extends SupplyRequest>
     });
   }
 
+  /// Create a copy of SupplyRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get deliverFrom {
@@ -532,6 +558,8 @@ class _$SupplyRequestCopyWithImpl<$Res, $Val extends SupplyRequest>
     });
   }
 
+  /// Create a copy of SupplyRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get deliverTo {
@@ -622,6 +650,8 @@ class __$$SupplyRequestImplCopyWithImpl<$Res>
       _$SupplyRequestImpl _value, $Res Function(_$SupplyRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SupplyRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1196,7 +1226,7 @@ class _$SupplyRequestImpl extends _SupplyRequest {
                 other.deliverTo == deliverTo));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1235,7 +1265,9 @@ class _$SupplyRequestImpl extends _SupplyRequest {
         deliverTo
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SupplyRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SupplyRequestImplCopyWith<_$SupplyRequestImpl> get copyWith =>
@@ -1295,39 +1327,38 @@ abstract class _SupplyRequest extends SupplyRequest {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.SupplyRequest)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1335,15 +1366,15 @@ abstract class _SupplyRequest extends SupplyRequest {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1351,9 +1382,9 @@ abstract class _SupplyRequest extends SupplyRequest {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1368,110 +1399,114 @@ abstract class _SupplyRequest extends SupplyRequest {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] Business identifiers assigned to this SupplyRequest by the
   /// author and/or other systems. These identifiers remain constant as the
   ///  resource is updated and propagates from server to server.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [status] Status of the supply request.
-  FhirCode? get status;
   @override
+  FhirCode? get status;
 
   /// [statusElement] Extensions for status
+  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
-  @override
 
   /// [category] Category of supply, e.g.  central, non-stock, etc. This is
   ///  used to support work flows associated with the supply process.
-  CodeableConcept? get category;
   @override
+  CodeableConcept? get category;
 
   /// [priority] Indicates how quickly this SupplyRequest should be addressed
   ///  with respect to other requests.
-  FhirCode? get priority;
   @override
+  FhirCode? get priority;
 
   /// [priorityElement] Extensions for priority
+  @override
   @JsonKey(name: '_priority')
   PrimitiveElement? get priorityElement;
-  @override
 
   /// [itemCodeableConcept] The item that is requested to be supplied. This is
   /// either a link to a resource representing the details of the item or a code
   ///  that identifies the item from a known list.
-  CodeableConcept? get itemCodeableConcept;
   @override
+  CodeableConcept? get itemCodeableConcept;
 
   /// [itemReference] The item that is requested to be supplied. This is either
   /// a link to a resource representing the details of the item or a code that
   ///  identifies the item from a known list.
-  Reference? get itemReference;
   @override
+  Reference? get itemReference;
 
   /// [quantity] The amount that is being ordered of the indicated item.
-  Quantity get quantity;
   @override
+  Quantity get quantity;
 
   /// [parameter] Specific parameters for the ordered item.  For example, the
   ///  size of the indicated item.
-  List<SupplyRequestParameter>? get parameter;
   @override
+  List<SupplyRequestParameter>? get parameter;
 
   /// [occurrenceDateTime] When the request should be fulfilled.
-  FhirDateTime? get occurrenceDateTime;
   @override
+  FhirDateTime? get occurrenceDateTime;
 
   /// [occurrenceDateTimeElement] Extensions for occurrenceDateTime
+  @override
   @JsonKey(name: '_occurrenceDateTime')
   PrimitiveElement? get occurrenceDateTimeElement;
-  @override
 
   /// [occurrencePeriod] When the request should be fulfilled.
-  Period? get occurrencePeriod;
   @override
+  Period? get occurrencePeriod;
 
   /// [occurrenceTiming] When the request should be fulfilled.
-  Timing? get occurrenceTiming;
   @override
+  Timing? get occurrenceTiming;
 
   /// [authoredOn] When the request was made.
-  FhirDateTime? get authoredOn;
   @override
+  FhirDateTime? get authoredOn;
 
   /// [authoredOnElement] Extensions for authoredOn
+  @override
   @JsonKey(name: '_authoredOn')
   PrimitiveElement? get authoredOnElement;
-  @override
 
   /// [requester] The device, practitioner, etc. who initiated the request.
-  Reference? get requester;
   @override
+  Reference? get requester;
 
   /// [supplier] Who is intended to fulfill the request.
-  List<Reference>? get supplier;
   @override
+  List<Reference>? get supplier;
 
   /// [reasonCode] The reason why the supply item was requested.
-  List<CodeableConcept>? get reasonCode;
   @override
+  List<CodeableConcept>? get reasonCode;
 
   /// [reasonReference] The reason why the supply item was requested.
-  List<Reference>? get reasonReference;
   @override
+  List<Reference>? get reasonReference;
 
   /// [deliverFrom] Where the supply is expected to come from.
-  Reference? get deliverFrom;
   @override
+  Reference? get deliverFrom;
 
   /// [deliverTo] Where the supply is destined to go.
-  Reference? get deliverTo;
   @override
-  @JsonKey(ignore: true)
+  Reference? get deliverTo;
+
+  /// Create a copy of SupplyRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SupplyRequestImplCopyWith<_$SupplyRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1533,8 +1568,12 @@ mixin _$SupplyRequestParameter {
   PrimitiveElement? get valueBooleanElement =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this SupplyRequestParameter to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SupplyRequestParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SupplyRequestParameterCopyWith<SupplyRequestParameter> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1573,6 +1612,8 @@ class _$SupplyRequestParameterCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SupplyRequestParameter
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1626,6 +1667,8 @@ class _$SupplyRequestParameterCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of SupplyRequestParameter
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get code {
@@ -1638,6 +1681,8 @@ class _$SupplyRequestParameterCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of SupplyRequestParameter
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get valueCodeableConcept {
@@ -1651,6 +1696,8 @@ class _$SupplyRequestParameterCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of SupplyRequestParameter
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get valueQuantity {
@@ -1663,6 +1710,8 @@ class _$SupplyRequestParameterCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of SupplyRequestParameter
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get valueRange {
@@ -1716,6 +1765,8 @@ class __$$SupplyRequestParameterImplCopyWithImpl<$Res>
       $Res Function(_$SupplyRequestParameterImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SupplyRequestParameter
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1910,7 +1961,7 @@ class _$SupplyRequestParameterImpl extends _SupplyRequestParameter {
                 other.valueBooleanElement == valueBooleanElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1924,7 +1975,9 @@ class _$SupplyRequestParameterImpl extends _SupplyRequestParameter {
       valueBoolean,
       valueBooleanElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SupplyRequestParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SupplyRequestParameterImplCopyWith<_$SupplyRequestParameterImpl>
@@ -1957,12 +2010,10 @@ abstract class _SupplyRequestParameter extends SupplyRequestParameter {
   factory _SupplyRequestParameter.fromJson(Map<String, dynamic> json) =
       _$SupplyRequestParameterImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1970,9 +2021,9 @@ abstract class _SupplyRequestParameter extends SupplyRequestParameter {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -1987,34 +2038,38 @@ abstract class _SupplyRequestParameter extends SupplyRequestParameter {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [code] A code or string that identifies the device detail being asserted.
-  CodeableConcept? get code;
   @override
+  CodeableConcept? get code;
 
   /// [valueCodeableConcept] The value of the device detail.
-  CodeableConcept? get valueCodeableConcept;
   @override
+  CodeableConcept? get valueCodeableConcept;
 
   /// [valueQuantity] The value of the device detail.
-  Quantity? get valueQuantity;
   @override
+  Quantity? get valueQuantity;
 
   /// [valueRange] The value of the device detail.
-  Range? get valueRange;
   @override
+  Range? get valueRange;
 
   /// [valueBoolean] The value of the device detail.
-  FhirBoolean? get valueBoolean;
   @override
+  FhirBoolean? get valueBoolean;
 
   /// [valueBooleanElement] Extensions for valueBoolean
+  @override
   @JsonKey(name: '_valueBoolean')
   PrimitiveElement? get valueBooleanElement;
+
+  /// Create a copy of SupplyRequestParameter
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SupplyRequestParameterImplCopyWith<_$SupplyRequestParameterImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

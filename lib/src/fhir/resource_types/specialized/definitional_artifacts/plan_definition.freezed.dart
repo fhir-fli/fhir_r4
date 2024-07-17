@@ -315,8 +315,12 @@ mixin _$PlanDefinition {
   /// [action] An action or group of actions to be taken as part of the plan.
   List<PlanDefinitionAction>? get action => throw _privateConstructorUsedError;
 
+  /// Serializes this PlanDefinition to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PlanDefinition
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PlanDefinitionCopyWith<PlanDefinition> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -409,6 +413,8 @@ class _$PlanDefinitionCopyWithImpl<$Res, $Val extends PlanDefinition>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PlanDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -717,6 +723,8 @@ class _$PlanDefinitionCopyWithImpl<$Res, $Val extends PlanDefinition>
     ) as $Val);
   }
 
+  /// Create a copy of PlanDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -729,6 +737,8 @@ class _$PlanDefinitionCopyWithImpl<$Res, $Val extends PlanDefinition>
     });
   }
 
+  /// Create a copy of PlanDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -741,6 +751,8 @@ class _$PlanDefinitionCopyWithImpl<$Res, $Val extends PlanDefinition>
     });
   }
 
+  /// Create a copy of PlanDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get type {
@@ -753,6 +765,8 @@ class _$PlanDefinitionCopyWithImpl<$Res, $Val extends PlanDefinition>
     });
   }
 
+  /// Create a copy of PlanDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get subjectCodeableConcept {
@@ -766,6 +780,8 @@ class _$PlanDefinitionCopyWithImpl<$Res, $Val extends PlanDefinition>
     });
   }
 
+  /// Create a copy of PlanDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get subjectReference {
@@ -778,6 +794,8 @@ class _$PlanDefinitionCopyWithImpl<$Res, $Val extends PlanDefinition>
     });
   }
 
+  /// Create a copy of PlanDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get effectivePeriod {
@@ -885,6 +903,8 @@ class __$$PlanDefinitionImplCopyWithImpl<$Res>
       _$PlanDefinitionImpl _value, $Res Function(_$PlanDefinitionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PlanDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1921,7 +1941,7 @@ class _$PlanDefinitionImpl extends _PlanDefinition {
             const DeepCollectionEquality().equals(other._action, _action));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1987,7 +2007,9 @@ class _$PlanDefinitionImpl extends _PlanDefinition {
         const DeepCollectionEquality().hash(_action)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PlanDefinition
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PlanDefinitionImplCopyWith<_$PlanDefinitionImpl> get copyWith =>
@@ -2078,39 +2100,38 @@ abstract class _PlanDefinition extends PlanDefinition {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.PlanDefinition)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -2118,15 +2139,15 @@ abstract class _PlanDefinition extends PlanDefinition {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -2134,9 +2155,9 @@ abstract class _PlanDefinition extends PlanDefinition {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -2151,8 +2172,8 @@ abstract class _PlanDefinition extends PlanDefinition {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [url] An absolute URI that is used to identify this plan definition when
   /// it is referenced in a specification, model, design or an instance; also
@@ -2161,19 +2182,19 @@ abstract class _PlanDefinition extends PlanDefinition {
   /// plan definition is (or will be) published. This URL can be the target of a
   /// canonical reference. It SHALL remain the same when the plan definition is
   ///  stored on different servers.
-  FhirUri? get url;
   @override
+  FhirUri? get url;
 
   /// [urlElement] Extensions for url
+  @override
   @JsonKey(name: '_url')
   PrimitiveElement? get urlElement;
-  @override
 
   /// [identifier] A formal identifier that is used to identify this plan
   /// definition when it is represented in other formats, or referenced in a
   ///  specification, model, design or an instance.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [version] The identifier that is used to identify this version of the
   /// plan definition when it is referenced in a specification, model, design or
@@ -2186,242 +2207,246 @@ abstract class _PlanDefinition extends PlanDefinition {
   /// For more information on versioning knowledge assets, refer to the Decision
   /// Support Service specification. Note that a version is required for
   ///  non-experimental active artifacts.
-  String? get version;
   @override
+  String? get version;
 
   /// [versionElement] Extensions for version
+  @override
   @JsonKey(name: '_version')
   PrimitiveElement? get versionElement;
-  @override
 
   /// [name] A natural language name identifying the plan definition. This name
   /// should be usable as an identifier for the module by machine processing
   ///  applications such as code generation.
-  String? get name;
   @override
+  String? get name;
 
   /// [nameElement] Extensions for name
+  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
-  @override
 
   /// [title] A short, descriptive, user-friendly title for the plan
   ///  definition.
-  String? get title;
   @override
+  String? get title;
 
   /// [titleElement] Extensions for title
+  @override
   @JsonKey(name: '_title')
   PrimitiveElement? get titleElement;
-  @override
 
   /// [subtitle] An explanatory or alternate title for the plan definition
   ///  giving additional information about its content.
-  String? get subtitle;
   @override
+  String? get subtitle;
 
   /// [subtitleElement] Extensions for subtitle
+  @override
   @JsonKey(name: '_subtitle')
   PrimitiveElement? get subtitleElement;
-  @override
 
   /// [type] A high-level category for the plan definition that distinguishes
   ///  the kinds of systems that would be interested in the plan definition.
-  CodeableConcept? get type;
   @override
+  CodeableConcept? get type;
 
   /// [status] The status of this plan definition. Enables tracking the
   ///  life-cycle of the content.
-  FhirCode? get status;
   @override
+  FhirCode? get status;
 
   /// [statusElement] Extensions for status
+  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
-  @override
 
   /// [experimental] A Boolean value to indicate that this plan definition is
   /// authored for testing purposes (or education/evaluation/marketing) and is
   ///  not intended to be used for genuine usage.
-  FhirBoolean? get experimental;
   @override
+  FhirBoolean? get experimental;
 
   /// [experimentalElement] Extensions for experimental
+  @override
   @JsonKey(name: '_experimental')
   PrimitiveElement? get experimentalElement;
-  @override
 
   /// [subjectCodeableConcept] A code or group definition that describes the
   ///  intended subject of the plan definition.
-  CodeableConcept? get subjectCodeableConcept;
   @override
+  CodeableConcept? get subjectCodeableConcept;
 
   /// [subjectReference] A code or group definition that describes the intended
   ///  subject of the plan definition.
+  @override
   Reference? get subjectReference;
   @override
   FhirCanonical? get subjectCanonical;
   @override
   @JsonKey(name: '_subjectCanonical')
   PrimitiveElement? get subjectCanonicalElement;
-  @override
 
   /// [date] The date  (and optionally time) when the plan definition was
   /// published. The date must change when the business version changes and it
   /// must change if the status code changes. In addition, it should change when
   ///  the substantive content of the plan definition changes.
-  FhirDateTime? get date;
   @override
+  FhirDateTime? get date;
 
   /// [dateElement] Extensions for date
+  @override
   @JsonKey(name: '_date')
   PrimitiveElement? get dateElement;
-  @override
 
   /// [publisher] The name of the organization or individual that published the
   ///  plan definition.
-  String? get publisher;
   @override
+  String? get publisher;
 
   /// [publisherElement] Extensions for publisher
+  @override
   @JsonKey(name: '_publisher')
   PrimitiveElement? get publisherElement;
-  @override
 
   /// [contact] Contact details to assist a user in finding and communicating
   ///  with the publisher.
-  List<ContactDetail>? get contact;
   @override
+  List<ContactDetail>? get contact;
 
   /// [description] A free text natural language description of the plan
   ///  definition from a consumer's perspective.
-  FhirMarkdown? get description;
   @override
+  FhirMarkdown? get description;
 
   /// [descriptionElement] Extensions for description
+  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
-  @override
 
   /// [useContext] The content was developed with a focus and intent of
   /// supporting the contexts that are listed. These contexts may be general
   /// categories (gender, age, ...) or may be references to specific programs
   /// (insurance plans, studies, ...) and may be used to assist with indexing
   ///  and searching for appropriate plan definition instances.
-  List<UsageContext>? get useContext;
   @override
+  List<UsageContext>? get useContext;
 
   /// [jurisdiction] A legal or geographic region in which the plan definition
   ///  is intended to be used.
-  List<CodeableConcept>? get jurisdiction;
   @override
+  List<CodeableConcept>? get jurisdiction;
 
   /// [purpose] Explanation of why this plan definition is needed and why it
   ///  has been designed as it has.
-  FhirMarkdown? get purpose;
   @override
+  FhirMarkdown? get purpose;
 
   /// [purposeElement] Extensions for purpose
+  @override
   @JsonKey(name: '_purpose')
   PrimitiveElement? get purposeElement;
-  @override
 
   /// [usage] A detailed description of how the plan definition is used from a
   ///  clinical perspective.
-  String? get usage;
   @override
+  String? get usage;
 
   /// [usageElement] Extensions for usage
+  @override
   @JsonKey(name: '_usage')
   PrimitiveElement? get usageElement;
-  @override
 
   /// [copyright] A copyright statement relating to the plan definition and/or
   /// its contents. Copyright statements are generally legal restrictions on the
   ///  use and publishing of the plan definition.
-  FhirMarkdown? get copyright;
   @override
+  FhirMarkdown? get copyright;
 
   /// [copyrightElement] Extensions for copyright
+  @override
   @JsonKey(name: '_copyright')
   PrimitiveElement? get copyrightElement;
-  @override
 
   /// [approvalDate] The date on which the resource content was approved by the
   /// publisher. Approval happens once when the content is officially approved
   ///  for usage.
-  FhirDate? get approvalDate;
   @override
+  FhirDate? get approvalDate;
 
   /// [approvalDateElement] Extensions for approvalDate
+  @override
   @JsonKey(name: '_approvalDate')
   PrimitiveElement? get approvalDateElement;
-  @override
 
   /// [lastReviewDate] The date on which the resource content was last
   /// reviewed. Review happens periodically after approval but does not change
   ///  the original approval date.
-  FhirDate? get lastReviewDate;
   @override
+  FhirDate? get lastReviewDate;
 
   /// [lastReviewDateElement] Extensions for lastReviewDate
+  @override
   @JsonKey(name: '_lastReviewDate')
   PrimitiveElement? get lastReviewDateElement;
-  @override
 
   /// [effectivePeriod] The period during which the plan definition content was
   ///  or is planned to be in active use.
-  Period? get effectivePeriod;
   @override
+  Period? get effectivePeriod;
 
   /// [topic] Descriptive topics related to the content of the plan definition.
   /// Topics provide a high-level categorization of the definition that can be
   ///  useful for filtering and searching.
-  List<CodeableConcept>? get topic;
   @override
+  List<CodeableConcept>? get topic;
 
   /// [author] An individiual or organization primarily involved in the
   ///  creation and maintenance of the content.
-  List<ContactDetail>? get author;
   @override
+  List<ContactDetail>? get author;
 
   /// [editor] An individual or organization primarily responsible for internal
   ///  coherence of the content.
-  List<ContactDetail>? get editor;
   @override
+  List<ContactDetail>? get editor;
 
   /// [reviewer] An individual or organization primarily responsible for review
   ///  of some aspect of the content.
-  List<ContactDetail>? get reviewer;
   @override
+  List<ContactDetail>? get reviewer;
 
   /// [endorser] An individual or organization responsible for officially
   ///  endorsing the content for use in some setting.
-  List<ContactDetail>? get endorser;
   @override
+  List<ContactDetail>? get endorser;
 
   /// [relatedArtifact] Related artifacts such as additional documentation,
   ///  justification, or bibliographic references.
-  List<RelatedArtifact>? get relatedArtifact;
   @override
+  List<RelatedArtifact>? get relatedArtifact;
 
   /// [library] A reference to a Library resource containing any formal logic
   ///  used by the plan definition.
+  @override
   @JsonKey(name: 'library')
   List<FhirCanonical>? get library_;
-  @override
 
   /// [goal] Goals that describe what the activities within the plan are
   /// intended to achieve. For example, weight loss, restoring an activity of
   /// daily living, obtaining herd immunity via immunization, meeting a process
   ///  improvement objective, etc.
-  List<PlanDefinitionGoal>? get goal;
   @override
+  List<PlanDefinitionGoal>? get goal;
 
   /// [action] An action or group of actions to be taken as part of the plan.
-  List<PlanDefinitionAction>? get action;
   @override
-  @JsonKey(ignore: true)
+  List<PlanDefinitionAction>? get action;
+
+  /// Create a copy of PlanDefinition
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PlanDefinitionImplCopyWith<_$PlanDefinitionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2490,8 +2515,12 @@ mixin _$PlanDefinitionGoal {
   /// [target] Indicates what should be done and within what timeframe.
   List<PlanDefinitionTarget>? get target => throw _privateConstructorUsedError;
 
+  /// Serializes this PlanDefinitionGoal to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PlanDefinitionGoal
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PlanDefinitionGoalCopyWith<PlanDefinitionGoal> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2530,6 +2559,8 @@ class _$PlanDefinitionGoalCopyWithImpl<$Res, $Val extends PlanDefinitionGoal>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PlanDefinitionGoal
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2588,6 +2619,8 @@ class _$PlanDefinitionGoalCopyWithImpl<$Res, $Val extends PlanDefinitionGoal>
     ) as $Val);
   }
 
+  /// Create a copy of PlanDefinitionGoal
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get category {
@@ -2600,6 +2633,8 @@ class _$PlanDefinitionGoalCopyWithImpl<$Res, $Val extends PlanDefinitionGoal>
     });
   }
 
+  /// Create a copy of PlanDefinitionGoal
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get description {
@@ -2608,6 +2643,8 @@ class _$PlanDefinitionGoalCopyWithImpl<$Res, $Val extends PlanDefinitionGoal>
     });
   }
 
+  /// Create a copy of PlanDefinitionGoal
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get priority {
@@ -2620,6 +2657,8 @@ class _$PlanDefinitionGoalCopyWithImpl<$Res, $Val extends PlanDefinitionGoal>
     });
   }
 
+  /// Create a copy of PlanDefinitionGoal
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get start {
@@ -2671,6 +2710,8 @@ class __$$PlanDefinitionGoalImplCopyWithImpl<$Res>
       $Res Function(_$PlanDefinitionGoalImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PlanDefinitionGoal
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2916,7 +2957,7 @@ class _$PlanDefinitionGoalImpl extends _PlanDefinitionGoal {
             const DeepCollectionEquality().equals(other._target, _target));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2931,7 +2972,9 @@ class _$PlanDefinitionGoalImpl extends _PlanDefinitionGoal {
       const DeepCollectionEquality().hash(_documentation),
       const DeepCollectionEquality().hash(_target));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PlanDefinitionGoal
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PlanDefinitionGoalImplCopyWith<_$PlanDefinitionGoalImpl> get copyWith =>
@@ -2963,12 +3006,10 @@ abstract class _PlanDefinitionGoal extends PlanDefinitionGoal {
   factory _PlanDefinitionGoal.fromJson(Map<String, dynamic> json) =
       _$PlanDefinitionGoalImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2976,9 +3017,9 @@ abstract class _PlanDefinitionGoal extends PlanDefinitionGoal {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2993,44 +3034,48 @@ abstract class _PlanDefinitionGoal extends PlanDefinitionGoal {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [category] Indicates a category the goal falls within.
-  CodeableConcept? get category;
   @override
+  CodeableConcept? get category;
 
   /// [description] Human-readable and/or coded description of a specific
   /// desired objective of care, such as "control blood pressure" or "negotiate
   ///  an obstacle course" or "dance with child at wedding".
-  CodeableConcept get description;
   @override
+  CodeableConcept get description;
 
   /// [priority] Identifies the expected level of importance associated with
   ///  reaching/sustaining the defined goal.
-  CodeableConcept? get priority;
   @override
+  CodeableConcept? get priority;
 
   /// [start] The event after which the goal should begin being pursued.
-  CodeableConcept? get start;
   @override
+  CodeableConcept? get start;
 
   /// [addresses] Identifies problems, conditions, issues, or concerns the goal
   ///  is intended to address.
-  List<CodeableConcept>? get addresses;
   @override
+  List<CodeableConcept>? get addresses;
 
   /// [documentation] Didactic or other informational resources associated with
   /// the goal that provide further supporting information about the goal.
   /// Information resources can include inline text commentary and links to web
   ///  resources.
-  List<RelatedArtifact>? get documentation;
   @override
+  List<RelatedArtifact>? get documentation;
 
   /// [target] Indicates what should be done and within what timeframe.
-  List<PlanDefinitionTarget>? get target;
   @override
-  @JsonKey(ignore: true)
+  List<PlanDefinitionTarget>? get target;
+
+  /// Create a copy of PlanDefinitionGoal
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PlanDefinitionGoalImplCopyWith<_$PlanDefinitionGoalImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3103,8 +3148,12 @@ mixin _$PlanDefinitionTarget {
   ///  goal should be met.
   FhirDuration? get due => throw _privateConstructorUsedError;
 
+  /// Serializes this PlanDefinitionTarget to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PlanDefinitionTarget
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PlanDefinitionTargetCopyWith<PlanDefinitionTarget> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3143,6 +3192,8 @@ class _$PlanDefinitionTargetCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PlanDefinitionTarget
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3191,6 +3242,8 @@ class _$PlanDefinitionTargetCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of PlanDefinitionTarget
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get measure {
@@ -3203,6 +3256,8 @@ class _$PlanDefinitionTargetCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PlanDefinitionTarget
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get detailQuantity {
@@ -3215,6 +3270,8 @@ class _$PlanDefinitionTargetCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PlanDefinitionTarget
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get detailRange {
@@ -3227,6 +3284,8 @@ class _$PlanDefinitionTargetCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PlanDefinitionTarget
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get detailCodeableConcept {
@@ -3240,6 +3299,8 @@ class _$PlanDefinitionTargetCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PlanDefinitionTarget
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirDurationCopyWith<$Res>? get due {
@@ -3291,6 +3352,8 @@ class __$$PlanDefinitionTargetImplCopyWithImpl<$Res>
       $Res Function(_$PlanDefinitionTargetImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PlanDefinitionTarget
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3488,7 +3551,7 @@ class _$PlanDefinitionTargetImpl extends _PlanDefinitionTarget {
             (identical(other.due, due) || other.due == due));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3501,7 +3564,9 @@ class _$PlanDefinitionTargetImpl extends _PlanDefinitionTarget {
       detailCodeableConcept,
       due);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PlanDefinitionTarget
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PlanDefinitionTargetImplCopyWith<_$PlanDefinitionTargetImpl>
@@ -3532,12 +3597,10 @@ abstract class _PlanDefinitionTarget extends PlanDefinitionTarget {
   factory _PlanDefinitionTarget.fromJson(Map<String, dynamic> json) =
       _$PlanDefinitionTargetImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3545,9 +3608,9 @@ abstract class _PlanDefinitionTarget extends PlanDefinitionTarget {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3562,13 +3625,13 @@ abstract class _PlanDefinitionTarget extends PlanDefinitionTarget {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [measure] The parameter whose value is to be tracked, e.g. body weight,
   ///  blood pressure, or hemoglobin A1c level.
-  CodeableConcept? get measure;
   @override
+  CodeableConcept? get measure;
 
   /// [detailQuantity] The target value of the measure to be achieved to
   /// signify fulfillment of the goal, e.g. 150 pounds or 7.0%. Either the high
@@ -3576,8 +3639,8 @@ abstract class _PlanDefinitionTarget extends PlanDefinitionTarget {
   /// missing, it indicates that the goal is achieved at any value at or below
   /// the high value. Similarly, if the high value is missing, it indicates that
   ///  the goal is achieved at any value at or above the low value.
-  Quantity? get detailQuantity;
   @override
+  Quantity? get detailQuantity;
 
   /// [detailRange] The target value of the measure to be achieved to signify
   /// fulfillment of the goal, e.g. 150 pounds or 7.0%. Either the high or low
@@ -3585,8 +3648,8 @@ abstract class _PlanDefinitionTarget extends PlanDefinitionTarget {
   /// it indicates that the goal is achieved at any value at or below the high
   /// value. Similarly, if the high value is missing, it indicates that the goal
   ///  is achieved at any value at or above the low value.
-  Range? get detailRange;
   @override
+  Range? get detailRange;
 
   /// [detailCodeableConcept] The target value of the measure to be achieved to
   /// signify fulfillment of the goal, e.g. 150 pounds or 7.0%. Either the high
@@ -3594,14 +3657,18 @@ abstract class _PlanDefinitionTarget extends PlanDefinitionTarget {
   /// missing, it indicates that the goal is achieved at any value at or below
   /// the high value. Similarly, if the high value is missing, it indicates that
   ///  the goal is achieved at any value at or above the low value.
-  CodeableConcept? get detailCodeableConcept;
   @override
+  CodeableConcept? get detailCodeableConcept;
 
   /// [due] Indicates the timeframe after the start of the goal in which the
   ///  goal should be met.
-  FhirDuration? get due;
   @override
-  @JsonKey(ignore: true)
+  FhirDuration? get due;
+
+  /// Create a copy of PlanDefinitionTarget
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PlanDefinitionTargetImplCopyWith<_$PlanDefinitionTargetImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3859,8 +3926,12 @@ mixin _$PlanDefinitionAction {
   ///  definition.
   List<PlanDefinitionAction>? get action => throw _privateConstructorUsedError;
 
+  /// Serializes this PlanDefinitionAction to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PlanDefinitionAction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PlanDefinitionActionCopyWith<PlanDefinitionAction> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3954,6 +4025,8 @@ class _$PlanDefinitionActionCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PlanDefinitionAction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4227,6 +4300,8 @@ class _$PlanDefinitionActionCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of PlanDefinitionAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get subjectCodeableConcept {
@@ -4240,6 +4315,8 @@ class _$PlanDefinitionActionCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PlanDefinitionAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get subjectReference {
@@ -4252,6 +4329,8 @@ class _$PlanDefinitionActionCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PlanDefinitionAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AgeCopyWith<$Res>? get timingAge {
@@ -4264,6 +4343,8 @@ class _$PlanDefinitionActionCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PlanDefinitionAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get timingPeriod {
@@ -4276,6 +4357,8 @@ class _$PlanDefinitionActionCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PlanDefinitionAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirDurationCopyWith<$Res>? get timingDuration {
@@ -4288,6 +4371,8 @@ class _$PlanDefinitionActionCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PlanDefinitionAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get timingRange {
@@ -4300,6 +4385,8 @@ class _$PlanDefinitionActionCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PlanDefinitionAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TimingCopyWith<$Res>? get timingTiming {
@@ -4312,6 +4399,8 @@ class _$PlanDefinitionActionCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PlanDefinitionAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get type {
@@ -4421,6 +4510,8 @@ class __$$PlanDefinitionActionImplCopyWithImpl<$Res>
       $Res Function(_$PlanDefinitionActionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PlanDefinitionAction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5337,7 +5428,7 @@ class _$PlanDefinitionActionImpl extends _PlanDefinitionAction {
             const DeepCollectionEquality().equals(other._action, _action));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -5396,7 +5487,9 @@ class _$PlanDefinitionActionImpl extends _PlanDefinitionAction {
         const DeepCollectionEquality().hash(_action)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PlanDefinitionAction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PlanDefinitionActionImplCopyWith<_$PlanDefinitionActionImpl>
@@ -5482,12 +5575,10 @@ abstract class _PlanDefinitionAction extends PlanDefinitionAction {
   factory _PlanDefinitionAction.fromJson(Map<String, dynamic> json) =
       _$PlanDefinitionActionImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -5495,9 +5586,9 @@ abstract class _PlanDefinitionAction extends PlanDefinitionAction {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -5512,259 +5603,263 @@ abstract class _PlanDefinitionAction extends PlanDefinitionAction {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [prefix] A user-visible prefix for the action.
-  String? get prefix;
   @override
+  String? get prefix;
 
   /// [prefixElement] Extensions for prefix
+  @override
   @JsonKey(name: '_prefix')
   PrimitiveElement? get prefixElement;
-  @override
 
   /// [title] The title of the action displayed to a user.
-  String? get title;
   @override
+  String? get title;
 
   /// [titleElement] Extensions for title
+  @override
   @JsonKey(name: '_title')
   PrimitiveElement? get titleElement;
-  @override
 
   /// [description] A brief description of the action used to provide a summary
   ///  to display to the user.
-  String? get description;
   @override
+  String? get description;
 
   /// [descriptionElement] Extensions for description
+  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
-  @override
 
   /// [textEquivalent] A text equivalent of the action to be performed. This
   /// provides a human-interpretable description of the action when the
   /// definition is consumed by a system that might not be capable of
   ///  interpreting it dynamically.
-  String? get textEquivalent;
   @override
+  String? get textEquivalent;
 
   /// [textEquivalentElement] Extensions for textEquivalent
+  @override
   @JsonKey(name: '_textEquivalent')
   PrimitiveElement? get textEquivalentElement;
-  @override
 
   /// [priority] Indicates how quickly the action should be addressed with
   ///  respect to other actions.
-  FhirCode? get priority;
   @override
+  FhirCode? get priority;
 
   /// [priorityElement] Extensions for priority
+  @override
   @JsonKey(name: '_priority')
   PrimitiveElement? get priorityElement;
-  @override
 
   /// [code] A code that provides meaning for the action or action group. For
   /// example, a section may have a LOINC code for the section of a
   ///  documentation template.
-  List<CodeableConcept>? get code;
   @override
+  List<CodeableConcept>? get code;
 
   /// [reason] A description of why this action is necessary or appropriate.
-  List<CodeableConcept>? get reason;
   @override
+  List<CodeableConcept>? get reason;
 
   /// [documentation] Didactic or other informational resources associated with
   /// the action that can be provided to the CDS recipient. Information
   ///  resources can include inline text commentary and links to web resources.
-  List<RelatedArtifact>? get documentation;
   @override
+  List<RelatedArtifact>? get documentation;
 
   /// [goalId] Identifies goals that this action supports. The reference must
   ///  be to a goal element defined within this plan definition.
-  List<FhirId>? get goalId;
   @override
+  List<FhirId>? get goalId;
 
   /// [goalIdElement] Extensions for goalId
+  @override
   @JsonKey(name: '_goalId')
   List<PrimitiveElement>? get goalIdElement;
-  @override
 
   /// [subjectCodeableConcept] A code or group definition that describes the
   ///  intended subject of the action and its children, if any.
-  CodeableConcept? get subjectCodeableConcept;
   @override
+  CodeableConcept? get subjectCodeableConcept;
 
   /// [subjectReference] A code or group definition that describes the intended
   ///  subject of the action and its children, if any.
+  @override
   Reference? get subjectReference;
   @override
   FhirCanonical? get subjectCanonical;
   @override
   @JsonKey(name: '_subjectCanonical')
   List<PrimitiveElement>? get subjectCanonicalElement;
-  @override
 
   /// [trigger] A description of when the action should be triggered.
-  List<TriggerDefinition>? get trigger;
   @override
+  List<TriggerDefinition>? get trigger;
 
   /// [condition] An expression that describes applicability criteria or
   ///  start/stop conditions for the action.
-  List<PlanDefinitionCondition>? get condition;
   @override
+  List<PlanDefinitionCondition>? get condition;
 
   /// [input] Defines input data requirements for the action.
-  List<DataRequirement>? get input;
   @override
+  List<DataRequirement>? get input;
 
   /// [output] Defines the outputs of the action, if any.
-  List<DataRequirement>? get output;
   @override
+  List<DataRequirement>? get output;
 
   /// [relatedAction] A relationship to another action such as "before" or
   ///  "30-60 minutes after start of".
-  List<PlanDefinitionRelatedAction>? get relatedAction;
   @override
+  List<PlanDefinitionRelatedAction>? get relatedAction;
 
   /// [timingDateTime] An optional value describing when the action should be
   ///  performed.
-  FhirDateTime? get timingDateTime;
   @override
+  FhirDateTime? get timingDateTime;
 
   /// [timingDateTimeElement] Extensions for timingDateTime
+  @override
   @JsonKey(name: '_timingDateTime')
   PrimitiveElement? get timingDateTimeElement;
-  @override
 
   /// [timingAge] An optional value describing when the action should be
   ///  performed.
-  Age? get timingAge;
   @override
+  Age? get timingAge;
 
   /// [timingPeriod] An optional value describing when the action should be
   ///  performed.
-  Period? get timingPeriod;
   @override
+  Period? get timingPeriod;
 
   /// [timingDuration] An optional value describing when the action should be
   ///  performed.
-  FhirDuration? get timingDuration;
   @override
+  FhirDuration? get timingDuration;
 
   /// [timingRange] An optional value describing when the action should be
   ///  performed.
-  Range? get timingRange;
   @override
+  Range? get timingRange;
 
   /// [timingTiming] An optional value describing when the action should be
   ///  performed.
-  Timing? get timingTiming;
   @override
+  Timing? get timingTiming;
 
   /// [participant] Indicates who should participate in performing the action
   ///  described.
-  List<PlanDefinitionParticipant>? get participant;
   @override
+  List<PlanDefinitionParticipant>? get participant;
 
   /// [type] The type of action to perform (create, update, remove).
-  CodeableConcept? get type;
   @override
+  CodeableConcept? get type;
 
   /// [groupingBehavior] Defines the grouping behavior for the action and its
   ///  children.
-  FhirCode? get groupingBehavior;
   @override
+  FhirCode? get groupingBehavior;
 
   /// [groupingBehaviorElement] Extensions for groupingBehavior
+  @override
   @JsonKey(name: '_groupingBehavior')
   PrimitiveElement? get groupingBehaviorElement;
-  @override
 
   /// [selectionBehavior] Defines the selection behavior for the action and its
   ///  children.
-  FhirCode? get selectionBehavior;
   @override
+  FhirCode? get selectionBehavior;
 
   /// [selectionBehaviorElement] Extensions for selectionBehavior
+  @override
   @JsonKey(name: '_selectionBehavior')
   PrimitiveElement? get selectionBehaviorElement;
-  @override
 
   /// [requiredBehavior] Defines the required behavior for the action.
-  FhirCode? get requiredBehavior;
   @override
+  FhirCode? get requiredBehavior;
 
   /// [requiredBehaviorElement] Extensions for requiredBehavior
+  @override
   @JsonKey(name: '_requiredBehavior')
   PrimitiveElement? get requiredBehaviorElement;
-  @override
 
   /// [precheckBehavior] Defines whether the action should usually be
   ///  preselected.
-  FhirCode? get precheckBehavior;
   @override
+  FhirCode? get precheckBehavior;
 
   /// [precheckBehaviorElement] Extensions for precheckBehavior
+  @override
   @JsonKey(name: '_precheckBehavior')
   PrimitiveElement? get precheckBehaviorElement;
-  @override
 
   /// [cardinalityBehavior] Defines whether the action can be selected multiple
   ///  times.
-  FhirCode? get cardinalityBehavior;
   @override
+  FhirCode? get cardinalityBehavior;
 
   /// [cardinalityBehaviorElement] Extensions for cardinalityBehavior
+  @override
   @JsonKey(name: '_cardinalityBehavior')
   PrimitiveElement? get cardinalityBehaviorElement;
-  @override
 
   /// [definitionCanonical] A reference to an ActivityDefinition that describes
   /// the action to be taken in detail, or a PlanDefinition that describes a
   ///  series of actions to be taken.
-  FhirCanonical? get definitionCanonical;
   @override
+  FhirCanonical? get definitionCanonical;
 
   /// [definitionCanonicalElement] Extensions for definitionCanonical
+  @override
   @JsonKey(name: '_definitionCanonical')
   PrimitiveElement? get definitionCanonicalElement;
-  @override
 
   /// [definitionUri] A reference to an ActivityDefinition that describes the
   /// action to be taken in detail, or a PlanDefinition that describes a series
   ///  of actions to be taken.
-  FhirUri? get definitionUri;
   @override
+  FhirUri? get definitionUri;
 
   /// [definitionUriElement] Extensions for definitionUri
+  @override
   @JsonKey(name: '_definitionUri')
   PrimitiveElement? get definitionUriElement;
-  @override
 
   /// [transform] A reference to a StructureMap resource that defines a
   /// transform that can be executed to produce the intent resource using the
   ///  ActivityDefinition instance as the input.
-  FhirCanonical? get transform;
   @override
+  FhirCanonical? get transform;
 
   /// [dynamicValue] Customizations that should be applied to the statically
   /// defined resource. For example, if the dosage of a medication must be
   /// computed based on the patient's weight, a customization would be used to
   /// specify an expression that calculated the weight, and the path on the
   ///  resource that would contain the result.
-  List<PlanDefinitionDynamicValue>? get dynamicValue;
   @override
+  List<PlanDefinitionDynamicValue>? get dynamicValue;
 
   /// [action] Sub actions that are contained within the action. The behavior
   /// of this action determines the functionality of the sub-actions. For
   /// example, a selection behavior of at-most-one indicates that of the
   /// sub-actions, at most one may be chosen as part of realizing the action
   ///  definition.
-  List<PlanDefinitionAction>? get action;
   @override
-  @JsonKey(ignore: true)
+  List<PlanDefinitionAction>? get action;
+
+  /// Create a copy of PlanDefinitionAction
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PlanDefinitionActionImplCopyWith<_$PlanDefinitionActionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -5816,8 +5911,12 @@ mixin _$PlanDefinitionCondition {
   ///  the condition is satisfied.
   FhirExpression? get expression => throw _privateConstructorUsedError;
 
+  /// Serializes this PlanDefinitionCondition to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PlanDefinitionCondition
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PlanDefinitionConditionCopyWith<PlanDefinitionCondition> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -5850,6 +5949,8 @@ class _$PlanDefinitionConditionCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PlanDefinitionCondition
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5888,6 +5989,8 @@ class _$PlanDefinitionConditionCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of PlanDefinitionCondition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirExpressionCopyWith<$Res>? get expression {
@@ -5932,6 +6035,8 @@ class __$$PlanDefinitionConditionImplCopyWithImpl<$Res>
       $Res Function(_$PlanDefinitionConditionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PlanDefinitionCondition
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -6091,7 +6196,7 @@ class _$PlanDefinitionConditionImpl extends _PlanDefinitionCondition {
                 other.expression == expression));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -6102,7 +6207,9 @@ class _$PlanDefinitionConditionImpl extends _PlanDefinitionCondition {
       kindElement,
       expression);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PlanDefinitionCondition
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PlanDefinitionConditionImplCopyWith<_$PlanDefinitionConditionImpl>
@@ -6130,12 +6237,10 @@ abstract class _PlanDefinitionCondition extends PlanDefinitionCondition {
   factory _PlanDefinitionCondition.fromJson(Map<String, dynamic> json) =
       _$PlanDefinitionConditionImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -6143,9 +6248,9 @@ abstract class _PlanDefinitionCondition extends PlanDefinitionCondition {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -6160,23 +6265,27 @@ abstract class _PlanDefinitionCondition extends PlanDefinitionCondition {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [kind] The kind of condition.
-  FhirCode? get kind;
   @override
+  FhirCode? get kind;
 
   /// [kindElement] Extensions for kind
+  @override
   @JsonKey(name: '_kind')
   PrimitiveElement? get kindElement;
-  @override
 
   /// [expression] An expression that returns true or false, indicating whether
   ///  the condition is satisfied.
-  FhirExpression? get expression;
   @override
-  @JsonKey(ignore: true)
+  FhirExpression? get expression;
+
+  /// Create a copy of PlanDefinitionCondition
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PlanDefinitionConditionImplCopyWith<_$PlanDefinitionConditionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -6240,8 +6349,12 @@ mixin _$PlanDefinitionRelatedAction {
   ///  relationship. For example, 30-60 minutes before.
   Range? get offsetRange => throw _privateConstructorUsedError;
 
+  /// Serializes this PlanDefinitionRelatedAction to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PlanDefinitionRelatedAction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PlanDefinitionRelatedActionCopyWith<PlanDefinitionRelatedAction>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -6280,6 +6393,8 @@ class _$PlanDefinitionRelatedActionCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PlanDefinitionRelatedAction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -6333,6 +6448,8 @@ class _$PlanDefinitionRelatedActionCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of PlanDefinitionRelatedAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirDurationCopyWith<$Res>? get offsetDuration {
@@ -6345,6 +6462,8 @@ class _$PlanDefinitionRelatedActionCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PlanDefinitionRelatedAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get offsetRange {
@@ -6394,6 +6513,8 @@ class __$$PlanDefinitionRelatedActionImplCopyWithImpl<$Res>
       $Res Function(_$PlanDefinitionRelatedActionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PlanDefinitionRelatedAction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -6593,7 +6714,7 @@ class _$PlanDefinitionRelatedActionImpl extends _PlanDefinitionRelatedAction {
                 other.offsetRange == offsetRange));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -6607,7 +6728,9 @@ class _$PlanDefinitionRelatedActionImpl extends _PlanDefinitionRelatedAction {
       offsetDuration,
       offsetRange);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PlanDefinitionRelatedAction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PlanDefinitionRelatedActionImplCopyWith<_$PlanDefinitionRelatedActionImpl>
@@ -6640,12 +6763,10 @@ abstract class _PlanDefinitionRelatedAction
   factory _PlanDefinitionRelatedAction.fromJson(Map<String, dynamic> json) =
       _$PlanDefinitionRelatedActionImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -6653,9 +6774,9 @@ abstract class _PlanDefinitionRelatedAction
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -6670,37 +6791,41 @@ abstract class _PlanDefinitionRelatedAction
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [actionId] The element id of the related action.
-  FhirId? get actionId;
   @override
+  FhirId? get actionId;
 
   /// [actionIdElement] Extensions for actionId
+  @override
   @JsonKey(name: '_actionId')
   PrimitiveElement? get actionIdElement;
-  @override
 
   /// [relationship] The relationship of this action to the related action.
-  FhirCode? get relationship;
   @override
+  FhirCode? get relationship;
 
   /// [relationshipElement] Extensions for relationship
+  @override
   @JsonKey(name: '_relationship')
   PrimitiveElement? get relationshipElement;
-  @override
 
   /// [offsetDuration] A duration or range of durations to apply to the
   ///  relationship. For example, 30-60 minutes before.
-  FhirDuration? get offsetDuration;
   @override
+  FhirDuration? get offsetDuration;
 
   /// [offsetRange] A duration or range of durations to apply to the
   ///  relationship. For example, 30-60 minutes before.
-  Range? get offsetRange;
   @override
-  @JsonKey(ignore: true)
+  Range? get offsetRange;
+
+  /// Create a copy of PlanDefinitionRelatedAction
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PlanDefinitionRelatedActionImplCopyWith<_$PlanDefinitionRelatedActionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -6752,8 +6877,12 @@ mixin _$PlanDefinitionParticipant {
   ///  action.
   CodeableConcept? get role => throw _privateConstructorUsedError;
 
+  /// Serializes this PlanDefinitionParticipant to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PlanDefinitionParticipant
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PlanDefinitionParticipantCopyWith<PlanDefinitionParticipant> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -6786,6 +6915,8 @@ class _$PlanDefinitionParticipantCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PlanDefinitionParticipant
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -6824,6 +6955,8 @@ class _$PlanDefinitionParticipantCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of PlanDefinitionParticipant
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get role {
@@ -6868,6 +7001,8 @@ class __$$PlanDefinitionParticipantImplCopyWithImpl<$Res>
       $Res Function(_$PlanDefinitionParticipantImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PlanDefinitionParticipant
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -7026,7 +7161,7 @@ class _$PlanDefinitionParticipantImpl extends _PlanDefinitionParticipant {
             (identical(other.role, role) || other.role == role));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -7037,7 +7172,9 @@ class _$PlanDefinitionParticipantImpl extends _PlanDefinitionParticipant {
       typeElement,
       role);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PlanDefinitionParticipant
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PlanDefinitionParticipantImplCopyWith<_$PlanDefinitionParticipantImpl>
@@ -7065,12 +7202,10 @@ abstract class _PlanDefinitionParticipant extends PlanDefinitionParticipant {
   factory _PlanDefinitionParticipant.fromJson(Map<String, dynamic> json) =
       _$PlanDefinitionParticipantImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -7078,9 +7213,9 @@ abstract class _PlanDefinitionParticipant extends PlanDefinitionParticipant {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -7095,23 +7230,27 @@ abstract class _PlanDefinitionParticipant extends PlanDefinitionParticipant {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [type] The type of participant in the action.
-  FhirCode? get type;
   @override
+  FhirCode? get type;
 
   /// [typeElement] Extensions for type
+  @override
   @JsonKey(name: '_type')
   PrimitiveElement? get typeElement;
-  @override
 
   /// [role] The role the participant should play in performing the described
   ///  action.
-  CodeableConcept? get role;
   @override
-  @JsonKey(ignore: true)
+  CodeableConcept? get role;
+
+  /// Create a copy of PlanDefinitionParticipant
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PlanDefinitionParticipantImplCopyWith<_$PlanDefinitionParticipantImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -7170,8 +7309,12 @@ mixin _$PlanDefinitionDynamicValue {
   ///  element.
   FhirExpression? get expression => throw _privateConstructorUsedError;
 
+  /// Serializes this PlanDefinitionDynamicValue to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PlanDefinitionDynamicValue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PlanDefinitionDynamicValueCopyWith<PlanDefinitionDynamicValue>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -7205,6 +7348,8 @@ class _$PlanDefinitionDynamicValueCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PlanDefinitionDynamicValue
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -7243,6 +7388,8 @@ class _$PlanDefinitionDynamicValueCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of PlanDefinitionDynamicValue
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirExpressionCopyWith<$Res>? get expression {
@@ -7287,6 +7434,8 @@ class __$$PlanDefinitionDynamicValueImplCopyWithImpl<$Res>
       $Res Function(_$PlanDefinitionDynamicValueImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PlanDefinitionDynamicValue
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -7454,7 +7603,7 @@ class _$PlanDefinitionDynamicValueImpl extends _PlanDefinitionDynamicValue {
                 other.expression == expression));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -7465,7 +7614,9 @@ class _$PlanDefinitionDynamicValueImpl extends _PlanDefinitionDynamicValue {
       pathElement,
       expression);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PlanDefinitionDynamicValue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PlanDefinitionDynamicValueImplCopyWith<_$PlanDefinitionDynamicValueImpl>
@@ -7493,12 +7644,10 @@ abstract class _PlanDefinitionDynamicValue extends PlanDefinitionDynamicValue {
   factory _PlanDefinitionDynamicValue.fromJson(Map<String, dynamic> json) =
       _$PlanDefinitionDynamicValueImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -7506,9 +7655,9 @@ abstract class _PlanDefinitionDynamicValue extends PlanDefinitionDynamicValue {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -7523,8 +7672,8 @@ abstract class _PlanDefinitionDynamicValue extends PlanDefinitionDynamicValue {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [path] The path to the element to be customized. This is the path on the
   /// resource that will hold the result of the calculation defined by the
@@ -7534,19 +7683,23 @@ abstract class _PlanDefinitionDynamicValue extends PlanDefinitionDynamicValue {
   /// path is allowed to contain qualifiers (.) to traverse sub-elements, as
   /// well as indexers ([x]) to traverse multiple-cardinality sub-elements (see
   ///  the [Simple FHIRPath Profile](fhirpath.html#simple) for full details).
-  String? get path;
   @override
+  String? get path;
 
   /// [pathElement] Extensions for path
+  @override
   @JsonKey(name: '_path')
   PrimitiveElement? get pathElement;
-  @override
 
   /// [expression] An expression specifying the value of the customized
   ///  element.
-  FhirExpression? get expression;
   @override
-  @JsonKey(ignore: true)
+  FhirExpression? get expression;
+
+  /// Create a copy of PlanDefinitionDynamicValue
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PlanDefinitionDynamicValueImplCopyWith<_$PlanDefinitionDynamicValueImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

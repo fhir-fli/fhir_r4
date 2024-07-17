@@ -384,7 +384,7 @@ class GraphDefinition with _$GraphDefinition implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [GraphDefinitionLink] A formal computable definition of a graph of

@@ -286,7 +286,7 @@ class OrganizationAffiliation
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 
   OrganizationAffiliation updateContactPointSystem(ContactPointSystem system,
       [int index = 0]) {

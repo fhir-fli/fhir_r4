@@ -300,7 +300,7 @@ class CatalogEntry with _$CatalogEntry implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [CatalogEntryRelatedEntry] Catalog entries are wrappers that

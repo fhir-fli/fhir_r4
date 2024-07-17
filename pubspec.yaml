@@ -17,29 +17,29 @@ environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
-  archive: ^3.5.0
-  collection: ^1.18.0
+  archive: ^3.6.1
+  collection: ^1.19.0
   # fhir_primitives: ^0.1.0
   fhir_primitives:
     path: ../fhir_primitives
-  freezed_annotation: ^2.4.1
+  freezed_annotation: ^2.4.4
   hive: ^2.2.3
-  http: ^1.2.1
+  http: ^1.2.2
   intl: ^0.19.0
   json_annotation: ^4.9.0
   mime: ^1.0.5
   mockito: ^5.4.4
   objectbox: ^4.0.1
   petitparser: ^6.0.2
-  rxdart: ^0.27.3
+  rxdart: ^0.28.0
   ucum: ^0.5.0
   universal_io: ^2.2.2
-  uuid: ^4.4.0
+  uuid: ^4.4.2
   xml: ^6.5.0
   yaml: ^3.1.2
 
 dev_dependencies:
-  build_runner: ^2.4.9
-  freezed: ^2.5.2
+  build_runner: ^2.4.11
+  freezed: ^2.5.7
   json_serializable: ^6.8.0
-  test: ^1.25.4
+  test: ^1.25.8

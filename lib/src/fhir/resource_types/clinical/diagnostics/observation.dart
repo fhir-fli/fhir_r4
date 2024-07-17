@@ -559,7 +559,7 @@ class Observation with _$Observation implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [ObservationReferenceRange] Measurements and simple assertions made

@@ -429,7 +429,7 @@ class Immunization with _$Immunization implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [ImmunizationPerformer] Describes the event of a patient being

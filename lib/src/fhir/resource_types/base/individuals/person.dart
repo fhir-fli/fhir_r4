@@ -268,7 +268,7 @@ class Person with _$Person implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 
   Person updateHumanNameUse(HumanNameUse use, [int index = 0]) {
     if (name == null || name!.isEmpty) {

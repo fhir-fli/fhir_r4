@@ -186,8 +186,12 @@ mixin _$Location {
   ///  the location.
   List<Reference>? get endpoint => throw _privateConstructorUsedError;
 
+  /// Serializes this Location to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Location
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LocationCopyWith<Location> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -255,6 +259,8 @@ class _$LocationCopyWithImpl<$Res, $Val extends Location>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Location
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -433,6 +439,8 @@ class _$LocationCopyWithImpl<$Res, $Val extends Location>
     ) as $Val);
   }
 
+  /// Create a copy of Location
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -445,6 +453,8 @@ class _$LocationCopyWithImpl<$Res, $Val extends Location>
     });
   }
 
+  /// Create a copy of Location
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -457,6 +467,8 @@ class _$LocationCopyWithImpl<$Res, $Val extends Location>
     });
   }
 
+  /// Create a copy of Location
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodingCopyWith<$Res>? get operationalStatus {
@@ -469,6 +481,8 @@ class _$LocationCopyWithImpl<$Res, $Val extends Location>
     });
   }
 
+  /// Create a copy of Location
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AddressCopyWith<$Res>? get address {
@@ -481,6 +495,8 @@ class _$LocationCopyWithImpl<$Res, $Val extends Location>
     });
   }
 
+  /// Create a copy of Location
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get physicalType {
@@ -493,6 +509,8 @@ class _$LocationCopyWithImpl<$Res, $Val extends Location>
     });
   }
 
+  /// Create a copy of Location
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $LocationPositionCopyWith<$Res>? get position {
@@ -505,6 +523,8 @@ class _$LocationCopyWithImpl<$Res, $Val extends Location>
     });
   }
 
+  /// Create a copy of Location
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get managingOrganization {
@@ -517,6 +537,8 @@ class _$LocationCopyWithImpl<$Res, $Val extends Location>
     });
   }
 
+  /// Create a copy of Location
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get partOf {
@@ -602,6 +624,8 @@ class __$$LocationImplCopyWithImpl<$Res>
       _$LocationImpl _value, $Res Function(_$LocationImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Location
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1217,7 +1241,7 @@ class _$LocationImpl extends _Location {
             const DeepCollectionEquality().equals(other._endpoint, _endpoint));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1257,7 +1281,9 @@ class _$LocationImpl extends _Location {
         const DeepCollectionEquality().hash(_endpoint)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Location
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LocationImplCopyWith<_$LocationImpl> get copyWith =>
@@ -1318,39 +1344,38 @@ abstract class _Location extends Location {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.Location)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1358,15 +1383,15 @@ abstract class _Location extends Location {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1374,9 +1399,9 @@ abstract class _Location extends Location {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1391,125 +1416,129 @@ abstract class _Location extends Location {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] Unique code or number identifying the location to its users.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [status] The status property covers the general availability of the
   /// resource, not the current value which may be covered by the
   /// operationStatus, or by a schedule/slots if they are configured for the
   ///  location.
-  LocationStatus? get status;
   @override
+  LocationStatus? get status;
 
   /// [statusElement] Extensions for status
+  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
-  @override
 
   /// [operationalStatus] The operational status covers operation values most
   /// relevant to beds (but can also apply to rooms/units/chairs/etc. such as an
   /// isolation unit/dialysis chair). This typically covers concepts such as
   ///  contamination, housekeeping, and other activities like maintenance.
-  Coding? get operationalStatus;
   @override
+  Coding? get operationalStatus;
 
   /// [name] Name of the location as used by humans. Does not need to be
   ///  unique.
-  String? get name;
   @override
+  String? get name;
 
   /// [nameElement] Extensions for name
+  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
-  @override
 
   /// [alias] A list of alternate names that the location is known as, or was
   ///  known as, in the past.
-  List<String>? get alias;
   @override
+  List<String>? get alias;
 
   /// [aliasElement] Extensions for alias
+  @override
   @JsonKey(name: '_alias')
   List<PrimitiveElement>? get aliasElement;
-  @override
 
   /// [description] Description of the Location, which helps in finding or
   ///  referencing the place.
-  String? get description;
   @override
+  String? get description;
 
   /// [descriptionElement] Extensions for description
+  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
-  @override
 
   /// [mode] Indicates whether a resource instance represents a specific
   ///  location or a class of locations.
-  LocationMode? get mode;
   @override
+  LocationMode? get mode;
 
   /// [modeElement] Extensions for mode
+  @override
   @JsonKey(name: '_mode')
   PrimitiveElement? get modeElement;
-  @override
 
   /// [type] Indicates the type of function performed at the location.
-  List<CodeableConcept>? get type;
   @override
+  List<CodeableConcept>? get type;
 
   /// [telecom] The contact details of communication devices available at the
   /// location. This can include phone numbers, fax numbers, mobile numbers,
   ///  email addresses and web sites.
-  List<ContactPoint>? get telecom;
   @override
+  List<ContactPoint>? get telecom;
 
   /// [address] Physical location.
-  Address? get address;
   @override
+  Address? get address;
 
   /// [physicalType] Physical form of the location, e.g. building, room,
   ///  vehicle, road.
-  CodeableConcept? get physicalType;
   @override
+  CodeableConcept? get physicalType;
 
   /// [position] The absolute geographic location of the Location, expressed
   ///  using the WGS84 datum (This is the same co-ordinate system used in KML).
-  LocationPosition? get position;
   @override
+  LocationPosition? get position;
 
   /// [managingOrganization] The organization responsible for the provisioning
   ///  and upkeep of the location.
-  Reference? get managingOrganization;
   @override
+  Reference? get managingOrganization;
 
   /// [partOf] Another Location of which this Location is physically a part of.
-  Reference? get partOf;
   @override
+  Reference? get partOf;
 
   /// [hoursOfOperation] What days/times during a week is this location usually
   ///  open.
-  List<LocationHoursOfOperation>? get hoursOfOperation;
   @override
+  List<LocationHoursOfOperation>? get hoursOfOperation;
 
   /// [availabilityExceptions] A description of when the locations opening ours
   /// are different to normal, e.g. public holiday availability. Succinctly
   /// describing all possible exceptions to normal site availability as detailed
   ///  in the opening hours Times.
+  @override
   String? get availabilityExceptions;
   @override
   @JsonKey(name: '_availabilityExceptions')
   PrimitiveElement? get availabilityExceptionsElement;
-  @override
 
   /// [endpoint] Technical endpoints providing access to services operated for
   ///  the location.
-  List<Reference>? get endpoint;
   @override
-  @JsonKey(ignore: true)
+  List<Reference>? get endpoint;
+
+  /// Create a copy of Location
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LocationImplCopyWith<_$LocationImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1573,8 +1602,12 @@ mixin _$LocationPosition {
   @JsonKey(name: '_altitude')
   PrimitiveElement? get altitudeElement => throw _privateConstructorUsedError;
 
+  /// Serializes this LocationPosition to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LocationPosition
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LocationPositionCopyWith<LocationPosition> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1607,6 +1640,8 @@ class _$LocationPositionCopyWithImpl<$Res, $Val extends LocationPosition>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LocationPosition
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1689,6 +1724,8 @@ class __$$LocationPositionImplCopyWithImpl<$Res>
       $Res Function(_$LocationPositionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LocationPosition
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1889,7 +1926,7 @@ class _$LocationPositionImpl extends _LocationPosition {
                 other.altitudeElement == altitudeElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1903,7 +1940,9 @@ class _$LocationPositionImpl extends _LocationPosition {
       altitude,
       altitudeElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LocationPosition
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LocationPositionImplCopyWith<_$LocationPositionImpl> get copyWith =>
@@ -1935,12 +1974,10 @@ abstract class _LocationPosition extends LocationPosition {
   factory _LocationPosition.fromJson(Map<String, dynamic> json) =
       _$LocationPositionImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1948,9 +1985,9 @@ abstract class _LocationPosition extends LocationPosition {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -1965,39 +2002,43 @@ abstract class _LocationPosition extends LocationPosition {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [longitude] Longitude. The value domain and the interpretation are the
   ///  same as for the text of the longitude element in KML (see notes below).
-  FhirDecimal? get longitude;
   @override
+  FhirDecimal? get longitude;
 
   /// [longitudeElement] Extensions for longitude
+  @override
   @JsonKey(name: '_longitude')
   PrimitiveElement? get longitudeElement;
-  @override
 
   /// [latitude] Latitude. The value domain and the interpretation are the same
   ///  as for the text of the latitude element in KML (see notes below).
-  FhirDecimal? get latitude;
   @override
+  FhirDecimal? get latitude;
 
   /// [latitudeElement] Extensions for latitude
+  @override
   @JsonKey(name: '_latitude')
   PrimitiveElement? get latitudeElement;
-  @override
 
   /// [altitude] Altitude. The value domain and the interpretation are the same
   ///  as for the text of the altitude element in KML (see notes below).
-  FhirDecimal? get altitude;
   @override
+  FhirDecimal? get altitude;
 
   /// [altitudeElement] Extensions for altitude
+  @override
   @JsonKey(name: '_altitude')
   PrimitiveElement? get altitudeElement;
+
+  /// Create a copy of LocationPosition
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LocationPositionImplCopyWith<_$LocationPositionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2070,8 +2111,12 @@ mixin _$LocationHoursOfOperation {
   PrimitiveElement? get closingTimeElement =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this LocationHoursOfOperation to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LocationHoursOfOperation
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LocationHoursOfOperationCopyWith<LocationHoursOfOperation> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2107,6 +2152,8 @@ class _$LocationHoursOfOperationCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LocationHoursOfOperation
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2204,6 +2251,8 @@ class __$$LocationHoursOfOperationImplCopyWithImpl<$Res>
       $Res Function(_$LocationHoursOfOperationImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LocationHoursOfOperation
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2449,7 +2498,7 @@ class _$LocationHoursOfOperationImpl extends _LocationHoursOfOperation {
                 other.closingTimeElement == closingTimeElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2465,7 +2514,9 @@ class _$LocationHoursOfOperationImpl extends _LocationHoursOfOperation {
       closingTime,
       closingTimeElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LocationHoursOfOperation
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LocationHoursOfOperationImplCopyWith<_$LocationHoursOfOperationImpl>
@@ -2501,12 +2552,10 @@ abstract class _LocationHoursOfOperation extends LocationHoursOfOperation {
   factory _LocationHoursOfOperation.fromJson(Map<String, dynamic> json) =
       _$LocationHoursOfOperationImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2514,9 +2563,9 @@ abstract class _LocationHoursOfOperation extends LocationHoursOfOperation {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2531,46 +2580,50 @@ abstract class _LocationHoursOfOperation extends LocationHoursOfOperation {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [daysOfWeek] Indicates which days of the week are available between the
   ///  start and end Times.
-  List<FhirCode>? get daysOfWeek;
   @override
+  List<FhirCode>? get daysOfWeek;
 
   /// [daysOfWeekElement] Extensions for daysOfWeek
+  @override
   @JsonKey(name: '_daysOfWeek')
   List<PrimitiveElement>? get daysOfWeekElement;
-  @override
 
   /// [allDay] The Location is open all day.
-  FhirBoolean? get allDay;
   @override
+  FhirBoolean? get allDay;
 
   /// [allDayElement] Extensions for allDay
+  @override
   @JsonKey(name: '_allDay')
   PrimitiveElement? get allDayElement;
-  @override
 
   /// [openingTime] Time that the Location opens.
-  FhirTime? get openingTime;
   @override
+  FhirTime? get openingTime;
 
   /// [openingTimeElement] Extensions for openingTime
+  @override
   @JsonKey(name: '_openingTime')
   PrimitiveElement? get openingTimeElement;
-  @override
 
   /// [closingTime] Time that the Location closes.
-  FhirTime? get closingTime;
   @override
+  FhirTime? get closingTime;
 
   /// [closingTimeElement] Extensions for closingTime
+  @override
   @JsonKey(name: '_closingTime')
   PrimitiveElement? get closingTimeElement;
+
+  /// Create a copy of LocationHoursOfOperation
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LocationHoursOfOperationImplCopyWith<_$LocationHoursOfOperationImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -311,7 +311,7 @@ class InsurancePlan with _$InsurancePlan implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [InsurancePlanContact] Details of a Health Insurance product/plan

@@ -490,7 +490,7 @@ class Organization with _$Organization implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [OrganizationContact] A formally or informally recognized grouping of

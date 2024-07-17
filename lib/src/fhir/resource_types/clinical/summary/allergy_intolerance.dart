@@ -261,7 +261,7 @@ class AllergyIntolerance with _$AllergyIntolerance implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [AllergyIntoleranceReaction] Risk of harmful or undesirable,

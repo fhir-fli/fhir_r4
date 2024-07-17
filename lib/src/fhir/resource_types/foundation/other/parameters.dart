@@ -172,7 +172,7 @@ class Parameters with _$Parameters implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [ParametersParameter] This resource is a non-persisted resource used to

@@ -352,7 +352,7 @@ class RequestGroup with _$RequestGroup implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [RequestGroupAction] A group of related requests that can be used to

@@ -150,8 +150,12 @@ mixin _$MessageHeader {
   /// [definition] Permanent link to the MessageDefinition for this message.
   FhirCanonical? get definition => throw _privateConstructorUsedError;
 
+  /// Serializes this MessageHeader to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of MessageHeader
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MessageHeaderCopyWith<MessageHeader> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -211,6 +215,8 @@ class _$MessageHeaderCopyWithImpl<$Res, $Val extends MessageHeader>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MessageHeader
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -339,6 +345,8 @@ class _$MessageHeaderCopyWithImpl<$Res, $Val extends MessageHeader>
     ) as $Val);
   }
 
+  /// Create a copy of MessageHeader
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -351,6 +359,8 @@ class _$MessageHeaderCopyWithImpl<$Res, $Val extends MessageHeader>
     });
   }
 
+  /// Create a copy of MessageHeader
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -363,6 +373,8 @@ class _$MessageHeaderCopyWithImpl<$Res, $Val extends MessageHeader>
     });
   }
 
+  /// Create a copy of MessageHeader
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodingCopyWith<$Res>? get eventCoding {
@@ -375,6 +387,8 @@ class _$MessageHeaderCopyWithImpl<$Res, $Val extends MessageHeader>
     });
   }
 
+  /// Create a copy of MessageHeader
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get sender {
@@ -387,6 +401,8 @@ class _$MessageHeaderCopyWithImpl<$Res, $Val extends MessageHeader>
     });
   }
 
+  /// Create a copy of MessageHeader
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get enterer {
@@ -399,6 +415,8 @@ class _$MessageHeaderCopyWithImpl<$Res, $Val extends MessageHeader>
     });
   }
 
+  /// Create a copy of MessageHeader
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get author {
@@ -411,6 +429,8 @@ class _$MessageHeaderCopyWithImpl<$Res, $Val extends MessageHeader>
     });
   }
 
+  /// Create a copy of MessageHeader
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MessageHeaderSourceCopyWith<$Res> get source {
@@ -419,6 +439,8 @@ class _$MessageHeaderCopyWithImpl<$Res, $Val extends MessageHeader>
     });
   }
 
+  /// Create a copy of MessageHeader
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get responsible {
@@ -431,6 +453,8 @@ class _$MessageHeaderCopyWithImpl<$Res, $Val extends MessageHeader>
     });
   }
 
+  /// Create a copy of MessageHeader
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get reason {
@@ -443,6 +467,8 @@ class _$MessageHeaderCopyWithImpl<$Res, $Val extends MessageHeader>
     });
   }
 
+  /// Create a copy of MessageHeader
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MessageHeaderResponseCopyWith<$Res>? get response {
@@ -521,6 +547,8 @@ class __$$MessageHeaderImplCopyWithImpl<$Res>
       _$MessageHeaderImpl _value, $Res Function(_$MessageHeaderImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MessageHeader
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -959,7 +987,7 @@ class _$MessageHeaderImpl extends _MessageHeader {
                 other.definition == definition));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -989,7 +1017,9 @@ class _$MessageHeaderImpl extends _MessageHeader {
         definition
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MessageHeader
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MessageHeaderImplCopyWith<_$MessageHeaderImpl> get copyWith =>
@@ -1039,39 +1069,38 @@ abstract class _MessageHeader extends MessageHeader {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.MessageHeader)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1079,15 +1108,15 @@ abstract class _MessageHeader extends MessageHeader {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1095,9 +1124,9 @@ abstract class _MessageHeader extends MessageHeader {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1112,82 +1141,86 @@ abstract class _MessageHeader extends MessageHeader {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [eventCoding] Code that identifies the event this message represents and
   /// connects it with its definition. Events defined as part of the FHIR
   /// specification have the system value
   /// "http://terminology.hl7.org/CodeSystem/message-events".  Alternatively uri
   ///  to the EventDefinition.
-  Coding? get eventCoding;
   @override
+  Coding? get eventCoding;
 
   /// [eventUri] Code that identifies the event this message represents and
   /// connects it with its definition. Events defined as part of the FHIR
   /// specification have the system value
   /// "http://terminology.hl7.org/CodeSystem/message-events".  Alternatively uri
   ///  to the EventDefinition.
-  FhirUri? get eventUri;
   @override
+  FhirUri? get eventUri;
 
   /// [eventUriElement] Extensions for eventUri
+  @override
   @JsonKey(name: '_eventUri')
   PrimitiveElement? get eventUriElement;
-  @override
 
   /// [destination] The destination application which the message is intended
   ///  for.
-  List<MessageHeaderDestination>? get destination;
   @override
+  List<MessageHeaderDestination>? get destination;
 
   /// [sender] Identifies the sending system to allow the use of a trust
   ///  relationship.
-  Reference? get sender;
   @override
+  Reference? get sender;
 
   /// [enterer] The person or device that performed the data entry leading to
   /// this message. When there is more than one candidate, pick the most
   ///  proximal to the message. Can provide other enterers in extensions.
-  Reference? get enterer;
   @override
+  Reference? get enterer;
 
   /// [author] The logical author of the message - the person or device that
   /// decided the described event should happen. When there is more than one
   /// candidate, pick the most proximal to the MessageHeader. Can provide other
   ///  authors in extensions.
-  Reference? get author;
   @override
+  Reference? get author;
 
   /// [source] The source application from which this message originated.
-  MessageHeaderSource get source;
   @override
+  MessageHeaderSource get source;
 
   /// [responsible] The person or organization that accepts overall
   /// responsibility for the contents of the message. The implication is that
   ///  the message event happened under the policies of the responsible party.
-  Reference? get responsible;
   @override
+  Reference? get responsible;
 
   /// [reason] Coded indication of the cause for the event - indicates  a
   ///  reason for the occurrence of the event that is a focus of this message.
-  CodeableConcept? get reason;
   @override
+  CodeableConcept? get reason;
 
   /// [response] Information about the message that this message is a response
   ///  to.  Only present if this message is a response.
-  MessageHeaderResponse? get response;
   @override
+  MessageHeaderResponse? get response;
 
   /// [focus] The actual data of the message - a reference to the root/focus
   ///  class of the event.
-  List<Reference>? get focus;
   @override
+  List<Reference>? get focus;
 
   /// [definition] Permanent link to the MessageDefinition for this message.
-  FhirCanonical? get definition;
   @override
-  @JsonKey(ignore: true)
+  FhirCanonical? get definition;
+
+  /// Create a copy of MessageHeader
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MessageHeaderImplCopyWith<_$MessageHeaderImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1251,8 +1284,12 @@ mixin _$MessageHeaderDestination {
   ///  isn't sufficient.
   Reference? get receiver => throw _privateConstructorUsedError;
 
+  /// Serializes this MessageHeaderDestination to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of MessageHeaderDestination
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MessageHeaderDestinationCopyWith<MessageHeaderDestination> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1289,6 +1326,8 @@ class _$MessageHeaderDestinationCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MessageHeaderDestination
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1342,6 +1381,8 @@ class _$MessageHeaderDestinationCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of MessageHeaderDestination
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get target {
@@ -1354,6 +1395,8 @@ class _$MessageHeaderDestinationCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of MessageHeaderDestination
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get receiver {
@@ -1403,6 +1446,8 @@ class __$$MessageHeaderDestinationImplCopyWithImpl<$Res>
       $Res Function(_$MessageHeaderDestinationImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MessageHeaderDestination
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1600,7 +1645,7 @@ class _$MessageHeaderDestinationImpl extends _MessageHeaderDestination {
                 other.receiver == receiver));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1614,7 +1659,9 @@ class _$MessageHeaderDestinationImpl extends _MessageHeaderDestination {
       endpointElement,
       receiver);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MessageHeaderDestination
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MessageHeaderDestinationImplCopyWith<_$MessageHeaderDestinationImpl>
@@ -1645,12 +1692,10 @@ abstract class _MessageHeaderDestination extends MessageHeaderDestination {
   factory _MessageHeaderDestination.fromJson(Map<String, dynamic> json) =
       _$MessageHeaderDestinationImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1658,9 +1703,9 @@ abstract class _MessageHeaderDestination extends MessageHeaderDestination {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -1675,38 +1720,42 @@ abstract class _MessageHeaderDestination extends MessageHeaderDestination {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [name] Human-readable name for the target system.
-  String? get name;
   @override
+  String? get name;
 
   /// [nameElement] Extensions for name
+  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
-  @override
 
   /// [target] Identifies the target end system in situations where the initial
   ///  message transmission is to an intermediary system.
-  Reference? get target;
   @override
+  Reference? get target;
 
   /// [endpoint] Indicates where the message should be routed to.
-  FhirUrl? get endpoint;
   @override
+  FhirUrl? get endpoint;
 
   /// [endpointElement] Extensions for endpoint
+  @override
   @JsonKey(name: '_endpoint')
   PrimitiveElement? get endpointElement;
-  @override
 
   /// [receiver] Allows data conveyed by a message to be addressed to a
   /// particular person or department when routing to a specific application
   ///  isn't sufficient.
-  Reference? get receiver;
   @override
-  @JsonKey(ignore: true)
+  Reference? get receiver;
+
+  /// Create a copy of MessageHeaderDestination
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MessageHeaderDestinationImplCopyWith<_$MessageHeaderDestinationImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1780,8 +1829,12 @@ mixin _$MessageHeaderSource {
   @JsonKey(name: '_endpoint')
   PrimitiveElement? get endpointElement => throw _privateConstructorUsedError;
 
+  /// Serializes this MessageHeaderSource to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of MessageHeaderSource
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MessageHeaderSourceCopyWith<MessageHeaderSource> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1819,6 +1872,8 @@ class _$MessageHeaderSourceCopyWithImpl<$Res, $Val extends MessageHeaderSource>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MessageHeaderSource
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1887,6 +1942,8 @@ class _$MessageHeaderSourceCopyWithImpl<$Res, $Val extends MessageHeaderSource>
     ) as $Val);
   }
 
+  /// Create a copy of MessageHeaderSource
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ContactPointCopyWith<$Res>? get contact {
@@ -1934,6 +1991,8 @@ class __$$MessageHeaderSourceImplCopyWithImpl<$Res>
       $Res Function(_$MessageHeaderSourceImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MessageHeaderSource
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2168,7 +2227,7 @@ class _$MessageHeaderSourceImpl extends _MessageHeaderSource {
                 other.endpointElement == endpointElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2185,7 +2244,9 @@ class _$MessageHeaderSourceImpl extends _MessageHeaderSource {
       endpoint,
       endpointElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MessageHeaderSource
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MessageHeaderSourceImplCopyWith<_$MessageHeaderSourceImpl> get copyWith =>
@@ -2220,12 +2281,10 @@ abstract class _MessageHeaderSource extends MessageHeaderSource {
   factory _MessageHeaderSource.fromJson(Map<String, dynamic> json) =
       _$MessageHeaderSourceImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2233,9 +2292,9 @@ abstract class _MessageHeaderSource extends MessageHeaderSource {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2250,52 +2309,56 @@ abstract class _MessageHeaderSource extends MessageHeaderSource {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [name] Human-readable name for the source system.
-  String? get name;
   @override
+  String? get name;
 
   /// [nameElement] Extensions for name
+  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
-  @override
 
   /// [software] May include configuration or other information useful in
   ///  debugging.
-  String? get software;
   @override
+  String? get software;
 
   /// [softwareElement] Extensions for software
+  @override
   @JsonKey(name: '_software')
   PrimitiveElement? get softwareElement;
-  @override
 
   /// [version] Can convey versions of multiple systems in situations where a
   ///  message passes through multiple hands.
-  String? get version;
   @override
+  String? get version;
 
   /// [versionElement] Extensions for version
+  @override
   @JsonKey(name: '_version')
   PrimitiveElement? get versionElement;
-  @override
 
   /// [contact] An e-mail, phone, website or other contact point to use to
   ///  resolve issues with message communications.
-  ContactPoint? get contact;
   @override
+  ContactPoint? get contact;
 
   /// [endpoint] Identifies the routing target to send acknowledgements to.
-  FhirUrl? get endpoint;
   @override
+  FhirUrl? get endpoint;
 
   /// [endpointElement] Extensions for endpoint
+  @override
   @JsonKey(name: '_endpoint')
   PrimitiveElement? get endpointElement;
+
+  /// Create a copy of MessageHeaderSource
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MessageHeaderSourceImplCopyWith<_$MessageHeaderSourceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2355,8 +2418,12 @@ mixin _$MessageHeaderResponse {
   /// [details] Full details of any issues found in the message.
   Reference? get details => throw _privateConstructorUsedError;
 
+  /// Serializes this MessageHeaderResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of MessageHeaderResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MessageHeaderResponseCopyWith<MessageHeaderResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2391,6 +2458,8 @@ class _$MessageHeaderResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MessageHeaderResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2439,6 +2508,8 @@ class _$MessageHeaderResponseCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of MessageHeaderResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get details {
@@ -2484,6 +2555,8 @@ class __$$MessageHeaderResponseImplCopyWithImpl<$Res>
       $Res Function(_$MessageHeaderResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MessageHeaderResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2668,7 +2741,7 @@ class _$MessageHeaderResponseImpl extends _MessageHeaderResponse {
             (identical(other.details, details) || other.details == details));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2681,7 +2754,9 @@ class _$MessageHeaderResponseImpl extends _MessageHeaderResponse {
       codeElement,
       details);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MessageHeaderResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MessageHeaderResponseImplCopyWith<_$MessageHeaderResponseImpl>
@@ -2711,12 +2786,10 @@ abstract class _MessageHeaderResponse extends MessageHeaderResponse {
   factory _MessageHeaderResponse.fromJson(Map<String, dynamic> json) =
       _$MessageHeaderResponseImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2724,9 +2797,9 @@ abstract class _MessageHeaderResponse extends MessageHeaderResponse {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2741,33 +2814,37 @@ abstract class _MessageHeaderResponse extends MessageHeaderResponse {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] The MessageHeader.id of the message to which this message is
   ///  a response.
-  FhirId? get identifier;
   @override
+  FhirId? get identifier;
 
   /// [identifierElement] Extensions for identifier
+  @override
   @JsonKey(name: '_identifier')
   PrimitiveElement? get identifierElement;
-  @override
 
   /// [code] Code that identifies the type of response to the message - whether
   ///  it was successful or not, and whether it should be resent or not.
-  FhirCode? get code;
   @override
+  FhirCode? get code;
 
   /// [codeElement] Extensions for code
+  @override
   @JsonKey(name: '_code')
   PrimitiveElement? get codeElement;
-  @override
 
   /// [details] Full details of any issues found in the message.
-  Reference? get details;
   @override
-  @JsonKey(ignore: true)
+  Reference? get details;
+
+  /// Create a copy of MessageHeaderResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MessageHeaderResponseImplCopyWith<_$MessageHeaderResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

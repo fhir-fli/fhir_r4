@@ -477,7 +477,7 @@ class MessageDefinition with _$MessageDefinition implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [MessageDefinitionFocus] Defines the characteristics of a message that

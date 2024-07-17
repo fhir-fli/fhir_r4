@@ -90,8 +90,12 @@ mixin _$HumanName {
   ///  named person.
   Period? get period => throw _privateConstructorUsedError;
 
+  /// Serializes this HumanName to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of HumanName
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $HumanNameCopyWith<HumanName> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -131,6 +135,8 @@ class _$HumanNameCopyWithImpl<$Res, $Val extends HumanName>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of HumanName
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -214,6 +220,8 @@ class _$HumanNameCopyWithImpl<$Res, $Val extends HumanName>
     ) as $Val);
   }
 
+  /// Create a copy of HumanName
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get period {
@@ -264,6 +272,8 @@ class __$$HumanNameImplCopyWithImpl<$Res>
       _$HumanNameImpl _value, $Res Function(_$HumanNameImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of HumanName
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -567,7 +577,7 @@ class _$HumanNameImpl extends _HumanName {
             (identical(other.period, period) || other.period == period));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -587,7 +597,9 @@ class _$HumanNameImpl extends _HumanName {
       const DeepCollectionEquality().hash(_suffixElement),
       period);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of HumanName
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$HumanNameImplCopyWith<_$HumanNameImpl> get copyWith =>
@@ -623,12 +635,10 @@ abstract class _HumanName extends HumanName {
   factory _HumanName.fromJson(Map<String, dynamic> json) =
       _$HumanNameImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -636,77 +646,81 @@ abstract class _HumanName extends HumanName {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [use] Identifies the purpose for this name.
+  @override
   @JsonKey(unknownEnumValue: HumanNameUse.unknown)
   HumanNameUse? get use;
-  @override
 
   /// [useElement] Extensions for use
+  @override
   @JsonKey(name: '_use')
   PrimitiveElement? get useElement;
-  @override
 
   /// [text] Specifies the entire name as it should be displayed e.g. on an
   /// application UI. This may be provided instead of or as well as the specific
   ///  parts.
-  String? get text;
   @override
+  String? get text;
 
   /// [textElement] Extensions for text
+  @override
   @JsonKey(name: '_text')
   PrimitiveElement? get textElement;
-  @override
 
   /// [family] The part of a name that links to the genealogy. In some cultures
   ///  (e.g. Eritrea) the family name of a son is the first name of his father.
-  String? get family;
   @override
+  String? get family;
 
   /// [familyElement] Extensions for family
+  @override
   @JsonKey(name: '_family')
   PrimitiveElement? get familyElement;
-  @override
 
   /// [given] Given name.
-  List<String>? get given;
   @override
+  List<String>? get given;
 
   /// [givenElement] Extensions for given
+  @override
   @JsonKey(name: '_given')
   List<PrimitiveElement>? get givenElement;
-  @override
 
   /// [prefix] Part of the name that is acquired as a title due to academic,
   /// legal, employment or nobility status, etc. and that appears at the start
   ///  of the name.
-  List<String>? get prefix;
   @override
+  List<String>? get prefix;
 
   /// [prefixElement] Extensions for prefix
+  @override
   @JsonKey(name: '_prefix')
   List<PrimitiveElement>? get prefixElement;
-  @override
 
   /// [suffix] Part of the name that is acquired as a title due to academic,
   /// legal, employment or nobility status, etc. and that appears at the end of
   ///  the name.
-  List<String>? get suffix;
   @override
+  List<String>? get suffix;
 
   /// [suffixElement] Extensions for suffix
+  @override
   @JsonKey(name: '_suffix')
   List<PrimitiveElement>? get suffixElement;
-  @override
 
   /// [period] Indicates the period of time when this name was valid for the
   ///  named person.
-  Period? get period;
   @override
-  @JsonKey(ignore: true)
+  Period? get period;
+
+  /// Create a copy of HumanName
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HumanNameImplCopyWith<_$HumanNameImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -217,7 +217,7 @@ class DetectedIssue with _$DetectedIssue implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [DetectedIssueEvidence] Indicates an actual or potential clinical issue

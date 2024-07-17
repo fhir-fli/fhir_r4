@@ -300,7 +300,7 @@ class QuestionnaireResponse
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [QuestionnaireResponseItem] A structured set of questions and their

@@ -328,7 +328,7 @@ class SupplyRequest with _$SupplyRequest implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [SupplyRequestParameter] A record of a request for a medication,

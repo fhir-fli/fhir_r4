@@ -423,7 +423,7 @@ class DeviceRequest with _$DeviceRequest implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [DeviceRequestParameter] Represents a request for a patient to employ a

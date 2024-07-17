@@ -379,7 +379,7 @@ class DiagnosticReport with _$DiagnosticReport implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [DiagnosticReportMedia] The findings and interpretation of diagnostic

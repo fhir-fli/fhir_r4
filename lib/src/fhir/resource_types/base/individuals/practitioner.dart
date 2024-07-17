@@ -283,7 +283,7 @@ class Practitioner with _$Practitioner implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 
   Practitioner updateHumanNameUse(HumanNameUse use, [int index = 0]) {
     if (name == null || name!.isEmpty) {

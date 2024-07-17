@@ -129,8 +129,12 @@ mixin _$Bundle {
   /// [signature] Digital Signature - base64 encoded. XML-DSig or a JWT.
   Signature? get signature => throw _privateConstructorUsedError;
 
+  /// Serializes this Bundle to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Bundle
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BundleCopyWith<Bundle> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -179,6 +183,8 @@ class _$BundleCopyWithImpl<$Res, $Val extends Bundle>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Bundle
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -292,6 +298,8 @@ class _$BundleCopyWithImpl<$Res, $Val extends Bundle>
     ) as $Val);
   }
 
+  /// Create a copy of Bundle
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -304,6 +312,8 @@ class _$BundleCopyWithImpl<$Res, $Val extends Bundle>
     });
   }
 
+  /// Create a copy of Bundle
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -316,6 +326,8 @@ class _$BundleCopyWithImpl<$Res, $Val extends Bundle>
     });
   }
 
+  /// Create a copy of Bundle
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $IdentifierCopyWith<$Res>? get identifier {
@@ -328,6 +340,8 @@ class _$BundleCopyWithImpl<$Res, $Val extends Bundle>
     });
   }
 
+  /// Create a copy of Bundle
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SignatureCopyWith<$Res>? get signature {
@@ -390,6 +404,8 @@ class __$$BundleImplCopyWithImpl<$Res>
       _$BundleImpl _value, $Res Function(_$BundleImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Bundle
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -782,7 +798,7 @@ class _$BundleImpl extends _Bundle {
                 other.signature == signature));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -809,7 +825,9 @@ class _$BundleImpl extends _Bundle {
         signature
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Bundle
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BundleImplCopyWith<_$BundleImpl> get copyWith =>
@@ -855,39 +873,38 @@ abstract class _Bundle extends Bundle {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.Bundle)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -895,15 +912,15 @@ abstract class _Bundle extends Bundle {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -911,9 +928,9 @@ abstract class _Bundle extends Bundle {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -928,59 +945,63 @@ abstract class _Bundle extends Bundle {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] A persistent identifier for the bundle that won't change as
   ///  a bundle is copied from server to server.
-  Identifier? get identifier;
   @override
+  Identifier? get identifier;
 
   /// [type] Indicates the purpose of this bundle - how it is intended to be
   ///  used.
-  FhirCode? get type;
   @override
+  FhirCode? get type;
 
   /// [typeElement] Extensions for type
+  @override
   @JsonKey(name: '_type')
   PrimitiveElement? get typeElement;
-  @override
 
   /// [timestamp] The date/time that the bundle was assembled - i.e. when the
   ///  resources were placed in the bundle.
-  FhirInstant? get timestamp;
   @override
+  FhirInstant? get timestamp;
 
   /// [timestampElement] Extensions for timestamp
+  @override
   @JsonKey(name: '_timestamp')
   PrimitiveElement? get timestampElement;
-  @override
 
   /// [total] If a set of search matches, this is the total number of entries
   /// of type 'match' across all pages in the search.  It does not include
   /// search.mode = 'include' or 'outcome' entries and it does not provide a
   ///  count of the number of entries in the Bundle.
-  FhirUnsignedInt? get total;
   @override
+  FhirUnsignedInt? get total;
 
   /// [totalElement] Extensions for total
+  @override
   @JsonKey(name: '_total')
   PrimitiveElement? get totalElement;
-  @override
 
   /// [link] A series of links that provide context to this bundle.
-  List<BundleLink>? get link;
   @override
+  List<BundleLink>? get link;
 
   /// [entry] An entry in a bundle resource - will either contain a resource or
   ///  information about a resource (transactions and history only).
-  List<BundleEntry>? get entry;
   @override
+  List<BundleEntry>? get entry;
 
   /// [signature] Digital Signature - base64 encoded. XML-DSig or a JWT.
-  Signature? get signature;
   @override
-  @JsonKey(ignore: true)
+  Signature? get signature;
+
+  /// Create a copy of Bundle
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BundleImplCopyWith<_$BundleImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1035,8 +1056,12 @@ mixin _$BundleLink {
   @JsonKey(name: '_url')
   PrimitiveElement? get urlElement => throw _privateConstructorUsedError;
 
+  /// Serializes this BundleLink to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BundleLink
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BundleLinkCopyWith<BundleLink> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1067,6 +1092,8 @@ class _$BundleLinkCopyWithImpl<$Res, $Val extends BundleLink>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BundleLink
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1137,6 +1164,8 @@ class __$$BundleLinkImplCopyWithImpl<$Res>
       _$BundleLinkImpl _value, $Res Function(_$BundleLinkImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BundleLink
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1309,7 +1338,7 @@ class _$BundleLinkImpl extends _BundleLink {
                 other.urlElement == urlElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1321,7 +1350,9 @@ class _$BundleLinkImpl extends _BundleLink {
       url,
       urlElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BundleLink
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BundleLinkImplCopyWith<_$BundleLinkImpl> get copyWith =>
@@ -1350,12 +1381,10 @@ abstract class _BundleLink extends BundleLink {
   factory _BundleLink.fromJson(Map<String, dynamic> json) =
       _$BundleLinkImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1363,9 +1392,9 @@ abstract class _BundleLink extends BundleLink {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -1380,28 +1409,32 @@ abstract class _BundleLink extends BundleLink {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [relation] A name which details the functional use for this link - see
   /// (http://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1).
-  String? get relation;
   @override
+  String? get relation;
 
   /// [relationElement] Extensions for relation
+  @override
   @JsonKey(name: '_relation')
   PrimitiveElement? get relationElement;
-  @override
 
   /// [url] The reference details for the link.
-  FhirUri? get url;
   @override
+  FhirUri? get url;
 
   /// [urlElement] Extensions for url
+  @override
   @JsonKey(name: '_url')
   PrimitiveElement? get urlElement;
+
+  /// Create a copy of BundleLink
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BundleLinkImplCopyWith<_$BundleLinkImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1476,8 +1509,12 @@ mixin _$BundleEntry {
   ///  results of an operation where when returning history.
   BundleResponse? get response => throw _privateConstructorUsedError;
 
+  /// Serializes this BundleEntry to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BundleEntry
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BundleEntryCopyWith<BundleEntry> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1515,6 +1552,8 @@ class _$BundleEntryCopyWithImpl<$Res, $Val extends BundleEntry>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BundleEntry
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1573,6 +1612,8 @@ class _$BundleEntryCopyWithImpl<$Res, $Val extends BundleEntry>
     ) as $Val);
   }
 
+  /// Create a copy of BundleEntry
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $BundleSearchCopyWith<$Res>? get search {
@@ -1585,6 +1626,8 @@ class _$BundleEntryCopyWithImpl<$Res, $Val extends BundleEntry>
     });
   }
 
+  /// Create a copy of BundleEntry
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $BundleRequestCopyWith<$Res>? get request {
@@ -1597,6 +1640,8 @@ class _$BundleEntryCopyWithImpl<$Res, $Val extends BundleEntry>
     });
   }
 
+  /// Create a copy of BundleEntry
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $BundleResponseCopyWith<$Res>? get response {
@@ -1646,6 +1691,8 @@ class __$$BundleEntryImplCopyWithImpl<$Res>
       _$BundleEntryImpl _value, $Res Function(_$BundleEntryImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BundleEntry
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1872,7 +1919,7 @@ class _$BundleEntryImpl extends _BundleEntry {
                 other.response == response));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1887,7 +1934,9 @@ class _$BundleEntryImpl extends _BundleEntry {
       request,
       response);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BundleEntry
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BundleEntryImplCopyWith<_$BundleEntryImpl> get copyWith =>
@@ -1918,12 +1967,10 @@ abstract class _BundleEntry extends BundleEntry {
   factory _BundleEntry.fromJson(Map<String, dynamic> json) =
       _$BundleEntryImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1931,9 +1978,9 @@ abstract class _BundleEntry extends BundleEntry {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -1948,12 +1995,12 @@ abstract class _BundleEntry extends BundleEntry {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [link] A series of links that provide context to this entry.
-  List<BundleLink>? get link;
   @override
+  List<BundleLink>? get link;
 
   /// [fullUrl] The Absolute URL for the resource.  The fullUrl SHALL NOT
   /// disagree with the id in the resource - i.e. if the fullUrl is not a
@@ -1963,36 +2010,40 @@ abstract class _BundleEntry extends BundleEntry {
   /// * fullUrl can be empty on a POST (although it does not need to when
   ///  specifying a temporary id for reference in the bundle)
   /// * Results from operations might involve resources that are not identified.
-  FhirUri? get fullUrl;
   @override
+  FhirUri? get fullUrl;
 
   /// [fullUrlElement] Extensions for fullUrl
+  @override
   @JsonKey(name: '_fullUrl')
   PrimitiveElement? get fullUrlElement;
-  @override
 
   /// [resource] The Resource for the entry. The purpose/meaning of the
   ///  resource is determined by the Bundle.type.
-  Resource? get resource;
   @override
+  Resource? get resource;
 
   /// [search] Information about the search process that lead to the creation
   ///  of this entry.
-  BundleSearch? get search;
   @override
+  BundleSearch? get search;
 
   /// [request] Additional information about how this entry should be processed
   /// as part of a transaction or batch.  For history, it shows how the entry
   ///  was processed to create the version contained in the entry.
-  BundleRequest? get request;
   @override
+  BundleRequest? get request;
 
   /// [response] Indicates the results of processing the corresponding
   /// 'request' entry in the batch or transaction being responded to or what the
   ///  results of an operation where when returning history.
-  BundleResponse? get response;
   @override
-  @JsonKey(ignore: true)
+  BundleResponse? get response;
+
+  /// Create a copy of BundleEntry
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BundleEntryImplCopyWith<_$BundleEntryImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2048,8 +2099,12 @@ mixin _$BundleSearch {
   @JsonKey(name: '_score')
   PrimitiveElement? get scoreElement => throw _privateConstructorUsedError;
 
+  /// Serializes this BundleSearch to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BundleSearch
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BundleSearchCopyWith<BundleSearch> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2080,6 +2135,8 @@ class _$BundleSearchCopyWithImpl<$Res, $Val extends BundleSearch>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BundleSearch
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2150,6 +2207,8 @@ class __$$BundleSearchImplCopyWithImpl<$Res>
       _$BundleSearchImpl _value, $Res Function(_$BundleSearchImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BundleSearch
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2322,7 +2381,7 @@ class _$BundleSearchImpl extends _BundleSearch {
                 other.scoreElement == scoreElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2334,7 +2393,9 @@ class _$BundleSearchImpl extends _BundleSearch {
       score,
       scoreElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BundleSearch
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BundleSearchImplCopyWith<_$BundleSearchImpl> get copyWith =>
@@ -2363,12 +2424,10 @@ abstract class _BundleSearch extends BundleSearch {
   factory _BundleSearch.fromJson(Map<String, dynamic> json) =
       _$BundleSearchImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2376,9 +2435,9 @@ abstract class _BundleSearch extends BundleSearch {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2393,29 +2452,33 @@ abstract class _BundleSearch extends BundleSearch {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [mode] Why this entry is in the result set - whether it's included as a
   /// match or because of an _include requirement, or to convey information or
   ///  warning information about the search process.
-  FhirCode? get mode;
   @override
+  FhirCode? get mode;
 
   /// [modeElement] Extensions for mode
+  @override
   @JsonKey(name: '_mode')
   PrimitiveElement? get modeElement;
-  @override
 
   /// [score] When searching, the server's search ranking score for the entry.
-  FhirDecimal? get score;
   @override
+  FhirDecimal? get score;
 
   /// [scoreElement] Extensions for score
+  @override
   @JsonKey(name: '_score')
   PrimitiveElement? get scoreElement;
+
+  /// Create a copy of BundleSearch
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BundleSearchImplCopyWith<_$BundleSearchImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2512,8 +2575,12 @@ mixin _$BundleRequest {
   PrimitiveElement? get ifNoneExistElement =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this BundleRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BundleRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BundleRequestCopyWith<BundleRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2553,6 +2620,8 @@ class _$BundleRequestCopyWithImpl<$Res, $Val extends BundleRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BundleRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2672,6 +2741,8 @@ class __$$BundleRequestImplCopyWithImpl<$Res>
       _$BundleRequestImpl _value, $Res Function(_$BundleRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BundleRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2953,7 +3024,7 @@ class _$BundleRequestImpl extends _BundleRequest {
                 other.ifNoneExistElement == ifNoneExistElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2973,7 +3044,9 @@ class _$BundleRequestImpl extends _BundleRequest {
       ifNoneExist,
       ifNoneExistElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BundleRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BundleRequestImplCopyWith<_$BundleRequestImpl> get copyWith =>
@@ -3011,12 +3084,10 @@ abstract class _BundleRequest extends BundleRequest {
   factory _BundleRequest.fromJson(Map<String, dynamic> json) =
       _$BundleRequestImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3024,9 +3095,9 @@ abstract class _BundleRequest extends BundleRequest {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3041,75 +3112,79 @@ abstract class _BundleRequest extends BundleRequest {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [method] In a transaction or batch, this is the HTTP action to be
   /// executed for this entry. In a history bundle, this indicates the HTTP
   ///  action that occurred.
-  FhirCode? get method;
   @override
+  FhirCode? get method;
 
   /// [methodElement] Extensions for method
+  @override
   @JsonKey(name: '_method')
   PrimitiveElement? get methodElement;
-  @override
 
   /// [url] The URL for this entry, relative to the root (the address to which
   ///  the request is posted).
-  FhirUri? get url;
   @override
+  FhirUri? get url;
 
   /// [urlElement] Extensions for url
+  @override
   @JsonKey(name: '_url')
   PrimitiveElement? get urlElement;
-  @override
 
   /// [ifNoneMatch] If the ETag values match, return a 304 Not Modified status.
   ///  See the API documentation for ["Conditional Read"](http.html#cread).
-  String? get ifNoneMatch;
   @override
+  String? get ifNoneMatch;
 
   /// [ifNoneMatchElement] Extensions for ifNoneMatch
+  @override
   @JsonKey(name: '_ifNoneMatch')
   PrimitiveElement? get ifNoneMatchElement;
-  @override
 
   /// [ifModifiedSince] Only perform the operation if the last updated date
   /// matches. See the API documentation for ["Conditional
   ///  Read"](http.html#cread).
-  FhirInstant? get ifModifiedSince;
   @override
+  FhirInstant? get ifModifiedSince;
 
   /// [ifModifiedSinceElement] Extensions for ifModifiedSince
+  @override
   @JsonKey(name: '_ifModifiedSince')
   PrimitiveElement? get ifModifiedSinceElement;
-  @override
 
   /// [ifMatch] Only perform the operation if the Etag value matches. For more
   /// information, see the API section ["Managing Resource
   ///  Contention"](http.html#concurrency).
-  String? get ifMatch;
   @override
+  String? get ifMatch;
 
   /// [ifMatchElement] Extensions for ifMatch
+  @override
   @JsonKey(name: '_ifMatch')
   PrimitiveElement? get ifMatchElement;
-  @override
 
   /// [ifNoneExist] Instruct the server not to perform the create if a
   /// specified resource already exists. For further information, see the API
   /// documentation for ["Conditional Create"](http.html#ccreate). This is just
   /// the query portion of the URL - what follows the "?" (not including the
   ///  "?").
-  String? get ifNoneExist;
   @override
+  String? get ifNoneExist;
 
   /// [ifNoneExistElement] Extensions for ifNoneExist
+  @override
   @JsonKey(name: '_ifNoneExist')
   PrimitiveElement? get ifNoneExistElement;
+
+  /// Create a copy of BundleRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BundleRequestImplCopyWith<_$BundleRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3189,8 +3264,12 @@ mixin _$BundleResponse {
   ///  part of processing this entry in a batch or transaction.
   Resource? get outcome => throw _privateConstructorUsedError;
 
+  /// Serializes this BundleResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BundleResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BundleResponseCopyWith<BundleResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3226,6 +3305,8 @@ class _$BundleResponseCopyWithImpl<$Res, $Val extends BundleResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BundleResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3326,6 +3407,8 @@ class __$$BundleResponseImplCopyWithImpl<$Res>
       _$BundleResponseImpl _value, $Res Function(_$BundleResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BundleResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3565,7 +3648,7 @@ class _$BundleResponseImpl extends _BundleResponse {
             (identical(other.outcome, outcome) || other.outcome == outcome));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3582,7 +3665,9 @@ class _$BundleResponseImpl extends _BundleResponse {
       lastModifiedElement,
       outcome);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BundleResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BundleResponseImplCopyWith<_$BundleResponseImpl> get copyWith =>
@@ -3617,12 +3702,10 @@ abstract class _BundleResponse extends BundleResponse {
   factory _BundleResponse.fromJson(Map<String, dynamic> json) =
       _$BundleResponseImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3630,9 +3713,9 @@ abstract class _BundleResponse extends BundleResponse {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3647,57 +3730,61 @@ abstract class _BundleResponse extends BundleResponse {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [status] The status code returned by processing this entry. The status
   /// SHALL start with a 3 digit HTTP code (e.g. 404) and may contain the
   ///  standard HTTP description associated with the status code.
-  String? get status;
   @override
+  String? get status;
 
   /// [statusElement] Extensions for status
+  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
-  @override
 
   /// [location] The location header created by processing this operation,
   ///  populated if the operation returns a location.
-  FhirUri? get location;
   @override
+  FhirUri? get location;
 
   /// [locationElement] Extensions for location
+  @override
   @JsonKey(name: '_location')
   PrimitiveElement? get locationElement;
-  @override
 
   /// [etag] The Etag for the resource, if the operation for the entry produced
   /// a versioned resource (see [Resource Metadata and
   /// Versioning](http.html#versioning) and [Managing Resource
   ///  Contention](http.html#concurrency)).
-  String? get etag;
   @override
+  String? get etag;
 
   /// [etagElement] Extensions for etag
+  @override
   @JsonKey(name: '_etag')
   PrimitiveElement? get etagElement;
-  @override
 
   /// [lastModified] The date/time that the resource was modified on the
   ///  server.
-  FhirInstant? get lastModified;
   @override
+  FhirInstant? get lastModified;
 
   /// [lastModifiedElement] Extensions for lastModified
+  @override
   @JsonKey(name: '_lastModified')
   PrimitiveElement? get lastModifiedElement;
-  @override
 
   /// [outcome] An OperationOutcome containing hints and warnings produced as
   ///  part of processing this entry in a batch or transaction.
-  Resource? get outcome;
   @override
-  @JsonKey(ignore: true)
+  Resource? get outcome;
+
+  /// Create a copy of BundleResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BundleResponseImplCopyWith<_$BundleResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -228,8 +228,12 @@ mixin _$ChargeItem {
   List<Reference>? get supportingInformation =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this ChargeItem to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ChargeItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ChargeItemCopyWith<ChargeItem> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -318,6 +322,8 @@ class _$ChargeItemCopyWithImpl<$Res, $Val extends ChargeItem>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ChargeItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -556,6 +562,8 @@ class _$ChargeItemCopyWithImpl<$Res, $Val extends ChargeItem>
     ) as $Val);
   }
 
+  /// Create a copy of ChargeItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -568,6 +576,8 @@ class _$ChargeItemCopyWithImpl<$Res, $Val extends ChargeItem>
     });
   }
 
+  /// Create a copy of ChargeItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -580,6 +590,8 @@ class _$ChargeItemCopyWithImpl<$Res, $Val extends ChargeItem>
     });
   }
 
+  /// Create a copy of ChargeItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get code {
@@ -588,6 +600,8 @@ class _$ChargeItemCopyWithImpl<$Res, $Val extends ChargeItem>
     });
   }
 
+  /// Create a copy of ChargeItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get subject {
@@ -596,6 +610,8 @@ class _$ChargeItemCopyWithImpl<$Res, $Val extends ChargeItem>
     });
   }
 
+  /// Create a copy of ChargeItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get context {
@@ -608,6 +624,8 @@ class _$ChargeItemCopyWithImpl<$Res, $Val extends ChargeItem>
     });
   }
 
+  /// Create a copy of ChargeItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get occurrencePeriod {
@@ -620,6 +638,8 @@ class _$ChargeItemCopyWithImpl<$Res, $Val extends ChargeItem>
     });
   }
 
+  /// Create a copy of ChargeItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TimingCopyWith<$Res>? get occurrenceTiming {
@@ -632,6 +652,8 @@ class _$ChargeItemCopyWithImpl<$Res, $Val extends ChargeItem>
     });
   }
 
+  /// Create a copy of ChargeItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get performingOrganization {
@@ -644,6 +666,8 @@ class _$ChargeItemCopyWithImpl<$Res, $Val extends ChargeItem>
     });
   }
 
+  /// Create a copy of ChargeItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get requestingOrganization {
@@ -656,6 +680,8 @@ class _$ChargeItemCopyWithImpl<$Res, $Val extends ChargeItem>
     });
   }
 
+  /// Create a copy of ChargeItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get costCenter {
@@ -668,6 +694,8 @@ class _$ChargeItemCopyWithImpl<$Res, $Val extends ChargeItem>
     });
   }
 
+  /// Create a copy of ChargeItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get quantity {
@@ -680,6 +708,8 @@ class _$ChargeItemCopyWithImpl<$Res, $Val extends ChargeItem>
     });
   }
 
+  /// Create a copy of ChargeItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MoneyCopyWith<$Res>? get priceOverride {
@@ -692,6 +722,8 @@ class _$ChargeItemCopyWithImpl<$Res, $Val extends ChargeItem>
     });
   }
 
+  /// Create a copy of ChargeItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get enterer {
@@ -704,6 +736,8 @@ class _$ChargeItemCopyWithImpl<$Res, $Val extends ChargeItem>
     });
   }
 
+  /// Create a copy of ChargeItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get productReference {
@@ -716,6 +750,8 @@ class _$ChargeItemCopyWithImpl<$Res, $Val extends ChargeItem>
     });
   }
 
+  /// Create a copy of ChargeItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get productCodeableConcept {
@@ -829,6 +865,8 @@ class __$$ChargeItemImplCopyWithImpl<$Res>
       _$ChargeItemImpl _value, $Res Function(_$ChargeItemImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ChargeItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1640,7 +1678,7 @@ class _$ChargeItemImpl extends _ChargeItem {
                 .equals(other._supportingInformation, _supportingInformation));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1692,7 +1730,9 @@ class _$ChargeItemImpl extends _ChargeItem {
         const DeepCollectionEquality().hash(_supportingInformation)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ChargeItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ChargeItemImplCopyWith<_$ChargeItemImpl> get copyWith =>
@@ -1768,39 +1808,38 @@ abstract class _ChargeItem extends ChargeItem {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.ChargeItem)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1808,15 +1847,15 @@ abstract class _ChargeItem extends ChargeItem {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1824,9 +1863,9 @@ abstract class _ChargeItem extends ChargeItem {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1841,174 +1880,178 @@ abstract class _ChargeItem extends ChargeItem {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] Identifiers assigned to this event performer or other
   ///  systems.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [definitionUri] References the (external) source of pricing information,
   ///  rules of application for the code this ChargeItem uses.
-  List<FhirUri>? get definitionUri;
   @override
+  List<FhirUri>? get definitionUri;
 
   /// [definitionUriElement] Extensions for definitionUri
+  @override
   @JsonKey(name: '_definitionUri')
   List<PrimitiveElement>? get definitionUriElement;
-  @override
 
   /// [definitionCanonical] References the source of pricing information, rules
   ///  of application for the code this ChargeItem uses.
-  List<FhirCanonical>? get definitionCanonical;
   @override
+  List<FhirCanonical>? get definitionCanonical;
 
   /// [status] The current state of the ChargeItem.
-  FhirCode? get status;
   @override
+  FhirCode? get status;
 
   /// [statusElement] Extensions for status
+  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
-  @override
 
   /// [partOf] ChargeItems can be grouped to larger ChargeItems covering the
   ///  whole set.
-  List<Reference>? get partOf;
   @override
+  List<Reference>? get partOf;
 
   /// [code] A code that identifies the charge, like a billing code.
-  CodeableConcept get code;
   @override
+  CodeableConcept get code;
 
   /// [subject] The individual or set of individuals the action is being or was
   ///  performed on.
-  Reference get subject;
   @override
+  Reference get subject;
 
   /// [context] The encounter or episode of care that establishes the context
   ///  for this event.
-  Reference? get context;
   @override
+  Reference? get context;
 
   /// [occurrenceDateTime] Date/time(s) or duration when the charged service
   ///  was applied.
-  FhirDateTime? get occurrenceDateTime;
   @override
+  FhirDateTime? get occurrenceDateTime;
 
   /// [occurrenceDateTimeElement] Extensions for occurrenceDateTime
+  @override
   @JsonKey(name: '_occurrenceDateTime')
   PrimitiveElement? get occurrenceDateTimeElement;
-  @override
 
   /// [occurrencePeriod] Date/time(s) or duration when the charged service was
   ///  applied.
-  Period? get occurrencePeriod;
   @override
+  Period? get occurrencePeriod;
 
   /// [occurrenceTiming] Date/time(s) or duration when the charged service was
   ///  applied.
-  Timing? get occurrenceTiming;
   @override
+  Timing? get occurrenceTiming;
 
   /// [performer] Indicates who or what performed or participated in the
   ///  charged service.
-  List<ChargeItemPerformer>? get performer;
   @override
+  List<ChargeItemPerformer>? get performer;
 
   /// [performingOrganization] The organization requesting the service.
-  Reference? get performingOrganization;
   @override
+  Reference? get performingOrganization;
 
   /// [requestingOrganization] The organization performing the service.
-  Reference? get requestingOrganization;
   @override
+  Reference? get requestingOrganization;
 
   /// [costCenter] The financial cost center permits the tracking of charge
   ///  attribution.
-  Reference? get costCenter;
   @override
+  Reference? get costCenter;
 
   /// [quantity] Quantity of which the charge item has been serviced.
-  Quantity? get quantity;
   @override
+  Quantity? get quantity;
 
   /// [bodysite] The anatomical location where the related service has been
   ///  applied.
-  List<CodeableConcept>? get bodysite;
   @override
+  List<CodeableConcept>? get bodysite;
 
   /// [factorOverride] Factor overriding the factor determined by the rules
   ///  associated with the code.
-  FhirDecimal? get factorOverride;
   @override
+  FhirDecimal? get factorOverride;
 
   /// [factorOverrideElement] Extensions for factorOverride
+  @override
   @JsonKey(name: '_factorOverride')
   PrimitiveElement? get factorOverrideElement;
-  @override
 
   /// [priceOverride] Total price of the charge overriding the list price
   ///  associated with the code.
-  Money? get priceOverride;
   @override
+  Money? get priceOverride;
 
   /// [overrideReason] If the list price or the rule-based factor associated
   /// with the code is overridden, this attribute can capture a text to indicate
   ///  the  reason for this action.
-  String? get overrideReason;
   @override
+  String? get overrideReason;
 
   /// [overrideReasonElement] Extensions for overrideReason
+  @override
   @JsonKey(name: '_overrideReason')
   PrimitiveElement? get overrideReasonElement;
-  @override
 
   /// [enterer] The device, practitioner, etc. who entered the charge item.
-  Reference? get enterer;
   @override
+  Reference? get enterer;
 
   /// [enteredDate] Date the charge item was entered.
-  FhirDateTime? get enteredDate;
   @override
+  FhirDateTime? get enteredDate;
 
   /// [enteredDateElement] Extensions for enteredDate
+  @override
   @JsonKey(name: '_enteredDate')
   PrimitiveElement? get enteredDateElement;
-  @override
 
   /// [reason] Describes why the event occurred in coded or textual form.
-  List<CodeableConcept>? get reason;
   @override
+  List<CodeableConcept>? get reason;
 
   /// [service] Indicated the rendered service that caused this charge.
-  List<Reference>? get service;
   @override
+  List<Reference>? get service;
 
   /// [productReference] Identifies the device, food, drug or other product
   ///  being charged either by type code or reference to an instance.
-  Reference? get productReference;
   @override
+  Reference? get productReference;
 
   /// [productCodeableConcept] Identifies the device, food, drug or other
   ///  product being charged either by type code or reference to an instance.
-  CodeableConcept? get productCodeableConcept;
   @override
+  CodeableConcept? get productCodeableConcept;
 
   /// [account] Account into which this ChargeItems belongs.
-  List<Reference>? get account;
   @override
+  List<Reference>? get account;
 
   /// [note] Comments made about the event by the performer, subject or other
   ///  participants.
-  List<Annotation>? get note;
   @override
+  List<Annotation>? get note;
 
   /// [supportingInformation] Further information supporting this charge.
-  List<Reference>? get supportingInformation;
   @override
-  @JsonKey(ignore: true)
+  List<Reference>? get supportingInformation;
+
+  /// Create a copy of ChargeItem
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChargeItemImplCopyWith<_$ChargeItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2056,8 +2099,12 @@ mixin _$ChargeItemPerformer {
   ///  the service.
   Reference get actor => throw _privateConstructorUsedError;
 
+  /// Serializes this ChargeItemPerformer to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ChargeItemPerformer
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ChargeItemPerformerCopyWith<ChargeItemPerformer> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2089,6 +2136,8 @@ class _$ChargeItemPerformerCopyWithImpl<$Res, $Val extends ChargeItemPerformer>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ChargeItemPerformer
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2122,6 +2171,8 @@ class _$ChargeItemPerformerCopyWithImpl<$Res, $Val extends ChargeItemPerformer>
     ) as $Val);
   }
 
+  /// Create a copy of ChargeItemPerformer
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get function {
@@ -2134,6 +2185,8 @@ class _$ChargeItemPerformerCopyWithImpl<$Res, $Val extends ChargeItemPerformer>
     });
   }
 
+  /// Create a copy of ChargeItemPerformer
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get actor {
@@ -2172,6 +2225,8 @@ class __$$ChargeItemPerformerImplCopyWithImpl<$Res>
       $Res Function(_$ChargeItemPerformerImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ChargeItemPerformer
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2319,7 +2374,7 @@ class _$ChargeItemPerformerImpl extends _ChargeItemPerformer {
             (identical(other.actor, actor) || other.actor == actor));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2329,7 +2384,9 @@ class _$ChargeItemPerformerImpl extends _ChargeItemPerformer {
       function,
       actor);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ChargeItemPerformer
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ChargeItemPerformerImplCopyWith<_$ChargeItemPerformerImpl> get copyWith =>
@@ -2356,12 +2413,10 @@ abstract class _ChargeItemPerformer extends ChargeItemPerformer {
   factory _ChargeItemPerformer.fromJson(Map<String, dynamic> json) =
       _$ChargeItemPerformerImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2369,9 +2424,9 @@ abstract class _ChargeItemPerformer extends ChargeItemPerformer {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2386,19 +2441,23 @@ abstract class _ChargeItemPerformer extends ChargeItemPerformer {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [function] Describes the type of performance or participation(e.g.
   ///  primary surgeon, anesthesiologiest, etc.).
-  CodeableConcept? get function;
   @override
+  CodeableConcept? get function;
 
   /// [actor] The device, practitioner, etc. who performed or participated in
   ///  the service.
-  Reference get actor;
   @override
-  @JsonKey(ignore: true)
+  Reference get actor;
+
+  /// Create a copy of ChargeItemPerformer
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChargeItemPerformerImplCopyWith<_$ChargeItemPerformerImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -296,7 +296,7 @@ class Provenance with _$Provenance implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [ProvenanceAgent] Provenance of a resource is a record that describes

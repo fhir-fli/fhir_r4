@@ -300,7 +300,7 @@ class MeasureReport with _$MeasureReport implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [MeasureReportGroup] The MeasureReport resource contains the results of

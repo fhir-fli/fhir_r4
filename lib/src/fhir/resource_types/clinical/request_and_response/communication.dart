@@ -393,7 +393,7 @@ class Communication with _$Communication implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [CommunicationPayload] An occurrence of information being transmitted;

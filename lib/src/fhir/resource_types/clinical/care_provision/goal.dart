@@ -330,7 +330,7 @@ class Goal with _$Goal implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [GoalTarget] Describes the intended objective(s) for a patient, group or

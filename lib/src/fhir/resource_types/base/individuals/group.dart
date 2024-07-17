@@ -293,7 +293,7 @@ class FhirGroup with _$FhirGroup implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [GroupCharacteristic] Represents a defined collection of entities that

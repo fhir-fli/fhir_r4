@@ -289,8 +289,12 @@ mixin _$OperationDefinition {
   List<OperationDefinitionOverload>? get overload =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this OperationDefinition to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of OperationDefinition
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $OperationDefinitionCopyWith<OperationDefinition> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -373,6 +377,8 @@ class _$OperationDefinitionCopyWithImpl<$Res, $Val extends OperationDefinition>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of OperationDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -656,6 +662,8 @@ class _$OperationDefinitionCopyWithImpl<$Res, $Val extends OperationDefinition>
     ) as $Val);
   }
 
+  /// Create a copy of OperationDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -668,6 +676,8 @@ class _$OperationDefinitionCopyWithImpl<$Res, $Val extends OperationDefinition>
     });
   }
 
+  /// Create a copy of OperationDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -761,6 +771,8 @@ class __$$OperationDefinitionImplCopyWithImpl<$Res>
       $Res Function(_$OperationDefinitionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of OperationDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1658,7 +1670,7 @@ class _$OperationDefinitionImpl extends _OperationDefinition {
             const DeepCollectionEquality().equals(other._overload, _overload));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1719,7 +1731,9 @@ class _$OperationDefinitionImpl extends _OperationDefinition {
         const DeepCollectionEquality().hash(_overload)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of OperationDefinition
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$OperationDefinitionImplCopyWith<_$OperationDefinitionImpl> get copyWith =>
@@ -1804,39 +1818,38 @@ abstract class _OperationDefinition extends OperationDefinition {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.OperationDefinition)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1844,15 +1857,15 @@ abstract class _OperationDefinition extends OperationDefinition {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1860,9 +1873,9 @@ abstract class _OperationDefinition extends OperationDefinition {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1877,8 +1890,8 @@ abstract class _OperationDefinition extends OperationDefinition {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [url] An absolute URI that is used to identify this operation definition
   /// when it is referenced in a specification, model, design or an instance;
@@ -1887,13 +1900,13 @@ abstract class _OperationDefinition extends OperationDefinition {
   /// this operation definition is (or will be) published. This URL can be the
   /// target of a canonical reference. It SHALL remain the same when the
   ///  operation definition is stored on different servers.
-  FhirUri? get url;
   @override
+  FhirUri? get url;
 
   /// [urlElement] Extensions for url
+  @override
   @JsonKey(name: '_url')
   PrimitiveElement? get urlElement;
-  @override
 
   /// [version] The identifier that is used to identify this version of the
   /// operation definition when it is referenced in a specification, model,
@@ -1902,222 +1915,226 @@ abstract class _OperationDefinition extends OperationDefinition {
   /// it might be a timestamp (e.g. yyyymmdd) if a managed version is not
   /// available. There is also no expectation that versions can be placed in a
   ///  lexicographical sequence.
-  String? get version;
   @override
+  String? get version;
 
   /// [versionElement] Extensions for version
+  @override
   @JsonKey(name: '_version')
   PrimitiveElement? get versionElement;
-  @override
 
   /// [name] A natural language name identifying the operation definition. This
   /// name should be usable as an identifier for the module by machine
   ///  processing applications such as code generation.
-  String? get name;
   @override
+  String? get name;
 
   /// [nameElement] Extensions for name
+  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
-  @override
 
   /// [title] A short, descriptive, user-friendly title for the operation
   ///  definition.
-  String? get title;
   @override
+  String? get title;
 
   /// [titleElement] Extensions for title
+  @override
   @JsonKey(name: '_title')
   PrimitiveElement? get titleElement;
-  @override
 
   /// [status] The status of this operation definition. Enables tracking the
   ///  life-cycle of the content.
-  FhirCode? get status;
   @override
+  FhirCode? get status;
 
   /// [statusElement] Extensions for status
+  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
-  @override
 
   /// [kind] Whether this is an operation or a named query.
-  FhirCode? get kind;
   @override
+  FhirCode? get kind;
 
   /// [kindElement] Extensions for kind
+  @override
   @JsonKey(name: '_kind')
   PrimitiveElement? get kindElement;
-  @override
 
   /// [experimental] A Boolean value to indicate that this operation definition
   /// is authored for testing purposes (or education/evaluation/marketing) and
   ///  is not intended to be used for genuine usage.
-  FhirBoolean? get experimental;
   @override
+  FhirBoolean? get experimental;
 
   /// [experimentalElement] Extensions for experimental
+  @override
   @JsonKey(name: '_experimental')
   PrimitiveElement? get experimentalElement;
-  @override
 
   /// [date] The date  (and optionally time) when the operation definition was
   /// published. The date must change when the business version changes and it
   /// must change if the status code changes. In addition, it should change when
   ///  the substantive content of the operation definition changes.
-  FhirDateTime? get date;
   @override
+  FhirDateTime? get date;
 
   /// [dateElement] Extensions for date
+  @override
   @JsonKey(name: '_date')
   PrimitiveElement? get dateElement;
-  @override
 
   /// [publisher] The name of the organization or individual that published the
   ///  operation definition.
-  String? get publisher;
   @override
+  String? get publisher;
 
   /// [publisherElement] Extensions for publisher
+  @override
   @JsonKey(name: '_publisher')
   PrimitiveElement? get publisherElement;
-  @override
 
   /// [contact] Contact details to assist a user in finding and communicating
   ///  with the publisher.
-  List<ContactDetail>? get contact;
   @override
+  List<ContactDetail>? get contact;
 
   /// [description] A free text natural language description of the operation
   ///  definition from a consumer's perspective.
-  FhirMarkdown? get description;
   @override
+  FhirMarkdown? get description;
 
   /// [descriptionElement] Extensions for description
+  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
-  @override
 
   /// [useContext] The content was developed with a focus and intent of
   /// supporting the contexts that are listed. These contexts may be general
   /// categories (gender, age, ...) or may be references to specific programs
   /// (insurance plans, studies, ...) and may be used to assist with indexing
   ///  and searching for appropriate operation definition instances.
-  List<UsageContext>? get useContext;
   @override
+  List<UsageContext>? get useContext;
 
   /// [jurisdiction] A legal or geographic region in which the operation
   ///  definition is intended to be used.
-  List<CodeableConcept>? get jurisdiction;
   @override
+  List<CodeableConcept>? get jurisdiction;
 
   /// [purpose] Explanation of why this operation definition is needed and why
   ///  it has been designed as it has.
-  FhirMarkdown? get purpose;
   @override
+  FhirMarkdown? get purpose;
 
   /// [purposeElement] Extensions for purpose
+  @override
   @JsonKey(name: '_purpose')
   PrimitiveElement? get purposeElement;
-  @override
 
   /// [affectsState] Whether the operation affects state. Side effects such as
   ///  producing audit trail entries do not count as 'affecting  state'.
-  FhirBoolean? get affectsState;
   @override
+  FhirBoolean? get affectsState;
 
   /// [affectsStateElement] Extensions for affectsState
+  @override
   @JsonKey(name: '_affectsState')
   PrimitiveElement? get affectsStateElement;
-  @override
 
   /// [code] The name used to invoke the operation.
-  FhirCode? get code;
   @override
+  FhirCode? get code;
 
   /// [codeElement] Extensions for code
+  @override
   @JsonKey(name: '_code')
   PrimitiveElement? get codeElement;
-  @override
 
   /// [comment] Additional information about how to use this operation or named
   ///  query.
-  FhirMarkdown? get comment;
   @override
+  FhirMarkdown? get comment;
 
   /// [commentElement] Extensions for comment
+  @override
   @JsonKey(name: '_comment')
   PrimitiveElement? get commentElement;
-  @override
 
   /// [base] Indicates that this operation definition is a constraining profile
   ///  on the base.
-  FhirCanonical? get base;
   @override
+  FhirCanonical? get base;
 
   /// [resource] The types on which this operation can be executed.
-  List<FhirCode>? get resource;
   @override
+  List<FhirCode>? get resource;
 
   /// [resourceElement] Extensions for resource
+  @override
   @JsonKey(name: '_resource')
   List<PrimitiveElement>? get resourceElement;
-  @override
 
   /// [system] Indicates whether this operation or named query can be invoked
   /// at the system level (e.g. without needing to choose a resource type for
   ///  the context).
-  FhirBoolean? get system;
   @override
+  FhirBoolean? get system;
 
   /// [systemElement] Extensions for system
+  @override
   @JsonKey(name: '_system')
   PrimitiveElement? get systemElement;
-  @override
 
   /// [type] Indicates whether this operation or named query can be invoked at
   /// the resource type level for any given resource type level (e.g. without
   ///  needing to choose a specific resource id for the context).
-  FhirBoolean? get type;
   @override
+  FhirBoolean? get type;
 
   /// [typeElement] Extensions for type
+  @override
   @JsonKey(name: '_type')
   PrimitiveElement? get typeElement;
-  @override
 
   /// [instance] Indicates whether this operation can be invoked on a
   ///  particular instance of one of the given types.
-  FhirBoolean? get instance;
   @override
+  FhirBoolean? get instance;
 
   /// [instanceElement] Extensions for instance
+  @override
   @JsonKey(name: '_instance')
   PrimitiveElement? get instanceElement;
-  @override
 
   /// [inputProfile] Additional validation information for the in parameters -
   /// a single profile that covers all the parameters. The profile is a
   ///  constraint on the parameters resource as a whole.
-  FhirCanonical? get inputProfile;
   @override
+  FhirCanonical? get inputProfile;
 
   /// [outputProfile] Additional validation information for the out parameters
   /// - a single profile that covers all the parameters. The profile is a
   ///  constraint on the parameters resource.
-  FhirCanonical? get outputProfile;
   @override
+  FhirCanonical? get outputProfile;
 
   /// [parameter] The parameters for the operation/query.
-  List<OperationDefinitionParameter>? get parameter;
   @override
+  List<OperationDefinitionParameter>? get parameter;
 
   /// [overload] Defines an appropriate combination of parameters to use when
   /// invoking this operation, to help code generators when generating
   ///  overloaded parameter sets for this operation.
-  List<OperationDefinitionOverload>? get overload;
   @override
-  @JsonKey(ignore: true)
+  List<OperationDefinitionOverload>? get overload;
+
+  /// Create a copy of OperationDefinition
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OperationDefinitionImplCopyWith<_$OperationDefinitionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2236,8 +2253,12 @@ mixin _$OperationDefinitionParameter {
   List<OperationDefinitionParameter>? get part_ =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this OperationDefinitionParameter to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of OperationDefinitionParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $OperationDefinitionParameterCopyWith<OperationDefinitionParameter>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2287,6 +2308,8 @@ class _$OperationDefinitionParameterCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of OperationDefinitionParameter
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2400,6 +2423,8 @@ class _$OperationDefinitionParameterCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of OperationDefinitionParameter
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $OperationDefinitionBindingCopyWith<$Res>? get binding {
@@ -2459,6 +2484,8 @@ class __$$OperationDefinitionParameterImplCopyWithImpl<$Res>
       $Res Function(_$OperationDefinitionParameterImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of OperationDefinitionParameter
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2851,7 +2878,7 @@ class _$OperationDefinitionParameterImpl extends _OperationDefinitionParameter {
             const DeepCollectionEquality().equals(other._part_, _part_));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -2878,7 +2905,9 @@ class _$OperationDefinitionParameterImpl extends _OperationDefinitionParameter {
         const DeepCollectionEquality().hash(_part_)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of OperationDefinitionParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$OperationDefinitionParameterImplCopyWith<
@@ -2926,12 +2955,10 @@ abstract class _OperationDefinitionParameter
   factory _OperationDefinitionParameter.fromJson(Map<String, dynamic> json) =
       _$OperationDefinitionParameterImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2939,9 +2966,9 @@ abstract class _OperationDefinitionParameter
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2956,64 +2983,64 @@ abstract class _OperationDefinitionParameter
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [name] The name of used to identify the parameter.
-  FhirCode? get name;
   @override
+  FhirCode? get name;
 
   /// [nameElement] Extensions for name
+  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
-  @override
 
   /// [use] Whether this is an input or an output parameter.
-  FhirCode? get use;
   @override
+  FhirCode? get use;
 
   /// [useElement] Extensions for use
+  @override
   @JsonKey(name: '_use')
   PrimitiveElement? get useElement;
-  @override
 
   /// [min] The minimum number of times this parameter SHALL appear in the
   ///  request or response.
-  FhirInteger? get min;
   @override
+  FhirInteger? get min;
 
   /// [minElement] Extensions for min
+  @override
   @JsonKey(name: '_min')
   PrimitiveElement? get minElement;
-  @override
 
   /// [max] The maximum number of times this element is permitted to appear in
   ///  the request or response.
-  String? get max;
   @override
+  String? get max;
 
   /// [maxElement] Extensions for max
+  @override
   @JsonKey(name: '_max')
   PrimitiveElement? get maxElement;
-  @override
 
   /// [documentation] Describes the meaning or use of this parameter.
-  String? get documentation;
   @override
+  String? get documentation;
 
   /// [documentationElement] Extensions for documentation
+  @override
   @JsonKey(name: '_documentation')
   PrimitiveElement? get documentationElement;
-  @override
 
   /// [type] The type for this parameter.
-  FhirCode? get type;
   @override
+  FhirCode? get type;
 
   /// [typeElement] Extensions for type
+  @override
   @JsonKey(name: '_type')
   PrimitiveElement? get typeElement;
-  @override
 
   /// [targetProfile] Used when the type is "Reference" or "canonical", and
   /// identifies a profile structure or implementation Guide that applies to the
@@ -3024,34 +3051,38 @@ abstract class _OperationDefinitionParameter
   /// canonical URL. When an implementation guide is specified, the target
   /// resource SHALL conform to at least one profile defined in the
   ///  implementation guide.
-  List<FhirCanonical>? get targetProfile;
   @override
+  List<FhirCanonical>? get targetProfile;
 
   /// [searchType] How the parameter is understood as a search parameter. This
   ///  is only used if the parameter type is 'string'.
-  FhirCode? get searchType;
   @override
+  FhirCode? get searchType;
 
   /// [searchTypeElement] Extensions for searchType
+  @override
   @JsonKey(name: '_searchType')
   PrimitiveElement? get searchTypeElement;
-  @override
 
   /// [binding] Binds to a value set if this parameter is coded (code, Coding,
   ///  CodeableConcept).
-  OperationDefinitionBinding? get binding;
   @override
+  OperationDefinitionBinding? get binding;
 
   /// [referencedFrom] Identifies other resource parameters within the
   ///  operation invocation that are expected to resolve to this resource.
-  List<OperationDefinitionReferencedFrom>? get referencedFrom;
   @override
+  List<OperationDefinitionReferencedFrom>? get referencedFrom;
 
   /// [part] The parts of a nested Parameter.
+  @override
   @JsonKey(name: 'part')
   List<OperationDefinitionParameter>? get part_;
+
+  /// Create a copy of OperationDefinitionParameter
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OperationDefinitionParameterImplCopyWith<
           _$OperationDefinitionParameterImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -3106,8 +3137,12 @@ mixin _$OperationDefinitionBinding {
   ///  value set) that identifies the set of codes to be used.
   FhirCanonical get valueSet => throw _privateConstructorUsedError;
 
+  /// Serializes this OperationDefinitionBinding to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of OperationDefinitionBinding
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $OperationDefinitionBindingCopyWith<OperationDefinitionBinding>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3139,6 +3174,8 @@ class _$OperationDefinitionBindingCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of OperationDefinitionBinding
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3206,6 +3243,8 @@ class __$$OperationDefinitionBindingImplCopyWithImpl<$Res>
       $Res Function(_$OperationDefinitionBindingImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of OperationDefinitionBinding
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3369,7 +3408,7 @@ class _$OperationDefinitionBindingImpl extends _OperationDefinitionBinding {
                 other.valueSet == valueSet));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3380,7 +3419,9 @@ class _$OperationDefinitionBindingImpl extends _OperationDefinitionBinding {
       strengthElement,
       valueSet);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of OperationDefinitionBinding
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$OperationDefinitionBindingImplCopyWith<_$OperationDefinitionBindingImpl>
@@ -3409,12 +3450,10 @@ abstract class _OperationDefinitionBinding extends OperationDefinitionBinding {
   factory _OperationDefinitionBinding.fromJson(Map<String, dynamic> json) =
       _$OperationDefinitionBindingImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3422,9 +3461,9 @@ abstract class _OperationDefinitionBinding extends OperationDefinitionBinding {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3439,25 +3478,29 @@ abstract class _OperationDefinitionBinding extends OperationDefinitionBinding {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [strength] Indicates the degree of conformance expectations associated
   /// with this binding - that is, the degree to which the provided value set
   ///  must be adhered to in the instances.
-  FhirCode? get strength;
   @override
+  FhirCode? get strength;
 
   /// [strengthElement] Extensions for strength
+  @override
   @JsonKey(name: '_strength')
   PrimitiveElement? get strengthElement;
-  @override
 
   /// [valueSet] Points to the value set or external definition (e.g. implicit
   ///  value set) that identifies the set of codes to be used.
-  FhirCanonical get valueSet;
   @override
-  @JsonKey(ignore: true)
+  FhirCanonical get valueSet;
+
+  /// Create a copy of OperationDefinitionBinding
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OperationDefinitionBindingImplCopyWith<_$OperationDefinitionBindingImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3515,8 +3558,12 @@ mixin _$OperationDefinitionReferencedFrom {
   @JsonKey(name: '_sourceId')
   PrimitiveElement? get sourceIdElement => throw _privateConstructorUsedError;
 
+  /// Serializes this OperationDefinitionReferencedFrom to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of OperationDefinitionReferencedFrom
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $OperationDefinitionReferencedFromCopyWith<OperationDefinitionReferencedFrom>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3550,6 +3597,8 @@ class _$OperationDefinitionReferencedFromCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of OperationDefinitionReferencedFrom
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3623,6 +3672,8 @@ class __$$OperationDefinitionReferencedFromImplCopyWithImpl<$Res>
       $Res Function(_$OperationDefinitionReferencedFromImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of OperationDefinitionReferencedFrom
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3799,7 +3850,7 @@ class _$OperationDefinitionReferencedFromImpl
                 other.sourceIdElement == sourceIdElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3811,7 +3862,9 @@ class _$OperationDefinitionReferencedFromImpl
       sourceId,
       sourceIdElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of OperationDefinitionReferencedFrom
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$OperationDefinitionReferencedFromImplCopyWith<
@@ -3845,12 +3898,10 @@ abstract class _OperationDefinitionReferencedFrom
           Map<String, dynamic> json) =
       _$OperationDefinitionReferencedFromImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3858,9 +3909,9 @@ abstract class _OperationDefinitionReferencedFrom
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3875,30 +3926,34 @@ abstract class _OperationDefinitionReferencedFrom
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [source] The name of the parameter or dot-separated path of parameter
   /// names pointing to the resource parameter that is expected to contain a
   ///  reference to this resource.
-  String? get source;
   @override
+  String? get source;
 
   /// [sourceElement] Extensions for source
+  @override
   @JsonKey(name: '_source')
   PrimitiveElement? get sourceElement;
-  @override
 
   /// [sourceId] The id of the element in the referencing resource that is
   ///  expected to resolve to this resource.
-  String? get sourceId;
   @override
+  String? get sourceId;
 
   /// [sourceIdElement] Extensions for sourceId
+  @override
   @JsonKey(name: '_sourceId')
   PrimitiveElement? get sourceIdElement;
+
+  /// Create a copy of OperationDefinitionReferencedFrom
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OperationDefinitionReferencedFromImplCopyWith<
           _$OperationDefinitionReferencedFromImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -3955,8 +4010,12 @@ mixin _$OperationDefinitionOverload {
   @JsonKey(name: '_comment')
   PrimitiveElement? get commentElement => throw _privateConstructorUsedError;
 
+  /// Serializes this OperationDefinitionOverload to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of OperationDefinitionOverload
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $OperationDefinitionOverloadCopyWith<OperationDefinitionOverload>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3991,6 +4050,8 @@ class _$OperationDefinitionOverloadCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of OperationDefinitionOverload
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4065,6 +4126,8 @@ class __$$OperationDefinitionOverloadImplCopyWithImpl<$Res>
       $Res Function(_$OperationDefinitionOverloadImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of OperationDefinitionOverload
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4259,7 +4322,7 @@ class _$OperationDefinitionOverloadImpl extends _OperationDefinitionOverload {
                 other.commentElement == commentElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -4271,7 +4334,9 @@ class _$OperationDefinitionOverloadImpl extends _OperationDefinitionOverload {
       comment,
       commentElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of OperationDefinitionOverload
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$OperationDefinitionOverloadImplCopyWith<_$OperationDefinitionOverloadImpl>
@@ -4303,12 +4368,10 @@ abstract class _OperationDefinitionOverload
   factory _OperationDefinitionOverload.fromJson(Map<String, dynamic> json) =
       _$OperationDefinitionOverloadImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -4316,9 +4379,9 @@ abstract class _OperationDefinitionOverload
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -4333,27 +4396,31 @@ abstract class _OperationDefinitionOverload
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [parameterName] Name of parameter to include in overload.
-  List<String>? get parameterName;
   @override
+  List<String>? get parameterName;
 
   /// [parameterNameElement] Extensions for parameterName
+  @override
   @JsonKey(name: '_parameterName')
   List<PrimitiveElement>? get parameterNameElement;
-  @override
 
   /// [comment] Comments to go on overload.
-  String? get comment;
   @override
+  String? get comment;
 
   /// [commentElement] Extensions for comment
+  @override
   @JsonKey(name: '_comment')
   PrimitiveElement? get commentElement;
+
+  /// Create a copy of OperationDefinitionOverload
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OperationDefinitionOverloadImplCopyWith<_$OperationDefinitionOverloadImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

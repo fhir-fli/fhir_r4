@@ -167,8 +167,12 @@ mixin _$PaymentReconciliation {
   List<PaymentReconciliationProcessNote>? get processNote =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this PaymentReconciliation to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PaymentReconciliation
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PaymentReconciliationCopyWith<PaymentReconciliation> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -235,6 +239,8 @@ class _$PaymentReconciliationCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PaymentReconciliation
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -398,6 +404,8 @@ class _$PaymentReconciliationCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of PaymentReconciliation
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -410,6 +418,8 @@ class _$PaymentReconciliationCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PaymentReconciliation
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -422,6 +432,8 @@ class _$PaymentReconciliationCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PaymentReconciliation
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get period {
@@ -434,6 +446,8 @@ class _$PaymentReconciliationCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PaymentReconciliation
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get paymentIssuer {
@@ -446,6 +460,8 @@ class _$PaymentReconciliationCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PaymentReconciliation
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get request {
@@ -458,6 +474,8 @@ class _$PaymentReconciliationCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PaymentReconciliation
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get requestor {
@@ -470,6 +488,8 @@ class _$PaymentReconciliationCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PaymentReconciliation
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MoneyCopyWith<$Res> get paymentAmount {
@@ -478,6 +498,8 @@ class _$PaymentReconciliationCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PaymentReconciliation
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $IdentifierCopyWith<$Res>? get paymentIdentifier {
@@ -490,6 +512,8 @@ class _$PaymentReconciliationCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PaymentReconciliation
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get formCode {
@@ -575,6 +599,8 @@ class __$$PaymentReconciliationImplCopyWithImpl<$Res>
       $Res Function(_$PaymentReconciliationImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PaymentReconciliation
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1099,7 +1125,7 @@ class _$PaymentReconciliationImpl extends _PaymentReconciliation {
                 .equals(other._processNote, _processNote));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1136,7 +1162,9 @@ class _$PaymentReconciliationImpl extends _PaymentReconciliation {
         const DeepCollectionEquality().hash(_processNote)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PaymentReconciliation
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PaymentReconciliationImplCopyWith<_$PaymentReconciliationImpl>
@@ -1195,39 +1223,38 @@ abstract class _PaymentReconciliation extends PaymentReconciliation {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.PaymentReconciliation)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1235,15 +1262,15 @@ abstract class _PaymentReconciliation extends PaymentReconciliation {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1251,9 +1278,9 @@ abstract class _PaymentReconciliation extends PaymentReconciliation {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1268,102 +1295,106 @@ abstract class _PaymentReconciliation extends PaymentReconciliation {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] A unique identifier assigned to this payment reconciliation.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [status] The status of the resource instance.
-  FhirCode? get status;
   @override
+  FhirCode? get status;
 
   /// [statusElement] Extensions for status
+  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
-  @override
 
   /// [period] The period of time for which payments have been gathered into
   ///  this bulk payment for settlement.
-  Period? get period;
   @override
+  Period? get period;
 
   /// [created] The date when the resource was created.
-  FhirDateTime? get created;
   @override
+  FhirDateTime? get created;
 
   /// [createdElement] Extensions for created
+  @override
   @JsonKey(name: '_created')
   PrimitiveElement? get createdElement;
-  @override
 
   /// [paymentIssuer] The party who generated the payment.
-  Reference? get paymentIssuer;
   @override
+  Reference? get paymentIssuer;
 
   /// [request] Original request resource reference.
-  Reference? get request;
   @override
+  Reference? get request;
 
   /// [requestor] The practitioner who is responsible for the services rendered
   ///  to the patient.
-  Reference? get requestor;
   @override
+  Reference? get requestor;
 
   /// [outcome] The outcome of a request for a reconciliation.
-  FhirCode? get outcome;
   @override
+  FhirCode? get outcome;
 
   /// [outcomeElement] Extensions for outcome
+  @override
   @JsonKey(name: '_outcome')
   PrimitiveElement? get outcomeElement;
-  @override
 
   /// [disposition] A human readable description of the status of the request
   ///  for the reconciliation.
-  String? get disposition;
   @override
+  String? get disposition;
 
   /// [dispositionElement] Extensions for disposition
+  @override
   @JsonKey(name: '_disposition')
   PrimitiveElement? get dispositionElement;
-  @override
 
   /// [paymentDate] The date of payment as indicated on the financial
   ///  instrument.
-  FhirDate? get paymentDate;
   @override
+  FhirDate? get paymentDate;
 
   /// [paymentDateElement] Extensions for paymentDate
+  @override
   @JsonKey(name: '_paymentDate')
   PrimitiveElement? get paymentDateElement;
-  @override
 
   /// [paymentAmount] Total payment amount as indicated on the financial
   ///  instrument.
-  Money get paymentAmount;
   @override
+  Money get paymentAmount;
 
   /// [paymentIdentifier] Issuer's unique identifier for the payment
   ///  instrument.
-  Identifier? get paymentIdentifier;
   @override
+  Identifier? get paymentIdentifier;
 
   /// [detail] Distribution of the payment amount for a previously acknowledged
   ///  payable.
-  List<PaymentReconciliationDetail>? get detail;
   @override
+  List<PaymentReconciliationDetail>? get detail;
 
   /// [formCode] A code for the form to be used for printing the content.
-  CodeableConcept? get formCode;
   @override
+  CodeableConcept? get formCode;
 
   /// [processNote] A note that describes or explains the processing in a human
   ///  readable form.
-  List<PaymentReconciliationProcessNote>? get processNote;
   @override
-  @JsonKey(ignore: true)
+  List<PaymentReconciliationProcessNote>? get processNote;
+
+  /// Create a copy of PaymentReconciliation
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PaymentReconciliationImplCopyWith<_$PaymentReconciliationImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1445,8 +1476,12 @@ mixin _$PaymentReconciliationDetail {
   ///  payable.
   Money? get amount => throw _privateConstructorUsedError;
 
+  /// Serializes this PaymentReconciliationDetail to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PaymentReconciliationDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PaymentReconciliationDetailCopyWith<PaymentReconciliationDetail>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1497,6 +1532,8 @@ class _$PaymentReconciliationDetailCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PaymentReconciliationDetail
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1575,6 +1612,8 @@ class _$PaymentReconciliationDetailCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of PaymentReconciliationDetail
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $IdentifierCopyWith<$Res>? get identifier {
@@ -1587,6 +1626,8 @@ class _$PaymentReconciliationDetailCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PaymentReconciliationDetail
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $IdentifierCopyWith<$Res>? get predecessor {
@@ -1599,6 +1640,8 @@ class _$PaymentReconciliationDetailCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PaymentReconciliationDetail
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get type {
@@ -1607,6 +1650,8 @@ class _$PaymentReconciliationDetailCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PaymentReconciliationDetail
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get request {
@@ -1619,6 +1664,8 @@ class _$PaymentReconciliationDetailCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PaymentReconciliationDetail
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get submitter {
@@ -1631,6 +1678,8 @@ class _$PaymentReconciliationDetailCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PaymentReconciliationDetail
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get response {
@@ -1643,6 +1692,8 @@ class _$PaymentReconciliationDetailCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PaymentReconciliationDetail
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get responsible {
@@ -1655,6 +1706,8 @@ class _$PaymentReconciliationDetailCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PaymentReconciliationDetail
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get payee {
@@ -1667,6 +1720,8 @@ class _$PaymentReconciliationDetailCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PaymentReconciliationDetail
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MoneyCopyWith<$Res>? get amount {
@@ -1735,6 +1790,8 @@ class __$$PaymentReconciliationDetailImplCopyWithImpl<$Res>
       $Res Function(_$PaymentReconciliationDetailImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PaymentReconciliationDetail
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1993,7 +2050,7 @@ class _$PaymentReconciliationDetailImpl extends _PaymentReconciliationDetail {
             (identical(other.amount, amount) || other.amount == amount));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2012,7 +2069,9 @@ class _$PaymentReconciliationDetailImpl extends _PaymentReconciliationDetail {
       payee,
       amount);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PaymentReconciliationDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PaymentReconciliationDetailImplCopyWith<_$PaymentReconciliationDetailImpl>
@@ -2049,12 +2108,10 @@ abstract class _PaymentReconciliationDetail
   factory _PaymentReconciliationDetail.fromJson(Map<String, dynamic> json) =
       _$PaymentReconciliationDetailImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2062,9 +2119,9 @@ abstract class _PaymentReconciliationDetail
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2079,61 +2136,65 @@ abstract class _PaymentReconciliationDetail
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] Unique identifier for the current payment item for the
   ///  referenced payable.
-  Identifier? get identifier;
   @override
+  Identifier? get identifier;
 
   /// [predecessor] Unique identifier for the prior payment item for the
   ///  referenced payable.
-  Identifier? get predecessor;
   @override
+  Identifier? get predecessor;
 
   /// [type] Code to indicate the nature of the payment.
-  CodeableConcept get type;
   @override
+  CodeableConcept get type;
 
   /// [request] A resource, such as a Claim, the evaluation of which could lead
   ///  to payment.
-  Reference? get request;
   @override
+  Reference? get request;
 
   /// [submitter] The party which submitted the claim or financial transaction.
-  Reference? get submitter;
   @override
+  Reference? get submitter;
 
   /// [response] A resource, such as a ClaimResponse, which contains a
   ///  commitment to payment.
-  Reference? get response;
   @override
+  Reference? get response;
 
   /// [date] The date from the response resource containing a commitment to
   ///  pay.
-  FhirDate? get date;
   @override
+  FhirDate? get date;
 
   /// [dateElement] Extensions for date
+  @override
   @JsonKey(name: '_date')
   PrimitiveElement? get dateElement;
-  @override
 
   /// [responsible] A reference to the individual who is responsible for
   ///  inquiries regarding the response and its payment.
-  Reference? get responsible;
   @override
+  Reference? get responsible;
 
   /// [payee] The party which is receiving the payment.
-  Reference? get payee;
   @override
+  Reference? get payee;
 
   /// [amount] The monetary amount allocated from the total payment to the
   ///  payable.
-  Money? get amount;
   @override
-  @JsonKey(ignore: true)
+  Money? get amount;
+
+  /// Create a copy of PaymentReconciliationDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PaymentReconciliationDetailImplCopyWith<_$PaymentReconciliationDetailImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2188,8 +2249,12 @@ mixin _$PaymentReconciliationProcessNote {
   @JsonKey(name: '_text')
   PrimitiveElement? get textElement => throw _privateConstructorUsedError;
 
+  /// Serializes this PaymentReconciliationProcessNote to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PaymentReconciliationProcessNote
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PaymentReconciliationProcessNoteCopyWith<PaymentReconciliationProcessNote>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2223,6 +2288,8 @@ class _$PaymentReconciliationProcessNoteCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PaymentReconciliationProcessNote
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2296,6 +2363,8 @@ class __$$PaymentReconciliationProcessNoteImplCopyWithImpl<$Res>
       $Res Function(_$PaymentReconciliationProcessNoteImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PaymentReconciliationProcessNote
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2468,7 +2537,7 @@ class _$PaymentReconciliationProcessNoteImpl
                 other.textElement == textElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2480,7 +2549,9 @@ class _$PaymentReconciliationProcessNoteImpl
       text,
       textElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PaymentReconciliationProcessNote
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PaymentReconciliationProcessNoteImplCopyWith<
@@ -2513,12 +2584,10 @@ abstract class _PaymentReconciliationProcessNote
           Map<String, dynamic> json) =
       _$PaymentReconciliationProcessNoteImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2526,9 +2595,9 @@ abstract class _PaymentReconciliationProcessNote
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2543,27 +2612,31 @@ abstract class _PaymentReconciliationProcessNote
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [type] The business purpose of the note text.
-  FhirCode? get type;
   @override
+  FhirCode? get type;
 
   /// [typeElement] Extensions for type
+  @override
   @JsonKey(name: '_type')
   PrimitiveElement? get typeElement;
-  @override
 
   /// [text] The explanation or description associated with the processing.
-  String? get text;
   @override
+  String? get text;
 
   /// [textElement] Extensions for text
+  @override
   @JsonKey(name: '_text')
   PrimitiveElement? get textElement;
+
+  /// Create a copy of PaymentReconciliationProcessNote
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PaymentReconciliationProcessNoteImplCopyWith<
           _$PaymentReconciliationProcessNoteImpl>
       get copyWith => throw _privateConstructorUsedError;

@@ -435,7 +435,7 @@ class ValueSet with _$ValueSet implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [ValueSetCompose] A ValueSet resource instance specifies a set of codes

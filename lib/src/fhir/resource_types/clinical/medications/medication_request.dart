@@ -529,7 +529,7 @@ class MedicationRequest with _$MedicationRequest implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [MedicationRequestDispenseRequest] An order or request for both supply

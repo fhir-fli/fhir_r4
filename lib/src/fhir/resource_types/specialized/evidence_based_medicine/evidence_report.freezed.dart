@@ -68,8 +68,12 @@ mixin _$EvidenceReport {
   List<EvidenceReportSection>? get section =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this EvidenceReport to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of EvidenceReport
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $EvidenceReportCopyWith<EvidenceReport> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -133,6 +137,8 @@ class _$EvidenceReportCopyWithImpl<$Res, $Val extends EvidenceReport>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of EvidenceReport
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -311,6 +317,8 @@ class _$EvidenceReportCopyWithImpl<$Res, $Val extends EvidenceReport>
     ) as $Val);
   }
 
+  /// Create a copy of EvidenceReport
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -323,6 +331,8 @@ class _$EvidenceReportCopyWithImpl<$Res, $Val extends EvidenceReport>
     });
   }
 
+  /// Create a copy of EvidenceReport
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -335,6 +345,8 @@ class _$EvidenceReportCopyWithImpl<$Res, $Val extends EvidenceReport>
     });
   }
 
+  /// Create a copy of EvidenceReport
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get citeAsReference {
@@ -347,6 +359,8 @@ class _$EvidenceReportCopyWithImpl<$Res, $Val extends EvidenceReport>
     });
   }
 
+  /// Create a copy of EvidenceReport
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get type {
@@ -359,6 +373,8 @@ class _$EvidenceReportCopyWithImpl<$Res, $Val extends EvidenceReport>
     });
   }
 
+  /// Create a copy of EvidenceReport
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $EvidenceReportSubjectCopyWith<$Res> get subject {
@@ -432,6 +448,8 @@ class __$$EvidenceReportImplCopyWithImpl<$Res>
       _$EvidenceReportImpl _value, $Res Function(_$EvidenceReportImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EvidenceReport
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -933,7 +951,7 @@ class _$EvidenceReportImpl extends _EvidenceReport {
             const DeepCollectionEquality().equals(other._section, _section));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -973,7 +991,9 @@ class _$EvidenceReportImpl extends _EvidenceReport {
         const DeepCollectionEquality().hash(_section)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EvidenceReport
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EvidenceReportImplCopyWith<_$EvidenceReportImpl> get copyWith =>
@@ -1106,8 +1126,11 @@ abstract class _EvidenceReport extends EvidenceReport {
   List<EvidenceReportRelatesTo>? get relatesTo;
   @override
   List<EvidenceReportSection>? get section;
+
+  /// Create a copy of EvidenceReport
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EvidenceReportImplCopyWith<_$EvidenceReportImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1128,8 +1151,12 @@ mixin _$EvidenceReportSubject {
       throw _privateConstructorUsedError;
   List<Annotation>? get note => throw _privateConstructorUsedError;
 
+  /// Serializes this EvidenceReportSubject to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of EvidenceReportSubject
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $EvidenceReportSubjectCopyWith<EvidenceReportSubject> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1159,6 +1186,8 @@ class _$EvidenceReportSubjectCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of EvidenceReportSubject
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1219,6 +1248,8 @@ class __$$EvidenceReportSubjectImplCopyWithImpl<$Res>
       $Res Function(_$EvidenceReportSubjectImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EvidenceReportSubject
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1335,7 +1366,7 @@ class _$EvidenceReportSubjectImpl extends _EvidenceReportSubject {
             const DeepCollectionEquality().equals(other._note, _note));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1345,7 +1376,9 @@ class _$EvidenceReportSubjectImpl extends _EvidenceReportSubject {
       const DeepCollectionEquality().hash(_characteristic),
       const DeepCollectionEquality().hash(_note));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EvidenceReportSubject
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EvidenceReportSubjectImplCopyWith<_$EvidenceReportSubjectImpl>
@@ -1383,8 +1416,11 @@ abstract class _EvidenceReportSubject extends EvidenceReportSubject {
   List<EvidenceReportCharacteristic>? get characteristic;
   @override
   List<Annotation>? get note;
+
+  /// Create a copy of EvidenceReportSubject
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EvidenceReportSubjectImplCopyWith<_$EvidenceReportSubjectImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1416,8 +1452,12 @@ mixin _$EvidenceReportCharacteristic {
   PrimitiveElement? get excludeElement => throw _privateConstructorUsedError;
   Period? get period => throw _privateConstructorUsedError;
 
+  /// Serializes this EvidenceReportCharacteristic to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of EvidenceReportCharacteristic
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $EvidenceReportCharacteristicCopyWith<EvidenceReportCharacteristic>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1464,6 +1504,8 @@ class _$EvidenceReportCharacteristicCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of EvidenceReportCharacteristic
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1537,6 +1579,8 @@ class _$EvidenceReportCharacteristicCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of EvidenceReportCharacteristic
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get code {
@@ -1545,6 +1589,8 @@ class _$EvidenceReportCharacteristicCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of EvidenceReportCharacteristic
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get valueReference {
@@ -1557,6 +1603,8 @@ class _$EvidenceReportCharacteristicCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of EvidenceReportCharacteristic
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get valueCodeableConcept {
@@ -1570,6 +1618,8 @@ class _$EvidenceReportCharacteristicCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of EvidenceReportCharacteristic
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get valueQuantity {
@@ -1582,6 +1632,8 @@ class _$EvidenceReportCharacteristicCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of EvidenceReportCharacteristic
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get valueRange {
@@ -1594,6 +1646,8 @@ class _$EvidenceReportCharacteristicCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of EvidenceReportCharacteristic
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get period {
@@ -1655,6 +1709,8 @@ class __$$EvidenceReportCharacteristicImplCopyWithImpl<$Res>
       $Res Function(_$EvidenceReportCharacteristicImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EvidenceReportCharacteristic
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1835,7 +1891,7 @@ class _$EvidenceReportCharacteristicImpl extends _EvidenceReportCharacteristic {
             (identical(other.period, period) || other.period == period));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1853,7 +1909,9 @@ class _$EvidenceReportCharacteristicImpl extends _EvidenceReportCharacteristic {
       excludeElement,
       period);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EvidenceReportCharacteristic
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EvidenceReportCharacteristicImplCopyWith<
@@ -1920,8 +1978,11 @@ abstract class _EvidenceReportCharacteristic
   PrimitiveElement? get excludeElement;
   @override
   Period? get period;
+
+  /// Create a copy of EvidenceReportCharacteristic
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EvidenceReportCharacteristicImplCopyWith<
           _$EvidenceReportCharacteristicImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -1945,8 +2006,12 @@ mixin _$EvidenceReportRelatesTo {
   Identifier? get targetIdentifier => throw _privateConstructorUsedError;
   Reference? get targetReference => throw _privateConstructorUsedError;
 
+  /// Serializes this EvidenceReportRelatesTo to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of EvidenceReportRelatesTo
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $EvidenceReportRelatesToCopyWith<EvidenceReportRelatesTo> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1981,6 +2046,8 @@ class _$EvidenceReportRelatesToCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of EvidenceReportRelatesTo
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2024,6 +2091,8 @@ class _$EvidenceReportRelatesToCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of EvidenceReportRelatesTo
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $IdentifierCopyWith<$Res>? get targetIdentifier {
@@ -2036,6 +2105,8 @@ class _$EvidenceReportRelatesToCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of EvidenceReportRelatesTo
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get targetReference {
@@ -2083,6 +2154,8 @@ class __$$EvidenceReportRelatesToImplCopyWithImpl<$Res>
       $Res Function(_$EvidenceReportRelatesToImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EvidenceReportRelatesTo
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2203,7 +2276,7 @@ class _$EvidenceReportRelatesToImpl extends _EvidenceReportRelatesTo {
                 other.targetReference == targetReference));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2215,7 +2288,9 @@ class _$EvidenceReportRelatesToImpl extends _EvidenceReportRelatesTo {
       targetIdentifier,
       targetReference);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EvidenceReportRelatesTo
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EvidenceReportRelatesToImplCopyWith<_$EvidenceReportRelatesToImpl>
@@ -2260,8 +2335,11 @@ abstract class _EvidenceReportRelatesTo extends EvidenceReportRelatesTo {
   Identifier? get targetIdentifier;
   @override
   Reference? get targetReference;
+
+  /// Create a copy of EvidenceReportRelatesTo
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EvidenceReportRelatesToImplCopyWith<_$EvidenceReportRelatesToImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2297,8 +2375,12 @@ mixin _$EvidenceReportSection {
   List<EvidenceReportSection>? get section =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this EvidenceReportSection to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of EvidenceReportSection
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $EvidenceReportSectionCopyWith<EvidenceReportSection> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2346,6 +2428,8 @@ class _$EvidenceReportSectionCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of EvidenceReportSection
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2439,6 +2523,8 @@ class _$EvidenceReportSectionCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of EvidenceReportSection
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get focus {
@@ -2451,6 +2537,8 @@ class _$EvidenceReportSectionCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of EvidenceReportSection
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get focusReference {
@@ -2463,6 +2551,8 @@ class _$EvidenceReportSectionCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of EvidenceReportSection
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -2475,6 +2565,8 @@ class _$EvidenceReportSectionCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of EvidenceReportSection
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get orderedBy {
@@ -2487,6 +2579,8 @@ class _$EvidenceReportSectionCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of EvidenceReportSection
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get emptyReason {
@@ -2549,6 +2643,8 @@ class __$$EvidenceReportSectionImplCopyWithImpl<$Res>
       $Res Function(_$EvidenceReportSectionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EvidenceReportSection
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2809,7 +2905,7 @@ class _$EvidenceReportSectionImpl extends _EvidenceReportSection {
             const DeepCollectionEquality().equals(other._section, _section));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2831,7 +2927,9 @@ class _$EvidenceReportSectionImpl extends _EvidenceReportSection {
       emptyReason,
       const DeepCollectionEquality().hash(_section));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EvidenceReportSection
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EvidenceReportSectionImplCopyWith<_$EvidenceReportSectionImpl>
@@ -2908,8 +3006,11 @@ abstract class _EvidenceReportSection extends EvidenceReportSection {
   CodeableConcept? get emptyReason;
   @override
   List<EvidenceReportSection>? get section;
+
+  /// Create a copy of EvidenceReportSection
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EvidenceReportSectionImplCopyWith<_$EvidenceReportSectionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

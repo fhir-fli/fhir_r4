@@ -229,7 +229,7 @@ class Linkage with _$Linkage implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [LinkageItem] Identifies two or more records (resource instances) that

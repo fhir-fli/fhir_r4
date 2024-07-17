@@ -326,7 +326,7 @@ class Invoice with _$Invoice implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [InvoiceParticipant] Invoice containing collected ChargeItems from an

@@ -223,8 +223,12 @@ mixin _$ClaimResponse {
   /// [error] Errors encountered during the processing of the adjudication.
   List<ClaimResponseError>? get error => throw _privateConstructorUsedError;
 
+  /// Serializes this ClaimResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ClaimResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ClaimResponseCopyWith<ClaimResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -308,6 +312,8 @@ class _$ClaimResponseCopyWithImpl<$Res, $Val extends ClaimResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ClaimResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -536,6 +542,8 @@ class _$ClaimResponseCopyWithImpl<$Res, $Val extends ClaimResponse>
     ) as $Val);
   }
 
+  /// Create a copy of ClaimResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -548,6 +556,8 @@ class _$ClaimResponseCopyWithImpl<$Res, $Val extends ClaimResponse>
     });
   }
 
+  /// Create a copy of ClaimResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -560,6 +570,8 @@ class _$ClaimResponseCopyWithImpl<$Res, $Val extends ClaimResponse>
     });
   }
 
+  /// Create a copy of ClaimResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get type {
@@ -568,6 +580,8 @@ class _$ClaimResponseCopyWithImpl<$Res, $Val extends ClaimResponse>
     });
   }
 
+  /// Create a copy of ClaimResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get subType {
@@ -580,6 +594,8 @@ class _$ClaimResponseCopyWithImpl<$Res, $Val extends ClaimResponse>
     });
   }
 
+  /// Create a copy of ClaimResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get patient {
@@ -588,6 +604,8 @@ class _$ClaimResponseCopyWithImpl<$Res, $Val extends ClaimResponse>
     });
   }
 
+  /// Create a copy of ClaimResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get insurer {
@@ -596,6 +614,8 @@ class _$ClaimResponseCopyWithImpl<$Res, $Val extends ClaimResponse>
     });
   }
 
+  /// Create a copy of ClaimResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get requestor {
@@ -608,6 +628,8 @@ class _$ClaimResponseCopyWithImpl<$Res, $Val extends ClaimResponse>
     });
   }
 
+  /// Create a copy of ClaimResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get request {
@@ -620,6 +642,8 @@ class _$ClaimResponseCopyWithImpl<$Res, $Val extends ClaimResponse>
     });
   }
 
+  /// Create a copy of ClaimResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get preAuthPeriod {
@@ -632,6 +656,8 @@ class _$ClaimResponseCopyWithImpl<$Res, $Val extends ClaimResponse>
     });
   }
 
+  /// Create a copy of ClaimResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get payeeType {
@@ -644,6 +670,8 @@ class _$ClaimResponseCopyWithImpl<$Res, $Val extends ClaimResponse>
     });
   }
 
+  /// Create a copy of ClaimResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ClaimResponsePaymentCopyWith<$Res>? get payment {
@@ -656,6 +684,8 @@ class _$ClaimResponseCopyWithImpl<$Res, $Val extends ClaimResponse>
     });
   }
 
+  /// Create a copy of ClaimResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get fundsReserve {
@@ -668,6 +698,8 @@ class _$ClaimResponseCopyWithImpl<$Res, $Val extends ClaimResponse>
     });
   }
 
+  /// Create a copy of ClaimResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get formCode {
@@ -680,6 +712,8 @@ class _$ClaimResponseCopyWithImpl<$Res, $Val extends ClaimResponse>
     });
   }
 
+  /// Create a copy of ClaimResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AttachmentCopyWith<$Res>? get form {
@@ -786,6 +820,8 @@ class __$$ClaimResponseImplCopyWithImpl<$Res>
       _$ClaimResponseImpl _value, $Res Function(_$ClaimResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ClaimResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1539,7 +1575,7 @@ class _$ClaimResponseImpl extends _ClaimResponse {
             const DeepCollectionEquality().equals(other._error, _error));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1589,7 +1625,9 @@ class _$ClaimResponseImpl extends _ClaimResponse {
         const DeepCollectionEquality().hash(_error)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ClaimResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ClaimResponseImplCopyWith<_$ClaimResponseImpl> get copyWith =>
@@ -1659,39 +1697,38 @@ abstract class _ClaimResponse extends ClaimResponse {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.ClaimResponse)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1699,15 +1736,15 @@ abstract class _ClaimResponse extends ClaimResponse {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1715,9 +1752,9 @@ abstract class _ClaimResponse extends ClaimResponse {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1732,171 +1769,175 @@ abstract class _ClaimResponse extends ClaimResponse {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] A unique identifier assigned to this claim response.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [status] The status of the resource instance.
-  FhirCode? get status;
   @override
+  FhirCode? get status;
 
   /// [statusElement] Extensions for status
+  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
-  @override
 
   /// [type] A finer grained suite of claim type codes which may convey
   /// additional information such as Inpatient vs Outpatient and/or a specialty
   ///  service.
-  CodeableConcept get type;
   @override
+  CodeableConcept get type;
 
   /// [subType] A finer grained suite of claim type codes which may convey
   /// additional information such as Inpatient vs Outpatient and/or a specialty
   ///  service.
-  CodeableConcept? get subType;
   @override
+  CodeableConcept? get subType;
 
   /// [use] A code to indicate whether the nature of the request is: to request
   /// adjudication of products and services previously rendered; or requesting
   /// authorization and adjudication for provision in the future; or requesting
   /// the non-binding adjudication of the listed products and services which
   ///  could be provided in the future.
-  FhirCode? get use;
   @override
+  FhirCode? get use;
 
   /// [useElement] Extensions for use
+  @override
   @JsonKey(name: '_use')
   PrimitiveElement? get useElement;
-  @override
 
   /// [patient] The party to whom the professional services and/or products
   /// have been supplied or are being considered and for whom actual for facast
   ///  reimbursement is sought.
-  Reference get patient;
   @override
+  Reference get patient;
 
   /// [created] The date this resource was created.
-  FhirDateTime? get created;
   @override
+  FhirDateTime? get created;
 
   /// [createdElement] Extensions for created
+  @override
   @JsonKey(name: '_created')
   PrimitiveElement? get createdElement;
-  @override
 
   /// [insurer] The party responsible for authorization, adjudication and
   ///  reimbursement.
-  Reference get insurer;
   @override
+  Reference get insurer;
 
   /// [requestor] The provider which is responsible for the claim,
   ///  predetermination or preauthorization.
-  Reference? get requestor;
   @override
+  Reference? get requestor;
 
   /// [request] Original request resource reference.
-  Reference? get request;
   @override
+  Reference? get request;
 
   /// [outcome] The outcome of the claim, predetermination, or preauthorization
   ///  processing.
-  FhirCode? get outcome;
   @override
+  FhirCode? get outcome;
 
   /// [outcomeElement] Extensions for outcome
+  @override
   @JsonKey(name: '_outcome')
   PrimitiveElement? get outcomeElement;
-  @override
 
   /// [disposition] A human readable description of the status of the
   ///  adjudication.
-  String? get disposition;
   @override
+  String? get disposition;
 
   /// [dispositionElement] Extensions for disposition
+  @override
   @JsonKey(name: '_disposition')
   PrimitiveElement? get dispositionElement;
-  @override
 
   /// [preAuthRef] Reference from the Insurer which is used in later
   ///  communications which refers to this adjudication.
-  String? get preAuthRef;
   @override
+  String? get preAuthRef;
 
   /// [preAuthRefElement] Extensions for preAuthRef
+  @override
   @JsonKey(name: '_preAuthRef')
   PrimitiveElement? get preAuthRefElement;
-  @override
 
   /// [preAuthPeriod] The time frame during which this authorization is
   ///  effective.
-  Period? get preAuthPeriod;
   @override
+  Period? get preAuthPeriod;
 
   /// [payeeType] Type of Party to be reimbursed: subscriber, provider, other.
-  CodeableConcept? get payeeType;
   @override
+  CodeableConcept? get payeeType;
 
   /// [item] A claim line. Either a simple (a product or service) or a 'group'
   ///  of details which can also be a simple items or groups of sub-details.
-  List<ClaimResponseItem>? get item;
   @override
+  List<ClaimResponseItem>? get item;
 
   /// [addItem] The first-tier service adjudications for payor added product or
   ///  service lines.
-  List<ClaimResponseAddItem>? get addItem;
   @override
+  List<ClaimResponseAddItem>? get addItem;
 
   /// [adjudication] The adjudication results which are presented at the header
   ///  level rather than at the line-item or add-item levels.
-  List<ClaimResponseAdjudication>? get adjudication;
   @override
+  List<ClaimResponseAdjudication>? get adjudication;
 
   /// [total] Categorized monetary totals for the adjudication.
-  List<ClaimResponseTotal>? get total;
   @override
+  List<ClaimResponseTotal>? get total;
 
   /// [payment] Payment details for the adjudication of the claim.
-  ClaimResponsePayment? get payment;
   @override
+  ClaimResponsePayment? get payment;
 
   /// [fundsReserve] A code, used only on a response to a preauthorization, to
   ///  indicate whether the benefits payable have been reserved and for whom.
-  CodeableConcept? get fundsReserve;
   @override
+  CodeableConcept? get fundsReserve;
 
   /// [formCode] A code for the form to be used for printing the content.
-  CodeableConcept? get formCode;
   @override
+  CodeableConcept? get formCode;
 
   /// [form] The actual form, by reference or inclusion, for printing the
   ///  content or an EOB.
-  Attachment? get form;
   @override
+  Attachment? get form;
 
   /// [processNote] A note that describes or explains adjudication results in a
   ///  human readable form.
-  List<ClaimResponseProcessNote>? get processNote;
   @override
+  List<ClaimResponseProcessNote>? get processNote;
 
   /// [communicationRequest] Request for additional supporting or authorizing
   ///  information.
-  List<Reference>? get communicationRequest;
   @override
+  List<Reference>? get communicationRequest;
 
   /// [insurance] Financial instruments for reimbursement for the health care
   ///  products and services specified on the claim.
-  List<ClaimResponseInsurance>? get insurance;
   @override
+  List<ClaimResponseInsurance>? get insurance;
 
   /// [error] Errors encountered during the processing of the adjudication.
-  List<ClaimResponseError>? get error;
   @override
-  @JsonKey(ignore: true)
+  List<ClaimResponseError>? get error;
+
+  /// Create a copy of ClaimResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ClaimResponseImplCopyWith<_$ClaimResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1963,8 +2004,12 @@ mixin _$ClaimResponseItem {
   ///  'group' of sub-details which are simple items.
   List<ClaimResponseDetail>? get detail => throw _privateConstructorUsedError;
 
+  /// Serializes this ClaimResponseItem to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ClaimResponseItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ClaimResponseItemCopyWith<ClaimResponseItem> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1997,6 +2042,8 @@ class _$ClaimResponseItemCopyWithImpl<$Res, $Val extends ClaimResponseItem>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ClaimResponseItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2079,6 +2126,8 @@ class __$$ClaimResponseItemImplCopyWithImpl<$Res>
       $Res Function(_$ClaimResponseItemImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ClaimResponseItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2322,7 +2371,7 @@ class _$ClaimResponseItemImpl extends _ClaimResponseItem {
             const DeepCollectionEquality().equals(other._detail, _detail));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2336,7 +2385,9 @@ class _$ClaimResponseItemImpl extends _ClaimResponseItem {
       const DeepCollectionEquality().hash(_adjudication),
       const DeepCollectionEquality().hash(_detail));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ClaimResponseItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ClaimResponseItemImplCopyWith<_$ClaimResponseItemImpl> get copyWith =>
@@ -2369,12 +2420,10 @@ abstract class _ClaimResponseItem extends ClaimResponseItem {
   factory _ClaimResponseItem.fromJson(Map<String, dynamic> json) =
       _$ClaimResponseItemImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2382,9 +2431,9 @@ abstract class _ClaimResponseItem extends ClaimResponseItem {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2399,39 +2448,43 @@ abstract class _ClaimResponseItem extends ClaimResponseItem {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [itemSequence] A number to uniquely reference the claim item entries.
-  FhirPositiveInt? get itemSequence;
   @override
+  FhirPositiveInt? get itemSequence;
 
   /// [itemSequenceElement] Extensions for itemSequence
+  @override
   @JsonKey(name: '_itemSequence')
   PrimitiveElement? get itemSequenceElement;
-  @override
 
   /// [noteNumber] The numbers associated with notes below which apply to the
   ///  adjudication of this item.
-  List<FhirPositiveInt>? get noteNumber;
   @override
+  List<FhirPositiveInt>? get noteNumber;
 
   /// [noteNumberElement] Extensions for noteNumber
+  @override
   @JsonKey(name: '_noteNumber')
   List<PrimitiveElement>? get noteNumberElement;
-  @override
 
   /// [adjudication] If this item is a group then the values here are a summary
   /// of the adjudication of the detail items. If this item is a simple product
   ///  or service then this is the result of the adjudication of this item.
-  List<ClaimResponseAdjudication> get adjudication;
   @override
+  List<ClaimResponseAdjudication> get adjudication;
 
   /// [detail] A claim detail. Either a simple (a product or service) or a
   ///  'group' of sub-details which are simple items.
-  List<ClaimResponseDetail>? get detail;
   @override
-  @JsonKey(ignore: true)
+  List<ClaimResponseDetail>? get detail;
+
+  /// Create a copy of ClaimResponseItem
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ClaimResponseItemImplCopyWith<_$ClaimResponseItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2494,8 +2547,12 @@ mixin _$ClaimResponseAdjudication {
   @JsonKey(name: '_value')
   PrimitiveElement? get valueElement => throw _privateConstructorUsedError;
 
+  /// Serializes this ClaimResponseAdjudication to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ClaimResponseAdjudication
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ClaimResponseAdjudicationCopyWith<ClaimResponseAdjudication> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2532,6 +2589,8 @@ class _$ClaimResponseAdjudicationCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ClaimResponseAdjudication
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2580,6 +2639,8 @@ class _$ClaimResponseAdjudicationCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of ClaimResponseAdjudication
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get category {
@@ -2588,6 +2649,8 @@ class _$ClaimResponseAdjudicationCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ClaimResponseAdjudication
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get reason {
@@ -2600,6 +2663,8 @@ class _$ClaimResponseAdjudicationCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ClaimResponseAdjudication
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MoneyCopyWith<$Res>? get amount {
@@ -2650,6 +2715,8 @@ class __$$ClaimResponseAdjudicationImplCopyWithImpl<$Res>
       $Res Function(_$ClaimResponseAdjudicationImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ClaimResponseAdjudication
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2836,7 +2903,7 @@ class _$ClaimResponseAdjudicationImpl extends _ClaimResponseAdjudication {
                 other.valueElement == valueElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2849,7 +2916,9 @@ class _$ClaimResponseAdjudicationImpl extends _ClaimResponseAdjudication {
       value,
       valueElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ClaimResponseAdjudication
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ClaimResponseAdjudicationImplCopyWith<_$ClaimResponseAdjudicationImpl>
@@ -2880,12 +2949,10 @@ abstract class _ClaimResponseAdjudication extends ClaimResponseAdjudication {
   factory _ClaimResponseAdjudication.fromJson(Map<String, dynamic> json) =
       _$ClaimResponseAdjudicationImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2893,9 +2960,9 @@ abstract class _ClaimResponseAdjudication extends ClaimResponseAdjudication {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2910,36 +2977,40 @@ abstract class _ClaimResponseAdjudication extends ClaimResponseAdjudication {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [category] A code to indicate the information type of this adjudication
   /// record. Information types may include the value submitted, maximum values
   /// or percentages allowed or payable under the plan, amounts that: the
   /// patient is responsible for in aggregate or pertaining to this item;
   ///  amounts paid by other coverages; and, the benefit payable for this item.
-  CodeableConcept get category;
   @override
+  CodeableConcept get category;
 
   /// [reason] A code supporting the understanding of the adjudication result
   ///  and explaining variance from expected amount.
-  CodeableConcept? get reason;
   @override
+  CodeableConcept? get reason;
 
   /// [amount] Monetary amount associated with the category.
-  Money? get amount;
   @override
+  Money? get amount;
 
   /// [value] A non-monetary value associated with the category. Mutually
   ///  exclusive to the amount element above.
-  FhirDecimal? get value;
   @override
+  FhirDecimal? get value;
 
   /// [valueElement] Extensions for value
+  @override
   @JsonKey(name: '_value')
   PrimitiveElement? get valueElement;
+
+  /// Create a copy of ClaimResponseAdjudication
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ClaimResponseAdjudicationImplCopyWith<_$ClaimResponseAdjudicationImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3004,8 +3075,12 @@ mixin _$ClaimResponseDetail {
   List<ClaimResponseSubDetail>? get subDetail =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this ClaimResponseDetail to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ClaimResponseDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ClaimResponseDetailCopyWith<ClaimResponseDetail> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3038,6 +3113,8 @@ class _$ClaimResponseDetailCopyWithImpl<$Res, $Val extends ClaimResponseDetail>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ClaimResponseDetail
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3120,6 +3197,8 @@ class __$$ClaimResponseDetailImplCopyWithImpl<$Res>
       $Res Function(_$ClaimResponseDetailImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ClaimResponseDetail
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3358,7 +3437,7 @@ class _$ClaimResponseDetailImpl extends _ClaimResponseDetail {
                 .equals(other._subDetail, _subDetail));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3372,7 +3451,9 @@ class _$ClaimResponseDetailImpl extends _ClaimResponseDetail {
       const DeepCollectionEquality().hash(_adjudication),
       const DeepCollectionEquality().hash(_subDetail));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ClaimResponseDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ClaimResponseDetailImplCopyWith<_$ClaimResponseDetailImpl> get copyWith =>
@@ -3406,12 +3487,10 @@ abstract class _ClaimResponseDetail extends ClaimResponseDetail {
   factory _ClaimResponseDetail.fromJson(Map<String, dynamic> json) =
       _$ClaimResponseDetailImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3419,9 +3498,9 @@ abstract class _ClaimResponseDetail extends ClaimResponseDetail {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3436,36 +3515,40 @@ abstract class _ClaimResponseDetail extends ClaimResponseDetail {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [detailSequence] A number to uniquely reference the claim detail entry.
-  FhirPositiveInt? get detailSequence;
   @override
+  FhirPositiveInt? get detailSequence;
 
   /// [detailSequenceElement] Extensions for detailSequence
+  @override
   @JsonKey(name: '_detailSequence')
   PrimitiveElement? get detailSequenceElement;
-  @override
 
   /// [noteNumber] The numbers associated with notes below which apply to the
   ///  adjudication of this item.
-  List<FhirPositiveInt>? get noteNumber;
   @override
+  List<FhirPositiveInt>? get noteNumber;
 
   /// [noteNumberElement] Extensions for noteNumber
+  @override
   @JsonKey(name: '_noteNumber')
   List<PrimitiveElement>? get noteNumberElement;
-  @override
 
   /// [adjudication] The adjudication results.
-  List<ClaimResponseAdjudication> get adjudication;
   @override
+  List<ClaimResponseAdjudication> get adjudication;
 
   /// [subDetail] A sub-detail adjudication of a simple product or service.
-  List<ClaimResponseSubDetail>? get subDetail;
   @override
-  @JsonKey(ignore: true)
+  List<ClaimResponseSubDetail>? get subDetail;
+
+  /// Create a copy of ClaimResponseDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ClaimResponseDetailImplCopyWith<_$ClaimResponseDetailImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3528,8 +3611,12 @@ mixin _$ClaimResponseSubDetail {
   List<ClaimResponseAdjudication>? get adjudication =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this ClaimResponseSubDetail to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ClaimResponseSubDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ClaimResponseSubDetailCopyWith<ClaimResponseSubDetail> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3563,6 +3650,8 @@ class _$ClaimResponseSubDetailCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ClaimResponseSubDetail
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3643,6 +3732,8 @@ class __$$ClaimResponseSubDetailImplCopyWithImpl<$Res>
       $Res Function(_$ClaimResponseSubDetailImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ClaimResponseSubDetail
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3863,7 +3954,7 @@ class _$ClaimResponseSubDetailImpl extends _ClaimResponseSubDetail {
                 .equals(other._adjudication, _adjudication));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3876,7 +3967,9 @@ class _$ClaimResponseSubDetailImpl extends _ClaimResponseSubDetail {
       const DeepCollectionEquality().hash(_noteNumberElement),
       const DeepCollectionEquality().hash(_adjudication));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ClaimResponseSubDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ClaimResponseSubDetailImplCopyWith<_$ClaimResponseSubDetailImpl>
@@ -3909,12 +4002,10 @@ abstract class _ClaimResponseSubDetail extends ClaimResponseSubDetail {
   factory _ClaimResponseSubDetail.fromJson(Map<String, dynamic> json) =
       _$ClaimResponseSubDetailImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3922,9 +4013,9 @@ abstract class _ClaimResponseSubDetail extends ClaimResponseSubDetail {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3939,33 +4030,37 @@ abstract class _ClaimResponseSubDetail extends ClaimResponseSubDetail {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [subDetailSequence] A number to uniquely reference the claim sub-detail
   ///  entry.
-  FhirPositiveInt? get subDetailSequence;
   @override
+  FhirPositiveInt? get subDetailSequence;
 
   /// [subDetailSequenceElement] Extensions for subDetailSequence
+  @override
   @JsonKey(name: '_subDetailSequence')
   PrimitiveElement? get subDetailSequenceElement;
-  @override
 
   /// [noteNumber] The numbers associated with notes below which apply to the
   ///  adjudication of this item.
-  List<FhirPositiveInt>? get noteNumber;
   @override
+  List<FhirPositiveInt>? get noteNumber;
 
   /// [noteNumberElement] Extensions for noteNumber
+  @override
   @JsonKey(name: '_noteNumber')
   List<PrimitiveElement>? get noteNumberElement;
-  @override
 
   /// [adjudication] The adjudication results.
-  List<ClaimResponseAdjudication>? get adjudication;
   @override
-  @JsonKey(ignore: true)
+  List<ClaimResponseAdjudication>? get adjudication;
+
+  /// Create a copy of ClaimResponseSubDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ClaimResponseSubDetailImplCopyWith<_$ClaimResponseSubDetailImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -4116,8 +4211,12 @@ mixin _$ClaimResponseAddItem {
   /// [detail] The second-tier service adjudications for payor added services.
   List<ClaimResponseDetail1>? get detail => throw _privateConstructorUsedError;
 
+  /// Serializes this ClaimResponseAddItem to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ClaimResponseAddItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ClaimResponseAddItemCopyWith<ClaimResponseAddItem> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4185,6 +4284,8 @@ class _$ClaimResponseAddItemCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ClaimResponseAddItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4343,6 +4444,8 @@ class _$ClaimResponseAddItemCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of ClaimResponseAddItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get productOrService {
@@ -4351,6 +4454,8 @@ class _$ClaimResponseAddItemCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ClaimResponseAddItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get servicedPeriod {
@@ -4363,6 +4468,8 @@ class _$ClaimResponseAddItemCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ClaimResponseAddItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get locationCodeableConcept {
@@ -4376,6 +4483,8 @@ class _$ClaimResponseAddItemCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ClaimResponseAddItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AddressCopyWith<$Res>? get locationAddress {
@@ -4388,6 +4497,8 @@ class _$ClaimResponseAddItemCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ClaimResponseAddItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get locationReference {
@@ -4400,6 +4511,8 @@ class _$ClaimResponseAddItemCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ClaimResponseAddItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get quantity {
@@ -4412,6 +4525,8 @@ class _$ClaimResponseAddItemCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ClaimResponseAddItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MoneyCopyWith<$Res>? get unitPrice {
@@ -4424,6 +4539,8 @@ class _$ClaimResponseAddItemCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ClaimResponseAddItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MoneyCopyWith<$Res>? get net {
@@ -4436,6 +4553,8 @@ class _$ClaimResponseAddItemCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ClaimResponseAddItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get bodySite {
@@ -4520,6 +4639,8 @@ class __$$ClaimResponseAddItemImplCopyWithImpl<$Res>
       $Res Function(_$ClaimResponseAddItemImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ClaimResponseAddItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5135,7 +5256,7 @@ class _$ClaimResponseAddItemImpl extends _ClaimResponseAddItem {
             const DeepCollectionEquality().equals(other._detail, _detail));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -5171,7 +5292,9 @@ class _$ClaimResponseAddItemImpl extends _ClaimResponseAddItem {
         const DeepCollectionEquality().hash(_detail)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ClaimResponseAddItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ClaimResponseAddItemImplCopyWith<_$ClaimResponseAddItemImpl>
@@ -5229,12 +5352,10 @@ abstract class _ClaimResponseAddItem extends ClaimResponseAddItem {
   factory _ClaimResponseAddItem.fromJson(Map<String, dynamic> json) =
       _$ClaimResponseAddItemImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -5242,9 +5363,9 @@ abstract class _ClaimResponseAddItem extends ClaimResponseAddItem {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -5259,138 +5380,142 @@ abstract class _ClaimResponseAddItem extends ClaimResponseAddItem {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [itemSequence] Claim items which this service line is intended to
   ///  replace.
-  List<FhirPositiveInt>? get itemSequence;
   @override
+  List<FhirPositiveInt>? get itemSequence;
 
   /// [itemSequenceElement] Extensions for itemSequence
+  @override
   @JsonKey(name: '_itemSequence')
   List<PrimitiveElement>? get itemSequenceElement;
-  @override
 
   /// [detailSequence] The sequence number of the details within the claim item
   ///  which this line is intended to replace.
-  List<FhirPositiveInt>? get detailSequence;
   @override
+  List<FhirPositiveInt>? get detailSequence;
 
   /// [detailSequenceElement] Extensions for detailSequence
+  @override
   @JsonKey(name: '_detailSequence')
   List<PrimitiveElement>? get detailSequenceElement;
-  @override
 
   /// [subdetailSequence] The sequence number of the sub-details within the
   ///  details within the claim item which this line is intended to replace.
+  @override
   List<FhirPositiveInt>? get subdetailSequence;
   @override
   @JsonKey(name: '_subdetailSequence')
   List<Element>? get subdetailSequenceElement;
-  @override
 
   /// [provider] The providers who are authorized for the services rendered to
   ///  the patient.
-  List<Reference>? get provider;
   @override
+  List<Reference>? get provider;
 
   /// [productOrService] When the value is a group code then this item collects
   /// a set of related claim details, otherwise this contains the product,
   ///  service, drug or other billing code for the item.
-  CodeableConcept get productOrService;
   @override
+  CodeableConcept get productOrService;
 
   /// [modifier] Item typification or modifiers codes to convey additional
   ///  context for the product or service.
-  List<CodeableConcept>? get modifier;
   @override
+  List<CodeableConcept>? get modifier;
 
   /// [programCode] Identifies the program under which this may be recovered.
-  List<CodeableConcept>? get programCode;
   @override
+  List<CodeableConcept>? get programCode;
 
   /// [servicedDate] The date or dates when the service or product was
   ///  supplied, performed or completed.
-  FhirDate? get servicedDate;
   @override
+  FhirDate? get servicedDate;
 
   /// [servicedDateElement] Extensions for servicedDate
+  @override
   @JsonKey(name: '_servicedDate')
   PrimitiveElement? get servicedDateElement;
-  @override
 
   /// [servicedPeriod] The date or dates when the service or product was
   ///  supplied, performed or completed.
-  Period? get servicedPeriod;
   @override
+  Period? get servicedPeriod;
 
   /// [locationCodeableConcept] Where the product or service was provided.
-  CodeableConcept? get locationCodeableConcept;
   @override
+  CodeableConcept? get locationCodeableConcept;
 
   /// [locationAddress] Where the product or service was provided.
-  Address? get locationAddress;
   @override
+  Address? get locationAddress;
 
   /// [locationReference] Where the product or service was provided.
-  Reference? get locationReference;
   @override
+  Reference? get locationReference;
 
   /// [quantity] The number of repetitions of a service or product.
-  Quantity? get quantity;
   @override
+  Quantity? get quantity;
 
   /// [unitPrice] If the item is not a group then this is the fee for the
   /// product or service, otherwise this is the total of the fees for the
   ///  details of the group.
-  Money? get unitPrice;
   @override
+  Money? get unitPrice;
 
   /// [factor] A real number that represents a multiplier used in determining
   /// the overall value of services delivered and/or goods received. The concept
   /// of a Factor allows for a discount or surcharge multiplier to be applied to
   ///  a monetary amount.
-  FhirDecimal? get factor;
   @override
+  FhirDecimal? get factor;
 
   /// [factorElement] Extensions for factor
+  @override
   @JsonKey(name: '_factor')
   PrimitiveElement? get factorElement;
-  @override
 
   /// [net] The quantity times the unit price for an additional service or
   ///  product or charge.
-  Money? get net;
   @override
+  Money? get net;
 
   /// [bodySite] Physical service site on the patient (limb, tooth, etc.).
-  CodeableConcept? get bodySite;
   @override
+  CodeableConcept? get bodySite;
 
   /// [subSite] A region or surface of the bodySite, e.g. limb region or tooth
   ///  surface(s).
-  List<CodeableConcept>? get subSite;
   @override
+  List<CodeableConcept>? get subSite;
 
   /// [noteNumber] The numbers associated with notes below which apply to the
   ///  adjudication of this item.
-  List<FhirPositiveInt>? get noteNumber;
   @override
+  List<FhirPositiveInt>? get noteNumber;
 
   /// [noteNumberElement] Extensions for noteNumber
+  @override
   @JsonKey(name: '_noteNumber')
   List<PrimitiveElement>? get noteNumberElement;
-  @override
 
   /// [adjudication] The adjudication results.
-  List<ClaimResponseAdjudication> get adjudication;
   @override
+  List<ClaimResponseAdjudication> get adjudication;
 
   /// [detail] The second-tier service adjudications for payor added services.
-  List<ClaimResponseDetail1>? get detail;
   @override
-  @JsonKey(ignore: true)
+  List<ClaimResponseDetail1>? get detail;
+
+  /// Create a copy of ClaimResponseAddItem
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ClaimResponseAddItemImplCopyWith<_$ClaimResponseAddItemImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -5479,8 +5604,12 @@ mixin _$ClaimResponseDetail1 {
   List<ClaimResponseSubDetail1>? get subDetail =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this ClaimResponseDetail1 to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ClaimResponseDetail1
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ClaimResponseDetail1CopyWith<ClaimResponseDetail1> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -5524,6 +5653,8 @@ class _$ClaimResponseDetail1CopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ClaimResponseDetail1
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5602,6 +5733,8 @@ class _$ClaimResponseDetail1CopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of ClaimResponseDetail1
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get productOrService {
@@ -5610,6 +5743,8 @@ class _$ClaimResponseDetail1CopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ClaimResponseDetail1
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get quantity {
@@ -5622,6 +5757,8 @@ class _$ClaimResponseDetail1CopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ClaimResponseDetail1
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MoneyCopyWith<$Res>? get unitPrice {
@@ -5634,6 +5771,8 @@ class _$ClaimResponseDetail1CopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ClaimResponseDetail1
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MoneyCopyWith<$Res>? get net {
@@ -5689,6 +5828,8 @@ class __$$ClaimResponseDetail1ImplCopyWithImpl<$Res>
       $Res Function(_$ClaimResponseDetail1Impl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ClaimResponseDetail1
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -6006,7 +6147,7 @@ class _$ClaimResponseDetail1Impl extends _ClaimResponseDetail1 {
                 .equals(other._subDetail, _subDetail));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -6025,7 +6166,9 @@ class _$ClaimResponseDetail1Impl extends _ClaimResponseDetail1 {
       const DeepCollectionEquality().hash(_adjudication),
       const DeepCollectionEquality().hash(_subDetail));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ClaimResponseDetail1
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ClaimResponseDetail1ImplCopyWith<_$ClaimResponseDetail1Impl>
@@ -6064,12 +6207,10 @@ abstract class _ClaimResponseDetail1 extends ClaimResponseDetail1 {
   factory _ClaimResponseDetail1.fromJson(Map<String, dynamic> json) =
       _$ClaimResponseDetail1Impl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -6077,9 +6218,9 @@ abstract class _ClaimResponseDetail1 extends ClaimResponseDetail1 {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -6094,66 +6235,70 @@ abstract class _ClaimResponseDetail1 extends ClaimResponseDetail1 {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [productOrService] When the value is a group code then this item collects
   /// a set of related claim details, otherwise this contains the product,
   ///  service, drug or other billing code for the item.
-  CodeableConcept get productOrService;
   @override
+  CodeableConcept get productOrService;
 
   /// [modifier] Item typification or modifiers codes to convey additional
   ///  context for the product or service.
-  List<CodeableConcept>? get modifier;
   @override
+  List<CodeableConcept>? get modifier;
 
   /// [quantity] The number of repetitions of a service or product.
-  Quantity? get quantity;
   @override
+  Quantity? get quantity;
 
   /// [unitPrice] If the item is not a group then this is the fee for the
   /// product or service, otherwise this is the total of the fees for the
   ///  details of the group.
-  Money? get unitPrice;
   @override
+  Money? get unitPrice;
 
   /// [factor] A real number that represents a multiplier used in determining
   /// the overall value of services delivered and/or goods received. The concept
   /// of a Factor allows for a discount or surcharge multiplier to be applied to
   ///  a monetary amount.
-  FhirDecimal? get factor;
   @override
+  FhirDecimal? get factor;
 
   /// [factorElement] Extensions for factor
+  @override
   @JsonKey(name: '_factor')
   PrimitiveElement? get factorElement;
-  @override
 
   /// [net] The quantity times the unit price for an additional service or
   ///  product or charge.
-  Money? get net;
   @override
+  Money? get net;
 
   /// [noteNumber] The numbers associated with notes below which apply to the
   ///  adjudication of this item.
-  List<FhirPositiveInt>? get noteNumber;
   @override
+  List<FhirPositiveInt>? get noteNumber;
 
   /// [noteNumberElement] Extensions for noteNumber
+  @override
   @JsonKey(name: '_noteNumber')
   List<PrimitiveElement>? get noteNumberElement;
-  @override
 
   /// [adjudication] The adjudication results.
-  List<ClaimResponseAdjudication> get adjudication;
   @override
+  List<ClaimResponseAdjudication> get adjudication;
 
   /// [subDetail] The third-tier service adjudications for payor added
   ///  services.
-  List<ClaimResponseSubDetail1>? get subDetail;
   @override
-  @JsonKey(ignore: true)
+  List<ClaimResponseSubDetail1>? get subDetail;
+
+  /// Create a copy of ClaimResponseDetail1
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ClaimResponseDetail1ImplCopyWith<_$ClaimResponseDetail1Impl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -6238,8 +6383,12 @@ mixin _$ClaimResponseSubDetail1 {
   List<ClaimResponseAdjudication> get adjudication =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this ClaimResponseSubDetail1 to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ClaimResponseSubDetail1
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ClaimResponseSubDetail1CopyWith<ClaimResponseSubDetail1> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -6282,6 +6431,8 @@ class _$ClaimResponseSubDetail1CopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ClaimResponseSubDetail1
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -6355,6 +6506,8 @@ class _$ClaimResponseSubDetail1CopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of ClaimResponseSubDetail1
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get productOrService {
@@ -6363,6 +6516,8 @@ class _$ClaimResponseSubDetail1CopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ClaimResponseSubDetail1
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get quantity {
@@ -6375,6 +6530,8 @@ class _$ClaimResponseSubDetail1CopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ClaimResponseSubDetail1
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MoneyCopyWith<$Res>? get unitPrice {
@@ -6387,6 +6544,8 @@ class _$ClaimResponseSubDetail1CopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ClaimResponseSubDetail1
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MoneyCopyWith<$Res>? get net {
@@ -6444,6 +6603,8 @@ class __$$ClaimResponseSubDetail1ImplCopyWithImpl<$Res>
       $Res Function(_$ClaimResponseSubDetail1Impl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ClaimResponseSubDetail1
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -6737,7 +6898,7 @@ class _$ClaimResponseSubDetail1Impl extends _ClaimResponseSubDetail1 {
                 .equals(other._adjudication, _adjudication));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -6755,7 +6916,9 @@ class _$ClaimResponseSubDetail1Impl extends _ClaimResponseSubDetail1 {
       const DeepCollectionEquality().hash(_noteNumberElement),
       const DeepCollectionEquality().hash(_adjudication));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ClaimResponseSubDetail1
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ClaimResponseSubDetail1ImplCopyWith<_$ClaimResponseSubDetail1Impl>
@@ -6792,12 +6955,10 @@ abstract class _ClaimResponseSubDetail1 extends ClaimResponseSubDetail1 {
   factory _ClaimResponseSubDetail1.fromJson(Map<String, dynamic> json) =
       _$ClaimResponseSubDetail1Impl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -6805,9 +6966,9 @@ abstract class _ClaimResponseSubDetail1 extends ClaimResponseSubDetail1 {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -6822,61 +6983,65 @@ abstract class _ClaimResponseSubDetail1 extends ClaimResponseSubDetail1 {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [productOrService] When the value is a group code then this item collects
   /// a set of related claim details, otherwise this contains the product,
   ///  service, drug or other billing code for the item.
-  CodeableConcept get productOrService;
   @override
+  CodeableConcept get productOrService;
 
   /// [modifier] Item typification or modifiers codes to convey additional
   ///  context for the product or service.
-  List<CodeableConcept>? get modifier;
   @override
+  List<CodeableConcept>? get modifier;
 
   /// [quantity] The number of repetitions of a service or product.
-  Quantity? get quantity;
   @override
+  Quantity? get quantity;
 
   /// [unitPrice] If the item is not a group then this is the fee for the
   /// product or service, otherwise this is the total of the fees for the
   ///  details of the group.
-  Money? get unitPrice;
   @override
+  Money? get unitPrice;
 
   /// [factor] A real number that represents a multiplier used in determining
   /// the overall value of services delivered and/or goods received. The concept
   /// of a Factor allows for a discount or surcharge multiplier to be applied to
   ///  a monetary amount.
-  FhirDecimal? get factor;
   @override
+  FhirDecimal? get factor;
 
   /// [factorElement] Extensions for factor
+  @override
   @JsonKey(name: '_factor')
   PrimitiveElement? get factorElement;
-  @override
 
   /// [net] The quantity times the unit price for an additional service or
   ///  product or charge.
-  Money? get net;
   @override
+  Money? get net;
 
   /// [noteNumber] The numbers associated with notes below which apply to the
   ///  adjudication of this item.
-  List<FhirPositiveInt>? get noteNumber;
   @override
+  List<FhirPositiveInt>? get noteNumber;
 
   /// [noteNumberElement] Extensions for noteNumber
+  @override
   @JsonKey(name: '_noteNumber')
   List<PrimitiveElement>? get noteNumberElement;
-  @override
 
   /// [adjudication] The adjudication results.
-  List<ClaimResponseAdjudication> get adjudication;
   @override
-  @JsonKey(ignore: true)
+  List<ClaimResponseAdjudication> get adjudication;
+
+  /// Create a copy of ClaimResponseSubDetail1
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ClaimResponseSubDetail1ImplCopyWith<_$ClaimResponseSubDetail1Impl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -6926,8 +7091,12 @@ mixin _$ClaimResponseTotal {
   /// [amount] Monetary total amount associated with the category.
   Money get amount => throw _privateConstructorUsedError;
 
+  /// Serializes this ClaimResponseTotal to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ClaimResponseTotal
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ClaimResponseTotalCopyWith<ClaimResponseTotal> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -6959,6 +7128,8 @@ class _$ClaimResponseTotalCopyWithImpl<$Res, $Val extends ClaimResponseTotal>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ClaimResponseTotal
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -6992,6 +7163,8 @@ class _$ClaimResponseTotalCopyWithImpl<$Res, $Val extends ClaimResponseTotal>
     ) as $Val);
   }
 
+  /// Create a copy of ClaimResponseTotal
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get category {
@@ -7000,6 +7173,8 @@ class _$ClaimResponseTotalCopyWithImpl<$Res, $Val extends ClaimResponseTotal>
     });
   }
 
+  /// Create a copy of ClaimResponseTotal
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MoneyCopyWith<$Res> get amount {
@@ -7038,6 +7213,8 @@ class __$$ClaimResponseTotalImplCopyWithImpl<$Res>
       $Res Function(_$ClaimResponseTotalImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ClaimResponseTotal
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -7187,7 +7364,7 @@ class _$ClaimResponseTotalImpl extends _ClaimResponseTotal {
             (identical(other.amount, amount) || other.amount == amount));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -7197,7 +7374,9 @@ class _$ClaimResponseTotalImpl extends _ClaimResponseTotal {
       category,
       amount);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ClaimResponseTotal
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ClaimResponseTotalImplCopyWith<_$ClaimResponseTotalImpl> get copyWith =>
@@ -7224,12 +7403,10 @@ abstract class _ClaimResponseTotal extends ClaimResponseTotal {
   factory _ClaimResponseTotal.fromJson(Map<String, dynamic> json) =
       _$ClaimResponseTotalImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -7237,9 +7414,9 @@ abstract class _ClaimResponseTotal extends ClaimResponseTotal {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -7254,21 +7431,25 @@ abstract class _ClaimResponseTotal extends ClaimResponseTotal {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [category] A code to indicate the information type of this adjudication
   /// record. Information types may include: the value submitted, maximum values
   /// or percentages allowed or payable under the plan, amounts that the patient
   /// is responsible for in aggregate or pertaining to this item, amounts paid
   ///  by other coverages, and the benefit payable for this item.
-  CodeableConcept get category;
   @override
+  CodeableConcept get category;
 
   /// [amount] Monetary total amount associated with the category.
-  Money get amount;
   @override
-  @JsonKey(ignore: true)
+  Money get amount;
+
+  /// Create a copy of ClaimResponseTotal
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ClaimResponseTotalImplCopyWith<_$ClaimResponseTotalImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -7333,8 +7514,12 @@ mixin _$ClaimResponsePayment {
   /// [identifier] Issuer's unique identifier for the payment instrument.
   Identifier? get identifier => throw _privateConstructorUsedError;
 
+  /// Serializes this ClaimResponsePayment to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ClaimResponsePayment
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ClaimResponsePaymentCopyWith<ClaimResponsePayment> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -7375,6 +7560,8 @@ class _$ClaimResponsePaymentCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ClaimResponsePayment
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -7433,6 +7620,8 @@ class _$ClaimResponsePaymentCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of ClaimResponsePayment
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get type {
@@ -7441,6 +7630,8 @@ class _$ClaimResponsePaymentCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ClaimResponsePayment
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MoneyCopyWith<$Res>? get adjustment {
@@ -7453,6 +7644,8 @@ class _$ClaimResponsePaymentCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ClaimResponsePayment
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get adjustmentReason {
@@ -7465,6 +7658,8 @@ class _$ClaimResponsePaymentCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ClaimResponsePayment
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MoneyCopyWith<$Res> get amount {
@@ -7473,6 +7668,8 @@ class _$ClaimResponsePaymentCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ClaimResponsePayment
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $IdentifierCopyWith<$Res>? get identifier {
@@ -7526,6 +7723,8 @@ class __$$ClaimResponsePaymentImplCopyWithImpl<$Res>
       $Res Function(_$ClaimResponsePaymentImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ClaimResponsePayment
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -7733,7 +7932,7 @@ class _$ClaimResponsePaymentImpl extends _ClaimResponsePayment {
                 other.identifier == identifier));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -7748,7 +7947,9 @@ class _$ClaimResponsePaymentImpl extends _ClaimResponsePayment {
       amount,
       identifier);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ClaimResponsePayment
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ClaimResponsePaymentImplCopyWith<_$ClaimResponsePaymentImpl>
@@ -7781,12 +7982,10 @@ abstract class _ClaimResponsePayment extends ClaimResponsePayment {
   factory _ClaimResponsePayment.fromJson(Map<String, dynamic> json) =
       _$ClaimResponsePaymentImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -7794,9 +7993,9 @@ abstract class _ClaimResponsePayment extends ClaimResponsePayment {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -7811,41 +8010,45 @@ abstract class _ClaimResponsePayment extends ClaimResponsePayment {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [type] Whether this represents partial or complete payment of the
   ///  benefits payable.
-  CodeableConcept get type;
   @override
+  CodeableConcept get type;
 
   /// [adjustment] Total amount of all adjustments to this payment included in
   ///  this transaction which are not related to this claim's adjudication.
-  Money? get adjustment;
   @override
+  Money? get adjustment;
 
   /// [adjustmentReason] Reason for the payment adjustment.
-  CodeableConcept? get adjustmentReason;
   @override
+  CodeableConcept? get adjustmentReason;
 
   /// [date] Estimated date the payment will be issued or the actual issue date
   ///  of payment.
-  FhirDate? get date;
   @override
+  FhirDate? get date;
 
   /// [dateElement] Extensions for date
+  @override
   @JsonKey(name: '_date')
   PrimitiveElement? get dateElement;
-  @override
 
   /// [amount] Benefits payable less any payment adjustment.
-  Money get amount;
   @override
+  Money get amount;
 
   /// [identifier] Issuer's unique identifier for the payment instrument.
-  Identifier? get identifier;
   @override
-  @JsonKey(ignore: true)
+  Identifier? get identifier;
+
+  /// Create a copy of ClaimResponsePayment
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ClaimResponsePaymentImplCopyWith<_$ClaimResponsePaymentImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -7910,8 +8113,12 @@ mixin _$ClaimResponseProcessNote {
   /// [language] A code to define the language used in the text of the note.
   CodeableConcept? get language => throw _privateConstructorUsedError;
 
+  /// Serializes this ClaimResponseProcessNote to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ClaimResponseProcessNote
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ClaimResponseProcessNoteCopyWith<ClaimResponseProcessNote> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -7948,6 +8155,8 @@ class _$ClaimResponseProcessNoteCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ClaimResponseProcessNote
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -8006,6 +8215,8 @@ class _$ClaimResponseProcessNoteCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of ClaimResponseProcessNote
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get language {
@@ -8054,6 +8265,8 @@ class __$$ClaimResponseProcessNoteImplCopyWithImpl<$Res>
       $Res Function(_$ClaimResponseProcessNoteImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ClaimResponseProcessNote
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -8260,7 +8473,7 @@ class _$ClaimResponseProcessNoteImpl extends _ClaimResponseProcessNote {
                 other.language == language));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -8275,7 +8488,9 @@ class _$ClaimResponseProcessNoteImpl extends _ClaimResponseProcessNote {
       textElement,
       language);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ClaimResponseProcessNote
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ClaimResponseProcessNoteImplCopyWith<_$ClaimResponseProcessNoteImpl>
@@ -8307,12 +8522,10 @@ abstract class _ClaimResponseProcessNote extends ClaimResponseProcessNote {
   factory _ClaimResponseProcessNote.fromJson(Map<String, dynamic> json) =
       _$ClaimResponseProcessNoteImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -8320,9 +8533,9 @@ abstract class _ClaimResponseProcessNote extends ClaimResponseProcessNote {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -8337,40 +8550,44 @@ abstract class _ClaimResponseProcessNote extends ClaimResponseProcessNote {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [number] A number to uniquely identify a note entry.
-  FhirPositiveInt? get number;
   @override
+  FhirPositiveInt? get number;
 
   /// [numberElement] Extensions for number
+  @override
   @JsonKey(name: '_number')
   PrimitiveElement? get numberElement;
-  @override
 
   /// [type] The business purpose of the note text.
-  FhirCode? get type;
   @override
+  FhirCode? get type;
 
   /// [typeElement] Extensions for type
+  @override
   @JsonKey(name: '_type')
   PrimitiveElement? get typeElement;
-  @override
 
   /// [text] The explanation or description associated with the processing.
-  String? get text;
   @override
+  String? get text;
 
   /// [textElement] Extensions for text
+  @override
   @JsonKey(name: '_text')
   PrimitiveElement? get textElement;
-  @override
 
   /// [language] A code to define the language used in the text of the note.
-  CodeableConcept? get language;
   @override
-  @JsonKey(ignore: true)
+  CodeableConcept? get language;
+
+  /// Create a copy of ClaimResponseProcessNote
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ClaimResponseProcessNoteImplCopyWith<_$ClaimResponseProcessNoteImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -8446,8 +8663,12 @@ mixin _$ClaimResponseInsurance {
   ///  Coverage specified in this insurance.
   Reference? get claimResponse => throw _privateConstructorUsedError;
 
+  /// Serializes this ClaimResponseInsurance to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ClaimResponseInsurance
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ClaimResponseInsuranceCopyWith<ClaimResponseInsurance> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -8487,6 +8708,8 @@ class _$ClaimResponseInsuranceCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ClaimResponseInsurance
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -8550,6 +8773,8 @@ class _$ClaimResponseInsuranceCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of ClaimResponseInsurance
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get coverage {
@@ -8558,6 +8783,8 @@ class _$ClaimResponseInsuranceCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ClaimResponseInsurance
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get claimResponse {
@@ -8610,6 +8837,8 @@ class __$$ClaimResponseInsuranceImplCopyWithImpl<$Res>
       $Res Function(_$ClaimResponseInsuranceImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ClaimResponseInsurance
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -8839,7 +9068,7 @@ class _$ClaimResponseInsuranceImpl extends _ClaimResponseInsurance {
                 other.claimResponse == claimResponse));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -8855,7 +9084,9 @@ class _$ClaimResponseInsuranceImpl extends _ClaimResponseInsurance {
       businessArrangementElement,
       claimResponse);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ClaimResponseInsurance
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ClaimResponseInsuranceImplCopyWith<_$ClaimResponseInsuranceImpl>
@@ -8889,12 +9120,10 @@ abstract class _ClaimResponseInsurance extends ClaimResponseInsurance {
   factory _ClaimResponseInsurance.fromJson(Map<String, dynamic> json) =
       _$ClaimResponseInsuranceImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -8902,9 +9131,9 @@ abstract class _ClaimResponseInsurance extends ClaimResponseInsurance {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -8919,51 +9148,55 @@ abstract class _ClaimResponseInsurance extends ClaimResponseInsurance {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [sequence] A number to uniquely identify insurance entries and provide a
   ///  sequence of coverages to convey coordination of benefit order.
-  FhirPositiveInt? get sequence;
   @override
+  FhirPositiveInt? get sequence;
 
   /// [sequenceElement] Extensions for sequence
+  @override
   @JsonKey(name: '_sequence')
   PrimitiveElement? get sequenceElement;
-  @override
 
   /// [focal] A flag to indicate that this Coverage is to be used for
   ///  adjudication of this claim when set to true.
-  FhirBoolean? get focal;
   @override
+  FhirBoolean? get focal;
 
   /// [focalElement] Extensions for focal
+  @override
   @JsonKey(name: '_focal')
   PrimitiveElement? get focalElement;
-  @override
 
   /// [coverage] Reference to the insurance card level information contained in
   /// the Coverage resource. The coverage issuing insurer will use these details
   /// to locate the patient's actual coverage within the insurer's information
   ///  system.
-  Reference get coverage;
   @override
+  Reference get coverage;
 
   /// [businessArrangement] A business agreement number established between the
   ///  provider and the insurer for special business processing purposes.
-  String? get businessArrangement;
   @override
+  String? get businessArrangement;
 
   /// [businessArrangementElement] Extensions for businessArrangement
+  @override
   @JsonKey(name: '_businessArrangement')
   PrimitiveElement? get businessArrangementElement;
-  @override
 
   /// [claimResponse] The result of the adjudication of the line items for the
   ///  Coverage specified in this insurance.
-  Reference? get claimResponse;
   @override
-  @JsonKey(ignore: true)
+  Reference? get claimResponse;
+
+  /// Create a copy of ClaimResponseInsurance
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ClaimResponseInsuranceImplCopyWith<_$ClaimResponseInsuranceImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -9037,8 +9270,12 @@ mixin _$ClaimResponseError {
   ///  claim could not be adjudicated.
   CodeableConcept get code => throw _privateConstructorUsedError;
 
+  /// Serializes this ClaimResponseError to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ClaimResponseError
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ClaimResponseErrorCopyWith<ClaimResponseError> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -9075,6 +9312,8 @@ class _$ClaimResponseErrorCopyWithImpl<$Res, $Val extends ClaimResponseError>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ClaimResponseError
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -9133,6 +9372,8 @@ class _$ClaimResponseErrorCopyWithImpl<$Res, $Val extends ClaimResponseError>
     ) as $Val);
   }
 
+  /// Create a copy of ClaimResponseError
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get code {
@@ -9175,6 +9416,8 @@ class __$$ClaimResponseErrorImplCopyWithImpl<$Res>
       $Res Function(_$ClaimResponseErrorImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ClaimResponseError
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -9391,7 +9634,7 @@ class _$ClaimResponseErrorImpl extends _ClaimResponseError {
             (identical(other.code, code) || other.code == code));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -9406,7 +9649,9 @@ class _$ClaimResponseErrorImpl extends _ClaimResponseError {
       subDetailSequenceElement,
       code);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ClaimResponseError
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ClaimResponseErrorImplCopyWith<_$ClaimResponseErrorImpl> get copyWith =>
@@ -9441,12 +9686,10 @@ abstract class _ClaimResponseError extends ClaimResponseError {
   factory _ClaimResponseError.fromJson(Map<String, dynamic> json) =
       _$ClaimResponseErrorImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -9454,9 +9697,9 @@ abstract class _ClaimResponseError extends ClaimResponseError {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -9471,47 +9714,51 @@ abstract class _ClaimResponseError extends ClaimResponseError {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [itemSequence] The sequence number of the line item submitted which
   /// contains the error. This value is omitted when the error occurs outside of
   ///  the item structure.
-  FhirPositiveInt? get itemSequence;
   @override
+  FhirPositiveInt? get itemSequence;
 
   /// [itemSequenceElement] Extensions for itemSequence
+  @override
   @JsonKey(name: '_itemSequence')
   PrimitiveElement? get itemSequenceElement;
-  @override
 
   /// [detailSequence] The sequence number of the detail within the line item
   /// submitted which contains the error. This value is omitted when the error
   ///  occurs outside of the item structure.
-  FhirPositiveInt? get detailSequence;
   @override
+  FhirPositiveInt? get detailSequence;
 
   /// [detailSequenceElement] Extensions for detailSequence
+  @override
   @JsonKey(name: '_detailSequence')
   PrimitiveElement? get detailSequenceElement;
-  @override
 
   /// [subDetailSequence] The sequence number of the sub-detail within the
   /// detail within the line item submitted which contains the error. This value
   ///  is omitted when the error occurs outside of the item structure.
-  FhirPositiveInt? get subDetailSequence;
   @override
+  FhirPositiveInt? get subDetailSequence;
 
   /// [subDetailSequenceElement] Extensions for subDetailSequence
+  @override
   @JsonKey(name: '_subDetailSequence')
   PrimitiveElement? get subDetailSequenceElement;
-  @override
 
   /// [code] An error code, from a specified code system, which details why the
   ///  claim could not be adjudicated.
-  CodeableConcept get code;
   @override
-  @JsonKey(ignore: true)
+  CodeableConcept get code;
+
+  /// Create a copy of ClaimResponseError
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ClaimResponseErrorImplCopyWith<_$ClaimResponseErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

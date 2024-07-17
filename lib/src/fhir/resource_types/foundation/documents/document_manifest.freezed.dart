@@ -159,8 +159,12 @@ mixin _$DocumentManifest {
   List<DocumentManifestRelated>? get related =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this DocumentManifest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DocumentManifest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DocumentManifestCopyWith<DocumentManifest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -218,6 +222,8 @@ class _$DocumentManifestCopyWithImpl<$Res, $Val extends DocumentManifest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DocumentManifest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -361,6 +367,8 @@ class _$DocumentManifestCopyWithImpl<$Res, $Val extends DocumentManifest>
     ) as $Val);
   }
 
+  /// Create a copy of DocumentManifest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -373,6 +381,8 @@ class _$DocumentManifestCopyWithImpl<$Res, $Val extends DocumentManifest>
     });
   }
 
+  /// Create a copy of DocumentManifest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -385,6 +395,8 @@ class _$DocumentManifestCopyWithImpl<$Res, $Val extends DocumentManifest>
     });
   }
 
+  /// Create a copy of DocumentManifest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $IdentifierCopyWith<$Res>? get masterIdentifier {
@@ -397,6 +409,8 @@ class _$DocumentManifestCopyWithImpl<$Res, $Val extends DocumentManifest>
     });
   }
 
+  /// Create a copy of DocumentManifest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get type {
@@ -409,6 +423,8 @@ class _$DocumentManifestCopyWithImpl<$Res, $Val extends DocumentManifest>
     });
   }
 
+  /// Create a copy of DocumentManifest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get subject {
@@ -480,6 +496,8 @@ class __$$DocumentManifestImplCopyWithImpl<$Res>
       $Res Function(_$DocumentManifestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DocumentManifest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -982,7 +1000,7 @@ class _$DocumentManifestImpl extends _DocumentManifest {
             const DeepCollectionEquality().equals(other._related, _related));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1015,7 +1033,9 @@ class _$DocumentManifestImpl extends _DocumentManifest {
         const DeepCollectionEquality().hash(_related)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DocumentManifest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DocumentManifestImplCopyWith<_$DocumentManifestImpl> get copyWith =>
@@ -1069,39 +1089,38 @@ abstract class _DocumentManifest extends DocumentManifest {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.DocumentManifest)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1109,15 +1128,15 @@ abstract class _DocumentManifest extends DocumentManifest {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1125,9 +1144,9 @@ abstract class _DocumentManifest extends DocumentManifest {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1142,32 +1161,32 @@ abstract class _DocumentManifest extends DocumentManifest {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [masterIdentifier] A single identifier that uniquely identifies this
   ///  manifest. Principally used to refer to the manifest in non-FHIR contexts.
-  Identifier? get masterIdentifier;
   @override
+  Identifier? get masterIdentifier;
 
   /// [identifier] Other identifiers associated with the document manifest,
   ///  including version independent  identifiers.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [status] The status of this document manifest.
-  FhirCode? get status;
   @override
+  FhirCode? get status;
 
   /// [statusElement] Extensions for status
+  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
-  @override
 
   /// [type] The code specifying the type of clinical activity that resulted in
   ///  placing the associated content into the DocumentManifest.
-  CodeableConcept? get type;
   @override
+  CodeableConcept? get type;
 
   /// [subject] Who or what the set of documents is about. The documents can be
   /// about a person, (patient or healthcare practitioner), a device (i.e.
@@ -1175,60 +1194,64 @@ abstract class _DocumentManifest extends DocumentManifest {
   /// farm animals, or a set of patients that share a common exposure). If the
   /// documents cross more than one subject, then more than one subject is
   ///  allowed here (unusual use case).
-  Reference? get subject;
   @override
+  Reference? get subject;
 
   /// [created] When the document manifest was created for submission to the
   /// server (not necessarily the same thing as the actual resource last
   ///  modified time, since it may be modified, replicated, etc.).
-  FhirDateTime? get created;
   @override
+  FhirDateTime? get created;
 
   /// [createdElement] Extensions for created
+  @override
   @JsonKey(name: '_created')
   PrimitiveElement? get createdElement;
-  @override
 
   /// [author] Identifies who is the author of the manifest. Manifest author is
   ///  not necessarly the author of the references included.
-  List<Reference>? get author;
   @override
+  List<Reference>? get author;
 
   /// [recipient] A patient, practitioner, or organization for which this set
   ///  of documents is intended.
-  List<Reference>? get recipient;
   @override
+  List<Reference>? get recipient;
 
   /// [source] Identifies the source system, application, or software that
   ///  produced the document manifest.
-  FhirUri? get source;
   @override
+  FhirUri? get source;
 
   /// [sourceElement] Extensions for source
+  @override
   @JsonKey(name: '_source')
   PrimitiveElement? get sourceElement;
-  @override
 
   /// [description] Human-readable description of the source document. This is
   ///  sometimes known as the "title".
-  String? get description;
   @override
+  String? get description;
 
   /// [descriptionElement] Extensions for description
+  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
-  @override
 
   /// [content] The list of Resources that consist of the parts of this
   ///  manifest.
-  List<Reference> get content;
   @override
+  List<Reference> get content;
 
   /// [related] Related identifiers or resources associated with the
   ///  DocumentManifest.
-  List<DocumentManifestRelated>? get related;
   @override
-  @JsonKey(ignore: true)
+  List<DocumentManifestRelated>? get related;
+
+  /// Create a copy of DocumentManifest
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DocumentManifestImplCopyWith<_$DocumentManifestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1277,8 +1300,12 @@ mixin _$DocumentManifestRelated {
   ///  ServiceRequest,  Procedure, EligibilityRequest, etc.
   Reference? get ref => throw _privateConstructorUsedError;
 
+  /// Serializes this DocumentManifestRelated to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DocumentManifestRelated
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DocumentManifestRelatedCopyWith<DocumentManifestRelated> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1311,6 +1338,8 @@ class _$DocumentManifestRelatedCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DocumentManifestRelated
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1344,6 +1373,8 @@ class _$DocumentManifestRelatedCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of DocumentManifestRelated
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $IdentifierCopyWith<$Res>? get identifier {
@@ -1356,6 +1387,8 @@ class _$DocumentManifestRelatedCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of DocumentManifestRelated
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get ref {
@@ -1401,6 +1434,8 @@ class __$$DocumentManifestRelatedImplCopyWithImpl<$Res>
       $Res Function(_$DocumentManifestRelatedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DocumentManifestRelated
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1548,7 +1583,7 @@ class _$DocumentManifestRelatedImpl extends _DocumentManifestRelated {
             (identical(other.ref, ref) || other.ref == ref));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1558,7 +1593,9 @@ class _$DocumentManifestRelatedImpl extends _DocumentManifestRelated {
       identifier,
       ref);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DocumentManifestRelated
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DocumentManifestRelatedImplCopyWith<_$DocumentManifestRelatedImpl>
@@ -1585,12 +1622,10 @@ abstract class _DocumentManifestRelated extends DocumentManifestRelated {
   factory _DocumentManifestRelated.fromJson(Map<String, dynamic> json) =
       _$DocumentManifestRelatedImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1598,9 +1633,9 @@ abstract class _DocumentManifestRelated extends DocumentManifestRelated {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -1615,19 +1650,23 @@ abstract class _DocumentManifestRelated extends DocumentManifestRelated {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] Related identifier to this DocumentManifest.  For example,
   ///  Order numbers, accession numbers, XDW workflow numbers.
-  Identifier? get identifier;
   @override
+  Identifier? get identifier;
 
   /// [ref] Related Resource to this DocumentManifest. For example, Order,
   ///  ServiceRequest,  Procedure, EligibilityRequest, etc.
-  Reference? get ref;
   @override
-  @JsonKey(ignore: true)
+  Reference? get ref;
+
+  /// Create a copy of DocumentManifestRelated
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DocumentManifestRelatedImplCopyWith<_$DocumentManifestRelatedImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -301,7 +301,7 @@ class PractitionerRole with _$PractitionerRole implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 
   PractitionerRole updateContactPointSystem(ContactPointSystem system,
       [int index = 0]) {

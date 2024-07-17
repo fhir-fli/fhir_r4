@@ -465,7 +465,7 @@ class Questionnaire with _$Questionnaire implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [QuestionnaireItem] A structured set of questions intended to guide the

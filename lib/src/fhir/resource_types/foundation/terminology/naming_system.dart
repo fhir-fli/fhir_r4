@@ -347,7 +347,7 @@ class NamingSystem with _$NamingSystem implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [NamingSystemUniqueId] A curated namespace that issues unique symbols

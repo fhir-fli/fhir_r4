@@ -290,7 +290,7 @@ class SupplyDelivery with _$SupplyDelivery implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [SupplyDeliverySuppliedItem] Record of delivery of what is supplied.

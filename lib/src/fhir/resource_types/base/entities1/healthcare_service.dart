@@ -400,7 +400,7 @@ class HealthcareService with _$HealthcareService implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 
   HealthcareService updateContactPointSystem(ContactPointSystem system,
       [int index = 0]) {

@@ -393,7 +393,7 @@ class ResearchStudy with _$ResearchStudy implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [ResearchStudyArm] A process where a researcher or organization plans

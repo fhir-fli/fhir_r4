@@ -287,7 +287,7 @@ class SubscriptionTopic with _$SubscriptionTopic implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [SubscriptionTopicResourceTrigger] Describes a stream of resource state changes or events and annotated with labels useful to filter projections from this topic.

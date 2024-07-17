@@ -112,8 +112,12 @@ mixin _$Basic {
   ///  instance.
   Reference? get author => throw _privateConstructorUsedError;
 
+  /// Serializes this Basic to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Basic
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BasicCopyWith<Basic> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -159,6 +163,8 @@ class _$BasicCopyWithImpl<$Res, $Val extends Basic>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Basic
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -252,6 +258,8 @@ class _$BasicCopyWithImpl<$Res, $Val extends Basic>
     ) as $Val);
   }
 
+  /// Create a copy of Basic
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -264,6 +272,8 @@ class _$BasicCopyWithImpl<$Res, $Val extends Basic>
     });
   }
 
+  /// Create a copy of Basic
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -276,6 +286,8 @@ class _$BasicCopyWithImpl<$Res, $Val extends Basic>
     });
   }
 
+  /// Create a copy of Basic
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get code {
@@ -284,6 +296,8 @@ class _$BasicCopyWithImpl<$Res, $Val extends Basic>
     });
   }
 
+  /// Create a copy of Basic
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get subject {
@@ -296,6 +310,8 @@ class _$BasicCopyWithImpl<$Res, $Val extends Basic>
     });
   }
 
+  /// Create a copy of Basic
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get author {
@@ -356,6 +372,8 @@ class __$$BasicImplCopyWithImpl<$Res>
       _$BasicImpl _value, $Res Function(_$BasicImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Basic
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -685,7 +703,7 @@ class _$BasicImpl extends _Basic {
             (identical(other.author, author) || other.author == author));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -707,7 +725,9 @@ class _$BasicImpl extends _Basic {
       createdElement,
       author);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Basic
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BasicImplCopyWith<_$BasicImpl> get copyWith =>
@@ -749,39 +769,38 @@ abstract class _Basic extends Basic {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.Basic)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -789,15 +808,15 @@ abstract class _Basic extends Basic {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -805,9 +824,9 @@ abstract class _Basic extends Basic {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -822,38 +841,42 @@ abstract class _Basic extends Basic {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] Identifier assigned to the resource for business purposes,
   ///  outside the context of FHIR.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [code] Identifies the 'type' of resource - equivalent to the resource
   ///  name for other resources.
-  CodeableConcept get code;
   @override
+  CodeableConcept get code;
 
   /// [subject] Identifies the patient, practitioner, device or any other
   ///  resource that is the "focus" of this resource.
-  Reference? get subject;
   @override
+  Reference? get subject;
 
   /// [created] Identifies when the resource was first created.
-  FhirDate? get created;
   @override
+  FhirDate? get created;
 
   /// [createdElement] Extensions for created
+  @override
   @JsonKey(name: '_created')
   PrimitiveElement? get createdElement;
-  @override
 
   /// [author] Indicates who was responsible for creating the resource
   ///  instance.
-  Reference? get author;
   @override
-  @JsonKey(ignore: true)
+  Reference? get author;
+
+  /// Create a copy of Basic
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BasicImplCopyWith<_$BasicImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

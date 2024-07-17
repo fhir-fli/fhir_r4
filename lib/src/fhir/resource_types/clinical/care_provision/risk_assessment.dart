@@ -325,7 +325,7 @@ class RiskAssessment with _$RiskAssessment implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [RiskAssessmentPrediction] An assessment of the likely outcome(s) for a

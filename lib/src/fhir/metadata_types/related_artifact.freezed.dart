@@ -79,8 +79,12 @@ mixin _$RelatedArtifact {
   ///  or other knowledge resource.
   FhirCanonical? get resource => throw _privateConstructorUsedError;
 
+  /// Serializes this RelatedArtifact to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RelatedArtifact
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RelatedArtifactCopyWith<RelatedArtifact> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -121,6 +125,8 @@ class _$RelatedArtifactCopyWithImpl<$Res, $Val extends RelatedArtifact>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RelatedArtifact
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -199,6 +205,8 @@ class _$RelatedArtifactCopyWithImpl<$Res, $Val extends RelatedArtifact>
     ) as $Val);
   }
 
+  /// Create a copy of RelatedArtifact
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AttachmentCopyWith<$Res>? get document {
@@ -249,6 +257,8 @@ class __$$RelatedArtifactImplCopyWithImpl<$Res>
       _$RelatedArtifactImpl _value, $Res Function(_$RelatedArtifactImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RelatedArtifact
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -475,7 +485,7 @@ class _$RelatedArtifactImpl extends _RelatedArtifact {
                 other.resource == resource));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -494,7 +504,9 @@ class _$RelatedArtifactImpl extends _RelatedArtifact {
       document,
       resource);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RelatedArtifact
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RelatedArtifactImplCopyWith<_$RelatedArtifactImpl> get copyWith =>
@@ -531,12 +543,10 @@ abstract class _RelatedArtifact extends RelatedArtifact {
   factory _RelatedArtifact.fromJson(Map<String, dynamic> json) =
       _$RelatedArtifactImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -544,68 +554,72 @@ abstract class _RelatedArtifact extends RelatedArtifact {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
   @override
   @JsonKey(unknownEnumValue: RelatedArtifactType.unknown)
   RelatedArtifactType? get type;
-  @override
 
   /// [typeElement] Extensions for type
+  @override
   @JsonKey(name: '_type')
   PrimitiveElement? get typeElement;
-  @override
 
   /// [label] A short label that can be used to reference the citation from
   ///  elsewhere in the containing artifact, such as a footnote index.
-  String? get label;
   @override
+  String? get label;
 
   /// [labelElement] Extensions for label
+  @override
   @JsonKey(name: '_label')
   PrimitiveElement? get labelElement;
-  @override
 
   /// [display] A brief description of the document or knowledge resource being
   ///  referenced, suitable for display to a consumer.
-  String? get display;
   @override
+  String? get display;
 
   /// [displayElement] Extensions for display
+  @override
   @JsonKey(name: '_display')
   PrimitiveElement? get displayElement;
-  @override
 
   /// [citation] A bibliographic citation for the related artifact. This text
   ///  SHOULD be formatted according to an accepted citation format.
-  FhirMarkdown? get citation;
   @override
+  FhirMarkdown? get citation;
 
   /// [citationElement] Extensions for citation
+  @override
   @JsonKey(name: '_citation')
   PrimitiveElement? get citationElement;
-  @override
 
   /// [url] A url for the artifact that can be followed to access the actual
   ///  content.
-  FhirUrl? get url;
   @override
+  FhirUrl? get url;
 
   /// [urlElement] Extensions for url
+  @override
   @JsonKey(name: '_url')
   PrimitiveElement? get urlElement;
-  @override
 
   /// [document] The document being referenced, represented as an attachment.
   ///  This is exclusive with the resource element.
-  Attachment? get document;
   @override
+  Attachment? get document;
 
   /// [resource] The related resource, such as a library, value set, profile,
   ///  or other knowledge resource.
-  FhirCanonical? get resource;
   @override
-  @JsonKey(ignore: true)
+  FhirCanonical? get resource;
+
+  /// Create a copy of RelatedArtifact
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RelatedArtifactImplCopyWith<_$RelatedArtifactImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

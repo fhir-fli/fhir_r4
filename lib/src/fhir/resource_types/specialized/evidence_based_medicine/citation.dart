@@ -308,7 +308,7 @@ class Citation with _$Citation implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [CitationSummary] The Citation Resource enables reference to any

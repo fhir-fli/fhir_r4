@@ -416,7 +416,7 @@ class StructureMap with _$StructureMap implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [StructureMapStructure] A Map of relationships between 2 structures that

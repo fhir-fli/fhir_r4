@@ -311,7 +311,7 @@ class DocumentManifest with _$DocumentManifest implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [DocumentManifestRelated] A collection of documents compiled for a

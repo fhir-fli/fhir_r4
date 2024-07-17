@@ -185,7 +185,7 @@ class NutritionProduct with _$NutritionProduct implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [NutritionProductNutrient] A food or supplement that is consumed by patients.

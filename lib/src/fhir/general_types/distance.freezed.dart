@@ -70,8 +70,12 @@ mixin _$Distance {
   @JsonKey(name: '_code')
   PrimitiveElement? get codeElement => throw _privateConstructorUsedError;
 
+  /// Serializes this Distance to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Distance
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DistanceCopyWith<Distance> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -107,6 +111,8 @@ class _$DistanceCopyWithImpl<$Res, $Val extends Distance>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Distance
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -208,6 +214,8 @@ class __$$DistanceImplCopyWithImpl<$Res>
       _$DistanceImpl _value, $Res Function(_$DistanceImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Distance
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -406,7 +414,7 @@ class _$DistanceImpl extends _Distance {
                 other.codeElement == codeElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -423,7 +431,9 @@ class _$DistanceImpl extends _Distance {
       code,
       codeElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Distance
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DistanceImplCopyWith<_$DistanceImpl> get copyWith =>
@@ -458,12 +468,10 @@ abstract class _Distance extends Distance {
   factory _Distance.fromJson(Map<String, dynamic> json) =
       _$DistanceImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -471,57 +479,61 @@ abstract class _Distance extends Distance {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [value] The value of the measured amount. The value includes an implicit
   ///  precision in the presentation of the value.
-  FhirDecimal? get value;
   @override
+  FhirDecimal? get value;
 
   /// [valueElement] Extensions for value
+  @override
   @JsonKey(name: '_value')
   PrimitiveElement? get valueElement;
   @override
   @JsonKey(unknownEnumValue: DistanceComparator.unknown)
   DistanceComparator? get comparator;
-  @override
 
   /// [comparatorElement] Extensions for comparator
+  @override
   @JsonKey(name: '_comparator')
   PrimitiveElement? get comparatorElement;
-  @override
 
   /// [unit] A human-readable form of the unit.
-  String? get unit;
   @override
+  String? get unit;
 
   /// [unitElement] Extensions for unit
+  @override
   @JsonKey(name: '_unit')
   PrimitiveElement? get unitElement;
-  @override
 
   /// [system] The identification of the system that provides the coded form of
   ///  the unit.
-  FhirUri? get system;
   @override
+  FhirUri? get system;
 
   /// [systemElement] Extensions for system
+  @override
   @JsonKey(name: '_system')
   PrimitiveElement? get systemElement;
-  @override
 
   /// [code] A computer processable form of the unit in some unit
   ///  representation system.
-  FhirCode? get code;
   @override
+  FhirCode? get code;
 
   /// [codeElement] Extensions for code
+  @override
   @JsonKey(name: '_code')
   PrimitiveElement? get codeElement;
+
+  /// Create a copy of Distance
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DistanceImplCopyWith<_$DistanceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

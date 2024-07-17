@@ -129,8 +129,12 @@ mixin _$BodyStructure {
   /// [patient] The person to which the body site belongs.
   Reference get patient => throw _privateConstructorUsedError;
 
+  /// Serializes this BodyStructure to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BodyStructure
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BodyStructureCopyWith<BodyStructure> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -182,6 +186,8 @@ class _$BodyStructureCopyWithImpl<$Res, $Val extends BodyStructure>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BodyStructure
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -295,6 +301,8 @@ class _$BodyStructureCopyWithImpl<$Res, $Val extends BodyStructure>
     ) as $Val);
   }
 
+  /// Create a copy of BodyStructure
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -307,6 +315,8 @@ class _$BodyStructureCopyWithImpl<$Res, $Val extends BodyStructure>
     });
   }
 
+  /// Create a copy of BodyStructure
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -319,6 +329,8 @@ class _$BodyStructureCopyWithImpl<$Res, $Val extends BodyStructure>
     });
   }
 
+  /// Create a copy of BodyStructure
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get morphology {
@@ -331,6 +343,8 @@ class _$BodyStructureCopyWithImpl<$Res, $Val extends BodyStructure>
     });
   }
 
+  /// Create a copy of BodyStructure
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get location {
@@ -343,6 +357,8 @@ class _$BodyStructureCopyWithImpl<$Res, $Val extends BodyStructure>
     });
   }
 
+  /// Create a copy of BodyStructure
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get patient {
@@ -404,6 +420,8 @@ class __$$BodyStructureImplCopyWithImpl<$Res>
       _$BodyStructureImpl _value, $Res Function(_$BodyStructureImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BodyStructure
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -807,7 +825,7 @@ class _$BodyStructureImpl extends _BodyStructure {
             (identical(other.patient, patient) || other.patient == patient));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -834,7 +852,9 @@ class _$BodyStructureImpl extends _BodyStructure {
         patient
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BodyStructure
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BodyStructureImplCopyWith<_$BodyStructureImpl> get copyWith =>
@@ -881,39 +901,38 @@ abstract class _BodyStructure extends BodyStructure {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.BodyStructure)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -921,15 +940,15 @@ abstract class _BodyStructure extends BodyStructure {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -937,9 +956,9 @@ abstract class _BodyStructure extends BodyStructure {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -954,57 +973,61 @@ abstract class _BodyStructure extends BodyStructure {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] Identifier for this instance of the anatomical structure.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [active] Whether this body site is in active use.
-  FhirBoolean? get active;
   @override
+  FhirBoolean? get active;
 
   /// [activeElement] Extensions for active
+  @override
   @JsonKey(name: '_active')
   PrimitiveElement? get activeElement;
-  @override
 
   /// [morphology] The kind of structure being represented by the body
   /// structure at `BodyStructure.location`.  This can define both normal and
   ///  abnormal morphologies.
-  CodeableConcept? get morphology;
   @override
+  CodeableConcept? get morphology;
 
   /// [location] The anatomical location or region of the specimen, lesion, or
   ///  body structure.
-  CodeableConcept? get location;
   @override
+  CodeableConcept? get location;
 
   /// [locationQualifier] Qualifier to refine the anatomical location.  These
   /// include qualifiers for laterality, relative location, directionality,
   ///  number, and plane.
-  List<CodeableConcept>? get locationQualifier;
   @override
+  List<CodeableConcept>? get locationQualifier;
 
   /// [description] A summary, characterization or explanation of the body
   ///  structure.
-  String? get description;
   @override
+  String? get description;
 
   /// [descriptionElement] Extensions for description
+  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
-  @override
 
   /// [image] Image or images used to identify a location.
-  List<Attachment>? get image;
   @override
+  List<Attachment>? get image;
 
   /// [patient] The person to which the body site belongs.
-  Reference get patient;
   @override
-  @JsonKey(ignore: true)
+  Reference get patient;
+
+  /// Create a copy of BodyStructure
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BodyStructureImplCopyWith<_$BodyStructureImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

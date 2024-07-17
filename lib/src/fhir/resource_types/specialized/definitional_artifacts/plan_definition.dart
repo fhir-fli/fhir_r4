@@ -558,7 +558,7 @@ class PlanDefinition with _$PlanDefinition implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [PlanDefinitionGoal] This resource allows for the definition of various

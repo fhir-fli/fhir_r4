@@ -421,7 +421,7 @@ class MedicationDispense with _$MedicationDispense implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [MedicationDispensePerformer] Indicates that a medication product is to

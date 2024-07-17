@@ -411,7 +411,7 @@ class ClaimResponse with _$ClaimResponse implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [ClaimResponseItem] This resource provides the adjudication details from

@@ -528,7 +528,7 @@ class SearchParameter with _$SearchParameter implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [SearchParameterComponent] A search parameter that defines a named

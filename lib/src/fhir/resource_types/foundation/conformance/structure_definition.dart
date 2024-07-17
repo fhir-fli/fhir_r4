@@ -537,7 +537,7 @@ class StructureDefinition with _$StructureDefinition implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [StructureDefinitionMapping] A definition of a FHIR structure. This

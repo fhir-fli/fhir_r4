@@ -254,7 +254,7 @@ class ClinicalImpression with _$ClinicalImpression implements DomainResource {
 
   @override
   Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(meta));
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
 }
 
 /// [ClinicalImpressionInvestigation] A record of a clinical assessment
