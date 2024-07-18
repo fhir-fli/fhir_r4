@@ -8,12 +8,17 @@ FhirMeta updateFhirMetaVersion(FhirMeta? oldFhirMeta) {
       : oldFhirMeta.versionId == null
           ? 1
           : int.parse(oldFhirMeta.versionId.toString()) + 1;
+  print('Updating version to $version');
   if (oldFhirMeta == null) {
+    print('Updating version to $version');
+
     return FhirMeta(
       lastUpdated: FhirInstant(DateTime.now().toUtc()),
       versionId: FhirId(version.toString()),
     );
   } else {
+    print('Updating version to $version');
+
     return oldFhirMeta.copyWith(
       lastUpdated: FhirInstant(DateTime.now().toUtc()),
       versionId: FhirId(version.toString()),

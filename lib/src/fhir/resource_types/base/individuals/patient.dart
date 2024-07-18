@@ -682,8 +682,15 @@ class Patient with _$Patient implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta}) {
+    print('updating Patient version for ${toJson()}');
+    print('oldMeta: ${oldMeta?.versionId}, meta: ${meta?.versionId}');
+    final updatedMeta = updateFhirMetaVersion(oldMeta ?? meta);
+    print('updated meta: ${updatedMeta.versionId}');
+    final updatedPatient = copyWith(meta: updatedMeta);
+    print('updated Patient: ${updatedPatient.toJson()}');
+    return updatedPatient;
+  }
 }
 
 /// [PatientContact] Demographics and other administrative information about

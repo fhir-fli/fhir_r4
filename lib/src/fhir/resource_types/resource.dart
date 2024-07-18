@@ -93,8 +93,15 @@ abstract class Resource extends FhirBase {
 
   /// Updates the [meta] field of this Resource, updates the meta.lastUpdated
   /// field, adds 1 to the version number
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      _updateMeta(this, meta: oldMeta);
+  Resource updateVersion({FhirMeta? oldMeta}) {
+    print('Updating version');
+    print('Old Meta: ${oldMeta?.toJson()}');
+    print('This Meta: ${meta?.toJson()}');
+    print(this.toJson());
+    final newResource = _updateMeta(this, meta: oldMeta);
+    print(newResource.toJson());
+    return newResource;
+  }
 
   static R4ResourceType? resourceTypeFromString(String type) =>
       R4ResourceType.fromString(type);
