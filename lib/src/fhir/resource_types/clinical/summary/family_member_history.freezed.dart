@@ -93,12 +93,8 @@ mixin _$FamilyMemberHistory {
   List<FamilyMemberHistoryCondition>? get condition =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this FamilyMemberHistory to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of FamilyMemberHistory
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $FamilyMemberHistoryCopyWith<FamilyMemberHistory> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -185,8 +181,6 @@ class _$FamilyMemberHistoryCopyWithImpl<$Res, $Val extends FamilyMemberHistory>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of FamilyMemberHistory
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -435,8 +429,6 @@ class _$FamilyMemberHistoryCopyWithImpl<$Res, $Val extends FamilyMemberHistory>
     ) as $Val);
   }
 
-  /// Create a copy of FamilyMemberHistory
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -449,8 +441,6 @@ class _$FamilyMemberHistoryCopyWithImpl<$Res, $Val extends FamilyMemberHistory>
     });
   }
 
-  /// Create a copy of FamilyMemberHistory
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -463,8 +453,6 @@ class _$FamilyMemberHistoryCopyWithImpl<$Res, $Val extends FamilyMemberHistory>
     });
   }
 
-  /// Create a copy of FamilyMemberHistory
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get dataAbsentReason {
@@ -477,8 +465,6 @@ class _$FamilyMemberHistoryCopyWithImpl<$Res, $Val extends FamilyMemberHistory>
     });
   }
 
-  /// Create a copy of FamilyMemberHistory
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get patient {
@@ -487,8 +473,6 @@ class _$FamilyMemberHistoryCopyWithImpl<$Res, $Val extends FamilyMemberHistory>
     });
   }
 
-  /// Create a copy of FamilyMemberHistory
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get relationship {
@@ -497,8 +481,6 @@ class _$FamilyMemberHistoryCopyWithImpl<$Res, $Val extends FamilyMemberHistory>
     });
   }
 
-  /// Create a copy of FamilyMemberHistory
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get sex {
@@ -511,8 +493,6 @@ class _$FamilyMemberHistoryCopyWithImpl<$Res, $Val extends FamilyMemberHistory>
     });
   }
 
-  /// Create a copy of FamilyMemberHistory
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get bornPeriod {
@@ -525,8 +505,6 @@ class _$FamilyMemberHistoryCopyWithImpl<$Res, $Val extends FamilyMemberHistory>
     });
   }
 
-  /// Create a copy of FamilyMemberHistory
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AgeCopyWith<$Res>? get ageAge {
@@ -539,8 +517,6 @@ class _$FamilyMemberHistoryCopyWithImpl<$Res, $Val extends FamilyMemberHistory>
     });
   }
 
-  /// Create a copy of FamilyMemberHistory
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get ageRange {
@@ -553,8 +529,6 @@ class _$FamilyMemberHistoryCopyWithImpl<$Res, $Val extends FamilyMemberHistory>
     });
   }
 
-  /// Create a copy of FamilyMemberHistory
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AgeCopyWith<$Res>? get deceasedAge {
@@ -567,8 +541,6 @@ class _$FamilyMemberHistoryCopyWithImpl<$Res, $Val extends FamilyMemberHistory>
     });
   }
 
-  /// Create a copy of FamilyMemberHistory
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get deceasedRange {
@@ -675,8 +647,6 @@ class __$$FamilyMemberHistoryImplCopyWithImpl<$Res>
       $Res Function(_$FamilyMemberHistoryImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of FamilyMemberHistory
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1296,7 +1266,7 @@ class _$FamilyMemberHistoryImpl extends _FamilyMemberHistory {
                 .equals(other._condition, _condition));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1350,9 +1320,7 @@ class _$FamilyMemberHistoryImpl extends _FamilyMemberHistory {
         const DeepCollectionEquality().hash(_condition)
       ]);
 
-  /// Create a copy of FamilyMemberHistory
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$FamilyMemberHistoryImplCopyWith<_$FamilyMemberHistoryImpl> get copyWith =>
@@ -1541,11 +1509,8 @@ abstract class _FamilyMemberHistory extends FamilyMemberHistory {
   List<Annotation>? get note;
   @override
   List<FamilyMemberHistoryCondition>? get condition;
-
-  /// Create a copy of FamilyMemberHistory
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$FamilyMemberHistoryImplCopyWith<_$FamilyMemberHistoryImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1577,12 +1542,8 @@ mixin _$FamilyMemberHistoryCondition {
       throw _privateConstructorUsedError;
   List<Annotation>? get note => throw _privateConstructorUsedError;
 
-  /// Serializes this FamilyMemberHistoryCondition to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of FamilyMemberHistoryCondition
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $FamilyMemberHistoryConditionCopyWith<FamilyMemberHistoryCondition>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1629,8 +1590,6 @@ class _$FamilyMemberHistoryConditionCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of FamilyMemberHistoryCondition
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1704,8 +1663,6 @@ class _$FamilyMemberHistoryConditionCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of FamilyMemberHistoryCondition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get code {
@@ -1714,8 +1671,6 @@ class _$FamilyMemberHistoryConditionCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of FamilyMemberHistoryCondition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get outcome {
@@ -1728,8 +1683,6 @@ class _$FamilyMemberHistoryConditionCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of FamilyMemberHistoryCondition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AgeCopyWith<$Res>? get onsetAge {
@@ -1742,8 +1695,6 @@ class _$FamilyMemberHistoryConditionCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of FamilyMemberHistoryCondition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get onsetRange {
@@ -1756,8 +1707,6 @@ class _$FamilyMemberHistoryConditionCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of FamilyMemberHistoryCondition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get onsetPeriod {
@@ -1818,8 +1767,6 @@ class __$$FamilyMemberHistoryConditionImplCopyWithImpl<$Res>
       $Res Function(_$FamilyMemberHistoryConditionImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of FamilyMemberHistoryCondition
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2009,7 +1956,7 @@ class _$FamilyMemberHistoryConditionImpl extends _FamilyMemberHistoryCondition {
             const DeepCollectionEquality().equals(other._note, _note));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2027,9 +1974,7 @@ class _$FamilyMemberHistoryConditionImpl extends _FamilyMemberHistoryCondition {
       onsetStringElement,
       const DeepCollectionEquality().hash(_note));
 
-  /// Create a copy of FamilyMemberHistoryCondition
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$FamilyMemberHistoryConditionImplCopyWith<
@@ -2096,11 +2041,8 @@ abstract class _FamilyMemberHistoryCondition
   PrimitiveElement? get onsetStringElement;
   @override
   List<Annotation>? get note;
-
-  /// Create a copy of FamilyMemberHistoryCondition
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$FamilyMemberHistoryConditionImplCopyWith<
           _$FamilyMemberHistoryConditionImpl>
       get copyWith => throw _privateConstructorUsedError;

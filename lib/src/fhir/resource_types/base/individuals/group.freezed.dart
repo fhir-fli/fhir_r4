@@ -149,12 +149,8 @@ mixin _$FhirGroup {
   /// [member] Identifies the resource instances that are members of the group.
   List<GroupMember>? get member => throw _privateConstructorUsedError;
 
-  /// Serializes this FhirGroup to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of FhirGroup
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $FhirGroupCopyWith<FhirGroup> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -209,8 +205,6 @@ class _$FhirGroupCopyWithImpl<$Res, $Val extends FhirGroup>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of FhirGroup
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -349,8 +343,6 @@ class _$FhirGroupCopyWithImpl<$Res, $Val extends FhirGroup>
     ) as $Val);
   }
 
-  /// Create a copy of FhirGroup
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -363,8 +355,6 @@ class _$FhirGroupCopyWithImpl<$Res, $Val extends FhirGroup>
     });
   }
 
-  /// Create a copy of FhirGroup
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -377,8 +367,6 @@ class _$FhirGroupCopyWithImpl<$Res, $Val extends FhirGroup>
     });
   }
 
-  /// Create a copy of FhirGroup
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get code {
@@ -391,8 +379,6 @@ class _$FhirGroupCopyWithImpl<$Res, $Val extends FhirGroup>
     });
   }
 
-  /// Create a copy of FhirGroup
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get managingEntity {
@@ -461,8 +447,6 @@ class __$$FhirGroupImplCopyWithImpl<$Res>
       _$FhirGroupImpl _value, $Res Function(_$FhirGroupImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of FhirGroup
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -927,7 +911,7 @@ class _$FhirGroupImpl extends _FhirGroup {
             const DeepCollectionEquality().equals(other._member, _member));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -959,9 +943,7 @@ class _$FhirGroupImpl extends _FhirGroup {
         const DeepCollectionEquality().hash(_member)
       ]);
 
-  /// Create a copy of FhirGroup
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$FhirGroupImplCopyWith<_$FhirGroupImpl> get copyWith =>
@@ -1013,38 +995,39 @@ abstract class _FhirGroup extends FhirGroup {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.Group)
   R4ResourceType get resourceType;
+  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @override
   String? get id;
+  @override
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  @override
   FhirMeta? get meta;
+  @override
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  @override
   FhirUri? get implicitRules;
+  @override
 
   /// [implicitRulesElement] Extensions for implicitRules
-  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
+  @override
 
   /// [language] The base language in which the resource is written.
-  @override
   FhirCode? get language;
+  @override
 
   /// [languageElement] Extensions for language
-  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
+  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1052,15 +1035,15 @@ abstract class _FhirGroup extends FhirGroup {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  @override
   Narrative? get text;
+  @override
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  @override
   List<Resource>? get contained;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1068,9 +1051,9 @@ abstract class _FhirGroup extends FhirGroup {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1085,87 +1068,83 @@ abstract class _FhirGroup extends FhirGroup {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [identifier] A unique business identifier for this group.
-  @override
   List<Identifier>? get identifier;
+  @override
 
   /// [active] Indicates whether the record for the group is available for use
   ///  or is merely being retained for historical purposes.
-  @override
   FhirBoolean? get active;
+  @override
 
   /// [activeElement] Extensions for active
-  @override
   @JsonKey(name: '_active')
   PrimitiveElement? get activeElement;
+  @override
 
   /// [type] Identifies the broad classification of the kind of resources the
   ///  group includes.
-  @override
   FhirCode? get type;
+  @override
 
   /// [typeElement] Extensions for type
-  @override
   @JsonKey(name: '_type')
   PrimitiveElement? get typeElement;
+  @override
 
   /// [actual] If true, indicates that the resource refers to a specific group
   /// of real individuals.  If false, the group defines a set of intended
   ///  individuals.
-  @override
   FhirBoolean? get actual;
+  @override
 
   /// [actualElement] Extensions for actual
-  @override
   @JsonKey(name: '_actual')
   PrimitiveElement? get actualElement;
+  @override
 
   /// [code] Provides a specific type of resource the group includes; e.g.
   ///  "cow", "syringe", etc.
-  @override
   CodeableConcept? get code;
+  @override
 
   /// [name] A label assigned to the group for human identification and
   ///  communication.
-  @override
   String? get name;
+  @override
 
   /// [nameElement] Extensions for name
-  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
+  @override
 
   /// [quantity] A count of the number of resource instances that are part of
   ///  the group.
-  @override
   FhirUnsignedInt? get quantity;
+  @override
 
   /// [quantityElement] Extensions for quantity
-  @override
   @JsonKey(name: '_quantity')
   PrimitiveElement? get quantityElement;
+  @override
 
   /// [managingEntity] Entity responsible for defining and maintaining Group
   ///  characteristics and/or registered members.
-  @override
   Reference? get managingEntity;
+  @override
 
   /// [characteristic] Identifies traits whose presence r absence is shared by
   ///  members of the group.
-  @override
   List<GroupCharacteristic>? get characteristic;
+  @override
 
   /// [member] Identifies the resource instances that are members of the group.
-  @override
   List<GroupMember>? get member;
-
-  /// Create a copy of FhirGroup
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$FhirGroupImplCopyWith<_$FhirGroupImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1246,12 +1225,8 @@ mixin _$GroupCharacteristic {
   ///  patient had an operation during the month of June.
   Period? get period => throw _privateConstructorUsedError;
 
-  /// Serializes this GroupCharacteristic to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of GroupCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $GroupCharacteristicCopyWith<GroupCharacteristic> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1295,8 +1270,6 @@ class _$GroupCharacteristicCopyWithImpl<$Res, $Val extends GroupCharacteristic>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of GroupCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1370,8 +1343,6 @@ class _$GroupCharacteristicCopyWithImpl<$Res, $Val extends GroupCharacteristic>
     ) as $Val);
   }
 
-  /// Create a copy of GroupCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get code {
@@ -1380,8 +1351,6 @@ class _$GroupCharacteristicCopyWithImpl<$Res, $Val extends GroupCharacteristic>
     });
   }
 
-  /// Create a copy of GroupCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get valueCodeableConcept {
@@ -1395,8 +1364,6 @@ class _$GroupCharacteristicCopyWithImpl<$Res, $Val extends GroupCharacteristic>
     });
   }
 
-  /// Create a copy of GroupCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get valueQuantity {
@@ -1409,8 +1376,6 @@ class _$GroupCharacteristicCopyWithImpl<$Res, $Val extends GroupCharacteristic>
     });
   }
 
-  /// Create a copy of GroupCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get valueRange {
@@ -1423,8 +1388,6 @@ class _$GroupCharacteristicCopyWithImpl<$Res, $Val extends GroupCharacteristic>
     });
   }
 
-  /// Create a copy of GroupCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get valueReference {
@@ -1437,8 +1400,6 @@ class _$GroupCharacteristicCopyWithImpl<$Res, $Val extends GroupCharacteristic>
     });
   }
 
-  /// Create a copy of GroupCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get period {
@@ -1497,8 +1458,6 @@ class __$$GroupCharacteristicImplCopyWithImpl<$Res>
       $Res Function(_$GroupCharacteristicImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of GroupCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1747,7 +1706,7 @@ class _$GroupCharacteristicImpl extends _GroupCharacteristic {
             (identical(other.period, period) || other.period == period));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1765,9 +1724,7 @@ class _$GroupCharacteristicImpl extends _GroupCharacteristic {
       excludeElement,
       period);
 
-  /// Create a copy of GroupCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$GroupCharacteristicImplCopyWith<_$GroupCharacteristicImpl> get copyWith =>
@@ -1803,10 +1760,12 @@ abstract class _GroupCharacteristic extends GroupCharacteristic {
   factory _GroupCharacteristic.fromJson(Map<String, dynamic> json) =
       _$GroupCharacteristicImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1814,9 +1773,9 @@ abstract class _GroupCharacteristic extends GroupCharacteristic {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -1831,62 +1790,58 @@ abstract class _GroupCharacteristic extends GroupCharacteristic {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [code] A code that identifies the kind of trait being asserted.
-  @override
   CodeableConcept get code;
+  @override
 
   /// [valueCodeableConcept] The value of the trait that holds (or does not
   ///  hold - see 'exclude') for members of the group.
-  @override
   CodeableConcept? get valueCodeableConcept;
+  @override
 
   /// [valueBoolean] The value of the trait that holds (or does not hold - see
   ///  'exclude') for members of the group.
-  @override
   FhirBoolean? get valueBoolean;
+  @override
 
   /// [valueBooleanElement] Extensions for valueBoolean
-  @override
   @JsonKey(name: '_valueBoolean')
   PrimitiveElement? get valueBooleanElement;
+  @override
 
   /// [valueQuantity] The value of the trait that holds (or does not hold - see
   ///  'exclude') for members of the group.
-  @override
   Quantity? get valueQuantity;
+  @override
 
   /// [valueRange] The value of the trait that holds (or does not hold - see
   ///  'exclude') for members of the group.
-  @override
   Range? get valueRange;
+  @override
 
   /// [valueReference] The value of the trait that holds (or does not hold -
   ///  see 'exclude') for members of the group.
-  @override
   Reference? get valueReference;
+  @override
 
   /// [exclude] If true, indicates the characteristic is one that is NOT held
   ///  by members of the group.
-  @override
   FhirBoolean? get exclude;
+  @override
 
   /// [excludeElement] Extensions for exclude
-  @override
   @JsonKey(name: '_exclude')
   PrimitiveElement? get excludeElement;
+  @override
 
   /// [period] The period over which the characteristic is tested; e.g. the
   ///  patient had an operation during the month of June.
-  @override
   Period? get period;
-
-  /// Create a copy of GroupCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$GroupCharacteristicImplCopyWith<_$GroupCharacteristicImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1942,12 +1897,8 @@ mixin _$GroupMember {
   @JsonKey(name: '_inactive')
   PrimitiveElement? get inactiveElement => throw _privateConstructorUsedError;
 
-  /// Serializes this GroupMember to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of GroupMember
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $GroupMemberCopyWith<GroupMember> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1981,8 +1932,6 @@ class _$GroupMemberCopyWithImpl<$Res, $Val extends GroupMember>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of GroupMember
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2026,8 +1975,6 @@ class _$GroupMemberCopyWithImpl<$Res, $Val extends GroupMember>
     ) as $Val);
   }
 
-  /// Create a copy of GroupMember
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get entity {
@@ -2036,8 +1983,6 @@ class _$GroupMemberCopyWithImpl<$Res, $Val extends GroupMember>
     });
   }
 
-  /// Create a copy of GroupMember
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get period {
@@ -2082,8 +2027,6 @@ class __$$GroupMemberImplCopyWithImpl<$Res>
       _$GroupMemberImpl _value, $Res Function(_$GroupMemberImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of GroupMember
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2256,7 +2199,7 @@ class _$GroupMemberImpl extends _GroupMember {
                 other.inactiveElement == inactiveElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2268,9 +2211,7 @@ class _$GroupMemberImpl extends _GroupMember {
       inactive,
       inactiveElement);
 
-  /// Create a copy of GroupMember
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$GroupMemberImplCopyWith<_$GroupMemberImpl> get copyWith =>
@@ -2299,10 +2240,12 @@ abstract class _GroupMember extends GroupMember {
   factory _GroupMember.fromJson(Map<String, dynamic> json) =
       _$GroupMemberImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2310,9 +2253,9 @@ abstract class _GroupMember extends GroupMember {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2327,33 +2270,29 @@ abstract class _GroupMember extends GroupMember {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [entity] A reference to the entity that is a member of the group. Must be
   /// consistent with Group.type. If the entity is another group, then the type
   ///  must be the same.
-  @override
   Reference get entity;
+  @override
 
   /// [period] The period that the member was in the group, if known.
-  @override
   Period? get period;
+  @override
 
   /// [inactive] A flag to indicate that the member is no longer in the group,
   ///  but previously may have been a member.
-  @override
   FhirBoolean? get inactive;
+  @override
 
   /// [inactiveElement] Extensions for inactive
-  @override
   @JsonKey(name: '_inactive')
   PrimitiveElement? get inactiveElement;
-
-  /// Create a copy of GroupMember
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$GroupMemberImplCopyWith<_$GroupMemberImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

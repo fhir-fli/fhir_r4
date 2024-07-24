@@ -393,12 +393,8 @@ mixin _$Measure {
   List<MeasureSupplementalData>? get supplementalData =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this Measure to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of Measure
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $MeasureCopyWith<Measure> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -507,8 +503,6 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Measure
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -894,8 +888,6 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
     ) as $Val);
   }
 
-  /// Create a copy of Measure
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -908,8 +900,6 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
     });
   }
 
-  /// Create a copy of Measure
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -922,8 +912,6 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
     });
   }
 
-  /// Create a copy of Measure
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get subjectCodeableConcept {
@@ -937,8 +925,6 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
     });
   }
 
-  /// Create a copy of Measure
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get subjectReference {
@@ -951,8 +937,6 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
     });
   }
 
-  /// Create a copy of Measure
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get effectivePeriod {
@@ -965,8 +949,6 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
     });
   }
 
-  /// Create a copy of Measure
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get scoring {
@@ -979,8 +961,6 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
     });
   }
 
-  /// Create a copy of Measure
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get compositeScoring {
@@ -993,8 +973,6 @@ class _$MeasureCopyWithImpl<$Res, $Val extends Measure>
     });
   }
 
-  /// Create a copy of Measure
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get improvementNotation {
@@ -1121,8 +1099,6 @@ class __$$MeasureImplCopyWithImpl<$Res>
       _$MeasureImpl _value, $Res Function(_$MeasureImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Measure
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2393,7 +2369,7 @@ class _$MeasureImpl extends _Measure {
             const DeepCollectionEquality().equals(other._supplementalData, _supplementalData));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -2474,9 +2450,7 @@ class _$MeasureImpl extends _Measure {
         const DeepCollectionEquality().hash(_supplementalData)
       ]);
 
-  /// Create a copy of Measure
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$MeasureImplCopyWith<_$MeasureImpl> get copyWith =>
@@ -2583,38 +2557,39 @@ abstract class _Measure extends Measure {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.Measure)
   R4ResourceType get resourceType;
+  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @override
   String? get id;
+  @override
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  @override
   FhirMeta? get meta;
+  @override
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  @override
   FhirUri? get implicitRules;
+  @override
 
   /// [implicitRulesElement] Extensions for implicitRules
-  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
+  @override
 
   /// [language] The base language in which the resource is written.
-  @override
   FhirCode? get language;
+  @override
 
   /// [languageElement] Extensions for language
-  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
+  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -2622,15 +2597,15 @@ abstract class _Measure extends Measure {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  @override
   Narrative? get text;
+  @override
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  @override
   List<Resource>? get contained;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -2638,9 +2613,9 @@ abstract class _Measure extends Measure {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -2655,8 +2630,8 @@ abstract class _Measure extends Measure {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [url] An absolute URI that is used to identify this measure when it is
   /// referenced in a specification, model, design or an instance; also called
@@ -2665,19 +2640,19 @@ abstract class _Measure extends Measure {
   /// measure is (or will be) published. This URL can be the target of a
   /// canonical reference. It SHALL remain the same when the measure is stored
   ///  on different servers.
-  @override
   FhirUri? get url;
+  @override
 
   /// [urlElement] Extensions for url
-  @override
   @JsonKey(name: '_url')
   PrimitiveElement? get urlElement;
+  @override
 
   /// [identifier] A formal identifier that is used to identify this measure
   /// when it is represented in other formats, or referenced in a specification,
   ///  model, design or an instance.
-  @override
   List<Identifier>? get identifier;
+  @override
 
   /// [version] The identifier that is used to identify this version of the
   /// measure when it is referenced in a specification, model, design or
@@ -2690,333 +2665,329 @@ abstract class _Measure extends Measure {
   /// information on versioning knowledge assets, refer to the Decision Support
   /// Service specification. Note that a version is required for
   ///  non-experimental active artifacts.
-  @override
   String? get version;
+  @override
 
   /// [versionElement] Extensions for version
-  @override
   @JsonKey(name: '_version')
   PrimitiveElement? get versionElement;
+  @override
 
   /// [name] A natural language name identifying the measure. This name should
   /// be usable as an identifier for the module by machine processing
   ///  applications such as code generation.
-  @override
   String? get name;
+  @override
 
   /// [nameElement] Extensions for name
-  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
+  @override
 
   /// [title] A short, descriptive, user-friendly title for the measure.
-  @override
   String? get title;
+  @override
 
   /// [titleElement] Extensions for title
-  @override
   @JsonKey(name: '_title')
   PrimitiveElement? get titleElement;
+  @override
 
   /// [subtitle] An explanatory or alternate title for the measure giving
   ///  additional information about its content.
-  @override
   String? get subtitle;
+  @override
 
   /// [subtitleElement] Extensions for subtitle
-  @override
   @JsonKey(name: '_subtitle')
   PrimitiveElement? get subtitleElement;
+  @override
 
   /// [status] The status of this measure. Enables tracking the life-cycle of
   ///  the content.
-  @override
   FhirCode? get status;
+  @override
 
   /// [statusElement] Extensions for status
-  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
+  @override
 
   /// [experimental] A Boolean value to indicate that this measure is authored
   /// for testing purposes (or education/evaluation/marketing) and is not
   ///  intended to be used for genuine usage.
-  @override
   FhirBoolean? get experimental;
+  @override
 
   /// [experimentalElement] Extensions for experimental
-  @override
   @JsonKey(name: '_experimental')
   PrimitiveElement? get experimentalElement;
+  @override
 
   /// [subjectCodeableConcept] The intended subjects for the measure. If this
   /// element is not provided, a Patient subject is assumed, but the subject of
   ///  the measure can be anything.
-  @override
   CodeableConcept? get subjectCodeableConcept;
+  @override
 
   /// [subjectReference] The intended subjects for the measure. If this element
   /// is not provided, a Patient subject is assumed, but the subject of the
   ///  measure can be anything.
-  @override
   Reference? get subjectReference;
+  @override
 
   /// [date] The date  (and optionally time) when the measure was published.
   /// The date must change when the business version changes and it must change
   /// if the status code changes. In addition, it should change when the
   ///  substantive content of the measure changes.
-  @override
   FhirDateTime? get date;
+  @override
 
   /// [dateElement] Extensions for date
-  @override
   @JsonKey(name: '_date')
   PrimitiveElement? get dateElement;
+  @override
 
   /// [publisher] The name of the organization or individual that published the
   ///  measure.
-  @override
   String? get publisher;
+  @override
 
   /// [publisherElement] Extensions for publisher
-  @override
   @JsonKey(name: '_publisher')
   PrimitiveElement? get publisherElement;
+  @override
 
   /// [contact] Contact details to assist a user in finding and communicating
   ///  with the publisher.
-  @override
   List<ContactDetail>? get contact;
+  @override
 
   /// [description] A free text natural language description of the measure
   ///  from a consumer's perspective.
-  @override
   FhirMarkdown? get description;
+  @override
 
   /// [descriptionElement] Extensions for description
-  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
+  @override
 
   /// [useContext] The content was developed with a focus and intent of
   /// supporting the contexts that are listed. These contexts may be general
   /// categories (gender, age, ...) or may be references to specific programs
   /// (insurance plans, studies, ...) and may be used to assist with indexing
   ///  and searching for appropriate measure instances.
-  @override
   List<UsageContext>? get useContext;
+  @override
 
   /// [jurisdiction] A legal or geographic region in which the measure is
   ///  intended to be used.
-  @override
   List<CodeableConcept>? get jurisdiction;
+  @override
 
   /// [purpose] Explanation of why this measure is needed and why it has been
   ///  designed as it has.
-  @override
   FhirMarkdown? get purpose;
+  @override
 
   /// [purposeElement] Extensions for purpose
-  @override
   @JsonKey(name: '_purpose')
   PrimitiveElement? get purposeElement;
+  @override
 
   /// [usage] A detailed description, from a clinical perspective, of how the
   ///  measure is used.
-  @override
   String? get usage;
+  @override
 
   /// [usageElement] Extensions for usage
-  @override
   @JsonKey(name: '_usage')
   PrimitiveElement? get usageElement;
+  @override
 
   /// [copyright] A copyright statement relating to the measure and/or its
   /// contents. Copyright statements are generally legal restrictions on the use
   ///  and publishing of the measure.
-  @override
   FhirMarkdown? get copyright;
+  @override
 
   /// [copyrightElement] Extensions for copyright
-  @override
   @JsonKey(name: '_copyright')
   PrimitiveElement? get copyrightElement;
+  @override
 
   /// [approvalDate] The date on which the resource content was approved by the
   /// publisher. Approval happens once when the content is officially approved
   ///  for usage.
-  @override
   FhirDate? get approvalDate;
+  @override
 
   /// [approvalDateElement] Extensions for approvalDate
-  @override
   @JsonKey(name: '_approvalDate')
   PrimitiveElement? get approvalDateElement;
+  @override
 
   /// [lastReviewDate] The date on which the resource content was last
   /// reviewed. Review happens periodically after approval but does not change
   ///  the original approval date.
-  @override
   FhirDate? get lastReviewDate;
+  @override
 
   /// [lastReviewDateElement] Extensions for lastReviewDate
-  @override
   @JsonKey(name: '_lastReviewDate')
   PrimitiveElement? get lastReviewDateElement;
+  @override
 
   /// [effectivePeriod] The period during which the measure content was or is
   ///  planned to be in active use.
-  @override
   Period? get effectivePeriod;
+  @override
 
   /// [topic] Descriptive topics related to the content of the measure. Topics
   /// provide a high-level categorization grouping types of measures that can be
   ///  useful for filtering and searching.
-  @override
   List<CodeableConcept>? get topic;
+  @override
 
   /// [author] An individiual or organization primarily involved in the
   ///  creation and maintenance of the content.
-  @override
   List<ContactDetail>? get author;
+  @override
 
   /// [editor] An individual or organization primarily responsible for internal
   ///  coherence of the content.
-  @override
   List<ContactDetail>? get editor;
+  @override
 
   /// [reviewer] An individual or organization primarily responsible for review
   ///  of some aspect of the content.
-  @override
   List<ContactDetail>? get reviewer;
+  @override
 
   /// [endorser] An individual or organization responsible for officially
   ///  endorsing the content for use in some setting.
-  @override
   List<ContactDetail>? get endorser;
+  @override
 
   /// [relatedArtifact] Related artifacts such as additional documentation,
   ///  justification, or bibliographic references.
-  @override
   List<RelatedArtifact>? get relatedArtifact;
+  @override
 
   /// [library] A reference to a Library resource containing the formal logic
   ///  used by the measure.
-  @override
   @JsonKey(name: 'library')
   List<FhirCanonical>? get library_;
+  @override
 
   /// [disclaimer] Notices and disclaimers regarding the use of the measure or
   /// related to intellectual property (such as code systems) referenced by the
   ///  measure.
-  @override
   FhirMarkdown? get disclaimer;
+  @override
 
   /// [disclaimerElement] Extensions for disclaimer
-  @override
   @JsonKey(name: '_disclaimer')
   PrimitiveElement? get disclaimerElement;
+  @override
 
   /// [scoring] Indicates how the calculation is performed for the measure,
   /// including proportion, ratio, continuous-variable, and cohort. The value
   /// set is extensible, allowing additional measure scoring types to be
   ///  represented.
-  @override
   CodeableConcept? get scoring;
+  @override
 
   /// [compositeScoring] If this is a composite measure, the scoring method
   ///  used to combine the component measures to determine the composite score.
-  @override
   CodeableConcept? get compositeScoring;
+  @override
 
   /// [type] Indicates whether the measure is used to examine a process, an
   /// outcome over time, a patient-reported outcome, or a structure measure such
   ///  as utilization.
-  @override
   List<CodeableConcept>? get type;
+  @override
 
   /// [riskAdjustment] A description of the risk adjustment factors that may
   /// impact the resulting score for the measure and how they may be accounted
   ///  for when computing and reporting measure results.
-  @override
   String? get riskAdjustment;
+  @override
 
   /// [riskAdjustmentElement] Extensions for riskAdjustment
-  @override
   @JsonKey(name: '_riskAdjustment')
   PrimitiveElement? get riskAdjustmentElement;
+  @override
 
   /// [rateAggregation] Describes how to combine the information calculated,
   /// based on logic in each of several populations, into one summarized
   ///  result.
-  @override
   String? get rateAggregation;
+  @override
 
   /// [rateAggregationElement] Extensions for rateAggregation
-  @override
   @JsonKey(name: '_rateAggregation')
   PrimitiveElement? get rateAggregationElement;
+  @override
 
   /// [rationale] Provides a succinct statement of the need for the measure.
   /// Usually includes statements pertaining to importance criterion: impact,
   ///  gap in care, and evidence.
-  @override
   FhirMarkdown? get rationale;
+  @override
 
   /// [rationaleElement] Extensions for rationale
-  @override
   @JsonKey(name: '_rationale')
   PrimitiveElement? get rationaleElement;
+  @override
 
   /// [clinicalRecommendationStatement] Provides a summary of relevant clinical
   ///  guidelines or other clinical recommendations supporting the measure.
-  @override
   FhirMarkdown? get clinicalRecommendationStatement;
   @override
   @JsonKey(name: '_clinicalRecommendationStatement')
   PrimitiveElement? get clinicalRecommendationStatementElement;
+  @override
 
   /// [improvementNotation] Information on whether an increase or decrease in
   /// score is the preferred result (e.g., a higher score indicates better
   /// quality OR a lower score indicates better quality OR quality is within a
   ///  range).
-  @override
   CodeableConcept? get improvementNotation;
+  @override
 
   /// [definition] Provides a description of an individual term used within the
   ///  measure.
-  @override
   List<FhirMarkdown>? get definition;
+  @override
 
   /// [definitionElement] Extensions for definition
-  @override
   @JsonKey(name: '_definition')
   List<PrimitiveElement>? get definitionElement;
+  @override
 
   /// [guidance] Additional guidance for the measure including how it can be
   ///  used in a clinical context, and the intent of the measure.
-  @override
   FhirMarkdown? get guidance;
+  @override
 
   /// [guidanceElement] Extensions for guidance
-  @override
   @JsonKey(name: '_guidance')
   PrimitiveElement? get guidanceElement;
+  @override
 
   /// [group] A group of population criteria for the measure.
-  @override
   List<MeasureGroup>? get group;
+  @override
 
   /// [supplementalData] The supplemental data criteria for the measure report,
   /// specified as either the name of a valid CQL expression within a referenced
   ///  library, or a valid FHIR Resource Path.
-  @override
   List<MeasureSupplementalData>? get supplementalData;
-
-  /// Create a copy of Measure
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$MeasureImplCopyWith<_$MeasureImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3078,12 +3049,8 @@ mixin _$MeasureGroup {
   ///  library or a valid FHIR Resource Path.
   List<MeasureStratifier>? get stratifier => throw _privateConstructorUsedError;
 
-  /// Serializes this MeasureGroup to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of MeasureGroup
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $MeasureGroupCopyWith<MeasureGroup> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3117,8 +3084,6 @@ class _$MeasureGroupCopyWithImpl<$Res, $Val extends MeasureGroup>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of MeasureGroup
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3167,8 +3132,6 @@ class _$MeasureGroupCopyWithImpl<$Res, $Val extends MeasureGroup>
     ) as $Val);
   }
 
-  /// Create a copy of MeasureGroup
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get code {
@@ -3212,8 +3175,6 @@ class __$$MeasureGroupImplCopyWithImpl<$Res>
       _$MeasureGroupImpl _value, $Res Function(_$MeasureGroupImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of MeasureGroup
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3423,7 +3384,7 @@ class _$MeasureGroupImpl extends _MeasureGroup {
                 .equals(other._stratifier, _stratifier));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3436,9 +3397,7 @@ class _$MeasureGroupImpl extends _MeasureGroup {
       const DeepCollectionEquality().hash(_population),
       const DeepCollectionEquality().hash(_stratifier));
 
-  /// Create a copy of MeasureGroup
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$MeasureGroupImplCopyWith<_$MeasureGroupImpl> get copyWith =>
@@ -3467,10 +3426,12 @@ abstract class _MeasureGroup extends MeasureGroup {
   factory _MeasureGroup.fromJson(Map<String, dynamic> json) =
       _$MeasureGroupImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3478,9 +3439,9 @@ abstract class _MeasureGroup extends MeasureGroup {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3495,39 +3456,35 @@ abstract class _MeasureGroup extends MeasureGroup {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [code] Indicates a meaning for the group. This can be as simple as a
   /// unique identifier, or it can establish meaning in a broader context by
   /// drawing from a terminology, allowing groups to be correlated across
   ///  measures.
-  @override
   CodeableConcept? get code;
+  @override
 
   /// [description] The human readable description of this population group.
-  @override
   String? get description;
+  @override
 
   /// [descriptionElement] Extensions for description
-  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
+  @override
 
   /// [population] A population criteria for the measure.
-  @override
   List<MeasurePopulation>? get population;
+  @override
 
   /// [stratifier] The stratifier criteria for the measure report, specified as
   /// either the name of a valid CQL expression defined within a referenced
   ///  library or a valid FHIR Resource Path.
-  @override
   List<MeasureStratifier>? get stratifier;
-
-  /// Create a copy of MeasureGroup
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$MeasureGroupImplCopyWith<_$MeasureGroupImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3582,12 +3539,8 @@ mixin _$MeasurePopulation {
   ///  typically the name of an expression in a library.
   FhirExpression get criteria => throw _privateConstructorUsedError;
 
-  /// Serializes this MeasurePopulation to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of MeasurePopulation
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $MeasurePopulationCopyWith<MeasurePopulation> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3621,8 +3574,6 @@ class _$MeasurePopulationCopyWithImpl<$Res, $Val extends MeasurePopulation>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of MeasurePopulation
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3666,8 +3617,6 @@ class _$MeasurePopulationCopyWithImpl<$Res, $Val extends MeasurePopulation>
     ) as $Val);
   }
 
-  /// Create a copy of MeasurePopulation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get code {
@@ -3680,8 +3629,6 @@ class _$MeasurePopulationCopyWithImpl<$Res, $Val extends MeasurePopulation>
     });
   }
 
-  /// Create a copy of MeasurePopulation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirExpressionCopyWith<$Res> get criteria {
@@ -3722,8 +3669,6 @@ class __$$MeasurePopulationImplCopyWithImpl<$Res>
       $Res Function(_$MeasurePopulationImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of MeasurePopulation
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3895,7 +3840,7 @@ class _$MeasurePopulationImpl extends _MeasurePopulation {
                 other.criteria == criteria));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3907,9 +3852,7 @@ class _$MeasurePopulationImpl extends _MeasurePopulation {
       descriptionElement,
       criteria);
 
-  /// Create a copy of MeasurePopulation
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$MeasurePopulationImplCopyWith<_$MeasurePopulationImpl> get copyWith =>
@@ -3938,10 +3881,12 @@ abstract class _MeasurePopulation extends MeasurePopulation {
   factory _MeasurePopulation.fromJson(Map<String, dynamic> json) =
       _$MeasurePopulationImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3949,9 +3894,9 @@ abstract class _MeasurePopulation extends MeasurePopulation {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3966,31 +3911,27 @@ abstract class _MeasurePopulation extends MeasurePopulation {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [code] The type of population criteria.
-  @override
   CodeableConcept? get code;
+  @override
 
   /// [description] The human readable description of this population criteria.
-  @override
   String? get description;
+  @override
 
   /// [descriptionElement] Extensions for description
-  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
+  @override
 
   /// [criteria] An expression that specifies the criteria for the population,
   ///  typically the name of an expression in a library.
-  @override
   FhirExpression get criteria;
-
-  /// Create a copy of MeasurePopulation
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$MeasurePopulationImplCopyWith<_$MeasurePopulationImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4054,12 +3995,8 @@ mixin _$MeasureStratifier {
   ///  within a referenced library or a valid FHIR Resource Path.
   List<MeasureComponent>? get component => throw _privateConstructorUsedError;
 
-  /// Serializes this MeasureStratifier to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of MeasureStratifier
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $MeasureStratifierCopyWith<MeasureStratifier> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4094,8 +4031,6 @@ class _$MeasureStratifierCopyWithImpl<$Res, $Val extends MeasureStratifier>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of MeasureStratifier
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4144,8 +4079,6 @@ class _$MeasureStratifierCopyWithImpl<$Res, $Val extends MeasureStratifier>
     ) as $Val);
   }
 
-  /// Create a copy of MeasureStratifier
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get code {
@@ -4158,8 +4091,6 @@ class _$MeasureStratifierCopyWithImpl<$Res, $Val extends MeasureStratifier>
     });
   }
 
-  /// Create a copy of MeasureStratifier
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirExpressionCopyWith<$Res>? get criteria {
@@ -4205,8 +4136,6 @@ class __$$MeasureStratifierImplCopyWithImpl<$Res>
       $Res Function(_$MeasureStratifierImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of MeasureStratifier
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4408,7 +4337,7 @@ class _$MeasureStratifierImpl extends _MeasureStratifier {
                 .equals(other._component, _component));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -4421,9 +4350,7 @@ class _$MeasureStratifierImpl extends _MeasureStratifier {
       criteria,
       const DeepCollectionEquality().hash(_component));
 
-  /// Create a copy of MeasureStratifier
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$MeasureStratifierImplCopyWith<_$MeasureStratifierImpl> get copyWith =>
@@ -4453,10 +4380,12 @@ abstract class _MeasureStratifier extends MeasureStratifier {
   factory _MeasureStratifier.fromJson(Map<String, dynamic> json) =
       _$MeasureStratifierImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -4464,9 +4393,9 @@ abstract class _MeasureStratifier extends MeasureStratifier {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -4481,41 +4410,37 @@ abstract class _MeasureStratifier extends MeasureStratifier {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [code] Indicates a meaning for the stratifier. This can be as simple as a
   /// unique identifier, or it can establish meaning in a broader context by
   /// drawing from a terminology, allowing stratifiers to be correlated across
   ///  measures.
-  @override
   CodeableConcept? get code;
+  @override
 
   /// [description] The human readable description of this stratifier criteria.
-  @override
   String? get description;
+  @override
 
   /// [descriptionElement] Extensions for description
-  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
+  @override
 
   /// [criteria] An expression that specifies the criteria for the stratifier.
   /// This is typically the name of an expression defined within a referenced
   ///  library, but it may also be a path to a stratifier element.
-  @override
   FhirExpression? get criteria;
+  @override
 
   /// [component] A component of the stratifier criteria for the measure
   /// report, specified as either the name of a valid CQL expression defined
   ///  within a referenced library or a valid FHIR Resource Path.
-  @override
   List<MeasureComponent>? get component;
-
-  /// Create a copy of MeasureStratifier
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$MeasureStratifierImplCopyWith<_$MeasureStratifierImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4576,12 +4501,8 @@ mixin _$MeasureComponent {
   ///  element.
   FhirExpression get criteria => throw _privateConstructorUsedError;
 
-  /// Serializes this MeasureComponent to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of MeasureComponent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $MeasureComponentCopyWith<MeasureComponent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4615,8 +4536,6 @@ class _$MeasureComponentCopyWithImpl<$Res, $Val extends MeasureComponent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of MeasureComponent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4660,8 +4579,6 @@ class _$MeasureComponentCopyWithImpl<$Res, $Val extends MeasureComponent>
     ) as $Val);
   }
 
-  /// Create a copy of MeasureComponent
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get code {
@@ -4674,8 +4591,6 @@ class _$MeasureComponentCopyWithImpl<$Res, $Val extends MeasureComponent>
     });
   }
 
-  /// Create a copy of MeasureComponent
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirExpressionCopyWith<$Res> get criteria {
@@ -4716,8 +4631,6 @@ class __$$MeasureComponentImplCopyWithImpl<$Res>
       $Res Function(_$MeasureComponentImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of MeasureComponent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4895,7 +4808,7 @@ class _$MeasureComponentImpl extends _MeasureComponent {
                 other.criteria == criteria));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -4907,9 +4820,7 @@ class _$MeasureComponentImpl extends _MeasureComponent {
       descriptionElement,
       criteria);
 
-  /// Create a copy of MeasureComponent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$MeasureComponentImplCopyWith<_$MeasureComponentImpl> get copyWith =>
@@ -4938,10 +4849,12 @@ abstract class _MeasureComponent extends MeasureComponent {
   factory _MeasureComponent.fromJson(Map<String, dynamic> json) =
       _$MeasureComponentImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -4949,9 +4862,9 @@ abstract class _MeasureComponent extends MeasureComponent {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -4966,37 +4879,33 @@ abstract class _MeasureComponent extends MeasureComponent {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [code] Indicates a meaning for the stratifier component. This can be as
   /// simple as a unique identifier, or it can establish meaning in a broader
   /// context by drawing from a terminology, allowing stratifiers to be
   ///  correlated across measures.
-  @override
   CodeableConcept? get code;
+  @override
 
   /// [description] The human readable description of this stratifier criteria
   ///  component.
-  @override
   String? get description;
+  @override
 
   /// [descriptionElement] Extensions for description
-  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
+  @override
 
   /// [criteria] An expression that specifies the criteria for this component
   /// of the stratifier. This is typically the name of an expression defined
   /// within a referenced library, but it may also be a path to a stratifier
   ///  element.
-  @override
   FhirExpression get criteria;
-
-  /// Create a copy of MeasureComponent
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$MeasureComponentImplCopyWith<_$MeasureComponentImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -5064,12 +4973,8 @@ mixin _$MeasureSupplementalData {
   ///  to be returned for this element.
   FhirExpression get criteria => throw _privateConstructorUsedError;
 
-  /// Serializes this MeasureSupplementalData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of MeasureSupplementalData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $MeasureSupplementalDataCopyWith<MeasureSupplementalData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -5105,8 +5010,6 @@ class _$MeasureSupplementalDataCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of MeasureSupplementalData
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5155,8 +5058,6 @@ class _$MeasureSupplementalDataCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of MeasureSupplementalData
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get code {
@@ -5169,8 +5070,6 @@ class _$MeasureSupplementalDataCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of MeasureSupplementalData
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirExpressionCopyWith<$Res> get criteria {
@@ -5215,8 +5114,6 @@ class __$$MeasureSupplementalDataImplCopyWithImpl<$Res>
       $Res Function(_$MeasureSupplementalDataImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of MeasureSupplementalData
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5422,7 +5319,7 @@ class _$MeasureSupplementalDataImpl extends _MeasureSupplementalData {
                 other.criteria == criteria));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -5435,9 +5332,7 @@ class _$MeasureSupplementalDataImpl extends _MeasureSupplementalData {
       descriptionElement,
       criteria);
 
-  /// Create a copy of MeasureSupplementalData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$MeasureSupplementalDataImplCopyWith<_$MeasureSupplementalDataImpl>
@@ -5467,10 +5362,12 @@ abstract class _MeasureSupplementalData extends MeasureSupplementalData {
   factory _MeasureSupplementalData.fromJson(Map<String, dynamic> json) =
       _$MeasureSupplementalDataImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -5478,9 +5375,9 @@ abstract class _MeasureSupplementalData extends MeasureSupplementalData {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -5495,44 +5392,40 @@ abstract class _MeasureSupplementalData extends MeasureSupplementalData {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [code] Indicates a meaning for the supplemental data. This can be as
   /// simple as a unique identifier, or it can establish meaning in a broader
   /// context by drawing from a terminology, allowing supplemental data to be
   ///  correlated across measures.
-  @override
   CodeableConcept? get code;
+  @override
 
   /// [usage] An indicator of the intended usage for the supplemental data
   /// element. Supplemental data indicates the data is additional information
   /// requested to augment the measure information. Risk adjustment factor
   /// indicates the data is additional information used to calculate risk
   ///  adjustment factors when applying a risk model to the measure calculation.
-  @override
   List<CodeableConcept>? get usage;
+  @override
 
   /// [description] The human readable description of this supplemental data.
-  @override
   String? get description;
+  @override
 
   /// [descriptionElement] Extensions for description
-  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
+  @override
 
   /// [criteria] The criteria for the supplemental data. This is typically the
   /// name of a valid expression defined within a referenced library, but it may
   /// also be a path to a specific data element. The criteria defines the data
   ///  to be returned for this element.
-  @override
   FhirExpression get criteria;
-
-  /// Create a copy of MeasureSupplementalData
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$MeasureSupplementalDataImplCopyWith<_$MeasureSupplementalDataImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

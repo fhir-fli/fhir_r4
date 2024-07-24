@@ -57,9 +57,7 @@ mixin _$Scopes {
   String? get intent => throw _privateConstructorUsedError;
   List<String>? get additional => throw _privateConstructorUsedError;
 
-  /// Create a copy of Scopes
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ScopesCopyWith<Scopes> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -94,8 +92,6 @@ class _$ScopesCopyWithImpl<$Res, $Val extends Scopes>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Scopes
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -201,8 +197,6 @@ class __$$ScopesImplCopyWithImpl<$Res>
       _$ScopesImpl _value, $Res Function(_$ScopesImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Scopes
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -420,9 +414,7 @@ class _$ScopesImpl extends _Scopes {
       intent,
       const DeepCollectionEquality().hash(_additional));
 
-  /// Create a copy of Scopes
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ScopesImplCopyWith<_$ScopesImpl> get copyWith =>
@@ -446,64 +438,62 @@ abstract class _Scopes extends Scopes {
       final List<String>? additional}) = _$ScopesImpl;
   const _Scopes._() : super._();
 
-  /// see the clinical scopes class for details
   @override
+
+  /// see the clinical scopes class for details
   List<ClinicalScope>? get clinicalScopes;
+  @override
 
   /// permission to retrieve information about the current logged-in user
   /// almost always coupled with fhirUser
-  @override
   bool? get openid;
+  @override
 
   /// permission to retrieve information about the current logged-in user
   /// almost always coupled with openid
-  @override
   bool? get fhirUser;
+  @override
 
   /// this is being deprecated but still commonly required
-  @override
   bool? get profile;
+  @override
 
   /// will this app require offline access? specifies the kind of token that
   /// will be returned
-  @override
   bool? get offlineAccess;
+  @override
 
   /// will this app require online access? specifies the kind of token that
   /// will be returned
-  @override
   bool? get onlineAccess;
+  @override
 
   ///if this app is going to be launched from within an EHR
-  @override
   bool? get ehrLaunch;
+  @override
 
   /// if the context of this app is about a specific patient
-  @override
   bool? get patientLaunch;
+  @override
 
   /// if the context of this app is in regards to a specific encounter
-  @override
   bool? get encounterLaunch;
+  @override
 
   /// does this request need a patient banner
-  @override
   bool? get needPatientBanner;
+  @override
 
   /// I'm not actually sure what this does
-  @override
   bool? get smartOrchestrateLaunch;
+  @override
 
   /// String value describing the intent of the application launch
-  @override
   String? get intent;
   @override
   List<String>? get additional;
-
-  /// Create a copy of Scopes
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ScopesImplCopyWith<_$ScopesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

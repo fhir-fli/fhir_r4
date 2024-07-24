@@ -83,12 +83,8 @@ mixin _$Procedure {
   List<Reference>? get usedReference => throw _privateConstructorUsedError;
   List<CodeableConcept>? get usedCode => throw _privateConstructorUsedError;
 
-  /// Serializes this Procedure to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of Procedure
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ProcedureCopyWith<Procedure> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -177,8 +173,6 @@ class _$ProcedureCopyWithImpl<$Res, $Val extends Procedure>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Procedure
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -422,8 +416,6 @@ class _$ProcedureCopyWithImpl<$Res, $Val extends Procedure>
     ) as $Val);
   }
 
-  /// Create a copy of Procedure
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -436,8 +428,6 @@ class _$ProcedureCopyWithImpl<$Res, $Val extends Procedure>
     });
   }
 
-  /// Create a copy of Procedure
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -450,8 +440,6 @@ class _$ProcedureCopyWithImpl<$Res, $Val extends Procedure>
     });
   }
 
-  /// Create a copy of Procedure
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get statusReason {
@@ -464,8 +452,6 @@ class _$ProcedureCopyWithImpl<$Res, $Val extends Procedure>
     });
   }
 
-  /// Create a copy of Procedure
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get category {
@@ -478,8 +464,6 @@ class _$ProcedureCopyWithImpl<$Res, $Val extends Procedure>
     });
   }
 
-  /// Create a copy of Procedure
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get code {
@@ -492,8 +476,6 @@ class _$ProcedureCopyWithImpl<$Res, $Val extends Procedure>
     });
   }
 
-  /// Create a copy of Procedure
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get subject {
@@ -502,8 +484,6 @@ class _$ProcedureCopyWithImpl<$Res, $Val extends Procedure>
     });
   }
 
-  /// Create a copy of Procedure
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get encounter {
@@ -516,8 +496,6 @@ class _$ProcedureCopyWithImpl<$Res, $Val extends Procedure>
     });
   }
 
-  /// Create a copy of Procedure
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get performedPeriod {
@@ -530,8 +508,6 @@ class _$ProcedureCopyWithImpl<$Res, $Val extends Procedure>
     });
   }
 
-  /// Create a copy of Procedure
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AgeCopyWith<$Res>? get performedAge {
@@ -544,8 +520,6 @@ class _$ProcedureCopyWithImpl<$Res, $Val extends Procedure>
     });
   }
 
-  /// Create a copy of Procedure
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get performedRange {
@@ -558,8 +532,6 @@ class _$ProcedureCopyWithImpl<$Res, $Val extends Procedure>
     });
   }
 
-  /// Create a copy of Procedure
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get recorder {
@@ -572,8 +544,6 @@ class _$ProcedureCopyWithImpl<$Res, $Val extends Procedure>
     });
   }
 
-  /// Create a copy of Procedure
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get asserter {
@@ -586,8 +556,6 @@ class _$ProcedureCopyWithImpl<$Res, $Val extends Procedure>
     });
   }
 
-  /// Create a copy of Procedure
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get location {
@@ -600,8 +568,6 @@ class _$ProcedureCopyWithImpl<$Res, $Val extends Procedure>
     });
   }
 
-  /// Create a copy of Procedure
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get outcome {
@@ -714,8 +680,6 @@ class __$$ProcedureImplCopyWithImpl<$Res>
       _$ProcedureImpl _value, $Res Function(_$ProcedureImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Procedure
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1406,7 +1370,7 @@ class _$ProcedureImpl extends _Procedure {
             const DeepCollectionEquality().equals(other._usedCode, _usedCode));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1459,9 +1423,7 @@ class _$ProcedureImpl extends _Procedure {
         const DeepCollectionEquality().hash(_usedCode)
       ]);
 
-  /// Create a copy of Procedure
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ProcedureImplCopyWith<_$ProcedureImpl> get copyWith =>
@@ -1636,11 +1598,8 @@ abstract class _Procedure extends Procedure {
   List<Reference>? get usedReference;
   @override
   List<CodeableConcept>? get usedCode;
-
-  /// Create a copy of Procedure
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ProcedureImplCopyWith<_$ProcedureImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1660,12 +1619,8 @@ mixin _$ProcedurePerformer {
   Reference get actor => throw _privateConstructorUsedError;
   Reference? get onBehalfOf => throw _privateConstructorUsedError;
 
-  /// Serializes this ProcedurePerformer to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ProcedurePerformer
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ProcedurePerformerCopyWith<ProcedurePerformer> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1699,8 +1654,6 @@ class _$ProcedurePerformerCopyWithImpl<$Res, $Val extends ProcedurePerformer>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ProcedurePerformer
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1739,8 +1692,6 @@ class _$ProcedurePerformerCopyWithImpl<$Res, $Val extends ProcedurePerformer>
     ) as $Val);
   }
 
-  /// Create a copy of ProcedurePerformer
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get function {
@@ -1753,8 +1704,6 @@ class _$ProcedurePerformerCopyWithImpl<$Res, $Val extends ProcedurePerformer>
     });
   }
 
-  /// Create a copy of ProcedurePerformer
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get actor {
@@ -1763,8 +1712,6 @@ class _$ProcedurePerformerCopyWithImpl<$Res, $Val extends ProcedurePerformer>
     });
   }
 
-  /// Create a copy of ProcedurePerformer
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get onBehalfOf {
@@ -1810,8 +1757,6 @@ class __$$ProcedurePerformerImplCopyWithImpl<$Res>
       $Res Function(_$ProcedurePerformerImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProcedurePerformer
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1921,7 +1866,7 @@ class _$ProcedurePerformerImpl extends _ProcedurePerformer {
                 other.onBehalfOf == onBehalfOf));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1932,9 +1877,7 @@ class _$ProcedurePerformerImpl extends _ProcedurePerformer {
       actor,
       onBehalfOf);
 
-  /// Create a copy of ProcedurePerformer
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ProcedurePerformerImplCopyWith<_$ProcedurePerformerImpl> get copyWith =>
@@ -1975,11 +1918,8 @@ abstract class _ProcedurePerformer extends ProcedurePerformer {
   Reference get actor;
   @override
   Reference? get onBehalfOf;
-
-  /// Create a copy of ProcedurePerformer
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ProcedurePerformerImplCopyWith<_$ProcedurePerformerImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1998,12 +1938,8 @@ mixin _$ProcedureFocalDevice {
   CodeableConcept? get action => throw _privateConstructorUsedError;
   Reference get manipulated => throw _privateConstructorUsedError;
 
-  /// Serializes this ProcedureFocalDevice to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ProcedureFocalDevice
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ProcedureFocalDeviceCopyWith<ProcedureFocalDevice> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2036,8 +1972,6 @@ class _$ProcedureFocalDeviceCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ProcedureFocalDevice
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2071,8 +2005,6 @@ class _$ProcedureFocalDeviceCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of ProcedureFocalDevice
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get action {
@@ -2085,8 +2017,6 @@ class _$ProcedureFocalDeviceCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ProcedureFocalDevice
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get manipulated {
@@ -2125,8 +2055,6 @@ class __$$ProcedureFocalDeviceImplCopyWithImpl<$Res>
       $Res Function(_$ProcedureFocalDeviceImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProcedureFocalDevice
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2226,7 +2154,7 @@ class _$ProcedureFocalDeviceImpl extends _ProcedureFocalDevice {
                 other.manipulated == manipulated));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2236,9 +2164,7 @@ class _$ProcedureFocalDeviceImpl extends _ProcedureFocalDevice {
       action,
       manipulated);
 
-  /// Create a copy of ProcedureFocalDevice
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ProcedureFocalDeviceImplCopyWith<_$ProcedureFocalDeviceImpl>
@@ -2277,11 +2203,8 @@ abstract class _ProcedureFocalDevice extends ProcedureFocalDevice {
   CodeableConcept? get action;
   @override
   Reference get manipulated;
-
-  /// Create a copy of ProcedureFocalDevice
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ProcedureFocalDeviceImplCopyWith<_$ProcedureFocalDeviceImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

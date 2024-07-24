@@ -306,12 +306,8 @@ mixin _$SearchParameter {
   List<SearchParameterComponent>? get component =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this SearchParameter to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of SearchParameter
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $SearchParameterCopyWith<SearchParameter> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -397,8 +393,6 @@ class _$SearchParameterCopyWithImpl<$Res, $Val extends SearchParameter>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of SearchParameter
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -697,8 +691,6 @@ class _$SearchParameterCopyWithImpl<$Res, $Val extends SearchParameter>
     ) as $Val);
   }
 
-  /// Create a copy of SearchParameter
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -711,8 +703,6 @@ class _$SearchParameterCopyWithImpl<$Res, $Val extends SearchParameter>
     });
   }
 
-  /// Create a copy of SearchParameter
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -809,8 +799,6 @@ class __$$SearchParameterImplCopyWithImpl<$Res>
       _$SearchParameterImpl _value, $Res Function(_$SearchParameterImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SearchParameter
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1828,7 +1816,7 @@ class _$SearchParameterImpl extends _SearchParameter {
                 .equals(other._component, _component));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1892,9 +1880,7 @@ class _$SearchParameterImpl extends _SearchParameter {
         const DeepCollectionEquality().hash(_component)
       ]);
 
-  /// Create a copy of SearchParameter
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$SearchParameterImplCopyWith<_$SearchParameterImpl> get copyWith =>
@@ -1981,38 +1967,39 @@ abstract class _SearchParameter extends SearchParameter {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.SearchParameter)
   R4ResourceType get resourceType;
+  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @override
   String? get id;
+  @override
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  @override
   FhirMeta? get meta;
+  @override
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  @override
   FhirUri? get implicitRules;
+  @override
 
   /// [implicitRulesElement] Extensions for implicitRules
-  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
+  @override
 
   /// [language] The base language in which the resource is written.
-  @override
   FhirCode? get language;
+  @override
 
   /// [languageElement] Extensions for language
-  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
+  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -2020,15 +2007,15 @@ abstract class _SearchParameter extends SearchParameter {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  @override
   Narrative? get text;
+  @override
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  @override
   List<Resource>? get contained;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -2036,9 +2023,9 @@ abstract class _SearchParameter extends SearchParameter {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -2053,8 +2040,8 @@ abstract class _SearchParameter extends SearchParameter {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [url] An absolute URI that is used to identify this search parameter when
   /// it is referenced in a specification, model, design or an instance; also
@@ -2063,13 +2050,13 @@ abstract class _SearchParameter extends SearchParameter {
   /// search parameter is (or will be) published. This URL can be the target of
   /// a canonical reference. It SHALL remain the same when the search parameter
   ///  is stored on different servers.
-  @override
   FhirUri? get url;
+  @override
 
   /// [urlElement] Extensions for url
-  @override
   @JsonKey(name: '_url')
   PrimitiveElement? get urlElement;
+  @override
 
   /// [version] The identifier that is used to identify this version of the
   /// search parameter when it is referenced in a specification, model, design
@@ -2078,221 +2065,221 @@ abstract class _SearchParameter extends SearchParameter {
   /// a timestamp (e.g. yyyymmdd) if a managed version is not available. There
   /// is also no expectation that versions can be placed in a lexicographical
   ///  sequence.
-  @override
   String? get version;
+  @override
 
   /// [versionElement] Extensions for version
-  @override
   @JsonKey(name: '_version')
   PrimitiveElement? get versionElement;
+  @override
 
   /// [name] A natural language name identifying the search parameter. This
   /// name should be usable as an identifier for the module by machine
   ///  processing applications such as code generation.
-  @override
   String? get name;
+  @override
 
   /// [nameElement] Extensions for name
-  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
+  @override
 
   /// [derivedFrom] Where this search parameter is originally defined. If a
   /// derivedFrom is provided, then the details in the search parameter must be
   /// consistent with the definition from which it is defined. i.e. the
   /// parameter should have the same meaning, and (usually) the functionality
   ///  should be a proper subset of the underlying search parameter.
-  @override
   FhirCanonical? get derivedFrom;
+  @override
 
   /// [status] The status of this search parameter. Enables tracking the
   ///  life-cycle of the content.
-  @override
   FhirCode? get status;
+  @override
 
   /// [statusElement] Extensions for status
-  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
+  @override
 
   /// [experimental] A Boolean value to indicate that this search parameter is
   /// authored for testing purposes (or education/evaluation/marketing) and is
   ///  not intended to be used for genuine usage.
-  @override
   FhirBoolean? get experimental;
+  @override
 
   /// [experimentalElement] Extensions for experimental
-  @override
   @JsonKey(name: '_experimental')
   PrimitiveElement? get experimentalElement;
+  @override
 
   /// [date] The date  (and optionally time) when the search parameter was
   /// published. The date must change when the business version changes and it
   /// must change if the status code changes. In addition, it should change when
   ///  the substantive content of the search parameter changes.
-  @override
   FhirDateTime? get date;
+  @override
 
   /// [dateElement] Extensions for date
-  @override
   @JsonKey(name: '_date')
   PrimitiveElement? get dateElement;
+  @override
 
   /// [publisher] The name of the organization or individual that published the
   ///  search parameter.
-  @override
   String? get publisher;
+  @override
 
   /// [publisherElement] Extensions for publisher
-  @override
   @JsonKey(name: '_publisher')
   PrimitiveElement? get publisherElement;
+  @override
 
   /// [contact] Contact details to assist a user in finding and communicating
   ///  with the publisher.
-  @override
   List<ContactDetail>? get contact;
+  @override
 
   /// [description] And how it used.
-  @override
   FhirMarkdown? get description;
+  @override
 
   /// [descriptionElement] Extensions for description
-  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
+  @override
 
   /// [useContext] The content was developed with a focus and intent of
   /// supporting the contexts that are listed. These contexts may be general
   /// categories (gender, age, ...) or may be references to specific programs
   /// (insurance plans, studies, ...) and may be used to assist with indexing
   ///  and searching for appropriate search parameter instances.
-  @override
   List<UsageContext>? get useContext;
+  @override
 
   /// [jurisdiction] A legal or geographic region in which the search parameter
   ///  is intended to be used.
-  @override
   List<CodeableConcept>? get jurisdiction;
+  @override
 
   /// [purpose] Explanation of why this search parameter is needed and why it
   ///  has been designed as it has.
-  @override
   FhirMarkdown? get purpose;
+  @override
 
   /// [purposeElement] Extensions for purpose
-  @override
   @JsonKey(name: '_purpose')
   PrimitiveElement? get purposeElement;
+  @override
 
   /// [code] The code used in the URL or the parameter name in a parameters
   ///  resource for this search parameter.
-  @override
   FhirCode? get code;
+  @override
 
   /// [codeElement] Extensions for code
-  @override
   @JsonKey(name: '_code')
   PrimitiveElement? get codeElement;
+  @override
 
   /// [base] The base resource type(s) that this search parameter can be used
   ///  against.
-  @override
   List<FhirCode>? get base;
+  @override
 
   /// [baseElement] Extensions for base
-  @override
   @JsonKey(name: '_base')
   List<PrimitiveElement>? get baseElement;
+  @override
 
   /// [type] The type of value that a search parameter may contain, and how the
   ///  content is interpreted.
-  @override
   FhirCode? get type;
+  @override
 
   /// [typeElement] Extensions for type
-  @override
   @JsonKey(name: '_type')
   PrimitiveElement? get typeElement;
+  @override
 
   /// [expression] A FHIRPath expression that returns a set of elements for the
   ///  search parameter.
-  @override
   String? get expression;
+  @override
 
   /// [expressionElement] Extensions for expression
-  @override
   @JsonKey(name: '_expression')
   PrimitiveElement? get expressionElement;
+  @override
 
   /// [xpath] An XPath expression that returns a set of elements for the search
   ///  parameter.
-  @override
   String? get xpath;
+  @override
 
   /// [xpathElement] Extensions for xpath
-  @override
   @JsonKey(name: '_xpath')
   PrimitiveElement? get xpathElement;
+  @override
 
   /// [xpathUsage] How the search parameter relates to the set of elements
   ///  returned by evaluating the xpath query.
-  @override
   FhirCode? get xpathUsage;
+  @override
 
   /// [xpathUsageElement] Extensions for xpathUsage
-  @override
   @JsonKey(name: '_xpathUsage')
   PrimitiveElement? get xpathUsageElement;
+  @override
 
   /// [target] Types of resource (if a resource is referenced).
-  @override
   List<FhirCode>? get target;
+  @override
 
   /// [targetElement] Extensions for target
-  @override
   @JsonKey(name: '_target')
   List<PrimitiveElement>? get targetElement;
+  @override
 
   /// [multipleOr] Whether multiple values are allowed for each time the
   /// parameter exists. Values are separated by commas, and the parameter
   ///  matches if any of the values match.
-  @override
   FhirBoolean? get multipleOr;
+  @override
 
   /// [multipleOrElement] Extensions for multipleOr
-  @override
   @JsonKey(name: '_multipleOr')
   PrimitiveElement? get multipleOrElement;
+  @override
 
   /// [multipleAnd] Whether multiple parameters are allowed - e.g. more than
   /// one parameter with the same name. The search matches if all the parameters
   ///  match.
-  @override
   FhirBoolean? get multipleAnd;
+  @override
 
   /// [multipleAndElement] Extensions for multipleAnd
-  @override
   @JsonKey(name: '_multipleAnd')
   PrimitiveElement? get multipleAndElement;
+  @override
 
   /// [comparator] Comparators supported for the search parameter.
-  @override
   List<FhirCode>? get comparator;
+  @override
 
   /// [comparatorElement] Extensions for comparator
-  @override
   @JsonKey(name: '_comparator')
   List<PrimitiveElement>? get comparatorElement;
+  @override
 
   /// [modifier] A modifier supported for the search parameter.
-  @override
   List<FhirCode>? get modifier;
+  @override
 
   /// [modifierElement] Extensions for modifier
-  @override
   @JsonKey(name: '_modifier')
   List<PrimitiveElement>? get modifierElement;
+  @override
 
   /// [chain] Contains the names of any search parameters which may be chained
   /// to the containing search parameter. Chained parameters may be added to
@@ -2300,22 +2287,18 @@ abstract class _SearchParameter extends SearchParameter {
   /// be returned if they contain a reference to a resource which matches the
   /// chained parameter value. Values for this field should be drawn from
   ///  SearchParameter.code for a parameter on the target resource type.
-  @override
   List<String>? get chain;
+  @override
 
   /// [chainElement] Extensions for chain
-  @override
   @JsonKey(name: '_chain')
   List<PrimitiveElement>? get chainElement;
+  @override
 
   /// [component] Used to define the parts of a composite search parameter.
-  @override
   List<SearchParameterComponent>? get component;
-
-  /// Create a copy of SearchParameter
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$SearchParameterImplCopyWith<_$SearchParameterImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2368,12 +2351,8 @@ mixin _$SearchParameterComponent {
   @JsonKey(name: '_expression')
   PrimitiveElement? get expressionElement => throw _privateConstructorUsedError;
 
-  /// Serializes this SearchParameterComponent to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of SearchParameterComponent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $SearchParameterComponentCopyWith<SearchParameterComponent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2404,8 +2383,6 @@ class _$SearchParameterComponentCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of SearchParameterComponent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2473,8 +2450,6 @@ class __$$SearchParameterComponentImplCopyWithImpl<$Res>
       $Res Function(_$SearchParameterComponentImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SearchParameterComponent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2636,7 +2611,7 @@ class _$SearchParameterComponentImpl extends _SearchParameterComponent {
                 other.expressionElement == expressionElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2647,9 +2622,7 @@ class _$SearchParameterComponentImpl extends _SearchParameterComponent {
       expression,
       expressionElement);
 
-  /// Create a copy of SearchParameterComponent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$SearchParameterComponentImplCopyWith<_$SearchParameterComponentImpl>
@@ -2679,10 +2652,12 @@ abstract class _SearchParameterComponent extends SearchParameterComponent {
   factory _SearchParameterComponent.fromJson(Map<String, dynamic> json) =
       _$SearchParameterComponentImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2690,9 +2665,9 @@ abstract class _SearchParameterComponent extends SearchParameterComponent {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2707,28 +2682,24 @@ abstract class _SearchParameterComponent extends SearchParameterComponent {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [definition] The definition of the search parameter that describes this
   ///  part.
-  @override
   FhirCanonical get definition;
+  @override
 
   /// [expression] A sub-expression that defines how to extract values for this
   ///  component from the output of the main SearchParameter.expression.
-  @override
   String? get expression;
+  @override
 
   /// [expressionElement] Extensions for expression
-  @override
   @JsonKey(name: '_expression')
   PrimitiveElement? get expressionElement;
-
-  /// Create a copy of SearchParameterComponent
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$SearchParameterComponentImplCopyWith<_$SearchParameterComponentImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

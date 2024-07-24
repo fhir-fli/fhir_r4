@@ -78,12 +78,8 @@ mixin _$Condition {
   List<ConditionEvidence>? get evidence => throw _privateConstructorUsedError;
   List<Annotation>? get note => throw _privateConstructorUsedError;
 
-  /// Serializes this Condition to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of Condition
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ConditionCopyWith<Condition> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -167,8 +163,6 @@ class _$ConditionCopyWithImpl<$Res, $Val extends Condition>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Condition
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -382,8 +376,6 @@ class _$ConditionCopyWithImpl<$Res, $Val extends Condition>
     ) as $Val);
   }
 
-  /// Create a copy of Condition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -396,8 +388,6 @@ class _$ConditionCopyWithImpl<$Res, $Val extends Condition>
     });
   }
 
-  /// Create a copy of Condition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -410,8 +400,6 @@ class _$ConditionCopyWithImpl<$Res, $Val extends Condition>
     });
   }
 
-  /// Create a copy of Condition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get clinicalStatus {
@@ -424,8 +412,6 @@ class _$ConditionCopyWithImpl<$Res, $Val extends Condition>
     });
   }
 
-  /// Create a copy of Condition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get verificationStatus {
@@ -438,8 +424,6 @@ class _$ConditionCopyWithImpl<$Res, $Val extends Condition>
     });
   }
 
-  /// Create a copy of Condition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get severity {
@@ -452,8 +436,6 @@ class _$ConditionCopyWithImpl<$Res, $Val extends Condition>
     });
   }
 
-  /// Create a copy of Condition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get code {
@@ -466,8 +448,6 @@ class _$ConditionCopyWithImpl<$Res, $Val extends Condition>
     });
   }
 
-  /// Create a copy of Condition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get subject {
@@ -476,8 +456,6 @@ class _$ConditionCopyWithImpl<$Res, $Val extends Condition>
     });
   }
 
-  /// Create a copy of Condition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get encounter {
@@ -490,8 +468,6 @@ class _$ConditionCopyWithImpl<$Res, $Val extends Condition>
     });
   }
 
-  /// Create a copy of Condition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AgeCopyWith<$Res>? get onsetAge {
@@ -504,8 +480,6 @@ class _$ConditionCopyWithImpl<$Res, $Val extends Condition>
     });
   }
 
-  /// Create a copy of Condition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get onsetPeriod {
@@ -518,8 +492,6 @@ class _$ConditionCopyWithImpl<$Res, $Val extends Condition>
     });
   }
 
-  /// Create a copy of Condition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get onsetRange {
@@ -532,8 +504,6 @@ class _$ConditionCopyWithImpl<$Res, $Val extends Condition>
     });
   }
 
-  /// Create a copy of Condition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AgeCopyWith<$Res>? get abatementAge {
@@ -546,8 +516,6 @@ class _$ConditionCopyWithImpl<$Res, $Val extends Condition>
     });
   }
 
-  /// Create a copy of Condition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get abatementPeriod {
@@ -560,8 +528,6 @@ class _$ConditionCopyWithImpl<$Res, $Val extends Condition>
     });
   }
 
-  /// Create a copy of Condition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get abatementRange {
@@ -574,8 +540,6 @@ class _$ConditionCopyWithImpl<$Res, $Val extends Condition>
     });
   }
 
-  /// Create a copy of Condition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get recorder {
@@ -588,8 +552,6 @@ class _$ConditionCopyWithImpl<$Res, $Val extends Condition>
     });
   }
 
-  /// Create a copy of Condition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get asserter {
@@ -699,8 +661,6 @@ class __$$ConditionImplCopyWithImpl<$Res>
       _$ConditionImpl _value, $Res Function(_$ConditionImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Condition
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1224,7 +1184,7 @@ class _$ConditionImpl extends _Condition {
             const DeepCollectionEquality().equals(other._note, _note));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1271,9 +1231,7 @@ class _$ConditionImpl extends _Condition {
         const DeepCollectionEquality().hash(_note)
       ]);
 
-  /// Create a copy of Condition
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ConditionImplCopyWith<_$ConditionImpl> get copyWith =>
@@ -1432,11 +1390,8 @@ abstract class _Condition extends Condition {
   List<ConditionEvidence>? get evidence;
   @override
   List<Annotation>? get note;
-
-  /// Create a copy of Condition
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ConditionImplCopyWith<_$ConditionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1456,12 +1411,8 @@ mixin _$ConditionStage {
   List<Reference>? get assessment => throw _privateConstructorUsedError;
   CodeableConcept? get type => throw _privateConstructorUsedError;
 
-  /// Serializes this ConditionStage to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ConditionStage
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ConditionStageCopyWith<ConditionStage> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1494,8 +1445,6 @@ class _$ConditionStageCopyWithImpl<$Res, $Val extends ConditionStage>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ConditionStage
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1534,8 +1483,6 @@ class _$ConditionStageCopyWithImpl<$Res, $Val extends ConditionStage>
     ) as $Val);
   }
 
-  /// Create a copy of ConditionStage
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get summary {
@@ -1548,8 +1495,6 @@ class _$ConditionStageCopyWithImpl<$Res, $Val extends ConditionStage>
     });
   }
 
-  /// Create a copy of ConditionStage
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get type {
@@ -1593,8 +1538,6 @@ class __$$ConditionStageImplCopyWithImpl<$Res>
       _$ConditionStageImpl _value, $Res Function(_$ConditionStageImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ConditionStage
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1712,7 +1655,7 @@ class _$ConditionStageImpl extends _ConditionStage {
             (identical(other.type, type) || other.type == type));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1723,9 +1666,7 @@ class _$ConditionStageImpl extends _ConditionStage {
       const DeepCollectionEquality().hash(_assessment),
       type);
 
-  /// Create a copy of ConditionStage
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ConditionStageImplCopyWith<_$ConditionStageImpl> get copyWith =>
@@ -1766,11 +1707,8 @@ abstract class _ConditionStage extends ConditionStage {
   List<Reference>? get assessment;
   @override
   CodeableConcept? get type;
-
-  /// Create a copy of ConditionStage
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ConditionStageImplCopyWith<_$ConditionStageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1789,12 +1727,8 @@ mixin _$ConditionEvidence {
   List<CodeableConcept>? get code => throw _privateConstructorUsedError;
   List<Reference>? get detail => throw _privateConstructorUsedError;
 
-  /// Serializes this ConditionEvidence to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ConditionEvidence
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ConditionEvidenceCopyWith<ConditionEvidence> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1823,8 +1757,6 @@ class _$ConditionEvidenceCopyWithImpl<$Res, $Val extends ConditionEvidence>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ConditionEvidence
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1883,8 +1815,6 @@ class __$$ConditionEvidenceImplCopyWithImpl<$Res>
       $Res Function(_$ConditionEvidenceImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ConditionEvidence
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2000,7 +1930,7 @@ class _$ConditionEvidenceImpl extends _ConditionEvidence {
             const DeepCollectionEquality().equals(other._detail, _detail));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2010,9 +1940,7 @@ class _$ConditionEvidenceImpl extends _ConditionEvidence {
       const DeepCollectionEquality().hash(_code),
       const DeepCollectionEquality().hash(_detail));
 
-  /// Create a copy of ConditionEvidence
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ConditionEvidenceImplCopyWith<_$ConditionEvidenceImpl> get copyWith =>
@@ -2050,11 +1978,8 @@ abstract class _ConditionEvidence extends ConditionEvidence {
   List<CodeableConcept>? get code;
   @override
   List<Reference>? get detail;
-
-  /// Create a copy of ConditionEvidence
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ConditionEvidenceImplCopyWith<_$ConditionEvidenceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

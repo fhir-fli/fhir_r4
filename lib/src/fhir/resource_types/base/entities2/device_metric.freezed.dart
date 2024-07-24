@@ -160,12 +160,8 @@ mixin _$DeviceMetric {
   List<DeviceMetricCalibration>? get calibration =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this DeviceMetric to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of DeviceMetric
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $DeviceMetricCopyWith<DeviceMetric> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -223,8 +219,6 @@ class _$DeviceMetricCopyWithImpl<$Res, $Val extends DeviceMetric>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of DeviceMetric
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -353,8 +347,6 @@ class _$DeviceMetricCopyWithImpl<$Res, $Val extends DeviceMetric>
     ) as $Val);
   }
 
-  /// Create a copy of DeviceMetric
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -367,8 +359,6 @@ class _$DeviceMetricCopyWithImpl<$Res, $Val extends DeviceMetric>
     });
   }
 
-  /// Create a copy of DeviceMetric
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -381,8 +371,6 @@ class _$DeviceMetricCopyWithImpl<$Res, $Val extends DeviceMetric>
     });
   }
 
-  /// Create a copy of DeviceMetric
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get type {
@@ -391,8 +379,6 @@ class _$DeviceMetricCopyWithImpl<$Res, $Val extends DeviceMetric>
     });
   }
 
-  /// Create a copy of DeviceMetric
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get unit {
@@ -405,8 +391,6 @@ class _$DeviceMetricCopyWithImpl<$Res, $Val extends DeviceMetric>
     });
   }
 
-  /// Create a copy of DeviceMetric
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get source {
@@ -419,8 +403,6 @@ class _$DeviceMetricCopyWithImpl<$Res, $Val extends DeviceMetric>
     });
   }
 
-  /// Create a copy of DeviceMetric
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get parent {
@@ -433,8 +415,6 @@ class _$DeviceMetricCopyWithImpl<$Res, $Val extends DeviceMetric>
     });
   }
 
-  /// Create a copy of DeviceMetric
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TimingCopyWith<$Res>? get measurementPeriod {
@@ -508,8 +488,6 @@ class __$$DeviceMetricImplCopyWithImpl<$Res>
       _$DeviceMetricImpl _value, $Res Function(_$DeviceMetricImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DeviceMetric
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -959,7 +937,7 @@ class _$DeviceMetricImpl extends _DeviceMetric {
                 .equals(other._calibration, _calibration));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -989,9 +967,7 @@ class _$DeviceMetricImpl extends _DeviceMetric {
         const DeepCollectionEquality().hash(_calibration)
       ]);
 
-  /// Create a copy of DeviceMetric
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DeviceMetricImplCopyWith<_$DeviceMetricImpl> get copyWith =>
@@ -1042,38 +1018,39 @@ abstract class _DeviceMetric extends DeviceMetric {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.DeviceMetric)
   R4ResourceType get resourceType;
+  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @override
   String? get id;
+  @override
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  @override
   FhirMeta? get meta;
+  @override
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  @override
   FhirUri? get implicitRules;
+  @override
 
   /// [implicitRulesElement] Extensions for implicitRules
-  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
+  @override
 
   /// [language] The base language in which the resource is written.
-  @override
   FhirCode? get language;
+  @override
 
   /// [languageElement] Extensions for language
-  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
+  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1081,15 +1058,15 @@ abstract class _DeviceMetric extends DeviceMetric {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  @override
   Narrative? get text;
+  @override
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  @override
   List<Resource>? get contained;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1097,9 +1074,9 @@ abstract class _DeviceMetric extends DeviceMetric {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1114,30 +1091,30 @@ abstract class _DeviceMetric extends DeviceMetric {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [identifier] Unique instance identifiers assigned to a device by the
   /// device or gateway software, manufacturers, other organizations or owners.
   ///  For example: handle ID.
-  @override
   List<Identifier>? get identifier;
+  @override
 
   /// [type] Describes the type of the metric. For example: Heart Rate, PEEP
   ///  Setting, etc.
-  @override
   CodeableConcept get type;
+  @override
 
   /// [unit] Describes the unit that an observed value determined for this
   ///  metric will have. For example: Percent, Seconds, etc.
-  @override
   CodeableConcept? get unit;
+  @override
 
   /// [source] Describes the link to the  Device that this DeviceMetric belongs
   /// to and that contains administrative device information such as
   ///  manufacturer, serial number, etc.
-  @override
   Reference? get source;
+  @override
 
   /// [parent] Describes the link to the  Device that this DeviceMetric belongs
   /// to and that provide information about the location of this DeviceMetric in
@@ -1145,41 +1122,41 @@ abstract class _DeviceMetric extends DeviceMetric {
   /// Device that represents a Channel. This reference can be used by a client
   /// application to distinguish DeviceMetrics that have the same type, but
   ///  should be interpreted based on their containment location.
-  @override
   Reference? get parent;
+  @override
 
   /// [operationalStatus] Indicates current operational state of the device.
   ///  For example: On, Off, Standby, etc.
-  @override
   DeviceMetricOperationalStatus? get operationalStatus;
+  @override
 
   /// [operationalStatusElement] Extensions for operationalStatus
-  @override
   @JsonKey(name: '_operationalStatus')
   PrimitiveElement? get operationalStatusElement;
+  @override
 
   /// [color] Describes the color representation for the metric. This is often
   /// used to aid clinicians to track and identify parameter types by color. In
   /// practice, consider a Patient Monitor that has ECG/HR and Pleth for
   /// example; the parameters are displayed in different characteristic colors,
   ///  such as HR-blue, BP-green, and PR and SpO2- magenta.
-  @override
   DeviceMetricColor? get color;
+  @override
 
   /// [colorElement] Extensions for color
-  @override
   @JsonKey(name: '_color')
   PrimitiveElement? get colorElement;
+  @override
 
   /// [category] Indicates the category of the observation generation process.
   ///  A DeviceMetric can be for example a setting, measurement, or calculation.
-  @override
   DeviceMetricCategory? get category;
+  @override
 
   /// [categoryElement] Extensions for category
-  @override
   @JsonKey(name: '_category')
   PrimitiveElement? get categoryElement;
+  @override
 
   /// [measurementPeriod] Describes the measurement repetition time. This is
   /// not necessarily the same as the update period. The measurement repetition
@@ -1190,18 +1167,14 @@ abstract class _DeviceMetric extends DeviceMetric {
   /// be different than the measurement repetition time, if the device does not
   /// update the published observed value with the same frequency as it was
   ///  measured.
-  @override
   Timing? get measurementPeriod;
+  @override
 
   /// [calibration] Describes the calibrations that have been performed or that
   ///  are required to be performed.
-  @override
   List<DeviceMetricCalibration>? get calibration;
-
-  /// Create a copy of DeviceMetric
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DeviceMetricImplCopyWith<_$DeviceMetricImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1263,12 +1236,8 @@ mixin _$DeviceMetricCalibration {
   @JsonKey(name: '_time')
   PrimitiveElement? get timeElement => throw _privateConstructorUsedError;
 
-  /// Serializes this DeviceMetricCalibration to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of DeviceMetricCalibration
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $DeviceMetricCalibrationCopyWith<DeviceMetricCalibration> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1302,8 +1271,6 @@ class _$DeviceMetricCalibrationCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of DeviceMetricCalibration
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1389,8 +1356,6 @@ class __$$DeviceMetricCalibrationImplCopyWithImpl<$Res>
       $Res Function(_$DeviceMetricCalibrationImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DeviceMetricCalibration
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1585,7 +1550,7 @@ class _$DeviceMetricCalibrationImpl extends _DeviceMetricCalibration {
                 other.timeElement == timeElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1599,9 +1564,7 @@ class _$DeviceMetricCalibrationImpl extends _DeviceMetricCalibration {
       time,
       timeElement);
 
-  /// Create a copy of DeviceMetricCalibration
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DeviceMetricCalibrationImplCopyWith<_$DeviceMetricCalibrationImpl>
@@ -1633,10 +1596,12 @@ abstract class _DeviceMetricCalibration extends DeviceMetricCalibration {
   factory _DeviceMetricCalibration.fromJson(Map<String, dynamic> json) =
       _$DeviceMetricCalibrationImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1644,9 +1609,9 @@ abstract class _DeviceMetricCalibration extends DeviceMetricCalibration {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -1661,40 +1626,36 @@ abstract class _DeviceMetricCalibration extends DeviceMetricCalibration {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [type] Describes the type of the calibration method.
-  @override
   DeviceMetricCalibrationType? get type;
+  @override
 
   /// [typeElement] Extensions for type
-  @override
   @JsonKey(name: '_type')
   PrimitiveElement? get typeElement;
+  @override
 
   /// [state] Describes the state of the calibration.
-  @override
   DeviceMetricCalibrationState? get state;
+  @override
 
   /// [stateElement] Extensions for state
-  @override
   @JsonKey(name: '_state')
   PrimitiveElement? get stateElement;
+  @override
 
   /// [time] Describes the time last calibration has been performed.
-  @override
   FhirInstant? get time;
+  @override
 
   /// [timeElement] Extensions for time
-  @override
   @JsonKey(name: '_time')
   PrimitiveElement? get timeElement;
-
-  /// Create a copy of DeviceMetricCalibration
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DeviceMetricCalibrationImplCopyWith<_$DeviceMetricCalibrationImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

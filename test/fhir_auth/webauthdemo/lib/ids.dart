@@ -14,8 +14,7 @@ mixin Api {
   /// GCS
   static const gcsUrl = 'https://healthcare.googleapis.com/v1/projects'
       '/demos-322021/locations/us-central1/datasets/mayjuun/fhirStores/dev/fhir';
-  static const gcsClientId =
-      '691103016946-plc42eg1qr49ke0gbd1rsd650eo0el5p.apps.googleusercontent.com';
+  static const gcsClientId = '';
 
   /// Meld
   static const meldClientId = '7cf38a3c-ae85-419e-b3ee-a35094797aca';

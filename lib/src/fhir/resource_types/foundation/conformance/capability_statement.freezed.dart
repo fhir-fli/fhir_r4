@@ -292,12 +292,8 @@ mixin _$CapabilityStatement {
   List<CapabilityStatementDocument>? get document =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this CapabilityStatement to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of CapabilityStatement
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $CapabilityStatementCopyWith<CapabilityStatement> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -379,8 +375,6 @@ class _$CapabilityStatementCopyWithImpl<$Res, $Val extends CapabilityStatement>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CapabilityStatement
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -649,8 +643,6 @@ class _$CapabilityStatementCopyWithImpl<$Res, $Val extends CapabilityStatement>
     ) as $Val);
   }
 
-  /// Create a copy of CapabilityStatement
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -663,8 +655,6 @@ class _$CapabilityStatementCopyWithImpl<$Res, $Val extends CapabilityStatement>
     });
   }
 
-  /// Create a copy of CapabilityStatement
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -677,8 +667,6 @@ class _$CapabilityStatementCopyWithImpl<$Res, $Val extends CapabilityStatement>
     });
   }
 
-  /// Create a copy of CapabilityStatement
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CapabilityStatementSoftwareCopyWith<$Res>? get software {
@@ -692,8 +680,6 @@ class _$CapabilityStatementCopyWithImpl<$Res, $Val extends CapabilityStatement>
     });
   }
 
-  /// Create a copy of CapabilityStatement
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CapabilityStatementImplementationCopyWith<$Res>? get implementation {
@@ -789,8 +775,6 @@ class __$$CapabilityStatementImplCopyWithImpl<$Res>
       $Res Function(_$CapabilityStatementImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CapabilityStatement
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1736,7 +1720,7 @@ class _$CapabilityStatementImpl extends _CapabilityStatement {
             const DeepCollectionEquality().equals(other._document, _document));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1794,9 +1778,7 @@ class _$CapabilityStatementImpl extends _CapabilityStatement {
         const DeepCollectionEquality().hash(_document)
       ]);
 
-  /// Create a copy of CapabilityStatement
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CapabilityStatementImplCopyWith<_$CapabilityStatementImpl> get copyWith =>
@@ -1878,38 +1860,39 @@ abstract class _CapabilityStatement extends CapabilityStatement {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.CapabilityStatement)
   R4ResourceType get resourceType;
+  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @override
   String? get id;
+  @override
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  @override
   FhirMeta? get meta;
+  @override
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  @override
   FhirUri? get implicitRules;
+  @override
 
   /// [implicitRulesElement] Extensions for implicitRules
-  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
+  @override
 
   /// [language] The base language in which the resource is written.
-  @override
   FhirCode? get language;
+  @override
 
   /// [languageElement] Extensions for language
-  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
+  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1917,15 +1900,15 @@ abstract class _CapabilityStatement extends CapabilityStatement {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  @override
   Narrative? get text;
+  @override
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  @override
   List<Resource>? get contained;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1933,9 +1916,9 @@ abstract class _CapabilityStatement extends CapabilityStatement {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1950,8 +1933,8 @@ abstract class _CapabilityStatement extends CapabilityStatement {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [url] An absolute URI that is used to identify this capability statement
   /// when it is referenced in a specification, model, design or an instance;
@@ -1960,13 +1943,13 @@ abstract class _CapabilityStatement extends CapabilityStatement {
   /// this capability statement is (or will be) published. This URL can be the
   /// target of a canonical reference. It SHALL remain the same when the
   ///  capability statement is stored on different servers.
-  @override
   FhirUri? get url;
+  @override
 
   /// [urlElement] Extensions for url
-  @override
   @JsonKey(name: '_url')
   PrimitiveElement? get urlElement;
+  @override
 
   /// [version] The identifier that is used to identify this version of the
   /// capability statement when it is referenced in a specification, model,
@@ -1975,140 +1958,140 @@ abstract class _CapabilityStatement extends CapabilityStatement {
   /// it might be a timestamp (e.g. yyyymmdd) if a managed version is not
   /// available. There is also no expectation that versions can be placed in a
   ///  lexicographical sequence.
-  @override
   String? get version;
+  @override
 
   /// [versionElement] Extensions for version
-  @override
   @JsonKey(name: '_version')
   PrimitiveElement? get versionElement;
+  @override
 
   /// [name] A natural language name identifying the capability statement. This
   /// name should be usable as an identifier for the module by machine
   ///  processing applications such as code generation.
-  @override
   String? get name;
+  @override
 
   /// [nameElement] Extensions for name
-  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
+  @override
 
   /// [title] A short, descriptive, user-friendly title for the capability
   ///  statement.
-  @override
   String? get title;
+  @override
 
   /// [titleElement] Extensions for title
-  @override
   @JsonKey(name: '_title')
   PrimitiveElement? get titleElement;
+  @override
 
   /// [status] The status of this capability statement. Enables tracking the
   ///  life-cycle of the content.
-  @override
   FhirCode? get status;
+  @override
 
   /// [statusElement] Extensions for status
-  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
+  @override
 
   /// [experimental] A Boolean value to indicate that this capability statement
   /// is authored for testing purposes (or education/evaluation/marketing) and
   ///  is not intended to be used for genuine usage.
-  @override
   FhirBoolean? get experimental;
+  @override
 
   /// [experimentalElement] Extensions for experimental
-  @override
   @JsonKey(name: '_experimental')
   PrimitiveElement? get experimentalElement;
+  @override
 
   /// [date] The date  (and optionally time) when the capability statement was
   /// published. The date must change when the business version changes and it
   /// must change if the status code changes. In addition, it should change when
   ///  the substantive content of the capability statement changes.
-  @override
   FhirDateTime? get date;
+  @override
 
   /// [dateElement] Extensions for date
-  @override
   @JsonKey(name: '_date')
   PrimitiveElement? get dateElement;
+  @override
 
   /// [publisher] The name of the organization or individual that published the
   ///  capability statement.
-  @override
   String? get publisher;
+  @override
 
   /// [publisherElement] Extensions for publisher
-  @override
   @JsonKey(name: '_publisher')
   PrimitiveElement? get publisherElement;
+  @override
 
   /// [contact] Contact details to assist a user in finding and communicating
   ///  with the publisher.
-  @override
   List<ContactDetail>? get contact;
+  @override
 
   /// [description] A free text natural language description of the capability
   /// statement from a consumer's perspective. Typically, this is used when the
   /// capability statement describes a desired rather than an actual solution,
   ///  for example as a formal expression of requirements as part of an RFP.
-  @override
   FhirMarkdown? get description;
+  @override
 
   /// [descriptionElement] Extensions for description
-  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
+  @override
 
   /// [useContext] The content was developed with a focus and intent of
   /// supporting the contexts that are listed. These contexts may be general
   /// categories (gender, age, ...) or may be references to specific programs
   /// (insurance plans, studies, ...) and may be used to assist with indexing
   ///  and searching for appropriate capability statement instances.
-  @override
   List<UsageContext>? get useContext;
+  @override
 
   /// [jurisdiction] A legal or geographic region in which the capability
   ///  statement is intended to be used.
-  @override
   List<CodeableConcept>? get jurisdiction;
+  @override
 
   /// [purpose] Explanation of why this capability statement is needed and why
   ///  it has been designed as it has.
-  @override
   FhirMarkdown? get purpose;
+  @override
 
   /// [purposeElement] Extensions for purpose
-  @override
   @JsonKey(name: '_purpose')
   PrimitiveElement? get purposeElement;
+  @override
 
   /// [copyright] A copyright statement relating to the capability statement
   /// and/or its contents. Copyright statements are generally legal restrictions
   ///  on the use and publishing of the capability statement.
-  @override
   FhirMarkdown? get copyright;
+  @override
 
   /// [copyrightElement] Extensions for copyright
-  @override
   @JsonKey(name: '_copyright')
   PrimitiveElement? get copyrightElement;
+  @override
 
   /// [kind] The way that this statement is intended to be used, to describe an
   /// actual running instance of software, a particular product (kind, not
   /// instance of software) or a class of implementation (e.g. a desired
   ///  purchase).
-  @override
   FhirCode? get kind;
+  @override
 
   /// [kindElement] Extensions for kind
-  @override
   @JsonKey(name: '_kind')
   PrimitiveElement? get kindElement;
+  @override
 
   /// [instantiates] Reference to a canonical URL of another
   /// CapabilityStatement that this software implements. This capability
@@ -2116,81 +2099,77 @@ abstract class _CapabilityStatement extends CapabilityStatement {
   /// service. The server may actually implement a subset of the capability
   /// statement it claims to implement, so the capability statement must specify
   ///  the full capability details.
-  @override
   List<FhirCanonical>? get instantiates;
+  @override
 
   /// [imports] Reference to a canonical URL of another CapabilityStatement
   /// that this software adds to. The capability statement automatically
   /// includes everything in the other statement, and it is not duplicated,
   /// though the server may repeat the same resources, interactions and
   ///  operations to add additional details to them.
-  @override
   List<FhirCanonical>? get imports;
+  @override
 
   /// [software] Software that is covered by this capability statement.  It is
   /// used when the capability statement describes the capabilities of a
   ///  particular software version, independent of an installation.
-  @override
   CapabilityStatementSoftware? get software;
+  @override
 
   /// [implementation] Identifies a specific implementation instance that is
   /// described by the capability statement - i.e. a particular installation,
   ///  rather than the capabilities of a software program.
-  @override
   CapabilityStatementImplementation? get implementation;
+  @override
 
   /// [fhirVersion] The version of the FHIR specification that this
   /// CapabilityStatement describes (which SHALL be the same as the FHIR version
   ///  of the CapabilityStatement itself). There is no default value.
-  @override
   FhirCode? get fhirVersion;
+  @override
 
   /// [fhirVersionElement] Extensions for fhirVersion
-  @override
   @JsonKey(name: '_fhirVersion')
   PrimitiveElement? get fhirVersionElement;
+  @override
 
   /// [format] A list of the formats supported by this implementation using
   ///  their content types.
-  @override
   List<FhirCode>? get format;
+  @override
 
   /// [formatElement] Extensions for format
-  @override
   @JsonKey(name: '_format')
   List<PrimitiveElement>? get formatElement;
+  @override
 
   /// [patchFormat] A list of the patch formats supported by this
   ///  implementation using their content types.
-  @override
   List<FhirCode>? get patchFormat;
+  @override
 
   /// [patchFormatElement] Extensions for patchFormat
-  @override
   @JsonKey(name: '_patchFormat')
   List<PrimitiveElement>? get patchFormatElement;
+  @override
 
   /// [implementationGuide] A list of implementation guides that the server
   ///  does (or should) support in their entirety.
-  @override
   List<FhirCanonical>? get implementationGuide;
+  @override
 
   /// [rest] A definition of the restful capabilities of the solution, if any.
-  @override
   List<CapabilityStatementRest>? get rest;
+  @override
 
   /// [messaging] A description of the messaging capabilities of the solution.
-  @override
   List<CapabilityStatementMessaging>? get messaging;
+  @override
 
   /// [document] A document definition.
-  @override
   List<CapabilityStatementDocument>? get document;
-
-  /// Create a copy of CapabilityStatement
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CapabilityStatementImplCopyWith<_$CapabilityStatementImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2254,12 +2233,8 @@ mixin _$CapabilityStatementSoftware {
   PrimitiveElement? get releaseDateElement =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this CapabilityStatementSoftware to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of CapabilityStatementSoftware
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $CapabilityStatementSoftwareCopyWith<CapabilityStatementSoftware>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2295,8 +2270,6 @@ class _$CapabilityStatementSoftwareCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CapabilityStatementSoftware
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2382,8 +2355,6 @@ class __$$CapabilityStatementSoftwareImplCopyWithImpl<$Res>
       $Res Function(_$CapabilityStatementSoftwareImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CapabilityStatementSoftware
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2581,7 +2552,7 @@ class _$CapabilityStatementSoftwareImpl extends _CapabilityStatementSoftware {
                 other.releaseDateElement == releaseDateElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2595,9 +2566,7 @@ class _$CapabilityStatementSoftwareImpl extends _CapabilityStatementSoftware {
       releaseDate,
       releaseDateElement);
 
-  /// Create a copy of CapabilityStatementSoftware
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CapabilityStatementSoftwareImplCopyWith<_$CapabilityStatementSoftwareImpl>
@@ -2631,10 +2600,12 @@ abstract class _CapabilityStatementSoftware
   factory _CapabilityStatementSoftware.fromJson(Map<String, dynamic> json) =
       _$CapabilityStatementSoftwareImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2642,9 +2613,9 @@ abstract class _CapabilityStatementSoftware
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2659,41 +2630,37 @@ abstract class _CapabilityStatementSoftware
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [name] Name the software is known by.
-  @override
   String? get name;
+  @override
 
   /// [nameElement] Extensions for name
-  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
+  @override
 
   /// [version] The version identifier for the software covered by this
   ///  statement.
-  @override
   String? get version;
+  @override
 
   /// [versionElement] Extensions for version
-  @override
   @JsonKey(name: '_version')
   PrimitiveElement? get versionElement;
+  @override
 
   /// [releaseDate] Date this version of the software was released.
-  @override
   FhirDateTime? get releaseDate;
+  @override
 
   /// [releaseDateElement] Extensions for releaseDate
-  @override
   @JsonKey(name: '_releaseDate')
   PrimitiveElement? get releaseDateElement;
-
-  /// Create a copy of CapabilityStatementSoftware
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CapabilityStatementSoftwareImplCopyWith<_$CapabilityStatementSoftwareImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2755,12 +2722,8 @@ mixin _$CapabilityStatementImplementation {
   ///  instance and oversight of the data on the server at the specified URL.
   Reference? get custodian => throw _privateConstructorUsedError;
 
-  /// Serializes this CapabilityStatementImplementation to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of CapabilityStatementImplementation
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $CapabilityStatementImplementationCopyWith<CapabilityStatementImplementation>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2797,8 +2760,6 @@ class _$CapabilityStatementImplementationCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CapabilityStatementImplementation
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2847,8 +2808,6 @@ class _$CapabilityStatementImplementationCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of CapabilityStatementImplementation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get custodian {
@@ -2895,8 +2854,6 @@ class __$$CapabilityStatementImplementationImplCopyWithImpl<$Res>
       $Res Function(_$CapabilityStatementImplementationImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CapabilityStatementImplementation
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3085,7 +3042,7 @@ class _$CapabilityStatementImplementationImpl
                 other.custodian == custodian));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3098,9 +3055,7 @@ class _$CapabilityStatementImplementationImpl
       urlElement,
       custodian);
 
-  /// Create a copy of CapabilityStatementImplementation
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CapabilityStatementImplementationImplCopyWith<
@@ -3133,10 +3088,12 @@ abstract class _CapabilityStatementImplementation
           Map<String, dynamic> json) =
       _$CapabilityStatementImplementationImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3144,9 +3101,9 @@ abstract class _CapabilityStatementImplementation
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3161,38 +3118,34 @@ abstract class _CapabilityStatementImplementation
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [description] Information about the specific installation that this
   ///  capability statement relates to.
-  @override
   String? get description;
+  @override
 
   /// [descriptionElement] Extensions for description
-  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
+  @override
 
   /// [url] An absolute base URL for the implementation.  This forms the base
   ///  for REST interfaces as well as the mailbox and document interfaces.
-  @override
   FhirUrl? get url;
+  @override
 
   /// [urlElement] Extensions for url
-  @override
   @JsonKey(name: '_url')
   PrimitiveElement? get urlElement;
+  @override
 
   /// [custodian] The organization responsible for the management of the
   ///  instance and oversight of the data on the server at the specified URL.
-  @override
   Reference? get custodian;
-
-  /// Create a copy of CapabilityStatementImplementation
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CapabilityStatementImplementationImplCopyWith<
           _$CapabilityStatementImplementationImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -3283,12 +3236,8 @@ mixin _$CapabilityStatementRest {
   ///  CompartmentDefinition resource by its canonical URL .
   List<FhirCanonical>? get compartment => throw _privateConstructorUsedError;
 
-  /// Serializes this CapabilityStatementRest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of CapabilityStatementRest
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $CapabilityStatementRestCopyWith<CapabilityStatementRest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3328,8 +3277,6 @@ class _$CapabilityStatementRestCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CapabilityStatementRest
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3403,8 +3350,6 @@ class _$CapabilityStatementRestCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of CapabilityStatementRest
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CapabilityStatementSecurityCopyWith<$Res>? get security {
@@ -3457,8 +3402,6 @@ class __$$CapabilityStatementRestImplCopyWithImpl<$Res>
       $Res Function(_$CapabilityStatementRestImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CapabilityStatementRest
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3770,7 +3713,7 @@ class _$CapabilityStatementRestImpl extends _CapabilityStatementRest {
                 .equals(other._compartment, _compartment));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3788,9 +3731,7 @@ class _$CapabilityStatementRestImpl extends _CapabilityStatementRest {
       const DeepCollectionEquality().hash(_operation),
       const DeepCollectionEquality().hash(_compartment));
 
-  /// Create a copy of CapabilityStatementRest
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CapabilityStatementRestImplCopyWith<_$CapabilityStatementRestImpl>
@@ -3826,10 +3767,12 @@ abstract class _CapabilityStatementRest extends CapabilityStatementRest {
   factory _CapabilityStatementRest.fromJson(Map<String, dynamic> json) =
       _$CapabilityStatementRestImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3837,9 +3780,9 @@ abstract class _CapabilityStatementRest extends CapabilityStatementRest {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3854,66 +3797,62 @@ abstract class _CapabilityStatementRest extends CapabilityStatementRest {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [mode] Identifies whether this portion of the statement is describing the
   ///  ability to initiate or receive restful operations.
-  @override
   FhirCode? get mode;
+  @override
 
   /// [modeElement] Extensions for mode
-  @override
   @JsonKey(name: '_mode')
   PrimitiveElement? get modeElement;
+  @override
 
   /// [documentation] Information about the system's restful capabilities that
   ///  apply across all applications, such as security.
-  @override
   FhirMarkdown? get documentation;
+  @override
 
   /// [documentationElement] Extensions for documentation
-  @override
   @JsonKey(name: '_documentation')
   PrimitiveElement? get documentationElement;
+  @override
 
   /// [security] Information about security implementation from an interface
   ///  perspective - what a client needs to know.
-  @override
   CapabilityStatementSecurity? get security;
+  @override
 
   /// [resource] A specification of the restful capabilities of the solution
   ///  for a specific resource type.
-  @override
   List<CapabilityStatementResource>? get resource;
+  @override
 
   /// [interaction] A specification of restful operations supported by the
   ///  system.
-  @override
   List<CapabilityStatementInteraction1>? get interaction;
+  @override
 
   /// [searchParam] Search parameters that are supported for searching all
   /// resources for implementations to support and/or make use of - either
   /// references to ones defined in the specification, or additional ones
   ///  defined for/by the implementation.
-  @override
   List<CapabilityStatementSearchParam>? get searchParam;
+  @override
 
   /// [operation] Definition of an operation or a named query together with its
   ///  parameters and their meaning and type.
-  @override
   List<CapabilityStatementOperation>? get operation;
+  @override
 
   /// [compartment] An absolute URI which is a reference to the definition of a
   /// compartment that the system supports. The reference is to a
   ///  CompartmentDefinition resource by its canonical URL .
-  @override
   List<FhirCanonical>? get compartment;
-
-  /// Create a copy of CapabilityStatementRest
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CapabilityStatementRestImplCopyWith<_$CapabilityStatementRestImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3974,12 +3913,8 @@ mixin _$CapabilityStatementSecurity {
   PrimitiveElement? get descriptionElement =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this CapabilityStatementSecurity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of CapabilityStatementSecurity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $CapabilityStatementSecurityCopyWith<CapabilityStatementSecurity>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -4014,8 +3949,6 @@ class _$CapabilityStatementSecurityCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CapabilityStatementSecurity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4095,8 +4028,6 @@ class __$$CapabilityStatementSecurityImplCopyWithImpl<$Res>
       $Res Function(_$CapabilityStatementSecurityImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CapabilityStatementSecurity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4293,7 +4224,7 @@ class _$CapabilityStatementSecurityImpl extends _CapabilityStatementSecurity {
                 other.descriptionElement == descriptionElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -4306,9 +4237,7 @@ class _$CapabilityStatementSecurityImpl extends _CapabilityStatementSecurity {
       description,
       descriptionElement);
 
-  /// Create a copy of CapabilityStatementSecurity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CapabilityStatementSecurityImplCopyWith<_$CapabilityStatementSecurityImpl>
@@ -4341,10 +4270,12 @@ abstract class _CapabilityStatementSecurity
   factory _CapabilityStatementSecurity.fromJson(Map<String, dynamic> json) =
       _$CapabilityStatementSecurityImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -4352,9 +4283,9 @@ abstract class _CapabilityStatementSecurity
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -4369,37 +4300,33 @@ abstract class _CapabilityStatementSecurity
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [cors] Server adds CORS headers when responding to requests - this
   ///  enables Javascript applications to use the server.
-  @override
   FhirBoolean? get cors;
+  @override
 
   /// [corsElement] Extensions for cors
-  @override
   @JsonKey(name: '_cors')
   PrimitiveElement? get corsElement;
+  @override
 
   /// [service] Types of security services that are supported/required by the
   ///  system.
-  @override
   List<CodeableConcept>? get service;
+  @override
 
   /// [description] General description of how security works.
-  @override
   FhirMarkdown? get description;
+  @override
 
   /// [descriptionElement] Extensions for description
-  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
-
-  /// Create a copy of CapabilityStatementSecurity
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CapabilityStatementSecurityImplCopyWith<_$CapabilityStatementSecurityImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -4585,12 +4512,8 @@ mixin _$CapabilityStatementResource {
   List<CapabilityStatementOperation>? get operation =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this CapabilityStatementResource to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of CapabilityStatementResource
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $CapabilityStatementResourceCopyWith<CapabilityStatementResource>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -4656,8 +4579,6 @@ class _$CapabilityStatementResourceCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CapabilityStatementResource
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4888,8 +4809,6 @@ class __$$CapabilityStatementResourceImplCopyWithImpl<$Res>
       $Res Function(_$CapabilityStatementResourceImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CapabilityStatementResource
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5528,7 +5447,7 @@ class _$CapabilityStatementResourceImpl extends _CapabilityStatementResource {
                 .equals(other._operation, _operation));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -5566,9 +5485,7 @@ class _$CapabilityStatementResourceImpl extends _CapabilityStatementResource {
         const DeepCollectionEquality().hash(_operation)
       ]);
 
-  /// Create a copy of CapabilityStatementResource
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CapabilityStatementResourceImplCopyWith<_$CapabilityStatementResourceImpl>
@@ -5633,10 +5550,12 @@ abstract class _CapabilityStatementResource
   factory _CapabilityStatementResource.fromJson(Map<String, dynamic> json) =
       _$CapabilityStatementResourceImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -5644,9 +5563,9 @@ abstract class _CapabilityStatementResource
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -5661,24 +5580,24 @@ abstract class _CapabilityStatementResource
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [type] A type of resource exposed via the restful interface.
-  @override
   FhirCode? get type;
+  @override
 
   /// [typeElement] Extensions for type
-  @override
   @JsonKey(name: '_type')
   PrimitiveElement? get typeElement;
+  @override
 
   /// [profile] A specification of the profile that describes the solution's
   /// overall support for the resource, including any constraints on
   /// cardinality, bindings, lengths or other limitations. See further
   ///  discussion in [Using Profiles](profiling.html#profile-uses).
-  @override
   FhirCanonical? get profile;
+  @override
 
   /// [supportedProfile] A list of profiles that represent different use cases
   /// supported by the system. For a server, "supported by the system" means the
@@ -5688,22 +5607,22 @@ abstract class _CapabilityStatementResource
   /// the system will search by this profile and process data according to the
   /// guidance implicit in the profile. See further discussion in [Using
   ///  Profiles](profiling.html#profile-uses).
-  @override
   List<FhirCanonical>? get supportedProfile;
+  @override
 
   /// [documentation] Additional information about the resource type used by
   ///  the system.
-  @override
   FhirMarkdown? get documentation;
+  @override
 
   /// [documentationElement] Extensions for documentation
-  @override
   @JsonKey(name: '_documentation')
   PrimitiveElement? get documentationElement;
+  @override
 
   /// [interaction] Identifies a restful operation supported by the solution.
-  @override
   List<CapabilityStatementInteraction>? get interaction;
+  @override
 
   /// [versioning] This field is set to no-version to specify that the system
   /// does not support (server) or use (client) versioning for this resource
@@ -5711,123 +5630,119 @@ abstract class _CapabilityStatementResource
   /// track and populate the versionId meta-property on resources. If the value
   /// is 'versioned-update', then the server supports all the versioning
   ///  features, including using e-tags for version integrity in the API.
-  @override
   FhirCode? get versioning;
+  @override
 
   /// [versioningElement] Extensions for versioning
-  @override
   @JsonKey(name: '_versioning')
   PrimitiveElement? get versioningElement;
+  @override
 
   /// [readHistory] A flag for whether the server is able to return past
   ///  versions as part of the vRead operation.
-  @override
   FhirBoolean? get readHistory;
+  @override
 
   /// [readHistoryElement] Extensions for readHistory
-  @override
   @JsonKey(name: '_readHistory')
   PrimitiveElement? get readHistoryElement;
+  @override
 
   /// [updateCreate] A flag to indicate that the server allows or needs to
   /// allow the client to create new identities on the server (that is, the
   /// client PUTs to a location where there is no existing resource). Allowing
   /// this operation means that the server allows the client to create new
   ///  identities on the server.
-  @override
   FhirBoolean? get updateCreate;
+  @override
 
   /// [updateCreateElement] Extensions for updateCreate
-  @override
   @JsonKey(name: '_updateCreate')
   PrimitiveElement? get updateCreateElement;
+  @override
 
   /// [conditionalCreate] A flag that indicates that the server supports
   ///  conditional create.
-  @override
   FhirBoolean? get conditionalCreate;
+  @override
 
   /// [conditionalCreateElement] Extensions for conditionalCreate
-  @override
   @JsonKey(name: '_conditionalCreate')
   PrimitiveElement? get conditionalCreateElement;
+  @override
 
   /// [conditionalRead] A code that indicates how the server supports
   ///  conditional read.
-  @override
   FhirCode? get conditionalRead;
+  @override
 
   /// [conditionalReadElement] Extensions for conditionalRead
-  @override
   @JsonKey(name: '_conditionalRead')
   PrimitiveElement? get conditionalReadElement;
+  @override
 
   /// [conditionalUpdate] A flag that indicates that the server supports
   ///  conditional update.
-  @override
   FhirBoolean? get conditionalUpdate;
+  @override
 
   /// [conditionalUpdateElement] Extensions for conditionalUpdate
-  @override
   @JsonKey(name: '_conditionalUpdate')
   PrimitiveElement? get conditionalUpdateElement;
+  @override
 
   /// [conditionalDelete] A code that indicates how the server supports
   ///  conditional delete.
-  @override
   FhirCode? get conditionalDelete;
+  @override
 
   /// [conditionalDeleteElement] Extensions for conditionalDelete
-  @override
   @JsonKey(name: '_conditionalDelete')
   PrimitiveElement? get conditionalDeleteElement;
+  @override
 
   /// [referencePolicy] A set of flags that defines how references are
   ///  supported.
-  @override
   List<FhirCode>? get referencePolicy;
+  @override
 
   /// [referencePolicyElement] Extensions for referencePolicy
-  @override
   @JsonKey(name: '_referencePolicy')
   List<PrimitiveElement>? get referencePolicyElement;
+  @override
 
   /// [searchInclude] A list of _include values supported by the server.
-  @override
   List<String>? get searchInclude;
+  @override
 
   /// [searchIncludeElement] Extensions for searchInclude
-  @override
   @JsonKey(name: '_searchInclude')
   List<PrimitiveElement>? get searchIncludeElement;
+  @override
 
   /// [searchRevInclude] A list of _revinclude (reverse include) values
   ///  supported by the server.
-  @override
   List<String>? get searchRevInclude;
+  @override
 
   /// [searchRevIncludeElement] Extensions for searchRevInclude
-  @override
   @JsonKey(name: '_searchRevInclude')
   List<PrimitiveElement>? get searchRevIncludeElement;
+  @override
 
   /// [searchParam] Search parameters for implementations to support and/or
   /// make use of - either references to ones defined in the specification, or
   ///  additional ones defined for/by the implementation.
-  @override
   List<CapabilityStatementSearchParam>? get searchParam;
+  @override
 
   /// [operation] Definition of an operation or a named query together with its
   /// parameters and their meaning and type. Consult the definition of the
   /// operation for details about how to invoke the operation, and the
   ///  parameters.
-  @override
   List<CapabilityStatementOperation>? get operation;
-
-  /// Create a copy of CapabilityStatementResource
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CapabilityStatementResourceImplCopyWith<_$CapabilityStatementResourceImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -5887,12 +5802,8 @@ mixin _$CapabilityStatementInteraction {
   PrimitiveElement? get documentationElement =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this CapabilityStatementInteraction to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of CapabilityStatementInteraction
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $CapabilityStatementInteractionCopyWith<CapabilityStatementInteraction>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -5926,8 +5837,6 @@ class _$CapabilityStatementInteractionCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CapabilityStatementInteraction
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -6001,8 +5910,6 @@ class __$$CapabilityStatementInteractionImplCopyWithImpl<$Res>
       $Res Function(_$CapabilityStatementInteractionImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CapabilityStatementInteraction
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -6180,7 +6087,7 @@ class _$CapabilityStatementInteractionImpl
                 other.documentationElement == documentationElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -6192,9 +6099,7 @@ class _$CapabilityStatementInteractionImpl
       documentation,
       documentationElement);
 
-  /// Create a copy of CapabilityStatementInteraction
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CapabilityStatementInteractionImplCopyWith<
@@ -6227,10 +6132,12 @@ abstract class _CapabilityStatementInteraction
   factory _CapabilityStatementInteraction.fromJson(Map<String, dynamic> json) =
       _$CapabilityStatementInteractionImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -6238,9 +6145,9 @@ abstract class _CapabilityStatementInteraction
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -6255,35 +6162,31 @@ abstract class _CapabilityStatementInteraction
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [code] Coded identifier of the operation, supported by the system
   ///  resource.
-  @override
   FhirCode? get code;
+  @override
 
   /// [codeElement] Extensions for code
-  @override
   @JsonKey(name: '_code')
   PrimitiveElement? get codeElement;
+  @override
 
   /// [documentation] Guidance specific to the implementation of this
   /// operation, such as 'delete is a logical delete' or 'updates are only
   /// allowed with version id' or 'creates permitted from pre-authorized
   ///  certificates only'.
-  @override
   FhirMarkdown? get documentation;
+  @override
 
   /// [documentationElement] Extensions for documentation
-  @override
   @JsonKey(name: '_documentation')
   PrimitiveElement? get documentationElement;
-
-  /// Create a copy of CapabilityStatementInteraction
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CapabilityStatementInteractionImplCopyWith<
           _$CapabilityStatementInteractionImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -6354,12 +6257,8 @@ mixin _$CapabilityStatementSearchParam {
   PrimitiveElement? get documentationElement =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this CapabilityStatementSearchParam to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of CapabilityStatementSearchParam
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $CapabilityStatementSearchParamCopyWith<CapabilityStatementSearchParam>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -6396,8 +6295,6 @@ class _$CapabilityStatementSearchParamCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CapabilityStatementSearchParam
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -6489,8 +6386,6 @@ class __$$CapabilityStatementSearchParamImplCopyWithImpl<$Res>
       $Res Function(_$CapabilityStatementSearchParamImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CapabilityStatementSearchParam
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -6704,7 +6599,7 @@ class _$CapabilityStatementSearchParamImpl
                 other.documentationElement == documentationElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -6719,9 +6614,7 @@ class _$CapabilityStatementSearchParamImpl
       documentation,
       documentationElement);
 
-  /// Create a copy of CapabilityStatementSearchParam
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CapabilityStatementSearchParamImplCopyWith<
@@ -6757,10 +6650,12 @@ abstract class _CapabilityStatementSearchParam
   factory _CapabilityStatementSearchParam.fromJson(Map<String, dynamic> json) =
       _$CapabilityStatementSearchParamImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -6768,9 +6663,9 @@ abstract class _CapabilityStatementSearchParam
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -6785,48 +6680,44 @@ abstract class _CapabilityStatementSearchParam
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [name] The name of the search parameter used in the interface.
-  @override
   String? get name;
+  @override
 
   /// [nameElement] Extensions for name
-  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
+  @override
 
   /// [definition] An absolute URI that is a formal reference to where this
   /// parameter was first defined, so that a client can be confident of the
   /// meaning of the search parameter (a reference to
-  @override
   FhirCanonical? get definition;
+  @override
 
   /// [type] The type of value a search parameter refers to, and how the
   ///  content is interpreted.
-  @override
   FhirCode? get type;
+  @override
 
   /// [typeElement] Extensions for type
-  @override
   @JsonKey(name: '_type')
   PrimitiveElement? get typeElement;
+  @override
 
   /// [documentation] This allows documentation of any distinct behaviors about
   ///  how the search parameter is used.  For example, text matching algorithms.
-  @override
   FhirMarkdown? get documentation;
+  @override
 
   /// [documentationElement] Extensions for documentation
-  @override
   @JsonKey(name: '_documentation')
   PrimitiveElement? get documentationElement;
-
-  /// Create a copy of CapabilityStatementSearchParam
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CapabilityStatementSearchParamImplCopyWith<
           _$CapabilityStatementSearchParamImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -6898,12 +6789,8 @@ mixin _$CapabilityStatementOperation {
   PrimitiveElement? get documentationElement =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this CapabilityStatementOperation to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of CapabilityStatementOperation
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $CapabilityStatementOperationCopyWith<CapabilityStatementOperation>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -6938,8 +6825,6 @@ class _$CapabilityStatementOperationCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CapabilityStatementOperation
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -7019,8 +6904,6 @@ class __$$CapabilityStatementOperationImplCopyWithImpl<$Res>
       $Res Function(_$CapabilityStatementOperationImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CapabilityStatementOperation
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -7217,7 +7100,7 @@ class _$CapabilityStatementOperationImpl extends _CapabilityStatementOperation {
                 other.documentationElement == documentationElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -7230,9 +7113,7 @@ class _$CapabilityStatementOperationImpl extends _CapabilityStatementOperation {
       documentation,
       documentationElement);
 
-  /// Create a copy of CapabilityStatementOperation
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CapabilityStatementOperationImplCopyWith<
@@ -7266,10 +7147,12 @@ abstract class _CapabilityStatementOperation
   factory _CapabilityStatementOperation.fromJson(Map<String, dynamic> json) =
       _$CapabilityStatementOperationImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -7277,9 +7160,9 @@ abstract class _CapabilityStatementOperation
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -7294,19 +7177,19 @@ abstract class _CapabilityStatementOperation
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [name] The name of the operation or query. For an operation, this is the
   /// name  prefixed with $ and used in the URL. For a query, this is the name
   ///  used in the _query parameter when the query is called.
-  @override
   String? get name;
+  @override
 
   /// [nameElement] Extensions for name
-  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
+  @override
 
   /// [definition] Where the formal definition can be found. If a server
   /// references the base definition of an Operation (i.e. from the
@@ -7317,24 +7200,20 @@ abstract class _CapabilityStatementOperation
   /// custom [[[OperationDefinition]]] with a 'base' of the original
   /// OperationDefinition.  The custom definition would describe the specific
   ///  subset of functionality supported.
-  @override
   FhirCanonical get definition;
+  @override
 
   /// [documentation] Documentation that describes anything special about the
   /// operation behavior, possibly detailing different behavior for system, type
   ///  and instance-level invocation of the operation.
-  @override
   FhirMarkdown? get documentation;
+  @override
 
   /// [documentationElement] Extensions for documentation
-  @override
   @JsonKey(name: '_documentation')
   PrimitiveElement? get documentationElement;
-
-  /// Create a copy of CapabilityStatementOperation
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CapabilityStatementOperationImplCopyWith<
           _$CapabilityStatementOperationImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -7393,12 +7272,8 @@ mixin _$CapabilityStatementInteraction1 {
   PrimitiveElement? get documentationElement =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this CapabilityStatementInteraction1 to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of CapabilityStatementInteraction1
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $CapabilityStatementInteraction1CopyWith<CapabilityStatementInteraction1>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -7432,8 +7307,6 @@ class _$CapabilityStatementInteraction1CopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CapabilityStatementInteraction1
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -7507,8 +7380,6 @@ class __$$CapabilityStatementInteraction1ImplCopyWithImpl<$Res>
       $Res Function(_$CapabilityStatementInteraction1Impl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CapabilityStatementInteraction1
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -7684,7 +7555,7 @@ class _$CapabilityStatementInteraction1Impl
                 other.documentationElement == documentationElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -7696,9 +7567,7 @@ class _$CapabilityStatementInteraction1Impl
       documentation,
       documentationElement);
 
-  /// Create a copy of CapabilityStatementInteraction1
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CapabilityStatementInteraction1ImplCopyWith<
@@ -7731,10 +7600,12 @@ abstract class _CapabilityStatementInteraction1
   factory _CapabilityStatementInteraction1.fromJson(Map<String, dynamic> json) =
       _$CapabilityStatementInteraction1Impl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -7742,9 +7613,9 @@ abstract class _CapabilityStatementInteraction1
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -7759,33 +7630,29 @@ abstract class _CapabilityStatementInteraction1
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [code] A coded identifier of the operation, supported by the system.
-  @override
   FhirCode? get code;
+  @override
 
   /// [codeElement] Extensions for code
-  @override
   @JsonKey(name: '_code')
   PrimitiveElement? get codeElement;
+  @override
 
   /// [documentation] Guidance specific to the implementation of this
   /// operation, such as limitations on the kind of transactions allowed, or
   ///  information about system wide search is implemented.
-  @override
   FhirMarkdown? get documentation;
+  @override
 
   /// [documentationElement] Extensions for documentation
-  @override
   @JsonKey(name: '_documentation')
   PrimitiveElement? get documentationElement;
-
-  /// Create a copy of CapabilityStatementInteraction1
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CapabilityStatementInteraction1ImplCopyWith<
           _$CapabilityStatementInteraction1Impl>
       get copyWith => throw _privateConstructorUsedError;
@@ -7858,12 +7725,8 @@ mixin _$CapabilityStatementMessaging {
   List<CapabilityStatementSupportedMessage>? get supportedMessage =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this CapabilityStatementMessaging to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of CapabilityStatementMessaging
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $CapabilityStatementMessagingCopyWith<CapabilityStatementMessaging>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -7899,8 +7762,6 @@ class _$CapabilityStatementMessagingCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CapabilityStatementMessaging
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -7986,8 +7847,6 @@ class __$$CapabilityStatementMessagingImplCopyWithImpl<$Res>
       $Res Function(_$CapabilityStatementMessagingImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CapabilityStatementMessaging
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -8214,7 +8073,7 @@ class _$CapabilityStatementMessagingImpl extends _CapabilityStatementMessaging {
                 .equals(other._supportedMessage, _supportedMessage));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -8228,9 +8087,7 @@ class _$CapabilityStatementMessagingImpl extends _CapabilityStatementMessaging {
       documentationElement,
       const DeepCollectionEquality().hash(_supportedMessage));
 
-  /// Create a copy of CapabilityStatementMessaging
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CapabilityStatementMessagingImplCopyWith<
@@ -8266,10 +8123,12 @@ abstract class _CapabilityStatementMessaging
   factory _CapabilityStatementMessaging.fromJson(Map<String, dynamic> json) =
       _$CapabilityStatementMessagingImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -8277,9 +8136,9 @@ abstract class _CapabilityStatementMessaging
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -8294,46 +8153,42 @@ abstract class _CapabilityStatementMessaging
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [endpoint] An endpoint (network accessible address) to which messages
   ///  and/or replies are to be sent.
-  @override
   List<CapabilityStatementEndpoint>? get endpoint;
+  @override
 
   /// [reliableCache] Length if the receiver's reliable messaging cache in
   /// minutes (if a receiver) or how long the cache length on the receiver
   ///  should be (if a sender).
-  @override
   FhirUnsignedInt? get reliableCache;
+  @override
 
   /// [reliableCacheElement] Extensions for reliableCache
-  @override
   @JsonKey(name: '_reliableCache')
   PrimitiveElement? get reliableCacheElement;
+  @override
 
   /// [documentation] Documentation about the system's messaging capabilities
   /// for this endpoint not otherwise documented by the capability statement.
   /// For example, the process for becoming an authorized messaging exchange
   ///  partner.
-  @override
   FhirMarkdown? get documentation;
+  @override
 
   /// [documentationElement] Extensions for documentation
-  @override
   @JsonKey(name: '_documentation')
   PrimitiveElement? get documentationElement;
+  @override
 
   /// [supportedMessage] References to message definitions for messages this
   ///  system can send or receive.
-  @override
   List<CapabilityStatementSupportedMessage>? get supportedMessage;
-
-  /// Create a copy of CapabilityStatementMessaging
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CapabilityStatementMessagingImplCopyWith<
           _$CapabilityStatementMessagingImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -8387,12 +8242,8 @@ mixin _$CapabilityStatementEndpoint {
   @JsonKey(name: '_address')
   PrimitiveElement? get addressElement => throw _privateConstructorUsedError;
 
-  /// Serializes this CapabilityStatementEndpoint to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of CapabilityStatementEndpoint
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $CapabilityStatementEndpointCopyWith<CapabilityStatementEndpoint>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -8427,8 +8278,6 @@ class _$CapabilityStatementEndpointCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CapabilityStatementEndpoint
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -8467,8 +8316,6 @@ class _$CapabilityStatementEndpointCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of CapabilityStatementEndpoint
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodingCopyWith<$Res> get protocol {
@@ -8509,8 +8356,6 @@ class __$$CapabilityStatementEndpointImplCopyWithImpl<$Res>
       $Res Function(_$CapabilityStatementEndpointImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CapabilityStatementEndpoint
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -8672,7 +8517,7 @@ class _$CapabilityStatementEndpointImpl extends _CapabilityStatementEndpoint {
                 other.addressElement == addressElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -8683,9 +8528,7 @@ class _$CapabilityStatementEndpointImpl extends _CapabilityStatementEndpoint {
       address,
       addressElement);
 
-  /// Create a copy of CapabilityStatementEndpoint
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CapabilityStatementEndpointImplCopyWith<_$CapabilityStatementEndpointImpl>
@@ -8715,10 +8558,12 @@ abstract class _CapabilityStatementEndpoint
   factory _CapabilityStatementEndpoint.fromJson(Map<String, dynamic> json) =
       _$CapabilityStatementEndpointImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -8726,9 +8571,9 @@ abstract class _CapabilityStatementEndpoint
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -8743,28 +8588,24 @@ abstract class _CapabilityStatementEndpoint
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [protocol] A list of the messaging transport protocol(s) identifiers,
   ///  supported by this endpoint.
-  @override
   Coding get protocol;
+  @override
 
   /// [address] The network address of the endpoint. For solutions that do not
   ///  use network addresses for routing, it can be just an identifier.
-  @override
   FhirUrl? get address;
+  @override
 
   /// [addressElement] Extensions for address
-  @override
   @JsonKey(name: '_address')
   PrimitiveElement? get addressElement;
-
-  /// Create a copy of CapabilityStatementEndpoint
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CapabilityStatementEndpointImplCopyWith<_$CapabilityStatementEndpointImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -8817,12 +8658,8 @@ mixin _$CapabilityStatementSupportedMessage {
   ///  event, message structure, allowed responses, etc.
   FhirCanonical get definition => throw _privateConstructorUsedError;
 
-  /// Serializes this CapabilityStatementSupportedMessage to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of CapabilityStatementSupportedMessage
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $CapabilityStatementSupportedMessageCopyWith<
           CapabilityStatementSupportedMessage>
       get copyWith => throw _privateConstructorUsedError;
@@ -8856,8 +8693,6 @@ class _$CapabilityStatementSupportedMessageCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CapabilityStatementSupportedMessage
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -8925,8 +8760,6 @@ class __$$CapabilityStatementSupportedMessageImplCopyWithImpl<$Res>
       $Res Function(_$CapabilityStatementSupportedMessageImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CapabilityStatementSupportedMessage
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -9089,7 +8922,7 @@ class _$CapabilityStatementSupportedMessageImpl
                 other.definition == definition));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -9100,9 +8933,7 @@ class _$CapabilityStatementSupportedMessageImpl
       modeElement,
       definition);
 
-  /// Create a copy of CapabilityStatementSupportedMessage
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CapabilityStatementSupportedMessageImplCopyWith<
@@ -9134,10 +8965,12 @@ abstract class _CapabilityStatementSupportedMessage
           Map<String, dynamic> json) =
       _$CapabilityStatementSupportedMessageImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -9145,9 +8978,9 @@ abstract class _CapabilityStatementSupportedMessage
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -9162,28 +8995,24 @@ abstract class _CapabilityStatementSupportedMessage
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [mode] The mode of this event declaration - whether application is sender
   ///  or receiver.
-  @override
   FhirCode? get mode;
+  @override
 
   /// [modeElement] Extensions for mode
-  @override
   @JsonKey(name: '_mode')
   PrimitiveElement? get modeElement;
+  @override
 
   /// [definition] Points to a message definition that identifies the messaging
   ///  event, message structure, allowed responses, etc.
-  @override
   FhirCanonical get definition;
-
-  /// Create a copy of CapabilityStatementSupportedMessage
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CapabilityStatementSupportedMessageImplCopyWith<
           _$CapabilityStatementSupportedMessageImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -9247,12 +9076,8 @@ mixin _$CapabilityStatementDocument {
   ///  resources are present, and their contents.
   FhirCanonical get profile => throw _privateConstructorUsedError;
 
-  /// Serializes this CapabilityStatementDocument to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of CapabilityStatementDocument
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $CapabilityStatementDocumentCopyWith<CapabilityStatementDocument>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -9287,8 +9112,6 @@ class _$CapabilityStatementDocumentCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CapabilityStatementDocument
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -9368,8 +9191,6 @@ class __$$CapabilityStatementDocumentImplCopyWithImpl<$Res>
       $Res Function(_$CapabilityStatementDocumentImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CapabilityStatementDocument
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -9557,7 +9378,7 @@ class _$CapabilityStatementDocumentImpl extends _CapabilityStatementDocument {
             (identical(other.profile, profile) || other.profile == profile));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -9570,9 +9391,7 @@ class _$CapabilityStatementDocumentImpl extends _CapabilityStatementDocument {
       documentationElement,
       profile);
 
-  /// Create a copy of CapabilityStatementDocument
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CapabilityStatementDocumentImplCopyWith<_$CapabilityStatementDocumentImpl>
@@ -9605,10 +9424,12 @@ abstract class _CapabilityStatementDocument
   factory _CapabilityStatementDocument.fromJson(Map<String, dynamic> json) =
       _$CapabilityStatementDocumentImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -9616,9 +9437,9 @@ abstract class _CapabilityStatementDocument
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -9633,39 +9454,35 @@ abstract class _CapabilityStatementDocument
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [mode] Mode of this document declaration - whether an application is a
   ///  producer or consumer.
-  @override
   FhirCode? get mode;
+  @override
 
   /// [modeElement] Extensions for mode
-  @override
   @JsonKey(name: '_mode')
   PrimitiveElement? get modeElement;
+  @override
 
   /// [documentation] A description of how the application supports or uses the
   /// specified document profile.  For example, when documents are created, what
   ///  action is taken with consumed documents, etc.
-  @override
   FhirMarkdown? get documentation;
+  @override
 
   /// [documentationElement] Extensions for documentation
-  @override
   @JsonKey(name: '_documentation')
   PrimitiveElement? get documentationElement;
+  @override
 
   /// [profile] A profile on the document Bundle that constrains which
   ///  resources are present, and their contents.
-  @override
   FhirCanonical get profile;
-
-  /// Create a copy of CapabilityStatementDocument
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CapabilityStatementDocumentImplCopyWith<_$CapabilityStatementDocumentImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

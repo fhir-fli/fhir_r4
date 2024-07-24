@@ -209,12 +209,8 @@ mixin _$CompartmentDefinition {
   List<CompartmentDefinitionResource>? get resource =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this CompartmentDefinition to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of CompartmentDefinition
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $CompartmentDefinitionCopyWith<CompartmentDefinition> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -279,8 +275,6 @@ class _$CompartmentDefinitionCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CompartmentDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -469,8 +463,6 @@ class _$CompartmentDefinitionCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of CompartmentDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -483,8 +475,6 @@ class _$CompartmentDefinitionCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of CompartmentDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -561,8 +551,6 @@ class __$$CompartmentDefinitionImplCopyWithImpl<$Res>
       $Res Function(_$CompartmentDefinitionImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CompartmentDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1175,7 +1163,7 @@ class _$CompartmentDefinitionImpl extends _CompartmentDefinition {
             const DeepCollectionEquality().equals(other._resource, _resource));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1217,9 +1205,7 @@ class _$CompartmentDefinitionImpl extends _CompartmentDefinition {
         const DeepCollectionEquality().hash(_resource)
       ]);
 
-  /// Create a copy of CompartmentDefinition
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CompartmentDefinitionImplCopyWith<_$CompartmentDefinitionImpl>
@@ -1284,38 +1270,39 @@ abstract class _CompartmentDefinition extends CompartmentDefinition {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.CompartmentDefinition)
   R4ResourceType get resourceType;
+  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @override
   String? get id;
+  @override
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  @override
   FhirMeta? get meta;
+  @override
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  @override
   FhirUri? get implicitRules;
+  @override
 
   /// [implicitRulesElement] Extensions for implicitRules
-  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
+  @override
 
   /// [language] The base language in which the resource is written.
-  @override
   FhirCode? get language;
+  @override
 
   /// [languageElement] Extensions for language
-  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
+  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1323,15 +1310,15 @@ abstract class _CompartmentDefinition extends CompartmentDefinition {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  @override
   Narrative? get text;
+  @override
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  @override
   List<Resource>? get contained;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1339,9 +1326,9 @@ abstract class _CompartmentDefinition extends CompartmentDefinition {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1356,8 +1343,8 @@ abstract class _CompartmentDefinition extends CompartmentDefinition {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [url] An absolute URI that is used to identify this compartment
   /// definition when it is referenced in a specification, model, design or an
@@ -1366,13 +1353,13 @@ abstract class _CompartmentDefinition extends CompartmentDefinition {
   /// instance of this compartment definition is (or will be) published. This
   /// URL can be the target of a canonical reference. It SHALL remain the same
   ///  when the compartment definition is stored on different servers.
-  @override
   FhirUri? get url;
+  @override
 
   /// [urlElement] Extensions for url
-  @override
   @JsonKey(name: '_url')
   PrimitiveElement? get urlElement;
+  @override
 
   /// [version] The identifier that is used to identify this version of the
   /// compartment definition when it is referenced in a specification, model,
@@ -1381,129 +1368,125 @@ abstract class _CompartmentDefinition extends CompartmentDefinition {
   /// it might be a timestamp (e.g. yyyymmdd) if a managed version is not
   /// available. There is also no expectation that versions can be placed in a
   ///  lexicographical sequence.
-  @override
   String? get version;
+  @override
 
   /// [versionElement] Extensions for version
-  @override
   @JsonKey(name: '_version')
   PrimitiveElement? get versionElement;
+  @override
 
   /// [name] A natural language name identifying the compartment definition.
   /// This name should be usable as an identifier for the module by machine
   ///  processing applications such as code generation.
-  @override
   String? get name;
+  @override
 
   /// [nameElement] Extensions for name
-  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
+  @override
 
   /// [status] The status of this compartment definition. Enables tracking the
   ///  life-cycle of the content.
-  @override
   FhirCode? get status;
+  @override
 
   /// [statusElement] Extensions for status
-  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
+  @override
 
   /// [experimental] A Boolean value to indicate that this compartment
   /// definition is authored for testing purposes (or
   /// education/evaluation/marketing) and is not intended to be used for genuine
   ///  usage.
-  @override
   FhirBoolean? get experimental;
+  @override
 
   /// [experimentalElement] Extensions for experimental
-  @override
   @JsonKey(name: '_experimental')
   PrimitiveElement? get experimentalElement;
+  @override
 
   /// [date] The date  (and optionally time) when the compartment definition
   /// was published. The date must change when the business version changes and
   /// it must change if the status code changes. In addition, it should change
   ///  when the substantive content of the compartment definition changes.
-  @override
   FhirDateTime? get date;
+  @override
 
   /// [dateElement] Extensions for date
-  @override
   @JsonKey(name: '_date')
   PrimitiveElement? get dateElement;
+  @override
 
   /// [publisher] The name of the organization or individual that published the
   ///  compartment definition.
-  @override
   String? get publisher;
+  @override
 
   /// [publisherElement] Extensions for publisher
-  @override
   @JsonKey(name: '_publisher')
   PrimitiveElement? get publisherElement;
+  @override
 
   /// [contact] Contact details to assist a user in finding and communicating
   ///  with the publisher.
-  @override
   List<ContactDetail>? get contact;
+  @override
 
   /// [description] A free text natural language description of the compartment
   ///  definition from a consumer's perspective.
-  @override
   FhirMarkdown? get description;
+  @override
 
   /// [descriptionElement] Extensions for description
-  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
+  @override
 
   /// [useContext] The content was developed with a focus and intent of
   /// supporting the contexts that are listed. These contexts may be general
   /// categories (gender, age, ...) or may be references to specific programs
   /// (insurance plans, studies, ...) and may be used to assist with indexing
   ///  and searching for appropriate compartment definition instances.
-  @override
   List<UsageContext>? get useContext;
+  @override
 
   /// [purpose] Explanation of why this compartment definition is needed and
   ///  why it has been designed as it has.
-  @override
   FhirMarkdown? get purpose;
+  @override
 
   /// [purposeElement] Extensions for purpose
-  @override
   @JsonKey(name: '_purpose')
   PrimitiveElement? get purposeElement;
+  @override
 
   /// [code] Which compartment this definition describes.
-  @override
   FhirCode? get code;
+  @override
 
   /// [codeElement] Extensions for code
-  @override
   @JsonKey(name: '_code')
   PrimitiveElement? get codeElement;
+  @override
 
   /// [search] Whether the search syntax is supported,.
-  @override
   FhirBoolean? get search;
+  @override
 
   /// [searchElement] Extensions for search
-  @override
   @JsonKey(name: '_search')
   PrimitiveElement? get searchElement;
+  @override
 
   /// [resource] Information about how a resource is related to the
   ///  compartment.
-  @override
   List<CompartmentDefinitionResource>? get resource;
-
-  /// Create a copy of CompartmentDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CompartmentDefinitionImplCopyWith<_$CompartmentDefinitionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1570,12 +1553,8 @@ mixin _$CompartmentDefinitionResource {
   PrimitiveElement? get documentationElement =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this CompartmentDefinitionResource to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of CompartmentDefinitionResource
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $CompartmentDefinitionResourceCopyWith<CompartmentDefinitionResource>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1611,8 +1590,6 @@ class _$CompartmentDefinitionResourceCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CompartmentDefinitionResource
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1698,8 +1675,6 @@ class __$$CompartmentDefinitionResourceImplCopyWithImpl<$Res>
       $Res Function(_$CompartmentDefinitionResourceImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CompartmentDefinitionResource
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1922,7 +1897,7 @@ class _$CompartmentDefinitionResourceImpl
                 other.documentationElement == documentationElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1936,9 +1911,7 @@ class _$CompartmentDefinitionResourceImpl
       documentation,
       documentationElement);
 
-  /// Create a copy of CompartmentDefinitionResource
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CompartmentDefinitionResourceImplCopyWith<
@@ -1973,10 +1946,12 @@ abstract class _CompartmentDefinitionResource
   factory _CompartmentDefinitionResource.fromJson(Map<String, dynamic> json) =
       _$CompartmentDefinitionResourceImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1984,9 +1959,9 @@ abstract class _CompartmentDefinitionResource
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2001,43 +1976,39 @@ abstract class _CompartmentDefinitionResource
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [code] The name of a resource supported by the server.
-  @override
   FhirCode? get code;
+  @override
 
   /// [codeElement] Extensions for code
-  @override
   @JsonKey(name: '_code')
   PrimitiveElement? get codeElement;
+  @override
 
   /// [param] The name of a search parameter that represents the link to the
   /// compartment. More than one may be listed because a resource may be linked
   ///  to a compartment in more than one way,.
-  @override
   List<String>? get param;
+  @override
 
   /// [paramElement] Extensions for param
-  @override
   @JsonKey(name: '_param')
   List<PrimitiveElement>? get paramElement;
+  @override
 
   /// [documentation] Additional documentation about the resource and
   ///  compartment.
-  @override
   String? get documentation;
+  @override
 
   /// [documentationElement] Extensions for documentation
-  @override
   @JsonKey(name: '_documentation')
   PrimitiveElement? get documentationElement;
-
-  /// Create a copy of CompartmentDefinitionResource
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CompartmentDefinitionResourceImplCopyWith<
           _$CompartmentDefinitionResourceImpl>
       get copyWith => throw _privateConstructorUsedError;

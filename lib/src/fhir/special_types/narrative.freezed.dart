@@ -46,12 +46,8 @@ mixin _$Narrative {
   /// [div] The actual narrative content, a stripped down version of XHTML.
   FhirXhtml get div => throw _privateConstructorUsedError;
 
-  /// Serializes this Narrative to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of Narrative
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $NarrativeCopyWith<Narrative> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -80,8 +76,6 @@ class _$NarrativeCopyWithImpl<$Res, $Val extends Narrative>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Narrative
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -141,8 +135,6 @@ class __$$NarrativeImplCopyWithImpl<$Res>
       _$NarrativeImpl _value, $Res Function(_$NarrativeImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Narrative
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -256,7 +248,7 @@ class _$NarrativeImpl extends _Narrative {
             (identical(other.div, div) || other.div == div));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -266,9 +258,7 @@ class _$NarrativeImpl extends _Narrative {
       statusElement,
       div);
 
-  /// Create a copy of Narrative
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$NarrativeImplCopyWith<_$NarrativeImpl> get copyWith =>
@@ -295,10 +285,12 @@ abstract class _Narrative extends Narrative {
   factory _Narrative.fromJson(Map<String, dynamic> json) =
       _$NarrativeImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -306,30 +298,26 @@ abstract class _Narrative extends Narrative {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   /// definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [status] The status of the narrative - whether it\u0027s entirely generated
   /// (from just the defined data or the extensions too), or whether a human
   /// authored it and it may contain additional data.
-  @override
   @JsonKey(unknownEnumValue: NarrativeStatus.unknown)
   NarrativeStatus? get status;
+  @override
 
   /// [statusElement] (_status) Extensions for status
-  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
+  @override
 
   /// [div] The actual narrative content, a stripped down version of XHTML.
-  @override
   FhirXhtml get div;
-
-  /// Create a copy of Narrative
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$NarrativeImplCopyWith<_$NarrativeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

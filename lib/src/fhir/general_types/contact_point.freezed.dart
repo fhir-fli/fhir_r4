@@ -67,12 +67,8 @@ mixin _$ContactPoint {
   /// [period] Time period when the contact point was/is in use.
   Period? get period => throw _privateConstructorUsedError;
 
-  /// Serializes this ContactPoint to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ContactPoint
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ContactPointCopyWith<ContactPoint> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -110,8 +106,6 @@ class _$ContactPointCopyWithImpl<$Res, $Val extends ContactPoint>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ContactPoint
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -175,8 +169,6 @@ class _$ContactPointCopyWithImpl<$Res, $Val extends ContactPoint>
     ) as $Val);
   }
 
-  /// Create a copy of ContactPoint
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get period {
@@ -224,8 +216,6 @@ class __$$ContactPointImplCopyWithImpl<$Res>
       _$ContactPointImpl _value, $Res Function(_$ContactPointImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ContactPoint
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -412,7 +402,7 @@ class _$ContactPointImpl extends _ContactPoint {
             (identical(other.period, period) || other.period == period));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -428,9 +418,7 @@ class _$ContactPointImpl extends _ContactPoint {
       rankElement,
       period);
 
-  /// Create a copy of ContactPoint
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ContactPointImplCopyWith<_$ContactPointImpl> get copyWith =>
@@ -464,10 +452,12 @@ abstract class _ContactPoint extends ContactPoint {
   factory _ContactPoint.fromJson(Map<String, dynamic> json) =
       _$ContactPointImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -475,57 +465,53 @@ abstract class _ContactPoint extends ContactPoint {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
   @override
   @JsonKey(unknownEnumValue: ContactPointSystem.unknown)
   ContactPointSystem? get system;
+  @override
 
   /// [systemElement] Extensions for system
-  @override
   @JsonKey(name: '_system')
   PrimitiveElement? get systemElement;
+  @override
 
   /// [value] The actual contact point details, in a form that is meaningful to
   ///  the designated communication system (i.e. phone number or email address).
-  @override
   String? get value;
+  @override
 
   /// [valueElement] Extensions for value
-  @override
   @JsonKey(name: '_value')
   PrimitiveElement? get valueElement;
+  @override
 
   /// [use] Identifies the purpose for the contact point.
-  @override
   @JsonKey(unknownEnumValue: ContactPointUse.unknown)
   ContactPointUse? get use;
+  @override
 
   /// [useElement] Extensions for use
-  @override
   @JsonKey(name: '_use')
   PrimitiveElement? get useElement;
+  @override
 
   /// [rank] Specifies a preferred order in which to use a set of contacts.
   /// ContactPoints with lower rank values are more preferred than those with
   ///  higher rank values.
-  @override
   FhirPositiveInt? get rank;
+  @override
 
   /// [rankElement] Extensions for rank
-  @override
   @JsonKey(name: '_rank')
   PrimitiveElement? get rankElement;
+  @override
 
   /// [period] Time period when the contact point was/is in use.
-  @override
   Period? get period;
-
-  /// Create a copy of ContactPoint
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ContactPointImplCopyWith<_$ContactPointImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

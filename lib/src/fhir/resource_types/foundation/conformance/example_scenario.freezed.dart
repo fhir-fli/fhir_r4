@@ -214,12 +214,8 @@ mixin _$ExampleScenario {
   /// [workflow] Another nested workflow.
   List<FhirCanonical>? get workflow => throw _privateConstructorUsedError;
 
-  /// Serializes this ExampleScenario to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ExampleScenario
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ExampleScenarioCopyWith<ExampleScenario> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -284,8 +280,6 @@ class _$ExampleScenarioCopyWithImpl<$Res, $Val extends ExampleScenario>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ExampleScenario
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -479,8 +473,6 @@ class _$ExampleScenarioCopyWithImpl<$Res, $Val extends ExampleScenario>
     ) as $Val);
   }
 
-  /// Create a copy of ExampleScenario
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -493,8 +485,6 @@ class _$ExampleScenarioCopyWithImpl<$Res, $Val extends ExampleScenario>
     });
   }
 
-  /// Create a copy of ExampleScenario
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -570,8 +560,6 @@ class __$$ExampleScenarioImplCopyWithImpl<$Res>
       _$ExampleScenarioImpl _value, $Res Function(_$ExampleScenarioImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ExampleScenario
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1251,7 +1239,7 @@ class _$ExampleScenarioImpl extends _ExampleScenario {
             const DeepCollectionEquality().equals(other._workflow, _workflow));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1294,9 +1282,7 @@ class _$ExampleScenarioImpl extends _ExampleScenario {
         const DeepCollectionEquality().hash(_workflow)
       ]);
 
-  /// Create a copy of ExampleScenario
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ExampleScenarioImplCopyWith<_$ExampleScenarioImpl> get copyWith =>
@@ -1361,38 +1347,39 @@ abstract class _ExampleScenario extends ExampleScenario {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.ExampleScenario)
   R4ResourceType get resourceType;
+  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @override
   String? get id;
+  @override
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  @override
   FhirMeta? get meta;
+  @override
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  @override
   FhirUri? get implicitRules;
+  @override
 
   /// [implicitRulesElement] Extensions for implicitRules
-  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
+  @override
 
   /// [language] The base language in which the resource is written.
-  @override
   FhirCode? get language;
+  @override
 
   /// [languageElement] Extensions for language
-  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
+  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1400,15 +1387,15 @@ abstract class _ExampleScenario extends ExampleScenario {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  @override
   Narrative? get text;
+  @override
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  @override
   List<Resource>? get contained;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1416,9 +1403,9 @@ abstract class _ExampleScenario extends ExampleScenario {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1433,8 +1420,8 @@ abstract class _ExampleScenario extends ExampleScenario {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [url] An absolute URI that is used to identify this example scenario when
   /// it is referenced in a specification, model, design or an instance; also
@@ -1443,19 +1430,19 @@ abstract class _ExampleScenario extends ExampleScenario {
   /// example scenario is (or will be) published. This URL can be the target of
   /// a canonical reference. It SHALL remain the same when the example scenario
   ///  is stored on different servers.
-  @override
   FhirUri? get url;
+  @override
 
   /// [urlElement] Extensions for url
-  @override
   @JsonKey(name: '_url')
   PrimitiveElement? get urlElement;
+  @override
 
   /// [identifier] A formal identifier that is used to identify this example
   /// scenario when it is represented in other formats, or referenced in a
   ///  specification, model, design or an instance.
-  @override
   List<Identifier>? get identifier;
+  @override
 
   /// [version] The identifier that is used to identify this version of the
   /// example scenario when it is referenced in a specification, model, design
@@ -1464,130 +1451,126 @@ abstract class _ExampleScenario extends ExampleScenario {
   /// a timestamp (e.g. yyyymmdd) if a managed version is not available. There
   /// is also no expectation that versions can be placed in a lexicographical
   ///  sequence.
-  @override
   String? get version;
+  @override
 
   /// [versionElement] Extensions for version
-  @override
   @JsonKey(name: '_version')
   PrimitiveElement? get versionElement;
+  @override
 
   /// [name] A natural language name identifying the example scenario. This
   /// name should be usable as an identifier for the module by machine
   ///  processing applications such as code generation.
-  @override
   String? get name;
+  @override
 
   /// [nameElement] Extensions for name
-  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
+  @override
 
   /// [status] The status of this example scenario. Enables tracking the
   ///  life-cycle of the content.
-  @override
   FhirCode? get status;
+  @override
 
   /// [statusElement] Extensions for status
-  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
+  @override
 
   /// [experimental] A Boolean value to indicate that this example scenario is
   /// authored for testing purposes (or education/evaluation/marketing) and is
   ///  not intended to be used for genuine usage.
-  @override
   FhirBoolean? get experimental;
+  @override
 
   /// [experimentalElement] Extensions for experimental
-  @override
   @JsonKey(name: '_experimental')
   PrimitiveElement? get experimentalElement;
+  @override
 
   /// [date] The date  (and optionally time) when the example scenario was
   /// published. The date must change when the business version changes and it
   /// must change if the status code changes. In addition, it should change when
   /// the substantive content of the example scenario changes. (e.g. the
   ///  'content logical definition').
-  @override
   FhirDateTime? get date;
+  @override
 
   /// [dateElement] Extensions for date
-  @override
   @JsonKey(name: '_date')
   PrimitiveElement? get dateElement;
+  @override
 
   /// [publisher] The name of the organization or individual that published the
   ///  example scenario.
-  @override
   String? get publisher;
+  @override
 
   /// [publisherElement] Extensions for publisher
-  @override
   @JsonKey(name: '_publisher')
   PrimitiveElement? get publisherElement;
+  @override
 
   /// [contact] Contact details to assist a user in finding and communicating
   ///  with the publisher.
-  @override
   List<ContactDetail>? get contact;
+  @override
 
   /// [useContext] The content was developed with a focus and intent of
   /// supporting the contexts that are listed. These contexts may be general
   /// categories (gender, age, ...) or may be references to specific programs
   /// (insurance plans, studies, ...) and may be used to assist with indexing
   ///  and searching for appropriate example scenario instances.
-  @override
   List<UsageContext>? get useContext;
+  @override
 
   /// [jurisdiction] A legal or geographic region in which the example scenario
   ///  is intended to be used.
-  @override
   List<CodeableConcept>? get jurisdiction;
+  @override
 
   /// [copyright] A copyright statement relating to the example scenario and/or
   /// its contents. Copyright statements are generally legal restrictions on the
   ///  use and publishing of the example scenario.
-  @override
   FhirMarkdown? get copyright;
+  @override
 
   /// [copyrightElement] Extensions for copyright
-  @override
   @JsonKey(name: '_copyright')
   PrimitiveElement? get copyrightElement;
+  @override
 
   /// [purpose] What the example scenario resource is created for. This should
   /// not be used to show the business purpose of the scenario itself, but the
   ///  purpose of documenting a scenario.
-  @override
   FhirMarkdown? get purpose;
+  @override
 
   /// [purposeElement] Extensions for purpose
-  @override
   @JsonKey(name: '_purpose')
   PrimitiveElement? get purposeElement;
+  @override
 
   /// [actor] Actor participating in the resource.
-  @override
   List<ExampleScenarioActor>? get actor;
+  @override
 
   /// [instance] Each resource and each version that is present in the
   ///  workflow.
-  @override
   List<ExampleScenarioInstance>? get instance;
+  @override
 
   /// [process] Each major process - a group of operations.
-  @override
   List<ExampleScenarioProcess>? get process;
+  @override
 
   /// [workflow] Another nested workflow.
-  @override
   List<FhirCanonical>? get workflow;
-
-  /// Create a copy of ExampleScenario
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ExampleScenarioImplCopyWith<_$ExampleScenarioImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1656,12 +1639,8 @@ mixin _$ExampleScenarioActor {
   PrimitiveElement? get descriptionElement =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this ExampleScenarioActor to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ExampleScenarioActor
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ExampleScenarioActorCopyWith<ExampleScenarioActor> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1697,8 +1676,6 @@ class _$ExampleScenarioActorCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ExampleScenarioActor
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1793,8 +1770,6 @@ class __$$ExampleScenarioActorImplCopyWithImpl<$Res>
       $Res Function(_$ExampleScenarioActorImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ExampleScenarioActor
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2014,7 +1989,7 @@ class _$ExampleScenarioActorImpl extends _ExampleScenarioActor {
                 other.descriptionElement == descriptionElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2030,9 +2005,7 @@ class _$ExampleScenarioActorImpl extends _ExampleScenarioActor {
       description,
       descriptionElement);
 
-  /// Create a copy of ExampleScenarioActor
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ExampleScenarioActorImplCopyWith<_$ExampleScenarioActorImpl>
@@ -2067,10 +2040,12 @@ abstract class _ExampleScenarioActor extends ExampleScenarioActor {
   factory _ExampleScenarioActor.fromJson(Map<String, dynamic> json) =
       _$ExampleScenarioActorImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2078,9 +2053,9 @@ abstract class _ExampleScenarioActor extends ExampleScenarioActor {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2095,49 +2070,45 @@ abstract class _ExampleScenarioActor extends ExampleScenarioActor {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [actorId] ID or acronym of actor.
-  @override
   String? get actorId;
+  @override
 
   /// [actorIdElement] Extensions for actorId
-  @override
   @JsonKey(name: '_actorId')
   PrimitiveElement? get actorIdElement;
+  @override
 
   /// [type] The type of actor - person or system.
-  @override
   FhirCode? get type;
+  @override
 
   /// [typeElement] Extensions for type
-  @override
   @JsonKey(name: '_type')
   PrimitiveElement? get typeElement;
+  @override
 
   /// [name] The name of the actor as shown in the page.
-  @override
   String? get name;
+  @override
 
   /// [nameElement] Extensions for name
-  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
+  @override
 
   /// [description] The description of the actor.
-  @override
   FhirMarkdown? get description;
+  @override
 
   /// [descriptionElement] Extensions for description
-  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
-
-  /// Create a copy of ExampleScenarioActor
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ExampleScenarioActorImplCopyWith<_$ExampleScenarioActorImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2217,12 +2188,8 @@ mixin _$ExampleScenarioInstance {
   List<ExampleScenarioContainedInstance>? get containedInstance =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this ExampleScenarioInstance to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ExampleScenarioInstance
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ExampleScenarioInstanceCopyWith<ExampleScenarioInstance> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2260,8 +2227,6 @@ class _$ExampleScenarioInstanceCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ExampleScenarioInstance
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2371,8 +2336,6 @@ class __$$ExampleScenarioInstanceImplCopyWithImpl<$Res>
       $Res Function(_$ExampleScenarioInstanceImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ExampleScenarioInstance
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2640,7 +2603,7 @@ class _$ExampleScenarioInstanceImpl extends _ExampleScenarioInstance {
                 .equals(other._containedInstance, _containedInstance));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2658,9 +2621,7 @@ class _$ExampleScenarioInstanceImpl extends _ExampleScenarioInstance {
       const DeepCollectionEquality().hash(_version),
       const DeepCollectionEquality().hash(_containedInstance));
 
-  /// Create a copy of ExampleScenarioInstance
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ExampleScenarioInstanceImplCopyWith<_$ExampleScenarioInstanceImpl>
@@ -2697,10 +2658,12 @@ abstract class _ExampleScenarioInstance extends ExampleScenarioInstance {
   factory _ExampleScenarioInstance.fromJson(Map<String, dynamic> json) =
       _$ExampleScenarioInstanceImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2708,9 +2671,9 @@ abstract class _ExampleScenarioInstance extends ExampleScenarioInstance {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2725,58 +2688,54 @@ abstract class _ExampleScenarioInstance extends ExampleScenarioInstance {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [resourceId] The id of the resource for referencing.
-  @override
   String? get resourceId;
+  @override
 
   /// [resourceIdElement] Extensions for resourceId
-  @override
   @JsonKey(name: '_resourceId')
   PrimitiveElement? get resourceIdElement;
+  @override
 
   /// [resourceType] The type of the resource.
-  @override
   FhirCode? get resourceType;
+  @override
 
   /// [resourceTypeElement] Extensions for resourceType
-  @override
   @JsonKey(name: '_resourceType')
   PrimitiveElement? get resourceTypeElement;
+  @override
 
   /// [name] A short name for the resource instance.
-  @override
   String? get name;
+  @override
 
   /// [nameElement] Extensions for name
-  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
+  @override
 
   /// [description] Human-friendly description of the resource instance.
-  @override
   FhirMarkdown? get description;
+  @override
 
   /// [descriptionElement] Extensions for description
-  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
+  @override
 
   /// [version] A specific version of the resource.
-  @override
   List<ExampleScenarioVersion>? get version;
+  @override
 
   /// [containedInstance] Resources contained in the instance (e.g. the
   ///  observations contained in a bundle).
-  @override
   List<ExampleScenarioContainedInstance>? get containedInstance;
-
-  /// Create a copy of ExampleScenarioInstance
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ExampleScenarioInstanceImplCopyWith<_$ExampleScenarioInstanceImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2832,12 +2791,8 @@ mixin _$ExampleScenarioVersion {
   PrimitiveElement? get descriptionElement =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this ExampleScenarioVersion to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ExampleScenarioVersion
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ExampleScenarioVersionCopyWith<ExampleScenarioVersion> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2869,8 +2824,6 @@ class _$ExampleScenarioVersionCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ExampleScenarioVersion
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2944,8 +2897,6 @@ class __$$ExampleScenarioVersionImplCopyWithImpl<$Res>
       $Res Function(_$ExampleScenarioVersionImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ExampleScenarioVersion
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3118,7 +3069,7 @@ class _$ExampleScenarioVersionImpl extends _ExampleScenarioVersion {
                 other.descriptionElement == descriptionElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3130,9 +3081,7 @@ class _$ExampleScenarioVersionImpl extends _ExampleScenarioVersion {
       description,
       descriptionElement);
 
-  /// Create a copy of ExampleScenarioVersion
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ExampleScenarioVersionImplCopyWith<_$ExampleScenarioVersionImpl>
@@ -3163,10 +3112,12 @@ abstract class _ExampleScenarioVersion extends ExampleScenarioVersion {
   factory _ExampleScenarioVersion.fromJson(Map<String, dynamic> json) =
       _$ExampleScenarioVersionImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3174,9 +3125,9 @@ abstract class _ExampleScenarioVersion extends ExampleScenarioVersion {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3191,31 +3142,27 @@ abstract class _ExampleScenarioVersion extends ExampleScenarioVersion {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [versionId] The identifier of a specific version of a resource.
-  @override
   String? get versionId;
+  @override
 
   /// [versionIdElement] Extensions for versionId
-  @override
   @JsonKey(name: '_versionId')
   PrimitiveElement? get versionIdElement;
+  @override
 
   /// [description] The description of the resource version.
-  @override
   FhirMarkdown? get description;
+  @override
 
   /// [descriptionElement] Extensions for description
-  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
-
-  /// Create a copy of ExampleScenarioVersion
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ExampleScenarioVersionImplCopyWith<_$ExampleScenarioVersionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3270,12 +3217,8 @@ mixin _$ExampleScenarioContainedInstance {
   @JsonKey(name: '_versionId')
   PrimitiveElement? get versionIdElement => throw _privateConstructorUsedError;
 
-  /// Serializes this ExampleScenarioContainedInstance to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ExampleScenarioContainedInstance
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ExampleScenarioContainedInstanceCopyWith<ExampleScenarioContainedInstance>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3309,8 +3252,6 @@ class _$ExampleScenarioContainedInstanceCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ExampleScenarioContainedInstance
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3384,8 +3325,6 @@ class __$$ExampleScenarioContainedInstanceImplCopyWithImpl<$Res>
       $Res Function(_$ExampleScenarioContainedInstanceImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ExampleScenarioContainedInstance
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3560,7 +3499,7 @@ class _$ExampleScenarioContainedInstanceImpl
                 other.versionIdElement == versionIdElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3572,9 +3511,7 @@ class _$ExampleScenarioContainedInstanceImpl
       versionId,
       versionIdElement);
 
-  /// Create a copy of ExampleScenarioContainedInstance
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ExampleScenarioContainedInstanceImplCopyWith<
@@ -3608,10 +3545,12 @@ abstract class _ExampleScenarioContainedInstance
           Map<String, dynamic> json) =
       _$ExampleScenarioContainedInstanceImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3619,9 +3558,9 @@ abstract class _ExampleScenarioContainedInstance
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3636,31 +3575,27 @@ abstract class _ExampleScenarioContainedInstance
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [resourceId] Each resource contained in the instance.
-  @override
   String? get resourceId;
+  @override
 
   /// [resourceIdElement] Extensions for resourceId
-  @override
   @JsonKey(name: '_resourceId')
   PrimitiveElement? get resourceIdElement;
+  @override
 
   /// [versionId] A specific version of a resource contained in the instance.
-  @override
   String? get versionId;
+  @override
 
   /// [versionIdElement] Extensions for versionId
-  @override
   @JsonKey(name: '_versionId')
   PrimitiveElement? get versionIdElement;
-
-  /// Create a copy of ExampleScenarioContainedInstance
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ExampleScenarioContainedInstanceImplCopyWith<
           _$ExampleScenarioContainedInstanceImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -3736,12 +3671,8 @@ mixin _$ExampleScenarioProcess {
   /// [step] Each step of the process.
   List<ExampleScenarioStep>? get step => throw _privateConstructorUsedError;
 
-  /// Serializes this ExampleScenarioProcess to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ExampleScenarioProcess
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ExampleScenarioProcessCopyWith<ExampleScenarioProcess> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3778,8 +3709,6 @@ class _$ExampleScenarioProcessCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ExampleScenarioProcess
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3883,8 +3812,6 @@ class __$$ExampleScenarioProcessImplCopyWithImpl<$Res>
       $Res Function(_$ExampleScenarioProcessImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ExampleScenarioProcess
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4127,7 +4054,7 @@ class _$ExampleScenarioProcessImpl extends _ExampleScenarioProcess {
             const DeepCollectionEquality().equals(other._step, _step));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -4144,9 +4071,7 @@ class _$ExampleScenarioProcessImpl extends _ExampleScenarioProcess {
       postConditionsElement,
       const DeepCollectionEquality().hash(_step));
 
-  /// Create a copy of ExampleScenarioProcess
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ExampleScenarioProcessImplCopyWith<_$ExampleScenarioProcessImpl>
@@ -4182,10 +4107,12 @@ abstract class _ExampleScenarioProcess extends ExampleScenarioProcess {
   factory _ExampleScenarioProcess.fromJson(Map<String, dynamic> json) =
       _$ExampleScenarioProcessImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -4193,9 +4120,9 @@ abstract class _ExampleScenarioProcess extends ExampleScenarioProcess {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -4210,53 +4137,49 @@ abstract class _ExampleScenarioProcess extends ExampleScenarioProcess {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [title] The diagram title of the group of operations.
-  @override
   String? get title;
+  @override
 
   /// [titleElement] Extensions for title
-  @override
   @JsonKey(name: '_title')
   PrimitiveElement? get titleElement;
+  @override
 
   /// [description] A longer description of the group of operations.
-  @override
   FhirMarkdown? get description;
+  @override
 
   /// [descriptionElement] Extensions for description
-  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
+  @override
 
   /// [preConditions] Description of initial status before the process starts.
-  @override
   FhirMarkdown? get preConditions;
+  @override
 
   /// [preConditionsElement] Extensions for preConditions
-  @override
   @JsonKey(name: '_preConditions')
   PrimitiveElement? get preConditionsElement;
+  @override
 
   /// [postConditions] Description of final status after the process ends.
-  @override
   FhirMarkdown? get postConditions;
+  @override
 
   /// [postConditionsElement] Extensions for postConditions
-  @override
   @JsonKey(name: '_postConditions')
   PrimitiveElement? get postConditionsElement;
+  @override
 
   /// [step] Each step of the process.
-  @override
   List<ExampleScenarioStep>? get step;
-
-  /// Create a copy of ExampleScenarioProcess
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ExampleScenarioProcessImplCopyWith<_$ExampleScenarioProcessImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -4315,12 +4238,8 @@ mixin _$ExampleScenarioStep {
   List<ExampleScenarioAlternative>? get alternative =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this ExampleScenarioStep to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ExampleScenarioStep
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ExampleScenarioStepCopyWith<ExampleScenarioStep> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4354,8 +4273,6 @@ class _$ExampleScenarioStepCopyWithImpl<$Res, $Val extends ExampleScenarioStep>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ExampleScenarioStep
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4404,8 +4321,6 @@ class _$ExampleScenarioStepCopyWithImpl<$Res, $Val extends ExampleScenarioStep>
     ) as $Val);
   }
 
-  /// Create a copy of ExampleScenarioStep
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ExampleScenarioOperationCopyWith<$Res>? get operation {
@@ -4449,8 +4364,6 @@ class __$$ExampleScenarioStepImplCopyWithImpl<$Res>
       $Res Function(_$ExampleScenarioStepImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ExampleScenarioStep
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4654,7 +4567,7 @@ class _$ExampleScenarioStepImpl extends _ExampleScenarioStep {
                 .equals(other._alternative, _alternative));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -4667,9 +4580,7 @@ class _$ExampleScenarioStepImpl extends _ExampleScenarioStep {
       operation,
       const DeepCollectionEquality().hash(_alternative));
 
-  /// Create a copy of ExampleScenarioStep
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ExampleScenarioStepImplCopyWith<_$ExampleScenarioStepImpl> get copyWith =>
@@ -4700,10 +4611,12 @@ abstract class _ExampleScenarioStep extends ExampleScenarioStep {
   factory _ExampleScenarioStep.fromJson(Map<String, dynamic> json) =
       _$ExampleScenarioStepImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -4711,9 +4624,9 @@ abstract class _ExampleScenarioStep extends ExampleScenarioStep {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -4728,35 +4641,31 @@ abstract class _ExampleScenarioStep extends ExampleScenarioStep {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [process] Nested process.
-  @override
   List<ExampleScenarioProcess>? get process;
+  @override
 
   /// [pause] If there is a pause in the flow.
-  @override
   FhirBoolean? get pause;
+  @override
 
   /// [pauseElement] Extensions for pause
-  @override
   @JsonKey(name: '_pause')
   PrimitiveElement? get pauseElement;
+  @override
 
   /// [operation] Each interaction or action.
-  @override
   ExampleScenarioOperation? get operation;
+  @override
 
   /// [alternative] Indicates an alternative step that can be taken instead of
   ///  the operations on the base step in exceptional/atypical circumstances.
-  @override
   List<ExampleScenarioAlternative>? get alternative;
-
-  /// Create a copy of ExampleScenarioStep
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ExampleScenarioStepImplCopyWith<_$ExampleScenarioStepImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4866,12 +4775,8 @@ mixin _$ExampleScenarioOperation {
   ExampleScenarioContainedInstance? get response =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this ExampleScenarioOperation to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ExampleScenarioOperation
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ExampleScenarioOperationCopyWith<ExampleScenarioOperation> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4921,8 +4826,6 @@ class _$ExampleScenarioOperationCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ExampleScenarioOperation
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5036,8 +4939,6 @@ class _$ExampleScenarioOperationCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of ExampleScenarioOperation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ExampleScenarioContainedInstanceCopyWith<$Res>? get request {
@@ -5051,8 +4952,6 @@ class _$ExampleScenarioOperationCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ExampleScenarioOperation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ExampleScenarioContainedInstanceCopyWith<$Res>? get response {
@@ -5116,8 +5015,6 @@ class __$$ExampleScenarioOperationImplCopyWithImpl<$Res>
       $Res Function(_$ExampleScenarioOperationImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ExampleScenarioOperation
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5462,7 +5359,7 @@ class _$ExampleScenarioOperationImpl extends _ExampleScenarioOperation {
                 other.response == response));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -5489,9 +5386,7 @@ class _$ExampleScenarioOperationImpl extends _ExampleScenarioOperation {
         response
       ]);
 
-  /// Create a copy of ExampleScenarioOperation
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ExampleScenarioOperationImplCopyWith<_$ExampleScenarioOperationImpl>
@@ -5537,10 +5432,12 @@ abstract class _ExampleScenarioOperation extends ExampleScenarioOperation {
   factory _ExampleScenarioOperation.fromJson(Map<String, dynamic> json) =
       _$ExampleScenarioOperationImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -5548,9 +5445,9 @@ abstract class _ExampleScenarioOperation extends ExampleScenarioOperation {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -5565,95 +5462,91 @@ abstract class _ExampleScenarioOperation extends ExampleScenarioOperation {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [number] The sequential number of the interaction, e.g. 1.2.5.
-  @override
   String? get number;
+  @override
 
   /// [numberElement] Extensions for number
-  @override
   @JsonKey(name: '_number')
   PrimitiveElement? get numberElement;
+  @override
 
   /// [type] The type of operation - CRUD.
-  @override
   String? get type;
+  @override
 
   /// [typeElement] Extensions for type
-  @override
   @JsonKey(name: '_type')
   PrimitiveElement? get typeElement;
+  @override
 
   /// [name] The human-friendly name of the interaction.
-  @override
   String? get name;
+  @override
 
   /// [nameElement] Extensions for name
-  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
+  @override
 
   /// [initiator] Who starts the transaction.
-  @override
   String? get initiator;
+  @override
 
   /// [initiatorElement] Extensions for initiator
-  @override
   @JsonKey(name: '_initiator')
   PrimitiveElement? get initiatorElement;
+  @override
 
   /// [receiver] Who receives the transaction.
-  @override
   String? get receiver;
+  @override
 
   /// [receiverElement] Extensions for receiver
-  @override
   @JsonKey(name: '_receiver')
   PrimitiveElement? get receiverElement;
+  @override
 
   /// [description] A comment to be inserted in the diagram.
-  @override
   FhirMarkdown? get description;
+  @override
 
   /// [descriptionElement] Extensions for description
-  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
+  @override
 
   /// [initiatorActive] Whether the initiator is deactivated right after the
   ///  transaction.
-  @override
   FhirBoolean? get initiatorActive;
+  @override
 
   /// [initiatorActiveElement] Extensions for initiatorActive
-  @override
   @JsonKey(name: '_initiatorActive')
   PrimitiveElement? get initiatorActiveElement;
+  @override
 
   /// [receiverActive] Whether the receiver is deactivated right after the
   ///  transaction.
-  @override
   FhirBoolean? get receiverActive;
+  @override
 
   /// [receiverActiveElement] Extensions for receiverActive
-  @override
   @JsonKey(name: '_receiverActive')
   PrimitiveElement? get receiverActiveElement;
+  @override
 
   /// [request] Each resource instance used by the initiator.
-  @override
   ExampleScenarioContainedInstance? get request;
+  @override
 
   /// [response] Each resource instance used by the responder.
-  @override
   ExampleScenarioContainedInstance? get response;
-
-  /// Create a copy of ExampleScenarioOperation
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ExampleScenarioOperationImplCopyWith<_$ExampleScenarioOperationImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -5714,12 +5607,8 @@ mixin _$ExampleScenarioAlternative {
   /// [step] What happens in each alternative option.
   List<ExampleScenarioStep>? get step => throw _privateConstructorUsedError;
 
-  /// Serializes this ExampleScenarioAlternative to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ExampleScenarioAlternative
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ExampleScenarioAlternativeCopyWith<ExampleScenarioAlternative>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -5753,8 +5642,6 @@ class _$ExampleScenarioAlternativeCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ExampleScenarioAlternative
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5834,8 +5721,6 @@ class __$$ExampleScenarioAlternativeImplCopyWithImpl<$Res>
       $Res Function(_$ExampleScenarioAlternativeImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ExampleScenarioAlternative
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -6031,7 +5916,7 @@ class _$ExampleScenarioAlternativeImpl extends _ExampleScenarioAlternative {
             const DeepCollectionEquality().equals(other._step, _step));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -6044,9 +5929,7 @@ class _$ExampleScenarioAlternativeImpl extends _ExampleScenarioAlternative {
       descriptionElement,
       const DeepCollectionEquality().hash(_step));
 
-  /// Create a copy of ExampleScenarioAlternative
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ExampleScenarioAlternativeImplCopyWith<_$ExampleScenarioAlternativeImpl>
@@ -6077,10 +5960,12 @@ abstract class _ExampleScenarioAlternative extends ExampleScenarioAlternative {
   factory _ExampleScenarioAlternative.fromJson(Map<String, dynamic> json) =
       _$ExampleScenarioAlternativeImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -6088,9 +5973,9 @@ abstract class _ExampleScenarioAlternative extends ExampleScenarioAlternative {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -6105,37 +5990,33 @@ abstract class _ExampleScenarioAlternative extends ExampleScenarioAlternative {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [title] The label to display for the alternative that gives a sense of
   ///  the circumstance in which the alternative should be invoked.
-  @override
   String? get title;
+  @override
 
   /// [titleElement] Extensions for title
-  @override
   @JsonKey(name: '_title')
   PrimitiveElement? get titleElement;
+  @override
 
   /// [description] A human-readable description of the alternative explaining
   ///  when the alternative should occur rather than the base step.
-  @override
   FhirMarkdown? get description;
+  @override
 
   /// [descriptionElement] Extensions for description
-  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
+  @override
 
   /// [step] What happens in each alternative option.
-  @override
   List<ExampleScenarioStep>? get step;
-
-  /// Create a copy of ExampleScenarioAlternative
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ExampleScenarioAlternativeImplCopyWith<_$ExampleScenarioAlternativeImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -84,12 +84,8 @@ mixin _$ParameterDefinition {
   ///  conform to, or that the output data will conform to.
   FhirCanonical? get profile => throw _privateConstructorUsedError;
 
-  /// Serializes this ParameterDefinition to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ParameterDefinition
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ParameterDefinitionCopyWith<ParameterDefinition> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -128,8 +124,6 @@ class _$ParameterDefinitionCopyWithImpl<$Res, $Val extends ParameterDefinition>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ParameterDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -248,8 +242,6 @@ class __$$ParameterDefinitionImplCopyWithImpl<$Res>
       $Res Function(_$ParameterDefinitionImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ParameterDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -486,7 +478,7 @@ class _$ParameterDefinitionImpl extends _ParameterDefinition {
             (identical(other.profile, profile) || other.profile == profile));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -506,9 +498,7 @@ class _$ParameterDefinitionImpl extends _ParameterDefinition {
       typeElement,
       profile);
 
-  /// Create a copy of ParameterDefinition
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ParameterDefinitionImplCopyWith<_$ParameterDefinitionImpl> get copyWith =>
@@ -546,10 +536,12 @@ abstract class _ParameterDefinition extends ParameterDefinition {
   factory _ParameterDefinition.fromJson(Map<String, dynamic> json) =
       _$ParameterDefinitionImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -557,77 +549,73 @@ abstract class _ParameterDefinition extends ParameterDefinition {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [name] The name of the parameter used to allow access to the value of the
   ///  parameter in evaluation contexts.
-  @override
   FhirCode? get name;
+  @override
 
   /// [nameElement] Extensions for name
-  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
+  @override
 
   /// [use] Whether the parameter is input or output for the module.
-  @override
   FhirCode? get use;
+  @override
 
   /// [useElement] Extensions for use
-  @override
   @JsonKey(name: '_use')
   PrimitiveElement? get useElement;
+  @override
 
   /// [min] The minimum number of times this parameter SHALL appear in the
   ///  request or response.
-  @override
   FhirInteger? get min;
+  @override
 
   /// [minElement] Extensions for min
-  @override
   @JsonKey(name: '_min')
   PrimitiveElement? get minElement;
+  @override
 
   /// [max] The maximum number of times this element is permitted to appear in
   ///  the request or response.
-  @override
   String? get max;
+  @override
 
   /// [maxElement] Extensions for max
-  @override
   @JsonKey(name: '_max')
   PrimitiveElement? get maxElement;
+  @override
 
   /// [documentation] A brief discussion of what the parameter is for and how
   ///  it is used by the module.
-  @override
   String? get documentation;
+  @override
 
   /// [documentationElement] Extensions for documentation
-  @override
   @JsonKey(name: '_documentation')
   PrimitiveElement? get documentationElement;
+  @override
 
   /// [type] The type of the parameter.
-  @override
   FhirCode? get type;
+  @override
 
   /// [typeElement] Extensions for type
-  @override
   @JsonKey(name: '_type')
   PrimitiveElement? get typeElement;
+  @override
 
   /// [profile] If specified, this indicates a profile that the input data must
   ///  conform to, or that the output data will conform to.
-  @override
   FhirCanonical? get profile;
-
-  /// Create a copy of ParameterDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ParameterDefinitionImplCopyWith<_$ParameterDefinitionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

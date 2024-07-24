@@ -211,12 +211,8 @@ mixin _$Media {
   ///  participants.
   List<Annotation>? get note => throw _privateConstructorUsedError;
 
-  /// Serializes this Media to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of Media
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $MediaCopyWith<Media> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -295,8 +291,6 @@ class _$MediaCopyWithImpl<$Res, $Val extends Media>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Media
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -515,8 +509,6 @@ class _$MediaCopyWithImpl<$Res, $Val extends Media>
     ) as $Val);
   }
 
-  /// Create a copy of Media
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -529,8 +521,6 @@ class _$MediaCopyWithImpl<$Res, $Val extends Media>
     });
   }
 
-  /// Create a copy of Media
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -543,8 +533,6 @@ class _$MediaCopyWithImpl<$Res, $Val extends Media>
     });
   }
 
-  /// Create a copy of Media
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get type {
@@ -557,8 +545,6 @@ class _$MediaCopyWithImpl<$Res, $Val extends Media>
     });
   }
 
-  /// Create a copy of Media
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get modality {
@@ -571,8 +557,6 @@ class _$MediaCopyWithImpl<$Res, $Val extends Media>
     });
   }
 
-  /// Create a copy of Media
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get view {
@@ -585,8 +569,6 @@ class _$MediaCopyWithImpl<$Res, $Val extends Media>
     });
   }
 
-  /// Create a copy of Media
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get subject {
@@ -599,8 +581,6 @@ class _$MediaCopyWithImpl<$Res, $Val extends Media>
     });
   }
 
-  /// Create a copy of Media
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get encounter {
@@ -613,8 +593,6 @@ class _$MediaCopyWithImpl<$Res, $Val extends Media>
     });
   }
 
-  /// Create a copy of Media
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get createdPeriod {
@@ -627,8 +605,6 @@ class _$MediaCopyWithImpl<$Res, $Val extends Media>
     });
   }
 
-  /// Create a copy of Media
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get operator_ {
@@ -641,8 +617,6 @@ class _$MediaCopyWithImpl<$Res, $Val extends Media>
     });
   }
 
-  /// Create a copy of Media
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get bodySite {
@@ -655,8 +629,6 @@ class _$MediaCopyWithImpl<$Res, $Val extends Media>
     });
   }
 
-  /// Create a copy of Media
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get device {
@@ -669,8 +641,6 @@ class _$MediaCopyWithImpl<$Res, $Val extends Media>
     });
   }
 
-  /// Create a copy of Media
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AttachmentCopyWith<$Res> get content {
@@ -767,8 +737,6 @@ class __$$MediaImplCopyWithImpl<$Res>
       _$MediaImpl _value, $Res Function(_$MediaImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Media
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1457,7 +1425,7 @@ class _$MediaImpl extends _Media {
             const DeepCollectionEquality().equals(other._note, _note));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1505,9 +1473,7 @@ class _$MediaImpl extends _Media {
         const DeepCollectionEquality().hash(_note)
       ]);
 
-  /// Create a copy of Media
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$MediaImplCopyWith<_$MediaImpl> get copyWith =>
@@ -1575,38 +1541,39 @@ abstract class _Media extends Media {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.Media)
   R4ResourceType get resourceType;
+  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @override
   String? get id;
+  @override
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  @override
   FhirMeta? get meta;
+  @override
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  @override
   FhirUri? get implicitRules;
+  @override
 
   /// [implicitRulesElement] Extensions for implicitRules
-  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
+  @override
 
   /// [language] The base language in which the resource is written.
-  @override
   FhirCode? get language;
+  @override
 
   /// [languageElement] Extensions for language
-  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
+  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1614,15 +1581,15 @@ abstract class _Media extends Media {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  @override
   Narrative? get text;
+  @override
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  @override
   List<Resource>? get contained;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1630,9 +1597,9 @@ abstract class _Media extends Media {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1647,165 +1614,161 @@ abstract class _Media extends Media {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [identifier] Identifiers associated with the image - these may include
   /// identifiers for the image itself, identifiers for the context of its
   /// collection (e.g. series ids) and context ids such as accession numbers or
   ///  other workflow identifiers.
-  @override
   List<Identifier>? get identifier;
+  @override
 
   /// [basedOn] A procedure that is fulfilled in whole or in part by the
   ///  creation of this media.
-  @override
   List<Reference>? get basedOn;
+  @override
 
   /// [partOf] A larger event of which this particular event is a component or
   ///  step.
-  @override
   List<Reference>? get partOf;
+  @override
 
   /// [status] The current state of the {{title}}.
-  @override
   FhirCode? get status;
+  @override
 
   /// [statusElement] Extensions for status
-  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
+  @override
 
   /// [type] A code that classifies whether the media is an image, video or
   ///  audio recording or some other media category.
-  @override
   CodeableConcept? get type;
+  @override
 
   /// [modality] Details of the type of the media - usually, how it was
   /// acquired (what type of device). If images sourced from a DICOM system, are
   ///  wrapped in a Media resource, then this is the modality.
-  @override
   CodeableConcept? get modality;
+  @override
 
   /// [view] The name of the imaging view e.g. Lateral or Antero-posterior
   ///  (AP).
-  @override
   CodeableConcept? get view;
+  @override
 
   /// [subject] Who/What this Media is a record of.
-  @override
   Reference? get subject;
+  @override
 
   /// [encounter] The encounter that establishes the context for this media.
-  @override
   Reference? get encounter;
+  @override
 
   /// [createdDateTime] The date and time(s) at which the media was collected.
-  @override
   FhirDateTime? get createdDateTime;
+  @override
 
   /// [createdDateTimeElement] Extensions for createdDateTime
-  @override
   @JsonKey(name: '_createdDateTime')
   PrimitiveElement? get createdDateTimeElement;
+  @override
 
   /// [createdPeriod] The date and time(s) at which the media was collected.
-  @override
   Period? get createdPeriod;
+  @override
 
   /// [issued] The date and time this version of the media was made available
   ///  to providers, typically after having been reviewed.
-  @override
   FhirInstant? get issued;
+  @override
 
   /// [issuedElement] Extensions for issued
-  @override
   @JsonKey(name: '_issued')
   PrimitiveElement? get issuedElement;
+  @override
 
   /// [operator] The person who administered the collection of the image.
-  @override
   @JsonKey(name: 'operator')
   Reference? get operator_;
+  @override
 
   /// [reasonCode] Describes why the event occurred in coded or textual form.
-  @override
   List<CodeableConcept>? get reasonCode;
+  @override
 
   /// [bodySite] Indicates the site on the subject's body where the observation
   ///  was made (i.e. the target site).
-  @override
   CodeableConcept? get bodySite;
+  @override
 
   /// [deviceName] The name of the device / manufacturer of the device  that
   ///  was used to make the recording.
-  @override
   String? get deviceName;
+  @override
 
   /// [deviceNameElement] Extensions for deviceName
-  @override
   @JsonKey(name: '_deviceName')
   PrimitiveElement? get deviceNameElement;
+  @override
 
   /// [device] The device used to collect the media.
-  @override
   Reference? get device;
+  @override
 
   /// [height] Height of the image in pixels (photo/video).
-  @override
   FhirPositiveInt? get height;
+  @override
 
   /// [heightElement] Extensions for height
-  @override
   @JsonKey(name: '_height')
   PrimitiveElement? get heightElement;
+  @override
 
   /// [width] Width of the image in pixels (photo/video).
-  @override
   FhirPositiveInt? get width;
+  @override
 
   /// [widthElement] Extensions for width
-  @override
   @JsonKey(name: '_width')
   PrimitiveElement? get widthElement;
+  @override
 
   /// [frames] The number of frames in a photo. This is used with a multi-page
   /// fax, or an imaging acquisition context that takes multiple slices in a
   /// single image, or an animated gif. If there is more than one frame, this
   /// SHALL have a value in order to alert interface software that a multi-frame
   ///  capable rendering widget is required.
-  @override
   FhirPositiveInt? get frames;
+  @override
 
   /// [framesElement] Extensions for frames
-  @override
   @JsonKey(name: '_frames')
   PrimitiveElement? get framesElement;
+  @override
 
   /// [duration] The duration of the recording in seconds - for audio and
   ///  video.
-  @override
   FhirDecimal? get duration;
+  @override
 
   /// [durationElement] Extensions for duration
-  @override
   @JsonKey(name: '_duration')
   PrimitiveElement? get durationElement;
+  @override
 
   /// [content] The actual content of the media - inline or by direct reference
   ///  to the media source file.
-  @override
   Attachment get content;
+  @override
 
   /// [note] Comments made about the media by the performer, subject or other
   ///  participants.
-  @override
   List<Annotation>? get note;
-
-  /// Create a copy of Media
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$MediaImplCopyWith<_$MediaImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

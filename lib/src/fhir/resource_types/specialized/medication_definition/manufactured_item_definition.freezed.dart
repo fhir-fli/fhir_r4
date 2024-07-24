@@ -86,12 +86,8 @@ mixin _$ManufacturedItemDefinition {
   List<ManufacturedItemDefinitionProperty>? get property =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this ManufacturedItemDefinition to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ManufacturedItemDefinition
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ManufacturedItemDefinitionCopyWith<ManufacturedItemDefinition>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -141,8 +137,6 @@ class _$ManufacturedItemDefinitionCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ManufacturedItemDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -246,8 +240,6 @@ class _$ManufacturedItemDefinitionCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of ManufacturedItemDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -260,8 +252,6 @@ class _$ManufacturedItemDefinitionCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ManufacturedItemDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -274,8 +264,6 @@ class _$ManufacturedItemDefinitionCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ManufacturedItemDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get manufacturedDoseForm {
@@ -284,8 +272,6 @@ class _$ManufacturedItemDefinitionCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ManufacturedItemDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get unitOfPresentation {
@@ -349,8 +335,6 @@ class __$$ManufacturedItemDefinitionImplCopyWithImpl<$Res>
       $Res Function(_$ManufacturedItemDefinitionImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ManufacturedItemDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -682,7 +666,7 @@ class _$ManufacturedItemDefinitionImpl extends _ManufacturedItemDefinition {
             const DeepCollectionEquality().equals(other._property, _property));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -707,9 +691,7 @@ class _$ManufacturedItemDefinitionImpl extends _ManufacturedItemDefinition {
         const DeepCollectionEquality().hash(_property)
       ]);
 
-  /// Create a copy of ManufacturedItemDefinition
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ManufacturedItemDefinitionImplCopyWith<_$ManufacturedItemDefinitionImpl>
@@ -754,88 +736,85 @@ abstract class _ManufacturedItemDefinition extends ManufacturedItemDefinition {
 
   @override
   R4ResourceType get resourceType;
+  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.;
-  @override
   String? get id;
+  @override
 
   /// [meta] The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.;
-  @override
   FhirMeta? get meta;
+  @override
 
   /// [implicitRules] A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.;
-  @override
   FhirUri? get implicitRules;
+  @override
 
   /// [implicitRulesElement] (_implicitRules): Extensions for implicitRules;
-  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
+  @override
 
   /// [language] The base language in which the resource is written.;
-  @override
   FhirCode? get language;
+  @override
 
   /// [languageElement] (_language): Extensions for language;
-  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
+  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.;
-  @override
   Narrative? get text;
+  @override
 
   /// [contained] These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, nor can they have their own independent transaction scope.;
-  @override
   List<Resource>? get contained;
+  @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the resource. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.
   /// Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).;
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [identifier] Unique identifier.;
-  @override
   List<Identifier>? get identifier;
+  @override
 
   /// [status] The status of this item. Enables tracking the life-cycle of the content.;
-  @override
   FhirCode? get status;
+  @override
 
   /// [statusElement] (_status): Extensions for status;
-  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
+  @override
 
   /// [manufacturedDoseForm] Dose form as manufactured and before any transformation into the pharmaceutical product.;
-  @override
   CodeableConcept get manufacturedDoseForm;
+  @override
 
   /// [unitOfPresentation] The “real world” units in which the quantity of the manufactured item is described.;
-  @override
   CodeableConcept? get unitOfPresentation;
+  @override
 
   /// [manufacturer] Manufacturer of the item (Note that this should be named "manufacturer" but it currently causes technical issues).;
-  @override
   List<Reference>? get manufacturer;
+  @override
 
   /// [ingredient] The ingredients of this manufactured item. This is only needed if the ingredients are not specified by incoming references from the Ingredient resource.;
-  @override
   List<CodeableConcept>? get ingredient;
+  @override
 
   /// [property] General characteristics of this item.;
-  @override
   List<ManufacturedItemDefinitionProperty>? get property;
-
-  /// Create a copy of ManufacturedItemDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ManufacturedItemDefinitionImplCopyWith<_$ManufacturedItemDefinitionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -887,12 +866,8 @@ mixin _$ManufacturedItemDefinitionProperty {
   /// [valueAttachment] A value for the characteristic.;
   Attachment? get valueAttachment => throw _privateConstructorUsedError;
 
-  /// Serializes this ManufacturedItemDefinitionProperty to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ManufacturedItemDefinitionProperty
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ManufacturedItemDefinitionPropertyCopyWith<
           ManufacturedItemDefinitionProperty>
       get copyWith => throw _privateConstructorUsedError;
@@ -936,8 +911,6 @@ class _$ManufacturedItemDefinitionPropertyCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ManufacturedItemDefinitionProperty
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1001,8 +974,6 @@ class _$ManufacturedItemDefinitionPropertyCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of ManufacturedItemDefinitionProperty
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get type {
@@ -1011,8 +982,6 @@ class _$ManufacturedItemDefinitionPropertyCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ManufacturedItemDefinitionProperty
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get valueCodeableConcept {
@@ -1026,8 +995,6 @@ class _$ManufacturedItemDefinitionPropertyCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ManufacturedItemDefinitionProperty
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get valueQuantity {
@@ -1040,8 +1007,6 @@ class _$ManufacturedItemDefinitionPropertyCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ManufacturedItemDefinitionProperty
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AttachmentCopyWith<$Res>? get valueAttachment {
@@ -1097,8 +1062,6 @@ class __$$ManufacturedItemDefinitionPropertyImplCopyWithImpl<$Res>
       $Res Function(_$ManufacturedItemDefinitionPropertyImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ManufacturedItemDefinitionProperty
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1287,7 +1250,7 @@ class _$ManufacturedItemDefinitionPropertyImpl
                 other.valueAttachment == valueAttachment));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1303,9 +1266,7 @@ class _$ManufacturedItemDefinitionPropertyImpl
       valueBooleanElement,
       valueAttachment);
 
-  /// Create a copy of ManufacturedItemDefinitionProperty
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ManufacturedItemDefinitionPropertyImplCopyWith<
@@ -1343,58 +1304,56 @@ abstract class _ManufacturedItemDefinitionProperty
           Map<String, dynamic> json) =
       _$ManufacturedItemDefinitionPropertyImpl.fromJson;
 
-  /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   @override
+
+  /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.
   /// Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).;
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [type] A code expressing the type of characteristic.;
-  @override
   CodeableConcept get type;
+  @override
 
   /// [valueCodeableConcept] A value for the characteristic.;
-  @override
   CodeableConcept? get valueCodeableConcept;
+  @override
 
   /// [valueQuantity] A value for the characteristic.;
-  @override
   Quantity? get valueQuantity;
+  @override
 
   /// [valueDate] A value for the characteristic.;
-  @override
   FhirDate? get valueDate;
+  @override
 
   /// [valueDateElement] (_valueDate): Extensions for valueDate;
-  @override
   @JsonKey(name: '_valueDate')
   PrimitiveElement? get valueDateElement;
+  @override
 
   /// [valueBoolean] A value for the characteristic.;
-  @override
   FhirBoolean? get valueBoolean;
+  @override
 
   /// [valueBooleanElement] (_valueBoolean): Extensions for valueBoolean;
-  @override
   @JsonKey(name: '_valueBoolean')
   PrimitiveElement? get valueBooleanElement;
+  @override
 
   /// [valueAttachment] A value for the characteristic.;
-  @override
   Attachment? get valueAttachment;
-
-  /// Create a copy of ManufacturedItemDefinitionProperty
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ManufacturedItemDefinitionPropertyImplCopyWith<
           _$ManufacturedItemDefinitionPropertyImpl>
       get copyWith => throw _privateConstructorUsedError;

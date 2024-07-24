@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:webauthdemo/create_new_patient.dart';
+import 'create_new_patient.dart';
 
 import 'ids.dart';
 import 'scopes.dart';

@@ -77,12 +77,8 @@ mixin _$FhirMeta {
   ///  resource.
   List<Coding>? get tag => throw _privateConstructorUsedError;
 
-  /// Serializes this FhirMeta to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of FhirMeta
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $FhirMetaCopyWith<FhirMeta> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -116,8 +112,6 @@ class _$FhirMetaCopyWithImpl<$Res, $Val extends FhirMeta>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of FhirMeta
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -212,8 +206,6 @@ class __$$FhirMetaImplCopyWithImpl<$Res>
       _$FhirMetaImpl _value, $Res Function(_$FhirMetaImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of FhirMeta
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -445,7 +437,7 @@ class _$FhirMetaImpl extends _FhirMeta {
             const DeepCollectionEquality().equals(other._tag, _tag));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -461,9 +453,7 @@ class _$FhirMetaImpl extends _FhirMeta {
       const DeepCollectionEquality().hash(_security),
       const DeepCollectionEquality().hash(_tag));
 
-  /// Create a copy of FhirMeta
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$FhirMetaImplCopyWith<_$FhirMetaImpl> get copyWith =>
@@ -495,10 +485,12 @@ abstract class _FhirMeta extends FhirMeta {
   factory _FhirMeta.fromJson(Map<String, dynamic> json) =
       _$FhirMetaImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -506,66 +498,62 @@ abstract class _FhirMeta extends FhirMeta {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [versionId] The version specific identifier, as it appears in the version
   /// portion of the URL. This value changes when the resource is created,
   ///  updated, or deleted.
-  @override
   FhirId? get versionId;
+  @override
 
   /// [versionIdElement] Extensions for versionId
-  @override
   @JsonKey(name: '_versionId')
   PrimitiveElement? get versionIdElement;
+  @override
 
   /// [lastUpdated] When the resource last changed - e.g. when the version
   ///  changed.
-  @override
   FhirInstant? get lastUpdated;
+  @override
 
   /// [lastUpdatedElement] Extensions for lastUpdated
-  @override
   @JsonKey(name: '_lastUpdated')
   PrimitiveElement? get lastUpdatedElement;
+  @override
 
   /// [source] A uri that identifies the source system of the resource. This
   /// provides a minimal amount of [[[Provenance]]] information that can be used
   /// to track or differentiate the source of information in the resource. The
   /// source may identify another FHIR server, document, message, database,
   ///  etc.
-  @override
   FhirUri? get source;
+  @override
 
   /// [sourceElement] Extensions for source
-  @override
   @JsonKey(name: '_source')
   PrimitiveElement? get sourceElement;
+  @override
 
   /// [profile] A list of profiles (references to [[[StructureDefinition]]]
   /// resources) that this resource claims to conform to. The URL is a reference
   ///  to [[[StructureDefinition.url]]].
-  @override
   List<FhirCanonical>? get profile;
+  @override
 
   /// [security] Security labels applied to this resource. These tags connect
   ///  specific resources to the overall security policy and infrastructure.
-  @override
   List<Coding>? get security;
+  @override
 
   /// [tag] Tags applied to this resource. Tags are intended to be used to
   /// identify and relate resources to process and workflow, and applications
   /// are not required to consider the tags when interpreting the meaning of a
   ///  resource.
-  @override
   List<Coding>? get tag;
-
-  /// Create a copy of FhirMeta
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$FhirMetaImplCopyWith<_$FhirMetaImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

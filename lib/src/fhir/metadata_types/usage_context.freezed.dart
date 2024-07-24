@@ -54,12 +54,8 @@ mixin _$UsageContext {
   ///  context of use. The interpretation of the value is defined by the code.
   Reference? get valueReference => throw _privateConstructorUsedError;
 
-  /// Serializes this UsageContext to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of UsageContext
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $UsageContextCopyWith<UsageContext> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -96,8 +92,6 @@ class _$UsageContextCopyWithImpl<$Res, $Val extends UsageContext>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of UsageContext
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -141,8 +135,6 @@ class _$UsageContextCopyWithImpl<$Res, $Val extends UsageContext>
     ) as $Val);
   }
 
-  /// Create a copy of UsageContext
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodingCopyWith<$Res> get code {
@@ -151,8 +143,6 @@ class _$UsageContextCopyWithImpl<$Res, $Val extends UsageContext>
     });
   }
 
-  /// Create a copy of UsageContext
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get valueCodeableConcept {
@@ -166,8 +156,6 @@ class _$UsageContextCopyWithImpl<$Res, $Val extends UsageContext>
     });
   }
 
-  /// Create a copy of UsageContext
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get valueQuantity {
@@ -180,8 +168,6 @@ class _$UsageContextCopyWithImpl<$Res, $Val extends UsageContext>
     });
   }
 
-  /// Create a copy of UsageContext
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get valueRange {
@@ -194,8 +180,6 @@ class _$UsageContextCopyWithImpl<$Res, $Val extends UsageContext>
     });
   }
 
-  /// Create a copy of UsageContext
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get valueReference {
@@ -246,8 +230,6 @@ class __$$UsageContextImplCopyWithImpl<$Res>
       _$UsageContextImpl _value, $Res Function(_$UsageContextImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of UsageContext
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -387,7 +369,7 @@ class _$UsageContextImpl extends _UsageContext {
                 other.valueReference == valueReference));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -399,9 +381,7 @@ class _$UsageContextImpl extends _UsageContext {
       valueRange,
       valueReference);
 
-  /// Create a copy of UsageContext
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$UsageContextImplCopyWith<_$UsageContextImpl> get copyWith =>
@@ -429,10 +409,12 @@ abstract class _UsageContext extends UsageContext {
   factory _UsageContext.fromJson(Map<String, dynamic> json) =
       _$UsageContextImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -440,39 +422,35 @@ abstract class _UsageContext extends UsageContext {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [code] A code that identifies the type of context being specified by this
   ///  usage context.
-  @override
   Coding get code;
+  @override
 
   /// [valueCodeableConcept] A value that defines the context specified in this
   ///  context of use. The interpretation of the value is defined by the code.
-  @override
   CodeableConcept? get valueCodeableConcept;
+  @override
 
   /// [valueQuantity] A value that defines the context specified in this
   ///  context of use. The interpretation of the value is defined by the code.
-  @override
   Quantity? get valueQuantity;
+  @override
 
   /// [valueRange] A value that defines the context specified in this context
   ///  of use. The interpretation of the value is defined by the code.
-  @override
   Range? get valueRange;
+  @override
 
   /// [valueReference] A value that defines the context specified in this
   ///  context of use. The interpretation of the value is defined by the code.
-  @override
   Reference? get valueReference;
-
-  /// Create a copy of UsageContext
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$UsageContextImplCopyWith<_$UsageContextImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -83,9 +83,7 @@ mixin _$BulkRequest {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of BulkRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $BulkRequestCopyWith<BulkRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -113,8 +111,6 @@ class _$BulkRequestCopyWithImpl<$Res, $Val extends BulkRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of BulkRequest
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -167,8 +163,6 @@ class __$$BulkPatientRequestImplCopyWithImpl<$Res>
       $Res Function(_$BulkPatientRequestImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of BulkRequest
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -246,9 +240,7 @@ class _$BulkPatientRequestImpl extends _BulkPatientRequest {
   int get hashCode => Object.hash(runtimeType, base, since,
       const DeepCollectionEquality().hash(_types), client);
 
-  /// Create a copy of BulkRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$BulkPatientRequestImplCopyWith<_$BulkPatientRequestImpl> get copyWith =>
@@ -358,11 +350,8 @@ abstract class _BulkPatientRequest extends BulkRequest {
   List<WhichResource>? get types;
   @override
   Client? get client;
-
-  /// Create a copy of BulkRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$BulkPatientRequestImplCopyWith<_$BulkPatientRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -391,8 +380,6 @@ class __$$BulkGroupRequestImplCopyWithImpl<$Res>
       $Res Function(_$BulkGroupRequestImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of BulkRequest
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -479,9 +466,7 @@ class _$BulkGroupRequestImpl extends _BulkGroupRequest {
   int get hashCode => Object.hash(runtimeType, base, id, since,
       const DeepCollectionEquality().hash(_types), client);
 
-  /// Create a copy of BulkRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$BulkGroupRequestImplCopyWith<_$BulkGroupRequestImpl> get copyWith =>
@@ -593,11 +578,8 @@ abstract class _BulkGroupRequest extends BulkRequest {
   List<WhichResource>? get types;
   @override
   Client? get client;
-
-  /// Create a copy of BulkRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$BulkGroupRequestImplCopyWith<_$BulkGroupRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -625,8 +607,6 @@ class __$$BulkSystemRequestImplCopyWithImpl<$Res>
       $Res Function(_$BulkSystemRequestImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of BulkRequest
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -704,9 +684,7 @@ class _$BulkSystemRequestImpl extends _BulkSystemRequest {
   int get hashCode => Object.hash(runtimeType, base, since,
       const DeepCollectionEquality().hash(_types), client);
 
-  /// Create a copy of BulkRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$BulkSystemRequestImplCopyWith<_$BulkSystemRequestImpl> get copyWith =>
@@ -816,11 +794,8 @@ abstract class _BulkSystemRequest extends BulkRequest {
   List<WhichResource>? get types;
   @override
   Client? get client;
-
-  /// Create a copy of BulkRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$BulkSystemRequestImplCopyWith<_$BulkSystemRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -93,12 +93,8 @@ mixin _$EvidenceVariable {
   List<EvidenceVariableCategory>? get category =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this EvidenceVariable to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of EvidenceVariable
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $EvidenceVariableCopyWith<EvidenceVariable> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -175,8 +171,6 @@ class _$EvidenceVariableCopyWithImpl<$Res, $Val extends EvidenceVariable>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of EvidenceVariable
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -426,8 +420,6 @@ class _$EvidenceVariableCopyWithImpl<$Res, $Val extends EvidenceVariable>
     ) as $Val);
   }
 
-  /// Create a copy of EvidenceVariable
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -440,8 +432,6 @@ class _$EvidenceVariableCopyWithImpl<$Res, $Val extends EvidenceVariable>
     });
   }
 
-  /// Create a copy of EvidenceVariable
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -529,8 +519,6 @@ class __$$EvidenceVariableImplCopyWithImpl<$Res>
       $Res Function(_$EvidenceVariableImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of EvidenceVariable
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1172,7 +1160,7 @@ class _$EvidenceVariableImpl extends _EvidenceVariable {
             const DeepCollectionEquality().equals(other._category, _category));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1226,9 +1214,7 @@ class _$EvidenceVariableImpl extends _EvidenceVariable {
         const DeepCollectionEquality().hash(_category)
       ]);
 
-  /// Create a copy of EvidenceVariable
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$EvidenceVariableImplCopyWith<_$EvidenceVariableImpl> get copyWith =>
@@ -1414,11 +1400,8 @@ abstract class _EvidenceVariable extends EvidenceVariable {
   PrimitiveElement? get handlingElement;
   @override
   List<EvidenceVariableCategory>? get category;
-
-  /// Create a copy of EvidenceVariable
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$EvidenceVariableImplCopyWith<_$EvidenceVariableImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1458,12 +1441,8 @@ mixin _$EvidenceVariableCharacteristic {
   PrimitiveElement? get groupMeasureElement =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this EvidenceVariableCharacteristic to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of EvidenceVariableCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $EvidenceVariableCharacteristicCopyWith<EvidenceVariableCharacteristic>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1511,8 +1490,6 @@ class _$EvidenceVariableCharacteristicCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of EvidenceVariableCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1596,8 +1573,6 @@ class _$EvidenceVariableCharacteristicCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of EvidenceVariableCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get definitionReference {
@@ -1610,8 +1585,6 @@ class _$EvidenceVariableCharacteristicCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of EvidenceVariableCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get definitionCodeableConcept {
@@ -1625,8 +1598,6 @@ class _$EvidenceVariableCharacteristicCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of EvidenceVariableCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirExpressionCopyWith<$Res>? get definitionExpression {
@@ -1639,8 +1610,6 @@ class _$EvidenceVariableCharacteristicCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of EvidenceVariableCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $EvidenceVariableTimeFromStartCopyWith<$Res>? get timeFromStart {
@@ -1702,8 +1671,6 @@ class __$$EvidenceVariableCharacteristicImplCopyWithImpl<$Res>
       $Res Function(_$EvidenceVariableCharacteristicImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of EvidenceVariableCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1912,7 +1879,7 @@ class _$EvidenceVariableCharacteristicImpl
                 other.groupMeasureElement == groupMeasureElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1932,9 +1899,7 @@ class _$EvidenceVariableCharacteristicImpl
       groupMeasure,
       groupMeasureElement);
 
-  /// Create a copy of EvidenceVariableCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$EvidenceVariableCharacteristicImplCopyWith<
@@ -2011,11 +1976,8 @@ abstract class _EvidenceVariableCharacteristic
   @override
   @JsonKey(name: '_groupMeasure')
   PrimitiveElement? get groupMeasureElement;
-
-  /// Create a copy of EvidenceVariableCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$EvidenceVariableCharacteristicImplCopyWith<
           _$EvidenceVariableCharacteristicImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -2041,12 +2003,8 @@ mixin _$EvidenceVariableTimeFromStart {
   Range? get range => throw _privateConstructorUsedError;
   List<Annotation>? get note => throw _privateConstructorUsedError;
 
-  /// Serializes this EvidenceVariableTimeFromStart to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of EvidenceVariableTimeFromStart
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $EvidenceVariableTimeFromStartCopyWith<EvidenceVariableTimeFromStart>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2084,8 +2042,6 @@ class _$EvidenceVariableTimeFromStartCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of EvidenceVariableTimeFromStart
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2134,8 +2090,6 @@ class _$EvidenceVariableTimeFromStartCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of EvidenceVariableTimeFromStart
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get quantity {
@@ -2148,8 +2102,6 @@ class _$EvidenceVariableTimeFromStartCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of EvidenceVariableTimeFromStart
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get range {
@@ -2198,8 +2150,6 @@ class __$$EvidenceVariableTimeFromStartImplCopyWithImpl<$Res>
       $Res Function(_$EvidenceVariableTimeFromStartImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of EvidenceVariableTimeFromStart
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2339,7 +2289,7 @@ class _$EvidenceVariableTimeFromStartImpl
             const DeepCollectionEquality().equals(other._note, _note));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2352,9 +2302,7 @@ class _$EvidenceVariableTimeFromStartImpl
       range,
       const DeepCollectionEquality().hash(_note));
 
-  /// Create a copy of EvidenceVariableTimeFromStart
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$EvidenceVariableTimeFromStartImplCopyWith<
@@ -2404,11 +2352,8 @@ abstract class _EvidenceVariableTimeFromStart
   Range? get range;
   @override
   List<Annotation>? get note;
-
-  /// Create a copy of EvidenceVariableTimeFromStart
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$EvidenceVariableTimeFromStartImplCopyWith<
           _$EvidenceVariableTimeFromStartImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -2434,12 +2379,8 @@ mixin _$EvidenceVariableCategory {
   Quantity? get valueQuantity => throw _privateConstructorUsedError;
   Range? get valueRange => throw _privateConstructorUsedError;
 
-  /// Serializes this EvidenceVariableCategory to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of EvidenceVariableCategory
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $EvidenceVariableCategoryCopyWith<EvidenceVariableCategory> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2476,8 +2417,6 @@ class _$EvidenceVariableCategoryCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of EvidenceVariableCategory
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2526,8 +2465,6 @@ class _$EvidenceVariableCategoryCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of EvidenceVariableCategory
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get valueCodeableConcept {
@@ -2541,8 +2478,6 @@ class _$EvidenceVariableCategoryCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of EvidenceVariableCategory
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get valueQuantity {
@@ -2555,8 +2490,6 @@ class _$EvidenceVariableCategoryCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of EvidenceVariableCategory
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get valueRange {
@@ -2607,8 +2540,6 @@ class __$$EvidenceVariableCategoryImplCopyWithImpl<$Res>
       $Res Function(_$EvidenceVariableCategoryImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of EvidenceVariableCategory
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2739,7 +2670,7 @@ class _$EvidenceVariableCategoryImpl extends _EvidenceVariableCategory {
                 other.valueRange == valueRange));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2752,9 +2683,7 @@ class _$EvidenceVariableCategoryImpl extends _EvidenceVariableCategory {
       valueQuantity,
       valueRange);
 
-  /// Create a copy of EvidenceVariableCategory
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$EvidenceVariableCategoryImplCopyWith<_$EvidenceVariableCategoryImpl>
@@ -2802,11 +2731,8 @@ abstract class _EvidenceVariableCategory extends EvidenceVariableCategory {
   Quantity? get valueQuantity;
   @override
   Range? get valueRange;
-
-  /// Create a copy of EvidenceVariableCategory
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$EvidenceVariableCategoryImplCopyWith<_$EvidenceVariableCategoryImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

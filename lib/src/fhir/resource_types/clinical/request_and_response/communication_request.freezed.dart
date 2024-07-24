@@ -204,12 +204,8 @@ mixin _$CommunicationRequest {
   ///  recipient, subject or other participants.
   List<Annotation>? get note => throw _privateConstructorUsedError;
 
-  /// Serializes this CommunicationRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of CommunicationRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $CommunicationRequestCopyWith<CommunicationRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -285,8 +281,6 @@ class _$CommunicationRequestCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CommunicationRequest
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -490,8 +484,6 @@ class _$CommunicationRequestCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of CommunicationRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -504,8 +496,6 @@ class _$CommunicationRequestCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of CommunicationRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -518,8 +508,6 @@ class _$CommunicationRequestCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of CommunicationRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $IdentifierCopyWith<$Res>? get groupIdentifier {
@@ -532,8 +520,6 @@ class _$CommunicationRequestCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of CommunicationRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get statusReason {
@@ -546,8 +532,6 @@ class _$CommunicationRequestCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of CommunicationRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get subject {
@@ -560,8 +544,6 @@ class _$CommunicationRequestCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of CommunicationRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get encounter {
@@ -574,8 +556,6 @@ class _$CommunicationRequestCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of CommunicationRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get occurrencePeriod {
@@ -588,8 +568,6 @@ class _$CommunicationRequestCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of CommunicationRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get requester {
@@ -602,8 +580,6 @@ class _$CommunicationRequestCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of CommunicationRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get sender {
@@ -696,8 +672,6 @@ class __$$CommunicationRequestImplCopyWithImpl<$Res>
       $Res Function(_$CommunicationRequestImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CommunicationRequest
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1421,7 +1395,7 @@ class _$CommunicationRequestImpl extends _CommunicationRequest {
             const DeepCollectionEquality().equals(other._note, _note));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1466,9 +1440,7 @@ class _$CommunicationRequestImpl extends _CommunicationRequest {
         const DeepCollectionEquality().hash(_note)
       ]);
 
-  /// Create a copy of CommunicationRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CommunicationRequestImplCopyWith<_$CommunicationRequestImpl>
@@ -1537,38 +1509,39 @@ abstract class _CommunicationRequest extends CommunicationRequest {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.CommunicationRequest)
   R4ResourceType get resourceType;
+  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @override
   String? get id;
+  @override
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  @override
   FhirMeta? get meta;
+  @override
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  @override
   FhirUri? get implicitRules;
+  @override
 
   /// [implicitRulesElement] Extensions for implicitRules
-  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
+  @override
 
   /// [language] The base language in which the resource is written.
-  @override
   FhirCode? get language;
+  @override
 
   /// [languageElement] Extensions for language
-  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
+  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1576,15 +1549,15 @@ abstract class _CommunicationRequest extends CommunicationRequest {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  @override
   Narrative? get text;
+  @override
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  @override
   List<Resource>? get contained;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1592,9 +1565,9 @@ abstract class _CommunicationRequest extends CommunicationRequest {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1609,153 +1582,149 @@ abstract class _CommunicationRequest extends CommunicationRequest {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [identifier] Business identifiers assigned to this communication request
   /// by the performer or other systems which remain constant as the resource is
   ///  updated and propagates from server to server.
-  @override
   List<Identifier>? get identifier;
+  @override
 
   /// [basedOn] A plan or proposal that is fulfilled in whole or in part by
   ///  this request.
-  @override
   List<Reference>? get basedOn;
+  @override
 
   /// [replaces] Completed or terminated request(s) whose function is taken by
   ///  this new request.
-  @override
   List<Reference>? get replaces;
+  @override
 
   /// [groupIdentifier] A shared identifier common to all requests that were
   /// authorized more or less simultaneously by a single author, representing
   ///  the identifier of the requisition, prescription or similar form.
-  @override
   Identifier? get groupIdentifier;
+  @override
 
   /// [status] The status of the proposal or order.
-  @override
   FhirCode? get status;
+  @override
 
   /// [statusElement] Extensions for status
-  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
+  @override
 
   /// [statusReason] Captures the reason for the current state of the
   ///  CommunicationRequest.
-  @override
   CodeableConcept? get statusReason;
+  @override
 
   /// [category] The type of message to be sent such as alert, notification,
   ///  reminder, instruction, etc.
-  @override
   List<CodeableConcept>? get category;
+  @override
 
   /// [priority] Characterizes how quickly the proposed act must be initiated.
   ///  Includes concepts such as stat, urgent, routine.
-  @override
   FhirCode? get priority;
+  @override
 
   /// [priorityElement] Extensions for priority
-  @override
   @JsonKey(name: '_priority')
   PrimitiveElement? get priorityElement;
+  @override
 
   /// [doNotPerform] If true indicates that the CommunicationRequest is asking
   ///  for the specified action to *not* occur.
-  @override
   FhirBoolean? get doNotPerform;
+  @override
 
   /// [doNotPerformElement] Extensions for doNotPerform
-  @override
   @JsonKey(name: '_doNotPerform')
   PrimitiveElement? get doNotPerformElement;
+  @override
 
   /// [medium] A channel that was used for this communication (e.g. email,
   ///  fax).
-  @override
   List<CodeableConcept>? get medium;
+  @override
 
   /// [subject] The patient or group that is the focus of this communication
   ///  request.
-  @override
   Reference? get subject;
+  @override
 
   /// [about] Other resources that pertain to this communication request and to
   ///  which this communication request should be associated.
-  @override
   List<Reference>? get about;
+  @override
 
   /// [encounter] The Encounter during which this CommunicationRequest was
   ///  created or to which the creation of this record is tightly associated.
-  @override
   Reference? get encounter;
+  @override
 
   /// [payload] Text, attachment(s), or resource(s) to be communicated to the
   ///  recipient.
-  @override
   List<CommunicationRequestPayload>? get payload;
+  @override
 
   /// [occurrenceDateTime] The time when this communication is to occur.
-  @override
   FhirDateTime? get occurrenceDateTime;
+  @override
 
   /// [occurrenceDateTimeElement] Extensions for occurrenceDateTime
-  @override
   @JsonKey(name: '_occurrenceDateTime')
   PrimitiveElement? get occurrenceDateTimeElement;
+  @override
 
   /// [occurrencePeriod] The time when this communication is to occur.
-  @override
   Period? get occurrencePeriod;
+  @override
 
   /// [authoredOn] For draft requests, indicates the date of initial creation.
   ///  For requests with other statuses, indicates the date of activation.
-  @override
   FhirDateTime? get authoredOn;
+  @override
 
   /// [authoredOnElement] Extensions for authoredOn
-  @override
   @JsonKey(name: '_authoredOn')
   PrimitiveElement? get authoredOnElement;
+  @override
 
   /// [requester] The device, individual, or organization who initiated the
   ///  request and has responsibility for its activation.
-  @override
   Reference? get requester;
+  @override
 
   /// [recipient] The entity (e.g. person, organization, clinical information
   /// system, device, group, or care team) which is the intended target of the
   ///  communication.
-  @override
   List<Reference>? get recipient;
+  @override
 
   /// [sender] The entity (e.g. person, organization, clinical information
   ///  system, or device) which is to be the source of the communication.
-  @override
   Reference? get sender;
+  @override
 
   /// [reasonCode] Describes why the request is being made in coded or textual
   ///  form.
-  @override
   List<CodeableConcept>? get reasonCode;
+  @override
 
   /// [reasonReference] Indicates another resource whose existence justifies
   ///  this request.
-  @override
   List<Reference>? get reasonReference;
+  @override
 
   /// [note] Comments made about the request by the requester, sender,
   ///  recipient, subject or other participants.
-  @override
   List<Annotation>? get note;
-
-  /// Create a copy of CommunicationRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CommunicationRequestImplCopyWith<_$CommunicationRequestImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1813,12 +1782,8 @@ mixin _$CommunicationRequestPayload {
   ///  communications, one portion of the communication).
   Reference? get contentReference => throw _privateConstructorUsedError;
 
-  /// Serializes this CommunicationRequestPayload to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of CommunicationRequestPayload
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $CommunicationRequestPayloadCopyWith<CommunicationRequestPayload>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1855,8 +1820,6 @@ class _$CommunicationRequestPayloadCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CommunicationRequestPayload
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1900,8 +1863,6 @@ class _$CommunicationRequestPayloadCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of CommunicationRequestPayload
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AttachmentCopyWith<$Res>? get contentAttachment {
@@ -1914,8 +1875,6 @@ class _$CommunicationRequestPayloadCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of CommunicationRequestPayload
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get contentReference {
@@ -1963,8 +1922,6 @@ class __$$CommunicationRequestPayloadImplCopyWithImpl<$Res>
       $Res Function(_$CommunicationRequestPayloadImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CommunicationRequestPayload
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2140,7 +2097,7 @@ class _$CommunicationRequestPayloadImpl extends _CommunicationRequestPayload {
                 other.contentReference == contentReference));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2152,9 +2109,7 @@ class _$CommunicationRequestPayloadImpl extends _CommunicationRequestPayload {
       contentAttachment,
       contentReference);
 
-  /// Create a copy of CommunicationRequestPayload
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CommunicationRequestPayloadImplCopyWith<_$CommunicationRequestPayloadImpl>
@@ -2185,10 +2140,12 @@ abstract class _CommunicationRequestPayload
   factory _CommunicationRequestPayload.fromJson(Map<String, dynamic> json) =
       _$CommunicationRequestPayloadImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2196,9 +2153,9 @@ abstract class _CommunicationRequestPayload
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2213,33 +2170,29 @@ abstract class _CommunicationRequestPayload
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [contentString] The communicated content (or for multi-part
   ///  communications, one portion of the communication).
-  @override
   String? get contentString;
+  @override
 
   /// [contentStringElement] Extensions for contentString
-  @override
   @JsonKey(name: '_contentString')
   PrimitiveElement? get contentStringElement;
+  @override
 
   /// [contentAttachment] The communicated content (or for multi-part
   ///  communications, one portion of the communication).
-  @override
   Attachment? get contentAttachment;
+  @override
 
   /// [contentReference] The communicated content (or for multi-part
   ///  communications, one portion of the communication).
-  @override
   Reference? get contentReference;
-
-  /// Create a copy of CommunicationRequestPayload
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CommunicationRequestPayloadImplCopyWith<_$CommunicationRequestPayloadImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

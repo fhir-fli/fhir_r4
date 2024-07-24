@@ -289,12 +289,8 @@ mixin _$CodeSystem {
   ///  determine what the meanings of the hierarchical relationships are.
   List<CodeSystemConcept>? get concept => throw _privateConstructorUsedError;
 
-  /// Serializes this CodeSystem to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of CodeSystem
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $CodeSystemCopyWith<CodeSystem> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -377,8 +373,6 @@ class _$CodeSystemCopyWithImpl<$Res, $Val extends CodeSystem>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CodeSystem
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -657,8 +651,6 @@ class _$CodeSystemCopyWithImpl<$Res, $Val extends CodeSystem>
     ) as $Val);
   }
 
-  /// Create a copy of CodeSystem
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -671,8 +663,6 @@ class _$CodeSystemCopyWithImpl<$Res, $Val extends CodeSystem>
     });
   }
 
-  /// Create a copy of CodeSystem
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -766,8 +756,6 @@ class __$$CodeSystemImplCopyWithImpl<$Res>
       _$CodeSystemImpl _value, $Res Function(_$CodeSystemImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CodeSystem
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1664,7 +1652,7 @@ class _$CodeSystemImpl extends _CodeSystem {
             const DeepCollectionEquality().equals(other._concept, _concept));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1724,9 +1712,7 @@ class _$CodeSystemImpl extends _CodeSystem {
         const DeepCollectionEquality().hash(_concept)
       ]);
 
-  /// Create a copy of CodeSystem
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CodeSystemImplCopyWith<_$CodeSystemImpl> get copyWith =>
@@ -1811,38 +1797,39 @@ abstract class _CodeSystem extends CodeSystem {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.CodeSystem)
   R4ResourceType get resourceType;
+  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @override
   String? get id;
+  @override
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  @override
   FhirMeta? get meta;
+  @override
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  @override
   FhirUri? get implicitRules;
+  @override
 
   /// [implicitRulesElement] Extensions for implicitRules
-  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
+  @override
 
   /// [language] The base language in which the resource is written.
-  @override
   FhirCode? get language;
+  @override
 
   /// [languageElement] Extensions for language
-  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
+  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1850,15 +1837,15 @@ abstract class _CodeSystem extends CodeSystem {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  @override
   Narrative? get text;
+  @override
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  @override
   List<Resource>? get contained;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1866,9 +1853,9 @@ abstract class _CodeSystem extends CodeSystem {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1883,8 +1870,8 @@ abstract class _CodeSystem extends CodeSystem {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [url] An absolute URI that is used to identify this code system when it
   /// is referenced in a specification, model, design or an instance; also
@@ -1894,19 +1881,19 @@ abstract class _CodeSystem extends CodeSystem {
   /// canonical reference. It SHALL remain the same when the code system is
   /// stored on different servers. This is used in
   ///  [Coding](datatypes.html#Coding).system.
-  @override
   FhirUri? get url;
+  @override
 
   /// [urlElement] Extensions for url
-  @override
   @JsonKey(name: '_url')
   PrimitiveElement? get urlElement;
+  @override
 
   /// [identifier] A formal identifier that is used to identify this code
   /// system when it is represented in other formats, or referenced in a
   ///  specification, model, design or an instance.
-  @override
   List<Identifier>? get identifier;
+  @override
 
   /// [version] The identifier that is used to identify this version of the
   /// code system when it is referenced in a specification, model, design or
@@ -1915,218 +1902,214 @@ abstract class _CodeSystem extends CodeSystem {
   /// timestamp (e.g. yyyymmdd) if a managed version is not available. There is
   /// also no expectation that versions can be placed in a lexicographical
   ///  sequence. This is used in [Coding](datatypes.html#Coding).version.
-  @override
   String? get version;
+  @override
 
   /// [versionElement] Extensions for version
-  @override
   @JsonKey(name: '_version')
   PrimitiveElement? get versionElement;
+  @override
 
   /// [name] A natural language name identifying the code system. This name
   /// should be usable as an identifier for the module by machine processing
   ///  applications such as code generation.
-  @override
   String? get name;
+  @override
 
   /// [nameElement] Extensions for name
-  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
+  @override
 
   /// [title] A short, descriptive, user-friendly title for the code system.
-  @override
   String? get title;
+  @override
 
   /// [titleElement] Extensions for title
-  @override
   @JsonKey(name: '_title')
   PrimitiveElement? get titleElement;
+  @override
 
   /// [status] The date (and optionally time) when the code system resource was
   ///  created or revised.
-  @override
   FhirCode? get status;
+  @override
 
   /// [statusElement] Extensions for status
-  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
+  @override
 
   /// [experimental] A Boolean value to indicate that this code system is
   /// authored for testing purposes (or education/evaluation/marketing) and is
   ///  not intended to be used for genuine usage.
-  @override
   FhirBoolean? get experimental;
+  @override
 
   /// [experimentalElement] Extensions for experimental
-  @override
   @JsonKey(name: '_experimental')
   PrimitiveElement? get experimentalElement;
+  @override
 
   /// [date] The date  (and optionally time) when the code system was
   /// published. The date must change when the business version changes and it
   /// must change if the status code changes. In addition, it should change when
   ///  the substantive content of the code system changes.
-  @override
   FhirDateTime? get date;
+  @override
 
   /// [dateElement] Extensions for date
-  @override
   @JsonKey(name: '_date')
   PrimitiveElement? get dateElement;
+  @override
 
   /// [publisher] The name of the organization or individual that published the
   ///  code system.
-  @override
   String? get publisher;
+  @override
 
   /// [publisherElement] Extensions for publisher
-  @override
   @JsonKey(name: '_publisher')
   PrimitiveElement? get publisherElement;
+  @override
 
   /// [contact] Contact details to assist a user in finding and communicating
   ///  with the publisher.
-  @override
   List<ContactDetail>? get contact;
+  @override
 
   /// [description] A free text natural language description of the code system
   ///  from a consumer's perspective.
-  @override
   FhirMarkdown? get description;
+  @override
 
   /// [descriptionElement] Extensions for description
-  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
+  @override
 
   /// [useContext] The content was developed with a focus and intent of
   /// supporting the contexts that are listed. These contexts may be general
   /// categories (gender, age, ...) or may be references to specific programs
   /// (insurance plans, studies, ...) and may be used to assist with indexing
   ///  and searching for appropriate code system instances.
-  @override
   List<UsageContext>? get useContext;
+  @override
 
   /// [jurisdiction] A legal or geographic region in which the code system is
   ///  intended to be used.
-  @override
   List<CodeableConcept>? get jurisdiction;
+  @override
 
   /// [purpose] Explanation of why this code system is needed and why it has
   ///  been designed as it has.
-  @override
   FhirMarkdown? get purpose;
+  @override
 
   /// [purposeElement] Extensions for purpose
-  @override
   @JsonKey(name: '_purpose')
   PrimitiveElement? get purposeElement;
+  @override
 
   /// [copyright] A copyright statement relating to the code system and/or its
   /// contents. Copyright statements are generally legal restrictions on the use
   ///  and publishing of the code system.
-  @override
   FhirMarkdown? get copyright;
+  @override
 
   /// [copyrightElement] Extensions for copyright
-  @override
   @JsonKey(name: '_copyright')
   PrimitiveElement? get copyrightElement;
+  @override
 
   /// [caseSensitive] If code comparison is case sensitive when codes within
   ///  this system are compared to each other.
-  @override
   FhirBoolean? get caseSensitive;
+  @override
 
   /// [caseSensitiveElement] Extensions for caseSensitive
-  @override
   @JsonKey(name: '_caseSensitive')
   PrimitiveElement? get caseSensitiveElement;
+  @override
 
   /// [valueSet] Canonical reference to the value set that contains the entire
   ///  code system.
-  @override
   FhirCanonical? get valueSet;
+  @override
 
   /// [hierarchyMeaning] The meaning of the hierarchy of concepts as
   ///  represented in this resource.
-  @override
   FhirCode? get hierarchyMeaning;
+  @override
 
   /// [hierarchyMeaningElement] Extensions for hierarchyMeaning
-  @override
   @JsonKey(name: '_hierarchyMeaning')
   PrimitiveElement? get hierarchyMeaningElement;
+  @override
 
   /// [compositional] The code system defines a compositional
   ///  (post-coordination) grammar.
-  @override
   FhirBoolean? get compositional;
+  @override
 
   /// [compositionalElement] Extensions for compositional
-  @override
   @JsonKey(name: '_compositional')
   PrimitiveElement? get compositionalElement;
+  @override
 
   /// [versionNeeded] This flag is used to signify that the code system does
   /// not commit to concept permanence across versions. If true, a version must
   ///  be specified when referencing this code system.
-  @override
   FhirBoolean? get versionNeeded;
+  @override
 
   /// [versionNeededElement] Extensions for versionNeeded
-  @override
   @JsonKey(name: '_versionNeeded')
   PrimitiveElement? get versionNeededElement;
+  @override
 
   /// [content] The extent of the content of the code system (the concepts and
   ///  codes it defines) are represented in this resource instance.
-  @override
   FhirCode? get content;
+  @override
 
   /// [contentElement] Extensions for content
-  @override
   @JsonKey(name: '_content')
   PrimitiveElement? get contentElement;
+  @override
 
   /// [supplements] The canonical URL of the code system that this code system
   ///  supplement is adding designations and properties to.
-  @override
   FhirCanonical? get supplements;
+  @override
 
   /// [count] The total number of concepts defined by the code system. Where
   /// the code system has a compositional grammar, the basis of this count is
   ///  defined by the system steward.
-  @override
   FhirUnsignedInt? get count;
+  @override
 
   /// [countElement] Extensions for count
-  @override
   @JsonKey(name: '_count')
   PrimitiveElement? get countElement;
+  @override
 
   /// [filter] A filter that can be used in a value set compose statement when
   ///  selecting concepts using a filter.
-  @override
   List<CodeSystemFilter>? get filter;
+  @override
 
   /// [property] A property defines an additional slot through which additional
   ///  information can be provided about a concept.
-  @override
   List<CodeSystemProperty>? get property;
+  @override
 
   /// [concept] Concepts that are in the code system. The concept definitions
   /// are inherently hierarchical, but the definitions must be consulted to
   ///  determine what the meanings of the hierarchical relationships are.
-  @override
   List<CodeSystemConcept>? get concept;
-
-  /// Create a copy of CodeSystem
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CodeSystemImplCopyWith<_$CodeSystemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2198,12 +2181,8 @@ mixin _$CodeSystemFilter {
   @JsonKey(name: '_value')
   PrimitiveElement? get valueElement => throw _privateConstructorUsedError;
 
-  /// Serializes this CodeSystemFilter to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of CodeSystemFilter
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $CodeSystemFilterCopyWith<CodeSystemFilter> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2238,8 +2217,6 @@ class _$CodeSystemFilterCopyWithImpl<$Res, $Val extends CodeSystemFilter>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CodeSystemFilter
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2334,8 +2311,6 @@ class __$$CodeSystemFilterImplCopyWithImpl<$Res>
       $Res Function(_$CodeSystemFilterImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CodeSystemFilter
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2578,7 +2553,7 @@ class _$CodeSystemFilterImpl extends _CodeSystemFilter {
                 other.valueElement == valueElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2594,9 +2569,7 @@ class _$CodeSystemFilterImpl extends _CodeSystemFilter {
       value,
       valueElement);
 
-  /// Create a copy of CodeSystemFilter
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CodeSystemFilterImplCopyWith<_$CodeSystemFilterImpl> get copyWith =>
@@ -2630,10 +2603,12 @@ abstract class _CodeSystemFilter extends CodeSystemFilter {
   factory _CodeSystemFilter.fromJson(Map<String, dynamic> json) =
       _$CodeSystemFilterImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2641,9 +2616,9 @@ abstract class _CodeSystemFilter extends CodeSystemFilter {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2658,51 +2633,47 @@ abstract class _CodeSystemFilter extends CodeSystemFilter {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [code] The code that identifies this filter when it is used as a filter
   ///  in [[[ValueSet]]].compose.include.filter.
-  @override
   FhirCode? get code;
+  @override
 
   /// [codeElement] Extensions for code
-  @override
   @JsonKey(name: '_code')
   PrimitiveElement? get codeElement;
+  @override
 
   /// [description] A description of how or why the filter is used.
-  @override
   String? get description;
+  @override
 
   /// [descriptionElement] Extensions for description
-  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
+  @override
 
   /// [operator] A list of operators that can be used with the filter.
-  @override
   @JsonKey(name: 'operator')
   List<FhirCode>? get operator_;
+  @override
 
   /// [operatorElement] Extensions for operator
-  @override
   @JsonKey(name: '_operator')
   List<PrimitiveElement>? get operatorElement;
+  @override
 
   /// [value] A description of what the value for the filter should be.
-  @override
   String? get value;
+  @override
 
   /// [valueElement] Extensions for value
-  @override
   @JsonKey(name: '_value')
   PrimitiveElement? get valueElement;
-
-  /// Create a copy of CodeSystemFilter
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CodeSystemFilterImplCopyWith<_$CodeSystemFilterImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2778,12 +2749,8 @@ mixin _$CodeSystemProperty {
   @JsonKey(name: '_type')
   PrimitiveElement? get typeElement => throw _privateConstructorUsedError;
 
-  /// Serializes this CodeSystemProperty to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of CodeSystemProperty
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $CodeSystemPropertyCopyWith<CodeSystemProperty> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2818,8 +2785,6 @@ class _$CodeSystemPropertyCopyWithImpl<$Res, $Val extends CodeSystemProperty>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CodeSystemProperty
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2914,8 +2879,6 @@ class __$$CodeSystemPropertyImplCopyWithImpl<$Res>
       $Res Function(_$CodeSystemPropertyImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CodeSystemProperty
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3142,7 +3105,7 @@ class _$CodeSystemPropertyImpl extends _CodeSystemProperty {
                 other.typeElement == typeElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3158,9 +3121,7 @@ class _$CodeSystemPropertyImpl extends _CodeSystemProperty {
       type,
       typeElement);
 
-  /// Create a copy of CodeSystemProperty
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CodeSystemPropertyImplCopyWith<_$CodeSystemPropertyImpl> get copyWith =>
@@ -3194,10 +3155,12 @@ abstract class _CodeSystemProperty extends CodeSystemProperty {
   factory _CodeSystemProperty.fromJson(Map<String, dynamic> json) =
       _$CodeSystemPropertyImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3205,9 +3168,9 @@ abstract class _CodeSystemProperty extends CodeSystemProperty {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3222,56 +3185,52 @@ abstract class _CodeSystemProperty extends CodeSystemProperty {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [code] A code that is used to identify the property. The code is used
   /// internally (in CodeSystem.concept.property.code) and also externally, such
   ///  as in property filters.
-  @override
   FhirCode? get code;
+  @override
 
   /// [codeElement] Extensions for code
-  @override
   @JsonKey(name: '_code')
   PrimitiveElement? get codeElement;
+  @override
 
   /// [uri] Reference to the formal meaning of the property. One possible
   /// source of meaning is the [Concept
   ///  Properties](codesystem-concept-properties.html) code system.
-  @override
   FhirUri? get uri;
+  @override
 
   /// [uriElement] Extensions for uri
-  @override
   @JsonKey(name: '_uri')
   PrimitiveElement? get uriElement;
+  @override
 
   /// [description] A description of the property- why it is defined, and how
   ///  its value might be used.
-  @override
   String? get description;
+  @override
 
   /// [descriptionElement] Extensions for description
-  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
+  @override
 
   /// [type] The type of the property value. Properties of type "code" contain
   /// a code defined by the code system (e.g. a reference to another defined
   ///  concept).
-  @override
   FhirCode? get type;
+  @override
 
   /// [typeElement] Extensions for type
-  @override
   @JsonKey(name: '_type')
   PrimitiveElement? get typeElement;
-
-  /// Create a copy of CodeSystemProperty
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CodeSystemPropertyImplCopyWith<_$CodeSystemPropertyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3351,12 +3310,8 @@ mixin _$CodeSystemConcept {
   ///  (is-a/contains/categorizes) - see hierarchyMeaning.
   List<CodeSystemConcept>? get concept => throw _privateConstructorUsedError;
 
-  /// Serializes this CodeSystemConcept to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of CodeSystemConcept
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $CodeSystemConceptCopyWith<CodeSystemConcept> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3392,8 +3347,6 @@ class _$CodeSystemConceptCopyWithImpl<$Res, $Val extends CodeSystemConcept>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CodeSystemConcept
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3494,8 +3447,6 @@ class __$$CodeSystemConceptImplCopyWithImpl<$Res>
       $Res Function(_$CodeSystemConceptImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CodeSystemConcept
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3768,7 +3719,7 @@ class _$CodeSystemConceptImpl extends _CodeSystemConcept {
             const DeepCollectionEquality().equals(other._concept, _concept));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3785,9 +3736,7 @@ class _$CodeSystemConceptImpl extends _CodeSystemConcept {
       const DeepCollectionEquality().hash(_property),
       const DeepCollectionEquality().hash(_concept));
 
-  /// Create a copy of CodeSystemConcept
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CodeSystemConceptImplCopyWith<_$CodeSystemConceptImpl> get copyWith =>
@@ -3821,10 +3770,12 @@ abstract class _CodeSystemConcept extends CodeSystemConcept {
   factory _CodeSystemConcept.fromJson(Map<String, dynamic> json) =
       _$CodeSystemConceptImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3832,9 +3783,9 @@ abstract class _CodeSystemConcept extends CodeSystemConcept {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3849,61 +3800,57 @@ abstract class _CodeSystemConcept extends CodeSystemConcept {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [code] A code - a text symbol - that uniquely identifies the concept
   ///  within the code system.
-  @override
   FhirCode? get code;
+  @override
 
   /// [codeElement] Extensions for code
-  @override
   @JsonKey(name: '_code')
   PrimitiveElement? get codeElement;
+  @override
 
   /// [display] A human readable string that is the recommended default way to
   ///  present this concept to a user.
-  @override
   String? get display;
+  @override
 
   /// [displayElement] Extensions for display
-  @override
   @JsonKey(name: '_display')
   PrimitiveElement? get displayElement;
+  @override
 
   /// [definition] The formal definition of the concept. The code system
   /// resource does not make formal definitions required, because of the
   /// prevalence of legacy systems. However, they are highly recommended, as
   ///  without them there is no formal meaning associated with the concept.
-  @override
   String? get definition;
+  @override
 
   /// [definitionElement] Extensions for definition
-  @override
   @JsonKey(name: '_definition')
   PrimitiveElement? get definitionElement;
+  @override
 
   /// [designation] Additional representations for the concept - other
   /// languages, aliases, specialized purposes, used for particular purposes,
   ///  etc.
-  @override
   List<CodeSystemDesignation>? get designation;
+  @override
 
   /// [property] A property value for this concept.
-  @override
   List<CodeSystemProperty1>? get property;
+  @override
 
   /// [concept] Defines children of a concept to produce a hierarchy of
   /// concepts. The nature of the relationships is variable
   ///  (is-a/contains/categorizes) - see hierarchyMeaning.
-  @override
   List<CodeSystemConcept>? get concept;
-
-  /// Create a copy of CodeSystemConcept
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CodeSystemConceptImplCopyWith<_$CodeSystemConceptImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3961,12 +3908,8 @@ mixin _$CodeSystemDesignation {
   @JsonKey(name: '_value')
   PrimitiveElement? get valueElement => throw _privateConstructorUsedError;
 
-  /// Serializes this CodeSystemDesignation to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of CodeSystemDesignation
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $CodeSystemDesignationCopyWith<CodeSystemDesignation> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4001,8 +3944,6 @@ class _$CodeSystemDesignationCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CodeSystemDesignation
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4051,8 +3992,6 @@ class _$CodeSystemDesignationCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of CodeSystemDesignation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodingCopyWith<$Res>? get use {
@@ -4098,8 +4037,6 @@ class __$$CodeSystemDesignationImplCopyWithImpl<$Res>
       $Res Function(_$CodeSystemDesignationImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CodeSystemDesignation
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4282,7 +4219,7 @@ class _$CodeSystemDesignationImpl extends _CodeSystemDesignation {
                 other.valueElement == valueElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -4295,9 +4232,7 @@ class _$CodeSystemDesignationImpl extends _CodeSystemDesignation {
       value,
       valueElement);
 
-  /// Create a copy of CodeSystemDesignation
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CodeSystemDesignationImplCopyWith<_$CodeSystemDesignationImpl>
@@ -4328,10 +4263,12 @@ abstract class _CodeSystemDesignation extends CodeSystemDesignation {
   factory _CodeSystemDesignation.fromJson(Map<String, dynamic> json) =
       _$CodeSystemDesignationImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -4339,9 +4276,9 @@ abstract class _CodeSystemDesignation extends CodeSystemDesignation {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -4356,35 +4293,31 @@ abstract class _CodeSystemDesignation extends CodeSystemDesignation {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [language] The language this designation is defined for.
-  @override
   FhirCode? get language;
+  @override
 
   /// [languageElement] Extensions for language
-  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
+  @override
 
   /// [use] A code that details how this designation would be used.
-  @override
   Coding? get use;
+  @override
 
   /// [value] The text value for this designation.
-  @override
   String? get value;
+  @override
 
   /// [valueElement] Extensions for value
-  @override
   @JsonKey(name: '_value')
   PrimitiveElement? get valueElement;
-
-  /// Create a copy of CodeSystemDesignation
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CodeSystemDesignationImplCopyWith<_$CodeSystemDesignationImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -4481,12 +4414,8 @@ mixin _$CodeSystemProperty1 {
   PrimitiveElement? get valueDecimalElement =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this CodeSystemProperty1 to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of CodeSystemProperty1
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $CodeSystemProperty1CopyWith<CodeSystemProperty1> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4530,8 +4459,6 @@ class _$CodeSystemProperty1CopyWithImpl<$Res, $Val extends CodeSystemProperty1>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CodeSystemProperty1
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4630,8 +4557,6 @@ class _$CodeSystemProperty1CopyWithImpl<$Res, $Val extends CodeSystemProperty1>
     ) as $Val);
   }
 
-  /// Create a copy of CodeSystemProperty1
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodingCopyWith<$Res>? get valueCoding {
@@ -4685,8 +4610,6 @@ class __$$CodeSystemProperty1ImplCopyWithImpl<$Res>
       $Res Function(_$CodeSystemProperty1Impl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CodeSystemProperty1
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4995,7 +4918,7 @@ class _$CodeSystemProperty1Impl extends _CodeSystemProperty1 {
                 other.valueDecimalElement == valueDecimalElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -5018,9 +4941,7 @@ class _$CodeSystemProperty1Impl extends _CodeSystemProperty1 {
       valueDecimal,
       valueDecimalElement);
 
-  /// Create a copy of CodeSystemProperty1
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CodeSystemProperty1ImplCopyWith<_$CodeSystemProperty1Impl> get copyWith =>
@@ -5064,10 +4985,12 @@ abstract class _CodeSystemProperty1 extends CodeSystemProperty1 {
   factory _CodeSystemProperty1.fromJson(Map<String, dynamic> json) =
       _$CodeSystemProperty1Impl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -5075,9 +4998,9 @@ abstract class _CodeSystemProperty1 extends CodeSystemProperty1 {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -5092,80 +5015,76 @@ abstract class _CodeSystemProperty1 extends CodeSystemProperty1 {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [code] A code that is a reference to CodeSystem.property.code.
-  @override
   FhirCode? get code;
+  @override
 
   /// [codeElement] Extensions for code
-  @override
   @JsonKey(name: '_code')
   PrimitiveElement? get codeElement;
+  @override
 
   /// [valueCode] The value of this property.
-  @override
   FhirCode? get valueCode;
+  @override
 
   /// [valueCodeElement] Extensions for valueCode
-  @override
   @JsonKey(name: '_valueCode')
   PrimitiveElement? get valueCodeElement;
+  @override
 
   /// [valueCoding] The value of this property.
-  @override
   Coding? get valueCoding;
+  @override
 
   /// [valueString] The value of this property.
-  @override
   String? get valueString;
+  @override
 
   /// [valueStringElement] Extensions for valueString
-  @override
   @JsonKey(name: '_valueString')
   PrimitiveElement? get valueStringElement;
+  @override
 
   /// [valueInteger] The value of this property.
-  @override
   FhirInteger? get valueInteger;
+  @override
 
   /// [valueIntegerElement] Extensions for valueInteger
-  @override
   @JsonKey(name: '_valueInteger')
   PrimitiveElement? get valueIntegerElement;
+  @override
 
   /// [valueBoolean] The value of this property.
-  @override
   FhirBoolean? get valueBoolean;
+  @override
 
   /// [valueBooleanElement] Extensions for valueBoolean
-  @override
   @JsonKey(name: '_valueBoolean')
   PrimitiveElement? get valueBooleanElement;
+  @override
 
   /// [valueDateTime] The value of this property.
-  @override
   FhirDateTime? get valueDateTime;
+  @override
 
   /// [valueDateTimeElement] Extensions for valueDateTime
-  @override
   @JsonKey(name: '_valueDateTime')
   PrimitiveElement? get valueDateTimeElement;
+  @override
 
   /// [valueDecimal] The value of this property.
-  @override
   FhirDecimal? get valueDecimal;
+  @override
 
   /// [valueDecimalElement] Extensions for valueDecimal
-  @override
   @JsonKey(name: '_valueDecimal')
   PrimitiveElement? get valueDecimalElement;
-
-  /// Create a copy of CodeSystemProperty1
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CodeSystemProperty1ImplCopyWith<_$CodeSystemProperty1Impl> get copyWith =>
       throw _privateConstructorUsedError;
 }
