@@ -44,24 +44,24 @@ class DemoPage extends StatelessWidget {
             children: [
               ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.white),
-                    side: MaterialStateProperty.all(
+                    backgroundColor: WidgetStateProperty.all(Colors.white),
+                    side: WidgetStateProperty.all(
                         const BorderSide(color: Colors.black)),
                   ),
                   child: Image.asset('assets/hapi.png'),
                   onPressed: () async => await hapiRequest()),
               ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.white),
-                    side: MaterialStateProperty.all(
+                    backgroundColor: WidgetStateProperty.all(Colors.white),
+                    side: WidgetStateProperty.all(
                         const BorderSide(color: Colors.black)),
                   ),
                   child: Image.asset('assets/meld.png'),
                   onPressed: () async => await meldRequest(fhirCallback)),
               ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.white),
-                    side: MaterialStateProperty.all(
+                    backgroundColor: WidgetStateProperty.all(Colors.white),
+                    side: WidgetStateProperty.all(
                         const BorderSide(color: Colors.black)),
                   ),
                   child: const Text(
@@ -76,8 +76,8 @@ class DemoPage extends StatelessWidget {
                       await epicPatientRequest(fhirCallback)),
               ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.white),
-                    side: MaterialStateProperty.all(
+                    backgroundColor: WidgetStateProperty.all(Colors.white),
+                    side: WidgetStateProperty.all(
                         const BorderSide(color: Colors.black)),
                   ),
                   child: const Text(
@@ -92,8 +92,8 @@ class DemoPage extends StatelessWidget {
                       await epicClinicianRequest(fhirCallback)),
               ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.white),
-                    side: MaterialStateProperty.all(
+                    backgroundColor: WidgetStateProperty.all(Colors.white),
+                    side: WidgetStateProperty.all(
                         const BorderSide(color: Colors.black)),
                   ),
                   child: Column(
@@ -113,8 +113,8 @@ class DemoPage extends StatelessWidget {
                       await cernerPatientRequest(fhirCallback)),
               ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.white),
-                    side: MaterialStateProperty.all(
+                    backgroundColor: WidgetStateProperty.all(Colors.white),
+                    side: WidgetStateProperty.all(
                         const BorderSide(color: Colors.black)),
                   ),
                   child: Image.asset('assets/gcp.png'),

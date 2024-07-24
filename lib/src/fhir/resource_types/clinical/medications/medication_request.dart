@@ -406,7 +406,7 @@ class MedicationRequest with _$MedicationRequest implements DomainResource {
     @JsonKey(name: '_instantiatesCanonical')
 
     /// [instantiatesCanonicalElement] Extensions for instantiatesCanonical
-    List<Element>? instantiatesCanonicalElement,
+    List<PrimitiveElement>? instantiatesCanonicalElement,
 
     /// [instantiatesUri] The URL pointing to an externally maintained protocol,
     /// guideline, orderset or other definition that is adhered to in whole or in

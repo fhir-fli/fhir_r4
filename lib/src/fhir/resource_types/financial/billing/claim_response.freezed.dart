@@ -4124,7 +4124,7 @@ mixin _$ClaimResponseAddItem {
   List<FhirPositiveInt>? get subdetailSequence =>
       throw _privateConstructorUsedError;
   @JsonKey(name: '_subdetailSequence')
-  List<Element>? get subdetailSequenceElement =>
+  List<PrimitiveElement>? get subdetailSequenceElement =>
       throw _privateConstructorUsedError;
 
   /// [provider] The providers who are authorized for the services rendered to
@@ -4239,7 +4239,7 @@ abstract class $ClaimResponseAddItemCopyWith<$Res> {
       List<PrimitiveElement>? detailSequenceElement,
       List<FhirPositiveInt>? subdetailSequence,
       @JsonKey(name: '_subdetailSequence')
-      List<Element>? subdetailSequenceElement,
+      List<PrimitiveElement>? subdetailSequenceElement,
       List<Reference>? provider,
       CodeableConcept productOrService,
       List<CodeableConcept>? modifier,
@@ -4356,7 +4356,7 @@ class _$ClaimResponseAddItemCopyWithImpl<$Res,
       subdetailSequenceElement: freezed == subdetailSequenceElement
           ? _value.subdetailSequenceElement
           : subdetailSequenceElement // ignore: cast_nullable_to_non_nullable
-              as List<Element>?,
+              as List<PrimitiveElement>?,
       provider: freezed == provider
           ? _value.provider
           : provider // ignore: cast_nullable_to_non_nullable
@@ -4588,7 +4588,7 @@ abstract class _$$ClaimResponseAddItemImplCopyWith<$Res>
       List<PrimitiveElement>? detailSequenceElement,
       List<FhirPositiveInt>? subdetailSequence,
       @JsonKey(name: '_subdetailSequence')
-      List<Element>? subdetailSequenceElement,
+      List<PrimitiveElement>? subdetailSequenceElement,
       List<Reference>? provider,
       CodeableConcept productOrService,
       List<CodeableConcept>? modifier,
@@ -4711,7 +4711,7 @@ class __$$ClaimResponseAddItemImplCopyWithImpl<$Res>
       subdetailSequenceElement: freezed == subdetailSequenceElement
           ? _value._subdetailSequenceElement
           : subdetailSequenceElement // ignore: cast_nullable_to_non_nullable
-              as List<Element>?,
+              as List<PrimitiveElement>?,
       provider: freezed == provider
           ? _value._provider
           : provider // ignore: cast_nullable_to_non_nullable
@@ -4815,7 +4815,7 @@ class _$ClaimResponseAddItemImpl extends _ClaimResponseAddItem {
       final List<PrimitiveElement>? detailSequenceElement,
       final List<FhirPositiveInt>? subdetailSequence,
       @JsonKey(name: '_subdetailSequence')
-      final List<Element>? subdetailSequenceElement,
+      final List<PrimitiveElement>? subdetailSequenceElement,
       final List<Reference>? provider,
       required this.productOrService,
       final List<CodeableConcept>? modifier,
@@ -5002,10 +5002,10 @@ class _$ClaimResponseAddItemImpl extends _ClaimResponseAddItem {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<Element>? _subdetailSequenceElement;
+  final List<PrimitiveElement>? _subdetailSequenceElement;
   @override
   @JsonKey(name: '_subdetailSequence')
-  List<Element>? get subdetailSequenceElement {
+  List<PrimitiveElement>? get subdetailSequenceElement {
     final value = _subdetailSequenceElement;
     if (value == null) return null;
     if (_subdetailSequenceElement is EqualUnmodifiableListView)
@@ -5323,7 +5323,7 @@ abstract class _ClaimResponseAddItem extends ClaimResponseAddItem {
       final List<PrimitiveElement>? detailSequenceElement,
       final List<FhirPositiveInt>? subdetailSequence,
       @JsonKey(name: '_subdetailSequence')
-      final List<Element>? subdetailSequenceElement,
+      final List<PrimitiveElement>? subdetailSequenceElement,
       final List<Reference>? provider,
       required final CodeableConcept productOrService,
       final List<CodeableConcept>? modifier,
@@ -5409,7 +5409,7 @@ abstract class _ClaimResponseAddItem extends ClaimResponseAddItem {
   List<FhirPositiveInt>? get subdetailSequence;
   @override
   @JsonKey(name: '_subdetailSequence')
-  List<Element>? get subdetailSequenceElement;
+  List<PrimitiveElement>? get subdetailSequenceElement;
 
   /// [provider] The providers who are authorized for the services rendered to
   ///  the patient.

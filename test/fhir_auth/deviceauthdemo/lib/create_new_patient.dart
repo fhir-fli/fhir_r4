@@ -4,35 +4,33 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 Patient createNewPatient() => Patient(
       active: FhirBoolean(true),
-      name: [
+      name: <HumanName>[
         HumanName(
           family: lastNames[random(50)],
-          given: [firstNames[random(200)]],
+          given: <String>[firstNames[random(200)]],
         ),
       ],
-      address: [Address(postalCode: zipCode())],
-      gender: random(10) < 5
-          ? AdministrativeGender.male
-          : AdministrativeGender.female,
+      address: <Address>[Address(postalCode: zipCode())],
+      gender: random(10) < 5 ? FhirCode('male') : FhirCode('female'),
       birthDate: FhirDate(
           '${1900 + random(120)}-0${random(8) + 1}-${(random(27) + 1).toString().padLeft(2, '0')}'),
     );
 
 int random(int numb) {
-  final rand = Random();
+  final Random rand = Random();
   return rand.nextInt(numb);
 }
 
 String zipCode() => digits(5);
 
 String digits(int digit) {
-  const chars = '1234567890';
-  final rnd = Random();
+  const String chars = '1234567890';
+  final Random rnd = Random();
   return String.fromCharCodes(Iterable.generate(
       digit, (_) => chars.codeUnitAt(rnd.nextInt(chars.length))));
 }
 
-const lastNames = [
+const List<String> lastNames = <String>[
   'Smith',
   'Johnson',
   'Williams',
@@ -84,7 +82,7 @@ const lastNames = [
   'Carter',
   'Roberts',
 ];
-const firstNames = [
+const List<String> firstNames = <String>[
   'Mary',
   'Patricia',
   'Jennifer',

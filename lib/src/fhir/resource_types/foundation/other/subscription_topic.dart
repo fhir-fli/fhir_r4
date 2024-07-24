@@ -339,7 +339,7 @@ class SubscriptionTopicResourceTrigger
     @JsonKey(name: '_resource') PrimitiveElement? resourceElement,
     List<FhirCode>? supportedInteraction,
     @JsonKey(name: '_supportedInteraction')
-    List<Element>? supportedInteractionElement,
+    List<PrimitiveElement>? supportedInteractionElement,
     SubscriptionTopicQueryCriteria? queryCriteria,
     String? fhirPathCriteria,
     @JsonKey(name: '_fhirPathCriteria')
@@ -614,7 +614,7 @@ class SubscriptionTopicCanFilterBy
     @JsonKey(name: '_filterDefinition')
     PrimitiveElement? filterDefinitionElement,
     List<FhirCode>? modifier,
-    @JsonKey(name: '_modifier') List<Element>? modifierElement,
+    @JsonKey(name: '_modifier') List<PrimitiveElement>? modifierElement,
   }) = _SubscriptionTopicCanFilterBy;
 
   @override
@@ -690,9 +690,9 @@ class SubscriptionTopicNotificationShape
     FhirUri? resource,
     @JsonKey(name: '_resource') PrimitiveElement? resourceElement,
     List<String>? include,
-    @JsonKey(name: '_include') List<Element>? includeElement,
+    @JsonKey(name: '_include') List<PrimitiveElement>? includeElement,
     List<String>? revInclude,
-    @JsonKey(name: '_revInclude') List<Element>? revIncludeElement,
+    @JsonKey(name: '_revInclude') List<PrimitiveElement>? revIncludeElement,
   }) = _SubscriptionTopicNotificationShape;
 
   @override

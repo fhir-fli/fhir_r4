@@ -688,7 +688,7 @@ class CoverageEligibilityRequestItem
     @JsonKey(name: '_supportingInfoSequence')
 
     /// [supportingInfoSequenceElement] Extensions for supportingInfoSequence
-    List<Element>? supportingInfoSequenceElement,
+    List<PrimitiveElement>? supportingInfoSequenceElement,
 
     /// [category] Code to identify the general type of benefits under which
     ///  products and services are provided.

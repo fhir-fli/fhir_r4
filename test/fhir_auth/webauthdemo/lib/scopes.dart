@@ -5,7 +5,7 @@ final scopes = Scopes(
   clinicalScopes: [
     ClinicalScope(
       role: Role.patient,
-      resourceType: R5ResourceType.Patient,
+      resourceType: R4ResourceType.Patient,
       interaction: Interaction.any,
     ),
   ],
@@ -19,12 +19,12 @@ final cernerScopes = Scopes(
   clinicalScopes: [
     ClinicalScope(
       role: Role.patient,
-      resourceType: R5ResourceType.Patient,
+      resourceType: R4ResourceType.Patient,
       interaction: Interaction.read,
     ),
     ClinicalScope(
       role: Role.patient,
-      resourceType: R5ResourceType.Patient,
+      resourceType: R4ResourceType.Patient,
       interaction: Interaction.write,
     ),
   ],

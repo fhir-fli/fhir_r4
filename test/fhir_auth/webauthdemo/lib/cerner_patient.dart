@@ -22,8 +22,8 @@ Future<void> cernerPatientRequest(Uri fhirCallback) async {
   if (client.fhirUri.value != null && client.patientId != null) {
     final request = FhirRequest.read(
       base: client.fhirUri.value ?? Uri.parse('127.0.0.1'),
-      type: R5ResourceType.Patient,
-      id: client.patientId!,
+      type: R4ResourceType.Patient,
+      id: client.patientId!.toString(),
       client: client,
     );
     try {

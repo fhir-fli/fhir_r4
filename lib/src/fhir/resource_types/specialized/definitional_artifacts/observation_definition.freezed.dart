@@ -105,7 +105,7 @@ mixin _$ObservationDefinition {
   ///  instance observations conforming to this ObservationDefinition.
   List<FhirCode>? get permittedDataType => throw _privateConstructorUsedError;
   @JsonKey(name: '_permittedDataType')
-  List<Element>? get permittedDataTypeElement =>
+  List<PrimitiveElement>? get permittedDataTypeElement =>
       throw _privateConstructorUsedError;
 
   /// [multipleResultsAllowed] Multiple results allowed for observations
@@ -188,7 +188,7 @@ abstract class $ObservationDefinitionCopyWith<$Res> {
       List<Identifier>? identifier,
       List<FhirCode>? permittedDataType,
       @JsonKey(name: '_permittedDataType')
-      List<Element>? permittedDataTypeElement,
+      List<PrimitiveElement>? permittedDataTypeElement,
       FhirBoolean? multipleResultsAllowed,
       @JsonKey(name: '_multipleResultsAllowed')
       PrimitiveElement? multipleResultsAllowedElement,
@@ -323,7 +323,7 @@ class _$ObservationDefinitionCopyWithImpl<$Res,
       permittedDataTypeElement: freezed == permittedDataTypeElement
           ? _value.permittedDataTypeElement
           : permittedDataTypeElement // ignore: cast_nullable_to_non_nullable
-              as List<Element>?,
+              as List<PrimitiveElement>?,
       multipleResultsAllowed: freezed == multipleResultsAllowed
           ? _value.multipleResultsAllowed
           : multipleResultsAllowed // ignore: cast_nullable_to_non_nullable
@@ -523,7 +523,7 @@ abstract class _$$ObservationDefinitionImplCopyWith<$Res>
       List<Identifier>? identifier,
       List<FhirCode>? permittedDataType,
       @JsonKey(name: '_permittedDataType')
-      List<Element>? permittedDataTypeElement,
+      List<PrimitiveElement>? permittedDataTypeElement,
       FhirBoolean? multipleResultsAllowed,
       @JsonKey(name: '_multipleResultsAllowed')
       PrimitiveElement? multipleResultsAllowedElement,
@@ -665,7 +665,7 @@ class __$$ObservationDefinitionImplCopyWithImpl<$Res>
       permittedDataTypeElement: freezed == permittedDataTypeElement
           ? _value._permittedDataTypeElement
           : permittedDataTypeElement // ignore: cast_nullable_to_non_nullable
-              as List<Element>?,
+              as List<PrimitiveElement>?,
       multipleResultsAllowed: freezed == multipleResultsAllowed
           ? _value.multipleResultsAllowed
           : multipleResultsAllowed // ignore: cast_nullable_to_non_nullable
@@ -735,7 +735,7 @@ class _$ObservationDefinitionImpl extends _ObservationDefinition {
       final List<Identifier>? identifier,
       final List<FhirCode>? permittedDataType,
       @JsonKey(name: '_permittedDataType')
-      final List<Element>? permittedDataTypeElement,
+      final List<PrimitiveElement>? permittedDataTypeElement,
       this.multipleResultsAllowed,
       @JsonKey(name: '_multipleResultsAllowed')
       this.multipleResultsAllowedElement,
@@ -936,10 +936,10 @@ class _$ObservationDefinitionImpl extends _ObservationDefinition {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<Element>? _permittedDataTypeElement;
+  final List<PrimitiveElement>? _permittedDataTypeElement;
   @override
   @JsonKey(name: '_permittedDataType')
-  List<Element>? get permittedDataTypeElement {
+  List<PrimitiveElement>? get permittedDataTypeElement {
     final value = _permittedDataTypeElement;
     if (value == null) return null;
     if (_permittedDataTypeElement is EqualUnmodifiableListView)
@@ -1147,7 +1147,7 @@ abstract class _ObservationDefinition extends ObservationDefinition {
       final List<Identifier>? identifier,
       final List<FhirCode>? permittedDataType,
       @JsonKey(name: '_permittedDataType')
-      final List<Element>? permittedDataTypeElement,
+      final List<PrimitiveElement>? permittedDataTypeElement,
       final FhirBoolean? multipleResultsAllowed,
       @JsonKey(name: '_multipleResultsAllowed')
       final PrimitiveElement? multipleResultsAllowedElement,
@@ -1264,7 +1264,7 @@ abstract class _ObservationDefinition extends ObservationDefinition {
   List<FhirCode>? get permittedDataType;
   @override
   @JsonKey(name: '_permittedDataType')
-  List<Element>? get permittedDataTypeElement;
+  List<PrimitiveElement>? get permittedDataTypeElement;
 
   /// [multipleResultsAllowed] Multiple results allowed for observations
   ///  conforming to this ObservationDefinition.

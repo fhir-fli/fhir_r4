@@ -1189,7 +1189,7 @@ class ContractOffer with _$ContractOffer implements BackboneElement {
     @JsonKey(name: '_securityLabelNumber')
 
     /// [securityLabelNumberElement] Extensions for securityLabelNumber
-    List<Element>? securityLabelNumberElement,
+    List<PrimitiveElement>? securityLabelNumberElement,
   }) = _ContractOffer;
 
   @override
@@ -1785,7 +1785,7 @@ class ContractAsset with _$ContractAsset implements BackboneElement {
     @JsonKey(name: '_securityLabelNumber')
 
     /// [securityLabelNumberElement] Extensions for securityLabelNumber
-    List<Element>? securityLabelNumberElement,
+    List<PrimitiveElement>? securityLabelNumberElement,
 
     /// [valuedItem] Contract Valued Item List.
     List<ContractValuedItem>? valuedItem,
@@ -2165,7 +2165,7 @@ class ContractValuedItem with _$ContractValuedItem implements BackboneElement {
     @JsonKey(name: '_securityLabelNumber')
 
     /// [securityLabelNumberElement] Extensions for securityLabelNumber
-    List<Element>? securityLabelNumberElement,
+    List<PrimitiveElement>? securityLabelNumberElement,
   }) = _ContractValuedItem;
 
   @override
@@ -2473,7 +2473,7 @@ class ContractAction with _$ContractAction implements BackboneElement {
     @JsonKey(name: '_securityLabelNumber')
 
     /// [securityLabelNumberElement] Extensions for securityLabelNumber
-    List<Element>? securityLabelNumberElement,
+    List<PrimitiveElement>? securityLabelNumberElement,
   }) = _ContractAction;
 
   @override

@@ -388,10 +388,10 @@ _$SubscriptionTopicResourceTriggerImpl
           supportedInteraction: (json['supportedInteraction'] as List<dynamic>?)
               ?.map(FhirCode.fromJson)
               .toList(),
-          supportedInteractionElement:
-              (json['_supportedInteraction'] as List<dynamic>?)
-                  ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
-                  .toList(),
+          supportedInteractionElement: (json['_supportedInteraction']
+                  as List<dynamic>?)
+              ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
+              .toList(),
           queryCriteria: json['queryCriteria'] == null
               ? null
               : SubscriptionTopicQueryCriteria.fromJson(
@@ -592,7 +592,7 @@ _$SubscriptionTopicCanFilterByImpl _$$SubscriptionTopicCanFilterByImplFromJson(
       modifier:
           (json['modifier'] as List<dynamic>?)?.map(FhirCode.fromJson).toList(),
       modifierElement: (json['_modifier'] as List<dynamic>?)
-          ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -647,13 +647,13 @@ _$SubscriptionTopicNotificationShapeImpl
               ?.map((e) => e as String)
               .toList(),
           includeElement: (json['_include'] as List<dynamic>?)
-              ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
               .toList(),
           revInclude: (json['revInclude'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList(),
           revIncludeElement: (json['_revInclude'] as List<dynamic>?)
-              ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
               .toList(),
         );
 

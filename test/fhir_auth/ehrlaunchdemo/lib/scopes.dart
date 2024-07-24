@@ -5,7 +5,7 @@ final scopes = Scopes(
   clinicalScopes: [
     ClinicalScope(
       role: Role.user,
-      resourceType: R5ResourceType.Patient,
+      resourceType: R4ResourceType.Patient,
       interaction: Interaction.any,
     ),
   ],
@@ -19,7 +19,7 @@ final cernerPatientScopes = Scopes(
   clinicalScopes: [
     ClinicalScope(
       role: Role.patient,
-      resourceType: R5ResourceType.Patient,
+      resourceType: R4ResourceType.Patient,
       interaction: Interaction.read,
     ),
   ],
@@ -33,12 +33,12 @@ final cernerUserScopes = Scopes(
   clinicalScopes: [
     ClinicalScope(
       role: Role.user,
-      resourceType: R5ResourceType.Patient,
+      resourceType: R4ResourceType.Patient,
       interaction: Interaction.any,
     ),
     ClinicalScope(
       role: Role.patient,
-      resourceType: R5ResourceType.Patient,
+      resourceType: R4ResourceType.Patient,
       interaction: Interaction.read,
     ),
   ],
@@ -52,7 +52,7 @@ final epicUserScopes = Scopes(
   clinicalScopes: [
     ClinicalScope(
       role: Role.user,
-      resourceType: R5ResourceType.Patient,
+      resourceType: R4ResourceType.Patient,
       interaction: Interaction.any,
     ),
   ],
@@ -67,7 +67,7 @@ final epicPatientScopes = Scopes(
   clinicalScopes: [
     ClinicalScope(
       role: Role.patient,
-      resourceType: R5ResourceType.Patient,
+      resourceType: R4ResourceType.Patient,
       interaction: Interaction.read,
     ),
   ],

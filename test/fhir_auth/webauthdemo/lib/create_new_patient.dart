@@ -50,9 +50,7 @@ Patient createNewPatient() {
       ),
     ],
     address: [Address(postalCode: zipCode())],
-    gender: random(10) < 5
-        ? AdministrativeGender.male
-        : AdministrativeGender.female,
+    gender: random(10) < 5 ? FhirCode('male') : FhirCode('female'),
     birthDate: FhirDate(
         '${1900 + random(120)}-0${random(8) + 1}-${(random(27) + 1).toString().padLeft(2, '0')}'),
   );

@@ -23,13 +23,13 @@ class MyApp extends StatelessWidget {
               child: GridView.count(
                 shrinkWrap: true,
                 crossAxisCount: 2,
-                children: [
+                children: <Widget>[
                   ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor:
                             MaterialStateProperty.all(Colors.white),
                         side: MaterialStateProperty.all(
-                            const BorderSide(color: Colors.black)),
+                            const BorderSide()),
                       ),
                       child: Image.asset('assets/hapi.png'),
                       onPressed: () async => await hapiRequest()),
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
                         backgroundColor:
                             MaterialStateProperty.all(Colors.white),
                         side: MaterialStateProperty.all(
-                            const BorderSide(color: Colors.black)),
+                            const BorderSide()),
                       ),
                       child: Image.asset('assets/meld.png'),
                       onPressed: () async => await meldRequest()),
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
                         backgroundColor:
                             MaterialStateProperty.all(Colors.white),
                         side: MaterialStateProperty.all(
-                            const BorderSide(color: Colors.black)),
+                            const BorderSide()),
                       ),
                       child: Image.asset('assets/gcp.png'),
                       onPressed: () async => await gcsRequest()),

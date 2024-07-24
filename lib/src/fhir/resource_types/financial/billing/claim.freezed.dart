@@ -6754,14 +6754,14 @@ mixin _$ClaimItem {
   List<FhirPositiveInt>? get diagnosisSequence =>
       throw _privateConstructorUsedError;
   @JsonKey(name: '_diagnosisSequence')
-  List<Element>? get diagnosisSequenceElement =>
+  List<PrimitiveElement>? get diagnosisSequenceElement =>
       throw _privateConstructorUsedError;
 
   /// [procedureSequence] Procedures applicable for this service or product.
   List<FhirPositiveInt>? get procedureSequence =>
       throw _privateConstructorUsedError;
   @JsonKey(name: '_procedureSequence')
-  List<Element>? get procedureSequenceElement =>
+  List<PrimitiveElement>? get procedureSequenceElement =>
       throw _privateConstructorUsedError;
 
   /// [informationSequence] Exceptions, special conditions and supporting
@@ -6769,7 +6769,7 @@ mixin _$ClaimItem {
   List<FhirPositiveInt>? get informationSequence =>
       throw _privateConstructorUsedError;
   @JsonKey(name: '_informationSequence')
-  List<Element>? get informationSequenceElement =>
+  List<PrimitiveElement>? get informationSequenceElement =>
       throw _privateConstructorUsedError;
 
   /// [revenue] The type of revenue or cost center providing the product and/or
@@ -6881,13 +6881,13 @@ abstract class $ClaimItemCopyWith<$Res> {
       List<PrimitiveElement>? careTeamSequenceElement,
       List<FhirPositiveInt>? diagnosisSequence,
       @JsonKey(name: '_diagnosisSequence')
-      List<Element>? diagnosisSequenceElement,
+      List<PrimitiveElement>? diagnosisSequenceElement,
       List<FhirPositiveInt>? procedureSequence,
       @JsonKey(name: '_procedureSequence')
-      List<Element>? procedureSequenceElement,
+      List<PrimitiveElement>? procedureSequenceElement,
       List<FhirPositiveInt>? informationSequence,
       @JsonKey(name: '_informationSequence')
-      List<Element>? informationSequenceElement,
+      List<PrimitiveElement>? informationSequenceElement,
       CodeableConcept? revenue,
       CodeableConcept? category,
       CodeableConcept productOrService,
@@ -7009,7 +7009,7 @@ class _$ClaimItemCopyWithImpl<$Res, $Val extends ClaimItem>
       diagnosisSequenceElement: freezed == diagnosisSequenceElement
           ? _value.diagnosisSequenceElement
           : diagnosisSequenceElement // ignore: cast_nullable_to_non_nullable
-              as List<Element>?,
+              as List<PrimitiveElement>?,
       procedureSequence: freezed == procedureSequence
           ? _value.procedureSequence
           : procedureSequence // ignore: cast_nullable_to_non_nullable
@@ -7017,7 +7017,7 @@ class _$ClaimItemCopyWithImpl<$Res, $Val extends ClaimItem>
       procedureSequenceElement: freezed == procedureSequenceElement
           ? _value.procedureSequenceElement
           : procedureSequenceElement // ignore: cast_nullable_to_non_nullable
-              as List<Element>?,
+              as List<PrimitiveElement>?,
       informationSequence: freezed == informationSequence
           ? _value.informationSequence
           : informationSequence // ignore: cast_nullable_to_non_nullable
@@ -7025,7 +7025,7 @@ class _$ClaimItemCopyWithImpl<$Res, $Val extends ClaimItem>
       informationSequenceElement: freezed == informationSequenceElement
           ? _value.informationSequenceElement
           : informationSequenceElement // ignore: cast_nullable_to_non_nullable
-              as List<Element>?,
+              as List<PrimitiveElement>?,
       revenue: freezed == revenue
           ? _value.revenue
           : revenue // ignore: cast_nullable_to_non_nullable
@@ -7284,13 +7284,13 @@ abstract class _$$ClaimItemImplCopyWith<$Res>
       List<PrimitiveElement>? careTeamSequenceElement,
       List<FhirPositiveInt>? diagnosisSequence,
       @JsonKey(name: '_diagnosisSequence')
-      List<Element>? diagnosisSequenceElement,
+      List<PrimitiveElement>? diagnosisSequenceElement,
       List<FhirPositiveInt>? procedureSequence,
       @JsonKey(name: '_procedureSequence')
-      List<Element>? procedureSequenceElement,
+      List<PrimitiveElement>? procedureSequenceElement,
       List<FhirPositiveInt>? informationSequence,
       @JsonKey(name: '_informationSequence')
-      List<Element>? informationSequenceElement,
+      List<PrimitiveElement>? informationSequenceElement,
       CodeableConcept? revenue,
       CodeableConcept? category,
       CodeableConcept productOrService,
@@ -7421,7 +7421,7 @@ class __$$ClaimItemImplCopyWithImpl<$Res>
       diagnosisSequenceElement: freezed == diagnosisSequenceElement
           ? _value._diagnosisSequenceElement
           : diagnosisSequenceElement // ignore: cast_nullable_to_non_nullable
-              as List<Element>?,
+              as List<PrimitiveElement>?,
       procedureSequence: freezed == procedureSequence
           ? _value._procedureSequence
           : procedureSequence // ignore: cast_nullable_to_non_nullable
@@ -7429,7 +7429,7 @@ class __$$ClaimItemImplCopyWithImpl<$Res>
       procedureSequenceElement: freezed == procedureSequenceElement
           ? _value._procedureSequenceElement
           : procedureSequenceElement // ignore: cast_nullable_to_non_nullable
-              as List<Element>?,
+              as List<PrimitiveElement>?,
       informationSequence: freezed == informationSequence
           ? _value._informationSequence
           : informationSequence // ignore: cast_nullable_to_non_nullable
@@ -7437,7 +7437,7 @@ class __$$ClaimItemImplCopyWithImpl<$Res>
       informationSequenceElement: freezed == informationSequenceElement
           ? _value._informationSequenceElement
           : informationSequenceElement // ignore: cast_nullable_to_non_nullable
-              as List<Element>?,
+              as List<PrimitiveElement>?,
       revenue: freezed == revenue
           ? _value.revenue
           : revenue // ignore: cast_nullable_to_non_nullable
@@ -7540,13 +7540,13 @@ class _$ClaimItemImpl extends _ClaimItem {
       final List<PrimitiveElement>? careTeamSequenceElement,
       final List<FhirPositiveInt>? diagnosisSequence,
       @JsonKey(name: '_diagnosisSequence')
-      final List<Element>? diagnosisSequenceElement,
+      final List<PrimitiveElement>? diagnosisSequenceElement,
       final List<FhirPositiveInt>? procedureSequence,
       @JsonKey(name: '_procedureSequence')
-      final List<Element>? procedureSequenceElement,
+      final List<PrimitiveElement>? procedureSequenceElement,
       final List<FhirPositiveInt>? informationSequence,
       @JsonKey(name: '_informationSequence')
-      final List<Element>? informationSequenceElement,
+      final List<PrimitiveElement>? informationSequenceElement,
       this.revenue,
       this.category,
       required this.productOrService,
@@ -7708,10 +7708,10 @@ class _$ClaimItemImpl extends _ClaimItem {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<Element>? _diagnosisSequenceElement;
+  final List<PrimitiveElement>? _diagnosisSequenceElement;
   @override
   @JsonKey(name: '_diagnosisSequence')
-  List<Element>? get diagnosisSequenceElement {
+  List<PrimitiveElement>? get diagnosisSequenceElement {
     final value = _diagnosisSequenceElement;
     if (value == null) return null;
     if (_diagnosisSequenceElement is EqualUnmodifiableListView)
@@ -7734,10 +7734,10 @@ class _$ClaimItemImpl extends _ClaimItem {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<Element>? _procedureSequenceElement;
+  final List<PrimitiveElement>? _procedureSequenceElement;
   @override
   @JsonKey(name: '_procedureSequence')
-  List<Element>? get procedureSequenceElement {
+  List<PrimitiveElement>? get procedureSequenceElement {
     final value = _procedureSequenceElement;
     if (value == null) return null;
     if (_procedureSequenceElement is EqualUnmodifiableListView)
@@ -7762,10 +7762,10 @@ class _$ClaimItemImpl extends _ClaimItem {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<Element>? _informationSequenceElement;
+  final List<PrimitiveElement>? _informationSequenceElement;
   @override
   @JsonKey(name: '_informationSequence')
-  List<Element>? get informationSequenceElement {
+  List<PrimitiveElement>? get informationSequenceElement {
     final value = _informationSequenceElement;
     if (value == null) return null;
     if (_informationSequenceElement is EqualUnmodifiableListView)
@@ -8076,13 +8076,13 @@ abstract class _ClaimItem extends ClaimItem {
       final List<PrimitiveElement>? careTeamSequenceElement,
       final List<FhirPositiveInt>? diagnosisSequence,
       @JsonKey(name: '_diagnosisSequence')
-      final List<Element>? diagnosisSequenceElement,
+      final List<PrimitiveElement>? diagnosisSequenceElement,
       final List<FhirPositiveInt>? procedureSequence,
       @JsonKey(name: '_procedureSequence')
-      final List<Element>? procedureSequenceElement,
+      final List<PrimitiveElement>? procedureSequenceElement,
       final List<FhirPositiveInt>? informationSequence,
       @JsonKey(name: '_informationSequence')
-      final List<Element>? informationSequenceElement,
+      final List<PrimitiveElement>? informationSequenceElement,
       final CodeableConcept? revenue,
       final CodeableConcept? category,
       required final CodeableConcept productOrService,
@@ -8164,14 +8164,14 @@ abstract class _ClaimItem extends ClaimItem {
   List<FhirPositiveInt>? get diagnosisSequence;
   @override
   @JsonKey(name: '_diagnosisSequence')
-  List<Element>? get diagnosisSequenceElement;
+  List<PrimitiveElement>? get diagnosisSequenceElement;
 
   /// [procedureSequence] Procedures applicable for this service or product.
   @override
   List<FhirPositiveInt>? get procedureSequence;
   @override
   @JsonKey(name: '_procedureSequence')
-  List<Element>? get procedureSequenceElement;
+  List<PrimitiveElement>? get procedureSequenceElement;
 
   /// [informationSequence] Exceptions, special conditions and supporting
   ///  information applicable for this service or product.
@@ -8179,7 +8179,7 @@ abstract class _ClaimItem extends ClaimItem {
   List<FhirPositiveInt>? get informationSequence;
   @override
   @JsonKey(name: '_informationSequence')
-  List<Element>? get informationSequenceElement;
+  List<PrimitiveElement>? get informationSequenceElement;
 
   /// [revenue] The type of revenue or cost center providing the product and/or
   ///  service.

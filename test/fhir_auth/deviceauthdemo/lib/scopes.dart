@@ -1,11 +1,11 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// FHIR Scopes
-final scopes = Scopes(
-  clinicalScopes: [
+final Scopes scopes = Scopes(
+  clinicalScopes: <ClinicalScope>[
     ClinicalScope(
       role: Role.patient,
-      resourceType: R5ResourceType.Patient,
+      resourceType: R4ResourceType.Patient,
       interaction: Interaction.any,
     ),
   ],

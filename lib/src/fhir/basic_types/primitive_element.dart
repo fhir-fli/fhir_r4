@@ -1,12 +1,10 @@
 import 'dart:convert';
 
-import 'package:json_annotation/json_annotation.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
 /// [PrimitiveElement] Base definition for all elements in a resource.
-@JsonSerializable()
 class PrimitiveElement implements Element {
   /// [PrimitiveElement] Base definition for all elements in a resource.
   const PrimitiveElement({
