@@ -154,12 +154,8 @@ mixin _$ObservationDefinition {
   ///  observation conforming to this ObservationDefinition.
   Reference? get criticalCodedValueSet => throw _privateConstructorUsedError;
 
-  /// Serializes this ObservationDefinition to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ObservationDefinition
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ObservationDefinitionCopyWith<ObservationDefinition> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -226,8 +222,6 @@ class _$ObservationDefinitionCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ObservationDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -371,8 +365,6 @@ class _$ObservationDefinitionCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of ObservationDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -385,8 +377,6 @@ class _$ObservationDefinitionCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ObservationDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -399,8 +389,6 @@ class _$ObservationDefinitionCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ObservationDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get code {
@@ -409,8 +397,6 @@ class _$ObservationDefinitionCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ObservationDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get method {
@@ -423,8 +409,6 @@ class _$ObservationDefinitionCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ObservationDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ObservationDefinitionQuantitativeDetailsCopyWith<$Res>?
@@ -439,8 +423,6 @@ class _$ObservationDefinitionCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ObservationDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get validCodedValueSet {
@@ -453,8 +435,6 @@ class _$ObservationDefinitionCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ObservationDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get normalCodedValueSet {
@@ -467,8 +447,6 @@ class _$ObservationDefinitionCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ObservationDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get abnormalCodedValueSet {
@@ -481,8 +459,6 @@ class _$ObservationDefinitionCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ObservationDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get criticalCodedValueSet {
@@ -568,8 +544,6 @@ class __$$ObservationDefinitionImplCopyWithImpl<$Res>
       $Res Function(_$ObservationDefinitionImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ObservationDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1077,7 +1051,7 @@ class _$ObservationDefinitionImpl extends _ObservationDefinition {
                 other.criticalCodedValueSet == criticalCodedValueSet));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1110,9 +1084,7 @@ class _$ObservationDefinitionImpl extends _ObservationDefinition {
         criticalCodedValueSet
       ]);
 
-  /// Create a copy of ObservationDefinition
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ObservationDefinitionImplCopyWith<_$ObservationDefinitionImpl>
@@ -1169,38 +1141,39 @@ abstract class _ObservationDefinition extends ObservationDefinition {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.ObservationDefinition)
   R4ResourceType get resourceType;
+  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @override
   String? get id;
+  @override
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  @override
   FhirMeta? get meta;
+  @override
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  @override
   FhirUri? get implicitRules;
+  @override
 
   /// [implicitRulesElement] Extensions for implicitRules
-  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
+  @override
 
   /// [language] The base language in which the resource is written.
-  @override
   FhirCode? get language;
+  @override
 
   /// [languageElement] Extensions for language
-  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
+  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1208,15 +1181,15 @@ abstract class _ObservationDefinition extends ObservationDefinition {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  @override
   Narrative? get text;
+  @override
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  @override
   List<Resource>? get contained;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1224,9 +1197,9 @@ abstract class _ObservationDefinition extends ObservationDefinition {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1241,88 +1214,84 @@ abstract class _ObservationDefinition extends ObservationDefinition {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [category] A code that classifies the general type of observation.
-  @override
   List<CodeableConcept>? get category;
+  @override
 
   /// [code] Describes what will be observed. Sometimes this is called the
   ///  observation "name".
-  @override
   CodeableConcept get code;
+  @override
 
   /// [identifier] A unique identifier assigned to this ObservationDefinition
   ///  artifact.
-  @override
   List<Identifier>? get identifier;
+  @override
 
   /// [permittedDataType] The data types allowed for the value element of the
   ///  instance observations conforming to this ObservationDefinition.
-  @override
   List<FhirCode>? get permittedDataType;
   @override
   @JsonKey(name: '_permittedDataType')
   List<PrimitiveElement>? get permittedDataTypeElement;
+  @override
 
   /// [multipleResultsAllowed] Multiple results allowed for observations
   ///  conforming to this ObservationDefinition.
-  @override
   FhirBoolean? get multipleResultsAllowed;
   @override
   @JsonKey(name: '_multipleResultsAllowed')
   PrimitiveElement? get multipleResultsAllowedElement;
+  @override
 
   /// [method] The method or technique used to perform the observation.
-  @override
   CodeableConcept? get method;
+  @override
 
   /// [preferredReportName] The preferred name to be used when reporting the
   ///  results of observations conforming to this ObservationDefinition.
-  @override
   String? get preferredReportName;
+  @override
 
   /// [preferredReportNameElement] Extensions for preferredReportName
-  @override
   @JsonKey(name: '_preferredReportName')
   PrimitiveElement? get preferredReportNameElement;
+  @override
 
   /// [quantitativeDetails] Characteristics for quantitative results of this
   ///  observation.
-  @override
   ObservationDefinitionQuantitativeDetails? get quantitativeDetails;
+  @override
 
   /// [qualifiedInterval] Multiple  ranges of results qualified by different
   /// contexts for ordinal or continuous observations conforming to this
   ///  ObservationDefinition.
-  @override
   List<ObservationDefinitionQualifiedInterval>? get qualifiedInterval;
+  @override
 
   /// [validCodedValueSet] The set of valid coded results for the observations
   ///  conforming to this ObservationDefinition.
-  @override
   Reference? get validCodedValueSet;
+  @override
 
   /// [normalCodedValueSet] The set of normal coded results for the
   ///  observations conforming to this ObservationDefinition.
-  @override
   Reference? get normalCodedValueSet;
+  @override
 
   /// [abnormalCodedValueSet] The set of abnormal coded results for the
   ///  observation conforming to this ObservationDefinition.
-  @override
   Reference? get abnormalCodedValueSet;
+  @override
 
   /// [criticalCodedValueSet] The set of critical coded results for the
   ///  observation conforming to this ObservationDefinition.
-  @override
   Reference? get criticalCodedValueSet;
-
-  /// Create a copy of ObservationDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ObservationDefinitionImplCopyWith<_$ObservationDefinitionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1390,12 +1359,8 @@ mixin _$ObservationDefinitionQuantitativeDetails {
   PrimitiveElement? get decimalPrecisionElement =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this ObservationDefinitionQuantitativeDetails to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ObservationDefinitionQuantitativeDetails
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ObservationDefinitionQuantitativeDetailsCopyWith<
           ObservationDefinitionQuantitativeDetails>
       get copyWith => throw _privateConstructorUsedError;
@@ -1438,8 +1403,6 @@ class _$ObservationDefinitionQuantitativeDetailsCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ObservationDefinitionQuantitativeDetails
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1493,8 +1456,6 @@ class _$ObservationDefinitionQuantitativeDetailsCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of ObservationDefinitionQuantitativeDetails
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get customaryUnit {
@@ -1507,8 +1468,6 @@ class _$ObservationDefinitionQuantitativeDetailsCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ObservationDefinitionQuantitativeDetails
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get unit {
@@ -1560,8 +1519,6 @@ class __$$ObservationDefinitionQuantitativeDetailsImplCopyWithImpl<$Res>
       $Res Function(_$ObservationDefinitionQuantitativeDetailsImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ObservationDefinitionQuantitativeDetails
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1765,7 +1722,7 @@ class _$ObservationDefinitionQuantitativeDetailsImpl
                 other.decimalPrecisionElement == decimalPrecisionElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1779,9 +1736,7 @@ class _$ObservationDefinitionQuantitativeDetailsImpl
       decimalPrecision,
       decimalPrecisionElement);
 
-  /// Create a copy of ObservationDefinitionQuantitativeDetails
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ObservationDefinitionQuantitativeDetailsImplCopyWith<
@@ -1819,10 +1774,12 @@ abstract class _ObservationDefinitionQuantitativeDetails
           Map<String, dynamic> json) =
       _$ObservationDefinitionQuantitativeDetailsImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1830,9 +1787,9 @@ abstract class _ObservationDefinitionQuantitativeDetails
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -1847,43 +1804,39 @@ abstract class _ObservationDefinitionQuantitativeDetails
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [customaryUnit] Customary unit used to report quantitative results of
   ///  observations conforming to this ObservationDefinition.
-  @override
   CodeableConcept? get customaryUnit;
+  @override
 
   /// [unit] SI unit used to report quantitative results of observations
   ///  conforming to this ObservationDefinition.
-  @override
   CodeableConcept? get unit;
+  @override
 
   /// [conversionFactor] Factor for converting value expressed with SI unit to
   ///  value expressed with customary unit.
-  @override
   FhirDecimal? get conversionFactor;
+  @override
 
   /// [conversionFactorElement] Extensions for conversionFactor
-  @override
   @JsonKey(name: '_conversionFactor')
   PrimitiveElement? get conversionFactorElement;
+  @override
 
   /// [decimalPrecision] Number of digits after decimal separator when the
   ///  results of such observations are of type Quantity.
-  @override
   FhirInteger? get decimalPrecision;
+  @override
 
   /// [decimalPrecisionElement] Extensions for decimalPrecision
-  @override
   @JsonKey(name: '_decimalPrecision')
   PrimitiveElement? get decimalPrecisionElement;
-
-  /// Create a copy of ObservationDefinitionQuantitativeDetails
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ObservationDefinitionQuantitativeDetailsImplCopyWith<
           _$ObservationDefinitionQuantitativeDetailsImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -1968,12 +1921,8 @@ mixin _$ObservationDefinitionQualifiedInterval {
   @JsonKey(name: '_condition')
   PrimitiveElement? get conditionElement => throw _privateConstructorUsedError;
 
-  /// Serializes this ObservationDefinitionQualifiedInterval to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ObservationDefinitionQualifiedInterval
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ObservationDefinitionQualifiedIntervalCopyWith<
           ObservationDefinitionQualifiedInterval>
       get copyWith => throw _privateConstructorUsedError;
@@ -2020,8 +1969,6 @@ class _$ObservationDefinitionQualifiedIntervalCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ObservationDefinitionQualifiedInterval
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2100,8 +2047,6 @@ class _$ObservationDefinitionQualifiedIntervalCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of ObservationDefinitionQualifiedInterval
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get range {
@@ -2114,8 +2059,6 @@ class _$ObservationDefinitionQualifiedIntervalCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ObservationDefinitionQualifiedInterval
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get context {
@@ -2128,8 +2071,6 @@ class _$ObservationDefinitionQualifiedIntervalCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ObservationDefinitionQualifiedInterval
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get age {
@@ -2142,8 +2083,6 @@ class _$ObservationDefinitionQualifiedIntervalCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ObservationDefinitionQualifiedInterval
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get gestationalAge {
@@ -2202,8 +2141,6 @@ class __$$ObservationDefinitionQualifiedIntervalImplCopyWithImpl<$Res>
       $Res Function(_$ObservationDefinitionQualifiedIntervalImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ObservationDefinitionQualifiedInterval
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2476,7 +2413,7 @@ class _$ObservationDefinitionQualifiedIntervalImpl
                 other.conditionElement == conditionElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2495,9 +2432,7 @@ class _$ObservationDefinitionQualifiedIntervalImpl
       condition,
       conditionElement);
 
-  /// Create a copy of ObservationDefinitionQualifiedInterval
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ObservationDefinitionQualifiedIntervalImplCopyWith<
@@ -2539,10 +2474,12 @@ abstract class _ObservationDefinitionQualifiedInterval
           Map<String, dynamic> json) =
       _$ObservationDefinitionQualifiedIntervalImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2550,9 +2487,9 @@ abstract class _ObservationDefinitionQualifiedInterval
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2567,66 +2504,62 @@ abstract class _ObservationDefinitionQualifiedInterval
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [category] The category of interval of values for continuous or ordinal
   ///  observations conforming to this ObservationDefinition.
-  @override
   FhirCode? get category;
+  @override
 
   /// [categoryElement] Extensions for category
-  @override
   @JsonKey(name: '_category')
   PrimitiveElement? get categoryElement;
+  @override
 
   /// [range] The low and high values determining the interval. There may be
   ///  only one of the two.
-  @override
   Range? get range;
+  @override
 
   /// [context] Codes to indicate the health context the range applies to. For
   ///  example, the normal or therapeutic range.
-  @override
   CodeableConcept? get context;
+  @override
 
   /// [appliesTo] Codes to indicate the target population this reference range
   ///  applies to.
-  @override
   List<CodeableConcept>? get appliesTo;
+  @override
 
   /// [gender] Sex of the population the range applies to.
-  @override
   FhirCode? get gender;
+  @override
 
   /// [genderElement] Extensions for gender
-  @override
   @JsonKey(name: '_gender')
   PrimitiveElement? get genderElement;
+  @override
 
   /// [age] The age at which this reference range is applicable. This is a
   ///  neonatal age (e.g. number of weeks at term) if the meaning says so.
-  @override
   Range? get age;
+  @override
 
   /// [gestationalAge] The gestational age to which this reference range is
   ///  applicable, in the context of pregnancy.
-  @override
   Range? get gestationalAge;
+  @override
 
   /// [condition] Text based condition for which the reference range is valid.
-  @override
   String? get condition;
+  @override
 
   /// [conditionElement] Extensions for condition
-  @override
   @JsonKey(name: '_condition')
   PrimitiveElement? get conditionElement;
-
-  /// Create a copy of ObservationDefinitionQualifiedInterval
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ObservationDefinitionQualifiedIntervalImplCopyWith<
           _$ObservationDefinitionQualifiedIntervalImpl>
       get copyWith => throw _privateConstructorUsedError;

@@ -53,12 +53,8 @@ mixin _$Contributor {
   ///  with the contributor.
   List<ContactDetail>? get contact => throw _privateConstructorUsedError;
 
-  /// Serializes this Contributor to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of Contributor
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ContributorCopyWith<Contributor> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -89,8 +85,6 @@ class _$ContributorCopyWithImpl<$Res, $Val extends Contributor>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Contributor
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -161,8 +155,6 @@ class __$$ContributorImplCopyWithImpl<$Res>
       _$ContributorImpl _value, $Res Function(_$ContributorImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Contributor
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -311,7 +303,7 @@ class _$ContributorImpl extends _Contributor {
             const DeepCollectionEquality().equals(other._contact, _contact));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -323,9 +315,7 @@ class _$ContributorImpl extends _Contributor {
       nameElement,
       const DeepCollectionEquality().hash(_contact));
 
-  /// Create a copy of Contributor
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ContributorImplCopyWith<_$ContributorImpl> get copyWith =>
@@ -354,10 +344,12 @@ abstract class _Contributor extends Contributor {
   factory _Contributor.fromJson(Map<String, dynamic> json) =
       _$ContributorImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -365,39 +357,35 @@ abstract class _Contributor extends Contributor {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [type] The type of contributor.
-  @override
   @JsonKey(unknownEnumValue: ContributorType.unknown)
   ContributorType? get type;
+  @override
 
   /// [typeElement] Extensions for type
-  @override
   @JsonKey(name: '_type')
   PrimitiveElement? get typeElement;
+  @override
 
   /// [name] The name of the individual or organization responsible for the
   ///  contribution.
-  @override
   String? get name;
+  @override
 
   /// [nameElement] Extensions for name
-  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
+  @override
 
   /// [contact] Contact details to assist a user in finding and communicating
   ///  with the contributor.
-  @override
   List<ContactDetail>? get contact;
-
-  /// Create a copy of Contributor
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ContributorImplCopyWith<_$ContributorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

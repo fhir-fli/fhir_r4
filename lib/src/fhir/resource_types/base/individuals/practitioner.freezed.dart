@@ -143,12 +143,8 @@ mixin _$Practitioner {
   List<CodeableConcept>? get communication =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this Practitioner to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of Practitioner
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $PractitionerCopyWith<Practitioner> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -200,8 +196,6 @@ class _$PractitionerCopyWithImpl<$Res, $Val extends Practitioner>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Practitioner
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -330,8 +324,6 @@ class _$PractitionerCopyWithImpl<$Res, $Val extends Practitioner>
     ) as $Val);
   }
 
-  /// Create a copy of Practitioner
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -344,8 +336,6 @@ class _$PractitionerCopyWithImpl<$Res, $Val extends Practitioner>
     });
   }
 
-  /// Create a copy of Practitioner
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -408,8 +398,6 @@ class __$$PractitionerImplCopyWithImpl<$Res>
       _$PractitionerImpl _value, $Res Function(_$PractitionerImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Practitioner
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -897,7 +885,7 @@ class _$PractitionerImpl extends _Practitioner {
                 .equals(other._communication, _communication));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -927,9 +915,7 @@ class _$PractitionerImpl extends _Practitioner {
         const DeepCollectionEquality().hash(_communication)
       ]);
 
-  /// Create a copy of Practitioner
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$PractitionerImplCopyWith<_$PractitionerImpl> get copyWith =>
@@ -979,38 +965,39 @@ abstract class _Practitioner extends Practitioner {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.Practitioner)
   R4ResourceType get resourceType;
+  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @override
   String? get id;
+  @override
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  @override
   FhirMeta? get meta;
+  @override
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  @override
   FhirUri? get implicitRules;
+  @override
 
   /// [implicitRulesElement] Extensions for implicitRules
-  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
+  @override
 
   /// [language] The base language in which the resource is written.
-  @override
   FhirCode? get language;
+  @override
 
   /// [languageElement] Extensions for language
-  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
+  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1018,15 +1005,15 @@ abstract class _Practitioner extends Practitioner {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  @override
   Narrative? get text;
+  @override
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  @override
   List<Resource>? get contained;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1034,9 +1021,9 @@ abstract class _Practitioner extends Practitioner {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1051,78 +1038,74 @@ abstract class _Practitioner extends Practitioner {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [identifier] An identifier that applies to this person in this role.
-  @override
   List<Identifier>? get identifier;
+  @override
 
   /// [active] Whether this practitioner's record is in active use.
-  @override
   FhirBoolean? get active;
+  @override
 
   /// [activeElement] Extensions for active
-  @override
   @JsonKey(name: '_active')
   PrimitiveElement? get activeElement;
+  @override
 
   /// [name] The name(s) associated with the practitioner.
-  @override
   List<HumanName>? get name;
+  @override
 
   /// [telecom] A contact detail for the practitioner, e.g. a telephone number
   ///  or an email address.
-  @override
   List<ContactPoint>? get telecom;
+  @override
 
   /// [address] Address(es) of the practitioner that are not role specific
   ///  (typically home address).
   /// Work addresses are not typically entered in this property as they are
   ///  usually role dependent.
-  @override
   List<Address>? get address;
+  @override
 
   /// [gender] Administrative Gender - the gender that the person is considered
   ///  to have for administration and record keeping purposes.
-  @override
   FhirCode? get gender;
+  @override
 
   /// [genderElement] Extensions for gender
-  @override
   @JsonKey(name: '_gender')
   PrimitiveElement? get genderElement;
+  @override
 
   /// [birthDate] The date of birth for the practitioner.
-  @override
   FhirDate? get birthDate;
+  @override
 
   /// [birthDateElement] Extensions for birthDate
-  @override
   @JsonKey(name: '_birthDate')
   PrimitiveElement? get birthDateElement;
+  @override
 
   /// [photo] Image of the person.
-  @override
   List<Attachment>? get photo;
+  @override
 
   /// [qualification] The official certifications, training, and licenses that
   /// authorize or otherwise pertain to the provision of care by the
   /// practitioner.  For example, a medical license issued by a medical board
   /// authorizing the practitioner to practice medicine within a certian
   ///  locality.
-  @override
   List<PractitionerQualification>? get qualification;
+  @override
 
   /// [communication] A language the practitioner can use in patient
   ///  communication.
-  @override
   List<CodeableConcept>? get communication;
-
-  /// Create a copy of Practitioner
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$PractitionerImplCopyWith<_$PractitionerImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1176,12 +1159,8 @@ mixin _$PractitionerQualification {
   /// [issuer] Organization that regulates and issues the qualification.
   Reference? get issuer => throw _privateConstructorUsedError;
 
-  /// Serializes this PractitionerQualification to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of PractitionerQualification
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $PractitionerQualificationCopyWith<PractitionerQualification> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1217,8 +1196,6 @@ class _$PractitionerQualificationCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of PractitionerQualification
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1262,8 +1239,6 @@ class _$PractitionerQualificationCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of PractitionerQualification
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get code {
@@ -1272,8 +1247,6 @@ class _$PractitionerQualificationCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of PractitionerQualification
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get period {
@@ -1286,8 +1259,6 @@ class _$PractitionerQualificationCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of PractitionerQualification
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get issuer {
@@ -1337,8 +1308,6 @@ class __$$PractitionerQualificationImplCopyWithImpl<$Res>
       $Res Function(_$PractitionerQualificationImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of PractitionerQualification
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1518,7 +1487,7 @@ class _$PractitionerQualificationImpl extends _PractitionerQualification {
             (identical(other.issuer, issuer) || other.issuer == issuer));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1530,9 +1499,7 @@ class _$PractitionerQualificationImpl extends _PractitionerQualification {
       period,
       issuer);
 
-  /// Create a copy of PractitionerQualification
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$PractitionerQualificationImplCopyWith<_$PractitionerQualificationImpl>
@@ -1561,10 +1528,12 @@ abstract class _PractitionerQualification extends PractitionerQualification {
   factory _PractitionerQualification.fromJson(Map<String, dynamic> json) =
       _$PractitionerQualificationImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1572,9 +1541,9 @@ abstract class _PractitionerQualification extends PractitionerQualification {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -1589,30 +1558,26 @@ abstract class _PractitionerQualification extends PractitionerQualification {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [identifier] An identifier that applies to this person's qualification in
   ///  this role.
-  @override
   List<Identifier>? get identifier;
+  @override
 
   /// [code] Coded representation of the qualification.
-  @override
   CodeableConcept get code;
+  @override
 
   /// [period] Period during which the qualification is valid.
-  @override
   Period? get period;
+  @override
 
   /// [issuer] Organization that regulates and issues the qualification.
-  @override
   Reference? get issuer;
-
-  /// Create a copy of PractitionerQualification
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$PractitionerQualificationImplCopyWith<_$PractitionerQualificationImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

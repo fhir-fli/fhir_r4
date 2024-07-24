@@ -81,12 +81,8 @@ mixin _$Signature {
   @JsonKey(name: '_data')
   PrimitiveElement? get dataElement => throw _privateConstructorUsedError;
 
-  /// Serializes this Signature to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of Signature
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $SignatureCopyWith<Signature> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -125,8 +121,6 @@ class _$SignatureCopyWithImpl<$Res, $Val extends Signature>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Signature
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -200,8 +194,6 @@ class _$SignatureCopyWithImpl<$Res, $Val extends Signature>
     ) as $Val);
   }
 
-  /// Create a copy of Signature
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get who {
@@ -210,8 +202,6 @@ class _$SignatureCopyWithImpl<$Res, $Val extends Signature>
     });
   }
 
-  /// Create a copy of Signature
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get onBehalfOf {
@@ -262,8 +252,6 @@ class __$$SignatureImplCopyWithImpl<$Res>
       _$SignatureImpl _value, $Res Function(_$SignatureImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Signature
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -492,7 +480,7 @@ class _$SignatureImpl extends _Signature {
                 other.dataElement == dataElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -510,9 +498,7 @@ class _$SignatureImpl extends _Signature {
       data,
       dataElement);
 
-  /// Create a copy of Signature
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$SignatureImplCopyWith<_$SignatureImpl> get copyWith =>
@@ -548,10 +534,12 @@ abstract class _Signature extends Signature {
   factory _Signature.fromJson(Map<String, dynamic> json) =
       _$SignatureImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -559,72 +547,68 @@ abstract class _Signature extends Signature {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [type] An indication of the reason that the entity signed this document.
   /// This may be explicitly included as part of the signature information and
   /// can be used when determining accountability for various actions concerning
   ///  the document.
-  @override
   List<Coding> get type;
+  @override
 
   /// [when] When the digital signature was signed.
-  @override
   FhirInstant? get when;
+  @override
 
   /// [whenElement] Extensions for when
-  @override
   @JsonKey(name: '_when')
   PrimitiveElement? get whenElement;
+  @override
 
   /// [who] A reference to an application-usable description of the identity
   ///  that signed  (e.g. the signature used their private key).
-  @override
   Reference get who;
+  @override
 
   /// [onBehalfOf] A reference to an application-usable description of the
   ///  identity that is represented by the signature.
-  @override
   Reference? get onBehalfOf;
+  @override
 
   /// [targetFormat] A mime type that indicates the technical format of the
   ///  target resources signed by the signature.
-  @override
   FhirCode? get targetFormat;
+  @override
 
   /// [targetFormatElement] Extensions for targetFormat
-  @override
   @JsonKey(name: '_targetFormat')
   PrimitiveElement? get targetFormatElement;
+  @override
 
   /// [sigFormat] A mime type that indicates the technical format of the
   /// signature. Important mime types are application/signature+xml for X ML
   /// DigSig, application/jose for JWS, and image/* for a graphical image of a
   ///  signature, etc.
-  @override
   FhirCode? get sigFormat;
+  @override
 
   /// [sigFormatElement] Extensions for sigFormat
-  @override
   @JsonKey(name: '_sigFormat')
   PrimitiveElement? get sigFormatElement;
+  @override
 
   /// [data] The base64 encoding of the Signature content. When signature is
   ///  not recorded electronically this element would be empty.
-  @override
   FhirBase64Binary? get data;
+  @override
 
   /// [dataElement] Extensions for data
-  @override
   @JsonKey(name: '_data')
   PrimitiveElement? get dataElement;
-
-  /// Create a copy of Signature
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$SignatureImplCopyWith<_$SignatureImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

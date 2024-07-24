@@ -156,12 +156,8 @@ mixin _$FhirEndpoint {
   List<PrimitiveElement>? get headerElement =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this FhirEndpoint to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of FhirEndpoint
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $FhirEndpointCopyWith<FhirEndpoint> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -220,8 +216,6 @@ class _$FhirEndpointCopyWithImpl<$Res, $Val extends FhirEndpoint>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of FhirEndpoint
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -365,8 +359,6 @@ class _$FhirEndpointCopyWithImpl<$Res, $Val extends FhirEndpoint>
     ) as $Val);
   }
 
-  /// Create a copy of FhirEndpoint
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -379,8 +371,6 @@ class _$FhirEndpointCopyWithImpl<$Res, $Val extends FhirEndpoint>
     });
   }
 
-  /// Create a copy of FhirEndpoint
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -393,8 +383,6 @@ class _$FhirEndpointCopyWithImpl<$Res, $Val extends FhirEndpoint>
     });
   }
 
-  /// Create a copy of FhirEndpoint
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodingCopyWith<$Res> get connectionType {
@@ -403,8 +391,6 @@ class _$FhirEndpointCopyWithImpl<$Res, $Val extends FhirEndpoint>
     });
   }
 
-  /// Create a copy of FhirEndpoint
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get managingOrganization {
@@ -417,8 +403,6 @@ class _$FhirEndpointCopyWithImpl<$Res, $Val extends FhirEndpoint>
     });
   }
 
-  /// Create a copy of FhirEndpoint
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get period {
@@ -491,8 +475,6 @@ class __$$FhirEndpointImplCopyWithImpl<$Res>
       _$FhirEndpointImpl _value, $Res Function(_$FhirEndpointImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of FhirEndpoint
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1018,7 +1000,7 @@ class _$FhirEndpointImpl extends _FhirEndpoint {
                 .equals(other._headerElement, _headerElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1051,9 +1033,7 @@ class _$FhirEndpointImpl extends _FhirEndpoint {
         const DeepCollectionEquality().hash(_headerElement)
       ]);
 
-  /// Create a copy of FhirEndpoint
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$FhirEndpointImplCopyWith<_$FhirEndpointImpl> get copyWith =>
@@ -1108,38 +1088,39 @@ abstract class _FhirEndpoint extends FhirEndpoint {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.Endpoint)
   R4ResourceType get resourceType;
+  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @override
   String? get id;
+  @override
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  @override
   FhirMeta? get meta;
+  @override
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  @override
   FhirUri? get implicitRules;
+  @override
 
   /// [implicitRulesElement] Extensions for implicitRules
-  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
+  @override
 
   /// [language] The base language in which the resource is written.
-  @override
   FhirCode? get language;
+  @override
 
   /// [languageElement] Extensions for language
-  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
+  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1147,15 +1128,15 @@ abstract class _FhirEndpoint extends FhirEndpoint {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  @override
   Narrative? get text;
+  @override
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  @override
   List<Resource>? get contained;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1163,9 +1144,9 @@ abstract class _FhirEndpoint extends FhirEndpoint {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1180,94 +1161,90 @@ abstract class _FhirEndpoint extends FhirEndpoint {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [identifier] Identifier for the organization that is used to identify the
   ///  endpoint across multiple disparate systems.
-  @override
   List<Identifier>? get identifier;
+  @override
 
   /// [status] active | suspended | error | off | test.
-  @override
   EndpointStatus? get status;
+  @override
 
   /// [statusElement] Extensions for status
-  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
+  @override
 
   /// [connectionType] A coded value that represents the technical details of
   /// the usage of this endpoint, such as what WSDLs should be used in what way.
   ///  (e.g. XDS.b/DICOM/cds-hook).
-  @override
   Coding get connectionType;
+  @override
 
   /// [name] A friendly name that this endpoint can be referred to with.
-  @override
   String? get name;
+  @override
 
   /// [nameElement] Extensions for name
-  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
+  @override
 
   /// [managingOrganization] The organization that manages this endpoint (even
   /// if technically another organization is hosting this in the cloud, it is
   ///  the organization associated with the data).
-  @override
   Reference? get managingOrganization;
+  @override
 
   /// [contact] Contact details for a human to contact about the subscription.
   ///  The primary use of this for system administrator troubleshooting.
-  @override
   List<ContactPoint>? get contact;
+  @override
 
   /// [period] The interval during which the endpoint is expected to be
   ///  operational.
-  @override
   Period? get period;
+  @override
 
   /// [payloadType] The payload type describes the acceptable content that can
   ///  be communicated on the endpoint.
-  @override
   List<CodeableConcept> get payloadType;
+  @override
 
   /// [payloadMimeType] The mime type to send the payload in - e.g.
   /// application/fhir+xml, application/fhir+json. If the mime type is not
   /// specified, then the sender could send any content (including no content
   ///  depending on the connectionType).
-  @override
   List<FhirCode>? get payloadMimeType;
+  @override
 
   /// [payloadMimeTypeElement] Extensions for payloadMimeType
-  @override
   @JsonKey(name: '_payloadMimeType')
   List<PrimitiveElement>? get payloadMimeTypeElement;
+  @override
 
   /// [address] The uri that describes the actual end-point to connect to.
-  @override
   FhirUrl? get address;
+  @override
 
   /// [addressElement] Extensions for address
-  @override
   @JsonKey(name: '_address')
   PrimitiveElement? get addressElement;
+  @override
 
   /// [header] Additional headers / information to send as part of the
   ///  notification.
-  @override
   List<String>? get header;
+  @override
 
   /// [headerElement] Extensions for header
-  @override
   @JsonKey(name: '_header')
   List<PrimitiveElement>? get headerElement;
-
-  /// Create a copy of FhirEndpoint
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$FhirEndpointImplCopyWith<_$FhirEndpointImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

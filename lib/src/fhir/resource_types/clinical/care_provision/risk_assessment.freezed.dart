@@ -167,12 +167,8 @@ mixin _$RiskAssessment {
   /// [note] Additional comments about the risk assessment.
   List<Annotation>? get note => throw _privateConstructorUsedError;
 
-  /// Serializes this RiskAssessment to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of RiskAssessment
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $RiskAssessmentCopyWith<RiskAssessment> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -242,8 +238,6 @@ class _$RiskAssessmentCopyWithImpl<$Res, $Val extends RiskAssessment>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of RiskAssessment
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -412,8 +406,6 @@ class _$RiskAssessmentCopyWithImpl<$Res, $Val extends RiskAssessment>
     ) as $Val);
   }
 
-  /// Create a copy of RiskAssessment
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -426,8 +418,6 @@ class _$RiskAssessmentCopyWithImpl<$Res, $Val extends RiskAssessment>
     });
   }
 
-  /// Create a copy of RiskAssessment
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -440,8 +430,6 @@ class _$RiskAssessmentCopyWithImpl<$Res, $Val extends RiskAssessment>
     });
   }
 
-  /// Create a copy of RiskAssessment
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get basedOn {
@@ -454,8 +442,6 @@ class _$RiskAssessmentCopyWithImpl<$Res, $Val extends RiskAssessment>
     });
   }
 
-  /// Create a copy of RiskAssessment
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get parent {
@@ -468,8 +454,6 @@ class _$RiskAssessmentCopyWithImpl<$Res, $Val extends RiskAssessment>
     });
   }
 
-  /// Create a copy of RiskAssessment
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get method {
@@ -482,8 +466,6 @@ class _$RiskAssessmentCopyWithImpl<$Res, $Val extends RiskAssessment>
     });
   }
 
-  /// Create a copy of RiskAssessment
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get code {
@@ -496,8 +478,6 @@ class _$RiskAssessmentCopyWithImpl<$Res, $Val extends RiskAssessment>
     });
   }
 
-  /// Create a copy of RiskAssessment
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get subject {
@@ -506,8 +486,6 @@ class _$RiskAssessmentCopyWithImpl<$Res, $Val extends RiskAssessment>
     });
   }
 
-  /// Create a copy of RiskAssessment
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get encounter {
@@ -520,8 +498,6 @@ class _$RiskAssessmentCopyWithImpl<$Res, $Val extends RiskAssessment>
     });
   }
 
-  /// Create a copy of RiskAssessment
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get occurrencePeriod {
@@ -534,8 +510,6 @@ class _$RiskAssessmentCopyWithImpl<$Res, $Val extends RiskAssessment>
     });
   }
 
-  /// Create a copy of RiskAssessment
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get condition {
@@ -548,8 +522,6 @@ class _$RiskAssessmentCopyWithImpl<$Res, $Val extends RiskAssessment>
     });
   }
 
-  /// Create a copy of RiskAssessment
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get performer {
@@ -639,8 +611,6 @@ class __$$RiskAssessmentImplCopyWithImpl<$Res>
       _$RiskAssessmentImpl _value, $Res Function(_$RiskAssessmentImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of RiskAssessment
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1206,7 +1176,7 @@ class _$RiskAssessmentImpl extends _RiskAssessment {
             const DeepCollectionEquality().equals(other._note, _note));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1244,9 +1214,7 @@ class _$RiskAssessmentImpl extends _RiskAssessment {
         const DeepCollectionEquality().hash(_note)
       ]);
 
-  /// Create a copy of RiskAssessment
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$RiskAssessmentImplCopyWith<_$RiskAssessmentImpl> get copyWith =>
@@ -1306,38 +1274,39 @@ abstract class _RiskAssessment extends RiskAssessment {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.RiskAssessment)
   R4ResourceType get resourceType;
+  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @override
   String? get id;
+  @override
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  @override
   FhirMeta? get meta;
+  @override
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  @override
   FhirUri? get implicitRules;
+  @override
 
   /// [implicitRulesElement] Extensions for implicitRules
-  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
+  @override
 
   /// [language] The base language in which the resource is written.
-  @override
   FhirCode? get language;
+  @override
 
   /// [languageElement] Extensions for language
-  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
+  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1345,15 +1314,15 @@ abstract class _RiskAssessment extends RiskAssessment {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  @override
   Narrative? get text;
+  @override
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  @override
   List<Resource>? get contained;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1361,9 +1330,9 @@ abstract class _RiskAssessment extends RiskAssessment {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1378,110 +1347,106 @@ abstract class _RiskAssessment extends RiskAssessment {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [identifier] Business identifier assigned to the risk assessment.
-  @override
   List<Identifier>? get identifier;
+  @override
 
   /// [basedOn] A reference to the request that is fulfilled by this risk
   ///  assessment.
-  @override
   Reference? get basedOn;
+  @override
 
   /// [parent] A reference to a resource that this risk assessment is part of,
   ///  such as a Procedure.
-  @override
   Reference? get parent;
+  @override
 
   /// [status] The status of the RiskAssessment, using the same statuses as an
   ///  Observation.
-  @override
   FhirCode? get status;
+  @override
 
   /// [statusElement] Extensions for status
-  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
+  @override
 
   /// [method] The algorithm, process or mechanism used to evaluate the risk.
-  @override
   CodeableConcept? get method;
+  @override
 
   /// [code] The type of the risk assessment performed.
-  @override
   CodeableConcept? get code;
+  @override
 
   /// [subject] The patient or group the risk assessment applies to.
-  @override
   Reference get subject;
+  @override
 
   /// [encounter] The encounter where the assessment was performed.
-  @override
   Reference? get encounter;
+  @override
 
   /// [occurrenceDateTime] The date (and possibly time) the risk assessment was
   ///  performed.
-  @override
   FhirDateTime? get occurrenceDateTime;
+  @override
 
   /// [occurrenceDateTimeElement] Extensions for occurrenceDateTime
-  @override
   @JsonKey(name: '_occurrenceDateTime')
   PrimitiveElement? get occurrenceDateTimeElement;
+  @override
 
   /// [occurrencePeriod] The date (and possibly time) the risk assessment was
   ///  performed.
-  @override
   Period? get occurrencePeriod;
+  @override
 
   /// [condition] For assessments or prognosis specific to a particular
   ///  condition, indicates the condition being assessed.
-  @override
   Reference? get condition;
+  @override
 
   /// [performer] The provider or software application that performed the
   ///  assessment.
-  @override
   Reference? get performer;
+  @override
 
   /// [reasonCode] The reason the risk assessment was performed.
-  @override
   List<CodeableConcept>? get reasonCode;
+  @override
 
   /// [reasonReference] Resources supporting the reason the risk assessment was
   ///  performed.
-  @override
   List<Reference>? get reasonReference;
+  @override
 
   /// [basis] Indicates the source data considered as part of the assessment
   ///  (for example, FamilyHistory, Observations, Procedures, Conditions, etc.).
-  @override
   List<Reference>? get basis;
+  @override
 
   /// [prediction] Describes the expected outcome for the subject.
-  @override
   List<RiskAssessmentPrediction>? get prediction;
+  @override
 
   /// [mitigation] A description of the steps that might be taken to reduce the
   ///  identified risk(s).
-  @override
   String? get mitigation;
+  @override
 
   /// [mitigationElement] Extensions for mitigation
-  @override
   @JsonKey(name: '_mitigation')
   PrimitiveElement? get mitigationElement;
+  @override
 
   /// [note] Additional comments about the risk assessment.
-  @override
   List<Annotation>? get note;
-
-  /// Create a copy of RiskAssessment
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$RiskAssessmentImplCopyWith<_$RiskAssessmentImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1570,12 +1535,8 @@ mixin _$RiskAssessmentPrediction {
   @JsonKey(name: '_rationale')
   PrimitiveElement? get rationaleElement => throw _privateConstructorUsedError;
 
-  /// Serializes this RiskAssessmentPrediction to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of RiskAssessmentPrediction
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $RiskAssessmentPredictionCopyWith<RiskAssessmentPrediction> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1621,8 +1582,6 @@ class _$RiskAssessmentPredictionCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of RiskAssessmentPrediction
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1701,8 +1660,6 @@ class _$RiskAssessmentPredictionCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of RiskAssessmentPrediction
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get outcome {
@@ -1715,8 +1672,6 @@ class _$RiskAssessmentPredictionCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of RiskAssessmentPrediction
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get probabilityRange {
@@ -1729,8 +1684,6 @@ class _$RiskAssessmentPredictionCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of RiskAssessmentPrediction
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get qualitativeRisk {
@@ -1743,8 +1696,6 @@ class _$RiskAssessmentPredictionCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of RiskAssessmentPrediction
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get whenPeriod {
@@ -1757,8 +1708,6 @@ class _$RiskAssessmentPredictionCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of RiskAssessmentPrediction
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get whenRange {
@@ -1820,8 +1769,6 @@ class __$$RiskAssessmentPredictionImplCopyWithImpl<$Res>
       $Res Function(_$RiskAssessmentPredictionImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of RiskAssessmentPrediction
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2089,7 +2036,7 @@ class _$RiskAssessmentPredictionImpl extends _RiskAssessmentPrediction {
                 other.rationaleElement == rationaleElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2108,9 +2055,7 @@ class _$RiskAssessmentPredictionImpl extends _RiskAssessmentPrediction {
       rationale,
       rationaleElement);
 
-  /// Create a copy of RiskAssessmentPrediction
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$RiskAssessmentPredictionImplCopyWith<_$RiskAssessmentPredictionImpl>
@@ -2150,10 +2095,12 @@ abstract class _RiskAssessmentPrediction extends RiskAssessmentPrediction {
   factory _RiskAssessmentPrediction.fromJson(Map<String, dynamic> json) =
       _$RiskAssessmentPredictionImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2161,9 +2108,9 @@ abstract class _RiskAssessmentPrediction extends RiskAssessmentPrediction {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2178,70 +2125,66 @@ abstract class _RiskAssessmentPrediction extends RiskAssessmentPrediction {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [outcome] One of the potential outcomes for the patient (e.g. remission,
   ///  death,  a particular condition).
-  @override
   CodeableConcept? get outcome;
+  @override
 
   /// [probabilityDecimal] Indicates how likely the outcome is (in the
   ///  specified timeframe).
-  @override
   FhirDecimal? get probabilityDecimal;
+  @override
 
   /// [probabilityDecimalElement] Extensions for probabilityDecimal
-  @override
   @JsonKey(name: '_probabilityDecimal')
   PrimitiveElement? get probabilityDecimalElement;
+  @override
 
   /// [probabilityRange] Indicates how likely the outcome is (in the specified
   ///  timeframe).
-  @override
   Range? get probabilityRange;
+  @override
 
   /// [qualitativeRisk] Indicates how likely the outcome is (in the specified
   ///  timeframe), expressed as a qualitative value (e.g. low, medium, or high).
-  @override
   CodeableConcept? get qualitativeRisk;
+  @override
 
   /// [relativeRisk] Indicates the risk for this particular subject (with their
   /// specific characteristics) divided by the risk of the population in
   /// general.  (Numbers greater than 1 = higher risk than the population,
   ///  numbers less than 1 = lower risk.).
-  @override
   FhirDecimal? get relativeRisk;
+  @override
 
   /// [relativeRiskElement] Extensions for relativeRisk
-  @override
   @JsonKey(name: '_relativeRisk')
   PrimitiveElement? get relativeRiskElement;
+  @override
 
   /// [whenPeriod] Indicates the period of time or age range of the subject to
   ///  which the specified probability applies.
-  @override
   Period? get whenPeriod;
+  @override
 
   /// [whenRange] Indicates the period of time or age range of the subject to
   ///  which the specified probability applies.
-  @override
   Range? get whenRange;
+  @override
 
   /// [rationale] Additional information explaining the basis for the
   ///  prediction.
-  @override
   String? get rationale;
+  @override
 
   /// [rationaleElement] Extensions for rationale
-  @override
   @JsonKey(name: '_rationale')
   PrimitiveElement? get rationaleElement;
-
-  /// Create a copy of RiskAssessmentPrediction
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$RiskAssessmentPredictionImplCopyWith<_$RiskAssessmentPredictionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

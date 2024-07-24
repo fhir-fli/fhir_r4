@@ -120,12 +120,8 @@ mixin _$EnrollmentRequest {
   ///  or payor.
   Reference? get coverage => throw _privateConstructorUsedError;
 
-  /// Serializes this EnrollmentRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of EnrollmentRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $EnrollmentRequestCopyWith<EnrollmentRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -177,8 +173,6 @@ class _$EnrollmentRequestCopyWithImpl<$Res, $Val extends EnrollmentRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of EnrollmentRequest
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -287,8 +281,6 @@ class _$EnrollmentRequestCopyWithImpl<$Res, $Val extends EnrollmentRequest>
     ) as $Val);
   }
 
-  /// Create a copy of EnrollmentRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -301,8 +293,6 @@ class _$EnrollmentRequestCopyWithImpl<$Res, $Val extends EnrollmentRequest>
     });
   }
 
-  /// Create a copy of EnrollmentRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -315,8 +305,6 @@ class _$EnrollmentRequestCopyWithImpl<$Res, $Val extends EnrollmentRequest>
     });
   }
 
-  /// Create a copy of EnrollmentRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get insurer {
@@ -329,8 +317,6 @@ class _$EnrollmentRequestCopyWithImpl<$Res, $Val extends EnrollmentRequest>
     });
   }
 
-  /// Create a copy of EnrollmentRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get provider {
@@ -343,8 +329,6 @@ class _$EnrollmentRequestCopyWithImpl<$Res, $Val extends EnrollmentRequest>
     });
   }
 
-  /// Create a copy of EnrollmentRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get candidate {
@@ -357,8 +341,6 @@ class _$EnrollmentRequestCopyWithImpl<$Res, $Val extends EnrollmentRequest>
     });
   }
 
-  /// Create a copy of EnrollmentRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get coverage {
@@ -425,8 +407,6 @@ class __$$EnrollmentRequestImplCopyWithImpl<$Res>
       $Res Function(_$EnrollmentRequestImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of EnrollmentRequest
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -791,7 +771,7 @@ class _$EnrollmentRequestImpl extends _EnrollmentRequest {
                 other.coverage == coverage));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -817,9 +797,7 @@ class _$EnrollmentRequestImpl extends _EnrollmentRequest {
         coverage
       ]);
 
-  /// Create a copy of EnrollmentRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$EnrollmentRequestImplCopyWith<_$EnrollmentRequestImpl> get copyWith =>
@@ -866,38 +844,39 @@ abstract class _EnrollmentRequest extends EnrollmentRequest {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.EnrollmentRequest)
   R4ResourceType get resourceType;
+  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @override
   String? get id;
+  @override
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  @override
   FhirMeta? get meta;
+  @override
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  @override
   FhirUri? get implicitRules;
+  @override
 
   /// [implicitRulesElement] Extensions for implicitRules
-  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
+  @override
 
   /// [language] The base language in which the resource is written.
-  @override
   FhirCode? get language;
+  @override
 
   /// [languageElement] Extensions for language
-  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
+  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -905,15 +884,15 @@ abstract class _EnrollmentRequest extends EnrollmentRequest {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  @override
   Narrative? get text;
+  @override
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  @override
   List<Resource>? get contained;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -921,9 +900,9 @@ abstract class _EnrollmentRequest extends EnrollmentRequest {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -938,53 +917,49 @@ abstract class _EnrollmentRequest extends EnrollmentRequest {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [identifier] The Response business identifier.
-  @override
   List<Identifier>? get identifier;
+  @override
 
   /// [status] The status of the resource instance.
-  @override
   FhirCode? get status;
+  @override
 
   /// [statusElement] Extensions for status
-  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
+  @override
 
   /// [created] The date when this resource was created.
-  @override
   FhirDateTime? get created;
+  @override
 
   /// [createdElement] Extensions for created
-  @override
   @JsonKey(name: '_created')
   PrimitiveElement? get createdElement;
+  @override
 
   /// [insurer] The Insurer who is target  of the request.
-  @override
   Reference? get insurer;
+  @override
 
   /// [provider] The practitioner who is responsible for the services rendered
   ///  to the patient.
-  @override
   Reference? get provider;
+  @override
 
   /// [candidate] Patient Resource.
-  @override
   Reference? get candidate;
+  @override
 
   /// [coverage] Reference to the program or plan identification, underwriter
   ///  or payor.
-  @override
   Reference? get coverage;
-
-  /// Create a copy of EnrollmentRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$EnrollmentRequestImplCopyWith<_$EnrollmentRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

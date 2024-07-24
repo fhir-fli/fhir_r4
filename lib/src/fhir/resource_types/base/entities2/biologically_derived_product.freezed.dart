@@ -152,12 +152,8 @@ mixin _$BiologicallyDerivedProduct {
   List<BiologicallyDerivedProductStorage>? get storage =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this BiologicallyDerivedProduct to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of BiologicallyDerivedProduct
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $BiologicallyDerivedProductCopyWith<BiologicallyDerivedProduct>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -216,8 +212,6 @@ class _$BiologicallyDerivedProductCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of BiologicallyDerivedProduct
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -351,8 +345,6 @@ class _$BiologicallyDerivedProductCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of BiologicallyDerivedProduct
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -365,8 +357,6 @@ class _$BiologicallyDerivedProductCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of BiologicallyDerivedProduct
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -379,8 +369,6 @@ class _$BiologicallyDerivedProductCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of BiologicallyDerivedProduct
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get productCode {
@@ -393,8 +381,6 @@ class _$BiologicallyDerivedProductCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of BiologicallyDerivedProduct
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $BiologicallyDerivedProductCollectionCopyWith<$Res>? get collection {
@@ -408,8 +394,6 @@ class _$BiologicallyDerivedProductCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of BiologicallyDerivedProduct
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $BiologicallyDerivedProductManipulationCopyWith<$Res>? get manipulation {
@@ -484,8 +468,6 @@ class __$$BiologicallyDerivedProductImplCopyWithImpl<$Res>
       $Res Function(_$BiologicallyDerivedProductImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of BiologicallyDerivedProduct
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -965,7 +947,7 @@ class _$BiologicallyDerivedProductImpl extends _BiologicallyDerivedProduct {
             const DeepCollectionEquality().equals(other._storage, _storage));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -996,9 +978,7 @@ class _$BiologicallyDerivedProductImpl extends _BiologicallyDerivedProduct {
         const DeepCollectionEquality().hash(_storage)
       ]);
 
-  /// Create a copy of BiologicallyDerivedProduct
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$BiologicallyDerivedProductImplCopyWith<_$BiologicallyDerivedProductImpl>
@@ -1052,38 +1032,39 @@ abstract class _BiologicallyDerivedProduct extends BiologicallyDerivedProduct {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.BiologicallyDerivedProduct)
   R4ResourceType get resourceType;
+  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @override
   String? get id;
+  @override
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  @override
   FhirMeta? get meta;
+  @override
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  @override
   FhirUri? get implicitRules;
+  @override
 
   /// [implicitRulesElement] Extensions for implicitRules
-  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
+  @override
 
   /// [language] The base language in which the resource is written.
-  @override
   FhirCode? get language;
+  @override
 
   /// [languageElement] Extensions for language
-  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
+  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1091,15 +1072,15 @@ abstract class _BiologicallyDerivedProduct extends BiologicallyDerivedProduct {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  @override
   Narrative? get text;
+  @override
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  @override
   List<Resource>? get contained;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1107,9 +1088,9 @@ abstract class _BiologicallyDerivedProduct extends BiologicallyDerivedProduct {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1124,82 +1105,78 @@ abstract class _BiologicallyDerivedProduct extends BiologicallyDerivedProduct {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [identifier] This records identifiers associated with this biologically
   /// derived product instance that are defined by business processes and/or
   /// used to refer to it when a direct URL reference to the resource itself is
   /// not appropriate (e.g. in CDA documents, or in written / printed
   ///  documentation).
-  @override
   List<Identifier>? get identifier;
+  @override
 
   /// [productCategory] Broad category of this product.
-  @override
   BiologicallyDerivedProductCategory? get productCategory;
+  @override
 
   /// [productCategoryElement] Extensions for productCategory
-  @override
   @JsonKey(name: '_productCategory')
   PrimitiveElement? get productCategoryElement;
+  @override
 
   /// [productCode] A code that identifies the kind of this biologically
   ///  derived product (SNOMED Ctcode).
-  @override
   CodeableConcept? get productCode;
+  @override
 
   /// [status] Whether the product is currently available.
-  @override
   BiologicallyDerivedProductStatus? get status;
+  @override
 
   /// [statusElement] Extensions for status
-  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
+  @override
 
   /// [request] Procedure request to obtain this biologically derived product.
-  @override
   List<Reference>? get request;
+  @override
 
   /// [quantity] Number of discrete units within this product.
-  @override
   FhirInteger? get quantity;
+  @override
 
   /// [quantityElement] Extensions for quantity
-  @override
   @JsonKey(name: '_quantity')
   PrimitiveElement? get quantityElement;
+  @override
 
   /// [parent] Parent product (if any).
-  @override
   List<Reference>? get parent;
+  @override
 
   /// [collection] How this product was collected.
-  @override
   BiologicallyDerivedProductCollection? get collection;
+  @override
 
   /// [processing] Any processing of the product during collection that does
   /// not change the fundamental nature of the product. For example adding
   ///  anti-coagulants during the collection of Peripheral Blood Stem Cells.
-  @override
   List<BiologicallyDerivedProductProcessing>? get processing;
+  @override
 
   /// [manipulation] Any manipulation of product post-collection that is
   /// intended to alter the product.  For example a buffy-coat enrichment or CD8
   /// reduction of Peripheral Blood Stem Cells to make it more suitable for
   ///  infusion.
-  @override
   BiologicallyDerivedProductManipulation? get manipulation;
+  @override
 
   /// [storage] Product storage.
-  @override
   List<BiologicallyDerivedProductStorage>? get storage;
-
-  /// Create a copy of BiologicallyDerivedProduct
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$BiologicallyDerivedProductImplCopyWith<_$BiologicallyDerivedProductImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1258,12 +1235,8 @@ mixin _$BiologicallyDerivedProductCollection {
   /// [collectedPeriod] Time of product collection.
   Period? get collectedPeriod => throw _privateConstructorUsedError;
 
-  /// Serializes this BiologicallyDerivedProductCollection to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of BiologicallyDerivedProductCollection
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $BiologicallyDerivedProductCollectionCopyWith<
           BiologicallyDerivedProductCollection>
       get copyWith => throw _privateConstructorUsedError;
@@ -1304,8 +1277,6 @@ class _$BiologicallyDerivedProductCollectionCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of BiologicallyDerivedProductCollection
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1354,8 +1325,6 @@ class _$BiologicallyDerivedProductCollectionCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of BiologicallyDerivedProductCollection
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get collector {
@@ -1368,8 +1337,6 @@ class _$BiologicallyDerivedProductCollectionCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of BiologicallyDerivedProductCollection
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get source {
@@ -1382,8 +1349,6 @@ class _$BiologicallyDerivedProductCollectionCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of BiologicallyDerivedProductCollection
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get collectedPeriod {
@@ -1435,8 +1400,6 @@ class __$$BiologicallyDerivedProductCollectionImplCopyWithImpl<$Res>
       $Res Function(_$BiologicallyDerivedProductCollectionImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of BiologicallyDerivedProductCollection
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1623,7 +1586,7 @@ class _$BiologicallyDerivedProductCollectionImpl
                 other.collectedPeriod == collectedPeriod));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1636,9 +1599,7 @@ class _$BiologicallyDerivedProductCollectionImpl
       collectedDateTimeElement,
       collectedPeriod);
 
-  /// Create a copy of BiologicallyDerivedProductCollection
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$BiologicallyDerivedProductCollectionImplCopyWith<
@@ -1673,10 +1634,12 @@ abstract class _BiologicallyDerivedProductCollection
           Map<String, dynamic> json) =
       _$BiologicallyDerivedProductCollectionImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1684,9 +1647,9 @@ abstract class _BiologicallyDerivedProductCollection
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -1701,35 +1664,31 @@ abstract class _BiologicallyDerivedProductCollection
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [collector] Healthcare professional who is performing the collection.
-  @override
   Reference? get collector;
+  @override
 
   /// [source] The patient or entity, such as a hospital or vendor in the case
   ///  of a processed/manipulated/manufactured product, providing the product.
-  @override
   Reference? get source;
+  @override
 
   /// [collectedDateTime] Time of product collection.
-  @override
   FhirDateTime? get collectedDateTime;
+  @override
 
   /// [collectedDateTimeElement] Extensions for collectedDateTime
-  @override
   @JsonKey(name: '_collectedDateTime')
   PrimitiveElement? get collectedDateTimeElement;
+  @override
 
   /// [collectedPeriod] Time of product collection.
-  @override
   Period? get collectedPeriod;
-
-  /// Create a copy of BiologicallyDerivedProductCollection
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$BiologicallyDerivedProductCollectionImplCopyWith<
           _$BiologicallyDerivedProductCollectionImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -1796,12 +1755,8 @@ mixin _$BiologicallyDerivedProductProcessing {
   /// [timePeriod] Time of processing.
   Period? get timePeriod => throw _privateConstructorUsedError;
 
-  /// Serializes this BiologicallyDerivedProductProcessing to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of BiologicallyDerivedProductProcessing
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $BiologicallyDerivedProductProcessingCopyWith<
           BiologicallyDerivedProductProcessing>
       get copyWith => throw _privateConstructorUsedError;
@@ -1843,8 +1798,6 @@ class _$BiologicallyDerivedProductProcessingCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of BiologicallyDerivedProductProcessing
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1903,8 +1856,6 @@ class _$BiologicallyDerivedProductProcessingCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of BiologicallyDerivedProductProcessing
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get procedure {
@@ -1917,8 +1868,6 @@ class _$BiologicallyDerivedProductProcessingCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of BiologicallyDerivedProductProcessing
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get additive {
@@ -1931,8 +1880,6 @@ class _$BiologicallyDerivedProductProcessingCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of BiologicallyDerivedProductProcessing
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get timePeriod {
@@ -1985,8 +1932,6 @@ class __$$BiologicallyDerivedProductProcessingImplCopyWithImpl<$Res>
       $Res Function(_$BiologicallyDerivedProductProcessingImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of BiologicallyDerivedProductProcessing
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2197,7 +2142,7 @@ class _$BiologicallyDerivedProductProcessingImpl
                 other.timePeriod == timePeriod));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2212,9 +2157,7 @@ class _$BiologicallyDerivedProductProcessingImpl
       timeDateTimeElement,
       timePeriod);
 
-  /// Create a copy of BiologicallyDerivedProductProcessing
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$BiologicallyDerivedProductProcessingImplCopyWith<
@@ -2250,10 +2193,12 @@ abstract class _BiologicallyDerivedProductProcessing
           Map<String, dynamic> json) =
       _$BiologicallyDerivedProductProcessingImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2261,9 +2206,9 @@ abstract class _BiologicallyDerivedProductProcessing
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2278,43 +2223,39 @@ abstract class _BiologicallyDerivedProductProcessing
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [description] Description of of processing.
-  @override
   String? get description;
+  @override
 
   /// [descriptionElement] Extensions for description
-  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
+  @override
 
   /// [procedure] Procesing code.
-  @override
   CodeableConcept? get procedure;
+  @override
 
   /// [additive] Substance added during processing.
-  @override
   Reference? get additive;
+  @override
 
   /// [timeDateTime] Time of processing.
-  @override
   FhirDateTime? get timeDateTime;
+  @override
 
   /// [timeDateTimeElement] Extensions for timeDateTime
-  @override
   @JsonKey(name: '_timeDateTime')
   PrimitiveElement? get timeDateTimeElement;
+  @override
 
   /// [timePeriod] Time of processing.
-  @override
   Period? get timePeriod;
-
-  /// Create a copy of BiologicallyDerivedProductProcessing
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$BiologicallyDerivedProductProcessingImplCopyWith<
           _$BiologicallyDerivedProductProcessingImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -2376,12 +2317,8 @@ mixin _$BiologicallyDerivedProductManipulation {
   /// [timePeriod] Time of manipulation.
   Period? get timePeriod => throw _privateConstructorUsedError;
 
-  /// Serializes this BiologicallyDerivedProductManipulation to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of BiologicallyDerivedProductManipulation
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $BiologicallyDerivedProductManipulationCopyWith<
           BiologicallyDerivedProductManipulation>
       get copyWith => throw _privateConstructorUsedError;
@@ -2419,8 +2356,6 @@ class _$BiologicallyDerivedProductManipulationCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of BiologicallyDerivedProductManipulation
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2469,8 +2404,6 @@ class _$BiologicallyDerivedProductManipulationCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of BiologicallyDerivedProductManipulation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get timePeriod {
@@ -2517,8 +2450,6 @@ class __$$BiologicallyDerivedProductManipulationImplCopyWithImpl<$Res>
       $Res Function(_$BiologicallyDerivedProductManipulationImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of BiologicallyDerivedProductManipulation
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2705,7 +2636,7 @@ class _$BiologicallyDerivedProductManipulationImpl
                 other.timePeriod == timePeriod));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2718,9 +2649,7 @@ class _$BiologicallyDerivedProductManipulationImpl
       timeDateTimeElement,
       timePeriod);
 
-  /// Create a copy of BiologicallyDerivedProductManipulation
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$BiologicallyDerivedProductManipulationImplCopyWith<
@@ -2755,10 +2684,12 @@ abstract class _BiologicallyDerivedProductManipulation
           Map<String, dynamic> json) =
       _$BiologicallyDerivedProductManipulationImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2766,9 +2697,9 @@ abstract class _BiologicallyDerivedProductManipulation
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2783,35 +2714,31 @@ abstract class _BiologicallyDerivedProductManipulation
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [description] Description of manipulation.
-  @override
   String? get description;
+  @override
 
   /// [descriptionElement] Extensions for description
-  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
+  @override
 
   /// [timeDateTime] Time of manipulation.
-  @override
   FhirDateTime? get timeDateTime;
+  @override
 
   /// [timeDateTimeElement] Extensions for timeDateTime
-  @override
   @JsonKey(name: '_timeDateTime')
   PrimitiveElement? get timeDateTimeElement;
+  @override
 
   /// [timePeriod] Time of manipulation.
-  @override
   Period? get timePeriod;
-
-  /// Create a copy of BiologicallyDerivedProductManipulation
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$BiologicallyDerivedProductManipulationImplCopyWith<
           _$BiologicallyDerivedProductManipulationImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -2880,12 +2807,8 @@ mixin _$BiologicallyDerivedProductStorage {
   /// [duration] Storage timeperiod.
   Period? get duration => throw _privateConstructorUsedError;
 
-  /// Serializes this BiologicallyDerivedProductStorage to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of BiologicallyDerivedProductStorage
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $BiologicallyDerivedProductStorageCopyWith<BiologicallyDerivedProductStorage>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2924,8 +2847,6 @@ class _$BiologicallyDerivedProductStorageCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of BiologicallyDerivedProductStorage
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2984,8 +2905,6 @@ class _$BiologicallyDerivedProductStorageCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of BiologicallyDerivedProductStorage
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get duration {
@@ -3034,8 +2953,6 @@ class __$$BiologicallyDerivedProductStorageImplCopyWithImpl<$Res>
       $Res Function(_$BiologicallyDerivedProductStorageImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of BiologicallyDerivedProductStorage
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3246,7 +3163,7 @@ class _$BiologicallyDerivedProductStorageImpl
                 other.duration == duration));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3261,9 +3178,7 @@ class _$BiologicallyDerivedProductStorageImpl
       scaleElement,
       duration);
 
-  /// Create a copy of BiologicallyDerivedProductStorage
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$BiologicallyDerivedProductStorageImplCopyWith<
@@ -3298,10 +3213,12 @@ abstract class _BiologicallyDerivedProductStorage
           Map<String, dynamic> json) =
       _$BiologicallyDerivedProductStorageImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3309,9 +3226,9 @@ abstract class _BiologicallyDerivedProductStorage
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3326,44 +3243,40 @@ abstract class _BiologicallyDerivedProductStorage
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [description] Description of storage.
-  @override
   String? get description;
+  @override
 
   /// [descriptionElement] Extensions for description
-  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
+  @override
 
   /// [temperature] Storage temperature.
-  @override
   FhirDecimal? get temperature;
+  @override
 
   /// [temperatureElement] Extensions for temperature
-  @override
   @JsonKey(name: '_temperature')
   PrimitiveElement? get temperatureElement;
+  @override
 
   /// [scale] Temperature scale used.
-  @override
   BiologicallyDerivedProductStorageScale? get scale;
+  @override
 
   /// [scaleElement] Extensions for scale
-  @override
   @JsonKey(name: '_scale')
   PrimitiveElement? get scaleElement;
+  @override
 
   /// [duration] Storage timeperiod.
-  @override
   Period? get duration;
-
-  /// Create a copy of BiologicallyDerivedProductStorage
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$BiologicallyDerivedProductStorageImplCopyWith<
           _$BiologicallyDerivedProductStorageImpl>
       get copyWith => throw _privateConstructorUsedError;

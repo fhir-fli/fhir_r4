@@ -145,12 +145,8 @@ mixin _$Provenance {
   ///  indicated.
   List<Signature>? get signature => throw _privateConstructorUsedError;
 
-  /// Serializes this Provenance to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of Provenance
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ProvenanceCopyWith<Provenance> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -207,8 +203,6 @@ class _$ProvenanceCopyWithImpl<$Res, $Val extends Provenance>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Provenance
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -342,8 +336,6 @@ class _$ProvenanceCopyWithImpl<$Res, $Val extends Provenance>
     ) as $Val);
   }
 
-  /// Create a copy of Provenance
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -356,8 +348,6 @@ class _$ProvenanceCopyWithImpl<$Res, $Val extends Provenance>
     });
   }
 
-  /// Create a copy of Provenance
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -370,8 +360,6 @@ class _$ProvenanceCopyWithImpl<$Res, $Val extends Provenance>
     });
   }
 
-  /// Create a copy of Provenance
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get occurredPeriod {
@@ -384,8 +372,6 @@ class _$ProvenanceCopyWithImpl<$Res, $Val extends Provenance>
     });
   }
 
-  /// Create a copy of Provenance
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get location {
@@ -398,8 +384,6 @@ class _$ProvenanceCopyWithImpl<$Res, $Val extends Provenance>
     });
   }
 
-  /// Create a copy of Provenance
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get activity {
@@ -470,8 +454,6 @@ class __$$ProvenanceImplCopyWithImpl<$Res>
       _$ProvenanceImpl _value, $Res Function(_$ProvenanceImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Provenance
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -966,7 +948,7 @@ class _$ProvenanceImpl extends _Provenance {
                 .equals(other._signature, _signature));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -997,9 +979,7 @@ class _$ProvenanceImpl extends _Provenance {
         const DeepCollectionEquality().hash(_signature)
       ]);
 
-  /// Create a copy of Provenance
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ProvenanceImplCopyWith<_$ProvenanceImpl> get copyWith =>
@@ -1051,38 +1031,39 @@ abstract class _Provenance extends Provenance {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.Provenance)
   R4ResourceType get resourceType;
+  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @override
   String? get id;
+  @override
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  @override
   FhirMeta? get meta;
+  @override
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  @override
   FhirUri? get implicitRules;
+  @override
 
   /// [implicitRulesElement] Extensions for implicitRules
-  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
+  @override
 
   /// [language] The base language in which the resource is written.
-  @override
   FhirCode? get language;
+  @override
 
   /// [languageElement] Extensions for language
-  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
+  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1090,15 +1071,15 @@ abstract class _Provenance extends Provenance {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  @override
   Narrative? get text;
+  @override
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  @override
   List<Resource>? get contained;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1106,9 +1087,9 @@ abstract class _Provenance extends Provenance {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1123,81 +1104,77 @@ abstract class _Provenance extends Provenance {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [target] The Reference(s) that were generated or updated by  the activity
   /// described in this resource. A provenance can point to more than one target
   ///  if multiple resources were created/updated by the same activity.
-  @override
   List<Reference> get target;
+  @override
 
   /// [occurredPeriod] The period during which the activity occurred.
-  @override
   Period? get occurredPeriod;
+  @override
 
   /// [occurredDateTime] The period during which the activity occurred.
-  @override
   FhirDateTime? get occurredDateTime;
+  @override
 
   /// [occurredDateTimeElement] Extensions for occurredDateTime
-  @override
   @JsonKey(name: '_occurredDateTime')
   PrimitiveElement? get occurredDateTimeElement;
+  @override
 
   /// [recorded] The instant of time at which the activity was recorded.
-  @override
   FhirInstant? get recorded;
+  @override
 
   /// [recordedElement] Extensions for recorded
-  @override
   @JsonKey(name: '_recorded')
   PrimitiveElement? get recordedElement;
+  @override
 
   /// [policy] Policy or plan the activity was defined by. Typically, a single
   /// activity may have multiple applicable policy documents, such as patient
   ///  consent, guarantor funding, etc.
-  @override
   List<FhirUri>? get policy;
+  @override
 
   /// [policyElement] Extensions for policy
-  @override
   @JsonKey(name: '_policy')
   List<PrimitiveElement>? get policyElement;
+  @override
 
   /// [location] Where the activity occurred, if relevant.
-  @override
   Reference? get location;
+  @override
 
   /// [reason] The reason that the activity was taking place.
-  @override
   List<CodeableConcept>? get reason;
+  @override
 
   /// [activity] An activity is something that occurs over a period of time and
   /// acts upon or with entities; it may include consuming, processing,
   ///  transforming, modifying, relocating, using, or generating entities.
-  @override
   CodeableConcept? get activity;
+  @override
 
   /// [agent] An actor taking a role in an activity  for which it can be
   ///  assigned some degree of responsibility for the activity taking place.
-  @override
   List<ProvenanceAgent> get agent;
+  @override
 
   /// [entity] An entity used in this activity.
-  @override
   List<ProvenanceEntity>? get entity;
+  @override
 
   /// [signature] A digital signature on the target Reference(s). The signer
   /// should match a Provenance.agent. The purpose of the signature is
   ///  indicated.
-  @override
   List<Signature>? get signature;
-
-  /// Create a copy of Provenance
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ProvenanceImplCopyWith<_$ProvenanceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1252,12 +1229,8 @@ mixin _$ProvenanceAgent {
   ///  was made.
   Reference? get onBehalfOf => throw _privateConstructorUsedError;
 
-  /// Serializes this ProvenanceAgent to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ProvenanceAgent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ProvenanceAgentCopyWith<ProvenanceAgent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1292,8 +1265,6 @@ class _$ProvenanceAgentCopyWithImpl<$Res, $Val extends ProvenanceAgent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ProvenanceAgent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1337,8 +1308,6 @@ class _$ProvenanceAgentCopyWithImpl<$Res, $Val extends ProvenanceAgent>
     ) as $Val);
   }
 
-  /// Create a copy of ProvenanceAgent
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get type {
@@ -1351,8 +1320,6 @@ class _$ProvenanceAgentCopyWithImpl<$Res, $Val extends ProvenanceAgent>
     });
   }
 
-  /// Create a copy of ProvenanceAgent
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get who {
@@ -1361,8 +1328,6 @@ class _$ProvenanceAgentCopyWithImpl<$Res, $Val extends ProvenanceAgent>
     });
   }
 
-  /// Create a copy of ProvenanceAgent
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get onBehalfOf {
@@ -1409,8 +1374,6 @@ class __$$ProvenanceAgentImplCopyWithImpl<$Res>
       _$ProvenanceAgentImpl _value, $Res Function(_$ProvenanceAgentImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProvenanceAgent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1592,7 +1555,7 @@ class _$ProvenanceAgentImpl extends _ProvenanceAgent {
                 other.onBehalfOf == onBehalfOf));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1604,9 +1567,7 @@ class _$ProvenanceAgentImpl extends _ProvenanceAgent {
       who,
       onBehalfOf);
 
-  /// Create a copy of ProvenanceAgent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ProvenanceAgentImplCopyWith<_$ProvenanceAgentImpl> get copyWith =>
@@ -1635,10 +1596,12 @@ abstract class _ProvenanceAgent extends ProvenanceAgent {
   factory _ProvenanceAgent.fromJson(Map<String, dynamic> json) =
       _$ProvenanceAgentImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1646,9 +1609,9 @@ abstract class _ProvenanceAgent extends ProvenanceAgent {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -1663,32 +1626,28 @@ abstract class _ProvenanceAgent extends ProvenanceAgent {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [type] The participation the agent had with respect to the activity.
-  @override
   CodeableConcept? get type;
+  @override
 
   /// [role] The function of the agent with respect to the activity. The
   ///  security role enabling the agent with respect to the activity.
-  @override
   List<CodeableConcept>? get role;
+  @override
 
   /// [who] The individual, device or organization that participated in the
   ///  event.
-  @override
   Reference get who;
+  @override
 
   /// [onBehalfOf] The individual, device, or organization for whom the change
   ///  was made.
-  @override
   Reference? get onBehalfOf;
-
-  /// Create a copy of ProvenanceAgent
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ProvenanceAgentImplCopyWith<_$ProvenanceAgentImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1745,12 +1704,8 @@ mixin _$ProvenanceEntity {
   ///  responsible for the activity which generated the entity.
   List<ProvenanceAgent>? get agent => throw _privateConstructorUsedError;
 
-  /// Serializes this ProvenanceEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ProvenanceEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ProvenanceEntityCopyWith<ProvenanceEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1783,8 +1738,6 @@ class _$ProvenanceEntityCopyWithImpl<$Res, $Val extends ProvenanceEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ProvenanceEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1828,8 +1781,6 @@ class _$ProvenanceEntityCopyWithImpl<$Res, $Val extends ProvenanceEntity>
     ) as $Val);
   }
 
-  /// Create a copy of ProvenanceEntity
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get what {
@@ -1868,8 +1819,6 @@ class __$$ProvenanceEntityImplCopyWithImpl<$Res>
       $Res Function(_$ProvenanceEntityImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProvenanceEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2055,7 +2004,7 @@ class _$ProvenanceEntityImpl extends _ProvenanceEntity {
             const DeepCollectionEquality().equals(other._agent, _agent));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2067,9 +2016,7 @@ class _$ProvenanceEntityImpl extends _ProvenanceEntity {
       what,
       const DeepCollectionEquality().hash(_agent));
 
-  /// Create a copy of ProvenanceEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ProvenanceEntityImplCopyWith<_$ProvenanceEntityImpl> get copyWith =>
@@ -2098,10 +2045,12 @@ abstract class _ProvenanceEntity extends ProvenanceEntity {
   factory _ProvenanceEntity.fromJson(Map<String, dynamic> json) =
       _$ProvenanceEntityImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2109,9 +2058,9 @@ abstract class _ProvenanceEntity extends ProvenanceEntity {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2126,34 +2075,30 @@ abstract class _ProvenanceEntity extends ProvenanceEntity {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [role] How the entity was used during the activity.
-  @override
   FhirCode? get role;
+  @override
 
   /// [roleElement] Extensions for role
-  @override
   @JsonKey(name: '_role')
   PrimitiveElement? get roleElement;
+  @override
 
   /// [what] Identity of the  Entity used. May be a logical or physical uri and
   ///  maybe absolute or relative.
-  @override
   Reference get what;
+  @override
 
   /// [agent] The entity is attributed to an agent to express the agent's
   /// responsibility for that entity, possibly along with other agents. This
   /// description can be understood as shorthand for saying that the agent was
   ///  responsible for the activity which generated the entity.
-  @override
   List<ProvenanceAgent>? get agent;
-
-  /// Create a copy of ProvenanceEntity
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ProvenanceEntityImplCopyWith<_$ProvenanceEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

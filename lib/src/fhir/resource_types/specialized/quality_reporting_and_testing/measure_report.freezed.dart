@@ -150,12 +150,8 @@ mixin _$MeasureReport {
   ///  were used in the calculation of this measure.
   List<Reference>? get evaluatedResource => throw _privateConstructorUsedError;
 
-  /// Serializes this MeasureReport to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of MeasureReport
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $MeasureReportCopyWith<MeasureReport> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -212,8 +208,6 @@ class _$MeasureReportCopyWithImpl<$Res, $Val extends MeasureReport>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of MeasureReport
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -347,8 +341,6 @@ class _$MeasureReportCopyWithImpl<$Res, $Val extends MeasureReport>
     ) as $Val);
   }
 
-  /// Create a copy of MeasureReport
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -361,8 +353,6 @@ class _$MeasureReportCopyWithImpl<$Res, $Val extends MeasureReport>
     });
   }
 
-  /// Create a copy of MeasureReport
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -375,8 +365,6 @@ class _$MeasureReportCopyWithImpl<$Res, $Val extends MeasureReport>
     });
   }
 
-  /// Create a copy of MeasureReport
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get subject {
@@ -389,8 +377,6 @@ class _$MeasureReportCopyWithImpl<$Res, $Val extends MeasureReport>
     });
   }
 
-  /// Create a copy of MeasureReport
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get reporter {
@@ -403,8 +389,6 @@ class _$MeasureReportCopyWithImpl<$Res, $Val extends MeasureReport>
     });
   }
 
-  /// Create a copy of MeasureReport
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res> get period {
@@ -413,8 +397,6 @@ class _$MeasureReportCopyWithImpl<$Res, $Val extends MeasureReport>
     });
   }
 
-  /// Create a copy of MeasureReport
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get improvementNotation {
@@ -486,8 +468,6 @@ class __$$MeasureReportImplCopyWithImpl<$Res>
       _$MeasureReportImpl _value, $Res Function(_$MeasureReportImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of MeasureReport
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -947,7 +927,7 @@ class _$MeasureReportImpl extends _MeasureReport {
                 .equals(other._evaluatedResource, _evaluatedResource));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -978,9 +958,7 @@ class _$MeasureReportImpl extends _MeasureReport {
         const DeepCollectionEquality().hash(_evaluatedResource)
       ]);
 
-  /// Create a copy of MeasureReport
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$MeasureReportImplCopyWith<_$MeasureReportImpl> get copyWith =>
@@ -1031,38 +1009,39 @@ abstract class _MeasureReport extends MeasureReport {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.MeasureReport)
   R4ResourceType get resourceType;
+  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @override
   String? get id;
+  @override
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  @override
   FhirMeta? get meta;
+  @override
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  @override
   FhirUri? get implicitRules;
+  @override
 
   /// [implicitRulesElement] Extensions for implicitRules
-  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
+  @override
 
   /// [language] The base language in which the resource is written.
-  @override
   FhirCode? get language;
+  @override
 
   /// [languageElement] Extensions for language
-  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
+  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1070,15 +1049,15 @@ abstract class _MeasureReport extends MeasureReport {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  @override
   Narrative? get text;
+  @override
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  @override
   List<Resource>? get contained;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1086,9 +1065,9 @@ abstract class _MeasureReport extends MeasureReport {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1103,24 +1082,24 @@ abstract class _MeasureReport extends MeasureReport {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [identifier] A formal identifier that is used to identify this
   /// MeasureReport when it is represented in other formats or referenced in a
   ///  specification, model, design or an instance.
-  @override
   List<Identifier>? get identifier;
+  @override
 
   /// [status] The MeasureReport status. No data will be available until the
   ///  MeasureReport status is complete.
-  @override
   FhirCode? get status;
+  @override
 
   /// [statusElement] Extensions for status
-  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
+  @override
 
   /// [type] The type of measure report. This may be an individual report,
   /// which provides the score for the measure for an individual member of the
@@ -1129,61 +1108,57 @@ abstract class _MeasureReport extends MeasureReport {
   /// population count for each of the criteria in the measure; or a
   /// data-collection, which enables the MeasureReport to be used to exchange
   ///  the data-of-interest for a quality measure.
-  @override
   FhirCode? get type;
+  @override
 
   /// [typeElement] Extensions for type
-  @override
   @JsonKey(name: '_type')
   PrimitiveElement? get typeElement;
+  @override
 
   /// [measure] A reference to the Measure that was calculated to produce this
   ///  report.
-  @override
   FhirCanonical get measure;
+  @override
 
   /// [subject] Optional subject identifying the individual or individuals the
   ///  report is for.
-  @override
   Reference? get subject;
+  @override
 
   /// [date] The date this measure report was generated.
-  @override
   FhirDateTime? get date;
+  @override
 
   /// [dateElement] Extensions for date
-  @override
   @JsonKey(name: '_date')
   PrimitiveElement? get dateElement;
+  @override
 
   /// [reporter] The individual, location, or organization that is reporting
   ///  the data.
-  @override
   Reference? get reporter;
+  @override
 
   /// [period] The reporting period for which the report was calculated.
-  @override
   Period get period;
+  @override
 
   /// [improvementNotation] Whether improvement in the measure is noted by an
   ///  increase or decrease in the measure score.
-  @override
   CodeableConcept? get improvementNotation;
+  @override
 
   /// [group] The results of the calculation, one for each population group in
   ///  the measure.
-  @override
   List<MeasureReportGroup>? get group;
+  @override
 
   /// [evaluatedResource] A reference to a Bundle containing the Resources that
   ///  were used in the calculation of this measure.
-  @override
   List<Reference>? get evaluatedResource;
-
-  /// Create a copy of MeasureReport
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$MeasureReportImplCopyWith<_$MeasureReportImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1242,12 +1217,8 @@ mixin _$MeasureReportGroup {
   List<MeasureReportStratifier>? get stratifier =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this MeasureReportGroup to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of MeasureReportGroup
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $MeasureReportGroupCopyWith<MeasureReportGroup> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1281,8 +1252,6 @@ class _$MeasureReportGroupCopyWithImpl<$Res, $Val extends MeasureReportGroup>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of MeasureReportGroup
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1326,8 +1295,6 @@ class _$MeasureReportGroupCopyWithImpl<$Res, $Val extends MeasureReportGroup>
     ) as $Val);
   }
 
-  /// Create a copy of MeasureReportGroup
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get code {
@@ -1340,8 +1307,6 @@ class _$MeasureReportGroupCopyWithImpl<$Res, $Val extends MeasureReportGroup>
     });
   }
 
-  /// Create a copy of MeasureReportGroup
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get measureScore {
@@ -1386,8 +1351,6 @@ class __$$MeasureReportGroupImplCopyWithImpl<$Res>
       $Res Function(_$MeasureReportGroupImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of MeasureReportGroup
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1584,7 +1547,7 @@ class _$MeasureReportGroupImpl extends _MeasureReportGroup {
                 .equals(other._stratifier, _stratifier));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1596,9 +1559,7 @@ class _$MeasureReportGroupImpl extends _MeasureReportGroup {
       measureScore,
       const DeepCollectionEquality().hash(_stratifier));
 
-  /// Create a copy of MeasureReportGroup
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$MeasureReportGroupImplCopyWith<_$MeasureReportGroupImpl> get copyWith =>
@@ -1628,10 +1589,12 @@ abstract class _MeasureReportGroup extends MeasureReportGroup {
   factory _MeasureReportGroup.fromJson(Map<String, dynamic> json) =
       _$MeasureReportGroupImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1639,9 +1602,9 @@ abstract class _MeasureReportGroup extends MeasureReportGroup {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -1656,34 +1619,30 @@ abstract class _MeasureReportGroup extends MeasureReportGroup {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [code] The meaning of the population group as defined in the measure
   ///  definition.
-  @override
   CodeableConcept? get code;
+  @override
 
   /// [population] The populations that make up the population group, one for
   ///  each type of population appropriate for the measure.
-  @override
   List<MeasureReportPopulation>? get population;
+  @override
 
   /// [measureScore] The measure score for this population group, calculated as
   /// appropriate for the measure type and scoring method, and based on the
   ///  contents of the populations defined in the group.
-  @override
   Quantity? get measureScore;
+  @override
 
   /// [stratifier] When a measure includes multiple stratifiers, there will be
   ///  a stratifier group for each stratifier defined by the measure.
-  @override
   List<MeasureReportStratifier>? get stratifier;
-
-  /// Create a copy of MeasureReportGroup
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$MeasureReportGroupImplCopyWith<_$MeasureReportGroupImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1738,12 +1697,8 @@ mixin _$MeasureReportPopulation {
   ///  MeasureReport resources, one for each subject in this population.
   Reference? get subjectResults => throw _privateConstructorUsedError;
 
-  /// Serializes this MeasureReportPopulation to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of MeasureReportPopulation
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $MeasureReportPopulationCopyWith<MeasureReportPopulation> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1778,8 +1733,6 @@ class _$MeasureReportPopulationCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of MeasureReportPopulation
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1823,8 +1776,6 @@ class _$MeasureReportPopulationCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of MeasureReportPopulation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get code {
@@ -1837,8 +1788,6 @@ class _$MeasureReportPopulationCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of MeasureReportPopulation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get subjectResults {
@@ -1886,8 +1835,6 @@ class __$$MeasureReportPopulationImplCopyWithImpl<$Res>
       $Res Function(_$MeasureReportPopulationImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of MeasureReportPopulation
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2058,7 +2005,7 @@ class _$MeasureReportPopulationImpl extends _MeasureReportPopulation {
                 other.subjectResults == subjectResults));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2070,9 +2017,7 @@ class _$MeasureReportPopulationImpl extends _MeasureReportPopulation {
       countElement,
       subjectResults);
 
-  /// Create a copy of MeasureReportPopulation
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$MeasureReportPopulationImplCopyWith<_$MeasureReportPopulationImpl>
@@ -2101,10 +2046,12 @@ abstract class _MeasureReportPopulation extends MeasureReportPopulation {
   factory _MeasureReportPopulation.fromJson(Map<String, dynamic> json) =
       _$MeasureReportPopulationImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2112,9 +2059,9 @@ abstract class _MeasureReportPopulation extends MeasureReportPopulation {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2129,31 +2076,27 @@ abstract class _MeasureReportPopulation extends MeasureReportPopulation {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [code] The type of the population.
-  @override
   CodeableConcept? get code;
+  @override
 
   /// [count] The number of members of the population.
-  @override
   FhirInteger? get count;
+  @override
 
   /// [countElement] Extensions for count
-  @override
   @JsonKey(name: '_count')
   PrimitiveElement? get countElement;
+  @override
 
   /// [subjectResults] This element refers to a List of subject level
   ///  MeasureReport resources, one for each subject in this population.
-  @override
   Reference? get subjectResults;
-
-  /// Create a copy of MeasureReportPopulation
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$MeasureReportPopulationImplCopyWith<_$MeasureReportPopulationImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2203,12 +2146,8 @@ mixin _$MeasureReportStratifier {
   ///  there will be four strata, one for each possible gender value.
   List<MeasureReportStratum>? get stratum => throw _privateConstructorUsedError;
 
-  /// Serializes this MeasureReportStratifier to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of MeasureReportStratifier
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $MeasureReportStratifierCopyWith<MeasureReportStratifier> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2238,8 +2177,6 @@ class _$MeasureReportStratifierCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of MeasureReportStratifier
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2301,8 +2238,6 @@ class __$$MeasureReportStratifierImplCopyWithImpl<$Res>
       $Res Function(_$MeasureReportStratifierImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of MeasureReportStratifier
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2473,7 +2408,7 @@ class _$MeasureReportStratifierImpl extends _MeasureReportStratifier {
             const DeepCollectionEquality().equals(other._stratum, _stratum));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2483,9 +2418,7 @@ class _$MeasureReportStratifierImpl extends _MeasureReportStratifier {
       const DeepCollectionEquality().hash(_code),
       const DeepCollectionEquality().hash(_stratum));
 
-  /// Create a copy of MeasureReportStratifier
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$MeasureReportStratifierImplCopyWith<_$MeasureReportStratifierImpl>
@@ -2513,10 +2446,12 @@ abstract class _MeasureReportStratifier extends MeasureReportStratifier {
   factory _MeasureReportStratifier.fromJson(Map<String, dynamic> json) =
       _$MeasureReportStratifierImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2524,9 +2459,9 @@ abstract class _MeasureReportStratifier extends MeasureReportStratifier {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2541,24 +2476,20 @@ abstract class _MeasureReportStratifier extends MeasureReportStratifier {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [code] The meaning of this stratifier, as defined in the measure
   ///  definition.
-  @override
   List<CodeableConcept>? get code;
+  @override
 
   /// [stratum] This element contains the results for a single stratum within
   /// the stratifier. For example, when stratifying on administrative gender,
   ///  there will be four strata, one for each possible gender value.
-  @override
   List<MeasureReportStratum>? get stratum;
-
-  /// Create a copy of MeasureReportStratifier
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$MeasureReportStratifierImplCopyWith<_$MeasureReportStratifierImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2617,12 +2548,8 @@ mixin _$MeasureReportStratum {
   ///  members of this stratum.
   Quantity? get measureScore => throw _privateConstructorUsedError;
 
-  /// Serializes this MeasureReportStratum to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of MeasureReportStratum
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $MeasureReportStratumCopyWith<MeasureReportStratum> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2657,8 +2584,6 @@ class _$MeasureReportStratumCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of MeasureReportStratum
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2702,8 +2627,6 @@ class _$MeasureReportStratumCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of MeasureReportStratum
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get value {
@@ -2716,8 +2639,6 @@ class _$MeasureReportStratumCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of MeasureReportStratum
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get measureScore {
@@ -2762,8 +2683,6 @@ class __$$MeasureReportStratumImplCopyWithImpl<$Res>
       $Res Function(_$MeasureReportStratumImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of MeasureReportStratum
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2959,7 +2878,7 @@ class _$MeasureReportStratumImpl extends _MeasureReportStratum {
                 other.measureScore == measureScore));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2971,9 +2890,7 @@ class _$MeasureReportStratumImpl extends _MeasureReportStratum {
       const DeepCollectionEquality().hash(_population),
       measureScore);
 
-  /// Create a copy of MeasureReportStratum
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$MeasureReportStratumImplCopyWith<_$MeasureReportStratumImpl>
@@ -3003,10 +2920,12 @@ abstract class _MeasureReportStratum extends MeasureReportStratum {
   factory _MeasureReportStratum.fromJson(Map<String, dynamic> json) =
       _$MeasureReportStratumImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3014,9 +2933,9 @@ abstract class _MeasureReportStratum extends MeasureReportStratum {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3031,34 +2950,30 @@ abstract class _MeasureReportStratum extends MeasureReportStratum {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [value] The value for this stratum, expressed as a CodeableConcept. When
   /// defining stratifiers on complex values, the value must be rendered such
   ///  that the value for each stratum within the stratifier is unique.
-  @override
   CodeableConcept? get value;
+  @override
 
   /// [component] A stratifier component value.
-  @override
   List<MeasureReportComponent>? get component;
+  @override
 
   /// [population] The populations that make up the stratum, one for each type
   ///  of population appropriate to the measure.
-  @override
   List<MeasureReportPopulation1>? get population;
+  @override
 
   /// [measureScore] The measure score for this stratum, calculated as
   /// appropriate for the measure type and scoring method, and based on only the
   ///  members of this stratum.
-  @override
   Quantity? get measureScore;
-
-  /// Create a copy of MeasureReportStratum
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$MeasureReportStratumImplCopyWith<_$MeasureReportStratumImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3105,12 +3020,8 @@ mixin _$MeasureReportComponent {
   /// [value] The stratum component value.
   CodeableConcept get value => throw _privateConstructorUsedError;
 
-  /// Serializes this MeasureReportComponent to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of MeasureReportComponent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $MeasureReportComponentCopyWith<MeasureReportComponent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3143,8 +3054,6 @@ class _$MeasureReportComponentCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of MeasureReportComponent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3178,8 +3087,6 @@ class _$MeasureReportComponentCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of MeasureReportComponent
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get code {
@@ -3188,8 +3095,6 @@ class _$MeasureReportComponentCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of MeasureReportComponent
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get value {
@@ -3231,8 +3136,6 @@ class __$$MeasureReportComponentImplCopyWithImpl<$Res>
       $Res Function(_$MeasureReportComponentImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of MeasureReportComponent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3377,7 +3280,7 @@ class _$MeasureReportComponentImpl extends _MeasureReportComponent {
             (identical(other.value, value) || other.value == value));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3387,9 +3290,7 @@ class _$MeasureReportComponentImpl extends _MeasureReportComponent {
       code,
       value);
 
-  /// Create a copy of MeasureReportComponent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$MeasureReportComponentImplCopyWith<_$MeasureReportComponentImpl>
@@ -3416,10 +3317,12 @@ abstract class _MeasureReportComponent extends MeasureReportComponent {
   factory _MeasureReportComponent.fromJson(Map<String, dynamic> json) =
       _$MeasureReportComponentImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3427,9 +3330,9 @@ abstract class _MeasureReportComponent extends MeasureReportComponent {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3444,21 +3347,17 @@ abstract class _MeasureReportComponent extends MeasureReportComponent {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [code] The code for the stratum component value.
-  @override
   CodeableConcept get code;
+  @override
 
   /// [value] The stratum component value.
-  @override
   CodeableConcept get value;
-
-  /// Create a copy of MeasureReportComponent
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$MeasureReportComponentImplCopyWith<_$MeasureReportComponentImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3514,12 +3413,8 @@ mixin _$MeasureReportPopulation1 {
   ///  stratum.
   Reference? get subjectResults => throw _privateConstructorUsedError;
 
-  /// Serializes this MeasureReportPopulation1 to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of MeasureReportPopulation1
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $MeasureReportPopulation1CopyWith<MeasureReportPopulation1> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3554,8 +3449,6 @@ class _$MeasureReportPopulation1CopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of MeasureReportPopulation1
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3599,8 +3492,6 @@ class _$MeasureReportPopulation1CopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of MeasureReportPopulation1
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get code {
@@ -3613,8 +3504,6 @@ class _$MeasureReportPopulation1CopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of MeasureReportPopulation1
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get subjectResults {
@@ -3662,8 +3551,6 @@ class __$$MeasureReportPopulation1ImplCopyWithImpl<$Res>
       $Res Function(_$MeasureReportPopulation1Impl) _then)
       : super(_value, _then);
 
-  /// Create a copy of MeasureReportPopulation1
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3835,7 +3722,7 @@ class _$MeasureReportPopulation1Impl extends _MeasureReportPopulation1 {
                 other.subjectResults == subjectResults));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3847,9 +3734,7 @@ class _$MeasureReportPopulation1Impl extends _MeasureReportPopulation1 {
       countElement,
       subjectResults);
 
-  /// Create a copy of MeasureReportPopulation1
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$MeasureReportPopulation1ImplCopyWith<_$MeasureReportPopulation1Impl>
@@ -3878,10 +3763,12 @@ abstract class _MeasureReportPopulation1 extends MeasureReportPopulation1 {
   factory _MeasureReportPopulation1.fromJson(Map<String, dynamic> json) =
       _$MeasureReportPopulation1Impl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3889,9 +3776,9 @@ abstract class _MeasureReportPopulation1 extends MeasureReportPopulation1 {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3906,32 +3793,28 @@ abstract class _MeasureReportPopulation1 extends MeasureReportPopulation1 {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [code] The type of the population.
-  @override
   CodeableConcept? get code;
+  @override
 
   /// [count] The number of members of the population in this stratum.
-  @override
   FhirInteger? get count;
+  @override
 
   /// [countElement] Extensions for count
-  @override
   @JsonKey(name: '_count')
   PrimitiveElement? get countElement;
+  @override
 
   /// [subjectResults] This element refers to a List of subject level
   /// MeasureReport resources, one for each subject in this population in this
   ///  stratum.
-  @override
   Reference? get subjectResults;
-
-  /// Create a copy of MeasureReportPopulation1
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$MeasureReportPopulation1ImplCopyWith<_$MeasureReportPopulation1Impl>
       get copyWith => throw _privateConstructorUsedError;
 }

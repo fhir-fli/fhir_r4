@@ -160,12 +160,8 @@ mixin _$TestReport {
   ///  after all the tests were executed (successfully or otherwise).
   TestReportTeardown? get teardown => throw _privateConstructorUsedError;
 
-  /// Serializes this TestReport to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of TestReport
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $TestReportCopyWith<TestReport> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -226,8 +222,6 @@ class _$TestReportCopyWithImpl<$Res, $Val extends TestReport>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of TestReport
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -381,8 +375,6 @@ class _$TestReportCopyWithImpl<$Res, $Val extends TestReport>
     ) as $Val);
   }
 
-  /// Create a copy of TestReport
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -395,8 +387,6 @@ class _$TestReportCopyWithImpl<$Res, $Val extends TestReport>
     });
   }
 
-  /// Create a copy of TestReport
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -409,8 +399,6 @@ class _$TestReportCopyWithImpl<$Res, $Val extends TestReport>
     });
   }
 
-  /// Create a copy of TestReport
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $IdentifierCopyWith<$Res>? get identifier {
@@ -423,8 +411,6 @@ class _$TestReportCopyWithImpl<$Res, $Val extends TestReport>
     });
   }
 
-  /// Create a copy of TestReport
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get testScript {
@@ -433,8 +419,6 @@ class _$TestReportCopyWithImpl<$Res, $Val extends TestReport>
     });
   }
 
-  /// Create a copy of TestReport
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TestReportSetupCopyWith<$Res>? get setup {
@@ -447,8 +431,6 @@ class _$TestReportCopyWithImpl<$Res, $Val extends TestReport>
     });
   }
 
-  /// Create a copy of TestReport
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TestReportTeardownCopyWith<$Res>? get teardown {
@@ -524,8 +506,6 @@ class __$$TestReportImplCopyWithImpl<$Res>
       _$TestReportImpl _value, $Res Function(_$TestReportImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of TestReport
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1016,7 +996,7 @@ class _$TestReportImpl extends _TestReport {
                 other.teardown == teardown));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1051,9 +1031,7 @@ class _$TestReportImpl extends _TestReport {
         teardown
       ]);
 
-  /// Create a copy of TestReport
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$TestReportImplCopyWith<_$TestReportImpl> get copyWith =>
@@ -1108,38 +1086,39 @@ abstract class _TestReport extends TestReport {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.TestReport)
   R4ResourceType get resourceType;
+  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @override
   String? get id;
+  @override
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  @override
   FhirMeta? get meta;
+  @override
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  @override
   FhirUri? get implicitRules;
+  @override
 
   /// [implicitRulesElement] Extensions for implicitRules
-  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
+  @override
 
   /// [language] The base language in which the resource is written.
-  @override
   FhirCode? get language;
+  @override
 
   /// [languageElement] Extensions for language
-  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
+  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1147,15 +1126,15 @@ abstract class _TestReport extends TestReport {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  @override
   Narrative? get text;
+  @override
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  @override
   List<Resource>? get contained;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1163,9 +1142,9 @@ abstract class _TestReport extends TestReport {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1180,101 +1159,97 @@ abstract class _TestReport extends TestReport {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [identifier] Identifier for the TestScript assigned for external purposes
   ///  outside the context of FHIR.
-  @override
   Identifier? get identifier;
+  @override
 
   /// [name] A free text natural language name identifying the executed
   ///  TestScript.
-  @override
   String? get name;
+  @override
 
   /// [nameElement] Extensions for name
-  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
+  @override
 
   /// [status] The current state of this test report.
-  @override
   FhirCode? get status;
+  @override
 
   /// [statusElement] Extensions for status
-  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
+  @override
 
   /// [testScript] Ideally this is an absolute URL that is used to identify the
   /// version-specific TestScript that was executed, matching the
   ///  `TestScript.url`.
-  @override
   Reference get testScript;
+  @override
 
   /// [result] The overall result from the execution of the TestScript.
-  @override
   FhirCode? get result;
+  @override
 
   /// [resultElement] Extensions for result
-  @override
   @JsonKey(name: '_result')
   PrimitiveElement? get resultElement;
+  @override
 
   /// [score] The final score (percentage of tests passed) resulting from the
   ///  execution of the TestScript.
-  @override
   FhirDecimal? get score;
+  @override
 
   /// [scoreElement] Extensions for score
-  @override
   @JsonKey(name: '_score')
   PrimitiveElement? get scoreElement;
+  @override
 
   /// [tester] Name of the tester producing this report (Organization or
   ///  individual).
-  @override
   String? get tester;
+  @override
 
   /// [testerElement] Extensions for tester
-  @override
   @JsonKey(name: '_tester')
   PrimitiveElement? get testerElement;
+  @override
 
   /// [issued] When the TestScript was executed and this TestReport was
   ///  generated.
-  @override
   FhirDateTime? get issued;
+  @override
 
   /// [issuedElement] Extensions for issued
-  @override
   @JsonKey(name: '_issued')
   PrimitiveElement? get issuedElement;
+  @override
 
   /// [participant] A participant in the test execution, either the execution
   ///  engine, a client, or a server.
-  @override
   List<TestReportParticipant>? get participant;
+  @override
 
   /// [setup] The results of the series of required setup operations before the
   ///  tests were executed.
-  @override
   TestReportSetup? get setup;
+  @override
 
   /// [test] A test executed from the test script.
-  @override
   List<TestReportTest>? get test;
+  @override
 
   /// [teardown] The results of the series of operations required to clean up
   ///  after all the tests were executed (successfully or otherwise).
-  @override
   TestReportTeardown? get teardown;
-
-  /// Create a copy of TestReport
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$TestReportImplCopyWith<_$TestReportImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1336,12 +1311,8 @@ mixin _$TestReportParticipant {
   @JsonKey(name: '_display')
   PrimitiveElement? get displayElement => throw _privateConstructorUsedError;
 
-  /// Serializes this TestReportParticipant to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of TestReportParticipant
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $TestReportParticipantCopyWith<TestReportParticipant> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1375,8 +1346,6 @@ class _$TestReportParticipantCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of TestReportParticipant
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1461,8 +1430,6 @@ class __$$TestReportParticipantImplCopyWithImpl<$Res>
       $Res Function(_$TestReportParticipantImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of TestReportParticipant
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1657,7 +1624,7 @@ class _$TestReportParticipantImpl extends _TestReportParticipant {
                 other.displayElement == displayElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1671,9 +1638,7 @@ class _$TestReportParticipantImpl extends _TestReportParticipant {
       display,
       displayElement);
 
-  /// Create a copy of TestReportParticipant
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$TestReportParticipantImplCopyWith<_$TestReportParticipantImpl>
@@ -1705,10 +1670,12 @@ abstract class _TestReportParticipant extends TestReportParticipant {
   factory _TestReportParticipant.fromJson(Map<String, dynamic> json) =
       _$TestReportParticipantImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1716,9 +1683,9 @@ abstract class _TestReportParticipant extends TestReportParticipant {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -1733,40 +1700,36 @@ abstract class _TestReportParticipant extends TestReportParticipant {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [type] The type of participant.
-  @override
   FhirCode? get type;
+  @override
 
   /// [typeElement] Extensions for type
-  @override
   @JsonKey(name: '_type')
   PrimitiveElement? get typeElement;
+  @override
 
   /// [uri] The uri of the participant. An absolute URL is preferred.
-  @override
   FhirUri? get uri;
+  @override
 
   /// [uriElement] Extensions for uri
-  @override
   @JsonKey(name: '_uri')
   PrimitiveElement? get uriElement;
+  @override
 
   /// [display] The display name of the participant.
-  @override
   String? get display;
+  @override
 
   /// [displayElement] Extensions for display
-  @override
   @JsonKey(name: '_display')
   PrimitiveElement? get displayElement;
-
-  /// Create a copy of TestReportParticipant
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$TestReportParticipantImplCopyWith<_$TestReportParticipantImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1809,12 +1772,8 @@ mixin _$TestReportSetup {
   /// [action] Action would contain either an operation or an assertion.
   List<TestReportAction> get action => throw _privateConstructorUsedError;
 
-  /// Serializes this TestReportSetup to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of TestReportSetup
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $TestReportSetupCopyWith<TestReportSetup> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1842,8 +1801,6 @@ class _$TestReportSetupCopyWithImpl<$Res, $Val extends TestReportSetup>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of TestReportSetup
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1896,8 +1853,6 @@ class __$$TestReportSetupImplCopyWithImpl<$Res>
       _$TestReportSetupImpl _value, $Res Function(_$TestReportSetupImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of TestReportSetup
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2039,7 +1994,7 @@ class _$TestReportSetupImpl extends _TestReportSetup {
             const DeepCollectionEquality().equals(other._action, _action));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2048,9 +2003,7 @@ class _$TestReportSetupImpl extends _TestReportSetup {
       const DeepCollectionEquality().hash(_modifierExtension),
       const DeepCollectionEquality().hash(_action));
 
-  /// Create a copy of TestReportSetup
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$TestReportSetupImplCopyWith<_$TestReportSetupImpl> get copyWith =>
@@ -2076,10 +2029,12 @@ abstract class _TestReportSetup extends TestReportSetup {
   factory _TestReportSetup.fromJson(Map<String, dynamic> json) =
       _$TestReportSetupImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2087,9 +2042,9 @@ abstract class _TestReportSetup extends TestReportSetup {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2104,17 +2059,13 @@ abstract class _TestReportSetup extends TestReportSetup {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [action] Action would contain either an operation or an assertion.
-  @override
   List<TestReportAction> get action;
-
-  /// Create a copy of TestReportSetup
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$TestReportSetupImplCopyWith<_$TestReportSetupImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2162,12 +2113,8 @@ mixin _$TestReportAction {
   @JsonKey(name: 'assert')
   TestReportAssert? get assert_ => throw _privateConstructorUsedError;
 
-  /// Serializes this TestReportAction to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of TestReportAction
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $TestReportActionCopyWith<TestReportAction> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2199,8 +2146,6 @@ class _$TestReportActionCopyWithImpl<$Res, $Val extends TestReportAction>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of TestReportAction
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2234,8 +2179,6 @@ class _$TestReportActionCopyWithImpl<$Res, $Val extends TestReportAction>
     ) as $Val);
   }
 
-  /// Create a copy of TestReportAction
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TestReportOperationCopyWith<$Res>? get operation {
@@ -2248,8 +2191,6 @@ class _$TestReportActionCopyWithImpl<$Res, $Val extends TestReportAction>
     });
   }
 
-  /// Create a copy of TestReportAction
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TestReportAssertCopyWith<$Res>? get assert_ {
@@ -2292,8 +2233,6 @@ class __$$TestReportActionImplCopyWithImpl<$Res>
       $Res Function(_$TestReportActionImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of TestReportAction
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2441,7 +2380,7 @@ class _$TestReportActionImpl extends _TestReportAction {
             (identical(other.assert_, assert_) || other.assert_ == assert_));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2451,9 +2390,7 @@ class _$TestReportActionImpl extends _TestReportAction {
       operation,
       assert_);
 
-  /// Create a copy of TestReportAction
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$TestReportActionImplCopyWith<_$TestReportActionImpl> get copyWith =>
@@ -2481,10 +2418,12 @@ abstract class _TestReportAction extends TestReportAction {
   factory _TestReportAction.fromJson(Map<String, dynamic> json) =
       _$TestReportActionImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2492,9 +2431,9 @@ abstract class _TestReportAction extends TestReportAction {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2509,23 +2448,19 @@ abstract class _TestReportAction extends TestReportAction {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [operation] The operation performed.
-  @override
   TestReportOperation? get operation;
+  @override
 
   /// [assert] The results of the assertion performed on the previous
   ///  operations.
-  @override
   @JsonKey(name: 'assert')
   TestReportAssert? get assert_;
-
-  /// Create a copy of TestReportAction
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$TestReportActionImplCopyWith<_$TestReportActionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2586,12 +2521,8 @@ mixin _$TestReportOperation {
   @JsonKey(name: '_detail')
   PrimitiveElement? get detailElement => throw _privateConstructorUsedError;
 
-  /// Serializes this TestReportOperation to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of TestReportOperation
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $TestReportOperationCopyWith<TestReportOperation> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2624,8 +2555,6 @@ class _$TestReportOperationCopyWithImpl<$Res, $Val extends TestReportOperation>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of TestReportOperation
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2708,8 +2637,6 @@ class __$$TestReportOperationImplCopyWithImpl<$Res>
       $Res Function(_$TestReportOperationImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of TestReportOperation
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2904,7 +2831,7 @@ class _$TestReportOperationImpl extends _TestReportOperation {
                 other.detailElement == detailElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2918,9 +2845,7 @@ class _$TestReportOperationImpl extends _TestReportOperation {
       detail,
       detailElement);
 
-  /// Create a copy of TestReportOperation
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$TestReportOperationImplCopyWith<_$TestReportOperationImpl> get copyWith =>
@@ -2952,10 +2877,12 @@ abstract class _TestReportOperation extends TestReportOperation {
   factory _TestReportOperation.fromJson(Map<String, dynamic> json) =
       _$TestReportOperationImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2963,9 +2890,9 @@ abstract class _TestReportOperation extends TestReportOperation {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2980,40 +2907,36 @@ abstract class _TestReportOperation extends TestReportOperation {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [result] The result of this operation.
-  @override
   FhirCode? get result;
+  @override
 
   /// [resultElement] Extensions for result
-  @override
   @JsonKey(name: '_result')
   PrimitiveElement? get resultElement;
+  @override
 
   /// [message] An explanatory message associated with the result.
-  @override
   FhirMarkdown? get message;
+  @override
 
   /// [messageElement] Extensions for message
-  @override
   @JsonKey(name: '_message')
   PrimitiveElement? get messageElement;
+  @override
 
   /// [detail] A link to further details on the result.
-  @override
   FhirUri? get detail;
+  @override
 
   /// [detailElement] Extensions for detail
-  @override
   @JsonKey(name: '_detail')
   PrimitiveElement? get detailElement;
-
-  /// Create a copy of TestReportOperation
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$TestReportOperationImplCopyWith<_$TestReportOperationImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3074,12 +2997,8 @@ mixin _$TestReportAssert {
   @JsonKey(name: '_detail')
   PrimitiveElement? get detailElement => throw _privateConstructorUsedError;
 
-  /// Serializes this TestReportAssert to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of TestReportAssert
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $TestReportAssertCopyWith<TestReportAssert> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3112,8 +3031,6 @@ class _$TestReportAssertCopyWithImpl<$Res, $Val extends TestReportAssert>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of TestReportAssert
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3196,8 +3113,6 @@ class __$$TestReportAssertImplCopyWithImpl<$Res>
       $Res Function(_$TestReportAssertImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of TestReportAssert
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3392,7 +3307,7 @@ class _$TestReportAssertImpl extends _TestReportAssert {
                 other.detailElement == detailElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3406,9 +3321,7 @@ class _$TestReportAssertImpl extends _TestReportAssert {
       detail,
       detailElement);
 
-  /// Create a copy of TestReportAssert
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$TestReportAssertImplCopyWith<_$TestReportAssertImpl> get copyWith =>
@@ -3440,10 +3353,12 @@ abstract class _TestReportAssert extends TestReportAssert {
   factory _TestReportAssert.fromJson(Map<String, dynamic> json) =
       _$TestReportAssertImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3451,9 +3366,9 @@ abstract class _TestReportAssert extends TestReportAssert {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3468,40 +3383,36 @@ abstract class _TestReportAssert extends TestReportAssert {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [result] The result of this assertion.
-  @override
   FhirCode? get result;
+  @override
 
   /// [resultElement] Extensions for result
-  @override
   @JsonKey(name: '_result')
   PrimitiveElement? get resultElement;
+  @override
 
   /// [message] An explanatory message associated with the result.
-  @override
   FhirMarkdown? get message;
+  @override
 
   /// [messageElement] Extensions for message
-  @override
   @JsonKey(name: '_message')
   PrimitiveElement? get messageElement;
+  @override
 
   /// [detail] A link to further details on the result.
-  @override
   String? get detail;
+  @override
 
   /// [detailElement] Extensions for detail
-  @override
   @JsonKey(name: '_detail')
   PrimitiveElement? get detailElement;
-
-  /// Create a copy of TestReportAssert
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$TestReportAssertImplCopyWith<_$TestReportAssertImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3561,12 +3472,8 @@ mixin _$TestReportTest {
   /// [action] Action would contain either an operation or an assertion.
   List<TestReportAction1> get action => throw _privateConstructorUsedError;
 
-  /// Serializes this TestReportTest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of TestReportTest
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $TestReportTestCopyWith<TestReportTest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3598,8 +3505,6 @@ class _$TestReportTestCopyWithImpl<$Res, $Val extends TestReportTest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of TestReportTest
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3676,8 +3581,6 @@ class __$$TestReportTestImplCopyWithImpl<$Res>
       _$TestReportTestImpl _value, $Res Function(_$TestReportTestImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of TestReportTest
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3870,7 +3773,7 @@ class _$TestReportTestImpl extends _TestReportTest {
             const DeepCollectionEquality().equals(other._action, _action));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3883,9 +3786,7 @@ class _$TestReportTestImpl extends _TestReportTest {
       descriptionElement,
       const DeepCollectionEquality().hash(_action));
 
-  /// Create a copy of TestReportTest
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$TestReportTestImplCopyWith<_$TestReportTestImpl> get copyWith =>
@@ -3915,10 +3816,12 @@ abstract class _TestReportTest extends TestReportTest {
   factory _TestReportTest.fromJson(Map<String, dynamic> json) =
       _$TestReportTestImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3926,9 +3829,9 @@ abstract class _TestReportTest extends TestReportTest {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3943,37 +3846,33 @@ abstract class _TestReportTest extends TestReportTest {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [name] The name of this test used for tracking/logging purposes by test
   ///  engines.
-  @override
   String? get name;
+  @override
 
   /// [nameElement] Extensions for name
-  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
+  @override
 
   /// [description] A short description of the test used by test engines for
   ///  tracking and reporting purposes.
-  @override
   String? get description;
+  @override
 
   /// [descriptionElement] Extensions for description
-  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
+  @override
 
   /// [action] Action would contain either an operation or an assertion.
-  @override
   List<TestReportAction1> get action;
-
-  /// Create a copy of TestReportTest
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$TestReportTestImplCopyWith<_$TestReportTestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4021,12 +3920,8 @@ mixin _$TestReportAction1 {
   @JsonKey(name: 'assert')
   TestReportAssert? get assert_ => throw _privateConstructorUsedError;
 
-  /// Serializes this TestReportAction1 to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of TestReportAction1
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $TestReportAction1CopyWith<TestReportAction1> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4058,8 +3953,6 @@ class _$TestReportAction1CopyWithImpl<$Res, $Val extends TestReportAction1>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of TestReportAction1
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4093,8 +3986,6 @@ class _$TestReportAction1CopyWithImpl<$Res, $Val extends TestReportAction1>
     ) as $Val);
   }
 
-  /// Create a copy of TestReportAction1
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TestReportOperationCopyWith<$Res>? get operation {
@@ -4107,8 +3998,6 @@ class _$TestReportAction1CopyWithImpl<$Res, $Val extends TestReportAction1>
     });
   }
 
-  /// Create a copy of TestReportAction1
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TestReportAssertCopyWith<$Res>? get assert_ {
@@ -4151,8 +4040,6 @@ class __$$TestReportAction1ImplCopyWithImpl<$Res>
       $Res Function(_$TestReportAction1Impl) _then)
       : super(_value, _then);
 
-  /// Create a copy of TestReportAction1
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4300,7 +4187,7 @@ class _$TestReportAction1Impl extends _TestReportAction1 {
             (identical(other.assert_, assert_) || other.assert_ == assert_));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -4310,9 +4197,7 @@ class _$TestReportAction1Impl extends _TestReportAction1 {
       operation,
       assert_);
 
-  /// Create a copy of TestReportAction1
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$TestReportAction1ImplCopyWith<_$TestReportAction1Impl> get copyWith =>
@@ -4340,10 +4225,12 @@ abstract class _TestReportAction1 extends TestReportAction1 {
   factory _TestReportAction1.fromJson(Map<String, dynamic> json) =
       _$TestReportAction1Impl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -4351,9 +4238,9 @@ abstract class _TestReportAction1 extends TestReportAction1 {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -4368,23 +4255,19 @@ abstract class _TestReportAction1 extends TestReportAction1 {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [operation] An operation would involve a REST request to a server.
-  @override
   TestReportOperation? get operation;
+  @override
 
   /// [assert] The results of the assertion performed on the previous
   ///  operations.
-  @override
   @JsonKey(name: 'assert')
   TestReportAssert? get assert_;
-
-  /// Create a copy of TestReportAction1
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$TestReportAction1ImplCopyWith<_$TestReportAction1Impl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4427,12 +4310,8 @@ mixin _$TestReportTeardown {
   /// [action] The teardown action will only contain an operation.
   List<TestReportAction2> get action => throw _privateConstructorUsedError;
 
-  /// Serializes this TestReportTeardown to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of TestReportTeardown
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $TestReportTeardownCopyWith<TestReportTeardown> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4460,8 +4339,6 @@ class _$TestReportTeardownCopyWithImpl<$Res, $Val extends TestReportTeardown>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of TestReportTeardown
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4514,8 +4391,6 @@ class __$$TestReportTeardownImplCopyWithImpl<$Res>
       $Res Function(_$TestReportTeardownImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of TestReportTeardown
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4657,7 +4532,7 @@ class _$TestReportTeardownImpl extends _TestReportTeardown {
             const DeepCollectionEquality().equals(other._action, _action));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -4666,9 +4541,7 @@ class _$TestReportTeardownImpl extends _TestReportTeardown {
       const DeepCollectionEquality().hash(_modifierExtension),
       const DeepCollectionEquality().hash(_action));
 
-  /// Create a copy of TestReportTeardown
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$TestReportTeardownImplCopyWith<_$TestReportTeardownImpl> get copyWith =>
@@ -4695,10 +4568,12 @@ abstract class _TestReportTeardown extends TestReportTeardown {
   factory _TestReportTeardown.fromJson(Map<String, dynamic> json) =
       _$TestReportTeardownImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -4706,9 +4581,9 @@ abstract class _TestReportTeardown extends TestReportTeardown {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -4723,17 +4598,13 @@ abstract class _TestReportTeardown extends TestReportTeardown {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [action] The teardown action will only contain an operation.
-  @override
   List<TestReportAction2> get action;
-
-  /// Create a copy of TestReportTeardown
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$TestReportTeardownImplCopyWith<_$TestReportTeardownImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4776,12 +4647,8 @@ mixin _$TestReportAction2 {
   /// [operation] An operation would involve a REST request to a server.
   TestReportOperation get operation => throw _privateConstructorUsedError;
 
-  /// Serializes this TestReportAction2 to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of TestReportAction2
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $TestReportAction2CopyWith<TestReportAction2> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4811,8 +4678,6 @@ class _$TestReportAction2CopyWithImpl<$Res, $Val extends TestReportAction2>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of TestReportAction2
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4841,8 +4706,6 @@ class _$TestReportAction2CopyWithImpl<$Res, $Val extends TestReportAction2>
     ) as $Val);
   }
 
-  /// Create a copy of TestReportAction2
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TestReportOperationCopyWith<$Res> get operation {
@@ -4878,8 +4741,6 @@ class __$$TestReportAction2ImplCopyWithImpl<$Res>
       $Res Function(_$TestReportAction2Impl) _then)
       : super(_value, _then);
 
-  /// Create a copy of TestReportAction2
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5014,7 +4875,7 @@ class _$TestReportAction2Impl extends _TestReportAction2 {
                 other.operation == operation));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -5023,9 +4884,7 @@ class _$TestReportAction2Impl extends _TestReportAction2 {
       const DeepCollectionEquality().hash(_modifierExtension),
       operation);
 
-  /// Create a copy of TestReportAction2
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$TestReportAction2ImplCopyWith<_$TestReportAction2Impl> get copyWith =>
@@ -5051,10 +4910,12 @@ abstract class _TestReportAction2 extends TestReportAction2 {
   factory _TestReportAction2.fromJson(Map<String, dynamic> json) =
       _$TestReportAction2Impl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -5062,9 +4923,9 @@ abstract class _TestReportAction2 extends TestReportAction2 {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -5079,17 +4940,13 @@ abstract class _TestReportAction2 extends TestReportAction2 {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [operation] An operation would involve a REST request to a server.
-  @override
   TestReportOperation get operation;
-
-  /// Create a copy of TestReportAction2
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$TestReportAction2ImplCopyWith<_$TestReportAction2Impl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -58,12 +58,8 @@ mixin _$Annotation {
   @JsonKey(name: '_text')
   PrimitiveElement? get textElement => throw _privateConstructorUsedError;
 
-  /// Serializes this Annotation to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of Annotation
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $AnnotationCopyWith<Annotation> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -98,8 +94,6 @@ class _$AnnotationCopyWithImpl<$Res, $Val extends Annotation>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Annotation
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -153,8 +147,6 @@ class _$AnnotationCopyWithImpl<$Res, $Val extends Annotation>
     ) as $Val);
   }
 
-  /// Create a copy of Annotation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get authorReference {
@@ -199,8 +191,6 @@ class __$$AnnotationImplCopyWithImpl<$Res>
       _$AnnotationImpl _value, $Res Function(_$AnnotationImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Annotation
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -361,7 +351,7 @@ class _$AnnotationImpl extends _Annotation {
                 other.textElement == textElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -375,9 +365,7 @@ class _$AnnotationImpl extends _Annotation {
       text,
       textElement);
 
-  /// Create a copy of Annotation
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$AnnotationImplCopyWith<_$AnnotationImpl> get copyWith =>
@@ -409,10 +397,12 @@ abstract class _Annotation extends Annotation {
   factory _Annotation.fromJson(Map<String, dynamic> json) =
       _$AnnotationImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -420,45 +410,41 @@ abstract class _Annotation extends Annotation {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [authorReference] The individual responsible for making the annotation.
-  @override
   Reference? get authorReference;
+  @override
 
   /// [authorString] The individual responsible for making the annotation.
-  @override
   String? get authorString;
+  @override
 
   /// [authorStringElement] Extensions for authorString
-  @override
   @JsonKey(name: '_authorString')
   PrimitiveElement? get authorStringElement;
+  @override
 
   /// [time] Indicates when this particular annotation was made.
-  @override
   FhirDateTime? get time;
+  @override
 
   /// [timeElement] Extensions for time
-  @override
   @JsonKey(name: '_time')
   PrimitiveElement? get timeElement;
+  @override
 
   /// [text] The text of the annotation in markdown format.
-  @override
   FhirMarkdown? get text;
+  @override
 
   /// [textElement] Extensions for text
-  @override
   @JsonKey(name: '_text')
   PrimitiveElement? get textElement;
-
-  /// Create a copy of Annotation
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$AnnotationImplCopyWith<_$AnnotationImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

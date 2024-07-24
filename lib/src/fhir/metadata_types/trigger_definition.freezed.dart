@@ -80,12 +80,8 @@ mixin _$TriggerDefinition {
   ///  trigger fires.
   FhirExpression? get condition => throw _privateConstructorUsedError;
 
-  /// Serializes this TriggerDefinition to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of TriggerDefinition
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $TriggerDefinitionCopyWith<TriggerDefinition> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -128,8 +124,6 @@ class _$TriggerDefinitionCopyWithImpl<$Res, $Val extends TriggerDefinition>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of TriggerDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -208,8 +202,6 @@ class _$TriggerDefinitionCopyWithImpl<$Res, $Val extends TriggerDefinition>
     ) as $Val);
   }
 
-  /// Create a copy of TriggerDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TimingCopyWith<$Res>? get timingTiming {
@@ -222,8 +214,6 @@ class _$TriggerDefinitionCopyWithImpl<$Res, $Val extends TriggerDefinition>
     });
   }
 
-  /// Create a copy of TriggerDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get timingReference {
@@ -236,8 +226,6 @@ class _$TriggerDefinitionCopyWithImpl<$Res, $Val extends TriggerDefinition>
     });
   }
 
-  /// Create a copy of TriggerDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirExpressionCopyWith<$Res>? get condition {
@@ -292,8 +280,6 @@ class __$$TriggerDefinitionImplCopyWithImpl<$Res>
       $Res Function(_$TriggerDefinitionImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of TriggerDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -533,7 +519,7 @@ class _$TriggerDefinitionImpl extends _TriggerDefinition {
                 other.condition == condition));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -552,9 +538,7 @@ class _$TriggerDefinitionImpl extends _TriggerDefinition {
       const DeepCollectionEquality().hash(_data),
       condition);
 
-  /// Create a copy of TriggerDefinition
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$TriggerDefinitionImplCopyWith<_$TriggerDefinitionImpl> get copyWith =>
@@ -592,10 +576,12 @@ abstract class _TriggerDefinition extends TriggerDefinition {
   factory _TriggerDefinition.fromJson(Map<String, dynamic> json) =
       _$TriggerDefinitionImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -603,72 +589,68 @@ abstract class _TriggerDefinition extends TriggerDefinition {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
   @override
   @JsonKey(unknownEnumValue: TriggerDefinitionType.unknown)
   TriggerDefinitionType? get type;
+  @override
 
   /// [typeElement] Extensions for type
-  @override
   @JsonKey(name: '_type')
   PrimitiveElement? get typeElement;
+  @override
 
   /// [name] A formal name for the event. This may be an absolute URI that
   /// identifies the event formally (e.g. from a trigger registry), or a simple
   ///  relative URI that identifies the event in a local context.
-  @override
   String? get name;
+  @override
 
   /// [nameElement] Extensions for name
-  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
+  @override
 
   /// [timingTiming] The timing of the event (if this is a periodic trigger).
-  @override
   Timing? get timingTiming;
+  @override
 
   /// [timingReference] The timing of the event (if this is a periodic
   ///  trigger).
-  @override
   Reference? get timingReference;
+  @override
 
   /// [timingDate] The timing of the event (if this is a periodic trigger).
-  @override
   FhirDate? get timingDate;
+  @override
 
   /// [timingDateElement] Extensions for timingDate
-  @override
   @JsonKey(name: '_timingDate')
   PrimitiveElement? get timingDateElement;
+  @override
 
   /// [timingDateTime] The timing of the event (if this is a periodic trigger).
-  @override
   FhirDateTime? get timingDateTime;
+  @override
 
   /// [timingDateTimeElement] Extensions for timingDateTime
-  @override
   @JsonKey(name: '_timingDateTime')
   PrimitiveElement? get timingDateTimeElement;
+  @override
 
   /// [data] The triggering data of the event (if this is a data trigger). If
   /// more than one data is requirement is specified, then all the data
   ///  requirements must be true.
-  @override
   List<DataRequirement>? get data;
+  @override
 
   /// [condition] A boolean-valued expression that is evaluated in the context
   /// of the container of the trigger definition and returns whether or not the
   ///  trigger fires.
-  @override
   FhirExpression? get condition;
-
-  /// Create a copy of TriggerDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$TriggerDefinitionImplCopyWith<_$TriggerDefinitionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

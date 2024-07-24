@@ -188,12 +188,8 @@ mixin _$Patient {
   ///  patient.
   List<PatientLink>? get link => throw _privateConstructorUsedError;
 
-  /// Serializes this Patient to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of Patient
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $PatientCopyWith<Patient> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -261,8 +257,6 @@ class _$PatientCopyWithImpl<$Res, $Val extends Patient>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Patient
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -451,8 +445,6 @@ class _$PatientCopyWithImpl<$Res, $Val extends Patient>
     ) as $Val);
   }
 
-  /// Create a copy of Patient
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -465,8 +457,6 @@ class _$PatientCopyWithImpl<$Res, $Val extends Patient>
     });
   }
 
-  /// Create a copy of Patient
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -479,8 +469,6 @@ class _$PatientCopyWithImpl<$Res, $Val extends Patient>
     });
   }
 
-  /// Create a copy of Patient
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get maritalStatus {
@@ -493,8 +481,6 @@ class _$PatientCopyWithImpl<$Res, $Val extends Patient>
     });
   }
 
-  /// Create a copy of Patient
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get managingOrganization {
@@ -576,8 +562,6 @@ class __$$PatientImplCopyWithImpl<$Res>
       _$PatientImpl _value, $Res Function(_$PatientImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Patient
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1233,7 +1217,7 @@ class _$PatientImpl extends _Patient {
             const DeepCollectionEquality().equals(other._link, _link));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1275,9 +1259,7 @@ class _$PatientImpl extends _Patient {
         const DeepCollectionEquality().hash(_link)
       ]);
 
-  /// Create a copy of Patient
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$PatientImplCopyWith<_$PatientImpl> get copyWith =>
@@ -1342,38 +1324,39 @@ abstract class _Patient extends Patient {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.Patient)
   R4ResourceType get resourceType;
+  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @override
   String? get id;
+  @override
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  @override
   FhirMeta? get meta;
+  @override
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  @override
   FhirUri? get implicitRules;
+  @override
 
   /// [implicitRulesElement] Extensions for implicitRules
-  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
+  @override
 
   /// [language] The base language in which the resource is written.
-  @override
   FhirCode? get language;
+  @override
 
   /// [languageElement] Extensions for language
-  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
+  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1381,15 +1364,15 @@ abstract class _Patient extends Patient {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  @override
   Narrative? get text;
+  @override
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  @override
   List<Resource>? get contained;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1397,9 +1380,9 @@ abstract class _Patient extends Patient {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1414,12 +1397,12 @@ abstract class _Patient extends Patient {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [identifier] An identifier for this patient.
-  @override
   List<Identifier>? get identifier;
+  @override
 
   /// [active] Whether this patient record is in active use.
   /// Many systems use this property to mark as non-current patients, such as
@@ -1428,117 +1411,113 @@ abstract class _Patient extends Patient {
   /// It is often used to filter patient lists to exclude inactive patients
   /// Deceased patients may also be marked as inactive for the same reasons, but
   ///  may be active for some time after death.
-  @override
   FhirBoolean? get active;
+  @override
 
   /// [activeElement] Extensions for active
-  @override
   @JsonKey(name: '_active')
   PrimitiveElement? get activeElement;
+  @override
 
   /// [name] A name associated with the individual.
-  @override
   List<HumanName>? get name;
+  @override
 
   /// [telecom] A contact detail (e.g. a telephone number or an email address)
   ///  by which the individual may be contacted.
-  @override
   List<ContactPoint>? get telecom;
+  @override
 
   /// [gender] Administrative Gender - the gender that the patient is
   ///  considered to have for administration and record keeping purposes.
-  @override
   FhirCode? get gender;
+  @override
 
   /// [genderElement] Extensions for gender
-  @override
   @JsonKey(name: '_gender')
   PrimitiveElement? get genderElement;
+  @override
 
   /// [birthDate] The date of birth for the individual.
-  @override
   FhirDate? get birthDate;
+  @override
 
   /// [birthDateElement] Extensions for birthDate
-  @override
   @JsonKey(name: '_birthDate')
   PrimitiveElement? get birthDateElement;
+  @override
 
   /// [deceasedBoolean] Indicates if the individual is deceased or not.
-  @override
   FhirBoolean? get deceasedBoolean;
+  @override
 
   /// [deceasedBooleanElement] Extensions for deceasedBoolean
-  @override
   @JsonKey(name: '_deceasedBoolean')
   PrimitiveElement? get deceasedBooleanElement;
+  @override
 
   /// [deceasedDateTime] Indicates if the individual is deceased or not.
-  @override
   FhirDateTime? get deceasedDateTime;
+  @override
 
   /// [deceasedDateTimeElement] Extensions for deceasedDateTime
-  @override
   @JsonKey(name: '_deceasedDateTime')
   PrimitiveElement? get deceasedDateTimeElement;
+  @override
 
   /// [address] An address for the individual.
-  @override
   List<Address>? get address;
+  @override
 
   /// [maritalStatus] This field contains a patient's most recent marital
   ///  (civil) status.
-  @override
   CodeableConcept? get maritalStatus;
+  @override
 
   /// [multipleBirthBoolean] Indicates whether the patient is part of a
   ///  multiple (boolean) or indicates the actual birth order (integer).
-  @override
   FhirBoolean? get multipleBirthBoolean;
   @override
   @JsonKey(name: '_multipleBirthBoolean')
   PrimitiveElement? get multipleBirthBooleanElement;
+  @override
 
   /// [multipleBirthInteger] Indicates whether the patient is part of a
   ///  multiple (boolean) or indicates the actual birth order (integer).
-  @override
   FhirInteger? get multipleBirthInteger;
   @override
   @JsonKey(name: '_multipleBirthInteger')
   PrimitiveElement? get multipleBirthIntegerElement;
+  @override
 
   /// [photo] Image of the patient.
-  @override
   List<Attachment>? get photo;
+  @override
 
   /// [contact] A contact party (e.g. guardian, partner, friend) for the
   ///  patient.
-  @override
   List<PatientContact>? get contact;
+  @override
 
   /// [communication] A language which may be used to communicate with the
   ///  patient about his or her health.
-  @override
   List<PatientCommunication>? get communication;
+  @override
 
   /// [generalPractitioner] Patient's nominated care provider.
-  @override
   List<Reference>? get generalPractitioner;
+  @override
 
   /// [managingOrganization] Organization that is the custodian of the patient
   ///  record.
-  @override
   Reference? get managingOrganization;
+  @override
 
   /// [link] Link to another patient resource that concerns the same actual
   ///  patient.
-  @override
   List<PatientLink>? get link;
-
-  /// Create a copy of Patient
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$PatientImplCopyWith<_$PatientImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1608,12 +1587,8 @@ mixin _$PatientContact {
   ///  valid to be contacted relating to this patient.
   Period? get period => throw _privateConstructorUsedError;
 
-  /// Serializes this PatientContact to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of PatientContact
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $PatientContactCopyWith<PatientContact> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1653,8 +1628,6 @@ class _$PatientContactCopyWithImpl<$Res, $Val extends PatientContact>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of PatientContact
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1718,8 +1691,6 @@ class _$PatientContactCopyWithImpl<$Res, $Val extends PatientContact>
     ) as $Val);
   }
 
-  /// Create a copy of PatientContact
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $HumanNameCopyWith<$Res>? get name {
@@ -1732,8 +1703,6 @@ class _$PatientContactCopyWithImpl<$Res, $Val extends PatientContact>
     });
   }
 
-  /// Create a copy of PatientContact
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AddressCopyWith<$Res>? get address {
@@ -1746,8 +1715,6 @@ class _$PatientContactCopyWithImpl<$Res, $Val extends PatientContact>
     });
   }
 
-  /// Create a copy of PatientContact
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get organization {
@@ -1760,8 +1727,6 @@ class _$PatientContactCopyWithImpl<$Res, $Val extends PatientContact>
     });
   }
 
-  /// Create a copy of PatientContact
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get period {
@@ -1814,8 +1779,6 @@ class __$$PatientContactImplCopyWithImpl<$Res>
       _$PatientContactImpl _value, $Res Function(_$PatientContactImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of PatientContact
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2057,7 +2020,7 @@ class _$PatientContactImpl extends _PatientContact {
             (identical(other.period, period) || other.period == period));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2073,9 +2036,7 @@ class _$PatientContactImpl extends _PatientContact {
       organization,
       period);
 
-  /// Create a copy of PatientContact
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$PatientContactImplCopyWith<_$PatientContactImpl> get copyWith =>
@@ -2108,10 +2069,12 @@ abstract class _PatientContact extends PatientContact {
   factory _PatientContact.fromJson(Map<String, dynamic> json) =
       _$PatientContactImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2119,9 +2082,9 @@ abstract class _PatientContact extends PatientContact {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2136,51 +2099,47 @@ abstract class _PatientContact extends PatientContact {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [relationship] The nature of the relationship between the patient and the
   ///  contact person.
-  @override
   List<CodeableConcept>? get relationship;
+  @override
 
   /// [name] A name associated with the contact person.
-  @override
   HumanName? get name;
+  @override
 
   /// [telecom] A contact detail for the person, e.g. a telephone number or an
   ///  email address.
-  @override
   List<ContactPoint>? get telecom;
+  @override
 
   /// [address] Address for the contact person.
-  @override
   Address? get address;
+  @override
 
   /// [gender] Administrative Gender - the gender that the contact person is
   ///  considered to have for administration and record keeping purposes.
-  @override
   FhirCode? get gender;
+  @override
 
   /// [genderElement] Extensions for gender
-  @override
   @JsonKey(name: '_gender')
   PrimitiveElement? get genderElement;
+  @override
 
   /// [organization] Organization on behalf of which the contact is acting or
   ///  for which the contact is working.
-  @override
   Reference? get organization;
+  @override
 
   /// [period] The period during which this contact person or organization is
   ///  valid to be contacted relating to this patient.
-  @override
   Period? get period;
-
-  /// Create a copy of PatientContact
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$PatientContactImplCopyWith<_$PatientContactImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2234,12 +2193,8 @@ mixin _$PatientCommunication {
   @JsonKey(name: '_preferred')
   PrimitiveElement? get preferredElement => throw _privateConstructorUsedError;
 
-  /// Serializes this PatientCommunication to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of PatientCommunication
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $PatientCommunicationCopyWith<PatientCommunication> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2272,8 +2227,6 @@ class _$PatientCommunicationCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of PatientCommunication
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2312,8 +2265,6 @@ class _$PatientCommunicationCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of PatientCommunication
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get language {
@@ -2351,8 +2302,6 @@ class __$$PatientCommunicationImplCopyWithImpl<$Res>
       $Res Function(_$PatientCommunicationImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of PatientCommunication
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2516,7 +2465,7 @@ class _$PatientCommunicationImpl extends _PatientCommunication {
                 other.preferredElement == preferredElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2527,9 +2476,7 @@ class _$PatientCommunicationImpl extends _PatientCommunication {
       preferred,
       preferredElement);
 
-  /// Create a copy of PatientCommunication
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$PatientCommunicationImplCopyWith<_$PatientCommunicationImpl>
@@ -2559,10 +2506,12 @@ abstract class _PatientCommunication extends PatientCommunication {
   factory _PatientCommunication.fromJson(Map<String, dynamic> json) =
       _$PatientCommunicationImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2570,9 +2519,9 @@ abstract class _PatientCommunication extends PatientCommunication {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2587,30 +2536,26 @@ abstract class _PatientCommunication extends PatientCommunication {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [language] The ISO-639-1 alpha 2 code in lower case for the language,
   /// optionally followed by a hyphen and the ISO-3166-1 alpha 2 code for the
   /// region in upper case; e.g. "en" for English, or "en-US" for American
   ///  English versus "en-EN" for England English.
-  @override
   CodeableConcept get language;
+  @override
 
   /// [preferred] Indicates whether or not the patient prefers this language
   ///  (over other languages he masters up a certain level).
-  @override
   FhirBoolean? get preferred;
+  @override
 
   /// [preferredElement] Extensions for preferred
-  @override
   @JsonKey(name: '_preferred')
   PrimitiveElement? get preferredElement;
-
-  /// Create a copy of PatientCommunication
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$PatientCommunicationImplCopyWith<_$PatientCommunicationImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2661,12 +2606,8 @@ mixin _$PatientLink {
   @JsonKey(name: '_type')
   PrimitiveElement? get typeElement => throw _privateConstructorUsedError;
 
-  /// Serializes this PatientLink to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of PatientLink
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $PatientLinkCopyWith<PatientLink> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2698,8 +2639,6 @@ class _$PatientLinkCopyWithImpl<$Res, $Val extends PatientLink>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of PatientLink
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2738,8 +2677,6 @@ class _$PatientLinkCopyWithImpl<$Res, $Val extends PatientLink>
     ) as $Val);
   }
 
-  /// Create a copy of PatientLink
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get other {
@@ -2777,8 +2714,6 @@ class __$$PatientLinkImplCopyWithImpl<$Res>
       _$PatientLinkImpl _value, $Res Function(_$PatientLinkImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of PatientLink
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2937,7 +2872,7 @@ class _$PatientLinkImpl extends _PatientLink {
                 other.typeElement == typeElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2948,9 +2883,7 @@ class _$PatientLinkImpl extends _PatientLink {
       type,
       typeElement);
 
-  /// Create a copy of PatientLink
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$PatientLinkImplCopyWith<_$PatientLinkImpl> get copyWith =>
@@ -2978,10 +2911,12 @@ abstract class _PatientLink extends PatientLink {
   factory _PatientLink.fromJson(Map<String, dynamic> json) =
       _$PatientLinkImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2989,9 +2924,9 @@ abstract class _PatientLink extends PatientLink {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3006,27 +2941,23 @@ abstract class _PatientLink extends PatientLink {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [other] The other patient resource that the link refers to.
-  @override
   Reference get other;
+  @override
 
   /// [type] The type of link between this patient resource and another patient
   ///  resource.
-  @override
   FhirCode? get type;
+  @override
 
   /// [typeElement] Extensions for type
-  @override
   @JsonKey(name: '_type')
   PrimitiveElement? get typeElement;
-
-  /// Create a copy of PatientLink
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$PatientLinkImplCopyWith<_$PatientLinkImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

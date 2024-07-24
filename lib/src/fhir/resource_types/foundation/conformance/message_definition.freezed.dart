@@ -264,12 +264,8 @@ mixin _$MessageDefinition {
   ///  resources.
   List<FhirCanonical>? get graph => throw _privateConstructorUsedError;
 
-  /// Serializes this MessageDefinition to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of MessageDefinition
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $MessageDefinitionCopyWith<MessageDefinition> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -349,8 +345,6 @@ class _$MessageDefinitionCopyWithImpl<$Res, $Val extends MessageDefinition>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of MessageDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -609,8 +603,6 @@ class _$MessageDefinitionCopyWithImpl<$Res, $Val extends MessageDefinition>
     ) as $Val);
   }
 
-  /// Create a copy of MessageDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -623,8 +615,6 @@ class _$MessageDefinitionCopyWithImpl<$Res, $Val extends MessageDefinition>
     });
   }
 
-  /// Create a copy of MessageDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -637,8 +627,6 @@ class _$MessageDefinitionCopyWithImpl<$Res, $Val extends MessageDefinition>
     });
   }
 
-  /// Create a copy of MessageDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodingCopyWith<$Res>? get eventCoding {
@@ -730,8 +718,6 @@ class __$$MessageDefinitionImplCopyWithImpl<$Res>
       $Res Function(_$MessageDefinitionImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of MessageDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1593,7 +1579,7 @@ class _$MessageDefinitionImpl extends _MessageDefinition {
             const DeepCollectionEquality().equals(other._graph, _graph));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1649,9 +1635,7 @@ class _$MessageDefinitionImpl extends _MessageDefinition {
         const DeepCollectionEquality().hash(_graph)
       ]);
 
-  /// Create a copy of MessageDefinition
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$MessageDefinitionImplCopyWith<_$MessageDefinitionImpl> get copyWith =>
@@ -1730,38 +1714,39 @@ abstract class _MessageDefinition extends MessageDefinition {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.MessageDefinition)
   R4ResourceType get resourceType;
+  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @override
   String? get id;
+  @override
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  @override
   FhirMeta? get meta;
+  @override
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  @override
   FhirUri? get implicitRules;
+  @override
 
   /// [implicitRulesElement] Extensions for implicitRules
-  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
+  @override
 
   /// [language] The base language in which the resource is written.
-  @override
   FhirCode? get language;
+  @override
 
   /// [languageElement] Extensions for language
-  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
+  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1769,15 +1754,15 @@ abstract class _MessageDefinition extends MessageDefinition {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  @override
   Narrative? get text;
+  @override
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  @override
   List<Resource>? get contained;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1785,9 +1770,9 @@ abstract class _MessageDefinition extends MessageDefinition {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1802,25 +1787,25 @@ abstract class _MessageDefinition extends MessageDefinition {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [url] The business identifier that is used to reference the
   /// MessageDefinition and *is* expected to be consistent from server to
   ///  server.
-  @override
   FhirUri? get url;
+  @override
 
   /// [urlElement] Extensions for url
-  @override
   @JsonKey(name: '_url')
   PrimitiveElement? get urlElement;
+  @override
 
   /// [identifier] A formal identifier that is used to identify this message
   /// definition when it is represented in other formats, or referenced in a
   ///  specification, model, design or an instance.
-  @override
   List<Identifier>? get identifier;
+  @override
 
   /// [version] The identifier that is used to identify this version of the
   /// message definition when it is referenced in a specification, model, design
@@ -1829,196 +1814,192 @@ abstract class _MessageDefinition extends MessageDefinition {
   /// a timestamp (e.g. yyyymmdd) if a managed version is not available. There
   /// is also no expectation that versions can be placed in a lexicographical
   ///  sequence.
-  @override
   String? get version;
+  @override
 
   /// [versionElement] Extensions for version
-  @override
   @JsonKey(name: '_version')
   PrimitiveElement? get versionElement;
+  @override
 
   /// [name] A natural language name identifying the message definition. This
   /// name should be usable as an identifier for the module by machine
   ///  processing applications such as code generation.
-  @override
   String? get name;
+  @override
 
   /// [nameElement] Extensions for name
-  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
+  @override
 
   /// [title] A short, descriptive, user-friendly title for the message
   ///  definition.
-  @override
   String? get title;
+  @override
 
   /// [titleElement] Extensions for title
-  @override
   @JsonKey(name: '_title')
   PrimitiveElement? get titleElement;
+  @override
 
   /// [replaces] A MessageDefinition that is superseded by this definition.
-  @override
   List<FhirCanonical>? get replaces;
+  @override
 
   /// [status] The status of this message definition. Enables tracking the
   ///  life-cycle of the content.
-  @override
   FhirCode? get status;
+  @override
 
   /// [statusElement] Extensions for status
-  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
+  @override
 
   /// [experimental] A Boolean value to indicate that this message definition
   /// is authored for testing purposes (or education/evaluation/marketing) and
   ///  is not intended to be used for genuine usage.
-  @override
   FhirBoolean? get experimental;
+  @override
 
   /// [experimentalElement] Extensions for experimental
-  @override
   @JsonKey(name: '_experimental')
   PrimitiveElement? get experimentalElement;
+  @override
 
   /// [date] The date  (and optionally time) when the message definition was
   /// published. The date must change when the business version changes and it
   /// must change if the status code changes. In addition, it should change when
   ///  the substantive content of the message definition changes.
-  @override
   FhirDateTime? get date;
+  @override
 
   /// [dateElement] Extensions for date
-  @override
   @JsonKey(name: '_date')
   PrimitiveElement? get dateElement;
+  @override
 
   /// [publisher] The name of the organization or individual that published the
   ///  message definition.
-  @override
   String? get publisher;
+  @override
 
   /// [publisherElement] Extensions for publisher
-  @override
   @JsonKey(name: '_publisher')
   PrimitiveElement? get publisherElement;
+  @override
 
   /// [contact] Contact details to assist a user in finding and communicating
   ///  with the publisher.
-  @override
   List<ContactDetail>? get contact;
+  @override
 
   /// [description] A free text natural language description of the message
   ///  definition from a consumer's perspective.
-  @override
   FhirMarkdown? get description;
+  @override
 
   /// [descriptionElement] Extensions for description
-  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
+  @override
 
   /// [useContext] The content was developed with a focus and intent of
   /// supporting the contexts that are listed. These contexts may be general
   /// categories (gender, age, ...) or may be references to specific programs
   /// (insurance plans, studies, ...) and may be used to assist with indexing
   ///  and searching for appropriate message definition instances.
-  @override
   List<UsageContext>? get useContext;
+  @override
 
   /// [jurisdiction] A legal or geographic region in which the message
   ///  definition is intended to be used.
-  @override
   List<CodeableConcept>? get jurisdiction;
+  @override
 
   /// [purpose] Explanation of why this message definition is needed and why it
   ///  has been designed as it has.
-  @override
   FhirMarkdown? get purpose;
+  @override
 
   /// [purposeElement] Extensions for purpose
-  @override
   @JsonKey(name: '_purpose')
   PrimitiveElement? get purposeElement;
+  @override
 
   /// [copyright] A copyright statement relating to the message definition
   /// and/or its contents. Copyright statements are generally legal restrictions
   ///  on the use and publishing of the message definition.
-  @override
   FhirMarkdown? get copyright;
+  @override
 
   /// [copyrightElement] Extensions for copyright
-  @override
   @JsonKey(name: '_copyright')
   PrimitiveElement? get copyrightElement;
+  @override
 
   /// [base] The MessageDefinition that is the basis for the contents of this
   ///  resource.
-  @override
   FhirCanonical? get base;
+  @override
 
   /// [parent] Identifies a protocol or workflow that this MessageDefinition
   ///  represents a step in.
-  @override
   List<FhirCanonical>? get parent;
+  @override
 
   /// [eventCoding] Event code or link to the EventDefinition.
-  @override
   Coding? get eventCoding;
+  @override
 
   /// [eventUri] Event code or link to the EventDefinition.
-  @override
   FhirUri? get eventUri;
+  @override
 
   /// [eventUriElement] Extensions for eventUri
-  @override
   @JsonKey(name: '_eventUri')
   PrimitiveElement? get eventUriElement;
+  @override
 
   /// [category] The impact of the content of the message.
-  @override
   FhirCode? get category;
+  @override
 
   /// [categoryElement] Extensions for category
-  @override
   @JsonKey(name: '_category')
   PrimitiveElement? get categoryElement;
+  @override
 
   /// [focus] Identifies the resource (or resources) that are being addressed
   /// by the event.  For example, the Encounter for an admit message or two
   ///  Account records for a merge.
-  @override
   List<MessageDefinitionFocus>? get focus;
+  @override
 
   /// [responseRequired] Declare at a message definition level whether a
   ///  response is required or only upon error or success, or never.
-  @override
   FhirCode? get responseRequired;
+  @override
 
   /// [responseRequiredElement] Extensions for responseRequired
-  @override
   @JsonKey(name: '_responseRequired')
   PrimitiveElement? get responseRequiredElement;
+  @override
 
   /// [allowedResponse] Indicates what types of messages may be sent as an
   ///  application-level response to this message.
-  @override
   List<MessageDefinitionAllowedResponse>? get allowedResponse;
+  @override
 
   /// [graph] Canonical reference to a GraphDefinition. If a URL is provided,
   /// it is the canonical reference to a [[[GraphDefinition]]] that it controls
   /// what resources are to be added to the bundle when building the document.
   /// The GraphDefinition can also specify profiles that apply to the various
   ///  resources.
-  @override
   List<FhirCanonical>? get graph;
-
-  /// Create a copy of MessageDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$MessageDefinitionImplCopyWith<_$MessageDefinitionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2088,12 +2069,8 @@ mixin _$MessageDefinitionFocus {
   @JsonKey(name: '_max')
   PrimitiveElement? get maxElement => throw _privateConstructorUsedError;
 
-  /// Serializes this MessageDefinitionFocus to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of MessageDefinitionFocus
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $MessageDefinitionFocusCopyWith<MessageDefinitionFocus> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2128,8 +2105,6 @@ class _$MessageDefinitionFocusCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of MessageDefinitionFocus
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2221,8 +2196,6 @@ class __$$MessageDefinitionFocusImplCopyWithImpl<$Res>
       $Res Function(_$MessageDefinitionFocusImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of MessageDefinitionFocus
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2433,7 +2406,7 @@ class _$MessageDefinitionFocusImpl extends _MessageDefinitionFocus {
                 other.maxElement == maxElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2448,9 +2421,7 @@ class _$MessageDefinitionFocusImpl extends _MessageDefinitionFocus {
       max,
       maxElement);
 
-  /// Create a copy of MessageDefinitionFocus
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$MessageDefinitionFocusImplCopyWith<_$MessageDefinitionFocusImpl>
@@ -2483,10 +2454,12 @@ abstract class _MessageDefinitionFocus extends MessageDefinitionFocus {
   factory _MessageDefinitionFocus.fromJson(Map<String, dynamic> json) =
       _$MessageDefinitionFocusImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2494,9 +2467,9 @@ abstract class _MessageDefinitionFocus extends MessageDefinitionFocus {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2511,49 +2484,45 @@ abstract class _MessageDefinitionFocus extends MessageDefinitionFocus {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [code] The kind of resource that must be the focus for this message.
-  @override
   FhirCode? get code;
+  @override
 
   /// [codeElement] Extensions for code
-  @override
   @JsonKey(name: '_code')
   PrimitiveElement? get codeElement;
+  @override
 
   /// [profile] A profile that reflects constraints for the focal resource (and
   ///  potentially for related resources).
-  @override
   FhirCanonical? get profile;
+  @override
 
   /// [min] Identifies the minimum number of resources of this type that must
   /// be pointed to by a message in order for it to be valid against this
   ///  MessageDefinition.
-  @override
   FhirUnsignedInt? get min;
+  @override
 
   /// [minElement] Extensions for min
-  @override
   @JsonKey(name: '_min')
   PrimitiveElement? get minElement;
+  @override
 
   /// [max] Identifies the maximum number of resources of this type that must
   /// be pointed to by a message in order for it to be valid against this
   ///  MessageDefinition.
-  @override
   String? get max;
+  @override
 
   /// [maxElement] Extensions for max
-  @override
   @JsonKey(name: '_max')
   PrimitiveElement? get maxElement;
-
-  /// Create a copy of MessageDefinitionFocus
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$MessageDefinitionFocusImplCopyWith<_$MessageDefinitionFocusImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2606,12 +2575,8 @@ mixin _$MessageDefinitionAllowedResponse {
   @JsonKey(name: '_situation')
   PrimitiveElement? get situationElement => throw _privateConstructorUsedError;
 
-  /// Serializes this MessageDefinitionAllowedResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of MessageDefinitionAllowedResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $MessageDefinitionAllowedResponseCopyWith<MessageDefinitionAllowedResponse>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2644,8 +2609,6 @@ class _$MessageDefinitionAllowedResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of MessageDefinitionAllowedResponse
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2713,8 +2676,6 @@ class __$$MessageDefinitionAllowedResponseImplCopyWithImpl<$Res>
       $Res Function(_$MessageDefinitionAllowedResponseImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of MessageDefinitionAllowedResponse
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2877,7 +2838,7 @@ class _$MessageDefinitionAllowedResponseImpl
                 other.situationElement == situationElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2888,9 +2849,7 @@ class _$MessageDefinitionAllowedResponseImpl
       situation,
       situationElement);
 
-  /// Create a copy of MessageDefinitionAllowedResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$MessageDefinitionAllowedResponseImplCopyWith<
@@ -2923,10 +2882,12 @@ abstract class _MessageDefinitionAllowedResponse
           Map<String, dynamic> json) =
       _$MessageDefinitionAllowedResponseImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2934,9 +2895,9 @@ abstract class _MessageDefinitionAllowedResponse
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2951,28 +2912,24 @@ abstract class _MessageDefinitionAllowedResponse
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [message] A reference to the message definition that must be adhered to
   ///  by this supported response.
-  @override
   FhirCanonical get message;
+  @override
 
   /// [situation] Provides a description of the circumstances in which this
   ///  response should be used (as opposed to one of the alternative responses).
-  @override
   FhirMarkdown? get situation;
+  @override
 
   /// [situationElement] Extensions for situation
-  @override
   @JsonKey(name: '_situation')
   PrimitiveElement? get situationElement;
-
-  /// Create a copy of MessageDefinitionAllowedResponse
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$MessageDefinitionAllowedResponseImplCopyWith<
           _$MessageDefinitionAllowedResponseImpl>
       get copyWith => throw _privateConstructorUsedError;

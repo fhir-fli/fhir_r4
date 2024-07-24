@@ -310,12 +310,8 @@ mixin _$Observation {
   List<ObservationComponent>? get component =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this Observation to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of Observation
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ObservationCopyWith<Observation> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -418,8 +414,6 @@ class _$ObservationCopyWithImpl<$Res, $Val extends Observation>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Observation
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -713,8 +707,6 @@ class _$ObservationCopyWithImpl<$Res, $Val extends Observation>
     ) as $Val);
   }
 
-  /// Create a copy of Observation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -727,8 +719,6 @@ class _$ObservationCopyWithImpl<$Res, $Val extends Observation>
     });
   }
 
-  /// Create a copy of Observation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -741,8 +731,6 @@ class _$ObservationCopyWithImpl<$Res, $Val extends Observation>
     });
   }
 
-  /// Create a copy of Observation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get code {
@@ -751,8 +739,6 @@ class _$ObservationCopyWithImpl<$Res, $Val extends Observation>
     });
   }
 
-  /// Create a copy of Observation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get subject {
@@ -765,8 +751,6 @@ class _$ObservationCopyWithImpl<$Res, $Val extends Observation>
     });
   }
 
-  /// Create a copy of Observation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get encounter {
@@ -779,8 +763,6 @@ class _$ObservationCopyWithImpl<$Res, $Val extends Observation>
     });
   }
 
-  /// Create a copy of Observation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get effectivePeriod {
@@ -793,8 +775,6 @@ class _$ObservationCopyWithImpl<$Res, $Val extends Observation>
     });
   }
 
-  /// Create a copy of Observation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TimingCopyWith<$Res>? get effectiveTiming {
@@ -807,8 +787,6 @@ class _$ObservationCopyWithImpl<$Res, $Val extends Observation>
     });
   }
 
-  /// Create a copy of Observation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get valueQuantity {
@@ -821,8 +799,6 @@ class _$ObservationCopyWithImpl<$Res, $Val extends Observation>
     });
   }
 
-  /// Create a copy of Observation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get valueCodeableConcept {
@@ -836,8 +812,6 @@ class _$ObservationCopyWithImpl<$Res, $Val extends Observation>
     });
   }
 
-  /// Create a copy of Observation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get valueRange {
@@ -850,8 +824,6 @@ class _$ObservationCopyWithImpl<$Res, $Val extends Observation>
     });
   }
 
-  /// Create a copy of Observation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RatioCopyWith<$Res>? get valueRatio {
@@ -864,8 +836,6 @@ class _$ObservationCopyWithImpl<$Res, $Val extends Observation>
     });
   }
 
-  /// Create a copy of Observation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SampledDataCopyWith<$Res>? get valueSampledData {
@@ -878,8 +848,6 @@ class _$ObservationCopyWithImpl<$Res, $Val extends Observation>
     });
   }
 
-  /// Create a copy of Observation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get valuePeriod {
@@ -892,8 +860,6 @@ class _$ObservationCopyWithImpl<$Res, $Val extends Observation>
     });
   }
 
-  /// Create a copy of Observation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get dataAbsentReason {
@@ -906,8 +872,6 @@ class _$ObservationCopyWithImpl<$Res, $Val extends Observation>
     });
   }
 
-  /// Create a copy of Observation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get bodySite {
@@ -920,8 +884,6 @@ class _$ObservationCopyWithImpl<$Res, $Val extends Observation>
     });
   }
 
-  /// Create a copy of Observation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get method {
@@ -934,8 +896,6 @@ class _$ObservationCopyWithImpl<$Res, $Val extends Observation>
     });
   }
 
-  /// Create a copy of Observation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get specimen {
@@ -948,8 +908,6 @@ class _$ObservationCopyWithImpl<$Res, $Val extends Observation>
     });
   }
 
-  /// Create a copy of Observation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get device {
@@ -1079,8 +1037,6 @@ class __$$ObservationImplCopyWithImpl<$Res>
       _$ObservationImpl _value, $Res Function(_$ObservationImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Observation
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2075,7 +2031,7 @@ class _$ObservationImpl extends _Observation {
             const DeepCollectionEquality().equals(other._component, _component));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -2138,9 +2094,7 @@ class _$ObservationImpl extends _Observation {
         const DeepCollectionEquality().hash(_component)
       ]);
 
-  /// Create a copy of Observation
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ObservationImplCopyWith<_$ObservationImpl> get copyWith =>
@@ -2228,38 +2182,39 @@ abstract class _Observation extends Observation {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.Observation)
   R4ResourceType get resourceType;
+  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @override
   String? get id;
+  @override
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  @override
   FhirMeta? get meta;
+  @override
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  @override
   FhirUri? get implicitRules;
+  @override
 
   /// [implicitRulesElement] Extensions for implicitRules
-  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
+  @override
 
   /// [language] The base language in which the resource is written.
-  @override
   FhirCode? get language;
+  @override
 
   /// [languageElement] Extensions for language
-  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
+  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -2267,15 +2222,15 @@ abstract class _Observation extends Observation {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  @override
   Narrative? get text;
+  @override
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  @override
   List<Resource>? get contained;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -2283,9 +2238,9 @@ abstract class _Observation extends Observation {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -2300,50 +2255,50 @@ abstract class _Observation extends Observation {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [identifier] A unique identifier assigned to this observation.
-  @override
   List<Identifier>? get identifier;
+  @override
 
   /// [basedOn] A plan, proposal or order that is fulfilled in whole or in part
   /// by this event.  For example, a MedicationRequest may require a patient to
   ///  have laboratory test performed before  it is dispensed.
-  @override
   List<Reference>? get basedOn;
+  @override
 
   /// [partOf] A larger event of which this particular Observation is a
   ///  component or step.  For example,  an observation as part of a procedure.
-  @override
   List<Reference>? get partOf;
+  @override
 
   /// [status] The status of the result value.
-  @override
   FhirCode? get status;
+  @override
 
   /// [statusElement] Extensions for status
-  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
+  @override
 
   /// [category] A code that classifies the general type of observation being
   ///  made.
-  @override
   List<CodeableConcept>? get category;
+  @override
 
   /// [code] Describes what was observed. Sometimes this is called the
   ///  observation "name".
-  @override
   CodeableConcept get code;
+  @override
 
   /// [subject] The patient, or group of patients, location, or device this
   /// observation is about and into whose record the observation is placed. If
   /// the actual focus of the observation is different from the subject (or a
   /// sample of, part, or region of the subject), the `focus` element or the
   ///  `code` itself specifies the actual focus of the observation.
-  @override
   Reference? get subject;
+  @override
 
   /// [focus] The actual focus of an observation when it is not the patient of
   /// record representing something or someone associated with the patient such
@@ -2355,13 +2310,13 @@ abstract class _Observation extends Observation {
   /// whether the mother is trained to change her child's tracheostomy tube. In
   /// this example, the child is the patient of record and the mother is the
   ///  focus.
-  @override
   List<Reference>? get focus;
+  @override
 
   /// [encounter] The healthcare event  (e.g. a patient and healthcare provider
   ///  interaction) during which this observation is made.
-  @override
   Reference? get encounter;
+  @override
 
   /// [effectiveDateTime] The time or time-period the observed value is
   /// asserted as being true. For biological subjects - e.g. human patients -
@@ -2369,201 +2324,197 @@ abstract class _Observation extends Observation {
   /// usually either the time of the procedure or of specimen collection, but
   /// very often the source of the date/time is not known, only the date/time
   ///  itself.
-  @override
   FhirDateTime? get effectiveDateTime;
+  @override
 
   /// [effectiveDateTimeElement] Extensions for effectiveDateTime
-  @override
   @JsonKey(name: '_effectiveDateTime')
   PrimitiveElement? get effectiveDateTimeElement;
+  @override
 
   /// [effectivePeriod] The time or time-period the observed value is asserted
   /// as being true. For biological subjects - e.g. human patients - this is
   /// usually called the "physiologically relevant time". This is usually either
   /// the time of the procedure or of specimen collection, but very often the
   ///  source of the date/time is not known, only the date/time itself.
-  @override
   Period? get effectivePeriod;
+  @override
 
   /// [effectiveTiming] The time or time-period the observed value is asserted
   /// as being true. For biological subjects - e.g. human patients - this is
   /// usually called the "physiologically relevant time". This is usually either
   /// the time of the procedure or of specimen collection, but very often the
   ///  source of the date/time is not known, only the date/time itself.
-  @override
   Timing? get effectiveTiming;
+  @override
 
   /// [effectiveInstant] The time or time-period the observed value is asserted
   /// as being true. For biological subjects - e.g. human patients - this is
   /// usually called the "physiologically relevant time". This is usually either
   /// the time of the procedure or of specimen collection, but very often the
   ///  source of the date/time is not known, only the date/time itself.
-  @override
   FhirInstant? get effectiveInstant;
+  @override
 
   /// [effectiveInstantElement] Extensions for effectiveInstant
-  @override
   @JsonKey(name: '_effectiveInstant')
   PrimitiveElement? get effectiveInstantElement;
+  @override
 
   /// [issued] The date and time this version of the observation was made
   /// available to providers, typically after the results have been reviewed and
   ///  verified.
-  @override
   FhirInstant? get issued;
+  @override
 
   /// [issuedElement] Extensions for issued
-  @override
   @JsonKey(name: '_issued')
   PrimitiveElement? get issuedElement;
+  @override
 
   /// [performer] Who was responsible for asserting the observed value as
   ///  "true".
-  @override
   List<Reference>? get performer;
+  @override
 
   /// [valueQuantity] The information determined as a result of making the
   ///  observation, if the information has a simple value.
-  @override
   Quantity? get valueQuantity;
+  @override
 
   /// [valueCodeableConcept] The information determined as a result of making
   ///  the observation, if the information has a simple value.
-  @override
   CodeableConcept? get valueCodeableConcept;
+  @override
 
   /// [valueString] The information determined as a result of making the
   ///  observation, if the information has a simple value.
-  @override
   String? get valueString;
+  @override
 
   /// [valueStringElement] Extensions for valueString
-  @override
   @JsonKey(name: '_valueString')
   PrimitiveElement? get valueStringElement;
+  @override
 
   /// [valueBoolean] The information determined as a result of making the
   ///  observation, if the information has a simple value.
-  @override
   FhirBoolean? get valueBoolean;
+  @override
 
   /// [valueBooleanElement] Extensions for valueBoolean
-  @override
   @JsonKey(name: '_valueBoolean')
   PrimitiveElement? get valueBooleanElement;
+  @override
 
   /// [valueInteger] The information determined as a result of making the
   ///  observation, if the information has a simple value.
-  @override
   FhirInteger? get valueInteger;
+  @override
 
   /// [valueIntegerElement] Extensions for valueInteger
-  @override
   @JsonKey(name: '_valueInteger')
   PrimitiveElement? get valueIntegerElement;
+  @override
 
   /// [valueRange] The information determined as a result of making the
   ///  observation, if the information has a simple value.
-  @override
   Range? get valueRange;
+  @override
 
   /// [valueRatio] The information determined as a result of making the
   ///  observation, if the information has a simple value.
-  @override
   Ratio? get valueRatio;
+  @override
 
   /// [valueSampledData] The information determined as a result of making the
   ///  observation, if the information has a simple value.
-  @override
   SampledData? get valueSampledData;
+  @override
 
   /// [valueTime] The information determined as a result of making the
   ///  observation, if the information has a simple value.
-  @override
   FhirTime? get valueTime;
+  @override
 
   /// [valueTimeElement] Extensions for valueTime
-  @override
   @JsonKey(name: '_valueTime')
   PrimitiveElement? get valueTimeElement;
+  @override
 
   /// [valueDateTime] The information determined as a result of making the
   ///  observation, if the information has a simple value.
-  @override
   FhirDateTime? get valueDateTime;
+  @override
 
   /// [valueDateTimeElement] Extensions for valueDateTime
-  @override
   @JsonKey(name: '_valueDateTime')
   PrimitiveElement? get valueDateTimeElement;
+  @override
 
   /// [valuePeriod] The information determined as a result of making the
   ///  observation, if the information has a simple value.
-  @override
   Period? get valuePeriod;
+  @override
 
   /// [dataAbsentReason] Provides a reason why the expected value in the
   ///  element Observation.value[x] is missing.
-  @override
   CodeableConcept? get dataAbsentReason;
+  @override
 
   /// [interpretation] A categorical assessment of an observation value.  For
   ///  example, high, low, normal.
-  @override
   List<CodeableConcept>? get interpretation;
+  @override
 
   /// [note] Comments about the observation or the results.
-  @override
   List<Annotation>? get note;
+  @override
 
   /// [bodySite] Indicates the site on the subject's body where the observation
   ///  was made (i.e. the target site).
-  @override
   CodeableConcept? get bodySite;
+  @override
 
   /// [method] Indicates the mechanism used to perform the observation.
-  @override
   CodeableConcept? get method;
+  @override
 
   /// [specimen] The specimen that was used when this observation was made.
-  @override
   Reference? get specimen;
+  @override
 
   /// [device] The device used to generate the observation data.
-  @override
   Reference? get device;
+  @override
 
   /// [referenceRange] Guidance on how to interpret the value by comparison to
   /// a normal or recommended range.  Multiple reference ranges are interpreted
   /// as an "OR".   In other words, to represent two distinct target
   ///  populations, two `referenceRange` elements would be used.
-  @override
   List<ObservationReferenceRange>? get referenceRange;
+  @override
 
   /// [hasMember] This observation is a group observation (e.g. a battery, a
   /// panel of tests, a set of vital sign measurements) that includes the target
   ///  as a member of the group.
-  @override
   List<Reference>? get hasMember;
+  @override
 
   /// [derivedFrom] The target resource that represents a measurement from
   /// which this observation value is derived. For example, a calculated anion
   ///  gap or a fetal measurement based on an ultrasound image.
-  @override
   List<Reference>? get derivedFrom;
+  @override
 
   /// [component] Some observations have multiple component observations.
   /// These component observations are expressed as separate code value pairs
   /// that share the same attributes.  Examples include systolic and diastolic
   /// component observations for blood pressure measurement and multiple
   ///  component observations for genetics observations.
-  @override
   List<ObservationComponent>? get component;
-
-  /// Create a copy of Observation
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ObservationImplCopyWith<_$ObservationImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2642,12 +2593,8 @@ mixin _$ObservationReferenceRange {
   @JsonKey(name: '_text')
   PrimitiveElement? get textElement => throw _privateConstructorUsedError;
 
-  /// Serializes this ObservationReferenceRange to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ObservationReferenceRange
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ObservationReferenceRangeCopyWith<ObservationReferenceRange> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2687,8 +2634,6 @@ class _$ObservationReferenceRangeCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ObservationReferenceRange
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2747,8 +2692,6 @@ class _$ObservationReferenceRangeCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of ObservationReferenceRange
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get low {
@@ -2761,8 +2704,6 @@ class _$ObservationReferenceRangeCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ObservationReferenceRange
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get high {
@@ -2775,8 +2716,6 @@ class _$ObservationReferenceRangeCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ObservationReferenceRange
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get type {
@@ -2789,8 +2728,6 @@ class _$ObservationReferenceRangeCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ObservationReferenceRange
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get age {
@@ -2845,8 +2782,6 @@ class __$$ObservationReferenceRangeImplCopyWithImpl<$Res>
       $Res Function(_$ObservationReferenceRangeImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ObservationReferenceRange
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3080,7 +3015,7 @@ class _$ObservationReferenceRangeImpl extends _ObservationReferenceRange {
                 other.textElement == textElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3095,9 +3030,7 @@ class _$ObservationReferenceRangeImpl extends _ObservationReferenceRange {
       text,
       textElement);
 
-  /// Create a copy of ObservationReferenceRange
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ObservationReferenceRangeImplCopyWith<_$ObservationReferenceRangeImpl>
@@ -3130,10 +3063,12 @@ abstract class _ObservationReferenceRange extends ObservationReferenceRange {
   factory _ObservationReferenceRange.fromJson(Map<String, dynamic> json) =
       _$ObservationReferenceRangeImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3141,9 +3076,9 @@ abstract class _ObservationReferenceRange extends ObservationReferenceRange {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3158,27 +3093,27 @@ abstract class _ObservationReferenceRange extends ObservationReferenceRange {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [low] The value of the low bound of the reference range.  The low bound
   /// of the reference range endpoint is inclusive of the value (e.g.  reference
   /// range is >=5 - <=9). If the low bound is omitted,  it is assumed to be
   ///  meaningless (e.g. reference range is <=2.3).
-  @override
   Quantity? get low;
+  @override
 
   /// [high] The value of the high bound of the reference range.  The high
   /// bound of the reference range endpoint is inclusive of the value (e.g.
   /// reference range is >=5 - <=9). If the high bound is omitted,  it is
   ///  assumed to be meaningless (e.g. reference range is >= 2.3).
-  @override
   Quantity? get high;
+  @override
 
   /// [type] Codes to indicate the what part of the targeted reference
   ///  population it applies to. For example, the normal or therapeutic range.
-  @override
   CodeableConcept? get type;
+  @override
 
   /// [appliesTo] Codes to indicate the target population this reference range
   /// applies to.  For example, a reference range may be based on the normal
@@ -3186,30 +3121,26 @@ abstract class _ObservationReferenceRange extends ObservationReferenceRange {
   /// interpreted as an "AND" of the target populations.  For example, to
   /// represent a target population of African American females, both a code of
   ///  female and a code for African American would be used.
-  @override
   List<CodeableConcept>? get appliesTo;
+  @override
 
   /// [age] The age at which this reference range is applicable. This is a
   ///  neonatal age (e.g. number of weeks at term) if the meaning says so.
-  @override
   Range? get age;
+  @override
 
   /// [text] Text based reference range in an observation which may be used
   /// when a quantitative range is not appropriate for an observation.  An
   /// example would be a reference value of "Negative" or a list or table of
   ///  "normals".
-  @override
   String? get text;
+  @override
 
   /// [textElement] Extensions for text
-  @override
   @JsonKey(name: '_text')
   PrimitiveElement? get textElement;
-
-  /// Create a copy of ObservationReferenceRange
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ObservationReferenceRangeImplCopyWith<_$ObservationReferenceRangeImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3336,12 +3267,8 @@ mixin _$ObservationComponent {
   List<ObservationReferenceRange>? get referenceRange =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this ObservationComponent to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ObservationComponent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ObservationComponentCopyWith<ObservationComponent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3398,8 +3325,6 @@ class _$ObservationComponentCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ObservationComponent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3523,8 +3448,6 @@ class _$ObservationComponentCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of ObservationComponent
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get code {
@@ -3533,8 +3456,6 @@ class _$ObservationComponentCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ObservationComponent
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get valueQuantity {
@@ -3547,8 +3468,6 @@ class _$ObservationComponentCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ObservationComponent
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get valueCodeableConcept {
@@ -3562,8 +3481,6 @@ class _$ObservationComponentCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ObservationComponent
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get valueRange {
@@ -3576,8 +3493,6 @@ class _$ObservationComponentCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ObservationComponent
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RatioCopyWith<$Res>? get valueRatio {
@@ -3590,8 +3505,6 @@ class _$ObservationComponentCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ObservationComponent
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SampledDataCopyWith<$Res>? get valueSampledData {
@@ -3604,8 +3517,6 @@ class _$ObservationComponentCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ObservationComponent
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get valuePeriod {
@@ -3618,8 +3529,6 @@ class _$ObservationComponentCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ObservationComponent
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get dataAbsentReason {
@@ -3692,8 +3601,6 @@ class __$$ObservationComponentImplCopyWithImpl<$Res>
       $Res Function(_$ObservationComponentImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ObservationComponent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4097,7 +4004,7 @@ class _$ObservationComponentImpl extends _ObservationComponent {
                 .equals(other._referenceRange, _referenceRange));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -4126,9 +4033,7 @@ class _$ObservationComponentImpl extends _ObservationComponent {
         const DeepCollectionEquality().hash(_referenceRange)
       ]);
 
-  /// Create a copy of ObservationComponent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ObservationComponentImplCopyWith<_$ObservationComponentImpl>
@@ -4178,10 +4083,12 @@ abstract class _ObservationComponent extends ObservationComponent {
   factory _ObservationComponent.fromJson(Map<String, dynamic> json) =
       _$ObservationComponentImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -4189,9 +4096,9 @@ abstract class _ObservationComponent extends ObservationComponent {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -4206,113 +4113,109 @@ abstract class _ObservationComponent extends ObservationComponent {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [code] Describes what was observed. Sometimes this is called the
   ///  observation "code".
-  @override
   CodeableConcept get code;
+  @override
 
   /// [valueQuantity] The information determined as a result of making the
   ///  observation, if the information has a simple value.
-  @override
   Quantity? get valueQuantity;
+  @override
 
   /// [valueCodeableConcept] The information determined as a result of making
   ///  the observation, if the information has a simple value.
-  @override
   CodeableConcept? get valueCodeableConcept;
+  @override
 
   /// [valueString] The information determined as a result of making the
   ///  observation, if the information has a simple value.
-  @override
   String? get valueString;
+  @override
 
   /// [valueStringElement] Extensions for valueString
-  @override
   @JsonKey(name: '_valueString')
   PrimitiveElement? get valueStringElement;
+  @override
 
   /// [valueBoolean] The information determined as a result of making the
   ///  observation, if the information has a simple value.
-  @override
   FhirBoolean? get valueBoolean;
+  @override
 
   /// [valueBooleanElement] Extensions for valueBoolean
-  @override
   @JsonKey(name: '_valueBoolean')
   PrimitiveElement? get valueBooleanElement;
+  @override
 
   /// [valueInteger] The information determined as a result of making the
   ///  observation, if the information has a simple value.
-  @override
   FhirInteger? get valueInteger;
+  @override
 
   /// [valueIntegerElement] Extensions for valueInteger
-  @override
   @JsonKey(name: '_valueInteger')
   PrimitiveElement? get valueIntegerElement;
+  @override
 
   /// [valueRange] The information determined as a result of making the
   ///  observation, if the information has a simple value.
-  @override
   Range? get valueRange;
+  @override
 
   /// [valueRatio] The information determined as a result of making the
   ///  observation, if the information has a simple value.
-  @override
   Ratio? get valueRatio;
+  @override
 
   /// [valueSampledData] The information determined as a result of making the
   ///  observation, if the information has a simple value.
-  @override
   SampledData? get valueSampledData;
+  @override
 
   /// [valueTime] The information determined as a result of making the
   ///  observation, if the information has a simple value.
-  @override
   FhirTime? get valueTime;
+  @override
 
   /// [valueTimeElement] Extensions for valueTime
-  @override
   @JsonKey(name: '_valueTime')
   PrimitiveElement? get valueTimeElement;
+  @override
 
   /// [valueDateTime] The information determined as a result of making the
   ///  observation, if the information has a simple value.
-  @override
   FhirDateTime? get valueDateTime;
+  @override
 
   /// [valueDateTimeElement] Extensions for valueDateTime
-  @override
   @JsonKey(name: '_valueDateTime')
   PrimitiveElement? get valueDateTimeElement;
+  @override
 
   /// [valuePeriod] The information determined as a result of making the
   ///  observation, if the information has a simple value.
-  @override
   Period? get valuePeriod;
+  @override
 
   /// [dataAbsentReason] Provides a reason why the expected value in the
   ///  element Observation.component.value[x] is missing.
-  @override
   CodeableConcept? get dataAbsentReason;
+  @override
 
   /// [interpretation] A categorical assessment of an observation value.  For
   ///  example, high, low, normal.
-  @override
   List<CodeableConcept>? get interpretation;
+  @override
 
   /// [referenceRange] Guidance on how to interpret the value by comparison to
   ///  a normal or recommended range.
-  @override
   List<ObservationReferenceRange>? get referenceRange;
-
-  /// Create a copy of ObservationComponent
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ObservationComponentImplCopyWith<_$ObservationComponentImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

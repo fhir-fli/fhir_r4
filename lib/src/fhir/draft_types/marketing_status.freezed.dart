@@ -89,12 +89,8 @@ mixin _$MarketingStatus {
   PrimitiveElement? get restoreDateElement =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this MarketingStatus to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of MarketingStatus
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $MarketingStatusCopyWith<MarketingStatus> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -132,8 +128,6 @@ class _$MarketingStatusCopyWithImpl<$Res, $Val extends MarketingStatus>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of MarketingStatus
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -187,8 +181,6 @@ class _$MarketingStatusCopyWithImpl<$Res, $Val extends MarketingStatus>
     ) as $Val);
   }
 
-  /// Create a copy of MarketingStatus
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get country {
@@ -201,8 +193,6 @@ class _$MarketingStatusCopyWithImpl<$Res, $Val extends MarketingStatus>
     });
   }
 
-  /// Create a copy of MarketingStatus
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get jurisdiction {
@@ -215,8 +205,6 @@ class _$MarketingStatusCopyWithImpl<$Res, $Val extends MarketingStatus>
     });
   }
 
-  /// Create a copy of MarketingStatus
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get status {
@@ -225,8 +213,6 @@ class _$MarketingStatusCopyWithImpl<$Res, $Val extends MarketingStatus>
     });
   }
 
-  /// Create a copy of MarketingStatus
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get dateRange {
@@ -277,8 +263,6 @@ class __$$MarketingStatusImplCopyWithImpl<$Res>
       _$MarketingStatusImpl _value, $Res Function(_$MarketingStatusImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of MarketingStatus
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -492,7 +476,7 @@ class _$MarketingStatusImpl extends _MarketingStatus {
                 other.restoreDateElement == restoreDateElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -506,9 +490,7 @@ class _$MarketingStatusImpl extends _MarketingStatus {
       restoreDate,
       restoreDateElement);
 
-  /// Create a copy of MarketingStatus
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$MarketingStatusImplCopyWith<_$MarketingStatusImpl> get copyWith =>
@@ -540,10 +522,12 @@ abstract class _MarketingStatus extends MarketingStatus {
   factory _MarketingStatus.fromJson(Map<String, dynamic> json) =
       _$MarketingStatusImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -551,9 +535,9 @@ abstract class _MarketingStatus extends MarketingStatus {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -568,28 +552,28 @@ abstract class _MarketingStatus extends MarketingStatus {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [country] The country in which the marketing authorisation has been
   /// granted shall be specified It should be specified using the ISO 3166 ‑ 1
   ///  alpha-2 code elements.
-  @override
   CodeableConcept? get country;
+  @override
 
   /// [jurisdiction] Where a Medicines Regulatory Agency has granted a
   /// marketing authorisation for which specific provisions within a
   /// jurisdiction apply, the jurisdiction can be specified using an appropriate
   /// controlled terminology The controlled term and the controlled term
   ///  identifier shall be specified.
-  @override
   CodeableConcept? get jurisdiction;
+  @override
 
   /// [status] This attribute provides information on the status of the
   /// marketing of the medicinal product See ISO/TS 20443 for more information
   ///  and examples.
-  @override
   CodeableConcept get status;
+  @override
 
   /// [dateRange] The date when the Medicinal Product is placed on the market
   /// by the Marketing Authorisation Holder (or where applicable, the
@@ -598,8 +582,8 @@ abstract class _MarketingStatus extends MarketingStatus {
   /// specified using the ISO 8601 date format NOTE “Placed on the market”
   /// refers to the release of the Medicinal Product into the distribution
   ///  chain.
-  @override
   Period? get dateRange;
+  @override
 
   /// [restoreDate] The date when the Medicinal Product is placed on the market
   /// by the Marketing Authorisation Holder (or where applicable, the
@@ -608,18 +592,14 @@ abstract class _MarketingStatus extends MarketingStatus {
   /// specified using the ISO 8601 date format NOTE “Placed on the market”
   /// refers to the release of the Medicinal Product into the distribution
   ///  chain.
-  @override
   FhirDateTime? get restoreDate;
+  @override
 
   /// [restoreDateElement] Extensions for restoreDate
-  @override
   @JsonKey(name: '_restoreDate')
   PrimitiveElement? get restoreDateElement;
-
-  /// Create a copy of MarketingStatus
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$MarketingStatusImplCopyWith<_$MarketingStatusImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

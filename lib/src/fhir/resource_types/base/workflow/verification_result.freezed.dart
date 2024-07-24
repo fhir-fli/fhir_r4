@@ -167,12 +167,8 @@ mixin _$VerificationResult {
   List<VerificationResultValidator>? get validator =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this VerificationResult to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of VerificationResult
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $VerificationResultCopyWith<VerificationResult> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -236,8 +232,6 @@ class _$VerificationResultCopyWithImpl<$Res, $Val extends VerificationResult>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of VerificationResult
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -396,8 +390,6 @@ class _$VerificationResultCopyWithImpl<$Res, $Val extends VerificationResult>
     ) as $Val);
   }
 
-  /// Create a copy of VerificationResult
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -410,8 +402,6 @@ class _$VerificationResultCopyWithImpl<$Res, $Val extends VerificationResult>
     });
   }
 
-  /// Create a copy of VerificationResult
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -424,8 +414,6 @@ class _$VerificationResultCopyWithImpl<$Res, $Val extends VerificationResult>
     });
   }
 
-  /// Create a copy of VerificationResult
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get need {
@@ -438,8 +426,6 @@ class _$VerificationResultCopyWithImpl<$Res, $Val extends VerificationResult>
     });
   }
 
-  /// Create a copy of VerificationResult
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get validationType {
@@ -452,8 +438,6 @@ class _$VerificationResultCopyWithImpl<$Res, $Val extends VerificationResult>
     });
   }
 
-  /// Create a copy of VerificationResult
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TimingCopyWith<$Res>? get frequency {
@@ -466,8 +450,6 @@ class _$VerificationResultCopyWithImpl<$Res, $Val extends VerificationResult>
     });
   }
 
-  /// Create a copy of VerificationResult
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get failureAction {
@@ -480,8 +462,6 @@ class _$VerificationResultCopyWithImpl<$Res, $Val extends VerificationResult>
     });
   }
 
-  /// Create a copy of VerificationResult
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $VerificationResultAttestationCopyWith<$Res>? get attestation {
@@ -562,8 +542,6 @@ class __$$VerificationResultImplCopyWithImpl<$Res>
       $Res Function(_$VerificationResultImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of VerificationResult
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1115,7 +1093,7 @@ class _$VerificationResultImpl extends _VerificationResult {
                 .equals(other._validator, _validator));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1151,9 +1129,7 @@ class _$VerificationResultImpl extends _VerificationResult {
         const DeepCollectionEquality().hash(_validator)
       ]);
 
-  /// Create a copy of VerificationResult
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$VerificationResultImplCopyWith<_$VerificationResultImpl> get copyWith =>
@@ -1214,38 +1190,39 @@ abstract class _VerificationResult extends VerificationResult {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.VerificationResult)
   R4ResourceType get resourceType;
+  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @override
   String? get id;
+  @override
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  @override
   FhirMeta? get meta;
+  @override
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  @override
   FhirUri? get implicitRules;
+  @override
 
   /// [implicitRulesElement] Extensions for implicitRules
-  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
+  @override
 
   /// [language] The base language in which the resource is written.
-  @override
   FhirCode? get language;
+  @override
 
   /// [languageElement] Extensions for language
-  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
+  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1253,15 +1230,15 @@ abstract class _VerificationResult extends VerificationResult {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  @override
   Narrative? get text;
+  @override
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  @override
   List<Resource>? get contained;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1269,9 +1246,9 @@ abstract class _VerificationResult extends VerificationResult {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1286,103 +1263,99 @@ abstract class _VerificationResult extends VerificationResult {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [target] A resource that was validated.
-  @override
   List<Reference>? get target;
+  @override
 
   /// [targetLocation] The fhirpath location(s) within the resource that was
   ///  validated.
-  @override
   List<String>? get targetLocation;
+  @override
 
   /// [targetLocationElement] Extensions for targetLocation
-  @override
   @JsonKey(name: '_targetLocation')
   List<PrimitiveElement>? get targetLocationElement;
+  @override
 
   /// [need] The frequency with which the target must be validated (none;
   ///  initial; periodic).
-  @override
   CodeableConcept? get need;
+  @override
 
   /// [status] The validation status of the target (attested; validated; in
   ///  process; requires revalidation; validation failed; revalidation failed).
-  @override
   FhirCode? get status;
+  @override
 
   /// [statusElement] Extensions for status
-  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
+  @override
 
   /// [statusDate] When the validation status was updated.
-  @override
   FhirDateTime? get statusDate;
+  @override
 
   /// [statusDateElement] Extensions for statusDate
-  @override
   @JsonKey(name: '_statusDate')
   PrimitiveElement? get statusDateElement;
+  @override
 
   /// [validationType] What the target is validated against (nothing; primary
   ///  source; multiple sources).
-  @override
   CodeableConcept? get validationType;
+  @override
 
   /// [validationProcess] The primary process by which the target is validated
   /// (edit check; value set; primary source; multiple sources; standalone; in
   ///  context).
-  @override
   List<CodeableConcept>? get validationProcess;
+  @override
 
   /// [frequency] Frequency of revalidation.
-  @override
   Timing? get frequency;
+  @override
 
   /// [lastPerformed] The date/time validation was last completed (including
   ///  failed validations).
-  @override
   FhirDateTime? get lastPerformed;
+  @override
 
   /// [lastPerformedElement] Extensions for lastPerformed
-  @override
   @JsonKey(name: '_lastPerformed')
   PrimitiveElement? get lastPerformedElement;
+  @override
 
   /// [nextScheduled] The date when target is next validated, if appropriate.
-  @override
   FhirDate? get nextScheduled;
+  @override
 
   /// [nextScheduledElement] Extensions for nextScheduled
-  @override
   @JsonKey(name: '_nextScheduled')
   PrimitiveElement? get nextScheduledElement;
+  @override
 
   /// [failureAction] The result if validation fails (fatal; warning; record
   ///  only; none).
-  @override
   CodeableConcept? get failureAction;
+  @override
 
   /// [primarySource] Information about the primary source(s) involved in
   ///  validation.
-  @override
   List<VerificationResultPrimarySource>? get primarySource;
+  @override
 
   /// [attestation] Information about the entity attesting to information.
-  @override
   VerificationResultAttestation? get attestation;
+  @override
 
   /// [validator] Information about the entity validating information.
-  @override
   List<VerificationResultValidator>? get validator;
-
-  /// Create a copy of VerificationResult
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$VerificationResultImplCopyWith<_$VerificationResultImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1458,12 +1431,8 @@ mixin _$VerificationResultPrimarySource {
   List<CodeableConcept>? get pushTypeAvailable =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this VerificationResultPrimarySource to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of VerificationResultPrimarySource
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $VerificationResultPrimarySourceCopyWith<VerificationResultPrimarySource>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1505,8 +1474,6 @@ class _$VerificationResultPrimarySourceCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of VerificationResultPrimarySource
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1570,8 +1537,6 @@ class _$VerificationResultPrimarySourceCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of VerificationResultPrimarySource
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get who {
@@ -1584,8 +1549,6 @@ class _$VerificationResultPrimarySourceCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of VerificationResultPrimarySource
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get validationStatus {
@@ -1598,8 +1561,6 @@ class _$VerificationResultPrimarySourceCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of VerificationResultPrimarySource
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get canPushUpdates {
@@ -1653,8 +1614,6 @@ class __$$VerificationResultPrimarySourceImplCopyWithImpl<$Res>
       $Res Function(_$VerificationResultPrimarySourceImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of VerificationResultPrimarySource
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1917,7 +1876,7 @@ class _$VerificationResultPrimarySourceImpl
                 .equals(other._pushTypeAvailable, _pushTypeAvailable));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1933,9 +1892,7 @@ class _$VerificationResultPrimarySourceImpl
       canPushUpdates,
       const DeepCollectionEquality().hash(_pushTypeAvailable));
 
-  /// Create a copy of VerificationResultPrimarySource
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$VerificationResultPrimarySourceImplCopyWith<
@@ -1972,10 +1929,12 @@ abstract class _VerificationResultPrimarySource
   factory _VerificationResultPrimarySource.fromJson(Map<String, dynamic> json) =
       _$VerificationResultPrimarySourceImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1983,9 +1942,9 @@ abstract class _VerificationResultPrimarySource
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2000,53 +1959,49 @@ abstract class _VerificationResultPrimarySource
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [who] Reference to the primary source.
-  @override
   Reference? get who;
+  @override
 
   /// [type] Type of primary source (License Board; Primary Education;
   /// Continuing Education; Postal Service; Relationship owner; Registration
   ///  Authority; legal source; issuing source; authoritative source).
-  @override
   List<CodeableConcept>? get type;
+  @override
 
   /// [communicationMethod] Method for communicating with the primary source
   ///  (manual; API; Push).
-  @override
   List<CodeableConcept>? get communicationMethod;
+  @override
 
   /// [validationStatus] Status of the validation of the target against the
   ///  primary source (successful; failed; unknown).
-  @override
   CodeableConcept? get validationStatus;
+  @override
 
   /// [validationDate] When the target was validated against the primary
   ///  source.
-  @override
   FhirDateTime? get validationDate;
+  @override
 
   /// [validationDateElement] Extensions for validationDate
-  @override
   @JsonKey(name: '_validationDate')
   PrimitiveElement? get validationDateElement;
+  @override
 
   /// [canPushUpdates] Ability of the primary source to push updates/alerts
   ///  (yes; no; undetermined).
-  @override
   CodeableConcept? get canPushUpdates;
+  @override
 
   /// [pushTypeAvailable] Type of alerts/updates the primary source can send
   ///  (specific requested changes; any changes; as defined by source).
-  @override
   List<CodeableConcept>? get pushTypeAvailable;
-
-  /// Create a copy of VerificationResultPrimarySource
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$VerificationResultPrimarySourceImplCopyWith<
           _$VerificationResultPrimarySourceImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -2131,12 +2086,8 @@ mixin _$VerificationResultAttestation {
   ///  have attested to the information.
   Signature? get sourceSignature => throw _privateConstructorUsedError;
 
-  /// Serializes this VerificationResultAttestation to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of VerificationResultAttestation
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $VerificationResultAttestationCopyWith<VerificationResultAttestation>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2185,8 +2136,6 @@ class _$VerificationResultAttestationCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of VerificationResultAttestation
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2267,8 +2216,6 @@ class _$VerificationResultAttestationCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of VerificationResultAttestation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get who {
@@ -2281,8 +2228,6 @@ class _$VerificationResultAttestationCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of VerificationResultAttestation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get onBehalfOf {
@@ -2295,8 +2240,6 @@ class _$VerificationResultAttestationCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of VerificationResultAttestation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get communicationMethod {
@@ -2309,8 +2252,6 @@ class _$VerificationResultAttestationCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of VerificationResultAttestation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SignatureCopyWith<$Res>? get proxySignature {
@@ -2323,8 +2264,6 @@ class _$VerificationResultAttestationCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of VerificationResultAttestation
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SignatureCopyWith<$Res>? get sourceSignature {
@@ -2387,8 +2326,6 @@ class __$$VerificationResultAttestationImplCopyWithImpl<$Res>
       $Res Function(_$VerificationResultAttestationImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of VerificationResultAttestation
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2660,7 +2597,7 @@ class _$VerificationResultAttestationImpl
                 other.sourceSignature == sourceSignature));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2679,9 +2616,7 @@ class _$VerificationResultAttestationImpl
       proxySignature,
       sourceSignature);
 
-  /// Create a copy of VerificationResultAttestation
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$VerificationResultAttestationImplCopyWith<
@@ -2721,10 +2656,12 @@ abstract class _VerificationResultAttestation
   factory _VerificationResultAttestation.fromJson(Map<String, dynamic> json) =
       _$VerificationResultAttestationImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2732,9 +2669,9 @@ abstract class _VerificationResultAttestation
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2749,64 +2686,60 @@ abstract class _VerificationResultAttestation
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [who] The individual or organization attesting to information.
-  @override
   Reference? get who;
+  @override
 
   /// [onBehalfOf] When the who is asserting on behalf of another (organization
   ///  or individual).
-  @override
   Reference? get onBehalfOf;
+  @override
 
   /// [communicationMethod] The method by which attested information was
   ///  submitted/retrieved (manual; API; Push).
-  @override
   CodeableConcept? get communicationMethod;
+  @override
 
   /// [date] The date the information was attested to.
-  @override
   FhirDate? get date;
+  @override
 
   /// [dateElement] Extensions for date
-  @override
   @JsonKey(name: '_date')
   PrimitiveElement? get dateElement;
+  @override
 
   /// [sourceIdentityCertificate] A digital identity certificate associated
   ///  with the attestation source.
-  @override
   String? get sourceIdentityCertificate;
   @override
   @JsonKey(name: '_sourceIdentityCertificate')
   PrimitiveElement? get sourceIdentityCertificateElement;
+  @override
 
   /// [proxyIdentityCertificate] A digital identity certificate associated with
   /// the proxy entity submitting attested information on behalf of the
   ///  attestation source.
-  @override
   String? get proxyIdentityCertificate;
   @override
   @JsonKey(name: '_proxyIdentityCertificate')
   PrimitiveElement? get proxyIdentityCertificateElement;
+  @override
 
   /// [proxySignature] Signed assertion by the proxy entity indicating that
   /// they have the right to submit attested information on behalf of the
   ///  attestation source.
-  @override
   Signature? get proxySignature;
+  @override
 
   /// [sourceSignature] Signed assertion by the attestation source that they
   ///  have attested to the information.
-  @override
   Signature? get sourceSignature;
-
-  /// Create a copy of VerificationResultAttestation
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$VerificationResultAttestationImplCopyWith<
           _$VerificationResultAttestationImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -2864,12 +2797,8 @@ mixin _$VerificationResultValidator {
   ///  validated the information.
   Signature? get attestationSignature => throw _privateConstructorUsedError;
 
-  /// Serializes this VerificationResultValidator to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of VerificationResultValidator
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $VerificationResultValidatorCopyWith<VerificationResultValidator>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2907,8 +2836,6 @@ class _$VerificationResultValidatorCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of VerificationResultValidator
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2952,8 +2879,6 @@ class _$VerificationResultValidatorCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of VerificationResultValidator
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get organization {
@@ -2962,8 +2887,6 @@ class _$VerificationResultValidatorCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of VerificationResultValidator
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SignatureCopyWith<$Res>? get attestationSignature {
@@ -3012,8 +2935,6 @@ class __$$VerificationResultValidatorImplCopyWithImpl<$Res>
       $Res Function(_$VerificationResultValidatorImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of VerificationResultValidator
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3190,7 +3111,7 @@ class _$VerificationResultValidatorImpl extends _VerificationResultValidator {
                 other.attestationSignature == attestationSignature));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3202,9 +3123,7 @@ class _$VerificationResultValidatorImpl extends _VerificationResultValidator {
       identityCertificateElement,
       attestationSignature);
 
-  /// Create a copy of VerificationResultValidator
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$VerificationResultValidatorImplCopyWith<_$VerificationResultValidatorImpl>
@@ -3236,10 +3155,12 @@ abstract class _VerificationResultValidator
   factory _VerificationResultValidator.fromJson(Map<String, dynamic> json) =
       _$VerificationResultValidatorImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3247,9 +3168,9 @@ abstract class _VerificationResultValidator
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3264,32 +3185,28 @@ abstract class _VerificationResultValidator
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [organization] Reference to the organization validating information.
-  @override
   Reference get organization;
+  @override
 
   /// [identityCertificate] A digital identity certificate associated with the
   ///  validator.
-  @override
   String? get identityCertificate;
+  @override
 
   /// [identityCertificateElement] Extensions for identityCertificate
-  @override
   @JsonKey(name: '_identityCertificate')
   PrimitiveElement? get identityCertificateElement;
+  @override
 
   /// [attestationSignature] Signed assertion by the validator that they have
   ///  validated the information.
-  @override
   Signature? get attestationSignature;
-
-  /// Create a copy of VerificationResultValidator
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$VerificationResultValidatorImplCopyWith<_$VerificationResultValidatorImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

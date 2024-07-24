@@ -121,12 +121,8 @@ mixin _$ResearchElementDefinition {
   List<ResearchElementDefinitionCharacteristic> get characteristic =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this ResearchElementDefinition to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ResearchElementDefinition
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ResearchElementDefinitionCopyWith<ResearchElementDefinition> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -222,8 +218,6 @@ class _$ResearchElementDefinitionCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ResearchElementDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -552,8 +546,6 @@ class _$ResearchElementDefinitionCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of ResearchElementDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -566,8 +558,6 @@ class _$ResearchElementDefinitionCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ResearchElementDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -580,8 +570,6 @@ class _$ResearchElementDefinitionCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ResearchElementDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get subjectCodeableConcept {
@@ -595,8 +583,6 @@ class _$ResearchElementDefinitionCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ResearchElementDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get subjectReference {
@@ -609,8 +595,6 @@ class _$ResearchElementDefinitionCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ResearchElementDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get effectivePeriod {
@@ -722,8 +706,6 @@ class __$$ResearchElementDefinitionImplCopyWithImpl<$Res>
       $Res Function(_$ResearchElementDefinitionImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ResearchElementDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1551,7 +1533,7 @@ class _$ResearchElementDefinitionImpl extends _ResearchElementDefinition {
             const DeepCollectionEquality().equals(other._characteristic, _characteristic));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1621,9 +1603,7 @@ class _$ResearchElementDefinitionImpl extends _ResearchElementDefinition {
         const DeepCollectionEquality().hash(_characteristic)
       ]);
 
-  /// Create a copy of ResearchElementDefinition
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ResearchElementDefinitionImplCopyWith<_$ResearchElementDefinitionImpl>
@@ -1868,11 +1848,8 @@ abstract class _ResearchElementDefinition extends ResearchElementDefinition {
   PrimitiveElement? get variableTypeElement;
   @override
   List<ResearchElementDefinitionCharacteristic> get characteristic;
-
-  /// Create a copy of ResearchElementDefinition
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ResearchElementDefinitionImplCopyWith<_$ResearchElementDefinitionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1947,12 +1924,8 @@ mixin _$ResearchElementDefinitionCharacteristic {
   PrimitiveElement? get participantEffectiveGroupMeasureElement =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this ResearchElementDefinitionCharacteristic to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ResearchElementDefinitionCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ResearchElementDefinitionCharacteristicCopyWith<
           ResearchElementDefinitionCharacteristic>
       get copyWith => throw _privateConstructorUsedError;
@@ -2033,8 +2006,6 @@ class _$ResearchElementDefinitionCharacteristicCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ResearchElementDefinitionCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2211,8 +2182,6 @@ class _$ResearchElementDefinitionCharacteristicCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of ResearchElementDefinitionCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get definitionCodeableConcept {
@@ -2226,8 +2195,6 @@ class _$ResearchElementDefinitionCharacteristicCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ResearchElementDefinitionCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirExpressionCopyWith<$Res>? get definitionExpression {
@@ -2240,8 +2207,6 @@ class _$ResearchElementDefinitionCharacteristicCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ResearchElementDefinitionCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $DataRequirementCopyWith<$Res>? get definitionDataRequirement {
@@ -2255,8 +2220,6 @@ class _$ResearchElementDefinitionCharacteristicCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ResearchElementDefinitionCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get unitOfMeasure {
@@ -2269,8 +2232,6 @@ class _$ResearchElementDefinitionCharacteristicCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ResearchElementDefinitionCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get studyEffectivePeriod {
@@ -2283,8 +2244,6 @@ class _$ResearchElementDefinitionCharacteristicCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ResearchElementDefinitionCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirDurationCopyWith<$Res>? get studyEffectiveDuration {
@@ -2297,8 +2256,6 @@ class _$ResearchElementDefinitionCharacteristicCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ResearchElementDefinitionCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TimingCopyWith<$Res>? get studyEffectiveTiming {
@@ -2311,8 +2268,6 @@ class _$ResearchElementDefinitionCharacteristicCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ResearchElementDefinitionCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirDurationCopyWith<$Res>? get studyEffectiveTimeFromStart {
@@ -2326,8 +2281,6 @@ class _$ResearchElementDefinitionCharacteristicCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ResearchElementDefinitionCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get participantEffectivePeriod {
@@ -2340,8 +2293,6 @@ class _$ResearchElementDefinitionCharacteristicCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ResearchElementDefinitionCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirDurationCopyWith<$Res>? get participantEffectiveDuration {
@@ -2356,8 +2307,6 @@ class _$ResearchElementDefinitionCharacteristicCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ResearchElementDefinitionCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TimingCopyWith<$Res>? get participantEffectiveTiming {
@@ -2370,8 +2319,6 @@ class _$ResearchElementDefinitionCharacteristicCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of ResearchElementDefinitionCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirDurationCopyWith<$Res>? get participantEffectiveTimeFromStart {
@@ -2473,8 +2420,6 @@ class __$$ResearchElementDefinitionCharacteristicImplCopyWithImpl<$Res>
       $Res Function(_$ResearchElementDefinitionCharacteristicImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ResearchElementDefinitionCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2872,7 +2817,7 @@ class _$ResearchElementDefinitionCharacteristicImpl
             (identical(other.participantEffectiveGroupMeasureElement, participantEffectiveGroupMeasureElement) || other.participantEffectiveGroupMeasureElement == participantEffectiveGroupMeasureElement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -2910,9 +2855,7 @@ class _$ResearchElementDefinitionCharacteristicImpl
         participantEffectiveGroupMeasureElement
       ]);
 
-  /// Create a copy of ResearchElementDefinitionCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ResearchElementDefinitionCharacteristicImplCopyWith<
@@ -3051,11 +2994,8 @@ abstract class _ResearchElementDefinitionCharacteristic
   @override
   @JsonKey(name: '_participantEffectiveGroupMeasure')
   PrimitiveElement? get participantEffectiveGroupMeasureElement;
-
-  /// Create a copy of ResearchElementDefinitionCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ResearchElementDefinitionCharacteristicImplCopyWith<
           _$ResearchElementDefinitionCharacteristicImpl>
       get copyWith => throw _privateConstructorUsedError;

@@ -192,12 +192,8 @@ mixin _$MedicationStatement {
   ///  patient.
   List<Dosage>? get dosage => throw _privateConstructorUsedError;
 
-  /// Serializes this MedicationStatement to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of MedicationStatement
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $MedicationStatementCopyWith<MedicationStatement> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -266,8 +262,6 @@ class _$MedicationStatementCopyWithImpl<$Res, $Val extends MedicationStatement>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of MedicationStatement
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -441,8 +435,6 @@ class _$MedicationStatementCopyWithImpl<$Res, $Val extends MedicationStatement>
     ) as $Val);
   }
 
-  /// Create a copy of MedicationStatement
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -455,8 +447,6 @@ class _$MedicationStatementCopyWithImpl<$Res, $Val extends MedicationStatement>
     });
   }
 
-  /// Create a copy of MedicationStatement
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -469,8 +459,6 @@ class _$MedicationStatementCopyWithImpl<$Res, $Val extends MedicationStatement>
     });
   }
 
-  /// Create a copy of MedicationStatement
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get category {
@@ -483,8 +471,6 @@ class _$MedicationStatementCopyWithImpl<$Res, $Val extends MedicationStatement>
     });
   }
 
-  /// Create a copy of MedicationStatement
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get medicationCodeableConcept {
@@ -498,8 +484,6 @@ class _$MedicationStatementCopyWithImpl<$Res, $Val extends MedicationStatement>
     });
   }
 
-  /// Create a copy of MedicationStatement
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get medicationReference {
@@ -512,8 +496,6 @@ class _$MedicationStatementCopyWithImpl<$Res, $Val extends MedicationStatement>
     });
   }
 
-  /// Create a copy of MedicationStatement
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get subject {
@@ -522,8 +504,6 @@ class _$MedicationStatementCopyWithImpl<$Res, $Val extends MedicationStatement>
     });
   }
 
-  /// Create a copy of MedicationStatement
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get context {
@@ -536,8 +516,6 @@ class _$MedicationStatementCopyWithImpl<$Res, $Val extends MedicationStatement>
     });
   }
 
-  /// Create a copy of MedicationStatement
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get effectivePeriod {
@@ -550,8 +528,6 @@ class _$MedicationStatementCopyWithImpl<$Res, $Val extends MedicationStatement>
     });
   }
 
-  /// Create a copy of MedicationStatement
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get informationSource {
@@ -638,8 +614,6 @@ class __$$MedicationStatementImplCopyWithImpl<$Res>
       $Res Function(_$MedicationStatementImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of MedicationStatement
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1281,7 +1255,7 @@ class _$MedicationStatementImpl extends _MedicationStatement {
             const DeepCollectionEquality().equals(other._dosage, _dosage));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1320,9 +1294,7 @@ class _$MedicationStatementImpl extends _MedicationStatement {
         const DeepCollectionEquality().hash(_dosage)
       ]);
 
-  /// Create a copy of MedicationStatement
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$MedicationStatementImplCopyWith<_$MedicationStatementImpl> get copyWith =>
@@ -1384,38 +1356,39 @@ abstract class _MedicationStatement extends MedicationStatement {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.MedicationStatement)
   R4ResourceType get resourceType;
+  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  @override
   String? get id;
+  @override
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  @override
   FhirMeta? get meta;
+  @override
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  @override
   FhirUri? get implicitRules;
+  @override
 
   /// [implicitRulesElement] Extensions for implicitRules
-  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
+  @override
 
   /// [language] The base language in which the resource is written.
-  @override
   FhirCode? get language;
+  @override
 
   /// [languageElement] Extensions for language
-  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
+  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1423,15 +1396,15 @@ abstract class _MedicationStatement extends MedicationStatement {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  @override
   Narrative? get text;
+  @override
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  @override
   List<Resource>? get contained;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1439,9 +1412,9 @@ abstract class _MedicationStatement extends MedicationStatement {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1456,8 +1429,8 @@ abstract class _MedicationStatement extends MedicationStatement {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  @override
   List<FhirExtension>? get modifierExtension;
+  @override
 
   /// [identifier] Identifiers associated with this Medication Statement that
   /// are defined by business processes and/or used to refer to it when a direct
@@ -1465,126 +1438,122 @@ abstract class _MedicationStatement extends MedicationStatement {
   /// identifiers assigned to this resource by the performer or other systems
   /// and remain constant as the resource is updated and propagates from server
   ///  to server.
-  @override
   List<Identifier>? get identifier;
+  @override
 
   /// [basedOn] A plan, proposal or order that is fulfilled in whole or in part
   ///  by this event.
-  @override
   List<Reference>? get basedOn;
+  @override
 
   /// [partOf] A larger event of which this particular event is a component or
   ///  step.
-  @override
   List<Reference>? get partOf;
+  @override
 
   /// [status] A code representing the patient or other source's judgment about
   /// the state of the medication used that this statement is about.  Generally,
   ///  this will be active or completed.
-  @override
   FhirCode? get status;
+  @override
 
   /// [statusElement] Extensions for status
-  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
+  @override
 
   /// [statusReason] Captures the reason for the current state of the
   ///  MedicationStatement.
-  @override
   List<CodeableConcept>? get statusReason;
+  @override
 
   /// [category] Indicates where the medication is expected to be consumed or
   ///  administered.
-  @override
   CodeableConcept? get category;
+  @override
 
   /// [medicationCodeableConcept] Identifies the medication being administered.
   /// This is either a link to a resource representing the details of the
   /// medication or a simple attribute carrying a code that identifies the
   ///  medication from a known list of medications.
-  @override
   CodeableConcept? get medicationCodeableConcept;
+  @override
 
   /// [medicationReference] Identifies the medication being administered. This
   /// is either a link to a resource representing the details of the medication
   /// or a simple attribute carrying a code that identifies the medication from
   ///  a known list of medications.
-  @override
   Reference? get medicationReference;
+  @override
 
   /// [subject] The person, animal or group who is/was taking the medication.
-  @override
   Reference get subject;
+  @override
 
   /// [context] The encounter or episode of care that establishes the context
   ///  for this MedicationStatement.
-  @override
   Reference? get context;
+  @override
 
   /// [effectiveDateTime] The interval of time during which it is being
   /// asserted that the patient is/was/will be taking the medication (or was not
   ///  taking, when the MedicationStatement.taken element is No).
-  @override
   FhirDateTime? get effectiveDateTime;
+  @override
 
   /// [effectiveDateTimeElement] Extensions for effectiveDateTime
-  @override
   @JsonKey(name: '_effectiveDateTime')
   PrimitiveElement? get effectiveDateTimeElement;
+  @override
 
   /// [effectivePeriod] The interval of time during which it is being asserted
   /// that the patient is/was/will be taking the medication (or was not taking,
   ///  when the MedicationStatement.taken element is No).
-  @override
   Period? get effectivePeriod;
+  @override
 
   /// [dateAsserted] The date when the medication statement was asserted by the
   ///  information source.
-  @override
   FhirDateTime? get dateAsserted;
+  @override
 
   /// [dateAssertedElement] Extensions for dateAsserted
-  @override
   @JsonKey(name: '_dateAsserted')
   PrimitiveElement? get dateAssertedElement;
+  @override
 
   /// [informationSource] The person or organization that provided the
   /// information about the taking of this medication. Note: Use derivedFrom
   /// when a MedicationStatement is derived from other resources, e.g. Claim or
   ///  MedicationRequest.
-  @override
   Reference? get informationSource;
+  @override
 
   /// [derivedFrom] Allows linking the MedicationStatement to the underlying
   /// MedicationRequest, or to other information that supports or is used to
   ///  derive the MedicationStatement.
-  @override
   List<Reference>? get derivedFrom;
+  @override
 
   /// [reasonCode] A reason for why the medication is being/was taken.
-  @override
   List<CodeableConcept>? get reasonCode;
+  @override
 
   /// [reasonReference] Condition or observation that supports why the
   ///  medication is being/was taken.
-  @override
   List<Reference>? get reasonReference;
+  @override
 
   /// [note] Provides extra information about the medication statement that is
   ///  not conveyed by the other attributes.
-  @override
   List<Annotation>? get note;
+  @override
 
   /// [dosage] Indicates how the medication is/was or should be taken by the
   ///  patient.
-  @override
   List<Dosage>? get dosage;
-
-  /// Create a copy of MedicationStatement
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$MedicationStatementImplCopyWith<_$MedicationStatementImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

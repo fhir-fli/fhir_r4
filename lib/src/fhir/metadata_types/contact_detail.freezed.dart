@@ -44,12 +44,8 @@ mixin _$ContactDetail {
   ///  or the organization.
   List<ContactPoint>? get telecom => throw _privateConstructorUsedError;
 
-  /// Serializes this ContactDetail to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ContactDetail
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ContactDetailCopyWith<ContactDetail> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -78,8 +74,6 @@ class _$ContactDetailCopyWithImpl<$Res, $Val extends ContactDetail>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ContactDetail
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -138,8 +132,6 @@ class __$$ContactDetailImplCopyWithImpl<$Res>
       _$ContactDetailImpl _value, $Res Function(_$ContactDetailImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ContactDetail
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -262,7 +254,7 @@ class _$ContactDetailImpl extends _ContactDetail {
             const DeepCollectionEquality().equals(other._telecom, _telecom));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -272,9 +264,7 @@ class _$ContactDetailImpl extends _ContactDetail {
       nameElement,
       const DeepCollectionEquality().hash(_telecom));
 
-  /// Create a copy of ContactDetail
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ContactDetailImplCopyWith<_$ContactDetailImpl> get copyWith =>
@@ -300,10 +290,12 @@ abstract class _ContactDetail extends ContactDetail {
   factory _ContactDetail.fromJson(Map<String, dynamic> json) =
       _$ContactDetailImpl.fromJson;
 
+  @override
+
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  @override
   String? get id;
+  @override
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -311,28 +303,24 @@ abstract class _ContactDetail extends ContactDetail {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
-  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
+  @override
 
   /// [name] The name of an individual to contact.
-  @override
   String? get name;
+  @override
 
   /// [nameElement] Extensions for name
-  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
+  @override
 
   /// [telecom] The contact details for the individual (if a name was provided)
   ///  or the organization.
-  @override
   List<ContactPoint>? get telecom;
-
-  /// Create a copy of ContactDetail
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ContactDetailImplCopyWith<_$ContactDetailImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
