@@ -411,10 +411,10 @@ _$CoverageEligibilityRequestItemImpl
               (json['supportingInfoSequence'] as List<dynamic>?)
                   ?.map(FhirPositiveInt.fromJson)
                   .toList(),
-          supportingInfoSequenceElement:
-              (json['_supportingInfoSequence'] as List<dynamic>?)
-                  ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
-                  .toList(),
+          supportingInfoSequenceElement: (json['_supportingInfoSequence']
+                  as List<dynamic>?)
+              ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
+              .toList(),
           category: json['category'] == null
               ? null
               : CodeableConcept.fromJson(

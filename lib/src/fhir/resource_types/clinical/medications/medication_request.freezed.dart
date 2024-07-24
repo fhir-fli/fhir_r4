@@ -217,7 +217,7 @@ mixin _$MedicationRequest {
   List<FhirCanonical>? get instantiatesCanonical =>
       throw _privateConstructorUsedError;
   @JsonKey(name: '_instantiatesCanonical')
-  List<Element>? get instantiatesCanonicalElement =>
+  List<PrimitiveElement>? get instantiatesCanonicalElement =>
       throw _privateConstructorUsedError;
 
   /// [instantiatesUri] The URL pointing to an externally maintained protocol,
@@ -347,7 +347,7 @@ abstract class $MedicationRequestCopyWith<$Res> {
       List<Reference>? reasonReference,
       List<FhirCanonical>? instantiatesCanonical,
       @JsonKey(name: '_instantiatesCanonical')
-      List<Element>? instantiatesCanonicalElement,
+      List<PrimitiveElement>? instantiatesCanonicalElement,
       List<FhirUri>? instantiatesUri,
       @JsonKey(name: '_instantiatesUri')
       List<PrimitiveElement>? instantiatesUriElement,
@@ -611,7 +611,7 @@ class _$MedicationRequestCopyWithImpl<$Res, $Val extends MedicationRequest>
       instantiatesCanonicalElement: freezed == instantiatesCanonicalElement
           ? _value.instantiatesCanonicalElement
           : instantiatesCanonicalElement // ignore: cast_nullable_to_non_nullable
-              as List<Element>?,
+              as List<PrimitiveElement>?,
       instantiatesUri: freezed == instantiatesUri
           ? _value.instantiatesUri
           : instantiatesUri // ignore: cast_nullable_to_non_nullable
@@ -956,7 +956,7 @@ abstract class _$$MedicationRequestImplCopyWith<$Res>
       List<Reference>? reasonReference,
       List<FhirCanonical>? instantiatesCanonical,
       @JsonKey(name: '_instantiatesCanonical')
-      List<Element>? instantiatesCanonicalElement,
+      List<PrimitiveElement>? instantiatesCanonicalElement,
       List<FhirUri>? instantiatesUri,
       @JsonKey(name: '_instantiatesUri')
       List<PrimitiveElement>? instantiatesUriElement,
@@ -1235,7 +1235,7 @@ class __$$MedicationRequestImplCopyWithImpl<$Res>
       instantiatesCanonicalElement: freezed == instantiatesCanonicalElement
           ? _value._instantiatesCanonicalElement
           : instantiatesCanonicalElement // ignore: cast_nullable_to_non_nullable
-              as List<Element>?,
+              as List<PrimitiveElement>?,
       instantiatesUri: freezed == instantiatesUri
           ? _value._instantiatesUri
           : instantiatesUri // ignore: cast_nullable_to_non_nullable
@@ -1337,7 +1337,7 @@ class _$MedicationRequestImpl extends _MedicationRequest {
       final List<Reference>? reasonReference,
       final List<FhirCanonical>? instantiatesCanonical,
       @JsonKey(name: '_instantiatesCanonical')
-      final List<Element>? instantiatesCanonicalElement,
+      final List<PrimitiveElement>? instantiatesCanonicalElement,
       final List<FhirUri>? instantiatesUri,
       @JsonKey(name: '_instantiatesUri')
       final List<PrimitiveElement>? instantiatesUriElement,
@@ -1720,10 +1720,10 @@ class _$MedicationRequestImpl extends _MedicationRequest {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<Element>? _instantiatesCanonicalElement;
+  final List<PrimitiveElement>? _instantiatesCanonicalElement;
   @override
   @JsonKey(name: '_instantiatesCanonical')
-  List<Element>? get instantiatesCanonicalElement {
+  List<PrimitiveElement>? get instantiatesCanonicalElement {
     final value = _instantiatesCanonicalElement;
     if (value == null) return null;
     if (_instantiatesCanonicalElement is EqualUnmodifiableListView)
@@ -2120,7 +2120,7 @@ abstract class _MedicationRequest extends MedicationRequest {
       final List<Reference>? reasonReference,
       final List<FhirCanonical>? instantiatesCanonical,
       @JsonKey(name: '_instantiatesCanonical')
-      final List<Element>? instantiatesCanonicalElement,
+      final List<PrimitiveElement>? instantiatesCanonicalElement,
       final List<FhirUri>? instantiatesUri,
       @JsonKey(name: '_instantiatesUri')
       final List<PrimitiveElement>? instantiatesUriElement,
@@ -2370,7 +2370,7 @@ abstract class _MedicationRequest extends MedicationRequest {
   List<FhirCanonical>? get instantiatesCanonical;
   @override
   @JsonKey(name: '_instantiatesCanonical')
-  List<Element>? get instantiatesCanonicalElement;
+  List<PrimitiveElement>? get instantiatesCanonicalElement;
 
   /// [instantiatesUri] The URL pointing to an externally maintained protocol,
   /// guideline, orderset or other definition that is adhered to in whole or in

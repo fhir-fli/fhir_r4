@@ -591,7 +591,7 @@ _$ClaimResponseAddItemImpl _$$ClaimResponseAddItemImplFromJson(
           ?.map(FhirPositiveInt.fromJson)
           .toList(),
       subdetailSequenceElement: (json['_subdetailSequence'] as List<dynamic>?)
-          ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       provider: (json['provider'] as List<dynamic>?)
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))

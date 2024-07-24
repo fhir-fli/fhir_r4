@@ -1,5 +1,5 @@
-export 'communication_request.dart';
 export 'communication.dart';
+export 'communication_request.dart';
 export 'device_request.dart';
 export 'device_use_statement.dart';
 export 'guidance_response.dart';

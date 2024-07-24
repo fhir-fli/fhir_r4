@@ -206,7 +206,7 @@ class ObservationDefinition
     @JsonKey(name: '_permittedDataType')
 
     /// [permittedDataTypeElement] Extensions for permittedDataType
-    List<Element>? permittedDataTypeElement,
+    List<PrimitiveElement>? permittedDataTypeElement,
 
     /// [multipleResultsAllowed] Multiple results allowed for observations
     ///  conforming to this ObservationDefinition.

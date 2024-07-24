@@ -1126,7 +1126,7 @@ class ClaimResponseAddItem
     @JsonKey(name: '_subdetailSequence')
 
     /// [subdetailSequenceElement] Extensions for subdetailSequence
-    List<Element>? subdetailSequenceElement,
+    List<PrimitiveElement>? subdetailSequenceElement,
 
     /// [provider] The providers who are authorized for the services rendered to
     ///  the patient.

@@ -2480,7 +2480,7 @@ mixin _$CoverageEligibilityRequestItem {
   List<FhirPositiveInt>? get supportingInfoSequence =>
       throw _privateConstructorUsedError;
   @JsonKey(name: '_supportingInfoSequence')
-  List<Element>? get supportingInfoSequenceElement =>
+  List<PrimitiveElement>? get supportingInfoSequenceElement =>
       throw _privateConstructorUsedError;
 
   /// [category] Code to identify the general type of benefits under which
@@ -2541,7 +2541,7 @@ abstract class $CoverageEligibilityRequestItemCopyWith<$Res> {
       List<FhirExtension>? modifierExtension,
       List<FhirPositiveInt>? supportingInfoSequence,
       @JsonKey(name: '_supportingInfoSequence')
-      List<Element>? supportingInfoSequenceElement,
+      List<PrimitiveElement>? supportingInfoSequenceElement,
       CodeableConcept? category,
       CodeableConcept? productOrService,
       List<CodeableConcept>? modifier,
@@ -2611,7 +2611,7 @@ class _$CoverageEligibilityRequestItemCopyWithImpl<$Res,
       supportingInfoSequenceElement: freezed == supportingInfoSequenceElement
           ? _value.supportingInfoSequenceElement
           : supportingInfoSequenceElement // ignore: cast_nullable_to_non_nullable
-              as List<Element>?,
+              as List<PrimitiveElement>?,
       category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -2751,7 +2751,7 @@ abstract class _$$CoverageEligibilityRequestItemImplCopyWith<$Res>
       List<FhirExtension>? modifierExtension,
       List<FhirPositiveInt>? supportingInfoSequence,
       @JsonKey(name: '_supportingInfoSequence')
-      List<Element>? supportingInfoSequenceElement,
+      List<PrimitiveElement>? supportingInfoSequenceElement,
       CodeableConcept? category,
       CodeableConcept? productOrService,
       List<CodeableConcept>? modifier,
@@ -2826,7 +2826,7 @@ class __$$CoverageEligibilityRequestItemImplCopyWithImpl<$Res>
       supportingInfoSequenceElement: freezed == supportingInfoSequenceElement
           ? _value._supportingInfoSequenceElement
           : supportingInfoSequenceElement // ignore: cast_nullable_to_non_nullable
-              as List<Element>?,
+              as List<PrimitiveElement>?,
       category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -2877,7 +2877,7 @@ class _$CoverageEligibilityRequestItemImpl
       final List<FhirExtension>? modifierExtension,
       final List<FhirPositiveInt>? supportingInfoSequence,
       @JsonKey(name: '_supportingInfoSequence')
-      final List<Element>? supportingInfoSequenceElement,
+      final List<PrimitiveElement>? supportingInfoSequenceElement,
       this.category,
       this.productOrService,
       final List<CodeableConcept>? modifier,
@@ -2983,10 +2983,10 @@ class _$CoverageEligibilityRequestItemImpl
     return EqualUnmodifiableListView(value);
   }
 
-  final List<Element>? _supportingInfoSequenceElement;
+  final List<PrimitiveElement>? _supportingInfoSequenceElement;
   @override
   @JsonKey(name: '_supportingInfoSequence')
-  List<Element>? get supportingInfoSequenceElement {
+  List<PrimitiveElement>? get supportingInfoSequenceElement {
     final value = _supportingInfoSequenceElement;
     if (value == null) return null;
     if (_supportingInfoSequenceElement is EqualUnmodifiableListView)
@@ -3149,7 +3149,7 @@ abstract class _CoverageEligibilityRequestItem
       final List<FhirExtension>? modifierExtension,
       final List<FhirPositiveInt>? supportingInfoSequence,
       @JsonKey(name: '_supportingInfoSequence')
-      final List<Element>? supportingInfoSequenceElement,
+      final List<PrimitiveElement>? supportingInfoSequenceElement,
       final CodeableConcept? category,
       final CodeableConcept? productOrService,
       final List<CodeableConcept>? modifier,
@@ -3201,7 +3201,7 @@ abstract class _CoverageEligibilityRequestItem
   List<FhirPositiveInt>? get supportingInfoSequence;
   @override
   @JsonKey(name: '_supportingInfoSequence')
-  List<Element>? get supportingInfoSequenceElement;
+  List<PrimitiveElement>? get supportingInfoSequenceElement;
 
   /// [category] Code to identify the general type of benefits under which
   ///  products and services are provided.

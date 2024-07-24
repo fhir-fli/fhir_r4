@@ -1594,7 +1594,7 @@ mixin _$SubscriptionTopicResourceTrigger {
   List<FhirCode>? get supportedInteraction =>
       throw _privateConstructorUsedError;
   @JsonKey(name: '_supportedInteraction')
-  List<Element>? get supportedInteractionElement =>
+  List<PrimitiveElement>? get supportedInteractionElement =>
       throw _privateConstructorUsedError;
   SubscriptionTopicQueryCriteria? get queryCriteria =>
       throw _privateConstructorUsedError;
@@ -1631,7 +1631,7 @@ abstract class $SubscriptionTopicResourceTriggerCopyWith<$Res> {
       @JsonKey(name: '_resource') PrimitiveElement? resourceElement,
       List<FhirCode>? supportedInteraction,
       @JsonKey(name: '_supportedInteraction')
-      List<Element>? supportedInteractionElement,
+      List<PrimitiveElement>? supportedInteractionElement,
       SubscriptionTopicQueryCriteria? queryCriteria,
       String? fhirPathCriteria,
       @JsonKey(name: '_fhirPathCriteria')
@@ -1705,7 +1705,7 @@ class _$SubscriptionTopicResourceTriggerCopyWithImpl<$Res,
       supportedInteractionElement: freezed == supportedInteractionElement
           ? _value.supportedInteractionElement
           : supportedInteractionElement // ignore: cast_nullable_to_non_nullable
-              as List<Element>?,
+              as List<PrimitiveElement>?,
       queryCriteria: freezed == queryCriteria
           ? _value.queryCriteria
           : queryCriteria // ignore: cast_nullable_to_non_nullable
@@ -1756,7 +1756,7 @@ abstract class _$$SubscriptionTopicResourceTriggerImplCopyWith<$Res>
       @JsonKey(name: '_resource') PrimitiveElement? resourceElement,
       List<FhirCode>? supportedInteraction,
       @JsonKey(name: '_supportedInteraction')
-      List<Element>? supportedInteractionElement,
+      List<PrimitiveElement>? supportedInteractionElement,
       SubscriptionTopicQueryCriteria? queryCriteria,
       String? fhirPathCriteria,
       @JsonKey(name: '_fhirPathCriteria')
@@ -1830,7 +1830,7 @@ class __$$SubscriptionTopicResourceTriggerImplCopyWithImpl<$Res>
       supportedInteractionElement: freezed == supportedInteractionElement
           ? _value._supportedInteractionElement
           : supportedInteractionElement // ignore: cast_nullable_to_non_nullable
-              as List<Element>?,
+              as List<PrimitiveElement>?,
       queryCriteria: freezed == queryCriteria
           ? _value.queryCriteria
           : queryCriteria // ignore: cast_nullable_to_non_nullable
@@ -1861,7 +1861,7 @@ class _$SubscriptionTopicResourceTriggerImpl
       @JsonKey(name: '_resource') this.resourceElement,
       final List<FhirCode>? supportedInteraction,
       @JsonKey(name: '_supportedInteraction')
-      final List<Element>? supportedInteractionElement,
+      final List<PrimitiveElement>? supportedInteractionElement,
       this.queryCriteria,
       this.fhirPathCriteria,
       @JsonKey(name: '_fhirPathCriteria') this.fhirPathCriteriaElement})
@@ -1920,10 +1920,10 @@ class _$SubscriptionTopicResourceTriggerImpl
     return EqualUnmodifiableListView(value);
   }
 
-  final List<Element>? _supportedInteractionElement;
+  final List<PrimitiveElement>? _supportedInteractionElement;
   @override
   @JsonKey(name: '_supportedInteraction')
-  List<Element>? get supportedInteractionElement {
+  List<PrimitiveElement>? get supportedInteractionElement {
     final value = _supportedInteractionElement;
     if (value == null) return null;
     if (_supportedInteractionElement is EqualUnmodifiableListView)
@@ -2024,7 +2024,7 @@ abstract class _SubscriptionTopicResourceTrigger
       @JsonKey(name: '_resource') final PrimitiveElement? resourceElement,
       final List<FhirCode>? supportedInteraction,
       @JsonKey(name: '_supportedInteraction')
-      final List<Element>? supportedInteractionElement,
+      final List<PrimitiveElement>? supportedInteractionElement,
       final SubscriptionTopicQueryCriteria? queryCriteria,
       final String? fhirPathCriteria,
       @JsonKey(name: '_fhirPathCriteria')
@@ -2057,7 +2057,7 @@ abstract class _SubscriptionTopicResourceTrigger
   List<FhirCode>? get supportedInteraction;
   @override
   @JsonKey(name: '_supportedInteraction')
-  List<Element>? get supportedInteractionElement;
+  List<PrimitiveElement>? get supportedInteractionElement;
   @override
   SubscriptionTopicQueryCriteria? get queryCriteria;
   @override
@@ -2956,7 +2956,8 @@ mixin _$SubscriptionTopicCanFilterBy {
       throw _privateConstructorUsedError;
   List<FhirCode>? get modifier => throw _privateConstructorUsedError;
   @JsonKey(name: '_modifier')
-  List<Element>? get modifierElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get modifierElement =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this SubscriptionTopicCanFilterBy to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -2991,7 +2992,7 @@ abstract class $SubscriptionTopicCanFilterByCopyWith<$Res> {
       @JsonKey(name: '_filterDefinition')
       PrimitiveElement? filterDefinitionElement,
       List<FhirCode>? modifier,
-      @JsonKey(name: '_modifier') List<Element>? modifierElement});
+      @JsonKey(name: '_modifier') List<PrimitiveElement>? modifierElement});
 }
 
 /// @nodoc
@@ -3076,7 +3077,7 @@ class _$SubscriptionTopicCanFilterByCopyWithImpl<$Res,
       modifierElement: freezed == modifierElement
           ? _value.modifierElement
           : modifierElement // ignore: cast_nullable_to_non_nullable
-              as List<Element>?,
+              as List<PrimitiveElement>?,
     ) as $Val);
   }
 }
@@ -3105,7 +3106,7 @@ abstract class _$$SubscriptionTopicCanFilterByImplCopyWith<$Res>
       @JsonKey(name: '_filterDefinition')
       PrimitiveElement? filterDefinitionElement,
       List<FhirCode>? modifier,
-      @JsonKey(name: '_modifier') List<Element>? modifierElement});
+      @JsonKey(name: '_modifier') List<PrimitiveElement>? modifierElement});
 }
 
 /// @nodoc
@@ -3189,7 +3190,7 @@ class __$$SubscriptionTopicCanFilterByImplCopyWithImpl<$Res>
       modifierElement: freezed == modifierElement
           ? _value._modifierElement
           : modifierElement // ignore: cast_nullable_to_non_nullable
-              as List<Element>?,
+              as List<PrimitiveElement>?,
     ));
   }
 }
@@ -3210,7 +3211,8 @@ class _$SubscriptionTopicCanFilterByImpl extends _SubscriptionTopicCanFilterBy {
       this.filterDefinition,
       @JsonKey(name: '_filterDefinition') this.filterDefinitionElement,
       final List<FhirCode>? modifier,
-      @JsonKey(name: '_modifier') final List<Element>? modifierElement})
+      @JsonKey(name: '_modifier')
+      final List<PrimitiveElement>? modifierElement})
       : _extension_ = extension_,
         _modifierExtension = modifierExtension,
         _modifier = modifier,
@@ -3275,10 +3277,10 @@ class _$SubscriptionTopicCanFilterByImpl extends _SubscriptionTopicCanFilterBy {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<Element>? _modifierElement;
+  final List<PrimitiveElement>? _modifierElement;
   @override
   @JsonKey(name: '_modifier')
-  List<Element>? get modifierElement {
+  List<PrimitiveElement>? get modifierElement {
     final value = _modifierElement;
     if (value == null) return null;
     if (_modifierElement is EqualUnmodifiableListView) return _modifierElement;
@@ -3377,7 +3379,7 @@ abstract class _SubscriptionTopicCanFilterBy
       final PrimitiveElement? filterDefinitionElement,
       final List<FhirCode>? modifier,
       @JsonKey(name: '_modifier')
-      final List<Element>?
+      final List<PrimitiveElement>?
           modifierElement}) = _$SubscriptionTopicCanFilterByImpl;
   const _SubscriptionTopicCanFilterBy._() : super._();
 
@@ -3415,7 +3417,7 @@ abstract class _SubscriptionTopicCanFilterBy
   List<FhirCode>? get modifier;
   @override
   @JsonKey(name: '_modifier')
-  List<Element>? get modifierElement;
+  List<PrimitiveElement>? get modifierElement;
 
   /// Create a copy of SubscriptionTopicCanFilterBy
   /// with the given fields replaced by the non-null parameter values.
@@ -3443,10 +3445,12 @@ mixin _$SubscriptionTopicNotificationShape {
   PrimitiveElement? get resourceElement => throw _privateConstructorUsedError;
   List<String>? get include => throw _privateConstructorUsedError;
   @JsonKey(name: '_include')
-  List<Element>? get includeElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get includeElement =>
+      throw _privateConstructorUsedError;
   List<String>? get revInclude => throw _privateConstructorUsedError;
   @JsonKey(name: '_revInclude')
-  List<Element>? get revIncludeElement => throw _privateConstructorUsedError;
+  List<PrimitiveElement>? get revIncludeElement =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this SubscriptionTopicNotificationShape to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -3474,9 +3478,9 @@ abstract class $SubscriptionTopicNotificationShapeCopyWith<$Res> {
       FhirUri? resource,
       @JsonKey(name: '_resource') PrimitiveElement? resourceElement,
       List<String>? include,
-      @JsonKey(name: '_include') List<Element>? includeElement,
+      @JsonKey(name: '_include') List<PrimitiveElement>? includeElement,
       List<String>? revInclude,
-      @JsonKey(name: '_revInclude') List<Element>? revIncludeElement});
+      @JsonKey(name: '_revInclude') List<PrimitiveElement>? revIncludeElement});
 }
 
 /// @nodoc
@@ -3533,7 +3537,7 @@ class _$SubscriptionTopicNotificationShapeCopyWithImpl<$Res,
       includeElement: freezed == includeElement
           ? _value.includeElement
           : includeElement // ignore: cast_nullable_to_non_nullable
-              as List<Element>?,
+              as List<PrimitiveElement>?,
       revInclude: freezed == revInclude
           ? _value.revInclude
           : revInclude // ignore: cast_nullable_to_non_nullable
@@ -3541,7 +3545,7 @@ class _$SubscriptionTopicNotificationShapeCopyWithImpl<$Res,
       revIncludeElement: freezed == revIncludeElement
           ? _value.revIncludeElement
           : revIncludeElement // ignore: cast_nullable_to_non_nullable
-              as List<Element>?,
+              as List<PrimitiveElement>?,
     ) as $Val);
   }
 }
@@ -3562,9 +3566,9 @@ abstract class _$$SubscriptionTopicNotificationShapeImplCopyWith<$Res>
       FhirUri? resource,
       @JsonKey(name: '_resource') PrimitiveElement? resourceElement,
       List<String>? include,
-      @JsonKey(name: '_include') List<Element>? includeElement,
+      @JsonKey(name: '_include') List<PrimitiveElement>? includeElement,
       List<String>? revInclude,
-      @JsonKey(name: '_revInclude') List<Element>? revIncludeElement});
+      @JsonKey(name: '_revInclude') List<PrimitiveElement>? revIncludeElement});
 }
 
 /// @nodoc
@@ -3620,7 +3624,7 @@ class __$$SubscriptionTopicNotificationShapeImplCopyWithImpl<$Res>
       includeElement: freezed == includeElement
           ? _value._includeElement
           : includeElement // ignore: cast_nullable_to_non_nullable
-              as List<Element>?,
+              as List<PrimitiveElement>?,
       revInclude: freezed == revInclude
           ? _value._revInclude
           : revInclude // ignore: cast_nullable_to_non_nullable
@@ -3628,7 +3632,7 @@ class __$$SubscriptionTopicNotificationShapeImplCopyWithImpl<$Res>
       revIncludeElement: freezed == revIncludeElement
           ? _value._revIncludeElement
           : revIncludeElement // ignore: cast_nullable_to_non_nullable
-              as List<Element>?,
+              as List<PrimitiveElement>?,
     ));
   }
 }
@@ -3644,9 +3648,10 @@ class _$SubscriptionTopicNotificationShapeImpl
       this.resource,
       @JsonKey(name: '_resource') this.resourceElement,
       final List<String>? include,
-      @JsonKey(name: '_include') final List<Element>? includeElement,
+      @JsonKey(name: '_include') final List<PrimitiveElement>? includeElement,
       final List<String>? revInclude,
-      @JsonKey(name: '_revInclude') final List<Element>? revIncludeElement})
+      @JsonKey(name: '_revInclude')
+      final List<PrimitiveElement>? revIncludeElement})
       : _extension_ = extension_,
         _modifierExtension = modifierExtension,
         _include = include,
@@ -3698,10 +3703,10 @@ class _$SubscriptionTopicNotificationShapeImpl
     return EqualUnmodifiableListView(value);
   }
 
-  final List<Element>? _includeElement;
+  final List<PrimitiveElement>? _includeElement;
   @override
   @JsonKey(name: '_include')
-  List<Element>? get includeElement {
+  List<PrimitiveElement>? get includeElement {
     final value = _includeElement;
     if (value == null) return null;
     if (_includeElement is EqualUnmodifiableListView) return _includeElement;
@@ -3719,10 +3724,10 @@ class _$SubscriptionTopicNotificationShapeImpl
     return EqualUnmodifiableListView(value);
   }
 
-  final List<Element>? _revIncludeElement;
+  final List<PrimitiveElement>? _revIncludeElement;
   @override
   @JsonKey(name: '_revInclude')
-  List<Element>? get revIncludeElement {
+  List<PrimitiveElement>? get revIncludeElement {
     final value = _revIncludeElement;
     if (value == null) return null;
     if (_revIncludeElement is EqualUnmodifiableListView)
@@ -3794,17 +3799,17 @@ class _$SubscriptionTopicNotificationShapeImpl
 abstract class _SubscriptionTopicNotificationShape
     extends SubscriptionTopicNotificationShape {
   const factory _SubscriptionTopicNotificationShape(
-          {final String? id,
-          @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
-          final List<FhirExtension>? modifierExtension,
-          final FhirUri? resource,
-          @JsonKey(name: '_resource') final PrimitiveElement? resourceElement,
-          final List<String>? include,
-          @JsonKey(name: '_include') final List<Element>? includeElement,
-          final List<String>? revInclude,
-          @JsonKey(name: '_revInclude')
-          final List<Element>? revIncludeElement}) =
-      _$SubscriptionTopicNotificationShapeImpl;
+      {final String? id,
+      @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
+      final List<FhirExtension>? modifierExtension,
+      final FhirUri? resource,
+      @JsonKey(name: '_resource') final PrimitiveElement? resourceElement,
+      final List<String>? include,
+      @JsonKey(name: '_include') final List<PrimitiveElement>? includeElement,
+      final List<String>? revInclude,
+      @JsonKey(name: '_revInclude')
+      final List<PrimitiveElement>?
+          revIncludeElement}) = _$SubscriptionTopicNotificationShapeImpl;
   const _SubscriptionTopicNotificationShape._() : super._();
 
   factory _SubscriptionTopicNotificationShape.fromJson(
@@ -3827,12 +3832,12 @@ abstract class _SubscriptionTopicNotificationShape
   List<String>? get include;
   @override
   @JsonKey(name: '_include')
-  List<Element>? get includeElement;
+  List<PrimitiveElement>? get includeElement;
   @override
   List<String>? get revInclude;
   @override
   @JsonKey(name: '_revInclude')
-  List<Element>? get revIncludeElement;
+  List<PrimitiveElement>? get revIncludeElement;
 
   /// Create a copy of SubscriptionTopicNotificationShape
   /// with the given fields replaced by the non-null parameter values.

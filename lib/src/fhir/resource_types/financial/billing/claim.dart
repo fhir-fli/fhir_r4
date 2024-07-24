@@ -1764,14 +1764,14 @@ class ClaimItem with _$ClaimItem implements BackboneElement {
     @JsonKey(name: '_diagnosisSequence')
 
     /// [diagnosisSequenceElement] Extensions for diagnosisSequence
-    List<Element>? diagnosisSequenceElement,
+    List<PrimitiveElement>? diagnosisSequenceElement,
 
     /// [procedureSequence] Procedures applicable for this service or product.
     List<FhirPositiveInt>? procedureSequence,
     @JsonKey(name: '_procedureSequence')
 
     /// [procedureSequenceElement] Extensions for procedureSequence
-    List<Element>? procedureSequenceElement,
+    List<PrimitiveElement>? procedureSequenceElement,
 
     /// [informationSequence] Exceptions, special conditions and supporting
     ///  information applicable for this service or product.
@@ -1779,7 +1779,7 @@ class ClaimItem with _$ClaimItem implements BackboneElement {
     @JsonKey(name: '_informationSequence')
 
     /// [informationSequenceElement] Extensions for informationSequence
-    List<Element>? informationSequenceElement,
+    List<PrimitiveElement>? informationSequenceElement,
 
     /// [revenue] The type of revenue or cost center providing the product and/or
     ///  service.

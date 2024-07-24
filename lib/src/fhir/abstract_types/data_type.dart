@@ -1,13 +1,11 @@
 import 'dart:convert';
 
-import 'package:json_annotation/json_annotation.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
 /// [DataType] Base definition for the few data types that are allowed to
 /// carry modifier extensions.
-@JsonSerializable()
 abstract class DataType implements Element {
   /// [DataType] Base definition for the few data types that are allowed to
   /// carry modifier extensions.

@@ -217,7 +217,7 @@ class RequestGroup with _$RequestGroup implements DomainResource {
     @JsonKey(name: '_instantiatesCanonical')
 
     /// [instantiatesCanonicalElement] Extensions for instantiatesCanonical
-    List<Element>? instantiatesCanonicalElement,
+    List<PrimitiveElement>? instantiatesCanonicalElement,
 
     /// [instantiatesUri] A URL referencing an externally defined protocol,
     /// guideline, orderset or other definition that is adhered to in whole or in

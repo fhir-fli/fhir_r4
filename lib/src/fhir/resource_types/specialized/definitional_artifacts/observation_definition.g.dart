@@ -53,7 +53,7 @@ _$ObservationDefinitionImpl _$$ObservationDefinitionImplFromJson(
           ?.map(FhirCode.fromJson)
           .toList(),
       permittedDataTypeElement: (json['_permittedDataType'] as List<dynamic>?)
-          ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
           .toList(),
       multipleResultsAllowed: json['multipleResultsAllowed'] == null
           ? null

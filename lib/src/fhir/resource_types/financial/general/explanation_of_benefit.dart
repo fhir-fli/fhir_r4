@@ -1878,14 +1878,14 @@ class ExplanationOfBenefitItem
     @JsonKey(name: '_diagnosisSequence')
 
     /// [diagnosisSequenceElement] Extensions for diagnosisSequence
-    List<Element>? diagnosisSequenceElement,
+    List<PrimitiveElement>? diagnosisSequenceElement,
 
     /// [procedureSequence] Procedures applicable for this service or product.
     List<FhirPositiveInt>? procedureSequence,
     @JsonKey(name: '_procedureSequence')
 
     /// [procedureSequenceElement] Extensions for procedureSequence
-    List<Element>? procedureSequenceElement,
+    List<PrimitiveElement>? procedureSequenceElement,
 
     /// [informationSequence] Exceptions, special conditions and supporting
     ///  information applicable for this service or product.
@@ -1893,7 +1893,7 @@ class ExplanationOfBenefitItem
     @JsonKey(name: '_informationSequence')
 
     /// [informationSequenceElement] Extensions for informationSequence
-    List<Element>? informationSequenceElement,
+    List<PrimitiveElement>? informationSequenceElement,
 
     /// [revenue] The type of revenue or cost center providing the product and/or
     ///  service.
@@ -2748,7 +2748,7 @@ class ExplanationOfBenefitAddItem
     @JsonKey(name: '_subDetailSequence')
 
     /// [subDetailSequenceElement] Extensions for subDetailSequence
-    List<Element>? subDetailSequenceElement,
+    List<PrimitiveElement>? subDetailSequenceElement,
 
     /// [provider] The providers who are authorized for the services rendered to
     ///  the patient.

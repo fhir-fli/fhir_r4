@@ -130,7 +130,7 @@ _$MedicationRequestImpl _$$MedicationRequestImplFromJson(
           .toList(),
       instantiatesCanonicalElement:
           (json['_instantiatesCanonical'] as List<dynamic>?)
-              ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
               .toList(),
       instantiatesUri: (json['instantiatesUri'] as List<dynamic>?)
           ?.map(FhirUri.fromJson)

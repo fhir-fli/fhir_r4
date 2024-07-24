@@ -645,7 +645,7 @@ _$ContractOfferImpl _$$ContractOfferImplFromJson(Map<String, dynamic> json) =>
           .toList(),
       securityLabelNumberElement:
           (json['_securityLabelNumber'] as List<dynamic>?)
-              ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
               .toList(),
     );
 
@@ -891,7 +891,7 @@ _$ContractAssetImpl _$$ContractAssetImplFromJson(Map<String, dynamic> json) =>
           .toList(),
       securityLabelNumberElement:
           (json['_securityLabelNumber'] as List<dynamic>?)
-              ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
               .toList(),
       valuedItem: (json['valuedItem'] as List<dynamic>?)
           ?.map((e) => ContractValuedItem.fromJson(e as Map<String, dynamic>))
@@ -1058,7 +1058,7 @@ _$ContractValuedItemImpl _$$ContractValuedItemImplFromJson(
           .toList(),
       securityLabelNumberElement:
           (json['_securityLabelNumber'] as List<dynamic>?)
-              ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
               .toList(),
     );
 
@@ -1205,7 +1205,7 @@ _$ContractActionImpl _$$ContractActionImplFromJson(Map<String, dynamic> json) =>
           .toList(),
       securityLabelNumberElement:
           (json['_securityLabelNumber'] as List<dynamic>?)
-              ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => PrimitiveElement.fromJson(e as Map<String, dynamic>))
               .toList(),
     );
 
