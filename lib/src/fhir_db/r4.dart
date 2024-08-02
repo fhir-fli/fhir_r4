@@ -46,6 +46,8 @@ class FhirDb {
               ?.map((String e) => Resource.resourceTypeFromString(e)!)
               .toSet() ??
           <R4ResourceType>{};
+      await Hive.openBox<Map<dynamic, dynamic>>('sync',
+          encryptionCipher: cipher);
       _initialized =
           true; // Set initialized to true only after all operations are successful.
     } catch (e) {
@@ -92,7 +94,7 @@ class FhirDb {
 
       final List<String> types = typesBox.get('types') ?? <String>[];
       try {
-        for (final String type in types) {
+        for (final String type in [...types, 'sync', 'history']) {
           final Box<Map<dynamic, dynamic>> oldBox =
               await Hive.openBox<Map<dynamic, dynamic>>(type,
                   encryptionCipher: cipherFromKey(key: oldPw));
@@ -101,8 +103,8 @@ class FhirDb {
                   encryptionCipher: cipherFromKey(key: newPw));
 
           try {
-            for (final Map<dynamic, dynamic> value in oldBox.values) {
-              await tempBox.put(value['id'], value);
+            for (final dynamic key in oldBox.keys.toList()) {
+              await tempBox.put(key, oldBox.get(key)!);
             }
           } finally {
             await oldBox.deleteFromDisk();
@@ -730,6 +732,36 @@ class FhirDb {
     } catch (e) {
       return false;
     }
+  }
+
+  BehaviorSubject<Resource?> listenSync({
+    String? pw,
+  }) {
+    final BehaviorSubject<Resource?> subject = BehaviorSubject<Resource?>();
+    final Box<Object> box = Hive.box('sync');
+
+    final Stream<BoxEvent> stream = box.watch();
+    final StreamSubscription<BoxEvent> subscription = stream.listen(
+      (event) {
+        if (!event.deleted) {
+          subject.add(Resource.fromJson(event.value as Map<String, dynamic>));
+        } else {
+          subject.add(null); // Emit null to indicate deletion.
+        }
+      },
+      onError: (Object e) {
+        subject.addError(e); // Propagate errors.
+      },
+      onDone: () =>
+          subject.close(), // Close the BehaviorSubject on stream completion.
+    );
+
+    // Ensure the subscription is cancelled when the BehaviorSubject is closed.
+    subject.onCancel = () {
+      subscription.cancel();
+    };
+
+    return subject;
   }
 
   /// ************************************************************************
