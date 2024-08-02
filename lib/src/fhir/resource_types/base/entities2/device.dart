@@ -418,8 +418,8 @@ class Device with _$Device implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 
   Device updateContactPointSystem(ContactPointSystem system, [int index = 0]) {
     if (contact == null || contact!.isEmpty) {

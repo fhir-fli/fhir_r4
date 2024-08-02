@@ -1,5 +1,10 @@
 # fhir_r4
 
+## [0.1.0+2]
+
+* Added ability to store versionIds as DataTimes instead of just integers (useful for syncing)
+* Added a "sync" box in the Hive db. When turned on, saves all resources when updated, to allow easily finding them for syncing.
+
 ## [0.1.0+1]
 
 * Overhaul. The packages were getting too big, and most people don't use all of them at the same time. So now, one package, all the functionality.
