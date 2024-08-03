@@ -699,11 +699,6 @@ class _$IngredientImpl extends _Ingredient {
   final IngredientSubstance substance;
 
   @override
-  String toString() {
-    return 'Ingredient(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, status: $status, statusElement: $statusElement, for_: $for_, role: $role, function: $function, group: $group, allergenicIndicator: $allergenicIndicator, allergenicIndicatorElement: $allergenicIndicatorElement, manufacturer: $manufacturer, substance: $substance)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1164,11 +1159,6 @@ class _$IngredientManufacturerImpl extends _IngredientManufacturer {
   final Reference manufacturer;
 
   @override
-  String toString() {
-    return 'IngredientManufacturer(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, role: $role, roleElement: $roleElement, manufacturer: $manufacturer)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1481,11 +1471,6 @@ class _$IngredientSubstanceImpl extends _IngredientSubstance {
     if (_strength is EqualUnmodifiableListView) return _strength;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  String toString() {
-    return 'IngredientSubstance(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, strength: $strength)';
   }
 
   @override
@@ -2071,11 +2056,6 @@ class _$IngredientStrengthImpl extends _IngredientStrength {
   }
 
   @override
-  String toString() {
-    return 'IngredientStrength(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, presentationRatio: $presentationRatio, presentationRatioRange: $presentationRatioRange, textPresentation: $textPresentation, textPresentationElement: $textPresentationElement, concentrationRatio: $concentrationRatio, concentrationRatioRange: $concentrationRatioRange, textConcentration: $textConcentration, textConcentrationElement: $textConcentrationElement, measurementPoint: $measurementPoint, measurementPointElement: $measurementPointElement, country: $country, referenceStrength: $referenceStrength)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2633,11 +2613,6 @@ class _$IngredientReferenceStrengthImpl extends _IngredientReferenceStrength {
     if (_country is EqualUnmodifiableListView) return _country;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  String toString() {
-    return 'IngredientReferenceStrength(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, substance: $substance, strengthRatio: $strengthRatio, strengthRatioRange: $strengthRatioRange, strengthQuantity: $strengthQuantity, measurementPoint: $measurementPoint, measurementPointElement: $measurementPointElement, country: $country)';
   }
 
   @override

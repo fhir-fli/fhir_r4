@@ -15,9 +15,9 @@ part 'research_study.g.dart';
 
 /// [ResearchStudy] A process where a researcher or organization plans and
 @freezed
-class ResearchStudy with _$ResearchStudy implements DomainResource {
+class ResearchStudy extends DomainResource with _$ResearchStudy {
   /// [ResearchStudy] A process where a researcher or organization plans and
-  const ResearchStudy._();
+  ResearchStudy._();
 
   /// [ResearchStudy] A process where a researcher or organization plans and
   /// then executes a series of steps intended to increase the field of
@@ -370,6 +370,9 @@ class ResearchStudy with _$ResearchStudy implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -401,9 +404,9 @@ class ResearchStudy with _$ResearchStudy implements DomainResource {
 
 /// [ResearchStudyArm] A process where a researcher or organization plans
 @freezed
-class ResearchStudyArm with _$ResearchStudyArm implements BackboneElement {
+class ResearchStudyArm extends BackboneElement with _$ResearchStudyArm {
   /// [ResearchStudyArm] A process where a researcher or organization plans
-  const ResearchStudyArm._();
+  ResearchStudyArm._();
 
   /// [ResearchStudyArm] A process where a researcher or organization plans
   /// and then executes a series of steps intended to increase the field of
@@ -525,6 +528,9 @@ class ResearchStudyArm with _$ResearchStudyArm implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -536,11 +542,10 @@ class ResearchStudyArm with _$ResearchStudyArm implements BackboneElement {
 
 /// [ResearchStudyObjective] A process where a researcher or organization
 @freezed
-class ResearchStudyObjective
-    with _$ResearchStudyObjective
-    implements BackboneElement {
+class ResearchStudyObjective extends BackboneElement
+    with _$ResearchStudyObjective {
   /// [ResearchStudyObjective] A process where a researcher or organization
-  const ResearchStudyObjective._();
+  ResearchStudyObjective._();
 
   /// [ResearchStudyObjective] A process where a researcher or organization
   /// plans and then executes a series of steps intended to increase the field
@@ -646,6 +651,9 @@ class ResearchStudyObjective
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

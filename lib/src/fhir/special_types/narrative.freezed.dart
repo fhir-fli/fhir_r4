@@ -230,11 +230,6 @@ class _$NarrativeImpl extends _Narrative {
   final FhirXhtml div;
 
   @override
-  String toString() {
-    return 'Narrative(id: $id, extension_: $extension_, status: $status, statusElement: $statusElement, div: $div)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&

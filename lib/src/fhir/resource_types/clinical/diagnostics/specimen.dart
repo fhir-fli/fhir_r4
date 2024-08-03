@@ -15,9 +15,9 @@ part 'specimen.g.dart';
 
 /// [Specimen] A sample to be used for analysis.
 @freezed
-class Specimen with _$Specimen implements DomainResource {
+class Specimen extends DomainResource with _$Specimen {
   /// [Specimen] A sample to be used for analysis.
-  const Specimen._();
+  Specimen._();
 
   /// [Specimen] A sample to be used for analysis.
   ///
@@ -272,6 +272,9 @@ class Specimen with _$Specimen implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -303,9 +306,9 @@ class Specimen with _$Specimen implements DomainResource {
 
 /// [SpecimenCollection] A sample to be used for analysis.
 @freezed
-class SpecimenCollection with _$SpecimenCollection implements BackboneElement {
+class SpecimenCollection extends BackboneElement with _$SpecimenCollection {
   /// [SpecimenCollection] A sample to be used for analysis.
-  const SpecimenCollection._();
+  SpecimenCollection._();
 
   /// [SpecimenCollection] A sample to be used for analysis.
   ///
@@ -463,6 +466,9 @@ class SpecimenCollection with _$SpecimenCollection implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -474,9 +480,9 @@ class SpecimenCollection with _$SpecimenCollection implements BackboneElement {
 
 /// [SpecimenProcessing] A sample to be used for analysis.
 @freezed
-class SpecimenProcessing with _$SpecimenProcessing implements BackboneElement {
+class SpecimenProcessing extends BackboneElement with _$SpecimenProcessing {
   /// [SpecimenProcessing] A sample to be used for analysis.
-  const SpecimenProcessing._();
+  SpecimenProcessing._();
 
   /// [SpecimenProcessing] A sample to be used for analysis.
   ///
@@ -608,6 +614,9 @@ class SpecimenProcessing with _$SpecimenProcessing implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -619,9 +628,9 @@ class SpecimenProcessing with _$SpecimenProcessing implements BackboneElement {
 
 /// [SpecimenContainer] A sample to be used for analysis.
 @freezed
-class SpecimenContainer with _$SpecimenContainer implements BackboneElement {
+class SpecimenContainer extends BackboneElement with _$SpecimenContainer {
   /// [SpecimenContainer] A sample to be used for analysis.
-  const SpecimenContainer._();
+  SpecimenContainer._();
 
   /// [SpecimenContainer] A sample to be used for analysis.
   ///
@@ -762,6 +771,9 @@ class SpecimenContainer with _$SpecimenContainer implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

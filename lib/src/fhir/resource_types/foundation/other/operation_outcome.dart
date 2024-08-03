@@ -15,9 +15,9 @@ part 'operation_outcome.g.dart';
 
 /// [OperationOutcome] A collection of error, warning, or information
 @freezed
-class OperationOutcome with _$OperationOutcome implements DomainResource {
+class OperationOutcome extends DomainResource with _$OperationOutcome {
   /// [OperationOutcome] A collection of error, warning, or information
-  const OperationOutcome._();
+  OperationOutcome._();
 
   /// [OperationOutcome] A collection of error, warning, or information
   ///  messages that result from a system action.
@@ -186,6 +186,9 @@ class OperationOutcome with _$OperationOutcome implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -217,11 +220,10 @@ class OperationOutcome with _$OperationOutcome implements DomainResource {
 
 /// [OperationOutcomeIssue] A collection of error, warning, or information
 @freezed
-class OperationOutcomeIssue
-    with _$OperationOutcomeIssue
-    implements BackboneElement {
+class OperationOutcomeIssue extends BackboneElement
+    with _$OperationOutcomeIssue {
   /// [OperationOutcomeIssue] A collection of error, warning, or information
-  const OperationOutcomeIssue._();
+  OperationOutcomeIssue._();
 
   /// [OperationOutcomeIssue] A collection of error, warning, or information
   ///  messages that result from a system action.
@@ -390,6 +392,9 @@ class OperationOutcomeIssue
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

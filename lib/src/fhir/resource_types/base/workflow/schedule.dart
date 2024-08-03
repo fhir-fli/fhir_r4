@@ -14,9 +14,9 @@ part 'schedule.g.dart';
 
 /// [Schedule] A container for slots of time that may be available for
 @freezed
-class Schedule with _$Schedule implements DomainResource {
+class Schedule extends DomainResource with _$Schedule {
   /// [Schedule] A container for slots of time that may be available for
-  const Schedule._();
+  Schedule._();
 
   /// [Schedule] A container for slots of time that may be available for
   ///  booking appointments.
@@ -246,6 +246,9 @@ class Schedule with _$Schedule implements DomainResource {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

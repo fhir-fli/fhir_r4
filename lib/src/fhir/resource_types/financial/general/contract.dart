@@ -14,9 +14,9 @@ part 'contract.g.dart';
 
 /// [Contract] Legally enforceable, formally recorded unilateral or bilateral
 @freezed
-class Contract with _$Contract implements DomainResource {
+class Contract extends DomainResource with _$Contract {
   /// [Contract] Legally enforceable, formally recorded unilateral or bilateral
-  const Contract._();
+  Contract._();
 
   /// [Contract] Legally enforceable, formally recorded unilateral or bilateral
   ///  directive i.e., a policy or agreement.
@@ -523,6 +523,9 @@ class Contract with _$Contract implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -554,11 +557,10 @@ class Contract with _$Contract implements DomainResource {
 
 /// [ContractContentDefinition] Legally enforceable, formally recorded
 @freezed
-class ContractContentDefinition
-    with _$ContractContentDefinition
-    implements BackboneElement {
+class ContractContentDefinition extends BackboneElement
+    with _$ContractContentDefinition {
   /// [ContractContentDefinition] Legally enforceable, formally recorded
-  const ContractContentDefinition._();
+  ContractContentDefinition._();
 
   /// [ContractContentDefinition] Legally enforceable, formally recorded
   ///  unilateral or bilateral directive i.e., a policy or agreement.
@@ -714,6 +716,9 @@ class ContractContentDefinition
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -725,9 +730,9 @@ class ContractContentDefinition
 
 /// [ContractTerm] Legally enforceable, formally recorded unilateral or
 @freezed
-class ContractTerm with _$ContractTerm implements BackboneElement {
+class ContractTerm extends BackboneElement with _$ContractTerm {
   /// [ContractTerm] Legally enforceable, formally recorded unilateral or
-  const ContractTerm._();
+  ContractTerm._();
 
   /// [ContractTerm] Legally enforceable, formally recorded unilateral or
   ///  bilateral directive i.e., a policy or agreement.
@@ -908,6 +913,9 @@ class ContractTerm with _$ContractTerm implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -919,11 +927,10 @@ class ContractTerm with _$ContractTerm implements BackboneElement {
 
 /// [ContractSecurityLabel] Legally enforceable, formally recorded
 @freezed
-class ContractSecurityLabel
-    with _$ContractSecurityLabel
-    implements BackboneElement {
+class ContractSecurityLabel extends BackboneElement
+    with _$ContractSecurityLabel {
   /// [ContractSecurityLabel] Legally enforceable, formally recorded
-  const ContractSecurityLabel._();
+  ContractSecurityLabel._();
 
   /// [ContractSecurityLabel] Legally enforceable, formally recorded
   ///  unilateral or bilateral directive i.e., a policy or agreement.
@@ -1046,6 +1053,9 @@ class ContractSecurityLabel
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1057,9 +1067,9 @@ class ContractSecurityLabel
 
 /// [ContractOffer] Legally enforceable, formally recorded unilateral or
 @freezed
-class ContractOffer with _$ContractOffer implements BackboneElement {
+class ContractOffer extends BackboneElement with _$ContractOffer {
   /// [ContractOffer] Legally enforceable, formally recorded unilateral or
-  const ContractOffer._();
+  ContractOffer._();
 
   /// [ContractOffer] Legally enforceable, formally recorded unilateral or
   ///  bilateral directive i.e., a policy or agreement.
@@ -1225,6 +1235,9 @@ class ContractOffer with _$ContractOffer implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1236,9 +1249,9 @@ class ContractOffer with _$ContractOffer implements BackboneElement {
 
 /// [ContractParty] Legally enforceable, formally recorded unilateral or
 @freezed
-class ContractParty with _$ContractParty implements BackboneElement {
+class ContractParty extends BackboneElement with _$ContractParty {
   /// [ContractParty] Legally enforceable, formally recorded unilateral or
-  const ContractParty._();
+  ContractParty._();
 
   /// [ContractParty] Legally enforceable, formally recorded unilateral or
   ///  bilateral directive i.e., a policy or agreement.
@@ -1338,6 +1351,9 @@ class ContractParty with _$ContractParty implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1349,9 +1365,9 @@ class ContractParty with _$ContractParty implements BackboneElement {
 
 /// [ContractAnswer] Legally enforceable, formally recorded unilateral or
 @freezed
-class ContractAnswer with _$ContractAnswer implements BackboneElement {
+class ContractAnswer extends BackboneElement with _$ContractAnswer {
   /// [ContractAnswer] Legally enforceable, formally recorded unilateral or
-  const ContractAnswer._();
+  ContractAnswer._();
 
   /// [ContractAnswer] Legally enforceable, formally recorded unilateral or
   ///  bilateral directive i.e., a policy or agreement.
@@ -1613,6 +1629,9 @@ class ContractAnswer with _$ContractAnswer implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1624,9 +1643,9 @@ class ContractAnswer with _$ContractAnswer implements BackboneElement {
 
 /// [ContractAsset] Legally enforceable, formally recorded unilateral or
 @freezed
-class ContractAsset with _$ContractAsset implements BackboneElement {
+class ContractAsset extends BackboneElement with _$ContractAsset {
   /// [ContractAsset] Legally enforceable, formally recorded unilateral or
-  const ContractAsset._();
+  ContractAsset._();
 
   /// [ContractAsset] Legally enforceable, formally recorded unilateral or
   ///  bilateral directive i.e., a policy or agreement.
@@ -1824,6 +1843,9 @@ class ContractAsset with _$ContractAsset implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1835,9 +1857,9 @@ class ContractAsset with _$ContractAsset implements BackboneElement {
 
 /// [ContractContext] Legally enforceable, formally recorded unilateral or
 @freezed
-class ContractContext with _$ContractContext implements BackboneElement {
+class ContractContext extends BackboneElement with _$ContractContext {
   /// [ContractContext] Legally enforceable, formally recorded unilateral or
-  const ContractContext._();
+  ContractContext._();
 
   /// [ContractContext] Legally enforceable, formally recorded unilateral or
   ///  bilateral directive i.e., a policy or agreement.
@@ -1953,6 +1975,9 @@ class ContractContext with _$ContractContext implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1964,9 +1989,9 @@ class ContractContext with _$ContractContext implements BackboneElement {
 
 /// [ContractValuedItem] Legally enforceable, formally recorded unilateral
 @freezed
-class ContractValuedItem with _$ContractValuedItem implements BackboneElement {
+class ContractValuedItem extends BackboneElement with _$ContractValuedItem {
   /// [ContractValuedItem] Legally enforceable, formally recorded unilateral
-  const ContractValuedItem._();
+  ContractValuedItem._();
 
   /// [ContractValuedItem] Legally enforceable, formally recorded unilateral
   ///  or bilateral directive i.e., a policy or agreement.
@@ -2201,6 +2226,9 @@ class ContractValuedItem with _$ContractValuedItem implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2212,9 +2240,9 @@ class ContractValuedItem with _$ContractValuedItem implements BackboneElement {
 
 /// [ContractAction] Legally enforceable, formally recorded unilateral or
 @freezed
-class ContractAction with _$ContractAction implements BackboneElement {
+class ContractAction extends BackboneElement with _$ContractAction {
   /// [ContractAction] Legally enforceable, formally recorded unilateral or
-  const ContractAction._();
+  ContractAction._();
 
   /// [ContractAction] Legally enforceable, formally recorded unilateral or
   ///  bilateral directive i.e., a policy or agreement.
@@ -2509,6 +2537,9 @@ class ContractAction with _$ContractAction implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2520,9 +2551,9 @@ class ContractAction with _$ContractAction implements BackboneElement {
 
 /// [ContractSubject] Legally enforceable, formally recorded unilateral or
 @freezed
-class ContractSubject with _$ContractSubject implements BackboneElement {
+class ContractSubject extends BackboneElement with _$ContractSubject {
   /// [ContractSubject] Legally enforceable, formally recorded unilateral or
-  const ContractSubject._();
+  ContractSubject._();
 
   /// [ContractSubject] Legally enforceable, formally recorded unilateral or
   ///  bilateral directive i.e., a policy or agreement.
@@ -2624,6 +2655,9 @@ class ContractSubject with _$ContractSubject implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2635,9 +2669,9 @@ class ContractSubject with _$ContractSubject implements BackboneElement {
 
 /// [ContractSigner] Legally enforceable, formally recorded unilateral or
 @freezed
-class ContractSigner with _$ContractSigner implements BackboneElement {
+class ContractSigner extends BackboneElement with _$ContractSigner {
   /// [ContractSigner] Legally enforceable, formally recorded unilateral or
-  const ContractSigner._();
+  ContractSigner._();
 
   /// [ContractSigner] Legally enforceable, formally recorded unilateral or
   ///  bilateral directive i.e., a policy or agreement.
@@ -2742,6 +2776,9 @@ class ContractSigner with _$ContractSigner implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2753,9 +2790,9 @@ class ContractSigner with _$ContractSigner implements BackboneElement {
 
 /// [ContractFriendly] Legally enforceable, formally recorded unilateral or
 @freezed
-class ContractFriendly with _$ContractFriendly implements BackboneElement {
+class ContractFriendly extends BackboneElement with _$ContractFriendly {
   /// [ContractFriendly] Legally enforceable, formally recorded unilateral or
-  const ContractFriendly._();
+  ContractFriendly._();
 
   /// [ContractFriendly] Legally enforceable, formally recorded unilateral or
   ///  bilateral directive i.e., a policy or agreement.
@@ -2863,6 +2900,9 @@ class ContractFriendly with _$ContractFriendly implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2874,9 +2914,9 @@ class ContractFriendly with _$ContractFriendly implements BackboneElement {
 
 /// [ContractLegal] Legally enforceable, formally recorded unilateral or
 @freezed
-class ContractLegal with _$ContractLegal implements BackboneElement {
+class ContractLegal extends BackboneElement with _$ContractLegal {
   /// [ContractLegal] Legally enforceable, formally recorded unilateral or
-  const ContractLegal._();
+  ContractLegal._();
 
   /// [ContractLegal] Legally enforceable, formally recorded unilateral or
   ///  bilateral directive i.e., a policy or agreement.
@@ -2976,6 +3016,9 @@ class ContractLegal with _$ContractLegal implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2987,9 +3030,9 @@ class ContractLegal with _$ContractLegal implements BackboneElement {
 
 /// [ContractRule] Legally enforceable, formally recorded unilateral or
 @freezed
-class ContractRule with _$ContractRule implements BackboneElement {
+class ContractRule extends BackboneElement with _$ContractRule {
   /// [ContractRule] Legally enforceable, formally recorded unilateral or
-  const ContractRule._();
+  ContractRule._();
 
   /// [ContractRule] Legally enforceable, formally recorded unilateral or
   ///  bilateral directive i.e., a policy or agreement.
@@ -3092,6 +3135,9 @@ class ContractRule with _$ContractRule implements BackboneElement {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

@@ -15,9 +15,9 @@ part 'linkage.g.dart';
 
 /// [Linkage] Identifies two or more records (resource instances) that refer
 @freezed
-class Linkage with _$Linkage implements DomainResource {
+class Linkage extends DomainResource with _$Linkage {
   /// [Linkage] Identifies two or more records (resource instances) that refer
-  const Linkage._();
+  Linkage._();
 
   /// [Linkage] Identifies two or more records (resource instances) that refer
   ///  to the same real-world "occurrence".
@@ -206,6 +206,9 @@ class Linkage with _$Linkage implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -237,9 +240,9 @@ class Linkage with _$Linkage implements DomainResource {
 
 /// [LinkageItem] Identifies two or more records (resource instances) that
 @freezed
-class LinkageItem with _$LinkageItem implements BackboneElement {
+class LinkageItem extends BackboneElement with _$LinkageItem {
   /// [LinkageItem] Identifies two or more records (resource instances) that
-  const LinkageItem._();
+  LinkageItem._();
 
   /// [LinkageItem] Identifies two or more records (resource instances) that
   ///  refer to the same real-world "occurrence".
@@ -342,6 +345,9 @@ class LinkageItem with _$LinkageItem implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

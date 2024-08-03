@@ -1301,11 +1301,6 @@ class _$MedicationKnowledgeImpl extends _MedicationKnowledge {
   }
 
   @override
-  String toString() {
-    return 'MedicationKnowledge(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, status: $status, statusElement: $statusElement, manufacturer: $manufacturer, doseForm: $doseForm, amount: $amount, synonym: $synonym, synonymElement: $synonymElement, relatedMedicationKnowledge: $relatedMedicationKnowledge, associatedMedication: $associatedMedication, productType: $productType, monograph: $monograph, ingredient: $ingredient, preparationInstruction: $preparationInstruction, preparationInstructionElement: $preparationInstructionElement, intendedRoute: $intendedRoute, cost: $cost, monitoringProgram: $monitoringProgram, administrationGuidelines: $administrationGuidelines, medicineClassification: $medicineClassification, packaging: $packaging, drugCharacteristic: $drugCharacteristic, contraindication: $contraindication, regulatory: $regulatory, kinetics: $kinetics)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1988,11 +1983,6 @@ class _$MedicationKnowledgeRelatedMedicationKnowledgeImpl
   }
 
   @override
-  String toString() {
-    return 'MedicationKnowledgeRelatedMedicationKnowledge(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, reference: $reference)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2392,11 +2382,6 @@ class _$MedicationKnowledgeMonographImpl extends _MedicationKnowledgeMonograph {
   /// [source] Associated documentation about the medication.
   @override
   final Reference? source;
-
-  @override
-  String toString() {
-    return 'MedicationKnowledgeMonograph(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, source: $source)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -2882,11 +2867,6 @@ class _$MedicationKnowledgeIngredientImpl
   final Ratio? strength;
 
   @override
-  String toString() {
-    return 'MedicationKnowledgeIngredient(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, itemCodeableConcept: $itemCodeableConcept, itemReference: $itemReference, isActive: $isActive, isActiveElement: $isActiveElement, strength: $strength)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -3345,11 +3325,6 @@ class _$MedicationKnowledgeCostImpl extends _MedicationKnowledgeCost {
   final Money cost;
 
   @override
-  String toString() {
-    return 'MedicationKnowledgeCost(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, source: $source, sourceElement: $sourceElement, cost: $cost)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -3764,11 +3739,6 @@ class _$MedicationKnowledgeMonitoringProgramImpl
   @override
   @JsonKey(name: '_name')
   final PrimitiveElement? nameElement;
-
-  @override
-  String toString() {
-    return 'MedicationKnowledgeMonitoringProgram(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, name: $name, nameElement: $nameElement)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -4258,11 +4228,6 @@ class _$MedicationKnowledgeAdministrationGuidelinesImpl
   }
 
   @override
-  String toString() {
-    return 'MedicationKnowledgeAdministrationGuidelines(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, dosage: $dosage, indicationCodeableConcept: $indicationCodeableConcept, indicationReference: $indicationReference, patientCharacteristics: $patientCharacteristics)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -4668,11 +4633,6 @@ class _$MedicationKnowledgeDosageImpl extends _MedicationKnowledgeDosage {
     if (_dosage is EqualUnmodifiableListView) return _dosage;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_dosage);
-  }
-
-  @override
-  String toString() {
-    return 'MedicationKnowledgeDosage(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, dosage: $dosage)';
   }
 
   @override
@@ -5141,11 +5101,6 @@ class _$MedicationKnowledgePatientCharacteristicsImpl
   }
 
   @override
-  String toString() {
-    return 'MedicationKnowledgePatientCharacteristics(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, characteristicCodeableConcept: $characteristicCodeableConcept, characteristicQuantity: $characteristicQuantity, value: $value, valueElement: $valueElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -5567,11 +5522,6 @@ class _$MedicationKnowledgeMedicineClassificationImpl
   }
 
   @override
-  String toString() {
-    return 'MedicationKnowledgeMedicineClassification(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, classification: $classification)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -5974,11 +5924,6 @@ class _$MedicationKnowledgePackagingImpl extends _MedicationKnowledgePackaging {
   ///  loaded.
   @override
   final Quantity? quantity;
-
-  @override
-  String toString() {
-    return 'MedicationKnowledgePackaging(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, quantity: $quantity)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -6506,11 +6451,6 @@ class _$MedicationKnowledgeDrugCharacteristicImpl
   final PrimitiveElement? valueBase64BinaryElement;
 
   @override
-  String toString() {
-    return 'MedicationKnowledgeDrugCharacteristic(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, valueCodeableConcept: $valueCodeableConcept, valueString: $valueString, valueStringElement: $valueStringElement, valueQuantity: $valueQuantity, valueBase64Binary: $valueBase64Binary, valueBase64BinaryElement: $valueBase64BinaryElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -7018,11 +6958,6 @@ class _$MedicationKnowledgeRegulatoryImpl
   final MedicationKnowledgeMaxDispense? maxDispense;
 
   @override
-  String toString() {
-    return 'MedicationKnowledgeRegulatory(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, regulatoryAuthority: $regulatoryAuthority, substitution: $substitution, schedule: $schedule, maxDispense: $maxDispense)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -7442,11 +7377,6 @@ class _$MedicationKnowledgeSubstitutionImpl
   final PrimitiveElement? allowedElement;
 
   @override
-  String toString() {
-    return 'MedicationKnowledgeSubstitution(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, allowed: $allowed, allowedElement: $allowedElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -7810,11 +7740,6 @@ class _$MedicationKnowledgeScheduleImpl extends _MedicationKnowledgeSchedule {
   /// [schedule] Specifies the specific drug schedule.
   @override
   final CodeableConcept schedule;
-
-  @override
-  String toString() {
-    return 'MedicationKnowledgeSchedule(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, schedule: $schedule)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -8200,11 +8125,6 @@ class _$MedicationKnowledgeMaxDispenseImpl
   /// [period] The period that applies to the maximum number of units.
   @override
   final FhirDuration? period;
-
-  @override
-  String toString() {
-    return 'MedicationKnowledgeMaxDispense(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, quantity: $quantity, period: $period)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -8630,11 +8550,6 @@ class _$MedicationKnowledgeKineticsImpl extends _MedicationKnowledgeKinetics {
   ///  concentration of a substance in the body) to decrease by half.
   @override
   final FhirDuration? halfLifePeriod;
-
-  @override
-  String toString() {
-    return 'MedicationKnowledgeKinetics(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, areaUnderCurve: $areaUnderCurve, lethalDose50: $lethalDose50, halfLifePeriod: $halfLifePeriod)';
-  }
 
   @override
   bool operator ==(Object other) {

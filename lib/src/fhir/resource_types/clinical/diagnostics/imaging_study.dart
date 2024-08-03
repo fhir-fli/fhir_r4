@@ -15,9 +15,9 @@ part 'imaging_study.g.dart';
 
 /// [ImagingStudy] Representation of the content produced in a DICOM imaging
 @freezed
-class ImagingStudy with _$ImagingStudy implements DomainResource {
+class ImagingStudy extends DomainResource with _$ImagingStudy {
   /// [ImagingStudy] Representation of the content produced in a DICOM imaging
-  const ImagingStudy._();
+  ImagingStudy._();
 
   /// [ImagingStudy] Representation of the content produced in a DICOM imaging
   /// study. A study comprises a set of series, each of which includes a set of
@@ -354,6 +354,9 @@ class ImagingStudy with _$ImagingStudy implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -385,9 +388,9 @@ class ImagingStudy with _$ImagingStudy implements DomainResource {
 
 /// [ImagingStudySeries] Representation of the content produced in a DICOM
 @freezed
-class ImagingStudySeries with _$ImagingStudySeries implements BackboneElement {
+class ImagingStudySeries extends BackboneElement with _$ImagingStudySeries {
   /// [ImagingStudySeries] Representation of the content produced in a DICOM
-  const ImagingStudySeries._();
+  ImagingStudySeries._();
 
   /// [ImagingStudySeries] Representation of the content produced in a DICOM
   /// imaging study. A study comprises a set of series, each of which includes a
@@ -597,6 +600,9 @@ class ImagingStudySeries with _$ImagingStudySeries implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -608,11 +614,10 @@ class ImagingStudySeries with _$ImagingStudySeries implements BackboneElement {
 
 /// [ImagingStudyPerformer] Representation of the content produced in a
 @freezed
-class ImagingStudyPerformer
-    with _$ImagingStudyPerformer
-    implements BackboneElement {
+class ImagingStudyPerformer extends BackboneElement
+    with _$ImagingStudyPerformer {
   /// [ImagingStudyPerformer] Representation of the content produced in a
-  const ImagingStudyPerformer._();
+  ImagingStudyPerformer._();
 
   /// [ImagingStudyPerformer] Representation of the content produced in a
   /// DICOM imaging study. A study comprises a set of series, each of which
@@ -716,6 +721,9 @@ class ImagingStudyPerformer
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -727,11 +735,9 @@ class ImagingStudyPerformer
 
 /// [ImagingStudyInstance] Representation of the content produced in a DICOM
 @freezed
-class ImagingStudyInstance
-    with _$ImagingStudyInstance
-    implements BackboneElement {
+class ImagingStudyInstance extends BackboneElement with _$ImagingStudyInstance {
   /// [ImagingStudyInstance] Representation of the content produced in a DICOM
-  const ImagingStudyInstance._();
+  ImagingStudyInstance._();
 
   /// [ImagingStudyInstance] Representation of the content produced in a DICOM
   /// imaging study. A study comprises a set of series, each of which includes a
@@ -856,6 +862,9 @@ class ImagingStudyInstance
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

@@ -15,9 +15,9 @@ part 'binary.g.dart';
 
 /// [Binary] A resource that represents the data of a single raw artifact as
 @freezed
-class Binary with _$Binary implements DomainResource {
+class Binary extends DomainResource with _$Binary {
   /// [Binary] A resource that represents the data of a single raw artifact as
-  const Binary._();
+  Binary._();
 
   /// [Binary] A resource that represents the data of a single raw artifact as
   /// digital content accessible in its native format.  A Binary resource can
@@ -189,6 +189,9 @@ class Binary with _$Binary implements DomainResource {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

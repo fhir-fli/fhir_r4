@@ -15,9 +15,9 @@ part 'test_report.g.dart';
 
 /// [TestReport] A summary of information based on the results of executing a
 @freezed
-class TestReport with _$TestReport implements DomainResource {
+class TestReport extends DomainResource with _$TestReport {
   /// [TestReport] A summary of information based on the results of executing a
-  const TestReport._();
+  TestReport._();
 
   /// [TestReport] A summary of information based on the results of executing a
   ///  TestScript.
@@ -286,6 +286,9 @@ class TestReport with _$TestReport implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -317,11 +320,10 @@ class TestReport with _$TestReport implements DomainResource {
 
 /// [TestReportParticipant] A summary of information based on the results of
 @freezed
-class TestReportParticipant
-    with _$TestReportParticipant
-    implements BackboneElement {
+class TestReportParticipant extends BackboneElement
+    with _$TestReportParticipant {
   /// [TestReportParticipant] A summary of information based on the results of
-  const TestReportParticipant._();
+  TestReportParticipant._();
 
   /// [TestReportParticipant] A summary of information based on the results of
   ///  executing a TestScript.
@@ -439,6 +441,9 @@ class TestReportParticipant
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -450,9 +455,9 @@ class TestReportParticipant
 
 /// [TestReportSetup] A summary of information based on the results of
 @freezed
-class TestReportSetup with _$TestReportSetup implements BackboneElement {
+class TestReportSetup extends BackboneElement with _$TestReportSetup {
   /// [TestReportSetup] A summary of information based on the results of
-  const TestReportSetup._();
+  TestReportSetup._();
 
   /// [TestReportSetup] A summary of information based on the results of
   ///  executing a TestScript.
@@ -545,6 +550,9 @@ class TestReportSetup with _$TestReportSetup implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -556,9 +564,9 @@ class TestReportSetup with _$TestReportSetup implements BackboneElement {
 
 /// [TestReportAction] A summary of information based on the results of
 @freezed
-class TestReportAction with _$TestReportAction implements BackboneElement {
+class TestReportAction extends BackboneElement with _$TestReportAction {
   /// [TestReportAction] A summary of information based on the results of
-  const TestReportAction._();
+  TestReportAction._();
 
   /// [TestReportAction] A summary of information based on the results of
   ///  executing a TestScript.
@@ -658,6 +666,9 @@ class TestReportAction with _$TestReportAction implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -669,11 +680,9 @@ class TestReportAction with _$TestReportAction implements BackboneElement {
 
 /// [TestReportOperation] A summary of information based on the results of
 @freezed
-class TestReportOperation
-    with _$TestReportOperation
-    implements BackboneElement {
+class TestReportOperation extends BackboneElement with _$TestReportOperation {
   /// [TestReportOperation] A summary of information based on the results of
-  const TestReportOperation._();
+  TestReportOperation._();
 
   /// [TestReportOperation] A summary of information based on the results of
   ///  executing a TestScript.
@@ -791,6 +800,9 @@ class TestReportOperation
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -802,9 +814,9 @@ class TestReportOperation
 
 /// [TestReportAssert] A summary of information based on the results of
 @freezed
-class TestReportAssert with _$TestReportAssert implements BackboneElement {
+class TestReportAssert extends BackboneElement with _$TestReportAssert {
   /// [TestReportAssert] A summary of information based on the results of
-  const TestReportAssert._();
+  TestReportAssert._();
 
   /// [TestReportAssert] A summary of information based on the results of
   ///  executing a TestScript.
@@ -922,6 +934,9 @@ class TestReportAssert with _$TestReportAssert implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -933,9 +948,9 @@ class TestReportAssert with _$TestReportAssert implements BackboneElement {
 
 /// [TestReportTest] A summary of information based on the results of
 @freezed
-class TestReportTest with _$TestReportTest implements BackboneElement {
+class TestReportTest extends BackboneElement with _$TestReportTest {
   /// [TestReportTest] A summary of information based on the results of
-  const TestReportTest._();
+  TestReportTest._();
 
   /// [TestReportTest] A summary of information based on the results of
   ///  executing a TestScript.
@@ -1052,6 +1067,9 @@ class TestReportTest with _$TestReportTest implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1063,9 +1081,9 @@ class TestReportTest with _$TestReportTest implements BackboneElement {
 
 /// [TestReportAction1] A summary of information based on the results of
 @freezed
-class TestReportAction1 with _$TestReportAction1 implements BackboneElement {
+class TestReportAction1 extends BackboneElement with _$TestReportAction1 {
   /// [TestReportAction1] A summary of information based on the results of
-  const TestReportAction1._();
+  TestReportAction1._();
 
   /// [TestReportAction1] A summary of information based on the results of
   ///  executing a TestScript.
@@ -1165,6 +1183,9 @@ class TestReportAction1 with _$TestReportAction1 implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1176,9 +1197,9 @@ class TestReportAction1 with _$TestReportAction1 implements BackboneElement {
 
 /// [TestReportTeardown] A summary of information based on the results of
 @freezed
-class TestReportTeardown with _$TestReportTeardown implements BackboneElement {
+class TestReportTeardown extends BackboneElement with _$TestReportTeardown {
   /// [TestReportTeardown] A summary of information based on the results of
-  const TestReportTeardown._();
+  TestReportTeardown._();
 
   /// [TestReportTeardown] A summary of information based on the results of
   ///  executing a TestScript.
@@ -1271,6 +1292,9 @@ class TestReportTeardown with _$TestReportTeardown implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1282,9 +1306,9 @@ class TestReportTeardown with _$TestReportTeardown implements BackboneElement {
 
 /// [TestReportAction2] A summary of information based on the results of
 @freezed
-class TestReportAction2 with _$TestReportAction2 implements BackboneElement {
+class TestReportAction2 extends BackboneElement with _$TestReportAction2 {
   /// [TestReportAction2] A summary of information based on the results of
-  const TestReportAction2._();
+  TestReportAction2._();
 
   /// [TestReportAction2] A summary of information based on the results of
   ///  executing a TestScript.
@@ -1375,6 +1399,9 @@ class TestReportAction2 with _$TestReportAction2 implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

@@ -876,11 +876,6 @@ class _$MeasureReportImpl extends _MeasureReport {
   }
 
   @override
-  String toString() {
-    return 'MeasureReport(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, status: $status, statusElement: $statusElement, type: $type, typeElement: $typeElement, measure: $measure, subject: $subject, date: $date, dateElement: $dateElement, reporter: $reporter, period: $period, improvementNotation: $improvementNotation, group: $group, evaluatedResource: $evaluatedResource)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1524,11 +1519,6 @@ class _$MeasureReportGroupImpl extends _MeasureReportGroup {
   }
 
   @override
-  String toString() {
-    return 'MeasureReportGroup(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, population: $population, measureScore: $measureScore, stratifier: $stratifier)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1983,11 +1973,6 @@ class _$MeasureReportPopulationImpl extends _MeasureReportPopulation {
   final Reference? subjectResults;
 
   @override
-  String toString() {
-    return 'MeasureReportPopulation(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, count: $count, countElement: $countElement, subjectResults: $subjectResults)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2387,11 +2372,6 @@ class _$MeasureReportStratifierImpl extends _MeasureReportStratifier {
     if (_stratum is EqualUnmodifiableListView) return _stratum;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  String toString() {
-    return 'MeasureReportStratifier(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, stratum: $stratum)';
   }
 
   @override
@@ -2855,11 +2835,6 @@ class _$MeasureReportStratumImpl extends _MeasureReportStratum {
   final Quantity? measureScore;
 
   @override
-  String toString() {
-    return 'MeasureReportStratum(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, value: $value, component: $component, population: $population, measureScore: $measureScore)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -3260,11 +3235,6 @@ class _$MeasureReportComponentImpl extends _MeasureReportComponent {
   /// [value] The stratum component value.
   @override
   final CodeableConcept value;
-
-  @override
-  String toString() {
-    return 'MeasureReportComponent(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, value: $value)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -3698,11 +3668,6 @@ class _$MeasureReportPopulation1Impl extends _MeasureReportPopulation1 {
   ///  stratum.
   @override
   final Reference? subjectResults;
-
-  @override
-  String toString() {
-    return 'MeasureReportPopulation1(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, count: $count, countElement: $countElement, subjectResults: $subjectResults)';
-  }
 
   @override
   bool operator ==(Object other) {

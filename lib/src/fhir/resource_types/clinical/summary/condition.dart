@@ -15,9 +15,9 @@ part 'condition.g.dart';
 
 /// [Condition] A clinical condition, problem, diagnosis, or other event,
 @freezed
-class Condition with _$Condition implements DomainResource {
+class Condition extends DomainResource with _$Condition {
   /// [Condition] A clinical condition, problem, diagnosis, or other event,
-  const Condition._();
+  Condition._();
 
   /// [Condition] A clinical condition, problem, diagnosis, or other event,
   /// situation, issue, or clinical concept that has risen to a level of
@@ -248,6 +248,9 @@ class Condition with _$Condition implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -279,9 +282,9 @@ class Condition with _$Condition implements DomainResource {
 
 /// [ConditionStage] A clinical condition, problem, diagnosis, or other
 @freezed
-class ConditionStage with _$ConditionStage implements BackboneElement {
+class ConditionStage extends BackboneElement with _$ConditionStage {
   /// [ConditionStage] A clinical condition, problem, diagnosis, or other
-  const ConditionStage._();
+  ConditionStage._();
 
   /// [ConditionStage] A clinical condition, problem, diagnosis, or other
   /// event, situation, issue, or clinical concept that has risen to a level of
@@ -358,6 +361,9 @@ class ConditionStage with _$ConditionStage implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -369,9 +375,9 @@ class ConditionStage with _$ConditionStage implements BackboneElement {
 
 /// [ConditionEvidence] A clinical condition, problem, diagnosis, or other
 @freezed
-class ConditionEvidence with _$ConditionEvidence implements BackboneElement {
+class ConditionEvidence extends BackboneElement with _$ConditionEvidence {
   /// [ConditionEvidence] A clinical condition, problem, diagnosis, or other
-  const ConditionEvidence._();
+  ConditionEvidence._();
 
   /// [ConditionEvidence] A clinical condition, problem, diagnosis, or other
   /// event, situation, issue, or clinical concept that has risen to a level of
@@ -443,6 +449,9 @@ class ConditionEvidence with _$ConditionEvidence implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

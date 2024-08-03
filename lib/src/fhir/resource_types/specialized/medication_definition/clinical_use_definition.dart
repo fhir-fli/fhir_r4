@@ -15,11 +15,10 @@ part 'clinical_use_definition.g.dart';
 
 /// [ClinicalUseDefinition] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 @freezed
-class ClinicalUseDefinition
-    with _$ClinicalUseDefinition
-    implements DomainResource {
+class ClinicalUseDefinition extends DomainResource
+    with _$ClinicalUseDefinition {
   /// [ClinicalUseDefinition] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
-  const ClinicalUseDefinition._();
+  ClinicalUseDefinition._();
 
   /// [ClinicalUseDefinition] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 
@@ -173,6 +172,9 @@ class ClinicalUseDefinition
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -201,10 +203,9 @@ class ClinicalUseDefinition
 
 @freezed
 @freezed
-class ClinicalUseDefinitionContraindication
-    with _$ClinicalUseDefinitionContraindication
-    implements BackboneElement {
-  const ClinicalUseDefinitionContraindication._();
+class ClinicalUseDefinitionContraindication extends BackboneElement
+    with _$ClinicalUseDefinitionContraindication {
+  ClinicalUseDefinitionContraindication._();
 
   /// [ClinicalUseDefinitionContraindication] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 
@@ -283,6 +284,9 @@ class ClinicalUseDefinitionContraindication
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -291,10 +295,9 @@ class ClinicalUseDefinitionContraindication
 
 @freezed
 @freezed
-class ClinicalUseDefinitionOtherTherapy
-    with _$ClinicalUseDefinitionOtherTherapy
-    implements BackboneElement {
-  const ClinicalUseDefinitionOtherTherapy._();
+class ClinicalUseDefinitionOtherTherapy extends BackboneElement
+    with _$ClinicalUseDefinitionOtherTherapy {
+  ClinicalUseDefinitionOtherTherapy._();
 
   /// [ClinicalUseDefinitionOtherTherapy] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 
@@ -358,6 +361,9 @@ class ClinicalUseDefinitionOtherTherapy
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -369,11 +375,10 @@ class ClinicalUseDefinitionOtherTherapy
 
 /// [ClinicalUseDefinitionIndication] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 @freezed
-class ClinicalUseDefinitionIndication
-    with _$ClinicalUseDefinitionIndication
-    implements BackboneElement {
+class ClinicalUseDefinitionIndication extends BackboneElement
+    with _$ClinicalUseDefinitionIndication {
   /// [ClinicalUseDefinitionIndication] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
-  const ClinicalUseDefinitionIndication._();
+  ClinicalUseDefinitionIndication._();
 
   /// [ClinicalUseDefinitionIndication] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 
@@ -471,6 +476,9 @@ class ClinicalUseDefinitionIndication
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -482,11 +490,10 @@ class ClinicalUseDefinitionIndication
 
 /// [ClinicalUseDefinitionInteraction] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 @freezed
-class ClinicalUseDefinitionInteraction
-    with _$ClinicalUseDefinitionInteraction
-    implements BackboneElement {
+class ClinicalUseDefinitionInteraction extends BackboneElement
+    with _$ClinicalUseDefinitionInteraction {
   /// [ClinicalUseDefinitionInteraction] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
-  const ClinicalUseDefinitionInteraction._();
+  ClinicalUseDefinitionInteraction._();
 
   /// [ClinicalUseDefinitionInteraction] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 
@@ -565,6 +572,9 @@ class ClinicalUseDefinitionInteraction
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -576,11 +586,10 @@ class ClinicalUseDefinitionInteraction
 
 /// [ClinicalUseDefinitionInteractant] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 @freezed
-class ClinicalUseDefinitionInteractant
-    with _$ClinicalUseDefinitionInteractant
-    implements BackboneElement {
+class ClinicalUseDefinitionInteractant extends BackboneElement
+    with _$ClinicalUseDefinitionInteractant {
   /// [ClinicalUseDefinitionInteractant] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
-  const ClinicalUseDefinitionInteractant._();
+  ClinicalUseDefinitionInteractant._();
 
   /// [ClinicalUseDefinitionInteractant] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 
@@ -644,6 +653,9 @@ class ClinicalUseDefinitionInteractant
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -652,10 +664,9 @@ class ClinicalUseDefinitionInteractant
 
 @freezed
 @freezed
-class ClinicalUseDefinitionUndesirableEffect
-    with _$ClinicalUseDefinitionUndesirableEffect
-    implements BackboneElement {
-  const ClinicalUseDefinitionUndesirableEffect._();
+class ClinicalUseDefinitionUndesirableEffect extends BackboneElement
+    with _$ClinicalUseDefinitionUndesirableEffect {
+  ClinicalUseDefinitionUndesirableEffect._();
 
   /// [ClinicalUseDefinitionUndesirableEffect] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 
@@ -724,6 +735,9 @@ class ClinicalUseDefinitionUndesirableEffect
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -735,11 +749,10 @@ class ClinicalUseDefinitionUndesirableEffect
 
 /// [ClinicalUseDefinitionWarning] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 @freezed
-class ClinicalUseDefinitionWarning
-    with _$ClinicalUseDefinitionWarning
-    implements BackboneElement {
+class ClinicalUseDefinitionWarning extends BackboneElement
+    with _$ClinicalUseDefinitionWarning {
   /// [ClinicalUseDefinitionWarning] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
-  const ClinicalUseDefinitionWarning._();
+  ClinicalUseDefinitionWarning._();
 
   /// [ClinicalUseDefinitionWarning] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 
@@ -804,6 +817,9 @@ class ClinicalUseDefinitionWarning
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

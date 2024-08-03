@@ -15,9 +15,9 @@ part 'goal.g.dart';
 
 /// [Goal] Describes the intended objective(s) for a patient, group or
 @freezed
-class Goal with _$Goal implements DomainResource {
+class Goal extends DomainResource with _$Goal {
   /// [Goal] Describes the intended objective(s) for a patient, group or
-  const Goal._();
+  Goal._();
 
   /// [Goal] Describes the intended objective(s) for a patient, group or
   /// organization care, for example, weight loss, restoring an activity of
@@ -307,6 +307,9 @@ class Goal with _$Goal implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -338,9 +341,9 @@ class Goal with _$Goal implements DomainResource {
 
 /// [GoalTarget] Describes the intended objective(s) for a patient, group or
 @freezed
-class GoalTarget with _$GoalTarget implements BackboneElement {
+class GoalTarget extends BackboneElement with _$GoalTarget {
   /// [GoalTarget] Describes the intended objective(s) for a patient, group or
-  const GoalTarget._();
+  GoalTarget._();
 
   /// [GoalTarget] Describes the intended objective(s) for a patient, group or
   /// organization care, for example, weight loss, restoring an activity of
@@ -576,6 +579,9 @@ class GoalTarget with _$GoalTarget implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

@@ -996,11 +996,6 @@ class _$InsurancePlanImpl extends _InsurancePlan {
   }
 
   @override
-  String toString() {
-    return 'InsurancePlan(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, status: $status, statusElement: $statusElement, type: $type, name: $name, nameElement: $nameElement, alias: $alias, aliasElement: $aliasElement, period: $period, ownedBy: $ownedBy, administeredBy: $administeredBy, coverageArea: $coverageArea, contact: $contact, endpoint: $endpoint, network: $network, coverage: $coverage, plan: $plan)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1658,11 +1653,6 @@ class _$InsurancePlanContactImpl extends _InsurancePlanContact {
   final Address? address;
 
   @override
-  String toString() {
-    return 'InsurancePlanContact(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, purpose: $purpose, name: $name, telecom: $telecom, address: $address)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2083,11 +2073,6 @@ class _$InsurancePlanCoverageImpl extends _InsurancePlanCoverage {
     if (_benefit is EqualUnmodifiableListView) return _benefit;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_benefit);
-  }
-
-  @override
-  String toString() {
-    return 'InsurancePlanCoverage(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, network: $network, benefit: $benefit)';
   }
 
   @override
@@ -2521,11 +2506,6 @@ class _$InsurancePlanBenefitImpl extends _InsurancePlanBenefit {
   }
 
   @override
-  String toString() {
-    return 'InsurancePlanBenefit(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, requirement: $requirement, requirementElement: $requirementElement, limit: $limit)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2928,11 +2908,6 @@ class _$InsurancePlanLimitImpl extends _InsurancePlanLimit {
   /// [code] The specific limit on the benefit.
   @override
   final CodeableConcept? code;
-
-  @override
-  String toString() {
-    return 'InsurancePlanLimit(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, value: $value, code: $code)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -3447,11 +3422,6 @@ class _$InsurancePlanPlanImpl extends _InsurancePlanPlan {
   }
 
   @override
-  String toString() {
-    return 'InsurancePlanPlan(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, type: $type, coverageArea: $coverageArea, network: $network, generalCost: $generalCost, specificCost: $specificCost)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -3962,11 +3932,6 @@ class _$InsurancePlanGeneralCostImpl extends _InsurancePlanGeneralCost {
   final PrimitiveElement? commentElement;
 
   @override
-  String toString() {
-    return 'InsurancePlanGeneralCost(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, groupSize: $groupSize, groupSizeElement: $groupSizeElement, cost: $cost, comment: $comment, commentElement: $commentElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -4383,11 +4348,6 @@ class _$InsurancePlanSpecificCostImpl extends _InsurancePlanSpecificCost {
   }
 
   @override
-  String toString() {
-    return 'InsurancePlanSpecificCost(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, category: $category, benefit: $benefit)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -4767,11 +4727,6 @@ class _$InsurancePlanBenefit1Impl extends _InsurancePlanBenefit1 {
     if (_cost is EqualUnmodifiableListView) return _cost;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  String toString() {
-    return 'InsurancePlanBenefit1(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, cost: $cost)';
   }
 
   @override
@@ -5226,11 +5181,6 @@ class _$InsurancePlanCostImpl extends _InsurancePlanCost {
   ///  percentages rather than currency, e.g. 10% coinsurance).
   @override
   final Quantity? value;
-
-  @override
-  String toString() {
-    return 'InsurancePlanCost(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, applicability: $applicability, qualifiers: $qualifiers, value: $value)';
-  }
 
   @override
   bool operator ==(Object other) {

@@ -15,9 +15,9 @@ part 'composition.g.dart';
 
 /// [Composition] A set of healthcare-related information that is assembled
 @freezed
-class Composition with _$Composition implements DomainResource {
+class Composition extends DomainResource with _$Composition {
   /// [Composition] A set of healthcare-related information that is assembled
-  const Composition._();
+  Composition._();
 
   /// [Composition] A set of healthcare-related information that is assembled
   /// together into a single logical package that provides a single coherent
@@ -315,6 +315,9 @@ class Composition with _$Composition implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -346,11 +349,9 @@ class Composition with _$Composition implements DomainResource {
 
 /// [CompositionAttester] A set of healthcare-related information that is
 @freezed
-class CompositionAttester
-    with _$CompositionAttester
-    implements BackboneElement {
+class CompositionAttester extends BackboneElement with _$CompositionAttester {
   /// [CompositionAttester] A set of healthcare-related information that is
-  const CompositionAttester._();
+  CompositionAttester._();
 
   /// [CompositionAttester] A set of healthcare-related information that is
   /// assembled together into a single logical package that provides a single
@@ -471,6 +472,9 @@ class CompositionAttester
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -482,11 +486,9 @@ class CompositionAttester
 
 /// [CompositionRelatesTo] A set of healthcare-related information that is
 @freezed
-class CompositionRelatesTo
-    with _$CompositionRelatesTo
-    implements BackboneElement {
+class CompositionRelatesTo extends BackboneElement with _$CompositionRelatesTo {
   /// [CompositionRelatesTo] A set of healthcare-related information that is
-  const CompositionRelatesTo._();
+  CompositionRelatesTo._();
 
   /// [CompositionRelatesTo] A set of healthcare-related information that is
   /// assembled together into a single logical package that provides a single
@@ -604,6 +606,9 @@ class CompositionRelatesTo
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -615,9 +620,9 @@ class CompositionRelatesTo
 
 /// [CompositionEvent] A set of healthcare-related information that is
 @freezed
-class CompositionEvent with _$CompositionEvent implements BackboneElement {
+class CompositionEvent extends BackboneElement with _$CompositionEvent {
   /// [CompositionEvent] A set of healthcare-related information that is
-  const CompositionEvent._();
+  CompositionEvent._();
 
   /// [CompositionEvent] A set of healthcare-related information that is
   /// assembled together into a single logical package that provides a single
@@ -744,6 +749,9 @@ class CompositionEvent with _$CompositionEvent implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -755,9 +763,9 @@ class CompositionEvent with _$CompositionEvent implements BackboneElement {
 
 /// [CompositionSection] A set of healthcare-related information that is
 @freezed
-class CompositionSection with _$CompositionSection implements BackboneElement {
+class CompositionSection extends BackboneElement with _$CompositionSection {
   /// [CompositionSection] A set of healthcare-related information that is
-  const CompositionSection._();
+  CompositionSection._();
 
   /// [CompositionSection] A set of healthcare-related information that is
   /// assembled together into a single logical package that provides a single
@@ -955,6 +963,9 @@ class CompositionSection with _$CompositionSection implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

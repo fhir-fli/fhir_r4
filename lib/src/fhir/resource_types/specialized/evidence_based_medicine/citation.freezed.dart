@@ -1205,11 +1205,6 @@ class _$CitationImpl extends _Citation {
   final CitationCitedArtifact? citedArtifact;
 
   @override
-  String toString() {
-    return 'Citation(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, identifier: $identifier, version: $version, versionElement: $versionElement, name: $name, nameElement: $nameElement, title: $title, titleElement: $titleElement, status: $status, statusElement: $statusElement, experimental: $experimental, experimentalElement: $experimentalElement, date: $date, dateElement: $dateElement, publisher: $publisher, publisherElement: $publisherElement, contact: $contact, description: $description, descriptionElement: $descriptionElement, useContext: $useContext, jurisdiction: $jurisdiction, purpose: $purpose, purposeElement: $purposeElement, copyright: $copyright, copyrightElement: $copyrightElement, approvalDate: $approvalDate, approvalDateElement: $approvalDateElement, lastReviewDate: $lastReviewDate, lastReviewDateElement: $lastReviewDateElement, effectivePeriod: $effectivePeriod, author: $author, editor: $editor, reviewer: $reviewer, endorser: $endorser, summary: $summary, classification: $classification, note: $note, currentState: $currentState, statusDate: $statusDate, relatesTo: $relatesTo, citedArtifact: $citedArtifact)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1787,11 +1782,6 @@ class _$CitationSummaryImpl extends _CitationSummary {
   final PrimitiveElement? textElement;
 
   @override
-  String toString() {
-    return 'CitationSummary(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, style: $style, text: $text, textElement: $textElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2076,11 +2066,6 @@ class _$CitationClassificationImpl extends _CitationClassification {
     if (_classifier is EqualUnmodifiableListView) return _classifier;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  String toString() {
-    return 'CitationClassification(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, classifier: $classifier)';
   }
 
   @override
@@ -2390,11 +2375,6 @@ class _$CitationStatusDateImpl extends _CitationStatusDate {
   final PrimitiveElement? actualElement;
   @override
   final Period period;
-
-  @override
-  String toString() {
-    return 'CitationStatusDate(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, activity: $activity, actual: $actual, actualElement: $actualElement, period: $period)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -2808,11 +2788,6 @@ class _$CitationRelatesToImpl extends _CitationRelatesTo {
   final Reference? targetReference;
   @override
   final Attachment? targetAttachment;
-
-  @override
-  String toString() {
-    return 'CitationRelatesTo(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, relationshipType: $relationshipType, targetClassifier: $targetClassifier, targetUri: $targetUri, targetUriElement: $targetUriElement, targetIdentifier: $targetIdentifier, targetReference: $targetReference, targetAttachment: $targetAttachment)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -3484,11 +3459,6 @@ class _$CitationCitedArtifactImpl extends _CitationCitedArtifact {
   }
 
   @override
-  String toString() {
-    return 'CitationCitedArtifact(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, relatedIdentifier: $relatedIdentifier, dateAccessed: $dateAccessed, dateAccessedElement: $dateAccessedElement, version: $version, currentState: $currentState, statusDate: $statusDate, title: $title, abstract_: $abstract_, part_: $part_, relatesTo: $relatesTo, publicationForm: $publicationForm, webLocation: $webLocation, classification: $classification, contributorship: $contributorship, note: $note)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -3860,11 +3830,6 @@ class _$CitationVersionImpl extends _CitationVersion {
   final Reference? baseCitation;
 
   @override
-  String toString() {
-    return 'CitationVersion(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, value: $value, valueElement: $valueElement, baseCitation: $baseCitation)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -4178,11 +4143,6 @@ class _$CitationStatusDate1Impl extends _CitationStatusDate1 {
   final PrimitiveElement? actualElement;
   @override
   final Period period;
-
-  @override
-  String toString() {
-    return 'CitationStatusDate1(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, activity: $activity, actual: $actual, actualElement: $actualElement, period: $period)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -4505,11 +4465,6 @@ class _$CitationTitleImpl extends _CitationTitle {
   @override
   @JsonKey(name: '_text')
   final PrimitiveElement? textElement;
-
-  @override
-  String toString() {
-    return 'CitationTitle(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, language: $language, text: $text, textElement: $textElement)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -4874,11 +4829,6 @@ class _$CitationAbstractImpl extends _CitationAbstract {
   final PrimitiveElement? copyrightElement;
 
   @override
-  String toString() {
-    return 'CitationAbstract(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, language: $language, text: $text, textElement: $textElement, copyright: $copyright, copyrightElement: $copyrightElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -5219,11 +5169,6 @@ class _$CitationPartImpl extends _CitationPart {
   final PrimitiveElement? valueElement;
   @override
   final Reference? baseCitation;
-
-  @override
-  String toString() {
-    return 'CitationPart(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, value: $value, valueElement: $valueElement, baseCitation: $baseCitation)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -5636,11 +5581,6 @@ class _$CitationRelatesTo1Impl extends _CitationRelatesTo1 {
   final Reference? targetReference;
   @override
   final Attachment? targetAttachment;
-
-  @override
-  String toString() {
-    return 'CitationRelatesTo1(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, relationshipType: $relationshipType, targetClassifier: $targetClassifier, targetUri: $targetUri, targetUriElement: $targetUriElement, targetIdentifier: $targetIdentifier, targetReference: $targetReference, targetAttachment: $targetAttachment)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -6268,11 +6208,6 @@ class _$CitationPublicationFormImpl extends _CitationPublicationForm {
   final PrimitiveElement? copyrightElement;
 
   @override
-  String toString() {
-    return 'CitationPublicationForm(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, publishedIn: $publishedIn, periodicRelease: $periodicRelease, articleDate: $articleDate, articleDateElement: $articleDateElement, lastRevisionDate: $lastRevisionDate, lastRevisionDateElement: $lastRevisionDateElement, language: $language, accessionNumber: $accessionNumber, accessionNumberElement: $accessionNumberElement, pageString: $pageString, pageStringElement: $pageStringElement, firstPage: $firstPage, firstPageElement: $firstPageElement, lastPage: $lastPage, lastPageElement: $lastPageElement, pageCount: $pageCount, pageCountElement: $pageCountElement, copyright: $copyright, copyrightElement: $copyrightElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -6767,11 +6702,6 @@ class _$CitationPublishedInImpl extends _CitationPublishedIn {
   final PrimitiveElement? publisherLocationElement;
 
   @override
-  String toString() {
-    return 'CitationPublishedIn(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, identifier: $identifier, title: $title, titleElement: $titleElement, publisher: $publisher, publisherLocation: $publisherLocation, publisherLocationElement: $publisherLocationElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -7161,11 +7091,6 @@ class _$CitationPeriodicReleaseImpl extends _CitationPeriodicRelease {
   final PrimitiveElement? issueElement;
   @override
   final CitationDateOfPublication? dateOfPublication;
-
-  @override
-  String toString() {
-    return 'CitationPeriodicRelease(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, citedMedium: $citedMedium, volume: $volume, volumeElement: $volumeElement, issue: $issue, issueElement: $issueElement, dateOfPublication: $dateOfPublication)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -7621,11 +7546,6 @@ class _$CitationDateOfPublicationImpl extends _CitationDateOfPublication {
   final PrimitiveElement? textElement;
 
   @override
-  String toString() {
-    return 'CitationDateOfPublication(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, date: $date, dateElement: $dateElement, year: $year, yearElement: $yearElement, month: $month, monthElement: $monthElement, day: $day, dayElement: $dayElement, season: $season, seasonElement: $seasonElement, text: $text, textElement: $textElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -7973,11 +7893,6 @@ class _$CitationWebLocationImpl extends _CitationWebLocation {
   final PrimitiveElement? urlElement;
 
   @override
-  String toString() {
-    return 'CitationWebLocation(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, url: $url, urlElement: $urlElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -8320,11 +8235,6 @@ class _$CitationClassification1Impl extends _CitationClassification1 {
       return _artifactAssessment;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  String toString() {
-    return 'CitationClassification1(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, classifier: $classifier, whoClassified: $whoClassified, artifactAssessment: $artifactAssessment)';
   }
 
   @override
@@ -8730,11 +8640,6 @@ class _$CitationWhoClassifiedImpl extends _CitationWhoClassified {
   final PrimitiveElement? freeToShareElement;
 
   @override
-  String toString() {
-    return 'CitationWhoClassified(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, person: $person, organization: $organization, publisher: $publisher, classifierCopyright: $classifierCopyright, classifierCopyrightElement: $classifierCopyrightElement, freeToShare: $freeToShare, freeToShareElement: $freeToShareElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -9075,11 +8980,6 @@ class _$CitationContributorshipImpl extends _CitationContributorship {
     if (_summary is EqualUnmodifiableListView) return _summary;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  String toString() {
-    return 'CitationContributorship(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, complete: $complete, completeElement: $completeElement, entry: $entry, summary: $summary)';
   }
 
   @override
@@ -9672,11 +9572,6 @@ class _$CitationEntryImpl extends _CitationEntry {
   final PrimitiveElement? listOrderElement;
 
   @override
-  String toString() {
-    return 'CitationEntry(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, initials: $initials, initialsElement: $initialsElement, collectiveName: $collectiveName, collectiveNameElement: $collectiveNameElement, identifier: $identifier, affiliationInfo: $affiliationInfo, address: $address, telecom: $telecom, contributionType: $contributionType, role: $role, contributionInstance: $contributionInstance, correspondingContact: $correspondingContact, correspondingContactElement: $correspondingContactElement, listOrder: $listOrder, listOrderElement: $listOrderElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -10083,11 +9978,6 @@ class _$CitationAffiliationInfoImpl extends _CitationAffiliationInfo {
   }
 
   @override
-  String toString() {
-    return 'CitationAffiliationInfo(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, affiliation: $affiliation, affiliationElement: $affiliationElement, role: $role, roleElement: $roleElement, identifier: $identifier)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -10395,11 +10285,6 @@ class _$CitationContributionInstanceImpl extends _CitationContributionInstance {
   @override
   @JsonKey(name: '_time')
   final PrimitiveElement? timeElement;
-
-  @override
-  String toString() {
-    return 'CitationContributionInstance(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, time: $time, timeElement: $timeElement)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -10757,11 +10642,6 @@ class _$CitationSummary1Impl extends _CitationSummary1 {
   @override
   @JsonKey(name: '_value')
   final PrimitiveElement? valueElement;
-
-  @override
-  String toString() {
-    return 'CitationSummary1(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, style: $style, source: $source, value: $value, valueElement: $valueElement)';
-  }
 
   @override
   bool operator ==(Object other) {

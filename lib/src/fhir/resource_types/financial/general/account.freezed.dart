@@ -876,11 +876,6 @@ class _$AccountImpl extends _Account {
   final Reference? partOf;
 
   @override
-  String toString() {
-    return 'Account(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, status: $status, statusElement: $statusElement, type: $type, name: $name, nameElement: $nameElement, subject: $subject, servicePeriod: $servicePeriod, coverage: $coverage, owner: $owner, description: $description, descriptionElement: $descriptionElement, guarantor: $guarantor, partOf: $partOf)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1454,11 +1449,6 @@ class _$AccountCoverageImpl extends _AccountCoverage {
   final PrimitiveElement? priorityElement;
 
   @override
-  String toString() {
-    return 'AccountCoverage(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, coverage: $coverage, priority: $priority, priorityElement: $priorityElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1897,11 +1887,6 @@ class _$AccountGuarantorImpl extends _AccountGuarantor {
   ///  for the account.
   @override
   final Period? period;
-
-  @override
-  String toString() {
-    return 'AccountGuarantor(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, party: $party, onHold: $onHold, onHoldElement: $onHoldElement, period: $period)';
-  }
 
   @override
   bool operator ==(Object other) {

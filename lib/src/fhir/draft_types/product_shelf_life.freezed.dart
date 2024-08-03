@@ -311,11 +311,6 @@ class _$ProductShelfLifeImpl extends _ProductShelfLife {
   }
 
   @override
-  String toString() {
-    return 'ProductShelfLife(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, type: $type, period: $period, specialPrecautionsForStorage: $specialPrecautionsForStorage)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&

@@ -13,10 +13,9 @@ part 'administrable_product_definition.freezed.dart';
 part 'administrable_product_definition.g.dart';
 
 @freezed
-class AdministrableProductDefinition
-    with _$AdministrableProductDefinition
-    implements DomainResource {
-  const AdministrableProductDefinition._();
+class AdministrableProductDefinition extends DomainResource
+    with _$AdministrableProductDefinition {
+  AdministrableProductDefinition._();
 
   ///
   /// [AdministrableProductDefinition] A medicinal product in the final form which is suitable for administering to a patient (after any mixing of multiple components, dissolution etc. has been performed).",
@@ -136,6 +135,9 @@ class AdministrableProductDefinition
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -163,10 +165,9 @@ class AdministrableProductDefinition
 }
 
 @freezed
-class AdministrableProductDefinitionProperty
-    with _$AdministrableProductDefinitionProperty
-    implements BackboneElement {
-  const AdministrableProductDefinitionProperty._();
+class AdministrableProductDefinitionProperty extends BackboneElement
+    with _$AdministrableProductDefinitionProperty {
+  AdministrableProductDefinitionProperty._();
 
   /// [AdministrableProductDefinitionProperty] A medicinal product in the final form which is suitable for administering to a patient (after any mixing of multiple components, dissolution etc. has been performed).
 
@@ -268,6 +269,9 @@ class AdministrableProductDefinitionProperty
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -276,9 +280,9 @@ class AdministrableProductDefinitionProperty
 
 @freezed
 class AdministrableProductDefinitionRouteOfAdministration
-    with _$AdministrableProductDefinitionRouteOfAdministration
-    implements BackboneElement {
-  const AdministrableProductDefinitionRouteOfAdministration._();
+    extends BackboneElement
+    with _$AdministrableProductDefinitionRouteOfAdministration {
+  AdministrableProductDefinitionRouteOfAdministration._();
 
   /// [AdministrableProductDefinitionRouteOfAdministration] A medicinal product in the final form which is suitable for administering to a patient (after any mixing of multiple components, dissolution etc. has been performed).
 
@@ -373,6 +377,9 @@ class AdministrableProductDefinitionRouteOfAdministration
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -380,10 +387,9 @@ class AdministrableProductDefinitionRouteOfAdministration
 }
 
 @freezed
-class AdministrableProductDefinitionTargetSpecies
-    with _$AdministrableProductDefinitionTargetSpecies
-    implements BackboneElement {
-  const AdministrableProductDefinitionTargetSpecies._();
+class AdministrableProductDefinitionTargetSpecies extends BackboneElement
+    with _$AdministrableProductDefinitionTargetSpecies {
+  AdministrableProductDefinitionTargetSpecies._();
 
   /// [AdministrableProductDefinitionTargetSpecies] A medicinal product in the final form which is suitable for administering to a patient (after any mixing of multiple components, dissolution etc. has been performed).
 
@@ -451,6 +457,9 @@ class AdministrableProductDefinitionTargetSpecies
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -458,10 +467,9 @@ class AdministrableProductDefinitionTargetSpecies
 }
 
 @freezed
-class AdministrableProductDefinitionWithdrawalPeriod
-    with _$AdministrableProductDefinitionWithdrawalPeriod
-    implements BackboneElement {
-  const AdministrableProductDefinitionWithdrawalPeriod._();
+class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement
+    with _$AdministrableProductDefinitionWithdrawalPeriod {
+  AdministrableProductDefinitionWithdrawalPeriod._();
 
   /// [AdministrableProductDefinitionWithdrawalPeriod] A medicinal product in the final form which is suitable for administering to a patient (after any mixing of multiple components, dissolution etc. has been performed).
 
@@ -539,6 +547,9 @@ class AdministrableProductDefinitionWithdrawalPeriod
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

@@ -450,11 +450,6 @@ class _$MarketingStatusImpl extends _MarketingStatus {
   final PrimitiveElement? restoreDateElement;
 
   @override
-  String toString() {
-    return 'MarketingStatus(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, country: $country, jurisdiction: $jurisdiction, status: $status, dateRange: $dateRange, restoreDate: $restoreDate, restoreDateElement: $restoreDateElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&

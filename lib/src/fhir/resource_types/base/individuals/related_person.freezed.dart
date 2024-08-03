@@ -884,11 +884,6 @@ class _$RelatedPersonImpl extends _RelatedPerson {
   }
 
   @override
-  String toString() {
-    return 'RelatedPerson(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, active: $active, activeElement: $activeElement, patient: $patient, relationship: $relationship, name: $name, telecom: $telecom, gender: $gender, genderElement: $genderElement, birthDate: $birthDate, birthDateElement: $birthDateElement, address: $address, photo: $photo, period: $period, communication: $communication)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1472,11 +1467,6 @@ class _$RelatedPersonCommunicationImpl extends _RelatedPersonCommunication {
   @override
   @JsonKey(name: '_preferred')
   final PrimitiveElement? preferredElement;
-
-  @override
-  String toString() {
-    return 'RelatedPersonCommunication(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, language: $language, preferred: $preferred, preferredElement: $preferredElement)';
-  }
 
   @override
   bool operator ==(Object other) {

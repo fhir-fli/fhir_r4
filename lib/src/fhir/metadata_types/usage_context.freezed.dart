@@ -346,11 +346,6 @@ class _$UsageContextImpl extends _UsageContext {
   final Reference? valueReference;
 
   @override
-  String toString() {
-    return 'UsageContext(id: $id, extension_: $extension_, code: $code, valueCodeableConcept: $valueCodeableConcept, valueQuantity: $valueQuantity, valueRange: $valueRange, valueReference: $valueReference)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&

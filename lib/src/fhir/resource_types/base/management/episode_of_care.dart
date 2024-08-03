@@ -14,9 +14,9 @@ part 'episode_of_care.g.dart';
 
 /// [EpisodeOfCare] An association between a patient and an organization /
 @freezed
-class EpisodeOfCare with _$EpisodeOfCare implements DomainResource {
+class EpisodeOfCare extends DomainResource with _$EpisodeOfCare {
   /// [EpisodeOfCare] An association between a patient and an organization /
-  const EpisodeOfCare._();
+  EpisodeOfCare._();
 
   /// [EpisodeOfCare] An association between a patient and an organization /
   /// healthcare provider(s) during which time encounters may occur. The
@@ -262,6 +262,9 @@ class EpisodeOfCare with _$EpisodeOfCare implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -293,11 +296,10 @@ class EpisodeOfCare with _$EpisodeOfCare implements DomainResource {
 
 /// [EpisodeOfCareStatusHistory] An association between a patient and an
 @freezed
-class EpisodeOfCareStatusHistory
-    with _$EpisodeOfCareStatusHistory
-    implements BackboneElement {
+class EpisodeOfCareStatusHistory extends BackboneElement
+    with _$EpisodeOfCareStatusHistory {
   /// [EpisodeOfCareStatusHistory] An association between a patient and an
-  const EpisodeOfCareStatusHistory._();
+  EpisodeOfCareStatusHistory._();
 
   /// [EpisodeOfCareStatusHistory] An association between a patient and an
   /// organization / healthcare provider(s) during which time encounters may
@@ -406,6 +408,9 @@ class EpisodeOfCareStatusHistory
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -417,11 +422,10 @@ class EpisodeOfCareStatusHistory
 
 /// [EpisodeOfCareDiagnosis] An association between a patient and an
 @freezed
-class EpisodeOfCareDiagnosis
-    with _$EpisodeOfCareDiagnosis
-    implements BackboneElement {
+class EpisodeOfCareDiagnosis extends BackboneElement
+    with _$EpisodeOfCareDiagnosis {
   /// [EpisodeOfCareDiagnosis] An association between a patient and an
-  const EpisodeOfCareDiagnosis._();
+  EpisodeOfCareDiagnosis._();
 
   /// [EpisodeOfCareDiagnosis] An association between a patient and an
   /// organization / healthcare provider(s) during which time encounters may
@@ -536,6 +540,9 @@ class EpisodeOfCareDiagnosis
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

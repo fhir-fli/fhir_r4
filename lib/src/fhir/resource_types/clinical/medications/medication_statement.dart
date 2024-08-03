@@ -15,9 +15,9 @@ part 'medication_statement.g.dart';
 
 /// [MedicationStatement] A record of a medication that is being consumed by
 @freezed
-class MedicationStatement with _$MedicationStatement implements DomainResource {
+class MedicationStatement extends DomainResource with _$MedicationStatement {
   /// [MedicationStatement] A record of a medication that is being consumed by
-  const MedicationStatement._();
+  MedicationStatement._();
 
   /// [MedicationStatement] A record of a medication that is being consumed by
   /// a patient.   A MedicationStatement may indicate that the patient may be
@@ -369,6 +369,9 @@ class MedicationStatement with _$MedicationStatement implements DomainResource {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

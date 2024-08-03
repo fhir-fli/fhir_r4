@@ -237,11 +237,6 @@ class _$CodeableConceptImpl extends _CodeableConcept {
   final PrimitiveElement? textElement;
 
   @override
-  String toString() {
-    return 'CodeableConcept(id: $id, extension_: $extension_, coding: $coding, text: $text, textElement: $textElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&

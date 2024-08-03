@@ -15,9 +15,9 @@ part 'immunization.g.dart';
 
 /// [Immunization] Describes the event of a patient being administered a
 @freezed
-class Immunization with _$Immunization implements DomainResource {
+class Immunization extends DomainResource with _$Immunization {
   /// [Immunization] Describes the event of a patient being administered a
-  const Immunization._();
+  Immunization._();
 
   /// [Immunization] Describes the event of a patient being administered a
   /// vaccine or a record of an immunization as reported by a patient, a
@@ -406,6 +406,9 @@ class Immunization with _$Immunization implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -437,11 +440,10 @@ class Immunization with _$Immunization implements DomainResource {
 
 /// [ImmunizationPerformer] Describes the event of a patient being
 @freezed
-class ImmunizationPerformer
-    with _$ImmunizationPerformer
-    implements BackboneElement {
+class ImmunizationPerformer extends BackboneElement
+    with _$ImmunizationPerformer {
   /// [ImmunizationPerformer] Describes the event of a patient being
-  const ImmunizationPerformer._();
+  ImmunizationPerformer._();
 
   /// [ImmunizationPerformer] Describes the event of a patient being
   /// administered a vaccine or a record of an immunization as reported by a
@@ -542,6 +544,9 @@ class ImmunizationPerformer
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -553,11 +558,10 @@ class ImmunizationPerformer
 
 /// [ImmunizationEducation] Describes the event of a patient being
 @freezed
-class ImmunizationEducation
-    with _$ImmunizationEducation
-    implements BackboneElement {
+class ImmunizationEducation extends BackboneElement
+    with _$ImmunizationEducation {
   /// [ImmunizationEducation] Describes the event of a patient being
-  const ImmunizationEducation._();
+  ImmunizationEducation._();
 
   /// [ImmunizationEducation] Describes the event of a patient being
   /// administered a vaccine or a record of an immunization as reported by a
@@ -691,6 +695,9 @@ class ImmunizationEducation
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -702,11 +709,9 @@ class ImmunizationEducation
 
 /// [ImmunizationReaction] Describes the event of a patient being
 @freezed
-class ImmunizationReaction
-    with _$ImmunizationReaction
-    implements BackboneElement {
+class ImmunizationReaction extends BackboneElement with _$ImmunizationReaction {
   /// [ImmunizationReaction] Describes the event of a patient being
-  const ImmunizationReaction._();
+  ImmunizationReaction._();
 
   /// [ImmunizationReaction] Describes the event of a patient being
   /// administered a vaccine or a record of an immunization as reported by a
@@ -820,6 +825,9 @@ class ImmunizationReaction
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -831,11 +839,10 @@ class ImmunizationReaction
 
 /// [ImmunizationProtocolApplied] Describes the event of a patient being
 @freezed
-class ImmunizationProtocolApplied
-    with _$ImmunizationProtocolApplied
-    implements BackboneElement {
+class ImmunizationProtocolApplied extends BackboneElement
+    with _$ImmunizationProtocolApplied {
   /// [ImmunizationProtocolApplied] Describes the event of a patient being
-  const ImmunizationProtocolApplied._();
+  ImmunizationProtocolApplied._();
 
   /// [ImmunizationProtocolApplied] Describes the event of a patient being
   /// administered a vaccine or a record of an immunization as reported by a
@@ -994,6 +1001,9 @@ class ImmunizationProtocolApplied
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

@@ -15,11 +15,10 @@ part 'observation_definition.g.dart';
 
 /// [ObservationDefinition] Set of definitional characteristics for a kind of
 @freezed
-class ObservationDefinition
-    with _$ObservationDefinition
-    implements DomainResource {
+class ObservationDefinition extends DomainResource
+    with _$ObservationDefinition {
   /// [ObservationDefinition] Set of definitional characteristics for a kind of
-  const ObservationDefinition._();
+  ObservationDefinition._();
 
   /// [ObservationDefinition] Set of definitional characteristics for a kind of
   /// observation or measurement produced or consumed by an orderable health
@@ -286,6 +285,9 @@ class ObservationDefinition
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -314,10 +316,9 @@ class ObservationDefinition
 
 @freezed
 @freezed
-class ObservationDefinitionQuantitativeDetails
-    with _$ObservationDefinitionQuantitativeDetails
-    implements BackboneElement {
-  const ObservationDefinitionQuantitativeDetails._();
+class ObservationDefinitionQuantitativeDetails extends BackboneElement
+    with _$ObservationDefinitionQuantitativeDetails {
+  ObservationDefinitionQuantitativeDetails._();
 
   /// [ObservationDefinitionQuantitativeDetails] Set of definitional
   /// characteristics for a kind of observation or measurement produced or
@@ -435,6 +436,9 @@ class ObservationDefinitionQuantitativeDetails
       _$ObservationDefinitionQuantitativeDetailsFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -443,10 +447,9 @@ class ObservationDefinitionQuantitativeDetails
 
 @freezed
 @freezed
-class ObservationDefinitionQualifiedInterval
-    with _$ObservationDefinitionQualifiedInterval
-    implements BackboneElement {
-  const ObservationDefinitionQualifiedInterval._();
+class ObservationDefinitionQualifiedInterval extends BackboneElement
+    with _$ObservationDefinitionQualifiedInterval {
+  ObservationDefinitionQualifiedInterval._();
 
   /// [ObservationDefinitionQualifiedInterval] Set of definitional
   /// characteristics for a kind of observation or measurement produced or
@@ -589,6 +592,9 @@ class ObservationDefinitionQualifiedInterval
   factory ObservationDefinitionQualifiedInterval.fromJson(
           Map<String, dynamic> json) =>
       _$ObservationDefinitionQualifiedIntervalFromJson(json);
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

@@ -15,9 +15,9 @@ part 'subscription_status.g.dart';
 
 /// [SubscriptionStatus] The SubscriptionStatus resource describes the state of a Subscription during notifications.
 @freezed
-class SubscriptionStatus with _$SubscriptionStatus implements DomainResource {
+class SubscriptionStatus extends DomainResource with _$SubscriptionStatus {
   /// [SubscriptionStatus] The SubscriptionStatus resource describes the state of a Subscription during notifications.
-  const SubscriptionStatus._();
+  SubscriptionStatus._();
 
   /// [SubscriptionStatus] The SubscriptionStatus resource describes the state of a Subscription during notifications.
 
@@ -165,6 +165,9 @@ class SubscriptionStatus with _$SubscriptionStatus implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -193,10 +196,9 @@ class SubscriptionStatus with _$SubscriptionStatus implements DomainResource {
 
 @freezed
 @freezed
-class SubscriptionStatusNotificationEvent
-    with _$SubscriptionStatusNotificationEvent
-    implements BackboneElement {
-  const SubscriptionStatusNotificationEvent._();
+class SubscriptionStatusNotificationEvent extends BackboneElement
+    with _$SubscriptionStatusNotificationEvent {
+  SubscriptionStatusNotificationEvent._();
 
   /// [SubscriptionStatusNotificationEvent] The SubscriptionStatus resource describes the state of a Subscription during notifications.
 
@@ -278,6 +280,9 @@ class SubscriptionStatusNotificationEvent
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

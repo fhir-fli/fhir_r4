@@ -561,11 +561,6 @@ class _$DataRequirementImpl extends _DataRequirement {
   }
 
   @override
-  String toString() {
-    return 'DataRequirement(id: $id, extension_: $extension_, type: $type, typeElement: $typeElement, profile: $profile, subjectCodeableConcept: $subjectCodeableConcept, subjectReference: $subjectReference, mustSupport: $mustSupport, mustSupportElement: $mustSupportElement, codeFilter: $codeFilter, dateFilter: $dateFilter, limit: $limit, limitElement: $limitElement, sort: $sort)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1131,11 +1126,6 @@ class _$DataRequirementCodeFilterImpl extends _DataRequirementCodeFilter {
     if (_code is EqualUnmodifiableListView) return _code;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  String toString() {
-    return 'DataRequirementCodeFilter(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, path: $path, pathElement: $pathElement, searchParam: $searchParam, searchParamElement: $searchParamElement, valueSet: $valueSet, code: $code)';
   }
 
   @override
@@ -1752,11 +1742,6 @@ class _$DataRequirementDateFilterImpl extends _DataRequirementDateFilter {
   final FhirDuration? valueDuration;
 
   @override
-  String toString() {
-    return 'DataRequirementDateFilter(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, path: $path, pathElement: $pathElement, searchParam: $searchParam, searchParamElement: $searchParamElement, valueDateTime: $valueDateTime, valueDateTimeElement: $valueDateTimeElement, valuePeriod: $valuePeriod, valueDuration: $valueDuration)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2236,11 +2221,6 @@ class _$DataRequirementSortImpl extends _DataRequirementSort {
   @override
   @JsonKey(name: '_direction')
   final PrimitiveElement? directionElement;
-
-  @override
-  String toString() {
-    return 'DataRequirementSort(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, path: $path, pathElement: $pathElement, direction: $direction, directionElement: $directionElement)';
-  }
 
   @override
   bool operator ==(Object other) {

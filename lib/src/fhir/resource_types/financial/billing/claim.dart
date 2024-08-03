@@ -14,9 +14,9 @@ part 'claim.g.dart';
 
 /// [Claim] A provider issued list of professional services and products
 @freezed
-class Claim with _$Claim implements DomainResource {
+class Claim extends DomainResource with _$Claim {
   /// [Claim] A provider issued list of professional services and products
-  const Claim._();
+  Claim._();
 
   /// [Claim] A provider issued list of professional services and products
   /// which have been provided, or are to be provided, to a patient which is
@@ -374,6 +374,9 @@ class Claim with _$Claim implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -405,9 +408,9 @@ class Claim with _$Claim implements DomainResource {
 
 /// [ClaimRelated] A provider issued list of professional services and
 @freezed
-class ClaimRelated with _$ClaimRelated implements BackboneElement {
+class ClaimRelated extends BackboneElement with _$ClaimRelated {
   /// [ClaimRelated] A provider issued list of professional services and
-  const ClaimRelated._();
+  ClaimRelated._();
 
   /// [ClaimRelated] A provider issued list of professional services and
   /// products which have been provided, or are to be provided, to a patient
@@ -515,6 +518,9 @@ class ClaimRelated with _$ClaimRelated implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -526,9 +532,9 @@ class ClaimRelated with _$ClaimRelated implements BackboneElement {
 
 /// [ClaimPayee] A provider issued list of professional services and
 @freezed
-class ClaimPayee with _$ClaimPayee implements BackboneElement {
+class ClaimPayee extends BackboneElement with _$ClaimPayee {
   /// [ClaimPayee] A provider issued list of professional services and
-  const ClaimPayee._();
+  ClaimPayee._();
 
   /// [ClaimPayee] A provider issued list of professional services and
   /// products which have been provided, or are to be provided, to a patient
@@ -631,6 +637,9 @@ class ClaimPayee with _$ClaimPayee implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -642,9 +651,9 @@ class ClaimPayee with _$ClaimPayee implements BackboneElement {
 
 /// [ClaimCareTeam] A provider issued list of professional services and
 @freezed
-class ClaimCareTeam with _$ClaimCareTeam implements BackboneElement {
+class ClaimCareTeam extends BackboneElement with _$ClaimCareTeam {
   /// [ClaimCareTeam] A provider issued list of professional services and
-  const ClaimCareTeam._();
+  ClaimCareTeam._();
 
   /// [ClaimCareTeam] A provider issued list of professional services and
   /// products which have been provided, or are to be provided, to a patient
@@ -776,6 +785,9 @@ class ClaimCareTeam with _$ClaimCareTeam implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -787,11 +799,9 @@ class ClaimCareTeam with _$ClaimCareTeam implements BackboneElement {
 
 /// [ClaimSupportingInfo] A provider issued list of professional services
 @freezed
-class ClaimSupportingInfo
-    with _$ClaimSupportingInfo
-    implements BackboneElement {
+class ClaimSupportingInfo extends BackboneElement with _$ClaimSupportingInfo {
   /// [ClaimSupportingInfo] A provider issued list of professional services
-  const ClaimSupportingInfo._();
+  ClaimSupportingInfo._();
 
   /// [ClaimSupportingInfo] A provider issued list of professional services
   /// and products which have been provided, or are to be provided, to a patient
@@ -985,6 +995,9 @@ class ClaimSupportingInfo
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -996,9 +1009,9 @@ class ClaimSupportingInfo
 
 /// [ClaimDiagnosis] A provider issued list of professional services and
 @freezed
-class ClaimDiagnosis with _$ClaimDiagnosis implements BackboneElement {
+class ClaimDiagnosis extends BackboneElement with _$ClaimDiagnosis {
   /// [ClaimDiagnosis] A provider issued list of professional services and
-  const ClaimDiagnosis._();
+  ClaimDiagnosis._();
 
   /// [ClaimDiagnosis] A provider issued list of professional services and
   /// products which have been provided, or are to be provided, to a patient
@@ -1134,6 +1147,9 @@ class ClaimDiagnosis with _$ClaimDiagnosis implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1145,9 +1161,9 @@ class ClaimDiagnosis with _$ClaimDiagnosis implements BackboneElement {
 
 /// [ClaimProcedure] A provider issued list of professional services and
 @freezed
-class ClaimProcedure with _$ClaimProcedure implements BackboneElement {
+class ClaimProcedure extends BackboneElement with _$ClaimProcedure {
   /// [ClaimProcedure] A provider issued list of professional services and
-  const ClaimProcedure._();
+  ClaimProcedure._();
 
   /// [ClaimProcedure] A provider issued list of professional services and
   /// products which have been provided, or are to be provided, to a patient
@@ -1282,6 +1298,9 @@ class ClaimProcedure with _$ClaimProcedure implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1293,9 +1312,9 @@ class ClaimProcedure with _$ClaimProcedure implements BackboneElement {
 
 /// [ClaimInsurance] A provider issued list of professional services and
 @freezed
-class ClaimInsurance with _$ClaimInsurance implements BackboneElement {
+class ClaimInsurance extends BackboneElement with _$ClaimInsurance {
   /// [ClaimInsurance] A provider issued list of professional services and
-  const ClaimInsurance._();
+  ClaimInsurance._();
 
   /// [ClaimInsurance] A provider issued list of professional services and
   /// products which have been provided, or are to be provided, to a patient
@@ -1462,6 +1481,9 @@ class ClaimInsurance with _$ClaimInsurance implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1473,9 +1495,9 @@ class ClaimInsurance with _$ClaimInsurance implements BackboneElement {
 
 /// [ClaimAccident] A provider issued list of professional services and
 @freezed
-class ClaimAccident with _$ClaimAccident implements BackboneElement {
+class ClaimAccident extends BackboneElement with _$ClaimAccident {
   /// [ClaimAccident] A provider issued list of professional services and
-  const ClaimAccident._();
+  ClaimAccident._();
 
   /// [ClaimAccident] A provider issued list of professional services and
   /// products which have been provided, or are to be provided, to a patient
@@ -1597,6 +1619,9 @@ class ClaimAccident with _$ClaimAccident implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1608,9 +1633,9 @@ class ClaimAccident with _$ClaimAccident implements BackboneElement {
 
 /// [ClaimItem] A provider issued list of professional services and products
 @freezed
-class ClaimItem with _$ClaimItem implements BackboneElement {
+class ClaimItem extends BackboneElement with _$ClaimItem {
   /// [ClaimItem] A provider issued list of professional services and products
-  const ClaimItem._();
+  ClaimItem._();
 
   /// [ClaimItem] A provider issued list of professional services and products
   /// which have been provided, or are to be provided, to a patient which is
@@ -1894,6 +1919,9 @@ class ClaimItem with _$ClaimItem implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1905,9 +1933,9 @@ class ClaimItem with _$ClaimItem implements BackboneElement {
 
 /// [ClaimDetail] A provider issued list of professional services and
 @freezed
-class ClaimDetail with _$ClaimDetail implements BackboneElement {
+class ClaimDetail extends BackboneElement with _$ClaimDetail {
   /// [ClaimDetail] A provider issued list of professional services and
-  const ClaimDetail._();
+  ClaimDetail._();
 
   /// [ClaimDetail] A provider issued list of professional services and
   /// products which have been provided, or are to be provided, to a patient
@@ -2092,6 +2120,9 @@ class ClaimDetail with _$ClaimDetail implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2103,9 +2134,9 @@ class ClaimDetail with _$ClaimDetail implements BackboneElement {
 
 /// [ClaimSubDetail] A provider issued list of professional services and
 @freezed
-class ClaimSubDetail with _$ClaimSubDetail implements BackboneElement {
+class ClaimSubDetail extends BackboneElement with _$ClaimSubDetail {
   /// [ClaimSubDetail] A provider issued list of professional services and
-  const ClaimSubDetail._();
+  ClaimSubDetail._();
 
   /// [ClaimSubDetail] A provider issued list of professional services and
   /// products which have been provided, or are to be provided, to a patient
@@ -2282,6 +2313,9 @@ class ClaimSubDetail with _$ClaimSubDetail implements BackboneElement {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

@@ -15,9 +15,9 @@ part 'structure_map.g.dart';
 
 /// [StructureMap] A Map of relationships between 2 structures that can be
 @freezed
-class StructureMap with _$StructureMap implements DomainResource {
+class StructureMap extends DomainResource with _$StructureMap {
   /// [StructureMap] A Map of relationships between 2 structures that can be
-  const StructureMap._();
+  StructureMap._();
 
   /// [StructureMap] A Map of relationships between 2 structures that can be
   ///  used to transform data.
@@ -393,6 +393,9 @@ class StructureMap with _$StructureMap implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -424,11 +427,10 @@ class StructureMap with _$StructureMap implements DomainResource {
 
 /// [StructureMapStructure] A Map of relationships between 2 structures that
 @freezed
-class StructureMapStructure
-    with _$StructureMapStructure
-    implements BackboneElement {
+class StructureMapStructure extends BackboneElement
+    with _$StructureMapStructure {
   /// [StructureMapStructure] A Map of relationships between 2 structures that
-  const StructureMapStructure._();
+  StructureMapStructure._();
 
   /// [StructureMapStructure] A Map of relationships between 2 structures that
   ///  can be used to transform data.
@@ -553,6 +555,9 @@ class StructureMapStructure
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -564,9 +569,9 @@ class StructureMapStructure
 
 /// [StructureMapGroup] A Map of relationships between 2 structures that can
 @freezed
-class StructureMapGroup with _$StructureMapGroup implements BackboneElement {
+class StructureMapGroup extends BackboneElement with _$StructureMapGroup {
   /// [StructureMapGroup] A Map of relationships between 2 structures that can
-  const StructureMapGroup._();
+  StructureMapGroup._();
 
   /// [StructureMapGroup] A Map of relationships between 2 structures that can
   ///  be used to transform data.
@@ -710,6 +715,9 @@ class StructureMapGroup with _$StructureMapGroup implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -721,9 +729,9 @@ class StructureMapGroup with _$StructureMapGroup implements BackboneElement {
 
 /// [StructureMapInput] A Map of relationships between 2 structures that can
 @freezed
-class StructureMapInput with _$StructureMapInput implements BackboneElement {
+class StructureMapInput extends BackboneElement with _$StructureMapInput {
   /// [StructureMapInput] A Map of relationships between 2 structures that can
-  const StructureMapInput._();
+  StructureMapInput._();
 
   /// [StructureMapInput] A Map of relationships between 2 structures that can
   ///  be used to transform data.
@@ -851,6 +859,9 @@ class StructureMapInput with _$StructureMapInput implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -862,9 +873,9 @@ class StructureMapInput with _$StructureMapInput implements BackboneElement {
 
 /// [StructureMapRule] A Map of relationships between 2 structures that can
 @freezed
-class StructureMapRule with _$StructureMapRule implements BackboneElement {
+class StructureMapRule extends BackboneElement with _$StructureMapRule {
   /// [StructureMapRule] A Map of relationships between 2 structures that can
-  const StructureMapRule._();
+  StructureMapRule._();
 
   /// [StructureMapRule] A Map of relationships between 2 structures that can
   ///  be used to transform data.
@@ -992,6 +1003,9 @@ class StructureMapRule with _$StructureMapRule implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1003,9 +1017,9 @@ class StructureMapRule with _$StructureMapRule implements BackboneElement {
 
 /// [StructureMapSource] A Map of relationships between 2 structures that
 @freezed
-class StructureMapSource with _$StructureMapSource implements BackboneElement {
+class StructureMapSource extends BackboneElement with _$StructureMapSource {
   /// [StructureMapSource] A Map of relationships between 2 structures that
-  const StructureMapSource._();
+  StructureMapSource._();
 
   /// [StructureMapSource] A Map of relationships between 2 structures that
   ///  can be used to transform data.
@@ -1667,6 +1681,9 @@ class StructureMapSource with _$StructureMapSource implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1678,9 +1695,9 @@ class StructureMapSource with _$StructureMapSource implements BackboneElement {
 
 /// [StructureMapTarget] A Map of relationships between 2 structures that
 @freezed
-class StructureMapTarget with _$StructureMapTarget implements BackboneElement {
+class StructureMapTarget extends BackboneElement with _$StructureMapTarget {
   /// [StructureMapTarget] A Map of relationships between 2 structures that
-  const StructureMapTarget._();
+  StructureMapTarget._();
 
   /// [StructureMapTarget] A Map of relationships between 2 structures that
   ///  can be used to transform data.
@@ -1843,6 +1860,9 @@ class StructureMapTarget with _$StructureMapTarget implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1854,11 +1874,10 @@ class StructureMapTarget with _$StructureMapTarget implements BackboneElement {
 
 /// [StructureMapParameter] A Map of relationships between 2 structures that
 @freezed
-class StructureMapParameter
-    with _$StructureMapParameter
-    implements BackboneElement {
+class StructureMapParameter extends BackboneElement
+    with _$StructureMapParameter {
   /// [StructureMapParameter] A Map of relationships between 2 structures that
-  const StructureMapParameter._();
+  StructureMapParameter._();
 
   /// [StructureMapParameter] A Map of relationships between 2 structures that
   ///  can be used to transform data.
@@ -1996,6 +2015,9 @@ class StructureMapParameter
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2007,11 +2029,10 @@ class StructureMapParameter
 
 /// [StructureMapDependent] A Map of relationships between 2 structures that
 @freezed
-class StructureMapDependent
-    with _$StructureMapDependent
-    implements BackboneElement {
+class StructureMapDependent extends BackboneElement
+    with _$StructureMapDependent {
   /// [StructureMapDependent] A Map of relationships between 2 structures that
-  const StructureMapDependent._();
+  StructureMapDependent._();
 
   /// [StructureMapDependent] A Map of relationships between 2 structures that
   ///  can be used to transform data.
@@ -2117,6 +2138,9 @@ class StructureMapDependent
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

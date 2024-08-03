@@ -15,9 +15,9 @@ part 'event_definition.g.dart';
 
 /// [EventDefinition] The EventDefinition resource provides a reusable
 @freezed
-class EventDefinition with _$EventDefinition implements DomainResource {
+class EventDefinition extends DomainResource with _$EventDefinition {
   /// [EventDefinition] The EventDefinition resource provides a reusable
-  const EventDefinition._();
+  EventDefinition._();
 
   /// [EventDefinition] The EventDefinition resource provides a reusable
   ///  description of when a particular event can occur.
@@ -499,6 +499,9 @@ class EventDefinition with _$EventDefinition implements DomainResource {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

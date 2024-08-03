@@ -3,6 +3,7 @@
 // ignore_for_file: leading_newlines_in_multiline_strings
 // ignore_for_file: unnecessary_statements, directives_ordering
 // ignore_for_file: always_specify_types, inference_failure_on_collection_literal
+// ignore_for_file: prefer_const_literals_to_create_immutables
 
 // Dart imports:
 import 'dart:convert';

@@ -15,9 +15,9 @@ part 'consent.g.dart';
 
 /// [Consent] A record of a healthcare consumer’s  choices, which permits or
 @freezed
-class Consent with _$Consent implements DomainResource {
+class Consent extends DomainResource with _$Consent {
   /// [Consent] A record of a healthcare consumer’s  choices, which permits or
-  const Consent._();
+  Consent._();
 
   /// [Consent] A record of a healthcare consumer’s  choices, which permits or
   /// denies identified recipient(s) or recipient role(s) to perform one or more
@@ -298,6 +298,9 @@ class Consent with _$Consent implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -329,9 +332,9 @@ class Consent with _$Consent implements DomainResource {
 
 /// [ConsentPolicy] A record of a healthcare consumer’s  choices, which
 @freezed
-class ConsentPolicy with _$ConsentPolicy implements BackboneElement {
+class ConsentPolicy extends BackboneElement with _$ConsentPolicy {
   /// [ConsentPolicy] A record of a healthcare consumer’s  choices, which
-  const ConsentPolicy._();
+  ConsentPolicy._();
 
   /// [ConsentPolicy] A record of a healthcare consumer’s  choices, which
   /// permits or denies identified recipient(s) or recipient role(s) to perform
@@ -447,6 +450,9 @@ class ConsentPolicy with _$ConsentPolicy implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -458,11 +464,9 @@ class ConsentPolicy with _$ConsentPolicy implements BackboneElement {
 
 /// [ConsentVerification] A record of a healthcare consumer’s  choices,
 @freezed
-class ConsentVerification
-    with _$ConsentVerification
-    implements BackboneElement {
+class ConsentVerification extends BackboneElement with _$ConsentVerification {
   /// [ConsentVerification] A record of a healthcare consumer’s  choices,
-  const ConsentVerification._();
+  ConsentVerification._();
 
   /// [ConsentVerification] A record of a healthcare consumer’s  choices,
   /// which permits or denies identified recipient(s) or recipient role(s) to
@@ -580,6 +584,9 @@ class ConsentVerification
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -591,9 +598,9 @@ class ConsentVerification
 
 /// [ConsentProvision] A record of a healthcare consumer’s  choices, which
 @freezed
-class ConsentProvision with _$ConsentProvision implements BackboneElement {
+class ConsentProvision extends BackboneElement with _$ConsentProvision {
   /// [ConsentProvision] A record of a healthcare consumer’s  choices, which
-  const ConsentProvision._();
+  ConsentProvision._();
 
   /// [ConsentProvision] A record of a healthcare consumer’s  choices, which
   /// permits or denies identified recipient(s) or recipient role(s) to perform
@@ -761,6 +768,9 @@ class ConsentProvision with _$ConsentProvision implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -772,9 +782,9 @@ class ConsentProvision with _$ConsentProvision implements BackboneElement {
 
 /// [ConsentActor] A record of a healthcare consumer’s  choices, which
 @freezed
-class ConsentActor with _$ConsentActor implements BackboneElement {
+class ConsentActor extends BackboneElement with _$ConsentActor {
   /// [ConsentActor] A record of a healthcare consumer’s  choices, which
-  const ConsentActor._();
+  ConsentActor._();
 
   /// [ConsentActor] A record of a healthcare consumer’s  choices, which
   /// permits or denies identified recipient(s) or recipient role(s) to perform
@@ -880,6 +890,9 @@ class ConsentActor with _$ConsentActor implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -891,9 +904,9 @@ class ConsentActor with _$ConsentActor implements BackboneElement {
 
 /// [ConsentData] A record of a healthcare consumer’s  choices, which
 @freezed
-class ConsentData with _$ConsentData implements BackboneElement {
+class ConsentData extends BackboneElement with _$ConsentData {
   /// [ConsentData] A record of a healthcare consumer’s  choices, which
-  const ConsentData._();
+  ConsentData._();
 
   /// [ConsentData] A record of a healthcare consumer’s  choices, which
   /// permits or denies identified recipient(s) or recipient role(s) to perform
@@ -1000,6 +1013,9 @@ class ConsentData with _$ConsentData implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

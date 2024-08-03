@@ -14,9 +14,9 @@ part 'timing.g.dart';
 
 /// [Timing] Specifies an event that may occur multiple times. Timing
 @freezed
-class Timing with _$Timing implements BackboneType {
+class Timing extends BackboneType with _$Timing {
   /// [Timing] Specifies an event that may occur multiple times. Timing
-  const Timing._();
+  Timing._();
 
   /// [Timing] Specifies an event that may occur multiple times. Timing
   /// schedules are used to record when things are planned, expected or
@@ -139,6 +139,9 @@ class Timing with _$Timing implements BackboneType {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -147,9 +150,9 @@ class Timing with _$Timing implements BackboneType {
 
 /// [TimingRepeat] Specifies an event that may occur multiple times. Timing
 @freezed
-class TimingRepeat with _$TimingRepeat implements Element {
+class TimingRepeat extends Element with _$TimingRepeat {
   /// [TimingRepeat] Specifies an event that may occur multiple times. Timing
-  const TimingRepeat._();
+  TimingRepeat._();
 
   /// [TimingRepeat] Specifies an event that may occur multiple times. Timing
   /// schedules are used to record when things are planned, expected or
@@ -446,6 +449,9 @@ class TimingRepeat with _$TimingRepeat implements Element {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

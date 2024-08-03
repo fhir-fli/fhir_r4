@@ -15,9 +15,9 @@ part 'body_structure.g.dart';
 
 /// [BodyStructure] Record details about an anatomical structure.  This
 @freezed
-class BodyStructure with _$BodyStructure implements DomainResource {
+class BodyStructure extends DomainResource with _$BodyStructure {
   /// [BodyStructure] Record details about an anatomical structure.  This
-  const BodyStructure._();
+  BodyStructure._();
 
   /// [BodyStructure] Record details about an anatomical structure.  This
   /// resource may be used when a coded concept does not provide the necessary
@@ -238,6 +238,9 @@ class BodyStructure with _$BodyStructure implements DomainResource {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

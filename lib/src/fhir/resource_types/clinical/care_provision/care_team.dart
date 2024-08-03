@@ -15,9 +15,9 @@ part 'care_team.g.dart';
 
 /// [CareTeam] The Care Team includes all the people and organizations who
 @freezed
-class CareTeam with _$CareTeam implements DomainResource {
+class CareTeam extends DomainResource with _$CareTeam {
   /// [CareTeam] The Care Team includes all the people and organizations who
-  const CareTeam._();
+  CareTeam._();
 
   /// [CareTeam] The Care Team includes all the people and organizations who
   /// plan to participate in the coordination and delivery of care for a
@@ -272,6 +272,9 @@ class CareTeam with _$CareTeam implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   CareTeam updateContactPointSystem(ContactPointSystem system,
@@ -379,11 +382,9 @@ class CareTeam with _$CareTeam implements DomainResource {
 
 /// [CareTeamParticipant] The Care Team includes all the people and
 @freezed
-class CareTeamParticipant
-    with _$CareTeamParticipant
-    implements BackboneElement {
+class CareTeamParticipant extends BackboneElement with _$CareTeamParticipant {
   /// [CareTeamParticipant] The Care Team includes all the people and
-  const CareTeamParticipant._();
+  CareTeamParticipant._();
 
   /// [CareTeamParticipant] The Care Team includes all the people and
   /// organizations who plan to participate in the coordination and delivery of
@@ -498,6 +499,9 @@ class CareTeamParticipant
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

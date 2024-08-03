@@ -14,9 +14,9 @@ part 'dosage.g.dart';
 
 /// [Dosage] Indicates how the medication is/was taken or should be taken by
 @freezed
-class Dosage with _$Dosage implements BackboneType {
+class Dosage extends BackboneType with _$Dosage {
   /// [Dosage] Indicates how the medication is/was taken or should be taken by
-  const Dosage._();
+  Dosage._();
 
   /// [Dosage] Indicates how the medication is/was taken or should be taken by
   ///  the patient.
@@ -214,6 +214,9 @@ class Dosage with _$Dosage implements BackboneType {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -222,9 +225,9 @@ class Dosage with _$Dosage implements BackboneType {
 
 /// [DosageDoseAndRate] Indicates how the medication is/was taken or should
 @freezed
-class DosageDoseAndRate with _$DosageDoseAndRate implements Element {
+class DosageDoseAndRate extends Element with _$DosageDoseAndRate {
   /// [DosageDoseAndRate] Indicates how the medication is/was taken or should
-  const DosageDoseAndRate._();
+  DosageDoseAndRate._();
 
   /// [DosageDoseAndRate] Indicates how the medication is/was taken or should
   ///  be taken by the patient.
@@ -342,6 +345,9 @@ class DosageDoseAndRate with _$DosageDoseAndRate implements Element {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

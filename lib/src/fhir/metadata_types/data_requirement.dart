@@ -14,9 +14,9 @@ part 'data_requirement.g.dart';
 
 /// [DataRequirement] Describes a required data item for evaluation in terms
 @freezed
-class DataRequirement with _$DataRequirement implements DataType {
+class DataRequirement extends DataType with _$DataRequirement {
   /// [DataRequirement] Describes a required data item for evaluation in terms
-  const DataRequirement._();
+  DataRequirement._();
 
   /// [DataRequirement] Describes a required data item for evaluation in terms
   ///  of the type of data, and optional code or date-based filters of the data.
@@ -175,6 +175,9 @@ class DataRequirement with _$DataRequirement implements DataType {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -183,11 +186,10 @@ class DataRequirement with _$DataRequirement implements DataType {
 
 /// [DataRequirementCodeFilter] Describes a required data item for
 @freezed
-class DataRequirementCodeFilter
-    with _$DataRequirementCodeFilter
-    implements Element {
+class DataRequirementCodeFilter extends Element
+    with _$DataRequirementCodeFilter {
   /// [DataRequirementCodeFilter] Describes a required data item for
-  const DataRequirementCodeFilter._();
+  DataRequirementCodeFilter._();
 
   /// [DataRequirementCodeFilter] Describes a required data item for
   /// evaluation in terms of the type of data, and optional code or date-based
@@ -338,6 +340,9 @@ class DataRequirementCodeFilter
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -346,11 +351,10 @@ class DataRequirementCodeFilter
 
 /// [DataRequirementDateFilter] Describes a required data item for
 @freezed
-class DataRequirementDateFilter
-    with _$DataRequirementDateFilter
-    implements Element {
+class DataRequirementDateFilter extends Element
+    with _$DataRequirementDateFilter {
   /// [DataRequirementDateFilter] Describes a required data item for
-  const DataRequirementDateFilter._();
+  DataRequirementDateFilter._();
 
   /// [DataRequirementDateFilter] Describes a required data item for
   /// evaluation in terms of the type of data, and optional code or date-based
@@ -527,6 +531,9 @@ class DataRequirementDateFilter
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -535,9 +542,9 @@ class DataRequirementDateFilter
 
 /// [DataRequirementSort] Describes a required data item for evaluation in
 @freezed
-class DataRequirementSort with _$DataRequirementSort implements Element {
+class DataRequirementSort extends Element with _$DataRequirementSort {
   /// [DataRequirementSort] Describes a required data item for evaluation in
-  const DataRequirementSort._();
+  DataRequirementSort._();
 
   /// [DataRequirementSort] Describes a required data item for evaluation in
   /// terms of the type of data, and optional code or date-based filters of the
@@ -653,6 +660,9 @@ class DataRequirementSort with _$DataRequirementSort implements Element {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

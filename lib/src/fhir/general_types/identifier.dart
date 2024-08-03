@@ -14,9 +14,9 @@ part 'identifier.g.dart';
 
 /// [Identifier] An identifier - identifies some entity uniquely and
 @freezed
-class Identifier with _$Identifier implements DataType {
+class Identifier extends DataType with _$Identifier {
   /// [Identifier] An identifier - identifies some entity uniquely and
-  const Identifier._();
+  Identifier._();
 
   /// [Identifier] An identifier - identifies some entity uniquely and
   ///  unambiguously. Typically this is used for business identifiers.
@@ -124,6 +124,9 @@ class Identifier with _$Identifier implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

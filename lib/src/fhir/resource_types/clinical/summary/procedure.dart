@@ -15,9 +15,9 @@ part 'procedure.g.dart';
 
 /// [Procedure] An action that is or was performed on or for a patient. This
 @freezed
-class Procedure with _$Procedure implements DomainResource {
+class Procedure extends DomainResource with _$Procedure {
   /// [Procedure] An action that is or was performed on or for a patient. This
-  const Procedure._();
+  Procedure._();
 
   /// [Procedure] An action that is or was performed on or for a patient. This
   /// can be a physical intervention like an operation, or less invasive like
@@ -282,6 +282,9 @@ class Procedure with _$Procedure implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -313,9 +316,9 @@ class Procedure with _$Procedure implements DomainResource {
 
 /// [ProcedurePerformer] An action that is or was performed on or for a
 @freezed
-class ProcedurePerformer with _$ProcedurePerformer implements BackboneElement {
+class ProcedurePerformer extends BackboneElement with _$ProcedurePerformer {
   /// [ProcedurePerformer] An action that is or was performed on or for a
-  const ProcedurePerformer._();
+  ProcedurePerformer._();
 
   /// [ProcedurePerformer] An action that is or was performed on or for a
   /// patient. This can be a physical intervention like an operation, or less
@@ -392,6 +395,9 @@ class ProcedurePerformer with _$ProcedurePerformer implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -403,11 +409,9 @@ class ProcedurePerformer with _$ProcedurePerformer implements BackboneElement {
 
 /// [ProcedureFocalDevice] An action that is or was performed on or for a
 @freezed
-class ProcedureFocalDevice
-    with _$ProcedureFocalDevice
-    implements BackboneElement {
+class ProcedureFocalDevice extends BackboneElement with _$ProcedureFocalDevice {
   /// [ProcedureFocalDevice] An action that is or was performed on or for a
-  const ProcedureFocalDevice._();
+  ProcedureFocalDevice._();
 
   /// [ProcedureFocalDevice] An action that is or was performed on or for a
   /// patient. This can be a physical intervention like an operation, or less
@@ -479,6 +483,9 @@ class ProcedureFocalDevice
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

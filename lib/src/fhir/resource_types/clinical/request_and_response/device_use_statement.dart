@@ -15,9 +15,9 @@ part 'device_use_statement.g.dart';
 
 /// [DeviceUseStatement] A record of a device being used by a patient where
 @freezed
-class DeviceUseStatement with _$DeviceUseStatement implements DomainResource {
+class DeviceUseStatement extends DomainResource with _$DeviceUseStatement {
   /// [DeviceUseStatement] A record of a device being used by a patient where
-  const DeviceUseStatement._();
+  DeviceUseStatement._();
 
   /// [DeviceUseStatement] A record of a device being used by a patient where
   /// the record is the result of a report from the patient or another
@@ -286,6 +286,9 @@ class DeviceUseStatement with _$DeviceUseStatement implements DomainResource {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

@@ -325,11 +325,6 @@ class _$AnnotationImpl extends _Annotation {
   final PrimitiveElement? textElement;
 
   @override
-  String toString() {
-    return 'Annotation(id: $id, extension_: $extension_, authorReference: $authorReference, authorString: $authorString, authorStringElement: $authorStringElement, time: $time, timeElement: $timeElement, text: $text, textElement: $textElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&

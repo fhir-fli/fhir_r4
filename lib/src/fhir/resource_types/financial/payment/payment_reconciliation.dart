@@ -14,11 +14,10 @@ part 'payment_reconciliation.g.dart';
 
 /// [PaymentReconciliation] This resource provides the details including
 @freezed
-class PaymentReconciliation
-    with _$PaymentReconciliation
-    implements DomainResource {
+class PaymentReconciliation extends DomainResource
+    with _$PaymentReconciliation {
   /// [PaymentReconciliation] This resource provides the details including
-  const PaymentReconciliation._();
+  PaymentReconciliation._();
 
   /// [PaymentReconciliation] This resource provides the details including
   ///  amount of a payment and allocates the payment items being paid.
@@ -293,6 +292,9 @@ class PaymentReconciliation
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -324,11 +326,10 @@ class PaymentReconciliation
 
 /// [PaymentReconciliationDetail] This resource provides the details
 @freezed
-class PaymentReconciliationDetail
-    with _$PaymentReconciliationDetail
-    implements BackboneElement {
+class PaymentReconciliationDetail extends BackboneElement
+    with _$PaymentReconciliationDetail {
   /// [PaymentReconciliationDetail] This resource provides the details
-  const PaymentReconciliationDetail._();
+  PaymentReconciliationDetail._();
 
   /// [PaymentReconciliationDetail] This resource provides the details
   ///  including amount of a payment and allocates the payment items being paid.
@@ -487,6 +488,9 @@ class PaymentReconciliationDetail
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -498,11 +502,10 @@ class PaymentReconciliationDetail
 
 /// [PaymentReconciliationProcessNote] This resource provides the details
 @freezed
-class PaymentReconciliationProcessNote
-    with _$PaymentReconciliationProcessNote
-    implements BackboneElement {
+class PaymentReconciliationProcessNote extends BackboneElement
+    with _$PaymentReconciliationProcessNote {
   /// [PaymentReconciliationProcessNote] This resource provides the details
-  const PaymentReconciliationProcessNote._();
+  PaymentReconciliationProcessNote._();
 
   /// [PaymentReconciliationProcessNote] This resource provides the details
   ///  including amount of a payment and allocates the payment items being paid.
@@ -600,6 +603,9 @@ class PaymentReconciliationProcessNote
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

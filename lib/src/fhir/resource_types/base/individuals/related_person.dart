@@ -14,9 +14,9 @@ part 'related_person.g.dart';
 
 /// [RelatedPerson] Information about a person that is involved in the care
 @freezed
-class RelatedPerson with _$RelatedPerson implements DomainResource {
+class RelatedPerson extends DomainResource with _$RelatedPerson {
   /// [RelatedPerson] Information about a person that is involved in the care
-  const RelatedPerson._();
+  RelatedPerson._();
 
   /// [RelatedPerson] Information about a person that is involved in the care
   /// for a patient, but who is not the target of healthcare, nor has a formal
@@ -260,6 +260,9 @@ class RelatedPerson with _$RelatedPerson implements DomainResource {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 
@@ -606,11 +609,10 @@ class RelatedPerson with _$RelatedPerson implements DomainResource {
 
 /// [RelatedPersonCommunication] Information about a person that is involved
 @freezed
-class RelatedPersonCommunication
-    with _$RelatedPersonCommunication
-    implements BackboneElement {
+class RelatedPersonCommunication extends BackboneElement
+    with _$RelatedPersonCommunication {
   /// [RelatedPersonCommunication] Information about a person that is involved
-  const RelatedPersonCommunication._();
+  RelatedPersonCommunication._();
 
   /// [RelatedPersonCommunication] Information about a person that is involved
   /// in the care for a patient, but who is not the target of healthcare, nor
@@ -723,6 +725,9 @@ class RelatedPersonCommunication
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

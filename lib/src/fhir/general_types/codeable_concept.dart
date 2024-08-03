@@ -14,9 +14,9 @@ part 'codeable_concept.g.dart';
 
 /// [CodeableConcept] A concept that may be defined by a formal reference to
 @freezed
-class CodeableConcept with _$CodeableConcept implements DataType {
+class CodeableConcept extends DataType with _$CodeableConcept {
   /// [CodeableConcept] A concept that may be defined by a formal reference to
-  const CodeableConcept._();
+  CodeableConcept._();
 
   /// [CodeableConcept] A concept that may be defined by a formal reference to
   ///  a terminology or ontology or may be provided by text.
@@ -92,6 +92,9 @@ class CodeableConcept with _$CodeableConcept implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

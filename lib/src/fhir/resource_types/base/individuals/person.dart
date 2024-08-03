@@ -14,9 +14,9 @@ part 'person.g.dart';
 
 /// [Person] Demographics and administrative information about a person
 @freezed
-class Person with _$Person implements DomainResource {
+class Person extends DomainResource with _$Person {
   /// [Person] Demographics and administrative information about a person
-  const Person._();
+  Person._();
 
   /// [Person] Demographics and administrative information about a person
   ///  independent of a specific health-related context.
@@ -244,6 +244,9 @@ class Person with _$Person implements DomainResource {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 
@@ -589,9 +592,9 @@ class Person with _$Person implements DomainResource {
 
 /// [PersonLink] Demographics and administrative information about a person
 @freezed
-class PersonLink with _$PersonLink implements BackboneElement {
+class PersonLink extends BackboneElement with _$PersonLink {
   /// [PersonLink] Demographics and administrative information about a person
-  const PersonLink._();
+  PersonLink._();
 
   /// [PersonLink] Demographics and administrative information about a person
   ///  independent of a specific health-related context.
@@ -697,6 +700,9 @@ class PersonLink with _$PersonLink implements BackboneElement {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

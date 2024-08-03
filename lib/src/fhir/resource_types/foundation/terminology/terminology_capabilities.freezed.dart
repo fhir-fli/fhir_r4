@@ -1500,11 +1500,6 @@ class _$TerminologyCapabilitiesImpl extends _TerminologyCapabilities {
   final TerminologyCapabilitiesClosure? closure;
 
   @override
-  String toString() {
-    return 'TerminologyCapabilities(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, version: $version, versionElement: $versionElement, name: $name, nameElement: $nameElement, title: $title, titleElement: $titleElement, status: $status, statusElement: $statusElement, experimental: $experimental, experimentalElement: $experimentalElement, date: $date, dateElement: $dateElement, publisher: $publisher, publisherElement: $publisherElement, contact: $contact, description: $description, descriptionElement: $descriptionElement, useContext: $useContext, jurisdiction: $jurisdiction, purpose: $purpose, purposeElement: $purposeElement, copyright: $copyright, copyrightElement: $copyrightElement, kind: $kind, kindElement: $kindElement, software: $software, implementation: $implementation, lockedDate: $lockedDate, lockedDateElement: $lockedDateElement, codeSystem: $codeSystem, expansion: $expansion, codeSearch: $codeSearch, codeSearchElement: $codeSearchElement, validateCode: $validateCode, translation: $translation, closure: $closure)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2328,11 +2323,6 @@ class _$TerminologyCapabilitiesSoftwareImpl
   final PrimitiveElement? versionElement;
 
   @override
-  String toString() {
-    return 'TerminologyCapabilitiesSoftware(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, version: $version, versionElement: $versionElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2761,11 +2751,6 @@ class _$TerminologyCapabilitiesImplementationImpl
   @override
   @JsonKey(name: '_url')
   final PrimitiveElement? urlElement;
-
-  @override
-  String toString() {
-    return 'TerminologyCapabilitiesImplementation(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, description: $description, descriptionElement: $descriptionElement, url: $url, urlElement: $urlElement)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -3210,11 +3195,6 @@ class _$TerminologyCapabilitiesCodeSystemImpl
   @override
   @JsonKey(name: '_subsumption')
   final PrimitiveElement? subsumptionElement;
-
-  @override
-  String toString() {
-    return 'TerminologyCapabilitiesCodeSystem(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, uri: $uri, version: $version, subsumption: $subsumption, subsumptionElement: $subsumptionElement)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -3850,11 +3830,6 @@ class _$TerminologyCapabilitiesVersionImpl
   }
 
   @override
-  String toString() {
-    return 'TerminologyCapabilitiesVersion(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, codeElement: $codeElement, isDefault: $isDefault, isDefaultElement: $isDefaultElement, compositional: $compositional, compositionalElement: $compositionalElement, language: $language, languageElement: $languageElement, filter: $filter, property: $property, propertyElement: $propertyElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -4358,11 +4333,6 @@ class _$TerminologyCapabilitiesFilterImpl
     if (_opElement is EqualUnmodifiableListView) return _opElement;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  String toString() {
-    return 'TerminologyCapabilitiesFilter(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, codeElement: $codeElement, op: $op, opElement: $opElement)';
   }
 
   @override
@@ -4907,11 +4877,6 @@ class _$TerminologyCapabilitiesExpansionImpl
   final PrimitiveElement? textFilterElement;
 
   @override
-  String toString() {
-    return 'TerminologyCapabilitiesExpansion(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, hierarchical: $hierarchical, hierarchicalElement: $hierarchicalElement, paging: $paging, pagingElement: $pagingElement, incomplete: $incomplete, incompleteElement: $incompleteElement, parameter: $parameter, textFilter: $textFilter, textFilterElement: $textFilterElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -5384,11 +5349,6 @@ class _$TerminologyCapabilitiesParameterImpl
   final PrimitiveElement? documentationElement;
 
   @override
-  String toString() {
-    return 'TerminologyCapabilitiesParameter(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, documentation: $documentation, documentationElement: $documentationElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -5777,11 +5737,6 @@ class _$TerminologyCapabilitiesValidateCodeImpl
   final PrimitiveElement? translationsElement;
 
   @override
-  String toString() {
-    return 'TerminologyCapabilitiesValidateCode(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, translations: $translations, translationsElement: $translationsElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -6153,11 +6108,6 @@ class _$TerminologyCapabilitiesTranslationImpl
   final PrimitiveElement? needsMapElement;
 
   @override
-  String toString() {
-    return 'TerminologyCapabilitiesTranslation(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, needsMap: $needsMap, needsMapElement: $needsMapElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -6527,11 +6477,6 @@ class _$TerminologyCapabilitiesClosureImpl
   @override
   @JsonKey(name: '_translation')
   final PrimitiveElement? translationElement;
-
-  @override
-  String toString() {
-    return 'TerminologyCapabilitiesClosure(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, translation: $translation, translationElement: $translationElement)';
-  }
 
   @override
   bool operator ==(Object other) {

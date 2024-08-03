@@ -736,11 +736,6 @@ class _$BundleImpl extends _Bundle {
   final Signature? signature;
 
   @override
-  String toString() {
-    return 'Bundle(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, type: $type, typeElement: $typeElement, timestamp: $timestamp, timestampElement: $timestampElement, total: $total, totalElement: $totalElement, link: $link, entry: $entry, signature: $signature)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1284,11 +1279,6 @@ class _$BundleLinkImpl extends _BundleLink {
   @override
   @JsonKey(name: '_url')
   final PrimitiveElement? urlElement;
-
-  @override
-  String toString() {
-    return 'BundleLink(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, relation: $relation, relationElement: $relationElement, url: $url, urlElement: $urlElement)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -1846,11 +1836,6 @@ class _$BundleEntryImpl extends _BundleEntry {
   final BundleResponse? response;
 
   @override
-  String toString() {
-    return 'BundleEntry(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, link: $link, fullUrl: $fullUrl, fullUrlElement: $fullUrlElement, resource: $resource, search: $search, request: $request, response: $response)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2298,11 +2283,6 @@ class _$BundleSearchImpl extends _BundleSearch {
   @override
   @JsonKey(name: '_score')
   final PrimitiveElement? scoreElement;
-
-  @override
-  String toString() {
-    return 'BundleSearch(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, mode: $mode, modeElement: $modeElement, score: $score, scoreElement: $scoreElement)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -2916,11 +2896,6 @@ class _$BundleRequestImpl extends _BundleRequest {
   final PrimitiveElement? ifNoneExistElement;
 
   @override
-  String toString() {
-    return 'BundleRequest(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, method: $method, methodElement: $methodElement, url: $url, urlElement: $urlElement, ifNoneMatch: $ifNoneMatch, ifNoneMatchElement: $ifNoneMatchElement, ifModifiedSince: $ifModifiedSince, ifModifiedSinceElement: $ifModifiedSinceElement, ifMatch: $ifMatch, ifMatchElement: $ifMatchElement, ifNoneExist: $ifNoneExist, ifNoneExistElement: $ifNoneExistElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -3532,11 +3507,6 @@ class _$BundleResponseImpl extends _BundleResponse {
   ///  part of processing this entry in a batch or transaction.
   @override
   final Resource? outcome;
-
-  @override
-  String toString() {
-    return 'BundleResponse(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, status: $status, statusElement: $statusElement, location: $location, locationElement: $locationElement, etag: $etag, etagElement: $etagElement, lastModified: $lastModified, lastModifiedElement: $lastModifiedElement, outcome: $outcome)';
-  }
 
   @override
   bool operator ==(Object other) {

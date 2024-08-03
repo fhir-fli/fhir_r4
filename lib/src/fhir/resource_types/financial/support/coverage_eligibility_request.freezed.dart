@@ -1065,11 +1065,6 @@ class _$CoverageEligibilityRequestImpl extends _CoverageEligibilityRequest {
   }
 
   @override
-  String toString() {
-    return 'CoverageEligibilityRequest(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, status: $status, statusElement: $statusElement, priority: $priority, purpose: $purpose, purposeElement: $purposeElement, patient: $patient, servicedDate: $servicedDate, servicedDateElement: $servicedDateElement, servicedPeriod: $servicedPeriod, created: $created, createdElement: $createdElement, enterer: $enterer, provider: $provider, insurer: $insurer, facility: $facility, supportingInfo: $supportingInfo, insurance: $insurance, item: $item)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1747,11 +1742,6 @@ class _$CoverageEligibilityRequestSupportingInfoImpl
   final PrimitiveElement? appliesToAllElement;
 
   @override
-  String toString() {
-    return 'CoverageEligibilityRequestSupportingInfo(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, sequence: $sequence, sequenceElement: $sequenceElement, information: $information, appliesToAll: $appliesToAll, appliesToAllElement: $appliesToAllElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2238,11 +2228,6 @@ class _$CoverageEligibilityRequestInsuranceImpl
   @override
   @JsonKey(name: '_businessArrangement')
   final PrimitiveElement? businessArrangementElement;
-
-  @override
-  String toString() {
-    return 'CoverageEligibilityRequestInsurance(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, focal: $focal, focalElement: $focalElement, coverage: $coverage, businessArrangement: $businessArrangement, businessArrangementElement: $businessArrangementElement)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -2988,11 +2973,6 @@ class _$CoverageEligibilityRequestItemImpl
   }
 
   @override
-  String toString() {
-    return 'CoverageEligibilityRequestItem(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, supportingInfoSequence: $supportingInfoSequence, supportingInfoSequenceElement: $supportingInfoSequenceElement, category: $category, productOrService: $productOrService, modifier: $modifier, provider: $provider, quantity: $quantity, unitPrice: $unitPrice, facility: $facility, diagnosis: $diagnosis, detail: $detail)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -3472,11 +3452,6 @@ class _$CoverageEligibilityRequestDiagnosisImpl
   ///  as a reference to an external defined Condition.
   @override
   final Reference? diagnosisReference;
-
-  @override
-  String toString() {
-    return 'CoverageEligibilityRequestDiagnosis(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, diagnosisCodeableConcept: $diagnosisCodeableConcept, diagnosisReference: $diagnosisReference)';
-  }
 
   @override
   bool operator ==(Object other) {

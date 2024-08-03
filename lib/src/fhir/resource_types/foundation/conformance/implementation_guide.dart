@@ -15,9 +15,9 @@ part 'implementation_guide.g.dart';
 
 /// [ImplementationGuide] A set of rules of how a particular interoperability
 @freezed
-class ImplementationGuide with _$ImplementationGuide implements DomainResource {
+class ImplementationGuide extends DomainResource with _$ImplementationGuide {
   /// [ImplementationGuide] A set of rules of how a particular interoperability
-  const ImplementationGuide._();
+  ImplementationGuide._();
 
   /// [ImplementationGuide] A set of rules of how a particular interoperability
   /// or standards problem is solved - typically through the use of FHIR
@@ -432,6 +432,9 @@ class ImplementationGuide with _$ImplementationGuide implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -463,11 +466,10 @@ class ImplementationGuide with _$ImplementationGuide implements DomainResource {
 
 /// [ImplementationGuideDependsOn] A set of rules of how a particular
 @freezed
-class ImplementationGuideDependsOn
-    with _$ImplementationGuideDependsOn
-    implements BackboneElement {
+class ImplementationGuideDependsOn extends BackboneElement
+    with _$ImplementationGuideDependsOn {
   /// [ImplementationGuideDependsOn] A set of rules of how a particular
-  const ImplementationGuideDependsOn._();
+  ImplementationGuideDependsOn._();
 
   /// [ImplementationGuideDependsOn] A set of rules of how a particular
   /// interoperability or standards problem is solved - typically through the
@@ -589,6 +591,9 @@ class ImplementationGuideDependsOn
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -600,11 +605,10 @@ class ImplementationGuideDependsOn
 
 /// [ImplementationGuideGlobal] A set of rules of how a particular
 @freezed
-class ImplementationGuideGlobal
-    with _$ImplementationGuideGlobal
-    implements BackboneElement {
+class ImplementationGuideGlobal extends BackboneElement
+    with _$ImplementationGuideGlobal {
   /// [ImplementationGuideGlobal] A set of rules of how a particular
-  const ImplementationGuideGlobal._();
+  ImplementationGuideGlobal._();
 
   /// [ImplementationGuideGlobal] A set of rules of how a particular
   /// interoperability or standards problem is solved - typically through the
@@ -710,6 +714,9 @@ class ImplementationGuideGlobal
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -721,11 +728,10 @@ class ImplementationGuideGlobal
 
 /// [ImplementationGuideDefinition] A set of rules of how a particular
 @freezed
-class ImplementationGuideDefinition
-    with _$ImplementationGuideDefinition
-    implements BackboneElement {
+class ImplementationGuideDefinition extends BackboneElement
+    with _$ImplementationGuideDefinition {
   /// [ImplementationGuideDefinition] A set of rules of how a particular
-  const ImplementationGuideDefinition._();
+  ImplementationGuideDefinition._();
 
   /// [ImplementationGuideDefinition] A set of rules of how a particular
   /// interoperability or standards problem is solved - typically through the
@@ -851,6 +857,9 @@ class ImplementationGuideDefinition
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -862,11 +871,10 @@ class ImplementationGuideDefinition
 
 /// [ImplementationGuideGrouping] A set of rules of how a particular
 @freezed
-class ImplementationGuideGrouping
-    with _$ImplementationGuideGrouping
-    implements BackboneElement {
+class ImplementationGuideGrouping extends BackboneElement
+    with _$ImplementationGuideGrouping {
   /// [ImplementationGuideGrouping] A set of rules of how a particular
-  const ImplementationGuideGrouping._();
+  ImplementationGuideGrouping._();
 
   /// [ImplementationGuideGrouping] A set of rules of how a particular
   /// interoperability or standards problem is solved - typically through the
@@ -979,6 +987,9 @@ class ImplementationGuideGrouping
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -990,11 +1001,10 @@ class ImplementationGuideGrouping
 
 /// [ImplementationGuideResource] A set of rules of how a particular
 @freezed
-class ImplementationGuideResource
-    with _$ImplementationGuideResource
-    implements BackboneElement {
+class ImplementationGuideResource extends BackboneElement
+    with _$ImplementationGuideResource {
   /// [ImplementationGuideResource] A set of rules of how a particular
-  const ImplementationGuideResource._();
+  ImplementationGuideResource._();
 
   /// [ImplementationGuideResource] A set of rules of how a particular
   /// interoperability or standards problem is solved - typically through the
@@ -1171,6 +1181,9 @@ class ImplementationGuideResource
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1182,11 +1195,10 @@ class ImplementationGuideResource
 
 /// [ImplementationGuidePage] A set of rules of how a particular
 @freezed
-class ImplementationGuidePage
-    with _$ImplementationGuidePage
-    implements BackboneElement {
+class ImplementationGuidePage extends BackboneElement
+    with _$ImplementationGuidePage {
   /// [ImplementationGuidePage] A set of rules of how a particular
-  const ImplementationGuidePage._();
+  ImplementationGuidePage._();
 
   /// [ImplementationGuidePage] A set of rules of how a particular
   /// interoperability or standards problem is solved - typically through the
@@ -1319,6 +1331,9 @@ class ImplementationGuidePage
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1330,11 +1345,10 @@ class ImplementationGuidePage
 
 /// [ImplementationGuideParameter] A set of rules of how a particular
 @freezed
-class ImplementationGuideParameter
-    with _$ImplementationGuideParameter
-    implements BackboneElement {
+class ImplementationGuideParameter extends BackboneElement
+    with _$ImplementationGuideParameter {
   /// [ImplementationGuideParameter] A set of rules of how a particular
-  const ImplementationGuideParameter._();
+  ImplementationGuideParameter._();
 
   /// [ImplementationGuideParameter] A set of rules of how a particular
   /// interoperability or standards problem is solved - typically through the
@@ -1449,6 +1463,9 @@ class ImplementationGuideParameter
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1460,11 +1477,10 @@ class ImplementationGuideParameter
 
 /// [ImplementationGuideTemplate] A set of rules of how a particular
 @freezed
-class ImplementationGuideTemplate
-    with _$ImplementationGuideTemplate
-    implements BackboneElement {
+class ImplementationGuideTemplate extends BackboneElement
+    with _$ImplementationGuideTemplate {
   /// [ImplementationGuideTemplate] A set of rules of how a particular
-  const ImplementationGuideTemplate._();
+  ImplementationGuideTemplate._();
 
   /// [ImplementationGuideTemplate] A set of rules of how a particular
   /// interoperability or standards problem is solved - typically through the
@@ -1585,6 +1601,9 @@ class ImplementationGuideTemplate
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1596,11 +1615,10 @@ class ImplementationGuideTemplate
 
 /// [ImplementationGuideManifest] A set of rules of how a particular
 @freezed
-class ImplementationGuideManifest
-    with _$ImplementationGuideManifest
-    implements BackboneElement {
+class ImplementationGuideManifest extends BackboneElement
+    with _$ImplementationGuideManifest {
   /// [ImplementationGuideManifest] A set of rules of how a particular
-  const ImplementationGuideManifest._();
+  ImplementationGuideManifest._();
 
   /// [ImplementationGuideManifest] A set of rules of how a particular
   /// interoperability or standards problem is solved - typically through the
@@ -1743,6 +1761,9 @@ class ImplementationGuideManifest
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1754,11 +1775,10 @@ class ImplementationGuideManifest
 
 /// [ImplementationGuideResource1] A set of rules of how a particular
 @freezed
-class ImplementationGuideResource1
-    with _$ImplementationGuideResource1
-    implements BackboneElement {
+class ImplementationGuideResource1 extends BackboneElement
+    with _$ImplementationGuideResource1 {
   /// [ImplementationGuideResource1] A set of rules of how a particular
-  const ImplementationGuideResource1._();
+  ImplementationGuideResource1._();
 
   /// [ImplementationGuideResource1] A set of rules of how a particular
   /// interoperability or standards problem is solved - typically through the
@@ -1895,6 +1915,9 @@ class ImplementationGuideResource1
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1906,11 +1929,10 @@ class ImplementationGuideResource1
 
 /// [ImplementationGuidePage1] A set of rules of how a particular
 @freezed
-class ImplementationGuidePage1
-    with _$ImplementationGuidePage1
-    implements BackboneElement {
+class ImplementationGuidePage1 extends BackboneElement
+    with _$ImplementationGuidePage1 {
   /// [ImplementationGuidePage1] A set of rules of how a particular
-  const ImplementationGuidePage1._();
+  ImplementationGuidePage1._();
 
   /// [ImplementationGuidePage1] A set of rules of how a particular
   /// interoperability or standards problem is solved - typically through the
@@ -2029,6 +2051,9 @@ class ImplementationGuidePage1
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

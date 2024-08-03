@@ -18,7 +18,7 @@ part 'fhir_request.g.dart';
 
 /// The class for making requests to a FHIR server
 class FhirRequest with _$FhirRequest {
-  const FhirRequest._();
+  FhirRequest._();
 
   /// READ constructor
   /// [base] - the base URI for the FHIR server
@@ -1888,7 +1888,7 @@ class FhirRequest with _$FhirRequest {
 
 @freezed
 class FhirHttpRequest with _$FhirHttpRequest {
-  const FhirHttpRequest._();
+  FhirHttpRequest._();
   const factory FhirHttpRequest({
     required RestfulRequest type,
     required String url,

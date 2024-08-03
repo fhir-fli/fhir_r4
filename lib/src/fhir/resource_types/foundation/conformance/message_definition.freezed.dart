@@ -1483,11 +1483,6 @@ class _$MessageDefinitionImpl extends _MessageDefinition {
   }
 
   @override
-  String toString() {
-    return 'MessageDefinition(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, identifier: $identifier, version: $version, versionElement: $versionElement, name: $name, nameElement: $nameElement, title: $title, titleElement: $titleElement, replaces: $replaces, status: $status, statusElement: $statusElement, experimental: $experimental, experimentalElement: $experimentalElement, date: $date, dateElement: $dateElement, publisher: $publisher, publisherElement: $publisherElement, contact: $contact, description: $description, descriptionElement: $descriptionElement, useContext: $useContext, jurisdiction: $jurisdiction, purpose: $purpose, purposeElement: $purposeElement, copyright: $copyright, copyrightElement: $copyrightElement, base: $base, parent: $parent, eventCoding: $eventCoding, eventUri: $eventUri, eventUriElement: $eventUriElement, category: $category, categoryElement: $categoryElement, focus: $focus, responseRequired: $responseRequired, responseRequiredElement: $responseRequiredElement, allowedResponse: $allowedResponse, graph: $graph)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2380,11 +2375,6 @@ class _$MessageDefinitionFocusImpl extends _MessageDefinitionFocus {
   final PrimitiveElement? maxElement;
 
   @override
-  String toString() {
-    return 'MessageDefinitionFocus(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, codeElement: $codeElement, profile: $profile, min: $min, minElement: $minElement, max: $max, maxElement: $maxElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2815,11 +2805,6 @@ class _$MessageDefinitionAllowedResponseImpl
   @override
   @JsonKey(name: '_situation')
   final PrimitiveElement? situationElement;
-
-  @override
-  String toString() {
-    return 'MessageDefinitionAllowedResponse(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, message: $message, situation: $situation, situationElement: $situationElement)';
-  }
 
   @override
   bool operator ==(Object other) {

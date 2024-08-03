@@ -14,11 +14,9 @@ part 'charge_item_definition.g.dart';
 
 /// [ChargeItemDefinition] The ChargeItemDefinition resource provides the
 @freezed
-class ChargeItemDefinition
-    with _$ChargeItemDefinition
-    implements DomainResource {
+class ChargeItemDefinition extends DomainResource with _$ChargeItemDefinition {
   /// [ChargeItemDefinition] The ChargeItemDefinition resource provides the
-  const ChargeItemDefinition._();
+  ChargeItemDefinition._();
 
   /// [ChargeItemDefinition] The ChargeItemDefinition resource provides the
   /// properties that apply to the (billing) codes necessary to calculate costs
@@ -452,6 +450,9 @@ class ChargeItemDefinition
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -480,10 +481,9 @@ class ChargeItemDefinition
 
 @freezed
 @freezed
-class ChargeItemDefinitionApplicability
-    with _$ChargeItemDefinitionApplicability
-    implements BackboneElement {
-  const ChargeItemDefinitionApplicability._();
+class ChargeItemDefinitionApplicability extends BackboneElement
+    with _$ChargeItemDefinitionApplicability {
+  ChargeItemDefinitionApplicability._();
 
   /// [ChargeItemDefinitionApplicability] The ChargeItemDefinition resource
   /// provides the properties that apply to the (billing) codes necessary to
@@ -607,6 +607,9 @@ class ChargeItemDefinitionApplicability
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -615,10 +618,9 @@ class ChargeItemDefinitionApplicability
 
 @freezed
 @freezed
-class ChargeItemDefinitionPropertyGroup
-    with _$ChargeItemDefinitionPropertyGroup
-    implements BackboneElement {
-  const ChargeItemDefinitionPropertyGroup._();
+class ChargeItemDefinitionPropertyGroup extends BackboneElement
+    with _$ChargeItemDefinitionPropertyGroup {
+  ChargeItemDefinitionPropertyGroup._();
 
   /// [ChargeItemDefinitionPropertyGroup] The ChargeItemDefinition resource
   /// provides the properties that apply to the (billing) codes necessary to
@@ -722,6 +724,9 @@ class ChargeItemDefinitionPropertyGroup
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -730,10 +735,9 @@ class ChargeItemDefinitionPropertyGroup
 
 @freezed
 @freezed
-class ChargeItemDefinitionPriceComponent
-    with _$ChargeItemDefinitionPriceComponent
-    implements BackboneElement {
-  const ChargeItemDefinitionPriceComponent._();
+class ChargeItemDefinitionPriceComponent extends BackboneElement
+    with _$ChargeItemDefinitionPriceComponent {
+  ChargeItemDefinitionPriceComponent._();
 
   /// [ChargeItemDefinitionPriceComponent] The ChargeItemDefinition resource
   /// provides the properties that apply to the (billing) codes necessary to
@@ -848,6 +852,9 @@ class ChargeItemDefinitionPriceComponent
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

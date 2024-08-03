@@ -1455,11 +1455,6 @@ class _$ChargeItemDefinitionImpl extends _ChargeItemDefinition {
   }
 
   @override
-  String toString() {
-    return 'ChargeItemDefinition(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, identifier: $identifier, version: $version, versionElement: $versionElement, title: $title, titleElement: $titleElement, derivedFromUri: $derivedFromUri, derivedFromUriElement: $derivedFromUriElement, partOf: $partOf, replaces: $replaces, status: $status, statusElement: $statusElement, experimental: $experimental, experimentalElement: $experimentalElement, date: $date, dateElement: $dateElement, publisher: $publisher, publisherElement: $publisherElement, contact: $contact, description: $description, descriptionElement: $descriptionElement, useContext: $useContext, jurisdiction: $jurisdiction, copyright: $copyright, copyrightElement: $copyrightElement, approvalDate: $approvalDate, approvalDateElement: $approvalDateElement, lastReviewDate: $lastReviewDate, lastReviewDateElement: $lastReviewDateElement, effectivePeriod: $effectivePeriod, code: $code, instance: $instance, applicability: $applicability, propertyGroup: $propertyGroup)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2319,11 +2314,6 @@ class _$ChargeItemDefinitionApplicabilityImpl
   final PrimitiveElement? expressionElement;
 
   @override
-  String toString() {
-    return 'ChargeItemDefinitionApplicability(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, description: $description, descriptionElement: $descriptionElement, language: $language, languageElement: $languageElement, expression: $expression, expressionElement: $expressionElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2769,11 +2759,6 @@ class _$ChargeItemDefinitionPropertyGroupImpl
     if (_priceComponent is EqualUnmodifiableListView) return _priceComponent;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  String toString() {
-    return 'ChargeItemDefinitionPropertyGroup(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, applicability: $applicability, priceComponent: $priceComponent)';
   }
 
   @override
@@ -3268,11 +3253,6 @@ class _$ChargeItemDefinitionPriceComponentImpl
   /// [amount] The amount calculated for this component.
   @override
   final Money? amount;
-
-  @override
-  String toString() {
-    return 'ChargeItemDefinitionPriceComponent(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, typeElement: $typeElement, code: $code, factor: $factor, factorElement: $factorElement, amount: $amount)';
-  }
 
   @override
   bool operator ==(Object other) {

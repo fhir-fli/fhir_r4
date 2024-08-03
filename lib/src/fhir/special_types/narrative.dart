@@ -15,11 +15,11 @@ part 'narrative.g.dart';
 /// [Narrative] A human-readable summary of the resource conveying the essential
 /// clinical and business information for the resource.
 @freezed
-class Narrative with _$Narrative implements DataType {
+class Narrative extends DataType with _$Narrative {
   /// [Narrative] A human-readable summary of the resource conveying the essential
   /// clinical and business information for the resource.
 
-  const Narrative._();
+  Narrative._();
 
   /// [Narrative] A human-readable summary of the resource conveying the essential
   /// clinical and business information for the resource.
@@ -95,6 +95,9 @@ class Narrative with _$Narrative implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

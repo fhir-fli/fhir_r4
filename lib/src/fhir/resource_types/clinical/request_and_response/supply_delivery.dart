@@ -15,9 +15,9 @@ part 'supply_delivery.g.dart';
 
 /// [SupplyDelivery] Record of delivery of what is supplied.
 @freezed
-class SupplyDelivery with _$SupplyDelivery implements DomainResource {
+class SupplyDelivery extends DomainResource with _$SupplyDelivery {
   /// [SupplyDelivery] Record of delivery of what is supplied.
-  const SupplyDelivery._();
+  SupplyDelivery._();
 
   /// [SupplyDelivery] Record of delivery of what is supplied.
   ///
@@ -267,6 +267,9 @@ class SupplyDelivery with _$SupplyDelivery implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -298,11 +301,10 @@ class SupplyDelivery with _$SupplyDelivery implements DomainResource {
 
 /// [SupplyDeliverySuppliedItem] Record of delivery of what is supplied.
 @freezed
-class SupplyDeliverySuppliedItem
-    with _$SupplyDeliverySuppliedItem
-    implements BackboneElement {
+class SupplyDeliverySuppliedItem extends BackboneElement
+    with _$SupplyDeliverySuppliedItem {
   /// [SupplyDeliverySuppliedItem] Record of delivery of what is supplied.
-  const SupplyDeliverySuppliedItem._();
+  SupplyDeliverySuppliedItem._();
 
   /// [SupplyDeliverySuppliedItem] Record of delivery of what is supplied.
   ///
@@ -412,6 +414,9 @@ class SupplyDeliverySuppliedItem
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

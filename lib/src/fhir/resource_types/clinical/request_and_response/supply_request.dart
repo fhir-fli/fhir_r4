@@ -15,9 +15,9 @@ part 'supply_request.g.dart';
 
 /// [SupplyRequest] A record of a request for a medication, substance or
 @freezed
-class SupplyRequest with _$SupplyRequest implements DomainResource {
+class SupplyRequest extends DomainResource with _$SupplyRequest {
   /// [SupplyRequest] A record of a request for a medication, substance or
-  const SupplyRequest._();
+  SupplyRequest._();
 
   /// [SupplyRequest] A record of a request for a medication, substance or
   ///  device used in the healthcare setting.
@@ -305,6 +305,9 @@ class SupplyRequest with _$SupplyRequest implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -336,11 +339,10 @@ class SupplyRequest with _$SupplyRequest implements DomainResource {
 
 /// [SupplyRequestParameter] A record of a request for a medication,
 @freezed
-class SupplyRequestParameter
-    with _$SupplyRequestParameter
-    implements BackboneElement {
+class SupplyRequestParameter extends BackboneElement
+    with _$SupplyRequestParameter {
   /// [SupplyRequestParameter] A record of a request for a medication,
-  const SupplyRequestParameter._();
+  SupplyRequestParameter._();
 
   /// [SupplyRequestParameter] A record of a request for a medication,
   ///  substance or device used in the healthcare setting.
@@ -456,6 +458,9 @@ class SupplyRequestParameter
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

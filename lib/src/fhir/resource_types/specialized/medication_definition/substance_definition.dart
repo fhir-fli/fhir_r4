@@ -15,9 +15,9 @@ part 'substance_definition.g.dart';
 
 /// [SubstanceDefinition] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 @freezed
-class SubstanceDefinition with _$SubstanceDefinition implements DomainResource {
+class SubstanceDefinition extends DomainResource with _$SubstanceDefinition {
   /// [SubstanceDefinition] The detailed description of a substance, typically at a level beyond what is used for prescribing.
-  const SubstanceDefinition._();
+  SubstanceDefinition._();
 
   /// [SubstanceDefinition] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 
@@ -219,6 +219,9 @@ class SubstanceDefinition with _$SubstanceDefinition implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -250,11 +253,10 @@ class SubstanceDefinition with _$SubstanceDefinition implements DomainResource {
 
 /// [SubstanceDefinitionMoiety] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 @freezed
-class SubstanceDefinitionMoiety
-    with _$SubstanceDefinitionMoiety
-    implements BackboneElement {
+class SubstanceDefinitionMoiety extends BackboneElement
+    with _$SubstanceDefinitionMoiety {
   /// [SubstanceDefinitionMoiety] The detailed description of a substance, typically at a level beyond what is used for prescribing.
-  const SubstanceDefinitionMoiety._();
+  SubstanceDefinitionMoiety._();
 
   /// [SubstanceDefinitionMoiety] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 
@@ -370,6 +372,9 @@ class SubstanceDefinitionMoiety
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -381,11 +386,10 @@ class SubstanceDefinitionMoiety
 
 /// [SubstanceDefinitionProperty] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 @freezed
-class SubstanceDefinitionProperty
-    with _$SubstanceDefinitionProperty
-    implements BackboneElement {
+class SubstanceDefinitionProperty extends BackboneElement
+    with _$SubstanceDefinitionProperty {
   /// [SubstanceDefinitionProperty] The detailed description of a substance, typically at a level beyond what is used for prescribing.
-  const SubstanceDefinitionProperty._();
+  SubstanceDefinitionProperty._();
 
   /// [SubstanceDefinitionProperty] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 
@@ -480,6 +484,9 @@ class SubstanceDefinitionProperty
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -488,10 +495,9 @@ class SubstanceDefinitionProperty
 
 @freezed
 @freezed
-class SubstanceDefinitionMolecularWeight
-    with _$SubstanceDefinitionMolecularWeight
-    implements BackboneElement {
-  const SubstanceDefinitionMolecularWeight._();
+class SubstanceDefinitionMolecularWeight extends BackboneElement
+    with _$SubstanceDefinitionMolecularWeight {
+  SubstanceDefinitionMolecularWeight._();
 
   /// [SubstanceDefinitionMolecularWeight] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 
@@ -563,6 +569,9 @@ class SubstanceDefinitionMolecularWeight
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -574,11 +583,10 @@ class SubstanceDefinitionMolecularWeight
 
 /// [SubstanceDefinitionStructure] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 @freezed
-class SubstanceDefinitionStructure
-    with _$SubstanceDefinitionStructure
-    implements BackboneElement {
+class SubstanceDefinitionStructure extends BackboneElement
+    with _$SubstanceDefinitionStructure {
   /// [SubstanceDefinitionStructure] The detailed description of a substance, typically at a level beyond what is used for prescribing.
-  const SubstanceDefinitionStructure._();
+  SubstanceDefinitionStructure._();
 
   /// [SubstanceDefinitionStructure] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 
@@ -685,6 +693,9 @@ class SubstanceDefinitionStructure
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -693,10 +704,9 @@ class SubstanceDefinitionStructure
 
 @freezed
 @freezed
-class SubstanceDefinitionRepresentation
-    with _$SubstanceDefinitionRepresentation
-    implements BackboneElement {
-  const SubstanceDefinitionRepresentation._();
+class SubstanceDefinitionRepresentation extends BackboneElement
+    with _$SubstanceDefinitionRepresentation {
+  SubstanceDefinitionRepresentation._();
 
   /// [SubstanceDefinitionRepresentation] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 
@@ -778,6 +788,9 @@ class SubstanceDefinitionRepresentation
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -789,11 +802,10 @@ class SubstanceDefinitionRepresentation
 
 /// [SubstanceDefinitionCode] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 @freezed
-class SubstanceDefinitionCode
-    with _$SubstanceDefinitionCode
-    implements BackboneElement {
+class SubstanceDefinitionCode extends BackboneElement
+    with _$SubstanceDefinitionCode {
   /// [SubstanceDefinitionCode] The detailed description of a substance, typically at a level beyond what is used for prescribing.
-  const SubstanceDefinitionCode._();
+  SubstanceDefinitionCode._();
 
   /// [SubstanceDefinitionCode] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 
@@ -878,6 +890,9 @@ class SubstanceDefinitionCode
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -889,11 +904,10 @@ class SubstanceDefinitionCode
 
 /// [SubstanceDefinitionName] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 @freezed
-class SubstanceDefinitionName
-    with _$SubstanceDefinitionName
-    implements BackboneElement {
+class SubstanceDefinitionName extends BackboneElement
+    with _$SubstanceDefinitionName {
   /// [SubstanceDefinitionName] The detailed description of a substance, typically at a level beyond what is used for prescribing.
-  const SubstanceDefinitionName._();
+  SubstanceDefinitionName._();
 
   /// [SubstanceDefinitionName] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 
@@ -1013,6 +1027,9 @@ class SubstanceDefinitionName
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1024,11 +1041,10 @@ class SubstanceDefinitionName
 
 /// [SubstanceDefinitionOfficial] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 @freezed
-class SubstanceDefinitionOfficial
-    with _$SubstanceDefinitionOfficial
-    implements BackboneElement {
+class SubstanceDefinitionOfficial extends BackboneElement
+    with _$SubstanceDefinitionOfficial {
   /// [SubstanceDefinitionOfficial] The detailed description of a substance, typically at a level beyond what is used for prescribing.
-  const SubstanceDefinitionOfficial._();
+  SubstanceDefinitionOfficial._();
 
   /// [SubstanceDefinitionOfficial] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 
@@ -1103,6 +1119,9 @@ class SubstanceDefinitionOfficial
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1114,11 +1133,10 @@ class SubstanceDefinitionOfficial
 
 /// [SubstanceDefinitionRelationship] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 @freezed
-class SubstanceDefinitionRelationship
-    with _$SubstanceDefinitionRelationship
-    implements BackboneElement {
+class SubstanceDefinitionRelationship extends BackboneElement
+    with _$SubstanceDefinitionRelationship {
   /// [SubstanceDefinitionRelationship] The detailed description of a substance, typically at a level beyond what is used for prescribing.
-  const SubstanceDefinitionRelationship._();
+  SubstanceDefinitionRelationship._();
 
   /// [SubstanceDefinitionRelationship] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 
@@ -1234,6 +1252,9 @@ class SubstanceDefinitionRelationship
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1242,10 +1263,9 @@ class SubstanceDefinitionRelationship
 
 @freezed
 @freezed
-class SubstanceDefinitionSourceMaterial
-    with _$SubstanceDefinitionSourceMaterial
-    implements BackboneElement {
-  const SubstanceDefinitionSourceMaterial._();
+class SubstanceDefinitionSourceMaterial extends BackboneElement
+    with _$SubstanceDefinitionSourceMaterial {
+  SubstanceDefinitionSourceMaterial._();
 
   /// [SubstanceDefinitionSourceMaterial] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 
@@ -1325,6 +1345,9 @@ class SubstanceDefinitionSourceMaterial
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

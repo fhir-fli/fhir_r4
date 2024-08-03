@@ -15,11 +15,10 @@ part 'medication_administration.g.dart';
 
 /// [MedicationAdministration] Describes the event of a patient consuming or
 @freezed
-class MedicationAdministration
-    with _$MedicationAdministration
-    implements DomainResource {
+class MedicationAdministration extends DomainResource
+    with _$MedicationAdministration {
   /// [MedicationAdministration] Describes the event of a patient consuming or
-  const MedicationAdministration._();
+  MedicationAdministration._();
 
   /// [MedicationAdministration] Describes the event of a patient consuming or
   /// otherwise being administered a medication.  This may be as simple as
@@ -370,6 +369,9 @@ class MedicationAdministration
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -398,10 +400,9 @@ class MedicationAdministration
 
 @freezed
 @freezed
-class MedicationAdministrationPerformer
-    with _$MedicationAdministrationPerformer
-    implements BackboneElement {
-  const MedicationAdministrationPerformer._();
+class MedicationAdministrationPerformer extends BackboneElement
+    with _$MedicationAdministrationPerformer {
+  MedicationAdministrationPerformer._();
 
   /// [MedicationAdministrationPerformer] Describes the event of a patient
   /// consuming or otherwise being administered a medication.  This may be as
@@ -493,6 +494,9 @@ class MedicationAdministrationPerformer
       _$MedicationAdministrationPerformerFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -504,11 +508,10 @@ class MedicationAdministrationPerformer
 
 /// [MedicationAdministrationDosage] Describes the event of a patient
 @freezed
-class MedicationAdministrationDosage
-    with _$MedicationAdministrationDosage
-    implements BackboneElement {
+class MedicationAdministrationDosage extends BackboneElement
+    with _$MedicationAdministrationDosage {
   /// [MedicationAdministrationDosage] Describes the event of a patient
-  const MedicationAdministrationDosage._();
+  MedicationAdministrationDosage._();
 
   /// [MedicationAdministrationDosage] Describes the event of a patient
   /// consuming or otherwise being administered a medication.  This may be as
@@ -678,6 +681,9 @@ class MedicationAdministrationDosage
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

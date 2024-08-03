@@ -4,6 +4,7 @@
 
 * Added ability to store versionIds as DataTimes instead of just integers (useful for syncing)
 * Added a "sync" box in the Hive db. When turned on, saves all resources when updated, to allow easily finding them for syncing.
+* Updated to work with updated primitives package (that has a lot more functionality with FhirBase)
 
 ## [0.1.0+1]
 

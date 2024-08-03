@@ -14,9 +14,9 @@ part 'library.g.dart';
 
 /// [Library] The Library resource is a general-purpose container for
 @freezed
-class Library with _$Library implements DomainResource {
+class Library extends DomainResource with _$Library {
   /// [Library] The Library resource is a general-purpose container for
-  const Library._();
+  Library._();
 
   /// [Library] The Library resource is a general-purpose container for
   /// knowledge asset definitions. It can be used to describe and expose
@@ -533,6 +533,9 @@ class Library with _$Library implements DomainResource {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

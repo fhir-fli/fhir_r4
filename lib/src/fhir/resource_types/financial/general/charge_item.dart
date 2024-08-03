@@ -14,9 +14,9 @@ part 'charge_item.g.dart';
 
 /// [ChargeItem] The resource ChargeItem describes the provision of
 @freezed
-class ChargeItem with _$ChargeItem implements DomainResource {
+class ChargeItem extends DomainResource with _$ChargeItem {
   /// [ChargeItem] The resource ChargeItem describes the provision of
-  const ChargeItem._();
+  ChargeItem._();
 
   /// [ChargeItem] The resource ChargeItem describes the provision of
   /// healthcare provider products for a certain patient, therefore referring
@@ -394,6 +394,9 @@ class ChargeItem with _$ChargeItem implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -425,11 +428,9 @@ class ChargeItem with _$ChargeItem implements DomainResource {
 
 /// [ChargeItemPerformer] The resource ChargeItem describes the provision of
 @freezed
-class ChargeItemPerformer
-    with _$ChargeItemPerformer
-    implements BackboneElement {
+class ChargeItemPerformer extends BackboneElement with _$ChargeItemPerformer {
   /// [ChargeItemPerformer] The resource ChargeItem describes the provision of
-  const ChargeItemPerformer._();
+  ChargeItemPerformer._();
 
   /// [ChargeItemPerformer] The resource ChargeItem describes the provision of
   /// healthcare provider products for a certain patient, therefore referring
@@ -536,6 +537,9 @@ class ChargeItemPerformer
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

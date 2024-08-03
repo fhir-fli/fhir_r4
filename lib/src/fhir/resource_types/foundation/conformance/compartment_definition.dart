@@ -15,11 +15,10 @@ part 'compartment_definition.g.dart';
 
 /// [CompartmentDefinition] A compartment definition that defines how
 @freezed
-class CompartmentDefinition
-    with _$CompartmentDefinition
-    implements DomainResource {
+class CompartmentDefinition extends DomainResource
+    with _$CompartmentDefinition {
   /// [CompartmentDefinition] A compartment definition that defines how
-  const CompartmentDefinition._();
+  CompartmentDefinition._();
 
   /// [CompartmentDefinition] A compartment definition that defines how
   ///  resources are accessed on a server.
@@ -363,6 +362,9 @@ class CompartmentDefinition
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -394,11 +396,10 @@ class CompartmentDefinition
 
 /// [CompartmentDefinitionResource] A compartment definition that defines
 @freezed
-class CompartmentDefinitionResource
-    with _$CompartmentDefinitionResource
-    implements BackboneElement {
+class CompartmentDefinitionResource extends BackboneElement
+    with _$CompartmentDefinitionResource {
   /// [CompartmentDefinitionResource] A compartment definition that defines
-  const CompartmentDefinitionResource._();
+  CompartmentDefinitionResource._();
 
   /// [CompartmentDefinitionResource] A compartment definition that defines
   ///  how resources are accessed on a server.
@@ -520,6 +521,9 @@ class CompartmentDefinitionResource
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

@@ -15,11 +15,10 @@ part 'packaged_product_definition.g.dart';
 
 /// [PackagedProductDefinition] A medically related item or items, in a container or package.
 @freezed
-class PackagedProductDefinition
-    with _$PackagedProductDefinition
-    implements DomainResource {
+class PackagedProductDefinition extends DomainResource
+    with _$PackagedProductDefinition {
   /// [PackagedProductDefinition] A medically related item or items, in a container or package.
-  const PackagedProductDefinition._();
+  PackagedProductDefinition._();
 
   /// [PackagedProductDefinition] A medically related item or items, in a container or package.
 
@@ -209,6 +208,9 @@ class PackagedProductDefinition
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -237,10 +239,9 @@ class PackagedProductDefinition
 
 @freezed
 @freezed
-class PackagedProductDefinitionLegalStatusOfSupply
-    with _$PackagedProductDefinitionLegalStatusOfSupply
-    implements BackboneElement {
-  const PackagedProductDefinitionLegalStatusOfSupply._();
+class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement
+    with _$PackagedProductDefinitionLegalStatusOfSupply {
+  PackagedProductDefinitionLegalStatusOfSupply._();
 
   /// [PackagedProductDefinitionLegalStatusOfSupply] A medically related item or items, in a container or package.
 
@@ -308,6 +309,9 @@ class PackagedProductDefinitionLegalStatusOfSupply
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -319,11 +323,10 @@ class PackagedProductDefinitionLegalStatusOfSupply
 
 /// [PackagedProductDefinitionPackage] A medically related item or items, in a container or package.
 @freezed
-class PackagedProductDefinitionPackage
-    with _$PackagedProductDefinitionPackage
-    implements BackboneElement {
+class PackagedProductDefinitionPackage extends BackboneElement
+    with _$PackagedProductDefinitionPackage {
   /// [PackagedProductDefinitionPackage] A medically related item or items, in a container or package.
-  const PackagedProductDefinitionPackage._();
+  PackagedProductDefinitionPackage._();
 
   /// [PackagedProductDefinitionPackage] A medically related item or items, in a container or package.
 
@@ -435,6 +438,9 @@ class PackagedProductDefinitionPackage
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -443,10 +449,9 @@ class PackagedProductDefinitionPackage
 
 @freezed
 @freezed
-class PackagedProductDefinitionShelfLifeStorage
-    with _$PackagedProductDefinitionShelfLifeStorage
-    implements BackboneElement {
-  const PackagedProductDefinitionShelfLifeStorage._();
+class PackagedProductDefinitionShelfLifeStorage extends BackboneElement
+    with _$PackagedProductDefinitionShelfLifeStorage {
+  PackagedProductDefinitionShelfLifeStorage._();
 
   /// [PackagedProductDefinitionShelfLifeStorage] The shelf-life and storage information for a medicinal
   ///  product item or container can be described using this class.
@@ -597,6 +602,9 @@ class PackagedProductDefinitionShelfLifeStorage
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -605,10 +613,9 @@ class PackagedProductDefinitionShelfLifeStorage
 
 @freezed
 @freezed
-class PackagedProductDefinitionProperty
-    with _$PackagedProductDefinitionProperty
-    implements BackboneElement {
-  const PackagedProductDefinitionProperty._();
+class PackagedProductDefinitionProperty extends BackboneElement
+    with _$PackagedProductDefinitionProperty {
+  PackagedProductDefinitionProperty._();
 
   /// [PackagedProductDefinitionProperty] A medically related item or items, in a container or package.
 
@@ -705,6 +712,9 @@ class PackagedProductDefinitionProperty
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -713,10 +723,9 @@ class PackagedProductDefinitionProperty
 
 @freezed
 @freezed
-class PackagedProductDefinitionContainedItem
-    with _$PackagedProductDefinitionContainedItem
-    implements BackboneElement {
-  const PackagedProductDefinitionContainedItem._();
+class PackagedProductDefinitionContainedItem extends BackboneElement
+    with _$PackagedProductDefinitionContainedItem {
+  PackagedProductDefinitionContainedItem._();
 
   /// [PackagedProductDefinitionContainedItem] A medically related item or items, in a container or package.
 
@@ -781,6 +790,9 @@ class PackagedProductDefinitionContainedItem
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

@@ -1302,11 +1302,6 @@ class _$EncounterImpl extends _Encounter {
   final Reference? partOf;
 
   @override
-  String toString() {
-    return 'Encounter(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, status: $status, statusElement: $statusElement, statusHistory: $statusHistory, class_: $class_, classHistory: $classHistory, type: $type, serviceType: $serviceType, priority: $priority, subject: $subject, episodeOfCare: $episodeOfCare, basedOn: $basedOn, participant: $participant, appointment: $appointment, period: $period, length: $length, reasonCode: $reasonCode, reasonReference: $reasonReference, diagnosis: $diagnosis, account: $account, hospitalization: $hospitalization, location: $location, serviceProvider: $serviceProvider, partOf: $partOf)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1979,11 +1974,6 @@ class _$EncounterStatusHistoryImpl extends _EncounterStatusHistory {
   final Period period;
 
   @override
-  String toString() {
-    return 'EncounterStatusHistory(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, status: $status, statusElement: $statusElement, period: $period)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2372,11 +2362,6 @@ class _$EncounterClassHistoryImpl extends _EncounterClassHistory {
   /// [period] The time that the episode was in the specified class.
   @override
   final Period period;
-
-  @override
-  String toString() {
-    return 'EncounterClassHistory(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, class_: $class_, period: $period)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -2795,11 +2780,6 @@ class _$EncounterParticipantImpl extends _EncounterParticipant {
   /// [individual] Persons involved in the encounter other than the patient.
   @override
   final Reference? individual;
-
-  @override
-  String toString() {
-    return 'EncounterParticipant(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, period: $period, individual: $individual)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -3239,11 +3219,6 @@ class _$EncounterDiagnosisImpl extends _EncounterDiagnosis {
   @override
   @JsonKey(name: '_rank')
   final PrimitiveElement? rankElement;
-
-  @override
-  String toString() {
-    return 'EncounterDiagnosis(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, condition: $condition, use: $use, rank: $rank, rankElement: $rankElement)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -3903,11 +3878,6 @@ class _$EncounterHospitalizationImpl extends _EncounterHospitalization {
   final CodeableConcept? dischargeDisposition;
 
   @override
-  String toString() {
-    return 'EncounterHospitalization(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, preAdmissionIdentifier: $preAdmissionIdentifier, origin: $origin, admitSource: $admitSource, reAdmission: $reAdmission, dietPreference: $dietPreference, specialCourtesy: $specialCourtesy, specialArrangement: $specialArrangement, destination: $destination, dischargeDisposition: $dischargeDisposition)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -4434,11 +4404,6 @@ class _$EncounterLocationImpl extends _EncounterLocation {
   ///  location.
   @override
   final Period? period;
-
-  @override
-  String toString() {
-    return 'EncounterLocation(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, location: $location, status: $status, statusElement: $statusElement, physicalType: $physicalType, period: $period)';
-  }
 
   @override
   bool operator ==(Object other) {

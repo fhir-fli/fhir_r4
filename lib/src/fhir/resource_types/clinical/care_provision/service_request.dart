@@ -15,9 +15,9 @@ part 'service_request.g.dart';
 
 /// [ServiceRequest] A record of a request for service such as diagnostic
 @freezed
-class ServiceRequest with _$ServiceRequest implements DomainResource {
+class ServiceRequest extends DomainResource with _$ServiceRequest {
   /// [ServiceRequest] A record of a request for service such as diagnostic
-  const ServiceRequest._();
+  ServiceRequest._();
 
   /// [ServiceRequest] A record of a request for service such as diagnostic
   ///  investigations, treatments, or operations to be performed.
@@ -529,6 +529,9 @@ class ServiceRequest with _$ServiceRequest implements DomainResource {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

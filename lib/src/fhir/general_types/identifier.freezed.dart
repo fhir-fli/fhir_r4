@@ -402,11 +402,6 @@ class _$IdentifierImpl extends _Identifier {
   final Reference? assigner;
 
   @override
-  String toString() {
-    return 'Identifier(id: $id, extension_: $extension_, use: $use, useElement: $useElement, type: $type, system: $system, systemElement: $systemElement, value: $value, valueElement: $valueElement, period: $period, assigner: $assigner)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&

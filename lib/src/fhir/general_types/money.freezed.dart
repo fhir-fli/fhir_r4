@@ -242,11 +242,6 @@ class _$MoneyImpl extends _Money {
   final PrimitiveElement? currencyElement;
 
   @override
-  String toString() {
-    return 'Money(id: $id, extension_: $extension_, value: $value, valueElement: $valueElement, currency: $currency, currencyElement: $currencyElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&

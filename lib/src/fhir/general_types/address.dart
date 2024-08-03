@@ -15,9 +15,9 @@ part 'address.g.dart';
 
 /// [Address] An address expressed using postal conventions (as opposed to
 @freezed
-class Address with _$Address implements DataType {
+class Address extends DataType with _$Address {
   /// [Address] An address expressed using postal conventions (as opposed to
-  const Address._();
+  Address._();
 
   /// [Address] An address expressed using postal conventions (as opposed to
   /// GPS or other location definition formats).  This data type may be used to
@@ -194,6 +194,9 @@ class Address with _$Address implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

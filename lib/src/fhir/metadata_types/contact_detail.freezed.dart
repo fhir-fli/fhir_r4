@@ -236,11 +236,6 @@ class _$ContactDetailImpl extends _ContactDetail {
   }
 
   @override
-  String toString() {
-    return 'ContactDetail(id: $id, extension_: $extension_, name: $name, nameElement: $nameElement, telecom: $telecom)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&

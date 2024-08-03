@@ -14,9 +14,9 @@ part 'fhir_list.g.dart';
 
 /// [FhirList] A list is a curated collection of resources.
 @freezed
-class FhirList with _$FhirList implements DomainResource {
+class FhirList extends DomainResource with _$FhirList {
   /// [FhirList] A list is a curated collection of resources.
-  const FhirList._();
+  FhirList._();
 
   /// [FhirList] A list is a curated collection of resources.
   ///
@@ -275,6 +275,9 @@ class FhirList with _$FhirList implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -306,9 +309,9 @@ class FhirList with _$FhirList implements DomainResource {
 
 /// [FhirListEntry] A list is a curated collection of resources.
 @freezed
-class FhirListEntry with _$FhirListEntry implements BackboneElement {
+class FhirListEntry extends BackboneElement with _$FhirListEntry {
   /// [FhirListEntry] A list is a curated collection of resources.
-  const FhirListEntry._();
+  FhirListEntry._();
 
   /// [FhirListEntry] A list is a curated collection of resources.
   ///
@@ -428,6 +431,9 @@ class FhirListEntry with _$FhirListEntry implements BackboneElement {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

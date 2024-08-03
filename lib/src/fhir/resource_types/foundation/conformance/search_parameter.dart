@@ -15,9 +15,9 @@ part 'search_parameter.g.dart';
 
 /// [SearchParameter] A search parameter that defines a named search item
 @freezed
-class SearchParameter with _$SearchParameter implements DomainResource {
+class SearchParameter extends DomainResource with _$SearchParameter {
   /// [SearchParameter] A search parameter that defines a named search item
-  const SearchParameter._();
+  SearchParameter._();
 
   /// [SearchParameter] A search parameter that defines a named search item
   ///  that can be used to search/filter on a resource.
@@ -505,6 +505,9 @@ class SearchParameter with _$SearchParameter implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -536,11 +539,10 @@ class SearchParameter with _$SearchParameter implements DomainResource {
 
 /// [SearchParameterComponent] A search parameter that defines a named
 @freezed
-class SearchParameterComponent
-    with _$SearchParameterComponent
-    implements BackboneElement {
+class SearchParameterComponent extends BackboneElement
+    with _$SearchParameterComponent {
   /// [SearchParameterComponent] A search parameter that defines a named
-  const SearchParameterComponent._();
+  SearchParameterComponent._();
 
   /// [SearchParameterComponent] A search parameter that defines a named
   ///  search item that can be used to search/filter on a resource.
@@ -645,6 +647,9 @@ class SearchParameterComponent
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

@@ -369,11 +369,6 @@ class _$ReferenceImpl extends _Reference {
   final PrimitiveElement? displayElement;
 
   @override
-  String toString() {
-    return 'Reference(id: $id, extension_: $extension_, reference: $reference, referenceElement: $referenceElement, type: $type, typeElement: $typeElement, identifier: $identifier, display: $display, displayElement: $displayElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&

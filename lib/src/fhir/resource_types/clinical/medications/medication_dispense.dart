@@ -15,9 +15,9 @@ part 'medication_dispense.g.dart';
 
 /// [MedicationDispense] Indicates that a medication product is to be or has
 @freezed
-class MedicationDispense with _$MedicationDispense implements DomainResource {
+class MedicationDispense extends DomainResource with _$MedicationDispense {
   /// [MedicationDispense] Indicates that a medication product is to be or has
-  const MedicationDispense._();
+  MedicationDispense._();
 
   /// [MedicationDispense] Indicates that a medication product is to be or has
   /// been dispensed for a named person/patient.  This includes a description of
@@ -398,6 +398,9 @@ class MedicationDispense with _$MedicationDispense implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -429,11 +432,10 @@ class MedicationDispense with _$MedicationDispense implements DomainResource {
 
 /// [MedicationDispensePerformer] Indicates that a medication product is to
 @freezed
-class MedicationDispensePerformer
-    with _$MedicationDispensePerformer
-    implements BackboneElement {
+class MedicationDispensePerformer extends BackboneElement
+    with _$MedicationDispensePerformer {
   /// [MedicationDispensePerformer] Indicates that a medication product is to
-  const MedicationDispensePerformer._();
+  MedicationDispensePerformer._();
 
   /// [MedicationDispensePerformer] Indicates that a medication product is to
   /// be or has been dispensed for a named person/patient.  This includes a
@@ -538,6 +540,9 @@ class MedicationDispensePerformer
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -549,11 +554,10 @@ class MedicationDispensePerformer
 
 /// [MedicationDispenseSubstitution] Indicates that a medication product is
 @freezed
-class MedicationDispenseSubstitution
-    with _$MedicationDispenseSubstitution
-    implements BackboneElement {
+class MedicationDispenseSubstitution extends BackboneElement
+    with _$MedicationDispenseSubstitution {
   /// [MedicationDispenseSubstitution] Indicates that a medication product is
-  const MedicationDispenseSubstitution._();
+  MedicationDispenseSubstitution._();
 
   /// [MedicationDispenseSubstitution] Indicates that a medication product is
   /// to be or has been dispensed for a named person/patient.  This includes a
@@ -676,6 +680,9 @@ class MedicationDispenseSubstitution
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

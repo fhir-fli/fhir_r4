@@ -15,9 +15,9 @@ part 'medication_knowledge.g.dart';
 
 /// [MedicationKnowledge] Information about a medication that is used to
 @freezed
-class MedicationKnowledge with _$MedicationKnowledge implements DomainResource {
+class MedicationKnowledge extends DomainResource with _$MedicationKnowledge {
   /// [MedicationKnowledge] Information about a medication that is used to
-  const MedicationKnowledge._();
+  MedicationKnowledge._();
 
   /// [MedicationKnowledge] Information about a medication that is used to
   ///  support knowledge.
@@ -355,6 +355,9 @@ class MedicationKnowledge with _$MedicationKnowledge implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -383,10 +386,9 @@ class MedicationKnowledge with _$MedicationKnowledge implements DomainResource {
 
 @freezed
 @freezed
-class MedicationKnowledgeRelatedMedicationKnowledge
-    with _$MedicationKnowledgeRelatedMedicationKnowledge
-    implements BackboneElement {
-  const MedicationKnowledgeRelatedMedicationKnowledge._();
+class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement
+    with _$MedicationKnowledgeRelatedMedicationKnowledge {
+  MedicationKnowledgeRelatedMedicationKnowledge._();
 
   /// [MedicationKnowledgeRelatedMedicationKnowledge] Information about a
   ///  medication that is used to support knowledge.
@@ -476,6 +478,9 @@ class MedicationKnowledgeRelatedMedicationKnowledge
       _$MedicationKnowledgeRelatedMedicationKnowledgeFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -487,11 +492,10 @@ class MedicationKnowledgeRelatedMedicationKnowledge
 
 /// [MedicationKnowledgeMonograph] Information about a medication that is
 @freezed
-class MedicationKnowledgeMonograph
-    with _$MedicationKnowledgeMonograph
-    implements BackboneElement {
+class MedicationKnowledgeMonograph extends BackboneElement
+    with _$MedicationKnowledgeMonograph {
   /// [MedicationKnowledgeMonograph] Information about a medication that is
-  const MedicationKnowledgeMonograph._();
+  MedicationKnowledgeMonograph._();
 
   /// [MedicationKnowledgeMonograph] Information about a medication that is
   ///  used to support knowledge.
@@ -591,6 +595,9 @@ class MedicationKnowledgeMonograph
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -602,11 +609,10 @@ class MedicationKnowledgeMonograph
 
 /// [MedicationKnowledgeIngredient] Information about a medication that is
 @freezed
-class MedicationKnowledgeIngredient
-    with _$MedicationKnowledgeIngredient
-    implements BackboneElement {
+class MedicationKnowledgeIngredient extends BackboneElement
+    with _$MedicationKnowledgeIngredient {
   /// [MedicationKnowledgeIngredient] Information about a medication that is
-  const MedicationKnowledgeIngredient._();
+  MedicationKnowledgeIngredient._();
 
   /// [MedicationKnowledgeIngredient] Information about a medication that is
   ///  used to support knowledge.
@@ -729,6 +735,9 @@ class MedicationKnowledgeIngredient
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -740,11 +749,10 @@ class MedicationKnowledgeIngredient
 
 /// [MedicationKnowledgeCost] Information about a medication that is used to
 @freezed
-class MedicationKnowledgeCost
-    with _$MedicationKnowledgeCost
-    implements BackboneElement {
+class MedicationKnowledgeCost extends BackboneElement
+    with _$MedicationKnowledgeCost {
   /// [MedicationKnowledgeCost] Information about a medication that is used to
-  const MedicationKnowledgeCost._();
+  MedicationKnowledgeCost._();
 
   /// [MedicationKnowledgeCost] Information about a medication that is used to
   ///  support knowledge.
@@ -854,6 +862,9 @@ class MedicationKnowledgeCost
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -862,10 +873,9 @@ class MedicationKnowledgeCost
 
 @freezed
 @freezed
-class MedicationKnowledgeMonitoringProgram
-    with _$MedicationKnowledgeMonitoringProgram
-    implements BackboneElement {
-  const MedicationKnowledgeMonitoringProgram._();
+class MedicationKnowledgeMonitoringProgram extends BackboneElement
+    with _$MedicationKnowledgeMonitoringProgram {
+  MedicationKnowledgeMonitoringProgram._();
 
   /// [MedicationKnowledgeMonitoringProgram] Information about a medication
   ///  that is used to support knowledge.
@@ -957,6 +967,9 @@ class MedicationKnowledgeMonitoringProgram
       _$MedicationKnowledgeMonitoringProgramFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -965,10 +978,9 @@ class MedicationKnowledgeMonitoringProgram
 
 @freezed
 @freezed
-class MedicationKnowledgeAdministrationGuidelines
-    with _$MedicationKnowledgeAdministrationGuidelines
-    implements BackboneElement {
-  const MedicationKnowledgeAdministrationGuidelines._();
+class MedicationKnowledgeAdministrationGuidelines extends BackboneElement
+    with _$MedicationKnowledgeAdministrationGuidelines {
+  MedicationKnowledgeAdministrationGuidelines._();
 
   /// [MedicationKnowledgeAdministrationGuidelines] Information about a
   ///  medication that is used to support knowledge.
@@ -1073,6 +1085,9 @@ class MedicationKnowledgeAdministrationGuidelines
       _$MedicationKnowledgeAdministrationGuidelinesFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1084,11 +1099,10 @@ class MedicationKnowledgeAdministrationGuidelines
 
 /// [MedicationKnowledgeDosage] Information about a medication that is used
 @freezed
-class MedicationKnowledgeDosage
-    with _$MedicationKnowledgeDosage
-    implements BackboneElement {
+class MedicationKnowledgeDosage extends BackboneElement
+    with _$MedicationKnowledgeDosage {
   /// [MedicationKnowledgeDosage] Information about a medication that is used
-  const MedicationKnowledgeDosage._();
+  MedicationKnowledgeDosage._();
 
   /// [MedicationKnowledgeDosage] Information about a medication that is used
   ///  to support knowledge.
@@ -1188,6 +1202,9 @@ class MedicationKnowledgeDosage
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1196,10 +1213,9 @@ class MedicationKnowledgeDosage
 
 @freezed
 @freezed
-class MedicationKnowledgePatientCharacteristics
-    with _$MedicationKnowledgePatientCharacteristics
-    implements BackboneElement {
-  const MedicationKnowledgePatientCharacteristics._();
+class MedicationKnowledgePatientCharacteristics extends BackboneElement
+    with _$MedicationKnowledgePatientCharacteristics {
+  MedicationKnowledgePatientCharacteristics._();
 
   /// [MedicationKnowledgePatientCharacteristics] Information about a
   ///  medication that is used to support knowledge.
@@ -1300,6 +1316,9 @@ class MedicationKnowledgePatientCharacteristics
       _$MedicationKnowledgePatientCharacteristicsFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1308,10 +1327,9 @@ class MedicationKnowledgePatientCharacteristics
 
 @freezed
 @freezed
-class MedicationKnowledgeMedicineClassification
-    with _$MedicationKnowledgeMedicineClassification
-    implements BackboneElement {
-  const MedicationKnowledgeMedicineClassification._();
+class MedicationKnowledgeMedicineClassification extends BackboneElement
+    with _$MedicationKnowledgeMedicineClassification {
+  MedicationKnowledgeMedicineClassification._();
 
   /// [MedicationKnowledgeMedicineClassification] Information about a
   ///  medication that is used to support knowledge.
@@ -1402,6 +1420,9 @@ class MedicationKnowledgeMedicineClassification
       _$MedicationKnowledgeMedicineClassificationFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1413,11 +1434,10 @@ class MedicationKnowledgeMedicineClassification
 
 /// [MedicationKnowledgePackaging] Information about a medication that is
 @freezed
-class MedicationKnowledgePackaging
-    with _$MedicationKnowledgePackaging
-    implements BackboneElement {
+class MedicationKnowledgePackaging extends BackboneElement
+    with _$MedicationKnowledgePackaging {
   /// [MedicationKnowledgePackaging] Information about a medication that is
-  const MedicationKnowledgePackaging._();
+  MedicationKnowledgePackaging._();
 
   /// [MedicationKnowledgePackaging] Information about a medication that is
   ///  used to support knowledge.
@@ -1519,6 +1539,9 @@ class MedicationKnowledgePackaging
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1527,10 +1550,9 @@ class MedicationKnowledgePackaging
 
 @freezed
 @freezed
-class MedicationKnowledgeDrugCharacteristic
-    with _$MedicationKnowledgeDrugCharacteristic
-    implements BackboneElement {
-  const MedicationKnowledgeDrugCharacteristic._();
+class MedicationKnowledgeDrugCharacteristic extends BackboneElement
+    with _$MedicationKnowledgeDrugCharacteristic {
+  MedicationKnowledgeDrugCharacteristic._();
 
   /// [MedicationKnowledgeDrugCharacteristic] Information about a medication
   ///  that is used to support knowledge.
@@ -1645,6 +1667,9 @@ class MedicationKnowledgeDrugCharacteristic
       _$MedicationKnowledgeDrugCharacteristicFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1656,11 +1681,10 @@ class MedicationKnowledgeDrugCharacteristic
 
 /// [MedicationKnowledgeRegulatory] Information about a medication that is
 @freezed
-class MedicationKnowledgeRegulatory
-    with _$MedicationKnowledgeRegulatory
-    implements BackboneElement {
+class MedicationKnowledgeRegulatory extends BackboneElement
+    with _$MedicationKnowledgeRegulatory {
   /// [MedicationKnowledgeRegulatory] Information about a medication that is
-  const MedicationKnowledgeRegulatory._();
+  MedicationKnowledgeRegulatory._();
 
   /// [MedicationKnowledgeRegulatory] Information about a medication that is
   ///  used to support knowledge.
@@ -1772,6 +1796,9 @@ class MedicationKnowledgeRegulatory
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1783,11 +1810,10 @@ class MedicationKnowledgeRegulatory
 
 /// [MedicationKnowledgeSubstitution] Information about a medication that is
 @freezed
-class MedicationKnowledgeSubstitution
-    with _$MedicationKnowledgeSubstitution
-    implements BackboneElement {
+class MedicationKnowledgeSubstitution extends BackboneElement
+    with _$MedicationKnowledgeSubstitution {
   /// [MedicationKnowledgeSubstitution] Information about a medication that is
-  const MedicationKnowledgeSubstitution._();
+  MedicationKnowledgeSubstitution._();
 
   /// [MedicationKnowledgeSubstitution] Information about a medication that is
   ///  used to support knowledge.
@@ -1893,6 +1919,9 @@ class MedicationKnowledgeSubstitution
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1904,11 +1933,10 @@ class MedicationKnowledgeSubstitution
 
 /// [MedicationKnowledgeSchedule] Information about a medication that is
 @freezed
-class MedicationKnowledgeSchedule
-    with _$MedicationKnowledgeSchedule
-    implements BackboneElement {
+class MedicationKnowledgeSchedule extends BackboneElement
+    with _$MedicationKnowledgeSchedule {
   /// [MedicationKnowledgeSchedule] Information about a medication that is
-  const MedicationKnowledgeSchedule._();
+  MedicationKnowledgeSchedule._();
 
   /// [MedicationKnowledgeSchedule] Information about a medication that is
   ///  used to support knowledge.
@@ -2001,6 +2029,9 @@ class MedicationKnowledgeSchedule
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2012,11 +2043,10 @@ class MedicationKnowledgeSchedule
 
 /// [MedicationKnowledgeMaxDispense] Information about a medication that is
 @freezed
-class MedicationKnowledgeMaxDispense
-    with _$MedicationKnowledgeMaxDispense
-    implements BackboneElement {
+class MedicationKnowledgeMaxDispense extends BackboneElement
+    with _$MedicationKnowledgeMaxDispense {
   /// [MedicationKnowledgeMaxDispense] Information about a medication that is
-  const MedicationKnowledgeMaxDispense._();
+  MedicationKnowledgeMaxDispense._();
 
   /// [MedicationKnowledgeMaxDispense] Information about a medication that is
   ///  used to support knowledge.
@@ -2117,6 +2147,9 @@ class MedicationKnowledgeMaxDispense
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2128,11 +2161,10 @@ class MedicationKnowledgeMaxDispense
 
 /// [MedicationKnowledgeKinetics] Information about a medication that is
 @freezed
-class MedicationKnowledgeKinetics
-    with _$MedicationKnowledgeKinetics
-    implements BackboneElement {
+class MedicationKnowledgeKinetics extends BackboneElement
+    with _$MedicationKnowledgeKinetics {
   /// [MedicationKnowledgeKinetics] Information about a medication that is
-  const MedicationKnowledgeKinetics._();
+  MedicationKnowledgeKinetics._();
 
   /// [MedicationKnowledgeKinetics] Information about a medication that is
   ///  used to support knowledge.
@@ -2237,6 +2269,9 @@ class MedicationKnowledgeKinetics
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

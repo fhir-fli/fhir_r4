@@ -230,11 +230,6 @@ class _$RangeImpl extends _Range {
   final Quantity? high;
 
   @override
-  String toString() {
-    return 'Range(id: $id, extension_: $extension_, low: $low, high: $high)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&

@@ -692,11 +692,6 @@ class _$NutritionProductImpl extends _NutritionProduct {
   }
 
   @override
-  String toString() {
-    return 'NutritionProduct(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, status: $status, statusElement: $statusElement, category: $category, code: $code, manufacturer: $manufacturer, nutrient: $nutrient, ingredient: $ingredient, knownAllergen: $knownAllergen, productCharacteristic: $productCharacteristic, instance: $instance, note: $note)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1139,11 +1134,6 @@ class _$NutritionProductNutrientImpl extends _NutritionProductNutrient {
   }
 
   @override
-  String toString() {
-    return 'NutritionProductNutrient(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, item: $item, amount: $amount)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1454,11 +1444,6 @@ class _$NutritionProductIngredientImpl extends _NutritionProductIngredient {
     if (_amount is EqualUnmodifiableListView) return _amount;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  String toString() {
-    return 'NutritionProductIngredient(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, item: $item, amount: $amount)';
   }
 
   @override
@@ -1980,11 +1965,6 @@ class _$NutritionProductCharacteristicImpl
   @override
   @JsonKey(name: '_valueBoolean')
   final PrimitiveElement? valueBooleanElement;
-
-  @override
-  String toString() {
-    return 'NutritionProductCharacteristic(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, valueCodeableConcept: $valueCodeableConcept, valueString: $valueString, valueStringElement: $valueStringElement, valueQuantity: $valueQuantity, valueBase64Binary: $valueBase64Binary, valueBase64BinaryElement: $valueBase64BinaryElement, valueAttachment: $valueAttachment, valueBoolean: $valueBoolean, valueBooleanElement: $valueBooleanElement)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -2517,11 +2497,6 @@ class _$NutritionProductInstanceImpl extends _NutritionProductInstance {
   final PrimitiveElement? useByElement;
   @override
   final Identifier? biologicalSource;
-
-  @override
-  String toString() {
-    return 'NutritionProductInstance(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, quantity: $quantity, identifier: $identifier, name: $name, nameElement: $nameElement, lotNumber: $lotNumber, lotNumberElement: $lotNumberElement, expiry: $expiry, expiryElement: $expiryElement, useBy: $useBy, useByElement: $useByElement, biologicalSource: $biologicalSource)';
-  }
 
   @override
   bool operator ==(Object other) {

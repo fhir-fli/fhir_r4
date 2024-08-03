@@ -15,9 +15,9 @@ part 'operation_definition.g.dart';
 
 /// [OperationDefinition] A formal computable definition of an operation (on
 @freezed
-class OperationDefinition with _$OperationDefinition implements DomainResource {
+class OperationDefinition extends DomainResource with _$OperationDefinition {
   /// [OperationDefinition] A formal computable definition of an operation (on
-  const OperationDefinition._();
+  OperationDefinition._();
 
   /// [OperationDefinition] A formal computable definition of an operation (on
   ///  the RESTful interface) or a named query (using the search interaction).
@@ -484,6 +484,9 @@ class OperationDefinition with _$OperationDefinition implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -515,11 +518,10 @@ class OperationDefinition with _$OperationDefinition implements DomainResource {
 
 /// [OperationDefinitionParameter] A formal computable definition of an
 @freezed
-class OperationDefinitionParameter
-    with _$OperationDefinitionParameter
-    implements BackboneElement {
+class OperationDefinitionParameter extends BackboneElement
+    with _$OperationDefinitionParameter {
   /// [OperationDefinitionParameter] A formal computable definition of an
-  const OperationDefinitionParameter._();
+  OperationDefinitionParameter._();
 
   /// [OperationDefinitionParameter] A formal computable definition of an
   /// operation (on the RESTful interface) or a named query (using the search
@@ -724,6 +726,9 @@ class OperationDefinitionParameter
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -735,11 +740,10 @@ class OperationDefinitionParameter
 
 /// [OperationDefinitionBinding] A formal computable definition of an
 @freezed
-class OperationDefinitionBinding
-    with _$OperationDefinitionBinding
-    implements BackboneElement {
+class OperationDefinitionBinding extends BackboneElement
+    with _$OperationDefinitionBinding {
   /// [OperationDefinitionBinding] A formal computable definition of an
-  const OperationDefinitionBinding._();
+  OperationDefinitionBinding._();
 
   /// [OperationDefinitionBinding] A formal computable definition of an
   /// operation (on the RESTful interface) or a named query (using the search
@@ -849,6 +853,9 @@ class OperationDefinitionBinding
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -857,10 +864,9 @@ class OperationDefinitionBinding
 
 @freezed
 @freezed
-class OperationDefinitionReferencedFrom
-    with _$OperationDefinitionReferencedFrom
-    implements BackboneElement {
-  const OperationDefinitionReferencedFrom._();
+class OperationDefinitionReferencedFrom extends BackboneElement
+    with _$OperationDefinitionReferencedFrom {
+  OperationDefinitionReferencedFrom._();
 
   /// [OperationDefinitionReferencedFrom] A formal computable definition of an
   /// operation (on the RESTful interface) or a named query (using the search
@@ -964,6 +970,9 @@ class OperationDefinitionReferencedFrom
       _$OperationDefinitionReferencedFromFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -975,11 +984,10 @@ class OperationDefinitionReferencedFrom
 
 /// [OperationDefinitionOverload] A formal computable definition of an
 @freezed
-class OperationDefinitionOverload
-    with _$OperationDefinitionOverload
-    implements BackboneElement {
+class OperationDefinitionOverload extends BackboneElement
+    with _$OperationDefinitionOverload {
   /// [OperationDefinitionOverload] A formal computable definition of an
-  const OperationDefinitionOverload._();
+  OperationDefinitionOverload._();
 
   /// [OperationDefinitionOverload] A formal computable definition of an
   /// operation (on the RESTful interface) or a named query (using the search
@@ -1087,6 +1095,9 @@ class OperationDefinitionOverload
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

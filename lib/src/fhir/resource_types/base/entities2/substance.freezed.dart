@@ -551,11 +551,6 @@ class _$SubstanceImpl extends _Substance {
   }
 
   @override
-  String toString() {
-    return 'Substance(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, status: $status, statusElement: $statusElement, category: $category, code: $code, description: $description, descriptionElement: $descriptionElement, instance: $instance, ingredient: $ingredient)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -970,11 +965,6 @@ class _$SubstanceInstanceImpl extends _SubstanceInstance {
   final Quantity? quantity;
 
   @override
-  String toString() {
-    return 'SubstanceInstance(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, expiry: $expiry, expiryElement: $expiryElement, quantity: $quantity)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1301,11 +1291,6 @@ class _$SubstanceIngredientImpl extends _SubstanceIngredient {
   final CodeableConcept? substanceCodeableConcept;
   @override
   final Reference? substanceReference;
-
-  @override
-  String toString() {
-    return 'SubstanceIngredient(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, quantity: $quantity, substanceCodeableConcept: $substanceCodeableConcept, substanceReference: $substanceReference)';
-  }
 
   @override
   bool operator ==(Object other) {

@@ -15,9 +15,9 @@ part 'example_scenario.g.dart';
 
 /// [ExampleScenario] Example of workflow instance.
 @freezed
-class ExampleScenario with _$ExampleScenario implements DomainResource {
+class ExampleScenario extends DomainResource with _$ExampleScenario {
   /// [ExampleScenario] Example of workflow instance.
-  const ExampleScenario._();
+  ExampleScenario._();
 
   /// [ExampleScenario] Example of workflow instance.
   ///
@@ -375,6 +375,9 @@ class ExampleScenario with _$ExampleScenario implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -406,11 +409,9 @@ class ExampleScenario with _$ExampleScenario implements DomainResource {
 
 /// [ExampleScenarioActor] Example of workflow instance.
 @freezed
-class ExampleScenarioActor
-    with _$ExampleScenarioActor
-    implements BackboneElement {
+class ExampleScenarioActor extends BackboneElement with _$ExampleScenarioActor {
   /// [ExampleScenarioActor] Example of workflow instance.
-  const ExampleScenarioActor._();
+  ExampleScenarioActor._();
 
   /// [ExampleScenarioActor] Example of workflow instance.
   ///
@@ -537,6 +538,9 @@ class ExampleScenarioActor
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -548,11 +552,10 @@ class ExampleScenarioActor
 
 /// [ExampleScenarioInstance] Example of workflow instance.
 @freezed
-class ExampleScenarioInstance
-    with _$ExampleScenarioInstance
-    implements BackboneElement {
+class ExampleScenarioInstance extends BackboneElement
+    with _$ExampleScenarioInstance {
   /// [ExampleScenarioInstance] Example of workflow instance.
-  const ExampleScenarioInstance._();
+  ExampleScenarioInstance._();
 
   /// [ExampleScenarioInstance] Example of workflow instance.
   ///
@@ -691,6 +694,9 @@ class ExampleScenarioInstance
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -702,11 +708,10 @@ class ExampleScenarioInstance
 
 /// [ExampleScenarioVersion] Example of workflow instance.
 @freezed
-class ExampleScenarioVersion
-    with _$ExampleScenarioVersion
-    implements BackboneElement {
+class ExampleScenarioVersion extends BackboneElement
+    with _$ExampleScenarioVersion {
   /// [ExampleScenarioVersion] Example of workflow instance.
-  const ExampleScenarioVersion._();
+  ExampleScenarioVersion._();
 
   /// [ExampleScenarioVersion] Example of workflow instance.
   ///
@@ -813,6 +818,9 @@ class ExampleScenarioVersion
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -824,11 +832,10 @@ class ExampleScenarioVersion
 
 /// [ExampleScenarioContainedInstance] Example of workflow instance.
 @freezed
-class ExampleScenarioContainedInstance
-    with _$ExampleScenarioContainedInstance
-    implements BackboneElement {
+class ExampleScenarioContainedInstance extends BackboneElement
+    with _$ExampleScenarioContainedInstance {
   /// [ExampleScenarioContainedInstance] Example of workflow instance.
-  const ExampleScenarioContainedInstance._();
+  ExampleScenarioContainedInstance._();
 
   /// [ExampleScenarioContainedInstance] Example of workflow instance.
   ///
@@ -924,6 +931,9 @@ class ExampleScenarioContainedInstance
       _$ExampleScenarioContainedInstanceFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -935,11 +945,10 @@ class ExampleScenarioContainedInstance
 
 /// [ExampleScenarioProcess] Example of workflow instance.
 @freezed
-class ExampleScenarioProcess
-    with _$ExampleScenarioProcess
-    implements BackboneElement {
+class ExampleScenarioProcess extends BackboneElement
+    with _$ExampleScenarioProcess {
   /// [ExampleScenarioProcess] Example of workflow instance.
-  const ExampleScenarioProcess._();
+  ExampleScenarioProcess._();
 
   /// [ExampleScenarioProcess] Example of workflow instance.
   ///
@@ -1071,6 +1080,9 @@ class ExampleScenarioProcess
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1082,11 +1094,9 @@ class ExampleScenarioProcess
 
 /// [ExampleScenarioStep] Example of workflow instance.
 @freezed
-class ExampleScenarioStep
-    with _$ExampleScenarioStep
-    implements BackboneElement {
+class ExampleScenarioStep extends BackboneElement with _$ExampleScenarioStep {
   /// [ExampleScenarioStep] Example of workflow instance.
-  const ExampleScenarioStep._();
+  ExampleScenarioStep._();
 
   /// [ExampleScenarioStep] Example of workflow instance.
   ///
@@ -1200,6 +1210,9 @@ class ExampleScenarioStep
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1211,11 +1224,10 @@ class ExampleScenarioStep
 
 /// [ExampleScenarioOperation] Example of workflow instance.
 @freezed
-class ExampleScenarioOperation
-    with _$ExampleScenarioOperation
-    implements BackboneElement {
+class ExampleScenarioOperation extends BackboneElement
+    with _$ExampleScenarioOperation {
   /// [ExampleScenarioOperation] Example of workflow instance.
-  const ExampleScenarioOperation._();
+  ExampleScenarioOperation._();
 
   /// [ExampleScenarioOperation] Example of workflow instance.
   ///
@@ -1396,6 +1408,9 @@ class ExampleScenarioOperation
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1407,11 +1422,10 @@ class ExampleScenarioOperation
 
 /// [ExampleScenarioAlternative] Example of workflow instance.
 @freezed
-class ExampleScenarioAlternative
-    with _$ExampleScenarioAlternative
-    implements BackboneElement {
+class ExampleScenarioAlternative extends BackboneElement
+    with _$ExampleScenarioAlternative {
   /// [ExampleScenarioAlternative] Example of workflow instance.
-  const ExampleScenarioAlternative._();
+  ExampleScenarioAlternative._();
 
   /// [ExampleScenarioAlternative] Example of workflow instance.
   ///
@@ -1525,6 +1539,9 @@ class ExampleScenarioAlternative
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

@@ -14,9 +14,9 @@ part 'reference.g.dart';
 
 /// [Reference] A reference from one resource to another.
 @freezed
-class Reference with _$Reference implements DataType {
+class Reference extends DataType with _$Reference {
   /// [Reference] A reference from one resource to another.
-  const Reference._();
+  Reference._();
 
   /// [Reference] A reference from one resource to another.
   ///
@@ -153,6 +153,9 @@ class Reference with _$Reference implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

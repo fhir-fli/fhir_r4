@@ -1168,11 +1168,6 @@ class _$ExampleScenarioImpl extends _ExampleScenario {
   }
 
   @override
-  String toString() {
-    return 'ExampleScenario(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, identifier: $identifier, version: $version, versionElement: $versionElement, name: $name, nameElement: $nameElement, status: $status, statusElement: $statusElement, experimental: $experimental, experimentalElement: $experimentalElement, date: $date, dateElement: $dateElement, publisher: $publisher, publisherElement: $publisherElement, contact: $contact, useContext: $useContext, jurisdiction: $jurisdiction, copyright: $copyright, copyrightElement: $copyrightElement, purpose: $purpose, purposeElement: $purposeElement, actor: $actor, instance: $instance, process: $process, workflow: $workflow)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1960,11 +1955,6 @@ class _$ExampleScenarioActorImpl extends _ExampleScenarioActor {
   final PrimitiveElement? descriptionElement;
 
   @override
-  String toString() {
-    return 'ExampleScenarioActor(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, actorId: $actorId, actorIdElement: $actorIdElement, type: $type, typeElement: $typeElement, name: $name, nameElement: $nameElement, description: $description, descriptionElement: $descriptionElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2569,11 +2559,6 @@ class _$ExampleScenarioInstanceImpl extends _ExampleScenarioInstance {
   }
 
   @override
-  String toString() {
-    return 'ExampleScenarioInstance(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, resourceId: $resourceId, resourceIdElement: $resourceIdElement, resourceType: $resourceType, resourceTypeElement: $resourceTypeElement, name: $name, nameElement: $nameElement, description: $description, descriptionElement: $descriptionElement, version: $version, containedInstance: $containedInstance)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -3045,11 +3030,6 @@ class _$ExampleScenarioVersionImpl extends _ExampleScenarioVersion {
   final PrimitiveElement? descriptionElement;
 
   @override
-  String toString() {
-    return 'ExampleScenarioVersion(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, versionId: $versionId, versionIdElement: $versionIdElement, description: $description, descriptionElement: $descriptionElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -3473,11 +3453,6 @@ class _$ExampleScenarioContainedInstanceImpl
   @override
   @JsonKey(name: '_versionId')
   final PrimitiveElement? versionIdElement;
-
-  @override
-  String toString() {
-    return 'ExampleScenarioContainedInstance(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, resourceId: $resourceId, resourceIdElement: $resourceIdElement, versionId: $versionId, versionIdElement: $versionIdElement)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -4022,11 +3997,6 @@ class _$ExampleScenarioProcessImpl extends _ExampleScenarioProcess {
   }
 
   @override
-  String toString() {
-    return 'ExampleScenarioProcess(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, title: $title, titleElement: $titleElement, description: $description, descriptionElement: $descriptionElement, preConditions: $preConditions, preConditionsElement: $preConditionsElement, postConditions: $postConditions, postConditionsElement: $postConditionsElement, step: $step)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -4540,11 +4510,6 @@ class _$ExampleScenarioStepImpl extends _ExampleScenarioStep {
     if (_alternative is EqualUnmodifiableListView) return _alternative;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  String toString() {
-    return 'ExampleScenarioStep(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, process: $process, pause: $pause, pauseElement: $pauseElement, operation: $operation, alternative: $alternative)';
   }
 
   @override
@@ -5311,11 +5276,6 @@ class _$ExampleScenarioOperationImpl extends _ExampleScenarioOperation {
   final ExampleScenarioContainedInstance? response;
 
   @override
-  String toString() {
-    return 'ExampleScenarioOperation(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, number: $number, numberElement: $numberElement, type: $type, typeElement: $typeElement, name: $name, nameElement: $nameElement, initiator: $initiator, initiatorElement: $initiatorElement, receiver: $receiver, receiverElement: $receiverElement, description: $description, descriptionElement: $descriptionElement, initiatorActive: $initiatorActive, initiatorActiveElement: $initiatorActiveElement, receiverActive: $receiverActive, receiverActiveElement: $receiverActiveElement, request: $request, response: $response)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -5889,11 +5849,6 @@ class _$ExampleScenarioAlternativeImpl extends _ExampleScenarioAlternative {
     if (_step is EqualUnmodifiableListView) return _step;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  String toString() {
-    return 'ExampleScenarioAlternative(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, title: $title, titleElement: $titleElement, description: $description, descriptionElement: $descriptionElement, step: $step)';
   }
 
   @override

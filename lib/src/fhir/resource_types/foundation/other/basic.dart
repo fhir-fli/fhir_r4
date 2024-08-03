@@ -15,9 +15,9 @@ part 'basic.g.dart';
 
 /// [Basic] Basic is used for handling concepts not yet defined in FHIR,
 @freezed
-class Basic with _$Basic implements DomainResource {
+class Basic extends DomainResource with _$Basic {
   /// [Basic] Basic is used for handling concepts not yet defined in FHIR,
-  const Basic._();
+  Basic._();
 
   /// [Basic] Basic is used for handling concepts not yet defined in FHIR,
   /// narrative-only resources that don't map to an existing resource, and
@@ -212,6 +212,9 @@ class Basic with _$Basic implements DomainResource {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

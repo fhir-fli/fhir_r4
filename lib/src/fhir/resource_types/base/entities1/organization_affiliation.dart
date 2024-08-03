@@ -14,11 +14,10 @@ part 'organization_affiliation.g.dart';
 
 /// [OrganizationAffiliation] Defines an affiliation/assotiation/relationship
 @freezed
-class OrganizationAffiliation
-    with _$OrganizationAffiliation
-    implements DomainResource {
+class OrganizationAffiliation extends DomainResource
+    with _$OrganizationAffiliation {
   /// [OrganizationAffiliation] Defines an affiliation/assotiation/relationship
-  const OrganizationAffiliation._();
+  OrganizationAffiliation._();
 
   /// [OrganizationAffiliation] Defines an affiliation/assotiation/relationship
   /// between 2 distinct oganizations, that is not a part-of
@@ -262,6 +261,9 @@ class OrganizationAffiliation
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

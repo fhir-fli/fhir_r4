@@ -14,9 +14,9 @@ part 'insurance_plan.g.dart';
 
 /// [InsurancePlan] Details of a Health Insurance product/plan provided by an
 @freezed
-class InsurancePlan with _$InsurancePlan implements DomainResource {
+class InsurancePlan extends DomainResource with _$InsurancePlan {
   /// [InsurancePlan] Details of a Health Insurance product/plan provided by an
-  const InsurancePlan._();
+  InsurancePlan._();
 
   /// [InsurancePlan] Details of a Health Insurance product/plan provided by an
   ///  organization.
@@ -288,6 +288,9 @@ class InsurancePlan with _$InsurancePlan implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -319,11 +322,9 @@ class InsurancePlan with _$InsurancePlan implements DomainResource {
 
 /// [InsurancePlanContact] Details of a Health Insurance product/plan
 @freezed
-class InsurancePlanContact
-    with _$InsurancePlanContact
-    implements BackboneElement {
+class InsurancePlanContact extends BackboneElement with _$InsurancePlanContact {
   /// [InsurancePlanContact] Details of a Health Insurance product/plan
-  const InsurancePlanContact._();
+  InsurancePlanContact._();
 
   /// [InsurancePlanContact] Details of a Health Insurance product/plan
   ///  provided by an organization.
@@ -434,6 +435,9 @@ class InsurancePlanContact
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 
@@ -595,11 +599,10 @@ class InsurancePlanContact
 
 /// [InsurancePlanCoverage] Details of a Health Insurance product/plan
 @freezed
-class InsurancePlanCoverage
-    with _$InsurancePlanCoverage
-    implements BackboneElement {
+class InsurancePlanCoverage extends BackboneElement
+    with _$InsurancePlanCoverage {
   /// [InsurancePlanCoverage] Details of a Health Insurance product/plan
-  const InsurancePlanCoverage._();
+  InsurancePlanCoverage._();
 
   /// [InsurancePlanCoverage] Details of a Health Insurance product/plan
   ///  provided by an organization.
@@ -706,6 +709,9 @@ class InsurancePlanCoverage
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -717,11 +723,9 @@ class InsurancePlanCoverage
 
 /// [InsurancePlanBenefit] Details of a Health Insurance product/plan
 @freezed
-class InsurancePlanBenefit
-    with _$InsurancePlanBenefit
-    implements BackboneElement {
+class InsurancePlanBenefit extends BackboneElement with _$InsurancePlanBenefit {
   /// [InsurancePlanBenefit] Details of a Health Insurance product/plan
-  const InsurancePlanBenefit._();
+  InsurancePlanBenefit._();
 
   /// [InsurancePlanBenefit] Details of a Health Insurance product/plan
   ///  provided by an organization.
@@ -835,6 +839,9 @@ class InsurancePlanBenefit
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -846,9 +853,9 @@ class InsurancePlanBenefit
 
 /// [InsurancePlanLimit] Details of a Health Insurance product/plan provided
 @freezed
-class InsurancePlanLimit with _$InsurancePlanLimit implements BackboneElement {
+class InsurancePlanLimit extends BackboneElement with _$InsurancePlanLimit {
   /// [InsurancePlanLimit] Details of a Health Insurance product/plan provided
-  const InsurancePlanLimit._();
+  InsurancePlanLimit._();
 
   /// [InsurancePlanLimit] Details of a Health Insurance product/plan provided
   ///  by an organization.
@@ -950,6 +957,9 @@ class InsurancePlanLimit with _$InsurancePlanLimit implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -961,9 +971,9 @@ class InsurancePlanLimit with _$InsurancePlanLimit implements BackboneElement {
 
 /// [InsurancePlanPlan] Details of a Health Insurance product/plan provided
 @freezed
-class InsurancePlanPlan with _$InsurancePlanPlan implements BackboneElement {
+class InsurancePlanPlan extends BackboneElement with _$InsurancePlanPlan {
   /// [InsurancePlanPlan] Details of a Health Insurance product/plan provided
-  const InsurancePlanPlan._();
+  InsurancePlanPlan._();
 
   /// [InsurancePlanPlan] Details of a Health Insurance product/plan provided
   ///  by an organization.
@@ -1091,6 +1101,9 @@ class InsurancePlanPlan with _$InsurancePlanPlan implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1102,11 +1115,10 @@ class InsurancePlanPlan with _$InsurancePlanPlan implements BackboneElement {
 
 /// [InsurancePlanGeneralCost] Details of a Health Insurance product/plan
 @freezed
-class InsurancePlanGeneralCost
-    with _$InsurancePlanGeneralCost
-    implements BackboneElement {
+class InsurancePlanGeneralCost extends BackboneElement
+    with _$InsurancePlanGeneralCost {
   /// [InsurancePlanGeneralCost] Details of a Health Insurance product/plan
-  const InsurancePlanGeneralCost._();
+  InsurancePlanGeneralCost._();
 
   /// [InsurancePlanGeneralCost] Details of a Health Insurance product/plan
   ///  provided by an organization.
@@ -1228,6 +1240,9 @@ class InsurancePlanGeneralCost
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1239,11 +1254,10 @@ class InsurancePlanGeneralCost
 
 /// [InsurancePlanSpecificCost] Details of a Health Insurance product/plan
 @freezed
-class InsurancePlanSpecificCost
-    with _$InsurancePlanSpecificCost
-    implements BackboneElement {
+class InsurancePlanSpecificCost extends BackboneElement
+    with _$InsurancePlanSpecificCost {
   /// [InsurancePlanSpecificCost] Details of a Health Insurance product/plan
-  const InsurancePlanSpecificCost._();
+  InsurancePlanSpecificCost._();
 
   /// [InsurancePlanSpecificCost] Details of a Health Insurance product/plan
   ///  provided by an organization.
@@ -1345,6 +1359,9 @@ class InsurancePlanSpecificCost
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1356,11 +1373,10 @@ class InsurancePlanSpecificCost
 
 /// [InsurancePlanBenefit1] Details of a Health Insurance product/plan
 @freezed
-class InsurancePlanBenefit1
-    with _$InsurancePlanBenefit1
-    implements BackboneElement {
+class InsurancePlanBenefit1 extends BackboneElement
+    with _$InsurancePlanBenefit1 {
   /// [InsurancePlanBenefit1] Details of a Health Insurance product/plan
-  const InsurancePlanBenefit1._();
+  InsurancePlanBenefit1._();
 
   /// [InsurancePlanBenefit1] Details of a Health Insurance product/plan
   ///  provided by an organization.
@@ -1462,6 +1478,9 @@ class InsurancePlanBenefit1
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1473,9 +1492,9 @@ class InsurancePlanBenefit1
 
 /// [InsurancePlanCost] Details of a Health Insurance product/plan provided
 @freezed
-class InsurancePlanCost with _$InsurancePlanCost implements BackboneElement {
+class InsurancePlanCost extends BackboneElement with _$InsurancePlanCost {
   /// [InsurancePlanCost] Details of a Health Insurance product/plan provided
-  const InsurancePlanCost._();
+  InsurancePlanCost._();
 
   /// [InsurancePlanCost] Details of a Health Insurance product/plan provided
   ///  by an organization.
@@ -1592,6 +1611,9 @@ class InsurancePlanCost with _$InsurancePlanCost implements BackboneElement {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

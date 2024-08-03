@@ -410,11 +410,6 @@ class _$PopulationImpl extends _Population {
   final CodeableConcept? physiologicalCondition;
 
   @override
-  String toString() {
-    return 'Population(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, ageRange: $ageRange, ageCodeableConcept: $ageCodeableConcept, gender: $gender, race: $race, physiologicalCondition: $physiologicalCondition)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&

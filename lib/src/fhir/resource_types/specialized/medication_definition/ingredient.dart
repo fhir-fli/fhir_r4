@@ -15,9 +15,9 @@ part 'ingredient.g.dart';
 
 /// [Ingredient] An ingredient of a manufactured item or pharmaceutical product.
 @freezed
-class Ingredient with _$Ingredient implements DomainResource {
+class Ingredient extends DomainResource with _$Ingredient {
   /// [Ingredient] An ingredient of a manufactured item or pharmaceutical product.
-  const Ingredient._();
+  Ingredient._();
 
   /// [Ingredient] An ingredient of a manufactured item or pharmaceutical product.
 
@@ -170,6 +170,9 @@ class Ingredient with _$Ingredient implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -201,11 +204,10 @@ class Ingredient with _$Ingredient implements DomainResource {
 
 /// [IngredientManufacturer] An ingredient of a manufactured item or pharmaceutical product.
 @freezed
-class IngredientManufacturer
-    with _$IngredientManufacturer
-    implements BackboneElement {
+class IngredientManufacturer extends BackboneElement
+    with _$IngredientManufacturer {
   /// [IngredientManufacturer] An ingredient of a manufactured item or pharmaceutical product.
-  const IngredientManufacturer._();
+  IngredientManufacturer._();
 
   /// [IngredientManufacturer] An ingredient of a manufactured item or pharmaceutical product.
 
@@ -272,6 +274,9 @@ class IngredientManufacturer
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -283,11 +288,9 @@ class IngredientManufacturer
 
 /// [IngredientSubstance] An ingredient of a manufactured item or pharmaceutical product.
 @freezed
-class IngredientSubstance
-    with _$IngredientSubstance
-    implements BackboneElement {
+class IngredientSubstance extends BackboneElement with _$IngredientSubstance {
   /// [IngredientSubstance] An ingredient of a manufactured item or pharmaceutical product.
-  const IngredientSubstance._();
+  IngredientSubstance._();
 
   /// [IngredientSubstance] An ingredient of a manufactured item or pharmaceutical product.
 
@@ -352,6 +355,9 @@ class IngredientSubstance
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -363,9 +369,9 @@ class IngredientSubstance
 
 /// [IngredientStrength] An ingredient of a manufactured item or pharmaceutical product.
 @freezed
-class IngredientStrength with _$IngredientStrength implements BackboneElement {
+class IngredientStrength extends BackboneElement with _$IngredientStrength {
   /// [IngredientStrength] An ingredient of a manufactured item or pharmaceutical product.
-  const IngredientStrength._();
+  IngredientStrength._();
 
   /// [IngredientStrength] An ingredient of a manufactured item or pharmaceutical product.
 
@@ -483,6 +489,9 @@ class IngredientStrength with _$IngredientStrength implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -494,11 +503,10 @@ class IngredientStrength with _$IngredientStrength implements BackboneElement {
 
 /// [IngredientReferenceStrength] An ingredient of a manufactured item or pharmaceutical product.
 @freezed
-class IngredientReferenceStrength
-    with _$IngredientReferenceStrength
-    implements BackboneElement {
+class IngredientReferenceStrength extends BackboneElement
+    with _$IngredientReferenceStrength {
   /// [IngredientReferenceStrength] An ingredient of a manufactured item or pharmaceutical product.
-  const IngredientReferenceStrength._();
+  IngredientReferenceStrength._();
 
   /// [IngredientReferenceStrength] An ingredient of a manufactured item or pharmaceutical product.
 
@@ -587,6 +595,9 @@ class IngredientReferenceStrength
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

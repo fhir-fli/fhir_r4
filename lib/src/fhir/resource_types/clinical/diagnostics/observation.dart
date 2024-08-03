@@ -15,9 +15,9 @@ part 'observation.g.dart';
 
 /// [Observation] Measurements and simple assertions made about a patient,
 @freezed
-class Observation with _$Observation implements DomainResource {
+class Observation extends DomainResource with _$Observation {
   /// [Observation] Measurements and simple assertions made about a patient,
-  const Observation._();
+  Observation._();
 
   /// [Observation] Measurements and simple assertions made about a patient,
   ///  device or other subject.
@@ -536,6 +536,9 @@ class Observation with _$Observation implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -567,11 +570,10 @@ class Observation with _$Observation implements DomainResource {
 
 /// [ObservationReferenceRange] Measurements and simple assertions made
 @freezed
-class ObservationReferenceRange
-    with _$ObservationReferenceRange
-    implements BackboneElement {
+class ObservationReferenceRange extends BackboneElement
+    with _$ObservationReferenceRange {
   /// [ObservationReferenceRange] Measurements and simple assertions made
-  const ObservationReferenceRange._();
+  ObservationReferenceRange._();
 
   /// [ObservationReferenceRange] Measurements and simple assertions made
   ///  about a patient, device or other subject.
@@ -726,6 +728,9 @@ class ObservationReferenceRange
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -737,11 +742,9 @@ class ObservationReferenceRange
 
 /// [ObservationComponent] Measurements and simple assertions made about a
 @freezed
-class ObservationComponent
-    with _$ObservationComponent
-    implements BackboneElement {
+class ObservationComponent extends BackboneElement with _$ObservationComponent {
   /// [ObservationComponent] Measurements and simple assertions made about a
-  const ObservationComponent._();
+  ObservationComponent._();
 
   /// [ObservationComponent] Measurements and simple assertions made about a
   ///  patient, device or other subject.
@@ -957,6 +960,9 @@ class ObservationComponent
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

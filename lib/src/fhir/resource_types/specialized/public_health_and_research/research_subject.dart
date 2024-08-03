@@ -15,9 +15,9 @@ part 'research_subject.g.dart';
 
 /// [ResearchSubject] A physical entity which is the primary unit of
 @freezed
-class ResearchSubject with _$ResearchSubject implements DomainResource {
+class ResearchSubject extends DomainResource with _$ResearchSubject {
   /// [ResearchSubject] A physical entity which is the primary unit of
-  const ResearchSubject._();
+  ResearchSubject._();
 
   /// [ResearchSubject] A physical entity which is the primary unit of
   ///  operational and/or administrative interest in a study.
@@ -240,6 +240,9 @@ class ResearchSubject with _$ResearchSubject implements DomainResource {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

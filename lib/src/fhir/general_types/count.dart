@@ -14,9 +14,9 @@ part 'count.g.dart';
 
 /// [Count] A measured amount (or an amount that can potentially be
 @freezed
-class Count with _$Count implements DataType {
+class Count extends DataType with _$Count {
   /// [Count] A measured amount (or an amount that can potentially be
-  const Count._();
+  Count._();
 
   /// [Count] A measured amount (or an amount that can potentially be
   /// measured). Note that measured amounts include amounts that are not
@@ -136,6 +136,9 @@ class Count with _$Count implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

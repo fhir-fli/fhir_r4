@@ -14,9 +14,9 @@ part 'account.g.dart';
 
 /// [Account] A financial tool for tracking value accrued for a particular
 @freezed
-class Account with _$Account implements DomainResource {
+class Account extends DomainResource with _$Account {
   /// [Account] A financial tool for tracking value accrued for a particular
-  const Account._();
+  Account._();
 
   /// [Account] A financial tool for tracking value accrued for a particular
   /// purpose.  In the healthcare field, used to track charges for a patient,
@@ -264,6 +264,9 @@ class Account with _$Account implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -295,9 +298,9 @@ class Account with _$Account implements DomainResource {
 
 /// [AccountCoverage] A financial tool for tracking value accrued for a
 @freezed
-class AccountCoverage with _$AccountCoverage implements BackboneElement {
+class AccountCoverage extends BackboneElement with _$AccountCoverage {
   /// [AccountCoverage] A financial tool for tracking value accrued for a
-  const AccountCoverage._();
+  AccountCoverage._();
 
   /// [AccountCoverage] A financial tool for tracking value accrued for a
   /// particular purpose.  In the healthcare field, used to track charges for a
@@ -411,6 +414,9 @@ class AccountCoverage with _$AccountCoverage implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -422,9 +428,9 @@ class AccountCoverage with _$AccountCoverage implements BackboneElement {
 
 /// [AccountGuarantor] A financial tool for tracking value accrued for a
 @freezed
-class AccountGuarantor with _$AccountGuarantor implements BackboneElement {
+class AccountGuarantor extends BackboneElement with _$AccountGuarantor {
   /// [AccountGuarantor] A financial tool for tracking value accrued for a
-  const AccountGuarantor._();
+  AccountGuarantor._();
 
   /// [AccountGuarantor] A financial tool for tracking value accrued for a
   /// particular purpose.  In the healthcare field, used to track charges for a
@@ -538,6 +544,9 @@ class AccountGuarantor with _$AccountGuarantor implements BackboneElement {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

@@ -14,9 +14,9 @@ part 'money.g.dart';
 
 /// [Money] An amount of economic utility in some recognized currency.
 @freezed
-class Money with _$Money implements DataType {
+class Money extends DataType with _$Money {
   /// [Money] An amount of economic utility in some recognized currency.
-  const Money._();
+  Money._();
 
   /// [Money] An amount of economic utility in some recognized currency.
   ///
@@ -90,6 +90,9 @@ class Money with _$Money implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

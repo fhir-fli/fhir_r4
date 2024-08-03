@@ -835,11 +835,6 @@ class _$PractitionerImpl extends _Practitioner {
   }
 
   @override
-  String toString() {
-    return 'Practitioner(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, active: $active, activeElement: $activeElement, name: $name, telecom: $telecom, address: $address, gender: $gender, genderElement: $genderElement, birthDate: $birthDate, birthDateElement: $birthDateElement, photo: $photo, qualification: $qualification, communication: $communication)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1464,11 +1459,6 @@ class _$PractitionerQualificationImpl extends _PractitionerQualification {
   /// [issuer] Organization that regulates and issues the qualification.
   @override
   final Reference? issuer;
-
-  @override
-  String toString() {
-    return 'PractitionerQualification(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, code: $code, period: $period, issuer: $issuer)';
-  }
 
   @override
   bool operator ==(Object other) {

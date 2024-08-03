@@ -15,11 +15,10 @@ part 'immunization_evaluation.g.dart';
 
 /// [ImmunizationEvaluation] Describes a comparison of an immunization event
 @freezed
-class ImmunizationEvaluation
-    with _$ImmunizationEvaluation
-    implements DomainResource {
+class ImmunizationEvaluation extends DomainResource
+    with _$ImmunizationEvaluation {
   /// [ImmunizationEvaluation] Describes a comparison of an immunization event
-  const ImmunizationEvaluation._();
+  ImmunizationEvaluation._();
 
   /// [ImmunizationEvaluation] Describes a comparison of an immunization event
   /// against published recommendations to determine if the administration is
@@ -317,6 +316,9 @@ class ImmunizationEvaluation
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

@@ -14,9 +14,9 @@ part 'prod_characteristic.g.dart';
 
 /// [ProdCharacteristic] The marketing status describes the date when a
 @freezed
-class ProdCharacteristic with _$ProdCharacteristic implements Element {
+class ProdCharacteristic extends Element with _$ProdCharacteristic {
   /// [ProdCharacteristic] The marketing status describes the date when a
-  const ProdCharacteristic._();
+  ProdCharacteristic._();
 
   /// [ProdCharacteristic] The marketing status describes the date when a
   /// medicinal product is actually put on the market or the date as of which it
@@ -223,6 +223,9 @@ class ProdCharacteristic with _$ProdCharacteristic implements Element {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

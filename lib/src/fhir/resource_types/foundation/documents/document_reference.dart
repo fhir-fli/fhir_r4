@@ -15,9 +15,9 @@ part 'document_reference.g.dart';
 
 /// [DocumentReference] A reference to a document of any kind for any
 @freezed
-class DocumentReference with _$DocumentReference implements DomainResource {
+class DocumentReference extends DomainResource with _$DocumentReference {
   /// [DocumentReference] A reference to a document of any kind for any
-  const DocumentReference._();
+  DocumentReference._();
 
   /// [DocumentReference] A reference to a document of any kind for any
   /// purpose. Provides metadata about the document so that the document can be
@@ -322,6 +322,9 @@ class DocumentReference with _$DocumentReference implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -353,11 +356,10 @@ class DocumentReference with _$DocumentReference implements DomainResource {
 
 /// [DocumentReferenceRelatesTo] A reference to a document of any kind for
 @freezed
-class DocumentReferenceRelatesTo
-    with _$DocumentReferenceRelatesTo
-    implements BackboneElement {
+class DocumentReferenceRelatesTo extends BackboneElement
+    with _$DocumentReferenceRelatesTo {
   /// [DocumentReferenceRelatesTo] A reference to a document of any kind for
-  const DocumentReferenceRelatesTo._();
+  DocumentReferenceRelatesTo._();
 
   /// [DocumentReferenceRelatesTo] A reference to a document of any kind for
   /// any purpose. Provides metadata about the document so that the document can
@@ -466,6 +468,9 @@ class DocumentReferenceRelatesTo
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -477,11 +482,10 @@ class DocumentReferenceRelatesTo
 
 /// [DocumentReferenceContent] A reference to a document of any kind for any
 @freezed
-class DocumentReferenceContent
-    with _$DocumentReferenceContent
-    implements BackboneElement {
+class DocumentReferenceContent extends BackboneElement
+    with _$DocumentReferenceContent {
   /// [DocumentReferenceContent] A reference to a document of any kind for any
-  const DocumentReferenceContent._();
+  DocumentReferenceContent._();
 
   /// [DocumentReferenceContent] A reference to a document of any kind for any
   /// purpose. Provides metadata about the document so that the document can be
@@ -589,6 +593,9 @@ class DocumentReferenceContent
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -600,11 +607,10 @@ class DocumentReferenceContent
 
 /// [DocumentReferenceContext] A reference to a document of any kind for any
 @freezed
-class DocumentReferenceContext
-    with _$DocumentReferenceContext
-    implements BackboneElement {
+class DocumentReferenceContext extends BackboneElement
+    with _$DocumentReferenceContext {
   /// [DocumentReferenceContext] A reference to a document of any kind for any
-  const DocumentReferenceContext._();
+  DocumentReferenceContext._();
 
   /// [DocumentReferenceContext] A reference to a document of any kind for any
   /// purpose. Provides metadata about the document so that the document can be
@@ -749,6 +755,9 @@ class DocumentReferenceContext
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

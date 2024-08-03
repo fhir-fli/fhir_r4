@@ -839,11 +839,6 @@ class _$OrganizationImpl extends _Organization {
   }
 
   @override
-  String toString() {
-    return 'Organization(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, active: $active, activeElement: $activeElement, type: $type, name: $name, nameElement: $nameElement, alias: $alias, aliasElement: $aliasElement, telecom: $telecom, address: $address, partOf: $partOf, contact: $contact, endpoint: $endpoint)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1457,11 +1452,6 @@ class _$OrganizationContactImpl extends _OrganizationContact {
   /// [address] Visiting or postal addresses for the contact.
   @override
   final Address? address;
-
-  @override
-  String toString() {
-    return 'OrganizationContact(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, purpose: $purpose, name: $name, telecom: $telecom, address: $address)';
-  }
 
   @override
   bool operator ==(Object other) {

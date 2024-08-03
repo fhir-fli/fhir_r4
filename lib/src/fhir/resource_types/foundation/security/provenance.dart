@@ -15,9 +15,9 @@ part 'provenance.g.dart';
 
 /// [Provenance] Provenance of a resource is a record that describes entities
 @freezed
-class Provenance with _$Provenance implements DomainResource {
+class Provenance extends DomainResource with _$Provenance {
   /// [Provenance] Provenance of a resource is a record that describes entities
-  const Provenance._();
+  Provenance._();
 
   /// [Provenance] Provenance of a resource is a record that describes entities
   /// and processes involved in producing and delivering or otherwise
@@ -273,6 +273,9 @@ class Provenance with _$Provenance implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -304,9 +307,9 @@ class Provenance with _$Provenance implements DomainResource {
 
 /// [ProvenanceAgent] Provenance of a resource is a record that describes
 @freezed
-class ProvenanceAgent with _$ProvenanceAgent implements BackboneElement {
+class ProvenanceAgent extends BackboneElement with _$ProvenanceAgent {
   /// [ProvenanceAgent] Provenance of a resource is a record that describes
-  const ProvenanceAgent._();
+  ProvenanceAgent._();
 
   /// [ProvenanceAgent] Provenance of a resource is a record that describes
   /// entities and processes involved in producing and delivering or otherwise
@@ -428,6 +431,9 @@ class ProvenanceAgent with _$ProvenanceAgent implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -439,9 +445,9 @@ class ProvenanceAgent with _$ProvenanceAgent implements BackboneElement {
 
 /// [ProvenanceEntity] Provenance of a resource is a record that describes
 @freezed
-class ProvenanceEntity with _$ProvenanceEntity implements BackboneElement {
+class ProvenanceEntity extends BackboneElement with _$ProvenanceEntity {
   /// [ProvenanceEntity] Provenance of a resource is a record that describes
-  const ProvenanceEntity._();
+  ProvenanceEntity._();
 
   /// [ProvenanceEntity] Provenance of a resource is a record that describes
   /// entities and processes involved in producing and delivering or otherwise
@@ -563,6 +569,9 @@ class ProvenanceEntity with _$ProvenanceEntity implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

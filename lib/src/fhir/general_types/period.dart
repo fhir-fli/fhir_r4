@@ -14,9 +14,9 @@ part 'period.g.dart';
 
 /// [Period] A time period defined by a start and end date and optionally
 @freezed
-class Period with _$Period implements DataType {
+class Period extends DataType with _$Period {
   /// [Period] A time period defined by a start and end date and optionally
-  const Period._();
+  Period._();
 
   /// [Period] A time period defined by a start and end date and optionally
   ///  time.
@@ -98,6 +98,9 @@ class Period with _$Period implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

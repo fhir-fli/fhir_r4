@@ -15,9 +15,9 @@ part 'naming_system.g.dart';
 
 /// [NamingSystem] A curated namespace that issues unique symbols within that
 @freezed
-class NamingSystem with _$NamingSystem implements DomainResource {
+class NamingSystem extends DomainResource with _$NamingSystem {
   /// [NamingSystem] A curated namespace that issues unique symbols within that
-  const NamingSystem._();
+  NamingSystem._();
 
   /// [NamingSystem] A curated namespace that issues unique symbols within that
   /// namespace for the identification of concepts, people, devices, etc.
@@ -324,6 +324,9 @@ class NamingSystem with _$NamingSystem implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -355,11 +358,9 @@ class NamingSystem with _$NamingSystem implements DomainResource {
 
 /// [NamingSystemUniqueId] A curated namespace that issues unique symbols
 @freezed
-class NamingSystemUniqueId
-    with _$NamingSystemUniqueId
-    implements BackboneElement {
+class NamingSystemUniqueId extends BackboneElement with _$NamingSystemUniqueId {
   /// [NamingSystemUniqueId] A curated namespace that issues unique symbols
-  const NamingSystemUniqueId._();
+  NamingSystemUniqueId._();
 
   /// [NamingSystemUniqueId] A curated namespace that issues unique symbols
   /// within that namespace for the identification of concepts, people, devices,
@@ -502,6 +503,9 @@ class NamingSystemUniqueId
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

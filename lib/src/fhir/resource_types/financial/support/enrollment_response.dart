@@ -14,9 +14,9 @@ part 'enrollment_response.g.dart';
 
 /// [EnrollmentResponse] This resource provides enrollment and plan details
 @freezed
-class EnrollmentResponse with _$EnrollmentResponse implements DomainResource {
+class EnrollmentResponse extends DomainResource with _$EnrollmentResponse {
   /// [EnrollmentResponse] This resource provides enrollment and plan details
-  const EnrollmentResponse._();
+  EnrollmentResponse._();
 
   /// [EnrollmentResponse] This resource provides enrollment and plan details
   ///  from the processing of an EnrollmentRequest resource.
@@ -238,6 +238,9 @@ class EnrollmentResponse with _$EnrollmentResponse implements DomainResource {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

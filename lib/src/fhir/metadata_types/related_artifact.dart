@@ -14,9 +14,9 @@ part 'related_artifact.g.dart';
 
 /// [RelatedArtifact] Related artifacts such as additional documentation,
 @freezed
-class RelatedArtifact with _$RelatedArtifact implements DataType {
+class RelatedArtifact extends DataType with _$RelatedArtifact {
   /// [RelatedArtifact] Related artifacts such as additional documentation,
-  const RelatedArtifact._();
+  RelatedArtifact._();
 
   /// [RelatedArtifact] Related artifacts such as additional documentation,
   ///  justification, or bibliographic references.
@@ -146,6 +146,9 @@ class RelatedArtifact with _$RelatedArtifact implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

@@ -251,11 +251,6 @@ class _$RatioRangeImpl extends _RatioRange {
   final Quantity? denominator;
 
   @override
-  String toString() {
-    return 'RatioRange(id: $id, extension_: $extension_, lowNumerator: $lowNumerator, highNumerator: $highNumerator, denominator: $denominator)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&

@@ -15,9 +15,9 @@ part 'capability_statement.g.dart';
 
 /// [CapabilityStatement] A Capability Statement documents a set of
 @freezed
-class CapabilityStatement with _$CapabilityStatement implements DomainResource {
+class CapabilityStatement extends DomainResource with _$CapabilityStatement {
   /// [CapabilityStatement] A Capability Statement documents a set of
-  const CapabilityStatement._();
+  CapabilityStatement._();
 
   /// [CapabilityStatement] A Capability Statement documents a set of
   /// capabilities (behaviors) of a FHIR Server for a particular version of FHIR
@@ -493,6 +493,9 @@ class CapabilityStatement with _$CapabilityStatement implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -524,11 +527,10 @@ class CapabilityStatement with _$CapabilityStatement implements DomainResource {
 
 /// [CapabilityStatementSoftware] A Capability Statement documents a set of
 @freezed
-class CapabilityStatementSoftware
-    with _$CapabilityStatementSoftware
-    implements BackboneElement {
+class CapabilityStatementSoftware extends BackboneElement
+    with _$CapabilityStatementSoftware {
   /// [CapabilityStatementSoftware] A Capability Statement documents a set of
-  const CapabilityStatementSoftware._();
+  CapabilityStatementSoftware._();
 
   /// [CapabilityStatementSoftware] A Capability Statement documents a set of
   /// capabilities (behaviors) of a FHIR Server for a particular version of FHIR
@@ -650,6 +652,9 @@ class CapabilityStatementSoftware
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -658,10 +663,9 @@ class CapabilityStatementSoftware
 
 @freezed
 @freezed
-class CapabilityStatementImplementation
-    with _$CapabilityStatementImplementation
-    implements BackboneElement {
-  const CapabilityStatementImplementation._();
+class CapabilityStatementImplementation extends BackboneElement
+    with _$CapabilityStatementImplementation {
+  CapabilityStatementImplementation._();
 
   /// [CapabilityStatementImplementation] A Capability Statement documents a
   /// set of capabilities (behaviors) of a FHIR Server for a particular version
@@ -771,6 +775,9 @@ class CapabilityStatementImplementation
       _$CapabilityStatementImplementationFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -785,14 +792,13 @@ class CapabilityStatementImplementation
 
 ///  statement of required or desired server implementation.
 @freezed
-class CapabilityStatementRest
-    with _$CapabilityStatementRest
-    implements BackboneElement {
+class CapabilityStatementRest extends BackboneElement
+    with _$CapabilityStatementRest {
   /// [CapabilityStatementRest] A Capability Statement documents a set of
   /// capabilities (behaviors) of a FHIR Server for a particular version of FHIR
   /// that may be used as a statement of actual server functionality or a
   ///  statement of required or desired server implementation.
-  const CapabilityStatementRest._();
+  CapabilityStatementRest._();
 
   /// [CapabilityStatementRest] A Capability Statement documents a set of
   /// capabilities (behaviors) of a FHIR Server for a particular version of FHIR
@@ -954,6 +960,9 @@ class CapabilityStatementRest
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -968,14 +977,13 @@ class CapabilityStatementRest
 
 ///  statement of required or desired server implementation.
 @freezed
-class CapabilityStatementSecurity
-    with _$CapabilityStatementSecurity
-    implements BackboneElement {
+class CapabilityStatementSecurity extends BackboneElement
+    with _$CapabilityStatementSecurity {
   /// [CapabilityStatementSecurity] A Capability Statement documents a set of
   /// capabilities (behaviors) of a FHIR Server for a particular version of FHIR
   /// that may be used as a statement of actual server functionality or a
   ///  statement of required or desired server implementation.
-  const CapabilityStatementSecurity._();
+  CapabilityStatementSecurity._();
 
   /// [CapabilityStatementSecurity] A Capability Statement documents a set of
   /// capabilities (behaviors) of a FHIR Server for a particular version of FHIR
@@ -1094,6 +1102,9 @@ class CapabilityStatementSecurity
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1108,14 +1119,13 @@ class CapabilityStatementSecurity
 
 ///  statement of required or desired server implementation.
 @freezed
-class CapabilityStatementResource
-    with _$CapabilityStatementResource
-    implements BackboneElement {
+class CapabilityStatementResource extends BackboneElement
+    with _$CapabilityStatementResource {
   /// [CapabilityStatementResource] A Capability Statement documents a set of
   /// capabilities (behaviors) of a FHIR Server for a particular version of FHIR
   /// that may be used as a statement of actual server functionality or a
   ///  statement of required or desired server implementation.
-  const CapabilityStatementResource._();
+  CapabilityStatementResource._();
 
   /// [CapabilityStatementResource] A Capability Statement documents a set of
   /// capabilities (behaviors) of a FHIR Server for a particular version of FHIR
@@ -1420,6 +1430,9 @@ class CapabilityStatementResource
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1434,14 +1447,13 @@ class CapabilityStatementResource
 
 ///  statement of required or desired server implementation.
 @freezed
-class CapabilityStatementInteraction
-    with _$CapabilityStatementInteraction
-    implements BackboneElement {
+class CapabilityStatementInteraction extends BackboneElement
+    with _$CapabilityStatementInteraction {
   /// [CapabilityStatementInteraction] A Capability Statement documents a set
   /// of capabilities (behaviors) of a FHIR Server for a particular version of
   /// FHIR that may be used as a statement of actual server functionality or a
   ///  statement of required or desired server implementation.
-  const CapabilityStatementInteraction._();
+  CapabilityStatementInteraction._();
 
   /// [CapabilityStatementInteraction] A Capability Statement documents a set
   /// of capabilities (behaviors) of a FHIR Server for a particular version of
@@ -1560,6 +1572,9 @@ class CapabilityStatementInteraction
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1574,14 +1589,13 @@ class CapabilityStatementInteraction
 
 ///  statement of required or desired server implementation.
 @freezed
-class CapabilityStatementSearchParam
-    with _$CapabilityStatementSearchParam
-    implements BackboneElement {
+class CapabilityStatementSearchParam extends BackboneElement
+    with _$CapabilityStatementSearchParam {
   /// [CapabilityStatementSearchParam] A Capability Statement documents a set
   /// of capabilities (behaviors) of a FHIR Server for a particular version of
   /// FHIR that may be used as a statement of actual server functionality or a
   ///  statement of required or desired server implementation.
-  const CapabilityStatementSearchParam._();
+  CapabilityStatementSearchParam._();
 
   /// [CapabilityStatementSearchParam] A Capability Statement documents a set
   /// of capabilities (behaviors) of a FHIR Server for a particular version of
@@ -1719,6 +1733,9 @@ class CapabilityStatementSearchParam
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1733,14 +1750,13 @@ class CapabilityStatementSearchParam
 
 ///  statement of required or desired server implementation.
 @freezed
-class CapabilityStatementOperation
-    with _$CapabilityStatementOperation
-    implements BackboneElement {
+class CapabilityStatementOperation extends BackboneElement
+    with _$CapabilityStatementOperation {
   /// [CapabilityStatementOperation] A Capability Statement documents a set of
   /// capabilities (behaviors) of a FHIR Server for a particular version of FHIR
   /// that may be used as a statement of actual server functionality or a
   ///  statement of required or desired server implementation.
-  const CapabilityStatementOperation._();
+  CapabilityStatementOperation._();
 
   /// [CapabilityStatementOperation] A Capability Statement documents a set of
   /// capabilities (behaviors) of a FHIR Server for a particular version of FHIR
@@ -1879,6 +1895,9 @@ class CapabilityStatementOperation
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1893,14 +1912,13 @@ class CapabilityStatementOperation
 
 ///  statement of required or desired server implementation.
 @freezed
-class CapabilityStatementInteraction1
-    with _$CapabilityStatementInteraction1
-    implements BackboneElement {
+class CapabilityStatementInteraction1 extends BackboneElement
+    with _$CapabilityStatementInteraction1 {
   /// [CapabilityStatementInteraction1] A Capability Statement documents a set
   /// of capabilities (behaviors) of a FHIR Server for a particular version of
   /// FHIR that may be used as a statement of actual server functionality or a
   ///  statement of required or desired server implementation.
-  const CapabilityStatementInteraction1._();
+  CapabilityStatementInteraction1._();
 
   /// [CapabilityStatementInteraction1] A Capability Statement documents a set
   /// of capabilities (behaviors) of a FHIR Server for a particular version of
@@ -2015,6 +2033,9 @@ class CapabilityStatementInteraction1
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2029,14 +2050,13 @@ class CapabilityStatementInteraction1
 
 ///  statement of required or desired server implementation.
 @freezed
-class CapabilityStatementMessaging
-    with _$CapabilityStatementMessaging
-    implements BackboneElement {
+class CapabilityStatementMessaging extends BackboneElement
+    with _$CapabilityStatementMessaging {
   /// [CapabilityStatementMessaging] A Capability Statement documents a set of
   /// capabilities (behaviors) of a FHIR Server for a particular version of FHIR
   /// that may be used as a statement of actual server functionality or a
   ///  statement of required or desired server implementation.
-  const CapabilityStatementMessaging._();
+  CapabilityStatementMessaging._();
 
   /// [CapabilityStatementMessaging] A Capability Statement documents a set of
   /// capabilities (behaviors) of a FHIR Server for a particular version of FHIR
@@ -2170,6 +2190,9 @@ class CapabilityStatementMessaging
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2184,14 +2207,13 @@ class CapabilityStatementMessaging
 
 ///  statement of required or desired server implementation.
 @freezed
-class CapabilityStatementEndpoint
-    with _$CapabilityStatementEndpoint
-    implements BackboneElement {
+class CapabilityStatementEndpoint extends BackboneElement
+    with _$CapabilityStatementEndpoint {
   /// [CapabilityStatementEndpoint] A Capability Statement documents a set of
   /// capabilities (behaviors) of a FHIR Server for a particular version of FHIR
   /// that may be used as a statement of actual server functionality or a
   ///  statement of required or desired server implementation.
-  const CapabilityStatementEndpoint._();
+  CapabilityStatementEndpoint._();
 
   /// [CapabilityStatementEndpoint] A Capability Statement documents a set of
   /// capabilities (behaviors) of a FHIR Server for a particular version of FHIR
@@ -2300,6 +2322,9 @@ class CapabilityStatementEndpoint
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2314,14 +2339,13 @@ class CapabilityStatementEndpoint
 
 ///  a statement of required or desired server implementation.
 @freezed
-class CapabilityStatementSupportedMessage
-    with _$CapabilityStatementSupportedMessage
-    implements BackboneElement {
+class CapabilityStatementSupportedMessage extends BackboneElement
+    with _$CapabilityStatementSupportedMessage {
   /// [CapabilityStatementSupportedMessage] A Capability Statement documents a
   /// set of capabilities (behaviors) of a FHIR Server for a particular version
   /// of FHIR that may be used as a statement of actual server functionality or
   ///  a statement of required or desired server implementation.
-  const CapabilityStatementSupportedMessage._();
+  CapabilityStatementSupportedMessage._();
 
   /// [CapabilityStatementSupportedMessage] A Capability Statement documents a
   /// set of capabilities (behaviors) of a FHIR Server for a particular version
@@ -2419,6 +2443,9 @@ class CapabilityStatementSupportedMessage
       _$CapabilityStatementSupportedMessageFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2433,14 +2460,13 @@ class CapabilityStatementSupportedMessage
 
 ///  statement of required or desired server implementation.
 @freezed
-class CapabilityStatementDocument
-    with _$CapabilityStatementDocument
-    implements BackboneElement {
+class CapabilityStatementDocument extends BackboneElement
+    with _$CapabilityStatementDocument {
   /// [CapabilityStatementDocument] A Capability Statement documents a set of
   /// capabilities (behaviors) of a FHIR Server for a particular version of FHIR
   /// that may be used as a statement of actual server functionality or a
   ///  statement of required or desired server implementation.
-  const CapabilityStatementDocument._();
+  CapabilityStatementDocument._();
 
   /// [CapabilityStatementDocument] A Capability Statement documents a set of
   /// capabilities (behaviors) of a FHIR Server for a particular version of FHIR
@@ -2561,6 +2587,9 @@ class CapabilityStatementDocument
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

@@ -1206,11 +1206,6 @@ class _$NutritionOrderImpl extends _NutritionOrder {
   }
 
   @override
-  String toString() {
-    return 'NutritionOrder(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, instantiatesCanonical: $instantiatesCanonical, instantiatesUri: $instantiatesUri, instantiatesUriElement: $instantiatesUriElement, instantiates: $instantiates, instantiatesElement: $instantiatesElement, status: $status, statusElement: $statusElement, intent: $intent, intentElement: $intentElement, patient: $patient, encounter: $encounter, dateTime: $dateTime, dateTimeElement: $dateTimeElement, orderer: $orderer, allergyIntolerance: $allergyIntolerance, foodPreferenceModifier: $foodPreferenceModifier, excludeFoodModifier: $excludeFoodModifier, oralDiet: $oralDiet, supplement: $supplement, enteralFormula: $enteralFormula, note: $note)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2023,11 +2018,6 @@ class _$NutritionOrderOralDietImpl extends _NutritionOrderOralDiet {
   final PrimitiveElement? instructionElement;
 
   @override
-  String toString() {
-    return 'NutritionOrderOralDiet(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, schedule: $schedule, nutrient: $nutrient, texture: $texture, fluidConsistencyType: $fluidConsistencyType, instruction: $instruction, instructionElement: $instructionElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2467,11 +2457,6 @@ class _$NutritionOrderNutrientImpl extends _NutritionOrderNutrient {
   final Quantity? amount;
 
   @override
-  String toString() {
-    return 'NutritionOrderNutrient(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, modifier: $modifier, amount: $amount)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2862,11 +2847,6 @@ class _$NutritionOrderTextureImpl extends _NutritionOrderTexture {
   ///  modification applies to.  This could be all foods types.
   @override
   final CodeableConcept? foodType;
-
-  @override
-  String toString() {
-    return 'NutritionOrderTexture(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, modifier: $modifier, foodType: $foodType)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -3386,11 +3366,6 @@ class _$NutritionOrderSupplementImpl extends _NutritionOrderSupplement {
   @override
   @JsonKey(name: '_instruction')
   final PrimitiveElement? instructionElement;
-
-  @override
-  String toString() {
-    return 'NutritionOrderSupplement(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, productName: $productName, productNameElement: $productNameElement, schedule: $schedule, quantity: $quantity, instruction: $instruction, instructionElement: $instructionElement)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -4139,11 +4114,6 @@ class _$NutritionOrderEnteralFormulaImpl extends _NutritionOrderEnteralFormula {
   final PrimitiveElement? administrationInstructionElement;
 
   @override
-  String toString() {
-    return 'NutritionOrderEnteralFormula(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, baseFormulaType: $baseFormulaType, baseFormulaProductName: $baseFormulaProductName, baseFormulaProductNameElement: $baseFormulaProductNameElement, additiveType: $additiveType, additiveProductName: $additiveProductName, additiveProductNameElement: $additiveProductNameElement, caloricDensity: $caloricDensity, routeofAdministration: $routeofAdministration, administration: $administration, maxVolumeToDeliver: $maxVolumeToDeliver, administrationInstruction: $administrationInstruction, administrationInstructionElement: $administrationInstructionElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -4722,11 +4692,6 @@ class _$NutritionOrderAdministrationImpl extends _NutritionOrderAdministration {
   ///  e.g. 60 mL per hour, according to the specified schedule.
   @override
   final Ratio? rateRatio;
-
-  @override
-  String toString() {
-    return 'NutritionOrderAdministration(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, schedule: $schedule, quantity: $quantity, rateQuantity: $rateQuantity, rateRatio: $rateRatio)';
-  }
 
   @override
   bool operator ==(Object other) {

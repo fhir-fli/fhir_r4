@@ -14,9 +14,9 @@ part 'fhir_meta.g.dart';
 
 /// [FhirMeta] The metadata about a resource. This is content in the resource
 @freezed
-class FhirMeta with _$FhirMeta implements DataType {
+class FhirMeta extends DataType with _$FhirMeta {
   /// [FhirMeta] The metadata about a resource. This is content in the resource
-  const FhirMeta._();
+  FhirMeta._();
 
   /// [FhirMeta] The metadata about a resource. This is content in the resource
   /// that is maintained by the infrastructure. Changes to the content might not
@@ -145,6 +145,9 @@ class FhirMeta with _$FhirMeta implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

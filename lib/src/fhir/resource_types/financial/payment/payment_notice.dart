@@ -14,9 +14,9 @@ part 'payment_notice.g.dart';
 
 /// [PaymentNotice] This resource provides the status of the payment for
 @freezed
-class PaymentNotice with _$PaymentNotice implements DomainResource {
+class PaymentNotice extends DomainResource with _$PaymentNotice {
   /// [PaymentNotice] This resource provides the status of the payment for
-  const PaymentNotice._();
+  PaymentNotice._();
 
   /// [PaymentNotice] This resource provides the status of the payment for
   /// goods and services rendered, and the request and response resource
@@ -258,6 +258,9 @@ class PaymentNotice with _$PaymentNotice implements DomainResource {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

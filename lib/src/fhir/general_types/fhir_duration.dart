@@ -14,9 +14,9 @@ part 'fhir_duration.g.dart';
 
 /// [Duration] A length of time.
 @freezed
-class FhirDuration with _$FhirDuration implements DataType {
+class FhirDuration extends DataType with _$FhirDuration {
   /// [Duration] A length of time.
-  const FhirDuration._();
+  FhirDuration._();
 
   /// [Duration] A length of time.
   ///
@@ -135,6 +135,9 @@ class FhirDuration with _$FhirDuration implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

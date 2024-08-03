@@ -11,8 +11,8 @@ part 'fhir_extension.freezed.dart';
 part 'fhir_extension.g.dart';
 
 @freezed
-class FhirExtension with _$FhirExtension implements FhirBase {
-  const FhirExtension._();
+class FhirExtension extends FhirBase with _$FhirExtension {
+  FhirExtension._();
 
   const factory FhirExtension({
     /// [id] Unique id for the element within a resource (for internal
@@ -410,6 +410,9 @@ class FhirExtension with _$FhirExtension implements FhirBase {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

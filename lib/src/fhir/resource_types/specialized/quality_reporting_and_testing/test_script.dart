@@ -15,9 +15,9 @@ part 'test_script.g.dart';
 
 /// [TestScript] A structured set of tests against a FHIR server or client
 @freezed
-class TestScript with _$TestScript implements DomainResource {
+class TestScript extends DomainResource with _$TestScript {
   /// [TestScript] A structured set of tests against a FHIR server or client
-  const TestScript._();
+  TestScript._();
 
   /// [TestScript] A structured set of tests against a FHIR server or client
   ///  implementation to determine compliance against the FHIR specification.
@@ -429,6 +429,9 @@ class TestScript with _$TestScript implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -460,9 +463,9 @@ class TestScript with _$TestScript implements DomainResource {
 
 /// [TestScriptOrigin] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptOrigin with _$TestScriptOrigin implements BackboneElement {
+class TestScriptOrigin extends BackboneElement with _$TestScriptOrigin {
   /// [TestScriptOrigin] A structured set of tests against a FHIR server or
-  const TestScriptOrigin._();
+  TestScriptOrigin._();
 
   /// [TestScriptOrigin] A structured set of tests against a FHIR server or
   /// client implementation to determine compliance against the FHIR
@@ -568,6 +571,9 @@ class TestScriptOrigin with _$TestScriptOrigin implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -579,11 +585,10 @@ class TestScriptOrigin with _$TestScriptOrigin implements BackboneElement {
 
 /// [TestScriptDestination] A structured set of tests against a FHIR server
 @freezed
-class TestScriptDestination
-    with _$TestScriptDestination
-    implements BackboneElement {
+class TestScriptDestination extends BackboneElement
+    with _$TestScriptDestination {
   /// [TestScriptDestination] A structured set of tests against a FHIR server
-  const TestScriptDestination._();
+  TestScriptDestination._();
 
   /// [TestScriptDestination] A structured set of tests against a FHIR server
   /// or client implementation to determine compliance against the FHIR
@@ -689,6 +694,9 @@ class TestScriptDestination
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -700,9 +708,9 @@ class TestScriptDestination
 
 /// [TestScriptMetadata] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptMetadata with _$TestScriptMetadata implements BackboneElement {
+class TestScriptMetadata extends BackboneElement with _$TestScriptMetadata {
   /// [TestScriptMetadata] A structured set of tests against a FHIR server or
-  const TestScriptMetadata._();
+  TestScriptMetadata._();
 
   /// [TestScriptMetadata] A structured set of tests against a FHIR server or
   /// client implementation to determine compliance against the FHIR
@@ -803,6 +811,9 @@ class TestScriptMetadata with _$TestScriptMetadata implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -814,9 +825,9 @@ class TestScriptMetadata with _$TestScriptMetadata implements BackboneElement {
 
 /// [TestScriptLink] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptLink with _$TestScriptLink implements BackboneElement {
+class TestScriptLink extends BackboneElement with _$TestScriptLink {
   /// [TestScriptLink] A structured set of tests against a FHIR server or
-  const TestScriptLink._();
+  TestScriptLink._();
 
   /// [TestScriptLink] A structured set of tests against a FHIR server or
   /// client implementation to determine compliance against the FHIR
@@ -927,6 +938,9 @@ class TestScriptLink with _$TestScriptLink implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -938,11 +952,9 @@ class TestScriptLink with _$TestScriptLink implements BackboneElement {
 
 /// [TestScriptCapability] A structured set of tests against a FHIR server
 @freezed
-class TestScriptCapability
-    with _$TestScriptCapability
-    implements BackboneElement {
+class TestScriptCapability extends BackboneElement with _$TestScriptCapability {
   /// [TestScriptCapability] A structured set of tests against a FHIR server
-  const TestScriptCapability._();
+  TestScriptCapability._();
 
   /// [TestScriptCapability] A structured set of tests against a FHIR server
   /// or client implementation to determine compliance against the FHIR
@@ -1110,6 +1122,9 @@ class TestScriptCapability
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1121,9 +1136,9 @@ class TestScriptCapability
 
 /// [TestScriptFixture] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptFixture with _$TestScriptFixture implements BackboneElement {
+class TestScriptFixture extends BackboneElement with _$TestScriptFixture {
   /// [TestScriptFixture] A structured set of tests against a FHIR server or
-  const TestScriptFixture._();
+  TestScriptFixture._();
 
   /// [TestScriptFixture] A structured set of tests against a FHIR server or
   /// client implementation to determine compliance against the FHIR
@@ -1251,6 +1266,9 @@ class TestScriptFixture with _$TestScriptFixture implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1262,9 +1280,9 @@ class TestScriptFixture with _$TestScriptFixture implements BackboneElement {
 
 /// [TestScriptVariable] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptVariable with _$TestScriptVariable implements BackboneElement {
+class TestScriptVariable extends BackboneElement with _$TestScriptVariable {
   /// [TestScriptVariable] A structured set of tests against a FHIR server or
-  const TestScriptVariable._();
+  TestScriptVariable._();
 
   /// [TestScriptVariable] A structured set of tests against a FHIR server or
   /// client implementation to determine compliance against the FHIR
@@ -1451,6 +1469,9 @@ class TestScriptVariable with _$TestScriptVariable implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1462,9 +1483,9 @@ class TestScriptVariable with _$TestScriptVariable implements BackboneElement {
 
 /// [TestScriptSetup] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptSetup with _$TestScriptSetup implements BackboneElement {
+class TestScriptSetup extends BackboneElement with _$TestScriptSetup {
   /// [TestScriptSetup] A structured set of tests against a FHIR server or
-  const TestScriptSetup._();
+  TestScriptSetup._();
 
   /// [TestScriptSetup] A structured set of tests against a FHIR server or
   /// client implementation to determine compliance against the FHIR
@@ -1558,6 +1579,9 @@ class TestScriptSetup with _$TestScriptSetup implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1569,9 +1593,9 @@ class TestScriptSetup with _$TestScriptSetup implements BackboneElement {
 
 /// [TestScriptAction] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptAction with _$TestScriptAction implements BackboneElement {
+class TestScriptAction extends BackboneElement with _$TestScriptAction {
   /// [TestScriptAction] A structured set of tests against a FHIR server or
-  const TestScriptAction._();
+  TestScriptAction._();
 
   /// [TestScriptAction] A structured set of tests against a FHIR server or
   /// client implementation to determine compliance against the FHIR
@@ -1672,6 +1696,9 @@ class TestScriptAction with _$TestScriptAction implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1683,11 +1710,9 @@ class TestScriptAction with _$TestScriptAction implements BackboneElement {
 
 /// [TestScriptOperation] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptOperation
-    with _$TestScriptOperation
-    implements BackboneElement {
+class TestScriptOperation extends BackboneElement with _$TestScriptOperation {
   /// [TestScriptOperation] A structured set of tests against a FHIR server or
-  const TestScriptOperation._();
+  TestScriptOperation._();
 
   /// [TestScriptOperation] A structured set of tests against a FHIR server or
   /// client implementation to determine compliance against the FHIR
@@ -1965,6 +1990,9 @@ class TestScriptOperation
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1976,11 +2004,10 @@ class TestScriptOperation
 
 /// [TestScriptRequestHeader] A structured set of tests against a FHIR
 @freezed
-class TestScriptRequestHeader
-    with _$TestScriptRequestHeader
-    implements BackboneElement {
+class TestScriptRequestHeader extends BackboneElement
+    with _$TestScriptRequestHeader {
   /// [TestScriptRequestHeader] A structured set of tests against a FHIR
-  const TestScriptRequestHeader._();
+  TestScriptRequestHeader._();
 
   /// [TestScriptRequestHeader] A structured set of tests against a FHIR
   /// server or client implementation to determine compliance against the FHIR
@@ -2089,6 +2116,9 @@ class TestScriptRequestHeader
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2100,9 +2130,9 @@ class TestScriptRequestHeader
 
 /// [TestScriptAssert] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptAssert with _$TestScriptAssert implements BackboneElement {
+class TestScriptAssert extends BackboneElement with _$TestScriptAssert {
   /// [TestScriptAssert] A structured set of tests against a FHIR server or
-  const TestScriptAssert._();
+  TestScriptAssert._();
 
   /// [TestScriptAssert] A structured set of tests against a FHIR server or
   /// client implementation to determine compliance against the FHIR
@@ -2461,6 +2491,9 @@ class TestScriptAssert with _$TestScriptAssert implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2472,9 +2505,9 @@ class TestScriptAssert with _$TestScriptAssert implements BackboneElement {
 
 /// [TestScriptTest] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptTest with _$TestScriptTest implements BackboneElement {
+class TestScriptTest extends BackboneElement with _$TestScriptTest {
   /// [TestScriptTest] A structured set of tests against a FHIR server or
-  const TestScriptTest._();
+  TestScriptTest._();
 
   /// [TestScriptTest] A structured set of tests against a FHIR server or
   /// client implementation to determine compliance against the FHIR
@@ -2592,6 +2625,9 @@ class TestScriptTest with _$TestScriptTest implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2603,9 +2639,9 @@ class TestScriptTest with _$TestScriptTest implements BackboneElement {
 
 /// [TestScriptAction1] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptAction1 with _$TestScriptAction1 implements BackboneElement {
+class TestScriptAction1 extends BackboneElement with _$TestScriptAction1 {
   /// [TestScriptAction1] A structured set of tests against a FHIR server or
-  const TestScriptAction1._();
+  TestScriptAction1._();
 
   /// [TestScriptAction1] A structured set of tests against a FHIR server or
   /// client implementation to determine compliance against the FHIR
@@ -2706,6 +2742,9 @@ class TestScriptAction1 with _$TestScriptAction1 implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2717,9 +2756,9 @@ class TestScriptAction1 with _$TestScriptAction1 implements BackboneElement {
 
 /// [TestScriptTeardown] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptTeardown with _$TestScriptTeardown implements BackboneElement {
+class TestScriptTeardown extends BackboneElement with _$TestScriptTeardown {
   /// [TestScriptTeardown] A structured set of tests against a FHIR server or
-  const TestScriptTeardown._();
+  TestScriptTeardown._();
 
   /// [TestScriptTeardown] A structured set of tests against a FHIR server or
   /// client implementation to determine compliance against the FHIR
@@ -2813,6 +2852,9 @@ class TestScriptTeardown with _$TestScriptTeardown implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2824,9 +2866,9 @@ class TestScriptTeardown with _$TestScriptTeardown implements BackboneElement {
 
 /// [TestScriptAction2] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptAction2 with _$TestScriptAction2 implements BackboneElement {
+class TestScriptAction2 extends BackboneElement with _$TestScriptAction2 {
   /// [TestScriptAction2] A structured set of tests against a FHIR server or
-  const TestScriptAction2._();
+  TestScriptAction2._();
 
   /// [TestScriptAction2] A structured set of tests against a FHIR server or
   /// client implementation to determine compliance against the FHIR
@@ -2918,6 +2960,9 @@ class TestScriptAction2 with _$TestScriptAction2 implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

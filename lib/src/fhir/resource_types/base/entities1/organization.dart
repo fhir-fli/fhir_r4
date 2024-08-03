@@ -14,9 +14,9 @@ part 'organization.g.dart';
 
 /// [Organization] A formally or informally recognized grouping of people or
 @freezed
-class Organization with _$Organization implements DomainResource {
+class Organization extends DomainResource with _$Organization {
   /// [Organization] A formally or informally recognized grouping of people or
-  const Organization._();
+  Organization._();
 
   /// [Organization] A formally or informally recognized grouping of people or
   /// organizations formed for the purpose of achieving some form of collective
@@ -247,6 +247,9 @@ class Organization with _$Organization implements DomainResource {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 
@@ -495,11 +498,9 @@ class Organization with _$Organization implements DomainResource {
 
 /// [OrganizationContact] A formally or informally recognized grouping of
 @freezed
-class OrganizationContact
-    with _$OrganizationContact
-    implements BackboneElement {
+class OrganizationContact extends BackboneElement with _$OrganizationContact {
   /// [OrganizationContact] A formally or informally recognized grouping of
-  const OrganizationContact._();
+  OrganizationContact._();
 
   /// [OrganizationContact] A formally or informally recognized grouping of
   /// people or organizations formed for the purpose of achieving some form of
@@ -610,6 +611,9 @@ class OrganizationContact
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

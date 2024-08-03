@@ -282,11 +282,6 @@ class _$ContributorImpl extends _Contributor {
   }
 
   @override
-  String toString() {
-    return 'Contributor(id: $id, extension_: $extension_, type: $type, typeElement: $typeElement, name: $name, nameElement: $nameElement, contact: $contact)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&

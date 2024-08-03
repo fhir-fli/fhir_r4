@@ -15,9 +15,9 @@ part 'guidance_response.g.dart';
 
 /// [GuidanceResponse] A guidance response is the formal response to a
 @freezed
-class GuidanceResponse with _$GuidanceResponse implements DomainResource {
+class GuidanceResponse extends DomainResource with _$GuidanceResponse {
   /// [GuidanceResponse] A guidance response is the formal response to a
-  const GuidanceResponse._();
+  GuidanceResponse._();
 
   /// [GuidanceResponse] A guidance response is the formal response to a
   /// guidance request, including any output parameters returned by the
@@ -351,6 +351,9 @@ class GuidanceResponse with _$GuidanceResponse implements DomainResource {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

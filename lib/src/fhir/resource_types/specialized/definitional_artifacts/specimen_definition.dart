@@ -15,9 +15,9 @@ part 'specimen_definition.g.dart';
 
 /// [SpecimenDefinition] A kind of specimen with associated set of
 @freezed
-class SpecimenDefinition with _$SpecimenDefinition implements DomainResource {
+class SpecimenDefinition extends DomainResource with _$SpecimenDefinition {
   /// [SpecimenDefinition] A kind of specimen with associated set of
-  const SpecimenDefinition._();
+  SpecimenDefinition._();
 
   /// [SpecimenDefinition] A kind of specimen with associated set of
   ///  requirements.
@@ -213,6 +213,9 @@ class SpecimenDefinition with _$SpecimenDefinition implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -244,11 +247,10 @@ class SpecimenDefinition with _$SpecimenDefinition implements DomainResource {
 
 /// [SpecimenDefinitionTypeTested] A kind of specimen with associated set of
 @freezed
-class SpecimenDefinitionTypeTested
-    with _$SpecimenDefinitionTypeTested
-    implements BackboneElement {
+class SpecimenDefinitionTypeTested extends BackboneElement
+    with _$SpecimenDefinitionTypeTested {
   /// [SpecimenDefinitionTypeTested] A kind of specimen with associated set of
-  const SpecimenDefinitionTypeTested._();
+  SpecimenDefinitionTypeTested._();
 
   /// [SpecimenDefinitionTypeTested] A kind of specimen with associated set of
   ///  requirements.
@@ -401,6 +403,9 @@ class SpecimenDefinitionTypeTested
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -412,11 +417,10 @@ class SpecimenDefinitionTypeTested
 
 /// [SpecimenDefinitionContainer] A kind of specimen with associated set of
 @freezed
-class SpecimenDefinitionContainer
-    with _$SpecimenDefinitionContainer
-    implements BackboneElement {
+class SpecimenDefinitionContainer extends BackboneElement
+    with _$SpecimenDefinitionContainer {
   /// [SpecimenDefinitionContainer] A kind of specimen with associated set of
-  const SpecimenDefinitionContainer._();
+  SpecimenDefinitionContainer._();
 
   /// [SpecimenDefinitionContainer] A kind of specimen with associated set of
   ///  requirements.
@@ -575,6 +579,9 @@ class SpecimenDefinitionContainer
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -586,11 +593,10 @@ class SpecimenDefinitionContainer
 
 /// [SpecimenDefinitionAdditive] A kind of specimen with associated set of
 @freezed
-class SpecimenDefinitionAdditive
-    with _$SpecimenDefinitionAdditive
-    implements BackboneElement {
+class SpecimenDefinitionAdditive extends BackboneElement
+    with _$SpecimenDefinitionAdditive {
   /// [SpecimenDefinitionAdditive] A kind of specimen with associated set of
-  const SpecimenDefinitionAdditive._();
+  SpecimenDefinitionAdditive._();
 
   /// [SpecimenDefinitionAdditive] A kind of specimen with associated set of
   ///  requirements.
@@ -696,6 +702,9 @@ class SpecimenDefinitionAdditive
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -707,11 +716,10 @@ class SpecimenDefinitionAdditive
 
 /// [SpecimenDefinitionHandling] A kind of specimen with associated set of
 @freezed
-class SpecimenDefinitionHandling
-    with _$SpecimenDefinitionHandling
-    implements BackboneElement {
+class SpecimenDefinitionHandling extends BackboneElement
+    with _$SpecimenDefinitionHandling {
   /// [SpecimenDefinitionHandling] A kind of specimen with associated set of
-  const SpecimenDefinitionHandling._();
+  SpecimenDefinitionHandling._();
 
   /// [SpecimenDefinitionHandling] A kind of specimen with associated set of
   ///  requirements.
@@ -832,6 +840,9 @@ class SpecimenDefinitionHandling
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

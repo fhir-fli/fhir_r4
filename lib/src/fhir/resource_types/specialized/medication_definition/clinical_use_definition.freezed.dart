@@ -770,11 +770,6 @@ class _$ClinicalUseDefinitionImpl extends _ClinicalUseDefinition {
   final ClinicalUseDefinitionWarning? warning;
 
   @override
-  String toString() {
-    return 'ClinicalUseDefinition(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, type: $type, typeElement: $typeElement, category: $category, subject: $subject, status: $status, contraindication: $contraindication, indication: $indication, interaction: $interaction, population: $population, undesirableEffect: $undesirableEffect, warning: $warning)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1335,11 +1330,6 @@ class _$ClinicalUseDefinitionContraindicationImpl
   }
 
   @override
-  String toString() {
-    return 'ClinicalUseDefinitionContraindication(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, diseaseSymptomProcedure: $diseaseSymptomProcedure, diseaseStatus: $diseaseStatus, comorbidity: $comorbidity, indication: $indication, otherTherapy: $otherTherapy)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1682,11 +1672,6 @@ class _$ClinicalUseDefinitionOtherTherapyImpl
   /// [therapy] Reference to a specific medication (active substance, medicinal product or class of products) as part of an indication or contraindication.;
   @override
   final CodeableReference therapy;
-
-  @override
-  String toString() {
-    return 'ClinicalUseDefinitionOtherTherapy(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, relationshipType: $relationshipType, therapy: $therapy)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -2223,11 +2208,6 @@ class _$ClinicalUseDefinitionIndicationImpl
   }
 
   @override
-  String toString() {
-    return 'ClinicalUseDefinitionIndication(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, diseaseSymptomProcedure: $diseaseSymptomProcedure, diseaseStatus: $diseaseStatus, comorbidity: $comorbidity, intendedEffect: $intendedEffect, durationRange: $durationRange, durationString: $durationString, durationStringElement: $durationStringElement, undesirableEffect: $undesirableEffect, otherTherapy: $otherTherapy)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2709,11 +2689,6 @@ class _$ClinicalUseDefinitionInteractionImpl
   }
 
   @override
-  String toString() {
-    return 'ClinicalUseDefinitionInteraction(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, interactant: $interactant, type: $type, effect: $effect, incidence: $incidence, management: $management)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -3062,11 +3037,6 @@ class _$ClinicalUseDefinitionInteractantImpl
   /// [itemCodeableConcept] The specific medication, food or laboratory test that interacts.;
   @override
   final CodeableConcept? itemCodeableConcept;
-
-  @override
-  String toString() {
-    return 'ClinicalUseDefinitionInteractant(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, itemReference: $itemReference, itemCodeableConcept: $itemCodeableConcept)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -3437,11 +3407,6 @@ class _$ClinicalUseDefinitionUndesirableEffectImpl
   final CodeableConcept? frequencyOfOccurrence;
 
   @override
-  String toString() {
-    return 'ClinicalUseDefinitionUndesirableEffect(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, symptomConditionEffect: $symptomConditionEffect, classification: $classification, frequencyOfOccurrence: $frequencyOfOccurrence)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -3783,11 +3748,6 @@ class _$ClinicalUseDefinitionWarningImpl extends _ClinicalUseDefinitionWarning {
   /// [code] A coded or unformatted textual definition of this warning.;
   @override
   final CodeableConcept? code;
-
-  @override
-  String toString() {
-    return 'ClinicalUseDefinitionWarning(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, description: $description, descriptionElement: $descriptionElement, code: $code)';
-  }
 
   @override
   bool operator ==(Object other) {

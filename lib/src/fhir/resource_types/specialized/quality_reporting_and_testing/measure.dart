@@ -15,9 +15,9 @@ part 'measure.g.dart';
 
 /// [Measure] The Measure resource provides the definition of a quality
 @freezed
-class Measure with _$Measure implements DomainResource {
+class Measure extends DomainResource with _$Measure {
   /// [Measure] The Measure resource provides the definition of a quality
-  const Measure._();
+  Measure._();
 
   /// [Measure] The Measure resource provides the definition of a quality
   ///  measure.
@@ -655,6 +655,9 @@ class Measure with _$Measure implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -686,9 +689,9 @@ class Measure with _$Measure implements DomainResource {
 
 /// [MeasureGroup] The Measure resource provides the definition of a quality
 @freezed
-class MeasureGroup with _$MeasureGroup implements BackboneElement {
+class MeasureGroup extends BackboneElement with _$MeasureGroup {
   /// [MeasureGroup] The Measure resource provides the definition of a quality
-  const MeasureGroup._();
+  MeasureGroup._();
 
   /// [MeasureGroup] The Measure resource provides the definition of a quality
   ///  measure.
@@ -811,6 +814,9 @@ class MeasureGroup with _$MeasureGroup implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -822,9 +828,9 @@ class MeasureGroup with _$MeasureGroup implements BackboneElement {
 
 /// [MeasurePopulation] The Measure resource provides the definition of a
 @freezed
-class MeasurePopulation with _$MeasurePopulation implements BackboneElement {
+class MeasurePopulation extends BackboneElement with _$MeasurePopulation {
   /// [MeasurePopulation] The Measure resource provides the definition of a
-  const MeasurePopulation._();
+  MeasurePopulation._();
 
   /// [MeasurePopulation] The Measure resource provides the definition of a
   ///  quality measure.
@@ -934,6 +940,9 @@ class MeasurePopulation with _$MeasurePopulation implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -945,9 +954,9 @@ class MeasurePopulation with _$MeasurePopulation implements BackboneElement {
 
 /// [MeasureStratifier] The Measure resource provides the definition of a
 @freezed
-class MeasureStratifier with _$MeasureStratifier implements BackboneElement {
+class MeasureStratifier extends BackboneElement with _$MeasureStratifier {
   /// [MeasureStratifier] The Measure resource provides the definition of a
-  const MeasureStratifier._();
+  MeasureStratifier._();
 
   /// [MeasureStratifier] The Measure resource provides the definition of a
   ///  quality measure.
@@ -1074,6 +1083,9 @@ class MeasureStratifier with _$MeasureStratifier implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1085,9 +1097,9 @@ class MeasureStratifier with _$MeasureStratifier implements BackboneElement {
 
 /// [MeasureComponent] The Measure resource provides the definition of a
 @freezed
-class MeasureComponent with _$MeasureComponent implements BackboneElement {
+class MeasureComponent extends BackboneElement with _$MeasureComponent {
   /// [MeasureComponent] The Measure resource provides the definition of a
-  const MeasureComponent._();
+  MeasureComponent._();
 
   /// [MeasureComponent] The Measure resource provides the definition of a
   ///  quality measure.
@@ -1209,6 +1221,9 @@ class MeasureComponent with _$MeasureComponent implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1220,11 +1235,10 @@ class MeasureComponent with _$MeasureComponent implements BackboneElement {
 
 /// [MeasureSupplementalData] The Measure resource provides the definition
 @freezed
-class MeasureSupplementalData
-    with _$MeasureSupplementalData
-    implements BackboneElement {
+class MeasureSupplementalData extends BackboneElement
+    with _$MeasureSupplementalData {
   /// [MeasureSupplementalData] The Measure resource provides the definition
-  const MeasureSupplementalData._();
+  MeasureSupplementalData._();
 
   /// [MeasureSupplementalData] The Measure resource provides the definition
   ///  of a quality measure.
@@ -1355,6 +1369,9 @@ class MeasureSupplementalData
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

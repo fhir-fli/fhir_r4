@@ -15,9 +15,9 @@ part 'device_definition.g.dart';
 
 /// [DeviceDefinition] The characteristics, operational status and
 @freezed
-class DeviceDefinition with _$DeviceDefinition implements DomainResource {
+class DeviceDefinition extends DomainResource with _$DeviceDefinition {
   /// [DeviceDefinition] The characteristics, operational status and
-  const DeviceDefinition._();
+  DeviceDefinition._();
 
   /// [DeviceDefinition] The characteristics, operational status and
   ///  capabilities of a medical-related component of a medical device.
@@ -348,6 +348,9 @@ class DeviceDefinition with _$DeviceDefinition implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -453,10 +456,9 @@ class DeviceDefinition with _$DeviceDefinition implements DomainResource {
 
 @freezed
 @freezed
-class DeviceDefinitionUdiDeviceIdentifier
-    with _$DeviceDefinitionUdiDeviceIdentifier
-    implements BackboneElement {
-  const DeviceDefinitionUdiDeviceIdentifier._();
+class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement
+    with _$DeviceDefinitionUdiDeviceIdentifier {
+  DeviceDefinitionUdiDeviceIdentifier._();
 
   /// [DeviceDefinitionUdiDeviceIdentifier] The characteristics, operational
   /// status and capabilities of a medical-related component of a medical
@@ -569,6 +571,9 @@ class DeviceDefinitionUdiDeviceIdentifier
       _$DeviceDefinitionUdiDeviceIdentifierFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -580,11 +585,10 @@ class DeviceDefinitionUdiDeviceIdentifier
 
 /// [DeviceDefinitionDeviceName] The characteristics, operational status and
 @freezed
-class DeviceDefinitionDeviceName
-    with _$DeviceDefinitionDeviceName
-    implements BackboneElement {
+class DeviceDefinitionDeviceName extends BackboneElement
+    with _$DeviceDefinitionDeviceName {
   /// [DeviceDefinitionDeviceName] The characteristics, operational status and
-  const DeviceDefinitionDeviceName._();
+  DeviceDefinitionDeviceName._();
 
   /// [DeviceDefinitionDeviceName] The characteristics, operational status and
   ///  capabilities of a medical-related component of a medical device.
@@ -696,6 +700,9 @@ class DeviceDefinitionDeviceName
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -707,11 +714,10 @@ class DeviceDefinitionDeviceName
 
 /// [DeviceDefinitionSpecialization] The characteristics, operational status
 @freezed
-class DeviceDefinitionSpecialization
-    with _$DeviceDefinitionSpecialization
-    implements BackboneElement {
+class DeviceDefinitionSpecialization extends BackboneElement
+    with _$DeviceDefinitionSpecialization {
   /// [DeviceDefinitionSpecialization] The characteristics, operational status
-  const DeviceDefinitionSpecialization._();
+  DeviceDefinitionSpecialization._();
 
   /// [DeviceDefinitionSpecialization] The characteristics, operational status
   ///  and capabilities of a medical-related component of a medical device.
@@ -822,6 +828,9 @@ class DeviceDefinitionSpecialization
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -833,11 +842,10 @@ class DeviceDefinitionSpecialization
 
 /// [DeviceDefinitionCapability] The characteristics, operational status and
 @freezed
-class DeviceDefinitionCapability
-    with _$DeviceDefinitionCapability
-    implements BackboneElement {
+class DeviceDefinitionCapability extends BackboneElement
+    with _$DeviceDefinitionCapability {
   /// [DeviceDefinitionCapability] The characteristics, operational status and
-  const DeviceDefinitionCapability._();
+  DeviceDefinitionCapability._();
 
   /// [DeviceDefinitionCapability] The characteristics, operational status and
   ///  capabilities of a medical-related component of a medical device.
@@ -935,6 +943,9 @@ class DeviceDefinitionCapability
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -946,11 +957,10 @@ class DeviceDefinitionCapability
 
 /// [DeviceDefinitionProperty] The characteristics, operational status and
 @freezed
-class DeviceDefinitionProperty
-    with _$DeviceDefinitionProperty
-    implements BackboneElement {
+class DeviceDefinitionProperty extends BackboneElement
+    with _$DeviceDefinitionProperty {
   /// [DeviceDefinitionProperty] The characteristics, operational status and
-  const DeviceDefinitionProperty._();
+  DeviceDefinitionProperty._();
 
   /// [DeviceDefinitionProperty] The characteristics, operational status and
   ///  capabilities of a medical-related component of a medical device.
@@ -1055,6 +1065,9 @@ class DeviceDefinitionProperty
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1066,11 +1079,10 @@ class DeviceDefinitionProperty
 
 /// [DeviceDefinitionMaterial] The characteristics, operational status and
 @freezed
-class DeviceDefinitionMaterial
-    with _$DeviceDefinitionMaterial
-    implements BackboneElement {
+class DeviceDefinitionMaterial extends BackboneElement
+    with _$DeviceDefinitionMaterial {
   /// [DeviceDefinitionMaterial] The characteristics, operational status and
-  const DeviceDefinitionMaterial._();
+  DeviceDefinitionMaterial._();
 
   /// [DeviceDefinitionMaterial] The characteristics, operational status and
   ///  capabilities of a medical-related component of a medical device.
@@ -1184,6 +1196,9 @@ class DeviceDefinitionMaterial
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

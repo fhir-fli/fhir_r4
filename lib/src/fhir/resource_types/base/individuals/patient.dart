@@ -14,9 +14,9 @@ part 'patient.g.dart';
 
 /// [Patient] Demographics and other administrative information about an
 @freezed
-class Patient with _$Patient implements DomainResource {
+class Patient extends DomainResource with _$Patient {
   /// [Patient] Demographics and other administrative information about an
-  const Patient._();
+  Patient._();
 
   /// [Patient] Demographics and other administrative information about an
   ///  individual or animal receiving care or other health-related services.
@@ -332,6 +332,9 @@ class Patient with _$Patient implements DomainResource {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 
@@ -688,9 +691,9 @@ class Patient with _$Patient implements DomainResource {
 
 /// [PatientContact] Demographics and other administrative information about
 @freezed
-class PatientContact with _$PatientContact implements BackboneElement {
+class PatientContact extends BackboneElement with _$PatientContact {
   /// [PatientContact] Demographics and other administrative information about
-  const PatientContact._();
+  PatientContact._();
 
   /// [PatientContact] Demographics and other administrative information about
   ///  an individual or animal receiving care or other health-related services.
@@ -829,6 +832,9 @@ class PatientContact with _$PatientContact implements BackboneElement {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 
@@ -983,11 +989,9 @@ class PatientContact with _$PatientContact implements BackboneElement {
 
 /// [PatientCommunication] Demographics and other administrative information
 @freezed
-class PatientCommunication
-    with _$PatientCommunication
-    implements BackboneElement {
+class PatientCommunication extends BackboneElement with _$PatientCommunication {
   /// [PatientCommunication] Demographics and other administrative information
-  const PatientCommunication._();
+  PatientCommunication._();
 
   /// [PatientCommunication] Demographics and other administrative information
   /// about an individual or animal receiving care or other health-related
@@ -1101,6 +1105,9 @@ class PatientCommunication
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1109,9 +1116,9 @@ class PatientCommunication
 
 /// [PatientLink] Demographics and other administrative information about an
 @freezed
-class PatientLink with _$PatientLink implements BackboneElement {
+class PatientLink extends BackboneElement with _$PatientLink {
   /// [PatientLink] Demographics and other administrative information about an
-  const PatientLink._();
+  PatientLink._();
 
   /// [PatientLink] Demographics and other administrative information about an
   ///  individual or animal receiving care or other health-related services.
@@ -1217,6 +1224,9 @@ class PatientLink with _$PatientLink implements BackboneElement {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

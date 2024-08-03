@@ -1877,11 +1877,6 @@ class _$ContractImpl extends _Contract {
   final Reference? legallyBindingReference;
 
   @override
-  String toString() {
-    return 'Contract(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, url: $url, urlElement: $urlElement, version: $version, versionElement: $versionElement, status: $status, statusElement: $statusElement, legalState: $legalState, instantiatesCanonical: $instantiatesCanonical, instantiatesUri: $instantiatesUri, instantiatesUriElement: $instantiatesUriElement, contentDerivative: $contentDerivative, issued: $issued, issuedElement: $issuedElement, applies: $applies, expirationType: $expirationType, subject: $subject, authority: $authority, domain: $domain, site: $site, name: $name, nameElement: $nameElement, title: $title, titleElement: $titleElement, subtitle: $subtitle, subtitleElement: $subtitleElement, alias: $alias, aliasElement: $aliasElement, author: $author, scope: $scope, topicCodeableConcept: $topicCodeableConcept, topicReference: $topicReference, type: $type, subType: $subType, contentDefinition: $contentDefinition, term: $term, supportingInfo: $supportingInfo, relevantHistory: $relevantHistory, signer: $signer, friendly: $friendly, legal: $legal, rule: $rule, legallyBindingAttachment: $legallyBindingAttachment, legallyBindingReference: $legallyBindingReference)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2924,11 +2919,6 @@ class _$ContractContentDefinitionImpl extends _ContractContentDefinition {
   final PrimitiveElement? copyrightElement;
 
   @override
-  String toString() {
-    return 'ContractContentDefinition(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, subType: $subType, publisher: $publisher, publicationDate: $publicationDate, publicationDateElement: $publicationDateElement, publicationStatus: $publicationStatus, publicationStatusElement: $publicationStatusElement, copyright: $copyright, copyrightElement: $copyrightElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -3781,11 +3771,6 @@ class _$ContractTermImpl extends _ContractTerm {
   }
 
   @override
-  String toString() {
-    return 'ContractTerm(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, issued: $issued, issuedElement: $issuedElement, applies: $applies, topicCodeableConcept: $topicCodeableConcept, topicReference: $topicReference, type: $type, subType: $subType, text: $text, textElement: $textElement, securityLabel: $securityLabel, offer: $offer, asset: $asset, action: $action, group: $group)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -4370,11 +4355,6 @@ class _$ContractSecurityLabelImpl extends _ContractSecurityLabel {
     if (_control is EqualUnmodifiableListView) return _control;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  String toString() {
-    return 'ContractSecurityLabel(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, number: $number, numberElement: $numberElement, classification: $classification, category: $category, control: $control)';
   }
 
   @override
@@ -5123,11 +5103,6 @@ class _$ContractOfferImpl extends _ContractOffer {
   }
 
   @override
-  String toString() {
-    return 'ContractOffer(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, party: $party, topic: $topic, type: $type, decision: $decision, decisionMode: $decisionMode, answer: $answer, text: $text, textElement: $textElement, linkId: $linkId, linkIdElement: $linkIdElement, securityLabelNumber: $securityLabelNumber, securityLabelNumberElement: $securityLabelNumberElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -5589,11 +5564,6 @@ class _$ContractPartyImpl extends _ContractParty {
   /// [role] How the party participates in the offer.
   @override
   final CodeableConcept role;
-
-  @override
-  String toString() {
-    return 'ContractParty(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, reference: $reference, role: $role)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -6459,11 +6429,6 @@ class _$ContractAnswerImpl extends _ContractAnswer {
   ///  whether biospecimen may be used for further research.
   @override
   final Reference? valueReference;
-
-  @override
-  String toString() {
-    return 'ContractAnswer(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, valueBoolean: $valueBoolean, valueBooleanElement: $valueBooleanElement, valueDecimal: $valueDecimal, valueDecimalElement: $valueDecimalElement, valueInteger: $valueInteger, valueIntegerElement: $valueIntegerElement, valueDate: $valueDate, valueDateElement: $valueDateElement, valueDateTime: $valueDateTime, valueDateTimeElement: $valueDateTimeElement, valueTime: $valueTime, valueTimeElement: $valueTimeElement, valueString: $valueString, valueStringElement: $valueStringElement, valueUri: $valueUri, valueUriElement: $valueUriElement, valueAttachment: $valueAttachment, valueCoding: $valueCoding, valueQuantity: $valueQuantity, valueReference: $valueReference)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -7538,11 +7503,6 @@ class _$ContractAssetImpl extends _ContractAsset {
   }
 
   @override
-  String toString() {
-    return 'ContractAsset(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, scope: $scope, type: $type, typeReference: $typeReference, subtype: $subtype, relationship: $relationship, context: $context, condition: $condition, conditionElement: $conditionElement, periodType: $periodType, period: $period, usePeriod: $usePeriod, text: $text, textElement: $textElement, linkId: $linkId, linkIdElement: $linkIdElement, answer: $answer, securityLabelNumber: $securityLabelNumber, securityLabelNumberElement: $securityLabelNumberElement, valuedItem: $valuedItem)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -8107,11 +8067,6 @@ class _$ContractContextImpl extends _ContractContext {
   @override
   @JsonKey(name: '_text')
   final PrimitiveElement? textElement;
-
-  @override
-  String toString() {
-    return 'ContractContext(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, reference: $reference, code: $code, text: $text, textElement: $textElement)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -9101,11 +9056,6 @@ class _$ContractValuedItemImpl extends _ContractValuedItem {
       return _securityLabelNumberElement;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  String toString() {
-    return 'ContractValuedItem(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, entityCodeableConcept: $entityCodeableConcept, entityReference: $entityReference, identifier: $identifier, effectiveTime: $effectiveTime, effectiveTimeElement: $effectiveTimeElement, quantity: $quantity, unitPrice: $unitPrice, factor: $factor, factorElement: $factorElement, points: $points, pointsElement: $pointsElement, net: $net, payment: $payment, paymentElement: $paymentElement, paymentDate: $paymentDate, paymentDateElement: $paymentDateElement, responsible: $responsible, recipient: $recipient, linkId: $linkId, linkIdElement: $linkIdElement, securityLabelNumber: $securityLabelNumber, securityLabelNumberElement: $securityLabelNumberElement)';
   }
 
   @override
@@ -10655,11 +10605,6 @@ class _$ContractActionImpl extends _ContractAction {
   }
 
   @override
-  String toString() {
-    return 'ContractAction(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, doNotPerform: $doNotPerform, doNotPerformElement: $doNotPerformElement, type: $type, subject: $subject, intent: $intent, linkId: $linkId, linkIdElement: $linkIdElement, status: $status, context: $context, contextLinkId: $contextLinkId, contextLinkIdElement: $contextLinkIdElement, occurrenceDateTime: $occurrenceDateTime, occurrenceDateTimeElement: $occurrenceDateTimeElement, occurrencePeriod: $occurrencePeriod, occurrenceTiming: $occurrenceTiming, requester: $requester, requesterLinkId: $requesterLinkId, requesterLinkIdElement: $requesterLinkIdElement, performerType: $performerType, performerRole: $performerRole, performer: $performer, performerLinkId: $performerLinkId, performerLinkIdElement: $performerLinkIdElement, reasonCode: $reasonCode, reasonReference: $reasonReference, reason: $reason, reasonElement: $reasonElement, reasonLinkId: $reasonLinkId, reasonLinkIdElement: $reasonLinkIdElement, note: $note, securityLabelNumber: $securityLabelNumber, securityLabelNumberElement: $securityLabelNumberElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -11310,11 +11255,6 @@ class _$ContractSubjectImpl extends _ContractSubject {
   final CodeableConcept? role;
 
   @override
-  String toString() {
-    return 'ContractSubject(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, reference: $reference, role: $role)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -11719,11 +11659,6 @@ class _$ContractSignerImpl extends _ContractSigner {
   }
 
   @override
-  String toString() {
-    return 'ContractSigner(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, party: $party, signature: $signature)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -12122,11 +12057,6 @@ class _$ContractFriendlyImpl extends _ContractFriendly {
   final Reference? contentReference;
 
   @override
-  String toString() {
-    return 'ContractFriendly(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, contentAttachment: $contentAttachment, contentReference: $contentReference)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -12515,11 +12445,6 @@ class _$ContractLegalImpl extends _ContractLegal {
   final Reference? contentReference;
 
   @override
-  String toString() {
-    return 'ContractLegal(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, contentAttachment: $contentAttachment, contentReference: $contentReference)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -12905,11 +12830,6 @@ class _$ContractRuleImpl extends _ContractRule {
   ///  language (e.g. XACML, DKAL, SecPal).
   @override
   final Reference? contentReference;
-
-  @override
-  String toString() {
-    return 'ContractRule(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, contentAttachment: $contentAttachment, contentReference: $contentReference)';
-  }
 
   @override
   bool operator ==(Object other) {

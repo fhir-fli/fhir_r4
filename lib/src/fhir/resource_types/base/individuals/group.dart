@@ -14,9 +14,9 @@ part 'group.g.dart';
 
 /// [FhirGroup] Represents a defined collection of entities that may be discussed
 @freezed
-class FhirGroup with _$FhirGroup implements DomainResource {
+class FhirGroup extends DomainResource with _$FhirGroup {
   /// [FhirGroup] Represents a defined collection of entities that may be discussed
-  const FhirGroup._();
+  FhirGroup._();
 
   /// [FhirGroup] Represents a defined collection of entities that may be discussed
   /// or acted upon collectively but which are not expected to act collectively,
@@ -270,6 +270,9 @@ class FhirGroup with _$FhirGroup implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -298,11 +301,9 @@ class FhirGroup with _$FhirGroup implements DomainResource {
 
 /// [GroupCharacteristic] Represents a defined collection of entities that
 @freezed
-class GroupCharacteristic
-    with _$GroupCharacteristic
-    implements BackboneElement {
+class GroupCharacteristic extends BackboneElement with _$GroupCharacteristic {
   /// [GroupCharacteristic] Represents a defined collection of entities that
-  const GroupCharacteristic._();
+  GroupCharacteristic._();
 
   /// [GroupCharacteristic] Represents a defined collection of entities that
   /// may be discussed or acted upon collectively but which are not expected to
@@ -458,6 +459,9 @@ class GroupCharacteristic
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -466,9 +470,9 @@ class GroupCharacteristic
 
 /// [GroupMember] Represents a defined collection of entities that may be
 @freezed
-class GroupMember with _$GroupMember implements BackboneElement {
+class GroupMember extends BackboneElement with _$GroupMember {
   /// [GroupMember] Represents a defined collection of entities that may be
-  const GroupMember._();
+  GroupMember._();
 
   /// [GroupMember] Represents a defined collection of entities that may be
   /// discussed or acted upon collectively but which are not expected to act
@@ -585,6 +589,9 @@ class GroupMember with _$GroupMember implements BackboneElement {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

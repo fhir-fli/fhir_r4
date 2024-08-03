@@ -14,11 +14,10 @@ part 'coverage_eligibility_response.g.dart';
 
 /// [CoverageEligibilityResponse] This resource provides eligibility and plan
 @freezed
-class CoverageEligibilityResponse
-    with _$CoverageEligibilityResponse
-    implements DomainResource {
+class CoverageEligibilityResponse extends DomainResource
+    with _$CoverageEligibilityResponse {
   /// [CoverageEligibilityResponse] This resource provides eligibility and plan
-  const CoverageEligibilityResponse._();
+  CoverageEligibilityResponse._();
 
   /// [CoverageEligibilityResponse] This resource provides eligibility and plan
   ///  details from the processing of an CoverageEligibilityRequest resource.
@@ -318,6 +317,9 @@ class CoverageEligibilityResponse
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -346,10 +348,9 @@ class CoverageEligibilityResponse
 
 @freezed
 @freezed
-class CoverageEligibilityResponseInsurance
-    with _$CoverageEligibilityResponseInsurance
-    implements BackboneElement {
-  const CoverageEligibilityResponseInsurance._();
+class CoverageEligibilityResponseInsurance extends BackboneElement
+    with _$CoverageEligibilityResponseInsurance {
+  CoverageEligibilityResponseInsurance._();
 
   /// [CoverageEligibilityResponseInsurance] This resource provides
   /// eligibility and plan details from the processing of an
@@ -466,6 +467,9 @@ class CoverageEligibilityResponseInsurance
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -477,11 +481,10 @@ class CoverageEligibilityResponseInsurance
 
 /// [CoverageEligibilityResponseItem] This resource provides eligibility and
 @freezed
-class CoverageEligibilityResponseItem
-    with _$CoverageEligibilityResponseItem
-    implements BackboneElement {
+class CoverageEligibilityResponseItem extends BackboneElement
+    with _$CoverageEligibilityResponseItem {
   /// [CoverageEligibilityResponseItem] This resource provides eligibility and
-  const CoverageEligibilityResponseItem._();
+  CoverageEligibilityResponseItem._();
 
   /// [CoverageEligibilityResponseItem] This resource provides eligibility and
   /// plan details from the processing of an CoverageEligibilityRequest
@@ -692,6 +695,9 @@ class CoverageEligibilityResponseItem
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -700,10 +706,9 @@ class CoverageEligibilityResponseItem
 
 @freezed
 @freezed
-class CoverageEligibilityResponseBenefit
-    with _$CoverageEligibilityResponseBenefit
-    implements BackboneElement {
-  const CoverageEligibilityResponseBenefit._();
+class CoverageEligibilityResponseBenefit extends BackboneElement
+    with _$CoverageEligibilityResponseBenefit {
+  CoverageEligibilityResponseBenefit._();
 
   /// [CoverageEligibilityResponseBenefit] This resource provides eligibility
   /// and plan details from the processing of an CoverageEligibilityRequest
@@ -849,6 +854,9 @@ class CoverageEligibilityResponseBenefit
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -860,11 +868,10 @@ class CoverageEligibilityResponseBenefit
 
 /// [CoverageEligibilityResponseError] This resource provides eligibility
 @freezed
-class CoverageEligibilityResponseError
-    with _$CoverageEligibilityResponseError
-    implements BackboneElement {
+class CoverageEligibilityResponseError extends BackboneElement
+    with _$CoverageEligibilityResponseError {
   /// [CoverageEligibilityResponseError] This resource provides eligibility
-  const CoverageEligibilityResponseError._();
+  CoverageEligibilityResponseError._();
 
   /// [CoverageEligibilityResponseError] This resource provides eligibility
   /// and plan details from the processing of an CoverageEligibilityRequest
@@ -950,6 +957,9 @@ class CoverageEligibilityResponseError
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

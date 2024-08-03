@@ -15,11 +15,10 @@ part 'medicinal_product_definition.g.dart';
 
 /// [MedicinalProductDefinition] A medicinal product, being a substance or combination of substances that is intended to treat, prevent or diagnose a disease, or to restore, correct or modify physiological functions by exerting a pharmacological, immunological or metabolic action. This resource is intended to define and detail such products and their properties, for uses other than direct patient care (e.g. regulatory use, or drug catalogs).
 @freezed
-class MedicinalProductDefinition
-    with _$MedicinalProductDefinition
-    implements DomainResource {
+class MedicinalProductDefinition extends DomainResource
+    with _$MedicinalProductDefinition {
   /// [MedicinalProductDefinition] A medicinal product, being a substance or combination of substances that is intended to treat, prevent or diagnose a disease, or to restore, correct or modify physiological functions by exerting a pharmacological, immunological or metabolic action. This resource is intended to define and detail such products and their properties, for uses other than direct patient care (e.g. regulatory use, or drug catalogs).
-  const MedicinalProductDefinition._();
+  MedicinalProductDefinition._();
 
   /// [MedicinalProductDefinition] A medicinal product, being a substance or combination of substances that is intended to treat, prevent or diagnose a disease, or to restore, correct or modify physiological functions by exerting a pharmacological, immunological or metabolic action. This resource is intended to define and detail such products and their properties, for uses other than direct patient care (e.g. regulatory use, or drug catalogs).
   ///
@@ -277,6 +276,9 @@ class MedicinalProductDefinition
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -305,10 +307,9 @@ class MedicinalProductDefinition
 
 @freezed
 @freezed
-class MedicinalProductDefinitionContact
-    with _$MedicinalProductDefinitionContact
-    implements BackboneElement {
-  const MedicinalProductDefinitionContact._();
+class MedicinalProductDefinitionContact extends BackboneElement
+    with _$MedicinalProductDefinitionContact {
+  MedicinalProductDefinitionContact._();
 
   /// [MedicinalProductDefinitionContact] A medicinal product, being a substance or combination of substances that is intended to treat, prevent or diagnose a disease, or to restore, correct or modify physiological functions by exerting a pharmacological, immunological or metabolic action. This resource is intended to define and detail such products and their properties, for uses other than direct patient care (e.g. regulatory use, or drug catalogs).
 
@@ -375,6 +376,9 @@ class MedicinalProductDefinitionContact
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -386,11 +390,10 @@ class MedicinalProductDefinitionContact
 
 /// [MedicinalProductDefinitionName] A medicinal product, being a substance or combination of substances that is intended to treat, prevent or diagnose a disease, or to restore, correct or modify physiological functions by exerting a pharmacological, immunological or metabolic action. This resource is intended to define and detail such products and their properties, for uses other than direct patient care (e.g. regulatory use, or drug catalogs).
 @freezed
-class MedicinalProductDefinitionName
-    with _$MedicinalProductDefinitionName
-    implements BackboneElement {
+class MedicinalProductDefinitionName extends BackboneElement
+    with _$MedicinalProductDefinitionName {
   /// [MedicinalProductDefinitionName] A medicinal product, being a substance or combination of substances that is intended to treat, prevent or diagnose a disease, or to restore, correct or modify physiological functions by exerting a pharmacological, immunological or metabolic action. This resource is intended to define and detail such products and their properties, for uses other than direct patient care (e.g. regulatory use, or drug catalogs).
-  const MedicinalProductDefinitionName._();
+  MedicinalProductDefinitionName._();
 
   /// [MedicinalProductDefinitionName] A medicinal product, being a substance or combination of substances that is intended to treat, prevent or diagnose a disease, or to restore, correct or modify physiological functions by exerting a pharmacological, immunological or metabolic action. This resource is intended to define and detail such products and their properties, for uses other than direct patient care (e.g. regulatory use, or drug catalogs).
 
@@ -471,6 +474,9 @@ class MedicinalProductDefinitionName
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -479,10 +485,9 @@ class MedicinalProductDefinitionName
 
 @freezed
 @freezed
-class MedicinalProductDefinitionNamePart
-    with _$MedicinalProductDefinitionNamePart
-    implements BackboneElement {
-  const MedicinalProductDefinitionNamePart._();
+class MedicinalProductDefinitionNamePart extends BackboneElement
+    with _$MedicinalProductDefinitionNamePart {
+  MedicinalProductDefinitionNamePart._();
 
   /// [MedicinalProductDefinitionNamePart] A medicinal product, being a substance or combination of substances that is intended to treat, prevent or diagnose a disease, or to restore, correct or modify physiological functions by exerting a pharmacological, immunological or metabolic action. This resource is intended to define and detail such products and their properties, for uses other than direct patient care (e.g. regulatory use, or drug catalogs).
 
@@ -554,6 +559,9 @@ class MedicinalProductDefinitionNamePart
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -562,10 +570,9 @@ class MedicinalProductDefinitionNamePart
 
 @freezed
 @freezed
-class MedicinalProductDefinitionCountryLanguage
-    with _$MedicinalProductDefinitionCountryLanguage
-    implements BackboneElement {
-  const MedicinalProductDefinitionCountryLanguage._();
+class MedicinalProductDefinitionCountryLanguage extends BackboneElement
+    with _$MedicinalProductDefinitionCountryLanguage {
+  MedicinalProductDefinitionCountryLanguage._();
 
   /// [MedicinalProductDefinitionCountryLanguage] A medicinal product, being a substance or combination of substances that is intended to treat, prevent or diagnose a disease, or to restore, correct or modify physiological functions by exerting a pharmacological, immunological or metabolic action. This resource is intended to define and detail such products and their properties, for uses other than direct patient care (e.g. regulatory use, or drug catalogs).
 
@@ -638,6 +645,9 @@ class MedicinalProductDefinitionCountryLanguage
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -646,10 +656,9 @@ class MedicinalProductDefinitionCountryLanguage
 
 @freezed
 @freezed
-class MedicinalProductDefinitionCrossReference
-    with _$MedicinalProductDefinitionCrossReference
-    implements BackboneElement {
-  const MedicinalProductDefinitionCrossReference._();
+class MedicinalProductDefinitionCrossReference extends BackboneElement
+    with _$MedicinalProductDefinitionCrossReference {
+  MedicinalProductDefinitionCrossReference._();
 
   /// [MedicinalProductDefinitionCrossReference] A medicinal product, being a substance or combination of substances that is intended to treat, prevent or diagnose a disease, or to restore, correct or modify physiological functions by exerting a pharmacological, immunological or metabolic action. This resource is intended to define and detail such products and their properties, for uses other than direct patient care (e.g. regulatory use, or drug catalogs).
 
@@ -717,6 +726,9 @@ class MedicinalProductDefinitionCrossReference
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -725,10 +737,9 @@ class MedicinalProductDefinitionCrossReference
 
 @freezed
 @freezed
-class MedicinalProductDefinitionOperation
-    with _$MedicinalProductDefinitionOperation
-    implements BackboneElement {
-  const MedicinalProductDefinitionOperation._();
+class MedicinalProductDefinitionOperation extends BackboneElement
+    with _$MedicinalProductDefinitionOperation {
+  MedicinalProductDefinitionOperation._();
 
   /// [MedicinalProductDefinitionOperation] A medicinal product, being a substance or combination of substances that is intended to treat, prevent or diagnose a disease, or to restore, correct or modify physiological functions by exerting a pharmacological, immunological or metabolic action. This resource is intended to define and detail such products and their properties, for uses other than direct patient care (e.g. regulatory use, or drug catalogs).
 
@@ -805,6 +816,9 @@ class MedicinalProductDefinitionOperation
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -813,10 +827,9 @@ class MedicinalProductDefinitionOperation
 
 @freezed
 @freezed
-class MedicinalProductDefinitionCharacteristic
-    with _$MedicinalProductDefinitionCharacteristic
-    implements BackboneElement {
-  const MedicinalProductDefinitionCharacteristic._();
+class MedicinalProductDefinitionCharacteristic extends BackboneElement
+    with _$MedicinalProductDefinitionCharacteristic {
+  MedicinalProductDefinitionCharacteristic._();
 
   /// [MedicinalProductDefinitionCharacteristic] A medicinal product, being a substance or combination of substances that is intended to treat, prevent or diagnose a disease, or to restore, correct or modify physiological functions by exerting a pharmacological, immunological or metabolic action. This resource is intended to define and detail such products and their properties, for uses other than direct patient care (e.g. regulatory use, or drug catalogs).
 
@@ -912,6 +925,9 @@ class MedicinalProductDefinitionCharacteristic
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

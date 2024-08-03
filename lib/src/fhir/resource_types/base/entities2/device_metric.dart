@@ -14,9 +14,9 @@ part 'device_metric.g.dart';
 
 /// [DeviceMetric] Describes a measurement, calculation or setting capability
 @freezed
-class DeviceMetric with _$DeviceMetric implements DomainResource {
+class DeviceMetric extends DomainResource with _$DeviceMetric {
   /// [DeviceMetric] Describes a measurement, calculation or setting capability
-  const DeviceMetric._();
+  DeviceMetric._();
 
   /// [DeviceMetric] Describes a measurement, calculation or setting capability
   ///  of a medical device.
@@ -293,6 +293,9 @@ class DeviceMetric with _$DeviceMetric implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -321,11 +324,10 @@ class DeviceMetric with _$DeviceMetric implements DomainResource {
 
 /// [DeviceMetricCalibration] Describes a measurement, calculation or
 @freezed
-class DeviceMetricCalibration
-    with _$DeviceMetricCalibration
-    implements BackboneElement {
+class DeviceMetricCalibration extends BackboneElement
+    with _$DeviceMetricCalibration {
   /// [DeviceMetricCalibration] Describes a measurement, calculation or
-  const DeviceMetricCalibration._();
+  DeviceMetricCalibration._();
 
   /// [DeviceMetricCalibration] Describes a measurement, calculation or
   ///  setting capability of a medical device.
@@ -444,6 +446,9 @@ class DeviceMetricCalibration
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

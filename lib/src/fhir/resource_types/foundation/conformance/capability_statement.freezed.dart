@@ -1621,11 +1621,6 @@ class _$CapabilityStatementImpl extends _CapabilityStatement {
   }
 
   @override
-  String toString() {
-    return 'CapabilityStatement(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, version: $version, versionElement: $versionElement, name: $name, nameElement: $nameElement, title: $title, titleElement: $titleElement, status: $status, statusElement: $statusElement, experimental: $experimental, experimentalElement: $experimentalElement, date: $date, dateElement: $dateElement, publisher: $publisher, publisherElement: $publisherElement, contact: $contact, description: $description, descriptionElement: $descriptionElement, useContext: $useContext, jurisdiction: $jurisdiction, purpose: $purpose, purposeElement: $purposeElement, copyright: $copyright, copyrightElement: $copyrightElement, kind: $kind, kindElement: $kindElement, instantiates: $instantiates, imports: $imports, software: $software, implementation: $implementation, fhirVersion: $fhirVersion, fhirVersionElement: $fhirVersionElement, format: $format, formatElement: $formatElement, patchFormat: $patchFormat, patchFormatElement: $patchFormatElement, implementationGuide: $implementationGuide, rest: $rest, messaging: $messaging, document: $document)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2526,11 +2521,6 @@ class _$CapabilityStatementSoftwareImpl extends _CapabilityStatementSoftware {
   final PrimitiveElement? releaseDateElement;
 
   @override
-  String toString() {
-    return 'CapabilityStatementSoftware(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, version: $version, versionElement: $versionElement, releaseDate: $releaseDate, releaseDateElement: $releaseDateElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -3015,11 +3005,6 @@ class _$CapabilityStatementImplementationImpl
   ///  instance and oversight of the data on the server at the specified URL.
   @override
   final Reference? custodian;
-
-  @override
-  String toString() {
-    return 'CapabilityStatementImplementation(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, description: $description, descriptionElement: $descriptionElement, url: $url, urlElement: $urlElement, custodian: $custodian)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -3679,11 +3664,6 @@ class _$CapabilityStatementRestImpl extends _CapabilityStatementRest {
   }
 
   @override
-  String toString() {
-    return 'CapabilityStatementRest(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, mode: $mode, modeElement: $modeElement, documentation: $documentation, documentationElement: $documentationElement, security: $security, resource: $resource, interaction: $interaction, searchParam: $searchParam, operation: $operation, compartment: $compartment)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -4198,11 +4178,6 @@ class _$CapabilityStatementSecurityImpl extends _CapabilityStatementSecurity {
   @override
   @JsonKey(name: '_description')
   final PrimitiveElement? descriptionElement;
-
-  @override
-  String toString() {
-    return 'CapabilityStatementSecurity(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, cors: $cors, corsElement: $corsElement, service: $service, description: $description, descriptionElement: $descriptionElement)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -5372,11 +5347,6 @@ class _$CapabilityStatementResourceImpl extends _CapabilityStatementResource {
   }
 
   @override
-  String toString() {
-    return 'CapabilityStatementResource(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, typeElement: $typeElement, profile: $profile, supportedProfile: $supportedProfile, documentation: $documentation, documentationElement: $documentationElement, interaction: $interaction, versioning: $versioning, versioningElement: $versioningElement, readHistory: $readHistory, readHistoryElement: $readHistoryElement, updateCreate: $updateCreate, updateCreateElement: $updateCreateElement, conditionalCreate: $conditionalCreate, conditionalCreateElement: $conditionalCreateElement, conditionalRead: $conditionalRead, conditionalReadElement: $conditionalReadElement, conditionalUpdate: $conditionalUpdate, conditionalUpdateElement: $conditionalUpdateElement, conditionalDelete: $conditionalDelete, conditionalDeleteElement: $conditionalDeleteElement, referencePolicy: $referencePolicy, referencePolicyElement: $referencePolicyElement, searchInclude: $searchInclude, searchIncludeElement: $searchIncludeElement, searchRevInclude: $searchRevInclude, searchRevIncludeElement: $searchRevIncludeElement, searchParam: $searchParam, operation: $operation)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -6064,11 +6034,6 @@ class _$CapabilityStatementInteractionImpl
   final PrimitiveElement? documentationElement;
 
   @override
-  String toString() {
-    return 'CapabilityStatementInteraction(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, codeElement: $codeElement, documentation: $documentation, documentationElement: $documentationElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -6571,11 +6536,6 @@ class _$CapabilityStatementSearchParamImpl
   final PrimitiveElement? documentationElement;
 
   @override
-  String toString() {
-    return 'CapabilityStatementSearchParam(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, definition: $definition, type: $type, typeElement: $typeElement, documentation: $documentation, documentationElement: $documentationElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -7075,11 +7035,6 @@ class _$CapabilityStatementOperationImpl extends _CapabilityStatementOperation {
   final PrimitiveElement? documentationElement;
 
   @override
-  String toString() {
-    return 'CapabilityStatementOperation(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, definition: $definition, documentation: $documentation, documentationElement: $documentationElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -7530,11 +7485,6 @@ class _$CapabilityStatementInteraction1Impl
   @override
   @JsonKey(name: '_documentation')
   final PrimitiveElement? documentationElement;
-
-  @override
-  String toString() {
-    return 'CapabilityStatementInteraction1(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, codeElement: $codeElement, documentation: $documentation, documentationElement: $documentationElement)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -8046,11 +7996,6 @@ class _$CapabilityStatementMessagingImpl extends _CapabilityStatementMessaging {
   }
 
   @override
-  String toString() {
-    return 'CapabilityStatementMessaging(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, endpoint: $endpoint, reliableCache: $reliableCache, reliableCacheElement: $reliableCacheElement, documentation: $documentation, documentationElement: $documentationElement, supportedMessage: $supportedMessage)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -8496,11 +8441,6 @@ class _$CapabilityStatementEndpointImpl extends _CapabilityStatementEndpoint {
   final PrimitiveElement? addressElement;
 
   @override
-  String toString() {
-    return 'CapabilityStatementEndpoint(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, protocol: $protocol, address: $address, addressElement: $addressElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -8899,11 +8839,6 @@ class _$CapabilityStatementSupportedMessageImpl
   ///  event, message structure, allowed responses, etc.
   @override
   final FhirCanonical definition;
-
-  @override
-  String toString() {
-    return 'CapabilityStatementSupportedMessage(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, mode: $mode, modeElement: $modeElement, definition: $definition)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -9352,11 +9287,6 @@ class _$CapabilityStatementDocumentImpl extends _CapabilityStatementDocument {
   ///  resources are present, and their contents.
   @override
   final FhirCanonical profile;
-
-  @override
-  String toString() {
-    return 'CapabilityStatementDocument(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, mode: $mode, modeElement: $modeElement, documentation: $documentation, documentationElement: $documentationElement, profile: $profile)';
-  }
 
   @override
   bool operator ==(Object other) {

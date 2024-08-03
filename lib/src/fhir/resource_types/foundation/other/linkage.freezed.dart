@@ -582,11 +582,6 @@ class _$LinkageImpl extends _Linkage {
   }
 
   @override
-  String toString() {
-    return 'Linkage(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, active: $active, activeElement: $activeElement, author: $author, item: $item)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1069,11 +1064,6 @@ class _$LinkageItemImpl extends _LinkageItem {
   /// [resource] The resource instance being linked as part of the group.
   @override
   final Reference resource;
-
-  @override
-  String toString() {
-    return 'LinkageItem(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, typeElement: $typeElement, resource: $resource)';
-  }
 
   @override
   bool operator ==(Object other) {

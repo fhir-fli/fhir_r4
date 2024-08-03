@@ -15,9 +15,9 @@ part 'vision_prescription.g.dart';
 
 /// [VisionPrescription] An authorization for the provision of glasses and/or
 @freezed
-class VisionPrescription with _$VisionPrescription implements DomainResource {
+class VisionPrescription extends DomainResource with _$VisionPrescription {
   /// [VisionPrescription] An authorization for the provision of glasses and/or
-  const VisionPrescription._();
+  VisionPrescription._();
 
   /// [VisionPrescription] An authorization for the provision of glasses and/or
   ///  contact lenses to a patient.
@@ -245,6 +245,9 @@ class VisionPrescription with _$VisionPrescription implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -273,10 +276,9 @@ class VisionPrescription with _$VisionPrescription implements DomainResource {
 
 @freezed
 @freezed
-class VisionPrescriptionLensSpecification
-    with _$VisionPrescriptionLensSpecification
-    implements BackboneElement {
-  const VisionPrescriptionLensSpecification._();
+class VisionPrescriptionLensSpecification extends BackboneElement
+    with _$VisionPrescriptionLensSpecification {
+  VisionPrescriptionLensSpecification._();
 
   /// [VisionPrescriptionLensSpecification] An authorization for the provision
   ///  of glasses and/or contact lenses to a patient.
@@ -481,6 +483,9 @@ class VisionPrescriptionLensSpecification
       _$VisionPrescriptionLensSpecificationFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -492,11 +497,10 @@ class VisionPrescriptionLensSpecification
 
 /// [VisionPrescriptionPrism] An authorization for the provision of glasses
 @freezed
-class VisionPrescriptionPrism
-    with _$VisionPrescriptionPrism
-    implements BackboneElement {
+class VisionPrescriptionPrism extends BackboneElement
+    with _$VisionPrescriptionPrism {
   /// [VisionPrescriptionPrism] An authorization for the provision of glasses
-  const VisionPrescriptionPrism._();
+  VisionPrescriptionPrism._();
 
   /// [VisionPrescriptionPrism] An authorization for the provision of glasses
   ///  and/or contact lenses to a patient.
@@ -604,6 +608,9 @@ class VisionPrescriptionPrism
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

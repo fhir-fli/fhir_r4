@@ -14,9 +14,9 @@ part 'practitioner_role.g.dart';
 
 /// [PractitionerRole] A specific set of Roles/Locations/specialties/services
 @freezed
-class PractitionerRole with _$PractitionerRole implements DomainResource {
+class PractitionerRole extends DomainResource with _$PractitionerRole {
   /// [PractitionerRole] A specific set of Roles/Locations/specialties/services
-  const PractitionerRole._();
+  PractitionerRole._();
 
   /// [PractitionerRole] A specific set of Roles/Locations/specialties/services
   ///  that a practitioner may perform at an organization for a period of time.
@@ -278,6 +278,9 @@ class PractitionerRole with _$PractitionerRole implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -383,11 +386,10 @@ class PractitionerRole with _$PractitionerRole implements DomainResource {
 
 /// [PractitionerRoleAvailableTime] A specific set of
 @freezed
-class PractitionerRoleAvailableTime
-    with _$PractitionerRoleAvailableTime
-    implements BackboneElement {
+class PractitionerRoleAvailableTime extends BackboneElement
+    with _$PractitionerRoleAvailableTime {
   /// [PractitionerRoleAvailableTime] A specific set of
-  const PractitionerRoleAvailableTime._();
+  PractitionerRoleAvailableTime._();
 
   /// [PractitionerRoleAvailableTime] A specific set of
   /// Roles/Locations/specialties/services that a practitioner may perform at an
@@ -528,6 +530,9 @@ class PractitionerRoleAvailableTime
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -536,11 +541,10 @@ class PractitionerRoleAvailableTime
 
 /// [PractitionerRoleNotAvailable] A specific set of
 @freezed
-class PractitionerRoleNotAvailable
-    with _$PractitionerRoleNotAvailable
-    implements BackboneElement {
+class PractitionerRoleNotAvailable extends BackboneElement
+    with _$PractitionerRoleNotAvailable {
   /// [PractitionerRoleNotAvailable] A specific set of
-  const PractitionerRoleNotAvailable._();
+  PractitionerRoleNotAvailable._();
 
   /// [PractitionerRoleNotAvailable] A specific set of
   /// Roles/Locations/specialties/services that a practitioner may perform at an
@@ -649,6 +653,9 @@ class PractitionerRoleNotAvailable
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

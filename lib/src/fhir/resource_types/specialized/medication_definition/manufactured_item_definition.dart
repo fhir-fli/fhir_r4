@@ -15,11 +15,10 @@ part 'manufactured_item_definition.g.dart';
 
 /// [ManufacturedItemDefinition] The definition and characteristics of a medicinal manufactured item, such as a tablet or capsule, as contained in a packaged medicinal product.
 @freezed
-class ManufacturedItemDefinition
-    with _$ManufacturedItemDefinition
-    implements DomainResource {
+class ManufacturedItemDefinition extends DomainResource
+    with _$ManufacturedItemDefinition {
   /// [ManufacturedItemDefinition] The definition and characteristics of a medicinal manufactured item, such as a tablet or capsule, as contained in a packaged medicinal product.
-  const ManufacturedItemDefinition._();
+  ManufacturedItemDefinition._();
 
   /// [ManufacturedItemDefinition] The definition and characteristics of a medicinal manufactured item, such as a tablet or capsule, as contained in a packaged medicinal product.
 
@@ -158,6 +157,9 @@ class ManufacturedItemDefinition
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -186,10 +188,9 @@ class ManufacturedItemDefinition
 
 @freezed
 @freezed
-class ManufacturedItemDefinitionProperty
-    with _$ManufacturedItemDefinitionProperty
-    implements BackboneElement {
-  const ManufacturedItemDefinitionProperty._();
+class ManufacturedItemDefinitionProperty extends BackboneElement
+    with _$ManufacturedItemDefinitionProperty {
+  ManufacturedItemDefinitionProperty._();
 
   /// [ManufacturedItemDefinitionProperty] The definition and characteristics of a medicinal manufactured item, such as a tablet or capsule, as contained in a packaged medicinal product.
 
@@ -284,6 +285,9 @@ class ManufacturedItemDefinitionProperty
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

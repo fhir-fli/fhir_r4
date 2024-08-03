@@ -15,9 +15,9 @@ part 'allergy_intolerance.g.dart';
 
 /// [AllergyIntolerance] Risk of harmful or undesirable, physiological
 @freezed
-class AllergyIntolerance with _$AllergyIntolerance implements DomainResource {
+class AllergyIntolerance extends DomainResource with _$AllergyIntolerance {
   /// [AllergyIntolerance] Risk of harmful or undesirable, physiological
-  const AllergyIntolerance._();
+  AllergyIntolerance._();
 
   /// [AllergyIntolerance] Risk of harmful or undesirable, physiological
   /// response which is unique to an individual and associated with exposure to
@@ -238,6 +238,9 @@ class AllergyIntolerance with _$AllergyIntolerance implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -269,11 +272,10 @@ class AllergyIntolerance with _$AllergyIntolerance implements DomainResource {
 
 /// [AllergyIntoleranceReaction] Risk of harmful or undesirable,
 @freezed
-class AllergyIntoleranceReaction
-    with _$AllergyIntoleranceReaction
-    implements BackboneElement {
+class AllergyIntoleranceReaction extends BackboneElement
+    with _$AllergyIntoleranceReaction {
   /// [AllergyIntoleranceReaction] Risk of harmful or undesirable,
-  const AllergyIntoleranceReaction._();
+  AllergyIntoleranceReaction._();
 
   /// [AllergyIntoleranceReaction] Risk of harmful or undesirable,
   /// physiological response which is unique to an individual and associated
@@ -382,6 +384,9 @@ class AllergyIntoleranceReaction
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

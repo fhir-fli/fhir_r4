@@ -5,9 +5,9 @@ import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
 /// [PrimitiveElement] Base definition for all elements in a resource.
-class PrimitiveElement implements Element {
+class PrimitiveElement extends Element {
   /// [PrimitiveElement] Base definition for all elements in a resource.
-  const PrimitiveElement({
+  PrimitiveElement({
     this.id,
     this.extension_,
   });
@@ -66,8 +66,20 @@ class PrimitiveElement implements Element {
       };
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
   String toYaml() => json2yaml(toJson());
+
+  PrimitiveElement copyWith({
+    String? id,
+    List<FhirExtension>? extension_,
+  }) =>
+      PrimitiveElement(
+        id: id ?? this.id,
+        extension_: extension_ ?? this.extension_,
+      );
 }

@@ -14,9 +14,9 @@ part 'flag.g.dart';
 
 /// [Flag] Prospective warnings of potential issues when providing care to
 @freezed
-class Flag with _$Flag implements DomainResource {
+class Flag extends DomainResource with _$Flag {
   /// [Flag] Prospective warnings of potential issues when providing care to
-  const Flag._();
+  Flag._();
 
   /// [Flag] Prospective warnings of potential issues when providing care to
   ///  the patient.
@@ -233,6 +233,9 @@ class Flag with _$Flag implements DomainResource {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

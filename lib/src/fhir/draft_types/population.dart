@@ -14,9 +14,9 @@ part 'population.g.dart';
 
 /// [Population] A populatioof people with some set of grouping criteria.
 @freezed
-class Population with _$Population implements Element {
+class Population extends Element with _$Population {
   /// [Population] A populatioof people with some set of grouping criteria.
-  const Population._();
+  Population._();
 
   /// [Population] A populatioof people with some set of grouping criteria.
   ///
@@ -128,6 +128,9 @@ class Population with _$Population implements Element {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

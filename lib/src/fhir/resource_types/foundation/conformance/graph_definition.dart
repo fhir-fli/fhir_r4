@@ -15,9 +15,9 @@ part 'graph_definition.g.dart';
 
 /// [GraphDefinition] A formal computable definition of a graph of resources
 @freezed
-class GraphDefinition with _$GraphDefinition implements DomainResource {
+class GraphDefinition extends DomainResource with _$GraphDefinition {
   /// [GraphDefinition] A formal computable definition of a graph of resources
-  const GraphDefinition._();
+  GraphDefinition._();
 
   /// [GraphDefinition] A formal computable definition of a graph of resources
   /// - that is, a coherent set of resources that form a graph by following
@@ -361,6 +361,9 @@ class GraphDefinition with _$GraphDefinition implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -392,11 +395,9 @@ class GraphDefinition with _$GraphDefinition implements DomainResource {
 
 /// [GraphDefinitionLink] A formal computable definition of a graph of
 @freezed
-class GraphDefinitionLink
-    with _$GraphDefinitionLink
-    implements BackboneElement {
+class GraphDefinitionLink extends BackboneElement with _$GraphDefinitionLink {
   /// [GraphDefinitionLink] A formal computable definition of a graph of
-  const GraphDefinitionLink._();
+  GraphDefinitionLink._();
 
   /// [GraphDefinitionLink] A formal computable definition of a graph of
   /// resources - that is, a coherent set of resources that form a graph by
@@ -545,6 +546,9 @@ class GraphDefinitionLink
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -556,11 +560,10 @@ class GraphDefinitionLink
 
 /// [GraphDefinitionTarget] A formal computable definition of a graph of
 @freezed
-class GraphDefinitionTarget
-    with _$GraphDefinitionTarget
-    implements BackboneElement {
+class GraphDefinitionTarget extends BackboneElement
+    with _$GraphDefinitionTarget {
   /// [GraphDefinitionTarget] A formal computable definition of a graph of
-  const GraphDefinitionTarget._();
+  GraphDefinitionTarget._();
 
   /// [GraphDefinitionTarget] A formal computable definition of a graph of
   /// resources - that is, a coherent set of resources that form a graph by
@@ -685,6 +688,9 @@ class GraphDefinitionTarget
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -696,11 +702,10 @@ class GraphDefinitionTarget
 
 /// [GraphDefinitionCompartment] A formal computable definition of a graph
 @freezed
-class GraphDefinitionCompartment
-    with _$GraphDefinitionCompartment
-    implements BackboneElement {
+class GraphDefinitionCompartment extends BackboneElement
+    with _$GraphDefinitionCompartment {
   /// [GraphDefinitionCompartment] A formal computable definition of a graph
-  const GraphDefinitionCompartment._();
+  GraphDefinitionCompartment._();
 
   /// [GraphDefinitionCompartment] A formal computable definition of a graph
   /// of resources - that is, a coherent set of resources that form a graph by
@@ -842,6 +847,9 @@ class GraphDefinitionCompartment
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

@@ -15,9 +15,9 @@ part 'value_set.g.dart';
 
 /// [ValueSet] A ValueSet resource instance specifies a set of codes drawn
 @freezed
-class ValueSet with _$ValueSet implements DomainResource {
+class ValueSet extends DomainResource with _$ValueSet {
   /// [ValueSet] A ValueSet resource instance specifies a set of codes drawn
-  const ValueSet._();
+  ValueSet._();
 
   /// [ValueSet] A ValueSet resource instance specifies a set of codes drawn
   /// from one or more code systems, intended for use in a particular context.
@@ -412,6 +412,9 @@ class ValueSet with _$ValueSet implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -443,9 +446,9 @@ class ValueSet with _$ValueSet implements DomainResource {
 
 /// [ValueSetCompose] A ValueSet resource instance specifies a set of codes
 @freezed
-class ValueSetCompose with _$ValueSetCompose implements BackboneElement {
+class ValueSetCompose extends BackboneElement with _$ValueSetCompose {
   /// [ValueSetCompose] A ValueSet resource instance specifies a set of codes
-  const ValueSetCompose._();
+  ValueSetCompose._();
 
   /// [ValueSetCompose] A ValueSet resource instance specifies a set of codes
   /// drawn from one or more code systems, intended for use in a particular
@@ -585,6 +588,9 @@ class ValueSetCompose with _$ValueSetCompose implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -596,9 +602,9 @@ class ValueSetCompose with _$ValueSetCompose implements BackboneElement {
 
 /// [ValueSetInclude] A ValueSet resource instance specifies a set of codes
 @freezed
-class ValueSetInclude with _$ValueSetInclude implements BackboneElement {
+class ValueSetInclude extends BackboneElement with _$ValueSetInclude {
   /// [ValueSetInclude] A ValueSet resource instance specifies a set of codes
-  const ValueSetInclude._();
+  ValueSetInclude._();
 
   /// [ValueSetInclude] A ValueSet resource instance specifies a set of codes
   /// drawn from one or more code systems, intended for use in a particular
@@ -739,6 +745,9 @@ class ValueSetInclude with _$ValueSetInclude implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -750,9 +759,9 @@ class ValueSetInclude with _$ValueSetInclude implements BackboneElement {
 
 /// [ValueSetConcept] A ValueSet resource instance specifies a set of codes
 @freezed
-class ValueSetConcept with _$ValueSetConcept implements BackboneElement {
+class ValueSetConcept extends BackboneElement with _$ValueSetConcept {
   /// [ValueSetConcept] A ValueSet resource instance specifies a set of codes
-  const ValueSetConcept._();
+  ValueSetConcept._();
 
   /// [ValueSetConcept] A ValueSet resource instance specifies a set of codes
   /// drawn from one or more code systems, intended for use in a particular
@@ -875,6 +884,9 @@ class ValueSetConcept with _$ValueSetConcept implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -886,11 +898,9 @@ class ValueSetConcept with _$ValueSetConcept implements BackboneElement {
 
 /// [ValueSetDesignation] A ValueSet resource instance specifies a set of
 @freezed
-class ValueSetDesignation
-    with _$ValueSetDesignation
-    implements BackboneElement {
+class ValueSetDesignation extends BackboneElement with _$ValueSetDesignation {
   /// [ValueSetDesignation] A ValueSet resource instance specifies a set of
-  const ValueSetDesignation._();
+  ValueSetDesignation._();
 
   /// [ValueSetDesignation] A ValueSet resource instance specifies a set of
   /// codes drawn from one or more code systems, intended for use in a
@@ -1005,6 +1015,9 @@ class ValueSetDesignation
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1016,9 +1029,9 @@ class ValueSetDesignation
 
 /// [ValueSetFilter] A ValueSet resource instance specifies a set of codes
 @freezed
-class ValueSetFilter with _$ValueSetFilter implements BackboneElement {
+class ValueSetFilter extends BackboneElement with _$ValueSetFilter {
   /// [ValueSetFilter] A ValueSet resource instance specifies a set of codes
-  const ValueSetFilter._();
+  ValueSetFilter._();
 
   /// [ValueSetFilter] A ValueSet resource instance specifies a set of codes
   /// drawn from one or more code systems, intended for use in a particular
@@ -1150,6 +1163,9 @@ class ValueSetFilter with _$ValueSetFilter implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1161,9 +1177,9 @@ class ValueSetFilter with _$ValueSetFilter implements BackboneElement {
 
 /// [ValueSetExpansion] A ValueSet resource instance specifies a set of
 @freezed
-class ValueSetExpansion with _$ValueSetExpansion implements BackboneElement {
+class ValueSetExpansion extends BackboneElement with _$ValueSetExpansion {
   /// [ValueSetExpansion] A ValueSet resource instance specifies a set of
-  const ValueSetExpansion._();
+  ValueSetExpansion._();
 
   /// [ValueSetExpansion] A ValueSet resource instance specifies a set of
   /// codes drawn from one or more code systems, intended for use in a
@@ -1329,6 +1345,9 @@ class ValueSetExpansion with _$ValueSetExpansion implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1340,9 +1359,9 @@ class ValueSetExpansion with _$ValueSetExpansion implements BackboneElement {
 
 /// [ValueSetParameter] A ValueSet resource instance specifies a set of
 @freezed
-class ValueSetParameter with _$ValueSetParameter implements BackboneElement {
+class ValueSetParameter extends BackboneElement with _$ValueSetParameter {
   /// [ValueSetParameter] A ValueSet resource instance specifies a set of
-  const ValueSetParameter._();
+  ValueSetParameter._();
 
   /// [ValueSetParameter] A ValueSet resource instance specifies a set of
   /// codes drawn from one or more code systems, intended for use in a
@@ -1516,6 +1535,9 @@ class ValueSetParameter with _$ValueSetParameter implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1527,9 +1549,9 @@ class ValueSetParameter with _$ValueSetParameter implements BackboneElement {
 
 /// [ValueSetContains] A ValueSet resource instance specifies a set of codes
 @freezed
-class ValueSetContains with _$ValueSetContains implements BackboneElement {
+class ValueSetContains extends BackboneElement with _$ValueSetContains {
   /// [ValueSetContains] A ValueSet resource instance specifies a set of codes
-  const ValueSetContains._();
+  ValueSetContains._();
 
   /// [ValueSetContains] A ValueSet resource instance specifies a set of codes
   /// drawn from one or more code systems, intended for use in a particular
@@ -1721,6 +1743,9 @@ class ValueSetContains with _$ValueSetContains implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

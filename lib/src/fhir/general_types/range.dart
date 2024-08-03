@@ -14,9 +14,9 @@ part 'range.g.dart';
 
 /// [Range] A set of ordered Quantities defined by a low and high limit.
 @freezed
-class Range with _$Range implements DataType {
+class Range extends DataType with _$Range {
   /// [Range] A set of ordered Quantities defined by a low and high limit.
-  const Range._();
+  Range._();
 
   /// [Range] A set of ordered Quantities defined by a low and high limit.
   ///
@@ -80,6 +80,9 @@ class Range with _$Range implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

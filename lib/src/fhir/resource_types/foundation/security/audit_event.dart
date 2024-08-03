@@ -15,9 +15,9 @@ part 'audit_event.g.dart';
 
 /// [AuditEvent] A record of an event made for purposes of maintaining a
 @freezed
-class AuditEvent with _$AuditEvent implements DomainResource {
+class AuditEvent extends DomainResource with _$AuditEvent {
   /// [AuditEvent] A record of an event made for purposes of maintaining a
-  const AuditEvent._();
+  AuditEvent._();
 
   /// [AuditEvent] A record of an event made for purposes of maintaining a
   /// security log. Typical uses include detection of intrusion attempts and
@@ -262,6 +262,9 @@ class AuditEvent with _$AuditEvent implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -293,9 +296,9 @@ class AuditEvent with _$AuditEvent implements DomainResource {
 
 /// [AuditEventAgent] A record of an event made for purposes of maintaining
 @freezed
-class AuditEventAgent with _$AuditEventAgent implements BackboneElement {
+class AuditEventAgent extends BackboneElement with _$AuditEventAgent {
   /// [AuditEventAgent] A record of an event made for purposes of maintaining
-  const AuditEventAgent._();
+  AuditEventAgent._();
 
   /// [AuditEventAgent] A record of an event made for purposes of maintaining
   /// a security log. Typical uses include detection of intrusion attempts and
@@ -485,6 +488,9 @@ class AuditEventAgent with _$AuditEventAgent implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -496,9 +502,9 @@ class AuditEventAgent with _$AuditEventAgent implements BackboneElement {
 
 /// [AuditEventNetwork] A record of an event made for purposes of
 @freezed
-class AuditEventNetwork with _$AuditEventNetwork implements BackboneElement {
+class AuditEventNetwork extends BackboneElement with _$AuditEventNetwork {
   /// [AuditEventNetwork] A record of an event made for purposes of
-  const AuditEventNetwork._();
+  AuditEventNetwork._();
 
   /// [AuditEventNetwork] A record of an event made for purposes of
   /// maintaining a security log. Typical uses include detection of intrusion
@@ -611,6 +617,9 @@ class AuditEventNetwork with _$AuditEventNetwork implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -622,9 +631,9 @@ class AuditEventNetwork with _$AuditEventNetwork implements BackboneElement {
 
 /// [AuditEventSource] A record of an event made for purposes of maintaining
 @freezed
-class AuditEventSource with _$AuditEventSource implements BackboneElement {
+class AuditEventSource extends BackboneElement with _$AuditEventSource {
   /// [AuditEventSource] A record of an event made for purposes of maintaining
-  const AuditEventSource._();
+  AuditEventSource._();
 
   /// [AuditEventSource] A record of an event made for purposes of maintaining
   /// a security log. Typical uses include detection of intrusion attempts and
@@ -737,6 +746,9 @@ class AuditEventSource with _$AuditEventSource implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -748,9 +760,9 @@ class AuditEventSource with _$AuditEventSource implements BackboneElement {
 
 /// [AuditEventEntity] A record of an event made for purposes of maintaining
 @freezed
-class AuditEventEntity with _$AuditEventEntity implements BackboneElement {
+class AuditEventEntity extends BackboneElement with _$AuditEventEntity {
   /// [AuditEventEntity] A record of an event made for purposes of maintaining
-  const AuditEventEntity._();
+  AuditEventEntity._();
 
   /// [AuditEventEntity] A record of an event made for purposes of maintaining
   /// a security log. Typical uses include detection of intrusion attempts and
@@ -905,6 +917,9 @@ class AuditEventEntity with _$AuditEventEntity implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -916,9 +931,9 @@ class AuditEventEntity with _$AuditEventEntity implements BackboneElement {
 
 /// [AuditEventDetail] A record of an event made for purposes of maintaining
 @freezed
-class AuditEventDetail with _$AuditEventDetail implements BackboneElement {
+class AuditEventDetail extends BackboneElement with _$AuditEventDetail {
   /// [AuditEventDetail] A record of an event made for purposes of maintaining
-  const AuditEventDetail._();
+  AuditEventDetail._();
 
   /// [AuditEventDetail] A record of an event made for purposes of maintaining
   /// a security log. Typical uses include detection of intrusion attempts and
@@ -1036,6 +1051,9 @@ class AuditEventDetail with _$AuditEventDetail implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

@@ -20,9 +20,9 @@ dependencies:
   archive: ^3.6.1
   collection: ^1.18.0
   crypto: ^3.0.3
-  fhir_primitives: ^0.1.2
-  # fhir_primitives:
-  #   path: ../fhir_primitives
+  # fhir_primitives: ^0.1.2
+  fhir_primitives:
+    path: ../fhir_primitives
   flutter:
     sdk: flutter
   flutter_web_plugins:

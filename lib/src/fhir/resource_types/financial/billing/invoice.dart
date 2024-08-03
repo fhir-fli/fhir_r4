@@ -14,9 +14,9 @@ part 'invoice.g.dart';
 
 /// [Invoice] Invoice containing collected ChargeItems from an Account with
 @freezed
-class Invoice with _$Invoice implements DomainResource {
+class Invoice extends DomainResource with _$Invoice {
   /// [Invoice] Invoice containing collected ChargeItems from an Account with
-  const Invoice._();
+  Invoice._();
 
   /// [Invoice] Invoice containing collected ChargeItems from an Account with
   ///  calculated individual and total price for Billing purpose.
@@ -303,6 +303,9 @@ class Invoice with _$Invoice implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -334,9 +337,9 @@ class Invoice with _$Invoice implements DomainResource {
 
 /// [InvoiceParticipant] Invoice containing collected ChargeItems from an
 @freezed
-class InvoiceParticipant with _$InvoiceParticipant implements BackboneElement {
+class InvoiceParticipant extends BackboneElement with _$InvoiceParticipant {
   /// [InvoiceParticipant] Invoice containing collected ChargeItems from an
-  const InvoiceParticipant._();
+  InvoiceParticipant._();
 
   /// [InvoiceParticipant] Invoice containing collected ChargeItems from an
   ///  Account with calculated individual and total price for Billing purpose.
@@ -442,6 +445,9 @@ class InvoiceParticipant with _$InvoiceParticipant implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -453,9 +459,9 @@ class InvoiceParticipant with _$InvoiceParticipant implements BackboneElement {
 
 /// [InvoiceLineItem] Invoice containing collected ChargeItems from an
 @freezed
-class InvoiceLineItem with _$InvoiceLineItem implements BackboneElement {
+class InvoiceLineItem extends BackboneElement with _$InvoiceLineItem {
   /// [InvoiceLineItem] Invoice containing collected ChargeItems from an
-  const InvoiceLineItem._();
+  InvoiceLineItem._();
 
   /// [InvoiceLineItem] Invoice containing collected ChargeItems from an
   ///  Account with calculated individual and total price for Billing purpose.
@@ -592,6 +598,9 @@ class InvoiceLineItem with _$InvoiceLineItem implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -603,11 +612,10 @@ class InvoiceLineItem with _$InvoiceLineItem implements BackboneElement {
 
 /// [InvoicePriceComponent] Invoice containing collected ChargeItems from an
 @freezed
-class InvoicePriceComponent
-    with _$InvoicePriceComponent
-    implements BackboneElement {
+class InvoicePriceComponent extends BackboneElement
+    with _$InvoicePriceComponent {
   /// [InvoicePriceComponent] Invoice containing collected ChargeItems from an
-  const InvoicePriceComponent._();
+  InvoicePriceComponent._();
 
   /// [InvoicePriceComponent] Invoice containing collected ChargeItems from an
   ///  Account with calculated individual and total price for Billing purpose.
@@ -730,6 +738,9 @@ class InvoicePriceComponent
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

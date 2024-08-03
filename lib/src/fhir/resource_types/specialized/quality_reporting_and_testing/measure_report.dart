@@ -15,9 +15,9 @@ part 'measure_report.g.dart';
 
 /// [MeasureReport] The MeasureReport resource contains the results of the
 @freezed
-class MeasureReport with _$MeasureReport implements DomainResource {
+class MeasureReport extends DomainResource with _$MeasureReport {
   /// [MeasureReport] The MeasureReport resource contains the results of the
-  const MeasureReport._();
+  MeasureReport._();
 
   /// [MeasureReport] The MeasureReport resource contains the results of the
   /// calculation of a measure; and optionally a reference to the resources
@@ -277,6 +277,9 @@ class MeasureReport with _$MeasureReport implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -308,9 +311,9 @@ class MeasureReport with _$MeasureReport implements DomainResource {
 
 /// [MeasureReportGroup] The MeasureReport resource contains the results of
 @freezed
-class MeasureReportGroup with _$MeasureReportGroup implements BackboneElement {
+class MeasureReportGroup extends BackboneElement with _$MeasureReportGroup {
   /// [MeasureReportGroup] The MeasureReport resource contains the results of
-  const MeasureReportGroup._();
+  MeasureReportGroup._();
 
   /// [MeasureReportGroup] The MeasureReport resource contains the results of
   /// the calculation of a measure; and optionally a reference to the resources
@@ -429,6 +432,9 @@ class MeasureReportGroup with _$MeasureReportGroup implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -440,11 +446,10 @@ class MeasureReportGroup with _$MeasureReportGroup implements BackboneElement {
 
 /// [MeasureReportPopulation] The MeasureReport resource contains the
 @freezed
-class MeasureReportPopulation
-    with _$MeasureReportPopulation
-    implements BackboneElement {
+class MeasureReportPopulation extends BackboneElement
+    with _$MeasureReportPopulation {
   /// [MeasureReportPopulation] The MeasureReport resource contains the
-  const MeasureReportPopulation._();
+  MeasureReportPopulation._();
 
   /// [MeasureReportPopulation] The MeasureReport resource contains the
   /// results of the calculation of a measure; and optionally a reference to the
@@ -555,6 +560,9 @@ class MeasureReportPopulation
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -566,11 +574,10 @@ class MeasureReportPopulation
 
 /// [MeasureReportStratifier] The MeasureReport resource contains the
 @freezed
-class MeasureReportStratifier
-    with _$MeasureReportStratifier
-    implements BackboneElement {
+class MeasureReportStratifier extends BackboneElement
+    with _$MeasureReportStratifier {
   /// [MeasureReportStratifier] The MeasureReport resource contains the
-  const MeasureReportStratifier._();
+  MeasureReportStratifier._();
 
   /// [MeasureReportStratifier] The MeasureReport resource contains the
   /// results of the calculation of a measure; and optionally a reference to the
@@ -675,6 +682,9 @@ class MeasureReportStratifier
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -686,11 +696,9 @@ class MeasureReportStratifier
 
 /// [MeasureReportStratum] The MeasureReport resource contains the results
 @freezed
-class MeasureReportStratum
-    with _$MeasureReportStratum
-    implements BackboneElement {
+class MeasureReportStratum extends BackboneElement with _$MeasureReportStratum {
   /// [MeasureReportStratum] The MeasureReport resource contains the results
-  const MeasureReportStratum._();
+  MeasureReportStratum._();
 
   /// [MeasureReportStratum] The MeasureReport resource contains the results
   /// of the calculation of a measure; and optionally a reference to the
@@ -809,6 +817,9 @@ class MeasureReportStratum
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -820,11 +831,10 @@ class MeasureReportStratum
 
 /// [MeasureReportComponent] The MeasureReport resource contains the results
 @freezed
-class MeasureReportComponent
-    with _$MeasureReportComponent
-    implements BackboneElement {
+class MeasureReportComponent extends BackboneElement
+    with _$MeasureReportComponent {
   /// [MeasureReportComponent] The MeasureReport resource contains the results
-  const MeasureReportComponent._();
+  MeasureReportComponent._();
 
   /// [MeasureReportComponent] The MeasureReport resource contains the results
   /// of the calculation of a measure; and optionally a reference to the
@@ -923,6 +933,9 @@ class MeasureReportComponent
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -934,11 +947,10 @@ class MeasureReportComponent
 
 /// [MeasureReportPopulation1] The MeasureReport resource contains the
 @freezed
-class MeasureReportPopulation1
-    with _$MeasureReportPopulation1
-    implements BackboneElement {
+class MeasureReportPopulation1 extends BackboneElement
+    with _$MeasureReportPopulation1 {
   /// [MeasureReportPopulation1] The MeasureReport resource contains the
-  const MeasureReportPopulation1._();
+  MeasureReportPopulation1._();
 
   /// [MeasureReportPopulation1] The MeasureReport resource contains the
   /// results of the calculation of a measure; and optionally a reference to the
@@ -1049,6 +1061,9 @@ class MeasureReportPopulation1
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

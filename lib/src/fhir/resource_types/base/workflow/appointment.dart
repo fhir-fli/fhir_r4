@@ -14,9 +14,9 @@ part 'appointment.g.dart';
 
 /// [Appointment] A booking of a healthcare event among patient(s),
 @freezed
-class Appointment with _$Appointment implements DomainResource {
+class Appointment extends DomainResource with _$Appointment {
   /// [Appointment] A booking of a healthcare event among patient(s),
-  const Appointment._();
+  Appointment._();
 
   /// [Appointment] A booking of a healthcare event among patient(s),
   /// practitioner(s), related person(s) and/or device(s) for a specific
@@ -412,6 +412,9 @@ class Appointment with _$Appointment implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -443,11 +446,10 @@ class Appointment with _$Appointment implements DomainResource {
 
 /// [AppointmentParticipant] A booking of a healthcare event among
 @freezed
-class AppointmentParticipant
-    with _$AppointmentParticipant
-    implements BackboneElement {
+class AppointmentParticipant extends BackboneElement
+    with _$AppointmentParticipant {
   /// [AppointmentParticipant] A booking of a healthcare event among
-  const AppointmentParticipant._();
+  AppointmentParticipant._();
 
   /// [AppointmentParticipant] A booking of a healthcare event among
   /// patient(s), practitioner(s), related person(s) and/or device(s) for a
@@ -580,6 +582,9 @@ class AppointmentParticipant
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

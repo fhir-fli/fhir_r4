@@ -15,9 +15,9 @@ part 'adverse_event.g.dart';
 
 /// [AdverseEvent] Actual or  potential/avoided event causing unintended
 @freezed
-class AdverseEvent with _$AdverseEvent implements DomainResource {
+class AdverseEvent extends DomainResource with _$AdverseEvent {
   /// [AdverseEvent] Actual or  potential/avoided event causing unintended
-  const AdverseEvent._();
+  AdverseEvent._();
 
   /// [AdverseEvent] Actual or  potential/avoided event causing unintended
   /// physical injury resulting from or contributed to by medical care, a
@@ -219,6 +219,9 @@ class AdverseEvent with _$AdverseEvent implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -250,11 +253,10 @@ class AdverseEvent with _$AdverseEvent implements DomainResource {
 
 /// [AdverseEventSuspectEntity] Actual or  potential/avoided event causing
 @freezed
-class AdverseEventSuspectEntity
-    with _$AdverseEventSuspectEntity
-    implements BackboneElement {
+class AdverseEventSuspectEntity extends BackboneElement
+    with _$AdverseEventSuspectEntity {
   /// [AdverseEventSuspectEntity] Actual or  potential/avoided event causing
-  const AdverseEventSuspectEntity._();
+  AdverseEventSuspectEntity._();
 
   /// [AdverseEventSuspectEntity] Actual or  potential/avoided event causing
   /// unintended physical injury resulting from or contributed to by medical
@@ -330,6 +332,9 @@ class AdverseEventSuspectEntity
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -341,11 +346,10 @@ class AdverseEventSuspectEntity
 
 /// [AdverseEventCausality] Actual or  potential/avoided event causing
 @freezed
-class AdverseEventCausality
-    with _$AdverseEventCausality
-    implements BackboneElement {
+class AdverseEventCausality extends BackboneElement
+    with _$AdverseEventCausality {
   /// [AdverseEventCausality] Actual or  potential/avoided event causing
-  const AdverseEventCausality._();
+  AdverseEventCausality._();
 
   /// [AdverseEventCausality] Actual or  potential/avoided event causing
   /// unintended physical injury resulting from or contributed to by medical
@@ -428,6 +432,9 @@ class AdverseEventCausality
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

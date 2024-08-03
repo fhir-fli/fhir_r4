@@ -14,9 +14,9 @@ part 'claim_response.g.dart';
 
 /// [ClaimResponse] This resource provides the adjudication details from the
 @freezed
-class ClaimResponse with _$ClaimResponse implements DomainResource {
+class ClaimResponse extends DomainResource with _$ClaimResponse {
   /// [ClaimResponse] This resource provides the adjudication details from the
-  const ClaimResponse._();
+  ClaimResponse._();
 
   /// [ClaimResponse] This resource provides the adjudication details from the
   ///  processing of a Claim resource.
@@ -388,6 +388,9 @@ class ClaimResponse with _$ClaimResponse implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -419,9 +422,9 @@ class ClaimResponse with _$ClaimResponse implements DomainResource {
 
 /// [ClaimResponseItem] This resource provides the adjudication details from
 @freezed
-class ClaimResponseItem with _$ClaimResponseItem implements BackboneElement {
+class ClaimResponseItem extends BackboneElement with _$ClaimResponseItem {
   /// [ClaimResponseItem] This resource provides the adjudication details from
-  const ClaimResponseItem._();
+  ClaimResponseItem._();
 
   /// [ClaimResponseItem] This resource provides the adjudication details from
   ///  the processing of a Claim resource.
@@ -549,6 +552,9 @@ class ClaimResponseItem with _$ClaimResponseItem implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -560,11 +566,10 @@ class ClaimResponseItem with _$ClaimResponseItem implements BackboneElement {
 
 /// [ClaimResponseAdjudication] This resource provides the adjudication
 @freezed
-class ClaimResponseAdjudication
-    with _$ClaimResponseAdjudication
-    implements BackboneElement {
+class ClaimResponseAdjudication extends BackboneElement
+    with _$ClaimResponseAdjudication {
   /// [ClaimResponseAdjudication] This resource provides the adjudication
-  const ClaimResponseAdjudication._();
+  ClaimResponseAdjudication._();
 
   /// [ClaimResponseAdjudication] This resource provides the adjudication
   ///  details from the processing of a Claim resource.
@@ -691,6 +696,9 @@ class ClaimResponseAdjudication
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -702,11 +710,9 @@ class ClaimResponseAdjudication
 
 /// [ClaimResponseDetail] This resource provides the adjudication details
 @freezed
-class ClaimResponseDetail
-    with _$ClaimResponseDetail
-    implements BackboneElement {
+class ClaimResponseDetail extends BackboneElement with _$ClaimResponseDetail {
   /// [ClaimResponseDetail] This resource provides the adjudication details
-  const ClaimResponseDetail._();
+  ClaimResponseDetail._();
 
   /// [ClaimResponseDetail] This resource provides the adjudication details
   ///  from the processing of a Claim resource.
@@ -828,6 +834,9 @@ class ClaimResponseDetail
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -839,11 +848,10 @@ class ClaimResponseDetail
 
 /// [ClaimResponseSubDetail] This resource provides the adjudication details
 @freezed
-class ClaimResponseSubDetail
-    with _$ClaimResponseSubDetail
-    implements BackboneElement {
+class ClaimResponseSubDetail extends BackboneElement
+    with _$ClaimResponseSubDetail {
   /// [ClaimResponseSubDetail] This resource provides the adjudication details
-  const ClaimResponseSubDetail._();
+  ClaimResponseSubDetail._();
 
   /// [ClaimResponseSubDetail] This resource provides the adjudication details
   ///  from the processing of a Claim resource.
@@ -963,6 +971,9 @@ class ClaimResponseSubDetail
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -974,11 +985,9 @@ class ClaimResponseSubDetail
 
 /// [ClaimResponseAddItem] This resource provides the adjudication details
 @freezed
-class ClaimResponseAddItem
-    with _$ClaimResponseAddItem
-    implements BackboneElement {
+class ClaimResponseAddItem extends BackboneElement with _$ClaimResponseAddItem {
   /// [ClaimResponseAddItem] This resource provides the adjudication details
-  const ClaimResponseAddItem._();
+  ClaimResponseAddItem._();
 
   /// [ClaimResponseAddItem] This resource provides the adjudication details
   ///  from the processing of a Claim resource.
@@ -1239,6 +1248,9 @@ class ClaimResponseAddItem
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1250,11 +1262,9 @@ class ClaimResponseAddItem
 
 /// [ClaimResponseDetail1] This resource provides the adjudication details
 @freezed
-class ClaimResponseDetail1
-    with _$ClaimResponseDetail1
-    implements BackboneElement {
+class ClaimResponseDetail1 extends BackboneElement with _$ClaimResponseDetail1 {
   /// [ClaimResponseDetail1] This resource provides the adjudication details
-  const ClaimResponseDetail1._();
+  ClaimResponseDetail1._();
 
   /// [ClaimResponseDetail1] This resource provides the adjudication details
   ///  from the processing of a Claim resource.
@@ -1421,6 +1431,9 @@ class ClaimResponseDetail1
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1432,11 +1445,10 @@ class ClaimResponseDetail1
 
 /// [ClaimResponseSubDetail1] This resource provides the adjudication
 @freezed
-class ClaimResponseSubDetail1
-    with _$ClaimResponseSubDetail1
-    implements BackboneElement {
+class ClaimResponseSubDetail1 extends BackboneElement
+    with _$ClaimResponseSubDetail1 {
   /// [ClaimResponseSubDetail1] This resource provides the adjudication
-  const ClaimResponseSubDetail1._();
+  ClaimResponseSubDetail1._();
 
   /// [ClaimResponseSubDetail1] This resource provides the adjudication
   ///  details from the processing of a Claim resource.
@@ -1596,6 +1608,9 @@ class ClaimResponseSubDetail1
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1607,9 +1622,9 @@ class ClaimResponseSubDetail1
 
 /// [ClaimResponseTotal] This resource provides the adjudication details
 @freezed
-class ClaimResponseTotal with _$ClaimResponseTotal implements BackboneElement {
+class ClaimResponseTotal extends BackboneElement with _$ClaimResponseTotal {
   /// [ClaimResponseTotal] This resource provides the adjudication details
-  const ClaimResponseTotal._();
+  ClaimResponseTotal._();
 
   /// [ClaimResponseTotal] This resource provides the adjudication details
   ///  from the processing of a Claim resource.
@@ -1717,6 +1732,9 @@ class ClaimResponseTotal with _$ClaimResponseTotal implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1728,11 +1746,9 @@ class ClaimResponseTotal with _$ClaimResponseTotal implements BackboneElement {
 
 /// [ClaimResponsePayment] This resource provides the adjudication details
 @freezed
-class ClaimResponsePayment
-    with _$ClaimResponsePayment
-    implements BackboneElement {
+class ClaimResponsePayment extends BackboneElement with _$ClaimResponsePayment {
   /// [ClaimResponsePayment] This resource provides the adjudication details
-  const ClaimResponsePayment._();
+  ClaimResponsePayment._();
 
   /// [ClaimResponsePayment] This resource provides the adjudication details
   ///  from the processing of a Claim resource.
@@ -1863,6 +1879,9 @@ class ClaimResponsePayment
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1874,11 +1893,10 @@ class ClaimResponsePayment
 
 /// [ClaimResponseProcessNote] This resource provides the adjudication
 @freezed
-class ClaimResponseProcessNote
-    with _$ClaimResponseProcessNote
-    implements BackboneElement {
+class ClaimResponseProcessNote extends BackboneElement
+    with _$ClaimResponseProcessNote {
   /// [ClaimResponseProcessNote] This resource provides the adjudication
-  const ClaimResponseProcessNote._();
+  ClaimResponseProcessNote._();
 
   /// [ClaimResponseProcessNote] This resource provides the adjudication
   ///  details from the processing of a Claim resource.
@@ -2003,6 +2021,9 @@ class ClaimResponseProcessNote
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2014,11 +2035,10 @@ class ClaimResponseProcessNote
 
 /// [ClaimResponseInsurance] This resource provides the adjudication details
 @freezed
-class ClaimResponseInsurance
-    with _$ClaimResponseInsurance
-    implements BackboneElement {
+class ClaimResponseInsurance extends BackboneElement
+    with _$ClaimResponseInsurance {
   /// [ClaimResponseInsurance] This resource provides the adjudication details
-  const ClaimResponseInsurance._();
+  ClaimResponseInsurance._();
 
   /// [ClaimResponseInsurance] This resource provides the adjudication details
   ///  from the processing of a Claim resource.
@@ -2163,6 +2183,9 @@ class ClaimResponseInsurance
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2174,9 +2197,9 @@ class ClaimResponseInsurance
 
 /// [ClaimResponseError] This resource provides the adjudication details
 @freezed
-class ClaimResponseError with _$ClaimResponseError implements BackboneElement {
+class ClaimResponseError extends BackboneElement with _$ClaimResponseError {
   /// [ClaimResponseError] This resource provides the adjudication details
-  const ClaimResponseError._();
+  ClaimResponseError._();
 
   /// [ClaimResponseError] This resource provides the adjudication details
   ///  from the processing of a Claim resource.
@@ -2315,6 +2338,9 @@ class ClaimResponseError with _$ClaimResponseError implements BackboneElement {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

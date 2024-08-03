@@ -1366,11 +1366,6 @@ class _$ImplementationGuideImpl extends _ImplementationGuide {
   final ImplementationGuideManifest? manifest;
 
   @override
-  String toString() {
-    return 'ImplementationGuide(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, version: $version, versionElement: $versionElement, name: $name, nameElement: $nameElement, title: $title, titleElement: $titleElement, status: $status, statusElement: $statusElement, experimental: $experimental, experimentalElement: $experimentalElement, date: $date, dateElement: $dateElement, publisher: $publisher, publisherElement: $publisherElement, contact: $contact, description: $description, descriptionElement: $descriptionElement, useContext: $useContext, jurisdiction: $jurisdiction, copyright: $copyright, copyrightElement: $copyrightElement, packageId: $packageId, packageIdElement: $packageIdElement, license: $license, licenseElement: $licenseElement, fhirVersion: $fhirVersion, fhirVersionElement: $fhirVersionElement, dependsOn: $dependsOn, global: $global, definition: $definition, manifest: $manifest)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2178,11 +2173,6 @@ class _$ImplementationGuideDependsOnImpl extends _ImplementationGuideDependsOn {
   final PrimitiveElement? versionElement;
 
   @override
-  String toString() {
-    return 'ImplementationGuideDependsOn(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, uri: $uri, packageId: $packageId, packageIdElement: $packageIdElement, version: $version, versionElement: $versionElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2591,11 +2581,6 @@ class _$ImplementationGuideGlobalImpl extends _ImplementationGuideGlobal {
   /// [profile] A reference to the profile that all instances must conform to.
   @override
   final FhirCanonical profile;
-
-  @override
-  String toString() {
-    return 'ImplementationGuideGlobal(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, typeElement: $typeElement, profile: $profile)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -3099,11 +3084,6 @@ class _$ImplementationGuideDefinitionImpl
   }
 
   @override
-  String toString() {
-    return 'ImplementationGuideDefinition(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, grouping: $grouping, resource: $resource, page: $page, parameter: $parameter, template: $template)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -3538,11 +3518,6 @@ class _$ImplementationGuideGroupingImpl extends _ImplementationGuideGrouping {
   @override
   @JsonKey(name: '_description')
   final PrimitiveElement? descriptionElement;
-
-  @override
-  String toString() {
-    return 'ImplementationGuideGrouping(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, description: $description, descriptionElement: $descriptionElement)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -4221,11 +4196,6 @@ class _$ImplementationGuideResourceImpl extends _ImplementationGuideResource {
   final PrimitiveElement? groupingIdElement;
 
   @override
-  String toString() {
-    return 'ImplementationGuideResource(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, reference: $reference, fhirVersion: $fhirVersion, fhirVersionElement: $fhirVersionElement, name: $name, nameElement: $nameElement, description: $description, descriptionElement: $descriptionElement, exampleBoolean: $exampleBoolean, exampleBooleanElement: $exampleBooleanElement, exampleCanonical: $exampleCanonical, exampleCanonicalElement: $exampleCanonicalElement, groupingId: $groupingId, groupingIdElement: $groupingIdElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -4848,11 +4818,6 @@ class _$ImplementationGuidePageImpl extends _ImplementationGuidePage {
   }
 
   @override
-  String toString() {
-    return 'ImplementationGuidePage(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, nameUrl: $nameUrl, nameUrlElement: $nameUrlElement, nameReference: $nameReference, title: $title, titleElement: $titleElement, generation: $generation, generationElement: $generationElement, page: $page)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -5309,11 +5274,6 @@ class _$ImplementationGuideParameterImpl extends _ImplementationGuideParameter {
   @override
   @JsonKey(name: '_value')
   final PrimitiveElement? valueElement;
-
-  @override
-  String toString() {
-    return 'ImplementationGuideParameter(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, codeElement: $codeElement, value: $value, valueElement: $valueElement)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -5782,11 +5742,6 @@ class _$ImplementationGuideTemplateImpl extends _ImplementationGuideTemplate {
   @override
   @JsonKey(name: '_scope')
   final PrimitiveElement? scopeElement;
-
-  @override
-  String toString() {
-    return 'ImplementationGuideTemplate(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, codeElement: $codeElement, source: $source, sourceElement: $sourceElement, scope: $scope, scopeElement: $scopeElement)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -6388,11 +6343,6 @@ class _$ImplementationGuideManifestImpl extends _ImplementationGuideManifest {
   }
 
   @override
-  String toString() {
-    return 'ImplementationGuideManifest(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, rendering: $rendering, renderingElement: $renderingElement, resource: $resource, page: $page, image: $image, imageElement: $imageElement, other: $other, otherElement: $otherElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -6943,11 +6893,6 @@ class _$ImplementationGuideResource1Impl extends _ImplementationGuideResource1 {
   final PrimitiveElement? relativePathElement;
 
   @override
-  String toString() {
-    return 'ImplementationGuideResource1(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, reference: $reference, exampleBoolean: $exampleBoolean, exampleBooleanElement: $exampleBooleanElement, exampleCanonical: $exampleCanonical, exampleCanonicalElement: $exampleCanonicalElement, relativePath: $relativePath, relativePathElement: $relativePathElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -7465,11 +7410,6 @@ class _$ImplementationGuidePage1Impl extends _ImplementationGuidePage1 {
     if (_anchorElement is EqualUnmodifiableListView) return _anchorElement;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  String toString() {
-    return 'ImplementationGuidePage1(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, title: $title, titleElement: $titleElement, anchor: $anchor, anchorElement: $anchorElement)';
   }
 
   @override

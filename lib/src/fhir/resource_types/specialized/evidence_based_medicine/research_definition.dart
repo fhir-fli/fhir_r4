@@ -15,9 +15,9 @@ part 'research_definition.g.dart';
 
 /// [ResearchDefinition] The ResearchDefinition resource describes the
 @freezed
-class ResearchDefinition with _$ResearchDefinition implements DomainResource {
+class ResearchDefinition extends DomainResource with _$ResearchDefinition {
   /// [ResearchDefinition] The ResearchDefinition resource describes the
-  const ResearchDefinition._();
+  ResearchDefinition._();
 
   /// [ResearchDefinition] The ResearchDefinition resource describes the
   /// conditional state (population and any exposures being compared within the
@@ -345,6 +345,9 @@ class ResearchDefinition with _$ResearchDefinition implements DomainResource {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

@@ -985,11 +985,6 @@ class _$ConsentImpl extends _Consent {
   final ConsentProvision? provision;
 
   @override
-  String toString() {
-    return 'Consent(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, status: $status, statusElement: $statusElement, scope: $scope, category: $category, patient: $patient, dateTime: $dateTime, dateTimeElement: $dateTimeElement, performer: $performer, organization: $organization, sourceAttachment: $sourceAttachment, sourceReference: $sourceReference, policy: $policy, policyRule: $policyRule, verification: $verification, provision: $provision)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1598,11 +1593,6 @@ class _$ConsentPolicyImpl extends _ConsentPolicy {
   final PrimitiveElement? uriElement;
 
   @override
-  String toString() {
-    return 'ConsentPolicy(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, authority: $authority, authorityElement: $authorityElement, uri: $uri, uriElement: $uriElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2059,11 +2049,6 @@ class _$ConsentVerificationImpl extends _ConsentVerification {
   @override
   @JsonKey(name: '_verificationDate')
   final PrimitiveElement? verificationDateElement;
-
-  @override
-  String toString() {
-    return 'ConsentVerification(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, verified: $verified, verifiedElement: $verifiedElement, verifiedWith: $verifiedWith, verificationDate: $verificationDate, verificationDateElement: $verificationDateElement)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -2789,11 +2774,6 @@ class _$ConsentProvisionImpl extends _ConsentProvision {
   }
 
   @override
-  String toString() {
-    return 'ConsentProvision(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, typeElement: $typeElement, period: $period, actor: $actor, action: $action, securityLabel: $securityLabel, purpose: $purpose, class_: $class_, code: $code, dataPeriod: $dataPeriod, data: $data, provision: $provision)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -3259,11 +3239,6 @@ class _$ConsentActorImpl extends _ConsentActor {
   final Reference reference;
 
   @override
-  String toString() {
-    return 'ConsentActor(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, role: $role, reference: $reference)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -3654,11 +3629,6 @@ class _$ConsentDataImpl extends _ConsentData {
   ///  resources are covered by this consent.
   @override
   final Reference reference;
-
-  @override
-  String toString() {
-    return 'ConsentData(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, meaning: $meaning, meaningElement: $meaningElement, reference: $reference)';
-  }
 
   @override
   bool operator ==(Object other) {

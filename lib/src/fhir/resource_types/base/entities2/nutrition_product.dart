@@ -14,9 +14,9 @@ part 'nutrition_product.g.dart';
 
 /// [NutritionProduct] A food or supplement that is consumed by patients.
 @freezed
-class NutritionProduct with _$NutritionProduct implements DomainResource {
+class NutritionProduct extends DomainResource with _$NutritionProduct {
   /// [NutritionProduct] A food or supplement that is consumed by patients.
-  const NutritionProduct._();
+  NutritionProduct._();
 
   /// [NutritionProduct] A food or supplement that is consumed by patients.
   ///
@@ -162,6 +162,9 @@ class NutritionProduct with _$NutritionProduct implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -190,11 +193,10 @@ class NutritionProduct with _$NutritionProduct implements DomainResource {
 
 /// [NutritionProductNutrient] A food or supplement that is consumed by patients.
 @freezed
-class NutritionProductNutrient
-    with _$NutritionProductNutrient
-    implements BackboneElement {
+class NutritionProductNutrient extends BackboneElement
+    with _$NutritionProductNutrient {
   /// [NutritionProductNutrient] A food or supplement that is consumed by patients.
-  const NutritionProductNutrient._();
+  NutritionProductNutrient._();
 
   /// [NutritionProductNutrient] A food or supplement that is consumed by patients.
   ///
@@ -264,6 +266,9 @@ class NutritionProductNutrient
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -272,11 +277,10 @@ class NutritionProductNutrient
 
 /// [NutritionProductIngredient] A food or supplement that is consumed by patients.
 @freezed
-class NutritionProductIngredient
-    with _$NutritionProductIngredient
-    implements BackboneElement {
+class NutritionProductIngredient extends BackboneElement
+    with _$NutritionProductIngredient {
   /// [NutritionProductIngredient] A food or supplement that is consumed by patients.
-  const NutritionProductIngredient._();
+  NutritionProductIngredient._();
 
   /// [NutritionProductIngredient] A food or supplement that is consumed by patients.
   ///
@@ -346,6 +350,9 @@ class NutritionProductIngredient
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -354,11 +361,10 @@ class NutritionProductIngredient
 
 /// [NutritionProductCharacteristic] A food or supplement that is consumed by patients.
 @freezed
-class NutritionProductCharacteristic
-    with _$NutritionProductCharacteristic
-    implements BackboneElement {
+class NutritionProductCharacteristic extends BackboneElement
+    with _$NutritionProductCharacteristic {
   /// [NutritionProductCharacteristic] A food or supplement that is consumed by patients.
-  const NutritionProductCharacteristic._();
+  NutritionProductCharacteristic._();
 
   /// [NutritionProductCharacteristic] A food or supplement that is consumed by patients.
   ///
@@ -475,6 +481,9 @@ class NutritionProductCharacteristic
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -483,11 +492,10 @@ class NutritionProductCharacteristic
 
 /// [NutritionProductInstance] A food or supplement that is consumed by patients.
 @freezed
-class NutritionProductInstance
-    with _$NutritionProductInstance
-    implements BackboneElement {
+class NutritionProductInstance extends BackboneElement
+    with _$NutritionProductInstance {
   /// [NutritionProductInstance] A food or supplement that is consumed by patients.
-  const NutritionProductInstance._();
+  NutritionProductInstance._();
 
   /// [NutritionProductInstance] A food or supplement that is consumed by patients.
   ///
@@ -568,6 +576,9 @@ class NutritionProductInstance
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

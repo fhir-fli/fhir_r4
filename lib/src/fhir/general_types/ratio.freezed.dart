@@ -230,11 +230,6 @@ class _$RatioImpl extends _Ratio {
   final Quantity? denominator;
 
   @override
-  String toString() {
-    return 'Ratio(id: $id, extension_: $extension_, numerator: $numerator, denominator: $denominator)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&

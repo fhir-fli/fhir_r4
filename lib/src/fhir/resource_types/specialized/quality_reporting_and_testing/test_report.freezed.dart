@@ -938,11 +938,6 @@ class _$TestReportImpl extends _TestReport {
   final TestReportTeardown? teardown;
 
   @override
-  String toString() {
-    return 'TestReport(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, name: $name, nameElement: $nameElement, status: $status, statusElement: $statusElement, testScript: $testScript, result: $result, resultElement: $resultElement, score: $score, scoreElement: $scoreElement, tester: $tester, testerElement: $testerElement, issued: $issued, issuedElement: $issuedElement, participant: $participant, setup: $setup, test: $test, teardown: $teardown)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1599,11 +1594,6 @@ class _$TestReportParticipantImpl extends _TestReportParticipant {
   final PrimitiveElement? displayElement;
 
   @override
-  String toString() {
-    return 'TestReportParticipant(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, typeElement: $typeElement, uri: $uri, uriElement: $uriElement, display: $display, displayElement: $displayElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1974,11 +1964,6 @@ class _$TestReportSetupImpl extends _TestReportSetup {
     if (_action is EqualUnmodifiableListView) return _action;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_action);
-  }
-
-  @override
-  String toString() {
-    return 'TestReportSetup(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, action: $action)';
   }
 
   @override
@@ -2359,11 +2344,6 @@ class _$TestReportActionImpl extends _TestReportAction {
   @override
   @JsonKey(name: 'assert')
   final TestReportAssert? assert_;
-
-  @override
-  String toString() {
-    return 'TestReportAction(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, operation: $operation, assert_: $assert_)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -2804,11 +2784,6 @@ class _$TestReportOperationImpl extends _TestReportOperation {
   @override
   @JsonKey(name: '_detail')
   final PrimitiveElement? detailElement;
-
-  @override
-  String toString() {
-    return 'TestReportOperation(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, result: $result, resultElement: $resultElement, message: $message, messageElement: $messageElement, detail: $detail, detailElement: $detailElement)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -3282,11 +3257,6 @@ class _$TestReportAssertImpl extends _TestReportAssert {
   final PrimitiveElement? detailElement;
 
   @override
-  String toString() {
-    return 'TestReportAssert(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, result: $result, resultElement: $resultElement, message: $message, messageElement: $messageElement, detail: $detail, detailElement: $detailElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -3749,11 +3719,6 @@ class _$TestReportTestImpl extends _TestReportTest {
   }
 
   @override
-  String toString() {
-    return 'TestReportTest(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, description: $description, descriptionElement: $descriptionElement, action: $action)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -4168,11 +4133,6 @@ class _$TestReportAction1Impl extends _TestReportAction1 {
   final TestReportAssert? assert_;
 
   @override
-  String toString() {
-    return 'TestReportAction1(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, operation: $operation, assert_: $assert_)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -4515,11 +4475,6 @@ class _$TestReportTeardownImpl extends _TestReportTeardown {
   }
 
   @override
-  String toString() {
-    return 'TestReportTeardown(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, action: $action)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -4855,11 +4810,6 @@ class _$TestReportAction2Impl extends _TestReportAction2 {
   /// [operation] An operation would involve a REST request to a server.
   @override
   final TestReportOperation operation;
-
-  @override
-  String toString() {
-    return 'TestReportAction2(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, operation: $operation)';
-  }
 
   @override
   bool operator ==(Object other) {

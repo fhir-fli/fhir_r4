@@ -14,9 +14,9 @@ part 'fhir_endpoint.g.dart';
 
 /// [FhirEndpoint] The technical details of an endpoint that can be used for
 @freezed
-class FhirEndpoint with _$FhirEndpoint implements DomainResource {
+class FhirEndpoint extends DomainResource with _$FhirEndpoint {
   /// [FhirEndpoint] The technical details of an endpoint that can be used for
-  const FhirEndpoint._();
+  FhirEndpoint._();
 
   /// [FhirEndpoint] The technical details of an endpoint that can be used for
   /// electronic services, such as for web services providing XDS.b or a REST
@@ -281,6 +281,9 @@ class FhirEndpoint with _$FhirEndpoint implements DomainResource {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

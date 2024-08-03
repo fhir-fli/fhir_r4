@@ -15,9 +15,9 @@ part 'care_plan.g.dart';
 
 /// [CarePlan] Describes the intention of how one or more practitioners
 @freezed
-class CarePlan with _$CarePlan implements DomainResource {
+class CarePlan extends DomainResource with _$CarePlan {
   /// [CarePlan] Describes the intention of how one or more practitioners
-  const CarePlan._();
+  CarePlan._();
 
   /// [CarePlan] Describes the intention of how one or more practitioners
   /// intend to deliver care for a particular patient, group or community for a
@@ -374,6 +374,9 @@ class CarePlan with _$CarePlan implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -405,9 +408,9 @@ class CarePlan with _$CarePlan implements DomainResource {
 
 /// [CarePlanActivity] Describes the intention of how one or more
 @freezed
-class CarePlanActivity with _$CarePlanActivity implements BackboneElement {
+class CarePlanActivity extends BackboneElement with _$CarePlanActivity {
   /// [CarePlanActivity] Describes the intention of how one or more
-  const CarePlanActivity._();
+  CarePlanActivity._();
 
   /// [CarePlanActivity] Describes the intention of how one or more
   /// practitioners intend to deliver care for a particular patient, group or
@@ -540,6 +543,9 @@ class CarePlanActivity with _$CarePlanActivity implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -551,9 +557,9 @@ class CarePlanActivity with _$CarePlanActivity implements BackboneElement {
 
 /// [CarePlanDetail] Describes the intention of how one or more
 @freezed
-class CarePlanDetail with _$CarePlanDetail implements BackboneElement {
+class CarePlanDetail extends BackboneElement with _$CarePlanDetail {
   /// [CarePlanDetail] Describes the intention of how one or more
-  const CarePlanDetail._();
+  CarePlanDetail._();
 
   /// [CarePlanDetail] Describes the intention of how one or more
   /// practitioners intend to deliver care for a particular patient, group or
@@ -834,6 +840,9 @@ class CarePlanDetail with _$CarePlanDetail implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

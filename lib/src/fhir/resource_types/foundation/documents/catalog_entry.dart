@@ -15,9 +15,9 @@ part 'catalog_entry.g.dart';
 
 /// [CatalogEntry] Catalog entries are wrappers that contextualize items
 @freezed
-class CatalogEntry with _$CatalogEntry implements DomainResource {
+class CatalogEntry extends DomainResource with _$CatalogEntry {
   /// [CatalogEntry] Catalog entries are wrappers that contextualize items
-  const CatalogEntry._();
+  CatalogEntry._();
 
   /// [CatalogEntry] Catalog entries are wrappers that contextualize items
   ///  included in a catalog.
@@ -277,6 +277,9 @@ class CatalogEntry with _$CatalogEntry implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -308,11 +311,10 @@ class CatalogEntry with _$CatalogEntry implements DomainResource {
 
 /// [CatalogEntryRelatedEntry] Catalog entries are wrappers that
 @freezed
-class CatalogEntryRelatedEntry
-    with _$CatalogEntryRelatedEntry
-    implements BackboneElement {
+class CatalogEntryRelatedEntry extends BackboneElement
+    with _$CatalogEntryRelatedEntry {
   /// [CatalogEntryRelatedEntry] Catalog entries are wrappers that
-  const CatalogEntryRelatedEntry._();
+  CatalogEntryRelatedEntry._();
 
   /// [CatalogEntryRelatedEntry] Catalog entries are wrappers that
   ///  contextualize items included in a catalog.
@@ -415,6 +417,9 @@ class CatalogEntryRelatedEntry
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

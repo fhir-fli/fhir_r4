@@ -237,11 +237,6 @@ class _$CodeableReferenceImpl extends _CodeableReference {
   final Reference? reference;
 
   @override
-  String toString() {
-    return 'CodeableReference(id: $id, extension_: $extension_, concept: $concept, reference: $reference)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&

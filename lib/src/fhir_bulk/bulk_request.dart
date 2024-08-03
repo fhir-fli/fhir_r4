@@ -16,7 +16,7 @@ part 'bulk_request.freezed.dart';
 
 /// Freezed union class for making different types of Bulk Requests
 class BulkRequest with _$BulkRequest {
-  const BulkRequest._();
+  BulkRequest._();
 
   ///  Patient
   const factory BulkRequest.patient({

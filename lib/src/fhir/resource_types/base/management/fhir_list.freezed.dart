@@ -952,11 +952,6 @@ class _$FhirListImpl extends _FhirList {
   final CodeableConcept? emptyReason;
 
   @override
-  String toString() {
-    return 'FhirList(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, status: $status, statusElement: $statusElement, mode: $mode, modeElement: $modeElement, title: $title, titleElement: $titleElement, code: $code, subject: $subject, encounter: $encounter, date: $date, dateElement: $dateElement, source: $source, orderedBy: $orderedBy, note: $note, entry: $entry, emptyReason: $emptyReason)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1622,11 +1617,6 @@ class _$FhirListEntryImpl extends _FhirListEntry {
   /// [item] A reference to the actual resource from which data was derived.
   @override
   final Reference item;
-
-  @override
-  String toString() {
-    return 'FhirListEntry(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, flag: $flag, deleted: $deleted, deletedElement: $deletedElement, date: $date, dateElement: $dateElement, item: $item)';
-  }
 
   @override
   bool operator ==(Object other) {

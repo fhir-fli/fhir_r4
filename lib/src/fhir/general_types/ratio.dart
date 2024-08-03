@@ -14,9 +14,9 @@ part 'ratio.g.dart';
 
 /// [Ratio] A relationship of two Quantity values - expressed as a numerator
 @freezed
-class Ratio with _$Ratio implements DataType {
+class Ratio extends DataType with _$Ratio {
   /// [Ratio] A relationship of two Quantity values - expressed as a numerator
-  const Ratio._();
+  Ratio._();
 
   /// [Ratio] A relationship of two Quantity values - expressed as a numerator
   ///  and a denominator.
@@ -81,6 +81,9 @@ class Ratio with _$Ratio implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

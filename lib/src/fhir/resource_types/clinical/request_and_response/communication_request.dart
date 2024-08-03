@@ -15,11 +15,9 @@ part 'communication_request.g.dart';
 
 /// [CommunicationRequest] A request to convey information; e.g. the CDS
 @freezed
-class CommunicationRequest
-    with _$CommunicationRequest
-    implements DomainResource {
+class CommunicationRequest extends DomainResource with _$CommunicationRequest {
   /// [CommunicationRequest] A request to convey information; e.g. the CDS
-  const CommunicationRequest._();
+  CommunicationRequest._();
 
   /// [CommunicationRequest] A request to convey information; e.g. the CDS
   /// system proposes that an alert be sent to a responsible provider, the CDS
@@ -367,6 +365,9 @@ class CommunicationRequest
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -398,11 +399,10 @@ class CommunicationRequest
 
 /// [CommunicationRequestPayload] A request to convey information; e.g. the
 @freezed
-class CommunicationRequestPayload
-    with _$CommunicationRequestPayload
-    implements BackboneElement {
+class CommunicationRequestPayload extends BackboneElement
+    with _$CommunicationRequestPayload {
   /// [CommunicationRequestPayload] A request to convey information; e.g. the
-  const CommunicationRequestPayload._();
+  CommunicationRequestPayload._();
 
   /// [CommunicationRequestPayload] A request to convey information; e.g. the
   /// CDS system proposes that an alert be sent to a responsible provider, the
@@ -516,6 +516,9 @@ class CommunicationRequestPayload
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

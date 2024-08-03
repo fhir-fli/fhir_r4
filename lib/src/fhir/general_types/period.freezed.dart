@@ -248,11 +248,6 @@ class _$PeriodImpl extends _Period {
   final PrimitiveElement? endElement;
 
   @override
-  String toString() {
-    return 'Period(id: $id, extension_: $extension_, start: $start, startElement: $startElement, end: $end, endElement: $endElement)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&

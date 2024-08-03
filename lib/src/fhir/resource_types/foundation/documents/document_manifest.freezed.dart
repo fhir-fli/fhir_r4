@@ -928,11 +928,6 @@ class _$DocumentManifestImpl extends _DocumentManifest {
   }
 
   @override
-  String toString() {
-    return 'DocumentManifest(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, masterIdentifier: $masterIdentifier, identifier: $identifier, status: $status, statusElement: $statusElement, type: $type, subject: $subject, created: $created, createdElement: $createdElement, author: $author, recipient: $recipient, source: $source, sourceElement: $sourceElement, description: $description, descriptionElement: $descriptionElement, content: $content, related: $related)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1527,11 +1522,6 @@ class _$DocumentManifestRelatedImpl extends _DocumentManifestRelated {
   ///  ServiceRequest,  Procedure, EligibilityRequest, etc.
   @override
   final Reference? ref;
-
-  @override
-  String toString() {
-    return 'DocumentManifestRelated(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, ref: $ref)';
-  }
 
   @override
   bool operator ==(Object other) {

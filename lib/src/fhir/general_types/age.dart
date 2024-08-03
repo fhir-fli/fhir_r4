@@ -14,9 +14,9 @@ part 'age.g.dart';
 
 /// [Age] A duration of time during which an organism (or a process) has
 @freezed
-class Age with _$Age implements DataType {
+class Age extends DataType with _$Age {
   /// [Age] A duration of time during which an organism (or a process) has
-  const Age._();
+  Age._();
 
   /// [Age] A duration of time during which an organism (or a process) has
   ///  existed.
@@ -132,6 +132,9 @@ class Age with _$Age implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

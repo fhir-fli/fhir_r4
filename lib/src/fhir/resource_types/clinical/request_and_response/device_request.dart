@@ -15,9 +15,9 @@ part 'device_request.g.dart';
 
 /// [DeviceRequest] Represents a request for a patient to employ a medical
 @freezed
-class DeviceRequest with _$DeviceRequest implements DomainResource {
+class DeviceRequest extends DomainResource with _$DeviceRequest {
   /// [DeviceRequest] Represents a request for a patient to employ a medical
-  const DeviceRequest._();
+  DeviceRequest._();
 
   /// [DeviceRequest] Represents a request for a patient to employ a medical
   /// device. The device may be an implantable device, or an external assistive
@@ -400,6 +400,9 @@ class DeviceRequest with _$DeviceRequest implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -431,11 +434,10 @@ class DeviceRequest with _$DeviceRequest implements DomainResource {
 
 /// [DeviceRequestParameter] Represents a request for a patient to employ a
 @freezed
-class DeviceRequestParameter
-    with _$DeviceRequestParameter
-    implements BackboneElement {
+class DeviceRequestParameter extends BackboneElement
+    with _$DeviceRequestParameter {
   /// [DeviceRequestParameter] Represents a request for a patient to employ a
-  const DeviceRequestParameter._();
+  DeviceRequestParameter._();
 
   /// [DeviceRequestParameter] Represents a request for a patient to employ a
   /// medical device. The device may be an implantable device, or an external
@@ -552,6 +554,9 @@ class DeviceRequestParameter
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

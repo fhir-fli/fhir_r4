@@ -1334,11 +1334,6 @@ class _$MedicinalProductDefinitionImpl extends _MedicinalProductDefinition {
   }
 
   @override
-  String toString() {
-    return 'MedicinalProductDefinition(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, type: $type, domain: $domain, version: $version, versionElement: $versionElement, status: $status, statusDate: $statusDate, statusDateElement: $statusDateElement, description: $description, descriptionElement: $descriptionElement, combinedPharmaceuticalDoseForm: $combinedPharmaceuticalDoseForm, route: $route, indication: $indication, indicationElement: $indicationElement, legalStatusOfSupply: $legalStatusOfSupply, additionalMonitoringIndicator: $additionalMonitoringIndicator, specialMeasures: $specialMeasures, pediatricUseIndicator: $pediatricUseIndicator, classification: $classification, marketingStatus: $marketingStatus, packagedMedicinalProduct: $packagedMedicinalProduct, ingredient: $ingredient, impurity: $impurity, attachedDocument: $attachedDocument, masterFile: $masterFile, contact: $contact, clinicalTrial: $clinicalTrial, code: $code, name: $name, crossReference: $crossReference, operation: $operation, characteristic: $characteristic)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1963,11 +1958,6 @@ class _$MedicinalProductDefinitionContactImpl
   final Reference contact;
 
   @override
-  String toString() {
-    return 'MedicinalProductDefinitionContact(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, contact: $contact)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2367,11 +2357,6 @@ class _$MedicinalProductDefinitionNameImpl
   }
 
   @override
-  String toString() {
-    return 'MedicinalProductDefinitionName(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, productName: $productName, productNameElement: $productNameElement, type: $type, namePart: $namePart, countryLanguage: $countryLanguage)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2729,11 +2714,6 @@ class _$MedicinalProductDefinitionNamePartImpl
   /// [type] Identifying type for this part of the name (e.g. strength part).;
   @override
   final CodeableConcept type;
-
-  @override
-  String toString() {
-    return 'MedicinalProductDefinitionNamePart(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, part_: $part_, partElement: $partElement, type: $type)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -3105,11 +3085,6 @@ class _$MedicinalProductDefinitionCountryLanguageImpl
   final CodeableConcept language;
 
   @override
-  String toString() {
-    return 'MedicinalProductDefinitionCountryLanguage(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, country: $country, jurisdiction: $jurisdiction, language: $language)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -3447,11 +3422,6 @@ class _$MedicinalProductDefinitionCrossReferenceImpl
   /// [type] The type of relationship, for instance branded to generic, virtual to actual product, product to development product (investigational), parallel import version.;
   @override
   final CodeableConcept? type;
-
-  @override
-  String toString() {
-    return 'MedicinalProductDefinitionCrossReference(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, product: $product, type: $type)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -3850,11 +3820,6 @@ class _$MedicinalProductDefinitionOperationImpl
   /// [confidentialityIndicator] Specifies whether this particular business or manufacturing process is considered proprietary or confidential.;
   @override
   final CodeableConcept? confidentialityIndicator;
-
-  @override
-  String toString() {
-    return 'MedicinalProductDefinitionOperation(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, effectiveDate: $effectiveDate, organization: $organization, confidentialityIndicator: $confidentialityIndicator)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -4358,11 +4323,6 @@ class _$MedicinalProductDefinitionCharacteristicImpl
   /// [valueAttachment] A value for the characteristic.text.;
   @override
   final Attachment? valueAttachment;
-
-  @override
-  String toString() {
-    return 'MedicinalProductDefinitionCharacteristic(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, valueCodeableConcept: $valueCodeableConcept, valueQuantity: $valueQuantity, valueDate: $valueDate, valueDateElement: $valueDateElement, valueBoolean: $valueBoolean, valueBooleanElement: $valueBooleanElement, valueAttachment: $valueAttachment)';
-  }
 
   @override
   bool operator ==(Object other) {

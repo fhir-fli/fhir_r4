@@ -925,11 +925,6 @@ class _$CareTeamImpl extends _CareTeam {
   }
 
   @override
-  String toString() {
-    return 'CareTeam(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, status: $status, statusElement: $statusElement, category: $category, name: $name, nameElement: $nameElement, subject: $subject, encounter: $encounter, period: $period, participant: $participant, reasonCode: $reasonCode, reasonReference: $reasonReference, managingOrganization: $managingOrganization, telecom: $telecom, note: $note)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1574,11 +1569,6 @@ class _$CareTeamParticipantImpl extends _CareTeamParticipant {
   ///  intended to) come into effect and end.
   @override
   final Period? period;
-
-  @override
-  String toString() {
-    return 'CareTeamParticipant(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, role: $role, member: $member, onBehalfOf: $onBehalfOf, period: $period)';
-  }
 
   @override
   bool operator ==(Object other) {

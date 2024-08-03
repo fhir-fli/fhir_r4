@@ -15,11 +15,10 @@ part 'research_element_definition.g.dart';
 
 /// [ResearchElementDefinition] The ResearchElementDefinition resource
 @freezed
-class ResearchElementDefinition
-    with _$ResearchElementDefinition
-    implements DomainResource {
+class ResearchElementDefinition extends DomainResource
+    with _$ResearchElementDefinition {
   /// [ResearchElementDefinition] The ResearchElementDefinition resource
-  const ResearchElementDefinition._();
+  ResearchElementDefinition._();
 
   /// [ResearchElementDefinition] The ResearchElementDefinition resource
   /// describes a "PICO" element that knowledge (evidence, assertion,
@@ -356,6 +355,9 @@ class ResearchElementDefinition
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -384,10 +386,9 @@ class ResearchElementDefinition
 
 @freezed
 @freezed
-class ResearchElementDefinitionCharacteristic
-    with _$ResearchElementDefinitionCharacteristic
-    implements BackboneElement {
-  const ResearchElementDefinitionCharacteristic._();
+class ResearchElementDefinitionCharacteristic extends BackboneElement
+    with _$ResearchElementDefinitionCharacteristic {
+  ResearchElementDefinitionCharacteristic._();
 
   /// [ResearchElementDefinitionCharacteristic] The ResearchElementDefinition
   /// resource describes a "PICO" element that knowledge (evidence, assertion,
@@ -563,6 +564,9 @@ class ResearchElementDefinitionCharacteristic
   factory ResearchElementDefinitionCharacteristic.fromJson(
           Map<String, dynamic> json) =>
       _$ResearchElementDefinitionCharacteristicFromJson(json);
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

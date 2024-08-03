@@ -1094,11 +1094,6 @@ class _$GraphDefinitionImpl extends _GraphDefinition {
   }
 
   @override
-  String toString() {
-    return 'GraphDefinition(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, version: $version, versionElement: $versionElement, name: $name, nameElement: $nameElement, status: $status, statusElement: $statusElement, experimental: $experimental, experimentalElement: $experimentalElement, date: $date, dateElement: $dateElement, publisher: $publisher, publisherElement: $publisherElement, contact: $contact, description: $description, descriptionElement: $descriptionElement, useContext: $useContext, jurisdiction: $jurisdiction, purpose: $purpose, purposeElement: $purposeElement, start: $start, startElement: $startElement, profile: $profile, link: $link)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1949,11 +1944,6 @@ class _$GraphDefinitionLinkImpl extends _GraphDefinitionLink {
   }
 
   @override
-  String toString() {
-    return 'GraphDefinitionLink(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, path: $path, pathElement: $pathElement, sliceName: $sliceName, sliceNameElement: $sliceNameElement, min: $min, minElement: $minElement, max: $max, maxElement: $maxElement, description: $description, descriptionElement: $descriptionElement, target: $target)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2507,11 +2497,6 @@ class _$GraphDefinitionTargetImpl extends _GraphDefinitionTarget {
     if (_link is EqualUnmodifiableListView) return _link;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  String toString() {
-    return 'GraphDefinitionTarget(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, typeElement: $typeElement, params: $params, paramsElement: $paramsElement, profile: $profile, compartment: $compartment, link: $link)';
   }
 
   @override
@@ -3085,11 +3070,6 @@ class _$GraphDefinitionCompartmentImpl extends _GraphDefinitionCompartment {
   @override
   @JsonKey(name: '_description')
   final PrimitiveElement? descriptionElement;
-
-  @override
-  String toString() {
-    return 'GraphDefinitionCompartment(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, use: $use, useElement: $useElement, code: $code, codeElement: $codeElement, rule: $rule, ruleElement: $ruleElement, expression: $expression, expressionElement: $expressionElement, description: $description, descriptionElement: $descriptionElement)';
-  }
 
   @override
   bool operator ==(Object other) {
