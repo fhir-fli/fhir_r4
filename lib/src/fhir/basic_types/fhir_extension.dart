@@ -386,7 +386,7 @@ class FhirExtension extends FhirBase with _$FhirExtension {
   }) = _FhirExtension;
 
   @override
-  String get fhirType => 'FhirExtension';
+  String get fhirType => 'Extension';
 
   factory FhirExtension.fromJson(Map<String, dynamic> json) =>
       _$FhirExtensionFromJson(json);
