@@ -274,7 +274,7 @@ class __$$ScopesImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ScopesImpl extends _Scopes {
-  const _$ScopesImpl(
+  _$ScopesImpl(
       {final List<ClinicalScope>? clinicalScopes,
       this.openid,
       this.fhirUser,
@@ -422,7 +422,7 @@ class _$ScopesImpl extends _Scopes {
 }
 
 abstract class _Scopes extends Scopes {
-  const factory _Scopes(
+  factory _Scopes(
       {final List<ClinicalScope>? clinicalScopes,
       final bool? openid,
       final bool? fhirUser,
@@ -436,7 +436,7 @@ abstract class _Scopes extends Scopes {
       final bool? smartOrchestrateLaunch,
       final String? intent,
       final List<String>? additional}) = _$ScopesImpl;
-  const _Scopes._() : super._();
+  _Scopes._() : super._();
 
   @override
 

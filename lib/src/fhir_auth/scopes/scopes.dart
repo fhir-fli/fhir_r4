@@ -14,7 +14,7 @@ part 'scopes.freezed.dart';
 class Scopes with _$Scopes {
   Scopes._();
 
-  const factory Scopes({
+  factory Scopes({
     /// see the clinical scopes class for details
     List<ClinicalScope>? clinicalScopes,
 

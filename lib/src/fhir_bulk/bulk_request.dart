@@ -19,7 +19,7 @@ class BulkRequest with _$BulkRequest {
   BulkRequest._();
 
   ///  Patient
-  const factory BulkRequest.patient({
+  factory BulkRequest.patient({
     required Uri base,
     FhirDateTime? since,
     List<WhichResource>? types,
@@ -27,7 +27,7 @@ class BulkRequest with _$BulkRequest {
   }) = _BulkPatientRequest;
 
   ///  Group
-  const factory BulkRequest.group({
+  factory BulkRequest.group({
     required Uri base,
     required FhirId id,
     FhirDateTime? since,
@@ -36,7 +36,7 @@ class BulkRequest with _$BulkRequest {
   }) = _BulkGroupRequest;
 
   ///  System
-  const factory BulkRequest.system({
+  factory BulkRequest.system({
     required Uri base,
     FhirDateTime? since,
     List<WhichResource>? types,
