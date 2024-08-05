@@ -443,7 +443,7 @@ class __$$AddressImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AddressImpl extends _Address {
-  const _$AddressImpl(
+  _$AddressImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: AddressUse.unknown) this.use,
@@ -724,7 +724,7 @@ abstract class _Address extends Address {
       final String? country,
       @JsonKey(name: '_country') final PrimitiveElement? countryElement,
       final Period? period}) = _$AddressImpl;
-  const _Address._() : super._();
+  _Address._() : super._();
 
   factory _Address.fromJson(Map<String, dynamic> json) = _$AddressImpl.fromJson;
 

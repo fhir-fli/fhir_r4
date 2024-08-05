@@ -521,7 +521,7 @@ class __$$SubscriptionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SubscriptionImpl extends _Subscription {
-  const _$SubscriptionImpl(
+  _$SubscriptionImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Subscription)
       this.resourceType = R4ResourceType.Subscription,
       this.id,
@@ -863,7 +863,7 @@ abstract class _Subscription extends Subscription {
       final String? error,
       @JsonKey(name: '_error') final PrimitiveElement? errorElement,
       required final SubscriptionChannel channel}) = _$SubscriptionImpl;
-  const _Subscription._() : super._();
+  _Subscription._() : super._();
 
   factory _Subscription.fromJson(Map<String, dynamic> json) =
       _$SubscriptionImpl.fromJson;
@@ -1276,7 +1276,7 @@ class __$$SubscriptionChannelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SubscriptionChannelImpl extends _SubscriptionChannel {
-  const _$SubscriptionChannelImpl(
+  _$SubscriptionChannelImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1495,7 +1495,7 @@ abstract class _SubscriptionChannel extends SubscriptionChannel {
       final List<String>? header,
       @JsonKey(name: '_header')
       final List<PrimitiveElement>? headerElement}) = _$SubscriptionChannelImpl;
-  const _SubscriptionChannel._() : super._();
+  _SubscriptionChannel._() : super._();
 
   factory _SubscriptionChannel.fromJson(Map<String, dynamic> json) =
       _$SubscriptionChannelImpl.fromJson;

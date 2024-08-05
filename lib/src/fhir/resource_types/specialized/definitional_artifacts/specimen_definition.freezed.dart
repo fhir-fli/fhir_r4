@@ -459,7 +459,7 @@ class __$$SpecimenDefinitionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SpecimenDefinitionImpl extends _SpecimenDefinition {
-  const _$SpecimenDefinitionImpl(
+  _$SpecimenDefinitionImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.SpecimenDefinition)
       this.resourceType = R4ResourceType.SpecimenDefinition,
       this.id,
@@ -776,7 +776,7 @@ abstract class _SpecimenDefinition extends SpecimenDefinition {
       final List<CodeableConcept>? collection,
       final List<SpecimenDefinitionTypeTested>?
           typeTested}) = _$SpecimenDefinitionImpl;
-  const _SpecimenDefinition._() : super._();
+  _SpecimenDefinition._() : super._();
 
   factory _SpecimenDefinition.fromJson(Map<String, dynamic> json) =
       _$SpecimenDefinitionImpl.fromJson;
@@ -1262,7 +1262,7 @@ class __$$SpecimenDefinitionTypeTestedImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SpecimenDefinitionTypeTestedImpl extends _SpecimenDefinitionTypeTested {
-  const _$SpecimenDefinitionTypeTestedImpl(
+  _$SpecimenDefinitionTypeTestedImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1512,7 +1512,7 @@ abstract class _SpecimenDefinitionTypeTested
       final List<CodeableConcept>? rejectionCriterion,
       final List<SpecimenDefinitionHandling>?
           handling}) = _$SpecimenDefinitionTypeTestedImpl;
-  const _SpecimenDefinitionTypeTested._() : super._();
+  _SpecimenDefinitionTypeTested._() : super._();
 
   factory _SpecimenDefinitionTypeTested.fromJson(Map<String, dynamic> json) =
       _$SpecimenDefinitionTypeTestedImpl.fromJson;
@@ -2021,7 +2021,7 @@ class __$$SpecimenDefinitionContainerImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SpecimenDefinitionContainerImpl extends _SpecimenDefinitionContainer {
-  const _$SpecimenDefinitionContainerImpl(
+  _$SpecimenDefinitionContainerImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2270,7 +2270,7 @@ abstract class _SpecimenDefinitionContainer
       @JsonKey(name: '_preparation')
       final PrimitiveElement?
           preparationElement}) = _$SpecimenDefinitionContainerImpl;
-  const _SpecimenDefinitionContainer._() : super._();
+  _SpecimenDefinitionContainer._() : super._();
 
   factory _SpecimenDefinitionContainer.fromJson(Map<String, dynamic> json) =
       _$SpecimenDefinitionContainerImpl.fromJson;
@@ -2578,7 +2578,7 @@ class __$$SpecimenDefinitionAdditiveImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SpecimenDefinitionAdditiveImpl extends _SpecimenDefinitionAdditive {
-  const _$SpecimenDefinitionAdditiveImpl(
+  _$SpecimenDefinitionAdditiveImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2720,7 +2720,7 @@ abstract class _SpecimenDefinitionAdditive extends SpecimenDefinitionAdditive {
       final List<FhirExtension>? modifierExtension,
       final CodeableConcept? additiveCodeableConcept,
       final Reference? additiveReference}) = _$SpecimenDefinitionAdditiveImpl;
-  const _SpecimenDefinitionAdditive._() : super._();
+  _SpecimenDefinitionAdditive._() : super._();
 
   factory _SpecimenDefinitionAdditive.fromJson(Map<String, dynamic> json) =
       _$SpecimenDefinitionAdditiveImpl.fromJson;
@@ -3047,7 +3047,7 @@ class __$$SpecimenDefinitionHandlingImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SpecimenDefinitionHandlingImpl extends _SpecimenDefinitionHandling {
-  const _$SpecimenDefinitionHandlingImpl(
+  _$SpecimenDefinitionHandlingImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3219,7 +3219,7 @@ abstract class _SpecimenDefinitionHandling extends SpecimenDefinitionHandling {
           @JsonKey(name: '_instruction')
           final PrimitiveElement? instructionElement}) =
       _$SpecimenDefinitionHandlingImpl;
-  const _SpecimenDefinitionHandling._() : super._();
+  _SpecimenDefinitionHandling._() : super._();
 
   factory _SpecimenDefinitionHandling.fromJson(Map<String, dynamic> json) =
       _$SpecimenDefinitionHandlingImpl.fromJson;

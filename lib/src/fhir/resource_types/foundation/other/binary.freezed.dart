@@ -421,7 +421,7 @@ class __$$BinaryImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$BinaryImpl extends _Binary {
-  const _$BinaryImpl(
+  _$BinaryImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Binary)
       this.resourceType = R4ResourceType.Binary,
       this.id,
@@ -697,7 +697,7 @@ abstract class _Binary extends Binary {
       final FhirBase64Binary? data,
       @JsonKey(name: '_data')
       final PrimitiveElement? dataElement}) = _$BinaryImpl;
-  const _Binary._() : super._();
+  _Binary._() : super._();
 
   factory _Binary.fromJson(Map<String, dynamic> json) = _$BinaryImpl.fromJson;
 

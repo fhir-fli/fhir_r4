@@ -269,7 +269,7 @@ class __$$ReferenceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ReferenceImpl extends _Reference {
-  const _$ReferenceImpl(
+  _$ReferenceImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       this.reference,
@@ -430,7 +430,7 @@ abstract class _Reference extends Reference {
           final String? display,
           @JsonKey(name: '_display') final PrimitiveElement? displayElement}) =
       _$ReferenceImpl;
-  const _Reference._() : super._();
+  _Reference._() : super._();
 
   factory _Reference.fromJson(Map<String, dynamic> json) =
       _$ReferenceImpl.fromJson;

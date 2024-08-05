@@ -577,7 +577,7 @@ class __$$OrganizationAffiliationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$OrganizationAffiliationImpl extends _OrganizationAffiliation {
-  const _$OrganizationAffiliationImpl(
+  _$OrganizationAffiliationImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.OrganizationAffiliation)
       this.resourceType = R4ResourceType.OrganizationAffiliation,
       this.id,
@@ -1006,7 +1006,7 @@ abstract class _OrganizationAffiliation extends OrganizationAffiliation {
       final List<Reference>? healthcareService,
       final List<ContactPoint>? telecom,
       final List<Reference>? endpoint}) = _$OrganizationAffiliationImpl;
-  const _OrganizationAffiliation._() : super._();
+  _OrganizationAffiliation._() : super._();
 
   factory _OrganizationAffiliation.fromJson(Map<String, dynamic> json) =
       _$OrganizationAffiliationImpl.fromJson;

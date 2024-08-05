@@ -676,7 +676,7 @@ class __$$FhirListImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FhirListImpl extends _FhirList {
-  const _$FhirListImpl(
+  _$FhirListImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.FhirList)
       this.resourceType = R4ResourceType.FhirList,
       this.id,
@@ -1082,7 +1082,7 @@ abstract class _FhirList extends FhirList {
       final List<Annotation>? note,
       final List<FhirListEntry>? entry,
       final CodeableConcept? emptyReason}) = _$FhirListImpl;
-  const _FhirList._() : super._();
+  _FhirList._() : super._();
 
   factory _FhirList.fromJson(Map<String, dynamic> json) =
       _$FhirListImpl.fromJson;
@@ -1507,7 +1507,7 @@ class __$$FhirListEntryImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FhirListEntryImpl extends _FhirListEntry {
-  const _$FhirListEntryImpl(
+  _$FhirListEntryImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1677,7 +1677,7 @@ abstract class _FhirListEntry extends FhirListEntry {
       final FhirDateTime? date,
       @JsonKey(name: '_date') final PrimitiveElement? dateElement,
       required final Reference item}) = _$FhirListEntryImpl;
-  const _FhirListEntry._() : super._();
+  _FhirListEntry._() : super._();
 
   factory _FhirListEntry.fromJson(Map<String, dynamic> json) =
       _$FhirListEntryImpl.fromJson;

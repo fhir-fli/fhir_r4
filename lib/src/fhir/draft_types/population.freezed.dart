@@ -305,7 +305,7 @@ class __$$PopulationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PopulationImpl extends _Population {
-  const _$PopulationImpl(
+  _$PopulationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -466,7 +466,7 @@ abstract class _Population extends Population {
       final CodeableConcept? gender,
       final CodeableConcept? race,
       final CodeableConcept? physiologicalCondition}) = _$PopulationImpl;
-  const _Population._() : super._();
+  _Population._() : super._();
 
   factory _Population.fromJson(Map<String, dynamic> json) =
       _$PopulationImpl.fromJson;

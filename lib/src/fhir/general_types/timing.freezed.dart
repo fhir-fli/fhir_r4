@@ -247,7 +247,7 @@ class __$$TimingImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$TimingImpl extends _Timing {
-  const _$TimingImpl(
+  _$TimingImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -424,7 +424,7 @@ abstract class _Timing extends Timing {
       @JsonKey(name: '_event') final List<PrimitiveElement>? eventElement,
       final TimingRepeat? repeat,
       final CodeableConcept? code}) = _$TimingImpl;
-  const _Timing._() : super._();
+  _Timing._() : super._();
 
   factory _Timing.fromJson(Map<String, dynamic> json) = _$TimingImpl.fromJson;
 
@@ -1183,7 +1183,7 @@ class __$$TimingRepeatImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$TimingRepeatImpl extends _TimingRepeat {
-  const _$TimingRepeatImpl(
+  _$TimingRepeatImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1688,7 +1688,7 @@ abstract class _TimingRepeat extends TimingRepeat {
       final FhirUnsignedInt? offset,
       @JsonKey(name: '_offset')
       final PrimitiveElement? offsetElement}) = _$TimingRepeatImpl;
-  const _TimingRepeat._() : super._();
+  _TimingRepeat._() : super._();
 
   factory _TimingRepeat.fromJson(Map<String, dynamic> json) =
       _$TimingRepeatImpl.fromJson;

@@ -278,7 +278,7 @@ class __$$CountImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CountImpl extends _Count {
-  const _$CountImpl(
+  _$CountImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       this.value,
@@ -446,7 +446,7 @@ abstract class _Count extends Count {
       final FhirCode? code,
       @JsonKey(name: '_code')
       final PrimitiveElement? codeElement}) = _$CountImpl;
-  const _Count._() : super._();
+  _Count._() : super._();
 
   factory _Count.fromJson(Map<String, dynamic> json) = _$CountImpl.fromJson;
 

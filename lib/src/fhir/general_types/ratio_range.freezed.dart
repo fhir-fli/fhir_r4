@@ -208,7 +208,7 @@ class __$$RatioRangeImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RatioRangeImpl extends _RatioRange {
-  const _$RatioRangeImpl(
+  _$RatioRangeImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       this.lowNumerator,
@@ -297,7 +297,7 @@ abstract class _RatioRange extends RatioRange {
       final Quantity? lowNumerator,
       final Quantity? highNumerator,
       final Quantity? denominator}) = _$RatioRangeImpl;
-  const _RatioRange._() : super._();
+  _RatioRange._() : super._();
 
   factory _RatioRange.fromJson(Map<String, dynamic> json) =
       _$RatioRangeImpl.fromJson;

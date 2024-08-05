@@ -169,7 +169,7 @@ class __$$ContactDetailImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ContactDetailImpl extends _ContactDetail {
-  const _$ContactDetailImpl(
+  _$ContactDetailImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       this.name,
@@ -280,7 +280,7 @@ abstract class _ContactDetail extends ContactDetail {
       final String? name,
       @JsonKey(name: '_name') final PrimitiveElement? nameElement,
       final List<ContactPoint>? telecom}) = _$ContactDetailImpl;
-  const _ContactDetail._() : super._();
+  _ContactDetail._() : super._();
 
   factory _ContactDetail.fromJson(Map<String, dynamic> json) =
       _$ContactDetailImpl.fromJson;

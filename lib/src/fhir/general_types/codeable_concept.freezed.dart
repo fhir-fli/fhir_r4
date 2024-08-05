@@ -170,7 +170,7 @@ class __$$CodeableConceptImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CodeableConceptImpl extends _CodeableConcept {
-  const _$CodeableConceptImpl(
+  _$CodeableConceptImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<Coding>? coding,
@@ -283,7 +283,7 @@ abstract class _CodeableConcept extends CodeableConcept {
           final String? text,
           @JsonKey(name: '_text') final PrimitiveElement? textElement}) =
       _$CodeableConceptImpl;
-  const _CodeableConcept._() : super._();
+  _CodeableConcept._() : super._();
 
   factory _CodeableConcept.fromJson(Map<String, dynamic> json) =
       _$CodeableConceptImpl.fromJson;

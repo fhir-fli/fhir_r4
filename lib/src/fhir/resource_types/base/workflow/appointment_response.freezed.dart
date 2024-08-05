@@ -545,7 +545,7 @@ class __$$AppointmentResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AppointmentResponseImpl extends _AppointmentResponse {
-  const _$AppointmentResponseImpl(
+  _$AppointmentResponseImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.AppointmentResponse)
       this.resourceType = R4ResourceType.AppointmentResponse,
       this.id,
@@ -910,7 +910,7 @@ abstract class _AppointmentResponse extends AppointmentResponse {
           final String? comment,
           @JsonKey(name: '_comment') final PrimitiveElement? commentElement}) =
       _$AppointmentResponseImpl;
-  const _AppointmentResponse._() : super._();
+  _AppointmentResponse._() : super._();
 
   factory _AppointmentResponse.fromJson(Map<String, dynamic> json) =
       _$AppointmentResponseImpl.fromJson;

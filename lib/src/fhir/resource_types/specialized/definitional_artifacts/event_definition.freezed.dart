@@ -1099,7 +1099,7 @@ class __$$EventDefinitionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$EventDefinitionImpl extends _EventDefinition {
-  const _$EventDefinitionImpl(
+  _$EventDefinitionImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.EventDefinition)
       this.resourceType = R4ResourceType.EventDefinition,
       this.id,
@@ -1895,7 +1895,7 @@ abstract class _EventDefinition extends EventDefinition {
       final List<ContactDetail>? endorser,
       final List<RelatedArtifact>? relatedArtifact,
       required final List<TriggerDefinition> trigger}) = _$EventDefinitionImpl;
-  const _EventDefinition._() : super._();
+  _EventDefinition._() : super._();
 
   factory _EventDefinition.fromJson(Map<String, dynamic> json) =
       _$EventDefinitionImpl.fromJson;

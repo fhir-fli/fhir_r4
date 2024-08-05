@@ -521,7 +521,7 @@ class __$$BodyStructureImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$BodyStructureImpl extends _BodyStructure {
-  const _$BodyStructureImpl(
+  _$BodyStructureImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.BodyStructure)
       this.resourceType = R4ResourceType.BodyStructure,
       this.id,
@@ -868,7 +868,7 @@ abstract class _BodyStructure extends BodyStructure {
       @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       final List<Attachment>? image,
       required final Reference patient}) = _$BodyStructureImpl;
-  const _BodyStructure._() : super._();
+  _BodyStructure._() : super._();
 
   factory _BodyStructure.fromJson(Map<String, dynamic> json) =
       _$BodyStructureImpl.fromJson;

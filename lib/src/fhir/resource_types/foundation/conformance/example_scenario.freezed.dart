@@ -757,7 +757,7 @@ class __$$ExampleScenarioImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ExampleScenarioImpl extends _ExampleScenario {
-  const _$ExampleScenarioImpl(
+  _$ExampleScenarioImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.ExampleScenario)
       this.resourceType = R4ResourceType.ExampleScenario,
       this.id,
@@ -1334,7 +1334,7 @@ abstract class _ExampleScenario extends ExampleScenario {
       final List<ExampleScenarioInstance>? instance,
       final List<ExampleScenarioProcess>? process,
       final List<FhirCanonical>? workflow}) = _$ExampleScenarioImpl;
-  const _ExampleScenario._() : super._();
+  _ExampleScenario._() : super._();
 
   factory _ExampleScenario.fromJson(Map<String, dynamic> json) =
       _$ExampleScenarioImpl.fromJson;
@@ -1832,7 +1832,7 @@ class __$$ExampleScenarioActorImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ExampleScenarioActorImpl extends _ExampleScenarioActor {
-  const _$ExampleScenarioActorImpl(
+  _$ExampleScenarioActorImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2025,7 +2025,7 @@ abstract class _ExampleScenarioActor extends ExampleScenarioActor {
       final FhirMarkdown? description,
       @JsonKey(name: '_description')
       final PrimitiveElement? descriptionElement}) = _$ExampleScenarioActorImpl;
-  const _ExampleScenarioActor._() : super._();
+  _ExampleScenarioActor._() : super._();
 
   factory _ExampleScenarioActor.fromJson(Map<String, dynamic> json) =
       _$ExampleScenarioActorImpl.fromJson;
@@ -2403,7 +2403,7 @@ class __$$ExampleScenarioInstanceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ExampleScenarioInstanceImpl extends _ExampleScenarioInstance {
-  const _$ExampleScenarioInstanceImpl(
+  _$ExampleScenarioInstanceImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2638,7 +2638,7 @@ abstract class _ExampleScenarioInstance extends ExampleScenarioInstance {
       final List<ExampleScenarioVersion>? version,
       final List<ExampleScenarioContainedInstance>?
           containedInstance}) = _$ExampleScenarioInstanceImpl;
-  const _ExampleScenarioInstance._() : super._();
+  _ExampleScenarioInstance._() : super._();
 
   factory _ExampleScenarioInstance.fromJson(Map<String, dynamic> json) =
       _$ExampleScenarioInstanceImpl.fromJson;
@@ -2929,7 +2929,7 @@ class __$$ExampleScenarioVersionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ExampleScenarioVersionImpl extends _ExampleScenarioVersion {
-  const _$ExampleScenarioVersionImpl(
+  _$ExampleScenarioVersionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3087,7 +3087,7 @@ abstract class _ExampleScenarioVersion extends ExampleScenarioVersion {
           @JsonKey(name: '_description')
           final PrimitiveElement? descriptionElement}) =
       _$ExampleScenarioVersionImpl;
-  const _ExampleScenarioVersion._() : super._();
+  _ExampleScenarioVersion._() : super._();
 
   factory _ExampleScenarioVersion.fromJson(Map<String, dynamic> json) =
       _$ExampleScenarioVersionImpl.fromJson;
@@ -3353,7 +3353,7 @@ class __$$ExampleScenarioContainedInstanceImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ExampleScenarioContainedInstanceImpl
     extends _ExampleScenarioContainedInstance {
-  const _$ExampleScenarioContainedInstanceImpl(
+  _$ExampleScenarioContainedInstanceImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3514,7 +3514,7 @@ abstract class _ExampleScenarioContainedInstance
       @JsonKey(name: '_versionId')
       final PrimitiveElement?
           versionIdElement}) = _$ExampleScenarioContainedInstanceImpl;
-  const _ExampleScenarioContainedInstance._() : super._();
+  _ExampleScenarioContainedInstance._() : super._();
 
   factory _ExampleScenarioContainedInstance.fromJson(
           Map<String, dynamic> json) =
@@ -3859,7 +3859,7 @@ class __$$ExampleScenarioProcessImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ExampleScenarioProcessImpl extends _ExampleScenarioProcess {
-  const _$ExampleScenarioProcessImpl(
+  _$ExampleScenarioProcessImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4072,7 +4072,7 @@ abstract class _ExampleScenarioProcess extends ExampleScenarioProcess {
       @JsonKey(name: '_postConditions')
       final PrimitiveElement? postConditionsElement,
       final List<ExampleScenarioStep>? step}) = _$ExampleScenarioProcessImpl;
-  const _ExampleScenarioProcess._() : super._();
+  _ExampleScenarioProcess._() : super._();
 
   factory _ExampleScenarioProcess.fromJson(Map<String, dynamic> json) =
       _$ExampleScenarioProcessImpl.fromJson;
@@ -4386,7 +4386,7 @@ class __$$ExampleScenarioStepImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ExampleScenarioStepImpl extends _ExampleScenarioStep {
-  const _$ExampleScenarioStepImpl(
+  _$ExampleScenarioStepImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4571,7 +4571,7 @@ abstract class _ExampleScenarioStep extends ExampleScenarioStep {
           final ExampleScenarioOperation? operation,
           final List<ExampleScenarioAlternative>? alternative}) =
       _$ExampleScenarioStepImpl;
-  const _ExampleScenarioStep._() : super._();
+  _ExampleScenarioStep._() : super._();
 
   factory _ExampleScenarioStep.fromJson(Map<String, dynamic> json) =
       _$ExampleScenarioStepImpl.fromJson;
@@ -5097,7 +5097,7 @@ class __$$ExampleScenarioOperationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ExampleScenarioOperationImpl extends _ExampleScenarioOperation {
-  const _$ExampleScenarioOperationImpl(
+  _$ExampleScenarioOperationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5387,7 +5387,7 @@ abstract class _ExampleScenarioOperation extends ExampleScenarioOperation {
       final ExampleScenarioContainedInstance? request,
       final ExampleScenarioContainedInstance?
           response}) = _$ExampleScenarioOperationImpl;
-  const _ExampleScenarioOperation._() : super._();
+  _ExampleScenarioOperation._() : super._();
 
   factory _ExampleScenarioOperation.fromJson(Map<String, dynamic> json) =
       _$ExampleScenarioOperationImpl.fromJson;
@@ -5733,7 +5733,7 @@ class __$$ExampleScenarioAlternativeImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ExampleScenarioAlternativeImpl extends _ExampleScenarioAlternative {
-  const _$ExampleScenarioAlternativeImpl(
+  _$ExampleScenarioAlternativeImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5910,7 +5910,7 @@ abstract class _ExampleScenarioAlternative extends ExampleScenarioAlternative {
       @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       final List<ExampleScenarioStep>?
           step}) = _$ExampleScenarioAlternativeImpl;
-  const _ExampleScenarioAlternative._() : super._();
+  _ExampleScenarioAlternative._() : super._();
 
   factory _ExampleScenarioAlternative.fromJson(Map<String, dynamic> json) =
       _$ExampleScenarioAlternativeImpl.fromJson;

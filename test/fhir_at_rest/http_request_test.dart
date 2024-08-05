@@ -274,7 +274,7 @@ void main() {
       final Bundle bundle = Bundle(
           type: FhirCode('batch'),
           id: '12345',
-          entry: <BundleEntry>[const BundleEntry(request: BundleRequest())]);
+          entry: <BundleEntry>[BundleEntry(request: BundleRequest())]);
       final FhirRequest request = FhirRequest.batch(
         base: Uri.parse('http://hapi.fhir.org/baseR4'),
         bundle: bundle,
@@ -411,7 +411,7 @@ void main() {
 
   group('FhirRequest - UPDATE:', () {
     test('update patient by id', () {
-      const Patient patient = Patient(id: '12345');
+      final Patient patient = Patient(id: '12345');
       final FhirRequest request = FhirRequest.update(
         base: Uri.parse('http://hapi.fhir.org/baseR4'),
         resource: patient,
@@ -437,7 +437,7 @@ void main() {
 
   group('FhirRequest - PATCH:', () {
     test('patch patient by id', () {
-      const Patient patient = Patient(id: '12345');
+      final Patient patient = Patient(id: '12345');
       final FhirRequest request = FhirRequest.patch(
         base: Uri.parse('http://hapi.fhir.org/baseR4'),
         resource: patient,
@@ -487,7 +487,7 @@ void main() {
 
   group('FhirRequest - CREATE:', () {
     test('create patient', () {
-      const Patient patient = Patient(id: '12345');
+      final Patient patient = Patient(id: '12345');
       final FhirRequest request = FhirRequest.create(
         base: Uri.parse('http://hapi.fhir.org/baseR4'),
         resource: patient,

@@ -927,7 +927,7 @@ class __$$ProcedureImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ProcedureImpl extends _Procedure {
-  const _$ProcedureImpl(
+  _$ProcedureImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Procedure)
       this.resourceType = R4ResourceType.Procedure,
       this.id,
@@ -1486,7 +1486,7 @@ abstract class _Procedure extends Procedure {
       final List<ProcedureFocalDevice>? focalDevice,
       final List<Reference>? usedReference,
       final List<CodeableConcept>? usedCode}) = _$ProcedureImpl;
-  const _Procedure._() : super._();
+  _Procedure._() : super._();
 
   factory _Procedure.fromJson(Map<String, dynamic> json) =
       _$ProcedureImpl.fromJson;
@@ -1794,7 +1794,7 @@ class __$$ProcedurePerformerImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ProcedurePerformerImpl extends _ProcedurePerformer {
-  const _$ProcedurePerformerImpl(
+  _$ProcedurePerformerImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1890,7 +1890,7 @@ abstract class _ProcedurePerformer extends ProcedurePerformer {
       final CodeableConcept? function,
       required final Reference actor,
       final Reference? onBehalfOf}) = _$ProcedurePerformerImpl;
-  const _ProcedurePerformer._() : super._();
+  _ProcedurePerformer._() : super._();
 
   factory _ProcedurePerformer.fromJson(Map<String, dynamic> json) =
       _$ProcedurePerformerImpl.fromJson;
@@ -2082,7 +2082,7 @@ class __$$ProcedureFocalDeviceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ProcedureFocalDeviceImpl extends _ProcedureFocalDevice {
-  const _$ProcedureFocalDeviceImpl(
+  _$ProcedureFocalDeviceImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2172,7 +2172,7 @@ abstract class _ProcedureFocalDevice extends ProcedureFocalDevice {
       final List<FhirExtension>? modifierExtension,
       final CodeableConcept? action,
       required final Reference manipulated}) = _$ProcedureFocalDeviceImpl;
-  const _ProcedureFocalDevice._() : super._();
+  _ProcedureFocalDevice._() : super._();
 
   factory _ProcedureFocalDevice.fromJson(Map<String, dynamic> json) =
       _$ProcedureFocalDeviceImpl.fromJson;

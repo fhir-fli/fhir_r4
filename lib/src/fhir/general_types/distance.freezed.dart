@@ -280,7 +280,7 @@ class __$$DistanceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DistanceImpl extends _Distance {
-  const _$DistanceImpl(
+  _$DistanceImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       this.value,
@@ -448,7 +448,7 @@ abstract class _Distance extends Distance {
       final FhirCode? code,
       @JsonKey(name: '_code')
       final PrimitiveElement? codeElement}) = _$DistanceImpl;
-  const _Distance._() : super._();
+  _Distance._() : super._();
 
   factory _Distance.fromJson(Map<String, dynamic> json) =
       _$DistanceImpl.fromJson;

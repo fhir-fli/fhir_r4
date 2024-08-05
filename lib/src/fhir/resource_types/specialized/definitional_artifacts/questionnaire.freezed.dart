@@ -936,7 +936,7 @@ class __$$QuestionnaireImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$QuestionnaireImpl extends _Questionnaire {
-  const _$QuestionnaireImpl(
+  _$QuestionnaireImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Questionnaire)
       this.resourceType = R4ResourceType.Questionnaire,
       this.id,
@@ -1633,7 +1633,7 @@ abstract class _Questionnaire extends Questionnaire {
       final Period? effectivePeriod,
       final List<Coding>? code,
       final List<QuestionnaireItem>? item}) = _$QuestionnaireImpl;
-  const _Questionnaire._() : super._();
+  _Questionnaire._() : super._();
 
   factory _Questionnaire.fromJson(Map<String, dynamic> json) =
       _$QuestionnaireImpl.fromJson;
@@ -2481,7 +2481,7 @@ class __$$QuestionnaireItemImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$QuestionnaireItemImpl extends _QuestionnaireItem {
-  const _$QuestionnaireItemImpl(
+  _$QuestionnaireItemImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2914,7 +2914,7 @@ abstract class _QuestionnaireItem extends QuestionnaireItem {
       final List<QuestionnaireAnswerOption>? answerOption,
       final List<QuestionnaireInitial>? initial,
       final List<QuestionnaireItem>? item}) = _$QuestionnaireItemImpl;
-  const _QuestionnaireItem._() : super._();
+  _QuestionnaireItem._() : super._();
 
   factory _QuestionnaireItem.fromJson(Map<String, dynamic> json) =
       _$QuestionnaireItemImpl.fromJson;
@@ -3620,7 +3620,7 @@ class __$$QuestionnaireEnableWhenImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$QuestionnaireEnableWhenImpl extends _QuestionnaireEnableWhen {
-  const _$QuestionnaireEnableWhenImpl(
+  _$QuestionnaireEnableWhenImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3954,7 +3954,7 @@ abstract class _QuestionnaireEnableWhen extends QuestionnaireEnableWhen {
       final Coding? answerCoding,
       final Quantity? answerQuantity,
       final Reference? answerReference}) = _$QuestionnaireEnableWhenImpl;
-  const _QuestionnaireEnableWhen._() : super._();
+  _QuestionnaireEnableWhen._() : super._();
 
   factory _QuestionnaireEnableWhen.fromJson(Map<String, dynamic> json) =
       _$QuestionnaireEnableWhenImpl.fromJson;
@@ -4471,7 +4471,7 @@ class __$$QuestionnaireAnswerOptionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$QuestionnaireAnswerOptionImpl extends _QuestionnaireAnswerOption {
-  const _$QuestionnaireAnswerOptionImpl(
+  _$QuestionnaireAnswerOptionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4712,7 +4712,7 @@ abstract class _QuestionnaireAnswerOption extends QuestionnaireAnswerOption {
       @JsonKey(name: '_initialSelected')
       final PrimitiveElement?
           initialSelectedElement}) = _$QuestionnaireAnswerOptionImpl;
-  const _QuestionnaireAnswerOption._() : super._();
+  _QuestionnaireAnswerOption._() : super._();
 
   factory _QuestionnaireAnswerOption.fromJson(Map<String, dynamic> json) =
       _$QuestionnaireAnswerOptionImpl.fromJson;
@@ -5326,7 +5326,7 @@ class __$$QuestionnaireInitialImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$QuestionnaireInitialImpl extends _QuestionnaireInitial {
-  const _$QuestionnaireInitialImpl(
+  _$QuestionnaireInitialImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5638,7 +5638,7 @@ abstract class _QuestionnaireInitial extends QuestionnaireInitial {
       final Coding? valueCoding,
       final Quantity? valueQuantity,
       final Reference? valueReference}) = _$QuestionnaireInitialImpl;
-  const _QuestionnaireInitial._() : super._();
+  _QuestionnaireInitial._() : super._();
 
   factory _QuestionnaireInitial.fromJson(Map<String, dynamic> json) =
       _$QuestionnaireInitialImpl.fromJson;

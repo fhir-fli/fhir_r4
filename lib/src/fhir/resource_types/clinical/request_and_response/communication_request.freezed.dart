@@ -879,7 +879,7 @@ class __$$CommunicationRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CommunicationRequestImpl extends _CommunicationRequest {
-  const _$CommunicationRequestImpl(
+  _$CommunicationRequestImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.CommunicationRequest)
       this.resourceType = R4ResourceType.CommunicationRequest,
       this.id,
@@ -1496,7 +1496,7 @@ abstract class _CommunicationRequest extends CommunicationRequest {
       final List<CodeableConcept>? reasonCode,
       final List<Reference>? reasonReference,
       final List<Annotation>? note}) = _$CommunicationRequestImpl;
-  const _CommunicationRequest._() : super._();
+  _CommunicationRequest._() : super._();
 
   factory _CommunicationRequest.fromJson(Map<String, dynamic> json) =
       _$CommunicationRequestImpl.fromJson;
@@ -1964,7 +1964,7 @@ class __$$CommunicationRequestPayloadImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CommunicationRequestPayloadImpl extends _CommunicationRequestPayload {
-  const _$CommunicationRequestPayloadImpl(
+  _$CommunicationRequestPayloadImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2125,7 +2125,7 @@ abstract class _CommunicationRequestPayload
       final PrimitiveElement? contentStringElement,
       final Attachment? contentAttachment,
       final Reference? contentReference}) = _$CommunicationRequestPayloadImpl;
-  const _CommunicationRequestPayload._() : super._();
+  _CommunicationRequestPayload._() : super._();
 
   factory _CommunicationRequestPayload.fromJson(Map<String, dynamic> json) =
       _$CommunicationRequestPayloadImpl.fromJson;

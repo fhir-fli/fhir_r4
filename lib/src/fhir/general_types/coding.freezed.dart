@@ -285,7 +285,7 @@ class __$$CodingImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CodingImpl extends _Coding {
-  const _$CodingImpl(
+  _$CodingImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       this.system,
@@ -460,7 +460,7 @@ abstract class _Coding extends Coding {
       final FhirBoolean? userSelected,
       @JsonKey(name: '_userSelected')
       final PrimitiveElement? userSelectedElement}) = _$CodingImpl;
-  const _Coding._() : super._();
+  _Coding._() : super._();
 
   factory _Coding.fromJson(Map<String, dynamic> json) = _$CodingImpl.fromJson;
 

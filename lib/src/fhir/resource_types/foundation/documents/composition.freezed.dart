@@ -702,7 +702,7 @@ class __$$CompositionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CompositionImpl extends _Composition {
-  const _$CompositionImpl(
+  _$CompositionImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Composition)
       this.resourceType = R4ResourceType.Composition,
       this.id,
@@ -1169,7 +1169,7 @@ abstract class _Composition extends Composition {
       final List<CompositionRelatesTo>? relatesTo,
       final List<CompositionEvent>? event,
       final List<CompositionSection>? section}) = _$CompositionImpl;
-  const _Composition._() : super._();
+  _Composition._() : super._();
 
   factory _Composition.fromJson(Map<String, dynamic> json) =
       _$CompositionImpl.fromJson;
@@ -1585,7 +1585,7 @@ class __$$CompositionAttesterImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CompositionAttesterImpl extends _CompositionAttester {
-  const _$CompositionAttesterImpl(
+  _$CompositionAttesterImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1747,7 +1747,7 @@ abstract class _CompositionAttester extends CompositionAttester {
       final FhirDateTime? time,
       @JsonKey(name: '_time') final PrimitiveElement? timeElement,
       final Reference? party}) = _$CompositionAttesterImpl;
-  const _CompositionAttester._() : super._();
+  _CompositionAttester._() : super._();
 
   factory _CompositionAttester.fromJson(Map<String, dynamic> json) =
       _$CompositionAttesterImpl.fromJson;
@@ -2042,7 +2042,7 @@ class __$$CompositionRelatesToImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CompositionRelatesToImpl extends _CompositionRelatesTo {
-  const _$CompositionRelatesToImpl(
+  _$CompositionRelatesToImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2198,7 +2198,7 @@ abstract class _CompositionRelatesTo extends CompositionRelatesTo {
       @JsonKey(name: '_code') final PrimitiveElement? codeElement,
       final Identifier? targetIdentifier,
       final Reference? targetReference}) = _$CompositionRelatesToImpl;
-  const _CompositionRelatesTo._() : super._();
+  _CompositionRelatesTo._() : super._();
 
   factory _CompositionRelatesTo.fromJson(Map<String, dynamic> json) =
       _$CompositionRelatesToImpl.fromJson;
@@ -2464,7 +2464,7 @@ class __$$CompositionEventImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CompositionEventImpl extends _CompositionEvent {
-  const _$CompositionEventImpl(
+  _$CompositionEventImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2640,7 +2640,7 @@ abstract class _CompositionEvent extends CompositionEvent {
       final List<CodeableConcept>? code,
       final Period? period,
       final List<Reference>? detail}) = _$CompositionEventImpl;
-  const _CompositionEvent._() : super._();
+  _CompositionEvent._() : super._();
 
   factory _CompositionEvent.fromJson(Map<String, dynamic> json) =
       _$CompositionEventImpl.fromJson;
@@ -3119,7 +3119,7 @@ class __$$CompositionSectionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CompositionSectionImpl extends _CompositionSection {
-  const _$CompositionSectionImpl(
+  _$CompositionSectionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3393,7 +3393,7 @@ abstract class _CompositionSection extends CompositionSection {
       final List<Reference>? entry,
       final CodeableConcept? emptyReason,
       final List<CompositionSection>? section}) = _$CompositionSectionImpl;
-  const _CompositionSection._() : super._();
+  _CompositionSection._() : super._();
 
   factory _CompositionSection.fromJson(Map<String, dynamic> json) =
       _$CompositionSectionImpl.fromJson;

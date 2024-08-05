@@ -850,7 +850,7 @@ class __$$MedicationAdministrationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MedicationAdministrationImpl extends _MedicationAdministration {
-  const _$MedicationAdministrationImpl(
+  _$MedicationAdministrationImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.MedicationAdministration)
       this.resourceType = R4ResourceType.MedicationAdministration,
       this.id,
@@ -1456,7 +1456,7 @@ abstract class _MedicationAdministration extends MedicationAdministration {
       final List<Annotation>? note,
       final MedicationAdministrationDosage? dosage,
       final List<Reference>? eventHistory}) = _$MedicationAdministrationImpl;
-  const _MedicationAdministration._() : super._();
+  _MedicationAdministration._() : super._();
 
   factory _MedicationAdministration.fromJson(Map<String, dynamic> json) =
       _$MedicationAdministrationImpl.fromJson;
@@ -1880,7 +1880,7 @@ class __$$MedicationAdministrationPerformerImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MedicationAdministrationPerformerImpl
     extends _MedicationAdministrationPerformer {
-  const _$MedicationAdministrationPerformerImpl(
+  _$MedicationAdministrationPerformerImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2020,7 +2020,7 @@ abstract class _MedicationAdministrationPerformer
           final CodeableConcept? function,
           required final Reference actor}) =
       _$MedicationAdministrationPerformerImpl;
-  const _MedicationAdministrationPerformer._() : super._();
+  _MedicationAdministrationPerformer._() : super._();
 
   factory _MedicationAdministrationPerformer.fromJson(
           Map<String, dynamic> json) =
@@ -2450,7 +2450,7 @@ class __$$MedicationAdministrationDosageImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MedicationAdministrationDosageImpl
     extends _MedicationAdministrationDosage {
-  const _$MedicationAdministrationDosageImpl(
+  _$MedicationAdministrationDosageImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2659,7 +2659,7 @@ abstract class _MedicationAdministrationDosage
       final Quantity? dose,
       final Ratio? rateRatio,
       final Quantity? rateQuantity}) = _$MedicationAdministrationDosageImpl;
-  const _MedicationAdministrationDosage._() : super._();
+  _MedicationAdministrationDosage._() : super._();
 
   factory _MedicationAdministrationDosage.fromJson(Map<String, dynamic> json) =
       _$MedicationAdministrationDosageImpl.fromJson;

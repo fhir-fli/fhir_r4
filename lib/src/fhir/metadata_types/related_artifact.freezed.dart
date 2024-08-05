@@ -331,7 +331,7 @@ class __$$RelatedArtifactImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RelatedArtifactImpl extends _RelatedArtifact {
-  const _$RelatedArtifactImpl(
+  _$RelatedArtifactImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: RelatedArtifactType.unknown) this.type,
@@ -521,7 +521,7 @@ abstract class _RelatedArtifact extends RelatedArtifact {
       @JsonKey(name: '_url') final PrimitiveElement? urlElement,
       final Attachment? document,
       final FhirCanonical? resource}) = _$RelatedArtifactImpl;
-  const _RelatedArtifact._() : super._();
+  _RelatedArtifact._() : super._();
 
   factory _RelatedArtifact.fromJson(Map<String, dynamic> json) =
       _$RelatedArtifactImpl.fromJson;

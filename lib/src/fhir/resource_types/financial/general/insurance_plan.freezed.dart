@@ -639,7 +639,7 @@ class __$$InsurancePlanImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$InsurancePlanImpl extends _InsurancePlan {
-  const _$InsurancePlanImpl(
+  _$InsurancePlanImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.InsurancePlan)
       this.resourceType = R4ResourceType.InsurancePlan,
       this.id,
@@ -1124,7 +1124,7 @@ abstract class _InsurancePlan extends InsurancePlan {
       final List<Reference>? network,
       final List<InsurancePlanCoverage>? coverage,
       final List<InsurancePlanPlan>? plan}) = _$InsurancePlanImpl;
-  const _InsurancePlan._() : super._();
+  _InsurancePlan._() : super._();
 
   factory _InsurancePlan.fromJson(Map<String, dynamic> json) =
       _$InsurancePlanImpl.fromJson;
@@ -1542,7 +1542,7 @@ class __$$InsurancePlanContactImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$InsurancePlanContactImpl extends _InsurancePlanContact {
-  const _$InsurancePlanContactImpl(
+  _$InsurancePlanContactImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1705,7 +1705,7 @@ abstract class _InsurancePlanContact extends InsurancePlanContact {
       final HumanName? name,
       final List<ContactPoint>? telecom,
       final Address? address}) = _$InsurancePlanContactImpl;
-  const _InsurancePlanContact._() : super._();
+  _InsurancePlanContact._() : super._();
 
   factory _InsurancePlanContact.fromJson(Map<String, dynamic> json) =
       _$InsurancePlanContactImpl.fromJson;
@@ -1963,7 +1963,7 @@ class __$$InsurancePlanCoverageImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$InsurancePlanCoverageImpl extends _InsurancePlanCoverage {
-  const _$InsurancePlanCoverageImpl(
+  _$InsurancePlanCoverageImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2125,7 +2125,7 @@ abstract class _InsurancePlanCoverage extends InsurancePlanCoverage {
           final List<Reference>? network,
           required final List<InsurancePlanBenefit> benefit}) =
       _$InsurancePlanCoverageImpl;
-  const _InsurancePlanCoverage._() : super._();
+  _InsurancePlanCoverage._() : super._();
 
   factory _InsurancePlanCoverage.fromJson(Map<String, dynamic> json) =
       _$InsurancePlanCoverageImpl.fromJson;
@@ -2394,7 +2394,7 @@ class __$$InsurancePlanBenefitImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$InsurancePlanBenefitImpl extends _InsurancePlanBenefit {
-  const _$InsurancePlanBenefitImpl(
+  _$InsurancePlanBenefitImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2560,7 +2560,7 @@ abstract class _InsurancePlanBenefit extends InsurancePlanBenefit {
       final String? requirement,
       @JsonKey(name: '_requirement') final PrimitiveElement? requirementElement,
       final List<InsurancePlanLimit>? limit}) = _$InsurancePlanBenefitImpl;
-  const _InsurancePlanBenefit._() : super._();
+  _InsurancePlanBenefit._() : super._();
 
   factory _InsurancePlanBenefit.fromJson(Map<String, dynamic> json) =
       _$InsurancePlanBenefitImpl.fromJson;
@@ -2820,7 +2820,7 @@ class __$$InsurancePlanLimitImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$InsurancePlanLimitImpl extends _InsurancePlanLimit {
-  const _$InsurancePlanLimitImpl(
+  _$InsurancePlanLimitImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2955,7 +2955,7 @@ abstract class _InsurancePlanLimit extends InsurancePlanLimit {
       final List<FhirExtension>? modifierExtension,
       final Quantity? value,
       final CodeableConcept? code}) = _$InsurancePlanLimitImpl;
-  const _InsurancePlanLimit._() : super._();
+  _InsurancePlanLimit._() : super._();
 
   factory _InsurancePlanLimit.fromJson(Map<String, dynamic> json) =
       _$InsurancePlanLimitImpl.fromJson;
@@ -3255,7 +3255,7 @@ class __$$InsurancePlanPlanImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$InsurancePlanPlanImpl extends _InsurancePlanPlan {
-  const _$InsurancePlanPlanImpl(
+  _$InsurancePlanPlanImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3484,7 +3484,7 @@ abstract class _InsurancePlanPlan extends InsurancePlanPlan {
           final List<InsurancePlanGeneralCost>? generalCost,
           final List<InsurancePlanSpecificCost>? specificCost}) =
       _$InsurancePlanPlanImpl;
-  const _InsurancePlanPlan._() : super._();
+  _InsurancePlanPlan._() : super._();
 
   factory _InsurancePlanPlan.fromJson(Map<String, dynamic> json) =
       _$InsurancePlanPlanImpl.fromJson;
@@ -3820,7 +3820,7 @@ class __$$InsurancePlanGeneralCostImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$InsurancePlanGeneralCostImpl extends _InsurancePlanGeneralCost {
-  const _$InsurancePlanGeneralCostImpl(
+  _$InsurancePlanGeneralCostImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3993,7 +3993,7 @@ abstract class _InsurancePlanGeneralCost extends InsurancePlanGeneralCost {
           final String? comment,
           @JsonKey(name: '_comment') final PrimitiveElement? commentElement}) =
       _$InsurancePlanGeneralCostImpl;
-  const _InsurancePlanGeneralCost._() : super._();
+  _InsurancePlanGeneralCost._() : super._();
 
   factory _InsurancePlanGeneralCost.fromJson(Map<String, dynamic> json) =
       _$InsurancePlanGeneralCostImpl.fromJson;
@@ -4248,7 +4248,7 @@ class __$$InsurancePlanSpecificCostImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$InsurancePlanSpecificCostImpl extends _InsurancePlanSpecificCost {
-  const _$InsurancePlanSpecificCostImpl(
+  _$InsurancePlanSpecificCostImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4395,7 +4395,7 @@ abstract class _InsurancePlanSpecificCost extends InsurancePlanSpecificCost {
           required final CodeableConcept category,
           final List<InsurancePlanBenefit1>? benefit}) =
       _$InsurancePlanSpecificCostImpl;
-  const _InsurancePlanSpecificCost._() : super._();
+  _InsurancePlanSpecificCost._() : super._();
 
   factory _InsurancePlanSpecificCost.fromJson(Map<String, dynamic> json) =
       _$InsurancePlanSpecificCostImpl.fromJson;
@@ -4630,7 +4630,7 @@ class __$$InsurancePlanBenefit1ImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$InsurancePlanBenefit1Impl extends _InsurancePlanBenefit1 {
-  const _$InsurancePlanBenefit1Impl(
+  _$InsurancePlanBenefit1Impl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4775,7 +4775,7 @@ abstract class _InsurancePlanBenefit1 extends InsurancePlanBenefit1 {
       final List<FhirExtension>? modifierExtension,
       required final CodeableConcept type,
       final List<InsurancePlanCost>? cost}) = _$InsurancePlanBenefit1Impl;
-  const _InsurancePlanBenefit1._() : super._();
+  _InsurancePlanBenefit1._() : super._();
 
   factory _InsurancePlanBenefit1.fromJson(Map<String, dynamic> json) =
       _$InsurancePlanBenefit1Impl.fromJson;
@@ -5069,7 +5069,7 @@ class __$$InsurancePlanCostImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$InsurancePlanCostImpl extends _InsurancePlanCost {
-  const _$InsurancePlanCostImpl(
+  _$InsurancePlanCostImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5236,7 +5236,7 @@ abstract class _InsurancePlanCost extends InsurancePlanCost {
       final CodeableConcept? applicability,
       final List<CodeableConcept>? qualifiers,
       final Quantity? value}) = _$InsurancePlanCostImpl;
-  const _InsurancePlanCost._() : super._();
+  _InsurancePlanCost._() : super._();
 
   factory _InsurancePlanCost.fromJson(Map<String, dynamic> json) =
       _$InsurancePlanCostImpl.fromJson;

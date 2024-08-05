@@ -593,7 +593,7 @@ class __$$AuditEventImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AuditEventImpl extends _AuditEvent {
-  const _$AuditEventImpl(
+  _$AuditEventImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.AuditEvent)
       this.resourceType = R4ResourceType.AuditEvent,
       this.id,
@@ -988,7 +988,7 @@ abstract class _AuditEvent extends AuditEvent {
       required final List<AuditEventAgent> agent,
       required final AuditEventSource source,
       final List<AuditEventEntity>? entity}) = _$AuditEventImpl;
-  const _AuditEvent._() : super._();
+  _AuditEvent._() : super._();
 
   factory _AuditEvent.fromJson(Map<String, dynamic> json) =
       _$AuditEventImpl.fromJson;
@@ -1601,7 +1601,7 @@ class __$$AuditEventAgentImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AuditEventAgentImpl extends _AuditEventAgent {
-  const _$AuditEventAgentImpl(
+  _$AuditEventAgentImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1909,7 +1909,7 @@ abstract class _AuditEventAgent extends AuditEventAgent {
       final Coding? media,
       final AuditEventNetwork? network,
       final List<CodeableConcept>? purposeOfUse}) = _$AuditEventAgentImpl;
-  const _AuditEventAgent._() : super._();
+  _AuditEventAgent._() : super._();
 
   factory _AuditEventAgent.fromJson(Map<String, dynamic> json) =
       _$AuditEventAgentImpl.fromJson;
@@ -2228,7 +2228,7 @@ class __$$AuditEventNetworkImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AuditEventNetworkImpl extends _AuditEventNetwork {
-  const _$AuditEventNetworkImpl(
+  _$AuditEventNetworkImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2385,7 +2385,7 @@ abstract class _AuditEventNetwork extends AuditEventNetwork {
           final FhirCode? type,
           @JsonKey(name: '_type') final PrimitiveElement? typeElement}) =
       _$AuditEventNetworkImpl;
-  const _AuditEventNetwork._() : super._();
+  _AuditEventNetwork._() : super._();
 
   factory _AuditEventNetwork.fromJson(Map<String, dynamic> json) =
       _$AuditEventNetworkImpl.fromJson;
@@ -2659,7 +2659,7 @@ class __$$AuditEventSourceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AuditEventSourceImpl extends _AuditEventSource {
-  const _$AuditEventSourceImpl(
+  _$AuditEventSourceImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2824,7 +2824,7 @@ abstract class _AuditEventSource extends AuditEventSource {
       @JsonKey(name: '_site') final PrimitiveElement? siteElement,
       required final Reference observer,
       final List<Coding>? type}) = _$AuditEventSourceImpl;
-  const _AuditEventSource._() : super._();
+  _AuditEventSource._() : super._();
 
   factory _AuditEventSource.fromJson(Map<String, dynamic> json) =
       _$AuditEventSourceImpl.fromJson;
@@ -3270,7 +3270,7 @@ class __$$AuditEventEntityImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AuditEventEntityImpl extends _AuditEventEntity {
-  const _$AuditEventEntityImpl(
+  _$AuditEventEntityImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3517,7 +3517,7 @@ abstract class _AuditEventEntity extends AuditEventEntity {
       final FhirBase64Binary? query,
       @JsonKey(name: '_query') final PrimitiveElement? queryElement,
       final List<AuditEventDetail>? detail}) = _$AuditEventEntityImpl;
-  const _AuditEventEntity._() : super._();
+  _AuditEventEntity._() : super._();
 
   factory _AuditEventEntity.fromJson(Map<String, dynamic> json) =
       _$AuditEventEntityImpl.fromJson;
@@ -3846,7 +3846,7 @@ class __$$AuditEventDetailImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AuditEventDetailImpl extends _AuditEventDetail {
-  const _$AuditEventDetailImpl(
+  _$AuditEventDetailImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4023,7 +4023,7 @@ abstract class _AuditEventDetail extends AuditEventDetail {
       @JsonKey(name: '_valueBase64Binary')
       final PrimitiveElement?
           valueBase64BinaryElement}) = _$AuditEventDetailImpl;
-  const _AuditEventDetail._() : super._();
+  _AuditEventDetail._() : super._();
 
   factory _AuditEventDetail.fromJson(Map<String, dynamic> json) =
       _$AuditEventDetailImpl.fromJson;

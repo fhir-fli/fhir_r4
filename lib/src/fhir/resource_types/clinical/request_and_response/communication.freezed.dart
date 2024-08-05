@@ -850,7 +850,7 @@ class __$$CommunicationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CommunicationImpl extends _Communication {
-  const _$CommunicationImpl(
+  _$CommunicationImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Communication)
       this.resourceType = R4ResourceType.Communication,
       this.id,
@@ -1514,7 +1514,7 @@ abstract class _Communication extends Communication {
       final List<Reference>? reasonReference,
       final List<CommunicationPayload>? payload,
       final List<Annotation>? note}) = _$CommunicationImpl;
-  const _Communication._() : super._();
+  _Communication._() : super._();
 
   factory _Communication.fromJson(Map<String, dynamic> json) =
       _$CommunicationImpl.fromJson;
@@ -1979,7 +1979,7 @@ class __$$CommunicationPayloadImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CommunicationPayloadImpl extends _CommunicationPayload {
-  const _$CommunicationPayloadImpl(
+  _$CommunicationPayloadImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2139,7 +2139,7 @@ abstract class _CommunicationPayload extends CommunicationPayload {
       final PrimitiveElement? contentStringElement,
       final Attachment? contentAttachment,
       final Reference? contentReference}) = _$CommunicationPayloadImpl;
-  const _CommunicationPayload._() : super._();
+  _CommunicationPayload._() : super._();
 
   factory _CommunicationPayload.fromJson(Map<String, dynamic> json) =
       _$CommunicationPayloadImpl.fromJson;

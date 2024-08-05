@@ -1253,7 +1253,7 @@ class __$$MedicationRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MedicationRequestImpl extends _MedicationRequest {
-  const _$MedicationRequestImpl(
+  _$MedicationRequestImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.MedicationRequest)
       this.resourceType = R4ResourceType.MedicationRequest,
       this.id,
@@ -2086,7 +2086,7 @@ abstract class _MedicationRequest extends MedicationRequest {
       final Reference? priorPrescription,
       final List<Reference>? detectedIssue,
       final List<Reference>? eventHistory}) = _$MedicationRequestImpl;
-  const _MedicationRequest._() : super._();
+  _MedicationRequest._() : super._();
 
   factory _MedicationRequest.fromJson(Map<String, dynamic> json) =
       _$MedicationRequestImpl.fromJson;
@@ -2780,7 +2780,7 @@ class __$$MedicationRequestDispenseRequestImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MedicationRequestDispenseRequestImpl
     extends _MedicationRequestDispenseRequest {
-  const _$MedicationRequestDispenseRequestImpl(
+  _$MedicationRequestDispenseRequestImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2989,7 +2989,7 @@ abstract class _MedicationRequestDispenseRequest
       final Quantity? quantity,
       final FhirDuration? expectedSupplyDuration,
       final Reference? performer}) = _$MedicationRequestDispenseRequestImpl;
-  const _MedicationRequestDispenseRequest._() : super._();
+  _MedicationRequestDispenseRequest._() : super._();
 
   factory _MedicationRequestDispenseRequest.fromJson(
           Map<String, dynamic> json) =
@@ -3284,7 +3284,7 @@ class __$$MedicationRequestInitialFillImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MedicationRequestInitialFillImpl extends _MedicationRequestInitialFill {
-  const _$MedicationRequestInitialFillImpl(
+  _$MedicationRequestInitialFillImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3425,7 +3425,7 @@ abstract class _MedicationRequestInitialFill
       final List<FhirExtension>? modifierExtension,
       final Quantity? quantity,
       final FhirDuration? duration}) = _$MedicationRequestInitialFillImpl;
-  const _MedicationRequestInitialFill._() : super._();
+  _MedicationRequestInitialFill._() : super._();
 
   factory _MedicationRequestInitialFill.fromJson(Map<String, dynamic> json) =
       _$MedicationRequestInitialFillImpl.fromJson;
@@ -3721,7 +3721,7 @@ class __$$MedicationRequestSubstitutionImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MedicationRequestSubstitutionImpl
     extends _MedicationRequestSubstitution {
-  const _$MedicationRequestSubstitutionImpl(
+  _$MedicationRequestSubstitutionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3882,7 +3882,7 @@ abstract class _MedicationRequestSubstitution
       final PrimitiveElement? allowedBooleanElement,
       final CodeableConcept? allowedCodeableConcept,
       final CodeableConcept? reason}) = _$MedicationRequestSubstitutionImpl;
-  const _MedicationRequestSubstitution._() : super._();
+  _MedicationRequestSubstitution._() : super._();
 
   factory _MedicationRequestSubstitution.fromJson(Map<String, dynamic> json) =
       _$MedicationRequestSubstitutionImpl.fromJson;

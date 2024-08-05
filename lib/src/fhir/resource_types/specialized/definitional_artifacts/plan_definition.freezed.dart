@@ -1197,7 +1197,7 @@ class __$$PlanDefinitionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PlanDefinitionImpl extends _PlanDefinition {
-  const _$PlanDefinitionImpl(
+  _$PlanDefinitionImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.PlanDefinition)
       this.resourceType = R4ResourceType.PlanDefinition,
       this.id,
@@ -2065,7 +2065,7 @@ abstract class _PlanDefinition extends PlanDefinition {
       @JsonKey(name: 'library') final List<FhirCanonical>? library_,
       final List<PlanDefinitionGoal>? goal,
       final List<PlanDefinitionAction>? action}) = _$PlanDefinitionImpl;
-  const _PlanDefinition._() : super._();
+  _PlanDefinition._() : super._();
 
   factory _PlanDefinition.fromJson(Map<String, dynamic> json) =
       _$PlanDefinitionImpl.fromJson;
@@ -2728,7 +2728,7 @@ class __$$PlanDefinitionGoalImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PlanDefinitionGoalImpl extends _PlanDefinitionGoal {
-  const _$PlanDefinitionGoalImpl(
+  _$PlanDefinitionGoalImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2948,7 +2948,7 @@ abstract class _PlanDefinitionGoal extends PlanDefinitionGoal {
       final List<CodeableConcept>? addresses,
       final List<RelatedArtifact>? documentation,
       final List<PlanDefinitionTarget>? target}) = _$PlanDefinitionGoalImpl;
-  const _PlanDefinitionGoal._() : super._();
+  _PlanDefinitionGoal._() : super._();
 
   factory _PlanDefinitionGoal.fromJson(Map<String, dynamic> json) =
       _$PlanDefinitionGoalImpl.fromJson;
@@ -3333,7 +3333,7 @@ class __$$PlanDefinitionTargetImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PlanDefinitionTargetImpl extends _PlanDefinitionTarget {
-  const _$PlanDefinitionTargetImpl(
+  _$PlanDefinitionTargetImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3512,7 +3512,7 @@ abstract class _PlanDefinitionTarget extends PlanDefinitionTarget {
       final Range? detailRange,
       final CodeableConcept? detailCodeableConcept,
       final FhirDuration? due}) = _$PlanDefinitionTargetImpl;
-  const _PlanDefinitionTarget._() : super._();
+  _PlanDefinitionTarget._() : super._();
 
   factory _PlanDefinitionTarget.fromJson(Map<String, dynamic> json) =
       _$PlanDefinitionTargetImpl.fromJson;
@@ -4683,7 +4683,7 @@ class __$$PlanDefinitionActionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PlanDefinitionActionImpl extends _PlanDefinitionAction {
-  const _$PlanDefinitionActionImpl(
+  _$PlanDefinitionActionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5457,7 +5457,7 @@ abstract class _PlanDefinitionAction extends PlanDefinitionAction {
       final FhirCanonical? transform,
       final List<PlanDefinitionDynamicValue>? dynamicValue,
       final List<PlanDefinitionAction>? action}) = _$PlanDefinitionActionImpl;
-  const _PlanDefinitionAction._() : super._();
+  _PlanDefinitionAction._() : super._();
 
   factory _PlanDefinitionAction.fromJson(Map<String, dynamic> json) =
       _$PlanDefinitionActionImpl.fromJson;
@@ -5954,7 +5954,7 @@ class __$$PlanDefinitionConditionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PlanDefinitionConditionImpl extends _PlanDefinitionCondition {
-  const _$PlanDefinitionConditionImpl(
+  _$PlanDefinitionConditionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -6100,7 +6100,7 @@ abstract class _PlanDefinitionCondition extends PlanDefinitionCondition {
       final FhirCode? kind,
       @JsonKey(name: '_kind') final PrimitiveElement? kindElement,
       final FhirExpression? expression}) = _$PlanDefinitionConditionImpl;
-  const _PlanDefinitionCondition._() : super._();
+  _PlanDefinitionCondition._() : super._();
 
   factory _PlanDefinitionCondition.fromJson(Map<String, dynamic> json) =
       _$PlanDefinitionConditionImpl.fromJson;
@@ -6426,7 +6426,7 @@ class __$$PlanDefinitionRelatedActionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PlanDefinitionRelatedActionImpl extends _PlanDefinitionRelatedAction {
-  const _$PlanDefinitionRelatedActionImpl(
+  _$PlanDefinitionRelatedActionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -6605,7 +6605,7 @@ abstract class _PlanDefinitionRelatedAction
       final PrimitiveElement? relationshipElement,
       final FhirDuration? offsetDuration,
       final Range? offsetRange}) = _$PlanDefinitionRelatedActionImpl;
-  const _PlanDefinitionRelatedAction._() : super._();
+  _PlanDefinitionRelatedAction._() : super._();
 
   factory _PlanDefinitionRelatedAction.fromJson(Map<String, dynamic> json) =
       _$PlanDefinitionRelatedActionImpl.fromJson;
@@ -6880,7 +6880,7 @@ class __$$PlanDefinitionParticipantImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PlanDefinitionParticipantImpl extends _PlanDefinitionParticipant {
-  const _$PlanDefinitionParticipantImpl(
+  _$PlanDefinitionParticipantImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -7025,7 +7025,7 @@ abstract class _PlanDefinitionParticipant extends PlanDefinitionParticipant {
       final FhirCode? type,
       @JsonKey(name: '_type') final PrimitiveElement? typeElement,
       final CodeableConcept? role}) = _$PlanDefinitionParticipantImpl;
-  const _PlanDefinitionParticipant._() : super._();
+  _PlanDefinitionParticipant._() : super._();
 
   factory _PlanDefinitionParticipant.fromJson(Map<String, dynamic> json) =
       _$PlanDefinitionParticipantImpl.fromJson;
@@ -7294,7 +7294,7 @@ class __$$PlanDefinitionDynamicValueImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PlanDefinitionDynamicValueImpl extends _PlanDefinitionDynamicValue {
-  const _$PlanDefinitionDynamicValueImpl(
+  _$PlanDefinitionDynamicValueImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -7448,7 +7448,7 @@ abstract class _PlanDefinitionDynamicValue extends PlanDefinitionDynamicValue {
       final String? path,
       @JsonKey(name: '_path') final PrimitiveElement? pathElement,
       final FhirExpression? expression}) = _$PlanDefinitionDynamicValueImpl;
-  const _PlanDefinitionDynamicValue._() : super._();
+  _PlanDefinitionDynamicValue._() : super._();
 
   factory _PlanDefinitionDynamicValue.fromJson(Map<String, dynamic> json) =
       _$PlanDefinitionDynamicValueImpl.fromJson;

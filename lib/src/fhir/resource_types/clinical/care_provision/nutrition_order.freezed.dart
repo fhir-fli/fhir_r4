@@ -769,7 +769,7 @@ class __$$NutritionOrderImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$NutritionOrderImpl extends _NutritionOrder {
-  const _$NutritionOrderImpl(
+  _$NutritionOrderImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.NutritionOrder)
       this.resourceType = R4ResourceType.NutritionOrder,
       this.id,
@@ -1363,7 +1363,7 @@ abstract class _NutritionOrder extends NutritionOrder {
       final List<NutritionOrderSupplement>? supplement,
       final NutritionOrderEnteralFormula? enteralFormula,
       final List<Annotation>? note}) = _$NutritionOrderImpl;
-  const _NutritionOrder._() : super._();
+  _NutritionOrder._() : super._();
 
   factory _NutritionOrder.fromJson(Map<String, dynamic> json) =
       _$NutritionOrderImpl.fromJson;
@@ -1835,7 +1835,7 @@ class __$$NutritionOrderOralDietImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$NutritionOrderOralDietImpl extends _NutritionOrderOralDiet {
-  const _$NutritionOrderOralDietImpl(
+  _$NutritionOrderOralDietImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2083,7 +2083,7 @@ abstract class _NutritionOrderOralDiet extends NutritionOrderOralDiet {
           @JsonKey(name: '_instruction')
           final PrimitiveElement? instructionElement}) =
       _$NutritionOrderOralDietImpl;
-  const _NutritionOrderOralDiet._() : super._();
+  _NutritionOrderOralDiet._() : super._();
 
   factory _NutritionOrderOralDiet.fromJson(Map<String, dynamic> json) =
       _$NutritionOrderOralDietImpl.fromJson;
@@ -2367,7 +2367,7 @@ class __$$NutritionOrderNutrientImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$NutritionOrderNutrientImpl extends _NutritionOrderNutrient {
-  const _$NutritionOrderNutrientImpl(
+  _$NutritionOrderNutrientImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2503,7 +2503,7 @@ abstract class _NutritionOrderNutrient extends NutritionOrderNutrient {
       final List<FhirExtension>? modifierExtension,
       final CodeableConcept? modifier,
       final Quantity? amount}) = _$NutritionOrderNutrientImpl;
-  const _NutritionOrderNutrient._() : super._();
+  _NutritionOrderNutrient._() : super._();
 
   factory _NutritionOrderNutrient.fromJson(Map<String, dynamic> json) =
       _$NutritionOrderNutrientImpl.fromJson;
@@ -2758,7 +2758,7 @@ class __$$NutritionOrderTextureImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$NutritionOrderTextureImpl extends _NutritionOrderTexture {
-  const _$NutritionOrderTextureImpl(
+  _$NutritionOrderTextureImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2896,7 +2896,7 @@ abstract class _NutritionOrderTexture extends NutritionOrderTexture {
       final List<FhirExtension>? modifierExtension,
       final CodeableConcept? modifier,
       final CodeableConcept? foodType}) = _$NutritionOrderTextureImpl;
-  const _NutritionOrderTexture._() : super._();
+  _NutritionOrderTexture._() : super._();
 
   factory _NutritionOrderTexture.fromJson(Map<String, dynamic> json) =
       _$NutritionOrderTextureImpl.fromJson;
@@ -3235,7 +3235,7 @@ class __$$NutritionOrderSupplementImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$NutritionOrderSupplementImpl extends _NutritionOrderSupplement {
-  const _$NutritionOrderSupplementImpl(
+  _$NutritionOrderSupplementImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3435,7 +3435,7 @@ abstract class _NutritionOrderSupplement extends NutritionOrderSupplement {
       @JsonKey(name: '_instruction')
       final PrimitiveElement?
           instructionElement}) = _$NutritionOrderSupplementImpl;
-  const _NutritionOrderSupplement._() : super._();
+  _NutritionOrderSupplement._() : super._();
 
   factory _NutritionOrderSupplement.fromJson(Map<String, dynamic> json) =
       _$NutritionOrderSupplementImpl.fromJson;
@@ -3942,7 +3942,7 @@ class __$$NutritionOrderEnteralFormulaImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$NutritionOrderEnteralFormulaImpl extends _NutritionOrderEnteralFormula {
-  const _$NutritionOrderEnteralFormulaImpl(
+  _$NutritionOrderEnteralFormulaImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4214,7 +4214,7 @@ abstract class _NutritionOrderEnteralFormula
           @JsonKey(name: '_administrationInstruction')
           final PrimitiveElement? administrationInstructionElement}) =
       _$NutritionOrderEnteralFormulaImpl;
-  const _NutritionOrderEnteralFormula._() : super._();
+  _NutritionOrderEnteralFormula._() : super._();
 
   factory _NutritionOrderEnteralFormula.fromJson(Map<String, dynamic> json) =
       _$NutritionOrderEnteralFormulaImpl.fromJson;
@@ -4590,7 +4590,7 @@ class __$$NutritionOrderAdministrationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$NutritionOrderAdministrationImpl extends _NutritionOrderAdministration {
-  const _$NutritionOrderAdministrationImpl(
+  _$NutritionOrderAdministrationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4751,7 +4751,7 @@ abstract class _NutritionOrderAdministration
       final Quantity? quantity,
       final Quantity? rateQuantity,
       final Ratio? rateRatio}) = _$NutritionOrderAdministrationImpl;
-  const _NutritionOrderAdministration._() : super._();
+  _NutritionOrderAdministration._() : super._();
 
   factory _NutritionOrderAdministration.fromJson(Map<String, dynamic> json) =
       _$NutritionOrderAdministrationImpl.fromJson;

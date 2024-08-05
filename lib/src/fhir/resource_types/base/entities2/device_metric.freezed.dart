@@ -620,7 +620,7 @@ class __$$DeviceMetricImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DeviceMetricImpl extends _DeviceMetric {
-  const _$DeviceMetricImpl(
+  _$DeviceMetricImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.DeviceMetric)
       this.resourceType = R4ResourceType.DeviceMetric,
       this.id,
@@ -1005,7 +1005,7 @@ abstract class _DeviceMetric extends DeviceMetric {
       @JsonKey(name: '_category') final PrimitiveElement? categoryElement,
       final Timing? measurementPeriod,
       final List<DeviceMetricCalibration>? calibration}) = _$DeviceMetricImpl;
-  const _DeviceMetric._() : super._();
+  _DeviceMetric._() : super._();
 
   factory _DeviceMetric.fromJson(Map<String, dynamic> json) =
       _$DeviceMetricImpl.fromJson;
@@ -1408,7 +1408,7 @@ class __$$DeviceMetricCalibrationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DeviceMetricCalibrationImpl extends _DeviceMetricCalibration {
-  const _$DeviceMetricCalibrationImpl(
+  _$DeviceMetricCalibrationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1581,7 +1581,7 @@ abstract class _DeviceMetricCalibration extends DeviceMetricCalibration {
           final FhirInstant? time,
           @JsonKey(name: '_time') final PrimitiveElement? timeElement}) =
       _$DeviceMetricCalibrationImpl;
-  const _DeviceMetricCalibration._() : super._();
+  _DeviceMetricCalibration._() : super._();
 
   factory _DeviceMetricCalibration.fromJson(Map<String, dynamic> json) =
       _$DeviceMetricCalibrationImpl.fromJson;

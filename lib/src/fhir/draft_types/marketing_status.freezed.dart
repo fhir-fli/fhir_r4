@@ -320,7 +320,7 @@ class __$$MarketingStatusImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MarketingStatusImpl extends _MarketingStatus {
-  const _$MarketingStatusImpl(
+  _$MarketingStatusImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -512,7 +512,7 @@ abstract class _MarketingStatus extends MarketingStatus {
       final FhirDateTime? restoreDate,
       @JsonKey(name: '_restoreDate')
       final PrimitiveElement? restoreDateElement}) = _$MarketingStatusImpl;
-  const _MarketingStatus._() : super._();
+  _MarketingStatus._() : super._();
 
   factory _MarketingStatus.fromJson(Map<String, dynamic> json) =
       _$MarketingStatusImpl.fromJson;

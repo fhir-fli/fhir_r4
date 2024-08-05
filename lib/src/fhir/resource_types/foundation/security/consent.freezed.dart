@@ -666,7 +666,7 @@ class __$$ConsentImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ConsentImpl extends _Consent {
-  const _$ConsentImpl(
+  _$ConsentImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Consent)
       this.resourceType = R4ResourceType.Consent,
       this.id,
@@ -1115,7 +1115,7 @@ abstract class _Consent extends Consent {
       final CodeableConcept? policyRule,
       final List<ConsentVerification>? verification,
       final ConsentProvision? provision}) = _$ConsentImpl;
-  const _Consent._() : super._();
+  _Consent._() : super._();
 
   factory _Consent.fromJson(Map<String, dynamic> json) = _$ConsentImpl.fromJson;
 
@@ -1489,7 +1489,7 @@ class __$$ConsentPolicyImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ConsentPolicyImpl extends _ConsentPolicy {
-  const _$ConsentPolicyImpl(
+  _$ConsentPolicyImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1647,7 +1647,7 @@ abstract class _ConsentPolicy extends ConsentPolicy {
           final FhirUri? uri,
           @JsonKey(name: '_uri') final PrimitiveElement? uriElement}) =
       _$ConsentPolicyImpl;
-  const _ConsentPolicy._() : super._();
+  _ConsentPolicy._() : super._();
 
   factory _ConsentPolicy.fromJson(Map<String, dynamic> json) =
       _$ConsentPolicyImpl.fromJson;
@@ -1944,7 +1944,7 @@ class __$$ConsentVerificationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ConsentVerificationImpl extends _ConsentVerification {
-  const _$ConsentVerificationImpl(
+  _$ConsentVerificationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2113,7 +2113,7 @@ abstract class _ConsentVerification extends ConsentVerification {
           @JsonKey(name: '_verificationDate')
           final PrimitiveElement? verificationDateElement}) =
       _$ConsentVerificationImpl;
-  const _ConsentVerification._() : super._();
+  _ConsentVerification._() : super._();
 
   factory _ConsentVerification.fromJson(Map<String, dynamic> json) =
       _$ConsentVerificationImpl.fromJson;
@@ -2537,7 +2537,7 @@ class __$$ConsentProvisionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ConsentProvisionImpl extends _ConsentProvision {
-  const _$ConsentProvisionImpl(
+  _$ConsentProvisionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2853,7 +2853,7 @@ abstract class _ConsentProvision extends ConsentProvision {
       final Period? dataPeriod,
       final List<ConsentData>? data,
       final List<ConsentProvision>? provision}) = _$ConsentProvisionImpl;
-  const _ConsentProvision._() : super._();
+  _ConsentProvision._() : super._();
 
   factory _ConsentProvision.fromJson(Map<String, dynamic> json) =
       _$ConsentProvisionImpl.fromJson;
@@ -3147,7 +3147,7 @@ class __$$ConsentActorImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ConsentActorImpl extends _ConsentActor {
-  const _$ConsentActorImpl(
+  _$ConsentActorImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3284,7 +3284,7 @@ abstract class _ConsentActor extends ConsentActor {
       final List<FhirExtension>? modifierExtension,
       required final CodeableConcept role,
       required final Reference reference}) = _$ConsentActorImpl;
-  const _ConsentActor._() : super._();
+  _ConsentActor._() : super._();
 
   factory _ConsentActor.fromJson(Map<String, dynamic> json) =
       _$ConsentActorImpl.fromJson;
@@ -3534,7 +3534,7 @@ class __$$ConsentDataImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ConsentDataImpl extends _ConsentData {
-  const _$ConsentDataImpl(
+  _$ConsentDataImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3680,7 +3680,7 @@ abstract class _ConsentData extends ConsentData {
       final FhirCode? meaning,
       @JsonKey(name: '_meaning') final PrimitiveElement? meaningElement,
       required final Reference reference}) = _$ConsentDataImpl;
-  const _ConsentData._() : super._();
+  _ConsentData._() : super._();
 
   factory _ConsentData.fromJson(Map<String, dynamic> json) =
       _$ConsentDataImpl.fromJson;

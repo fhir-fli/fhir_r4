@@ -628,7 +628,7 @@ class __$$QuestionnaireResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$QuestionnaireResponseImpl extends _QuestionnaireResponse {
-  const _$QuestionnaireResponseImpl(
+  _$QuestionnaireResponseImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.QuestionnaireResponse)
       this.resourceType = R4ResourceType.QuestionnaireResponse,
       this.id,
@@ -1022,7 +1022,7 @@ abstract class _QuestionnaireResponse extends QuestionnaireResponse {
           final Reference? source,
           final List<QuestionnaireResponseItem>? item}) =
       _$QuestionnaireResponseImpl;
-  const _QuestionnaireResponse._() : super._();
+  _QuestionnaireResponse._() : super._();
 
   factory _QuestionnaireResponse.fromJson(Map<String, dynamic> json) =
       _$QuestionnaireResponseImpl.fromJson;
@@ -1452,7 +1452,7 @@ class __$$QuestionnaireResponseItemImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$QuestionnaireResponseItemImpl extends _QuestionnaireResponseItem {
-  const _$QuestionnaireResponseItemImpl(
+  _$QuestionnaireResponseItemImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1665,7 +1665,7 @@ abstract class _QuestionnaireResponseItem extends QuestionnaireResponseItem {
       final List<QuestionnaireResponseAnswer>? answer,
       final List<QuestionnaireResponseItem>?
           item}) = _$QuestionnaireResponseItemImpl;
-  const _QuestionnaireResponseItem._() : super._();
+  _QuestionnaireResponseItem._() : super._();
 
   factory _QuestionnaireResponseItem.fromJson(Map<String, dynamic> json) =
       _$QuestionnaireResponseItemImpl.fromJson;
@@ -2292,7 +2292,7 @@ class __$$QuestionnaireResponseAnswerImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$QuestionnaireResponseAnswerImpl extends _QuestionnaireResponseAnswer {
-  const _$QuestionnaireResponseAnswerImpl(
+  _$QuestionnaireResponseAnswerImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2638,7 +2638,7 @@ abstract class _QuestionnaireResponseAnswer
       final Reference? valueReference,
       final List<QuestionnaireResponseItem>?
           item}) = _$QuestionnaireResponseAnswerImpl;
-  const _QuestionnaireResponseAnswer._() : super._();
+  _QuestionnaireResponseAnswer._() : super._();
 
   factory _QuestionnaireResponseAnswer.fromJson(Map<String, dynamic> json) =
       _$QuestionnaireResponseAnswerImpl.fromJson;

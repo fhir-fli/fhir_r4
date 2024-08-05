@@ -1112,7 +1112,7 @@ class __$$StructureDefinitionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$StructureDefinitionImpl extends _StructureDefinition {
-  const _$StructureDefinitionImpl(
+  _$StructureDefinitionImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.StructureDefinition)
       this.resourceType = R4ResourceType.StructureDefinition,
       this.id,
@@ -1909,7 +1909,7 @@ abstract class _StructureDefinition extends StructureDefinition {
       final StructureDefinitionSnapshot? snapshot,
       final StructureDefinitionDifferential?
           differential}) = _$StructureDefinitionImpl;
-  const _StructureDefinition._() : super._();
+  _StructureDefinition._() : super._();
 
   factory _StructureDefinition.fromJson(Map<String, dynamic> json) =
       _$StructureDefinitionImpl.fromJson;
@@ -2520,7 +2520,7 @@ class __$$StructureDefinitionMappingImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$StructureDefinitionMappingImpl extends _StructureDefinitionMapping {
-  const _$StructureDefinitionMappingImpl(
+  _$StructureDefinitionMappingImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2716,7 +2716,7 @@ abstract class _StructureDefinitionMapping extends StructureDefinitionMapping {
           final String? comment,
           @JsonKey(name: '_comment') final PrimitiveElement? commentElement}) =
       _$StructureDefinitionMappingImpl;
-  const _StructureDefinitionMapping._() : super._();
+  _StructureDefinitionMapping._() : super._();
 
   factory _StructureDefinitionMapping.fromJson(Map<String, dynamic> json) =
       _$StructureDefinitionMappingImpl.fromJson;
@@ -3003,7 +3003,7 @@ class __$$StructureDefinitionContextImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$StructureDefinitionContextImpl extends _StructureDefinitionContext {
-  const _$StructureDefinitionContextImpl(
+  _$StructureDefinitionContextImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3163,7 +3163,7 @@ abstract class _StructureDefinitionContext extends StructureDefinitionContext {
           @JsonKey(name: '_expression')
           final PrimitiveElement? expressionElement}) =
       _$StructureDefinitionContextImpl;
-  const _StructureDefinitionContext._() : super._();
+  _StructureDefinitionContext._() : super._();
 
   factory _StructureDefinitionContext.fromJson(Map<String, dynamic> json) =
       _$StructureDefinitionContextImpl.fromJson;
@@ -3383,7 +3383,7 @@ class __$$StructureDefinitionSnapshotImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$StructureDefinitionSnapshotImpl extends _StructureDefinitionSnapshot {
-  const _$StructureDefinitionSnapshotImpl(
+  _$StructureDefinitionSnapshotImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3520,7 +3520,7 @@ abstract class _StructureDefinitionSnapshot
           final List<FhirExtension>? modifierExtension,
           required final List<ElementDefinition> element}) =
       _$StructureDefinitionSnapshotImpl;
-  const _StructureDefinitionSnapshot._() : super._();
+  _StructureDefinitionSnapshot._() : super._();
 
   factory _StructureDefinitionSnapshot.fromJson(Map<String, dynamic> json) =
       _$StructureDefinitionSnapshotImpl.fromJson;
@@ -3725,7 +3725,7 @@ class __$$StructureDefinitionDifferentialImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$StructureDefinitionDifferentialImpl
     extends _StructureDefinitionDifferential {
-  const _$StructureDefinitionDifferentialImpl(
+  _$StructureDefinitionDifferentialImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3863,7 +3863,7 @@ abstract class _StructureDefinitionDifferential
           final List<FhirExtension>? modifierExtension,
           required final List<ElementDefinition> element}) =
       _$StructureDefinitionDifferentialImpl;
-  const _StructureDefinitionDifferential._() : super._();
+  _StructureDefinitionDifferential._() : super._();
 
   factory _StructureDefinitionDifferential.fromJson(Map<String, dynamic> json) =
       _$StructureDefinitionDifferentialImpl.fromJson;

@@ -878,7 +878,7 @@ class __$$ConditionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ConditionImpl extends _Condition {
-  const _$ConditionImpl(
+  _$ConditionImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Condition)
       this.resourceType = R4ResourceType.Condition,
       this.id,
@@ -1289,7 +1289,7 @@ abstract class _Condition extends Condition {
       final List<ConditionStage>? stage,
       final List<ConditionEvidence>? evidence,
       final List<Annotation>? note}) = _$ConditionImpl;
-  const _Condition._() : super._();
+  _Condition._() : super._();
 
   factory _Condition.fromJson(Map<String, dynamic> json) =
       _$ConditionImpl.fromJson;
@@ -1575,7 +1575,7 @@ class __$$ConditionStageImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ConditionStageImpl extends _ConditionStage {
-  const _$ConditionStageImpl(
+  _$ConditionStageImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1679,7 +1679,7 @@ abstract class _ConditionStage extends ConditionStage {
       final CodeableConcept? summary,
       final List<Reference>? assessment,
       final CodeableConcept? type}) = _$ConditionStageImpl;
-  const _ConditionStage._() : super._();
+  _ConditionStage._() : super._();
 
   factory _ConditionStage.fromJson(Map<String, dynamic> json) =
       _$ConditionStageImpl.fromJson;
@@ -1842,7 +1842,7 @@ class __$$ConditionEvidenceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ConditionEvidenceImpl extends _ConditionEvidence {
-  const _$ConditionEvidenceImpl(
+  _$ConditionEvidenceImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1947,7 +1947,7 @@ abstract class _ConditionEvidence extends ConditionEvidence {
       final List<FhirExtension>? modifierExtension,
       final List<CodeableConcept>? code,
       final List<Reference>? detail}) = _$ConditionEvidenceImpl;
-  const _ConditionEvidence._() : super._();
+  _ConditionEvidence._() : super._();
 
   factory _ConditionEvidence.fromJson(Map<String, dynamic> json) =
       _$ConditionEvidenceImpl.fromJson;

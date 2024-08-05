@@ -846,7 +846,7 @@ class __$$CarePlanImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CarePlanImpl extends _CarePlan {
-  const _$CarePlanImpl(
+  _$CarePlanImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.CarePlan)
       this.resourceType = R4ResourceType.CarePlan,
       this.id,
@@ -1514,7 +1514,7 @@ abstract class _CarePlan extends CarePlan {
       final List<Reference>? goal,
       final List<CarePlanActivity>? activity,
       final List<Annotation>? note}) = _$CarePlanImpl;
-  const _CarePlan._() : super._();
+  _CarePlan._() : super._();
 
   factory _CarePlan.fromJson(Map<String, dynamic> json) =
       _$CarePlanImpl.fromJson;
@@ -2002,7 +2002,7 @@ class __$$CarePlanActivityImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CarePlanActivityImpl extends _CarePlanActivity {
-  const _$CarePlanActivityImpl(
+  _$CarePlanActivityImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2210,7 +2210,7 @@ abstract class _CarePlanActivity extends CarePlanActivity {
       final List<Annotation>? progress,
       final Reference? reference,
       final CarePlanDetail? detail}) = _$CarePlanActivityImpl;
-  const _CarePlanActivity._() : super._();
+  _CarePlanActivity._() : super._();
 
   factory _CarePlanActivity.fromJson(Map<String, dynamic> json) =
       _$CarePlanActivityImpl.fromJson;
@@ -2992,7 +2992,7 @@ class __$$CarePlanDetailImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CarePlanDetailImpl extends _CarePlanDetail {
-  const _$CarePlanDetailImpl(
+  _$CarePlanDetailImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3464,7 +3464,7 @@ abstract class _CarePlanDetail extends CarePlanDetail {
       final String? description,
       @JsonKey(name: '_description')
       final PrimitiveElement? descriptionElement}) = _$CarePlanDetailImpl;
-  const _CarePlanDetail._() : super._();
+  _CarePlanDetail._() : super._();
 
   factory _CarePlanDetail.fromJson(Map<String, dynamic> json) =
       _$CarePlanDetailImpl.fromJson;

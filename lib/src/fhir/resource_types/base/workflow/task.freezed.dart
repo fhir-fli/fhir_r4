@@ -1143,7 +1143,7 @@ class __$$TaskImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$TaskImpl extends _Task {
-  const _$TaskImpl(
+  _$TaskImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Task)
       this.resourceType = R4ResourceType.Task,
       this.id,
@@ -1835,7 +1835,7 @@ abstract class _Task extends Task {
       final TaskRestriction? restriction,
       final List<TaskInput>? input,
       final List<TaskOutput>? output}) = _$TaskImpl;
-  const _Task._() : super._();
+  _Task._() : super._();
 
   factory _Task.fromJson(Map<String, dynamic> json) = _$TaskImpl.fromJson;
 
@@ -2331,7 +2331,7 @@ class __$$TaskRestrictionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$TaskRestrictionImpl extends _TaskRestriction {
-  const _$TaskRestrictionImpl(
+  _$TaskRestrictionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2498,7 +2498,7 @@ abstract class _TaskRestriction extends TaskRestriction {
       @JsonKey(name: '_repetitions') final PrimitiveElement? repetitionsElement,
       final Period? period,
       final List<Reference>? recipient}) = _$TaskRestrictionImpl;
-  const _TaskRestriction._() : super._();
+  _TaskRestriction._() : super._();
 
   factory _TaskRestriction.fromJson(Map<String, dynamic> json) =
       _$TaskRestrictionImpl.fromJson;
@@ -4271,7 +4271,7 @@ class __$$TaskInputImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$TaskInputImpl extends _TaskInput {
-  const _$TaskInputImpl(
+  _$TaskInputImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5011,7 +5011,7 @@ abstract class _TaskInput extends TaskInput {
       final UsageContext? valueUsageContext,
       final Dosage? valueDosage,
       final FhirMeta? valueMeta}) = _$TaskInputImpl;
-  const _TaskInput._() : super._();
+  _TaskInput._() : super._();
 
   factory _TaskInput.fromJson(Map<String, dynamic> json) =
       _$TaskInputImpl.fromJson;
@@ -7067,7 +7067,7 @@ class __$$TaskOutputImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$TaskOutputImpl extends _TaskOutput {
-  const _$TaskOutputImpl(
+  _$TaskOutputImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -7806,7 +7806,7 @@ abstract class _TaskOutput extends TaskOutput {
       final UsageContext? valueUsageContext,
       final Dosage? valueDosage,
       final FhirMeta? valueMeta}) = _$TaskOutputImpl;
-  const _TaskOutput._() : super._();
+  _TaskOutput._() : super._();
 
   factory _TaskOutput.fromJson(Map<String, dynamic> json) =
       _$TaskOutputImpl.fromJson;

@@ -736,7 +736,7 @@ class __$$GraphDefinitionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$GraphDefinitionImpl extends _GraphDefinition {
-  const _$GraphDefinitionImpl(
+  _$GraphDefinitionImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.GraphDefinition)
       this.resourceType = R4ResourceType.GraphDefinition,
       this.id,
@@ -1257,7 +1257,7 @@ abstract class _GraphDefinition extends GraphDefinition {
       @JsonKey(name: '_start') final PrimitiveElement? startElement,
       final FhirCanonical? profile,
       final List<GraphDefinitionLink>? link}) = _$GraphDefinitionImpl;
-  const _GraphDefinition._() : super._();
+  _GraphDefinition._() : super._();
 
   factory _GraphDefinition.fromJson(Map<String, dynamic> json) =
       _$GraphDefinitionImpl.fromJson;
@@ -1793,7 +1793,7 @@ class __$$GraphDefinitionLinkImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$GraphDefinitionLinkImpl extends _GraphDefinitionLink {
-  const _$GraphDefinitionLinkImpl(
+  _$GraphDefinitionLinkImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2023,7 +2023,7 @@ abstract class _GraphDefinitionLink extends GraphDefinitionLink {
       final String? description,
       @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       final List<GraphDefinitionTarget>? target}) = _$GraphDefinitionLinkImpl;
-  const _GraphDefinitionLink._() : super._();
+  _GraphDefinitionLink._() : super._();
 
   factory _GraphDefinitionLink.fromJson(Map<String, dynamic> json) =
       _$GraphDefinitionLinkImpl.fromJson;
@@ -2364,7 +2364,7 @@ class __$$GraphDefinitionTargetImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$GraphDefinitionTargetImpl extends _GraphDefinitionTarget {
-  const _$GraphDefinitionTargetImpl(
+  _$GraphDefinitionTargetImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2563,7 +2563,7 @@ abstract class _GraphDefinitionTarget extends GraphDefinitionTarget {
       final FhirCanonical? profile,
       final List<GraphDefinitionCompartment>? compartment,
       final List<GraphDefinitionLink>? link}) = _$GraphDefinitionTargetImpl;
-  const _GraphDefinitionTarget._() : super._();
+  _GraphDefinitionTarget._() : super._();
 
   factory _GraphDefinitionTarget.fromJson(Map<String, dynamic> json) =
       _$GraphDefinitionTargetImpl.fromJson;
@@ -2935,7 +2935,7 @@ class __$$GraphDefinitionCompartmentImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$GraphDefinitionCompartmentImpl extends _GraphDefinitionCompartment {
-  const _$GraphDefinitionCompartmentImpl(
+  _$GraphDefinitionCompartmentImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3150,7 +3150,7 @@ abstract class _GraphDefinitionCompartment extends GraphDefinitionCompartment {
       @JsonKey(name: '_description')
       final PrimitiveElement?
           descriptionElement}) = _$GraphDefinitionCompartmentImpl;
-  const _GraphDefinitionCompartment._() : super._();
+  _GraphDefinitionCompartment._() : super._();
 
   factory _GraphDefinitionCompartment.fromJson(Map<String, dynamic> json) =
       _$GraphDefinitionCompartmentImpl.fromJson;

@@ -184,7 +184,7 @@ class __$$PeriodImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PeriodImpl extends _Period {
-  const _$PeriodImpl(
+  _$PeriodImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       this.start,
@@ -297,7 +297,7 @@ abstract class _Period extends Period {
           final FhirDateTime? end,
           @JsonKey(name: '_end') final PrimitiveElement? endElement}) =
       _$PeriodImpl;
-  const _Period._() : super._();
+  _Period._() : super._();
 
   factory _Period.fromJson(Map<String, dynamic> json) = _$PeriodImpl.fromJson;
 

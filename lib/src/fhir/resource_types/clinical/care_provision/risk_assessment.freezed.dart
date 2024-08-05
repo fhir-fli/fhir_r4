@@ -783,7 +783,7 @@ class __$$RiskAssessmentImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RiskAssessmentImpl extends _RiskAssessment {
-  const _$RiskAssessmentImpl(
+  _$RiskAssessmentImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.RiskAssessment)
       this.resourceType = R4ResourceType.RiskAssessment,
       this.id,
@@ -1261,7 +1261,7 @@ abstract class _RiskAssessment extends RiskAssessment {
       final String? mitigation,
       @JsonKey(name: '_mitigation') final PrimitiveElement? mitigationElement,
       final List<Annotation>? note}) = _$RiskAssessmentImpl;
-  const _RiskAssessment._() : super._();
+  _RiskAssessment._() : super._();
 
   factory _RiskAssessment.fromJson(Map<String, dynamic> json) =
       _$RiskAssessmentImpl.fromJson;
@@ -1846,7 +1846,7 @@ class __$$RiskAssessmentPredictionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RiskAssessmentPredictionImpl extends _RiskAssessmentPrediction {
-  const _$RiskAssessmentPredictionImpl(
+  _$RiskAssessmentPredictionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2080,7 +2080,7 @@ abstract class _RiskAssessmentPrediction extends RiskAssessmentPrediction {
           @JsonKey(name: '_rationale')
           final PrimitiveElement? rationaleElement}) =
       _$RiskAssessmentPredictionImpl;
-  const _RiskAssessmentPrediction._() : super._();
+  _RiskAssessmentPrediction._() : super._();
 
   factory _RiskAssessmentPrediction.fromJson(Map<String, dynamic> json) =
       _$RiskAssessmentPredictionImpl.fromJson;

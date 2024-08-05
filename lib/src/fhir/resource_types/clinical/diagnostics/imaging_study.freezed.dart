@@ -801,7 +801,7 @@ class __$$ImagingStudyImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ImagingStudyImpl extends _ImagingStudy {
-  const _$ImagingStudyImpl(
+  _$ImagingStudyImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.ImagingStudy)
       this.resourceType = R4ResourceType.ImagingStudy,
       this.id,
@@ -1383,7 +1383,7 @@ abstract class _ImagingStudy extends ImagingStudy {
       final String? description,
       @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       final List<ImagingStudySeries>? series}) = _$ImagingStudyImpl;
-  const _ImagingStudy._() : super._();
+  _ImagingStudy._() : super._();
 
   factory _ImagingStudy.fromJson(Map<String, dynamic> json) =
       _$ImagingStudyImpl.fromJson;
@@ -2061,7 +2061,7 @@ class __$$ImagingStudySeriesImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ImagingStudySeriesImpl extends _ImagingStudySeries {
-  const _$ImagingStudySeriesImpl(
+  _$ImagingStudySeriesImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2396,7 +2396,7 @@ abstract class _ImagingStudySeries extends ImagingStudySeries {
       @JsonKey(name: '_started') final PrimitiveElement? startedElement,
       final List<ImagingStudyPerformer>? performer,
       final List<ImagingStudyInstance>? instance}) = _$ImagingStudySeriesImpl;
-  const _ImagingStudySeries._() : super._();
+  _ImagingStudySeries._() : super._();
 
   factory _ImagingStudySeries.fromJson(Map<String, dynamic> json) =
       _$ImagingStudySeriesImpl.fromJson;
@@ -2726,7 +2726,7 @@ class __$$ImagingStudyPerformerImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ImagingStudyPerformerImpl extends _ImagingStudyPerformer {
-  const _$ImagingStudyPerformerImpl(
+  _$ImagingStudyPerformerImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2862,7 +2862,7 @@ abstract class _ImagingStudyPerformer extends ImagingStudyPerformer {
       final List<FhirExtension>? modifierExtension,
       final CodeableConcept? function,
       required final Reference actor}) = _$ImagingStudyPerformerImpl;
-  const _ImagingStudyPerformer._() : super._();
+  _ImagingStudyPerformer._() : super._();
 
   factory _ImagingStudyPerformer.fromJson(Map<String, dynamic> json) =
       _$ImagingStudyPerformerImpl.fromJson;
@@ -3171,7 +3171,7 @@ class __$$ImagingStudyInstanceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ImagingStudyInstanceImpl extends _ImagingStudyInstance {
-  const _$ImagingStudyInstanceImpl(
+  _$ImagingStudyInstanceImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3354,7 +3354,7 @@ abstract class _ImagingStudyInstance extends ImagingStudyInstance {
           final String? title,
           @JsonKey(name: '_title') final PrimitiveElement? titleElement}) =
       _$ImagingStudyInstanceImpl;
-  const _ImagingStudyInstance._() : super._();
+  _ImagingStudyInstance._() : super._();
 
   factory _ImagingStudyInstance.fromJson(Map<String, dynamic> json) =
       _$ImagingStudyInstanceImpl.fromJson;

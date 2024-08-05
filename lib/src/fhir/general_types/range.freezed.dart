@@ -181,7 +181,7 @@ class __$$RangeImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RangeImpl extends _Range {
-  const _$RangeImpl(
+  _$RangeImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       this.low,
@@ -266,7 +266,7 @@ abstract class _Range extends Range {
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final Quantity? low,
       final Quantity? high}) = _$RangeImpl;
-  const _Range._() : super._();
+  _Range._() : super._();
 
   factory _Range.fromJson(Map<String, dynamic> json) = _$RangeImpl.fromJson;
 

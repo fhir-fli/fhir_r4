@@ -497,7 +497,7 @@ class __$$ProdCharacteristicImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ProdCharacteristicImpl extends _ProdCharacteristic {
-  const _$ProdCharacteristicImpl(
+  _$ProdCharacteristicImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -813,7 +813,7 @@ abstract class _ProdCharacteristic extends ProdCharacteristic {
       @JsonKey(name: '_imprint') final List<PrimitiveElement>? imprintElement,
       final List<Attachment>? image,
       final CodeableConcept? scoring}) = _$ProdCharacteristicImpl;
-  const _ProdCharacteristic._() : super._();
+  _ProdCharacteristic._() : super._();
 
   factory _ProdCharacteristic.fromJson(Map<String, dynamic> json) =
       _$ProdCharacteristicImpl.fromJson;

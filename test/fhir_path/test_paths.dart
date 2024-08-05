@@ -229,7 +229,7 @@ final patient = Patient.fromJson({
 });
 
 final resource = Patient(
-  address: const [
+  address: [
     Address(
       period: Period(
         extension_: [
@@ -268,7 +268,7 @@ final resource = Patient(
     ),
   ],
   deceasedBoolean: FhirBoolean(false),
-  name: const [
+  name: [
     HumanName(
       family: 'Faulkenberry',
       given: [

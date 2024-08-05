@@ -563,7 +563,7 @@ class __$$DosageImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DosageImpl extends _Dosage {
-  const _$DosageImpl(
+  _$DosageImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -881,7 +881,7 @@ abstract class _Dosage extends Dosage {
       final Ratio? maxDosePerPeriod,
       final Quantity? maxDosePerAdministration,
       final Quantity? maxDosePerLifetime}) = _$DosageImpl;
-  const _Dosage._() : super._();
+  _Dosage._() : super._();
 
   factory _Dosage.fromJson(Map<String, dynamic> json) = _$DosageImpl.fromJson;
 
@@ -1327,7 +1327,7 @@ class __$$DosageDoseAndRateImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DosageDoseAndRateImpl extends _DosageDoseAndRate {
-  const _$DosageDoseAndRateImpl(
+  _$DosageDoseAndRateImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1499,7 +1499,7 @@ abstract class _DosageDoseAndRate extends DosageDoseAndRate {
       final Ratio? rateRatio,
       final Range? rateRange,
       final Quantity? rateQuantity}) = _$DosageDoseAndRateImpl;
-  const _DosageDoseAndRate._() : super._();
+  _DosageDoseAndRate._() : super._();
 
   factory _DosageDoseAndRate.fromJson(Map<String, dynamic> json) =
       _$DosageDoseAndRateImpl.fromJson;

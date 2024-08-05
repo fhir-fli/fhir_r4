@@ -743,7 +743,7 @@ class __$$CompartmentDefinitionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CompartmentDefinitionImpl extends _CompartmentDefinition {
-  const _$CompartmentDefinitionImpl(
+  _$CompartmentDefinitionImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.CompartmentDefinition)
       this.resourceType = R4ResourceType.CompartmentDefinition,
       this.id,
@@ -1257,7 +1257,7 @@ abstract class _CompartmentDefinition extends CompartmentDefinition {
       @JsonKey(name: '_search') final PrimitiveElement? searchElement,
       final List<CompartmentDefinitionResource>?
           resource}) = _$CompartmentDefinitionImpl;
-  const _CompartmentDefinition._() : super._();
+  _CompartmentDefinition._() : super._();
 
   factory _CompartmentDefinition.fromJson(Map<String, dynamic> json) =
       _$CompartmentDefinitionImpl.fromJson;
@@ -1728,7 +1728,7 @@ class __$$CompartmentDefinitionResourceImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CompartmentDefinitionResourceImpl
     extends _CompartmentDefinitionResource {
-  const _$CompartmentDefinitionResourceImpl(
+  _$CompartmentDefinitionResourceImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1931,7 +1931,7 @@ abstract class _CompartmentDefinitionResource
           @JsonKey(name: '_documentation')
           final PrimitiveElement? documentationElement}) =
       _$CompartmentDefinitionResourceImpl;
-  const _CompartmentDefinitionResource._() : super._();
+  _CompartmentDefinitionResource._() : super._();
 
   factory _CompartmentDefinitionResource.fromJson(Map<String, dynamic> json) =
       _$CompartmentDefinitionResourceImpl.fromJson;

@@ -799,7 +799,7 @@ class __$$SupplyRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SupplyRequestImpl extends _SupplyRequest {
-  const _$SupplyRequestImpl(
+  _$SupplyRequestImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.SupplyRequest)
       this.resourceType = R4ResourceType.SupplyRequest,
       this.id,
@@ -1282,7 +1282,7 @@ abstract class _SupplyRequest extends SupplyRequest {
       final List<Reference>? reasonReference,
       final Reference? deliverFrom,
       final Reference? deliverTo}) = _$SupplyRequestImpl;
-  const _SupplyRequest._() : super._();
+  _SupplyRequest._() : super._();
 
   factory _SupplyRequest.fromJson(Map<String, dynamic> json) =
       _$SupplyRequestImpl.fromJson;
@@ -1768,7 +1768,7 @@ class __$$SupplyRequestParameterImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SupplyRequestParameterImpl extends _SupplyRequestParameter {
-  const _$SupplyRequestParameterImpl(
+  _$SupplyRequestParameterImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1942,7 +1942,7 @@ abstract class _SupplyRequestParameter extends SupplyRequestParameter {
           @JsonKey(name: '_valueBoolean')
           final PrimitiveElement? valueBooleanElement}) =
       _$SupplyRequestParameterImpl;
-  const _SupplyRequestParameter._() : super._();
+  _SupplyRequestParameter._() : super._();
 
   factory _SupplyRequestParameter.fromJson(Map<String, dynamic> json) =
       _$SupplyRequestParameterImpl.fromJson;

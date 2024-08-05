@@ -603,7 +603,7 @@ class __$$CareTeamImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CareTeamImpl extends _CareTeam {
-  const _$CareTeamImpl(
+  _$CareTeamImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.CareTeam)
       this.resourceType = R4ResourceType.CareTeam,
       this.id,
@@ -1049,7 +1049,7 @@ abstract class _CareTeam extends CareTeam {
       final List<Reference>? managingOrganization,
       final List<ContactPoint>? telecom,
       final List<Annotation>? note}) = _$CareTeamImpl;
-  const _CareTeam._() : super._();
+  _CareTeam._() : super._();
 
   factory _CareTeam.fromJson(Map<String, dynamic> json) =
       _$CareTeamImpl.fromJson;
@@ -1456,7 +1456,7 @@ class __$$CareTeamParticipantImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CareTeamParticipantImpl extends _CareTeamParticipant {
-  const _$CareTeamParticipantImpl(
+  _$CareTeamParticipantImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1623,7 +1623,7 @@ abstract class _CareTeamParticipant extends CareTeamParticipant {
       final Reference? member,
       final Reference? onBehalfOf,
       final Period? period}) = _$CareTeamParticipantImpl;
-  const _CareTeamParticipant._() : super._();
+  _CareTeamParticipant._() : super._();
 
   factory _CareTeamParticipant.fromJson(Map<String, dynamic> json) =
       _$CareTeamParticipantImpl.fromJson;

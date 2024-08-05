@@ -1163,7 +1163,7 @@ class __$$LibraryImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LibraryImpl extends _Library {
-  const _$LibraryImpl(
+  _$LibraryImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Library)
       this.resourceType = R4ResourceType.Library,
       this.id,
@@ -2020,7 +2020,7 @@ abstract class _Library extends Library {
       final List<ParameterDefinition>? parameter,
       final List<DataRequirement>? dataRequirement,
       final List<Attachment>? content}) = _$LibraryImpl;
-  const _Library._() : super._();
+  _Library._() : super._();
 
   factory _Library.fromJson(Map<String, dynamic> json) = _$LibraryImpl.fromJson;
 

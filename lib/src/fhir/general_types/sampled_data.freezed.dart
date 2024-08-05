@@ -348,7 +348,7 @@ class __$$SampledDataImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SampledDataImpl extends _SampledData {
-  const _$SampledDataImpl(
+  _$SampledDataImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       required this.origin,
@@ -553,7 +553,7 @@ abstract class _SampledData extends SampledData {
       final String? data,
       @JsonKey(name: '_data')
       final PrimitiveElement? dataElement}) = _$SampledDataImpl;
-  const _SampledData._() : super._();
+  _SampledData._() : super._();
 
   factory _SampledData.fromJson(Map<String, dynamic> json) =
       _$SampledDataImpl.fromJson;

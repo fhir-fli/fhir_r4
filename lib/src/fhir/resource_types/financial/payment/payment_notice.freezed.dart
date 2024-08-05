@@ -661,7 +661,7 @@ class __$$PaymentNoticeImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PaymentNoticeImpl extends _PaymentNotice {
-  const _$PaymentNoticeImpl(
+  _$PaymentNoticeImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.PaymentNotice)
       this.resourceType = R4ResourceType.PaymentNotice,
       this.id,
@@ -1026,7 +1026,7 @@ abstract class _PaymentNotice extends PaymentNotice {
       required final Reference recipient,
       required final Money amount,
       final CodeableConcept? paymentStatus}) = _$PaymentNoticeImpl;
-  const _PaymentNotice._() : super._();
+  _PaymentNotice._() : super._();
 
   factory _PaymentNotice.fromJson(Map<String, dynamic> json) =
       _$PaymentNoticeImpl.fromJson;

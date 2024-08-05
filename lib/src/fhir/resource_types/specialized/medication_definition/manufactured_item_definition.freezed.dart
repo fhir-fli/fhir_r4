@@ -442,7 +442,7 @@ class __$$ManufacturedItemDefinitionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ManufacturedItemDefinitionImpl extends _ManufacturedItemDefinition {
-  const _$ManufacturedItemDefinitionImpl(
+  _$ManufacturedItemDefinitionImpl(
       {this.resourceType = R4ResourceType.ManufacturedItemDefinition,
       this.id,
       this.meta,
@@ -724,7 +724,7 @@ abstract class _ManufacturedItemDefinition extends ManufacturedItemDefinition {
           final List<CodeableConcept>? ingredient,
           final List<ManufacturedItemDefinitionProperty>? property}) =
       _$ManufacturedItemDefinitionImpl;
-  const _ManufacturedItemDefinition._() : super._();
+  _ManufacturedItemDefinition._() : super._();
 
   factory _ManufacturedItemDefinition.fromJson(Map<String, dynamic> json) =
       _$ManufacturedItemDefinitionImpl.fromJson;
@@ -1125,7 +1125,7 @@ class __$$ManufacturedItemDefinitionPropertyImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ManufacturedItemDefinitionPropertyImpl
     extends _ManufacturedItemDefinitionProperty {
-  const _$ManufacturedItemDefinitionPropertyImpl(
+  _$ManufacturedItemDefinitionPropertyImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1288,7 +1288,7 @@ abstract class _ManufacturedItemDefinitionProperty
           final PrimitiveElement? valueBooleanElement,
           final Attachment? valueAttachment}) =
       _$ManufacturedItemDefinitionPropertyImpl;
-  const _ManufacturedItemDefinitionProperty._() : super._();
+  _ManufacturedItemDefinitionProperty._() : super._();
 
   factory _ManufacturedItemDefinitionProperty.fromJson(
           Map<String, dynamic> json) =

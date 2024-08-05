@@ -377,7 +377,7 @@ class __$$AttachmentImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AttachmentImpl extends _Attachment {
-  const _$AttachmentImpl(
+  _$AttachmentImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       this.contentType,
@@ -604,7 +604,7 @@ abstract class _Attachment extends Attachment {
       final FhirDateTime? creation,
       @JsonKey(name: '_creation')
       final PrimitiveElement? creationElement}) = _$AttachmentImpl;
-  const _Attachment._() : super._();
+  _Attachment._() : super._();
 
   factory _Attachment.fromJson(Map<String, dynamic> json) =
       _$AttachmentImpl.fromJson;

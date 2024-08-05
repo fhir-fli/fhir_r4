@@ -329,7 +329,7 @@ class __$$SignatureImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SignatureImpl extends _Signature {
-  const _$SignatureImpl(
+  _$SignatureImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       required final List<Coding> type,
@@ -524,7 +524,7 @@ abstract class _Signature extends Signature {
           final FhirBase64Binary? data,
           @JsonKey(name: '_data') final PrimitiveElement? dataElement}) =
       _$SignatureImpl;
-  const _Signature._() : super._();
+  _Signature._() : super._();
 
   factory _Signature.fromJson(Map<String, dynamic> json) =
       _$SignatureImpl.fromJson;

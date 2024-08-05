@@ -1488,7 +1488,7 @@ class __$$MeasureImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MeasureImpl extends _Measure {
-  const _$MeasureImpl(
+  _$MeasureImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Measure)
       this.resourceType = R4ResourceType.Measure,
       this.id,
@@ -2545,7 +2545,7 @@ abstract class _Measure extends Measure {
       @JsonKey(name: '_guidance') final PrimitiveElement? guidanceElement,
       final List<MeasureGroup>? group,
       final List<MeasureSupplementalData>? supplementalData}) = _$MeasureImpl;
-  const _Measure._() : super._();
+  _Measure._() : super._();
 
   factory _Measure.fromJson(Map<String, dynamic> json) = _$MeasureImpl.fromJson;
 
@@ -3222,7 +3222,7 @@ class __$$MeasureGroupImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MeasureGroupImpl extends _MeasureGroup {
-  const _$MeasureGroupImpl(
+  _$MeasureGroupImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3411,7 +3411,7 @@ abstract class _MeasureGroup extends MeasureGroup {
       @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       final List<MeasurePopulation>? population,
       final List<MeasureStratifier>? stratifier}) = _$MeasureGroupImpl;
-  const _MeasureGroup._() : super._();
+  _MeasureGroup._() : super._();
 
   factory _MeasureGroup.fromJson(Map<String, dynamic> json) =
       _$MeasureGroupImpl.fromJson;
@@ -3706,7 +3706,7 @@ class __$$MeasurePopulationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MeasurePopulationImpl extends _MeasurePopulation {
-  const _$MeasurePopulationImpl(
+  _$MeasurePopulationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3861,7 +3861,7 @@ abstract class _MeasurePopulation extends MeasurePopulation {
       final String? description,
       @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       required final FhirExpression criteria}) = _$MeasurePopulationImpl;
-  const _MeasurePopulation._() : super._();
+  _MeasurePopulation._() : super._();
 
   factory _MeasurePopulation.fromJson(Map<String, dynamic> json) =
       _$MeasurePopulationImpl.fromJson;
@@ -4173,7 +4173,7 @@ class __$$MeasureStratifierImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MeasureStratifierImpl extends _MeasureStratifier {
-  const _$MeasureStratifierImpl(
+  _$MeasureStratifierImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4355,7 +4355,7 @@ abstract class _MeasureStratifier extends MeasureStratifier {
       @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       final FhirExpression? criteria,
       final List<MeasureComponent>? component}) = _$MeasureStratifierImpl;
-  const _MeasureStratifier._() : super._();
+  _MeasureStratifier._() : super._();
 
   factory _MeasureStratifier.fromJson(Map<String, dynamic> json) =
       _$MeasureStratifierImpl.fromJson;
@@ -4658,7 +4658,7 @@ class __$$MeasureComponentImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MeasureComponentImpl extends _MeasureComponent {
-  const _$MeasureComponentImpl(
+  _$MeasureComponentImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4819,7 +4819,7 @@ abstract class _MeasureComponent extends MeasureComponent {
       final String? description,
       @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       required final FhirExpression criteria}) = _$MeasureComponentImpl;
-  const _MeasureComponent._() : super._();
+  _MeasureComponent._() : super._();
 
   factory _MeasureComponent.fromJson(Map<String, dynamic> json) =
       _$MeasureComponentImpl.fromJson;
@@ -5141,7 +5141,7 @@ class __$$MeasureSupplementalDataImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MeasureSupplementalDataImpl extends _MeasureSupplementalData {
-  const _$MeasureSupplementalDataImpl(
+  _$MeasureSupplementalDataImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5327,7 +5327,7 @@ abstract class _MeasureSupplementalData extends MeasureSupplementalData {
       final String? description,
       @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       required final FhirExpression criteria}) = _$MeasureSupplementalDataImpl;
-  const _MeasureSupplementalData._() : super._();
+  _MeasureSupplementalData._() : super._();
 
   factory _MeasureSupplementalData.fromJson(Map<String, dynamic> json) =
       _$MeasureSupplementalDataImpl.fromJson;

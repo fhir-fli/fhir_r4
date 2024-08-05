@@ -600,7 +600,7 @@ class __$$AccountImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AccountImpl extends _Account {
-  const _$AccountImpl(
+  _$AccountImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Account)
       this.resourceType = R4ResourceType.Account,
       this.id,
@@ -996,7 +996,7 @@ abstract class _Account extends Account {
       @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       final List<AccountGuarantor>? guarantor,
       final Reference? partOf}) = _$AccountImpl;
-  const _Account._() : super._();
+  _Account._() : super._();
 
   factory _Account.fromJson(Map<String, dynamic> json) = _$AccountImpl.fromJson;
 
@@ -1350,7 +1350,7 @@ class __$$AccountCoverageImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AccountCoverageImpl extends _AccountCoverage {
-  const _$AccountCoverageImpl(
+  _$AccountCoverageImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1501,7 +1501,7 @@ abstract class _AccountCoverage extends AccountCoverage {
       final FhirPositiveInt? priority,
       @JsonKey(name: '_priority')
       final PrimitiveElement? priorityElement}) = _$AccountCoverageImpl;
-  const _AccountCoverage._() : super._();
+  _AccountCoverage._() : super._();
 
   factory _AccountCoverage.fromJson(Map<String, dynamic> json) =
       _$AccountCoverageImpl.fromJson;
@@ -1787,7 +1787,7 @@ class __$$AccountGuarantorImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AccountGuarantorImpl extends _AccountGuarantor {
-  const _$AccountGuarantorImpl(
+  _$AccountGuarantorImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1941,7 +1941,7 @@ abstract class _AccountGuarantor extends AccountGuarantor {
       final FhirBoolean? onHold,
       @JsonKey(name: '_onHold') final PrimitiveElement? onHoldElement,
       final Period? period}) = _$AccountGuarantorImpl;
-  const _AccountGuarantor._() : super._();
+  _AccountGuarantor._() : super._();
 
   factory _AccountGuarantor.fromJson(Map<String, dynamic> json) =
       _$AccountGuarantorImpl.fromJson;

@@ -627,7 +627,7 @@ class __$$DocumentManifestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DocumentManifestImpl extends _DocumentManifest {
-  const _$DocumentManifestImpl(
+  _$DocumentManifestImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.DocumentManifest)
       this.resourceType = R4ResourceType.DocumentManifest,
       this.id,
@@ -1056,7 +1056,7 @@ abstract class _DocumentManifest extends DocumentManifest {
       @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       required final List<Reference> content,
       final List<DocumentManifestRelated>? related}) = _$DocumentManifestImpl;
-  const _DocumentManifest._() : super._();
+  _DocumentManifest._() : super._();
 
   factory _DocumentManifest.fromJson(Map<String, dynamic> json) =
       _$DocumentManifestImpl.fromJson;
@@ -1433,7 +1433,7 @@ class __$$DocumentManifestRelatedImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DocumentManifestRelatedImpl extends _DocumentManifestRelated {
-  const _$DocumentManifestRelatedImpl(
+  _$DocumentManifestRelatedImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1570,7 +1570,7 @@ abstract class _DocumentManifestRelated extends DocumentManifestRelated {
       final List<FhirExtension>? modifierExtension,
       final Identifier? identifier,
       final Reference? ref}) = _$DocumentManifestRelatedImpl;
-  const _DocumentManifestRelated._() : super._();
+  _DocumentManifestRelated._() : super._();
 
   factory _DocumentManifestRelated.fromJson(Map<String, dynamic> json) =
       _$DocumentManifestRelatedImpl.fromJson;

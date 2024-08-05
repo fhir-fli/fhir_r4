@@ -874,7 +874,7 @@ class __$$AppointmentImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AppointmentImpl extends _Appointment {
-  const _$AppointmentImpl(
+  _$AppointmentImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Appointment)
       this.resourceType = R4ResourceType.Appointment,
       this.id,
@@ -1545,7 +1545,7 @@ abstract class _Appointment extends Appointment {
       final List<Reference>? basedOn,
       required final List<AppointmentParticipant> participant,
       final List<Period>? requestedPeriod}) = _$AppointmentImpl;
-  const _Appointment._() : super._();
+  _Appointment._() : super._();
 
   factory _Appointment.fromJson(Map<String, dynamic> json) =
       _$AppointmentImpl.fromJson;
@@ -2091,7 +2091,7 @@ class __$$AppointmentParticipantImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AppointmentParticipantImpl extends _AppointmentParticipant {
-  const _$AppointmentParticipantImpl(
+  _$AppointmentParticipantImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2285,7 +2285,7 @@ abstract class _AppointmentParticipant extends AppointmentParticipant {
       final FhirCode? status,
       @JsonKey(name: '_status') final PrimitiveElement? statusElement,
       final Period? period}) = _$AppointmentParticipantImpl;
-  const _AppointmentParticipant._() : super._();
+  _AppointmentParticipant._() : super._();
 
   factory _AppointmentParticipant.fromJson(Map<String, dynamic> json) =
       _$AppointmentParticipantImpl.fromJson;

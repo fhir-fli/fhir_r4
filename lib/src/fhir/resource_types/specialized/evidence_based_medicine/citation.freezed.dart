@@ -863,7 +863,7 @@ class __$$CitationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CitationImpl extends _Citation {
-  const _$CitationImpl(
+  _$CitationImpl(
       {this.resourceType = R4ResourceType.Citation,
       this.id,
       this.meta,
@@ -1432,7 +1432,7 @@ abstract class _Citation extends Citation {
       final List<CitationStatusDate>? statusDate,
       final List<CitationRelatesTo>? relatesTo,
       final CitationCitedArtifact? citedArtifact}) = _$CitationImpl;
-  const _Citation._() : super._();
+  _Citation._() : super._();
 
   factory _Citation.fromJson(Map<String, dynamic> json) =
       _$CitationImpl.fromJson;
@@ -1735,7 +1735,7 @@ class __$$CitationSummaryImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CitationSummaryImpl extends _CitationSummary {
-  const _$CitationSummaryImpl(
+  _$CitationSummaryImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1832,7 +1832,7 @@ abstract class _CitationSummary extends CitationSummary {
           final FhirMarkdown? text,
           @JsonKey(name: '_text') final PrimitiveElement? textElement}) =
       _$CitationSummaryImpl;
-  const _CitationSummary._() : super._();
+  _CitationSummary._() : super._();
 
   factory _CitationSummary.fromJson(Map<String, dynamic> json) =
       _$CitationSummaryImpl.fromJson;
@@ -2018,7 +2018,7 @@ class __$$CitationClassificationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CitationClassificationImpl extends _CitationClassification {
-  const _$CitationClassificationImpl(
+  _$CitationClassificationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2115,7 +2115,7 @@ abstract class _CitationClassification extends CitationClassification {
       final List<FhirExtension>? modifierExtension,
       final CodeableConcept? type,
       final List<CodeableConcept>? classifier}) = _$CitationClassificationImpl;
-  const _CitationClassification._() : super._();
+  _CitationClassification._() : super._();
 
   factory _CitationClassification.fromJson(Map<String, dynamic> json) =
       _$CitationClassificationImpl.fromJson;
@@ -2327,7 +2327,7 @@ class __$$CitationStatusDateImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CitationStatusDateImpl extends _CitationStatusDate {
-  const _$CitationStatusDateImpl(
+  _$CitationStatusDateImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2430,7 +2430,7 @@ abstract class _CitationStatusDate extends CitationStatusDate {
       final FhirBoolean? actual,
       @JsonKey(name: '_actual') final PrimitiveElement? actualElement,
       required final Period period}) = _$CitationStatusDateImpl;
-  const _CitationStatusDate._() : super._();
+  _CitationStatusDate._() : super._();
 
   factory _CitationStatusDate.fromJson(Map<String, dynamic> json) =
       _$CitationStatusDateImpl.fromJson;
@@ -2721,7 +2721,7 @@ class __$$CitationRelatesToImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CitationRelatesToImpl extends _CitationRelatesTo {
-  const _$CitationRelatesToImpl(
+  _$CitationRelatesToImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2857,7 +2857,7 @@ abstract class _CitationRelatesTo extends CitationRelatesTo {
       final Identifier? targetIdentifier,
       final Reference? targetReference,
       final Attachment? targetAttachment}) = _$CitationRelatesToImpl;
-  const _CitationRelatesTo._() : super._();
+  _CitationRelatesTo._() : super._();
 
   factory _CitationRelatesTo.fromJson(Map<String, dynamic> json) =
       _$CitationRelatesToImpl.fromJson;
@@ -3272,7 +3272,7 @@ class __$$CitationCitedArtifactImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CitationCitedArtifactImpl extends _CitationCitedArtifact {
-  const _$CitationCitedArtifactImpl(
+  _$CitationCitedArtifactImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3560,7 +3560,7 @@ abstract class _CitationCitedArtifact extends CitationCitedArtifact {
       final List<CitationClassification1>? classification,
       final CitationContributorship? contributorship,
       final List<Annotation>? note}) = _$CitationCitedArtifactImpl;
-  const _CitationCitedArtifact._() : super._();
+  _CitationCitedArtifact._() : super._();
 
   factory _CitationCitedArtifact.fromJson(Map<String, dynamic> json) =
       _$CitationCitedArtifactImpl.fromJson;
@@ -3783,7 +3783,7 @@ class __$$CitationVersionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CitationVersionImpl extends _CitationVersion {
-  const _$CitationVersionImpl(
+  _$CitationVersionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3880,7 +3880,7 @@ abstract class _CitationVersion extends CitationVersion {
       final String? value,
       @JsonKey(name: '_value') final PrimitiveElement? valueElement,
       final Reference? baseCitation}) = _$CitationVersionImpl;
-  const _CitationVersion._() : super._();
+  _CitationVersion._() : super._();
 
   factory _CitationVersion.fromJson(Map<String, dynamic> json) =
       _$CitationVersionImpl.fromJson;
@@ -4095,7 +4095,7 @@ class __$$CitationStatusDate1ImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CitationStatusDate1Impl extends _CitationStatusDate1 {
-  const _$CitationStatusDate1Impl(
+  _$CitationStatusDate1Impl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4198,7 +4198,7 @@ abstract class _CitationStatusDate1 extends CitationStatusDate1 {
       final FhirBoolean? actual,
       @JsonKey(name: '_actual') final PrimitiveElement? actualElement,
       required final Period period}) = _$CitationStatusDate1Impl;
-  const _CitationStatusDate1._() : super._();
+  _CitationStatusDate1._() : super._();
 
   factory _CitationStatusDate1.fromJson(Map<String, dynamic> json) =
       _$CitationStatusDate1Impl.fromJson;
@@ -4408,7 +4408,7 @@ class __$$CitationTitleImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CitationTitleImpl extends _CitationTitle {
-  const _$CitationTitleImpl(
+  _$CitationTitleImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4520,7 +4520,7 @@ abstract class _CitationTitle extends CitationTitle {
           final FhirMarkdown? text,
           @JsonKey(name: '_text') final PrimitiveElement? textElement}) =
       _$CitationTitleImpl;
-  const _CitationTitle._() : super._();
+  _CitationTitle._() : super._();
 
   factory _CitationTitle.fromJson(Map<String, dynamic> json) =
       _$CitationTitleImpl.fromJson;
@@ -4772,7 +4772,7 @@ class __$$CitationAbstractImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CitationAbstractImpl extends _CitationAbstract {
-  const _$CitationAbstractImpl(
+  _$CitationAbstractImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4891,7 +4891,7 @@ abstract class _CitationAbstract extends CitationAbstract {
       final FhirMarkdown? copyright,
       @JsonKey(name: '_copyright')
       final PrimitiveElement? copyrightElement}) = _$CitationAbstractImpl;
-  const _CitationAbstract._() : super._();
+  _CitationAbstract._() : super._();
 
   factory _CitationAbstract.fromJson(Map<String, dynamic> json) =
       _$CitationAbstractImpl.fromJson;
@@ -5121,7 +5121,7 @@ class __$$CitationPartImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CitationPartImpl extends _CitationPart {
-  const _$CitationPartImpl(
+  _$CitationPartImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5223,7 +5223,7 @@ abstract class _CitationPart extends CitationPart {
       final String? value,
       @JsonKey(name: '_value') final PrimitiveElement? valueElement,
       final Reference? baseCitation}) = _$CitationPartImpl;
-  const _CitationPart._() : super._();
+  _CitationPart._() : super._();
 
   factory _CitationPart.fromJson(Map<String, dynamic> json) =
       _$CitationPartImpl.fromJson;
@@ -5514,7 +5514,7 @@ class __$$CitationRelatesTo1ImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CitationRelatesTo1Impl extends _CitationRelatesTo1 {
-  const _$CitationRelatesTo1Impl(
+  _$CitationRelatesTo1Impl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5650,7 +5650,7 @@ abstract class _CitationRelatesTo1 extends CitationRelatesTo1 {
       final Identifier? targetIdentifier,
       final Reference? targetReference,
       final Attachment? targetAttachment}) = _$CitationRelatesTo1Impl;
-  const _CitationRelatesTo1._() : super._();
+  _CitationRelatesTo1._() : super._();
 
   factory _CitationRelatesTo1.fromJson(Map<String, dynamic> json) =
       _$CitationRelatesTo1Impl.fromJson;
@@ -6097,7 +6097,7 @@ class __$$CitationPublicationFormImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CitationPublicationFormImpl extends _CitationPublicationForm {
-  const _$CitationPublicationFormImpl(
+  _$CitationPublicationFormImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -6328,7 +6328,7 @@ abstract class _CitationPublicationForm extends CitationPublicationForm {
       @JsonKey(name: '_copyright')
       final PrimitiveElement?
           copyrightElement}) = _$CitationPublicationFormImpl;
-  const _CitationPublicationForm._() : super._();
+  _CitationPublicationForm._() : super._();
 
   factory _CitationPublicationForm.fromJson(Map<String, dynamic> json) =
       _$CitationPublicationFormImpl.fromJson;
@@ -6633,7 +6633,7 @@ class __$$CitationPublishedInImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CitationPublishedInImpl extends _CitationPublishedIn {
-  const _$CitationPublishedInImpl(
+  _$CitationPublishedInImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -6770,7 +6770,7 @@ abstract class _CitationPublishedIn extends CitationPublishedIn {
           @JsonKey(name: '_publisherLocation')
           final PrimitiveElement? publisherLocationElement}) =
       _$CitationPublishedInImpl;
-  const _CitationPublishedIn._() : super._();
+  _CitationPublishedIn._() : super._();
 
   factory _CitationPublishedIn.fromJson(Map<String, dynamic> json) =
       _$CitationPublishedInImpl.fromJson;
@@ -7036,7 +7036,7 @@ class __$$CitationPeriodicReleaseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CitationPeriodicReleaseImpl extends _CitationPeriodicRelease {
-  const _$CitationPeriodicReleaseImpl(
+  _$CitationPeriodicReleaseImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -7155,7 +7155,7 @@ abstract class _CitationPeriodicRelease extends CitationPeriodicRelease {
           @JsonKey(name: '_issue') final PrimitiveElement? issueElement,
           final CitationDateOfPublication? dateOfPublication}) =
       _$CitationPeriodicReleaseImpl;
-  const _CitationPeriodicRelease._() : super._();
+  _CitationPeriodicRelease._() : super._();
 
   factory _CitationPeriodicRelease.fromJson(Map<String, dynamic> json) =
       _$CitationPeriodicReleaseImpl.fromJson;
@@ -7467,7 +7467,7 @@ class __$$CitationDateOfPublicationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CitationDateOfPublicationImpl extends _CitationDateOfPublication {
-  const _$CitationDateOfPublicationImpl(
+  _$CitationDateOfPublicationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -7628,7 +7628,7 @@ abstract class _CitationDateOfPublication extends CitationDateOfPublication {
           final String? text,
           @JsonKey(name: '_text') final PrimitiveElement? textElement}) =
       _$CitationDateOfPublicationImpl;
-  const _CitationDateOfPublication._() : super._();
+  _CitationDateOfPublication._() : super._();
 
   factory _CitationDateOfPublication.fromJson(Map<String, dynamic> json) =
       _$CitationDateOfPublicationImpl.fromJson;
@@ -7846,7 +7846,7 @@ class __$$CitationWebLocationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CitationWebLocationImpl extends _CitationWebLocation {
-  const _$CitationWebLocationImpl(
+  _$CitationWebLocationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -7943,7 +7943,7 @@ abstract class _CitationWebLocation extends CitationWebLocation {
           final FhirUri? url,
           @JsonKey(name: '_url') final PrimitiveElement? urlElement}) =
       _$CitationWebLocationImpl;
-  const _CitationWebLocation._() : super._();
+  _CitationWebLocation._() : super._();
 
   factory _CitationWebLocation.fromJson(Map<String, dynamic> json) =
       _$CitationWebLocationImpl.fromJson;
@@ -8171,7 +8171,7 @@ class __$$CitationClassification1ImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CitationClassification1Impl extends _CitationClassification1 {
-  const _$CitationClassification1Impl(
+  _$CitationClassification1Impl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -8293,7 +8293,7 @@ abstract class _CitationClassification1 extends CitationClassification1 {
           final CitationWhoClassified? whoClassified,
           final List<Reference>? artifactAssessment}) =
       _$CitationClassification1Impl;
-  const _CitationClassification1._() : super._();
+  _CitationClassification1._() : super._();
 
   factory _CitationClassification1.fromJson(Map<String, dynamic> json) =
       _$CitationClassification1Impl.fromJson;
@@ -8580,7 +8580,7 @@ class __$$CitationWhoClassifiedImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CitationWhoClassifiedImpl extends _CitationWhoClassified {
-  const _$CitationWhoClassifiedImpl(
+  _$CitationWhoClassifiedImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -8711,7 +8711,7 @@ abstract class _CitationWhoClassified extends CitationWhoClassified {
           @JsonKey(name: '_freeToShare')
           final PrimitiveElement? freeToShareElement}) =
       _$CitationWhoClassifiedImpl;
-  const _CitationWhoClassified._() : super._();
+  _CitationWhoClassified._() : super._();
 
   factory _CitationWhoClassified.fromJson(Map<String, dynamic> json) =
       _$CitationWhoClassifiedImpl.fromJson;
@@ -8916,7 +8916,7 @@ class __$$CitationContributorshipImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CitationContributorshipImpl extends _CitationContributorship {
-  const _$CitationContributorshipImpl(
+  _$CitationContributorshipImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -9036,7 +9036,7 @@ abstract class _CitationContributorship extends CitationContributorship {
       @JsonKey(name: '_complete') final PrimitiveElement? completeElement,
       final List<CitationEntry>? entry,
       final List<CitationSummary1>? summary}) = _$CitationContributorshipImpl;
-  const _CitationContributorship._() : super._();
+  _CitationContributorship._() : super._();
 
   factory _CitationContributorship.fromJson(Map<String, dynamic> json) =
       _$CitationContributorshipImpl.fromJson;
@@ -9427,7 +9427,7 @@ class __$$CitationEntryImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CitationEntryImpl extends _CitationEntry {
-  const _$CitationEntryImpl(
+  _$CitationEntryImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -9676,7 +9676,7 @@ abstract class _CitationEntry extends CitationEntry {
       final FhirPositiveInt? listOrder,
       @JsonKey(name: '_listOrder')
       final PrimitiveElement? listOrderElement}) = _$CitationEntryImpl;
-  const _CitationEntry._() : super._();
+  _CitationEntry._() : super._();
 
   factory _CitationEntry.fromJson(Map<String, dynamic> json) =
       _$CitationEntryImpl.fromJson;
@@ -9916,7 +9916,7 @@ class __$$CitationAffiliationInfoImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CitationAffiliationInfoImpl extends _CitationAffiliationInfo {
-  const _$CitationAffiliationInfoImpl(
+  _$CitationAffiliationInfoImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -10036,7 +10036,7 @@ abstract class _CitationAffiliationInfo extends CitationAffiliationInfo {
       final String? role,
       @JsonKey(name: '_role') final PrimitiveElement? roleElement,
       final List<Identifier>? identifier}) = _$CitationAffiliationInfoImpl;
-  const _CitationAffiliationInfo._() : super._();
+  _CitationAffiliationInfo._() : super._();
 
   factory _CitationAffiliationInfo.fromJson(Map<String, dynamic> json) =
       _$CitationAffiliationInfoImpl.fromJson;
@@ -10239,7 +10239,7 @@ class __$$CitationContributionInstanceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CitationContributionInstanceImpl extends _CitationContributionInstance {
-  const _$CitationContributionInstanceImpl(
+  _$CitationContributionInstanceImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -10339,7 +10339,7 @@ abstract class _CitationContributionInstance
           final FhirDateTime? time,
           @JsonKey(name: '_time') final PrimitiveElement? timeElement}) =
       _$CitationContributionInstanceImpl;
-  const _CitationContributionInstance._() : super._();
+  _CitationContributionInstance._() : super._();
 
   factory _CitationContributionInstance.fromJson(Map<String, dynamic> json) =
       _$CitationContributionInstanceImpl.fromJson;
@@ -10591,7 +10591,7 @@ class __$$CitationSummary1ImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CitationSummary1Impl extends _CitationSummary1 {
-  const _$CitationSummary1Impl(
+  _$CitationSummary1Impl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -10700,7 +10700,7 @@ abstract class _CitationSummary1 extends CitationSummary1 {
           final FhirMarkdown? value,
           @JsonKey(name: '_value') final PrimitiveElement? valueElement}) =
       _$CitationSummary1Impl;
-  const _CitationSummary1._() : super._();
+  _CitationSummary1._() : super._();
 
   factory _CitationSummary1.fromJson(Map<String, dynamic> json) =
       _$CitationSummary1Impl.fromJson;

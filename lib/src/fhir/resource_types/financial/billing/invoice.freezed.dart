@@ -746,7 +746,7 @@ class __$$InvoiceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$InvoiceImpl extends _Invoice {
-  const _$InvoiceImpl(
+  _$InvoiceImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Invoice)
       this.resourceType = R4ResourceType.Invoice,
       this.id,
@@ -1217,7 +1217,7 @@ abstract class _Invoice extends Invoice {
       @JsonKey(name: '_paymentTerms')
       final PrimitiveElement? paymentTermsElement,
       final List<Annotation>? note}) = _$InvoiceImpl;
-  const _Invoice._() : super._();
+  _Invoice._() : super._();
 
   factory _Invoice.fromJson(Map<String, dynamic> json) = _$InvoiceImpl.fromJson;
 
@@ -1599,7 +1599,7 @@ class __$$InvoiceParticipantImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$InvoiceParticipantImpl extends _InvoiceParticipant {
-  const _$InvoiceParticipantImpl(
+  _$InvoiceParticipantImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1736,7 +1736,7 @@ abstract class _InvoiceParticipant extends InvoiceParticipant {
       final List<FhirExtension>? modifierExtension,
       final CodeableConcept? role,
       required final Reference actor}) = _$InvoiceParticipantImpl;
-  const _InvoiceParticipant._() : super._();
+  _InvoiceParticipant._() : super._();
 
   factory _InvoiceParticipant.fromJson(Map<String, dynamic> json) =
       _$InvoiceParticipantImpl.fromJson;
@@ -2047,7 +2047,7 @@ class __$$InvoiceLineItemImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$InvoiceLineItemImpl extends _InvoiceLineItem {
-  const _$InvoiceLineItemImpl(
+  _$InvoiceLineItemImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2239,7 +2239,7 @@ abstract class _InvoiceLineItem extends InvoiceLineItem {
           final CodeableConcept? chargeItemCodeableConcept,
           final List<InvoicePriceComponent>? priceComponent}) =
       _$InvoiceLineItemImpl;
-  const _InvoiceLineItem._() : super._();
+  _InvoiceLineItem._() : super._();
 
   factory _InvoiceLineItem.fromJson(Map<String, dynamic> json) =
       _$InvoiceLineItemImpl.fromJson;
@@ -2579,7 +2579,7 @@ class __$$InvoicePriceComponentImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$InvoicePriceComponentImpl extends _InvoicePriceComponent {
-  const _$InvoicePriceComponentImpl(
+  _$InvoicePriceComponentImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2751,7 +2751,7 @@ abstract class _InvoicePriceComponent extends InvoicePriceComponent {
       final FhirDecimal? factor,
       @JsonKey(name: '_factor') final PrimitiveElement? factorElement,
       final Money? amount}) = _$InvoicePriceComponentImpl;
-  const _InvoicePriceComponent._() : super._();
+  _InvoicePriceComponent._() : super._();
 
   factory _InvoicePriceComponent.fromJson(Map<String, dynamic> json) =
       _$InvoicePriceComponentImpl.fromJson;

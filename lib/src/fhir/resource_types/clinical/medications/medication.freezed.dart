@@ -543,7 +543,7 @@ class __$$MedicationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MedicationImpl extends _Medication {
-  const _$MedicationImpl(
+  _$MedicationImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Medication)
       this.resourceType = R4ResourceType.Medication,
       this.id,
@@ -871,7 +871,7 @@ abstract class _Medication extends Medication {
       final Ratio? amount,
       final List<MedicationIngredient>? ingredient,
       final MedicationBatch? batch}) = _$MedicationImpl;
-  const _Medication._() : super._();
+  _Medication._() : super._();
 
   factory _Medication.fromJson(Map<String, dynamic> json) =
       _$MedicationImpl.fromJson;
@@ -1273,7 +1273,7 @@ class __$$MedicationIngredientImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MedicationIngredientImpl extends _MedicationIngredient {
-  const _$MedicationIngredientImpl(
+  _$MedicationIngredientImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1443,7 +1443,7 @@ abstract class _MedicationIngredient extends MedicationIngredient {
       final FhirBoolean? isActive,
       @JsonKey(name: '_isActive') final PrimitiveElement? isActiveElement,
       final Ratio? strength}) = _$MedicationIngredientImpl;
-  const _MedicationIngredient._() : super._();
+  _MedicationIngredient._() : super._();
 
   factory _MedicationIngredient.fromJson(Map<String, dynamic> json) =
       _$MedicationIngredientImpl.fromJson;
@@ -1712,7 +1712,7 @@ class __$$MedicationBatchImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MedicationBatchImpl extends _MedicationBatch {
-  const _$MedicationBatchImpl(
+  _$MedicationBatchImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1869,7 +1869,7 @@ abstract class _MedicationBatch extends MedicationBatch {
       final FhirDateTime? expirationDate,
       @JsonKey(name: '_expirationDate')
       final PrimitiveElement? expirationDateElement}) = _$MedicationBatchImpl;
-  const _MedicationBatch._() : super._();
+  _MedicationBatch._() : super._();
 
   factory _MedicationBatch.fromJson(Map<String, dynamic> json) =
       _$MedicationBatchImpl.fromJson;

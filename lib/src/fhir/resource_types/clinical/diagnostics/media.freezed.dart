@@ -959,7 +959,7 @@ class __$$MediaImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MediaImpl extends _Media {
-  const _$MediaImpl(
+  _$MediaImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Media)
       this.resourceType = R4ResourceType.Media,
       this.id,
@@ -1529,7 +1529,7 @@ abstract class _Media extends Media {
       @JsonKey(name: '_duration') final PrimitiveElement? durationElement,
       required final Attachment content,
       final List<Annotation>? note}) = _$MediaImpl;
-  const _Media._() : super._();
+  _Media._() : super._();
 
   factory _Media.fromJson(Map<String, dynamic> json) = _$MediaImpl.fromJson;
 

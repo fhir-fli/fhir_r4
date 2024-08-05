@@ -237,7 +237,7 @@ class __$$ProductShelfLifeImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ProductShelfLifeImpl extends _ProductShelfLife {
-  const _$ProductShelfLifeImpl(
+  _$ProductShelfLifeImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -366,7 +366,7 @@ abstract class _ProductShelfLife extends ProductShelfLife {
           final Quantity? period,
           final List<CodeableConcept>? specialPrecautionsForStorage}) =
       _$ProductShelfLifeImpl;
-  const _ProductShelfLife._() : super._();
+  _ProductShelfLife._() : super._();
 
   factory _ProductShelfLife.fromJson(Map<String, dynamic> json) =
       _$ProductShelfLifeImpl.fromJson;

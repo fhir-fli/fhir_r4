@@ -806,7 +806,7 @@ class __$$StructureMapImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$StructureMapImpl extends _StructureMap {
-  const _$StructureMapImpl(
+  _$StructureMapImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.StructureMap)
       this.resourceType = R4ResourceType.StructureMap,
       this.id,
@@ -1404,7 +1404,7 @@ abstract class _StructureMap extends StructureMap {
       final List<StructureMapStructure>? structure,
       @JsonKey(name: 'import') final List<FhirCanonical>? import_,
       required final List<StructureMapGroup> group}) = _$StructureMapImpl;
-  const _StructureMap._() : super._();
+  _StructureMap._() : super._();
 
   factory _StructureMap.fromJson(Map<String, dynamic> json) =
       _$StructureMapImpl.fromJson;
@@ -1906,7 +1906,7 @@ class __$$StructureMapStructureImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$StructureMapStructureImpl extends _StructureMapStructure {
-  const _$StructureMapStructureImpl(
+  _$StructureMapStructureImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2090,7 +2090,7 @@ abstract class _StructureMapStructure extends StructureMapStructure {
           @JsonKey(name: '_documentation')
           final PrimitiveElement? documentationElement}) =
       _$StructureMapStructureImpl;
-  const _StructureMapStructure._() : super._();
+  _StructureMapStructure._() : super._();
 
   factory _StructureMapStructure.fromJson(Map<String, dynamic> json) =
       _$StructureMapStructureImpl.fromJson;
@@ -2459,7 +2459,7 @@ class __$$StructureMapGroupImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$StructureMapGroupImpl extends _StructureMapGroup {
-  const _$StructureMapGroupImpl(
+  _$StructureMapGroupImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2690,7 +2690,7 @@ abstract class _StructureMapGroup extends StructureMapGroup {
       final PrimitiveElement? documentationElement,
       required final List<StructureMapInput> input,
       required final List<StructureMapRule> rule}) = _$StructureMapGroupImpl;
-  const _StructureMapGroup._() : super._();
+  _StructureMapGroup._() : super._();
 
   factory _StructureMapGroup.fromJson(Map<String, dynamic> json) =
       _$StructureMapGroupImpl.fromJson;
@@ -3041,7 +3041,7 @@ class __$$StructureMapInputImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$StructureMapInputImpl extends _StructureMapInput {
-  const _$StructureMapInputImpl(
+  _$StructureMapInputImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3233,7 +3233,7 @@ abstract class _StructureMapInput extends StructureMapInput {
       final String? documentation,
       @JsonKey(name: '_documentation')
       final PrimitiveElement? documentationElement}) = _$StructureMapInputImpl;
-  const _StructureMapInput._() : super._();
+  _StructureMapInput._() : super._();
 
   factory _StructureMapInput.fromJson(Map<String, dynamic> json) =
       _$StructureMapInputImpl.fromJson;
@@ -3571,7 +3571,7 @@ class __$$StructureMapRuleImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$StructureMapRuleImpl extends _StructureMapRule {
-  const _$StructureMapRuleImpl(
+  _$StructureMapRuleImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3798,7 +3798,7 @@ abstract class _StructureMapRule extends StructureMapRule {
       final String? documentation,
       @JsonKey(name: '_documentation')
       final PrimitiveElement? documentationElement}) = _$StructureMapRuleImpl;
-  const _StructureMapRule._() : super._();
+  _StructureMapRule._() : super._();
 
   factory _StructureMapRule.fromJson(Map<String, dynamic> json) =
       _$StructureMapRuleImpl.fromJson;
@@ -5971,7 +5971,7 @@ class __$$StructureMapSourceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$StructureMapSourceImpl extends _StructureMapSource {
-  const _$StructureMapSourceImpl(
+  _$StructureMapSourceImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -6923,7 +6923,7 @@ abstract class _StructureMapSource extends StructureMapSource {
       final String? logMessage,
       @JsonKey(name: '_logMessage')
       final PrimitiveElement? logMessageElement}) = _$StructureMapSourceImpl;
-  const _StructureMapSource._() : super._();
+  _StructureMapSource._() : super._();
 
   factory _StructureMapSource.fromJson(Map<String, dynamic> json) =
       _$StructureMapSourceImpl.fromJson;
@@ -7766,7 +7766,7 @@ class __$$StructureMapTargetImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$StructureMapTargetImpl extends _StructureMapTarget {
-  const _$StructureMapTargetImpl(
+  _$StructureMapTargetImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -8053,7 +8053,7 @@ abstract class _StructureMapTarget extends StructureMapTarget {
       final FhirCode? transform,
       @JsonKey(name: '_transform') final PrimitiveElement? transformElement,
       final List<StructureMapParameter>? parameter}) = _$StructureMapTargetImpl;
-  const _StructureMapTarget._() : super._();
+  _StructureMapTarget._() : super._();
 
   factory _StructureMapTarget.fromJson(Map<String, dynamic> json) =
       _$StructureMapTargetImpl.fromJson;
@@ -8461,7 +8461,7 @@ class __$$StructureMapParameterImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$StructureMapParameterImpl extends _StructureMapParameter {
-  const _$StructureMapParameterImpl(
+  _$StructureMapParameterImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -8677,7 +8677,7 @@ abstract class _StructureMapParameter extends StructureMapParameter {
       @JsonKey(name: '_valueDecimal')
       final PrimitiveElement?
           valueDecimalElement}) = _$StructureMapParameterImpl;
-  const _StructureMapParameter._() : super._();
+  _StructureMapParameter._() : super._();
 
   factory _StructureMapParameter.fromJson(Map<String, dynamic> json) =
       _$StructureMapParameterImpl.fromJson;
@@ -8967,7 +8967,7 @@ class __$$StructureMapDependentImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$StructureMapDependentImpl extends _StructureMapDependent {
-  const _$StructureMapDependentImpl(
+  _$StructureMapDependentImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -9144,7 +9144,7 @@ abstract class _StructureMapDependent extends StructureMapDependent {
           @JsonKey(name: '_variable')
           final List<PrimitiveElement>? variableElement}) =
       _$StructureMapDependentImpl;
-  const _StructureMapDependent._() : super._();
+  _StructureMapDependent._() : super._();
 
   factory _StructureMapDependent.fromJson(Map<String, dynamic> json) =
       _$StructureMapDependentImpl.fromJson;

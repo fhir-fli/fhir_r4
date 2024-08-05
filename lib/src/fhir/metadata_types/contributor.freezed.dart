@@ -202,7 +202,7 @@ class __$$ContributorImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ContributorImpl extends _Contributor {
-  const _$ContributorImpl(
+  _$ContributorImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: ContributorType.unknown) this.type,
@@ -334,7 +334,7 @@ abstract class _Contributor extends Contributor {
       final String? name,
       @JsonKey(name: '_name') final PrimitiveElement? nameElement,
       final List<ContactDetail>? contact}) = _$ContributorImpl;
-  const _Contributor._() : super._();
+  _Contributor._() : super._();
 
   factory _Contributor.fromJson(Map<String, dynamic> json) =
       _$ContributorImpl.fromJson;

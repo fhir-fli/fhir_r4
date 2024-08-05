@@ -519,7 +519,7 @@ class __$$EnrollmentRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$EnrollmentRequestImpl extends _EnrollmentRequest {
-  const _$EnrollmentRequestImpl(
+  _$EnrollmentRequestImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.EnrollmentRequest)
       this.resourceType = R4ResourceType.EnrollmentRequest,
       this.id,
@@ -831,7 +831,7 @@ abstract class _EnrollmentRequest extends EnrollmentRequest {
       final Reference? provider,
       final Reference? candidate,
       final Reference? coverage}) = _$EnrollmentRequestImpl;
-  const _EnrollmentRequest._() : super._();
+  _EnrollmentRequest._() : super._();
 
   factory _EnrollmentRequest.fromJson(Map<String, dynamic> json) =
       _$EnrollmentRequestImpl.fromJson;

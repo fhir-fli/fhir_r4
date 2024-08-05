@@ -498,7 +498,7 @@ class __$$ScheduleImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ScheduleImpl extends _Schedule {
-  const _$ScheduleImpl(
+  _$ScheduleImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Schedule)
       this.resourceType = R4ResourceType.Schedule,
       this.id,
@@ -870,7 +870,7 @@ abstract class _Schedule extends Schedule {
           final String? comment,
           @JsonKey(name: '_comment') final PrimitiveElement? commentElement}) =
       _$ScheduleImpl;
-  const _Schedule._() : super._();
+  _Schedule._() : super._();
 
   factory _Schedule.fromJson(Map<String, dynamic> json) =
       _$ScheduleImpl.fromJson;

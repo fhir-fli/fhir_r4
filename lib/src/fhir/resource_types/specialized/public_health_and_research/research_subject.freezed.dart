@@ -546,7 +546,7 @@ class __$$ResearchSubjectImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ResearchSubjectImpl extends _ResearchSubject {
-  const _$ResearchSubjectImpl(
+  _$ResearchSubjectImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.ResearchSubject)
       this.resourceType = R4ResourceType.ResearchSubject,
       this.id,
@@ -879,7 +879,7 @@ abstract class _ResearchSubject extends ResearchSubject {
       final String? actualArm,
       @JsonKey(name: '_actualArm') final PrimitiveElement? actualArmElement,
       final Reference? consent}) = _$ResearchSubjectImpl;
-  const _ResearchSubject._() : super._();
+  _ResearchSubject._() : super._();
 
   factory _ResearchSubject.fromJson(Map<String, dynamic> json) =
       _$ResearchSubjectImpl.fromJson;

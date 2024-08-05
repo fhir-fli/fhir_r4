@@ -621,7 +621,7 @@ class __$$PractitionerRoleImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PractitionerRoleImpl extends _PractitionerRole {
-  const _$PractitionerRoleImpl(
+  _$PractitionerRoleImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.PractitionerRole)
       this.resourceType = R4ResourceType.PractitionerRole,
       this.id,
@@ -1090,7 +1090,7 @@ abstract class _PractitionerRole extends PractitionerRole {
       @JsonKey(name: '_availabilityExceptions')
       final PrimitiveElement? availabilityExceptionsElement,
       final List<Reference>? endpoint}) = _$PractitionerRoleImpl;
-  const _PractitionerRole._() : super._();
+  _PractitionerRole._() : super._();
 
   factory _PractitionerRole.fromJson(Map<String, dynamic> json) =
       _$PractitionerRoleImpl.fromJson;
@@ -1532,7 +1532,7 @@ class __$$PractitionerRoleAvailableTimeImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PractitionerRoleAvailableTimeImpl
     extends _PractitionerRoleAvailableTime {
-  const _$PractitionerRoleAvailableTimeImpl(
+  _$PractitionerRoleAvailableTimeImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1761,7 +1761,7 @@ abstract class _PractitionerRoleAvailableTime
           @JsonKey(name: '_availableEndTime')
           final PrimitiveElement? availableEndTimeElement}) =
       _$PractitionerRoleAvailableTimeImpl;
-  const _PractitionerRoleAvailableTime._() : super._();
+  _PractitionerRoleAvailableTime._() : super._();
 
   factory _PractitionerRoleAvailableTime.fromJson(Map<String, dynamic> json) =
       _$PractitionerRoleAvailableTimeImpl.fromJson;
@@ -2053,7 +2053,7 @@ class __$$PractitionerRoleNotAvailableImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PractitionerRoleNotAvailableImpl extends _PractitionerRoleNotAvailable {
-  const _$PractitionerRoleNotAvailableImpl(
+  _$PractitionerRoleNotAvailableImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2203,7 +2203,7 @@ abstract class _PractitionerRoleNotAvailable
       final String? description,
       @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       final Period? during}) = _$PractitionerRoleNotAvailableImpl;
-  const _PractitionerRoleNotAvailable._() : super._();
+  _PractitionerRoleNotAvailable._() : super._();
 
   factory _PractitionerRoleNotAvailable.fromJson(Map<String, dynamic> json) =
       _$PractitionerRoleNotAvailableImpl.fromJson;

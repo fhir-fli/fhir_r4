@@ -899,7 +899,7 @@ class __$$FamilyMemberHistoryImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FamilyMemberHistoryImpl extends _FamilyMemberHistory {
-  const _$FamilyMemberHistoryImpl(
+  _$FamilyMemberHistoryImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.FamilyMemberHistory)
       this.resourceType = R4ResourceType.FamilyMemberHistory,
       this.id,
@@ -1388,7 +1388,7 @@ abstract class _FamilyMemberHistory extends FamilyMemberHistory {
       final List<Annotation>? note,
       final List<FamilyMemberHistoryCondition>?
           condition}) = _$FamilyMemberHistoryImpl;
-  const _FamilyMemberHistory._() : super._();
+  _FamilyMemberHistory._() : super._();
 
   factory _FamilyMemberHistory.fromJson(Map<String, dynamic> json) =
       _$FamilyMemberHistoryImpl.fromJson;
@@ -1839,7 +1839,7 @@ class __$$FamilyMemberHistoryConditionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FamilyMemberHistoryConditionImpl extends _FamilyMemberHistoryCondition {
-  const _$FamilyMemberHistoryConditionImpl(
+  _$FamilyMemberHistoryConditionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1997,7 +1997,7 @@ abstract class _FamilyMemberHistoryCondition
       final String? onsetString,
       @JsonKey(name: '_onsetString') final PrimitiveElement? onsetStringElement,
       final List<Annotation>? note}) = _$FamilyMemberHistoryConditionImpl;
-  const _FamilyMemberHistoryCondition._() : super._();
+  _FamilyMemberHistoryCondition._() : super._();
 
   factory _FamilyMemberHistoryCondition.fromJson(Map<String, dynamic> json) =
       _$FamilyMemberHistoryConditionImpl.fromJson;

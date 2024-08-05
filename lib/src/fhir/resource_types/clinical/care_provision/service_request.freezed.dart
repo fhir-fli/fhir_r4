@@ -1284,7 +1284,7 @@ class __$$ServiceRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ServiceRequestImpl extends _ServiceRequest {
-  const _$ServiceRequestImpl(
+  _$ServiceRequestImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.ServiceRequest)
       this.resourceType = R4ResourceType.ServiceRequest,
       this.id,
@@ -2209,7 +2209,7 @@ abstract class _ServiceRequest extends ServiceRequest {
       @JsonKey(name: '_patientInstruction')
       final PrimitiveElement? patientInstructionElement,
       final List<Reference>? relevantHistory}) = _$ServiceRequestImpl;
-  const _ServiceRequest._() : super._();
+  _ServiceRequest._() : super._();
 
   factory _ServiceRequest.fromJson(Map<String, dynamic> json) =
       _$ServiceRequestImpl.fromJson;

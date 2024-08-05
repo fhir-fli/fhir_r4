@@ -336,7 +336,7 @@ class __$$OperationOutcomeImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$OperationOutcomeImpl extends _OperationOutcome {
-  const _$OperationOutcomeImpl(
+  _$OperationOutcomeImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.OperationOutcome)
       this.resourceType = R4ResourceType.OperationOutcome,
       this.id,
@@ -574,7 +574,7 @@ abstract class _OperationOutcome extends OperationOutcome {
           final List<FhirExtension>? modifierExtension,
           required final List<OperationOutcomeIssue> issue}) =
       _$OperationOutcomeImpl;
-  const _OperationOutcome._() : super._();
+  _OperationOutcome._() : super._();
 
   factory _OperationOutcome.fromJson(Map<String, dynamic> json) =
       _$OperationOutcomeImpl.fromJson;
@@ -1011,7 +1011,7 @@ class __$$OperationOutcomeIssueImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$OperationOutcomeIssueImpl extends _OperationOutcomeIssue {
-  const _$OperationOutcomeIssueImpl(
+  _$OperationOutcomeIssueImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1297,7 +1297,7 @@ abstract class _OperationOutcomeIssue extends OperationOutcomeIssue {
       @JsonKey(name: '_expression')
       final List<PrimitiveElement>?
           expressionElement}) = _$OperationOutcomeIssueImpl;
-  const _OperationOutcomeIssue._() : super._();
+  _OperationOutcomeIssue._() : super._();
 
   factory _OperationOutcomeIssue.fromJson(Map<String, dynamic> json) =
       _$OperationOutcomeIssueImpl.fromJson;

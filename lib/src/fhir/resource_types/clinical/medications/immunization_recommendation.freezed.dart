@@ -446,7 +446,7 @@ class __$$ImmunizationRecommendationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ImmunizationRecommendationImpl extends _ImmunizationRecommendation {
-  const _$ImmunizationRecommendationImpl(
+  _$ImmunizationRecommendationImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.ImmunizationRecommendation)
       this.resourceType = R4ResourceType.ImmunizationRecommendation,
       this.id,
@@ -742,7 +742,7 @@ abstract class _ImmunizationRecommendation extends ImmunizationRecommendation {
       final Reference? authority,
       required final List<ImmunizationRecommendationRecommendation>
           recommendation}) = _$ImmunizationRecommendationImpl;
-  const _ImmunizationRecommendation._() : super._();
+  _ImmunizationRecommendation._() : super._();
 
   factory _ImmunizationRecommendation.fromJson(Map<String, dynamic> json) =
       _$ImmunizationRecommendationImpl.fromJson;
@@ -1366,7 +1366,7 @@ class __$$ImmunizationRecommendationRecommendationImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ImmunizationRecommendationRecommendationImpl
     extends _ImmunizationRecommendationRecommendation {
-  const _$ImmunizationRecommendationRecommendationImpl(
+  _$ImmunizationRecommendationRecommendationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1765,7 +1765,7 @@ abstract class _ImmunizationRecommendationRecommendation
           final List<Reference>? supportingImmunization,
           final List<Reference>? supportingPatientInformation}) =
       _$ImmunizationRecommendationRecommendationImpl;
-  const _ImmunizationRecommendationRecommendation._() : super._();
+  _ImmunizationRecommendationRecommendation._() : super._();
 
   factory _ImmunizationRecommendationRecommendation.fromJson(
           Map<String, dynamic> json) =
@@ -2110,7 +2110,7 @@ class __$$ImmunizationRecommendationDateCriterionImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ImmunizationRecommendationDateCriterionImpl
     extends _ImmunizationRecommendationDateCriterion {
-  const _$ImmunizationRecommendationDateCriterionImpl(
+  _$ImmunizationRecommendationDateCriterionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2260,7 +2260,7 @@ abstract class _ImmunizationRecommendationDateCriterion
           final FhirDateTime? value,
           @JsonKey(name: '_value') final PrimitiveElement? valueElement}) =
       _$ImmunizationRecommendationDateCriterionImpl;
-  const _ImmunizationRecommendationDateCriterion._() : super._();
+  _ImmunizationRecommendationDateCriterion._() : super._();
 
   factory _ImmunizationRecommendationDateCriterion.fromJson(
           Map<String, dynamic> json) =

@@ -181,7 +181,7 @@ class __$$MoneyImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MoneyImpl extends _Money {
-  const _$MoneyImpl(
+  _$MoneyImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       this.value,
@@ -292,7 +292,7 @@ abstract class _Money extends Money {
       final FhirCode? currency,
       @JsonKey(name: '_currency')
       final PrimitiveElement? currencyElement}) = _$MoneyImpl;
-  const _Money._() : super._();
+  _Money._() : super._();
 
   factory _Money.fromJson(Map<String, dynamic> json) = _$MoneyImpl.fromJson;
 

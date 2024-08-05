@@ -580,7 +580,7 @@ class __$$RelatedPersonImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RelatedPersonImpl extends _RelatedPerson {
-  const _$RelatedPersonImpl(
+  _$RelatedPersonImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.RelatedPerson)
       this.resourceType = R4ResourceType.RelatedPerson,
       this.id,
@@ -1008,7 +1008,7 @@ abstract class _RelatedPerson extends RelatedPerson {
           final Period? period,
           final List<RelatedPersonCommunication>? communication}) =
       _$RelatedPersonImpl;
-  const _RelatedPerson._() : super._();
+  _RelatedPerson._() : super._();
 
   factory _RelatedPerson.fromJson(Map<String, dynamic> json) =
       _$RelatedPersonImpl.fromJson;
@@ -1369,7 +1369,7 @@ class __$$RelatedPersonCommunicationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RelatedPersonCommunicationImpl extends _RelatedPersonCommunication {
-  const _$RelatedPersonCommunicationImpl(
+  _$RelatedPersonCommunicationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1522,7 +1522,7 @@ abstract class _RelatedPersonCommunication extends RelatedPersonCommunication {
           @JsonKey(name: '_preferred')
           final PrimitiveElement? preferredElement}) =
       _$RelatedPersonCommunicationImpl;
-  const _RelatedPersonCommunication._() : super._();
+  _RelatedPersonCommunication._() : super._();
 
   factory _RelatedPersonCommunication.fromJson(Map<String, dynamic> json) =
       _$RelatedPersonCommunicationImpl.fromJson;

@@ -329,7 +329,7 @@ class __$$ParameterDefinitionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ParameterDefinitionImpl extends _ParameterDefinition {
-  const _$ParameterDefinitionImpl(
+  _$ParameterDefinitionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       this.name,
@@ -526,7 +526,7 @@ abstract class _ParameterDefinition extends ParameterDefinition {
       final FhirCode? type,
       @JsonKey(name: '_type') final PrimitiveElement? typeElement,
       final FhirCanonical? profile}) = _$ParameterDefinitionImpl;
-  const _ParameterDefinition._() : super._();
+  _ParameterDefinition._() : super._();
 
   factory _ParameterDefinition.fromJson(Map<String, dynamic> json) =
       _$ParameterDefinitionImpl.fromJson;

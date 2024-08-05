@@ -686,7 +686,7 @@ class __$$DeviceUseStatementImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DeviceUseStatementImpl extends _DeviceUseStatement {
-  const _$DeviceUseStatementImpl(
+  _$DeviceUseStatementImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.DeviceUseStatement)
       this.resourceType = R4ResourceType.DeviceUseStatement,
       this.id,
@@ -1143,7 +1143,7 @@ abstract class _DeviceUseStatement extends DeviceUseStatement {
       final List<Reference>? reasonReference,
       final CodeableConcept? bodySite,
       final List<Annotation>? note}) = _$DeviceUseStatementImpl;
-  const _DeviceUseStatement._() : super._();
+  _DeviceUseStatement._() : super._();
 
   factory _DeviceUseStatement.fromJson(Map<String, dynamic> json) =
       _$DeviceUseStatementImpl.fromJson;

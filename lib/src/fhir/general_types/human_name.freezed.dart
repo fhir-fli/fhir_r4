@@ -351,7 +351,7 @@ class __$$HumanNameImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$HumanNameImpl extends _HumanName {
-  const _$HumanNameImpl(
+  _$HumanNameImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: HumanNameUse.unknown) this.use,
@@ -613,7 +613,7 @@ abstract class _HumanName extends HumanName {
       final List<String>? suffix,
       @JsonKey(name: '_suffix') final List<PrimitiveElement>? suffixElement,
       final Period? period}) = _$HumanNameImpl;
-  const _HumanName._() : super._();
+  _HumanName._() : super._();
 
   factory _HumanName.fromJson(Map<String, dynamic> json) =
       _$HumanNameImpl.fromJson;

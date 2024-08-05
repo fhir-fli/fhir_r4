@@ -534,7 +534,7 @@ class __$$VisionPrescriptionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$VisionPrescriptionImpl extends _VisionPrescription {
-  const _$VisionPrescriptionImpl(
+  _$VisionPrescriptionImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.VisionPrescription)
       this.resourceType = R4ResourceType.VisionPrescription,
       this.id,
@@ -883,7 +883,7 @@ abstract class _VisionPrescription extends VisionPrescription {
       required final Reference prescriber,
       required final List<VisionPrescriptionLensSpecification>
           lensSpecification}) = _$VisionPrescriptionImpl;
-  const _VisionPrescription._() : super._();
+  _VisionPrescription._() : super._();
 
   factory _VisionPrescription.fromJson(Map<String, dynamic> json) =
       _$VisionPrescriptionImpl.fromJson;
@@ -1573,7 +1573,7 @@ class __$$VisionPrescriptionLensSpecificationImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$VisionPrescriptionLensSpecificationImpl
     extends _VisionPrescriptionLensSpecification {
-  const _$VisionPrescriptionLensSpecificationImpl(
+  _$VisionPrescriptionLensSpecificationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1937,7 +1937,7 @@ abstract class _VisionPrescriptionLensSpecification
           @JsonKey(name: '_brand') final PrimitiveElement? brandElement,
           final List<Annotation>? note}) =
       _$VisionPrescriptionLensSpecificationImpl;
-  const _VisionPrescriptionLensSpecification._() : super._();
+  _VisionPrescriptionLensSpecification._() : super._();
 
   factory _VisionPrescriptionLensSpecification.fromJson(
           Map<String, dynamic> json) =
@@ -2295,7 +2295,7 @@ class __$$VisionPrescriptionPrismImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$VisionPrescriptionPrismImpl extends _VisionPrescriptionPrism {
-  const _$VisionPrescriptionPrismImpl(
+  _$VisionPrescriptionPrismImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2451,7 +2451,7 @@ abstract class _VisionPrescriptionPrism extends VisionPrescriptionPrism {
           final FhirCode? base,
           @JsonKey(name: '_base') final PrimitiveElement? baseElement}) =
       _$VisionPrescriptionPrismImpl;
-  const _VisionPrescriptionPrism._() : super._();
+  _VisionPrescriptionPrism._() : super._();
 
   factory _VisionPrescriptionPrism.fromJson(Map<String, dynamic> json) =
       _$VisionPrescriptionPrismImpl.fromJson;

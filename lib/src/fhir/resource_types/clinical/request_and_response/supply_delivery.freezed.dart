@@ -665,7 +665,7 @@ class __$$SupplyDeliveryImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SupplyDeliveryImpl extends _SupplyDelivery {
-  const _$SupplyDeliveryImpl(
+  _$SupplyDeliveryImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.SupplyDelivery)
       this.resourceType = R4ResourceType.SupplyDelivery,
       this.id,
@@ -1069,7 +1069,7 @@ abstract class _SupplyDelivery extends SupplyDelivery {
       final Reference? supplier,
       final Reference? destination,
       final List<Reference>? receiver}) = _$SupplyDeliveryImpl;
-  const _SupplyDelivery._() : super._();
+  _SupplyDelivery._() : super._();
 
   factory _SupplyDelivery.fromJson(Map<String, dynamic> json) =
       _$SupplyDeliveryImpl.fromJson;
@@ -1467,7 +1467,7 @@ class __$$SupplyDeliverySuppliedItemImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SupplyDeliverySuppliedItemImpl extends _SupplyDeliverySuppliedItem {
-  const _$SupplyDeliverySuppliedItemImpl(
+  _$SupplyDeliverySuppliedItemImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1618,7 +1618,7 @@ abstract class _SupplyDeliverySuppliedItem extends SupplyDeliverySuppliedItem {
       final Quantity? quantity,
       final CodeableConcept? itemCodeableConcept,
       final Reference? itemReference}) = _$SupplyDeliverySuppliedItemImpl;
-  const _SupplyDeliverySuppliedItem._() : super._();
+  _SupplyDeliverySuppliedItem._() : super._();
 
   factory _SupplyDeliverySuppliedItem.fromJson(Map<String, dynamic> json) =
       _$SupplyDeliverySuppliedItemImpl.fromJson;

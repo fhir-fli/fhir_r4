@@ -681,7 +681,7 @@ class __$$NamingSystemImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$NamingSystemImpl extends _NamingSystem {
-  const _$NamingSystemImpl(
+  _$NamingSystemImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.NamingSystem)
       this.resourceType = R4ResourceType.NamingSystem,
       this.id,
@@ -1155,7 +1155,7 @@ abstract class _NamingSystem extends NamingSystem {
       final String? usage,
       @JsonKey(name: '_usage') final PrimitiveElement? usageElement,
       required final List<NamingSystemUniqueId> uniqueId}) = _$NamingSystemImpl;
-  const _NamingSystem._() : super._();
+  _NamingSystem._() : super._();
 
   factory _NamingSystem.fromJson(Map<String, dynamic> json) =
       _$NamingSystemImpl.fromJson;
@@ -1654,7 +1654,7 @@ class __$$NamingSystemUniqueIdImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$NamingSystemUniqueIdImpl extends _NamingSystemUniqueId {
-  const _$NamingSystemUniqueIdImpl(
+  _$NamingSystemUniqueIdImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1859,7 +1859,7 @@ abstract class _NamingSystemUniqueId extends NamingSystemUniqueId {
       final String? comment,
       @JsonKey(name: '_comment') final PrimitiveElement? commentElement,
       final Period? period}) = _$NamingSystemUniqueIdImpl;
-  const _NamingSystemUniqueId._() : super._();
+  _NamingSystemUniqueId._() : super._();
 
   factory _NamingSystemUniqueId.fromJson(Map<String, dynamic> json) =
       _$NamingSystemUniqueIdImpl.fromJson;
