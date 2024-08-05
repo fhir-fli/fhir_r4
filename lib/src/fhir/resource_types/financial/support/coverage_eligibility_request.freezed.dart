@@ -1173,7 +1173,7 @@ class _$CoverageEligibilityRequestImpl extends _CoverageEligibilityRequest {
 }
 
 abstract class _CoverageEligibilityRequest extends CoverageEligibilityRequest {
-  const factory _CoverageEligibilityRequest(
+  factory _CoverageEligibilityRequest(
       {@JsonKey(unknownEnumValue: R4ResourceType.CoverageEligibilityRequest)
       final R4ResourceType resourceType,
       final String? id,
@@ -1795,7 +1795,7 @@ class _$CoverageEligibilityRequestSupportingInfoImpl
 
 abstract class _CoverageEligibilityRequestSupportingInfo
     extends CoverageEligibilityRequestSupportingInfo {
-  const factory _CoverageEligibilityRequestSupportingInfo(
+  factory _CoverageEligibilityRequestSupportingInfo(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2283,7 +2283,7 @@ class _$CoverageEligibilityRequestInsuranceImpl
 
 abstract class _CoverageEligibilityRequestInsurance
     extends CoverageEligibilityRequestInsurance {
-  const factory _CoverageEligibilityRequestInsurance(
+  factory _CoverageEligibilityRequestInsurance(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3042,7 +3042,7 @@ class _$CoverageEligibilityRequestItemImpl
 
 abstract class _CoverageEligibilityRequestItem
     extends CoverageEligibilityRequestItem {
-  const factory _CoverageEligibilityRequestItem(
+  factory _CoverageEligibilityRequestItem(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3498,7 +3498,7 @@ class _$CoverageEligibilityRequestDiagnosisImpl
 
 abstract class _CoverageEligibilityRequestDiagnosis
     extends CoverageEligibilityRequestDiagnosis {
-  const factory _CoverageEligibilityRequestDiagnosis(
+  factory _CoverageEligibilityRequestDiagnosis(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

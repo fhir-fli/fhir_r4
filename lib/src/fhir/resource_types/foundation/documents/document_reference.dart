@@ -139,7 +139,7 @@ class DocumentReference extends DomainResource with _$DocumentReference {
   ///  content element repetitions, each with a different format.
   ///
   /// [context] The clinical context in which the document was prepared.
-  const factory DocumentReference({
+  factory DocumentReference({
     @Default(R4ResourceType.DocumentReference)
     @JsonKey(unknownEnumValue: R4ResourceType.DocumentReference)
 
@@ -398,7 +398,7 @@ class DocumentReferenceRelatesTo extends BackboneElement
   /// [codeElement] Extensions for code
   ///
   /// [target] The target document of this relationship.
-  const factory DocumentReferenceRelatesTo({
+  factory DocumentReferenceRelatesTo({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -524,7 +524,7 @@ class DocumentReferenceContent extends BackboneElement
   /// [format] An identifier of the document encoding, structure, and template
   /// that the document conforms to beyond the base format indicated in the
   ///  mimeType.
-  const factory DocumentReferenceContent({
+  factory DocumentReferenceContent({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -666,7 +666,7 @@ class DocumentReferenceContext extends BackboneElement
   ///
   /// [related] Related identifiers or resources associated with the
   ///  DocumentReference.
-  const factory DocumentReferenceContext({
+  factory DocumentReferenceContext({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

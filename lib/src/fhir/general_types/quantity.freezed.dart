@@ -433,7 +433,7 @@ class _$QuantityImpl extends _Quantity {
 }
 
 abstract class _Quantity extends Quantity {
-  const factory _Quantity(
+  factory _Quantity(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final FhirDecimal? value,

@@ -121,7 +121,7 @@ class DeviceUseStatement extends DomainResource with _$DeviceUseStatement {
   /// all or sufficiently in one of the attributes provided in a class. These
   /// may include for example a comment, an instruction, or a note associated
   ///  with the statement.
-  const factory DeviceUseStatement({
+  factory DeviceUseStatement({
     @Default(R4ResourceType.DeviceUseStatement)
     @JsonKey(unknownEnumValue: R4ResourceType.DeviceUseStatement)
 

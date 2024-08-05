@@ -125,7 +125,7 @@ class DeviceMetric extends DomainResource with _$DeviceMetric {
   ///
   /// [calibration] Describes the calibrations that have been performed or that
   ///  are required to be performed.
-  const factory DeviceMetric({
+  factory DeviceMetric({
     @Default(R4ResourceType.DeviceMetric)
     @JsonKey(unknownEnumValue: R4ResourceType.DeviceMetric)
 
@@ -367,7 +367,7 @@ class DeviceMetricCalibration extends BackboneElement
   /// [time] Describes the time last calibration has been performed.
   ///
   /// [timeElement] Extensions for time
-  const factory DeviceMetricCalibration({
+  factory DeviceMetricCalibration({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

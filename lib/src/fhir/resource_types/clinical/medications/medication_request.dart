@@ -219,7 +219,7 @@ class MedicationRequest extends DomainResource with _$MedicationRequest {
   /// resource or fulfilling request or event resources that identify key state
   /// transitions or updates that are likely to be relevant to a user looking at
   ///  the current version of the resource.
-  const factory MedicationRequest({
+  factory MedicationRequest({
     @Default(R4ResourceType.MedicationRequest)
     @JsonKey(unknownEnumValue: R4ResourceType.MedicationRequest)
 
@@ -604,7 +604,7 @@ class MedicationRequestDispenseRequest extends BackboneElement
   ///
   /// [performer] Indicates the intended dispensing Organization specified by
   ///  the prescriber.
-  const factory MedicationRequestDispenseRequest({
+  factory MedicationRequestDispenseRequest({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -746,7 +746,7 @@ class MedicationRequestInitialFill extends BackboneElement
   ///
   /// [duration] The length of time that the first dispense is expected to
   ///  last.
-  const factory MedicationRequestInitialFill({
+  factory MedicationRequestInitialFill({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -874,7 +874,7 @@ class MedicationRequestSubstitution extends BackboneElement
   ///
   /// [reason] Indicates the reason for the substitution, or why substitution
   ///  must or must not be performed.
-  const factory MedicationRequestSubstitution({
+  factory MedicationRequestSubstitution({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

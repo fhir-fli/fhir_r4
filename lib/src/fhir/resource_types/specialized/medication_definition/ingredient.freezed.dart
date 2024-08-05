@@ -786,7 +786,7 @@ class _$IngredientImpl extends _Ingredient {
 }
 
 abstract class _Ingredient extends Ingredient {
-  const factory _Ingredient(
+  factory _Ingredient(
       {final R4ResourceType resourceType,
       final String? id,
       final FhirMeta? meta,
@@ -1202,7 +1202,7 @@ class _$IngredientManufacturerImpl extends _IngredientManufacturer {
 }
 
 abstract class _IngredientManufacturer extends IngredientManufacturer {
-  const factory _IngredientManufacturer(
+  factory _IngredientManufacturer(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1513,7 +1513,7 @@ class _$IngredientSubstanceImpl extends _IngredientSubstance {
 }
 
 abstract class _IngredientSubstance extends IngredientSubstance {
-  const factory _IngredientSubstance(
+  factory _IngredientSubstance(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2130,7 +2130,7 @@ class _$IngredientStrengthImpl extends _IngredientStrength {
 }
 
 abstract class _IngredientStrength extends IngredientStrength {
-  const factory _IngredientStrength(
+  factory _IngredientStrength(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2673,7 +2673,7 @@ class _$IngredientReferenceStrengthImpl extends _IngredientReferenceStrength {
 
 abstract class _IngredientReferenceStrength
     extends IngredientReferenceStrength {
-  const factory _IngredientReferenceStrength(
+  factory _IngredientReferenceStrength(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

@@ -114,7 +114,7 @@ class Specimen extends DomainResource with _$Specimen {
   /// [note] To communicate any details or issues about the specimen or during
   /// the specimen collection. (for example: broken vial, sent with patient,
   ///  frozen).
-  const factory Specimen({
+  factory Specimen({
     @Default(R4ResourceType.Specimen)
     @JsonKey(unknownEnumValue: R4ResourceType.Specimen)
 
@@ -365,7 +365,7 @@ class SpecimenCollection extends BackboneElement with _$SpecimenCollection {
   ///
   /// [fastingStatusDuration] Abstinence or reduction from some or all food,
   ///  drink, or both, for a period of time prior to sample collection.
-  const factory SpecimenCollection({
+  factory SpecimenCollection({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -528,7 +528,7 @@ class SpecimenProcessing extends BackboneElement with _$SpecimenProcessing {
   /// [timePeriod] A record of the time or period when the specimen processing
   /// occurred.  For example the time of sample fixation or the period of time
   ///  the sample was in formalin.
-  const factory SpecimenProcessing({
+  factory SpecimenProcessing({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -681,7 +681,7 @@ class SpecimenContainer extends BackboneElement with _$SpecimenContainer {
   ///
   /// [additiveReference] Introduced substance to preserve, maintain or enhance
   ///  the specimen. Examples: Formalin, Citrate, EDTA.
-  const factory SpecimenContainer({
+  factory SpecimenContainer({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

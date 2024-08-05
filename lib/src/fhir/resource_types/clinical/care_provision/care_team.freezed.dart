@@ -1020,7 +1020,7 @@ class _$CareTeamImpl extends _CareTeam {
 }
 
 abstract class _CareTeam extends CareTeam {
-  const factory _CareTeam(
+  factory _CareTeam(
       {@JsonKey(unknownEnumValue: R4ResourceType.CareTeam)
       final R4ResourceType resourceType,
       final String? id,
@@ -1615,7 +1615,7 @@ class _$CareTeamParticipantImpl extends _CareTeamParticipant {
 }
 
 abstract class _CareTeamParticipant extends CareTeamParticipant {
-  const factory _CareTeamParticipant(
+  factory _CareTeamParticipant(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

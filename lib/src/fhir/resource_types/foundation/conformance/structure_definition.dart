@@ -221,7 +221,7 @@ class StructureDefinition extends DomainResource with _$StructureDefinition {
   ///
   /// [differential] A differential view is expressed relative to the base
   ///  StructureDefinition - a statement of differences that it applies.
-  const factory StructureDefinition({
+  factory StructureDefinition({
     @Default(R4ResourceType.StructureDefinition)
     @JsonKey(unknownEnumValue: R4ResourceType.StructureDefinition)
 
@@ -600,7 +600,7 @@ class StructureDefinitionMapping extends BackboneElement
   ///  scope limitations, and other important notes for usage.
   ///
   /// [commentElement] Extensions for comment
-  const factory StructureDefinitionMapping({
+  factory StructureDefinitionMapping({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -744,7 +744,7 @@ class StructureDefinitionContext extends BackboneElement
   ///  resources.
   ///
   /// [expressionElement] Extensions for expression
-  const factory StructureDefinitionContext({
+  factory StructureDefinitionContext({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -867,7 +867,7 @@ class StructureDefinitionSnapshot extends BackboneElement
   ///  modifierExtension itself).
   ///
   /// [element] Captures constraints on each element within the resource.
-  const factory StructureDefinitionSnapshot({
+  factory StructureDefinitionSnapshot({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -979,7 +979,7 @@ class StructureDefinitionDifferential extends BackboneElement
   ///  modifierExtension itself).
   ///
   /// [element] Captures constraints on each element within the resource.
-  const factory StructureDefinitionDifferential({
+  factory StructureDefinitionDifferential({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

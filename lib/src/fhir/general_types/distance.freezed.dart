@@ -433,7 +433,7 @@ class _$DistanceImpl extends _Distance {
 }
 
 abstract class _Distance extends Distance {
-  const factory _Distance(
+  factory _Distance(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final FhirDecimal? value,

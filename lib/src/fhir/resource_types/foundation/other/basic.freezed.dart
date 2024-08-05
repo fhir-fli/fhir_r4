@@ -717,7 +717,7 @@ class _$BasicImpl extends _Basic {
 }
 
 abstract class _Basic extends Basic {
-  const factory _Basic(
+  factory _Basic(
       {@JsonKey(unknownEnumValue: R4ResourceType.Basic)
       final R4ResourceType resourceType,
       final String? id,

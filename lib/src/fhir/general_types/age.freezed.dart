@@ -437,7 +437,7 @@ class _$AgeImpl extends _Age {
 }
 
 abstract class _Age extends Age {
-  const factory _Age(
+  factory _Age(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final FhirDecimal? value,

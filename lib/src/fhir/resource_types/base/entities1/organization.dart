@@ -104,7 +104,7 @@ class Organization extends DomainResource with _$Organization {
   ///
   /// [endpoint] Technical endpoints providing access to services operated for
   ///  the organization.
-  const factory Organization({
+  factory Organization({
     @Default(R4ResourceType.Organization)
     @JsonKey(unknownEnumValue: R4ResourceType.Organization)
 
@@ -540,7 +540,7 @@ class OrganizationContact extends BackboneElement with _$OrganizationContact {
   ///  by which the party may be contacted.
   ///
   /// [address] Visiting or postal addresses for the contact.
-  const factory OrganizationContact({
+  factory OrganizationContact({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

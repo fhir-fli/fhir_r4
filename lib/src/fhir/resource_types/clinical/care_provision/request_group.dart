@@ -138,7 +138,7 @@ class RequestGroup extends DomainResource with _$RequestGroup {
   ///  the response.
   ///
   /// [action] The actions, if any, produced by the evaluation of the artifact.
-  const factory RequestGroup({
+  factory RequestGroup({
     @Default(R4ResourceType.RequestGroup)
     @JsonKey(unknownEnumValue: R4ResourceType.RequestGroup)
 
@@ -488,7 +488,7 @@ class RequestGroupAction extends BackboneElement with _$RequestGroupAction {
   ///  CommunicationRequest).
   ///
   /// [action] Sub actions.
-  const factory RequestGroupAction({
+  factory RequestGroupAction({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -735,7 +735,7 @@ class RequestGroupCondition extends BackboneElement
   ///
   /// [expression] An expression that returns true or false, indicating whether
   ///  or not the condition is satisfied.
-  const factory RequestGroupCondition({
+  factory RequestGroupCondition({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -865,7 +865,7 @@ class RequestGroupRelatedAction extends BackboneElement
   ///
   /// [offsetRange] A duration or range of durations to apply to the
   ///  relationship. For example, 30-60 minutes before.
-  const factory RequestGroupRelatedAction({
+  factory RequestGroupRelatedAction({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

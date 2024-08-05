@@ -155,7 +155,7 @@ class CompartmentDefinition extends DomainResource
   ///
   /// [resource] Information about how a resource is related to the
   ///  compartment.
-  const factory CompartmentDefinition({
+  factory CompartmentDefinition({
     @Default(R4ResourceType.CompartmentDefinition)
     @JsonKey(unknownEnumValue: R4ResourceType.CompartmentDefinition)
 
@@ -442,7 +442,7 @@ class CompartmentDefinitionResource extends BackboneElement
   ///  compartment.
   ///
   /// [documentationElement] Extensions for documentation
-  const factory CompartmentDefinitionResource({
+  factory CompartmentDefinitionResource({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

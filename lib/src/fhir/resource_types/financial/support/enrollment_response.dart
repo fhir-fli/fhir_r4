@@ -99,7 +99,7 @@ class EnrollmentResponse extends DomainResource with _$EnrollmentResponse {
   ///
   /// [requestProvider] The practitioner who is responsible for the services
   ///  rendered to the patient.
-  const factory EnrollmentResponse({
+  factory EnrollmentResponse({
     @Default(R4ResourceType.EnrollmentResponse)
     @JsonKey(unknownEnumValue: R4ResourceType.EnrollmentResponse)
 

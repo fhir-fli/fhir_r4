@@ -150,7 +150,7 @@ class MedicationKnowledge extends DomainResource with _$MedicationKnowledge {
   ///
   /// [kinetics] The time course of drug absorption, distribution, metabolism
   ///  and excretion of a medication from the body.
-  const factory MedicationKnowledge({
+  factory MedicationKnowledge({
     @Default(R4ResourceType.MedicationKnowledge)
     @JsonKey(unknownEnumValue: R4ResourceType.MedicationKnowledge)
 
@@ -421,7 +421,7 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement
   ///
   /// [reference] Associated documentation about the associated medication
   ///  knowledge.
-  const factory MedicationKnowledgeRelatedMedicationKnowledge({
+  factory MedicationKnowledgeRelatedMedicationKnowledge({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -528,7 +528,7 @@ class MedicationKnowledgeMonograph extends BackboneElement
   ///  professional monograph, patient education monograph).
   ///
   /// [source] Associated documentation about the medication.
-  const factory MedicationKnowledgeMonograph({
+  factory MedicationKnowledgeMonograph({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -655,7 +655,7 @@ class MedicationKnowledgeIngredient extends BackboneElement
   /// [strength] Specifies how many (or how much) of the items there are in
   /// this Medication.  For example, 250 mg per tablet.  This is expressed as a
   ///  ratio where the numerator is 250mg and the denominator is 1 tablet.
-  const factory MedicationKnowledgeIngredient({
+  factory MedicationKnowledgeIngredient({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -789,7 +789,7 @@ class MedicationKnowledgeCost extends BackboneElement
   /// [sourceElement] Extensions for source
   ///
   /// [cost] The price of the medication.
-  const factory MedicationKnowledgeCost({
+  factory MedicationKnowledgeCost({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -909,7 +909,7 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement
   /// [name] Name of the reviewing program.
   ///
   /// [nameElement] Extensions for name
-  const factory MedicationKnowledgeMonitoringProgram({
+  factory MedicationKnowledgeMonitoringProgram({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1020,7 +1020,7 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement
   /// [patientCharacteristics] Characteristics of the patient that are relevant
   /// to the administration guidelines (for example, height, weight, gender,
   ///  etc.).
-  const factory MedicationKnowledgeAdministrationGuidelines({
+  factory MedicationKnowledgeAdministrationGuidelines({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1135,7 +1135,7 @@ class MedicationKnowledgeDosage extends BackboneElement
   ///  therapeutic, etc.).
   ///
   /// [dosage] Dosage for the medication for the specific guidelines.
-  const factory MedicationKnowledgeDosage({
+  factory MedicationKnowledgeDosage({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1253,7 +1253,7 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement
   /// [value] The specific characteristic (e.g. height, weight, gender, etc.).
   ///
   /// [valueElement] Extensions for value
-  const factory MedicationKnowledgePatientCharacteristics({
+  factory MedicationKnowledgePatientCharacteristics({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1363,7 +1363,7 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement
   ///
   /// [classification] Specific category assigned to the medication (e.g.
   ///  anti-infective, anti-hypertensive, antibiotic, etc.).
-  const factory MedicationKnowledgeMedicineClassification({
+  factory MedicationKnowledgeMedicineClassification({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1471,7 +1471,7 @@ class MedicationKnowledgePackaging extends BackboneElement
   ///
   /// [quantity] The number of product units the package would contain if fully
   ///  loaded.
-  const factory MedicationKnowledgePackaging({
+  factory MedicationKnowledgePackaging({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1595,7 +1595,7 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement
   /// [valueBase64Binary] Description of the characteristic.
   ///
   /// [valueBase64BinaryElement] Extensions for valueBase64Binary
-  const factory MedicationKnowledgeDrugCharacteristic({
+  factory MedicationKnowledgeDrugCharacteristic({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1722,7 +1722,7 @@ class MedicationKnowledgeRegulatory extends BackboneElement
   ///
   /// [maxDispense] The maximum number of units of the medication that can be
   ///  dispensed in a period.
-  const factory MedicationKnowledgeRegulatory({
+  factory MedicationKnowledgeRegulatory({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1848,7 +1848,7 @@ class MedicationKnowledgeSubstitution extends BackboneElement
   ///  when dispensing.
   ///
   /// [allowedElement] Extensions for allowed
-  const factory MedicationKnowledgeSubstitution({
+  factory MedicationKnowledgeSubstitution({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1966,7 +1966,7 @@ class MedicationKnowledgeSchedule extends BackboneElement
   ///  modifierExtension itself).
   ///
   /// [schedule] Specifies the specific drug schedule.
-  const factory MedicationKnowledgeSchedule({
+  factory MedicationKnowledgeSchedule({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2079,7 +2079,7 @@ class MedicationKnowledgeMaxDispense extends BackboneElement
   ///  dispensed.
   ///
   /// [period] The period that applies to the maximum number of units.
-  const factory MedicationKnowledgeMaxDispense({
+  factory MedicationKnowledgeMaxDispense({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2200,7 +2200,7 @@ class MedicationKnowledgeKinetics extends BackboneElement
   ///
   /// [halfLifePeriod] The time required for any specified property (e.g., the
   ///  concentration of a substance in the body) to decrease by half.
-  const factory MedicationKnowledgeKinetics({
+  factory MedicationKnowledgeKinetics({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

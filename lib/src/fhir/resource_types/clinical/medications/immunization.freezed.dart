@@ -1701,7 +1701,7 @@ class _$ImmunizationImpl extends _Immunization {
 }
 
 abstract class _Immunization extends Immunization {
-  const factory _Immunization(
+  factory _Immunization(
       {@JsonKey(unknownEnumValue: R4ResourceType.Immunization)
       final R4ResourceType resourceType,
       final String? id,
@@ -2351,7 +2351,7 @@ class _$ImmunizationPerformerImpl extends _ImmunizationPerformer {
 }
 
 abstract class _ImmunizationPerformer extends ImmunizationPerformer {
-  const factory _ImmunizationPerformer(
+  factory _ImmunizationPerformer(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2866,7 +2866,7 @@ class _$ImmunizationEducationImpl extends _ImmunizationEducation {
 }
 
 abstract class _ImmunizationEducation extends ImmunizationEducation {
-  const factory _ImmunizationEducation(
+  factory _ImmunizationEducation(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3348,7 +3348,7 @@ class _$ImmunizationReactionImpl extends _ImmunizationReaction {
 }
 
 abstract class _ImmunizationReaction extends ImmunizationReaction {
-  const factory _ImmunizationReaction(
+  factory _ImmunizationReaction(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4017,7 +4017,7 @@ class _$ImmunizationProtocolAppliedImpl extends _ImmunizationProtocolApplied {
 
 abstract class _ImmunizationProtocolApplied
     extends ImmunizationProtocolApplied {
-  const factory _ImmunizationProtocolApplied(
+  factory _ImmunizationProtocolApplied(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

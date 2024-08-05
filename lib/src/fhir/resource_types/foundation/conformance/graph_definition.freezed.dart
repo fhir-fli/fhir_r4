@@ -1217,7 +1217,7 @@ class _$GraphDefinitionImpl extends _GraphDefinition {
 }
 
 abstract class _GraphDefinition extends GraphDefinition {
-  const factory _GraphDefinition(
+  factory _GraphDefinition(
       {@JsonKey(unknownEnumValue: R4ResourceType.GraphDefinition)
       final R4ResourceType resourceType,
       final String? id,
@@ -2008,7 +2008,7 @@ class _$GraphDefinitionLinkImpl extends _GraphDefinitionLink {
 }
 
 abstract class _GraphDefinitionLink extends GraphDefinitionLink {
-  const factory _GraphDefinitionLink(
+  factory _GraphDefinitionLink(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2552,7 +2552,7 @@ class _$GraphDefinitionTargetImpl extends _GraphDefinitionTarget {
 }
 
 abstract class _GraphDefinitionTarget extends GraphDefinitionTarget {
-  const factory _GraphDefinitionTarget(
+  factory _GraphDefinitionTarget(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3134,7 +3134,7 @@ class _$GraphDefinitionCompartmentImpl extends _GraphDefinitionCompartment {
 }
 
 abstract class _GraphDefinitionCompartment extends GraphDefinitionCompartment {
-  const factory _GraphDefinitionCompartment(
+  factory _GraphDefinitionCompartment(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

@@ -2143,7 +2143,7 @@ class _$ServiceRequestImpl extends _ServiceRequest {
 }
 
 abstract class _ServiceRequest extends ServiceRequest {
-  const factory _ServiceRequest(
+  factory _ServiceRequest(
       {@JsonKey(unknownEnumValue: R4ResourceType.ServiceRequest)
       final R4ResourceType resourceType,
       final String? id,

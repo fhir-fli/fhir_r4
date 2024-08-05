@@ -108,7 +108,7 @@ class PaymentNotice extends DomainResource with _$PaymentNotice {
   ///
   /// [paymentStatus] A code indicating whether payment has been sent or
   ///  cleared.
-  const factory PaymentNotice({
+  factory PaymentNotice({
     @Default(R4ResourceType.PaymentNotice)
     @JsonKey(unknownEnumValue: R4ResourceType.PaymentNotice)
 

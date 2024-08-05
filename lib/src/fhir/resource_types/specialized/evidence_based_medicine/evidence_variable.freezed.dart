@@ -1225,7 +1225,7 @@ class _$EvidenceVariableImpl extends _EvidenceVariable {
 }
 
 abstract class _EvidenceVariable extends EvidenceVariable {
-  const factory _EvidenceVariable(
+  factory _EvidenceVariable(
       {@JsonKey(unknownEnumValue: R4ResourceType.EvidenceVariable)
       final R4ResourceType resourceType,
       final String? id,
@@ -1907,7 +1907,7 @@ class _$EvidenceVariableCharacteristicImpl
 
 abstract class _EvidenceVariableCharacteristic
     extends EvidenceVariableCharacteristic {
-  const factory _EvidenceVariableCharacteristic(
+  factory _EvidenceVariableCharacteristic(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2305,7 +2305,7 @@ class _$EvidenceVariableTimeFromStartImpl
 
 abstract class _EvidenceVariableTimeFromStart
     extends EvidenceVariableTimeFromStart {
-  const factory _EvidenceVariableTimeFromStart(
+  factory _EvidenceVariableTimeFromStart(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2679,7 +2679,7 @@ class _$EvidenceVariableCategoryImpl extends _EvidenceVariableCategory {
 }
 
 abstract class _EvidenceVariableCategory extends EvidenceVariableCategory {
-  const factory _EvidenceVariableCategory(
+  factory _EvidenceVariableCategory(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

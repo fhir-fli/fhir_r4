@@ -162,7 +162,7 @@ class AllergyIntolerance extends DomainResource with _$AllergyIntolerance {
   ///
   /// [reaction] Details about each adverse reaction event linked to exposure
   ///  to the identified substance.
-  const factory AllergyIntolerance({
+  factory AllergyIntolerance({
     @Default(R4ResourceType.AllergyIntolerance)
     @JsonKey(unknownEnumValue: R4ResourceType.AllergyIntolerance)
     R4ResourceType resourceType,
@@ -339,7 +339,7 @@ class AllergyIntoleranceReaction extends BackboneElement
   ///
   /// [note] Additional text about the adverse reaction event not captured in
   ///  other fields.
-  const factory AllergyIntoleranceReaction({
+  factory AllergyIntoleranceReaction({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,

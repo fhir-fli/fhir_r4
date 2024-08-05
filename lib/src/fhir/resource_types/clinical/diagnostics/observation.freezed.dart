@@ -2104,7 +2104,7 @@ class _$ObservationImpl extends _Observation {
 }
 
 abstract class _Observation extends Observation {
-  const factory _Observation(
+  factory _Observation(
       {@JsonKey(unknownEnumValue: R4ResourceType.Observation)
       final R4ResourceType resourceType,
       final String? id,
@@ -3036,7 +3036,7 @@ class _$ObservationReferenceRangeImpl extends _ObservationReferenceRange {
 }
 
 abstract class _ObservationReferenceRange extends ObservationReferenceRange {
-  const factory _ObservationReferenceRange(
+  factory _ObservationReferenceRange(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -4035,7 +4035,7 @@ class _$ObservationComponentImpl extends _ObservationComponent {
 }
 
 abstract class _ObservationComponent extends ObservationComponent {
-  const factory _ObservationComponent(
+  factory _ObservationComponent(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

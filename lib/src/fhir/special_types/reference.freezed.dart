@@ -419,7 +419,7 @@ class _$ReferenceImpl extends _Reference {
 }
 
 abstract class _Reference extends Reference {
-  const factory _Reference(
+  factory _Reference(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final String? reference,

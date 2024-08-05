@@ -67,7 +67,7 @@ class Ingredient extends DomainResource with _$Ingredient {
   /// [manufacturer] The organization(s) that manufacture this ingredient. Can be used to indicate:         1) Organizations we are aware of that manufacture this ingredient         2) Specific Manufacturer(s) currently being used         3) Set of organisations allowed to manufacture this ingredient for this product         Users must be clear on the application of context relevant to their use case.;
   ///
   /// [substance] The substance that comprises this ingredient.;
-  const factory Ingredient({
+  factory Ingredient({
     /// [resourceType] This is a Ingredient resource;
     @Default(R4ResourceType.Ingredient) R4ResourceType resourceType,
 
@@ -223,7 +223,7 @@ class IngredientManufacturer extends BackboneElement
   /// [roleElement] (_role): Extensions for role;
   ///
   /// [manufacturer] An organization that manufactures this ingredient.;
-  const factory IngredientManufacturer({
+  factory IngredientManufacturer({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -306,7 +306,7 @@ class IngredientSubstance extends BackboneElement with _$IngredientSubstance {
   /// [code] A code or full resource that represents the ingredient's substance.;
   ///
   /// [strength] The quantity of substance in the unit of presentation, or in the volume (or mass) of the single pharmaceutical product or manufactured item. The allowed repetitions do not represent different strengths, but are different representations - mathematically equivalent - of a single strength.;
-  const factory IngredientSubstance({
+  factory IngredientSubstance({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -407,7 +407,7 @@ class IngredientStrength extends BackboneElement with _$IngredientStrength {
   /// [country] The country or countries for which the strength range applies.;
   ///
   /// [referenceStrength] Strength expressed in terms of a reference substance. For when the ingredient strength is additionally expressed as equivalent to the strength of some other closely related substance (e.g. salt vs. base). Reference strength represents the strength (quantitative composition) of the active moiety of the active substance. There are situations when the active substance and active moiety are different, therefore both a strength and a reference strength are needed.;
-  const factory IngredientStrength({
+  factory IngredientStrength({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -532,7 +532,7 @@ class IngredientReferenceStrength extends BackboneElement
   /// [measurementPointElement] (_measurementPoint): Extensions for measurementPoint;
   ///
   /// [country] The country or countries for which the strength range applies.;
-  const factory IngredientReferenceStrength({
+  factory IngredientReferenceStrength({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 

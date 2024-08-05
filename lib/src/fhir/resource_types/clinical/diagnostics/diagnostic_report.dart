@@ -154,7 +154,7 @@ class DiagnosticReport extends DomainResource with _$DiagnosticReport {
   /// [presentedForm] Rich text representation of the entire result as issued
   /// by the diagnostic service. Multiple formats are allowed but they SHALL be
   ///  semantically equivalent.
-  const factory DiagnosticReport({
+  factory DiagnosticReport({
     @Default(R4ResourceType.DiagnosticReport)
     @JsonKey(unknownEnumValue: R4ResourceType.DiagnosticReport)
 
@@ -433,7 +433,7 @@ class DiagnosticReportMedia extends BackboneElement
   /// [commentElement] Extensions for comment
   ///
   /// [link] Reference to the image source.
-  const factory DiagnosticReportMedia({
+  factory DiagnosticReportMedia({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

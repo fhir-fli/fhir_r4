@@ -1181,7 +1181,7 @@ class _$InvoiceImpl extends _Invoice {
 }
 
 abstract class _Invoice extends Invoice {
-  const factory _Invoice(
+  factory _Invoice(
       {@JsonKey(unknownEnumValue: R4ResourceType.Invoice)
       final R4ResourceType resourceType,
       final String? id,
@@ -1730,7 +1730,7 @@ class _$InvoiceParticipantImpl extends _InvoiceParticipant {
 }
 
 abstract class _InvoiceParticipant extends InvoiceParticipant {
-  const factory _InvoiceParticipant(
+  factory _InvoiceParticipant(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2229,7 +2229,7 @@ class _$InvoiceLineItemImpl extends _InvoiceLineItem {
 }
 
 abstract class _InvoiceLineItem extends InvoiceLineItem {
-  const factory _InvoiceLineItem(
+  factory _InvoiceLineItem(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2741,7 +2741,7 @@ class _$InvoicePriceComponentImpl extends _InvoicePriceComponent {
 }
 
 abstract class _InvoicePriceComponent extends InvoicePriceComponent {
-  const factory _InvoicePriceComponent(
+  factory _InvoicePriceComponent(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

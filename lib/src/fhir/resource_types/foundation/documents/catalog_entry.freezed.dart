@@ -1051,7 +1051,7 @@ class _$CatalogEntryImpl extends _CatalogEntry {
 }
 
 abstract class _CatalogEntry extends CatalogEntry {
-  const factory _CatalogEntry(
+  factory _CatalogEntry(
       {@JsonKey(unknownEnumValue: R4ResourceType.CatalogEntry)
       final R4ResourceType resourceType,
       final String? id,
@@ -1591,7 +1591,7 @@ class _$CatalogEntryRelatedEntryImpl extends _CatalogEntryRelatedEntry {
 }
 
 abstract class _CatalogEntryRelatedEntry extends CatalogEntryRelatedEntry {
-  const factory _CatalogEntryRelatedEntry(
+  factory _CatalogEntryRelatedEntry(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

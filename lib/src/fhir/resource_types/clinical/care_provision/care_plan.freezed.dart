@@ -1470,7 +1470,7 @@ class _$CarePlanImpl extends _CarePlan {
 }
 
 abstract class _CarePlan extends CarePlan {
-  const factory _CarePlan(
+  factory _CarePlan(
       {@JsonKey(unknownEnumValue: R4ResourceType.CarePlan)
       final R4ResourceType resourceType,
       final String? id,
@@ -2201,7 +2201,7 @@ class _$CarePlanActivityImpl extends _CarePlanActivity {
 }
 
 abstract class _CarePlanActivity extends CarePlanActivity {
-  const factory _CarePlanActivity(
+  factory _CarePlanActivity(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3430,7 +3430,7 @@ class _$CarePlanDetailImpl extends _CarePlanDetail {
 }
 
 abstract class _CarePlanDetail extends CarePlanDetail {
-  const factory _CarePlanDetail(
+  factory _CarePlanDetail(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

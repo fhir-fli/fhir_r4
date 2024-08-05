@@ -1331,7 +1331,7 @@ class _$FamilyMemberHistoryImpl extends _FamilyMemberHistory {
 }
 
 abstract class _FamilyMemberHistory extends FamilyMemberHistory {
-  const factory _FamilyMemberHistory(
+  factory _FamilyMemberHistory(
       {@JsonKey(unknownEnumValue: R4ResourceType.FamilyMemberHistory)
       final R4ResourceType resourceType,
       final String? id,
@@ -1982,7 +1982,7 @@ class _$FamilyMemberHistoryConditionImpl extends _FamilyMemberHistoryCondition {
 
 abstract class _FamilyMemberHistoryCondition
     extends FamilyMemberHistoryCondition {
-  const factory _FamilyMemberHistoryCondition(
+  factory _FamilyMemberHistoryCondition(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

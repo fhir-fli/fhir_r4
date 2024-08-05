@@ -41,7 +41,7 @@ class Period extends DataType with _$Period {
   ///  that period is expected/planned to end at that time.
   ///
   /// [endElement] Extensions for end
-  const factory Period({
+  factory Period({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

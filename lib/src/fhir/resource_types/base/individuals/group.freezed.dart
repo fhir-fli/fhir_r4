@@ -953,7 +953,7 @@ class _$FhirGroupImpl extends _FhirGroup {
 }
 
 abstract class _FhirGroup extends FhirGroup {
-  const factory _FhirGroup(
+  factory _FhirGroup(
       {@JsonKey(unknownEnumValue: R4ResourceType.Group)
       final R4ResourceType resourceType,
       final String? id,
@@ -1730,7 +1730,7 @@ class _$GroupCharacteristicImpl extends _GroupCharacteristic {
 }
 
 abstract class _GroupCharacteristic extends GroupCharacteristic {
-  const factory _GroupCharacteristic(
+  factory _GroupCharacteristic(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2211,7 +2211,7 @@ class _$GroupMemberImpl extends _GroupMember {
 }
 
 abstract class _GroupMember extends GroupMember {
-  const factory _GroupMember(
+  factory _GroupMember(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

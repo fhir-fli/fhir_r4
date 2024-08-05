@@ -831,7 +831,7 @@ class _$FlagImpl extends _Flag {
 }
 
 abstract class _Flag extends Flag {
-  const factory _Flag(
+  factory _Flag(
       {@JsonKey(unknownEnumValue: R4ResourceType.Flag)
       final R4ResourceType resourceType,
       final String? id,

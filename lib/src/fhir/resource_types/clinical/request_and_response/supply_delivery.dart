@@ -111,7 +111,7 @@ class SupplyDelivery extends DomainResource with _$SupplyDelivery {
   ///  was shipped to, as part of the dispense event.
   ///
   /// [receiver] Identifies the person who picked up the Supply.
-  const factory SupplyDelivery({
+  factory SupplyDelivery({
     @Default(R4ResourceType.SupplyDelivery)
     @JsonKey(unknownEnumValue: R4ResourceType.SupplyDelivery)
 
@@ -342,7 +342,7 @@ class SupplyDeliverySuppliedItem extends BackboneElement
   /// [itemReference] Identifies the medication, substance or device being
   /// dispensed. This is either a link to a resource representing the details of
   ///  the item or a code that identifies the item from a known list.
-  const factory SupplyDeliverySuppliedItem({
+  factory SupplyDeliverySuppliedItem({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

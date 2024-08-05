@@ -1123,7 +1123,7 @@ class _$SubstanceDefinitionImpl extends _SubstanceDefinition {
 }
 
 abstract class _SubstanceDefinition extends SubstanceDefinition {
-  const factory _SubstanceDefinition(
+  factory _SubstanceDefinition(
       {final R4ResourceType resourceType,
       final String? id,
       final FhirMeta? meta,
@@ -1885,7 +1885,7 @@ class _$SubstanceDefinitionMoietyImpl extends _SubstanceDefinitionMoiety {
 }
 
 abstract class _SubstanceDefinitionMoiety extends SubstanceDefinitionMoiety {
-  const factory _SubstanceDefinitionMoiety(
+  factory _SubstanceDefinitionMoiety(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2437,7 +2437,7 @@ class _$SubstanceDefinitionPropertyImpl extends _SubstanceDefinitionProperty {
 
 abstract class _SubstanceDefinitionProperty
     extends SubstanceDefinitionProperty {
-  const factory _SubstanceDefinitionProperty(
+  factory _SubstanceDefinitionProperty(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2830,7 +2830,7 @@ class _$SubstanceDefinitionMolecularWeightImpl
 
 abstract class _SubstanceDefinitionMolecularWeight
     extends SubstanceDefinitionMolecularWeight {
-  const factory _SubstanceDefinitionMolecularWeight(
+  factory _SubstanceDefinitionMolecularWeight(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3410,7 +3410,7 @@ class _$SubstanceDefinitionStructureImpl extends _SubstanceDefinitionStructure {
 
 abstract class _SubstanceDefinitionStructure
     extends SubstanceDefinitionStructure {
-  const factory _SubstanceDefinitionStructure(
+  factory _SubstanceDefinitionStructure(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3867,7 +3867,7 @@ class _$SubstanceDefinitionRepresentationImpl
 
 abstract class _SubstanceDefinitionRepresentation
     extends SubstanceDefinitionRepresentation {
-  const factory _SubstanceDefinitionRepresentation(
+  factory _SubstanceDefinitionRepresentation(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4318,7 +4318,7 @@ class _$SubstanceDefinitionCodeImpl extends _SubstanceDefinitionCode {
 }
 
 abstract class _SubstanceDefinitionCode extends SubstanceDefinitionCode {
-  const factory _SubstanceDefinitionCode(
+  factory _SubstanceDefinitionCode(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4983,7 +4983,7 @@ class _$SubstanceDefinitionNameImpl extends _SubstanceDefinitionName {
 }
 
 abstract class _SubstanceDefinitionName extends SubstanceDefinitionName {
-  const factory _SubstanceDefinitionName(
+  factory _SubstanceDefinitionName(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5412,7 +5412,7 @@ class _$SubstanceDefinitionOfficialImpl extends _SubstanceDefinitionOfficial {
 
 abstract class _SubstanceDefinitionOfficial
     extends SubstanceDefinitionOfficial {
-  const factory _SubstanceDefinitionOfficial(
+  factory _SubstanceDefinitionOfficial(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -6078,7 +6078,7 @@ class _$SubstanceDefinitionRelationshipImpl
 
 abstract class _SubstanceDefinitionRelationship
     extends SubstanceDefinitionRelationship {
-  const factory _SubstanceDefinitionRelationship(
+  factory _SubstanceDefinitionRelationship(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -6568,7 +6568,7 @@ class _$SubstanceDefinitionSourceMaterialImpl
 
 abstract class _SubstanceDefinitionSourceMaterial
     extends SubstanceDefinitionSourceMaterial {
-  const factory _SubstanceDefinitionSourceMaterial(
+  factory _SubstanceDefinitionSourceMaterial(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

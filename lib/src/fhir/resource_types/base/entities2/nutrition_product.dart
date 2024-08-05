@@ -62,7 +62,7 @@ class NutritionProduct extends DomainResource with _$NutritionProduct {
   /// [instance] Conveys instance-level information about this product item. One or several physical, countable instances or occurrences of the product.;
   ///
   /// [note] Comments made about the product.;
-  const factory NutritionProduct({
+  factory NutritionProduct({
     /// [resourceType] This is a NutritionProduct resource;
     @Default(R4ResourceType.NutritionProduct) R4ResourceType resourceType,
 
@@ -210,7 +210,7 @@ class NutritionProductNutrient extends BackboneElement
   /// [item] The (relevant) nutrients in the product.;
   ///
   /// [amount] The amount of nutrient expressed in one or more units: X per pack / per serving / per dose.;
-  const factory NutritionProductNutrient({
+  factory NutritionProductNutrient({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
 
     String? id,
@@ -294,7 +294,7 @@ class NutritionProductIngredient extends BackboneElement
   /// [item] The ingredient contained in the product.;
   ///
   /// [amount] The amount of ingredient that is in the product.;
-  const factory NutritionProductIngredient({
+  factory NutritionProductIngredient({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
 
     String? id,
@@ -393,7 +393,7 @@ class NutritionProductCharacteristic extends BackboneElement
   /// [valueBoolean] The actual characteristic value corresponding to the type.;
   ///
   /// [valueBooleanElement] (_valueBoolean): Extensions for valueBoolean;
-  const factory NutritionProductCharacteristic({
+  factory NutritionProductCharacteristic({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
 
     String? id,
@@ -527,7 +527,7 @@ class NutritionProductInstance extends BackboneElement
   /// [useByElement] (_useBy): Extensions for useBy;
   ///
   /// [biologicalSource] An identifier that supports traceability to the biological entity that is the source of biological material in the product.;
-  const factory NutritionProductInstance({
+  factory NutritionProductInstance({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,

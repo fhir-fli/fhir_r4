@@ -230,7 +230,7 @@ class Library extends DomainResource with _$Library {
   /// a reference to a url, or may be directly embedded as a base-64 string.
   /// Either way, the contentType of the attachment determines how to interpret
   ///  the content.
-  const factory Library({
+  factory Library({
     @Default(R4ResourceType.Library)
     @JsonKey(unknownEnumValue: R4ResourceType.Library)
 

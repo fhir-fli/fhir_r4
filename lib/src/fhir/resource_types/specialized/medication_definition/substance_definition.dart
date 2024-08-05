@@ -87,7 +87,7 @@ class SubstanceDefinition extends DomainResource with _$SubstanceDefinition {
   /// [relationship] A link between this substance and another, with details of the relationship.;
   ///
   /// [sourceMaterial] Material or taxonomic/anatomical source for the substance.;
-  const factory SubstanceDefinition({
+  factory SubstanceDefinition({
     /// [resourceType] This is a SubstanceDefinition resource;
     @Default(R4ResourceType.SubstanceDefinition) R4ResourceType resourceType,
 
@@ -292,7 +292,7 @@ class SubstanceDefinitionMoiety extends BackboneElement
   /// [amountStringElement] (_amountString): Extensions for amountString;
   ///
   /// [measurementType] The measurement type of the quantitative value. In capturing the actual relative amounts of substances or molecular fragments it may be necessary to indicate whether the amount refers to, for example, a mole ratio or weight ratio.;
-  const factory SubstanceDefinitionMoiety({
+  factory SubstanceDefinitionMoiety({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -417,7 +417,7 @@ class SubstanceDefinitionProperty extends BackboneElement
   /// [valueBooleanElement] (_valueBoolean): Extensions for valueBoolean;
   ///
   /// [valueAttachment] A value for the property.;
-  const factory SubstanceDefinitionProperty({
+  factory SubstanceDefinitionProperty({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -515,7 +515,7 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement
   /// [type] Type of molecular weight such as exact, average (also known as. number average), weight average.;
   ///
   /// [amount] Used to capture quantitative values for a variety of elements. If only limits are given, the arithmetic mean would be the average. If only a single definite value for a given element is given, it would be captured in this field.;
-  const factory SubstanceDefinitionMolecularWeight({
+  factory SubstanceDefinitionMolecularWeight({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -618,7 +618,7 @@ class SubstanceDefinitionStructure extends BackboneElement
   /// [sourceDocument] The source of information about the structure.;
   ///
   /// [representation] A depiction of the structure or characterization of the substance.;
-  const factory SubstanceDefinitionStructure({
+  factory SubstanceDefinitionStructure({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -728,7 +728,7 @@ class SubstanceDefinitionRepresentation extends BackboneElement
   /// [format] The format of the representation e.g. InChI, SMILES, MOLFILE, CDX, SDF, PDB, mmCIF. The logical content type rather than the physical file format of a document.;
   ///
   /// [document] An attached file with the structural representation or characterization e.g. a molecular structure graphic of the substance, a JCAMP or AnIML file.;
-  const factory SubstanceDefinitionRepresentation({
+  factory SubstanceDefinitionRepresentation({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -829,7 +829,7 @@ class SubstanceDefinitionCode extends BackboneElement
   /// [note] Any comment can be provided in this field, if necessary.;
   ///
   /// [source] Supporting literature.;
-  const factory SubstanceDefinitionCode({
+  factory SubstanceDefinitionCode({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -945,7 +945,7 @@ class SubstanceDefinitionName extends BackboneElement
   /// [official] Details of the official nature of this name.;
   ///
   /// [source] Supporting literature.;
-  const factory SubstanceDefinitionName({
+  factory SubstanceDefinitionName({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -1064,7 +1064,7 @@ class SubstanceDefinitionOfficial extends BackboneElement
   /// [date] Date of the official name change.;
   ///
   /// [dateElement] (_date): Extensions for date;
-  const factory SubstanceDefinitionOfficial({
+  factory SubstanceDefinitionOfficial({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -1172,7 +1172,7 @@ class SubstanceDefinitionRelationship extends BackboneElement
   /// [comparator] An operator for the amount, for example "average", "approximately", "less than".;
   ///
   /// [source] Supporting literature.;
-  const factory SubstanceDefinitionRelationship({
+  factory SubstanceDefinitionRelationship({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -1287,7 +1287,7 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement
   /// [part_] An anatomical origin of the source material within an organism.;
   ///
   /// [countryOfOrigin] The country or countries where the material is harvested.;
-  const factory SubstanceDefinitionSourceMaterial({
+  factory SubstanceDefinitionSourceMaterial({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 

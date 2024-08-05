@@ -195,7 +195,7 @@ class Procedure extends DomainResource with _$Procedure {
   ///
   /// [usedCode] Identifies coded items that were used as part of the
   ///  procedure.
-  const factory Procedure({
+  factory Procedure({
     @Default(R4ResourceType.Procedure)
     @JsonKey(unknownEnumValue: R4ResourceType.Procedure)
     R4ResourceType resourceType,
@@ -355,7 +355,7 @@ class ProcedurePerformer extends BackboneElement with _$ProcedurePerformer {
   ///
   /// [onBehalfOf] The organization the device or practitioner was acting on
   ///  behalf of.
-  const factory ProcedurePerformer({
+  factory ProcedurePerformer({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -446,7 +446,7 @@ class ProcedureFocalDevice extends BackboneElement with _$ProcedureFocalDevice {
   ///
   /// [manipulated] The device that was manipulated (changed) during the
   ///  procedure.
-  const factory ProcedureFocalDevice({
+  factory ProcedureFocalDevice({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,

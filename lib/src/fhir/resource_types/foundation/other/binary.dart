@@ -63,7 +63,7 @@ class Binary extends DomainResource with _$Binary {
   /// [data] The actual content, base64 encoded.
   ///
   /// [dataElement] Extensions for data
-  const factory Binary({
+  factory Binary({
     @Default(R4ResourceType.Binary)
     @JsonKey(unknownEnumValue: R4ResourceType.Binary)
 

@@ -157,7 +157,7 @@ class Communication extends DomainResource with _$Communication {
   ///
   /// [note] Additional notes or commentary about the communication by the
   ///  sender, receiver or other interested parties.
-  const factory Communication({
+  factory Communication({
     @Default(R4ResourceType.Communication)
     @JsonKey(unknownEnumValue: R4ResourceType.Communication)
 
@@ -446,7 +446,7 @@ class CommunicationPayload extends BackboneElement with _$CommunicationPayload {
   ///
   /// [contentReference] A communicated content (or for multi-part
   ///  communications, one portion of the communication).
-  const factory CommunicationPayload({
+  factory CommunicationPayload({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

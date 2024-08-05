@@ -989,7 +989,7 @@ class _$ProvenanceImpl extends _Provenance {
 }
 
 abstract class _Provenance extends Provenance {
-  const factory _Provenance(
+  factory _Provenance(
       {@JsonKey(unknownEnumValue: R4ResourceType.Provenance)
       final R4ResourceType resourceType,
       final String? id,
@@ -1573,7 +1573,7 @@ class _$ProvenanceAgentImpl extends _ProvenanceAgent {
 }
 
 abstract class _ProvenanceAgent extends ProvenanceAgent {
-  const factory _ProvenanceAgent(
+  factory _ProvenanceAgent(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2017,7 +2017,7 @@ class _$ProvenanceEntityImpl extends _ProvenanceEntity {
 }
 
 abstract class _ProvenanceEntity extends ProvenanceEntity {
-  const factory _ProvenanceEntity(
+  factory _ProvenanceEntity(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

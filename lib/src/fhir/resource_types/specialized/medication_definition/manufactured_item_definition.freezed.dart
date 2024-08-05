@@ -702,7 +702,7 @@ class _$ManufacturedItemDefinitionImpl extends _ManufacturedItemDefinition {
 }
 
 abstract class _ManufacturedItemDefinition extends ManufacturedItemDefinition {
-  const factory _ManufacturedItemDefinition(
+  factory _ManufacturedItemDefinition(
           {final R4ResourceType resourceType,
           final String? id,
           final FhirMeta? meta,
@@ -1274,7 +1274,7 @@ class _$ManufacturedItemDefinitionPropertyImpl
 
 abstract class _ManufacturedItemDefinitionProperty
     extends ManufacturedItemDefinitionProperty {
-  const factory _ManufacturedItemDefinitionProperty(
+  factory _ManufacturedItemDefinitionProperty(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

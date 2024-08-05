@@ -1590,7 +1590,7 @@ class _$MedicationDispenseImpl extends _MedicationDispense {
 }
 
 abstract class _MedicationDispense extends MedicationDispense {
-  const factory _MedicationDispense(
+  factory _MedicationDispense(
       {@JsonKey(unknownEnumValue: R4ResourceType.MedicationDispense)
       final R4ResourceType resourceType,
       final String? id,
@@ -2215,7 +2215,7 @@ class _$MedicationDispensePerformerImpl extends _MedicationDispensePerformer {
 
 abstract class _MedicationDispensePerformer
     extends MedicationDispensePerformer {
-  const factory _MedicationDispensePerformer(
+  factory _MedicationDispensePerformer(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2698,7 +2698,7 @@ class _$MedicationDispenseSubstitutionImpl
 
 abstract class _MedicationDispenseSubstitution
     extends MedicationDispenseSubstitution {
-  const factory _MedicationDispenseSubstitution(
+  factory _MedicationDispenseSubstitution(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

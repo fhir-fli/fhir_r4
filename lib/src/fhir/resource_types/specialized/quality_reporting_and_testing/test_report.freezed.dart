@@ -1041,7 +1041,7 @@ class _$TestReportImpl extends _TestReport {
 }
 
 abstract class _TestReport extends TestReport {
-  const factory _TestReport(
+  factory _TestReport(
       {@JsonKey(unknownEnumValue: R4ResourceType.TestReport)
       final R4ResourceType resourceType,
       final String? id,
@@ -1644,7 +1644,7 @@ class _$TestReportParticipantImpl extends _TestReportParticipant {
 }
 
 abstract class _TestReportParticipant extends TestReportParticipant {
-  const factory _TestReportParticipant(
+  factory _TestReportParticipant(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2004,7 +2004,7 @@ class _$TestReportSetupImpl extends _TestReportSetup {
 }
 
 abstract class _TestReportSetup extends TestReportSetup {
-  const factory _TestReportSetup(
+  factory _TestReportSetup(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2386,7 +2386,7 @@ class _$TestReportActionImpl extends _TestReportAction {
 }
 
 abstract class _TestReportAction extends TestReportAction {
-  const factory _TestReportAction(
+  factory _TestReportAction(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2836,7 +2836,7 @@ class _$TestReportOperationImpl extends _TestReportOperation {
 }
 
 abstract class _TestReportOperation extends TestReportOperation {
-  const factory _TestReportOperation(
+  factory _TestReportOperation(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3307,7 +3307,7 @@ class _$TestReportAssertImpl extends _TestReportAssert {
 }
 
 abstract class _TestReportAssert extends TestReportAssert {
-  const factory _TestReportAssert(
+  factory _TestReportAssert(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3767,7 +3767,7 @@ class _$TestReportTestImpl extends _TestReportTest {
 }
 
 abstract class _TestReportTest extends TestReportTest {
-  const factory _TestReportTest(
+  factory _TestReportTest(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4173,7 +4173,7 @@ class _$TestReportAction1Impl extends _TestReportAction1 {
 }
 
 abstract class _TestReportAction1 extends TestReportAction1 {
-  const factory _TestReportAction1(
+  factory _TestReportAction1(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -4512,7 +4512,7 @@ class _$TestReportTeardownImpl extends _TestReportTeardown {
 }
 
 abstract class _TestReportTeardown extends TestReportTeardown {
-  const factory _TestReportTeardown(
+  factory _TestReportTeardown(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -4850,7 +4850,7 @@ class _$TestReportAction2Impl extends _TestReportAction2 {
 }
 
 abstract class _TestReportAction2 extends TestReportAction2 {
-  const factory _TestReportAction2(
+  factory _TestReportAction2(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

@@ -137,7 +137,7 @@ class EvidenceReport extends DomainResource with _$EvidenceReport {
   /// [relatesTo] Relationships that this composition has with other compositions or documents that already exist.;
   ///
   /// [section] The root of the sections that make up the composition.;
-  const factory EvidenceReport({
+  factory EvidenceReport({
     @Default(R4ResourceType.EvidenceReport) R4ResourceType resourceType,
     String? id,
     FhirMeta? meta,
@@ -260,7 +260,7 @@ class EvidenceReportSubject extends BackboneElement
   /// [characteristic] Characteristic.;
   ///
   /// [note] Used for general notes and annotations not coded elsewhere.;
-  const factory EvidenceReportSubject({
+  factory EvidenceReportSubject({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -348,7 +348,7 @@ class EvidenceReportCharacteristic extends BackboneElement
   /// [excludeElement] (_exclude): Extensions for exclude;
   ///
   /// [period] Timeframe for the characteristic.;
-  const factory EvidenceReportCharacteristic({
+  factory EvidenceReportCharacteristic({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -430,7 +430,7 @@ class EvidenceReportRelatesTo extends BackboneElement
   /// [codeElement] (_code): Extensions for code;
   ///
   /// [target] The target composition/document of this relationship.;
-  const factory EvidenceReportRelatesTo({
+  factory EvidenceReportRelatesTo({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -528,7 +528,7 @@ class EvidenceReportSection extends BackboneElement
   /// [emptyReason] If the section is empty, why the list is empty. An empty section typically has some text explaining the empty reason.;
   ///
   /// [section] A nested sub-section within this section.;
-  const factory EvidenceReportSection({
+  factory EvidenceReportSection({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,

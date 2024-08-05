@@ -848,7 +848,7 @@ class _$MedicationImpl extends _Medication {
 }
 
 abstract class _Medication extends Medication {
-  const factory _Medication(
+  factory _Medication(
       {@JsonKey(unknownEnumValue: R4ResourceType.Medication)
       final R4ResourceType resourceType,
       final String? id,
@@ -1434,7 +1434,7 @@ class _$MedicationIngredientImpl extends _MedicationIngredient {
 }
 
 abstract class _MedicationIngredient extends MedicationIngredient {
-  const factory _MedicationIngredient(
+  factory _MedicationIngredient(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1860,7 +1860,7 @@ class _$MedicationBatchImpl extends _MedicationBatch {
 }
 
 abstract class _MedicationBatch extends MedicationBatch {
-  const factory _MedicationBatch(
+  factory _MedicationBatch(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

@@ -47,7 +47,7 @@ class UsageContext extends DataType with _$UsageContext {
   ///
   /// [valueReference] A value that defines the context specified in this
   ///  context of use. The interpretation of the value is defined by the code.
-  const factory UsageContext({
+  factory UsageContext({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

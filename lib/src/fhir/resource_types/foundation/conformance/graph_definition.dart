@@ -155,7 +155,7 @@ class GraphDefinition extends DomainResource with _$GraphDefinition {
   /// [profile] The profile that describes the use of the base resource.
   ///
   /// [link] Links this graph makes rules about.
-  const factory GraphDefinition({
+  factory GraphDefinition({
     @Default(R4ResourceType.GraphDefinition)
     @JsonKey(unknownEnumValue: R4ResourceType.GraphDefinition)
 
@@ -451,7 +451,7 @@ class GraphDefinitionLink extends BackboneElement with _$GraphDefinitionLink {
   /// [descriptionElement] Extensions for description
   ///
   /// [target] Potential target for the link.
-  const factory GraphDefinitionLink({
+  factory GraphDefinitionLink({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -607,7 +607,7 @@ class GraphDefinitionTarget extends BackboneElement
   /// [compartment] Compartment Consistency Rules.
   ///
   /// [link] Additional links from target resource.
-  const factory GraphDefinitionTarget({
+  factory GraphDefinitionTarget({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -757,7 +757,7 @@ class GraphDefinitionCompartment extends BackboneElement
   /// [description] Documentation for FHIRPath expression.
   ///
   /// [descriptionElement] Extensions for description
-  const factory GraphDefinitionCompartment({
+  factory GraphDefinitionCompartment({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

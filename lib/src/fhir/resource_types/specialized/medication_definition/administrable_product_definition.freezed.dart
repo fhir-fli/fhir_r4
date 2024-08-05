@@ -773,7 +773,7 @@ class _$AdministrableProductDefinitionImpl
 
 abstract class _AdministrableProductDefinition
     extends AdministrableProductDefinition {
-  const factory _AdministrableProductDefinition(
+  factory _AdministrableProductDefinition(
       {final R4ResourceType resourceType,
       final String? id,
       final FhirMeta? meta,
@@ -1382,7 +1382,7 @@ class _$AdministrableProductDefinitionPropertyImpl
 
 abstract class _AdministrableProductDefinitionProperty
     extends AdministrableProductDefinitionProperty {
-  const factory _AdministrableProductDefinitionProperty(
+  factory _AdministrableProductDefinitionProperty(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -1951,7 +1951,7 @@ class _$AdministrableProductDefinitionRouteOfAdministrationImpl
 
 abstract class _AdministrableProductDefinitionRouteOfAdministration
     extends AdministrableProductDefinitionRouteOfAdministration {
-  const factory _AdministrableProductDefinitionRouteOfAdministration(
+  factory _AdministrableProductDefinitionRouteOfAdministration(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2308,7 +2308,7 @@ class _$AdministrableProductDefinitionTargetSpeciesImpl
 
 abstract class _AdministrableProductDefinitionTargetSpecies
     extends AdministrableProductDefinitionTargetSpecies {
-  const factory _AdministrableProductDefinitionTargetSpecies(
+  factory _AdministrableProductDefinitionTargetSpecies(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2688,7 +2688,7 @@ class _$AdministrableProductDefinitionWithdrawalPeriodImpl
 
 abstract class _AdministrableProductDefinitionWithdrawalPeriod
     extends AdministrableProductDefinitionWithdrawalPeriod {
-  const factory _AdministrableProductDefinitionWithdrawalPeriod(
+  factory _AdministrableProductDefinitionWithdrawalPeriod(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

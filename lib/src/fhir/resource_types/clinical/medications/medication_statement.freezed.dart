@@ -1305,7 +1305,7 @@ class _$MedicationStatementImpl extends _MedicationStatement {
 }
 
 abstract class _MedicationStatement extends MedicationStatement {
-  const factory _MedicationStatement(
+  factory _MedicationStatement(
       {@JsonKey(unknownEnumValue: R4ResourceType.MedicationStatement)
       final R4ResourceType resourceType,
       final String? id,

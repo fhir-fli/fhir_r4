@@ -111,7 +111,7 @@ class OrganizationAffiliation extends DomainResource
   ///
   /// [endpoint] Technical endpoints providing access to services operated for
   ///  this role.
-  const factory OrganizationAffiliation({
+  factory OrganizationAffiliation({
     @Default(R4ResourceType.OrganizationAffiliation)
     @JsonKey(unknownEnumValue: R4ResourceType.OrganizationAffiliation)
 

@@ -44,7 +44,7 @@ class Annotation extends DataType with _$Annotation {
   /// [text] The text of the annotation in markdown format.
   ///
   /// [textElement] Extensions for text
-  const factory Annotation({
+  factory Annotation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

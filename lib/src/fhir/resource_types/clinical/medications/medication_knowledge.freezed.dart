@@ -1431,7 +1431,7 @@ class _$MedicationKnowledgeImpl extends _MedicationKnowledge {
 }
 
 abstract class _MedicationKnowledge extends MedicationKnowledge {
-  const factory _MedicationKnowledge(
+  factory _MedicationKnowledge(
       {@JsonKey(unknownEnumValue: R4ResourceType.MedicationKnowledge)
       final R4ResourceType resourceType,
       final String? id,
@@ -2027,7 +2027,7 @@ class _$MedicationKnowledgeRelatedMedicationKnowledgeImpl
 
 abstract class _MedicationKnowledgeRelatedMedicationKnowledge
     extends MedicationKnowledgeRelatedMedicationKnowledge {
-  const factory _MedicationKnowledgeRelatedMedicationKnowledge(
+  factory _MedicationKnowledgeRelatedMedicationKnowledge(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2425,7 +2425,7 @@ class _$MedicationKnowledgeMonographImpl extends _MedicationKnowledgeMonograph {
 
 abstract class _MedicationKnowledgeMonograph
     extends MedicationKnowledgeMonograph {
-  const factory _MedicationKnowledgeMonograph(
+  factory _MedicationKnowledgeMonograph(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2919,7 +2919,7 @@ class _$MedicationKnowledgeIngredientImpl
 
 abstract class _MedicationKnowledgeIngredient
     extends MedicationKnowledgeIngredient {
-  const factory _MedicationKnowledgeIngredient(
+  factory _MedicationKnowledgeIngredient(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3369,7 +3369,7 @@ class _$MedicationKnowledgeCostImpl extends _MedicationKnowledgeCost {
 }
 
 abstract class _MedicationKnowledgeCost extends MedicationKnowledgeCost {
-  const factory _MedicationKnowledgeCost(
+  factory _MedicationKnowledgeCost(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3785,7 +3785,7 @@ class _$MedicationKnowledgeMonitoringProgramImpl
 
 abstract class _MedicationKnowledgeMonitoringProgram
     extends MedicationKnowledgeMonitoringProgram {
-  const factory _MedicationKnowledgeMonitoringProgram(
+  factory _MedicationKnowledgeMonitoringProgram(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -4279,7 +4279,7 @@ class _$MedicationKnowledgeAdministrationGuidelinesImpl
 
 abstract class _MedicationKnowledgeAdministrationGuidelines
     extends MedicationKnowledgeAdministrationGuidelines {
-  const factory _MedicationKnowledgeAdministrationGuidelines(
+  factory _MedicationKnowledgeAdministrationGuidelines(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -4675,7 +4675,7 @@ class _$MedicationKnowledgeDosageImpl extends _MedicationKnowledgeDosage {
 }
 
 abstract class _MedicationKnowledgeDosage extends MedicationKnowledgeDosage {
-  const factory _MedicationKnowledgeDosage(
+  factory _MedicationKnowledgeDosage(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5153,7 +5153,7 @@ class _$MedicationKnowledgePatientCharacteristicsImpl
 
 abstract class _MedicationKnowledgePatientCharacteristics
     extends MedicationKnowledgePatientCharacteristics {
-  const factory _MedicationKnowledgePatientCharacteristics(
+  factory _MedicationKnowledgePatientCharacteristics(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -5566,7 +5566,7 @@ class _$MedicationKnowledgeMedicineClassificationImpl
 
 abstract class _MedicationKnowledgeMedicineClassification
     extends MedicationKnowledgeMedicineClassification {
-  const factory _MedicationKnowledgeMedicineClassification(
+  factory _MedicationKnowledgeMedicineClassification(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -5968,7 +5968,7 @@ class _$MedicationKnowledgePackagingImpl extends _MedicationKnowledgePackaging {
 
 abstract class _MedicationKnowledgePackaging
     extends MedicationKnowledgePackaging {
-  const factory _MedicationKnowledgePackaging(
+  factory _MedicationKnowledgePackaging(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -6509,7 +6509,7 @@ class _$MedicationKnowledgeDrugCharacteristicImpl
 
 abstract class _MedicationKnowledgeDrugCharacteristic
     extends MedicationKnowledgeDrugCharacteristic {
-  const factory _MedicationKnowledgeDrugCharacteristic(
+  factory _MedicationKnowledgeDrugCharacteristic(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -7006,7 +7006,7 @@ class _$MedicationKnowledgeRegulatoryImpl
 
 abstract class _MedicationKnowledgeRegulatory
     extends MedicationKnowledgeRegulatory {
-  const factory _MedicationKnowledgeRegulatory(
+  factory _MedicationKnowledgeRegulatory(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -7421,7 +7421,7 @@ class _$MedicationKnowledgeSubstitutionImpl
 
 abstract class _MedicationKnowledgeSubstitution
     extends MedicationKnowledgeSubstitution {
-  const factory _MedicationKnowledgeSubstitution(
+  factory _MedicationKnowledgeSubstitution(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -7781,7 +7781,7 @@ class _$MedicationKnowledgeScheduleImpl extends _MedicationKnowledgeSchedule {
 
 abstract class _MedicationKnowledgeSchedule
     extends MedicationKnowledgeSchedule {
-  const factory _MedicationKnowledgeSchedule(
+  factory _MedicationKnowledgeSchedule(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -8169,7 +8169,7 @@ class _$MedicationKnowledgeMaxDispenseImpl
 
 abstract class _MedicationKnowledgeMaxDispense
     extends MedicationKnowledgeMaxDispense {
-  const factory _MedicationKnowledgeMaxDispense(
+  factory _MedicationKnowledgeMaxDispense(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -8597,7 +8597,7 @@ class _$MedicationKnowledgeKineticsImpl extends _MedicationKnowledgeKinetics {
 
 abstract class _MedicationKnowledgeKinetics
     extends MedicationKnowledgeKinetics {
-  const factory _MedicationKnowledgeKinetics(
+  factory _MedicationKnowledgeKinetics(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

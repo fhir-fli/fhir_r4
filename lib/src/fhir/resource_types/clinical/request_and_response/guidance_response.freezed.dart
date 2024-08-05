@@ -1270,7 +1270,7 @@ class _$GuidanceResponseImpl extends _GuidanceResponse {
 }
 
 abstract class _GuidanceResponse extends GuidanceResponse {
-  const factory _GuidanceResponse(
+  factory _GuidanceResponse(
       {@JsonKey(unknownEnumValue: R4ResourceType.GuidanceResponse)
       final R4ResourceType resourceType,
       final String? id,

@@ -291,7 +291,7 @@ class _$RatioRangeImpl extends _RatioRange {
 }
 
 abstract class _RatioRange extends RatioRange {
-  const factory _RatioRange(
+  factory _RatioRange(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final Quantity? lowNumerator,

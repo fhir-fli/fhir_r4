@@ -845,7 +845,7 @@ class _$ScheduleImpl extends _Schedule {
 }
 
 abstract class _Schedule extends Schedule {
-  const factory _Schedule(
+  factory _Schedule(
           {@JsonKey(unknownEnumValue: R4ResourceType.Schedule)
           final R4ResourceType resourceType,
           final String? id,

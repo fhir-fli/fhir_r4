@@ -115,7 +115,7 @@ class CareTeam extends DomainResource with _$CareTeam {
   ///  members).
   ///
   /// [note] Comments made about the CareTeam.
-  const factory CareTeam({
+  factory CareTeam({
     @Default(R4ResourceType.CareTeam)
     @JsonKey(unknownEnumValue: R4ResourceType.CareTeam)
 
@@ -425,7 +425,7 @@ class CareTeamParticipant extends BackboneElement with _$CareTeamParticipant {
   ///
   /// [period] Indicates when the specific member or organization did (or is
   ///  intended to) come into effect and end.
-  const factory CareTeamParticipant({
+  factory CareTeamParticipant({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

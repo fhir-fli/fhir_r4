@@ -1646,7 +1646,7 @@ class _$MessageDefinitionImpl extends _MessageDefinition {
 }
 
 abstract class _MessageDefinition extends MessageDefinition {
-  const factory _MessageDefinition(
+  factory _MessageDefinition(
       {@JsonKey(unknownEnumValue: R4ResourceType.MessageDefinition)
       final R4ResourceType resourceType,
       final String? id,
@@ -2427,7 +2427,7 @@ class _$MessageDefinitionFocusImpl extends _MessageDefinitionFocus {
 }
 
 abstract class _MessageDefinitionFocus extends MessageDefinitionFocus {
-  const factory _MessageDefinitionFocus(
+  factory _MessageDefinitionFocus(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2852,7 +2852,7 @@ class _$MessageDefinitionAllowedResponseImpl
 
 abstract class _MessageDefinitionAllowedResponse
     extends MessageDefinitionAllowedResponse {
-  const factory _MessageDefinitionAllowedResponse(
+  factory _MessageDefinitionAllowedResponse(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

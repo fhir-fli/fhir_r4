@@ -1238,7 +1238,7 @@ class _$CoverageImpl extends _Coverage {
 }
 
 abstract class _Coverage extends Coverage {
-  const factory _Coverage(
+  factory _Coverage(
       {@JsonKey(unknownEnumValue: R4ResourceType.Coverage)
       final R4ResourceType resourceType,
       final String? id,
@@ -1866,7 +1866,7 @@ class _$CoverageClassImpl extends _CoverageClass {
 }
 
 abstract class _CoverageClass extends CoverageClass {
-  const factory _CoverageClass(
+  factory _CoverageClass(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2349,7 +2349,7 @@ class _$CoverageCostToBeneficiaryImpl extends _CoverageCostToBeneficiary {
 }
 
 abstract class _CoverageCostToBeneficiary extends CoverageCostToBeneficiary {
-  const factory _CoverageCostToBeneficiary(
+  factory _CoverageCostToBeneficiary(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2739,7 +2739,7 @@ class _$CoverageExceptionImpl extends _CoverageException {
 }
 
 abstract class _CoverageException extends CoverageException {
-  const factory _CoverageException(
+  factory _CoverageException(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

@@ -959,7 +959,7 @@ class _$AuditEventImpl extends _AuditEvent {
 }
 
 abstract class _AuditEvent extends AuditEvent {
-  const factory _AuditEvent(
+  factory _AuditEvent(
       {@JsonKey(unknownEnumValue: R4ResourceType.AuditEvent)
       final R4ResourceType resourceType,
       final String? id,
@@ -1890,7 +1890,7 @@ class _$AuditEventAgentImpl extends _AuditEventAgent {
 }
 
 abstract class _AuditEventAgent extends AuditEventAgent {
-  const factory _AuditEventAgent(
+  factory _AuditEventAgent(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2376,7 +2376,7 @@ class _$AuditEventNetworkImpl extends _AuditEventNetwork {
 }
 
 abstract class _AuditEventNetwork extends AuditEventNetwork {
-  const factory _AuditEventNetwork(
+  factory _AuditEventNetwork(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2816,7 +2816,7 @@ class _$AuditEventSourceImpl extends _AuditEventSource {
 }
 
 abstract class _AuditEventSource extends AuditEventSource {
-  const factory _AuditEventSource(
+  factory _AuditEventSource(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3501,7 +3501,7 @@ class _$AuditEventEntityImpl extends _AuditEventEntity {
 }
 
 abstract class _AuditEventEntity extends AuditEventEntity {
-  const factory _AuditEventEntity(
+  factory _AuditEventEntity(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4011,7 +4011,7 @@ class _$AuditEventDetailImpl extends _AuditEventDetail {
 }
 
 abstract class _AuditEventDetail extends AuditEventDetail {
-  const factory _AuditEventDetail(
+  factory _AuditEventDetail(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

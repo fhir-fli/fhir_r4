@@ -160,7 +160,7 @@ class MedicationAdministration extends DomainResource
   ///
   /// [eventHistory] A summary of the events of interest that have occurred,
   ///  such as when the administration was verified.
-  const factory MedicationAdministration({
+  factory MedicationAdministration({
     @Default(R4ResourceType.MedicationAdministration)
     @JsonKey(unknownEnumValue: R4ResourceType.MedicationAdministration)
 
@@ -438,7 +438,7 @@ class MedicationAdministrationPerformer extends BackboneElement
   ///  medication administration.
   ///
   /// [actor] Indicates who or what performed the medication administration.
-  const factory MedicationAdministrationPerformer({
+  factory MedicationAdministrationPerformer({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -578,7 +578,7 @@ class MedicationAdministrationDosage extends BackboneElement
   /// 100 ml per 1 hour or 100 ml/hr.  May also be expressed as a rate per unit
   /// of time, e.g. 500 ml per 2 hours.  Other examples:  200 mcg/min or 200
   ///  mcg/1 minute; 1 liter/8 hours.
-  const factory MedicationAdministrationDosage({
+  factory MedicationAdministrationDosage({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

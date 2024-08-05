@@ -276,7 +276,7 @@ class _$CodeableConceptImpl extends _CodeableConcept {
 }
 
 abstract class _CodeableConcept extends CodeableConcept {
-  const factory _CodeableConcept(
+  factory _CodeableConcept(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<Coding>? coding,

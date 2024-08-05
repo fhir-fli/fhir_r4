@@ -1225,7 +1225,7 @@ class _$RiskAssessmentImpl extends _RiskAssessment {
 }
 
 abstract class _RiskAssessment extends RiskAssessment {
-  const factory _RiskAssessment(
+  factory _RiskAssessment(
       {@JsonKey(unknownEnumValue: R4ResourceType.RiskAssessment)
       final R4ResourceType resourceType,
       final String? id,
@@ -2061,7 +2061,7 @@ class _$RiskAssessmentPredictionImpl extends _RiskAssessmentPrediction {
 }
 
 abstract class _RiskAssessmentPrediction extends RiskAssessmentPrediction {
-  const factory _RiskAssessmentPrediction(
+  factory _RiskAssessmentPrediction(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

@@ -647,7 +647,7 @@ class _$LinkageImpl extends _Linkage {
 }
 
 abstract class _Linkage extends Linkage {
-  const factory _Linkage(
+  factory _Linkage(
       {@JsonKey(unknownEnumValue: R4ResourceType.Linkage)
       final R4ResourceType resourceType,
       final String? id,
@@ -1108,7 +1108,7 @@ class _$LinkageItemImpl extends _LinkageItem {
 }
 
 abstract class _LinkageItem extends LinkageItem {
-  const factory _LinkageItem(
+  factory _LinkageItem(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

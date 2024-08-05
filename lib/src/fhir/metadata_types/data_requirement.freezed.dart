@@ -625,7 +625,7 @@ class _$DataRequirementImpl extends _DataRequirement {
 }
 
 abstract class _DataRequirement extends DataRequirement {
-  const factory _DataRequirement(
+  factory _DataRequirement(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final FhirCode? type,
@@ -1180,7 +1180,7 @@ class _$DataRequirementCodeFilterImpl extends _DataRequirementCodeFilter {
 }
 
 abstract class _DataRequirementCodeFilter extends DataRequirementCodeFilter {
-  const factory _DataRequirementCodeFilter(
+  factory _DataRequirementCodeFilter(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1800,7 +1800,7 @@ class _$DataRequirementDateFilterImpl extends _DataRequirementDateFilter {
 }
 
 abstract class _DataRequirementDateFilter extends DataRequirementDateFilter {
-  const factory _DataRequirementDateFilter(
+  factory _DataRequirementDateFilter(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2269,7 +2269,7 @@ class _$DataRequirementSortImpl extends _DataRequirementSort {
 }
 
 abstract class _DataRequirementSort extends DataRequirementSort {
-  const factory _DataRequirementSort(
+  factory _DataRequirementSort(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

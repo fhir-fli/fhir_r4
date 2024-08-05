@@ -1599,7 +1599,7 @@ class _$ClaimResponseImpl extends _ClaimResponse {
 }
 
 abstract class _ClaimResponse extends ClaimResponse {
-  const factory _ClaimResponse(
+  factory _ClaimResponse(
       {@JsonKey(unknownEnumValue: R4ResourceType.ClaimResponse)
       final R4ResourceType resourceType,
       final String? id,
@@ -2342,7 +2342,7 @@ class _$ClaimResponseItemImpl extends _ClaimResponseItem {
 }
 
 abstract class _ClaimResponseItem extends ClaimResponseItem {
-  const factory _ClaimResponseItem(
+  factory _ClaimResponseItem(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2850,7 +2850,7 @@ class _$ClaimResponseAdjudicationImpl extends _ClaimResponseAdjudication {
 }
 
 abstract class _ClaimResponseAdjudication extends ClaimResponseAdjudication {
-  const factory _ClaimResponseAdjudication(
+  factory _ClaimResponseAdjudication(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3368,7 +3368,7 @@ class _$ClaimResponseDetailImpl extends _ClaimResponseDetail {
 }
 
 abstract class _ClaimResponseDetail extends ClaimResponseDetail {
-  const factory _ClaimResponseDetail(
+  factory _ClaimResponseDetail(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3867,7 +3867,7 @@ class _$ClaimResponseSubDetailImpl extends _ClaimResponseSubDetail {
 }
 
 abstract class _ClaimResponseSubDetail extends ClaimResponseSubDetail {
-  const factory _ClaimResponseSubDetail(
+  factory _ClaimResponseSubDetail(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -5158,7 +5158,7 @@ class _$ClaimResponseAddItemImpl extends _ClaimResponseAddItem {
 }
 
 abstract class _ClaimResponseAddItem extends ClaimResponseAddItem {
-  const factory _ClaimResponseAddItem(
+  factory _ClaimResponseAddItem(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -6007,7 +6007,7 @@ class _$ClaimResponseDetail1Impl extends _ClaimResponseDetail1 {
 }
 
 abstract class _ClaimResponseDetail1 extends ClaimResponseDetail1 {
-  const factory _ClaimResponseDetail1(
+  factory _ClaimResponseDetail1(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -6731,7 +6731,7 @@ class _$ClaimResponseSubDetail1Impl extends _ClaimResponseSubDetail1 {
 }
 
 abstract class _ClaimResponseSubDetail1 extends ClaimResponseSubDetail1 {
-  const factory _ClaimResponseSubDetail1(
+  factory _ClaimResponseSubDetail1(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -7168,7 +7168,7 @@ class _$ClaimResponseTotalImpl extends _ClaimResponseTotal {
 }
 
 abstract class _ClaimResponseTotal extends ClaimResponseTotal {
-  const factory _ClaimResponseTotal(
+  factory _ClaimResponseTotal(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -7715,7 +7715,7 @@ class _$ClaimResponsePaymentImpl extends _ClaimResponsePayment {
 }
 
 abstract class _ClaimResponsePayment extends ClaimResponsePayment {
-  const factory _ClaimResponsePayment(
+  factory _ClaimResponsePayment(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -8236,7 +8236,7 @@ class _$ClaimResponseProcessNoteImpl extends _ClaimResponseProcessNote {
 }
 
 abstract class _ClaimResponseProcessNote extends ClaimResponseProcessNote {
-  const factory _ClaimResponseProcessNote(
+  factory _ClaimResponseProcessNote(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -8811,7 +8811,7 @@ class _$ClaimResponseInsuranceImpl extends _ClaimResponseInsurance {
 }
 
 abstract class _ClaimResponseInsurance extends ClaimResponseInsurance {
-  const factory _ClaimResponseInsurance(
+  factory _ClaimResponseInsurance(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -9357,7 +9357,7 @@ class _$ClaimResponseErrorImpl extends _ClaimResponseError {
 }
 
 abstract class _ClaimResponseError extends ClaimResponseError {
-  const factory _ClaimResponseError(
+  factory _ClaimResponseError(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

@@ -121,7 +121,7 @@ class InsurancePlan extends DomainResource with _$InsurancePlan {
   /// [coverage] Details about the coverage offered by the insurance product.
   ///
   /// [plan] Details about an insurance plan.
-  const factory InsurancePlan({
+  factory InsurancePlan({
     @Default(R4ResourceType.InsurancePlan)
     @JsonKey(unknownEnumValue: R4ResourceType.InsurancePlan)
 
@@ -361,7 +361,7 @@ class InsurancePlanContact extends BackboneElement with _$InsurancePlanContact {
   ///  by which the party may be contacted.
   ///
   /// [address] Visiting or postal addresses for the contact.
-  const factory InsurancePlanContact({
+  factory InsurancePlanContact({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -637,7 +637,7 @@ class InsurancePlanCoverage extends BackboneElement
   /// [network] Reference to the network that providing the type of coverage.
   ///
   /// [benefit] Specific benefits under this type of coverage.
-  const factory InsurancePlanCoverage({
+  factory InsurancePlanCoverage({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -763,7 +763,7 @@ class InsurancePlanBenefit extends BackboneElement with _$InsurancePlanBenefit {
   /// [requirementElement] Extensions for requirement
   ///
   /// [limit] The specific limits on the benefit.
-  const factory InsurancePlanBenefit({
+  factory InsurancePlanBenefit({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -888,7 +888,7 @@ class InsurancePlanLimit extends BackboneElement with _$InsurancePlanLimit {
   ///  covered benefit.  For examples. wellness visits, or eyeglasses.
   ///
   /// [code] The specific limit on the benefit.
-  const factory InsurancePlanLimit({
+  factory InsurancePlanLimit({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1017,7 +1017,7 @@ class InsurancePlanPlan extends BackboneElement with _$InsurancePlanPlan {
   ///
   /// [specificCost] Costs associated with the coverage provided by the
   ///  product.
-  const factory InsurancePlanPlan({
+  factory InsurancePlanPlan({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1159,7 +1159,7 @@ class InsurancePlanGeneralCost extends BackboneElement
   ///  this plan.
   ///
   /// [commentElement] Extensions for comment
-  const factory InsurancePlanGeneralCost({
+  factory InsurancePlanGeneralCost({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1290,7 +1290,7 @@ class InsurancePlanSpecificCost extends BackboneElement
   ///  Mental Health; Substance Abuse; Hospice, Home Health).
   ///
   /// [benefit] List of the specific benefits under this category of benefit.
-  const factory InsurancePlanSpecificCost({
+  factory InsurancePlanSpecificCost({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1409,7 +1409,7 @@ class InsurancePlanBenefit1 extends BackboneElement
   ///  speciality office visit; hospitalization; emergency room; urgent care).
   ///
   /// [cost] List of the costs associated with a specific benefit.
-  const factory InsurancePlanBenefit1({
+  factory InsurancePlanBenefit1({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1534,7 +1534,7 @@ class InsurancePlanCost extends BackboneElement with _$InsurancePlanCost {
   ///
   /// [value] The actual cost value. (some of the costs may be represented as
   ///  percentages rather than currency, e.g. 10% coinsurance).
-  const factory InsurancePlanCost({
+  factory InsurancePlanCost({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

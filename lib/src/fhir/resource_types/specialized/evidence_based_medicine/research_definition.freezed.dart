@@ -1634,7 +1634,7 @@ class _$ResearchDefinitionImpl extends _ResearchDefinition {
 }
 
 abstract class _ResearchDefinition extends ResearchDefinition {
-  const factory _ResearchDefinition(
+  factory _ResearchDefinition(
       {@JsonKey(unknownEnumValue: R4ResourceType.ResearchDefinition)
       final R4ResourceType resourceType,
       final String? id,

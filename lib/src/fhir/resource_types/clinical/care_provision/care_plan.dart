@@ -159,7 +159,7 @@ class CarePlan extends DomainResource with _$CarePlan {
   ///  education, etc.
   ///
   /// [note] General notes about the care plan not covered elsewhere.
-  const factory CarePlan({
+  factory CarePlan({
     @Default(R4ResourceType.CarePlan)
     @JsonKey(unknownEnumValue: R4ResourceType.CarePlan)
 
@@ -459,7 +459,7 @@ class CarePlanActivity extends BackboneElement with _$CarePlanActivity {
   /// [detail] A simple summary of a planned activity suitable for a general
   /// care plan system (e.g. form driven) that doesn't know about specific
   ///  resources such as procedure etc.
-  const factory CarePlanActivity({
+  factory CarePlanActivity({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -672,7 +672,7 @@ class CarePlanDetail extends BackboneElement with _$CarePlanDetail {
   ///  route, etc.
   ///
   /// [descriptionElement] Extensions for description
-  const factory CarePlanDetail({
+  factory CarePlanDetail({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

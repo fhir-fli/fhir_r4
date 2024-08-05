@@ -194,7 +194,7 @@ class ChargeItemDefinition extends DomainResource with _$ChargeItemDefinition {
   /// [propertyGroup] Group of properties which are applicable under the same
   /// conditions. If no applicability rules are established for the group, then
   ///  all properties always apply.
-  const factory ChargeItemDefinition({
+  factory ChargeItemDefinition({
     @Default(R4ResourceType.ChargeItemDefinition)
     @JsonKey(unknownEnumValue: R4ResourceType.ChargeItemDefinition)
 
@@ -532,7 +532,7 @@ class ChargeItemDefinitionApplicability extends BackboneElement
   ///  resource to which this definition is applied.
   ///
   /// [expressionElement] Extensions for expression
-  const factory ChargeItemDefinitionApplicability({
+  factory ChargeItemDefinitionApplicability({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -661,7 +661,7 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement
   /// conditions that apply to a billing code is currently under development.
   /// The priceComponent element can be used to offer transparency to the
   ///  recipient of the Invoice of how the prices have been calculated.
-  const factory ChargeItemDefinitionPropertyGroup({
+  factory ChargeItemDefinitionPropertyGroup({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -782,7 +782,7 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement
   /// [factorElement] Extensions for factor
   ///
   /// [amount] The amount calculated for this component.
-  const factory ChargeItemDefinitionPriceComponent({
+  factory ChargeItemDefinitionPriceComponent({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

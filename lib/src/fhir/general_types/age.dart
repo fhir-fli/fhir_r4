@@ -56,7 +56,7 @@ class Age extends DataType with _$Age {
   ///  representation system.
   ///
   /// [codeElement] Extensions for code
-  const factory Age({
+  factory Age({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

@@ -997,7 +997,7 @@ class _$PaymentNoticeImpl extends _PaymentNotice {
 }
 
 abstract class _PaymentNotice extends PaymentNotice {
-  const factory _PaymentNotice(
+  factory _PaymentNotice(
       {@JsonKey(unknownEnumValue: R4ResourceType.PaymentNotice)
       final R4ResourceType resourceType,
       final String? id,

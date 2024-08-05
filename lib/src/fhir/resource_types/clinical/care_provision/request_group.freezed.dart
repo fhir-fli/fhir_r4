@@ -1313,7 +1313,7 @@ class _$RequestGroupImpl extends _RequestGroup {
 }
 
 abstract class _RequestGroup extends RequestGroup {
-  const factory _RequestGroup(
+  factory _RequestGroup(
       {@JsonKey(unknownEnumValue: R4ResourceType.RequestGroup)
       final R4ResourceType resourceType,
       final String? id,
@@ -2875,7 +2875,7 @@ class _$RequestGroupActionImpl extends _RequestGroupAction {
 }
 
 abstract class _RequestGroupAction extends RequestGroupAction {
-  const factory _RequestGroupAction(
+  factory _RequestGroupAction(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3481,7 +3481,7 @@ class _$RequestGroupConditionImpl extends _RequestGroupCondition {
 }
 
 abstract class _RequestGroupCondition extends RequestGroupCondition {
-  const factory _RequestGroupCondition(
+  factory _RequestGroupCondition(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3978,7 +3978,7 @@ class _$RequestGroupRelatedActionImpl extends _RequestGroupRelatedAction {
 }
 
 abstract class _RequestGroupRelatedAction extends RequestGroupRelatedAction {
-  const factory _RequestGroupRelatedAction(
+  factory _RequestGroupRelatedAction(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

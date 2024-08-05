@@ -1421,7 +1421,7 @@ class _$EncounterImpl extends _Encounter {
 }
 
 abstract class _Encounter extends Encounter {
-  const factory _Encounter(
+  factory _Encounter(
       {@JsonKey(unknownEnumValue: R4ResourceType.Encounter)
       final R4ResourceType resourceType,
       final String? id,
@@ -2016,7 +2016,7 @@ class _$EncounterStatusHistoryImpl extends _EncounterStatusHistory {
 }
 
 abstract class _EncounterStatusHistory extends EncounterStatusHistory {
-  const factory _EncounterStatusHistory(
+  factory _EncounterStatusHistory(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2403,7 +2403,7 @@ class _$EncounterClassHistoryImpl extends _EncounterClassHistory {
 }
 
 abstract class _EncounterClassHistory extends EncounterClassHistory {
-  const factory _EncounterClassHistory(
+  factory _EncounterClassHistory(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2825,7 +2825,7 @@ class _$EncounterParticipantImpl extends _EncounterParticipant {
 }
 
 abstract class _EncounterParticipant extends EncounterParticipant {
-  const factory _EncounterParticipant(
+  factory _EncounterParticipant(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3266,7 +3266,7 @@ class _$EncounterDiagnosisImpl extends _EncounterDiagnosis {
 }
 
 abstract class _EncounterDiagnosis extends EncounterDiagnosis {
-  const factory _EncounterDiagnosis(
+  factory _EncounterDiagnosis(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3939,7 +3939,7 @@ class _$EncounterHospitalizationImpl extends _EncounterHospitalization {
 }
 
 abstract class _EncounterHospitalization extends EncounterHospitalization {
-  const factory _EncounterHospitalization(
+  factory _EncounterHospitalization(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -4454,7 +4454,7 @@ class _$EncounterLocationImpl extends _EncounterLocation {
 }
 
 abstract class _EncounterLocation extends EncounterLocation {
-  const factory _EncounterLocation(
+  factory _EncounterLocation(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

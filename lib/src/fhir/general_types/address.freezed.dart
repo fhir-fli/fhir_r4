@@ -702,7 +702,7 @@ class _$AddressImpl extends _Address {
 }
 
 abstract class _Address extends Address {
-  const factory _Address(
+  factory _Address(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: AddressUse.unknown) final AddressUse? use,

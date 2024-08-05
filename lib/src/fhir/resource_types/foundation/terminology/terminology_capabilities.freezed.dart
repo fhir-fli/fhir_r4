@@ -1662,7 +1662,7 @@ class _$TerminologyCapabilitiesImpl extends _TerminologyCapabilities {
 }
 
 abstract class _TerminologyCapabilities extends TerminologyCapabilities {
-  const factory _TerminologyCapabilities(
+  factory _TerminologyCapabilities(
       {@JsonKey(unknownEnumValue: R4ResourceType.TerminologyCapabilities)
       final R4ResourceType resourceType,
       final String? id,
@@ -2370,7 +2370,7 @@ class _$TerminologyCapabilitiesSoftwareImpl
 
 abstract class _TerminologyCapabilitiesSoftware
     extends TerminologyCapabilitiesSoftware {
-  const factory _TerminologyCapabilitiesSoftware(
+  factory _TerminologyCapabilitiesSoftware(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2801,7 +2801,7 @@ class _$TerminologyCapabilitiesImplementationImpl
 
 abstract class _TerminologyCapabilitiesImplementation
     extends TerminologyCapabilitiesImplementation {
-  const factory _TerminologyCapabilitiesImplementation(
+  factory _TerminologyCapabilitiesImplementation(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3244,7 +3244,7 @@ class _$TerminologyCapabilitiesCodeSystemImpl
 
 abstract class _TerminologyCapabilitiesCodeSystem
     extends TerminologyCapabilitiesCodeSystem {
-  const factory _TerminologyCapabilitiesCodeSystem(
+  factory _TerminologyCapabilitiesCodeSystem(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3896,7 +3896,7 @@ class _$TerminologyCapabilitiesVersionImpl
 
 abstract class _TerminologyCapabilitiesVersion
     extends TerminologyCapabilitiesVersion {
-  const factory _TerminologyCapabilitiesVersion(
+  factory _TerminologyCapabilitiesVersion(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4383,7 +4383,7 @@ class _$TerminologyCapabilitiesFilterImpl
 
 abstract class _TerminologyCapabilitiesFilter
     extends TerminologyCapabilitiesFilter {
-  const factory _TerminologyCapabilitiesFilter(
+  factory _TerminologyCapabilitiesFilter(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -4940,7 +4940,7 @@ class _$TerminologyCapabilitiesExpansionImpl
 
 abstract class _TerminologyCapabilitiesExpansion
     extends TerminologyCapabilitiesExpansion {
-  const factory _TerminologyCapabilitiesExpansion(
+  factory _TerminologyCapabilitiesExpansion(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5397,7 +5397,7 @@ class _$TerminologyCapabilitiesParameterImpl
 
 abstract class _TerminologyCapabilitiesParameter
     extends TerminologyCapabilitiesParameter {
-  const factory _TerminologyCapabilitiesParameter(
+  factory _TerminologyCapabilitiesParameter(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -5780,7 +5780,7 @@ class _$TerminologyCapabilitiesValidateCodeImpl
 
 abstract class _TerminologyCapabilitiesValidateCode
     extends TerminologyCapabilitiesValidateCode {
-  const factory _TerminologyCapabilitiesValidateCode(
+  factory _TerminologyCapabilitiesValidateCode(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -6151,7 +6151,7 @@ class _$TerminologyCapabilitiesTranslationImpl
 
 abstract class _TerminologyCapabilitiesTranslation
     extends TerminologyCapabilitiesTranslation {
-  const factory _TerminologyCapabilitiesTranslation(
+  factory _TerminologyCapabilitiesTranslation(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -6522,7 +6522,7 @@ class _$TerminologyCapabilitiesClosureImpl
 
 abstract class _TerminologyCapabilitiesClosure
     extends TerminologyCapabilitiesClosure {
-  const factory _TerminologyCapabilitiesClosure(
+  factory _TerminologyCapabilitiesClosure(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

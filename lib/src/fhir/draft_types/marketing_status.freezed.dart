@@ -501,7 +501,7 @@ class _$MarketingStatusImpl extends _MarketingStatus {
 }
 
 abstract class _MarketingStatus extends MarketingStatus {
-  const factory _MarketingStatus(
+  factory _MarketingStatus(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

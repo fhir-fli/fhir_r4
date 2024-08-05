@@ -132,7 +132,7 @@ class ImmunizationEvaluation extends DomainResource
   /// [seriesDosesString] The recommended number of doses to achieve immunity.
   ///
   /// [seriesDosesStringElement] Extensions for seriesDosesString
-  const factory ImmunizationEvaluation({
+  factory ImmunizationEvaluation({
     @Default(R4ResourceType.ImmunizationEvaluation)
     @JsonKey(unknownEnumValue: R4ResourceType.ImmunizationEvaluation)
 

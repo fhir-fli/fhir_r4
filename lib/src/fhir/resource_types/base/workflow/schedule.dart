@@ -104,7 +104,7 @@ class Schedule extends DomainResource with _$Schedule {
   ///  associated.
   ///
   /// [commentElement] Extensions for comment
-  const factory Schedule({
+  factory Schedule({
     @Default(R4ResourceType.Schedule)
     @JsonKey(unknownEnumValue: R4ResourceType.Schedule)
 

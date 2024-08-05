@@ -154,7 +154,7 @@ class Encounter extends DomainResource with _$Encounter {
   ///
   /// [partOf] Another Encounter of which this encounter is a part of
   ///  (administratively or in time).
-  const factory Encounter({
+  factory Encounter({
     @Default(R4ResourceType.Encounter)
     @JsonKey(unknownEnumValue: R4ResourceType.Encounter)
 
@@ -433,7 +433,7 @@ class EncounterStatusHistory extends BackboneElement
   /// [statusElement] Extensions for status
   ///
   /// [period] The time that the episode was in the specified status.
-  const factory EncounterStatusHistory({
+  factory EncounterStatusHistory({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -555,7 +555,7 @@ class EncounterClassHistory extends BackboneElement
   /// [class] inpatient | outpatient | ambulatory | emergency +.
   ///
   /// [period] The time that the episode was in the specified class.
-  const factory EncounterClassHistory({
+  factory EncounterClassHistory({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -676,7 +676,7 @@ class EncounterParticipant extends BackboneElement with _$EncounterParticipant {
   ///  encounter's period.
   ///
   /// [individual] Persons involved in the encounter other than the patient.
-  const factory EncounterParticipant({
+  factory EncounterParticipant({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -806,7 +806,7 @@ class EncounterDiagnosis extends BackboneElement with _$EncounterDiagnosis {
   /// [rank] Ranking of the diagnosis (for each role type).
   ///
   /// [rankElement] Extensions for rank
-  const factory EncounterDiagnosis({
+  factory EncounterDiagnosis({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -953,7 +953,7 @@ class EncounterHospitalization extends BackboneElement
   /// [destination] Location/organization to which the patient is discharged.
   ///
   /// [dischargeDisposition] Category or kind of location after discharge.
-  const factory EncounterHospitalization({
+  factory EncounterHospitalization({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1107,7 +1107,7 @@ class EncounterLocation extends BackboneElement with _$EncounterLocation {
   ///
   /// [period] Time period during which the patient was present at the
   ///  location.
-  const factory EncounterLocation({
+  factory EncounterLocation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

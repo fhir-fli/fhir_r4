@@ -631,7 +631,7 @@ class _$SubstanceImpl extends _Substance {
 }
 
 abstract class _Substance extends Substance {
-  const factory _Substance(
+  factory _Substance(
       {@JsonKey(unknownEnumValue: R4ResourceType.Substance)
       final R4ResourceType resourceType,
       final String? id,
@@ -1011,7 +1011,7 @@ class _$SubstanceInstanceImpl extends _SubstanceInstance {
 }
 
 abstract class _SubstanceInstance extends SubstanceInstance {
-  const factory _SubstanceInstance(
+  factory _SubstanceInstance(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1338,7 +1338,7 @@ class _$SubstanceIngredientImpl extends _SubstanceIngredient {
 }
 
 abstract class _SubstanceIngredient extends SubstanceIngredient {
-  const factory _SubstanceIngredient(
+  factory _SubstanceIngredient(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

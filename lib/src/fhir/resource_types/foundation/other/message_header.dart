@@ -123,7 +123,7 @@ class MessageHeader extends DomainResource with _$MessageHeader {
   ///  class of the event.
   ///
   /// [definition] Permanent link to the MessageDefinition for this message.
-  const factory MessageHeader({
+  factory MessageHeader({
     @Default(R4ResourceType.MessageHeader)
     @JsonKey(unknownEnumValue: R4ResourceType.MessageHeader)
 
@@ -367,7 +367,7 @@ class MessageHeaderDestination extends BackboneElement
   /// [receiver] Allows data conveyed by a message to be addressed to a
   /// particular person or department when routing to a specific application
   ///  isn't sufficient.
-  const factory MessageHeaderDestination({
+  factory MessageHeaderDestination({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -516,7 +516,7 @@ class MessageHeaderSource extends BackboneElement with _$MessageHeaderSource {
   /// [endpoint] Identifies the routing target to send acknowledgements to.
   ///
   /// [endpointElement] Extensions for endpoint
-  const factory MessageHeaderSource({
+  factory MessageHeaderSource({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -701,7 +701,7 @@ class MessageHeaderResponse extends BackboneElement
   /// [codeElement] Extensions for code
   ///
   /// [details] Full details of any issues found in the message.
-  const factory MessageHeaderResponse({
+  factory MessageHeaderResponse({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

@@ -140,7 +140,7 @@ class Location extends DomainResource with _$Location {
   ///
   /// [endpoint] Technical endpoints providing access to services operated for
   ///  the location.
-  const factory Location({
+  factory Location({
     @Default(R4ResourceType.Location)
     @JsonKey(unknownEnumValue: R4ResourceType.Location)
 
@@ -525,7 +525,7 @@ class LocationPosition extends BackboneElement with _$LocationPosition {
   ///  as for the text of the altitude element in KML (see notes below).
   ///
   /// [altitudeElement] Extensions for altitude
-  const factory LocationPosition({
+  factory LocationPosition({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -666,7 +666,7 @@ class LocationHoursOfOperation extends BackboneElement
   /// [closingTime] Time that the Location closes.
   ///
   /// [closingTimeElement] Extensions for closingTime
-  const factory LocationHoursOfOperation({
+  factory LocationHoursOfOperation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

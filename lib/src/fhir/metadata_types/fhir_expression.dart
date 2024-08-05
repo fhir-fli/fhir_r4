@@ -55,7 +55,7 @@ class FhirExpression extends DataType with _$FhirExpression {
   /// [reference] A URI that defines where the expression is found.
   ///
   /// [referenceElement] Extensions for reference
-  const factory FhirExpression({
+  factory FhirExpression({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

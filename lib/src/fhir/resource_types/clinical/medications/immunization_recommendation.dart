@@ -90,7 +90,7 @@ class ImmunizationRecommendation extends DomainResource
   ///  ACIP).
   ///
   /// [recommendation] Vaccine administration recommendations.
-  const factory ImmunizationRecommendation({
+  factory ImmunizationRecommendation({
     @Default(R4ResourceType.ImmunizationRecommendation)
     @JsonKey(unknownEnumValue: R4ResourceType.ImmunizationRecommendation)
 
@@ -326,7 +326,7 @@ class ImmunizationRecommendationRecommendation extends BackboneElement
   /// [supportingPatientInformation] Patient Information that supports the
   /// status and recommendation.  This includes patient observations, adverse
   ///  reactions and allergy/intolerance information.
-  const factory ImmunizationRecommendationRecommendation({
+  factory ImmunizationRecommendationRecommendation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -500,7 +500,7 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement
   /// [value] The date whose meaning is specified by dateCriterion.code.
   ///
   /// [valueElement] Extensions for value
-  const factory ImmunizationRecommendationDateCriterion({
+  factory ImmunizationRecommendationDateCriterion({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

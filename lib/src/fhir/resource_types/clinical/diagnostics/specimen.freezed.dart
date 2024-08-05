@@ -1028,7 +1028,7 @@ class _$SpecimenImpl extends _Specimen {
 }
 
 abstract class _Specimen extends Specimen {
-  const factory _Specimen(
+  factory _Specimen(
       {@JsonKey(unknownEnumValue: R4ResourceType.Specimen)
       final R4ResourceType resourceType,
       final String? id,
@@ -1851,7 +1851,7 @@ class _$SpecimenCollectionImpl extends _SpecimenCollection {
 }
 
 abstract class _SpecimenCollection extends SpecimenCollection {
-  const factory _SpecimenCollection(
+  factory _SpecimenCollection(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2427,7 +2427,7 @@ class _$SpecimenProcessingImpl extends _SpecimenProcessing {
 }
 
 abstract class _SpecimenProcessing extends SpecimenProcessing {
-  const factory _SpecimenProcessing(
+  factory _SpecimenProcessing(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3060,7 +3060,7 @@ class _$SpecimenContainerImpl extends _SpecimenContainer {
 }
 
 abstract class _SpecimenContainer extends SpecimenContainer {
-  const factory _SpecimenContainer(
+  factory _SpecimenContainer(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

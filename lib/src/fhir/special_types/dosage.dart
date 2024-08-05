@@ -90,7 +90,7 @@ class Dosage extends BackboneType with _$Dosage {
   ///
   /// [maxDosePerLifetime] Upper limit on medication per lifetime of the
   ///  patient.
-  const factory Dosage({
+  factory Dosage({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -268,7 +268,7 @@ class DosageDoseAndRate extends Element with _$DosageDoseAndRate {
   /// [rateRange] Amount of medication per unit of time.
   ///
   /// [rateQuantity] Amount of medication per unit of time.
-  const factory DosageDoseAndRate({
+  factory DosageDoseAndRate({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

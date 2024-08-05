@@ -214,7 +214,7 @@ class EventDefinition extends DomainResource with _$EventDefinition {
   /// [trigger] The trigger element defines when the event occurs. If more than
   /// one trigger condition is specified, the event fires whenever any one of
   ///  the trigger conditions is met.
-  const factory EventDefinition({
+  factory EventDefinition({
     @Default(R4ResourceType.EventDefinition)
     @JsonKey(unknownEnumValue: R4ResourceType.EventDefinition)
 

@@ -926,7 +926,7 @@ class _$OrganizationImpl extends _Organization {
 }
 
 abstract class _Organization extends Organization {
-  const factory _Organization(
+  factory _Organization(
       {@JsonKey(unknownEnumValue: R4ResourceType.Organization)
       final R4ResourceType resourceType,
       final String? id,
@@ -1497,7 +1497,7 @@ class _$OrganizationContactImpl extends _OrganizationContact {
 }
 
 abstract class _OrganizationContact extends OrganizationContact {
-  const factory _OrganizationContact(
+  factory _OrganizationContact(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

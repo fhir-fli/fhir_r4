@@ -1730,7 +1730,7 @@ class _$OperationDefinitionImpl extends _OperationDefinition {
 }
 
 abstract class _OperationDefinition extends OperationDefinition {
-  const factory _OperationDefinition(
+  factory _OperationDefinition(
       {@JsonKey(unknownEnumValue: R4ResourceType.OperationDefinition)
       final R4ResourceType resourceType,
       final String? id,
@@ -2886,7 +2886,7 @@ class _$OperationDefinitionParameterImpl extends _OperationDefinitionParameter {
 
 abstract class _OperationDefinitionParameter
     extends OperationDefinitionParameter {
-  const factory _OperationDefinitionParameter(
+  factory _OperationDefinitionParameter(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3381,7 +3381,7 @@ class _$OperationDefinitionBindingImpl extends _OperationDefinitionBinding {
 }
 
 abstract class _OperationDefinitionBinding extends OperationDefinitionBinding {
-  const factory _OperationDefinitionBinding(
+  factory _OperationDefinitionBinding(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3809,7 +3809,7 @@ class _$OperationDefinitionReferencedFromImpl
 
 abstract class _OperationDefinitionReferencedFrom
     extends OperationDefinitionReferencedFrom {
-  const factory _OperationDefinitionReferencedFrom(
+  factory _OperationDefinitionReferencedFrom(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -4263,7 +4263,7 @@ class _$OperationDefinitionOverloadImpl extends _OperationDefinitionOverload {
 
 abstract class _OperationDefinitionOverload
     extends OperationDefinitionOverload {
-  const factory _OperationDefinitionOverload(
+  factory _OperationDefinitionOverload(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

@@ -194,7 +194,7 @@ class MessageDefinition extends DomainResource with _$MessageDefinition {
   /// what resources are to be added to the bundle when building the document.
   /// The GraphDefinition can also specify profiles that apply to the various
   ///  resources.
-  const factory MessageDefinition({
+  factory MessageDefinition({
     @Default(R4ResourceType.MessageDefinition)
     @JsonKey(unknownEnumValue: R4ResourceType.MessageDefinition)
 
@@ -540,7 +540,7 @@ class MessageDefinitionFocus extends BackboneElement
   ///  MessageDefinition.
   ///
   /// [maxElement] Extensions for max
-  const factory MessageDefinitionFocus({
+  factory MessageDefinitionFocus({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -681,7 +681,7 @@ class MessageDefinitionAllowedResponse extends BackboneElement
   ///  response should be used (as opposed to one of the alternative responses).
   ///
   /// [situationElement] Extensions for situation
-  const factory MessageDefinitionAllowedResponse({
+  factory MessageDefinitionAllowedResponse({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

@@ -176,7 +176,7 @@ class Appointment extends DomainResource with _$Appointment {
   /// length of the appointment to fill and populate the start/end times for the
   /// actual allocated time. However, in other situations the duration may be
   ///  calculated by the scheduling system.
-  const factory Appointment({
+  factory Appointment({
     @Default(R4ResourceType.Appointment)
     @JsonKey(unknownEnumValue: R4ResourceType.Appointment)
 
@@ -496,7 +496,7 @@ class AppointmentParticipant extends BackboneElement
   /// [statusElement] Extensions for status
   ///
   /// [period] Participation period of the actor.
-  const factory AppointmentParticipant({
+  factory AppointmentParticipant({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

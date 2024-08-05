@@ -536,7 +536,7 @@ class _$SampledDataImpl extends _SampledData {
 }
 
 abstract class _SampledData extends SampledData {
-  const factory _SampledData(
+  factory _SampledData(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       required final Quantity origin,

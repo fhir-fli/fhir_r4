@@ -34,7 +34,7 @@ class Ratio extends DataType with _$Ratio {
   /// [numerator] The value of the numerator.
   ///
   /// [denominator] The value of the denominator.
-  const factory Ratio({
+  factory Ratio({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

@@ -149,7 +149,7 @@ class NutritionOrder extends DomainResource with _$NutritionOrder {
   ///
   /// [note] Comments made about the {{title}} by the requester, performer,
   ///  subject or other participants.
-  const factory NutritionOrder({
+  factory NutritionOrder({
     @Default(R4ResourceType.NutritionOrder)
     @JsonKey(unknownEnumValue: R4ResourceType.NutritionOrder)
 
@@ -437,7 +437,7 @@ class NutritionOrderOralDiet extends BackboneElement
   ///  pertaining to the oral diet.
   ///
   /// [instructionElement] Extensions for instruction
-  const factory NutritionOrderOralDiet({
+  factory NutritionOrderOralDiet({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -577,7 +577,7 @@ class NutritionOrderNutrient extends BackboneElement
   ///  sodium.
   ///
   /// [amount] The quantity of the specified nutrient to include in diet.
-  const factory NutritionOrderNutrient({
+  factory NutritionOrderNutrient({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -695,7 +695,7 @@ class NutritionOrderTexture extends BackboneElement
   ///
   /// [foodType] The food type(s) (e.g. meats, all foods)  that the texture
   ///  modification applies to.  This could be all foods types.
-  const factory NutritionOrderTexture({
+  factory NutritionOrderTexture({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -827,7 +827,7 @@ class NutritionOrderSupplement extends BackboneElement
   ///  pertaining to the oral supplement.
   ///
   /// [instructionElement] Extensions for instruction
-  const factory NutritionOrderSupplement({
+  factory NutritionOrderSupplement({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -999,7 +999,7 @@ class NutritionOrderEnteralFormula extends BackboneElement
   ///  instructions or additional instructions or information.
   ///
   /// [administrationInstructionElement] Extensions for administrationInstruction
-  const factory NutritionOrderEnteralFormula({
+  factory NutritionOrderEnteralFormula({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1172,7 +1172,7 @@ class NutritionOrderAdministration extends BackboneElement
   ///
   /// [rateRatio] The rate of administration of formula via a feeding pump,
   ///  e.g. 60 mL per hour, according to the specified schedule.
-  const factory NutritionOrderAdministration({
+  factory NutritionOrderAdministration({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

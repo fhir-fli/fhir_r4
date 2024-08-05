@@ -44,7 +44,7 @@ class Parameters extends DomainResource with _$Parameters {
   /// [languageElement] Extensions for language
   ///
   /// [parameter] A parameter passed to or received from the operation.
-  const factory Parameters({
+  factory Parameters({
     @Default(R4ResourceType.Parameters)
     @JsonKey(unknownEnumValue: R4ResourceType.Parameters)
 
@@ -360,7 +360,7 @@ class ParametersParameter extends BackboneElement with _$ParametersParameter {
   /// [resource] If the parameter is a whole resource.
   ///
   /// [part_] A named part of a multi-part parameter.
-  const factory ParametersParameter({
+  factory ParametersParameter({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

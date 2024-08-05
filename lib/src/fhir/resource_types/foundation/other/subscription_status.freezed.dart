@@ -717,7 +717,7 @@ class _$SubscriptionStatusImpl extends _SubscriptionStatus {
 }
 
 abstract class _SubscriptionStatus extends SubscriptionStatus {
-  const factory _SubscriptionStatus(
+  factory _SubscriptionStatus(
       {final R4ResourceType resourceType,
       final String? id,
       final FhirMeta? meta,
@@ -1220,7 +1220,7 @@ class _$SubscriptionStatusNotificationEventImpl
 
 abstract class _SubscriptionStatusNotificationEvent
     extends SubscriptionStatusNotificationEvent {
-  const factory _SubscriptionStatusNotificationEvent(
+  factory _SubscriptionStatusNotificationEvent(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

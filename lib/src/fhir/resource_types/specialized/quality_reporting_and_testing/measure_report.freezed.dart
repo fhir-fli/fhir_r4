@@ -968,7 +968,7 @@ class _$MeasureReportImpl extends _MeasureReport {
 }
 
 abstract class _MeasureReport extends MeasureReport {
-  const factory _MeasureReport(
+  factory _MeasureReport(
       {@JsonKey(unknownEnumValue: R4ResourceType.MeasureReport)
       final R4ResourceType resourceType,
       final String? id,
@@ -1565,7 +1565,7 @@ class _$MeasureReportGroupImpl extends _MeasureReportGroup {
 }
 
 abstract class _MeasureReportGroup extends MeasureReportGroup {
-  const factory _MeasureReportGroup(
+  factory _MeasureReportGroup(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2018,7 +2018,7 @@ class _$MeasureReportPopulationImpl extends _MeasureReportPopulation {
 }
 
 abstract class _MeasureReportPopulation extends MeasureReportPopulation {
-  const factory _MeasureReportPopulation(
+  factory _MeasureReportPopulation(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2414,7 +2414,7 @@ class _$MeasureReportStratifierImpl extends _MeasureReportStratifier {
 }
 
 abstract class _MeasureReportStratifier extends MeasureReportStratifier {
-  const factory _MeasureReportStratifier(
+  factory _MeasureReportStratifier(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2882,7 +2882,7 @@ class _$MeasureReportStratumImpl extends _MeasureReportStratum {
 }
 
 abstract class _MeasureReportStratum extends MeasureReportStratum {
-  const factory _MeasureReportStratum(
+  factory _MeasureReportStratum(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3276,7 +3276,7 @@ class _$MeasureReportComponentImpl extends _MeasureReportComponent {
 }
 
 abstract class _MeasureReportComponent extends MeasureReportComponent {
-  const factory _MeasureReportComponent(
+  factory _MeasureReportComponent(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3715,7 +3715,7 @@ class _$MeasureReportPopulation1Impl extends _MeasureReportPopulation1 {
 }
 
 abstract class _MeasureReportPopulation1 extends MeasureReportPopulation1 {
-  const factory _MeasureReportPopulation1(
+  factory _MeasureReportPopulation1(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

@@ -138,7 +138,7 @@ class Patient extends DomainResource with _$Patient {
   ///
   /// [link] Link to another patient resource that concerns the same actual
   ///  patient.
-  const factory Patient({
+  factory Patient({
     @Default(R4ResourceType.Patient)
     @JsonKey(unknownEnumValue: R4ResourceType.Patient)
 
@@ -742,7 +742,7 @@ class PatientContact extends BackboneElement with _$PatientContact {
   ///
   /// [period] The period during which this contact person or organization is
   ///  valid to be contacted relating to this patient.
-  const factory PatientContact({
+  factory PatientContact({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1030,7 +1030,7 @@ class PatientCommunication extends BackboneElement with _$PatientCommunication {
   ///  (over other languages he masters up a certain level).
   ///
   /// [preferredElement] Extensions for preferred
-  const factory PatientCommunication({
+  factory PatientCommunication({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1153,7 +1153,7 @@ class PatientLink extends BackboneElement with _$PatientLink {
   ///  resource.
   ///
   /// [typeElement] Extensions for type
-  const factory PatientLink({
+  factory PatientLink({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

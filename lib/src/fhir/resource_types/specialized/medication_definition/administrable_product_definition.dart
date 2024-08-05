@@ -48,7 +48,7 @@ class AdministrableProductDefinition extends DomainResource
   ///
   /// [statusElement] (_status): Extensions for status;
   ///
-  const factory AdministrableProductDefinition({
+  factory AdministrableProductDefinition({
     @Default(R4ResourceType.AdministrableProductDefinition)
 
     /// [resourceType] This is a AdministrableProductDefinition resource",
@@ -197,7 +197,7 @@ class AdministrableProductDefinitionProperty extends BackboneElement
   /// [valueAttachment] A value for the characteristic.;
   ///
   /// [status] The status of characteristic e.g. assigned or pending.;
-  const factory AdministrableProductDefinitionProperty({
+  factory AdministrableProductDefinitionProperty({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -308,7 +308,7 @@ class AdministrableProductDefinitionRouteOfAdministration
   /// [maxTreatmentPeriod] The maximum treatment period during which the product can be administered.;
   ///
   /// [targetSpecies] A species for which this route applies.;
-  const factory AdministrableProductDefinitionRouteOfAdministration({
+  factory AdministrableProductDefinitionRouteOfAdministration({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -405,7 +405,7 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement
   /// [code] Coded expression for the species.;
   ///
   /// [withdrawalPeriod] A species specific time during which consumption of animal product is not appropriate.;
-  const factory AdministrableProductDefinitionTargetSpecies({
+  factory AdministrableProductDefinitionTargetSpecies({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -489,7 +489,7 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement
   /// [supportingInformation] Extra information about the withdrawal period.;
   ///
   /// [supportingInformationElement] (_supportingInformation): Extensions for supportingInformation;
-  const factory AdministrableProductDefinitionWithdrawalPeriod({
+  factory AdministrableProductDefinitionWithdrawalPeriod({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 

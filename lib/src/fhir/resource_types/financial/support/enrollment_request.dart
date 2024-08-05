@@ -93,7 +93,7 @@ class EnrollmentRequest extends DomainResource with _$EnrollmentRequest {
   ///
   /// [coverage] Reference to the program or plan identification, underwriter
   ///  or payor.
-  const factory EnrollmentRequest({
+  factory EnrollmentRequest({
     @Default(R4ResourceType.EnrollmentRequest)
     @JsonKey(unknownEnumValue: R4ResourceType.EnrollmentRequest)
 

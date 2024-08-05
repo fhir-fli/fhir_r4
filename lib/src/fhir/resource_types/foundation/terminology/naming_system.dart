@@ -138,7 +138,7 @@ class NamingSystem extends DomainResource with _$NamingSystem {
   ///
   /// [uniqueId] Indicates how the system may be identified when referenced in
   ///  electronic exchange.
-  const factory NamingSystem({
+  factory NamingSystem({
     @Default(R4ResourceType.NamingSystem)
     @JsonKey(unknownEnumValue: R4ResourceType.NamingSystem)
 
@@ -413,7 +413,7 @@ class NamingSystemUniqueId extends BackboneElement with _$NamingSystemUniqueId {
   /// [period] Identifies the period of time over which this identifier is
   /// considered appropriate to refer to the naming system.  Outside of this
   ///  window, the identifier might be non-deterministic.
-  const factory NamingSystemUniqueId({
+  factory NamingSystemUniqueId({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

@@ -230,7 +230,7 @@ class PlanDefinition extends DomainResource with _$PlanDefinition {
   ///  improvement objective, etc.
   ///
   /// [action] An action or group of actions to be taken as part of the plan.
-  const factory PlanDefinition({
+  factory PlanDefinition({
     @Default(R4ResourceType.PlanDefinition)
     @JsonKey(unknownEnumValue: R4ResourceType.PlanDefinition)
 
@@ -623,7 +623,7 @@ class PlanDefinitionGoal extends BackboneElement with _$PlanDefinitionGoal {
   ///  resources.
   ///
   /// [target] Indicates what should be done and within what timeframe.
-  const factory PlanDefinitionGoal({
+  factory PlanDefinitionGoal({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -785,7 +785,7 @@ class PlanDefinitionTarget extends BackboneElement with _$PlanDefinitionTarget {
   ///
   /// [due] Indicates the timeframe after the start of the goal in which the
   ///  goal should be met.
-  const factory PlanDefinitionTarget({
+  factory PlanDefinitionTarget({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1059,7 +1059,7 @@ class PlanDefinitionAction extends BackboneElement with _$PlanDefinitionAction {
   /// example, a selection behavior of at-most-one indicates that of the
   /// sub-actions, at most one may be chosen as part of realizing the action
   ///  definition.
-  const factory PlanDefinitionAction({
+  factory PlanDefinitionAction({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1366,7 +1366,7 @@ class PlanDefinitionCondition extends BackboneElement
   ///
   /// [expression] An expression that returns true or false, indicating whether
   ///  the condition is satisfied.
-  const factory PlanDefinitionCondition({
+  factory PlanDefinitionCondition({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1498,7 +1498,7 @@ class PlanDefinitionRelatedAction extends BackboneElement
   ///
   /// [offsetRange] A duration or range of durations to apply to the
   ///  relationship. For example, 30-60 minutes before.
-  const factory PlanDefinitionRelatedAction({
+  factory PlanDefinitionRelatedAction({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1633,7 +1633,7 @@ class PlanDefinitionParticipant extends BackboneElement
   ///
   /// [role] The role the participant should play in performing the described
   ///  action.
-  const factory PlanDefinitionParticipant({
+  factory PlanDefinitionParticipant({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1765,7 +1765,7 @@ class PlanDefinitionDynamicValue extends BackboneElement
   ///
   /// [expression] An expression specifying the value of the customized
   ///  element.
-  const factory PlanDefinitionDynamicValue({
+  factory PlanDefinitionDynamicValue({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

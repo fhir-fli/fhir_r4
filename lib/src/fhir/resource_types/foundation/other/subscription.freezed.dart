@@ -837,7 +837,7 @@ class _$SubscriptionImpl extends _Subscription {
 }
 
 abstract class _Subscription extends Subscription {
-  const factory _Subscription(
+  factory _Subscription(
       {@JsonKey(unknownEnumValue: R4ResourceType.Subscription)
       final R4ResourceType resourceType,
       final String? id,
@@ -1482,7 +1482,7 @@ class _$SubscriptionChannelImpl extends _SubscriptionChannel {
 }
 
 abstract class _SubscriptionChannel extends SubscriptionChannel {
-  const factory _SubscriptionChannel(
+  factory _SubscriptionChannel(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

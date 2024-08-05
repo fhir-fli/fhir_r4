@@ -1051,7 +1051,7 @@ class _$FhirListImpl extends _FhirList {
 }
 
 abstract class _FhirList extends FhirList {
-  const factory _FhirList(
+  factory _FhirList(
       {@JsonKey(unknownEnumValue: R4ResourceType.FhirList)
       final R4ResourceType resourceType,
       final String? id,
@@ -1667,7 +1667,7 @@ class _$FhirListEntryImpl extends _FhirListEntry {
 }
 
 abstract class _FhirListEntry extends FhirListEntry {
-  const factory _FhirListEntry(
+  factory _FhirListEntry(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

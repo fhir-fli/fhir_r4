@@ -138,7 +138,7 @@ class Composition extends DomainResource with _$Composition {
   ///  being documented.
   ///
   /// [section] The root of the sections that make up the composition.
-  const factory Composition({
+  factory Composition({
     @Default(R4ResourceType.Composition)
     @JsonKey(unknownEnumValue: R4ResourceType.Composition)
 
@@ -397,7 +397,7 @@ class CompositionAttester extends BackboneElement with _$CompositionAttester {
   /// [timeElement] Extensions for time
   ///
   /// [party] Who attested the composition in the specified way.
-  const factory CompositionAttester({
+  factory CompositionAttester({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -533,7 +533,7 @@ class CompositionRelatesTo extends BackboneElement with _$CompositionRelatesTo {
   /// [targetIdentifier] The target composition/document of this relationship.
   ///
   /// [targetReference] The target composition/document of this relationship.
-  const factory CompositionRelatesTo({
+  factory CompositionRelatesTo({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -672,7 +672,7 @@ class CompositionEvent extends BackboneElement with _$CompositionEvent {
   /// [detail] The description and/or reference of the event(s) being
   /// documented. For example, this could be used to document such a colonoscopy
   ///  or an appendectomy.
-  const factory CompositionEvent({
+  factory CompositionEvent({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -847,7 +847,7 @@ class CompositionSection extends BackboneElement with _$CompositionSection {
   ///  section typically has some text explaining the empty reason.
   ///
   /// [section] A nested sub-section within this section.
-  const factory CompositionSection({
+  factory CompositionSection({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

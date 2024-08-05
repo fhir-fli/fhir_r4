@@ -1311,7 +1311,7 @@ class _$SubscriptionTopicImpl extends _SubscriptionTopic {
 }
 
 abstract class _SubscriptionTopic extends SubscriptionTopic {
-  const factory _SubscriptionTopic(
+  factory _SubscriptionTopic(
       {final R4ResourceType resourceType,
       final String? id,
       final FhirMeta? meta,
@@ -1974,7 +1974,7 @@ class _$SubscriptionTopicResourceTriggerImpl
 
 abstract class _SubscriptionTopicResourceTrigger
     extends SubscriptionTopicResourceTrigger {
-  const factory _SubscriptionTopicResourceTrigger(
+  factory _SubscriptionTopicResourceTrigger(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2434,7 +2434,7 @@ class _$SubscriptionTopicQueryCriteriaImpl
 
 abstract class _SubscriptionTopicQueryCriteria
     extends SubscriptionTopicQueryCriteria {
-  const factory _SubscriptionTopicQueryCriteria(
+  factory _SubscriptionTopicQueryCriteria(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2804,7 +2804,7 @@ class _$SubscriptionTopicEventTriggerImpl
 
 abstract class _SubscriptionTopicEventTrigger
     extends SubscriptionTopicEventTrigger {
-  const factory _SubscriptionTopicEventTrigger(
+  factory _SubscriptionTopicEventTrigger(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3267,7 +3267,7 @@ class _$SubscriptionTopicCanFilterByImpl extends _SubscriptionTopicCanFilterBy {
 
 abstract class _SubscriptionTopicCanFilterBy
     extends SubscriptionTopicCanFilterBy {
-  const factory _SubscriptionTopicCanFilterBy(
+  factory _SubscriptionTopicCanFilterBy(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3684,7 +3684,7 @@ class _$SubscriptionTopicNotificationShapeImpl
 
 abstract class _SubscriptionTopicNotificationShape
     extends SubscriptionTopicNotificationShape {
-  const factory _SubscriptionTopicNotificationShape(
+  factory _SubscriptionTopicNotificationShape(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

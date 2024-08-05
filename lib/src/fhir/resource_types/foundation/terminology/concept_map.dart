@@ -187,7 +187,7 @@ class ConceptMap extends DomainResource with _$ConceptMap {
   ///
   /// [group] A group of mappings that all have the same source and target
   ///  system.
-  const factory ConceptMap({
+  factory ConceptMap({
     @Default(R4ResourceType.ConceptMap)
     @JsonKey(unknownEnumValue: R4ResourceType.ConceptMap)
 
@@ -529,7 +529,7 @@ class ConceptMapGroup extends BackboneElement with _$ConceptMapGroup {
   /// "Unmapped" does not include codes that are unmatched, and the unmapped
   /// element is ignored in a code is specified to have equivalence =
   ///  unmatched.
-  const factory ConceptMapGroup({
+  factory ConceptMapGroup({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -683,7 +683,7 @@ class ConceptMapElement extends BackboneElement with _$ConceptMapElement {
   /// [displayElement] Extensions for display
   ///
   /// [target] A concept from the target value set that this concept maps to.
-  const factory ConceptMapElement({
+  factory ConceptMapElement({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -835,7 +835,7 @@ class ConceptMapTarget extends BackboneElement with _$ConceptMapTarget {
   /// mapped to some data element or source that is in context. The mapping may
   /// still be useful without a place for the additional data elements, but the
   ///  equivalence cannot be relied on.
-  const factory ConceptMapTarget({
+  factory ConceptMapTarget({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1002,7 +1002,7 @@ class ConceptMapDependsOn extends BackboneElement with _$ConceptMapDependsOn {
   ///  editors when editing the concept map.
   ///
   /// [displayElement] Extensions for display
-  const factory ConceptMapDependsOn({
+  factory ConceptMapDependsOn({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1158,7 +1158,7 @@ class ConceptMapUnmapped extends BackboneElement with _$ConceptMapUnmapped {
   /// [url] The canonical reference to an additional ConceptMap resource
   /// instance to use for mapping if this ConceptMap resource contains no
   ///  matching mapping for the source concept.
-  const factory ConceptMapUnmapped({
+  factory ConceptMapUnmapped({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

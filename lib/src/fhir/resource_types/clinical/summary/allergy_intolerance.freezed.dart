@@ -1119,7 +1119,7 @@ class _$AllergyIntoleranceImpl extends _AllergyIntolerance {
 }
 
 abstract class _AllergyIntolerance extends AllergyIntolerance {
-  const factory _AllergyIntolerance(
+  factory _AllergyIntolerance(
       {@JsonKey(unknownEnumValue: R4ResourceType.AllergyIntolerance)
       final R4ResourceType resourceType,
       final String? id,
@@ -1696,7 +1696,7 @@ class _$AllergyIntoleranceReactionImpl extends _AllergyIntoleranceReaction {
 }
 
 abstract class _AllergyIntoleranceReaction extends AllergyIntoleranceReaction {
-  const factory _AllergyIntoleranceReaction(
+  factory _AllergyIntoleranceReaction(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

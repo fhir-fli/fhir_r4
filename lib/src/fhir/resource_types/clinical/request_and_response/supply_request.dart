@@ -127,7 +127,7 @@ class SupplyRequest extends DomainResource with _$SupplyRequest {
   /// [deliverFrom] Where the supply is expected to come from.
   ///
   /// [deliverTo] Where the supply is destined to go.
-  const factory SupplyRequest({
+  factory SupplyRequest({
     @Default(R4ResourceType.SupplyRequest)
     @JsonKey(unknownEnumValue: R4ResourceType.SupplyRequest)
 
@@ -382,7 +382,7 @@ class SupplyRequestParameter extends BackboneElement
   /// [valueBoolean] The value of the device detail.
   ///
   /// [valueBooleanElement] Extensions for valueBoolean
-  const factory SupplyRequestParameter({
+  factory SupplyRequestParameter({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

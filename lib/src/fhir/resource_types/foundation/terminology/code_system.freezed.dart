@@ -1722,7 +1722,7 @@ class _$CodeSystemImpl extends _CodeSystem {
 }
 
 abstract class _CodeSystem extends CodeSystem {
-  const factory _CodeSystem(
+  factory _CodeSystem(
       {@JsonKey(unknownEnumValue: R4ResourceType.CodeSystem)
       final R4ResourceType resourceType,
       final String? id,
@@ -2575,7 +2575,7 @@ class _$CodeSystemFilterImpl extends _CodeSystemFilter {
 }
 
 abstract class _CodeSystemFilter extends CodeSystemFilter {
-  const factory _CodeSystemFilter(
+  factory _CodeSystemFilter(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3122,7 +3122,7 @@ class _$CodeSystemPropertyImpl extends _CodeSystemProperty {
 }
 
 abstract class _CodeSystemProperty extends CodeSystemProperty {
-  const factory _CodeSystemProperty(
+  factory _CodeSystemProperty(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3732,7 +3732,7 @@ class _$CodeSystemConceptImpl extends _CodeSystemConcept {
 }
 
 abstract class _CodeSystemConcept extends CodeSystemConcept {
-  const factory _CodeSystemConcept(
+  factory _CodeSystemConcept(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4223,7 +4223,7 @@ class _$CodeSystemDesignationImpl extends _CodeSystemDesignation {
 }
 
 abstract class _CodeSystemDesignation extends CodeSystemDesignation {
-  const factory _CodeSystemDesignation(
+  factory _CodeSystemDesignation(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -4927,7 +4927,7 @@ class _$CodeSystemProperty1Impl extends _CodeSystemProperty1 {
 }
 
 abstract class _CodeSystemProperty1 extends CodeSystemProperty1 {
-  const factory _CodeSystemProperty1(
+  factory _CodeSystemProperty1(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

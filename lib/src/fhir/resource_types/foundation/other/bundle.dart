@@ -67,7 +67,7 @@ class Bundle extends DomainResource with _$Bundle {
   ///  information about a resource (transactions and history only).
   ///
   /// [signature] Digital Signature - base64 encoded. XML-DSig or a JWT.
-  const factory Bundle({
+  factory Bundle({
     @Default(R4ResourceType.Bundle)
     @JsonKey(unknownEnumValue: R4ResourceType.Bundle)
 
@@ -277,7 +277,7 @@ class BundleLink extends BackboneElement with _$BundleLink {
   /// [url] The reference details for the link.
   ///
   /// [urlElement] Extensions for url
-  const factory BundleLink({
+  factory BundleLink({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -420,7 +420,7 @@ class BundleEntry extends BackboneElement with _$BundleEntry {
   /// [response] Indicates the results of processing the corresponding
   /// 'request' entry in the batch or transaction being responded to or what the
   ///  results of an operation where when returning history.
-  const factory BundleEntry({
+  factory BundleEntry({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -623,7 +623,7 @@ class BundleSearch extends BackboneElement with _$BundleSearch {
   /// [score] When searching, the server's search ranking score for the entry.
   ///
   /// [scoreElement] Extensions for score
-  const factory BundleSearch({
+  factory BundleSearch({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -776,7 +776,7 @@ class BundleRequest extends BackboneElement with _$BundleRequest {
   ///  "?").
   ///
   /// [ifNoneExistElement] Extensions for ifNoneExist
-  const factory BundleRequest({
+  factory BundleRequest({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -953,7 +953,7 @@ class BundleResponse extends BackboneElement with _$BundleResponse {
   ///
   /// [outcome] An OperationOutcome containing hints and warnings produced as
   ///  part of processing this entry in a batch or transaction.
-  const factory BundleResponse({
+  factory BundleResponse({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

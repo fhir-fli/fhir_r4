@@ -166,7 +166,7 @@ class ChargeItem extends DomainResource with _$ChargeItem {
   ///  participants.
   ///
   /// [supportingInformation] Further information supporting this charge.
-  const factory ChargeItem({
+  factory ChargeItem({
     @Default(R4ResourceType.ChargeItem)
     @JsonKey(unknownEnumValue: R4ResourceType.ChargeItem)
 
@@ -468,7 +468,7 @@ class ChargeItemPerformer extends BackboneElement with _$ChargeItemPerformer {
   ///
   /// [actor] The device, practitioner, etc. who performed or participated in
   ///  the service.
-  const factory ChargeItemPerformer({
+  factory ChargeItemPerformer({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

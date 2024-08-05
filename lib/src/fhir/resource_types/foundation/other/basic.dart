@@ -91,7 +91,7 @@ class Basic extends DomainResource with _$Basic {
   ///
   /// [author] Indicates who was responsible for creating the resource
   ///  instance.
-  const factory Basic({
+  factory Basic({
     @Default(R4ResourceType.Basic)
     @JsonKey(unknownEnumValue: R4ResourceType.Basic)
 

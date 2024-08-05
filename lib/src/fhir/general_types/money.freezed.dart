@@ -284,7 +284,7 @@ class _$MoneyImpl extends _Money {
 }
 
 abstract class _Money extends Money {
-  const factory _Money(
+  factory _Money(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final FhirDecimal? value,

@@ -428,7 +428,7 @@ class _$ContactPointImpl extends _ContactPoint {
 }
 
 abstract class _ContactPoint extends ContactPoint {
-  const factory _ContactPoint(
+  factory _ContactPoint(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: ContactPointSystem.unknown)

@@ -968,7 +968,7 @@ class _$AccountImpl extends _Account {
 }
 
 abstract class _Account extends Account {
-  const factory _Account(
+  factory _Account(
       {@JsonKey(unknownEnumValue: R4ResourceType.Account)
       final R4ResourceType resourceType,
       final String? id,
@@ -1493,7 +1493,7 @@ class _$AccountCoverageImpl extends _AccountCoverage {
 }
 
 abstract class _AccountCoverage extends AccountCoverage {
-  const factory _AccountCoverage(
+  factory _AccountCoverage(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1933,7 +1933,7 @@ class _$AccountGuarantorImpl extends _AccountGuarantor {
 }
 
 abstract class _AccountGuarantor extends AccountGuarantor {
-  const factory _AccountGuarantor(
+  factory _AccountGuarantor(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

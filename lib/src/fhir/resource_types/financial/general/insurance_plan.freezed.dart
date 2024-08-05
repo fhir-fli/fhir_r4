@@ -1093,7 +1093,7 @@ class _$InsurancePlanImpl extends _InsurancePlan {
 }
 
 abstract class _InsurancePlan extends InsurancePlan {
-  const factory _InsurancePlan(
+  factory _InsurancePlan(
       {@JsonKey(unknownEnumValue: R4ResourceType.InsurancePlan)
       final R4ResourceType resourceType,
       final String? id,
@@ -1697,7 +1697,7 @@ class _$InsurancePlanContactImpl extends _InsurancePlanContact {
 }
 
 abstract class _InsurancePlanContact extends InsurancePlanContact {
-  const factory _InsurancePlanContact(
+  factory _InsurancePlanContact(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2117,7 +2117,7 @@ class _$InsurancePlanCoverageImpl extends _InsurancePlanCoverage {
 }
 
 abstract class _InsurancePlanCoverage extends InsurancePlanCoverage {
-  const factory _InsurancePlanCoverage(
+  factory _InsurancePlanCoverage(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2552,7 +2552,7 @@ class _$InsurancePlanBenefitImpl extends _InsurancePlanBenefit {
 }
 
 abstract class _InsurancePlanBenefit extends InsurancePlanBenefit {
-  const factory _InsurancePlanBenefit(
+  factory _InsurancePlanBenefit(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2949,7 +2949,7 @@ class _$InsurancePlanLimitImpl extends _InsurancePlanLimit {
 }
 
 abstract class _InsurancePlanLimit extends InsurancePlanLimit {
-  const factory _InsurancePlanLimit(
+  factory _InsurancePlanLimit(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3473,7 +3473,7 @@ class _$InsurancePlanPlanImpl extends _InsurancePlanPlan {
 }
 
 abstract class _InsurancePlanPlan extends InsurancePlanPlan {
-  const factory _InsurancePlanPlan(
+  factory _InsurancePlanPlan(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3982,7 +3982,7 @@ class _$InsurancePlanGeneralCostImpl extends _InsurancePlanGeneralCost {
 }
 
 abstract class _InsurancePlanGeneralCost extends InsurancePlanGeneralCost {
-  const factory _InsurancePlanGeneralCost(
+  factory _InsurancePlanGeneralCost(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -4388,7 +4388,7 @@ class _$InsurancePlanSpecificCostImpl extends _InsurancePlanSpecificCost {
 }
 
 abstract class _InsurancePlanSpecificCost extends InsurancePlanSpecificCost {
-  const factory _InsurancePlanSpecificCost(
+  factory _InsurancePlanSpecificCost(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -4769,7 +4769,7 @@ class _$InsurancePlanBenefit1Impl extends _InsurancePlanBenefit1 {
 }
 
 abstract class _InsurancePlanBenefit1 extends InsurancePlanBenefit1 {
-  const factory _InsurancePlanBenefit1(
+  factory _InsurancePlanBenefit1(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5228,7 +5228,7 @@ class _$InsurancePlanCostImpl extends _InsurancePlanCost {
 }
 
 abstract class _InsurancePlanCost extends InsurancePlanCost {
-  const factory _InsurancePlanCost(
+  factory _InsurancePlanCost(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

@@ -127,7 +127,7 @@ class Invoice extends DomainResource with _$Invoice {
   ///
   /// [note] Comments made about the invoice by the issuer, subject, or other
   ///  participants.
-  const factory Invoice({
+  factory Invoice({
     @Default(R4ResourceType.Invoice)
     @JsonKey(unknownEnumValue: R4ResourceType.Invoice)
 
@@ -374,7 +374,7 @@ class InvoiceParticipant extends BackboneElement with _$InvoiceParticipant {
   ///
   /// [actor] The device, practitioner, etc. who performed or participated in
   ///  the service.
-  const factory InvoiceParticipant({
+  factory InvoiceParticipant({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -510,7 +510,7 @@ class InvoiceLineItem extends BackboneElement with _$InvoiceLineItem {
   /// conditions that apply to a billing code is currently under development.
   /// The priceComponent element can be used to offer transparency to the
   ///  recipient of the Invoice as to how the prices have been calculated.
-  const factory InvoiceLineItem({
+  factory InvoiceLineItem({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -657,7 +657,7 @@ class InvoicePriceComponent extends BackboneElement
   /// [factorElement] Extensions for factor
   ///
   /// [amount] The amount calculated for this component.
-  const factory InvoicePriceComponent({
+  factory InvoicePriceComponent({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

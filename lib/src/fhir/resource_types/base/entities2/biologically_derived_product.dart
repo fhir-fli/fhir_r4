@@ -113,7 +113,7 @@ class BiologicallyDerivedProduct extends DomainResource
   ///  infusion.
   ///
   /// [storage] Product storage.
-  const factory BiologicallyDerivedProduct({
+  factory BiologicallyDerivedProduct({
     @Default(R4ResourceType.BiologicallyDerivedProduct)
     @JsonKey(unknownEnumValue: R4ResourceType.BiologicallyDerivedProduct)
 
@@ -339,7 +339,7 @@ class BiologicallyDerivedProductCollection extends BackboneElement
   /// [collectedDateTimeElement] Extensions for collectedDateTime
   ///
   /// [collectedPeriod] Time of product collection.
-  const factory BiologicallyDerivedProductCollection({
+  factory BiologicallyDerivedProductCollection({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -462,7 +462,7 @@ class BiologicallyDerivedProductProcessing extends BackboneElement
   /// [timeDateTimeElement] Extensions for timeDateTime
   ///
   /// [timePeriod] Time of processing.
-  const factory BiologicallyDerivedProductProcessing({
+  factory BiologicallyDerivedProductProcessing({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -586,7 +586,7 @@ class BiologicallyDerivedProductManipulation extends BackboneElement
   /// [timeDateTimeElement] Extensions for timeDateTime
   ///
   /// [timePeriod] Time of manipulation.
-  const factory BiologicallyDerivedProductManipulation({
+  factory BiologicallyDerivedProductManipulation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -707,7 +707,7 @@ class BiologicallyDerivedProductStorage extends BackboneElement
   /// [scaleElement] Extensions for scale
   ///
   /// [duration] Storage timeperiod.
-  const factory BiologicallyDerivedProductStorage({
+  factory BiologicallyDerivedProductStorage({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

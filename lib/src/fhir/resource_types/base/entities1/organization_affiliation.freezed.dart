@@ -979,7 +979,7 @@ class _$OrganizationAffiliationImpl extends _OrganizationAffiliation {
 }
 
 abstract class _OrganizationAffiliation extends OrganizationAffiliation {
-  const factory _OrganizationAffiliation(
+  factory _OrganizationAffiliation(
       {@JsonKey(unknownEnumValue: R4ResourceType.OrganizationAffiliation)
       final R4ResourceType resourceType,
       final String? id,

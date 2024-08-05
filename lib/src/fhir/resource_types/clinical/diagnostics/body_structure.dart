@@ -101,7 +101,7 @@ class BodyStructure extends DomainResource with _$BodyStructure {
   /// [image] Image or images used to identify a location.
   ///
   /// [patient] The person to which the body site belongs.
-  const factory BodyStructure({
+  factory BodyStructure({
     @Default(R4ResourceType.BodyStructure)
     @JsonKey(unknownEnumValue: R4ResourceType.BodyStructure)
 

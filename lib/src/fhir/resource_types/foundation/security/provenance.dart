@@ -119,7 +119,7 @@ class Provenance extends DomainResource with _$Provenance {
   /// [signature] A digital signature on the target Reference(s). The signer
   /// should match a Provenance.agent. The purpose of the signature is
   ///  indicated.
-  const factory Provenance({
+  factory Provenance({
     @Default(R4ResourceType.Provenance)
     @JsonKey(unknownEnumValue: R4ResourceType.Provenance)
 
@@ -356,7 +356,7 @@ class ProvenanceAgent extends BackboneElement with _$ProvenanceAgent {
   ///
   /// [onBehalfOf] The individual, device, or organization for whom the change
   ///  was made.
-  const factory ProvenanceAgent({
+  factory ProvenanceAgent({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -495,7 +495,7 @@ class ProvenanceEntity extends BackboneElement with _$ProvenanceEntity {
   /// responsibility for that entity, possibly along with other agents. This
   /// description can be understood as shorthand for saying that the agent was
   ///  responsible for the activity which generated the entity.
-  const factory ProvenanceEntity({
+  factory ProvenanceEntity({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

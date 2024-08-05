@@ -170,7 +170,7 @@ class MedicationStatement extends DomainResource with _$MedicationStatement {
   ///
   /// [dosage] Indicates how the medication is/was or should be taken by the
   ///  patient.
-  const factory MedicationStatement({
+  factory MedicationStatement({
     @Default(R4ResourceType.MedicationStatement)
     @JsonKey(unknownEnumValue: R4ResourceType.MedicationStatement)
 

@@ -172,7 +172,7 @@ class MedicationDispense extends DomainResource with _$MedicationDispense {
   ///
   /// [eventHistory] A summary of the events of interest that have occurred,
   ///  such as when the dispense was verified.
-  const factory MedicationDispense({
+  factory MedicationDispense({
     @Default(R4ResourceType.MedicationDispense)
     @JsonKey(unknownEnumValue: R4ResourceType.MedicationDispense)
 
@@ -472,7 +472,7 @@ class MedicationDispensePerformer extends BackboneElement
   ///
   /// [actor] The device, practitioner, etc. who performed the action.  It
   ///  should be assumed that the actor is the dispenser of the medication.
-  const factory MedicationDispensePerformer({
+  factory MedicationDispensePerformer({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -602,7 +602,7 @@ class MedicationDispenseSubstitution extends BackboneElement
   ///
   /// [responsibleParty] The person or organization that has primary
   ///  responsibility for the substitution.
-  const factory MedicationDispenseSubstitution({
+  factory MedicationDispenseSubstitution({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

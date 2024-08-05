@@ -1393,7 +1393,7 @@ class _$ValueSetImpl extends _ValueSet {
 }
 
 abstract class _ValueSet extends ValueSet {
-  const factory _ValueSet(
+  factory _ValueSet(
       {@JsonKey(unknownEnumValue: R4ResourceType.ValueSet)
       final R4ResourceType resourceType,
       final String? id,
@@ -2130,7 +2130,7 @@ class _$ValueSetComposeImpl extends _ValueSetCompose {
 }
 
 abstract class _ValueSetCompose extends ValueSetCompose {
-  const factory _ValueSetCompose(
+  factory _ValueSetCompose(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2680,7 +2680,7 @@ class _$ValueSetIncludeImpl extends _ValueSetInclude {
 }
 
 abstract class _ValueSetInclude extends ValueSetInclude {
-  const factory _ValueSetInclude(
+  factory _ValueSetInclude(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3159,7 +3159,7 @@ class _$ValueSetConceptImpl extends _ValueSetConcept {
 }
 
 abstract class _ValueSetConcept extends ValueSetConcept {
-  const factory _ValueSetConcept(
+  factory _ValueSetConcept(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3620,7 +3620,7 @@ class _$ValueSetDesignationImpl extends _ValueSetDesignation {
 }
 
 abstract class _ValueSetDesignation extends ValueSetDesignation {
-  const factory _ValueSetDesignation(
+  factory _ValueSetDesignation(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -4098,7 +4098,7 @@ class _$ValueSetFilterImpl extends _ValueSetFilter {
 }
 
 abstract class _ValueSetFilter extends ValueSetFilter {
-  const factory _ValueSetFilter(
+  factory _ValueSetFilter(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -4718,7 +4718,7 @@ class _$ValueSetExpansionImpl extends _ValueSetExpansion {
 }
 
 abstract class _ValueSetExpansion extends ValueSetExpansion {
-  const factory _ValueSetExpansion(
+  factory _ValueSetExpansion(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5474,7 +5474,7 @@ class _$ValueSetParameterImpl extends _ValueSetParameter {
 }
 
 abstract class _ValueSetParameter extends ValueSetParameter {
-  const factory _ValueSetParameter(
+  factory _ValueSetParameter(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -6254,7 +6254,7 @@ class _$ValueSetContainsImpl extends _ValueSetContains {
 }
 
 abstract class _ValueSetContains extends ValueSetContains {
-  const factory _ValueSetContains(
+  factory _ValueSetContains(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

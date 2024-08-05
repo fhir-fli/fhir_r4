@@ -68,7 +68,7 @@ class SampledData extends DataType with _$SampledData {
   ///  of a decimal value.
   ///
   /// [dataElement] Extensions for data
-  const factory SampledData({
+  factory SampledData({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

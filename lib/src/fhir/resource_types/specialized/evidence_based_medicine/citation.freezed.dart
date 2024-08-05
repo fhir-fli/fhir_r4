@@ -1374,7 +1374,7 @@ class _$CitationImpl extends _Citation {
 }
 
 abstract class _Citation extends Citation {
-  const factory _Citation(
+  factory _Citation(
       {final R4ResourceType resourceType,
       final String? id,
       final FhirMeta? meta,
@@ -1824,7 +1824,7 @@ class _$CitationSummaryImpl extends _CitationSummary {
 }
 
 abstract class _CitationSummary extends CitationSummary {
-  const factory _CitationSummary(
+  factory _CitationSummary(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2109,7 +2109,7 @@ class _$CitationClassificationImpl extends _CitationClassification {
 }
 
 abstract class _CitationClassification extends CitationClassification {
-  const factory _CitationClassification(
+  factory _CitationClassification(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2422,7 +2422,7 @@ class _$CitationStatusDateImpl extends _CitationStatusDate {
 }
 
 abstract class _CitationStatusDate extends CitationStatusDate {
-  const factory _CitationStatusDate(
+  factory _CitationStatusDate(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2846,7 +2846,7 @@ class _$CitationRelatesToImpl extends _CitationRelatesTo {
 }
 
 abstract class _CitationRelatesTo extends CitationRelatesTo {
-  const factory _CitationRelatesTo(
+  factory _CitationRelatesTo(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3539,7 +3539,7 @@ class _$CitationCitedArtifactImpl extends _CitationCitedArtifact {
 }
 
 abstract class _CitationCitedArtifact extends CitationCitedArtifact {
-  const factory _CitationCitedArtifact(
+  factory _CitationCitedArtifact(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3873,7 +3873,7 @@ class _$CitationVersionImpl extends _CitationVersion {
 }
 
 abstract class _CitationVersion extends CitationVersion {
-  const factory _CitationVersion(
+  factory _CitationVersion(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4190,7 +4190,7 @@ class _$CitationStatusDate1Impl extends _CitationStatusDate1 {
 }
 
 abstract class _CitationStatusDate1 extends CitationStatusDate1 {
-  const factory _CitationStatusDate1(
+  factory _CitationStatusDate1(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4511,7 +4511,7 @@ class _$CitationTitleImpl extends _CitationTitle {
 }
 
 abstract class _CitationTitle extends CitationTitle {
-  const factory _CitationTitle(
+  factory _CitationTitle(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -4880,7 +4880,7 @@ class _$CitationAbstractImpl extends _CitationAbstract {
 }
 
 abstract class _CitationAbstract extends CitationAbstract {
-  const factory _CitationAbstract(
+  factory _CitationAbstract(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5215,7 +5215,7 @@ class _$CitationPartImpl extends _CitationPart {
 }
 
 abstract class _CitationPart extends CitationPart {
-  const factory _CitationPart(
+  factory _CitationPart(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5639,7 +5639,7 @@ class _$CitationRelatesTo1Impl extends _CitationRelatesTo1 {
 }
 
 abstract class _CitationRelatesTo1 extends CitationRelatesTo1 {
-  const factory _CitationRelatesTo1(
+  factory _CitationRelatesTo1(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -6301,7 +6301,7 @@ class _$CitationPublicationFormImpl extends _CitationPublicationForm {
 }
 
 abstract class _CitationPublicationForm extends CitationPublicationForm {
-  const factory _CitationPublicationForm(
+  factory _CitationPublicationForm(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -6757,7 +6757,7 @@ class _$CitationPublishedInImpl extends _CitationPublishedIn {
 }
 
 abstract class _CitationPublishedIn extends CitationPublishedIn {
-  const factory _CitationPublishedIn(
+  factory _CitationPublishedIn(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -7144,7 +7144,7 @@ class _$CitationPeriodicReleaseImpl extends _CitationPeriodicRelease {
 }
 
 abstract class _CitationPeriodicRelease extends CitationPeriodicRelease {
-  const factory _CitationPeriodicRelease(
+  factory _CitationPeriodicRelease(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -7611,7 +7611,7 @@ class _$CitationDateOfPublicationImpl extends _CitationDateOfPublication {
 }
 
 abstract class _CitationDateOfPublication extends CitationDateOfPublication {
-  const factory _CitationDateOfPublication(
+  factory _CitationDateOfPublication(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -7935,7 +7935,7 @@ class _$CitationWebLocationImpl extends _CitationWebLocation {
 }
 
 abstract class _CitationWebLocation extends CitationWebLocation {
-  const factory _CitationWebLocation(
+  factory _CitationWebLocation(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -8284,7 +8284,7 @@ class _$CitationClassification1Impl extends _CitationClassification1 {
 }
 
 abstract class _CitationClassification1 extends CitationClassification1 {
-  const factory _CitationClassification1(
+  factory _CitationClassification1(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -8697,7 +8697,7 @@ class _$CitationWhoClassifiedImpl extends _CitationWhoClassified {
 }
 
 abstract class _CitationWhoClassified extends CitationWhoClassified {
-  const factory _CitationWhoClassified(
+  factory _CitationWhoClassified(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -9028,7 +9028,7 @@ class _$CitationContributorshipImpl extends _CitationContributorship {
 }
 
 abstract class _CitationContributorship extends CitationContributorship {
-  const factory _CitationContributorship(
+  factory _CitationContributorship(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -9653,7 +9653,7 @@ class _$CitationEntryImpl extends _CitationEntry {
 }
 
 abstract class _CitationEntry extends CitationEntry {
-  const factory _CitationEntry(
+  factory _CitationEntry(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -10027,7 +10027,7 @@ class _$CitationAffiliationInfoImpl extends _CitationAffiliationInfo {
 }
 
 abstract class _CitationAffiliationInfo extends CitationAffiliationInfo {
-  const factory _CitationAffiliationInfo(
+  factory _CitationAffiliationInfo(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -10331,7 +10331,7 @@ class _$CitationContributionInstanceImpl extends _CitationContributionInstance {
 
 abstract class _CitationContributionInstance
     extends CitationContributionInstance {
-  const factory _CitationContributionInstance(
+  factory _CitationContributionInstance(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -10690,7 +10690,7 @@ class _$CitationSummary1Impl extends _CitationSummary1 {
 }
 
 abstract class _CitationSummary1 extends CitationSummary1 {
-  const factory _CitationSummary1(
+  factory _CitationSummary1(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

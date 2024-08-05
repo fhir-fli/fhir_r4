@@ -169,7 +169,7 @@ class DeviceRequest extends DomainResource with _$DeviceRequest {
   ///  the statement.
   ///
   /// [relevantHistory] Key events in the history of the request.
-  const factory DeviceRequest({
+  factory DeviceRequest({
     @Default(R4ResourceType.DeviceRequest)
     @JsonKey(unknownEnumValue: R4ResourceType.DeviceRequest)
 
@@ -478,7 +478,7 @@ class DeviceRequestParameter extends BackboneElement
   /// [valueBoolean] The value of the device detail.
   ///
   /// [valueBooleanElement] Extensions for valueBoolean
-  const factory DeviceRequestParameter({
+  factory DeviceRequestParameter({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

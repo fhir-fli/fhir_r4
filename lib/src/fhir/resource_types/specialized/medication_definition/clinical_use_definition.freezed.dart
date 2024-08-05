@@ -859,7 +859,7 @@ class _$ClinicalUseDefinitionImpl extends _ClinicalUseDefinition {
 }
 
 abstract class _ClinicalUseDefinition extends ClinicalUseDefinition {
-  const factory _ClinicalUseDefinition(
+  factory _ClinicalUseDefinition(
           {final R4ResourceType resourceType,
           final String? id,
           final FhirMeta? meta,
@@ -1383,7 +1383,7 @@ class _$ClinicalUseDefinitionContraindicationImpl
 
 abstract class _ClinicalUseDefinitionContraindication
     extends ClinicalUseDefinitionContraindication {
-  const factory _ClinicalUseDefinitionContraindication(
+  factory _ClinicalUseDefinitionContraindication(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -1716,7 +1716,7 @@ class _$ClinicalUseDefinitionOtherTherapyImpl
 
 abstract class _ClinicalUseDefinitionOtherTherapy
     extends ClinicalUseDefinitionOtherTherapy {
-  const factory _ClinicalUseDefinitionOtherTherapy(
+  factory _ClinicalUseDefinitionOtherTherapy(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2273,7 +2273,7 @@ class _$ClinicalUseDefinitionIndicationImpl
 
 abstract class _ClinicalUseDefinitionIndication
     extends ClinicalUseDefinitionIndication {
-  const factory _ClinicalUseDefinitionIndication(
+  factory _ClinicalUseDefinitionIndication(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2739,7 +2739,7 @@ class _$ClinicalUseDefinitionInteractionImpl
 
 abstract class _ClinicalUseDefinitionInteraction
     extends ClinicalUseDefinitionInteraction {
-  const factory _ClinicalUseDefinitionInteraction(
+  factory _ClinicalUseDefinitionInteraction(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3082,7 +3082,7 @@ class _$ClinicalUseDefinitionInteractantImpl
 
 abstract class _ClinicalUseDefinitionInteractant
     extends ClinicalUseDefinitionInteractant {
-  const factory _ClinicalUseDefinitionInteractant(
+  factory _ClinicalUseDefinitionInteractant(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3454,7 +3454,7 @@ class _$ClinicalUseDefinitionUndesirableEffectImpl
 
 abstract class _ClinicalUseDefinitionUndesirableEffect
     extends ClinicalUseDefinitionUndesirableEffect {
-  const factory _ClinicalUseDefinitionUndesirableEffect(
+  factory _ClinicalUseDefinitionUndesirableEffect(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3795,7 +3795,7 @@ class _$ClinicalUseDefinitionWarningImpl extends _ClinicalUseDefinitionWarning {
 
 abstract class _ClinicalUseDefinitionWarning
     extends ClinicalUseDefinitionWarning {
-  const factory _ClinicalUseDefinitionWarning(
+  factory _ClinicalUseDefinitionWarning(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

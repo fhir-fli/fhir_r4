@@ -1891,7 +1891,7 @@ class _$SearchParameterImpl extends _SearchParameter {
 }
 
 abstract class _SearchParameter extends SearchParameter {
-  const factory _SearchParameter(
+  factory _SearchParameter(
       {@JsonKey(unknownEnumValue: R4ResourceType.SearchParameter)
       final R4ResourceType resourceType,
       final String? id,
@@ -2628,7 +2628,7 @@ class _$SearchParameterComponentImpl extends _SearchParameterComponent {
 }
 
 abstract class _SearchParameterComponent extends SearchParameterComponent {
-  const factory _SearchParameterComponent(
+  factory _SearchParameterComponent(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

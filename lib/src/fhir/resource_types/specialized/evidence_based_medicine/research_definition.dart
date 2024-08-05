@@ -245,7 +245,7 @@ class ResearchDefinition extends DomainResource with _$ResearchDefinition {
   ///
   /// [outcome] A reference to a ResearchElementDefinition resomece that
   ///  defines the outcome for the research.
-  const factory ResearchDefinition({
+  factory ResearchDefinition({
     @Default(R4ResourceType.ResearchDefinition)
     @JsonKey(unknownEnumValue: R4ResourceType.ResearchDefinition)
     R4ResourceType resourceType,

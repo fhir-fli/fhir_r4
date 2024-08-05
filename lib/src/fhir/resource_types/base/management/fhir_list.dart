@@ -114,7 +114,7 @@ class FhirList extends DomainResource with _$FhirList {
   /// [entry] Entries in this list.
   ///
   /// [emptyReason] If the list is empty, why the list is empty.
-  const factory FhirList({
+  factory FhirList({
     @Default(R4ResourceType.FhirList)
     @JsonKey(unknownEnumValue: R4ResourceType.FhirList)
 
@@ -351,7 +351,7 @@ class FhirListEntry extends BackboneElement with _$FhirListEntry {
   /// [dateElement] Extensions for date
   ///
   /// [item] A reference to the actual resource from which data was derived.
-  const factory FhirListEntry({
+  factory FhirListEntry({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

@@ -375,7 +375,7 @@ class _$AnnotationImpl extends _Annotation {
 }
 
 abstract class _Annotation extends Annotation {
-  const factory _Annotation(
+  factory _Annotation(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final Reference? authorReference,

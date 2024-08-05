@@ -847,7 +847,7 @@ class _$DetectedIssueImpl extends _DetectedIssue {
 }
 
 abstract class _DetectedIssue extends DetectedIssue {
-  const factory _DetectedIssue(
+  factory _DetectedIssue(
       {@JsonKey(unknownEnumValue: R4ResourceType.DetectedIssue)
       final R4ResourceType resourceType,
       final String? id,
@@ -1200,7 +1200,7 @@ class _$DetectedIssueEvidenceImpl extends _DetectedIssueEvidence {
 }
 
 abstract class _DetectedIssueEvidence extends DetectedIssueEvidence {
-  const factory _DetectedIssueEvidence(
+  factory _DetectedIssueEvidence(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1521,7 +1521,7 @@ class _$DetectedIssueMitigationImpl extends _DetectedIssueMitigation {
 }
 
 abstract class _DetectedIssueMitigation extends DetectedIssueMitigation {
-  const factory _DetectedIssueMitigation(
+  factory _DetectedIssueMitigation(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

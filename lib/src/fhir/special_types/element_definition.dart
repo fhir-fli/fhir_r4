@@ -1666,7 +1666,7 @@ class ElementDefinition extends BackboneType with _$ElementDefinition {
   ///
   /// [mapping] Identifies a concept from an external specification that
   ///  roughly corresponds to this element.
-  const factory ElementDefinition({
+  factory ElementDefinition({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -3741,7 +3741,7 @@ class ElementDefinitionSlicing extends Element with _$ElementDefinitionSlicing {
   ///  allowed at the end.
   ///
   /// [rulesElement] Extensions for rules
-  const factory ElementDefinitionSlicing({
+  factory ElementDefinitionSlicing({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -3887,7 +3887,7 @@ class ElementDefinitionDiscriminator extends Element
   ///  which discrimination is based.
   ///
   /// [pathElement] Extensions for path
-  const factory ElementDefinitionDiscriminator({
+  factory ElementDefinitionDiscriminator({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -4020,7 +4020,7 @@ class ElementDefinitionBase extends Element with _$ElementDefinitionBase {
   /// [max] Maximum cardinality of the base element identified by the path.
   ///
   /// [maxElement] Extensions for max
-  const factory ElementDefinitionBase({
+  factory ElementDefinitionBase({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -4179,7 +4179,7 @@ class ElementDefinitionType extends Element with _$ElementDefinitionType {
   ///  version independent, or whether either can be used.
   ///
   /// [versioningElement] Extensions for versioning
-  const factory ElementDefinitionType({
+  factory ElementDefinitionType({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -4519,7 +4519,7 @@ class ElementDefinitionExample extends Element with _$ElementDefinitionExample {
   ///
   /// [valueMeta] The actual value for the element, which must be one of the
   ///  types allowed for this element.
-  const factory ElementDefinitionExample({
+  factory ElementDefinitionExample({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -4923,7 +4923,7 @@ class ElementDefinitionConstraint extends Element
   ///
   /// [source] A reference to the original source of the constraint, for
   ///  traceability purposes.
-  const factory ElementDefinitionConstraint({
+  factory ElementDefinitionConstraint({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -5085,7 +5085,7 @@ class ElementDefinitionBinding extends Element with _$ElementDefinitionBinding {
   ///
   /// [valueSet] Refers to the value set that identifies the set of codes the
   ///  binding refers to.
-  const factory ElementDefinitionBinding({
+  factory ElementDefinitionBinding({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -5223,7 +5223,7 @@ class ElementDefinitionMapping extends Element with _$ElementDefinitionMapping {
   /// [comment] Comments that provide information about the mapping or its use.
   ///
   /// [commentElement] Extensions for comment
-  const factory ElementDefinitionMapping({
+  factory ElementDefinitionMapping({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

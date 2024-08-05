@@ -882,7 +882,7 @@ class _$AppointmentResponseImpl extends _AppointmentResponse {
 }
 
 abstract class _AppointmentResponse extends AppointmentResponse {
-  const factory _AppointmentResponse(
+  factory _AppointmentResponse(
           {@JsonKey(unknownEnumValue: R4ResourceType.AppointmentResponse)
           final R4ResourceType resourceType,
           final String? id,

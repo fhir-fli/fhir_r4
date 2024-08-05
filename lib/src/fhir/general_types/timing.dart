@@ -62,7 +62,7 @@ class Timing extends BackboneType with _$Timing {
   /// and either the code or the data may be used to interpret the Timing, with
   /// the exception that .repeat.bounds still applies over the code (and is not
   ///  contained in the code).
-  const factory Timing({
+  factory Timing({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -271,7 +271,7 @@ class TimingRepeat extends Element with _$TimingRepeat {
   ///  is assumed to be after the event.
   ///
   /// [offsetElement] Extensions for offset
-  const factory TimingRepeat({
+  factory TimingRepeat({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

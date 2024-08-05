@@ -116,7 +116,7 @@ class PractitionerRole extends DomainResource with _$PractitionerRole {
   ///
   /// [endpoint] Technical endpoints providing access to services operated for
   ///  the practitioner with this role.
-  const factory PractitionerRole({
+  factory PractitionerRole({
     @Default(R4ResourceType.PractitionerRole)
     @JsonKey(unknownEnumValue: R4ResourceType.PractitionerRole)
 
@@ -438,7 +438,7 @@ class PractitionerRoleAvailableTime extends BackboneElement
   ///  set, then this time is ignored.
   ///
   /// [availableEndTimeElement] Extensions for availableEndTime
-  const factory PractitionerRoleAvailableTime({
+  factory PractitionerRoleAvailableTime({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -581,7 +581,7 @@ class PractitionerRoleNotAvailable extends BackboneElement
   ///
   /// [during] Service is not available (seasonally or for a public holiday)
   ///  from this date.
-  const factory PractitionerRoleNotAvailable({
+  factory PractitionerRoleNotAvailable({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

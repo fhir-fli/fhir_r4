@@ -1702,7 +1702,7 @@ class _$ChargeItemImpl extends _ChargeItem {
 }
 
 abstract class _ChargeItem extends ChargeItem {
-  const factory _ChargeItem(
+  factory _ChargeItem(
       {@JsonKey(unknownEnumValue: R4ResourceType.ChargeItem)
       final R4ResourceType resourceType,
       final String? id,
@@ -2335,7 +2335,7 @@ class _$ChargeItemPerformerImpl extends _ChargeItemPerformer {
 }
 
 abstract class _ChargeItemPerformer extends ChargeItemPerformer {
-  const factory _ChargeItemPerformer(
+  factory _ChargeItemPerformer(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

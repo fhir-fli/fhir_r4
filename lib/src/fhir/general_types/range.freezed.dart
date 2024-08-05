@@ -261,7 +261,7 @@ class _$RangeImpl extends _Range {
 }
 
 abstract class _Range extends Range {
-  const factory _Range(
+  factory _Range(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final Quantity? low,

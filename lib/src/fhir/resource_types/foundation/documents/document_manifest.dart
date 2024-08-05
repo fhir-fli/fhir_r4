@@ -122,7 +122,7 @@ class DocumentManifest extends DomainResource with _$DocumentManifest {
   ///
   /// [related] Related identifiers or resources associated with the
   ///  DocumentManifest.
-  const factory DocumentManifest({
+  factory DocumentManifest({
     @Default(R4ResourceType.DocumentManifest)
     @JsonKey(unknownEnumValue: R4ResourceType.DocumentManifest)
 
@@ -359,7 +359,7 @@ class DocumentManifestRelated extends BackboneElement
   ///
   /// [ref] Related Resource to this DocumentManifest. For example, Order,
   ///  ServiceRequest,  Procedure, EligibilityRequest, etc.
-  const factory DocumentManifestRelated({
+  factory DocumentManifestRelated({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

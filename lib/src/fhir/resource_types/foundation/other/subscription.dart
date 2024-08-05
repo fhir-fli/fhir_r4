@@ -107,7 +107,7 @@ class Subscription extends DomainResource with _$Subscription {
   ///
   /// [channel] Details where to send notifications when resources are received
   ///  that meet the criteria.
-  const factory Subscription({
+  factory Subscription({
     @Default(R4ResourceType.Subscription)
     @JsonKey(unknownEnumValue: R4ResourceType.Subscription)
 
@@ -416,7 +416,7 @@ class SubscriptionChannel extends BackboneElement with _$SubscriptionChannel {
   ///  notification.
   ///
   /// [headerElement] Extensions for header
-  const factory SubscriptionChannel({
+  factory SubscriptionChannel({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

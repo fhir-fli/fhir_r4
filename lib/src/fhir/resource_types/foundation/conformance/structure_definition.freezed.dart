@@ -1846,7 +1846,7 @@ class _$StructureDefinitionImpl extends _StructureDefinition {
 }
 
 abstract class _StructureDefinition extends StructureDefinition {
-  const factory _StructureDefinition(
+  factory _StructureDefinition(
       {@JsonKey(unknownEnumValue: R4ResourceType.StructureDefinition)
       final R4ResourceType resourceType,
       final String? id,
@@ -2703,7 +2703,7 @@ class _$StructureDefinitionMappingImpl extends _StructureDefinitionMapping {
 }
 
 abstract class _StructureDefinitionMapping extends StructureDefinitionMapping {
-  const factory _StructureDefinitionMapping(
+  factory _StructureDefinitionMapping(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3153,7 +3153,7 @@ class _$StructureDefinitionContextImpl extends _StructureDefinitionContext {
 }
 
 abstract class _StructureDefinitionContext extends StructureDefinitionContext {
-  const factory _StructureDefinitionContext(
+  factory _StructureDefinitionContext(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3514,7 +3514,7 @@ class _$StructureDefinitionSnapshotImpl extends _StructureDefinitionSnapshot {
 
 abstract class _StructureDefinitionSnapshot
     extends StructureDefinitionSnapshot {
-  const factory _StructureDefinitionSnapshot(
+  factory _StructureDefinitionSnapshot(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3857,7 +3857,7 @@ class _$StructureDefinitionDifferentialImpl
 
 abstract class _StructureDefinitionDifferential
     extends StructureDefinitionDifferential {
-  const factory _StructureDefinitionDifferential(
+  factory _StructureDefinitionDifferential(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

@@ -1956,7 +1956,7 @@ class _$LibraryImpl extends _Library {
 }
 
 abstract class _Library extends Library {
-  const factory _Library(
+  factory _Library(
       {@JsonKey(unknownEnumValue: R4ResourceType.Library)
       final R4ResourceType resourceType,
       final String? id,

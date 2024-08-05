@@ -2261,7 +2261,7 @@ class _$ExplanationOfBenefitImpl extends _ExplanationOfBenefit {
 }
 
 abstract class _ExplanationOfBenefit extends ExplanationOfBenefit {
-  const factory _ExplanationOfBenefit(
+  factory _ExplanationOfBenefit(
       {@JsonKey(unknownEnumValue: R4ResourceType.ExplanationOfBenefit)
       final R4ResourceType resourceType,
       final String? id,
@@ -3038,7 +3038,7 @@ class _$ExplanationOfBenefitRelatedImpl extends _ExplanationOfBenefitRelated {
 
 abstract class _ExplanationOfBenefitRelated
     extends ExplanationOfBenefitRelated {
-  const factory _ExplanationOfBenefitRelated(
+  factory _ExplanationOfBenefitRelated(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3433,7 +3433,7 @@ class _$ExplanationOfBenefitPayeeImpl extends _ExplanationOfBenefitPayee {
 }
 
 abstract class _ExplanationOfBenefitPayee extends ExplanationOfBenefitPayee {
-  const factory _ExplanationOfBenefitPayee(
+  factory _ExplanationOfBenefitPayee(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3964,7 +3964,7 @@ class _$ExplanationOfBenefitCareTeamImpl extends _ExplanationOfBenefitCareTeam {
 
 abstract class _ExplanationOfBenefitCareTeam
     extends ExplanationOfBenefitCareTeam {
-  const factory _ExplanationOfBenefitCareTeam(
+  factory _ExplanationOfBenefitCareTeam(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4798,7 +4798,7 @@ class _$ExplanationOfBenefitSupportingInfoImpl
 
 abstract class _ExplanationOfBenefitSupportingInfo
     extends ExplanationOfBenefitSupportingInfo {
-  const factory _ExplanationOfBenefitSupportingInfo(
+  factory _ExplanationOfBenefitSupportingInfo(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5448,7 +5448,7 @@ class _$ExplanationOfBenefitDiagnosisImpl
 
 abstract class _ExplanationOfBenefitDiagnosis
     extends ExplanationOfBenefitDiagnosis {
-  const factory _ExplanationOfBenefitDiagnosis(
+  factory _ExplanationOfBenefitDiagnosis(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -6042,7 +6042,7 @@ class _$ExplanationOfBenefitProcedureImpl
 
 abstract class _ExplanationOfBenefitProcedure
     extends ExplanationOfBenefitProcedure {
-  const factory _ExplanationOfBenefitProcedure(
+  factory _ExplanationOfBenefitProcedure(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -6562,7 +6562,7 @@ class _$ExplanationOfBenefitInsuranceImpl
 
 abstract class _ExplanationOfBenefitInsurance
     extends ExplanationOfBenefitInsurance {
-  const factory _ExplanationOfBenefitInsurance(
+  factory _ExplanationOfBenefitInsurance(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -7072,7 +7072,7 @@ class _$ExplanationOfBenefitAccidentImpl extends _ExplanationOfBenefitAccident {
 
 abstract class _ExplanationOfBenefitAccident
     extends ExplanationOfBenefitAccident {
-  const factory _ExplanationOfBenefitAccident(
+  factory _ExplanationOfBenefitAccident(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -8596,7 +8596,7 @@ class _$ExplanationOfBenefitItemImpl extends _ExplanationOfBenefitItem {
 }
 
 abstract class _ExplanationOfBenefitItem extends ExplanationOfBenefitItem {
-  const factory _ExplanationOfBenefitItem(
+  factory _ExplanationOfBenefitItem(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -9270,7 +9270,7 @@ class _$ExplanationOfBenefitAdjudicationImpl
 
 abstract class _ExplanationOfBenefitAdjudication
     extends ExplanationOfBenefitAdjudication {
-  const factory _ExplanationOfBenefitAdjudication(
+  factory _ExplanationOfBenefitAdjudication(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -10192,7 +10192,7 @@ class _$ExplanationOfBenefitDetailImpl extends _ExplanationOfBenefitDetail {
 }
 
 abstract class _ExplanationOfBenefitDetail extends ExplanationOfBenefitDetail {
-  const factory _ExplanationOfBenefitDetail(
+  factory _ExplanationOfBenefitDetail(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -11152,7 +11152,7 @@ class _$ExplanationOfBenefitSubDetailImpl
 
 abstract class _ExplanationOfBenefitSubDetail
     extends ExplanationOfBenefitSubDetail {
-  const factory _ExplanationOfBenefitSubDetail(
+  factory _ExplanationOfBenefitSubDetail(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -12520,7 +12520,7 @@ class _$ExplanationOfBenefitAddItemImpl extends _ExplanationOfBenefitAddItem {
 
 abstract class _ExplanationOfBenefitAddItem
     extends ExplanationOfBenefitAddItem {
-  const factory _ExplanationOfBenefitAddItem(
+  factory _ExplanationOfBenefitAddItem(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -13379,7 +13379,7 @@ class _$ExplanationOfBenefitDetail1Impl extends _ExplanationOfBenefitDetail1 {
 
 abstract class _ExplanationOfBenefitDetail1
     extends ExplanationOfBenefitDetail1 {
-  const factory _ExplanationOfBenefitDetail1(
+  factory _ExplanationOfBenefitDetail1(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -14111,7 +14111,7 @@ class _$ExplanationOfBenefitSubDetail1Impl
 
 abstract class _ExplanationOfBenefitSubDetail1
     extends ExplanationOfBenefitSubDetail1 {
-  const factory _ExplanationOfBenefitSubDetail1(
+  factory _ExplanationOfBenefitSubDetail1(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -14554,7 +14554,7 @@ class _$ExplanationOfBenefitTotalImpl extends _ExplanationOfBenefitTotal {
 }
 
 abstract class _ExplanationOfBenefitTotal extends ExplanationOfBenefitTotal {
-  const factory _ExplanationOfBenefitTotal(
+  factory _ExplanationOfBenefitTotal(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -15116,7 +15116,7 @@ class _$ExplanationOfBenefitPaymentImpl extends _ExplanationOfBenefitPayment {
 
 abstract class _ExplanationOfBenefitPayment
     extends ExplanationOfBenefitPayment {
-  const factory _ExplanationOfBenefitPayment(
+  factory _ExplanationOfBenefitPayment(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -15643,7 +15643,7 @@ class _$ExplanationOfBenefitProcessNoteImpl
 
 abstract class _ExplanationOfBenefitProcessNote
     extends ExplanationOfBenefitProcessNote {
-  const factory _ExplanationOfBenefitProcessNote(
+  factory _ExplanationOfBenefitProcessNote(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -16325,7 +16325,7 @@ class _$ExplanationOfBenefitBenefitBalanceImpl
 
 abstract class _ExplanationOfBenefitBenefitBalance
     extends ExplanationOfBenefitBenefitBalance {
-  const factory _ExplanationOfBenefitBenefitBalance(
+  factory _ExplanationOfBenefitBenefitBalance(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -16969,7 +16969,7 @@ class _$ExplanationOfBenefitFinancialImpl
 
 abstract class _ExplanationOfBenefitFinancial
     extends ExplanationOfBenefitFinancial {
-  const factory _ExplanationOfBenefitFinancial(
+  factory _ExplanationOfBenefitFinancial(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

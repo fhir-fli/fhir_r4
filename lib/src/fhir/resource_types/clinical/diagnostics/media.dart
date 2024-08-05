@@ -156,7 +156,7 @@ class Media extends DomainResource with _$Media {
   ///
   /// [note] Comments made about the media by the performer, subject or other
   ///  participants.
-  const factory Media({
+  factory Media({
     @Default(R4ResourceType.Media)
     @JsonKey(unknownEnumValue: R4ResourceType.Media)
 

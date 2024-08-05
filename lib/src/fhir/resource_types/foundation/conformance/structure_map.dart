@@ -168,7 +168,7 @@ class StructureMap extends DomainResource with _$StructureMap {
   ///
   /// [group] Organizes the mapping into manageable chunks for human
   ///  review/ease of maintenance.
-  const factory StructureMap({
+  factory StructureMap({
     @Default(R4ResourceType.StructureMap)
     @JsonKey(unknownEnumValue: R4ResourceType.StructureMap)
 
@@ -473,7 +473,7 @@ class StructureMapStructure extends BackboneElement
   ///  the mapping.
   ///
   /// [documentationElement] Extensions for documentation
-  const factory StructureMapStructure({
+  factory StructureMapStructure({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -622,7 +622,7 @@ class StructureMapGroup extends BackboneElement with _$StructureMapGroup {
   ///  provided when the mapping is invoked.
   ///
   /// [rule] Transform Rule from source to target.
-  const factory StructureMapGroup({
+  factory StructureMapGroup({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -775,7 +775,7 @@ class StructureMapInput extends BackboneElement with _$StructureMapInput {
   /// [documentation] Documentation for this instance of data.
   ///
   /// [documentationElement] Extensions for documentation
-  const factory StructureMapInput({
+  factory StructureMapInput({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -919,7 +919,7 @@ class StructureMapRule extends BackboneElement with _$StructureMapRule {
   /// [documentation] Documentation for this instance of data.
   ///
   /// [documentationElement] Extensions for documentation
-  const factory StructureMapRule({
+  factory StructureMapRule({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1282,7 +1282,7 @@ class StructureMapSource extends BackboneElement with _$StructureMapSource {
   ///  the transform log when content matching the source rule is found.
   ///
   /// [logMessageElement] Extensions for logMessage
-  const factory StructureMapSource({
+  factory StructureMapSource({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1755,7 +1755,7 @@ class StructureMapTarget extends BackboneElement with _$StructureMapTarget {
   /// [transformElement] Extensions for transform
   ///
   /// [parameter] Parameters to the transform.
-  const factory StructureMapTarget({
+  factory StructureMapTarget({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1925,7 +1925,7 @@ class StructureMapParameter extends BackboneElement
   /// [valueDecimal] Parameter value - variable or literal.
   ///
   /// [valueDecimalElement] Extensions for valueDecimal
-  const factory StructureMapParameter({
+  factory StructureMapParameter({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2068,7 +2068,7 @@ class StructureMapDependent extends BackboneElement
   /// [variable] Variable to pass to the rule or group.
   ///
   /// [variableElement] Extensions for variable
-  const factory StructureMapDependent({
+  factory StructureMapDependent({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

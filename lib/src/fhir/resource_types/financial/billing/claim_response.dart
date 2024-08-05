@@ -163,7 +163,7 @@ class ClaimResponse extends DomainResource with _$ClaimResponse {
   ///  products and services specified on the claim.
   ///
   /// [error] Errors encountered during the processing of the adjudication.
-  const factory ClaimResponse({
+  factory ClaimResponse({
     @Default(R4ResourceType.ClaimResponse)
     @JsonKey(unknownEnumValue: R4ResourceType.ClaimResponse)
 
@@ -468,7 +468,7 @@ class ClaimResponseItem extends BackboneElement with _$ClaimResponseItem {
   ///
   /// [detail] A claim detail. Either a simple (a product or service) or a
   ///  'group' of sub-details which are simple items.
-  const factory ClaimResponseItem({
+  factory ClaimResponseItem({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -613,7 +613,7 @@ class ClaimResponseAdjudication extends BackboneElement
   ///  exclusive to the amount element above.
   ///
   /// [valueElement] Extensions for value
-  const factory ClaimResponseAdjudication({
+  factory ClaimResponseAdjudication({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -753,7 +753,7 @@ class ClaimResponseDetail extends BackboneElement with _$ClaimResponseDetail {
   /// [adjudication] The adjudication results.
   ///
   /// [subDetail] A sub-detail adjudication of a simple product or service.
-  const factory ClaimResponseDetail({
+  factory ClaimResponseDetail({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -891,7 +891,7 @@ class ClaimResponseSubDetail extends BackboneElement
   /// [noteNumberElement] Extensions for noteNumber
   ///
   /// [adjudication] The adjudication results.
-  const factory ClaimResponseSubDetail({
+  factory ClaimResponseSubDetail({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1086,7 +1086,7 @@ class ClaimResponseAddItem extends BackboneElement with _$ClaimResponseAddItem {
   /// [adjudication] The adjudication results.
   ///
   /// [detail] The second-tier service adjudications for payor added services.
-  const factory ClaimResponseAddItem({
+  factory ClaimResponseAddItem({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1325,7 +1325,7 @@ class ClaimResponseDetail1 extends BackboneElement with _$ClaimResponseDetail1 {
   ///
   /// [subDetail] The third-tier service adjudications for payor added
   ///  services.
-  const factory ClaimResponseDetail1({
+  factory ClaimResponseDetail1({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1506,7 +1506,7 @@ class ClaimResponseSubDetail1 extends BackboneElement
   /// [noteNumberElement] Extensions for noteNumber
   ///
   /// [adjudication] The adjudication results.
-  const factory ClaimResponseSubDetail1({
+  factory ClaimResponseSubDetail1({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1660,7 +1660,7 @@ class ClaimResponseTotal extends BackboneElement with _$ClaimResponseTotal {
   ///  by other coverages, and the benefit payable for this item.
   ///
   /// [amount] Monetary total amount associated with the category.
-  const factory ClaimResponseTotal({
+  factory ClaimResponseTotal({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1793,7 +1793,7 @@ class ClaimResponsePayment extends BackboneElement with _$ClaimResponsePayment {
   /// [amount] Benefits payable less any payment adjustment.
   ///
   /// [identifier] Issuer's unique identifier for the payment instrument.
-  const factory ClaimResponsePayment({
+  factory ClaimResponsePayment({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1938,7 +1938,7 @@ class ClaimResponseProcessNote extends BackboneElement
   /// [textElement] Extensions for text
   ///
   /// [language] A code to define the language used in the text of the note.
-  const factory ClaimResponseProcessNote({
+  factory ClaimResponseProcessNote({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2089,7 +2089,7 @@ class ClaimResponseInsurance extends BackboneElement
   ///
   /// [claimResponse] The result of the adjudication of the line items for the
   ///  Coverage specified in this insurance.
-  const factory ClaimResponseInsurance({
+  factory ClaimResponseInsurance({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2248,7 +2248,7 @@ class ClaimResponseError extends BackboneElement with _$ClaimResponseError {
   ///
   /// [code] An error code, from a specified code system, which details why the
   ///  claim could not be adjudicated.
-  const factory ClaimResponseError({
+  factory ClaimResponseError({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

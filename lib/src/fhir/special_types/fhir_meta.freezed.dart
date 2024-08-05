@@ -463,7 +463,7 @@ class _$FhirMetaImpl extends _FhirMeta {
 }
 
 abstract class _FhirMeta extends FhirMeta {
-  const factory _FhirMeta(
+  factory _FhirMeta(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final FhirId? versionId,

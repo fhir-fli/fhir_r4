@@ -281,7 +281,7 @@ class Measure extends DomainResource with _$Measure {
   /// [supplementalData] The supplemental data criteria for the measure report,
   /// specified as either the name of a valid CQL expression within a referenced
   ///  library, or a valid FHIR Resource Path.
-  const factory Measure({
+  factory Measure({
     @Default(R4ResourceType.Measure)
     @JsonKey(unknownEnumValue: R4ResourceType.Measure)
 
@@ -734,7 +734,7 @@ class MeasureGroup extends BackboneElement with _$MeasureGroup {
   /// [stratifier] The stratifier criteria for the measure report, specified as
   /// either the name of a valid CQL expression defined within a referenced
   ///  library or a valid FHIR Resource Path.
-  const factory MeasureGroup({
+  factory MeasureGroup({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -867,7 +867,7 @@ class MeasurePopulation extends BackboneElement with _$MeasurePopulation {
   ///
   /// [criteria] An expression that specifies the criteria for the population,
   ///  typically the name of an expression in a library.
-  const factory MeasurePopulation({
+  factory MeasurePopulation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1001,7 +1001,7 @@ class MeasureStratifier extends BackboneElement with _$MeasureStratifier {
   /// [component] A component of the stratifier criteria for the measure
   /// report, specified as either the name of a valid CQL expression defined
   ///  within a referenced library or a valid FHIR Resource Path.
-  const factory MeasureStratifier({
+  factory MeasureStratifier({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1142,7 +1142,7 @@ class MeasureComponent extends BackboneElement with _$MeasureComponent {
   /// of the stratifier. This is typically the name of an expression defined
   /// within a referenced library, but it may also be a path to a stratifier
   ///  element.
-  const factory MeasureComponent({
+  factory MeasureComponent({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1286,7 +1286,7 @@ class MeasureSupplementalData extends BackboneElement
   /// name of a valid expression defined within a referenced library, but it may
   /// also be a path to a specific data element. The criteria defines the data
   ///  to be returned for this element.
-  const factory MeasureSupplementalData({
+  factory MeasureSupplementalData({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

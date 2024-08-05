@@ -357,7 +357,7 @@ class _$ProductShelfLifeImpl extends _ProductShelfLife {
 }
 
 abstract class _ProductShelfLife extends ProductShelfLife {
-  const factory _ProductShelfLife(
+  factory _ProductShelfLife(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

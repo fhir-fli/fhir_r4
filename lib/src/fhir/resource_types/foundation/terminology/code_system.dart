@@ -209,7 +209,7 @@ class CodeSystem extends DomainResource with _$CodeSystem {
   /// [concept] Concepts that are in the code system. The concept definitions
   /// are inherently hierarchical, but the definitions must be consulted to
   ///  determine what the meanings of the hierarchical relationships are.
-  const factory CodeSystem({
+  factory CodeSystem({
     @Default(R4ResourceType.CodeSystem)
     @JsonKey(unknownEnumValue: R4ResourceType.CodeSystem)
 
@@ -571,7 +571,7 @@ class CodeSystemFilter extends BackboneElement with _$CodeSystemFilter {
   /// [value] A description of what the value for the filter should be.
   ///
   /// [valueElement] Extensions for value
-  const factory CodeSystemFilter({
+  factory CodeSystemFilter({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -724,7 +724,7 @@ class CodeSystemProperty extends BackboneElement with _$CodeSystemProperty {
   ///  concept).
   ///
   /// [typeElement] Extensions for type
-  const factory CodeSystemProperty({
+  factory CodeSystemProperty({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -887,7 +887,7 @@ class CodeSystemConcept extends BackboneElement with _$CodeSystemConcept {
   /// [concept] Defines children of a concept to produce a hierarchy of
   /// concepts. The nature of the relationships is variable
   ///  (is-a/contains/categorizes) - see hierarchyMeaning.
-  const factory CodeSystemConcept({
+  factory CodeSystemConcept({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1039,7 +1039,7 @@ class CodeSystemDesignation extends BackboneElement
   /// [value] The text value for this designation.
   ///
   /// [valueElement] Extensions for value
-  const factory CodeSystemDesignation({
+  factory CodeSystemDesignation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1189,7 +1189,7 @@ class CodeSystemProperty1 extends BackboneElement with _$CodeSystemProperty1 {
   /// [valueDecimal] The value of this property.
   ///
   /// [valueDecimalElement] Extensions for valueDecimal
-  const factory CodeSystemProperty1({
+  factory CodeSystemProperty1({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

@@ -1616,7 +1616,7 @@ class _$DeviceImpl extends _Device {
 }
 
 abstract class _Device extends Device {
-  const factory _Device(
+  factory _Device(
       {@JsonKey(unknownEnumValue: R4ResourceType.Device)
       final R4ResourceType resourceType,
       final String? id,
@@ -2518,7 +2518,7 @@ class _$DeviceUdiCarrierImpl extends _DeviceUdiCarrier {
 }
 
 abstract class _DeviceUdiCarrier extends DeviceUdiCarrier {
-  const factory _DeviceUdiCarrier(
+  factory _DeviceUdiCarrier(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3002,7 +3002,7 @@ class _$DeviceDeviceNameImpl extends _DeviceDeviceName {
 }
 
 abstract class _DeviceDeviceName extends DeviceDeviceName {
-  const factory _DeviceDeviceName(
+  factory _DeviceDeviceName(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3410,7 +3410,7 @@ class _$DeviceSpecializationImpl extends _DeviceSpecialization {
 }
 
 abstract class _DeviceSpecialization extends DeviceSpecialization {
-  const factory _DeviceSpecialization(
+  factory _DeviceSpecialization(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3847,7 +3847,7 @@ class _$DeviceVersionImpl extends _DeviceVersion {
 }
 
 abstract class _DeviceVersion extends DeviceVersion {
-  const factory _DeviceVersion(
+  factory _DeviceVersion(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -4268,7 +4268,7 @@ class _$DevicePropertyImpl extends _DeviceProperty {
 }
 
 abstract class _DeviceProperty extends DeviceProperty {
-  const factory _DeviceProperty(
+  factory _DeviceProperty(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

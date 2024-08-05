@@ -178,7 +178,7 @@ class ValueSet extends DomainResource with _$ValueSet {
   /// [expansion] A value set can also be "expanded", where the value set is
   /// turned into a simple collection of enumerated codes. This element holds
   ///  the expansion, if it has been performed.
-  const factory ValueSet({
+  factory ValueSet({
     @Default(R4ResourceType.ValueSet)
     @JsonKey(unknownEnumValue: R4ResourceType.ValueSet)
 
@@ -500,7 +500,7 @@ class ValueSetCompose extends BackboneElement with _$ValueSetCompose {
   ///
   /// [exclude] Exclude one or more codes from the value set based on code
   ///  system filters and/or other value sets.
-  const factory ValueSetCompose({
+  factory ValueSetCompose({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -656,7 +656,7 @@ class ValueSetInclude extends BackboneElement with _$ValueSetInclude {
   /// value set definition). This is an absolute URI that is a reference to
   /// ValueSet.url.  If multiple value sets are specified this includes the
   ///  union of the contents of all of the referenced value sets.
-  const factory ValueSetInclude({
+  factory ValueSetInclude({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -805,7 +805,7 @@ class ValueSetConcept extends BackboneElement with _$ValueSetConcept {
   /// [designation] Additional representations for this concept when used in
   /// this value set - other languages, aliases, specialized purposes, used for
   ///  particular purposes, etc.
-  const factory ValueSetConcept({
+  factory ValueSetConcept({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -940,7 +940,7 @@ class ValueSetDesignation extends BackboneElement with _$ValueSetDesignation {
   /// [value] The text value for this designation.
   ///
   /// [valueElement] Extensions for value
-  const factory ValueSetDesignation({
+  factory ValueSetDesignation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1079,7 +1079,7 @@ class ValueSetFilter extends BackboneElement with _$ValueSetFilter {
   ///  false), when the operation is 'exists'.
   ///
   /// [valueElement] Extensions for value
-  const factory ValueSetFilter({
+  factory ValueSetFilter({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1242,7 +1242,7 @@ class ValueSetExpansion extends BackboneElement with _$ValueSetExpansion {
   ///  expansion.
   ///
   /// [contains] The codes that are contained in the value set expansion.
-  const factory ValueSetExpansion({
+  factory ValueSetExpansion({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1425,7 +1425,7 @@ class ValueSetParameter extends BackboneElement with _$ValueSetParameter {
   /// [valueDateTime] The value of the parameter.
   ///
   /// [valueDateTimeElement] Extensions for valueDateTime
-  const factory ValueSetParameter({
+  factory ValueSetParameter({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1626,7 +1626,7 @@ class ValueSetContains extends BackboneElement with _$ValueSetContains {
   ///
   /// [contains] Other codes and entries contained under this entry in the
   ///  hierarchy.
-  const factory ValueSetContains({
+  factory ValueSetContains({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

@@ -1465,7 +1465,7 @@ class _$DeviceDefinitionImpl extends _DeviceDefinition {
 }
 
 abstract class _DeviceDefinition extends DeviceDefinition {
-  const factory _DeviceDefinition(
+  factory _DeviceDefinition(
       {@JsonKey(unknownEnumValue: R4ResourceType.DeviceDefinition)
       final R4ResourceType resourceType,
       final String? id,
@@ -2143,7 +2143,7 @@ class _$DeviceDefinitionUdiDeviceIdentifierImpl
 
 abstract class _DeviceDefinitionUdiDeviceIdentifier
     extends DeviceDefinitionUdiDeviceIdentifier {
-  const factory _DeviceDefinitionUdiDeviceIdentifier(
+  factory _DeviceDefinitionUdiDeviceIdentifier(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2584,7 +2584,7 @@ class _$DeviceDefinitionDeviceNameImpl extends _DeviceDefinitionDeviceName {
 }
 
 abstract class _DeviceDefinitionDeviceName extends DeviceDefinitionDeviceName {
-  const factory _DeviceDefinitionDeviceName(
+  factory _DeviceDefinitionDeviceName(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3013,7 +3013,7 @@ class _$DeviceDefinitionSpecializationImpl
 
 abstract class _DeviceDefinitionSpecialization
     extends DeviceDefinitionSpecialization {
-  const factory _DeviceDefinitionSpecialization(
+  factory _DeviceDefinitionSpecialization(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3410,7 +3410,7 @@ class _$DeviceDefinitionCapabilityImpl extends _DeviceDefinitionCapability {
 }
 
 abstract class _DeviceDefinitionCapability extends DeviceDefinitionCapability {
-  const factory _DeviceDefinitionCapability(
+  factory _DeviceDefinitionCapability(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3825,7 +3825,7 @@ class _$DeviceDefinitionPropertyImpl extends _DeviceDefinitionProperty {
 }
 
 abstract class _DeviceDefinitionProperty extends DeviceDefinitionProperty {
-  const factory _DeviceDefinitionProperty(
+  factory _DeviceDefinitionProperty(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4281,7 +4281,7 @@ class _$DeviceDefinitionMaterialImpl extends _DeviceDefinitionMaterial {
 }
 
 abstract class _DeviceDefinitionMaterial extends DeviceDefinitionMaterial {
-  const factory _DeviceDefinitionMaterial(
+  factory _DeviceDefinitionMaterial(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

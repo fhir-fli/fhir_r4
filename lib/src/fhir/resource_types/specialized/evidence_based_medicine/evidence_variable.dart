@@ -211,7 +211,7 @@ class EvidenceVariable extends DomainResource with _$EvidenceVariable {
   /// [characteristic] A characteristic that defines the members of the
   /// evidence element. Multiple characteristics are applied with "and"
   ///  semantics.
-  const factory EvidenceVariable({
+  factory EvidenceVariable({
     @Default(R4ResourceType.EvidenceVariable)
     @JsonKey(unknownEnumValue: R4ResourceType.EvidenceVariable)
     R4ResourceType resourceType,
@@ -431,7 +431,7 @@ class EvidenceVariableCharacteristic extends BackboneElement
   ///  effective period.
   ///
   /// [groupMeasureElement] Extensions for groupMeasure
-  const factory EvidenceVariableCharacteristic({
+  factory EvidenceVariableCharacteristic({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -538,7 +538,7 @@ class EvidenceVariableTimeFromStart extends BackboneElement
   ///
   /// [note] A human-readable string to clarify or explain concepts about the timeFromEvent.;
   ///
-  const factory EvidenceVariableTimeFromStart({
+  factory EvidenceVariableTimeFromStart({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -619,7 +619,7 @@ class EvidenceVariableCategory extends BackboneElement
   /// [valueQuantity] Definition of the grouping.;
   ///
   /// [valueRange] Definition of the grouping.;
-  const factory EvidenceVariableCategory({
+  factory EvidenceVariableCategory({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,

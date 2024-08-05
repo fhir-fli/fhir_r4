@@ -166,7 +166,7 @@ class Device extends DomainResource with _$Device {
   ///  device.  For example devices containing latex.
   ///
   /// [parent] The parent device.
-  const factory Device({
+  factory Device({
     @Default(R4ResourceType.Device)
     @JsonKey(unknownEnumValue: R4ResourceType.Device)
 
@@ -578,7 +578,7 @@ class DeviceUdiCarrier extends BackboneElement with _$DeviceUdiCarrier {
   /// [entryType] A coded entry to indicate how the data was entered.
   ///
   /// [entryTypeElement] Extensions for entryType
-  const factory DeviceUdiCarrier({
+  factory DeviceUdiCarrier({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -750,7 +750,7 @@ class DeviceDeviceName extends BackboneElement with _$DeviceDeviceName {
   ///  ManufactureDeviceName | ModelName.
   ///
   /// [typeElement] Extensions for type
-  const factory DeviceDeviceName({
+  factory DeviceDeviceName({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -875,7 +875,7 @@ class DeviceSpecialization extends BackboneElement with _$DeviceSpecialization {
   ///  communicate.
   ///
   /// [versionElement] Extensions for version
-  const factory DeviceSpecialization({
+  factory DeviceSpecialization({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -997,7 +997,7 @@ class DeviceVersion extends BackboneElement with _$DeviceVersion {
   /// [value] The version text.
   ///
   /// [valueElement] Extensions for value
-  const factory DeviceVersion({
+  factory DeviceVersion({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1120,7 +1120,7 @@ class DeviceProperty extends BackboneElement with _$DeviceProperty {
   /// [valueQuantity] Property value as a quantity.
   ///
   /// [valueCode] Property value as a code, e.g., NTP4 (synced to NTP).
-  const factory DeviceProperty({
+  factory DeviceProperty({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

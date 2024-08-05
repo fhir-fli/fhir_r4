@@ -230,7 +230,7 @@ class Observation extends DomainResource with _$Observation {
   /// that share the same attributes.  Examples include systolic and diastolic
   /// component observations for blood pressure measurement and multiple
   ///  component observations for genetics observations.
-  const factory Observation({
+  factory Observation({
     @Default(R4ResourceType.Observation)
     @JsonKey(unknownEnumValue: R4ResourceType.Observation)
 
@@ -631,7 +631,7 @@ class ObservationReferenceRange extends BackboneElement
   ///  "normals".
   ///
   /// [textElement] Extensions for text
-  const factory ObservationReferenceRange({
+  factory ObservationReferenceRange({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -827,7 +827,7 @@ class ObservationComponent extends BackboneElement with _$ObservationComponent {
   ///
   /// [referenceRange] Guidance on how to interpret the value by comparison to
   ///  a normal or recommended range.
-  const factory ObservationComponent({
+  factory ObservationComponent({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

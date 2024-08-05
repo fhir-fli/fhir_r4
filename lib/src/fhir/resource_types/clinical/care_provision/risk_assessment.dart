@@ -126,7 +126,7 @@ class RiskAssessment extends DomainResource with _$RiskAssessment {
   /// [mitigationElement] Extensions for mitigation
   ///
   /// [note] Additional comments about the risk assessment.
-  const factory RiskAssessment({
+  factory RiskAssessment({
     @Default(R4ResourceType.RiskAssessment)
     @JsonKey(unknownEnumValue: R4ResourceType.RiskAssessment)
 
@@ -399,7 +399,7 @@ class RiskAssessmentPrediction extends BackboneElement
   ///  prediction.
   ///
   /// [rationaleElement] Extensions for rationale
-  const factory RiskAssessmentPrediction({
+  factory RiskAssessmentPrediction({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

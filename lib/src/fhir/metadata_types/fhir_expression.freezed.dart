@@ -439,7 +439,7 @@ class _$FhirExpressionImpl extends _FhirExpression {
 }
 
 abstract class _FhirExpression extends FhirExpression {
-  const factory _FhirExpression(
+  factory _FhirExpression(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final String? description,

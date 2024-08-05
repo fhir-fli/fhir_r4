@@ -1416,7 +1416,7 @@ class _$MedicationAdministrationImpl extends _MedicationAdministration {
 }
 
 abstract class _MedicationAdministration extends MedicationAdministration {
-  const factory _MedicationAdministration(
+  factory _MedicationAdministration(
       {@JsonKey(unknownEnumValue: R4ResourceType.MedicationAdministration)
       final R4ResourceType resourceType,
       final String? id,
@@ -2013,7 +2013,7 @@ class _$MedicationAdministrationPerformerImpl
 
 abstract class _MedicationAdministrationPerformer
     extends MedicationAdministrationPerformer {
-  const factory _MedicationAdministrationPerformer(
+  factory _MedicationAdministrationPerformer(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2647,7 +2647,7 @@ class _$MedicationAdministrationDosageImpl
 
 abstract class _MedicationAdministrationDosage
     extends MedicationAdministrationDosage {
-  const factory _MedicationAdministrationDosage(
+  factory _MedicationAdministrationDosage(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

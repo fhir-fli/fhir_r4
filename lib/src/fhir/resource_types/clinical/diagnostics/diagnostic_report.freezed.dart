@@ -1303,7 +1303,7 @@ class _$DiagnosticReportImpl extends _DiagnosticReport {
 }
 
 abstract class _DiagnosticReport extends DiagnosticReport {
-  const factory _DiagnosticReport(
+  factory _DiagnosticReport(
       {@JsonKey(unknownEnumValue: R4ResourceType.DiagnosticReport)
       final R4ResourceType resourceType,
       final String? id,
@@ -1895,7 +1895,7 @@ class _$DiagnosticReportMediaImpl extends _DiagnosticReportMedia {
 }
 
 abstract class _DiagnosticReportMedia extends DiagnosticReportMedia {
-  const factory _DiagnosticReportMedia(
+  factory _DiagnosticReportMedia(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

@@ -431,7 +431,7 @@ class _$CountImpl extends _Count {
 }
 
 abstract class _Count extends Count {
-  const factory _Count(
+  factory _Count(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final FhirDecimal? value,

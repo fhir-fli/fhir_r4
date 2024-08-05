@@ -211,7 +211,7 @@ class Evidence extends DomainResource with _$Evidence {
   ///
   /// [outcome] A reference to a EvidenceVariable resomece that defines the
   ///  outcome for the research.
-  const factory Evidence({
+  factory Evidence({
     @Default(R4ResourceType.Evidence)
     @JsonKey(unknownEnumValue: R4ResourceType.Evidence)
     R4ResourceType resourceType,
@@ -360,7 +360,7 @@ class EvidenceVariableDefinition extends BackboneElement
   /// [intended] Definition of the intended variable related to the Evidence.;
   ///
   /// [directnessMatch] Indication of quality of match between intended variable to actual variable.;
-  const factory EvidenceVariableDefinition({
+  factory EvidenceVariableDefinition({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -456,7 +456,7 @@ class EvidenceStatistic extends BackboneElement with _$EvidenceStatistic {
   /// [attributeEstimate] A statistical attribute of the statistic such as a measure of heterogeneity.;
   ///
   /// [modelCharacteristic] A component of the method to generate the statistic.;
-  const factory EvidenceStatistic({
+  factory EvidenceStatistic({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -550,7 +550,7 @@ class EvidenceSampleSize extends BackboneElement with _$EvidenceSampleSize {
   /// [knownDataCount] Number of participants with known results for measured variables.;
   ///
   /// [knownDataCountElement] (_knownDataCount): Extensions for knownDataCount;
-  const factory EvidenceSampleSize({
+  factory EvidenceSampleSize({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -642,7 +642,7 @@ class EvidenceAttributeEstimate extends BackboneElement
   /// [range] Lower bound of confidence interval.;
   ///
   /// [attributeEstimate] A nested attribute estimate; which is the attribute estimate of an attribute estimate.;
-  const factory EvidenceAttributeEstimate({
+  factory EvidenceAttributeEstimate({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -723,7 +723,7 @@ class EvidenceModelCharacteristic extends BackboneElement
   /// [variable] A variable adjusted for in the adjusted analysis.;
   ///
   /// [attributeEstimate] An attribute of the statistic used as a model characteristic.;
-  const factory EvidenceModelCharacteristic({
+  factory EvidenceModelCharacteristic({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -810,7 +810,7 @@ class EvidenceVar extends BackboneElement with _$EvidenceVar {
   /// [modifierExtension] May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.
 
   /// Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).;
-  const factory EvidenceVar({
+  factory EvidenceVar({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -897,7 +897,7 @@ class EvidenceCertainty extends BackboneElement with _$EvidenceCertainty {
   /// [raterElement] (_rater): Extensions for rater;
   ///
   /// [subcomponent] A domain or subdomain of certainty.;
-  const factory EvidenceCertainty({
+  factory EvidenceCertainty({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,

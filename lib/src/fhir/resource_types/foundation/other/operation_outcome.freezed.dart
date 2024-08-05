@@ -558,7 +558,7 @@ class _$OperationOutcomeImpl extends _OperationOutcome {
 }
 
 abstract class _OperationOutcome extends OperationOutcome {
-  const factory _OperationOutcome(
+  factory _OperationOutcome(
           {@JsonKey(unknownEnumValue: R4ResourceType.OperationOutcome)
           final R4ResourceType resourceType,
           final String? id,
@@ -1280,7 +1280,7 @@ class _$OperationOutcomeIssueImpl extends _OperationOutcomeIssue {
 }
 
 abstract class _OperationOutcomeIssue extends OperationOutcomeIssue {
-  const factory _OperationOutcomeIssue(
+  factory _OperationOutcomeIssue(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

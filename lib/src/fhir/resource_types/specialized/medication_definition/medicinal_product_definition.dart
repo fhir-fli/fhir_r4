@@ -109,7 +109,7 @@ class MedicinalProductDefinition extends DomainResource
   /// [operation] A manufacturing or administrative process or step associated with (or performed on) the medicinal product.;
   ///
   /// [characteristic] Allows the key product features to be recorded, such as "sugar free", "modified release", "parallel import".;
-  const factory MedicinalProductDefinition({
+  factory MedicinalProductDefinition({
     @Default(R4ResourceType.MedicinalProductDefinition)
 
     /// [resourceType] This is a MedicinalProductDefinition resource;
@@ -325,7 +325,7 @@ class MedicinalProductDefinitionContact extends BackboneElement
   /// [type] Allows the contact to be classified, for example QPPV, Pharmacovigilance Enquiry Information.;
   ///
   /// [contact] A product specific contact, person (in a role), or an organization.;
-  const factory MedicinalProductDefinitionContact({
+  factory MedicinalProductDefinitionContact({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -415,7 +415,7 @@ class MedicinalProductDefinitionName extends BackboneElement
   /// [namePart] Coding words or phrases of the name.;
   ///
   /// [countryLanguage] Country and jurisdiction where the name applies, and associated language.;
-  const factory MedicinalProductDefinitionName({
+  factory MedicinalProductDefinitionName({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -505,7 +505,7 @@ class MedicinalProductDefinitionNamePart extends BackboneElement
   /// [partElement] (_part): Extensions for part;
   ///
   /// [type] Identifying type for this part of the name (e.g. strength part).;
-  const factory MedicinalProductDefinitionNamePart({
+  factory MedicinalProductDefinitionNamePart({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -590,7 +590,7 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement
   /// [jurisdiction] Jurisdiction code for where this name applies. A jurisdiction may be a sub- or supra-national entity (e.g. a state or a geographic region).;
   ///
   /// [language] Language code for this name.;
-  const factory MedicinalProductDefinitionCountryLanguage({
+  factory MedicinalProductDefinitionCountryLanguage({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -674,7 +674,7 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement
   /// [product] Reference to another product, e.g. for linking authorised to investigational product.;
   ///
   /// [type] The type of relationship, for instance branded to generic, virtual to actual product, product to development product (investigational), parallel import version.;
-  const factory MedicinalProductDefinitionCrossReference({
+  factory MedicinalProductDefinitionCrossReference({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -759,7 +759,7 @@ class MedicinalProductDefinitionOperation extends BackboneElement
   /// [organization] The organization or establishment responsible for (or associated with) the particular process or step, examples include the manufacturer, importer, agent.;
   ///
   /// [confidentialityIndicator] Specifies whether this particular business or manufacturing process is considered proprietary or confidential.;
-  const factory MedicinalProductDefinitionOperation({
+  factory MedicinalProductDefinitionOperation({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -857,7 +857,7 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement
   /// [valueBooleanElement] (_valueBoolean): Extensions for valueBoolean;
   ///
   /// [valueAttachment] A value for the characteristic.text.;
-  const factory MedicinalProductDefinitionCharacteristic({
+  factory MedicinalProductDefinitionCharacteristic({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 

@@ -416,7 +416,7 @@ class _$TimingImpl extends _Timing {
 }
 
 abstract class _Timing extends Timing {
-  const factory _Timing(
+  factory _Timing(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1646,7 +1646,7 @@ class _$TimingRepeatImpl extends _TimingRepeat {
 }
 
 abstract class _TimingRepeat extends TimingRepeat {
-  const factory _TimingRepeat(
+  factory _TimingRepeat(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

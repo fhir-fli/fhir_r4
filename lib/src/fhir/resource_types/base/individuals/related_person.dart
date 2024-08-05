@@ -109,7 +109,7 @@ class RelatedPerson extends DomainResource with _$RelatedPerson {
   ///
   /// [communication] A language which may be used to communicate with about
   ///  the patient's health.
-  const factory RelatedPerson({
+  factory RelatedPerson({
     @Default(R4ResourceType.RelatedPerson)
     @JsonKey(unknownEnumValue: R4ResourceType.RelatedPerson)
 
@@ -651,7 +651,7 @@ class RelatedPersonCommunication extends BackboneElement
   ///  (over other languages he masters up a certain level).
   ///
   /// [preferredElement] Extensions for preferred
-  const factory RelatedPersonCommunication({
+  factory RelatedPersonCommunication({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

@@ -925,7 +925,7 @@ class _$PractitionerImpl extends _Practitioner {
 }
 
 abstract class _Practitioner extends Practitioner {
-  const factory _Practitioner(
+  factory _Practitioner(
       {@JsonKey(unknownEnumValue: R4ResourceType.Practitioner)
       final R4ResourceType resourceType,
       final String? id,
@@ -1505,7 +1505,7 @@ class _$PractitionerQualificationImpl extends _PractitionerQualification {
 }
 
 abstract class _PractitionerQualification extends PractitionerQualification {
-  const factory _PractitionerQualification(
+  factory _PractitionerQualification(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

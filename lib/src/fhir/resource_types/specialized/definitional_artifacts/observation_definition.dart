@@ -120,7 +120,7 @@ class ObservationDefinition extends DomainResource
   ///
   /// [criticalCodedValueSet] The set of critical coded results for the
   ///  observation conforming to this ObservationDefinition.
-  const factory ObservationDefinition({
+  factory ObservationDefinition({
     @Default(R4ResourceType.ObservationDefinition)
     @JsonKey(unknownEnumValue: R4ResourceType.ObservationDefinition)
 
@@ -363,7 +363,7 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement
   ///  results of such observations are of type Quantity.
   ///
   /// [decimalPrecisionElement] Extensions for decimalPrecision
-  const factory ObservationDefinitionQuantitativeDetails({
+  factory ObservationDefinitionQuantitativeDetails({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -506,7 +506,7 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement
   /// [condition] Text based condition for which the reference range is valid.
   ///
   /// [conditionElement] Extensions for condition
-  const factory ObservationDefinitionQualifiedInterval({
+  factory ObservationDefinitionQualifiedInterval({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

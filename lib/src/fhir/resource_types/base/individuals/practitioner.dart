@@ -109,7 +109,7 @@ class Practitioner extends DomainResource with _$Practitioner {
   ///
   /// [communication] A language the practitioner can use in patient
   ///  communication.
-  const factory Practitioner({
+  factory Practitioner({
     @Default(R4ResourceType.Practitioner)
     @JsonKey(unknownEnumValue: R4ResourceType.Practitioner)
 
@@ -648,7 +648,7 @@ class PractitionerQualification extends BackboneElement
   /// [period] Period during which the qualification is valid.
   ///
   /// [issuer] Organization that regulates and issues the qualification.
-  const factory PractitionerQualification({
+  factory PractitionerQualification({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

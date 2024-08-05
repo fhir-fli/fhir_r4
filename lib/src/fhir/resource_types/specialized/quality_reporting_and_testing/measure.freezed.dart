@@ -2460,7 +2460,7 @@ class _$MeasureImpl extends _Measure {
 }
 
 abstract class _Measure extends Measure {
-  const factory _Measure(
+  factory _Measure(
       {@JsonKey(unknownEnumValue: R4ResourceType.Measure)
       final R4ResourceType resourceType,
       final String? id,
@@ -3402,7 +3402,7 @@ class _$MeasureGroupImpl extends _MeasureGroup {
 }
 
 abstract class _MeasureGroup extends MeasureGroup {
-  const factory _MeasureGroup(
+  factory _MeasureGroup(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3853,7 +3853,7 @@ class _$MeasurePopulationImpl extends _MeasurePopulation {
 }
 
 abstract class _MeasurePopulation extends MeasurePopulation {
-  const factory _MeasurePopulation(
+  factory _MeasurePopulation(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4346,7 +4346,7 @@ class _$MeasureStratifierImpl extends _MeasureStratifier {
 }
 
 abstract class _MeasureStratifier extends MeasureStratifier {
-  const factory _MeasureStratifier(
+  factory _MeasureStratifier(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4811,7 +4811,7 @@ class _$MeasureComponentImpl extends _MeasureComponent {
 }
 
 abstract class _MeasureComponent extends MeasureComponent {
-  const factory _MeasureComponent(
+  factory _MeasureComponent(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5318,7 +5318,7 @@ class _$MeasureSupplementalDataImpl extends _MeasureSupplementalData {
 }
 
 abstract class _MeasureSupplementalData extends MeasureSupplementalData {
-  const factory _MeasureSupplementalData(
+  factory _MeasureSupplementalData(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

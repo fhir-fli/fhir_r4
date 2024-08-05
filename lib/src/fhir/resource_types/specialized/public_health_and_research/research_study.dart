@@ -160,7 +160,7 @@ class ResearchStudy extends DomainResource with _$ResearchStudy {
   /// [objective] A goal that the study is aiming to achieve in terms of a
   /// scientific question to be answered by the analysis of data collected
   ///  during the study.
-  const factory ResearchStudy({
+  factory ResearchStudy({
     @Default(R4ResourceType.ResearchStudy)
     @JsonKey(unknownEnumValue: R4ResourceType.ResearchStudy)
 
@@ -451,7 +451,7 @@ class ResearchStudyArm extends BackboneElement with _$ResearchStudyArm {
   ///  would be followed by a subject adhering to this arm.
   ///
   /// [descriptionElement] Extensions for description
-  const factory ResearchStudyArm({
+  factory ResearchStudyArm({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -584,7 +584,7 @@ class ResearchStudyObjective extends BackboneElement
   /// [nameElement] Extensions for name
   ///
   /// [type] The kind of study objective.
-  const factory ResearchStudyObjective({
+  factory ResearchStudyObjective({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

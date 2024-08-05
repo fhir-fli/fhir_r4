@@ -108,7 +108,7 @@ class AppointmentResponse extends DomainResource with _$AppointmentResponse {
   /// [comment] Additional comments about the appointment.
   ///
   /// [commentElement] Extensions for comment
-  const factory AppointmentResponse({
+  factory AppointmentResponse({
     @Default(R4ResourceType.AppointmentResponse)
     @JsonKey(unknownEnumValue: R4ResourceType.AppointmentResponse)
 

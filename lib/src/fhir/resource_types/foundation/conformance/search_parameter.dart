@@ -215,7 +215,7 @@ class SearchParameter extends DomainResource with _$SearchParameter {
   /// [chainElement] Extensions for chain
   ///
   /// [component] Used to define the parts of a composite search parameter.
-  const factory SearchParameter({
+  factory SearchParameter({
     @Default(R4ResourceType.SearchParameter)
     @JsonKey(unknownEnumValue: R4ResourceType.SearchParameter)
 
@@ -578,7 +578,7 @@ class SearchParameterComponent extends BackboneElement
   ///  component from the output of the main SearchParameter.expression.
   ///
   /// [expressionElement] Extensions for expression
-  const factory SearchParameterComponent({
+  factory SearchParameterComponent({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

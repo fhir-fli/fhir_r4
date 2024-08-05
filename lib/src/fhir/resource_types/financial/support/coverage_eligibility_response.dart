@@ -133,7 +133,7 @@ class CoverageEligibilityResponse extends DomainResource
   /// [form] A code for the form to be used for printing the content.
   ///
   /// [error] Errors encountered during the processing of the request.
-  const factory CoverageEligibilityResponse({
+  factory CoverageEligibilityResponse({
     @Default(R4ResourceType.CoverageEligibilityResponse)
     @JsonKey(unknownEnumValue: R4ResourceType.CoverageEligibilityResponse)
 
@@ -395,7 +395,7 @@ class CoverageEligibilityResponseInsurance extends BackboneElement
   ///
   /// [item] Benefits and optionally current balances, and authorization
   ///  details by category or service.
-  const factory CoverageEligibilityResponseInsurance({
+  factory CoverageEligibilityResponseInsurance({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -562,7 +562,7 @@ class CoverageEligibilityResponseItem extends BackboneElement
   ///  descriptive information regarding the preauthorization.
   ///
   /// [authorizationUrlElement] Extensions for authorizationUrl
-  const factory CoverageEligibilityResponseItem({
+  factory CoverageEligibilityResponseItem({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -764,7 +764,7 @@ class CoverageEligibilityResponseBenefit extends BackboneElement
   /// [usedStringElement] Extensions for usedString
   ///
   /// [usedMoney] The quantity of the benefit which have been consumed to date.
-  const factory CoverageEligibilityResponseBenefit({
+  factory CoverageEligibilityResponseBenefit({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -903,7 +903,7 @@ class CoverageEligibilityResponseError extends BackboneElement
   ///
   /// [code] An error code,from a specified code system, which details why the
   ///  eligibility check could not be performed.
-  const factory CoverageEligibilityResponseError({
+  factory CoverageEligibilityResponseError({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

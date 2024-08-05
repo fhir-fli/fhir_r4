@@ -677,7 +677,7 @@ class _$BinaryImpl extends _Binary {
 }
 
 abstract class _Binary extends Binary {
-  const factory _Binary(
+  factory _Binary(
       {@JsonKey(unknownEnumValue: R4ResourceType.Binary)
       final R4ResourceType resourceType,
       final String? id,

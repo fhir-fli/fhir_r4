@@ -42,7 +42,7 @@ class Contributor extends DataType with _$Contributor {
   ///
   /// [contact] Contact details to assist a user in finding and communicating
   ///  with the contributor.
-  const factory Contributor({
+  factory Contributor({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

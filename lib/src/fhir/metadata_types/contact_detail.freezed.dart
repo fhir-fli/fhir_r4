@@ -274,7 +274,7 @@ class _$ContactDetailImpl extends _ContactDetail {
 }
 
 abstract class _ContactDetail extends ContactDetail {
-  const factory _ContactDetail(
+  factory _ContactDetail(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final String? name,

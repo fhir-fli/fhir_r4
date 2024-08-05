@@ -194,7 +194,7 @@ class Citation extends DomainResource with _$Citation {
   /// [relatesTo] Artifact related to the Citation Resource.
   ///
   /// [citedArtifact] The article or artifact being described.
-  const factory Citation({
+  factory Citation({
     @Default(R4ResourceType.Citation) R4ResourceType resourceType,
     String? id,
     FhirMeta? meta,
@@ -357,7 +357,7 @@ class CitationSummary extends BackboneElement with _$CitationSummary {
   /// [text] The human-readable display of the citation.
   ///
   /// [textElement] _(_text) Extensions for text
-  const factory CitationSummary({
+  factory CitationSummary({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -448,7 +448,7 @@ class CitationClassification extends BackboneElement
   /// [type] The kind of classifier (e.g. publication type, keyword).
   ///
   /// [classifier] The specific classification value.
-  const factory CitationClassification({
+  factory CitationClassification({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -541,7 +541,7 @@ class CitationStatusDate extends BackboneElement with _$CitationStatusDate {
   /// [actualElement] _(_actual) Extensions for actual
   ///
   /// [period] When the status started and/or ended.
-  const factory CitationStatusDate({
+  factory CitationStatusDate({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -646,7 +646,7 @@ class CitationRelatesTo extends BackboneElement with _$CitationRelatesTo {
   ///
   /// [targetAttachment] The article or artifact that the Citation Resource is
   /// related to.
-  const factory CitationRelatesTo({
+  factory CitationRelatesTo({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -775,7 +775,7 @@ class CitationCitedArtifact extends BackboneElement
   /// statements.
   ///
   /// [note] Any additional information or content for the article or artifact.
-  const factory CitationCitedArtifact({
+  factory CitationCitedArtifact({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -880,7 +880,7 @@ class CitationVersion extends BackboneElement with _$CitationVersion {
   /// [valueElement] _(_value) Extensions for value
   ///
   /// [baseCitation] Citation for the main version of the cited artifact.
-  const factory CitationVersion({
+  factory CitationVersion({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -974,7 +974,7 @@ class CitationStatusDate1 extends BackboneElement with _$CitationStatusDate1 {
   /// [actualElement] _(_actual) Extensions for actual
   ///
   /// [period] When the status started and/or ended.
-  const factory CitationStatusDate1({
+  factory CitationStatusDate1({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -1069,7 +1069,7 @@ class CitationTitle extends BackboneElement with _$CitationTitle {
   /// [text] The title of the article or artifact.
   ///
   /// [textElement] _(_text) Extensions for text
-  const factory CitationTitle({
+  factory CitationTitle({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -1168,7 +1168,7 @@ class CitationAbstract extends BackboneElement with _$CitationAbstract {
   /// [copyright] Copyright notice for the abstract.
   ///
   /// [copyrightElement] _(_copyright) Extensions for copyright
-  const factory CitationAbstract({
+  factory CitationAbstract({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -1265,7 +1265,7 @@ class CitationPart extends BackboneElement with _$CitationPart {
   /// [valueElement] _(_value) Extensions for value
   ///
   /// [baseCitation] The citation for the full article or artifact.
-  const factory CitationPart({
+  factory CitationPart({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -1369,7 +1369,7 @@ class CitationRelatesTo1 extends BackboneElement with _$CitationRelatesTo1 {
   ///
   /// [targetAttachment] The article or artifact that the cited artifact is
   /// related to.
-  const factory CitationRelatesTo1({
+  factory CitationRelatesTo1({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -1502,7 +1502,7 @@ class CitationPublicationForm extends BackboneElement
   /// [copyright] Copyright notice for the full article or artifact.
   ///
   /// [copyrightElement] _(_copyright) Extensions for copyright
-  const factory CitationPublicationForm({
+  factory CitationPublicationForm({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -1621,7 +1621,7 @@ class CitationPublishedIn extends BackboneElement with _$CitationPublishedIn {
   ///
   /// [publisherLocationElement] _(_publisherLocation) Extensions for
   /// publisherLocation
-  const factory CitationPublishedIn({
+  factory CitationPublishedIn({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -1728,7 +1728,7 @@ class CitationPeriodicRelease extends BackboneElement
   ///
   /// [dateOfPublication] Defining the date on which the issue of the journal was
   /// published.
-  const factory CitationPeriodicRelease({
+  factory CitationPeriodicRelease({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -1843,7 +1843,7 @@ class CitationDateOfPublication extends BackboneElement
   /// was published.
   ///
   /// [textElement] _(_text) Extensions for text
-  const factory CitationDateOfPublication({
+  factory CitationDateOfPublication({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -1944,7 +1944,7 @@ class CitationWebLocation extends BackboneElement with _$CitationWebLocation {
   /// [url] The specific URL.
   ///
   /// [urlElement] _(_url) Extensions for url
-  const factory CitationWebLocation({
+  factory CitationWebLocation({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -2037,7 +2037,7 @@ class CitationClassification1 extends BackboneElement
   /// [classifier] The specific classification value.
   ///
   /// [whoClassified] Provenance and copyright of classification.
-  const factory CitationClassification1({
+  factory CitationClassification1({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -2141,7 +2141,7 @@ class CitationWhoClassified extends BackboneElement
   /// [freeToShare] Acceptable to re-use the classification.
   ///
   /// [freeToShareElement] _(_freeToShare) Extensions for freeToShare
-  const factory CitationWhoClassified({
+  factory CitationWhoClassified({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -2242,7 +2242,7 @@ class CitationContributorship extends BackboneElement
   ///
   /// [summary] Used to record a display of the author/contributor list without
   /// separate coding for each list member.
-  const factory CitationContributorship({
+  factory CitationContributorship({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -2364,7 +2364,7 @@ class CitationEntry extends BackboneElement with _$CitationEntry {
   /// [listOrder] Used to code order of authors.
   ///
   /// [listOrderElement] _(_listOrder) Extensions for listOrder
-  const factory CitationEntry({
+  factory CitationEntry({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -2723,7 +2723,7 @@ class CitationAffiliationInfo extends BackboneElement
   /// [roleElement] _(_role) Extensions for role
   ///
   /// [identifier] Identifier for the organization.
-  const factory CitationAffiliationInfo({
+  factory CitationAffiliationInfo({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -2818,7 +2818,7 @@ class CitationContributionInstance extends BackboneElement
   /// [time] The time that the contribution was made.
   ///
   /// [timeElement] _(_time) Extensions for time
-  const factory CitationContributionInstance({
+  factory CitationContributionInstance({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -2916,7 +2916,7 @@ class CitationSummary1 extends BackboneElement with _$CitationSummary1 {
   /// contributorship statement.
   ///
   /// [valueElement] _(_value) Extensions for value
-  const factory CitationSummary1({
+  factory CitationSummary1({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,

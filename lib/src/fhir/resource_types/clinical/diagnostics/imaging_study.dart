@@ -152,7 +152,7 @@ class ImagingStudy extends DomainResource with _$ImagingStudy {
   /// [descriptionElement] Extensions for description
   ///
   /// [series] Each study has one or more series of images or other content.
-  const factory ImagingStudy({
+  factory ImagingStudy({
     @Default(R4ResourceType.ImagingStudy)
     @JsonKey(unknownEnumValue: R4ResourceType.ImagingStudy)
 
@@ -472,7 +472,7 @@ class ImagingStudySeries extends BackboneElement with _$ImagingStudySeries {
   ///
   /// [instance] A single SOP instance within the series, e.g. an image, or
   ///  presentation state.
-  const factory ImagingStudySeries({
+  factory ImagingStudySeries({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -654,7 +654,7 @@ class ImagingStudyPerformer extends BackboneElement
   ///  series.
   ///
   /// [actor] Indicates who or what performed the series.
-  const factory ImagingStudyPerformer({
+  factory ImagingStudyPerformer({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -783,7 +783,7 @@ class ImagingStudyInstance extends BackboneElement with _$ImagingStudyInstance {
   /// [title] The description of the instance.
   ///
   /// [titleElement] Extensions for title
-  const factory ImagingStudyInstance({
+  factory ImagingStudyInstance({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

@@ -187,7 +187,7 @@ class ImplementationGuide extends DomainResource with _$ImplementationGuide {
   ///
   /// [manifest] Information about an assembled implementation guide, created
   ///  by the publication tooling.
-  const factory ImplementationGuide({
+  factory ImplementationGuide({
     @Default(R4ResourceType.ImplementationGuide)
     @JsonKey(unknownEnumValue: R4ResourceType.ImplementationGuide)
 
@@ -513,7 +513,7 @@ class ImplementationGuideDependsOn extends BackboneElement
   ///  version is required to understand the IG correctly.
   ///
   /// [versionElement] Extensions for version
-  const factory ImplementationGuideDependsOn({
+  factory ImplementationGuideDependsOn({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -645,7 +645,7 @@ class ImplementationGuideGlobal extends BackboneElement
   /// [typeElement] Extensions for type
   ///
   /// [profile] A reference to the profile that all instances must conform to.
-  const factory ImplementationGuideGlobal({
+  factory ImplementationGuideGlobal({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -777,7 +777,7 @@ class ImplementationGuideDefinition extends BackboneElement
   /// [parameter] Defines how IG is built by tools.
   ///
   /// [template] A template for building resources.
-  const factory ImplementationGuideDefinition({
+  factory ImplementationGuideDefinition({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -914,7 +914,7 @@ class ImplementationGuideGrouping extends BackboneElement
   /// [description] Human readable text describing the package.
   ///
   /// [descriptionElement] Extensions for description
-  const factory ImplementationGuideGrouping({
+  factory ImplementationGuideGrouping({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1071,7 +1071,7 @@ class ImplementationGuideResource extends BackboneElement
   ///  in.
   ///
   /// [groupingIdElement] Extensions for groupingId
-  const factory ImplementationGuideResource({
+  factory ImplementationGuideResource({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1246,7 +1246,7 @@ class ImplementationGuidePage extends BackboneElement
   /// [generationElement] Extensions for generation
   ///
   /// [page] Nested Pages/Sections under this page.
-  const factory ImplementationGuidePage({
+  factory ImplementationGuidePage({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1389,7 +1389,7 @@ class ImplementationGuideParameter extends BackboneElement
   /// [value] Value for named type.
   ///
   /// [valueElement] Extensions for value
-  const factory ImplementationGuideParameter({
+  factory ImplementationGuideParameter({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1523,7 +1523,7 @@ class ImplementationGuideTemplate extends BackboneElement
   /// [scope] The scope in which the template applies.
   ///
   /// [scopeElement] Extensions for scope
-  const factory ImplementationGuideTemplate({
+  factory ImplementationGuideTemplate({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1671,7 +1671,7 @@ class ImplementationGuideManifest extends BackboneElement
   ///  be the target of a hyperlink in a derived IG.
   ///
   /// [otherElement] Extensions for other
-  const factory ImplementationGuideManifest({
+  factory ImplementationGuideManifest({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1828,7 +1828,7 @@ class ImplementationGuideResource1 extends BackboneElement
   ///  within the IG.
   ///
   /// [relativePathElement] Extensions for relativePath
-  const factory ImplementationGuideResource1({
+  factory ImplementationGuideResource1({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1975,7 +1975,7 @@ class ImplementationGuidePage1 extends BackboneElement
   /// [anchor] The name of an anchor available on the page.
   ///
   /// [anchorElement] Extensions for anchor
-  const factory ImplementationGuidePage1({
+  factory ImplementationGuidePage1({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

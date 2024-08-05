@@ -103,7 +103,7 @@ class VisionPrescription extends DomainResource with _$VisionPrescription {
   /// [lensSpecification] Contain the details of  the individual lens
   /// specifications and serves as the authorization for the fullfillment by
   ///  certified professionals.
-  const factory VisionPrescription({
+  factory VisionPrescription({
     @Default(R4ResourceType.VisionPrescription)
     @JsonKey(unknownEnumValue: R4ResourceType.VisionPrescription)
 
@@ -358,7 +358,7 @@ class VisionPrescriptionLensSpecification extends BackboneElement
   ///
   /// [note] Notes for special requirements such as coatings and lens
   ///  materials.
-  const factory VisionPrescriptionLensSpecification({
+  factory VisionPrescriptionLensSpecification({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -537,7 +537,7 @@ class VisionPrescriptionPrism extends BackboneElement
   /// [base] The relative base, or reference lens edge, for the prism.
   ///
   /// [baseElement] Extensions for base
-  const factory VisionPrescriptionPrism({
+  factory VisionPrescriptionPrism({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

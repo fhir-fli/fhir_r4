@@ -391,7 +391,7 @@ class _$UsageContextImpl extends _UsageContext {
 }
 
 abstract class _UsageContext extends UsageContext {
-  const factory _UsageContext(
+  factory _UsageContext(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       required final Coding code,

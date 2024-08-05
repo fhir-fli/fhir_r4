@@ -325,7 +325,7 @@ class _$ContributorImpl extends _Contributor {
 }
 
 abstract class _Contributor extends Contributor {
-  const factory _Contributor(
+  factory _Contributor(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: ContributorType.unknown)

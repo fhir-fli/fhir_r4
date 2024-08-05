@@ -99,7 +99,7 @@ class Flag extends DomainResource with _$Flag {
   /// [encounter] This alert is only relevant during the encounter.
   ///
   /// [author] The person, organization or device that created the flag.
-  const factory Flag({
+  factory Flag({
     @Default(R4ResourceType.Flag)
     @JsonKey(unknownEnumValue: R4ResourceType.Flag)
 

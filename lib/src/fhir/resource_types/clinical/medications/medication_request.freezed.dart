@@ -2026,7 +2026,7 @@ class _$MedicationRequestImpl extends _MedicationRequest {
 }
 
 abstract class _MedicationRequest extends MedicationRequest {
-  const factory _MedicationRequest(
+  factory _MedicationRequest(
       {@JsonKey(unknownEnumValue: R4ResourceType.MedicationRequest)
       final R4ResourceType resourceType,
       final String? id,
@@ -2976,7 +2976,7 @@ class _$MedicationRequestDispenseRequestImpl
 
 abstract class _MedicationRequestDispenseRequest
     extends MedicationRequestDispenseRequest {
-  const factory _MedicationRequestDispenseRequest(
+  factory _MedicationRequestDispenseRequest(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3419,7 +3419,7 @@ class _$MedicationRequestInitialFillImpl extends _MedicationRequestInitialFill {
 
 abstract class _MedicationRequestInitialFill
     extends MedicationRequestInitialFill {
-  const factory _MedicationRequestInitialFill(
+  factory _MedicationRequestInitialFill(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3873,7 +3873,7 @@ class _$MedicationRequestSubstitutionImpl
 
 abstract class _MedicationRequestSubstitution
     extends MedicationRequestSubstitution {
-  const factory _MedicationRequestSubstitution(
+  factory _MedicationRequestSubstitution(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

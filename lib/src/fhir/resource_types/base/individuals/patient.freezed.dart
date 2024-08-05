@@ -1269,7 +1269,7 @@ class _$PatientImpl extends _Patient {
 }
 
 abstract class _Patient extends Patient {
-  const factory _Patient(
+  factory _Patient(
       {@JsonKey(unknownEnumValue: R4ResourceType.Patient)
       final R4ResourceType resourceType,
       final String? id,
@@ -2042,7 +2042,7 @@ class _$PatientContactImpl extends _PatientContact {
 }
 
 abstract class _PatientContact extends PatientContact {
-  const factory _PatientContact(
+  factory _PatientContact(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2478,7 +2478,7 @@ class _$PatientCommunicationImpl extends _PatientCommunication {
 }
 
 abstract class _PatientCommunication extends PatientCommunication {
-  const factory _PatientCommunication(
+  factory _PatientCommunication(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2878,7 +2878,7 @@ class _$PatientLinkImpl extends _PatientLink {
 }
 
 abstract class _PatientLink extends PatientLink {
-  const factory _PatientLink(
+  factory _PatientLink(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

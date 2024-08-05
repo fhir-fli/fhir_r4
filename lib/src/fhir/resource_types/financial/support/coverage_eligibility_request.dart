@@ -130,7 +130,7 @@ class CoverageEligibilityRequest extends DomainResource
   /// [item] Service categories or billable services for which benefit details
   /// and/or an authorization prior to service delivery may be required by the
   ///  payor.
-  const factory CoverageEligibilityRequest({
+  factory CoverageEligibilityRequest({
     @Default(R4ResourceType.CoverageEligibilityRequest)
     @JsonKey(unknownEnumValue: R4ResourceType.CoverageEligibilityRequest)
 
@@ -382,7 +382,7 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement
   ///  items, product/servce categories and specific billing codes.
   ///
   /// [appliesToAllElement] Extensions for appliesToAll
-  const factory CoverageEligibilityRequestSupportingInfo({
+  factory CoverageEligibilityRequestSupportingInfo({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -510,7 +510,7 @@ class CoverageEligibilityRequestInsurance extends BackboneElement
   ///  provider and the insurer for special business processing purposes.
   ///
   /// [businessArrangementElement] Extensions for businessArrangement
-  const factory CoverageEligibilityRequestInsurance({
+  factory CoverageEligibilityRequestInsurance({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -659,7 +659,7 @@ class CoverageEligibilityRequestItem extends BackboneElement
   ///
   /// [detail] The plan/proposal/order describing the proposed service in
   ///  detail.
-  const factory CoverageEligibilityRequestItem({
+  factory CoverageEligibilityRequestItem({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -813,7 +813,7 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement
   ///
   /// [diagnosisReference] The nature of illness or problem in a coded form or
   ///  as a reference to an external defined Condition.
-  const factory CoverageEligibilityRequestDiagnosis({
+  factory CoverageEligibilityRequestDiagnosis({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

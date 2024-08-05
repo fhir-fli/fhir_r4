@@ -62,7 +62,7 @@ class ManufacturedItemDefinition extends DomainResource
   /// [ingredient] The ingredients of this manufactured item. This is only needed if the ingredients are not specified by incoming references from the Ingredient resource.;
   ///
   /// [property] General characteristics of this item.;
-  const factory ManufacturedItemDefinition({
+  factory ManufacturedItemDefinition({
     @Default(R4ResourceType.ManufacturedItemDefinition)
 
     /// [resourceType] This is a ManufacturedItemDefinition resource;
@@ -218,7 +218,7 @@ class ManufacturedItemDefinitionProperty extends BackboneElement
   /// [valueBooleanElement] (_valueBoolean): Extensions for valueBoolean;
   ///
   /// [valueAttachment] A value for the characteristic.;
-  const factory ManufacturedItemDefinitionProperty({
+  factory ManufacturedItemDefinitionProperty({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 

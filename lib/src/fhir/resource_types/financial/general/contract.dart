@@ -225,7 +225,7 @@ class Contract extends DomainResource with _$Contract {
   /// and legally recognized representation of the Contract, which is considered
   /// the "source of truth" and which would be the basis for legal action
   ///  related to enforcement of this Contract.
-  const factory Contract({
+  factory Contract({
     @Default(R4ResourceType.Contract)
     @JsonKey(unknownEnumValue: R4ResourceType.Contract)
 
@@ -616,7 +616,7 @@ class ContractContentDefinition extends BackboneElement
   ///  publishing of the Contract precursor content.
   ///
   /// [copyrightElement] Extensions for copyright
-  const factory ContractContentDefinition({
+  factory ContractContentDefinition({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -798,7 +798,7 @@ class ContractTerm extends BackboneElement with _$ContractTerm {
   ///  assigned some degree of responsibility for the activity taking place.
   ///
   /// [group] Nested group of Contract Provisions.
-  const factory ContractTerm({
+  factory ContractTerm({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -972,7 +972,7 @@ class ContractSecurityLabel extends BackboneElement
   ///
   /// [control] Security label privacy tag that species the manner in which
   ///  term and/or term elements are to be protected.
-  const factory ContractSecurityLabel({
+  factory ContractSecurityLabel({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1128,7 +1128,7 @@ class ContractOffer extends BackboneElement with _$ContractOffer {
   /// [securityLabelNumber] Security labels that protects the offer.
   ///
   /// [securityLabelNumberElement] Extensions for securityLabelNumber
-  const factory ContractOffer({
+  factory ContractOffer({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1283,7 +1283,7 @@ class ContractParty extends BackboneElement with _$ContractParty {
   /// [reference] Participant in the offer.
   ///
   /// [role] How the party participates in the offer.
-  const factory ContractParty({
+  factory ContractParty({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1471,7 +1471,7 @@ class ContractAnswer extends BackboneElement with _$ContractAnswer {
   /// enables selection of values to be agreed to, e.g., the period of
   /// participation, the date of occupancy of a rental, warrently duration, or
   ///  whether biospecimen may be used for further research.
-  const factory ContractAnswer({
+  factory ContractAnswer({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1717,7 +1717,7 @@ class ContractAsset extends BackboneElement with _$ContractAsset {
   /// [securityLabelNumberElement] Extensions for securityLabelNumber
   ///
   /// [valuedItem] Contract Valued Item List.
-  const factory ContractAsset({
+  factory ContractAsset({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1898,7 +1898,7 @@ class ContractContext extends BackboneElement with _$ContractContext {
   /// [text] Context description.
   ///
   /// [textElement] Extensions for text
-  const factory ContractContext({
+  factory ContractContext({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2080,7 +2080,7 @@ class ContractValuedItem extends BackboneElement with _$ContractValuedItem {
   ///  are controlled by this condition.
   ///
   /// [securityLabelNumberElement] Extensions for securityLabelNumber
-  const factory ContractValuedItem({
+  factory ContractValuedItem({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2354,7 +2354,7 @@ class ContractAction extends BackboneElement with _$ContractAction {
   /// [securityLabelNumber] Security labels that protects the action.
   ///
   /// [securityLabelNumberElement] Extensions for securityLabelNumber
-  const factory ContractAction({
+  factory ContractAction({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2586,7 +2586,7 @@ class ContractSubject extends BackboneElement with _$ContractSubject {
   ///  for.
   ///
   /// [role] Role type of agent assigned roles in this Contract.
-  const factory ContractSubject({
+  factory ContractSubject({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2705,7 +2705,7 @@ class ContractSigner extends BackboneElement with _$ContractSigner {
   /// [party] Party which is a signator to this Contract.
   ///
   /// [signature] Legally binding Contract DSIG signature contents in Base64.
-  const factory ContractSigner({
+  factory ContractSigner({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2828,7 +2828,7 @@ class ContractFriendly extends BackboneElement with _$ContractFriendly {
   /// [contentReference] Human readable rendering of this Contract in a format
   /// and representation intended to enhance comprehension and ensure
   ///  understandability.
-  const factory ContractFriendly({
+  factory ContractFriendly({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2948,7 +2948,7 @@ class ContractLegal extends BackboneElement with _$ContractLegal {
   /// [contentAttachment] Contract legal text in human renderable form.
   ///
   /// [contentReference] Contract legal text in human renderable form.
-  const factory ContractLegal({
+  factory ContractLegal({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -3066,7 +3066,7 @@ class ContractRule extends BackboneElement with _$ContractRule {
   ///
   /// [contentReference] Computable Contract conveyed using a policy rule
   ///  language (e.g. XACML, DKAL, SecPal).
-  const factory ContractRule({
+  factory ContractRule({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

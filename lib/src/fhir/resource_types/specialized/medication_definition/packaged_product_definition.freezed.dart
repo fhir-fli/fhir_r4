@@ -997,7 +997,7 @@ class _$PackagedProductDefinitionImpl extends _PackagedProductDefinition {
 }
 
 abstract class _PackagedProductDefinition extends PackagedProductDefinition {
-  const factory _PackagedProductDefinition(
+  factory _PackagedProductDefinition(
       {final R4ResourceType resourceType,
       final String? id,
       final FhirMeta? meta,
@@ -1459,7 +1459,7 @@ class _$PackagedProductDefinitionLegalStatusOfSupplyImpl
 
 abstract class _PackagedProductDefinitionLegalStatusOfSupply
     extends PackagedProductDefinitionLegalStatusOfSupply {
-  const factory _PackagedProductDefinitionLegalStatusOfSupply(
+  factory _PackagedProductDefinitionLegalStatusOfSupply(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2067,7 +2067,7 @@ class _$PackagedProductDefinitionPackageImpl
 
 abstract class _PackagedProductDefinitionPackage
     extends PackagedProductDefinitionPackage {
-  const factory _PackagedProductDefinitionPackage(
+  factory _PackagedProductDefinitionPackage(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2649,7 +2649,7 @@ class _$PackagedProductDefinitionShelfLifeStorageImpl
 
 abstract class _PackagedProductDefinitionShelfLifeStorage
     extends PackagedProductDefinitionShelfLifeStorage {
-  const factory _PackagedProductDefinitionShelfLifeStorage(
+  factory _PackagedProductDefinitionShelfLifeStorage(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3204,7 +3204,7 @@ class _$PackagedProductDefinitionPropertyImpl
 
 abstract class _PackagedProductDefinitionProperty
     extends PackagedProductDefinitionProperty {
-  const factory _PackagedProductDefinitionProperty(
+  factory _PackagedProductDefinitionProperty(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3565,7 +3565,7 @@ class _$PackagedProductDefinitionContainedItemImpl
 
 abstract class _PackagedProductDefinitionContainedItem
     extends PackagedProductDefinitionContainedItem {
-  const factory _PackagedProductDefinitionContainedItem(
+  factory _PackagedProductDefinitionContainedItem(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

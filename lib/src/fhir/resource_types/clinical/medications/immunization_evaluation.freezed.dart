@@ -1191,7 +1191,7 @@ class _$ImmunizationEvaluationImpl extends _ImmunizationEvaluation {
 }
 
 abstract class _ImmunizationEvaluation extends ImmunizationEvaluation {
-  const factory _ImmunizationEvaluation(
+  factory _ImmunizationEvaluation(
       {@JsonKey(unknownEnumValue: R4ResourceType.ImmunizationEvaluation)
       final R4ResourceType resourceType,
       final String? id,

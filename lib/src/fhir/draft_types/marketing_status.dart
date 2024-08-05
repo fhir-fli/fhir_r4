@@ -77,7 +77,7 @@ class MarketingStatus extends Element with _$MarketingStatus {
   ///  chain.
   ///
   /// [restoreDateElement] Extensions for restoreDate
-  const factory MarketingStatus({
+  factory MarketingStatus({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

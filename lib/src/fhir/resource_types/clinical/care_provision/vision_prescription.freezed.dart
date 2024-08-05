@@ -857,7 +857,7 @@ class _$VisionPrescriptionImpl extends _VisionPrescription {
 }
 
 abstract class _VisionPrescription extends VisionPrescription {
-  const factory _VisionPrescription(
+  factory _VisionPrescription(
       {@JsonKey(unknownEnumValue: R4ResourceType.VisionPrescription)
       final R4ResourceType resourceType,
       final String? id,
@@ -1908,7 +1908,7 @@ class _$VisionPrescriptionLensSpecificationImpl
 
 abstract class _VisionPrescriptionLensSpecification
     extends VisionPrescriptionLensSpecification {
-  const factory _VisionPrescriptionLensSpecification(
+  factory _VisionPrescriptionLensSpecification(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2442,7 +2442,7 @@ class _$VisionPrescriptionPrismImpl extends _VisionPrescriptionPrism {
 }
 
 abstract class _VisionPrescriptionPrism extends VisionPrescriptionPrism {
-  const factory _VisionPrescriptionPrism(
+  factory _VisionPrescriptionPrism(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

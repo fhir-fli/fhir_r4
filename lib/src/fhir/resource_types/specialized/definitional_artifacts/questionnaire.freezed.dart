@@ -1579,7 +1579,7 @@ class _$QuestionnaireImpl extends _Questionnaire {
 }
 
 abstract class _Questionnaire extends Questionnaire {
-  const factory _Questionnaire(
+  factory _Questionnaire(
       {@JsonKey(unknownEnumValue: R4ResourceType.Questionnaire)
       final R4ResourceType resourceType,
       final String? id,
@@ -2883,7 +2883,7 @@ class _$QuestionnaireItemImpl extends _QuestionnaireItem {
 }
 
 abstract class _QuestionnaireItem extends QuestionnaireItem {
-  const factory _QuestionnaireItem(
+  factory _QuestionnaireItem(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3924,7 +3924,7 @@ class _$QuestionnaireEnableWhenImpl extends _QuestionnaireEnableWhen {
 }
 
 abstract class _QuestionnaireEnableWhen extends QuestionnaireEnableWhen {
-  const factory _QuestionnaireEnableWhen(
+  factory _QuestionnaireEnableWhen(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4693,7 +4693,7 @@ class _$QuestionnaireAnswerOptionImpl extends _QuestionnaireAnswerOption {
 }
 
 abstract class _QuestionnaireAnswerOption extends QuestionnaireAnswerOption {
-  const factory _QuestionnaireAnswerOption(
+  factory _QuestionnaireAnswerOption(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5610,7 +5610,7 @@ class _$QuestionnaireInitialImpl extends _QuestionnaireInitial {
 }
 
 abstract class _QuestionnaireInitial extends QuestionnaireInitial {
-  const factory _QuestionnaireInitial(
+  factory _QuestionnaireInitial(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

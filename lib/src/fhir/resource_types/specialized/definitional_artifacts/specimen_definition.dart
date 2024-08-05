@@ -89,7 +89,7 @@ class SpecimenDefinition extends DomainResource with _$SpecimenDefinition {
   ///
   /// [typeTested] Specimen conditioned in a container as expected by the
   ///  testing laboratory.
-  const factory SpecimenDefinition({
+  factory SpecimenDefinition({
     @Default(R4ResourceType.SpecimenDefinition)
     @JsonKey(unknownEnumValue: R4ResourceType.SpecimenDefinition)
 
@@ -305,7 +305,7 @@ class SpecimenDefinitionTypeTested extends BackboneElement
   ///
   /// [handling] Set of instructions for preservation/transport of the specimen
   ///  at a defined temperature interval, prior the testing process.
-  const factory SpecimenDefinitionTypeTested({
+  factory SpecimenDefinitionTypeTested({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -477,7 +477,7 @@ class SpecimenDefinitionContainer extends BackboneElement
   ///  for this kind of specimen.
   ///
   /// [preparationElement] Extensions for preparation
-  const factory SpecimenDefinitionContainer({
+  factory SpecimenDefinitionContainer({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -632,7 +632,7 @@ class SpecimenDefinitionAdditive extends BackboneElement
   /// [additiveReference] Substance introduced in the kind of container to
   /// preserve, maintain or enhance the specimen. Examples: Formalin, Citrate,
   ///  EDTA.
-  const factory SpecimenDefinitionAdditive({
+  factory SpecimenDefinitionAdditive({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -762,7 +762,7 @@ class SpecimenDefinitionHandling extends BackboneElement
   ///  transport of the specimen. For instance, 'Protect from light exposure'.
   ///
   /// [instructionElement] Extensions for instruction
-  const factory SpecimenDefinitionHandling({
+  factory SpecimenDefinitionHandling({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

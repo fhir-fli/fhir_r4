@@ -446,7 +446,7 @@ class _$CodingImpl extends _Coding {
 }
 
 abstract class _Coding extends Coding {
-  const factory _Coding(
+  factory _Coding(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final FhirUri? system,

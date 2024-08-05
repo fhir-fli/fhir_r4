@@ -119,7 +119,7 @@ class FhirEndpoint extends DomainResource with _$FhirEndpoint {
   ///  notification.
   ///
   /// [headerElement] Extensions for header
-  const factory FhirEndpoint({
+  factory FhirEndpoint({
     @Default(R4ResourceType.Endpoint)
     @JsonKey(unknownEnumValue: R4ResourceType.Endpoint)
 

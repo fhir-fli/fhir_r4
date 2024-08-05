@@ -1085,7 +1085,7 @@ class _$ConsentImpl extends _Consent {
 }
 
 abstract class _Consent extends Consent {
-  const factory _Consent(
+  factory _Consent(
       {@JsonKey(unknownEnumValue: R4ResourceType.Consent)
       final R4ResourceType resourceType,
       final String? id,
@@ -1638,7 +1638,7 @@ class _$ConsentPolicyImpl extends _ConsentPolicy {
 }
 
 abstract class _ConsentPolicy extends ConsentPolicy {
-  const factory _ConsentPolicy(
+  factory _ConsentPolicy(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2102,7 +2102,7 @@ class _$ConsentVerificationImpl extends _ConsentVerification {
 }
 
 abstract class _ConsentVerification extends ConsentVerification {
-  const factory _ConsentVerification(
+  factory _ConsentVerification(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2837,7 +2837,7 @@ class _$ConsentProvisionImpl extends _ConsentProvision {
 }
 
 abstract class _ConsentProvision extends ConsentProvision {
-  const factory _ConsentProvision(
+  factory _ConsentProvision(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3278,7 +3278,7 @@ class _$ConsentActorImpl extends _ConsentActor {
 }
 
 abstract class _ConsentActor extends ConsentActor {
-  const factory _ConsentActor(
+  factory _ConsentActor(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3673,7 +3673,7 @@ class _$ConsentDataImpl extends _ConsentData {
 }
 
 abstract class _ConsentData extends ConsentData {
-  const factory _ConsentData(
+  factory _ConsentData(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

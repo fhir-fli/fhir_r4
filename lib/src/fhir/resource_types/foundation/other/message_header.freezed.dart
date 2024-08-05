@@ -999,7 +999,7 @@ class _$MessageHeaderImpl extends _MessageHeader {
 }
 
 abstract class _MessageHeader extends MessageHeader {
-  const factory _MessageHeader(
+  factory _MessageHeader(
       {@JsonKey(unknownEnumValue: R4ResourceType.MessageHeader)
       final R4ResourceType resourceType,
       final String? id,
@@ -1620,7 +1620,7 @@ class _$MessageHeaderDestinationImpl extends _MessageHeaderDestination {
 }
 
 abstract class _MessageHeaderDestination extends MessageHeaderDestination {
-  const factory _MessageHeaderDestination(
+  factory _MessageHeaderDestination(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2186,7 +2186,7 @@ class _$MessageHeaderSourceImpl extends _MessageHeaderSource {
 }
 
 abstract class _MessageHeaderSource extends MessageHeaderSource {
-  const factory _MessageHeaderSource(
+  factory _MessageHeaderSource(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2677,7 +2677,7 @@ class _$MessageHeaderResponseImpl extends _MessageHeaderResponse {
 }
 
 abstract class _MessageHeaderResponse extends MessageHeaderResponse {
-  const factory _MessageHeaderResponse(
+  factory _MessageHeaderResponse(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

@@ -14,7 +14,7 @@ part 'fhir_extension.g.dart';
 class FhirExtension extends FhirBase with _$FhirExtension {
   FhirExtension._();
 
-  const factory FhirExtension({
+  factory FhirExtension({
     /// [id] Unique id for the element within a resource (for internal
     /// references). This may be any string value that does not contain spaces.
 

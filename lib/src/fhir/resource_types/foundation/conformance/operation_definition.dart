@@ -206,7 +206,7 @@ class OperationDefinition extends DomainResource with _$OperationDefinition {
   /// [overload] Defines an appropriate combination of parameters to use when
   /// invoking this operation, to help code generators when generating
   ///  overloaded parameter sets for this operation.
-  const factory OperationDefinition({
+  factory OperationDefinition({
     @Default(R4ResourceType.OperationDefinition)
     @JsonKey(unknownEnumValue: R4ResourceType.OperationDefinition)
 
@@ -599,7 +599,7 @@ class OperationDefinitionParameter extends BackboneElement
   ///  operation invocation that are expected to resolve to this resource.
   ///
   /// [part] The parts of a nested Parameter.
-  const factory OperationDefinitionParameter({
+  factory OperationDefinitionParameter({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -781,7 +781,7 @@ class OperationDefinitionBinding extends BackboneElement
   ///
   /// [valueSet] Points to the value set or external definition (e.g. implicit
   ///  value set) that identifies the set of codes to be used.
-  const factory OperationDefinitionBinding({
+  factory OperationDefinitionBinding({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -906,7 +906,7 @@ class OperationDefinitionReferencedFrom extends BackboneElement
   ///  expected to resolve to this resource.
   ///
   /// [sourceIdElement] Extensions for sourceId
-  const factory OperationDefinitionReferencedFrom({
+  factory OperationDefinitionReferencedFrom({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1024,7 +1024,7 @@ class OperationDefinitionOverload extends BackboneElement
   /// [comment] Comments to go on overload.
   ///
   /// [commentElement] Extensions for comment
-  const factory OperationDefinitionOverload({
+  factory OperationDefinitionOverload({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

@@ -158,7 +158,7 @@ class HealthcareService extends DomainResource with _$HealthcareService {
   ///
   /// [endpoint] Technical endpoints providing access to services operated for
   ///  the specific healthcare services defined at this resource.
-  const factory HealthcareService({
+  factory HealthcareService({
     @Default(R4ResourceType.HealthcareService)
     @JsonKey(unknownEnumValue: R4ResourceType.HealthcareService)
 
@@ -523,7 +523,7 @@ class HealthcareServiceEligibility extends BackboneElement
   /// [comment] Describes the eligibility conditions for the service.
   ///
   /// [commentElement] Extensions for comment
-  const factory HealthcareServiceEligibility({
+  factory HealthcareServiceEligibility({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -654,7 +654,7 @@ class HealthcareServiceAvailableTime extends BackboneElement
   ///  set, then this time is ignored.
   ///
   /// [availableEndTimeElement] Extensions for availableEndTime
-  const factory HealthcareServiceAvailableTime({
+  factory HealthcareServiceAvailableTime({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -795,7 +795,7 @@ class HealthcareServiceNotAvailable extends BackboneElement
   ///
   /// [during] Service is not available (seasonally or for a public holiday)
   ///  from this date.
-  const factory HealthcareServiceNotAvailable({
+  factory HealthcareServiceNotAvailable({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

@@ -754,7 +754,7 @@ class _$SpecimenDefinitionImpl extends _SpecimenDefinition {
 }
 
 abstract class _SpecimenDefinition extends SpecimenDefinition {
-  const factory _SpecimenDefinition(
+  factory _SpecimenDefinition(
       {@JsonKey(unknownEnumValue: R4ResourceType.SpecimenDefinition)
       final R4ResourceType resourceType,
       final String? id,
@@ -1496,7 +1496,7 @@ class _$SpecimenDefinitionTypeTestedImpl extends _SpecimenDefinitionTypeTested {
 
 abstract class _SpecimenDefinitionTypeTested
     extends SpecimenDefinitionTypeTested {
-  const factory _SpecimenDefinitionTypeTested(
+  factory _SpecimenDefinitionTypeTested(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2251,7 +2251,7 @@ class _$SpecimenDefinitionContainerImpl extends _SpecimenDefinitionContainer {
 
 abstract class _SpecimenDefinitionContainer
     extends SpecimenDefinitionContainer {
-  const factory _SpecimenDefinitionContainer(
+  factory _SpecimenDefinitionContainer(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2714,7 +2714,7 @@ class _$SpecimenDefinitionAdditiveImpl extends _SpecimenDefinitionAdditive {
 }
 
 abstract class _SpecimenDefinitionAdditive extends SpecimenDefinitionAdditive {
-  const factory _SpecimenDefinitionAdditive(
+  factory _SpecimenDefinitionAdditive(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3208,7 +3208,7 @@ class _$SpecimenDefinitionHandlingImpl extends _SpecimenDefinitionHandling {
 }
 
 abstract class _SpecimenDefinitionHandling extends SpecimenDefinitionHandling {
-  const factory _SpecimenDefinitionHandling(
+  factory _SpecimenDefinitionHandling(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

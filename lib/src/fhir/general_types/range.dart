@@ -33,7 +33,7 @@ class Range extends DataType with _$Range {
   /// [low] The low limit. The boundary is inclusive.
   ///
   /// [high] The high limit. The boundary is inclusive.
-  const factory Range({
+  factory Range({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

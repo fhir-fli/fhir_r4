@@ -51,7 +51,7 @@ class Identifier extends DataType with _$Identifier {
   /// [period] Time period during which identifier is/was valid for use.
   ///
   /// [assigner] Organization that issued/manages the identifier.
-  const factory Identifier({
+  factory Identifier({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

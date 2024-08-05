@@ -1485,7 +1485,7 @@ class _$HealthcareServiceImpl extends _HealthcareService {
 }
 
 abstract class _HealthcareService extends HealthcareService {
-  const factory _HealthcareService(
+  factory _HealthcareService(
       {@JsonKey(unknownEnumValue: R4ResourceType.HealthcareService)
       final R4ResourceType resourceType,
       final String? id,
@@ -2115,7 +2115,7 @@ class _$HealthcareServiceEligibilityImpl extends _HealthcareServiceEligibility {
 
 abstract class _HealthcareServiceEligibility
     extends HealthcareServiceEligibility {
-  const factory _HealthcareServiceEligibility(
+  factory _HealthcareServiceEligibility(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2672,7 +2672,7 @@ class _$HealthcareServiceAvailableTimeImpl
 
 abstract class _HealthcareServiceAvailableTime
     extends HealthcareServiceAvailableTime {
-  const factory _HealthcareServiceAvailableTime(
+  factory _HealthcareServiceAvailableTime(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3124,7 +3124,7 @@ class _$HealthcareServiceNotAvailableImpl
 
 abstract class _HealthcareServiceNotAvailable
     extends HealthcareServiceNotAvailable {
-  const factory _HealthcareServiceNotAvailable(
+  factory _HealthcareServiceNotAvailable(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

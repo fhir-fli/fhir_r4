@@ -213,7 +213,7 @@ class CapabilityStatement extends DomainResource with _$CapabilityStatement {
   /// [messaging] A description of the messaging capabilities of the solution.
   ///
   /// [document] A document definition.
-  const factory CapabilityStatement({
+  factory CapabilityStatement({
     @Default(R4ResourceType.CapabilityStatement)
     @JsonKey(unknownEnumValue: R4ResourceType.CapabilityStatement)
 
@@ -573,7 +573,7 @@ class CapabilityStatementSoftware extends BackboneElement
   /// [releaseDate] Date this version of the software was released.
   ///
   /// [releaseDateElement] Extensions for releaseDate
-  const factory CapabilityStatementSoftware({
+  factory CapabilityStatementSoftware({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -708,7 +708,7 @@ class CapabilityStatementImplementation extends BackboneElement
   ///
   /// [custodian] The organization responsible for the management of the
   ///  instance and oversight of the data on the server at the specified URL.
-  const factory CapabilityStatementImplementation({
+  factory CapabilityStatementImplementation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -859,7 +859,7 @@ class CapabilityStatementRest extends BackboneElement
   /// [compartment] An absolute URI which is a reference to the definition of a
   /// compartment that the system supports. The reference is to a
   ///  CompartmentDefinition resource by its canonical URL .
-  const factory CapabilityStatementRest({
+  factory CapabilityStatementRest({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1025,7 +1025,7 @@ class CapabilityStatementSecurity extends BackboneElement
   /// [description] General description of how security works.
   ///
   /// [descriptionElement] Extensions for description
-  const factory CapabilityStatementSecurity({
+  factory CapabilityStatementSecurity({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1245,7 +1245,7 @@ class CapabilityStatementResource extends BackboneElement
   /// parameters and their meaning and type. Consult the definition of the
   /// operation for details about how to invoke the operation, and the
   ///  parameters.
-  const factory CapabilityStatementResource({
+  factory CapabilityStatementResource({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1495,7 +1495,7 @@ class CapabilityStatementInteraction extends BackboneElement
   ///  certificates only'.
   ///
   /// [documentationElement] Extensions for documentation
-  const factory CapabilityStatementInteraction({
+  factory CapabilityStatementInteraction({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1647,7 +1647,7 @@ class CapabilityStatementSearchParam extends BackboneElement
   ///  how the search parameter is used.  For example, text matching algorithms.
   ///
   /// [documentationElement] Extensions for documentation
-  const factory CapabilityStatementSearchParam({
+  factory CapabilityStatementSearchParam({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1808,7 +1808,7 @@ class CapabilityStatementOperation extends BackboneElement
   ///  and instance-level invocation of the operation.
   ///
   /// [documentationElement] Extensions for documentation
-  const factory CapabilityStatementOperation({
+  factory CapabilityStatementOperation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1958,7 +1958,7 @@ class CapabilityStatementInteraction1 extends BackboneElement
   ///  information about system wide search is implemented.
   ///
   /// [documentationElement] Extensions for documentation
-  const factory CapabilityStatementInteraction1({
+  factory CapabilityStatementInteraction1({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2105,7 +2105,7 @@ class CapabilityStatementMessaging extends BackboneElement
   ///
   /// [supportedMessage] References to message definitions for messages this
   ///  system can send or receive.
-  const factory CapabilityStatementMessaging({
+  factory CapabilityStatementMessaging({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2251,7 +2251,7 @@ class CapabilityStatementEndpoint extends BackboneElement
   ///  use network addresses for routing, it can be just an identifier.
   ///
   /// [addressElement] Extensions for address
-  const factory CapabilityStatementEndpoint({
+  factory CapabilityStatementEndpoint({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2383,7 +2383,7 @@ class CapabilityStatementSupportedMessage extends BackboneElement
   ///
   /// [definition] Points to a message definition that identifies the messaging
   ///  event, message structure, allowed responses, etc.
-  const factory CapabilityStatementSupportedMessage({
+  factory CapabilityStatementSupportedMessage({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2510,7 +2510,7 @@ class CapabilityStatementDocument extends BackboneElement
   ///
   /// [profile] A profile on the document Bundle that constrains which
   ///  resources are present, and their contents.
-  const factory CapabilityStatementDocument({
+  factory CapabilityStatementDocument({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

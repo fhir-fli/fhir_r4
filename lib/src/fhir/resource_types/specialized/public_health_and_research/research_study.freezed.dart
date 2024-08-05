@@ -1453,7 +1453,7 @@ class _$ResearchStudyImpl extends _ResearchStudy {
 }
 
 abstract class _ResearchStudy extends ResearchStudy {
-  const factory _ResearchStudy(
+  factory _ResearchStudy(
       {@JsonKey(unknownEnumValue: R4ResourceType.ResearchStudy)
       final R4ResourceType resourceType,
       final String? id,
@@ -2109,7 +2109,7 @@ class _$ResearchStudyArmImpl extends _ResearchStudyArm {
 }
 
 abstract class _ResearchStudyArm extends ResearchStudyArm {
-  const factory _ResearchStudyArm(
+  factory _ResearchStudyArm(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2526,7 +2526,7 @@ class _$ResearchStudyObjectiveImpl extends _ResearchStudyObjective {
 }
 
 abstract class _ResearchStudyObjective extends ResearchStudyObjective {
-  const factory _ResearchStudyObjective(
+  factory _ResearchStudyObjective(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

@@ -170,7 +170,7 @@ class Immunization extends DomainResource with _$Immunization {
   ///
   /// [protocolApplied] The protocol (set of recommendations) being followed by
   ///  the provider who administered the dose.
-  const factory Immunization({
+  factory Immunization({
     @Default(R4ResourceType.Immunization)
     @JsonKey(unknownEnumValue: R4ResourceType.Immunization)
 
@@ -477,7 +477,7 @@ class ImmunizationPerformer extends BackboneElement
   ///  administering provider, etc.).
   ///
   /// [actor] The practitioner or organization who performed the action.
-  const factory ImmunizationPerformer({
+  factory ImmunizationPerformer({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -608,7 +608,7 @@ class ImmunizationEducation extends BackboneElement
   ///  patient.
   ///
   /// [presentationDateElement] Extensions for presentationDate
-  const factory ImmunizationEducation({
+  factory ImmunizationEducation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -750,7 +750,7 @@ class ImmunizationReaction extends BackboneElement with _$ImmunizationReaction {
   /// [reported] Self-reported indicator.
   ///
   /// [reportedElement] Extensions for reported
-  const factory ImmunizationReaction({
+  factory ImmunizationReaction({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -899,7 +899,7 @@ class ImmunizationProtocolApplied extends BackboneElement
   /// [seriesDosesString] The recommended number of doses to achieve immunity.
   ///
   /// [seriesDosesStringElement] Extensions for seriesDosesString
-  const factory ImmunizationProtocolApplied({
+  factory ImmunizationProtocolApplied({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

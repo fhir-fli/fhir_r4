@@ -102,7 +102,7 @@ class Person extends DomainResource with _$Person {
   /// [activeElement] Extensions for active
   ///
   /// [link] Link to a resource that concerns the same actual person.
-  const factory Person({
+  factory Person({
     @Default(R4ResourceType.Person)
     @JsonKey(unknownEnumValue: R4ResourceType.Person)
 
@@ -629,7 +629,7 @@ class PersonLink extends BackboneElement with _$PersonLink {
   ///  target resource.
   ///
   /// [assuranceElement] Extensions for assurance
-  const factory PersonLink({
+  factory PersonLink({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

@@ -24,7 +24,7 @@ class RatioRange extends DataType with _$RatioRange {
   /// [lowNumerator] "The value of the low limit numerator."
   /// [highNumerator] "The value of the high limit numerator."
   /// [denominator] "The value of the denominator."
-  const factory RatioRange({
+  factory RatioRange({
     /// [id] "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces."
     String? id,
 

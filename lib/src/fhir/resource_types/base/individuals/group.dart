@@ -114,7 +114,7 @@ class FhirGroup extends DomainResource with _$FhirGroup {
   ///  members of the group.
   ///
   /// [member] Identifies the resource instances that are members of the group.
-  const factory FhirGroup({
+  factory FhirGroup({
     @Default(R4ResourceType.Group)
     @JsonKey(unknownEnumValue: R4ResourceType.Group)
 
@@ -360,7 +360,7 @@ class GroupCharacteristic extends BackboneElement with _$GroupCharacteristic {
   ///
   /// [period] The period over which the characteristic is tested; e.g. the
   ///  patient had an operation during the month of June.
-  const factory GroupCharacteristic({
+  factory GroupCharacteristic({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -513,7 +513,7 @@ class GroupMember extends BackboneElement with _$GroupMember {
   ///  but previously may have been a member.
   ///
   /// [inactiveElement] Extensions for inactive
-  const factory GroupMember({
+  factory GroupMember({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

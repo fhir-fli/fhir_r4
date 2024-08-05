@@ -1471,7 +1471,7 @@ class _$CommunicationImpl extends _Communication {
 }
 
 abstract class _Communication extends Communication {
-  const factory _Communication(
+  factory _Communication(
       {@JsonKey(unknownEnumValue: R4ResourceType.Communication)
       final R4ResourceType resourceType,
       final String? id,
@@ -2130,7 +2130,7 @@ class _$CommunicationPayloadImpl extends _CommunicationPayload {
 }
 
 abstract class _CommunicationPayload extends CommunicationPayload {
-  const factory _CommunicationPayload(
+  factory _CommunicationPayload(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

@@ -263,7 +263,7 @@ class _$RatioImpl extends _Ratio {
 }
 
 abstract class _Ratio extends Ratio {
-  const factory _Ratio(
+  factory _Ratio(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final Quantity? numerator,

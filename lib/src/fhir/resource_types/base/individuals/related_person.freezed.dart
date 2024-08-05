@@ -978,7 +978,7 @@ class _$RelatedPersonImpl extends _RelatedPerson {
 }
 
 abstract class _RelatedPerson extends RelatedPerson {
-  const factory _RelatedPerson(
+  factory _RelatedPerson(
           {@JsonKey(unknownEnumValue: R4ResourceType.RelatedPerson)
           final R4ResourceType resourceType,
           final String? id,
@@ -1513,7 +1513,7 @@ class _$RelatedPersonCommunicationImpl extends _RelatedPersonCommunication {
 }
 
 abstract class _RelatedPersonCommunication extends RelatedPersonCommunication {
-  const factory _RelatedPersonCommunication(
+  factory _RelatedPersonCommunication(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

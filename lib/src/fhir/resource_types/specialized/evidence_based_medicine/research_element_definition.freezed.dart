@@ -1614,7 +1614,7 @@ class _$ResearchElementDefinitionImpl extends _ResearchElementDefinition {
 }
 
 abstract class _ResearchElementDefinition extends ResearchElementDefinition {
-  const factory _ResearchElementDefinition(
+  factory _ResearchElementDefinition(
       {@JsonKey(unknownEnumValue: R4ResourceType.ResearchElementDefinition)
       final R4ResourceType resourceType,
       final String? id,
@@ -2864,7 +2864,7 @@ class _$ResearchElementDefinitionCharacteristicImpl
 
 abstract class _ResearchElementDefinitionCharacteristic
     extends ResearchElementDefinitionCharacteristic {
-  const factory _ResearchElementDefinitionCharacteristic(
+  factory _ResearchElementDefinitionCharacteristic(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

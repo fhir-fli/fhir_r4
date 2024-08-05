@@ -1200,7 +1200,7 @@ class _$MolecularSequenceImpl extends _MolecularSequence {
 }
 
 abstract class _MolecularSequence extends MolecularSequence {
-  const factory _MolecularSequence(
+  factory _MolecularSequence(
       {@JsonKey(unknownEnumValue: R4ResourceType.MolecularSequence)
       final R4ResourceType resourceType,
       final String? id,
@@ -2137,7 +2137,7 @@ class _$MolecularSequenceReferenceSeqImpl
 
 abstract class _MolecularSequenceReferenceSeq
     extends MolecularSequenceReferenceSeq {
-  const factory _MolecularSequenceReferenceSeq(
+  factory _MolecularSequenceReferenceSeq(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2863,7 +2863,7 @@ class _$MolecularSequenceVariantImpl extends _MolecularSequenceVariant {
 }
 
 abstract class _MolecularSequenceVariant extends MolecularSequenceVariant {
-  const factory _MolecularSequenceVariant(
+  factory _MolecularSequenceVariant(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3964,7 +3964,7 @@ class _$MolecularSequenceQualityImpl extends _MolecularSequenceQuality {
 }
 
 abstract class _MolecularSequenceQuality extends MolecularSequenceQuality {
-  const factory _MolecularSequenceQuality(
+  factory _MolecularSequenceQuality(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4931,7 +4931,7 @@ class _$MolecularSequenceRocImpl extends _MolecularSequenceRoc {
 }
 
 abstract class _MolecularSequenceRoc extends MolecularSequenceRoc {
-  const factory _MolecularSequenceRoc(
+  factory _MolecularSequenceRoc(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -5624,7 +5624,7 @@ class _$MolecularSequenceRepositoryImpl extends _MolecularSequenceRepository {
 
 abstract class _MolecularSequenceRepository
     extends MolecularSequenceRepository {
-  const factory _MolecularSequenceRepository(
+  factory _MolecularSequenceRepository(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -6219,7 +6219,7 @@ class _$MolecularSequenceStructureVariantImpl
 
 abstract class _MolecularSequenceStructureVariant
     extends MolecularSequenceStructureVariant {
-  const factory _MolecularSequenceStructureVariant(
+  factory _MolecularSequenceStructureVariant(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -6664,7 +6664,7 @@ class _$MolecularSequenceOuterImpl extends _MolecularSequenceOuter {
 }
 
 abstract class _MolecularSequenceOuter extends MolecularSequenceOuter {
-  const factory _MolecularSequenceOuter(
+  factory _MolecularSequenceOuter(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -7094,7 +7094,7 @@ class _$MolecularSequenceInnerImpl extends _MolecularSequenceInner {
 }
 
 abstract class _MolecularSequenceInner extends MolecularSequenceInner {
-  const factory _MolecularSequenceInner(
+  factory _MolecularSequenceInner(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

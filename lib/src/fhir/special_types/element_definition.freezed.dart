@@ -10865,7 +10865,7 @@ class _$ElementDefinitionImpl extends _ElementDefinition {
 }
 
 abstract class _ElementDefinition extends ElementDefinition {
-  const factory _ElementDefinition(
+  factory _ElementDefinition(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -14018,7 +14018,7 @@ class _$ElementDefinitionSlicingImpl extends _ElementDefinitionSlicing {
 }
 
 abstract class _ElementDefinitionSlicing extends ElementDefinitionSlicing {
-  const factory _ElementDefinitionSlicing(
+  factory _ElementDefinitionSlicing(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -14474,7 +14474,7 @@ class _$ElementDefinitionDiscriminatorImpl
 
 abstract class _ElementDefinitionDiscriminator
     extends ElementDefinitionDiscriminator {
-  const factory _ElementDefinitionDiscriminator(
+  factory _ElementDefinitionDiscriminator(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -14947,7 +14947,7 @@ class _$ElementDefinitionBaseImpl extends _ElementDefinitionBase {
 }
 
 abstract class _ElementDefinitionBase extends ElementDefinitionBase {
-  const factory _ElementDefinitionBase(
+  factory _ElementDefinitionBase(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -15606,7 +15606,7 @@ class _$ElementDefinitionTypeImpl extends _ElementDefinitionType {
 }
 
 abstract class _ElementDefinitionType extends ElementDefinitionType {
-  const factory _ElementDefinitionType(
+  factory _ElementDefinitionType(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -18272,7 +18272,7 @@ class _$ElementDefinitionExampleImpl extends _ElementDefinitionExample {
 }
 
 abstract class _ElementDefinitionExample extends ElementDefinitionExample {
-  const factory _ElementDefinitionExample(
+  factory _ElementDefinitionExample(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -19342,7 +19342,7 @@ class _$ElementDefinitionConstraintImpl extends _ElementDefinitionConstraint {
 
 abstract class _ElementDefinitionConstraint
     extends ElementDefinitionConstraint {
-  const factory _ElementDefinitionConstraint(
+  factory _ElementDefinitionConstraint(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -19847,7 +19847,7 @@ class _$ElementDefinitionBindingImpl extends _ElementDefinitionBinding {
 }
 
 abstract class _ElementDefinitionBinding extends ElementDefinitionBinding {
-  const factory _ElementDefinitionBinding(
+  factory _ElementDefinitionBinding(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -20370,7 +20370,7 @@ class _$ElementDefinitionMappingImpl extends _ElementDefinitionMapping {
 }
 
 abstract class _ElementDefinitionMapping extends ElementDefinitionMapping {
-  const factory _ElementDefinitionMapping(
+  factory _ElementDefinitionMapping(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

@@ -509,7 +509,7 @@ class _$ParameterDefinitionImpl extends _ParameterDefinition {
 }
 
 abstract class _ParameterDefinition extends ParameterDefinition {
-  const factory _ParameterDefinition(
+  factory _ParameterDefinition(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final FhirCode? name,

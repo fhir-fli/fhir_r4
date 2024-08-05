@@ -190,7 +190,7 @@ class Questionnaire extends DomainResource with _$Questionnaire {
   ///
   /// [item] A particular question, question grouping or display text that is
   ///  part of the questionnaire.
-  const factory Questionnaire({
+  factory Questionnaire({
     @Default(R4ResourceType.Questionnaire)
     @JsonKey(unknownEnumValue: R4ResourceType.Questionnaire)
 
@@ -595,7 +595,7 @@ class QuestionnaireItem extends BackboneElement with _$QuestionnaireItem {
   ///
   /// [item] Text, questions and other groups to be nested beneath a question
   ///  or group.
-  const factory QuestionnaireItem({
+  factory QuestionnaireItem({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -853,7 +853,7 @@ class QuestionnaireEnableWhen extends BackboneElement
   ///
   /// [answerReference] A value that the referenced question is tested using
   ///  the specified operator in order for the item to be enabled.
-  const factory QuestionnaireEnableWhen({
+  factory QuestionnaireEnableWhen({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1065,7 +1065,7 @@ class QuestionnaireAnswerOption extends BackboneElement
   ///  list of possible answers is initially shown.
   ///
   /// [initialSelectedElement] Extensions for initialSelected
-  const factory QuestionnaireAnswerOption({
+  factory QuestionnaireAnswerOption({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1254,7 +1254,7 @@ class QuestionnaireInitial extends BackboneElement with _$QuestionnaireInitial {
   /// [valueQuantity] The actual value to for an initial answer.
   ///
   /// [valueReference] The actual value to for an initial answer.
-  const factory QuestionnaireInitial({
+  factory QuestionnaireInitial({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

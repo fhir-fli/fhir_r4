@@ -52,7 +52,7 @@ class ContactPoint extends DataType with _$ContactPoint {
   /// [rankElement] Extensions for rank
   ///
   /// [period] Time period when the contact point was/is in use.
-  const factory ContactPoint({
+  factory ContactPoint({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

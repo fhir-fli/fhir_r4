@@ -777,7 +777,7 @@ class _$NutritionProductImpl extends _NutritionProduct {
 }
 
 abstract class _NutritionProduct extends NutritionProduct {
-  const factory _NutritionProduct(
+  factory _NutritionProduct(
       {final R4ResourceType resourceType,
       final String? id,
       final FhirMeta? meta,
@@ -1173,7 +1173,7 @@ class _$NutritionProductNutrientImpl extends _NutritionProductNutrient {
 }
 
 abstract class _NutritionProductNutrient extends NutritionProductNutrient {
-  const factory _NutritionProductNutrient(
+  factory _NutritionProductNutrient(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1486,7 +1486,7 @@ class _$NutritionProductIngredientImpl extends _NutritionProductIngredient {
 }
 
 abstract class _NutritionProductIngredient extends NutritionProductIngredient {
-  const factory _NutritionProductIngredient(
+  factory _NutritionProductIngredient(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2034,7 +2034,7 @@ class _$NutritionProductCharacteristicImpl
 
 abstract class _NutritionProductCharacteristic
     extends NutritionProductCharacteristic {
-  const factory _NutritionProductCharacteristic(
+  factory _NutritionProductCharacteristic(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2564,7 +2564,7 @@ class _$NutritionProductInstanceImpl extends _NutritionProductInstance {
 }
 
 abstract class _NutritionProductInstance extends NutritionProductInstance {
-  const factory _NutritionProductInstance(
+  factory _NutritionProductInstance(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

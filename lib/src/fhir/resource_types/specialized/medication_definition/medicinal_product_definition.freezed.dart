@@ -1481,7 +1481,7 @@ class _$MedicinalProductDefinitionImpl extends _MedicinalProductDefinition {
 }
 
 abstract class _MedicinalProductDefinition extends MedicinalProductDefinition {
-  const factory _MedicinalProductDefinition(
+  factory _MedicinalProductDefinition(
       {final R4ResourceType resourceType,
       final String? id,
       final FhirMeta? meta,
@@ -1999,7 +1999,7 @@ class _$MedicinalProductDefinitionContactImpl
 
 abstract class _MedicinalProductDefinitionContact
     extends MedicinalProductDefinitionContact {
-  const factory _MedicinalProductDefinitionContact(
+  factory _MedicinalProductDefinitionContact(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2407,7 +2407,7 @@ class _$MedicinalProductDefinitionNameImpl
 
 abstract class _MedicinalProductDefinitionName
     extends MedicinalProductDefinitionName {
-  const factory _MedicinalProductDefinitionName(
+  factory _MedicinalProductDefinitionName(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2760,7 +2760,7 @@ class _$MedicinalProductDefinitionNamePartImpl
 
 abstract class _MedicinalProductDefinitionNamePart
     extends MedicinalProductDefinitionNamePart {
-  const factory _MedicinalProductDefinitionNamePart(
+  factory _MedicinalProductDefinitionNamePart(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3132,7 +3132,7 @@ class _$MedicinalProductDefinitionCountryLanguageImpl
 
 abstract class _MedicinalProductDefinitionCountryLanguage
     extends MedicinalProductDefinitionCountryLanguage {
-  const factory _MedicinalProductDefinitionCountryLanguage(
+  factory _MedicinalProductDefinitionCountryLanguage(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3466,7 +3466,7 @@ class _$MedicinalProductDefinitionCrossReferenceImpl
 
 abstract class _MedicinalProductDefinitionCrossReference
     extends MedicinalProductDefinitionCrossReference {
-  const factory _MedicinalProductDefinitionCrossReference(
+  factory _MedicinalProductDefinitionCrossReference(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3871,7 +3871,7 @@ class _$MedicinalProductDefinitionOperationImpl
 
 abstract class _MedicinalProductDefinitionOperation
     extends MedicinalProductDefinitionOperation {
-  const factory _MedicinalProductDefinitionOperation(
+  factory _MedicinalProductDefinitionOperation(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -4386,7 +4386,7 @@ class _$MedicinalProductDefinitionCharacteristicImpl
 
 abstract class _MedicinalProductDefinitionCharacteristic
     extends MedicinalProductDefinitionCharacteristic {
-  const factory _MedicinalProductDefinitionCharacteristic(
+  factory _MedicinalProductDefinitionCharacteristic(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

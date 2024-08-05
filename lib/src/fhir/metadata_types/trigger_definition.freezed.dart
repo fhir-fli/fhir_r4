@@ -549,7 +549,7 @@ class _$TriggerDefinitionImpl extends _TriggerDefinition {
 }
 
 abstract class _TriggerDefinition extends TriggerDefinition {
-  const factory _TriggerDefinition(
+  factory _TriggerDefinition(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: TriggerDefinitionType.unknown)

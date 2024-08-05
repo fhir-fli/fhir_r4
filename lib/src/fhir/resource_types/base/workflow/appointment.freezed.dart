@@ -1498,7 +1498,7 @@ class _$AppointmentImpl extends _Appointment {
 }
 
 abstract class _Appointment extends Appointment {
-  const factory _Appointment(
+  factory _Appointment(
       {@JsonKey(unknownEnumValue: R4ResourceType.Appointment)
       final R4ResourceType resourceType,
       final String? id,
@@ -2274,7 +2274,7 @@ class _$AppointmentParticipantImpl extends _AppointmentParticipant {
 }
 
 abstract class _AppointmentParticipant extends AppointmentParticipant {
-  const factory _AppointmentParticipant(
+  factory _AppointmentParticipant(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

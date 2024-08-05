@@ -1650,7 +1650,7 @@ class _$DeviceRequestImpl extends _DeviceRequest {
 }
 
 abstract class _DeviceRequest extends DeviceRequest {
-  const factory _DeviceRequest(
+  factory _DeviceRequest(
       {@JsonKey(unknownEnumValue: R4ResourceType.DeviceRequest)
       final R4ResourceType resourceType,
       final String? id,
@@ -2412,7 +2412,7 @@ class _$DeviceRequestParameterImpl extends _DeviceRequestParameter {
 }
 
 abstract class _DeviceRequestParameter extends DeviceRequestParameter {
-  const factory _DeviceRequestParameter(
+  factory _DeviceRequestParameter(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

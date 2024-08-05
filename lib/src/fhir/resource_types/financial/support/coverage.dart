@@ -139,7 +139,7 @@ class Coverage extends DomainResource with _$Coverage {
   /// [subrogationElement] Extensions for subrogation
   ///
   /// [contract] The policy(s) which constitute this insurance coverage.
-  const factory Coverage({
+  factory Coverage({
     @Default(R4ResourceType.Coverage)
     @JsonKey(unknownEnumValue: R4ResourceType.Coverage)
 
@@ -407,7 +407,7 @@ class CoverageClass extends BackboneElement with _$CoverageClass {
   /// [name] A short description for the class.
   ///
   /// [nameElement] Extensions for name
-  const factory CoverageClass({
+  factory CoverageClass({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -542,7 +542,7 @@ class CoverageCostToBeneficiary extends BackboneElement
   ///
   /// [exception] A suite of codes indicating exceptions or reductions to
   ///  patient costs and their effective periods.
-  const factory CoverageCostToBeneficiary({
+  factory CoverageCostToBeneficiary({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -666,7 +666,7 @@ class CoverageException extends BackboneElement with _$CoverageException {
   /// [type] The code for the specific exception.
   ///
   /// [period] The timeframe during when the exception is in force.
-  const factory CoverageException({
+  factory CoverageException({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

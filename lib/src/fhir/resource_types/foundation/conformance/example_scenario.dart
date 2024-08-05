@@ -160,7 +160,7 @@ class ExampleScenario extends DomainResource with _$ExampleScenario {
   /// [process] Each major process - a group of operations.
   ///
   /// [workflow] Another nested workflow.
-  const factory ExampleScenario({
+  factory ExampleScenario({
     @Default(R4ResourceType.ExampleScenario)
     @JsonKey(unknownEnumValue: R4ResourceType.ExampleScenario)
 
@@ -454,7 +454,7 @@ class ExampleScenarioActor extends BackboneElement with _$ExampleScenarioActor {
   /// [description] The description of the actor.
   ///
   /// [descriptionElement] Extensions for description
-  const factory ExampleScenarioActor({
+  factory ExampleScenarioActor({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -603,7 +603,7 @@ class ExampleScenarioInstance extends BackboneElement
   ///
   /// [containedInstance] Resources contained in the instance (e.g. the
   ///  observations contained in a bundle).
-  const factory ExampleScenarioInstance({
+  factory ExampleScenarioInstance({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -746,7 +746,7 @@ class ExampleScenarioVersion extends BackboneElement
   /// [description] The description of the resource version.
   ///
   /// [descriptionElement] Extensions for description
-  const factory ExampleScenarioVersion({
+  factory ExampleScenarioVersion({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -870,7 +870,7 @@ class ExampleScenarioContainedInstance extends BackboneElement
   /// [versionId] A specific version of a resource contained in the instance.
   ///
   /// [versionIdElement] Extensions for versionId
-  const factory ExampleScenarioContainedInstance({
+  factory ExampleScenarioContainedInstance({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -993,7 +993,7 @@ class ExampleScenarioProcess extends BackboneElement
   /// [postConditionsElement] Extensions for postConditions
   ///
   /// [step] Each step of the process.
-  const factory ExampleScenarioProcess({
+  factory ExampleScenarioProcess({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1134,7 +1134,7 @@ class ExampleScenarioStep extends BackboneElement with _$ExampleScenarioStep {
   ///
   /// [alternative] Indicates an alternative step that can be taken instead of
   ///  the operations on the base step in exceptional/atypical circumstances.
-  const factory ExampleScenarioStep({
+  factory ExampleScenarioStep({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1292,7 +1292,7 @@ class ExampleScenarioOperation extends BackboneElement
   /// [request] Each resource instance used by the initiator.
   ///
   /// [response] Each resource instance used by the responder.
-  const factory ExampleScenarioOperation({
+  factory ExampleScenarioOperation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1464,7 +1464,7 @@ class ExampleScenarioAlternative extends BackboneElement
   /// [descriptionElement] Extensions for description
   ///
   /// [step] What happens in each alternative option.
-  const factory ExampleScenarioAlternative({
+  factory ExampleScenarioAlternative({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

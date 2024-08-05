@@ -145,7 +145,7 @@ class DeviceDefinition extends DomainResource with _$DeviceDefinition {
   ///
   /// [material] A substance used to create the material(s) of which the device
   ///  is made.
-  const factory DeviceDefinition({
+  factory DeviceDefinition({
     @Default(R4ResourceType.DeviceDefinition)
     @JsonKey(unknownEnumValue: R4ResourceType.DeviceDefinition)
 
@@ -501,7 +501,7 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement
   /// [jurisdiction] The jurisdiction to which the deviceIdentifier applies.
   ///
   /// [jurisdictionElement] Extensions for jurisdiction
-  const factory DeviceDefinitionUdiDeviceIdentifier({
+  factory DeviceDefinitionUdiDeviceIdentifier({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -626,7 +626,7 @@ class DeviceDefinitionDeviceName extends BackboneElement
   ///  ManufactureDeviceName | ModelName.
   ///
   /// [typeElement] Extensions for type
-  const factory DeviceDefinitionDeviceName({
+  factory DeviceDefinitionDeviceName({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -754,7 +754,7 @@ class DeviceDefinitionSpecialization extends BackboneElement
   ///  communicate.
   ///
   /// [versionElement] Extensions for version
-  const factory DeviceDefinitionSpecialization({
+  factory DeviceDefinitionSpecialization({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -877,7 +877,7 @@ class DeviceDefinitionCapability extends BackboneElement
   /// [type] Type of capability.
   ///
   /// [description] Description of capability.
-  const factory DeviceDefinitionCapability({
+  factory DeviceDefinitionCapability({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -995,7 +995,7 @@ class DeviceDefinitionProperty extends BackboneElement
   /// [valueQuantity] Property value as a quantity.
   ///
   /// [valueCode] Property value as a code, e.g., NTP4 (synced to NTP).
-  const factory DeviceDefinitionProperty({
+  factory DeviceDefinitionProperty({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1121,7 +1121,7 @@ class DeviceDefinitionMaterial extends BackboneElement
   ///  allergen.
   ///
   /// [allergenicIndicatorElement] Extensions for allergenicIndicator
-  const factory DeviceDefinitionMaterial({
+  factory DeviceDefinitionMaterial({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

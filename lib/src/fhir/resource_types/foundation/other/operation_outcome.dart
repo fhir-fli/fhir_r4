@@ -77,7 +77,7 @@ class OperationOutcome extends DomainResource with _$OperationOutcome {
   ///
   /// [issue] An error, warning, or information message that results from a
   ///  system action.
-  const factory OperationOutcome({
+  factory OperationOutcome({
     @Default(R4ResourceType.OperationOutcome)
     @JsonKey(unknownEnumValue: R4ResourceType.OperationOutcome)
 
@@ -287,7 +287,7 @@ class OperationOutcomeIssue extends BackboneElement
   ///  to be raised.
   ///
   /// [expressionElement] Extensions for expression
-  const factory OperationOutcomeIssue({
+  factory OperationOutcomeIssue({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

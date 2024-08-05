@@ -1514,7 +1514,7 @@ class _$ImplementationGuideImpl extends _ImplementationGuide {
 }
 
 abstract class _ImplementationGuide extends ImplementationGuide {
-  const factory _ImplementationGuide(
+  factory _ImplementationGuide(
       {@JsonKey(unknownEnumValue: R4ResourceType.ImplementationGuide)
       final R4ResourceType resourceType,
       final String? id,
@@ -2223,7 +2223,7 @@ class _$ImplementationGuideDependsOnImpl extends _ImplementationGuideDependsOn {
 
 abstract class _ImplementationGuideDependsOn
     extends ImplementationGuideDependsOn {
-  const factory _ImplementationGuideDependsOn(
+  factory _ImplementationGuideDependsOn(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2625,7 +2625,7 @@ class _$ImplementationGuideGlobalImpl extends _ImplementationGuideGlobal {
 }
 
 abstract class _ImplementationGuideGlobal extends ImplementationGuideGlobal {
-  const factory _ImplementationGuideGlobal(
+  factory _ImplementationGuideGlobal(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3132,7 +3132,7 @@ class _$ImplementationGuideDefinitionImpl
 
 abstract class _ImplementationGuideDefinition
     extends ImplementationGuideDefinition {
-  const factory _ImplementationGuideDefinition(
+  factory _ImplementationGuideDefinition(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3567,7 +3567,7 @@ class _$ImplementationGuideGroupingImpl extends _ImplementationGuideGrouping {
 
 abstract class _ImplementationGuideGrouping
     extends ImplementationGuideGrouping {
-  const factory _ImplementationGuideGrouping(
+  factory _ImplementationGuideGrouping(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -4271,7 +4271,7 @@ class _$ImplementationGuideResourceImpl extends _ImplementationGuideResource {
 
 abstract class _ImplementationGuideResource
     extends ImplementationGuideResource {
-  const factory _ImplementationGuideResource(
+  factory _ImplementationGuideResource(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4874,7 +4874,7 @@ class _$ImplementationGuidePageImpl extends _ImplementationGuidePage {
 }
 
 abstract class _ImplementationGuidePage extends ImplementationGuidePage {
-  const factory _ImplementationGuidePage(
+  factory _ImplementationGuidePage(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5323,7 +5323,7 @@ class _$ImplementationGuideParameterImpl extends _ImplementationGuideParameter {
 
 abstract class _ImplementationGuideParameter
     extends ImplementationGuideParameter {
-  const factory _ImplementationGuideParameter(
+  factory _ImplementationGuideParameter(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -5795,7 +5795,7 @@ class _$ImplementationGuideTemplateImpl extends _ImplementationGuideTemplate {
 
 abstract class _ImplementationGuideTemplate
     extends ImplementationGuideTemplate {
-  const factory _ImplementationGuideTemplate(
+  factory _ImplementationGuideTemplate(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -6399,7 +6399,7 @@ class _$ImplementationGuideManifestImpl extends _ImplementationGuideManifest {
 
 abstract class _ImplementationGuideManifest
     extends ImplementationGuideManifest {
-  const factory _ImplementationGuideManifest(
+  factory _ImplementationGuideManifest(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -6952,7 +6952,7 @@ class _$ImplementationGuideResource1Impl extends _ImplementationGuideResource1 {
 
 abstract class _ImplementationGuideResource1
     extends ImplementationGuideResource1 {
-  const factory _ImplementationGuideResource1(
+  factory _ImplementationGuideResource1(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -7463,7 +7463,7 @@ class _$ImplementationGuidePage1Impl extends _ImplementationGuidePage1 {
 }
 
 abstract class _ImplementationGuidePage1 extends ImplementationGuidePage1 {
-  const factory _ImplementationGuidePage1(
+  factory _ImplementationGuidePage1(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

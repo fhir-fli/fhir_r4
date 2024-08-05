@@ -992,7 +992,7 @@ class _$QuestionnaireResponseImpl extends _QuestionnaireResponse {
 }
 
 abstract class _QuestionnaireResponse extends QuestionnaireResponse {
-  const factory _QuestionnaireResponse(
+  factory _QuestionnaireResponse(
           {@JsonKey(unknownEnumValue: R4ResourceType.QuestionnaireResponse)
           final R4ResourceType resourceType,
           final String? id,
@@ -1652,7 +1652,7 @@ class _$QuestionnaireResponseItemImpl extends _QuestionnaireResponseItem {
 }
 
 abstract class _QuestionnaireResponseItem extends QuestionnaireResponseItem {
-  const factory _QuestionnaireResponseItem(
+  factory _QuestionnaireResponseItem(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2608,7 +2608,7 @@ class _$QuestionnaireResponseAnswerImpl extends _QuestionnaireResponseAnswer {
 
 abstract class _QuestionnaireResponseAnswer
     extends QuestionnaireResponseAnswer {
-  const factory _QuestionnaireResponseAnswer(
+  factory _QuestionnaireResponseAnswer(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

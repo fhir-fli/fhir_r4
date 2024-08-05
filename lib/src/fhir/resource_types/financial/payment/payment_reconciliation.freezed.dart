@@ -1147,7 +1147,7 @@ class _$PaymentReconciliationImpl extends _PaymentReconciliation {
 }
 
 abstract class _PaymentReconciliation extends PaymentReconciliation {
-  const factory _PaymentReconciliation(
+  factory _PaymentReconciliation(
       {@JsonKey(unknownEnumValue: R4ResourceType.PaymentReconciliation)
       final R4ResourceType resourceType,
       final String? id,
@@ -2019,7 +2019,7 @@ class _$PaymentReconciliationDetailImpl extends _PaymentReconciliationDetail {
 
 abstract class _PaymentReconciliationDetail
     extends PaymentReconciliationDetail {
-  const factory _PaymentReconciliationDetail(
+  factory _PaymentReconciliationDetail(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2483,7 +2483,7 @@ class _$PaymentReconciliationProcessNoteImpl
 
 abstract class _PaymentReconciliationProcessNote
     extends PaymentReconciliationProcessNote {
-  const factory _PaymentReconciliationProcessNote(
+  factory _PaymentReconciliationProcessNote(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

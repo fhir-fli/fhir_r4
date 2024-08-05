@@ -457,7 +457,7 @@ class _$PopulationImpl extends _Population {
 }
 
 abstract class _Population extends Population {
-  const factory _Population(
+  factory _Population(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

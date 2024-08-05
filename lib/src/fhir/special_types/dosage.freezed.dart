@@ -857,7 +857,7 @@ class _$DosageImpl extends _Dosage {
 }
 
 abstract class _Dosage extends Dosage {
-  const factory _Dosage(
+  factory _Dosage(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1489,7 +1489,7 @@ class _$DosageDoseAndRateImpl extends _DosageDoseAndRate {
 }
 
 abstract class _DosageDoseAndRate extends DosageDoseAndRate {
-  const factory _DosageDoseAndRate(
+  factory _DosageDoseAndRate(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

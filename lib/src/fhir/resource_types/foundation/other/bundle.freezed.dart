@@ -819,7 +819,7 @@ class _$BundleImpl extends _Bundle {
 }
 
 abstract class _Bundle extends Bundle {
-  const factory _Bundle(
+  factory _Bundle(
       {@JsonKey(unknownEnumValue: R4ResourceType.Bundle)
       final R4ResourceType resourceType,
       final String? id,
@@ -1326,7 +1326,7 @@ class _$BundleLinkImpl extends _BundleLink {
 }
 
 abstract class _BundleLink extends BundleLink {
-  const factory _BundleLink(
+  factory _BundleLink(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -1887,7 +1887,7 @@ class _$BundleEntryImpl extends _BundleEntry {
 }
 
 abstract class _BundleEntry extends BundleEntry {
-  const factory _BundleEntry(
+  factory _BundleEntry(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2329,7 +2329,7 @@ class _$BundleSearchImpl extends _BundleSearch {
 }
 
 abstract class _BundleSearch extends BundleSearch {
-  const factory _BundleSearch(
+  factory _BundleSearch(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2963,7 +2963,7 @@ class _$BundleRequestImpl extends _BundleRequest {
 }
 
 abstract class _BundleRequest extends BundleRequest {
-  const factory _BundleRequest(
+  factory _BundleRequest(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3568,7 +3568,7 @@ class _$BundleResponseImpl extends _BundleResponse {
 }
 
 abstract class _BundleResponse extends BundleResponse {
-  const factory _BundleResponse(
+  factory _BundleResponse(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

@@ -844,7 +844,7 @@ class _$BodyStructureImpl extends _BodyStructure {
 }
 
 abstract class _BodyStructure extends BodyStructure {
-  const factory _BodyStructure(
+  factory _BodyStructure(
       {@JsonKey(unknownEnumValue: R4ResourceType.BodyStructure)
       final R4ResourceType resourceType,
       final String? id,

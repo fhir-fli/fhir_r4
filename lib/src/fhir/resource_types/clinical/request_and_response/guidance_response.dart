@@ -152,7 +152,7 @@ class GuidanceResponse extends DomainResource with _$GuidanceResponse {
   /// accurate response, this element will a description of the data required in
   /// order to proceed with the evaluation. A subsequent request to the service
   ///  should include this data.
-  const factory GuidanceResponse({
+  factory GuidanceResponse({
     @Default(R4ResourceType.GuidanceResponse)
     @JsonKey(unknownEnumValue: R4ResourceType.GuidanceResponse)
 

@@ -105,7 +105,7 @@ class Medication extends DomainResource with _$Medication {
   ///  product.
   ///
   /// [batch] Information that only applies to packages (not products).
-  const factory Medication({
+  factory Medication({
     @Default(R4ResourceType.Medication)
     @JsonKey(unknownEnumValue: R4ResourceType.Medication)
 
@@ -326,7 +326,7 @@ class MedicationIngredient extends BackboneElement with _$MedicationIngredient {
   /// [strength] Specifies how many (or how much) of the items there are in
   /// this Medication.  For example, 250 mg per tablet.  This is expressed as a
   ///  ratio where the numerator is 250mg and the denominator is 1 tablet.
-  const factory MedicationIngredient({
+  factory MedicationIngredient({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -460,7 +460,7 @@ class MedicationBatch extends BackboneElement with _$MedicationBatch {
   /// [expirationDate] When this specific batch of product will expire.
   ///
   /// [expirationDateElement] Extensions for expirationDate
-  const factory MedicationBatch({
+  factory MedicationBatch({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

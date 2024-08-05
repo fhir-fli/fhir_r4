@@ -854,7 +854,7 @@ class _$ResearchSubjectImpl extends _ResearchSubject {
 }
 
 abstract class _ResearchSubject extends ResearchSubject {
-  const factory _ResearchSubject(
+  factory _ResearchSubject(
       {@JsonKey(unknownEnumValue: R4ResourceType.ResearchSubject)
       final R4ResourceType resourceType,
       final String? id,

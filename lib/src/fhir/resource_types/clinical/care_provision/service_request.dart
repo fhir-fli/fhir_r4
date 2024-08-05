@@ -226,7 +226,7 @@ class ServiceRequest extends DomainResource with _$ServiceRequest {
   /// [patientInstructionElement] Extensions for patientInstruction
   ///
   /// [relevantHistory] Key events in the history of the request.
-  const factory ServiceRequest({
+  factory ServiceRequest({
     @Default(R4ResourceType.ServiceRequest)
     @JsonKey(unknownEnumValue: R4ResourceType.ServiceRequest)
 

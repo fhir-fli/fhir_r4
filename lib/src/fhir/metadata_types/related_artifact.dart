@@ -60,7 +60,7 @@ class RelatedArtifact extends DataType with _$RelatedArtifact {
   ///
   /// [resource] The related resource, such as a library, value set, profile,
   ///  or other knowledge resource.
-  const factory RelatedArtifact({
+  factory RelatedArtifact({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

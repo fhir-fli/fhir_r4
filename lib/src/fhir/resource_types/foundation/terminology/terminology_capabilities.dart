@@ -196,7 +196,7 @@ class TerminologyCapabilities extends DomainResource
   /// [codeSearchElement] Extensions for codeSearch
   ///
   /// [validateCode] Information about the
-  const factory TerminologyCapabilities({
+  factory TerminologyCapabilities({
     @Default(R4ResourceType.TerminologyCapabilities)
     @JsonKey(unknownEnumValue: R4ResourceType.TerminologyCapabilities)
 
@@ -532,7 +532,7 @@ class TerminologyCapabilitiesSoftware extends BackboneElement
   ///
   /// [versionElement] Extensions for version
   ///
-  const factory TerminologyCapabilitiesSoftware({
+  factory TerminologyCapabilitiesSoftware({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -658,7 +658,7 @@ class TerminologyCapabilitiesImplementation extends BackboneElement
   /// [url] An absolute base URL for the implementation.
   ///
   /// [urlElement] Extensions for url
-  const factory TerminologyCapabilitiesImplementation({
+  factory TerminologyCapabilitiesImplementation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -773,7 +773,7 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement
   ///  code system.
   ///
   /// [subsumptionElement] Extensions for subsumption
-  const factory TerminologyCapabilitiesCodeSystem({
+  factory TerminologyCapabilitiesCodeSystem({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -907,7 +907,7 @@ class TerminologyCapabilitiesVersion extends BackboneElement
   /// [property] Properties supported for $lookup.
   ///
   /// [propertyElement] Extensions for property
-  const factory TerminologyCapabilitiesVersion({
+  factory TerminologyCapabilitiesVersion({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1058,7 +1058,7 @@ class TerminologyCapabilitiesFilter extends BackboneElement
   /// [op] Operations supported for the property.
   ///
   /// [opElement] Extensions for op
-  const factory TerminologyCapabilitiesFilter({
+  factory TerminologyCapabilitiesFilter({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1195,7 +1195,7 @@ class TerminologyCapabilitiesExpansion extends BackboneElement
   /// [textFilter] Documentation about text searching works.
   ///
   /// [textFilterElement] Extensions for textFilter
-  const factory TerminologyCapabilitiesExpansion({
+  factory TerminologyCapabilitiesExpansion({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1326,7 +1326,7 @@ class TerminologyCapabilitiesParameter extends BackboneElement
   /// [documentation] Description of support for parameter.
   ///
   /// [documentationElement] Extensions for documentation
-  const factory TerminologyCapabilitiesParameter({
+  factory TerminologyCapabilitiesParameter({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1434,7 +1434,7 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement
   /// [translations] Whether translations are validated.
   ///
   /// [translationsElement] Extensions for translations
-  const factory TerminologyCapabilitiesValidateCode({
+  factory TerminologyCapabilitiesValidateCode({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1536,7 +1536,7 @@ class TerminologyCapabilitiesTranslation extends BackboneElement
   /// [needsMap] Whether the client must identify the map.
   ///
   /// [needsMapElement] Extensions for needsMap
-  const factory TerminologyCapabilitiesTranslation({
+  factory TerminologyCapabilitiesTranslation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1642,7 +1642,7 @@ class TerminologyCapabilitiesClosure extends BackboneElement
   /// [translation] If cross-system closure is supported.
   ///
   /// [translationElement] Extensions for translation
-  const factory TerminologyCapabilitiesClosure({
+  factory TerminologyCapabilitiesClosure({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

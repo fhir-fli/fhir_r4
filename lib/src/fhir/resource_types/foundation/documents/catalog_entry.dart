@@ -116,7 +116,7 @@ class CatalogEntry extends DomainResource with _$CatalogEntry {
   ///
   /// [relatedEntry] Used for example, to point to a substance, or to a device
   ///  used to administer a medication.
-  const factory CatalogEntry({
+  factory CatalogEntry({
     @Default(R4ResourceType.CatalogEntry)
     @JsonKey(unknownEnumValue: R4ResourceType.CatalogEntry)
 
@@ -349,7 +349,7 @@ class CatalogEntryRelatedEntry extends BackboneElement
   /// [relationtypeElement] Extensions for relationtype
   ///
   /// [item] The reference to the related item.
-  const factory CatalogEntryRelatedEntry({
+  factory CatalogEntryRelatedEntry({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

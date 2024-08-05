@@ -268,7 +268,7 @@ class _$NarrativeImpl extends _Narrative {
 }
 
 abstract class _Narrative extends Narrative {
-  const factory _Narrative(
+  factory _Narrative(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: NarrativeStatus.unknown)

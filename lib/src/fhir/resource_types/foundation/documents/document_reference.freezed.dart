@@ -1191,7 +1191,7 @@ class _$DocumentReferenceImpl extends _DocumentReference {
 }
 
 abstract class _DocumentReference extends DocumentReference {
-  const factory _DocumentReference(
+  factory _DocumentReference(
       {@JsonKey(unknownEnumValue: R4ResourceType.DocumentReference)
       final R4ResourceType resourceType,
       final String? id,
@@ -1759,7 +1759,7 @@ class _$DocumentReferenceRelatesToImpl extends _DocumentReferenceRelatesTo {
 }
 
 abstract class _DocumentReferenceRelatesTo extends DocumentReferenceRelatesTo {
-  const factory _DocumentReferenceRelatesTo(
+  factory _DocumentReferenceRelatesTo(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2156,7 +2156,7 @@ class _$DocumentReferenceContentImpl extends _DocumentReferenceContent {
 }
 
 abstract class _DocumentReferenceContent extends DocumentReferenceContent {
-  const factory _DocumentReferenceContent(
+  factory _DocumentReferenceContent(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2746,7 +2746,7 @@ class _$DocumentReferenceContextImpl extends _DocumentReferenceContext {
 }
 
 abstract class _DocumentReferenceContext extends DocumentReferenceContext {
-  const factory _DocumentReferenceContext(
+  factory _DocumentReferenceContext(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

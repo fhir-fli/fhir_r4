@@ -168,7 +168,7 @@ class Condition extends DomainResource with _$Condition {
   /// [note] Additional information about the Condition. This is a general
   /// notes/comments entry  for description of the Condition, its diagnosis and
   ///  prognosis.
-  const factory Condition({
+  factory Condition({
     @Default(R4ResourceType.Condition)
     @JsonKey(unknownEnumValue: R4ResourceType.Condition)
     R4ResourceType resourceType,
@@ -321,7 +321,7 @@ class ConditionStage extends BackboneElement with _$ConditionStage {
   ///  staging assessment is based.
   ///
   /// [type] The kind of staging, such as pathological or clinical staging.
-  const factory ConditionStage({
+  factory ConditionStage({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -412,7 +412,7 @@ class ConditionEvidence extends BackboneElement with _$ConditionEvidence {
   ///
   /// [detail] Links to other relevant information, including pathology
   ///  reports.
-  const factory ConditionEvidence({
+  factory ConditionEvidence({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,

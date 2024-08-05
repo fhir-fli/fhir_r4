@@ -2842,7 +2842,7 @@ class _$ActivityDefinitionImpl extends _ActivityDefinition {
 }
 
 abstract class _ActivityDefinition extends ActivityDefinition {
-  const factory _ActivityDefinition(
+  factory _ActivityDefinition(
       {@JsonKey(unknownEnumValue: R4ResourceType.ActivityDefinition)
       final R4ResourceType resourceType,
       final String? id,
@@ -3781,7 +3781,7 @@ class _$ActivityDefinitionParticipantImpl
 
 abstract class _ActivityDefinitionParticipant
     extends ActivityDefinitionParticipant {
-  const factory _ActivityDefinitionParticipant(
+  factory _ActivityDefinitionParticipant(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4205,7 +4205,7 @@ class _$ActivityDefinitionDynamicValueImpl
 
 abstract class _ActivityDefinitionDynamicValue
     extends ActivityDefinitionDynamicValue {
-  const factory _ActivityDefinitionDynamicValue(
+  factory _ActivityDefinitionDynamicValue(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

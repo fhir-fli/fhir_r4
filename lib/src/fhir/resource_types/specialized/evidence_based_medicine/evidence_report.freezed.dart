@@ -984,7 +984,7 @@ class _$EvidenceReportImpl extends _EvidenceReport {
 }
 
 abstract class _EvidenceReport extends EvidenceReport {
-  const factory _EvidenceReport(
+  factory _EvidenceReport(
       {final R4ResourceType resourceType,
       final String? id,
       final FhirMeta? meta,
@@ -1351,7 +1351,7 @@ class _$EvidenceReportSubjectImpl extends _EvidenceReportSubject {
 }
 
 abstract class _EvidenceReportSubject extends EvidenceReportSubject {
-  const factory _EvidenceReportSubject(
+  factory _EvidenceReportSubject(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1856,7 +1856,7 @@ class _$EvidenceReportCharacteristicImpl extends _EvidenceReportCharacteristic {
 
 abstract class _EvidenceReportCharacteristic
     extends EvidenceReportCharacteristic {
-  const factory _EvidenceReportCharacteristic(
+  factory _EvidenceReportCharacteristic(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2211,7 +2211,7 @@ class _$EvidenceReportRelatesToImpl extends _EvidenceReportRelatesTo {
 }
 
 abstract class _EvidenceReportRelatesTo extends EvidenceReportRelatesTo {
-  const factory _EvidenceReportRelatesTo(
+  factory _EvidenceReportRelatesTo(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2822,7 +2822,7 @@ class _$EvidenceReportSectionImpl extends _EvidenceReportSection {
 }
 
 abstract class _EvidenceReportSection extends EvidenceReportSection {
-  const factory _EvidenceReportSection(
+  factory _EvidenceReportSection(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

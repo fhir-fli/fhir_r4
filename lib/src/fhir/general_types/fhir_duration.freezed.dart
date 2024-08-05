@@ -434,7 +434,7 @@ class _$FhirDurationImpl extends _FhirDuration {
 }
 
 abstract class _FhirDuration extends FhirDuration {
-  const factory _FhirDuration(
+  factory _FhirDuration(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final FhirDecimal? value,

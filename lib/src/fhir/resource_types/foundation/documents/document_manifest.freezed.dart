@@ -1026,7 +1026,7 @@ class _$DocumentManifestImpl extends _DocumentManifest {
 }
 
 abstract class _DocumentManifest extends DocumentManifest {
-  const factory _DocumentManifest(
+  factory _DocumentManifest(
       {@JsonKey(unknownEnumValue: R4ResourceType.DocumentManifest)
       final R4ResourceType resourceType,
       final String? id,
@@ -1564,7 +1564,7 @@ class _$DocumentManifestRelatedImpl extends _DocumentManifestRelated {
 }
 
 abstract class _DocumentManifestRelated extends DocumentManifestRelated {
-  const factory _DocumentManifestRelated(
+  factory _DocumentManifestRelated(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

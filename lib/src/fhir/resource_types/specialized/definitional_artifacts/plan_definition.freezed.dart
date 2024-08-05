@@ -1998,7 +1998,7 @@ class _$PlanDefinitionImpl extends _PlanDefinition {
 }
 
 abstract class _PlanDefinition extends PlanDefinition {
-  const factory _PlanDefinition(
+  factory _PlanDefinition(
       {@JsonKey(unknownEnumValue: R4ResourceType.PlanDefinition)
       final R4ResourceType resourceType,
       final String? id,
@@ -2937,7 +2937,7 @@ class _$PlanDefinitionGoalImpl extends _PlanDefinitionGoal {
 }
 
 abstract class _PlanDefinitionGoal extends PlanDefinitionGoal {
-  const factory _PlanDefinitionGoal(
+  factory _PlanDefinitionGoal(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3503,7 +3503,7 @@ class _$PlanDefinitionTargetImpl extends _PlanDefinitionTarget {
 }
 
 abstract class _PlanDefinitionTarget extends PlanDefinitionTarget {
-  const factory _PlanDefinitionTarget(
+  factory _PlanDefinitionTarget(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5393,7 +5393,7 @@ class _$PlanDefinitionActionImpl extends _PlanDefinitionAction {
 }
 
 abstract class _PlanDefinitionAction extends PlanDefinitionAction {
-  const factory _PlanDefinitionAction(
+  factory _PlanDefinitionAction(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -6093,7 +6093,7 @@ class _$PlanDefinitionConditionImpl extends _PlanDefinitionCondition {
 }
 
 abstract class _PlanDefinitionCondition extends PlanDefinitionCondition {
-  const factory _PlanDefinitionCondition(
+  factory _PlanDefinitionCondition(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -6594,7 +6594,7 @@ class _$PlanDefinitionRelatedActionImpl extends _PlanDefinitionRelatedAction {
 
 abstract class _PlanDefinitionRelatedAction
     extends PlanDefinitionRelatedAction {
-  const factory _PlanDefinitionRelatedAction(
+  factory _PlanDefinitionRelatedAction(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -7018,7 +7018,7 @@ class _$PlanDefinitionParticipantImpl extends _PlanDefinitionParticipant {
 }
 
 abstract class _PlanDefinitionParticipant extends PlanDefinitionParticipant {
-  const factory _PlanDefinitionParticipant(
+  factory _PlanDefinitionParticipant(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -7441,7 +7441,7 @@ class _$PlanDefinitionDynamicValueImpl extends _PlanDefinitionDynamicValue {
 }
 
 abstract class _PlanDefinitionDynamicValue extends PlanDefinitionDynamicValue {
-  const factory _PlanDefinitionDynamicValue(
+  factory _PlanDefinitionDynamicValue(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

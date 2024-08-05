@@ -1270,7 +1270,7 @@ class _$EvidenceImpl extends _Evidence {
 }
 
 abstract class _Evidence extends Evidence {
-  const factory _Evidence(
+  factory _Evidence(
       {@JsonKey(unknownEnumValue: R4ResourceType.Evidence)
       final R4ResourceType resourceType,
       final String? id,
@@ -1840,7 +1840,7 @@ class _$EvidenceVariableDefinitionImpl extends _EvidenceVariableDefinition {
 }
 
 abstract class _EvidenceVariableDefinition extends EvidenceVariableDefinition {
-  const factory _EvidenceVariableDefinition(
+  factory _EvidenceVariableDefinition(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2417,7 +2417,7 @@ class _$EvidenceStatisticImpl extends _EvidenceStatistic {
 }
 
 abstract class _EvidenceStatistic extends EvidenceStatistic {
-  const factory _EvidenceStatistic(
+  factory _EvidenceStatistic(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2869,7 +2869,7 @@ class _$EvidenceSampleSizeImpl extends _EvidenceSampleSize {
 }
 
 abstract class _EvidenceSampleSize extends EvidenceSampleSize {
-  const factory _EvidenceSampleSize(
+  factory _EvidenceSampleSize(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3354,7 +3354,7 @@ class _$EvidenceAttributeEstimateImpl extends _EvidenceAttributeEstimate {
 }
 
 abstract class _EvidenceAttributeEstimate extends EvidenceAttributeEstimate {
-  const factory _EvidenceAttributeEstimate(
+  factory _EvidenceAttributeEstimate(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3720,7 +3720,7 @@ class _$EvidenceModelCharacteristicImpl extends _EvidenceModelCharacteristic {
 
 abstract class _EvidenceModelCharacteristic
     extends EvidenceModelCharacteristic {
-  const factory _EvidenceModelCharacteristic(
+  factory _EvidenceModelCharacteristic(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -4095,7 +4095,7 @@ class _$EvidenceVarImpl extends _EvidenceVar {
 }
 
 abstract class _EvidenceVar extends EvidenceVar {
-  const factory _EvidenceVar(
+  factory _EvidenceVar(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4524,7 +4524,7 @@ class _$EvidenceCertaintyImpl extends _EvidenceCertainty {
 }
 
 abstract class _EvidenceCertainty extends EvidenceCertainty {
-  const factory _EvidenceCertainty(
+  factory _EvidenceCertainty(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

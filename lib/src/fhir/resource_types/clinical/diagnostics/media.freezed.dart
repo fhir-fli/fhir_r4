@@ -1483,7 +1483,7 @@ class _$MediaImpl extends _Media {
 }
 
 abstract class _Media extends Media {
-  const factory _Media(
+  factory _Media(
       {@JsonKey(unknownEnumValue: R4ResourceType.Media)
       final R4ResourceType resourceType,
       final String? id,

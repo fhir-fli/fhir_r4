@@ -253,7 +253,7 @@ class ResearchElementDefinition extends DomainResource
   /// [characteristic] A characteristic that defines the members of the
   /// research element. Multiple characteristics are applied with "and"
   ///  semantics.
-  const factory ResearchElementDefinition({
+  factory ResearchElementDefinition({
     @Default(R4ResourceType.ResearchElementDefinition)
     @JsonKey(unknownEnumValue: R4ResourceType.ResearchElementDefinition)
     R4ResourceType resourceType,
@@ -504,7 +504,7 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement
   ///
   /// [participantEffectiveGroupMeasureElement] Extensions for
   ///  participantEffectiveGroupMeasure
-  const factory ResearchElementDefinitionCharacteristic({
+  factory ResearchElementDefinitionCharacteristic({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,

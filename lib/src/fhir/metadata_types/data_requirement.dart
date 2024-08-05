@@ -74,7 +74,7 @@ class DataRequirement extends DataType with _$DataRequirement {
   /// [limitElement] Extensions for limit
   ///
   /// [sort] Specifies the order of the results to be returned.
-  const factory DataRequirement({
+  factory DataRequirement({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -246,7 +246,7 @@ class DataRequirementCodeFilter extends Element
   /// specified by the path has a value that is one of the specified codes. If
   /// codes are specified in addition to a value set, the filter returns items
   ///  matching a code in the value set or one of the specified codes.
-  const factory DataRequirementCodeFilter({
+  factory DataRequirementCodeFilter({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -423,7 +423,7 @@ class DataRequirementDateFilter extends Element
   /// is specified, the filter will return only those data items that are equal
   /// to the specified dateTime. If a Duration is specified, the filter will
   ///  return only those data items that fall within Duration before now.
-  const factory DataRequirementDateFilter({
+  factory DataRequirementDateFilter({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -585,7 +585,7 @@ class DataRequirementSort extends Element with _$DataRequirementSort {
   /// [direction] The direction of the sort, ascending or descending.
   ///
   /// [directionElement] Extensions for direction
-  const factory DataRequirementSort({
+  factory DataRequirementSort({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

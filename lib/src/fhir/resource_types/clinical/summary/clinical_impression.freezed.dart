@@ -1118,7 +1118,7 @@ class _$ClinicalImpressionImpl extends _ClinicalImpression {
 }
 
 abstract class _ClinicalImpression extends ClinicalImpression {
-  const factory _ClinicalImpression(
+  factory _ClinicalImpression(
       {@JsonKey(unknownEnumValue: R4ResourceType.ClinicalImpression)
       final R4ResourceType resourceType,
       final String? id,
@@ -1510,7 +1510,7 @@ class _$ClinicalImpressionInvestigationImpl
 
 abstract class _ClinicalImpressionInvestigation
     extends ClinicalImpressionInvestigation {
-  const factory _ClinicalImpressionInvestigation(
+  factory _ClinicalImpressionInvestigation(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1839,7 +1839,7 @@ class _$ClinicalImpressionFindingImpl extends _ClinicalImpressionFinding {
 }
 
 abstract class _ClinicalImpressionFinding extends ClinicalImpressionFinding {
-  const factory _ClinicalImpressionFinding(
+  factory _ClinicalImpressionFinding(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

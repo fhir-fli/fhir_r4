@@ -558,7 +558,7 @@ class _$ParametersImpl extends _Parameters {
 }
 
 abstract class _Parameters extends Parameters {
-  const factory _Parameters(
+  factory _Parameters(
       {@JsonKey(unknownEnumValue: R4ResourceType.Parameters)
       final R4ResourceType resourceType,
       final String? id,
@@ -3099,7 +3099,7 @@ class _$ParametersParameterImpl extends _ParametersParameter {
 }
 
 abstract class _ParametersParameter extends ParametersParameter {
-  const factory _ParametersParameter(
+  factory _ParametersParameter(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

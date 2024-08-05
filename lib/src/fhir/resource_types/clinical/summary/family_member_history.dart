@@ -175,7 +175,7 @@ class FamilyMemberHistory extends DomainResource with _$FamilyMemberHistory {
   /// member had. This is a repeating section to allow a system to represent
   /// more than one condition per resource, though there is nothing stopping
   ///  multiple resources - one per condition.
-  const factory FamilyMemberHistory({
+  factory FamilyMemberHistory({
     @Default(R4ResourceType.FamilyMemberHistory)
     @JsonKey(unknownEnumValue: R4ResourceType.FamilyMemberHistory)
     R4ResourceType resourceType,
@@ -363,7 +363,7 @@ class FamilyMemberHistoryCondition extends BackboneElement
   ///
   /// [note] An area where general notes can be placed about this specific
   ///  condition.
-  const factory FamilyMemberHistoryCondition({
+  factory FamilyMemberHistoryCondition({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,

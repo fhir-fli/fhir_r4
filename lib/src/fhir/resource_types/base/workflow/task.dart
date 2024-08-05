@@ -180,7 +180,7 @@ class Task extends DomainResource with _$Task {
   ///  task.
   ///
   /// [output] Outputs produced by the Task.
-  const factory Task({
+  factory Task({
     @Default(R4ResourceType.Task)
     @JsonKey(unknownEnumValue: R4ResourceType.Task)
 
@@ -499,7 +499,7 @@ class TaskRestriction extends BackboneElement with _$TaskRestriction {
   ///
   /// [recipient] For requests that are targeted to more than on potential
   ///  recipient/target, for whom is fulfillment sought?
-  const factory TaskRestriction({
+  factory TaskRestriction({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -761,7 +761,7 @@ class TaskInput extends BackboneElement with _$TaskInput {
   /// [valueDosage] The value of the input parameter as a basic type.
   ///
   /// [valueMeta] The value of the input parameter as a basic type.
-  const factory TaskInput({
+  factory TaskInput({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1224,7 +1224,7 @@ class TaskOutput extends BackboneElement with _$TaskOutput {
   /// [valueDosage] The value of the Output parameter as a basic type.
   ///
   /// [valueMeta] The value of the Output parameter as a basic type.
-  const factory TaskOutput({
+  factory TaskOutput({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

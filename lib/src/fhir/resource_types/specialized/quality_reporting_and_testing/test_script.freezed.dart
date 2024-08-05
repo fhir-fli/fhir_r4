@@ -1579,7 +1579,7 @@ class _$TestScriptImpl extends _TestScript {
 }
 
 abstract class _TestScript extends TestScript {
-  const factory _TestScript(
+  factory _TestScript(
       {@JsonKey(unknownEnumValue: R4ResourceType.TestScript)
       final R4ResourceType resourceType,
       final String? id,
@@ -2241,7 +2241,7 @@ class _$TestScriptOriginImpl extends _TestScriptOrigin {
 }
 
 abstract class _TestScriptOrigin extends TestScriptOrigin {
-  const factory _TestScriptOrigin(
+  factory _TestScriptOrigin(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2642,7 +2642,7 @@ class _$TestScriptDestinationImpl extends _TestScriptDestination {
 }
 
 abstract class _TestScriptDestination extends TestScriptDestination {
-  const factory _TestScriptDestination(
+  factory _TestScriptDestination(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3022,7 +3022,7 @@ class _$TestScriptMetadataImpl extends _TestScriptMetadata {
 }
 
 abstract class _TestScriptMetadata extends TestScriptMetadata {
-  const factory _TestScriptMetadata(
+  factory _TestScriptMetadata(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3428,7 +3428,7 @@ class _$TestScriptLinkImpl extends _TestScriptLink {
 }
 
 abstract class _TestScriptLink extends TestScriptLink {
-  const factory _TestScriptLink(
+  factory _TestScriptLink(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4119,7 +4119,7 @@ class _$TestScriptCapabilityImpl extends _TestScriptCapability {
 }
 
 abstract class _TestScriptCapability extends TestScriptCapability {
-  const factory _TestScriptCapability(
+  factory _TestScriptCapability(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4644,7 +4644,7 @@ class _$TestScriptFixtureImpl extends _TestScriptFixture {
 }
 
 abstract class _TestScriptFixture extends TestScriptFixture {
-  const factory _TestScriptFixture(
+  factory _TestScriptFixture(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5377,7 +5377,7 @@ class _$TestScriptVariableImpl extends _TestScriptVariable {
 }
 
 abstract class _TestScriptVariable extends TestScriptVariable {
-  const factory _TestScriptVariable(
+  factory _TestScriptVariable(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5802,7 +5802,7 @@ class _$TestScriptSetupImpl extends _TestScriptSetup {
 }
 
 abstract class _TestScriptSetup extends TestScriptSetup {
-  const factory _TestScriptSetup(
+  factory _TestScriptSetup(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -6184,7 +6184,7 @@ class _$TestScriptActionImpl extends _TestScriptAction {
 }
 
 abstract class _TestScriptAction extends TestScriptAction {
-  const factory _TestScriptAction(
+  factory _TestScriptAction(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -7316,7 +7316,7 @@ class _$TestScriptOperationImpl extends _TestScriptOperation {
 }
 
 abstract class _TestScriptOperation extends TestScriptOperation {
-  const factory _TestScriptOperation(
+  factory _TestScriptOperation(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -7902,7 +7902,7 @@ class _$TestScriptRequestHeaderImpl extends _TestScriptRequestHeader {
 }
 
 abstract class _TestScriptRequestHeader extends TestScriptRequestHeader {
-  const factory _TestScriptRequestHeader(
+  factory _TestScriptRequestHeader(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -9326,7 +9326,7 @@ class _$TestScriptAssertImpl extends _TestScriptAssert {
 }
 
 abstract class _TestScriptAssert extends TestScriptAssert {
-  const factory _TestScriptAssert(
+  factory _TestScriptAssert(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -10024,7 +10024,7 @@ class _$TestScriptTestImpl extends _TestScriptTest {
 }
 
 abstract class _TestScriptTest extends TestScriptTest {
-  const factory _TestScriptTest(
+  factory _TestScriptTest(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -10430,7 +10430,7 @@ class _$TestScriptAction1Impl extends _TestScriptAction1 {
 }
 
 abstract class _TestScriptAction1 extends TestScriptAction1 {
-  const factory _TestScriptAction1(
+  factory _TestScriptAction1(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -10769,7 +10769,7 @@ class _$TestScriptTeardownImpl extends _TestScriptTeardown {
 }
 
 abstract class _TestScriptTeardown extends TestScriptTeardown {
-  const factory _TestScriptTeardown(
+  factory _TestScriptTeardown(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -11107,7 +11107,7 @@ class _$TestScriptAction2Impl extends _TestScriptAction2 {
 }
 
 abstract class _TestScriptAction2 extends TestScriptAction2 {
-  const factory _TestScriptAction2(
+  factory _TestScriptAction2(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

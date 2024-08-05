@@ -1293,7 +1293,7 @@ class _$ExampleScenarioImpl extends _ExampleScenario {
 }
 
 abstract class _ExampleScenario extends ExampleScenario {
-  const factory _ExampleScenario(
+  factory _ExampleScenario(
       {@JsonKey(unknownEnumValue: R4ResourceType.ExampleScenario)
       final R4ResourceType resourceType,
       final String? id,
@@ -2012,7 +2012,7 @@ class _$ExampleScenarioActorImpl extends _ExampleScenarioActor {
 }
 
 abstract class _ExampleScenarioActor extends ExampleScenarioActor {
-  const factory _ExampleScenarioActor(
+  factory _ExampleScenarioActor(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2622,7 +2622,7 @@ class _$ExampleScenarioInstanceImpl extends _ExampleScenarioInstance {
 }
 
 abstract class _ExampleScenarioInstance extends ExampleScenarioInstance {
-  const factory _ExampleScenarioInstance(
+  factory _ExampleScenarioInstance(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3077,7 +3077,7 @@ class _$ExampleScenarioVersionImpl extends _ExampleScenarioVersion {
 }
 
 abstract class _ExampleScenarioVersion extends ExampleScenarioVersion {
-  const factory _ExampleScenarioVersion(
+  factory _ExampleScenarioVersion(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3504,7 +3504,7 @@ class _$ExampleScenarioContainedInstanceImpl
 
 abstract class _ExampleScenarioContainedInstance
     extends ExampleScenarioContainedInstance {
-  const factory _ExampleScenarioContainedInstance(
+  factory _ExampleScenarioContainedInstance(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4057,7 +4057,7 @@ class _$ExampleScenarioProcessImpl extends _ExampleScenarioProcess {
 }
 
 abstract class _ExampleScenarioProcess extends ExampleScenarioProcess {
-  const factory _ExampleScenarioProcess(
+  factory _ExampleScenarioProcess(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4561,7 +4561,7 @@ class _$ExampleScenarioStepImpl extends _ExampleScenarioStep {
 }
 
 abstract class _ExampleScenarioStep extends ExampleScenarioStep {
-  const factory _ExampleScenarioStep(
+  factory _ExampleScenarioStep(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -5362,7 +5362,7 @@ class _$ExampleScenarioOperationImpl extends _ExampleScenarioOperation {
 }
 
 abstract class _ExampleScenarioOperation extends ExampleScenarioOperation {
-  const factory _ExampleScenarioOperation(
+  factory _ExampleScenarioOperation(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5900,7 +5900,7 @@ class _$ExampleScenarioAlternativeImpl extends _ExampleScenarioAlternative {
 }
 
 abstract class _ExampleScenarioAlternative extends ExampleScenarioAlternative {
-  const factory _ExampleScenarioAlternative(
+  factory _ExampleScenarioAlternative(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

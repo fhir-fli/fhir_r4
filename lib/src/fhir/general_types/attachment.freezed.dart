@@ -584,7 +584,7 @@ class _$AttachmentImpl extends _Attachment {
 }
 
 abstract class _Attachment extends Attachment {
-  const factory _Attachment(
+  factory _Attachment(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final FhirCode? contentType,

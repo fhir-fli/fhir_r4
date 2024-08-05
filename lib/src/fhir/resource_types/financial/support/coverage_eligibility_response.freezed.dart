@@ -1234,7 +1234,7 @@ class _$CoverageEligibilityResponseImpl extends _CoverageEligibilityResponse {
 
 abstract class _CoverageEligibilityResponse
     extends CoverageEligibilityResponse {
-  const factory _CoverageEligibilityResponse(
+  factory _CoverageEligibilityResponse(
       {@JsonKey(unknownEnumValue: R4ResourceType.CoverageEligibilityResponse)
       final R4ResourceType resourceType,
       final String? id,
@@ -1902,7 +1902,7 @@ class _$CoverageEligibilityResponseInsuranceImpl
 
 abstract class _CoverageEligibilityResponseInsurance
     extends CoverageEligibilityResponseInsurance {
-  const factory _CoverageEligibilityResponseInsurance(
+  factory _CoverageEligibilityResponseInsurance(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2842,7 +2842,7 @@ class _$CoverageEligibilityResponseItemImpl
 
 abstract class _CoverageEligibilityResponseItem
     extends CoverageEligibilityResponseItem {
-  const factory _CoverageEligibilityResponseItem(
+  factory _CoverageEligibilityResponseItem(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3584,7 +3584,7 @@ class _$CoverageEligibilityResponseBenefitImpl
 
 abstract class _CoverageEligibilityResponseBenefit
     extends CoverageEligibilityResponseBenefit {
-  const factory _CoverageEligibilityResponseBenefit(
+  factory _CoverageEligibilityResponseBenefit(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3997,7 +3997,7 @@ class _$CoverageEligibilityResponseErrorImpl
 
 abstract class _CoverageEligibilityResponseError
     extends CoverageEligibilityResponseError {
-  const factory _CoverageEligibilityResponseError(
+  factory _CoverageEligibilityResponseError(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

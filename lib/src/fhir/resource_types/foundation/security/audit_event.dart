@@ -110,7 +110,7 @@ class AuditEvent extends DomainResource with _$AuditEvent {
   /// [source] The system that is reporting the event.
   ///
   /// [entity] Specific instances of data or objects that have been accessed.
-  const factory AuditEvent({
+  factory AuditEvent({
     @Default(R4ResourceType.AuditEvent)
     @JsonKey(unknownEnumValue: R4ResourceType.AuditEvent)
 
@@ -370,7 +370,7 @@ class AuditEventAgent extends BackboneElement with _$AuditEventAgent {
   ///
   /// [purposeOfUse] The reason (purpose of use), specific to this agent, that
   ///  was used during the event being recorded.
-  const factory AuditEventAgent({
+  factory AuditEventAgent({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -543,7 +543,7 @@ class AuditEventNetwork extends BackboneElement with _$AuditEventNetwork {
   ///  the audit event.
   ///
   /// [typeElement] Extensions for type
-  const factory AuditEventNetwork({
+  factory AuditEventNetwork({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -672,7 +672,7 @@ class AuditEventSource extends BackboneElement with _$AuditEventSource {
   /// [observer] Identifier of the source where the event was detected.
   ///
   /// [type] Code specifying the type of source where event originated.
-  const factory AuditEventSource({
+  factory AuditEventSource({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -818,7 +818,7 @@ class AuditEventEntity extends BackboneElement with _$AuditEventEntity {
   ///
   /// [detail] Tagged value pairs for conveying additional information about
   ///  the entity.
-  const factory AuditEventEntity({
+  factory AuditEventEntity({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -974,7 +974,7 @@ class AuditEventDetail extends BackboneElement with _$AuditEventDetail {
   /// [valueBase64Binary] The  value of the extra detail.
   ///
   /// [valueBase64BinaryElement] Extensions for valueBase64Binary
-  const factory AuditEventDetail({
+  factory AuditEventDetail({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

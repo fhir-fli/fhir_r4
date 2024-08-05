@@ -1267,7 +1267,7 @@ class _$LocationImpl extends _Location {
 }
 
 abstract class _Location extends Location {
-  const factory _Location(
+  factory _Location(
       {@JsonKey(unknownEnumValue: R4ResourceType.Location)
       final R4ResourceType resourceType,
       final String? id,
@@ -1909,7 +1909,7 @@ class _$LocationPositionImpl extends _LocationPosition {
 }
 
 abstract class _LocationPosition extends LocationPosition {
-  const factory _LocationPosition(
+  factory _LocationPosition(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2466,7 +2466,7 @@ class _$LocationHoursOfOperationImpl extends _LocationHoursOfOperation {
 }
 
 abstract class _LocationHoursOfOperation extends LocationHoursOfOperation {
-  const factory _LocationHoursOfOperation(
+  factory _LocationHoursOfOperation(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

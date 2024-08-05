@@ -989,7 +989,7 @@ class _$BiologicallyDerivedProductImpl extends _BiologicallyDerivedProduct {
 }
 
 abstract class _BiologicallyDerivedProduct extends BiologicallyDerivedProduct {
-  const factory _BiologicallyDerivedProduct(
+  factory _BiologicallyDerivedProduct(
           {@JsonKey(unknownEnumValue: R4ResourceType.BiologicallyDerivedProduct)
           final R4ResourceType resourceType,
           final String? id,
@@ -1607,7 +1607,7 @@ class _$BiologicallyDerivedProductCollectionImpl
 
 abstract class _BiologicallyDerivedProductCollection
     extends BiologicallyDerivedProductCollection {
-  const factory _BiologicallyDerivedProductCollection(
+  factory _BiologicallyDerivedProductCollection(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2160,7 +2160,7 @@ class _$BiologicallyDerivedProductProcessingImpl
 
 abstract class _BiologicallyDerivedProductProcessing
     extends BiologicallyDerivedProductProcessing {
-  const factory _BiologicallyDerivedProductProcessing(
+  factory _BiologicallyDerivedProductProcessing(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2648,7 +2648,7 @@ class _$BiologicallyDerivedProductManipulationImpl
 
 abstract class _BiologicallyDerivedProductManipulation
     extends BiologicallyDerivedProductManipulation {
-  const factory _BiologicallyDerivedProductManipulation(
+  factory _BiologicallyDerivedProductManipulation(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3171,7 +3171,7 @@ class _$BiologicallyDerivedProductStorageImpl
 
 abstract class _BiologicallyDerivedProductStorage
     extends BiologicallyDerivedProductStorage {
-  const factory _BiologicallyDerivedProductStorage(
+  factory _BiologicallyDerivedProductStorage(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

@@ -808,7 +808,7 @@ class _$EnrollmentRequestImpl extends _EnrollmentRequest {
 }
 
 abstract class _EnrollmentRequest extends EnrollmentRequest {
-  const factory _EnrollmentRequest(
+  factory _EnrollmentRequest(
       {@JsonKey(unknownEnumValue: R4ResourceType.EnrollmentRequest)
       final R4ResourceType resourceType,
       final String? id,

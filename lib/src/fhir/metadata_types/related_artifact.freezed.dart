@@ -505,7 +505,7 @@ class _$RelatedArtifactImpl extends _RelatedArtifact {
 }
 
 abstract class _RelatedArtifact extends RelatedArtifact {
-  const factory _RelatedArtifact(
+  factory _RelatedArtifact(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: RelatedArtifactType.unknown)

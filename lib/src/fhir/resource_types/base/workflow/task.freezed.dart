@@ -1781,7 +1781,7 @@ class _$TaskImpl extends _Task {
 }
 
 abstract class _Task extends Task {
-  const factory _Task(
+  factory _Task(
       {@JsonKey(unknownEnumValue: R4ResourceType.Task)
       final R4ResourceType resourceType,
       final String? id,
@@ -2490,7 +2490,7 @@ class _$TaskRestrictionImpl extends _TaskRestriction {
 }
 
 abstract class _TaskRestriction extends TaskRestriction {
-  const factory _TaskRestriction(
+  factory _TaskRestriction(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4927,7 +4927,7 @@ class _$TaskInputImpl extends _TaskInput {
 }
 
 abstract class _TaskInput extends TaskInput {
-  const factory _TaskInput(
+  factory _TaskInput(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -7722,7 +7722,7 @@ class _$TaskOutputImpl extends _TaskOutput {
 }
 
 abstract class _TaskOutput extends TaskOutput {
-  const factory _TaskOutput(
+  factory _TaskOutput(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

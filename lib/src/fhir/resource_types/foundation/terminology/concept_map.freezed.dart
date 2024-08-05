@@ -1505,7 +1505,7 @@ class _$ConceptMapImpl extends _ConceptMap {
 }
 
 abstract class _ConceptMap extends ConceptMap {
-  const factory _ConceptMap(
+  factory _ConceptMap(
       {@JsonKey(unknownEnumValue: R4ResourceType.ConceptMap)
       final R4ResourceType resourceType,
       final String? id,
@@ -2371,7 +2371,7 @@ class _$ConceptMapGroupImpl extends _ConceptMapGroup {
 }
 
 abstract class _ConceptMapGroup extends ConceptMapGroup {
-  const factory _ConceptMapGroup(
+  factory _ConceptMapGroup(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2859,7 +2859,7 @@ class _$ConceptMapElementImpl extends _ConceptMapElement {
 }
 
 abstract class _ConceptMapElement extends ConceptMapElement {
-  const factory _ConceptMapElement(
+  factory _ConceptMapElement(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3467,7 +3467,7 @@ class _$ConceptMapTargetImpl extends _ConceptMapTarget {
 }
 
 abstract class _ConceptMapTarget extends ConceptMapTarget {
-  const factory _ConceptMapTarget(
+  factory _ConceptMapTarget(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4006,7 +4006,7 @@ class _$ConceptMapDependsOnImpl extends _ConceptMapDependsOn {
 }
 
 abstract class _ConceptMapDependsOn extends ConceptMapDependsOn {
-  const factory _ConceptMapDependsOn(
+  factory _ConceptMapDependsOn(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -4529,7 +4529,7 @@ class _$ConceptMapUnmappedImpl extends _ConceptMapUnmapped {
 }
 
 abstract class _ConceptMapUnmapped extends ConceptMapUnmapped {
-  const factory _ConceptMapUnmapped(
+  factory _ConceptMapUnmapped(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

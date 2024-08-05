@@ -132,7 +132,7 @@ class MolecularSequence extends DomainResource with _$MolecularSequence {
   ///  variant.
   ///
   /// [structureVariant] Information about chromosome structure variation.
-  const factory MolecularSequence({
+  factory MolecularSequence({
     @Default(R4ResourceType.MolecularSequence)
     @JsonKey(unknownEnumValue: R4ResourceType.MolecularSequence)
 
@@ -428,7 +428,7 @@ class MolecularSequenceReferenceSeq extends BackboneElement
   ///  inclusive and includes the last position.
   ///
   /// [windowEndElement] Extensions for windowEnd
-  const factory MolecularSequenceReferenceSeq({
+  factory MolecularSequenceReferenceSeq({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -639,7 +639,7 @@ class MolecularSequenceVariant extends BackboneElement
   ///
   /// [variantPointer] A pointer to an Observation containing variant
   ///  information.
-  const factory MolecularSequenceVariant({
+  factory MolecularSequenceVariant({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -872,7 +872,7 @@ class MolecularSequenceQuality extends BackboneElement
   ///
   /// [roc] Receiver Operator Characteristic (ROC) Curve  to give
   ///  sensitivity/specificity tradeoff.
-  const factory MolecularSequenceQuality({
+  factory MolecularSequenceQuality({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1112,7 +1112,7 @@ class MolecularSequenceRoc extends BackboneElement with _$MolecularSequenceRoc {
   ///  field value.
   ///
   /// [fMeasureElement] Extensions for fMeasure
-  const factory MolecularSequenceRoc({
+  factory MolecularSequenceRoc({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1296,7 +1296,7 @@ class MolecularSequenceRepository extends BackboneElement
   /// [readsetId] Id of the read in this external repository.
   ///
   /// [readsetIdElement] Extensions for readsetId
-  const factory MolecularSequenceRepository({
+  factory MolecularSequenceRepository({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1456,7 +1456,7 @@ class MolecularSequenceStructureVariant extends BackboneElement
   /// [outer] Structural variant outer.
   ///
   /// [inner] Structural variant inner.
-  const factory MolecularSequenceStructureVariant({
+  factory MolecularSequenceStructureVariant({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1584,7 +1584,7 @@ class MolecularSequenceOuter extends BackboneElement
   ///  position.
   ///
   /// [endElement] Extensions for end
-  const factory MolecularSequenceOuter({
+  factory MolecularSequenceOuter({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1716,7 +1716,7 @@ class MolecularSequenceInner extends BackboneElement
   ///  position.
   ///
   /// [endElement] Extensions for end
-  const factory MolecularSequenceInner({
+  factory MolecularSequenceInner({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

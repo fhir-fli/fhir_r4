@@ -1789,7 +1789,7 @@ class _$CapabilityStatementImpl extends _CapabilityStatement {
 }
 
 abstract class _CapabilityStatement extends CapabilityStatement {
-  const factory _CapabilityStatement(
+  factory _CapabilityStatement(
       {@JsonKey(unknownEnumValue: R4ResourceType.CapabilityStatement)
       final R4ResourceType resourceType,
       final String? id,
@@ -2573,7 +2573,7 @@ class _$CapabilityStatementSoftwareImpl extends _CapabilityStatementSoftware {
 
 abstract class _CapabilityStatementSoftware
     extends CapabilityStatementSoftware {
-  const factory _CapabilityStatementSoftware(
+  factory _CapabilityStatementSoftware(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3058,7 +3058,7 @@ class _$CapabilityStatementImplementationImpl
 
 abstract class _CapabilityStatementImplementation
     extends CapabilityStatementImplementation {
-  const factory _CapabilityStatementImplementation(
+  factory _CapabilityStatementImplementation(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3727,7 +3727,7 @@ class _$CapabilityStatementRestImpl extends _CapabilityStatementRest {
 }
 
 abstract class _CapabilityStatementRest extends CapabilityStatementRest {
-  const factory _CapabilityStatementRest(
+  factory _CapabilityStatementRest(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4229,7 +4229,7 @@ class _$CapabilityStatementSecurityImpl extends _CapabilityStatementSecurity {
 
 abstract class _CapabilityStatementSecurity
     extends CapabilityStatementSecurity {
-  const factory _CapabilityStatementSecurity(
+  factory _CapabilityStatementSecurity(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -5472,7 +5472,7 @@ class _$CapabilityStatementResourceImpl extends _CapabilityStatementResource {
 
 abstract class _CapabilityStatementResource
     extends CapabilityStatementResource {
-  const factory _CapabilityStatementResource(
+  factory _CapabilityStatementResource(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -6082,7 +6082,7 @@ class _$CapabilityStatementInteractionImpl
 
 abstract class _CapabilityStatementInteraction
     extends CapabilityStatementInteraction {
-  const factory _CapabilityStatementInteraction(
+  factory _CapabilityStatementInteraction(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -6592,7 +6592,7 @@ class _$CapabilityStatementSearchParamImpl
 
 abstract class _CapabilityStatementSearchParam
     extends CapabilityStatementSearchParam {
-  const factory _CapabilityStatementSearchParam(
+  factory _CapabilityStatementSearchParam(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -7086,7 +7086,7 @@ class _$CapabilityStatementOperationImpl extends _CapabilityStatementOperation {
 
 abstract class _CapabilityStatementOperation
     extends CapabilityStatementOperation {
-  const factory _CapabilityStatementOperation(
+  factory _CapabilityStatementOperation(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -7535,7 +7535,7 @@ class _$CapabilityStatementInteraction1Impl
 
 abstract class _CapabilityStatementInteraction1
     extends CapabilityStatementInteraction1 {
-  const factory _CapabilityStatementInteraction1(
+  factory _CapabilityStatementInteraction1(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -8050,7 +8050,7 @@ class _$CapabilityStatementMessagingImpl extends _CapabilityStatementMessaging {
 
 abstract class _CapabilityStatementMessaging
     extends CapabilityStatementMessaging {
-  const factory _CapabilityStatementMessaging(
+  factory _CapabilityStatementMessaging(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -8485,7 +8485,7 @@ class _$CapabilityStatementEndpointImpl extends _CapabilityStatementEndpoint {
 
 abstract class _CapabilityStatementEndpoint
     extends CapabilityStatementEndpoint {
-  const factory _CapabilityStatementEndpoint(
+  factory _CapabilityStatementEndpoint(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -8886,7 +8886,7 @@ class _$CapabilityStatementSupportedMessageImpl
 
 abstract class _CapabilityStatementSupportedMessage
     extends CapabilityStatementSupportedMessage {
-  const factory _CapabilityStatementSupportedMessage(
+  factory _CapabilityStatementSupportedMessage(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -9338,7 +9338,7 @@ class _$CapabilityStatementDocumentImpl extends _CapabilityStatementDocument {
 
 abstract class _CapabilityStatementDocument
     extends CapabilityStatementDocument {
-  const factory _CapabilityStatementDocument(
+  factory _CapabilityStatementDocument(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

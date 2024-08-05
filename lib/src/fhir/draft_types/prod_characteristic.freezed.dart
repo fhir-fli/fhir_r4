@@ -795,7 +795,7 @@ class _$ProdCharacteristicImpl extends _ProdCharacteristic {
 }
 
 abstract class _ProdCharacteristic extends ProdCharacteristic {
-  const factory _ProdCharacteristic(
+  factory _ProdCharacteristic(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

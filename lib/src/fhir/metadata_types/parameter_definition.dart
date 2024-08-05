@@ -63,7 +63,7 @@ class ParameterDefinition extends DataType with _$ParameterDefinition {
   ///
   /// [profile] If specified, this indicates a profile that the input data must
   ///  conform to, or that the output data will conform to.
-  const factory ParameterDefinition({
+  factory ParameterDefinition({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

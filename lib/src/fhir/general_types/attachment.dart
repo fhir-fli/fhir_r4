@@ -67,7 +67,7 @@ class Attachment extends DataType with _$Attachment {
   /// [creation] The date that the attachment was first created.
   ///
   /// [creationElement] Extensions for creation
-  const factory Attachment({
+  factory Attachment({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

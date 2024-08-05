@@ -120,7 +120,7 @@ class TestReport extends DomainResource with _$TestReport {
   ///
   /// [teardown] The results of the series of operations required to clean up
   ///  after all the tests were executed (successfully or otherwise).
-  const factory TestReport({
+  factory TestReport({
     @Default(R4ResourceType.TestReport)
     @JsonKey(unknownEnumValue: R4ResourceType.TestReport)
 
@@ -363,7 +363,7 @@ class TestReportParticipant extends BackboneElement
   /// [display] The display name of the participant.
   ///
   /// [displayElement] Extensions for display
-  const factory TestReportParticipant({
+  factory TestReportParticipant({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -487,7 +487,7 @@ class TestReportSetup extends BackboneElement with _$TestReportSetup {
   ///  modifierExtension itself).
   ///
   /// [action] Action would contain either an operation or an assertion.
-  const factory TestReportSetup({
+  factory TestReportSetup({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -599,7 +599,7 @@ class TestReportAction extends BackboneElement with _$TestReportAction {
   ///
   /// [assert] The results of the assertion performed on the previous
   ///  operations.
-  const factory TestReportAction({
+  factory TestReportAction({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -722,7 +722,7 @@ class TestReportOperation extends BackboneElement with _$TestReportOperation {
   /// [detail] A link to further details on the result.
   ///
   /// [detailElement] Extensions for detail
-  const factory TestReportOperation({
+  factory TestReportOperation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -856,7 +856,7 @@ class TestReportAssert extends BackboneElement with _$TestReportAssert {
   /// [detail] A link to further details on the result.
   ///
   /// [detailElement] Extensions for detail
-  const factory TestReportAssert({
+  factory TestReportAssert({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -990,7 +990,7 @@ class TestReportTest extends BackboneElement with _$TestReportTest {
   /// [descriptionElement] Extensions for description
   ///
   /// [action] Action would contain either an operation or an assertion.
-  const factory TestReportTest({
+  factory TestReportTest({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1116,7 +1116,7 @@ class TestReportAction1 extends BackboneElement with _$TestReportAction1 {
   ///
   /// [assert] The results of the assertion performed on the previous
   ///  operations.
-  const factory TestReportAction1({
+  factory TestReportAction1({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1229,7 +1229,7 @@ class TestReportTeardown extends BackboneElement with _$TestReportTeardown {
   ///  modifierExtension itself).
   ///
   /// [action] The teardown action will only contain an operation.
-  const factory TestReportTeardown({
+  factory TestReportTeardown({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1338,7 +1338,7 @@ class TestReportAction2 extends BackboneElement with _$TestReportAction2 {
   ///  modifierExtension itself).
   ///
   /// [operation] An operation would involve a REST request to a server.
-  const factory TestReportAction2({
+  factory TestReportAction2({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

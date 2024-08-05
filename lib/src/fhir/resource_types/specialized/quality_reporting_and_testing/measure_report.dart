@@ -118,7 +118,7 @@ class MeasureReport extends DomainResource with _$MeasureReport {
   ///
   /// [evaluatedResource] A reference to a Bundle containing the Resources that
   ///  were used in the calculation of this measure.
-  const factory MeasureReport({
+  factory MeasureReport({
     @Default(R4ResourceType.MeasureReport)
     @JsonKey(unknownEnumValue: R4ResourceType.MeasureReport)
 
@@ -355,7 +355,7 @@ class MeasureReportGroup extends BackboneElement with _$MeasureReportGroup {
   ///
   /// [stratifier] When a measure includes multiple stratifiers, there will be
   ///  a stratifier group for each stratifier defined by the measure.
-  const factory MeasureReportGroup({
+  factory MeasureReportGroup({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -487,7 +487,7 @@ class MeasureReportPopulation extends BackboneElement
   ///
   /// [subjectResults] This element refers to a List of subject level
   ///  MeasureReport resources, one for each subject in this population.
-  const factory MeasureReportPopulation({
+  factory MeasureReportPopulation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -613,7 +613,7 @@ class MeasureReportStratifier extends BackboneElement
   /// [stratum] This element contains the results for a single stratum within
   /// the stratifier. For example, when stratifying on administrative gender,
   ///  there will be four strata, one for each possible gender value.
-  const factory MeasureReportStratifier({
+  factory MeasureReportStratifier({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -740,7 +740,7 @@ class MeasureReportStratum extends BackboneElement with _$MeasureReportStratum {
   /// [measureScore] The measure score for this stratum, calculated as
   /// appropriate for the measure type and scoring method, and based on only the
   ///  members of this stratum.
-  const factory MeasureReportStratum({
+  factory MeasureReportStratum({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -867,7 +867,7 @@ class MeasureReportComponent extends BackboneElement
   /// [code] The code for the stratum component value.
   ///
   /// [value] The stratum component value.
-  const factory MeasureReportComponent({
+  factory MeasureReportComponent({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -989,7 +989,7 @@ class MeasureReportPopulation1 extends BackboneElement
   /// [subjectResults] This element refers to a List of subject level
   /// MeasureReport resources, one for each subject in this population in this
   ///  stratum.
-  const factory MeasureReportPopulation1({
+  factory MeasureReportPopulation1({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

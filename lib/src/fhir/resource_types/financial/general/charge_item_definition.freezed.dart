@@ -1609,7 +1609,7 @@ class _$ChargeItemDefinitionImpl extends _ChargeItemDefinition {
 }
 
 abstract class _ChargeItemDefinition extends ChargeItemDefinition {
-  const factory _ChargeItemDefinition(
+  factory _ChargeItemDefinition(
       {@JsonKey(unknownEnumValue: R4ResourceType.ChargeItemDefinition)
       final R4ResourceType resourceType,
       final String? id,
@@ -2369,7 +2369,7 @@ class _$ChargeItemDefinitionApplicabilityImpl
 
 abstract class _ChargeItemDefinitionApplicability
     extends ChargeItemDefinitionApplicability {
-  const factory _ChargeItemDefinitionApplicability(
+  factory _ChargeItemDefinitionApplicability(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2805,7 +2805,7 @@ class _$ChargeItemDefinitionPropertyGroupImpl
 
 abstract class _ChargeItemDefinitionPropertyGroup
     extends ChargeItemDefinitionPropertyGroup {
-  const factory _ChargeItemDefinitionPropertyGroup(
+  factory _ChargeItemDefinitionPropertyGroup(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3306,7 +3306,7 @@ class _$ChargeItemDefinitionPriceComponentImpl
 
 abstract class _ChargeItemDefinitionPriceComponent
     extends ChargeItemDefinitionPriceComponent {
-  const factory _ChargeItemDefinitionPriceComponent(
+  factory _ChargeItemDefinitionPriceComponent(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

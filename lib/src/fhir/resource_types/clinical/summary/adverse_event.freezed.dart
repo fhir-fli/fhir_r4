@@ -1057,7 +1057,7 @@ class _$AdverseEventImpl extends _AdverseEvent {
 }
 
 abstract class _AdverseEvent extends AdverseEvent {
-  const factory _AdverseEvent(
+  factory _AdverseEvent(
       {@JsonKey(unknownEnumValue: R4ResourceType.AdverseEvent)
       final R4ResourceType resourceType,
       final String? id,
@@ -1435,7 +1435,7 @@ class _$AdverseEventSuspectEntityImpl extends _AdverseEventSuspectEntity {
 }
 
 abstract class _AdverseEventSuspectEntity extends AdverseEventSuspectEntity {
-  const factory _AdverseEventSuspectEntity(
+  factory _AdverseEventSuspectEntity(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -1799,7 +1799,7 @@ class _$AdverseEventCausalityImpl extends _AdverseEventCausality {
 }
 
 abstract class _AdverseEventCausality extends AdverseEventCausality {
-  const factory _AdverseEventCausality(
+  factory _AdverseEventCausality(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

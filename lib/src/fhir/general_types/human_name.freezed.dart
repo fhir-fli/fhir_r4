@@ -597,7 +597,7 @@ class _$HumanNameImpl extends _HumanName {
 }
 
 abstract class _HumanName extends HumanName {
-  const factory _HumanName(
+  factory _HumanName(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: HumanNameUse.unknown) final HumanNameUse? use,

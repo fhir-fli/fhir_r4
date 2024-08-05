@@ -1110,7 +1110,7 @@ class _$DeviceUseStatementImpl extends _DeviceUseStatement {
 }
 
 abstract class _DeviceUseStatement extends DeviceUseStatement {
-  const factory _DeviceUseStatement(
+  factory _DeviceUseStatement(
       {@JsonKey(unknownEnumValue: R4ResourceType.DeviceUseStatement)
       final R4ResourceType resourceType,
       final String? id,

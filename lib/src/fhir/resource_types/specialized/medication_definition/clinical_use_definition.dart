@@ -68,7 +68,7 @@ class ClinicalUseDefinition extends DomainResource
   /// [undesirableEffect] Describe the possible undesirable effects (negative outcomes) from the use of the medicinal product as treatment.;
   ///
   /// [warning] A critical piece of information about environmental, health or physical risks or hazards that serve as caution to the user. For example 'Do not operate heavy machinery', 'May cause drowsiness', or 'Get medical advice/attention if you feel unwell'.;
-  const factory ClinicalUseDefinition({
+  factory ClinicalUseDefinition({
     /// [resourceType] This is a ClinicalUseDefinition resource;
     @Default(R4ResourceType.ClinicalUseDefinition) R4ResourceType resourceType,
 
@@ -225,7 +225,7 @@ class ClinicalUseDefinitionContraindication extends BackboneElement
   /// [indication] The indication which this is a contraidication for.;
   ///
   /// [otherTherapy] Information about the use of the medicinal product in relation to other therapies described as part of the contraindication.;
-  const factory ClinicalUseDefinitionContraindication({
+  factory ClinicalUseDefinitionContraindication({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -311,7 +311,7 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement
   /// [relationshipType] The type of relationship between the medicinal product indication or contraindication and another therapy.;
   ///
   /// [therapy] Reference to a specific medication (active substance, medicinal product or class of products) as part of an indication or contraindication.;
-  const factory ClinicalUseDefinitionOtherTherapy({
+  factory ClinicalUseDefinitionOtherTherapy({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -406,7 +406,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement
   /// [undesirableEffect] An unwanted side effect or negative outcome that may happen if you use the drug (or other subject of this resource) for this indication.;
   ///
   /// [otherTherapy] Information about the use of the medicinal product in relation to other therapies described as part of the indication.;
-  const factory ClinicalUseDefinitionIndication({
+  factory ClinicalUseDefinitionIndication({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -513,7 +513,7 @@ class ClinicalUseDefinitionInteraction extends BackboneElement
   /// [incidence] The incidence of the interaction, e.g. theoretical, observed.;
   ///
   /// [management] Actions for managing the interaction.;
-  const factory ClinicalUseDefinitionInteraction({
+  factory ClinicalUseDefinitionInteraction({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -603,7 +603,7 @@ class ClinicalUseDefinitionInteractant extends BackboneElement
   /// [itemReference] The specific medication, food or laboratory test that interacts.;
   ///
   /// [itemCodeableConcept] The specific medication, food or laboratory test that interacts.;
-  const factory ClinicalUseDefinitionInteractant({
+  factory ClinicalUseDefinitionInteractant({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -682,7 +682,7 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement
   /// [classification] High level classification of the effect.;
   ///
   /// [frequencyOfOccurrence] How often the effect is seen.;
-  const factory ClinicalUseDefinitionUndesirableEffect({
+  factory ClinicalUseDefinitionUndesirableEffect({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -768,7 +768,7 @@ class ClinicalUseDefinitionWarning extends BackboneElement
   /// [descriptionElement] (_description): Extensions for description;
   ///
   /// [code] A coded or unformatted textual definition of this warning.;
-  const factory ClinicalUseDefinitionWarning({
+  factory ClinicalUseDefinitionWarning({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 

@@ -987,7 +987,7 @@ class _$SlotImpl extends _Slot {
 }
 
 abstract class _Slot extends Slot {
-  const factory _Slot(
+  factory _Slot(
       {@JsonKey(unknownEnumValue: R4ResourceType.Slot)
       final R4ResourceType resourceType,
       final String? id,

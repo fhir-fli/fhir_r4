@@ -866,7 +866,7 @@ class _$EnrollmentResponseImpl extends _EnrollmentResponse {
 }
 
 abstract class _EnrollmentResponse extends EnrollmentResponse {
-  const factory _EnrollmentResponse(
+  factory _EnrollmentResponse(
       {@JsonKey(unknownEnumValue: R4ResourceType.EnrollmentResponse)
       final R4ResourceType resourceType,
       final String? id,

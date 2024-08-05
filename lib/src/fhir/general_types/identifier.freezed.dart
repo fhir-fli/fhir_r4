@@ -455,7 +455,7 @@ class _$IdentifierImpl extends _Identifier {
 }
 
 abstract class _Identifier extends Identifier {
-  const factory _Identifier(
+  factory _Identifier(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: IdentifierUse.unknown)

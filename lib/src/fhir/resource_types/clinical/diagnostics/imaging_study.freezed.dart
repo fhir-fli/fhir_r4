@@ -1342,7 +1342,7 @@ class _$ImagingStudyImpl extends _ImagingStudy {
 }
 
 abstract class _ImagingStudy extends ImagingStudy {
-  const factory _ImagingStudy(
+  factory _ImagingStudy(
       {@JsonKey(unknownEnumValue: R4ResourceType.ImagingStudy)
       final R4ResourceType resourceType,
       final String? id,
@@ -2374,7 +2374,7 @@ class _$ImagingStudySeriesImpl extends _ImagingStudySeries {
 }
 
 abstract class _ImagingStudySeries extends ImagingStudySeries {
-  const factory _ImagingStudySeries(
+  factory _ImagingStudySeries(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2856,7 +2856,7 @@ class _$ImagingStudyPerformerImpl extends _ImagingStudyPerformer {
 }
 
 abstract class _ImagingStudyPerformer extends ImagingStudyPerformer {
-  const factory _ImagingStudyPerformer(
+  factory _ImagingStudyPerformer(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3342,7 +3342,7 @@ class _$ImagingStudyInstanceImpl extends _ImagingStudyInstance {
 }
 
 abstract class _ImagingStudyInstance extends ImagingStudyInstance {
-  const factory _ImagingStudyInstance(
+  factory _ImagingStudyInstance(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

@@ -215,7 +215,7 @@ class ExplanationOfBenefit extends DomainResource with _$ExplanationOfBenefit {
   /// [benefitPeriod] The term of the benefits documented in this response.
   ///
   /// [benefitBalance] Balance by Benefit Category.
-  const factory ExplanationOfBenefit({
+  factory ExplanationOfBenefit({
     @Default(R4ResourceType.ExplanationOfBenefit)
     @JsonKey(unknownEnumValue: R4ResourceType.ExplanationOfBenefit)
 
@@ -581,7 +581,7 @@ class ExplanationOfBenefitRelated extends BackboneElement
   ///
   /// [reference] An alternate organizational reference to the case or file to
   ///  which this particular claim pertains.
-  const factory ExplanationOfBenefitRelated({
+  factory ExplanationOfBenefitRelated({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -705,7 +705,7 @@ class ExplanationOfBenefitPayee extends BackboneElement
   ///
   /// [party] Reference to the individual or organization to whom any payment
   ///  will be made.
-  const factory ExplanationOfBenefitPayee({
+  factory ExplanationOfBenefitPayee({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -838,7 +838,7 @@ class ExplanationOfBenefitCareTeam extends BackboneElement
   ///
   /// [qualification] The qualification of the practitioner which is applicable
   ///  for this service.
-  const factory ExplanationOfBenefitCareTeam({
+  factory ExplanationOfBenefitCareTeam({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1011,7 +1011,7 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement
   ///
   /// [reason] Provides the reason in the situation where a reason code is
   ///  required in addition to the content.
-  const factory ExplanationOfBenefitSupportingInfo({
+  factory ExplanationOfBenefitSupportingInfo({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1187,7 +1187,7 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement
   /// [packageCode] A package billing code or bundle code used to group
   /// products and services to a particular health condition (such as heart
   ///  attack) which is based on a predetermined grouping code system.
-  const factory ExplanationOfBenefitDiagnosis({
+  factory ExplanationOfBenefitDiagnosis({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1340,7 +1340,7 @@ class ExplanationOfBenefitProcedure extends BackboneElement
   ///  identifies the clinical intervention performed.
   ///
   /// [udi] Unique Device Identifiers associated with this line item.
-  const factory ExplanationOfBenefitProcedure({
+  factory ExplanationOfBenefitProcedure({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1491,7 +1491,7 @@ class ExplanationOfBenefitInsurance extends BackboneElement
   ///  related to the prior authorization.
   ///
   /// [preAuthRefElement] Extensions for preAuthRef
-  const factory ExplanationOfBenefitInsurance({
+  factory ExplanationOfBenefitInsurance({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1634,7 +1634,7 @@ class ExplanationOfBenefitAccident extends BackboneElement
   /// [locationAddress] The physical location of the accident event.
   ///
   /// [locationReference] The physical location of the accident event.
-  const factory ExplanationOfBenefitAccident({
+  factory ExplanationOfBenefitAccident({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1848,7 +1848,7 @@ class ExplanationOfBenefitItem extends BackboneElement
   ///  or service then this is the result of the adjudication of this item.
   ///
   /// [detail] Second-tier of goods and services.
-  const factory ExplanationOfBenefitItem({
+  factory ExplanationOfBenefitItem({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2098,7 +2098,7 @@ class ExplanationOfBenefitAdjudication extends BackboneElement
   ///  exclusive to the amount element above.
   ///
   /// [valueElement] Extensions for value
-  const factory ExplanationOfBenefitAdjudication({
+  factory ExplanationOfBenefitAdjudication({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2264,7 +2264,7 @@ class ExplanationOfBenefitDetail extends BackboneElement
   /// [adjudication] The adjudication results.
   ///
   /// [subDetail] Third-tier of goods and services.
-  const factory ExplanationOfBenefitDetail({
+  factory ExplanationOfBenefitDetail({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2482,7 +2482,7 @@ class ExplanationOfBenefitSubDetail extends BackboneElement
   /// [noteNumberElement] Extensions for noteNumber
   ///
   /// [adjudication] The adjudication results.
-  const factory ExplanationOfBenefitSubDetail({
+  factory ExplanationOfBenefitSubDetail({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2723,7 +2723,7 @@ class ExplanationOfBenefitAddItem extends BackboneElement
   /// [adjudication] The adjudication results.
   ///
   /// [detail] The second-tier service adjudications for payor added services.
-  const factory ExplanationOfBenefitAddItem({
+  factory ExplanationOfBenefitAddItem({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2965,7 +2965,7 @@ class ExplanationOfBenefitDetail1 extends BackboneElement
   ///
   /// [subDetail] The third-tier service adjudications for payor added
   ///  services.
-  const factory ExplanationOfBenefitDetail1({
+  factory ExplanationOfBenefitDetail1({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -3148,7 +3148,7 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement
   /// [noteNumberElement] Extensions for noteNumber
   ///
   /// [adjudication] The adjudication results.
-  const factory ExplanationOfBenefitSubDetail1({
+  factory ExplanationOfBenefitSubDetail1({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -3306,7 +3306,7 @@ class ExplanationOfBenefitTotal extends BackboneElement
   ///  by other coverages, and the benefit payable for this item.
   ///
   /// [amount] Monetary total amount associated with the category.
-  const factory ExplanationOfBenefitTotal({
+  factory ExplanationOfBenefitTotal({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -3442,7 +3442,7 @@ class ExplanationOfBenefitPayment extends BackboneElement
   /// [amount] Benefits payable less any payment adjustment.
   ///
   /// [identifier] Issuer's unique identifier for the payment instrument.
-  const factory ExplanationOfBenefitPayment({
+  factory ExplanationOfBenefitPayment({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -3589,7 +3589,7 @@ class ExplanationOfBenefitProcessNote extends BackboneElement
   /// [textElement] Extensions for text
   ///
   /// [language] A code to define the language used in the text of the note.
-  const factory ExplanationOfBenefitProcessNote({
+  factory ExplanationOfBenefitProcessNote({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -3743,7 +3743,7 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement
   ///  benefit' or 'maximum annual visits'.
   ///
   /// [financial] Benefits Used to date.
-  const factory ExplanationOfBenefitBenefitBalance({
+  factory ExplanationOfBenefitBenefitBalance({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -3901,7 +3901,7 @@ class ExplanationOfBenefitFinancial extends BackboneElement
   /// [usedUnsignedIntElement] Extensions for usedUnsignedInt
   ///
   /// [usedMoney] The quantity of the benefit which have been consumed to date.
-  const factory ExplanationOfBenefitFinancial({
+  factory ExplanationOfBenefitFinancial({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

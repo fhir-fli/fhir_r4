@@ -977,7 +977,7 @@ class _$DeviceMetricImpl extends _DeviceMetric {
 }
 
 abstract class _DeviceMetric extends DeviceMetric {
-  const factory _DeviceMetric(
+  factory _DeviceMetric(
       {@JsonKey(unknownEnumValue: R4ResourceType.DeviceMetric)
       final R4ResourceType resourceType,
       final String? id,
@@ -1570,7 +1570,7 @@ class _$DeviceMetricCalibrationImpl extends _DeviceMetricCalibration {
 }
 
 abstract class _DeviceMetricCalibration extends DeviceMetricCalibration {
-  const factory _DeviceMetricCalibration(
+  factory _DeviceMetricCalibration(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

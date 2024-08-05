@@ -93,7 +93,7 @@ class Substance extends DomainResource with _$Substance {
   ///  specific package/container of the substance: an instance.
   ///
   /// [ingredient] A substance can be composed of other substances.
-  const factory Substance({
+  factory Substance({
     @Default(R4ResourceType.Substance)
     @JsonKey(unknownEnumValue: R4ResourceType.Substance)
     R4ResourceType resourceType,
@@ -227,7 +227,7 @@ class SubstanceInstance extends BackboneElement with _$SubstanceInstance {
   /// [expiryElement] Extensions for expiry
   ///
   /// [quantity] The amount of the substance.
-  const factory SubstanceInstance({
+  factory SubstanceInstance({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -320,7 +320,7 @@ class SubstanceIngredient extends BackboneElement with _$SubstanceIngredient {
   ///
   /// [substanceReference] Another substance that is a component of this
   ///  substance.
-  const factory SubstanceIngredient({
+  factory SubstanceIngredient({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,

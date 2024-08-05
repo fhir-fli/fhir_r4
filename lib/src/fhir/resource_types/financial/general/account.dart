@@ -111,7 +111,7 @@ class Account extends DomainResource with _$Account {
   ///  payment options fall short.
   ///
   /// [partOf] Reference to a parent Account.
-  const factory Account({
+  factory Account({
     @Default(R4ResourceType.Account)
     @JsonKey(unknownEnumValue: R4ResourceType.Account)
 
@@ -339,7 +339,7 @@ class AccountCoverage extends BackboneElement with _$AccountCoverage {
   /// [priority] The priority of the coverage in the context of this account.
   ///
   /// [priorityElement] Extensions for priority
-  const factory AccountCoverage({
+  factory AccountCoverage({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -469,7 +469,7 @@ class AccountGuarantor extends BackboneElement with _$AccountGuarantor {
   ///
   /// [period] The timeframe during which the guarantor accepts responsibility
   ///  for the account.
-  const factory AccountGuarantor({
+  factory AccountGuarantor({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

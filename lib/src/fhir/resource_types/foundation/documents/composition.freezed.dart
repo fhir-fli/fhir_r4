@@ -1135,7 +1135,7 @@ class _$CompositionImpl extends _Composition {
 }
 
 abstract class _Composition extends Composition {
-  const factory _Composition(
+  factory _Composition(
       {@JsonKey(unknownEnumValue: R4ResourceType.Composition)
       final R4ResourceType resourceType,
       final String? id,
@@ -1738,7 +1738,7 @@ class _$CompositionAttesterImpl extends _CompositionAttester {
 }
 
 abstract class _CompositionAttester extends CompositionAttester {
-  const factory _CompositionAttester(
+  factory _CompositionAttester(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2190,7 +2190,7 @@ class _$CompositionRelatesToImpl extends _CompositionRelatesTo {
 }
 
 abstract class _CompositionRelatesTo extends CompositionRelatesTo {
-  const factory _CompositionRelatesTo(
+  factory _CompositionRelatesTo(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2633,7 +2633,7 @@ class _$CompositionEventImpl extends _CompositionEvent {
 }
 
 abstract class _CompositionEvent extends CompositionEvent {
-  const factory _CompositionEvent(
+  factory _CompositionEvent(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3377,7 +3377,7 @@ class _$CompositionSectionImpl extends _CompositionSection {
 }
 
 abstract class _CompositionSection extends CompositionSection {
-  const factory _CompositionSection(
+  factory _CompositionSection(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

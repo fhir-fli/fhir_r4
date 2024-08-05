@@ -128,7 +128,7 @@ class Consent extends DomainResource with _$Consent {
   ///
   /// [provision] An exception to the base policy of this consent. An exception
   ///  can be an addition or removal of access permissions.
-  const factory Consent({
+  factory Consent({
     @Default(R4ResourceType.Consent)
     @JsonKey(unknownEnumValue: R4ResourceType.Consent)
 
@@ -375,7 +375,7 @@ class ConsentPolicy extends BackboneElement with _$ConsentPolicy {
   ///  jurisdictionally, or in law.
   ///
   /// [uriElement] Extensions for uri
-  const factory ConsentPolicy({
+  factory ConsentPolicy({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -507,7 +507,7 @@ class ConsentVerification extends BackboneElement with _$ConsentVerification {
   /// [verificationDate] Date verification was collected.
   ///
   /// [verificationDateElement] Extensions for verificationDate
-  const factory ConsentVerification({
+  factory ConsentVerification({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -663,7 +663,7 @@ class ConsentProvision extends BackboneElement with _$ConsentProvision {
   ///  referenced.
   ///
   /// [provision] Rules which provide exceptions to the base rule or subrules.
-  const factory ConsentProvision({
+  factory ConsentProvision({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -821,7 +821,7 @@ class ConsentActor extends BackboneElement with _$ConsentActor {
   /// [reference] The resource that identifies the actor. To identify actors by
   /// type, use group to identify a set of actors by some property they share
   ///  (e.g. 'admitting officers').
-  const factory ConsentActor({
+  factory ConsentActor({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -944,7 +944,7 @@ class ConsentData extends BackboneElement with _$ConsentData {
   ///
   /// [reference] A reference to a specific resource that defines which
   ///  resources are covered by this consent.
-  const factory ConsentData({
+  factory ConsentData({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

@@ -62,7 +62,7 @@ class TriggerDefinition extends DataType with _$TriggerDefinition {
   /// [condition] A boolean-valued expression that is evaluated in the context
   /// of the container of the trigger definition and returns whether or not the
   ///  trigger fires.
-  const factory TriggerDefinition({
+  factory TriggerDefinition({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

@@ -1216,7 +1216,7 @@ class _$CompartmentDefinitionImpl extends _CompartmentDefinition {
 }
 
 abstract class _CompartmentDefinition extends CompartmentDefinition {
-  const factory _CompartmentDefinition(
+  factory _CompartmentDefinition(
       {@JsonKey(unknownEnumValue: R4ResourceType.CompartmentDefinition)
       final R4ResourceType resourceType,
       final String? id,
@@ -1919,7 +1919,7 @@ class _$CompartmentDefinitionResourceImpl
 
 abstract class _CompartmentDefinitionResource
     extends CompartmentDefinitionResource {
-  const factory _CompartmentDefinitionResource(
+  factory _CompartmentDefinitionResource(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

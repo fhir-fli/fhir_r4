@@ -1095,7 +1095,7 @@ class _$ObservationDefinitionImpl extends _ObservationDefinition {
 }
 
 abstract class _ObservationDefinition extends ObservationDefinition {
-  const factory _ObservationDefinition(
+  factory _ObservationDefinition(
       {@JsonKey(unknownEnumValue: R4ResourceType.ObservationDefinition)
       final R4ResourceType resourceType,
       final String? id,
@@ -1745,7 +1745,7 @@ class _$ObservationDefinitionQuantitativeDetailsImpl
 
 abstract class _ObservationDefinitionQuantitativeDetails
     extends ObservationDefinitionQuantitativeDetails {
-  const factory _ObservationDefinitionQuantitativeDetails(
+  factory _ObservationDefinitionQuantitativeDetails(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2436,7 +2436,7 @@ class _$ObservationDefinitionQualifiedIntervalImpl
 
 abstract class _ObservationDefinitionQualifiedInterval
     extends ObservationDefinitionQualifiedInterval {
-  const factory _ObservationDefinitionQualifiedInterval(
+  factory _ObservationDefinitionQualifiedInterval(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

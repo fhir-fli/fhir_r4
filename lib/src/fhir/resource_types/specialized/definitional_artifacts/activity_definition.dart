@@ -309,7 +309,7 @@ class ActivityDefinition extends DomainResource with _$ActivityDefinition {
   /// medication must be computed based on the patient's weight, a dynamic value
   /// would be used to specify an expression that calculated the weight, and the
   ///  path on the request resource that would contain the result.
-  const factory ActivityDefinition({
+  factory ActivityDefinition({
     @Default(R4ResourceType.ActivityDefinition)
     @JsonKey(unknownEnumValue: R4ResourceType.ActivityDefinition)
 
@@ -794,7 +794,7 @@ class ActivityDefinitionParticipant extends BackboneElement
   ///
   /// [role] The role the participant should play in performing the described
   ///  action.
-  const factory ActivityDefinitionParticipant({
+  factory ActivityDefinitionParticipant({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -924,7 +924,7 @@ class ActivityDefinitionDynamicValue extends BackboneElement
   ///
   /// [expression] An expression specifying the value of the customized
   ///  element.
-  const factory ActivityDefinitionDynamicValue({
+  factory ActivityDefinitionDynamicValue({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

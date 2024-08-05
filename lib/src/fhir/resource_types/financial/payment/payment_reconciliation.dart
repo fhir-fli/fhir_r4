@@ -122,7 +122,7 @@ class PaymentReconciliation extends DomainResource
   ///
   /// [processNote] A note that describes or explains the processing in a human
   ///  readable form.
-  const factory PaymentReconciliation({
+  factory PaymentReconciliation({
     @Default(R4ResourceType.PaymentReconciliation)
     @JsonKey(unknownEnumValue: R4ResourceType.PaymentReconciliation)
 
@@ -386,7 +386,7 @@ class PaymentReconciliationDetail extends BackboneElement
   ///
   /// [amount] The monetary amount allocated from the total payment to the
   ///  payable.
-  const factory PaymentReconciliationDetail({
+  factory PaymentReconciliationDetail({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -541,7 +541,7 @@ class PaymentReconciliationProcessNote extends BackboneElement
   /// [text] The explanation or description associated with the processing.
   ///
   /// [textElement] Extensions for text
-  const factory PaymentReconciliationProcessNote({
+  factory PaymentReconciliationProcessNote({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

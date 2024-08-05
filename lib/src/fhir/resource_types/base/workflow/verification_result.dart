@@ -120,7 +120,7 @@ class VerificationResult extends DomainResource with _$VerificationResult {
   /// [attestation] Information about the entity attesting to information.
   ///
   /// [validator] Information about the entity validating information.
-  const factory VerificationResult({
+  factory VerificationResult({
     @Default(R4ResourceType.VerificationResult)
     @JsonKey(unknownEnumValue: R4ResourceType.VerificationResult)
 
@@ -377,7 +377,7 @@ class VerificationResultPrimarySource extends BackboneElement
   ///
   /// [pushTypeAvailable] Type of alerts/updates the primary source can send
   ///  (specific requested changes; any changes; as defined by source).
-  const factory VerificationResultPrimarySource({
+  factory VerificationResultPrimarySource({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -546,7 +546,7 @@ class VerificationResultAttestation extends BackboneElement
   ///
   /// [sourceSignature] Signed assertion by the attestation source that they
   ///  have attested to the information.
-  const factory VerificationResultAttestation({
+  factory VerificationResultAttestation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -706,7 +706,7 @@ class VerificationResultValidator extends BackboneElement
   ///
   /// [attestationSignature] Signed assertion by the validator that they have
   ///  validated the information.
-  const factory VerificationResultValidator({
+  factory VerificationResultValidator({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

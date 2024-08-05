@@ -126,7 +126,7 @@ class DetectedIssue extends DomainResource with _$DetectedIssue {
   /// reduce or eliminate the likelihood of the risk identified by the detected
   /// issue from manifesting.  Can also reflect an observation of known
   ///  mitigating factors that may reduce/eliminate the need for any action.
-  const factory DetectedIssue({
+  factory DetectedIssue({
     @Default(R4ResourceType.DetectedIssue)
     @JsonKey(unknownEnumValue: R4ResourceType.DetectedIssue)
     R4ResourceType resourceType,
@@ -266,7 +266,7 @@ class DetectedIssueEvidence extends BackboneElement
   ///
   /// [detail] Links to resources that constitute evidence for the detected
   ///  issue such as a GuidanceResponse or MeasureReport.
-  const factory DetectedIssueEvidence({
+  factory DetectedIssueEvidence({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -363,7 +363,7 @@ class DetectedIssueMitigation extends BackboneElement
   ///
   /// [author] Identifies the practitioner who determined the mitigation and
   ///  takes responsibility for the mitigation step occurring.
-  const factory DetectedIssueMitigation({
+  factory DetectedIssueMitigation({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,

@@ -2048,7 +2048,7 @@ class _$ContractImpl extends _Contract {
 }
 
 abstract class _Contract extends Contract {
-  const factory _Contract(
+  factory _Contract(
       {@JsonKey(unknownEnumValue: R4ResourceType.Contract)
       final R4ResourceType resourceType,
       final String? id,
@@ -2980,7 +2980,7 @@ class _$ContractContentDefinitionImpl extends _ContractContentDefinition {
 }
 
 abstract class _ContractContentDefinition extends ContractContentDefinition {
-  const factory _ContractContentDefinition(
+  factory _ContractContentDefinition(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3841,7 +3841,7 @@ class _$ContractTermImpl extends _ContractTerm {
 }
 
 abstract class _ContractTerm extends ContractTerm {
-  const factory _ContractTerm(
+  factory _ContractTerm(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4405,7 +4405,7 @@ class _$ContractSecurityLabelImpl extends _ContractSecurityLabel {
 }
 
 abstract class _ContractSecurityLabel extends ContractSecurityLabel {
-  const factory _ContractSecurityLabel(
+  factory _ContractSecurityLabel(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5171,7 +5171,7 @@ class _$ContractOfferImpl extends _ContractOffer {
 }
 
 abstract class _ContractOffer extends ContractOffer {
-  const factory _ContractOffer(
+  factory _ContractOffer(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -5605,7 +5605,7 @@ class _$ContractPartyImpl extends _ContractParty {
 }
 
 abstract class _ContractParty extends ContractParty {
-  const factory _ContractParty(
+  factory _ContractParty(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -6527,7 +6527,7 @@ class _$ContractAnswerImpl extends _ContractAnswer {
 }
 
 abstract class _ContractAnswer extends ContractAnswer {
-  const factory _ContractAnswer(
+  factory _ContractAnswer(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -7588,7 +7588,7 @@ class _$ContractAssetImpl extends _ContractAsset {
 }
 
 abstract class _ContractAsset extends ContractAsset {
-  const factory _ContractAsset(
+  factory _ContractAsset(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -8114,7 +8114,7 @@ class _$ContractContextImpl extends _ContractContext {
 }
 
 abstract class _ContractContext extends ContractContext {
-  const factory _ContractContext(
+  factory _ContractContext(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -9157,7 +9157,7 @@ class _$ContractValuedItemImpl extends _ContractValuedItem {
 }
 
 abstract class _ContractValuedItem extends ContractValuedItem {
-  const factory _ContractValuedItem(
+  factory _ContractValuedItem(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -10731,7 +10731,7 @@ class _$ContractActionImpl extends _ContractAction {
 }
 
 abstract class _ContractAction extends ContractAction {
-  const factory _ContractAction(
+  factory _ContractAction(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -11295,7 +11295,7 @@ class _$ContractSubjectImpl extends _ContractSubject {
 }
 
 abstract class _ContractSubject extends ContractSubject {
-  const factory _ContractSubject(
+  factory _ContractSubject(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -11701,7 +11701,7 @@ class _$ContractSignerImpl extends _ContractSigner {
 }
 
 abstract class _ContractSigner extends ContractSigner {
-  const factory _ContractSigner(
+  factory _ContractSigner(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -12098,7 +12098,7 @@ class _$ContractFriendlyImpl extends _ContractFriendly {
 }
 
 abstract class _ContractFriendly extends ContractFriendly {
-  const factory _ContractFriendly(
+  factory _ContractFriendly(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -12485,7 +12485,7 @@ class _$ContractLegalImpl extends _ContractLegal {
 }
 
 abstract class _ContractLegal extends ContractLegal {
-  const factory _ContractLegal(
+  factory _ContractLegal(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -12872,7 +12872,7 @@ class _$ContractRuleImpl extends _ContractRule {
 }
 
 abstract class _ContractRule extends ContractRule {
-  const factory _ContractRule(
+  factory _ContractRule(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

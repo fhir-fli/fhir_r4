@@ -131,7 +131,7 @@ class Goal extends DomainResource with _$Goal {
   ///  the status of the goal is assessed.
   ///
   /// [outcomeReference] Details of what's changed (or not changed).
-  const factory Goal({
+  factory Goal({
     @Default(R4ResourceType.Goal)
     @JsonKey(unknownEnumValue: R4ResourceType.Goal)
 
@@ -440,7 +440,7 @@ class GoalTarget extends BackboneElement with _$GoalTarget {
   ///
   /// [dueDuration] Indicates either the date or the duration after start by
   ///  which the goal should be met.
-  const factory GoalTarget({
+  factory GoalTarget({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

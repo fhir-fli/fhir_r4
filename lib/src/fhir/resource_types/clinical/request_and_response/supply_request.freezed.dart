@@ -1245,7 +1245,7 @@ class _$SupplyRequestImpl extends _SupplyRequest {
 }
 
 abstract class _SupplyRequest extends SupplyRequest {
-  const factory _SupplyRequest(
+  factory _SupplyRequest(
       {@JsonKey(unknownEnumValue: R4ResourceType.SupplyRequest)
       final R4ResourceType resourceType,
       final String? id,
@@ -1930,7 +1930,7 @@ class _$SupplyRequestParameterImpl extends _SupplyRequestParameter {
 }
 
 abstract class _SupplyRequestParameter extends SupplyRequestParameter {
-  const factory _SupplyRequestParameter(
+  factory _SupplyRequestParameter(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

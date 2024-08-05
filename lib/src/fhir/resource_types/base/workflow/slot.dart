@@ -115,7 +115,7 @@ class Slot extends DomainResource with _$Slot {
   ///  as custom constraints on the slot.
   ///
   /// [commentElement] Extensions for comment
-  const factory Slot({
+  factory Slot({
     @Default(R4ResourceType.Slot)
     @JsonKey(unknownEnumValue: R4ResourceType.Slot)
 

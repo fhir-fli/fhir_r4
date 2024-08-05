@@ -1120,7 +1120,7 @@ class _$NamingSystemImpl extends _NamingSystem {
 }
 
 abstract class _NamingSystem extends NamingSystem {
-  const factory _NamingSystem(
+  factory _NamingSystem(
       {@JsonKey(unknownEnumValue: R4ResourceType.NamingSystem)
       final R4ResourceType resourceType,
       final String? id,
@@ -1846,7 +1846,7 @@ class _$NamingSystemUniqueIdImpl extends _NamingSystemUniqueId {
 }
 
 abstract class _NamingSystemUniqueId extends NamingSystemUniqueId {
-  const factory _NamingSystemUniqueId(
+  factory _NamingSystemUniqueId(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

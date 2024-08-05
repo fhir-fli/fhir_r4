@@ -65,7 +65,7 @@ class SubscriptionStatus extends DomainResource with _$SubscriptionStatus {
   /// [topic] The reference to the SubscriptionTopic for the Subscription which generated this notification.;
   ///
   /// [error] A record of errors that occurred when the server processed a notification.;
-  const factory SubscriptionStatus({
+  factory SubscriptionStatus({
     /// [resourceType] This is a SubscriptionStatus resource;
     @Default(R4ResourceType.SubscriptionStatus) R4ResourceType resourceType,
 
@@ -220,7 +220,7 @@ class SubscriptionStatusNotificationEvent extends BackboneElement
   /// [focus] The focus of this event. While this will usually be a reference to the focus resource of the event, it MAY contain a reference to a non-FHIR object.;
   ///
   /// [additionalContext] Additional context information for this event. Generally, this will contain references to additional resources included with the event (e.g., the Patient relevant to an Encounter), however it MAY refer to non-FHIR objects.;
-  const factory SubscriptionStatusNotificationEvent({
+  factory SubscriptionStatusNotificationEvent({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 

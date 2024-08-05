@@ -289,7 +289,7 @@ class _$PeriodImpl extends _Period {
 }
 
 abstract class _Period extends Period {
-  const factory _Period(
+  factory _Period(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final FhirDateTime? start,

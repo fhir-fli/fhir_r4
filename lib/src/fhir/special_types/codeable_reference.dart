@@ -40,7 +40,7 @@ class CodeableReference extends DataType with _$CodeableReference {
   ///
   /// [reference] A reference to a resource the provides exact details about the
   /// information being referenced.
-  const factory CodeableReference({
+  factory CodeableReference({
     /// [id] Unique id for the element within a resource (for internal references).
     /// This may be any string value that does not contain spaces.",
     String? id,

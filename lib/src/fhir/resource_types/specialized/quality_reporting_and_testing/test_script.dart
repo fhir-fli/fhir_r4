@@ -183,7 +183,7 @@ class TestScript extends DomainResource with _$TestScript {
   ///
   /// [teardown] A series of operations required to clean up after all the
   ///  tests are executed (successfully or otherwise).
-  const factory TestScript({
+  factory TestScript({
     @Default(R4ResourceType.TestScript)
     @JsonKey(unknownEnumValue: R4ResourceType.TestScript)
 
@@ -501,7 +501,7 @@ class TestScriptOrigin extends BackboneElement with _$TestScriptOrigin {
   /// [indexElement] Extensions for index
   ///
   /// [profile] The type of origin profile the test system supports.
-  const factory TestScriptOrigin({
+  factory TestScriptOrigin({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -624,7 +624,7 @@ class TestScriptDestination extends BackboneElement
   /// [indexElement] Extensions for index
   ///
   /// [profile] The type of destination profile the test system supports.
-  const factory TestScriptDestination({
+  factory TestScriptDestination({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -744,7 +744,7 @@ class TestScriptMetadata extends BackboneElement with _$TestScriptMetadata {
   ///
   /// [capability] Capabilities that must exist and are assumed to function
   ///  correctly on the FHIR server being tested.
-  const factory TestScriptMetadata({
+  factory TestScriptMetadata({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -865,7 +865,7 @@ class TestScriptLink extends BackboneElement with _$TestScriptLink {
   /// [description] Short description of the link.
   ///
   /// [descriptionElement] Extensions for description
-  const factory TestScriptLink({
+  factory TestScriptLink({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1016,7 +1016,7 @@ class TestScriptCapability extends BackboneElement with _$TestScriptCapability {
   /// execute successfully.   If server does not meet at a minimum the
   /// referenced capability statement, then all tests in this script are
   ///  skipped.
-  const factory TestScriptCapability({
+  factory TestScriptCapability({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1184,7 +1184,7 @@ class TestScriptFixture extends BackboneElement with _$TestScriptFixture {
   ///
   /// [resource] Reference to the resource (containing the contents of the
   ///  resource needed for operations).
-  const factory TestScriptFixture({
+  factory TestScriptFixture({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1352,7 +1352,7 @@ class TestScriptVariable extends BackboneElement with _$TestScriptVariable {
   ///  headerField  against within this variable.
   ///
   /// [sourceIdElement] Extensions for sourceId
-  const factory TestScriptVariable({
+  factory TestScriptVariable({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1516,7 +1516,7 @@ class TestScriptSetup extends BackboneElement with _$TestScriptSetup {
   ///  modifierExtension itself).
   ///
   /// [action] Action would contain either an operation or an assertion.
-  const factory TestScriptSetup({
+  factory TestScriptSetup({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1629,7 +1629,7 @@ class TestScriptAction extends BackboneElement with _$TestScriptAction {
   ///
   /// [assert] Evaluates the results of previous operations to determine if the
   ///  server under test behaves appropriately.
-  const factory TestScriptAction({
+  factory TestScriptAction({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1819,7 +1819,7 @@ class TestScriptOperation extends BackboneElement with _$TestScriptOperation {
   /// [url] Complete request URL.
   ///
   /// [urlElement] Extensions for url
-  const factory TestScriptOperation({
+  factory TestScriptOperation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2044,7 +2044,7 @@ class TestScriptRequestHeader extends BackboneElement
   /// [value] The value of the header e.g. "application/fhir+xml".
   ///
   /// [valueElement] Extensions for value
-  const factory TestScriptRequestHeader({
+  factory TestScriptRequestHeader({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2272,7 +2272,7 @@ class TestScriptAssert extends BackboneElement with _$TestScriptAssert {
   ///  only on error for this assert.
   ///
   /// [warningOnlyElement] Extensions for warningOnly
-  const factory TestScriptAssert({
+  factory TestScriptAssert({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2548,7 +2548,7 @@ class TestScriptTest extends BackboneElement with _$TestScriptTest {
   /// [descriptionElement] Extensions for description
   ///
   /// [action] Action would contain either an operation or an assertion.
-  const factory TestScriptTest({
+  factory TestScriptTest({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2675,7 +2675,7 @@ class TestScriptAction1 extends BackboneElement with _$TestScriptAction1 {
   ///
   /// [assert] Evaluates the results of previous operations to determine if the
   ///  server under test behaves appropriately.
-  const factory TestScriptAction1({
+  factory TestScriptAction1({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2789,7 +2789,7 @@ class TestScriptTeardown extends BackboneElement with _$TestScriptTeardown {
   ///  modifierExtension itself).
   ///
   /// [action] The teardown action will only contain an operation.
-  const factory TestScriptTeardown({
+  factory TestScriptTeardown({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2899,7 +2899,7 @@ class TestScriptAction2 extends BackboneElement with _$TestScriptAction2 {
   ///  modifierExtension itself).
   ///
   /// [operation] An operation would involve a REST request to a server.
-  const factory TestScriptAction2({
+  factory TestScriptAction2({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

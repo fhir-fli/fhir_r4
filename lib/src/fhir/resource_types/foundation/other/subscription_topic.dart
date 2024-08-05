@@ -113,7 +113,7 @@ class SubscriptionTopic extends DomainResource with _$SubscriptionTopic {
   /// [canFilterBy] List of properties by which Subscriptions on the SubscriptionTopic can be filtered. May be defined Search Parameters (e.g., Encounter.patient) or parameters defined within this SubscriptionTopic context (e.g., hub.event).;
   ///
   /// [notificationShape] List of properties to describe the shape (e.g., resources) included in notifications from this Subscription Topic.;
-  const factory SubscriptionTopic({
+  factory SubscriptionTopic({
     /// [resourceType] This is a SubscriptionTopic resource;
     @Default(R4ResourceType.SubscriptionTopic) R4ResourceType resourceType,
 
@@ -331,7 +331,7 @@ class SubscriptionTopicResourceTrigger extends BackboneElement
   /// [fhirPathCriteria] The FHIRPath based rules that the server should use to determine when to trigger a notification for this topic.;
   ///
   /// [fhirPathCriteriaElement] (_fhirPathCriteria): Extensions for fhirPathCriteria;
-  const factory SubscriptionTopicResourceTrigger({
+  factory SubscriptionTopicResourceTrigger({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -430,7 +430,7 @@ class SubscriptionTopicQueryCriteria extends BackboneElement
   /// [requireBoth] If set to true, both current and previous criteria must evaluate true to  trigger a notification for this topic.  Otherwise a notification for this topic will be triggered if either one evaluates to true.;
   ///
   /// [requireBothElement] (_requireBoth): Extensions for requireBoth;
-  const factory SubscriptionTopicQueryCriteria({
+  factory SubscriptionTopicQueryCriteria({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -517,7 +517,7 @@ class SubscriptionTopicEventTrigger extends BackboneElement
   /// [resource] URL of the Resource that is the focus type used in this event trigger.  Relative URLs are relative to the StructureDefinition root of the implemented FHIR version (e.g., http://hl7.org/fhir/StructureDefinition). For example, "Patient" maps to http://hl7.org/fhir/StructureDefinition/Patient.  For more information, see <a href="elementdefinition-definitions.html#ElementDefinition.type.code">ElementDefinition.type.code</a>.;
   ///
   /// [resourceElement] (_resource): Extensions for resource;
-  const factory SubscriptionTopicEventTrigger({
+  factory SubscriptionTopicEventTrigger({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -608,7 +608,7 @@ class SubscriptionTopicCanFilterBy extends BackboneElement
   /// [modifier] Allowable operators to apply when determining matches (Search Modifiers).  If the filterParameter is a SearchParameter, this list of modifiers SHALL be a strict subset of the modifiers defined on that SearchParameter.;
   ///
   /// [modifierElement] (_modifier): Extensions for modifier;
-  const factory SubscriptionTopicCanFilterBy({
+  factory SubscriptionTopicCanFilterBy({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -693,7 +693,7 @@ class SubscriptionTopicNotificationShape extends BackboneElement
   /// [revInclude] Search-style _revinclude directives, rooted in the resource for this shape. Servers SHOULD include resources listed here, if they exist and the user is authorized to receive them.  Clients SHOULD be prepared to receive these additional resources, but SHALL function properly without them.;
   ///
   /// [revIncludeElement] (_revInclude): Extensions for revInclude;
-  const factory SubscriptionTopicNotificationShape({
+  factory SubscriptionTopicNotificationShape({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,

@@ -59,7 +59,7 @@ class Coding extends DataType with _$Coding {
   ///  e.g. off a pick list of available items (codes or displays).
   ///
   /// [userSelectedElement] Extensions for userSelected
-  const factory Coding({
+  factory Coding({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

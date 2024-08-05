@@ -978,7 +978,7 @@ class _$RegulatedAuthorizationImpl extends _RegulatedAuthorization {
 }
 
 abstract class _RegulatedAuthorization extends RegulatedAuthorization {
-  const factory _RegulatedAuthorization(
+  factory _RegulatedAuthorization(
       {final R4ResourceType resourceType,
       final String? id,
       final FhirMeta? meta,
@@ -1576,7 +1576,7 @@ class _$RegulatedAuthorizationCaseImpl extends _RegulatedAuthorizationCase {
 }
 
 abstract class _RegulatedAuthorizationCase extends RegulatedAuthorizationCase {
-  const factory _RegulatedAuthorizationCase(
+  factory _RegulatedAuthorizationCase(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

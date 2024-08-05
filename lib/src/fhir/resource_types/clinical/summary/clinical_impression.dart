@@ -154,7 +154,7 @@ class ClinicalImpression extends DomainResource with _$ClinicalImpression {
   /// [note] Commentary about the impression, typically recorded after the
   /// impression itself was made, though supplemental notes by the original
   ///  author could also appear.
-  const factory ClinicalImpression({
+  factory ClinicalImpression({
     @Default(R4ResourceType.ClinicalImpression)
     @JsonKey(unknownEnumValue: R4ResourceType.ClinicalImpression)
     R4ResourceType resourceType,
@@ -309,7 +309,7 @@ class ClinicalImpressionInvestigation extends BackboneElement
   ///  (exposure|family|travel|nutritional) history may be used.
   ///
   /// [item] A record of a specific investigation that was undertaken.
-  const factory ClinicalImpressionInvestigation({
+  factory ClinicalImpressionInvestigation({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -410,7 +410,7 @@ class ClinicalImpressionFinding extends BackboneElement
   /// [basis] Which investigations support finding or diagnosis.
   ///
   /// [basisElement] Extensions for basis
-  const factory ClinicalImpressionFinding({
+  factory ClinicalImpressionFinding({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,

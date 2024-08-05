@@ -1433,7 +1433,7 @@ class _$ProcedureImpl extends _Procedure {
 }
 
 abstract class _Procedure extends Procedure {
-  const factory _Procedure(
+  factory _Procedure(
       {@JsonKey(unknownEnumValue: R4ResourceType.Procedure)
       final R4ResourceType resourceType,
       final String? id,
@@ -1883,7 +1883,7 @@ class _$ProcedurePerformerImpl extends _ProcedurePerformer {
 }
 
 abstract class _ProcedurePerformer extends ProcedurePerformer {
-  const factory _ProcedurePerformer(
+  factory _ProcedurePerformer(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2166,7 +2166,7 @@ class _$ProcedureFocalDeviceImpl extends _ProcedureFocalDevice {
 }
 
 abstract class _ProcedureFocalDevice extends ProcedureFocalDevice {
-  const factory _ProcedureFocalDevice(
+  factory _ProcedureFocalDevice(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

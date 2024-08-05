@@ -1241,7 +1241,7 @@ class _$ConditionImpl extends _Condition {
 }
 
 abstract class _Condition extends Condition {
-  const factory _Condition(
+  factory _Condition(
       {@JsonKey(unknownEnumValue: R4ResourceType.Condition)
       final R4ResourceType resourceType,
       final String? id,
@@ -1672,7 +1672,7 @@ class _$ConditionStageImpl extends _ConditionStage {
 }
 
 abstract class _ConditionStage extends ConditionStage {
-  const factory _ConditionStage(
+  factory _ConditionStage(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1941,7 +1941,7 @@ class _$ConditionEvidenceImpl extends _ConditionEvidence {
 }
 
 abstract class _ConditionEvidence extends ConditionEvidence {
-  const factory _ConditionEvidence(
+  factory _ConditionEvidence(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

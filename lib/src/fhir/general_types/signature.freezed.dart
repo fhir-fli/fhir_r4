@@ -508,7 +508,7 @@ class _$SignatureImpl extends _Signature {
 }
 
 abstract class _Signature extends Signature {
-  const factory _Signature(
+  factory _Signature(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           required final List<Coding> type,

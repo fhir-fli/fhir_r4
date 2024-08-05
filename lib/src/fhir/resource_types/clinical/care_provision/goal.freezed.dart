@@ -1197,7 +1197,7 @@ class _$GoalImpl extends _Goal {
 }
 
 abstract class _Goal extends Goal {
-  const factory _Goal(
+  factory _Goal(
       {@JsonKey(unknownEnumValue: R4ResourceType.Goal)
       final R4ResourceType resourceType,
       final String? id,
@@ -2174,7 +2174,7 @@ class _$GoalTargetImpl extends _GoalTarget {
 }
 
 abstract class _GoalTarget extends GoalTarget {
-  const factory _GoalTarget(
+  factory _GoalTarget(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

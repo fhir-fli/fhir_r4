@@ -63,7 +63,7 @@ class HumanName extends DataType with _$HumanName {
   ///
   /// [period] Indicates the period of time when this name was valid for the
   ///  named person.
-  const factory HumanName({
+  factory HumanName({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

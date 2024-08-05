@@ -1039,7 +1039,7 @@ class _$SupplyDeliveryImpl extends _SupplyDelivery {
 }
 
 abstract class _SupplyDelivery extends SupplyDelivery {
-  const factory _SupplyDelivery(
+  factory _SupplyDelivery(
       {@JsonKey(unknownEnumValue: R4ResourceType.SupplyDelivery)
       final R4ResourceType resourceType,
       final String? id,
@@ -1611,7 +1611,7 @@ class _$SupplyDeliverySuppliedItemImpl extends _SupplyDeliverySuppliedItem {
 }
 
 abstract class _SupplyDeliverySuppliedItem extends SupplyDeliverySuppliedItem {
-  const factory _SupplyDeliverySuppliedItem(
+  factory _SupplyDeliverySuppliedItem(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

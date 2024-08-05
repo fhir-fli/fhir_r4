@@ -83,7 +83,7 @@ class Address extends DataType with _$Address {
   /// [countryElement] Extensions for country
   ///
   /// [period] Time period when address was/is in use.
-  const factory Address({
+  factory Address({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

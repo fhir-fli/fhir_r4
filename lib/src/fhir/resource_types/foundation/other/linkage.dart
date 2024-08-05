@@ -87,7 +87,7 @@ class Linkage extends DomainResource with _$Linkage {
   /// [item] Identifies which record considered as the reference to the same
   /// real-world occurrence as well as how the items should be evaluated within
   ///  the collection of linked items.
-  const factory Linkage({
+  factory Linkage({
     @Default(R4ResourceType.Linkage)
     @JsonKey(unknownEnumValue: R4ResourceType.Linkage)
 
@@ -277,7 +277,7 @@ class LinkageItem extends BackboneElement with _$LinkageItem {
   /// [typeElement] Extensions for type
   ///
   /// [resource] The resource instance being linked as part of the group.
-  const factory LinkageItem({
+  factory LinkageItem({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

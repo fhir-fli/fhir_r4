@@ -1360,7 +1360,7 @@ class _$StructureMapImpl extends _StructureMap {
 }
 
 abstract class _StructureMap extends StructureMap {
-  const factory _StructureMap(
+  factory _StructureMap(
       {@JsonKey(unknownEnumValue: R4ResourceType.StructureMap)
       final R4ResourceType resourceType,
       final String? id,
@@ -2077,7 +2077,7 @@ class _$StructureMapStructureImpl extends _StructureMapStructure {
 }
 
 abstract class _StructureMapStructure extends StructureMapStructure {
-  const factory _StructureMapStructure(
+  factory _StructureMapStructure(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2675,7 +2675,7 @@ class _$StructureMapGroupImpl extends _StructureMapGroup {
 }
 
 abstract class _StructureMapGroup extends StructureMapGroup {
-  const factory _StructureMapGroup(
+  factory _StructureMapGroup(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3220,7 +3220,7 @@ class _$StructureMapInputImpl extends _StructureMapInput {
 }
 
 abstract class _StructureMapInput extends StructureMapInput {
-  const factory _StructureMapInput(
+  factory _StructureMapInput(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3785,7 +3785,7 @@ class _$StructureMapRuleImpl extends _StructureMapRule {
 }
 
 abstract class _StructureMapRule extends StructureMapRule {
-  const factory _StructureMapRule(
+  factory _StructureMapRule(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -6810,7 +6810,7 @@ class _$StructureMapSourceImpl extends _StructureMapSource {
 }
 
 abstract class _StructureMapSource extends StructureMapSource {
-  const factory _StructureMapSource(
+  factory _StructureMapSource(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -8034,7 +8034,7 @@ class _$StructureMapTargetImpl extends _StructureMapTarget {
 }
 
 abstract class _StructureMapTarget extends StructureMapTarget {
-  const factory _StructureMapTarget(
+  factory _StructureMapTarget(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -8659,7 +8659,7 @@ class _$StructureMapParameterImpl extends _StructureMapParameter {
 }
 
 abstract class _StructureMapParameter extends StructureMapParameter {
-  const factory _StructureMapParameter(
+  factory _StructureMapParameter(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -9134,7 +9134,7 @@ class _$StructureMapDependentImpl extends _StructureMapDependent {
 }
 
 abstract class _StructureMapDependent extends StructureMapDependent {
-  const factory _StructureMapDependent(
+  factory _StructureMapDependent(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

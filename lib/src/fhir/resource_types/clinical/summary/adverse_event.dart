@@ -146,7 +146,7 @@ class AdverseEvent extends DomainResource with _$AdverseEvent {
   /// [referenceDocument] AdverseEvent.referenceDocument.
   ///
   /// [study] AdverseEvent.study.
-  const factory AdverseEvent({
+  factory AdverseEvent({
     @Default(R4ResourceType.AdverseEvent)
     @JsonKey(unknownEnumValue: R4ResourceType.AdverseEvent)
     R4ResourceType resourceType,
@@ -293,7 +293,7 @@ class AdverseEventSuspectEntity extends BackboneElement
   ///  medication statement or a device.
   ///
   /// [causality] Information on the possible cause of the event.
-  const factory AdverseEventSuspectEntity({
+  factory AdverseEventSuspectEntity({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -391,7 +391,7 @@ class AdverseEventCausality extends BackboneElement
   /// [author] AdverseEvent.suspectEntity.causalityAuthor.
   ///
   /// [method] ProbabilityScale | Bayesian | Checklist.
-  const factory AdverseEventCausality({
+  factory AdverseEventCausality({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,

@@ -1059,7 +1059,7 @@ class _$PractitionerRoleImpl extends _PractitionerRole {
 }
 
 abstract class _PractitionerRole extends PractitionerRole {
-  const factory _PractitionerRole(
+  factory _PractitionerRole(
       {@JsonKey(unknownEnumValue: R4ResourceType.PractitionerRole)
       final R4ResourceType resourceType,
       final String? id,
@@ -1745,7 +1745,7 @@ class _$PractitionerRoleAvailableTimeImpl
 
 abstract class _PractitionerRoleAvailableTime
     extends PractitionerRoleAvailableTime {
-  const factory _PractitionerRoleAvailableTime(
+  factory _PractitionerRoleAvailableTime(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2196,7 +2196,7 @@ class _$PractitionerRoleNotAvailableImpl extends _PractitionerRoleNotAvailable {
 
 abstract class _PractitionerRoleNotAvailable
     extends PractitionerRoleNotAvailable {
-  const factory _PractitionerRoleNotAvailable(
+  factory _PractitionerRoleNotAvailable(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,

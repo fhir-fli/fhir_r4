@@ -118,7 +118,7 @@ class QuestionnaireResponse extends DomainResource
   ///
   /// [item] A group or question item from the original questionnaire for which
   ///  answers are provided.
-  const factory QuestionnaireResponse({
+  factory QuestionnaireResponse({
     @Default(R4ResourceType.QuestionnaireResponse)
     @JsonKey(unknownEnumValue: R4ResourceType.QuestionnaireResponse)
 
@@ -362,7 +362,7 @@ class QuestionnaireResponseItem extends BackboneElement
   /// [answer] The respondent's answer(s) to the question.
   ///
   /// [item] Questions or sub-groups nested beneath a question or group.
-  const factory QuestionnaireResponseItem({
+  factory QuestionnaireResponseItem({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -551,7 +551,7 @@ class QuestionnaireResponseAnswer extends BackboneElement
   ///
   /// [item] Nested groups and/or questions found within this particular
   ///  answer.
-  const factory QuestionnaireResponseAnswer({
+  factory QuestionnaireResponseAnswer({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

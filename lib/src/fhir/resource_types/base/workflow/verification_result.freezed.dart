@@ -1140,7 +1140,7 @@ class _$VerificationResultImpl extends _VerificationResult {
 }
 
 abstract class _VerificationResult extends VerificationResult {
-  const factory _VerificationResult(
+  factory _VerificationResult(
       {@JsonKey(unknownEnumValue: R4ResourceType.VerificationResult)
       final R4ResourceType resourceType,
       final String? id,
@@ -1900,7 +1900,7 @@ class _$VerificationResultPrimarySourceImpl
 
 abstract class _VerificationResultPrimarySource
     extends VerificationResultPrimarySource {
-  const factory _VerificationResultPrimarySource(
+  factory _VerificationResultPrimarySource(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2619,7 +2619,7 @@ class _$VerificationResultAttestationImpl
 
 abstract class _VerificationResultAttestation
     extends VerificationResultAttestation {
-  const factory _VerificationResultAttestation(
+  factory _VerificationResultAttestation(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3120,7 +3120,7 @@ class _$VerificationResultValidatorImpl extends _VerificationResultValidator {
 
 abstract class _VerificationResultValidator
     extends VerificationResultValidator {
-  const factory _VerificationResultValidator(
+  factory _VerificationResultValidator(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,

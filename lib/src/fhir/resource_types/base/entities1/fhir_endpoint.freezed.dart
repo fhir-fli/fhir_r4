@@ -1043,7 +1043,7 @@ class _$FhirEndpointImpl extends _FhirEndpoint {
 }
 
 abstract class _FhirEndpoint extends FhirEndpoint {
-  const factory _FhirEndpoint(
+  factory _FhirEndpoint(
       {@JsonKey(unknownEnumValue: R4ResourceType.Endpoint)
       final R4ResourceType resourceType,
       final String? id,

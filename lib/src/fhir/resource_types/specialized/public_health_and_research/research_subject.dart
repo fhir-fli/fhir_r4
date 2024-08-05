@@ -101,7 +101,7 @@ class ResearchSubject extends DomainResource with _$ResearchSubject {
   ///
   /// [consent] A record of the patient's informed agreement to participate in
   ///  the study.
-  const factory ResearchSubject({
+  factory ResearchSubject({
     @Default(R4ResourceType.ResearchSubject)
     @JsonKey(unknownEnumValue: R4ResourceType.ResearchSubject)
 

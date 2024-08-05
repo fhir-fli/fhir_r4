@@ -2593,7 +2593,7 @@ class _$FhirExtensionImpl extends _FhirExtension {
 }
 
 abstract class _FhirExtension extends FhirExtension {
-  const factory _FhirExtension(
+  factory _FhirExtension(
       {@JsonKey(name: 'id') final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(name: 'url') final FhirUri? url,

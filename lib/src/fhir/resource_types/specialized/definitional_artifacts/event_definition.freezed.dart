@@ -1834,7 +1834,7 @@ class _$EventDefinitionImpl extends _EventDefinition {
 }
 
 abstract class _EventDefinition extends EventDefinition {
-  const factory _EventDefinition(
+  factory _EventDefinition(
       {@JsonKey(unknownEnumValue: R4ResourceType.EventDefinition)
       final R4ResourceType resourceType,
       final String? id,

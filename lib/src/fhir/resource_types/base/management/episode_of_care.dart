@@ -111,7 +111,7 @@ class EpisodeOfCare extends DomainResource with _$EpisodeOfCare {
   ///
   /// [account] The set of accounts that may be used for billing for this
   ///  EpisodeOfCare.
-  const factory EpisodeOfCare({
+  factory EpisodeOfCare({
     @Default(R4ResourceType.EpisodeOfCare)
     @JsonKey(unknownEnumValue: R4ResourceType.EpisodeOfCare)
 
@@ -336,7 +336,7 @@ class EpisodeOfCareStatusHistory extends BackboneElement
   ///
   /// [period] The period during this EpisodeOfCare that the specific status
   ///  applied.
-  const factory EpisodeOfCareStatusHistory({
+  factory EpisodeOfCareStatusHistory({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -465,7 +465,7 @@ class EpisodeOfCareDiagnosis extends BackboneElement
   /// [rank] Ranking of the diagnosis (for each role type).
   ///
   /// [rankElement] Extensions for rank
-  const factory EpisodeOfCareDiagnosis({
+  factory EpisodeOfCareDiagnosis({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,

@@ -98,7 +98,7 @@ class ProdCharacteristic extends Element with _$ProdCharacteristic {
   /// [scoring] Where applicable, the scoring can be specified An appropriate
   /// controlled vocabulary shall be used The term and the term identifier shall
   ///  be used.
-  const factory ProdCharacteristic({
+  factory ProdCharacteristic({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
