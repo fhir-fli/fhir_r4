@@ -142,7 +142,8 @@ final ChoiceParser<dynamic> simpleLexer = htmlCheckerLexer |
     maxLexer |
     avgLexer |
     answersLexer |
-    ordinalLexer;
+    ordinalLexer |
+    isIntegerLexer;
 
 /// Deprecated - these Lexers will throw errors, but this allows us
 /// to provide more useful error messages

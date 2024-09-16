@@ -15,3 +15,7 @@ final Parser<AsFunctionParser> asFunctionLexer =
 
 final Parser<IsFunctionParser> isFunctionLexer =
     (string('as(') | string('.as(')).map((_) => IsFunctionParser.empty());
+
+final Parser<IsIntegerParser> isIntegerLexer =
+    (string('isInteger()') | string('.isInteger()'))
+        .map((_) => IsIntegerParser());
