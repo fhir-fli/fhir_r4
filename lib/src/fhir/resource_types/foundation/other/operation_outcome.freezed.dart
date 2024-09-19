@@ -93,8 +93,12 @@ mixin _$OperationOutcome {
   ///  system action.
   List<OperationOutcomeIssue> get issue => throw _privateConstructorUsedError;
 
+  /// Serializes this OperationOutcome to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of OperationOutcome
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $OperationOutcomeCopyWith<OperationOutcome> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -134,6 +138,8 @@ class _$OperationOutcomeCopyWithImpl<$Res, $Val extends OperationOutcome>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of OperationOutcome
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -202,6 +208,8 @@ class _$OperationOutcomeCopyWithImpl<$Res, $Val extends OperationOutcome>
     ) as $Val);
   }
 
+  /// Create a copy of OperationOutcome
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -214,6 +222,8 @@ class _$OperationOutcomeCopyWithImpl<$Res, $Val extends OperationOutcome>
     });
   }
 
+  /// Create a copy of OperationOutcome
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -264,6 +274,8 @@ class __$$OperationOutcomeImplCopyWithImpl<$Res>
       $Res Function(_$OperationOutcomeImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of OperationOutcome
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -499,6 +511,11 @@ class _$OperationOutcomeImpl extends _OperationOutcome {
   }
 
   @override
+  String toString() {
+    return 'OperationOutcome(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, issue: $issue)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -525,7 +542,7 @@ class _$OperationOutcomeImpl extends _OperationOutcome {
             const DeepCollectionEquality().equals(other._issue, _issue));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -542,7 +559,9 @@ class _$OperationOutcomeImpl extends _OperationOutcome {
       const DeepCollectionEquality().hash(_modifierExtension),
       const DeepCollectionEquality().hash(_issue));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of OperationOutcome
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$OperationOutcomeImplCopyWith<_$OperationOutcomeImpl> get copyWith =>
@@ -582,39 +601,38 @@ abstract class _OperationOutcome extends OperationOutcome {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.OperationOutcome)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -622,15 +640,15 @@ abstract class _OperationOutcome extends OperationOutcome {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -638,9 +656,9 @@ abstract class _OperationOutcome extends OperationOutcome {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -655,14 +673,18 @@ abstract class _OperationOutcome extends OperationOutcome {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [issue] An error, warning, or information message that results from a
   ///  system action.
-  List<OperationOutcomeIssue> get issue;
   @override
-  @JsonKey(ignore: true)
+  List<OperationOutcomeIssue> get issue;
+
+  /// Create a copy of OperationOutcome
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OperationOutcomeImplCopyWith<_$OperationOutcomeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -758,8 +780,12 @@ mixin _$OperationOutcomeIssue {
   List<PrimitiveElement>? get expressionElement =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this OperationOutcomeIssue to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of OperationOutcomeIssue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $OperationOutcomeIssueCopyWith<OperationOutcomeIssue> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -800,6 +826,8 @@ class _$OperationOutcomeIssueCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of OperationOutcomeIssue
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -878,6 +906,8 @@ class _$OperationOutcomeIssueCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of OperationOutcomeIssue
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get details {
@@ -929,6 +959,8 @@ class __$$OperationOutcomeIssueImplCopyWithImpl<$Res>
       $Res Function(_$OperationOutcomeIssueImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of OperationOutcomeIssue
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1215,6 +1247,11 @@ class _$OperationOutcomeIssueImpl extends _OperationOutcomeIssue {
   }
 
   @override
+  String toString() {
+    return 'OperationOutcomeIssue(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, severity: $severity, severityElement: $severityElement, code: $code, codeElement: $codeElement, details: $details, diagnostics: $diagnostics, diagnosticsElement: $diagnosticsElement, location: $location, locationElement: $locationElement, expression: $expression, expressionElement: $expressionElement)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1245,7 +1282,7 @@ class _$OperationOutcomeIssueImpl extends _OperationOutcomeIssue {
                 .equals(other._expressionElement, _expressionElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1264,7 +1301,9 @@ class _$OperationOutcomeIssueImpl extends _OperationOutcomeIssue {
       const DeepCollectionEquality().hash(_expression),
       const DeepCollectionEquality().hash(_expressionElement));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of OperationOutcomeIssue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$OperationOutcomeIssueImplCopyWith<_$OperationOutcomeIssueImpl>
@@ -1302,12 +1341,10 @@ abstract class _OperationOutcomeIssue extends OperationOutcomeIssue {
   factory _OperationOutcomeIssue.fromJson(Map<String, dynamic> json) =
       _$OperationOutcomeIssueImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1315,9 +1352,9 @@ abstract class _OperationOutcomeIssue extends OperationOutcomeIssue {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -1332,44 +1369,44 @@ abstract class _OperationOutcomeIssue extends OperationOutcomeIssue {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [severity] Indicates whether the issue indicates a variation from
   ///  successful processing.
-  FhirCode? get severity;
   @override
+  FhirCode? get severity;
 
   /// [severityElement] Extensions for severity
+  @override
   @JsonKey(name: '_severity')
   PrimitiveElement? get severityElement;
-  @override
 
   /// [code] Describes the type of the issue. The system that creates an
   /// OperationOutcome SHALL choose the most applicable code from the IssueType
   /// value set, and may additional provide its own code for the error in the
   ///  details element.
-  FhirCode? get code;
   @override
+  FhirCode? get code;
 
   /// [codeElement] Extensions for code
+  @override
   @JsonKey(name: '_code')
   PrimitiveElement? get codeElement;
-  @override
 
   /// [details] Additional details about the error. This may be a text
   ///  description of the error or a system code that identifies the error.
-  CodeableConcept? get details;
   @override
+  CodeableConcept? get details;
 
   /// [diagnostics] Additional diagnostic information about the issue.
-  String? get diagnostics;
   @override
+  String? get diagnostics;
 
   /// [diagnosticsElement] Extensions for diagnostics
+  @override
   @JsonKey(name: '_diagnostics')
   PrimitiveElement? get diagnosticsElement;
-  @override
 
   /// [location] This element is deprecated because it is XML specific. It is
   /// replaced by issue.expression, which is format independent, and simpler to
@@ -1378,26 +1415,30 @@ abstract class _OperationOutcomeIssue extends OperationOutcomeIssue {
   /// repetition indicators and the default child accessor that identifies one
   /// of the elements in the resource that caused this issue to be raised.  For
   ///  HTTP errors, will be "http." + the parameter name.
-  List<String>? get location;
   @override
+  List<String>? get location;
 
   /// [locationElement] Extensions for location
+  @override
   @JsonKey(name: '_location')
   List<PrimitiveElement>? get locationElement;
-  @override
 
   /// [expression] A [simple subset of FHIRPath](fhirpath.html#simple) limited
   /// to element names, repetition indicators and the default child accessor
   /// that identifies one of the elements in the resource that caused this issue
   ///  to be raised.
-  List<String>? get expression;
   @override
+  List<String>? get expression;
 
   /// [expressionElement] Extensions for expression
+  @override
   @JsonKey(name: '_expression')
   List<PrimitiveElement>? get expressionElement;
+
+  /// Create a copy of OperationOutcomeIssue
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OperationOutcomeIssueImplCopyWith<_$OperationOutcomeIssueImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

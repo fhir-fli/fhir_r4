@@ -183,8 +183,12 @@ mixin _$RequestGroup {
   /// [action] The actions, if any, produced by the evaluation of the artifact.
   List<RequestGroupAction>? get action => throw _privateConstructorUsedError;
 
+  /// Serializes this RequestGroup to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RequestGroup
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RequestGroupCopyWith<RequestGroup> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -254,6 +258,8 @@ class _$RequestGroupCopyWithImpl<$Res, $Val extends RequestGroup>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RequestGroup
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -437,6 +443,8 @@ class _$RequestGroupCopyWithImpl<$Res, $Val extends RequestGroup>
     ) as $Val);
   }
 
+  /// Create a copy of RequestGroup
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -449,6 +457,8 @@ class _$RequestGroupCopyWithImpl<$Res, $Val extends RequestGroup>
     });
   }
 
+  /// Create a copy of RequestGroup
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -461,6 +471,8 @@ class _$RequestGroupCopyWithImpl<$Res, $Val extends RequestGroup>
     });
   }
 
+  /// Create a copy of RequestGroup
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $IdentifierCopyWith<$Res>? get groupIdentifier {
@@ -473,6 +485,8 @@ class _$RequestGroupCopyWithImpl<$Res, $Val extends RequestGroup>
     });
   }
 
+  /// Create a copy of RequestGroup
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get code {
@@ -485,6 +499,8 @@ class _$RequestGroupCopyWithImpl<$Res, $Val extends RequestGroup>
     });
   }
 
+  /// Create a copy of RequestGroup
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get subject {
@@ -497,6 +513,8 @@ class _$RequestGroupCopyWithImpl<$Res, $Val extends RequestGroup>
     });
   }
 
+  /// Create a copy of RequestGroup
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get encounter {
@@ -509,6 +527,8 @@ class _$RequestGroupCopyWithImpl<$Res, $Val extends RequestGroup>
     });
   }
 
+  /// Create a copy of RequestGroup
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get author {
@@ -594,6 +614,8 @@ class __$$RequestGroupImplCopyWithImpl<$Res>
       _$RequestGroupImpl _value, $Res Function(_$RequestGroupImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RequestGroup
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1192,6 +1214,11 @@ class _$RequestGroupImpl extends _RequestGroup {
   }
 
   @override
+  String toString() {
+    return 'RequestGroup(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, instantiatesCanonical: $instantiatesCanonical, instantiatesCanonicalElement: $instantiatesCanonicalElement, instantiatesUri: $instantiatesUri, instantiatesUriElement: $instantiatesUriElement, basedOn: $basedOn, replaces: $replaces, groupIdentifier: $groupIdentifier, status: $status, statusElement: $statusElement, intent: $intent, intentElement: $intentElement, priority: $priority, priorityElement: $priorityElement, code: $code, subject: $subject, encounter: $encounter, authoredOn: $authoredOn, authoredOnElement: $authoredOnElement, author: $author, reasonCode: $reasonCode, reasonReference: $reasonReference, note: $note, action: $action)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1257,7 +1284,7 @@ class _$RequestGroupImpl extends _RequestGroup {
             const DeepCollectionEquality().equals(other._action, _action));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1298,7 +1325,9 @@ class _$RequestGroupImpl extends _RequestGroup {
         const DeepCollectionEquality().hash(_action)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RequestGroup
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RequestGroupImplCopyWith<_$RequestGroupImpl> get copyWith =>
@@ -1361,39 +1390,38 @@ abstract class _RequestGroup extends RequestGroup {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.RequestGroup)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1401,15 +1429,15 @@ abstract class _RequestGroup extends RequestGroup {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1417,9 +1445,9 @@ abstract class _RequestGroup extends RequestGroup {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1434,124 +1462,128 @@ abstract class _RequestGroup extends RequestGroup {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] Allows a service to provide a unique, business identifier
   ///  for the request.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [instantiatesCanonical] A canonical URL referencing a FHIR-defined
   /// protocol, guideline, orderset or other definition that is adhered to in
   ///  whole or in part by this request.
+  @override
   List<FhirCanonical>? get instantiatesCanonical;
   @override
   @JsonKey(name: '_instantiatesCanonical')
   List<PrimitiveElement>? get instantiatesCanonicalElement;
-  @override
 
   /// [instantiatesUri] A URL referencing an externally defined protocol,
   /// guideline, orderset or other definition that is adhered to in whole or in
   ///  part by this request.
-  List<FhirUri>? get instantiatesUri;
   @override
+  List<FhirUri>? get instantiatesUri;
 
   /// [instantiatesUriElement] Extensions for instantiatesUri
+  @override
   @JsonKey(name: '_instantiatesUri')
   List<PrimitiveElement>? get instantiatesUriElement;
-  @override
 
   /// [basedOn] A plan, proposal or order that is fulfilled in whole or in part
   ///  by this request.
-  List<Reference>? get basedOn;
   @override
+  List<Reference>? get basedOn;
 
   /// [replaces] Completed or terminated request(s) whose function is taken by
   ///  this new request.
-  List<Reference>? get replaces;
   @override
+  List<Reference>? get replaces;
 
   /// [groupIdentifier] A shared identifier common to all requests that were
   /// authorized more or less simultaneously by a single author, representing
   ///  the identifier of the requisition, prescription or similar form.
-  Identifier? get groupIdentifier;
   @override
+  Identifier? get groupIdentifier;
 
   /// [status] The current state of the request. For request groups, the status
   ///  reflects the status of all the requests in the group.
-  FhirCode? get status;
   @override
+  FhirCode? get status;
 
   /// [statusElement] Extensions for status
+  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
-  @override
 
   /// [intent] Indicates the level of authority/intentionality associated with
   ///  the request and where the request fits into the workflow chain.
-  FhirCode? get intent;
   @override
+  FhirCode? get intent;
 
   /// [intentElement] Extensions for intent
+  @override
   @JsonKey(name: '_intent')
   PrimitiveElement? get intentElement;
-  @override
 
   /// [priority] Indicates how quickly the request should be addressed with
   ///  respect to other requests.
-  FhirCode? get priority;
   @override
+  FhirCode? get priority;
 
   /// [priorityElement] Extensions for priority
+  @override
   @JsonKey(name: '_priority')
   PrimitiveElement? get priorityElement;
-  @override
 
   /// [code] A code that identifies what the overall request group is.
-  CodeableConcept? get code;
   @override
+  CodeableConcept? get code;
 
   /// [subject] The subject for which the request group was created.
-  Reference? get subject;
   @override
+  Reference? get subject;
 
   /// [encounter] Describes the context of the request group, if any.
-  Reference? get encounter;
   @override
+  Reference? get encounter;
 
   /// [authoredOn] Indicates when the request group was created.
-  FhirDateTime? get authoredOn;
   @override
+  FhirDateTime? get authoredOn;
 
   /// [authoredOnElement] Extensions for authoredOn
+  @override
   @JsonKey(name: '_authoredOn')
   PrimitiveElement? get authoredOnElement;
-  @override
 
   /// [author] Provides a reference to the author of the request group.
-  Reference? get author;
   @override
+  Reference? get author;
 
   /// [reasonCode] Describes the reason for the request group in coded or
   ///  textual form.
-  List<CodeableConcept>? get reasonCode;
   @override
+  List<CodeableConcept>? get reasonCode;
 
   /// [reasonReference] Indicates another resource whose existence justifies
   ///  this request group.
-  List<Reference>? get reasonReference;
   @override
+  List<Reference>? get reasonReference;
 
   /// [note] Provides a mechanism to communicate additional information about
   ///  the response.
-  List<Annotation>? get note;
   @override
+  List<Annotation>? get note;
 
   /// [action] The actions, if any, produced by the evaluation of the artifact.
-  List<RequestGroupAction>? get action;
   @override
-  @JsonKey(ignore: true)
+  List<RequestGroupAction>? get action;
+
+  /// Create a copy of RequestGroup
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RequestGroupImplCopyWith<_$RequestGroupImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1742,8 +1774,12 @@ mixin _$RequestGroupAction {
   /// [action] Sub actions.
   List<RequestGroupAction>? get action => throw _privateConstructorUsedError;
 
+  /// Serializes this RequestGroupAction to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RequestGroupAction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RequestGroupActionCopyWith<RequestGroupAction> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1818,6 +1854,8 @@ class _$RequestGroupActionCopyWithImpl<$Res, $Val extends RequestGroupAction>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RequestGroupAction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2016,6 +2054,8 @@ class _$RequestGroupActionCopyWithImpl<$Res, $Val extends RequestGroupAction>
     ) as $Val);
   }
 
+  /// Create a copy of RequestGroupAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AgeCopyWith<$Res>? get timingAge {
@@ -2028,6 +2068,8 @@ class _$RequestGroupActionCopyWithImpl<$Res, $Val extends RequestGroupAction>
     });
   }
 
+  /// Create a copy of RequestGroupAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get timingPeriod {
@@ -2040,6 +2082,8 @@ class _$RequestGroupActionCopyWithImpl<$Res, $Val extends RequestGroupAction>
     });
   }
 
+  /// Create a copy of RequestGroupAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirDurationCopyWith<$Res>? get timingDuration {
@@ -2052,6 +2096,8 @@ class _$RequestGroupActionCopyWithImpl<$Res, $Val extends RequestGroupAction>
     });
   }
 
+  /// Create a copy of RequestGroupAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get timingRange {
@@ -2064,6 +2110,8 @@ class _$RequestGroupActionCopyWithImpl<$Res, $Val extends RequestGroupAction>
     });
   }
 
+  /// Create a copy of RequestGroupAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TimingCopyWith<$Res>? get timingTiming {
@@ -2076,6 +2124,8 @@ class _$RequestGroupActionCopyWithImpl<$Res, $Val extends RequestGroupAction>
     });
   }
 
+  /// Create a copy of RequestGroupAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get type {
@@ -2088,6 +2138,8 @@ class _$RequestGroupActionCopyWithImpl<$Res, $Val extends RequestGroupAction>
     });
   }
 
+  /// Create a copy of RequestGroupAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get resource {
@@ -2178,6 +2230,8 @@ class __$$RequestGroupActionImplCopyWithImpl<$Res>
       $Res Function(_$RequestGroupActionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RequestGroupAction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2736,6 +2790,11 @@ class _$RequestGroupActionImpl extends _RequestGroupAction {
   }
 
   @override
+  String toString() {
+    return 'RequestGroupAction(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, prefix: $prefix, prefixElement: $prefixElement, title: $title, titleElement: $titleElement, description: $description, descriptionElement: $descriptionElement, textEquivalent: $textEquivalent, textEquivalentElement: $textEquivalentElement, priority: $priority, priorityElement: $priorityElement, code: $code, documentation: $documentation, condition: $condition, relatedAction: $relatedAction, timingDateTime: $timingDateTime, timingDateTimeElement: $timingDateTimeElement, timingAge: $timingAge, timingPeriod: $timingPeriod, timingDuration: $timingDuration, timingRange: $timingRange, timingTiming: $timingTiming, participant: $participant, type: $type, groupingBehavior: $groupingBehavior, groupingBehaviorElement: $groupingBehaviorElement, selectionBehavior: $selectionBehavior, selectionBehaviorElement: $selectionBehaviorElement, requiredBehavior: $requiredBehavior, requiredBehaviorElement: $requiredBehaviorElement, precheckBehavior: $precheckBehavior, precheckBehaviorElement: $precheckBehaviorElement, cardinalityBehavior: $cardinalityBehavior, cardinalityBehaviorElement: $cardinalityBehaviorElement, resource: $resource, action: $action)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2815,7 +2874,7 @@ class _$RequestGroupActionImpl extends _RequestGroupAction {
             const DeepCollectionEquality().equals(other._action, _action));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -2859,7 +2918,9 @@ class _$RequestGroupActionImpl extends _RequestGroupAction {
         const DeepCollectionEquality().hash(_action)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RequestGroupAction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RequestGroupActionImplCopyWith<_$RequestGroupActionImpl> get copyWith =>
@@ -2926,12 +2987,10 @@ abstract class _RequestGroupAction extends RequestGroupAction {
   factory _RequestGroupAction.fromJson(Map<String, dynamic> json) =
       _$RequestGroupActionImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2939,9 +2998,9 @@ abstract class _RequestGroupAction extends RequestGroupAction {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2956,184 +3015,188 @@ abstract class _RequestGroupAction extends RequestGroupAction {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [prefix] A user-visible prefix for the action.
-  String? get prefix;
   @override
+  String? get prefix;
 
   /// [prefixElement] Extensions for prefix
+  @override
   @JsonKey(name: '_prefix')
   PrimitiveElement? get prefixElement;
-  @override
 
   /// [title] The title of the action displayed to a user.
-  String? get title;
   @override
+  String? get title;
 
   /// [titleElement] Extensions for title
+  @override
   @JsonKey(name: '_title')
   PrimitiveElement? get titleElement;
-  @override
 
   /// [description] A short description of the action used to provide a summary
   ///  to display to the user.
-  String? get description;
   @override
+  String? get description;
 
   /// [descriptionElement] Extensions for description
+  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
-  @override
 
   /// [textEquivalent] A text equivalent of the action to be performed. This
   /// provides a human-interpretable description of the action when the
   /// definition is consumed by a system that might not be capable of
   ///  interpreting it dynamically.
-  String? get textEquivalent;
   @override
+  String? get textEquivalent;
 
   /// [textEquivalentElement] Extensions for textEquivalent
+  @override
   @JsonKey(name: '_textEquivalent')
   PrimitiveElement? get textEquivalentElement;
-  @override
 
   /// [priority] Indicates how quickly the action should be addressed with
   ///  respect to other actions.
-  FhirCode? get priority;
   @override
+  FhirCode? get priority;
 
   /// [priorityElement] Extensions for priority
+  @override
   @JsonKey(name: '_priority')
   PrimitiveElement? get priorityElement;
-  @override
 
   /// [code] A code that provides meaning for the action or action group. For
   /// example, a section may have a LOINC code for a section of a documentation
   ///  template.
-  List<CodeableConcept>? get code;
   @override
+  List<CodeableConcept>? get code;
 
   /// [documentation] Didactic or other informational resources associated with
   /// the action that can be provided to the CDS recipient. Information
   ///  resources can include inline text commentary and links to web resources.
-  List<RelatedArtifact>? get documentation;
   @override
+  List<RelatedArtifact>? get documentation;
 
   /// [condition] An expression that describes applicability criteria, or
   ///  start/stop conditions for the action.
-  List<RequestGroupCondition>? get condition;
   @override
+  List<RequestGroupCondition>? get condition;
 
   /// [relatedAction] A relationship to another action such as "before" or
   ///  "30-60 minutes after start of".
-  List<RequestGroupRelatedAction>? get relatedAction;
   @override
+  List<RequestGroupRelatedAction>? get relatedAction;
 
   /// [timingDateTime] An optional value describing when the action should be
   ///  performed.
-  FhirDateTime? get timingDateTime;
   @override
+  FhirDateTime? get timingDateTime;
 
   /// [timingDateTimeElement] Extensions for timingDateTime
+  @override
   @JsonKey(name: '_timingDateTime')
   PrimitiveElement? get timingDateTimeElement;
-  @override
 
   /// [timingAge] An optional value describing when the action should be
   ///  performed.
-  Age? get timingAge;
   @override
+  Age? get timingAge;
 
   /// [timingPeriod] An optional value describing when the action should be
   ///  performed.
-  Period? get timingPeriod;
   @override
+  Period? get timingPeriod;
 
   /// [timingDuration] An optional value describing when the action should be
   ///  performed.
-  FhirDuration? get timingDuration;
   @override
+  FhirDuration? get timingDuration;
 
   /// [timingRange] An optional value describing when the action should be
   ///  performed.
-  Range? get timingRange;
   @override
+  Range? get timingRange;
 
   /// [timingTiming] An optional value describing when the action should be
   ///  performed.
-  Timing? get timingTiming;
   @override
+  Timing? get timingTiming;
 
   /// [participant] The participant that should perform or be responsible for
   ///  this action.
-  List<Reference>? get participant;
   @override
+  List<Reference>? get participant;
 
   /// [type] The type of action to perform (create, update, remove).
-  CodeableConcept? get type;
   @override
+  CodeableConcept? get type;
 
   /// [groupingBehavior] Defines the grouping behavior for the action and its
   ///  children.
-  FhirCode? get groupingBehavior;
   @override
+  FhirCode? get groupingBehavior;
 
   /// [groupingBehaviorElement] Extensions for groupingBehavior
+  @override
   @JsonKey(name: '_groupingBehavior')
   PrimitiveElement? get groupingBehaviorElement;
-  @override
 
   /// [selectionBehavior] Defines the selection behavior for the action and its
   ///  children.
-  FhirCode? get selectionBehavior;
   @override
+  FhirCode? get selectionBehavior;
 
   /// [selectionBehaviorElement] Extensions for selectionBehavior
+  @override
   @JsonKey(name: '_selectionBehavior')
   PrimitiveElement? get selectionBehaviorElement;
-  @override
 
   /// [requiredBehavior] Defines expectations around whether an action is
   ///  required.
-  FhirCode? get requiredBehavior;
   @override
+  FhirCode? get requiredBehavior;
 
   /// [requiredBehaviorElement] Extensions for requiredBehavior
+  @override
   @JsonKey(name: '_requiredBehavior')
   PrimitiveElement? get requiredBehaviorElement;
-  @override
 
   /// [precheckBehavior] Defines whether the action should usually be
   ///  preselected.
-  FhirCode? get precheckBehavior;
   @override
+  FhirCode? get precheckBehavior;
 
   /// [precheckBehaviorElement] Extensions for precheckBehavior
+  @override
   @JsonKey(name: '_precheckBehavior')
   PrimitiveElement? get precheckBehaviorElement;
-  @override
 
   /// [cardinalityBehavior] Defines whether the action can be selected multiple
   ///  times.
-  FhirCode? get cardinalityBehavior;
   @override
+  FhirCode? get cardinalityBehavior;
 
   /// [cardinalityBehaviorElement] Extensions for cardinalityBehavior
+  @override
   @JsonKey(name: '_cardinalityBehavior')
   PrimitiveElement? get cardinalityBehaviorElement;
-  @override
 
   /// [resource] The resource that is the target of the action (e.g.
   ///  CommunicationRequest).
-  Reference? get resource;
   @override
+  Reference? get resource;
 
   /// [action] Sub actions.
-  List<RequestGroupAction>? get action;
   @override
-  @JsonKey(ignore: true)
+  List<RequestGroupAction>? get action;
+
+  /// Create a copy of RequestGroupAction
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RequestGroupActionImplCopyWith<_$RequestGroupActionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3185,8 +3248,12 @@ mixin _$RequestGroupCondition {
   ///  or not the condition is satisfied.
   FhirExpression? get expression => throw _privateConstructorUsedError;
 
+  /// Serializes this RequestGroupCondition to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RequestGroupCondition
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RequestGroupConditionCopyWith<RequestGroupCondition> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3219,6 +3286,8 @@ class _$RequestGroupConditionCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RequestGroupCondition
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3257,6 +3326,8 @@ class _$RequestGroupConditionCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of RequestGroupCondition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirExpressionCopyWith<$Res>? get expression {
@@ -3300,6 +3371,8 @@ class __$$RequestGroupConditionImplCopyWithImpl<$Res>
       $Res Function(_$RequestGroupConditionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RequestGroupCondition
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3438,6 +3511,11 @@ class _$RequestGroupConditionImpl extends _RequestGroupCondition {
   final FhirExpression? expression;
 
   @override
+  String toString() {
+    return 'RequestGroupCondition(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, kind: $kind, kindElement: $kindElement, expression: $expression)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -3454,7 +3532,7 @@ class _$RequestGroupConditionImpl extends _RequestGroupCondition {
                 other.expression == expression));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3465,7 +3543,9 @@ class _$RequestGroupConditionImpl extends _RequestGroupCondition {
       kindElement,
       expression);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RequestGroupCondition
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RequestGroupConditionImplCopyWith<_$RequestGroupConditionImpl>
@@ -3493,12 +3573,10 @@ abstract class _RequestGroupCondition extends RequestGroupCondition {
   factory _RequestGroupCondition.fromJson(Map<String, dynamic> json) =
       _$RequestGroupConditionImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3506,9 +3584,9 @@ abstract class _RequestGroupCondition extends RequestGroupCondition {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3523,23 +3601,27 @@ abstract class _RequestGroupCondition extends RequestGroupCondition {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [kind] The kind of condition.
-  FhirCode? get kind;
   @override
+  FhirCode? get kind;
 
   /// [kindElement] Extensions for kind
+  @override
   @JsonKey(name: '_kind')
   PrimitiveElement? get kindElement;
-  @override
 
   /// [expression] An expression that returns true or false, indicating whether
   ///  or not the condition is satisfied.
-  FhirExpression? get expression;
   @override
-  @JsonKey(ignore: true)
+  FhirExpression? get expression;
+
+  /// Create a copy of RequestGroupCondition
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RequestGroupConditionImplCopyWith<_$RequestGroupConditionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3603,8 +3685,12 @@ mixin _$RequestGroupRelatedAction {
   ///  relationship. For example, 30-60 minutes before.
   Range? get offsetRange => throw _privateConstructorUsedError;
 
+  /// Serializes this RequestGroupRelatedAction to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RequestGroupRelatedAction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RequestGroupRelatedActionCopyWith<RequestGroupRelatedAction> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3641,6 +3727,8 @@ class _$RequestGroupRelatedActionCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RequestGroupRelatedAction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3694,6 +3782,8 @@ class _$RequestGroupRelatedActionCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of RequestGroupRelatedAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirDurationCopyWith<$Res>? get offsetDuration {
@@ -3706,6 +3796,8 @@ class _$RequestGroupRelatedActionCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of RequestGroupRelatedAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get offsetRange {
@@ -3755,6 +3847,8 @@ class __$$RequestGroupRelatedActionImplCopyWithImpl<$Res>
       $Res Function(_$RequestGroupRelatedActionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RequestGroupRelatedAction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3925,6 +4019,11 @@ class _$RequestGroupRelatedActionImpl extends _RequestGroupRelatedAction {
   final Range? offsetRange;
 
   @override
+  String toString() {
+    return 'RequestGroupRelatedAction(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, actionId: $actionId, actionIdElement: $actionIdElement, relationship: $relationship, relationshipElement: $relationshipElement, offsetDuration: $offsetDuration, offsetRange: $offsetRange)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -3948,7 +4047,7 @@ class _$RequestGroupRelatedActionImpl extends _RequestGroupRelatedAction {
                 other.offsetRange == offsetRange));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3962,7 +4061,9 @@ class _$RequestGroupRelatedActionImpl extends _RequestGroupRelatedAction {
       offsetDuration,
       offsetRange);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RequestGroupRelatedAction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RequestGroupRelatedActionImplCopyWith<_$RequestGroupRelatedActionImpl>
@@ -3994,12 +4095,10 @@ abstract class _RequestGroupRelatedAction extends RequestGroupRelatedAction {
   factory _RequestGroupRelatedAction.fromJson(Map<String, dynamic> json) =
       _$RequestGroupRelatedActionImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -4007,9 +4106,9 @@ abstract class _RequestGroupRelatedAction extends RequestGroupRelatedAction {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -4024,37 +4123,41 @@ abstract class _RequestGroupRelatedAction extends RequestGroupRelatedAction {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [actionId] The element id of the action this is related to.
-  FhirId? get actionId;
   @override
+  FhirId? get actionId;
 
   /// [actionIdElement] Extensions for actionId
+  @override
   @JsonKey(name: '_actionId')
   PrimitiveElement? get actionIdElement;
-  @override
 
   /// [relationship] The relationship of this action to the related action.
-  FhirCode? get relationship;
   @override
+  FhirCode? get relationship;
 
   /// [relationshipElement] Extensions for relationship
+  @override
   @JsonKey(name: '_relationship')
   PrimitiveElement? get relationshipElement;
-  @override
 
   /// [offsetDuration] A duration or range of durations to apply to the
   ///  relationship. For example, 30-60 minutes before.
-  FhirDuration? get offsetDuration;
   @override
+  FhirDuration? get offsetDuration;
 
   /// [offsetRange] A duration or range of durations to apply to the
   ///  relationship. For example, 30-60 minutes before.
-  Range? get offsetRange;
   @override
-  @JsonKey(ignore: true)
+  Range? get offsetRange;
+
+  /// Create a copy of RequestGroupRelatedAction
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RequestGroupRelatedActionImplCopyWith<_$RequestGroupRelatedActionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

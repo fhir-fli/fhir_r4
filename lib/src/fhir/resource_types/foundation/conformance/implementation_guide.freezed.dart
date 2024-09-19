@@ -252,8 +252,12 @@ mixin _$ImplementationGuide {
   ImplementationGuideManifest? get manifest =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this ImplementationGuide to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ImplementationGuide
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ImplementationGuideCopyWith<ImplementationGuide> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -327,6 +331,8 @@ class _$ImplementationGuideCopyWithImpl<$Res, $Val extends ImplementationGuide>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ImplementationGuide
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -555,6 +561,8 @@ class _$ImplementationGuideCopyWithImpl<$Res, $Val extends ImplementationGuide>
     ) as $Val);
   }
 
+  /// Create a copy of ImplementationGuide
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -567,6 +575,8 @@ class _$ImplementationGuideCopyWithImpl<$Res, $Val extends ImplementationGuide>
     });
   }
 
+  /// Create a copy of ImplementationGuide
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -579,6 +589,8 @@ class _$ImplementationGuideCopyWithImpl<$Res, $Val extends ImplementationGuide>
     });
   }
 
+  /// Create a copy of ImplementationGuide
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ImplementationGuideDefinitionCopyWith<$Res>? get definition {
@@ -592,6 +604,8 @@ class _$ImplementationGuideCopyWithImpl<$Res, $Val extends ImplementationGuide>
     });
   }
 
+  /// Create a copy of ImplementationGuide
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ImplementationGuideManifestCopyWith<$Res>? get manifest {
@@ -679,6 +693,8 @@ class __$$ImplementationGuideImplCopyWithImpl<$Res>
       $Res Function(_$ImplementationGuideImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ImplementationGuide
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1366,6 +1382,11 @@ class _$ImplementationGuideImpl extends _ImplementationGuide {
   final ImplementationGuideManifest? manifest;
 
   @override
+  String toString() {
+    return 'ImplementationGuide(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, version: $version, versionElement: $versionElement, name: $name, nameElement: $nameElement, title: $title, titleElement: $titleElement, status: $status, statusElement: $statusElement, experimental: $experimental, experimentalElement: $experimentalElement, date: $date, dateElement: $dateElement, publisher: $publisher, publisherElement: $publisherElement, contact: $contact, description: $description, descriptionElement: $descriptionElement, useContext: $useContext, jurisdiction: $jurisdiction, copyright: $copyright, copyrightElement: $copyrightElement, packageId: $packageId, packageIdElement: $packageIdElement, license: $license, licenseElement: $licenseElement, fhirVersion: $fhirVersion, fhirVersionElement: $fhirVersionElement, dependsOn: $dependsOn, global: $global, definition: $definition, manifest: $manifest)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1448,7 +1469,7 @@ class _$ImplementationGuideImpl extends _ImplementationGuide {
                 other.manifest == manifest));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1498,7 +1519,9 @@ class _$ImplementationGuideImpl extends _ImplementationGuide {
         manifest
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ImplementationGuide
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ImplementationGuideImplCopyWith<_$ImplementationGuideImpl> get copyWith =>
@@ -1571,39 +1594,38 @@ abstract class _ImplementationGuide extends ImplementationGuide {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.ImplementationGuide)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1611,15 +1633,15 @@ abstract class _ImplementationGuide extends ImplementationGuide {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1627,9 +1649,9 @@ abstract class _ImplementationGuide extends ImplementationGuide {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1644,8 +1666,8 @@ abstract class _ImplementationGuide extends ImplementationGuide {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [url] An absolute URI that is used to identify this implementation guide
   /// when it is referenced in a specification, model, design or an instance;
@@ -1654,13 +1676,13 @@ abstract class _ImplementationGuide extends ImplementationGuide {
   /// this implementation guide is (or will be) published. This URL can be the
   /// target of a canonical reference. It SHALL remain the same when the
   ///  implementation guide is stored on different servers.
-  FhirUri? get url;
   @override
+  FhirUri? get url;
 
   /// [urlElement] Extensions for url
+  @override
   @JsonKey(name: '_url')
   PrimitiveElement? get urlElement;
-  @override
 
   /// [version] The identifier that is used to identify this version of the
   /// implementation guide when it is referenced in a specification, model,
@@ -1669,173 +1691,177 @@ abstract class _ImplementationGuide extends ImplementationGuide {
   /// example, it might be a timestamp (e.g. yyyymmdd) if a managed version is
   /// not available. There is also no expectation that versions can be placed in
   ///  a lexicographical sequence.
-  String? get version;
   @override
+  String? get version;
 
   /// [versionElement] Extensions for version
+  @override
   @JsonKey(name: '_version')
   PrimitiveElement? get versionElement;
-  @override
 
   /// [name] A natural language name identifying the implementation guide. This
   /// name should be usable as an identifier for the module by machine
   ///  processing applications such as code generation.
-  String? get name;
   @override
+  String? get name;
 
   /// [nameElement] Extensions for name
+  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
-  @override
 
   /// [title] A short, descriptive, user-friendly title for the implementation
   ///  guide.
-  String? get title;
   @override
+  String? get title;
 
   /// [titleElement] Extensions for title
+  @override
   @JsonKey(name: '_title')
   PrimitiveElement? get titleElement;
-  @override
 
   /// [status] The status of this implementation guide. Enables tracking the
   ///  life-cycle of the content.
-  FhirCode? get status;
   @override
+  FhirCode? get status;
 
   /// [statusElement] Extensions for status
+  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
-  @override
 
   /// [experimental] A Boolean value to indicate that this implementation guide
   /// is authored for testing purposes (or education/evaluation/marketing) and
   ///  is not intended to be used for genuine usage.
-  FhirBoolean? get experimental;
   @override
+  FhirBoolean? get experimental;
 
   /// [experimentalElement] Extensions for experimental
+  @override
   @JsonKey(name: '_experimental')
   PrimitiveElement? get experimentalElement;
-  @override
 
   /// [date] The date  (and optionally time) when the implementation guide was
   /// published. The date must change when the business version changes and it
   /// must change if the status code changes. In addition, it should change when
   ///  the substantive content of the implementation guide changes.
-  FhirDateTime? get date;
   @override
+  FhirDateTime? get date;
 
   /// [dateElement] Extensions for date
+  @override
   @JsonKey(name: '_date')
   PrimitiveElement? get dateElement;
-  @override
 
   /// [publisher] The name of the organization or individual that published the
   ///  implementation guide.
-  String? get publisher;
   @override
+  String? get publisher;
 
   /// [publisherElement] Extensions for publisher
+  @override
   @JsonKey(name: '_publisher')
   PrimitiveElement? get publisherElement;
-  @override
 
   /// [contact] Contact details to assist a user in finding and communicating
   ///  with the publisher.
-  List<ContactDetail>? get contact;
   @override
+  List<ContactDetail>? get contact;
 
   /// [description] A free text natural language description of the
   ///  implementation guide from a consumer's perspective.
-  FhirMarkdown? get description;
   @override
+  FhirMarkdown? get description;
 
   /// [descriptionElement] Extensions for description
+  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
-  @override
 
   /// [useContext] The content was developed with a focus and intent of
   /// supporting the contexts that are listed. These contexts may be general
   /// categories (gender, age, ...) or may be references to specific programs
   /// (insurance plans, studies, ...) and may be used to assist with indexing
   ///  and searching for appropriate implementation guide instances.
-  List<UsageContext>? get useContext;
   @override
+  List<UsageContext>? get useContext;
 
   /// [jurisdiction] A legal or geographic region in which the implementation
   ///  guide is intended to be used.
-  List<CodeableConcept>? get jurisdiction;
   @override
+  List<CodeableConcept>? get jurisdiction;
 
   /// [copyright] A copyright statement relating to the implementation guide
   /// and/or its contents. Copyright statements are generally legal restrictions
   ///  on the use and publishing of the implementation guide.
-  FhirMarkdown? get copyright;
   @override
+  FhirMarkdown? get copyright;
 
   /// [copyrightElement] Extensions for copyright
+  @override
   @JsonKey(name: '_copyright')
   PrimitiveElement? get copyrightElement;
-  @override
 
   /// [packageId] The NPM package name for this Implementation Guide, used in
   /// the NPM package distribution, which is the primary mechanism by which FHIR
   /// based tooling manages IG dependencies. This value must be globally unique,
   ///  and should be assigned with care.
-  FhirId? get packageId;
   @override
+  FhirId? get packageId;
 
   /// [packageIdElement] Extensions for packageId
+  @override
   @JsonKey(name: '_packageId')
   PrimitiveElement? get packageIdElement;
-  @override
 
   /// [license] The license that applies to this Implementation Guide, using an
   ///  SPDX license code, or 'not-open-source'.
-  FhirCode? get license;
   @override
+  FhirCode? get license;
 
   /// [licenseElement] Extensions for license
+  @override
   @JsonKey(name: '_license')
   PrimitiveElement? get licenseElement;
-  @override
 
   /// [fhirVersion] The version(s) of the FHIR specification that this
   /// ImplementationGuide targets - e.g. describes how to use. The value of this
   /// element is the formal version of the specification, without the revision
   /// number, e.g. [publication].[major].[minor], which is 4.0.1. for this
   ///  version.
-  List<FhirCode>? get fhirVersion;
   @override
+  List<FhirCode>? get fhirVersion;
 
   /// [fhirVersionElement] Extensions for fhirVersion
+  @override
   @JsonKey(name: '_fhirVersion')
   List<PrimitiveElement>? get fhirVersionElement;
-  @override
 
   /// [dependsOn] Another implementation guide that this implementation depends
   /// on. Typically, an implementation guide uses value sets, profiles
   ///  etc.defined in other implementation guides.
-  List<ImplementationGuideDependsOn>? get dependsOn;
   @override
+  List<ImplementationGuideDependsOn>? get dependsOn;
 
   /// [global] A set of profiles that all resources covered by this
   ///  implementation guide must conform to.
-  List<ImplementationGuideGlobal>? get global;
   @override
+  List<ImplementationGuideGlobal>? get global;
 
   /// [definition] The information needed by an IG publisher tool to publish
   ///  the whole implementation guide.
-  ImplementationGuideDefinition? get definition;
   @override
+  ImplementationGuideDefinition? get definition;
 
   /// [manifest] Information about an assembled implementation guide, created
   ///  by the publication tooling.
-  ImplementationGuideManifest? get manifest;
   @override
-  @JsonKey(ignore: true)
+  ImplementationGuideManifest? get manifest;
+
+  /// Create a copy of ImplementationGuide
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ImplementationGuideImplCopyWith<_$ImplementationGuideImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1896,8 +1922,12 @@ mixin _$ImplementationGuideDependsOn {
   @JsonKey(name: '_version')
   PrimitiveElement? get versionElement => throw _privateConstructorUsedError;
 
+  /// Serializes this ImplementationGuideDependsOn to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ImplementationGuideDependsOn
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ImplementationGuideDependsOnCopyWith<ImplementationGuideDependsOn>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1932,6 +1962,8 @@ class _$ImplementationGuideDependsOnCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ImplementationGuideDependsOn
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2011,6 +2043,8 @@ class __$$ImplementationGuideDependsOnImplCopyWithImpl<$Res>
       $Res Function(_$ImplementationGuideDependsOnImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ImplementationGuideDependsOn
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2173,6 +2207,11 @@ class _$ImplementationGuideDependsOnImpl extends _ImplementationGuideDependsOn {
   final PrimitiveElement? versionElement;
 
   @override
+  String toString() {
+    return 'ImplementationGuideDependsOn(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, uri: $uri, packageId: $packageId, packageIdElement: $packageIdElement, version: $version, versionElement: $versionElement)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2192,7 +2231,7 @@ class _$ImplementationGuideDependsOnImpl extends _ImplementationGuideDependsOn {
                 other.versionElement == versionElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2205,7 +2244,9 @@ class _$ImplementationGuideDependsOnImpl extends _ImplementationGuideDependsOn {
       version,
       versionElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ImplementationGuideDependsOn
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ImplementationGuideDependsOnImplCopyWith<
@@ -2238,12 +2279,10 @@ abstract class _ImplementationGuideDependsOn
   factory _ImplementationGuideDependsOn.fromJson(Map<String, dynamic> json) =
       _$ImplementationGuideDependsOnImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2251,9 +2290,9 @@ abstract class _ImplementationGuideDependsOn
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2268,34 +2307,38 @@ abstract class _ImplementationGuideDependsOn
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [uri] A canonical reference to the Implementation guide for the
   ///  dependency.
-  FhirCanonical get uri;
   @override
+  FhirCanonical get uri;
 
   /// [packageId] The NPM package name for the Implementation Guide that this
   ///  IG depends on.
-  FhirId? get packageId;
   @override
+  FhirId? get packageId;
 
   /// [packageIdElement] Extensions for packageId
+  @override
   @JsonKey(name: '_packageId')
   PrimitiveElement? get packageIdElement;
-  @override
 
   /// [version] The version of the IG that is depended on, when the correct
   ///  version is required to understand the IG correctly.
-  String? get version;
   @override
+  String? get version;
 
   /// [versionElement] Extensions for version
+  @override
   @JsonKey(name: '_version')
   PrimitiveElement? get versionElement;
+
+  /// Create a copy of ImplementationGuideDependsOn
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ImplementationGuideDependsOnImplCopyWith<
           _$ImplementationGuideDependsOnImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -2347,8 +2390,12 @@ mixin _$ImplementationGuideGlobal {
   /// [profile] A reference to the profile that all instances must conform to.
   FhirCanonical get profile => throw _privateConstructorUsedError;
 
+  /// Serializes this ImplementationGuideGlobal to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ImplementationGuideGlobal
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ImplementationGuideGlobalCopyWith<ImplementationGuideGlobal> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2379,6 +2426,8 @@ class _$ImplementationGuideGlobalCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ImplementationGuideGlobal
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2446,6 +2495,8 @@ class __$$ImplementationGuideGlobalImplCopyWithImpl<$Res>
       $Res Function(_$ImplementationGuideGlobalImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ImplementationGuideGlobal
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2583,6 +2634,11 @@ class _$ImplementationGuideGlobalImpl extends _ImplementationGuideGlobal {
   final FhirCanonical profile;
 
   @override
+  String toString() {
+    return 'ImplementationGuideGlobal(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, typeElement: $typeElement, profile: $profile)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2598,7 +2654,7 @@ class _$ImplementationGuideGlobalImpl extends _ImplementationGuideGlobal {
             (identical(other.profile, profile) || other.profile == profile));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2609,7 +2665,9 @@ class _$ImplementationGuideGlobalImpl extends _ImplementationGuideGlobal {
       typeElement,
       profile);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ImplementationGuideGlobal
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ImplementationGuideGlobalImplCopyWith<_$ImplementationGuideGlobalImpl>
@@ -2637,12 +2695,10 @@ abstract class _ImplementationGuideGlobal extends ImplementationGuideGlobal {
   factory _ImplementationGuideGlobal.fromJson(Map<String, dynamic> json) =
       _$ImplementationGuideGlobalImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2650,9 +2706,9 @@ abstract class _ImplementationGuideGlobal extends ImplementationGuideGlobal {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2667,22 +2723,26 @@ abstract class _ImplementationGuideGlobal extends ImplementationGuideGlobal {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [type] The type of resource that all instances must conform to.
-  FhirCode? get type;
   @override
+  FhirCode? get type;
 
   /// [typeElement] Extensions for type
+  @override
   @JsonKey(name: '_type')
   PrimitiveElement? get typeElement;
-  @override
 
   /// [profile] A reference to the profile that all instances must conform to.
-  FhirCanonical get profile;
   @override
-  @JsonKey(ignore: true)
+  FhirCanonical get profile;
+
+  /// Create a copy of ImplementationGuideGlobal
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ImplementationGuideGlobalImplCopyWith<_$ImplementationGuideGlobalImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2747,8 +2807,12 @@ mixin _$ImplementationGuideDefinition {
   List<ImplementationGuideTemplate>? get template =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this ImplementationGuideDefinition to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ImplementationGuideDefinition
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ImplementationGuideDefinitionCopyWith<ImplementationGuideDefinition>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2785,6 +2849,8 @@ class _$ImplementationGuideDefinitionCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ImplementationGuideDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2833,6 +2899,8 @@ class _$ImplementationGuideDefinitionCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of ImplementationGuideDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ImplementationGuidePageCopyWith<$Res>? get page {
@@ -2879,6 +2947,8 @@ class __$$ImplementationGuideDefinitionImplCopyWithImpl<$Res>
       $Res Function(_$ImplementationGuideDefinitionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ImplementationGuideDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3084,6 +3154,11 @@ class _$ImplementationGuideDefinitionImpl
   }
 
   @override
+  String toString() {
+    return 'ImplementationGuideDefinition(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, grouping: $grouping, resource: $resource, page: $page, parameter: $parameter, template: $template)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -3101,7 +3176,7 @@ class _$ImplementationGuideDefinitionImpl
             const DeepCollectionEquality().equals(other._template, _template));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3114,7 +3189,9 @@ class _$ImplementationGuideDefinitionImpl
       const DeepCollectionEquality().hash(_parameter),
       const DeepCollectionEquality().hash(_template));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ImplementationGuideDefinition
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ImplementationGuideDefinitionImplCopyWith<
@@ -3147,12 +3224,10 @@ abstract class _ImplementationGuideDefinition
   factory _ImplementationGuideDefinition.fromJson(Map<String, dynamic> json) =
       _$ImplementationGuideDefinitionImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3160,9 +3235,9 @@ abstract class _ImplementationGuideDefinition
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3177,34 +3252,38 @@ abstract class _ImplementationGuideDefinition
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [grouping] A logical group of resources. Logical groups can be used when
   ///  building pages.
-  List<ImplementationGuideGrouping>? get grouping;
   @override
+  List<ImplementationGuideGrouping>? get grouping;
 
   /// [resource] A resource that is part of the implementation guide.
   /// Conformance resources (value set, structure definition, capability
   /// statements etc.) are obvious candidates for inclusion, but any kind of
   ///  resource can be included as an example resource.
-  List<ImplementationGuideResource> get resource;
   @override
+  List<ImplementationGuideResource> get resource;
 
   /// [page] A page / section in the implementation guide. The root page is the
   ///  implementation guide home page.
-  ImplementationGuidePage? get page;
   @override
+  ImplementationGuidePage? get page;
 
   /// [parameter] Defines how IG is built by tools.
-  List<ImplementationGuideParameter>? get parameter;
   @override
+  List<ImplementationGuideParameter>? get parameter;
 
   /// [template] A template for building resources.
-  List<ImplementationGuideTemplate>? get template;
   @override
-  @JsonKey(ignore: true)
+  List<ImplementationGuideTemplate>? get template;
+
+  /// Create a copy of ImplementationGuideDefinition
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ImplementationGuideDefinitionImplCopyWith<
           _$ImplementationGuideDefinitionImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -3262,8 +3341,12 @@ mixin _$ImplementationGuideGrouping {
   PrimitiveElement? get descriptionElement =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this ImplementationGuideGrouping to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ImplementationGuideGrouping
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ImplementationGuideGroupingCopyWith<ImplementationGuideGrouping>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3297,6 +3380,8 @@ class _$ImplementationGuideGroupingCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ImplementationGuideGrouping
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3370,6 +3455,8 @@ class __$$ImplementationGuideGroupingImplCopyWithImpl<$Res>
       $Res Function(_$ImplementationGuideGroupingImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ImplementationGuideGrouping
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3520,6 +3607,11 @@ class _$ImplementationGuideGroupingImpl extends _ImplementationGuideGrouping {
   final PrimitiveElement? descriptionElement;
 
   @override
+  String toString() {
+    return 'ImplementationGuideGrouping(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, description: $description, descriptionElement: $descriptionElement)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -3538,7 +3630,7 @@ class _$ImplementationGuideGroupingImpl extends _ImplementationGuideGrouping {
                 other.descriptionElement == descriptionElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3550,7 +3642,9 @@ class _$ImplementationGuideGroupingImpl extends _ImplementationGuideGrouping {
       description,
       descriptionElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ImplementationGuideGrouping
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ImplementationGuideGroupingImplCopyWith<_$ImplementationGuideGroupingImpl>
@@ -3582,12 +3676,10 @@ abstract class _ImplementationGuideGrouping
   factory _ImplementationGuideGrouping.fromJson(Map<String, dynamic> json) =
       _$ImplementationGuideGroupingImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3595,9 +3687,9 @@ abstract class _ImplementationGuideGrouping
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3612,28 +3704,32 @@ abstract class _ImplementationGuideGrouping
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [name] The human-readable title to display for the package of resources
   ///  when rendering the implementation guide.
-  String? get name;
   @override
+  String? get name;
 
   /// [nameElement] Extensions for name
+  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
-  @override
 
   /// [description] Human readable text describing the package.
-  String? get description;
   @override
+  String? get description;
 
   /// [descriptionElement] Extensions for description
+  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
+
+  /// Create a copy of ImplementationGuideGrouping
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ImplementationGuideGroupingImplCopyWith<_$ImplementationGuideGroupingImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3733,8 +3829,12 @@ mixin _$ImplementationGuideResource {
   @JsonKey(name: '_groupingId')
   PrimitiveElement? get groupingIdElement => throw _privateConstructorUsedError;
 
+  /// Serializes this ImplementationGuideResource to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ImplementationGuideResource
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ImplementationGuideResourceCopyWith<ImplementationGuideResource>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3780,6 +3880,8 @@ class _$ImplementationGuideResourceCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ImplementationGuideResource
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3868,6 +3970,8 @@ class _$ImplementationGuideResourceCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of ImplementationGuideResource
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get reference {
@@ -3919,6 +4023,8 @@ class __$$ImplementationGuideResourceImplCopyWithImpl<$Res>
       $Res Function(_$ImplementationGuideResourceImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ImplementationGuideResource
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4196,6 +4302,11 @@ class _$ImplementationGuideResourceImpl extends _ImplementationGuideResource {
   final PrimitiveElement? groupingIdElement;
 
   @override
+  String toString() {
+    return 'ImplementationGuideResource(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, reference: $reference, fhirVersion: $fhirVersion, fhirVersionElement: $fhirVersionElement, name: $name, nameElement: $nameElement, description: $description, descriptionElement: $descriptionElement, exampleBoolean: $exampleBoolean, exampleBooleanElement: $exampleBooleanElement, exampleCanonical: $exampleCanonical, exampleCanonicalElement: $exampleCanonicalElement, groupingId: $groupingId, groupingIdElement: $groupingIdElement)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -4233,7 +4344,7 @@ class _$ImplementationGuideResourceImpl extends _ImplementationGuideResource {
                 other.groupingIdElement == groupingIdElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -4254,7 +4365,9 @@ class _$ImplementationGuideResourceImpl extends _ImplementationGuideResource {
       groupingId,
       groupingIdElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ImplementationGuideResource
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ImplementationGuideResourceImplCopyWith<_$ImplementationGuideResourceImpl>
@@ -4298,12 +4411,10 @@ abstract class _ImplementationGuideResource
   factory _ImplementationGuideResource.fromJson(Map<String, dynamic> json) =
       _$ImplementationGuideResourceImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -4311,9 +4422,9 @@ abstract class _ImplementationGuideResource
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -4328,77 +4439,81 @@ abstract class _ImplementationGuideResource
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [reference] Where this resource is found.
-  Reference get reference;
   @override
+  Reference get reference;
 
   /// [fhirVersion] Indicates the FHIR Version(s) this artifact is intended to
   /// apply to. If no versions are specified, the resource is assumed to apply
   ///  to all the versions stated in ImplementationGuide.fhirVersion.
-  List<FhirCode>? get fhirVersion;
   @override
+  List<FhirCode>? get fhirVersion;
 
   /// [fhirVersionElement] Extensions for fhirVersion
+  @override
   @JsonKey(name: '_fhirVersion')
   List<PrimitiveElement>? get fhirVersionElement;
-  @override
 
   /// [name] A human assigned name for the resource. All resources SHOULD have
   /// a name, but the name may be extracted from the resource (e.g.
   ///  ValueSet.name).
-  String? get name;
   @override
+  String? get name;
 
   /// [nameElement] Extensions for name
+  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
-  @override
 
   /// [description] A description of the reason that a resource has been
   ///  included in the implementation guide.
-  String? get description;
   @override
+  String? get description;
 
   /// [descriptionElement] Extensions for description
+  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
-  @override
 
   /// [exampleBoolean] If true or a reference, indicates the resource is an
   /// example instance.  If a reference is present, indicates that the example
   ///  is an example of the specified profile.
-  FhirBoolean? get exampleBoolean;
   @override
+  FhirBoolean? get exampleBoolean;
 
   /// [exampleBooleanElement] Extensions for exampleBoolean
+  @override
   @JsonKey(name: '_exampleBoolean')
   PrimitiveElement? get exampleBooleanElement;
-  @override
 
   /// [exampleCanonical] If true or a reference, indicates the resource is an
   /// example instance.  If a reference is present, indicates that the example
   ///  is an example of the specified profile.
-  FhirCanonical? get exampleCanonical;
   @override
+  FhirCanonical? get exampleCanonical;
 
   /// [exampleCanonicalElement] Extensions for exampleCanonical
+  @override
   @JsonKey(name: '_exampleCanonical')
   PrimitiveElement? get exampleCanonicalElement;
-  @override
 
   /// [groupingId] Reference to the id of the grouping this resource appears
   ///  in.
-  FhirId? get groupingId;
   @override
+  FhirId? get groupingId;
 
   /// [groupingIdElement] Extensions for groupingId
+  @override
   @JsonKey(name: '_groupingId')
   PrimitiveElement? get groupingIdElement;
+
+  /// Create a copy of ImplementationGuideResource
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ImplementationGuideResourceImplCopyWith<_$ImplementationGuideResourceImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -4467,8 +4582,12 @@ mixin _$ImplementationGuidePage {
   /// [page] Nested Pages/Sections under this page.
   List<ImplementationGuidePage>? get page => throw _privateConstructorUsedError;
 
+  /// Serializes this ImplementationGuidePage to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ImplementationGuidePage
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ImplementationGuidePageCopyWith<ImplementationGuidePage> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4506,6 +4625,8 @@ class _$ImplementationGuidePageCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ImplementationGuidePage
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4569,6 +4690,8 @@ class _$ImplementationGuidePageCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of ImplementationGuidePage
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get nameReference {
@@ -4618,6 +4741,8 @@ class __$$ImplementationGuidePageImplCopyWithImpl<$Res>
       $Res Function(_$ImplementationGuidePageImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ImplementationGuidePage
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4818,6 +4943,11 @@ class _$ImplementationGuidePageImpl extends _ImplementationGuidePage {
   }
 
   @override
+  String toString() {
+    return 'ImplementationGuidePage(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, nameUrl: $nameUrl, nameUrlElement: $nameUrlElement, nameReference: $nameReference, title: $title, titleElement: $titleElement, generation: $generation, generationElement: $generationElement, page: $page)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -4842,7 +4972,7 @@ class _$ImplementationGuidePageImpl extends _ImplementationGuidePage {
             const DeepCollectionEquality().equals(other._page, _page));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -4858,7 +4988,9 @@ class _$ImplementationGuidePageImpl extends _ImplementationGuidePage {
       generationElement,
       const DeepCollectionEquality().hash(_page));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ImplementationGuidePage
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ImplementationGuidePageImplCopyWith<_$ImplementationGuidePageImpl>
@@ -4892,12 +5024,10 @@ abstract class _ImplementationGuidePage extends ImplementationGuidePage {
   factory _ImplementationGuidePage.fromJson(Map<String, dynamic> json) =
       _$ImplementationGuidePageImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -4905,9 +5035,9 @@ abstract class _ImplementationGuidePage extends ImplementationGuidePage {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -4922,45 +5052,49 @@ abstract class _ImplementationGuidePage extends ImplementationGuidePage {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [nameUrl] The source address for the page.
-  FhirUrl? get nameUrl;
   @override
+  FhirUrl? get nameUrl;
 
   /// [nameUrlElement] Extensions for nameUrl
+  @override
   @JsonKey(name: '_nameUrl')
   PrimitiveElement? get nameUrlElement;
-  @override
 
   /// [nameReference] The source address for the page.
-  Reference? get nameReference;
   @override
+  Reference? get nameReference;
 
   /// [title] A short title used to represent this page in navigational
   ///  structures such as table of contents, bread crumbs, etc.
-  String? get title;
   @override
+  String? get title;
 
   /// [titleElement] Extensions for title
+  @override
   @JsonKey(name: '_title')
   PrimitiveElement? get titleElement;
-  @override
 
   /// [generation] A code that indicates how the page is generated.
-  FhirCode? get generation;
   @override
+  FhirCode? get generation;
 
   /// [generationElement] Extensions for generation
+  @override
   @JsonKey(name: '_generation')
   PrimitiveElement? get generationElement;
-  @override
 
   /// [page] Nested Pages/Sections under this page.
-  List<ImplementationGuidePage>? get page;
   @override
-  @JsonKey(ignore: true)
+  List<ImplementationGuidePage>? get page;
+
+  /// Create a copy of ImplementationGuidePage
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ImplementationGuidePageImplCopyWith<_$ImplementationGuidePageImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -5017,8 +5151,12 @@ mixin _$ImplementationGuideParameter {
   @JsonKey(name: '_value')
   PrimitiveElement? get valueElement => throw _privateConstructorUsedError;
 
+  /// Serializes this ImplementationGuideParameter to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ImplementationGuideParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ImplementationGuideParameterCopyWith<ImplementationGuideParameter>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -5052,6 +5190,8 @@ class _$ImplementationGuideParameterCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ImplementationGuideParameter
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5125,6 +5265,8 @@ class __$$ImplementationGuideParameterImplCopyWithImpl<$Res>
       $Res Function(_$ImplementationGuideParameterImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ImplementationGuideParameter
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5276,6 +5418,11 @@ class _$ImplementationGuideParameterImpl extends _ImplementationGuideParameter {
   final PrimitiveElement? valueElement;
 
   @override
+  String toString() {
+    return 'ImplementationGuideParameter(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, codeElement: $codeElement, value: $value, valueElement: $valueElement)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -5293,7 +5440,7 @@ class _$ImplementationGuideParameterImpl extends _ImplementationGuideParameter {
                 other.valueElement == valueElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -5305,7 +5452,9 @@ class _$ImplementationGuideParameterImpl extends _ImplementationGuideParameter {
       value,
       valueElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ImplementationGuideParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ImplementationGuideParameterImplCopyWith<
@@ -5337,12 +5486,10 @@ abstract class _ImplementationGuideParameter
   factory _ImplementationGuideParameter.fromJson(Map<String, dynamic> json) =
       _$ImplementationGuideParameterImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -5350,9 +5497,9 @@ abstract class _ImplementationGuideParameter
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -5367,29 +5514,33 @@ abstract class _ImplementationGuideParameter
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [code] apply | path-resource | path-pages | path-tx-cache |
   /// expansion-parameter | rule-broken-links | generate-xml | generate-json |
   ///  generate-turtle | html-template.
-  FhirCode? get code;
   @override
+  FhirCode? get code;
 
   /// [codeElement] Extensions for code
+  @override
   @JsonKey(name: '_code')
   PrimitiveElement? get codeElement;
-  @override
 
   /// [value] Value for named type.
-  String? get value;
   @override
+  String? get value;
 
   /// [valueElement] Extensions for value
+  @override
   @JsonKey(name: '_value')
   PrimitiveElement? get valueElement;
+
+  /// Create a copy of ImplementationGuideParameter
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ImplementationGuideParameterImplCopyWith<
           _$ImplementationGuideParameterImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -5452,8 +5603,12 @@ mixin _$ImplementationGuideTemplate {
   @JsonKey(name: '_scope')
   PrimitiveElement? get scopeElement => throw _privateConstructorUsedError;
 
+  /// Serializes this ImplementationGuideTemplate to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ImplementationGuideTemplate
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ImplementationGuideTemplateCopyWith<ImplementationGuideTemplate>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -5489,6 +5644,8 @@ class _$ImplementationGuideTemplateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ImplementationGuideTemplate
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5574,6 +5731,8 @@ class __$$ImplementationGuideTemplateImplCopyWithImpl<$Res>
       $Res Function(_$ImplementationGuideTemplateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ImplementationGuideTemplate
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5744,6 +5903,11 @@ class _$ImplementationGuideTemplateImpl extends _ImplementationGuideTemplate {
   final PrimitiveElement? scopeElement;
 
   @override
+  String toString() {
+    return 'ImplementationGuideTemplate(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, codeElement: $codeElement, source: $source, sourceElement: $sourceElement, scope: $scope, scopeElement: $scopeElement)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -5764,7 +5928,7 @@ class _$ImplementationGuideTemplateImpl extends _ImplementationGuideTemplate {
                 other.scopeElement == scopeElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -5778,7 +5942,9 @@ class _$ImplementationGuideTemplateImpl extends _ImplementationGuideTemplate {
       scope,
       scopeElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ImplementationGuideTemplate
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ImplementationGuideTemplateImplCopyWith<_$ImplementationGuideTemplateImpl>
@@ -5811,12 +5977,10 @@ abstract class _ImplementationGuideTemplate
   factory _ImplementationGuideTemplate.fromJson(Map<String, dynamic> json) =
       _$ImplementationGuideTemplateImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -5824,9 +5988,9 @@ abstract class _ImplementationGuideTemplate
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -5841,36 +6005,40 @@ abstract class _ImplementationGuideTemplate
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [code] Type of template specified.
-  FhirCode? get code;
   @override
+  FhirCode? get code;
 
   /// [codeElement] Extensions for code
+  @override
   @JsonKey(name: '_code')
   PrimitiveElement? get codeElement;
-  @override
 
   /// [source] The source location for the template.
-  String? get source;
   @override
+  String? get source;
 
   /// [sourceElement] Extensions for source
+  @override
   @JsonKey(name: '_source')
   PrimitiveElement? get sourceElement;
-  @override
 
   /// [scope] The scope in which the template applies.
-  String? get scope;
   @override
+  String? get scope;
 
   /// [scopeElement] Extensions for scope
+  @override
   @JsonKey(name: '_scope')
   PrimitiveElement? get scopeElement;
+
+  /// Create a copy of ImplementationGuideTemplate
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ImplementationGuideTemplateImplCopyWith<_$ImplementationGuideTemplateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -5948,8 +6116,12 @@ mixin _$ImplementationGuideManifest {
   List<PrimitiveElement>? get otherElement =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this ImplementationGuideManifest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ImplementationGuideManifest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ImplementationGuideManifestCopyWith<ImplementationGuideManifest>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -5987,6 +6159,8 @@ class _$ImplementationGuideManifestCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ImplementationGuideManifest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -6084,6 +6258,8 @@ class __$$ImplementationGuideManifestImplCopyWithImpl<$Res>
       $Res Function(_$ImplementationGuideManifestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ImplementationGuideManifest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -6343,6 +6519,11 @@ class _$ImplementationGuideManifestImpl extends _ImplementationGuideManifest {
   }
 
   @override
+  String toString() {
+    return 'ImplementationGuideManifest(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, rendering: $rendering, renderingElement: $renderingElement, resource: $resource, page: $page, image: $image, imageElement: $imageElement, other: $other, otherElement: $otherElement)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -6366,7 +6547,7 @@ class _$ImplementationGuideManifestImpl extends _ImplementationGuideManifest {
                 .equals(other._otherElement, _otherElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -6382,7 +6563,9 @@ class _$ImplementationGuideManifestImpl extends _ImplementationGuideManifest {
       const DeepCollectionEquality().hash(_other),
       const DeepCollectionEquality().hash(_otherElement));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ImplementationGuideManifest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ImplementationGuideManifestImplCopyWith<_$ImplementationGuideManifestImpl>
@@ -6418,12 +6601,10 @@ abstract class _ImplementationGuideManifest
   factory _ImplementationGuideManifest.fromJson(Map<String, dynamic> json) =
       _$ImplementationGuideManifestImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -6431,9 +6612,9 @@ abstract class _ImplementationGuideManifest
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -6448,50 +6629,54 @@ abstract class _ImplementationGuideManifest
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [rendering] A pointer to official web page, PDF or other rendering of the
   ///  implementation guide.
-  FhirUrl? get rendering;
   @override
+  FhirUrl? get rendering;
 
   /// [renderingElement] Extensions for rendering
+  @override
   @JsonKey(name: '_rendering')
   PrimitiveElement? get renderingElement;
-  @override
 
   /// [resource] A resource that is part of the implementation guide.
   /// Conformance resources (value set, structure definition, capability
   /// statements etc.) are obvious candidates for inclusion, but any kind of
   ///  resource can be included as an example resource.
-  List<ImplementationGuideResource1> get resource;
   @override
+  List<ImplementationGuideResource1> get resource;
 
   /// [page] Information about a page within the IG.
-  List<ImplementationGuidePage1>? get page;
   @override
+  List<ImplementationGuidePage1>? get page;
 
   /// [image] Indicates a relative path to an image that exists within the IG.
-  List<String>? get image;
   @override
+  List<String>? get image;
 
   /// [imageElement] Extensions for image
+  @override
   @JsonKey(name: '_image')
   List<PrimitiveElement>? get imageElement;
-  @override
 
   /// [other] Indicates the relative path of an additional non-page, non-image
   /// file that is part of the IG - e.g. zip, jar and similar files that could
   ///  be the target of a hyperlink in a derived IG.
-  List<String>? get other;
   @override
+  List<String>? get other;
 
   /// [otherElement] Extensions for other
+  @override
   @JsonKey(name: '_other')
   List<PrimitiveElement>? get otherElement;
+
+  /// Create a copy of ImplementationGuideManifest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ImplementationGuideManifestImplCopyWith<_$ImplementationGuideManifestImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -6564,8 +6749,12 @@ mixin _$ImplementationGuideResource1 {
   PrimitiveElement? get relativePathElement =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this ImplementationGuideResource1 to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ImplementationGuideResource1
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ImplementationGuideResource1CopyWith<ImplementationGuideResource1>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -6605,6 +6794,8 @@ class _$ImplementationGuideResource1CopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ImplementationGuideResource1
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -6663,6 +6854,8 @@ class _$ImplementationGuideResource1CopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of ImplementationGuideResource1
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get reference {
@@ -6708,6 +6901,8 @@ class __$$ImplementationGuideResource1ImplCopyWithImpl<$Res>
       $Res Function(_$ImplementationGuideResource1Impl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ImplementationGuideResource1
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -6893,6 +7088,11 @@ class _$ImplementationGuideResource1Impl extends _ImplementationGuideResource1 {
   final PrimitiveElement? relativePathElement;
 
   @override
+  String toString() {
+    return 'ImplementationGuideResource1(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, reference: $reference, exampleBoolean: $exampleBoolean, exampleBooleanElement: $exampleBooleanElement, exampleCanonical: $exampleCanonical, exampleCanonicalElement: $exampleCanonicalElement, relativePath: $relativePath, relativePathElement: $relativePathElement)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -6919,7 +7119,7 @@ class _$ImplementationGuideResource1Impl extends _ImplementationGuideResource1 {
                 other.relativePathElement == relativePathElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -6934,7 +7134,9 @@ class _$ImplementationGuideResource1Impl extends _ImplementationGuideResource1 {
       relativePath,
       relativePathElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ImplementationGuideResource1
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ImplementationGuideResource1ImplCopyWith<
@@ -6972,12 +7174,10 @@ abstract class _ImplementationGuideResource1
   factory _ImplementationGuideResource1.fromJson(Map<String, dynamic> json) =
       _$ImplementationGuideResource1Impl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -6985,9 +7185,9 @@ abstract class _ImplementationGuideResource1
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -7002,45 +7202,49 @@ abstract class _ImplementationGuideResource1
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [reference] Where this resource is found.
-  Reference get reference;
   @override
+  Reference get reference;
 
   /// [exampleBoolean] If true or a reference, indicates the resource is an
   /// example instance.  If a reference is present, indicates that the example
   ///  is an example of the specified profile.
-  FhirBoolean? get exampleBoolean;
   @override
+  FhirBoolean? get exampleBoolean;
 
   /// [exampleBooleanElement] Extensions for exampleBoolean
+  @override
   @JsonKey(name: '_exampleBoolean')
   PrimitiveElement? get exampleBooleanElement;
-  @override
 
   /// [exampleCanonical] If true or a reference, indicates the resource is an
   /// example instance.  If a reference is present, indicates that the example
   ///  is an example of the specified profile.
-  FhirCanonical? get exampleCanonical;
   @override
+  FhirCanonical? get exampleCanonical;
 
   /// [exampleCanonicalElement] Extensions for exampleCanonical
+  @override
   @JsonKey(name: '_exampleCanonical')
   PrimitiveElement? get exampleCanonicalElement;
-  @override
 
   /// [relativePath] The relative path for primary page for this resource
   ///  within the IG.
-  FhirUrl? get relativePath;
   @override
+  FhirUrl? get relativePath;
 
   /// [relativePathElement] Extensions for relativePath
+  @override
   @JsonKey(name: '_relativePath')
   PrimitiveElement? get relativePathElement;
+
+  /// Create a copy of ImplementationGuideResource1
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ImplementationGuideResource1ImplCopyWith<
           _$ImplementationGuideResource1Impl>
       get copyWith => throw _privateConstructorUsedError;
@@ -7104,8 +7308,12 @@ mixin _$ImplementationGuidePage1 {
   List<PrimitiveElement>? get anchorElement =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this ImplementationGuidePage1 to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ImplementationGuidePage1
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ImplementationGuidePage1CopyWith<ImplementationGuidePage1> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -7139,6 +7347,8 @@ class _$ImplementationGuidePage1CopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ImplementationGuidePage1
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -7224,6 +7434,8 @@ class __$$ImplementationGuidePage1ImplCopyWithImpl<$Res>
       $Res Function(_$ImplementationGuidePage1Impl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ImplementationGuidePage1
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -7413,6 +7625,11 @@ class _$ImplementationGuidePage1Impl extends _ImplementationGuidePage1 {
   }
 
   @override
+  String toString() {
+    return 'ImplementationGuidePage1(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, title: $title, titleElement: $titleElement, anchor: $anchor, anchorElement: $anchorElement)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -7433,7 +7650,7 @@ class _$ImplementationGuidePage1Impl extends _ImplementationGuidePage1 {
                 .equals(other._anchorElement, _anchorElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -7447,7 +7664,9 @@ class _$ImplementationGuidePage1Impl extends _ImplementationGuidePage1 {
       const DeepCollectionEquality().hash(_anchor),
       const DeepCollectionEquality().hash(_anchorElement));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ImplementationGuidePage1
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ImplementationGuidePage1ImplCopyWith<_$ImplementationGuidePage1Impl>
@@ -7480,12 +7699,10 @@ abstract class _ImplementationGuidePage1 extends ImplementationGuidePage1 {
   factory _ImplementationGuidePage1.fromJson(Map<String, dynamic> json) =
       _$ImplementationGuidePage1Impl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -7493,9 +7710,9 @@ abstract class _ImplementationGuidePage1 extends ImplementationGuidePage1 {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -7510,36 +7727,40 @@ abstract class _ImplementationGuidePage1 extends ImplementationGuidePage1 {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [name] Relative path to the page.
-  String? get name;
   @override
+  String? get name;
 
   /// [nameElement] Extensions for name
+  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
-  @override
 
   /// [title] Label for the page intended for human display.
-  String? get title;
   @override
+  String? get title;
 
   /// [titleElement] Extensions for title
+  @override
   @JsonKey(name: '_title')
   PrimitiveElement? get titleElement;
-  @override
 
   /// [anchor] The name of an anchor available on the page.
-  List<String>? get anchor;
   @override
+  List<String>? get anchor;
 
   /// [anchorElement] Extensions for anchor
+  @override
   @JsonKey(name: '_anchor')
   List<PrimitiveElement>? get anchorElement;
+
+  /// Create a copy of ImplementationGuidePage1
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ImplementationGuidePage1ImplCopyWith<_$ImplementationGuidePage1Impl>
       get copyWith => throw _privateConstructorUsedError;
 }

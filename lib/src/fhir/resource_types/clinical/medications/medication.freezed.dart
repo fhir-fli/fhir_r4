@@ -129,8 +129,12 @@ mixin _$Medication {
   /// [batch] Information that only applies to packages (not products).
   MedicationBatch? get batch => throw _privateConstructorUsedError;
 
+  /// Serializes this Medication to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Medication
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MedicationCopyWith<Medication> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -183,6 +187,8 @@ class _$MedicationCopyWithImpl<$Res, $Val extends Medication>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Medication
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -291,6 +297,8 @@ class _$MedicationCopyWithImpl<$Res, $Val extends Medication>
     ) as $Val);
   }
 
+  /// Create a copy of Medication
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -303,6 +311,8 @@ class _$MedicationCopyWithImpl<$Res, $Val extends Medication>
     });
   }
 
+  /// Create a copy of Medication
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -315,6 +325,8 @@ class _$MedicationCopyWithImpl<$Res, $Val extends Medication>
     });
   }
 
+  /// Create a copy of Medication
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get code {
@@ -327,6 +339,8 @@ class _$MedicationCopyWithImpl<$Res, $Val extends Medication>
     });
   }
 
+  /// Create a copy of Medication
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get manufacturer {
@@ -339,6 +353,8 @@ class _$MedicationCopyWithImpl<$Res, $Val extends Medication>
     });
   }
 
+  /// Create a copy of Medication
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get form {
@@ -351,6 +367,8 @@ class _$MedicationCopyWithImpl<$Res, $Val extends Medication>
     });
   }
 
+  /// Create a copy of Medication
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RatioCopyWith<$Res>? get amount {
@@ -363,6 +381,8 @@ class _$MedicationCopyWithImpl<$Res, $Val extends Medication>
     });
   }
 
+  /// Create a copy of Medication
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MedicationBatchCopyWith<$Res>? get batch {
@@ -431,6 +451,8 @@ class __$$MedicationImplCopyWithImpl<$Res>
       _$MedicationImpl _value, $Res Function(_$MedicationImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Medication
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -769,6 +791,11 @@ class _$MedicationImpl extends _Medication {
   final MedicationBatch? batch;
 
   @override
+  String toString() {
+    return 'Medication(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, code: $code, status: $status, statusElement: $statusElement, manufacturer: $manufacturer, form: $form, amount: $amount, ingredient: $ingredient, batch: $batch)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -807,7 +834,7 @@ class _$MedicationImpl extends _Medication {
             (identical(other.batch, batch) || other.batch == batch));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -833,7 +860,9 @@ class _$MedicationImpl extends _Medication {
         batch
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Medication
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MedicationImplCopyWith<_$MedicationImpl> get copyWith =>
@@ -879,39 +908,38 @@ abstract class _Medication extends Medication {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.Medication)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -919,15 +947,15 @@ abstract class _Medication extends Medication {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -935,9 +963,9 @@ abstract class _Medication extends Medication {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -952,57 +980,61 @@ abstract class _Medication extends Medication {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] Business identifier for this medication.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [code] A code (or set of codes) that specify this medication, or a
   /// textual description if no code is available. Usage note: This could be a
   /// standard medication code such as a code from RxNorm, SNOMED CT, IDMP etc.
   /// It could also be a national or local formulary code, optionally with
   ///  translations to other code systems.
-  CodeableConcept? get code;
   @override
+  CodeableConcept? get code;
 
   /// [status] A code to indicate if the medication is in active use.
-  FhirCode? get status;
   @override
+  FhirCode? get status;
 
   /// [statusElement] Extensions for status
+  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
-  @override
 
   /// [manufacturer] Describes the details of the manufacturer of the
   /// medication product.  This is not intended to represent the distributor of
   ///  a medication product.
-  Reference? get manufacturer;
   @override
+  Reference? get manufacturer;
 
   /// [form] Describes the form of the item.  Powder; tablets; capsule.
-  CodeableConcept? get form;
   @override
+  CodeableConcept? get form;
 
   /// [amount] Specific amount of the drug in the packaged product.  For
   /// example, when specifying a product that has the same strength (For
   /// example, Insulin glargine 100 unit per mL solution for injection), this
   /// attribute provides additional clarification of the package amount (For
   ///  example, 3 mL, 10mL, etc.).
-  Ratio? get amount;
   @override
+  Ratio? get amount;
 
   /// [ingredient] Identifies a particular constituent of interest in the
   ///  product.
-  List<MedicationIngredient>? get ingredient;
   @override
+  List<MedicationIngredient>? get ingredient;
 
   /// [batch] Information that only applies to packages (not products).
-  MedicationBatch? get batch;
   @override
-  @JsonKey(ignore: true)
+  MedicationBatch? get batch;
+
+  /// Create a copy of Medication
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MedicationImplCopyWith<_$MedicationImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1064,8 +1096,12 @@ mixin _$MedicationIngredient {
   ///  ratio where the numerator is 250mg and the denominator is 1 tablet.
   Ratio? get strength => throw _privateConstructorUsedError;
 
+  /// Serializes this MedicationIngredient to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of MedicationIngredient
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MedicationIngredientCopyWith<MedicationIngredient> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1102,6 +1138,8 @@ class _$MedicationIngredientCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MedicationIngredient
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1150,6 +1188,8 @@ class _$MedicationIngredientCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of MedicationIngredient
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get itemCodeableConcept {
@@ -1162,6 +1202,8 @@ class _$MedicationIngredientCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of MedicationIngredient
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get itemReference {
@@ -1174,6 +1216,8 @@ class _$MedicationIngredientCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of MedicationIngredient
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RatioCopyWith<$Res>? get strength {
@@ -1221,6 +1265,8 @@ class __$$MedicationIngredientImplCopyWithImpl<$Res>
       $Res Function(_$MedicationIngredientImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MedicationIngredient
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1383,6 +1429,11 @@ class _$MedicationIngredientImpl extends _MedicationIngredient {
   final Ratio? strength;
 
   @override
+  String toString() {
+    return 'MedicationIngredient(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, itemCodeableConcept: $itemCodeableConcept, itemReference: $itemReference, isActive: $isActive, isActiveElement: $isActiveElement, strength: $strength)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1404,7 +1455,7 @@ class _$MedicationIngredientImpl extends _MedicationIngredient {
                 other.strength == strength));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1417,7 +1468,9 @@ class _$MedicationIngredientImpl extends _MedicationIngredient {
       isActiveElement,
       strength);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MedicationIngredient
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MedicationIngredientImplCopyWith<_$MedicationIngredientImpl>
@@ -1448,12 +1501,10 @@ abstract class _MedicationIngredient extends MedicationIngredient {
   factory _MedicationIngredient.fromJson(Map<String, dynamic> json) =
       _$MedicationIngredientImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1461,9 +1512,9 @@ abstract class _MedicationIngredient extends MedicationIngredient {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -1478,35 +1529,39 @@ abstract class _MedicationIngredient extends MedicationIngredient {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [itemCodeableConcept] The actual ingredient - either a substance (simple
   ///  ingredient) or another medication of a medication.
-  CodeableConcept? get itemCodeableConcept;
   @override
+  CodeableConcept? get itemCodeableConcept;
 
   /// [itemReference] The actual ingredient - either a substance (simple
   ///  ingredient) or another medication of a medication.
-  Reference? get itemReference;
   @override
+  Reference? get itemReference;
 
   /// [isActive] Indication of whether this ingredient affects the therapeutic
   ///  action of the drug.
-  FhirBoolean? get isActive;
   @override
+  FhirBoolean? get isActive;
 
   /// [isActiveElement] Extensions for isActive
+  @override
   @JsonKey(name: '_isActive')
   PrimitiveElement? get isActiveElement;
-  @override
 
   /// [strength] Specifies how many (or how much) of the items there are in
   /// this Medication.  For example, 250 mg per tablet.  This is expressed as a
   ///  ratio where the numerator is 250mg and the denominator is 1 tablet.
-  Ratio? get strength;
   @override
-  @JsonKey(ignore: true)
+  Ratio? get strength;
+
+  /// Create a copy of MedicationIngredient
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MedicationIngredientImplCopyWith<_$MedicationIngredientImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1561,8 +1616,12 @@ mixin _$MedicationBatch {
   PrimitiveElement? get expirationDateElement =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this MedicationBatch to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of MedicationBatch
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MedicationBatchCopyWith<MedicationBatch> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1594,6 +1653,8 @@ class _$MedicationBatchCopyWithImpl<$Res, $Val extends MedicationBatch>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MedicationBatch
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1665,6 +1726,8 @@ class __$$MedicationBatchImplCopyWithImpl<$Res>
       _$MedicationBatchImpl _value, $Res Function(_$MedicationBatchImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MedicationBatch
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1813,6 +1876,11 @@ class _$MedicationBatchImpl extends _MedicationBatch {
   final PrimitiveElement? expirationDateElement;
 
   @override
+  String toString() {
+    return 'MedicationBatch(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, lotNumber: $lotNumber, lotNumberElement: $lotNumberElement, expirationDate: $expirationDate, expirationDateElement: $expirationDateElement)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1832,7 +1900,7 @@ class _$MedicationBatchImpl extends _MedicationBatch {
                 other.expirationDateElement == expirationDateElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1844,7 +1912,9 @@ class _$MedicationBatchImpl extends _MedicationBatch {
       expirationDate,
       expirationDateElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MedicationBatch
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MedicationBatchImplCopyWith<_$MedicationBatchImpl> get copyWith =>
@@ -1874,12 +1944,10 @@ abstract class _MedicationBatch extends MedicationBatch {
   factory _MedicationBatch.fromJson(Map<String, dynamic> json) =
       _$MedicationBatchImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1887,9 +1955,9 @@ abstract class _MedicationBatch extends MedicationBatch {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -1904,27 +1972,31 @@ abstract class _MedicationBatch extends MedicationBatch {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [lotNumber] The assigned lot number of a batch of the specified product.
-  String? get lotNumber;
   @override
+  String? get lotNumber;
 
   /// [lotNumberElement] Extensions for lotNumber
+  @override
   @JsonKey(name: '_lotNumber')
   PrimitiveElement? get lotNumberElement;
-  @override
 
   /// [expirationDate] When this specific batch of product will expire.
-  FhirDateTime? get expirationDate;
   @override
+  FhirDateTime? get expirationDate;
 
   /// [expirationDateElement] Extensions for expirationDate
+  @override
   @JsonKey(name: '_expirationDate')
   PrimitiveElement? get expirationDateElement;
+
+  /// Create a copy of MedicationBatch
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MedicationBatchImplCopyWith<_$MedicationBatchImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

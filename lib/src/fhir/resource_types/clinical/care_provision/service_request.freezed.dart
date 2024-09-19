@@ -304,8 +304,12 @@ mixin _$ServiceRequest {
   /// [relevantHistory] Key events in the history of the request.
   List<Reference>? get relevantHistory => throw _privateConstructorUsedError;
 
+  /// Serializes this ServiceRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ServiceRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ServiceRequestCopyWith<ServiceRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -407,6 +411,8 @@ class _$ServiceRequestCopyWithImpl<$Res, $Val extends ServiceRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ServiceRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -705,6 +711,8 @@ class _$ServiceRequestCopyWithImpl<$Res, $Val extends ServiceRequest>
     ) as $Val);
   }
 
+  /// Create a copy of ServiceRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -717,6 +725,8 @@ class _$ServiceRequestCopyWithImpl<$Res, $Val extends ServiceRequest>
     });
   }
 
+  /// Create a copy of ServiceRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -729,6 +739,8 @@ class _$ServiceRequestCopyWithImpl<$Res, $Val extends ServiceRequest>
     });
   }
 
+  /// Create a copy of ServiceRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $IdentifierCopyWith<$Res>? get requisition {
@@ -741,6 +753,8 @@ class _$ServiceRequestCopyWithImpl<$Res, $Val extends ServiceRequest>
     });
   }
 
+  /// Create a copy of ServiceRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get code {
@@ -753,6 +767,8 @@ class _$ServiceRequestCopyWithImpl<$Res, $Val extends ServiceRequest>
     });
   }
 
+  /// Create a copy of ServiceRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get quantityQuantity {
@@ -765,6 +781,8 @@ class _$ServiceRequestCopyWithImpl<$Res, $Val extends ServiceRequest>
     });
   }
 
+  /// Create a copy of ServiceRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RatioCopyWith<$Res>? get quantityRatio {
@@ -777,6 +795,8 @@ class _$ServiceRequestCopyWithImpl<$Res, $Val extends ServiceRequest>
     });
   }
 
+  /// Create a copy of ServiceRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get quantityRange {
@@ -789,6 +809,8 @@ class _$ServiceRequestCopyWithImpl<$Res, $Val extends ServiceRequest>
     });
   }
 
+  /// Create a copy of ServiceRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get subject {
@@ -797,6 +819,8 @@ class _$ServiceRequestCopyWithImpl<$Res, $Val extends ServiceRequest>
     });
   }
 
+  /// Create a copy of ServiceRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get encounter {
@@ -809,6 +833,8 @@ class _$ServiceRequestCopyWithImpl<$Res, $Val extends ServiceRequest>
     });
   }
 
+  /// Create a copy of ServiceRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get occurrencePeriod {
@@ -821,6 +847,8 @@ class _$ServiceRequestCopyWithImpl<$Res, $Val extends ServiceRequest>
     });
   }
 
+  /// Create a copy of ServiceRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TimingCopyWith<$Res>? get occurrenceTiming {
@@ -833,6 +861,8 @@ class _$ServiceRequestCopyWithImpl<$Res, $Val extends ServiceRequest>
     });
   }
 
+  /// Create a copy of ServiceRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get asNeededCodeableConcept {
@@ -846,6 +876,8 @@ class _$ServiceRequestCopyWithImpl<$Res, $Val extends ServiceRequest>
     });
   }
 
+  /// Create a copy of ServiceRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get requester {
@@ -858,6 +890,8 @@ class _$ServiceRequestCopyWithImpl<$Res, $Val extends ServiceRequest>
     });
   }
 
+  /// Create a copy of ServiceRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get performerType {
@@ -982,6 +1016,8 @@ class __$$ServiceRequestImplCopyWithImpl<$Res>
       _$ServiceRequestImpl _value, $Res Function(_$ServiceRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ServiceRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1959,6 +1995,11 @@ class _$ServiceRequestImpl extends _ServiceRequest {
   }
 
   @override
+  String toString() {
+    return 'ServiceRequest(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, instantiatesCanonical: $instantiatesCanonical, instantiatesUri: $instantiatesUri, instantiatesUriElement: $instantiatesUriElement, basedOn: $basedOn, replaces: $replaces, requisition: $requisition, status: $status, statusElement: $statusElement, intent: $intent, intentElement: $intentElement, category: $category, priority: $priority, priorityElement: $priorityElement, doNotPerform: $doNotPerform, doNotPerformElement: $doNotPerformElement, code: $code, orderDetail: $orderDetail, quantityQuantity: $quantityQuantity, quantityRatio: $quantityRatio, quantityRange: $quantityRange, subject: $subject, encounter: $encounter, occurrenceDateTime: $occurrenceDateTime, occurrenceDateTimeElement: $occurrenceDateTimeElement, occurrencePeriod: $occurrencePeriod, occurrenceTiming: $occurrenceTiming, asNeededBoolean: $asNeededBoolean, asNeededBooleanElement: $asNeededBooleanElement, asNeededCodeableConcept: $asNeededCodeableConcept, authoredOn: $authoredOn, authoredOnElement: $authoredOnElement, requester: $requester, performerType: $performerType, performer: $performer, locationCode: $locationCode, locationReference: $locationReference, reasonCode: $reasonCode, reasonReference: $reasonReference, insurance: $insurance, supportingInfo: $supportingInfo, specimen: $specimen, bodySite: $bodySite, note: $note, patientInstruction: $patientInstruction, patientInstructionElement: $patientInstructionElement, relevantHistory: $relevantHistory)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2063,7 +2104,7 @@ class _$ServiceRequestImpl extends _ServiceRequest {
             const DeepCollectionEquality().equals(other._relevantHistory, _relevantHistory));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -2127,7 +2168,9 @@ class _$ServiceRequestImpl extends _ServiceRequest {
         const DeepCollectionEquality().hash(_relevantHistory)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ServiceRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ServiceRequestImplCopyWith<_$ServiceRequestImpl> get copyWith =>
@@ -2217,39 +2260,38 @@ abstract class _ServiceRequest extends ServiceRequest {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.ServiceRequest)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -2257,15 +2299,15 @@ abstract class _ServiceRequest extends ServiceRequest {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -2273,9 +2315,9 @@ abstract class _ServiceRequest extends ServiceRequest {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -2290,224 +2332,224 @@ abstract class _ServiceRequest extends ServiceRequest {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] Identifiers assigned to this order instance by the orderer
   ///  and/or the receiver and/or order fulfiller.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [instantiatesCanonical] The URL pointing to a FHIR-defined protocol,
   /// guideline, orderset or other definition that is adhered to in whole or in
   ///  part by this ServiceRequest.
-  List<FhirCanonical>? get instantiatesCanonical;
   @override
+  List<FhirCanonical>? get instantiatesCanonical;
 
   /// [instantiatesUri] The URL pointing to an externally maintained protocol,
   /// guideline, orderset or other definition that is adhered to in whole or in
   ///  part by this ServiceRequest.
-  List<FhirUri>? get instantiatesUri;
   @override
+  List<FhirUri>? get instantiatesUri;
 
   /// [instantiatesUriElement] Extensions for instantiatesUri
+  @override
   @JsonKey(name: '_instantiatesUri')
   List<PrimitiveElement>? get instantiatesUriElement;
-  @override
 
   /// [basedOn] Plan/proposal/order fulfilled by this request.
-  List<Reference>? get basedOn;
   @override
+  List<Reference>? get basedOn;
 
   /// [replaces] The request takes the place of the referenced completed or
   ///  terminated request(s).
-  List<Reference>? get replaces;
   @override
+  List<Reference>? get replaces;
 
   /// [requisition] A shared identifier common to all service requests that
   /// were authorized more or less simultaneously by a single author,
   ///  representing the composite or group identifier.
-  Identifier? get requisition;
   @override
+  Identifier? get requisition;
 
   /// [status] The status of the order.
-  FhirCode? get status;
   @override
+  FhirCode? get status;
 
   /// [statusElement] Extensions for status
+  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
-  @override
 
   /// [intent] Whether the request is a proposal, plan, an original order or a
   ///  reflex order.
-  FhirCode? get intent;
   @override
+  FhirCode? get intent;
 
   /// [intentElement] Extensions for intent
+  @override
   @JsonKey(name: '_intent')
   PrimitiveElement? get intentElement;
-  @override
 
   /// [category] A code that classifies the service for searching, sorting and
   ///  display purposes (e.g. "Surgical Procedure").
-  List<CodeableConcept>? get category;
   @override
+  List<CodeableConcept>? get category;
 
   /// [priority] Indicates how quickly the ServiceRequest should be addressed
   ///  with respect to other requests.
-  FhirCode? get priority;
   @override
+  FhirCode? get priority;
 
   /// [priorityElement] Extensions for priority
+  @override
   @JsonKey(name: '_priority')
   PrimitiveElement? get priorityElement;
-  @override
 
   /// [doNotPerform] Set this to true if the record is saying that the
   ///  service/procedure should NOT be performed.
-  FhirBoolean? get doNotPerform;
   @override
+  FhirBoolean? get doNotPerform;
 
   /// [doNotPerformElement] Extensions for doNotPerform
+  @override
   @JsonKey(name: '_doNotPerform')
   PrimitiveElement? get doNotPerformElement;
-  @override
 
   /// [code] A code that identifies a particular service (i.e., procedure,
   /// diagnostic investigation, or panel of investigations) that have been
   ///  requested.
-  CodeableConcept? get code;
   @override
+  CodeableConcept? get code;
 
   /// [orderDetail] Additional details and instructions about the how the
   /// services are to be delivered.   For example, and order for a urinary
   /// catheter may have an order detail for an external or indwelling catheter,
   /// or an order for a bandage may require additional instructions specifying
   ///  how the bandage should be applied.
-  List<CodeableConcept>? get orderDetail;
   @override
+  List<CodeableConcept>? get orderDetail;
 
   /// [quantityQuantity] An amount of service being requested which can be a
   /// quantity ( for example $1,500 home modification), a ratio ( for example,
   ///  20 half day visits per month), or a range (2.0 to 1.8 Gy per fraction).
-  Quantity? get quantityQuantity;
   @override
+  Quantity? get quantityQuantity;
 
   /// [quantityRatio] An amount of service being requested which can be a
   /// quantity ( for example $1,500 home modification), a ratio ( for example,
   ///  20 half day visits per month), or a range (2.0 to 1.8 Gy per fraction).
-  Ratio? get quantityRatio;
   @override
+  Ratio? get quantityRatio;
 
   /// [quantityRange] An amount of service being requested which can be a
   /// quantity ( for example $1,500 home modification), a ratio ( for example,
   ///  20 half day visits per month), or a range (2.0 to 1.8 Gy per fraction).
-  Range? get quantityRange;
   @override
+  Range? get quantityRange;
 
   /// [subject] On whom or what the service is to be performed. This is usually
   /// a human patient, but can also be requested on animals, groups of humans or
   /// animals, devices such as dialysis machines, or even locations (typically
   ///  for environmental scans).
-  Reference get subject;
   @override
+  Reference get subject;
 
   /// [encounter] An encounter that provides additional information about the
   ///  healthcare context in which this request is made.
-  Reference? get encounter;
   @override
+  Reference? get encounter;
 
   /// [occurrenceDateTime] The date/time at which the requested service should
   ///  occur.
-  FhirDateTime? get occurrenceDateTime;
   @override
+  FhirDateTime? get occurrenceDateTime;
 
   /// [occurrenceDateTimeElement] Extensions for occurrenceDateTime
+  @override
   @JsonKey(name: '_occurrenceDateTime')
   PrimitiveElement? get occurrenceDateTimeElement;
-  @override
 
   /// [occurrencePeriod] The date/time at which the requested service should
   ///  occur.
-  Period? get occurrencePeriod;
   @override
+  Period? get occurrencePeriod;
 
   /// [occurrenceTiming] The date/time at which the requested service should
   ///  occur.
-  Timing? get occurrenceTiming;
   @override
+  Timing? get occurrenceTiming;
 
   /// [asNeededBoolean] If a CodeableConcept is present, it indicates the
   /// pre-condition for performing the service.  For example "pain", "on
   ///  flare-up", etc.
-  FhirBoolean? get asNeededBoolean;
   @override
+  FhirBoolean? get asNeededBoolean;
 
   /// [asNeededBooleanElement] Extensions for asNeededBoolean
+  @override
   @JsonKey(name: '_asNeededBoolean')
   PrimitiveElement? get asNeededBooleanElement;
-  @override
 
   /// [asNeededCodeableConcept] If a CodeableConcept is present, it indicates
   /// the pre-condition for performing the service.  For example "pain", "on
   ///  flare-up", etc.
-  CodeableConcept? get asNeededCodeableConcept;
   @override
+  CodeableConcept? get asNeededCodeableConcept;
 
   /// [authoredOn] When the request transitioned to being actionable.
-  FhirDateTime? get authoredOn;
   @override
+  FhirDateTime? get authoredOn;
 
   /// [authoredOnElement] Extensions for authoredOn
+  @override
   @JsonKey(name: '_authoredOn')
   PrimitiveElement? get authoredOnElement;
-  @override
 
   /// [requester] The individual who initiated the request and has
   ///  responsibility for its activation.
-  Reference? get requester;
   @override
+  Reference? get requester;
 
   /// [performerType] Desired type of performer for doing the requested
   ///  service.
-  CodeableConcept? get performerType;
   @override
+  CodeableConcept? get performerType;
 
   /// [performer] The desired performer for doing the requested service.  For
   ///  example, the surgeon, dermatopathologist, endoscopist, etc.
-  List<Reference>? get performer;
   @override
+  List<Reference>? get performer;
 
   /// [locationCode] The preferred location(s) where the procedure should
   /// actually happen in coded or free text form. E.g. at home or nursing day
   ///  care center.
-  List<CodeableConcept>? get locationCode;
   @override
+  List<CodeableConcept>? get locationCode;
 
   /// [locationReference] A reference to the the preferred location(s) where
   /// the procedure should actually happen. E.g. at home or nursing day care
   ///  center.
-  List<Reference>? get locationReference;
   @override
+  List<Reference>? get locationReference;
 
   /// [reasonCode] An explanation or justification for why this service is
   /// being requested in coded or textual form.   This is often for billing
   ///  purposes.  May relate to the resources referred to in `supportingInfo`.
-  List<CodeableConcept>? get reasonCode;
   @override
+  List<CodeableConcept>? get reasonCode;
 
   /// [reasonReference] Indicates another resource that provides a
   /// justification for why this service is being requested.   May relate to the
   ///  resources referred to in `supportingInfo`.
-  List<Reference>? get reasonReference;
   @override
+  List<Reference>? get reasonReference;
 
   /// [insurance] Insurance plans, coverage extensions, pre-authorizations
   /// and/or pre-determinations that may be needed for delivering the requested
   ///  service.
-  List<Reference>? get insurance;
   @override
+  List<Reference>? get insurance;
 
   /// [supportingInfo] Additional clinical information about the patient or
   /// specimen that may influence the services or their interpretations.
@@ -2517,37 +2559,41 @@ abstract class _ServiceRequest extends ServiceRequest {
   /// explicitly requested by the producer (filler) to provide context or
   /// supporting information needed to complete the order. For example,
   ///  reporting the amount of inspired oxygen for blood gas measurements.
-  List<Reference>? get supportingInfo;
   @override
+  List<Reference>? get supportingInfo;
 
   /// [specimen] One or more specimens that the laboratory procedure will use.
-  List<Reference>? get specimen;
   @override
+  List<Reference>? get specimen;
 
   /// [bodySite] Anatomic location where the procedure should be performed.
   ///  This is the target site.
-  List<CodeableConcept>? get bodySite;
   @override
+  List<CodeableConcept>? get bodySite;
 
   /// [note] Any other notes and comments made about the service request. For
   ///  example, internal billing notes.
-  List<Annotation>? get note;
   @override
+  List<Annotation>? get note;
 
   /// [patientInstruction] Instructions in terms that are understood by the
   ///  patient or consumer.
-  String? get patientInstruction;
   @override
+  String? get patientInstruction;
 
   /// [patientInstructionElement] Extensions for patientInstruction
+  @override
   @JsonKey(name: '_patientInstruction')
   PrimitiveElement? get patientInstructionElement;
-  @override
 
   /// [relevantHistory] Key events in the history of the request.
-  List<Reference>? get relevantHistory;
   @override
-  @JsonKey(ignore: true)
+  List<Reference>? get relevantHistory;
+
+  /// Create a copy of ServiceRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ServiceRequestImplCopyWith<_$ServiceRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

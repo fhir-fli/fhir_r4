@@ -134,8 +134,12 @@ mixin _$VisionPrescription {
   List<VisionPrescriptionLensSpecification> get lensSpecification =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this VisionPrescription to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of VisionPrescription
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $VisionPrescriptionCopyWith<VisionPrescription> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -188,6 +192,8 @@ class _$VisionPrescriptionCopyWithImpl<$Res, $Val extends VisionPrescription>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of VisionPrescription
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -306,6 +312,8 @@ class _$VisionPrescriptionCopyWithImpl<$Res, $Val extends VisionPrescription>
     ) as $Val);
   }
 
+  /// Create a copy of VisionPrescription
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -318,6 +326,8 @@ class _$VisionPrescriptionCopyWithImpl<$Res, $Val extends VisionPrescription>
     });
   }
 
+  /// Create a copy of VisionPrescription
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -330,6 +340,8 @@ class _$VisionPrescriptionCopyWithImpl<$Res, $Val extends VisionPrescription>
     });
   }
 
+  /// Create a copy of VisionPrescription
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get patient {
@@ -338,6 +350,8 @@ class _$VisionPrescriptionCopyWithImpl<$Res, $Val extends VisionPrescription>
     });
   }
 
+  /// Create a copy of VisionPrescription
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get encounter {
@@ -350,6 +364,8 @@ class _$VisionPrescriptionCopyWithImpl<$Res, $Val extends VisionPrescription>
     });
   }
 
+  /// Create a copy of VisionPrescription
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get prescriber {
@@ -412,6 +428,8 @@ class __$$VisionPrescriptionImplCopyWithImpl<$Res>
       $Res Function(_$VisionPrescriptionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of VisionPrescription
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -769,6 +787,11 @@ class _$VisionPrescriptionImpl extends _VisionPrescription {
   }
 
   @override
+  String toString() {
+    return 'VisionPrescription(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, status: $status, statusElement: $statusElement, created: $created, createdElement: $createdElement, patient: $patient, encounter: $encounter, dateWritten: $dateWritten, dateWrittenElement: $dateWrittenElement, prescriber: $prescriber, lensSpecification: $lensSpecification)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -813,7 +836,7 @@ class _$VisionPrescriptionImpl extends _VisionPrescription {
                 .equals(other._lensSpecification, _lensSpecification));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -841,7 +864,9 @@ class _$VisionPrescriptionImpl extends _VisionPrescription {
         const DeepCollectionEquality().hash(_lensSpecification)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of VisionPrescription
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$VisionPrescriptionImplCopyWith<_$VisionPrescriptionImpl> get copyWith =>
@@ -891,39 +916,38 @@ abstract class _VisionPrescription extends VisionPrescription {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.VisionPrescription)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -931,15 +955,15 @@ abstract class _VisionPrescription extends VisionPrescription {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -947,9 +971,9 @@ abstract class _VisionPrescription extends VisionPrescription {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -964,63 +988,67 @@ abstract class _VisionPrescription extends VisionPrescription {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] A unique identifier assigned to this vision prescription.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [status] The status of the resource instance.
-  FhirCode? get status;
   @override
+  FhirCode? get status;
 
   /// [statusElement] Extensions for status
+  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
-  @override
 
   /// [created] The date this resource was created.
-  FhirDateTime? get created;
   @override
+  FhirDateTime? get created;
 
   /// [createdElement] Extensions for created
+  @override
   @JsonKey(name: '_created')
   PrimitiveElement? get createdElement;
-  @override
 
   /// [patient] A resource reference to the person to whom the vision
   ///  prescription applies.
-  Reference get patient;
   @override
+  Reference get patient;
 
   /// [encounter] A reference to a resource that identifies the particular
   /// occurrence of contact between patient and health care provider during
   ///  which the prescription was issued.
-  Reference? get encounter;
   @override
+  Reference? get encounter;
 
   /// [dateWritten] The date (and perhaps time) when the prescription was
   ///  written.
-  FhirDateTime? get dateWritten;
   @override
+  FhirDateTime? get dateWritten;
 
   /// [dateWrittenElement] Extensions for dateWritten
+  @override
   @JsonKey(name: '_dateWritten')
   PrimitiveElement? get dateWrittenElement;
-  @override
 
   /// [prescriber] The healthcare professional responsible for authorizing the
   ///  prescription.
-  Reference get prescriber;
   @override
+  Reference get prescriber;
 
   /// [lensSpecification] Contain the details of  the individual lens
   /// specifications and serves as the authorization for the fullfillment by
   ///  certified professionals.
-  List<VisionPrescriptionLensSpecification> get lensSpecification;
   @override
-  @JsonKey(ignore: true)
+  List<VisionPrescriptionLensSpecification> get lensSpecification;
+
+  /// Create a copy of VisionPrescription
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$VisionPrescriptionImplCopyWith<_$VisionPrescriptionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1148,8 +1176,12 @@ mixin _$VisionPrescriptionLensSpecification {
   ///  materials.
   List<Annotation>? get note => throw _privateConstructorUsedError;
 
+  /// Serializes this VisionPrescriptionLensSpecification to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of VisionPrescriptionLensSpecification
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $VisionPrescriptionLensSpecificationCopyWith<
           VisionPrescriptionLensSpecification>
       get copyWith => throw _privateConstructorUsedError;
@@ -1207,6 +1239,8 @@ class _$VisionPrescriptionLensSpecificationCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of VisionPrescriptionLensSpecification
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1350,6 +1384,8 @@ class _$VisionPrescriptionLensSpecificationCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of VisionPrescriptionLensSpecification
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get product {
@@ -1358,6 +1394,8 @@ class _$VisionPrescriptionLensSpecificationCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of VisionPrescriptionLensSpecification
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get duration {
@@ -1425,6 +1463,8 @@ class __$$VisionPrescriptionLensSpecificationImplCopyWithImpl<$Res>
       $Res Function(_$VisionPrescriptionLensSpecificationImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of VisionPrescriptionLensSpecification
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1808,6 +1848,11 @@ class _$VisionPrescriptionLensSpecificationImpl
   }
 
   @override
+  String toString() {
+    return 'VisionPrescriptionLensSpecification(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, product: $product, eye: $eye, eyeElement: $eyeElement, sphere: $sphere, sphereElement: $sphereElement, cylinder: $cylinder, cylinderElement: $cylinderElement, axis: $axis, axisElement: $axisElement, prism: $prism, add: $add, addElement: $addElement, power: $power, powerElement: $powerElement, backCurve: $backCurve, backCurveElement: $backCurveElement, diameter: $diameter, diameterElement: $diameterElement, duration: $duration, color: $color, colorElement: $colorElement, brand: $brand, brandElement: $brandElement, note: $note)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1857,7 +1902,7 @@ class _$VisionPrescriptionLensSpecificationImpl
             const DeepCollectionEquality().equals(other._note, _note));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1890,7 +1935,9 @@ class _$VisionPrescriptionLensSpecificationImpl
         const DeepCollectionEquality().hash(_note)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of VisionPrescriptionLensSpecification
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$VisionPrescriptionLensSpecificationImplCopyWith<
@@ -1943,12 +1990,10 @@ abstract class _VisionPrescriptionLensSpecification
           Map<String, dynamic> json) =
       _$VisionPrescriptionLensSpecificationImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1956,9 +2001,9 @@ abstract class _VisionPrescriptionLensSpecification
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -1973,119 +2018,123 @@ abstract class _VisionPrescriptionLensSpecification
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [product] Identifies the type of vision correction product which is
   ///  required for the patient.
-  CodeableConcept get product;
   @override
+  CodeableConcept get product;
 
   /// [eye] The eye for which the lens specification applies.
-  FhirCode? get eye;
   @override
+  FhirCode? get eye;
 
   /// [eyeElement] Extensions for eye
+  @override
   @JsonKey(name: '_eye')
   PrimitiveElement? get eyeElement;
-  @override
 
   /// [sphere] Lens power measured in dioptres (0.25 units).
-  FhirDecimal? get sphere;
   @override
+  FhirDecimal? get sphere;
 
   /// [sphereElement] Extensions for sphere
+  @override
   @JsonKey(name: '_sphere')
   PrimitiveElement? get sphereElement;
-  @override
 
   /// [cylinder] Power adjustment for astigmatism measured in dioptres (0.25
   ///  units).
-  FhirDecimal? get cylinder;
   @override
+  FhirDecimal? get cylinder;
 
   /// [cylinderElement] Extensions for cylinder
+  @override
   @JsonKey(name: '_cylinder')
   PrimitiveElement? get cylinderElement;
-  @override
 
   /// [axis] Adjustment for astigmatism measured in integer degrees.
-  FhirInteger? get axis;
   @override
+  FhirInteger? get axis;
 
   /// [axisElement] Extensions for axis
+  @override
   @JsonKey(name: '_axis')
   PrimitiveElement? get axisElement;
-  @override
 
   /// [prism] Allows for adjustment on two axis.
-  List<VisionPrescriptionPrism>? get prism;
   @override
+  List<VisionPrescriptionPrism>? get prism;
 
   /// [add] Power adjustment for multifocal lenses measured in dioptres (0.25
   ///  units).
-  FhirDecimal? get add;
   @override
+  FhirDecimal? get add;
 
   /// [addElement] Extensions for add
+  @override
   @JsonKey(name: '_add')
   PrimitiveElement? get addElement;
-  @override
 
   /// [power] Contact lens power measured in dioptres (0.25 units).
-  FhirDecimal? get power;
   @override
+  FhirDecimal? get power;
 
   /// [powerElement] Extensions for power
+  @override
   @JsonKey(name: '_power')
   PrimitiveElement? get powerElement;
-  @override
 
   /// [backCurve] Back curvature measured in millimetres.
-  FhirDecimal? get backCurve;
   @override
+  FhirDecimal? get backCurve;
 
   /// [backCurveElement] Extensions for backCurve
+  @override
   @JsonKey(name: '_backCurve')
   PrimitiveElement? get backCurveElement;
-  @override
 
   /// [diameter] Contact lens diameter measured in millimetres.
-  FhirDecimal? get diameter;
   @override
+  FhirDecimal? get diameter;
 
   /// [diameterElement] Extensions for diameter
+  @override
   @JsonKey(name: '_diameter')
   PrimitiveElement? get diameterElement;
-  @override
 
   /// [duration] The recommended maximum wear period for the lens.
-  Quantity? get duration;
   @override
+  Quantity? get duration;
 
   /// [color] Special color or pattern.
-  String? get color;
   @override
+  String? get color;
 
   /// [colorElement] Extensions for color
+  @override
   @JsonKey(name: '_color')
   PrimitiveElement? get colorElement;
-  @override
 
   /// [brand] Brand recommendations or restrictions.
-  String? get brand;
   @override
+  String? get brand;
 
   /// [brandElement] Extensions for brand
+  @override
   @JsonKey(name: '_brand')
   PrimitiveElement? get brandElement;
-  @override
 
   /// [note] Notes for special requirements such as coatings and lens
   ///  materials.
-  List<Annotation>? get note;
   @override
-  @JsonKey(ignore: true)
+  List<Annotation>? get note;
+
+  /// Create a copy of VisionPrescriptionLensSpecification
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$VisionPrescriptionLensSpecificationImplCopyWith<
           _$VisionPrescriptionLensSpecificationImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -2142,8 +2191,12 @@ mixin _$VisionPrescriptionPrism {
   @JsonKey(name: '_base')
   PrimitiveElement? get baseElement => throw _privateConstructorUsedError;
 
+  /// Serializes this VisionPrescriptionPrism to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of VisionPrescriptionPrism
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $VisionPrescriptionPrismCopyWith<VisionPrescriptionPrism> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2175,6 +2228,8 @@ class _$VisionPrescriptionPrismCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of VisionPrescriptionPrism
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2248,6 +2303,8 @@ class __$$VisionPrescriptionPrismImplCopyWithImpl<$Res>
       $Res Function(_$VisionPrescriptionPrismImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of VisionPrescriptionPrism
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2397,6 +2454,11 @@ class _$VisionPrescriptionPrismImpl extends _VisionPrescriptionPrism {
   final PrimitiveElement? baseElement;
 
   @override
+  String toString() {
+    return 'VisionPrescriptionPrism(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, amount: $amount, amountElement: $amountElement, base: $base, baseElement: $baseElement)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2414,7 +2476,7 @@ class _$VisionPrescriptionPrismImpl extends _VisionPrescriptionPrism {
                 other.baseElement == baseElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2426,7 +2488,9 @@ class _$VisionPrescriptionPrismImpl extends _VisionPrescriptionPrism {
       base,
       baseElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of VisionPrescriptionPrism
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$VisionPrescriptionPrismImplCopyWith<_$VisionPrescriptionPrismImpl>
@@ -2456,12 +2520,10 @@ abstract class _VisionPrescriptionPrism extends VisionPrescriptionPrism {
   factory _VisionPrescriptionPrism.fromJson(Map<String, dynamic> json) =
       _$VisionPrescriptionPrismImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2469,9 +2531,9 @@ abstract class _VisionPrescriptionPrism extends VisionPrescriptionPrism {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2486,28 +2548,32 @@ abstract class _VisionPrescriptionPrism extends VisionPrescriptionPrism {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [amount] Amount of prism to compensate for eye alignment in fractional
   ///  units.
-  FhirDecimal? get amount;
   @override
+  FhirDecimal? get amount;
 
   /// [amountElement] Extensions for amount
+  @override
   @JsonKey(name: '_amount')
   PrimitiveElement? get amountElement;
-  @override
 
   /// [base] The relative base, or reference lens edge, for the prism.
-  FhirCode? get base;
   @override
+  FhirCode? get base;
 
   /// [baseElement] Extensions for base
+  @override
   @JsonKey(name: '_base')
   PrimitiveElement? get baseElement;
+
+  /// Create a copy of VisionPrescriptionPrism
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$VisionPrescriptionPrismImplCopyWith<_$VisionPrescriptionPrismImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

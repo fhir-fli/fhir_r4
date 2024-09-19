@@ -115,8 +115,12 @@ mixin _$ResearchDefinition {
   Reference? get exposureAlternative => throw _privateConstructorUsedError;
   Reference? get outcome => throw _privateConstructorUsedError;
 
+  /// Serializes this ResearchDefinition to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ResearchDefinition
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ResearchDefinitionCopyWith<ResearchDefinition> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -214,6 +218,8 @@ class _$ResearchDefinitionCopyWithImpl<$Res, $Val extends ResearchDefinition>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ResearchDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -537,6 +543,8 @@ class _$ResearchDefinitionCopyWithImpl<$Res, $Val extends ResearchDefinition>
     ) as $Val);
   }
 
+  /// Create a copy of ResearchDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -549,6 +557,8 @@ class _$ResearchDefinitionCopyWithImpl<$Res, $Val extends ResearchDefinition>
     });
   }
 
+  /// Create a copy of ResearchDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -561,6 +571,8 @@ class _$ResearchDefinitionCopyWithImpl<$Res, $Val extends ResearchDefinition>
     });
   }
 
+  /// Create a copy of ResearchDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get subjectCodeableConcept {
@@ -574,6 +586,8 @@ class _$ResearchDefinitionCopyWithImpl<$Res, $Val extends ResearchDefinition>
     });
   }
 
+  /// Create a copy of ResearchDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get subjectReference {
@@ -586,6 +600,8 @@ class _$ResearchDefinitionCopyWithImpl<$Res, $Val extends ResearchDefinition>
     });
   }
 
+  /// Create a copy of ResearchDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get effectivePeriod {
@@ -598,6 +614,8 @@ class _$ResearchDefinitionCopyWithImpl<$Res, $Val extends ResearchDefinition>
     });
   }
 
+  /// Create a copy of ResearchDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get population {
@@ -606,6 +624,8 @@ class _$ResearchDefinitionCopyWithImpl<$Res, $Val extends ResearchDefinition>
     });
   }
 
+  /// Create a copy of ResearchDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get exposure {
@@ -618,6 +638,8 @@ class _$ResearchDefinitionCopyWithImpl<$Res, $Val extends ResearchDefinition>
     });
   }
 
+  /// Create a copy of ResearchDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get exposureAlternative {
@@ -630,6 +652,8 @@ class _$ResearchDefinitionCopyWithImpl<$Res, $Val extends ResearchDefinition>
     });
   }
 
+  /// Create a copy of ResearchDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get outcome {
@@ -745,6 +769,8 @@ class __$$ResearchDefinitionImplCopyWithImpl<$Res>
       $Res Function(_$ResearchDefinitionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ResearchDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1437,6 +1463,11 @@ class _$ResearchDefinitionImpl extends _ResearchDefinition {
   final Reference? outcome;
 
   @override
+  String toString() {
+    return 'ResearchDefinition(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, identifier: $identifier, version: $version, versionElement: $versionElement, name: $name, nameElement: $nameElement, title: $title, titleElement: $titleElement, shortTitle: $shortTitle, shortTitleElement: $shortTitleElement, subtitle: $subtitle, subtitleElement: $subtitleElement, status: $status, statusElement: $statusElement, experimental: $experimental, experimentalElement: $experimentalElement, subjectCodeableConcept: $subjectCodeableConcept, subjectReference: $subjectReference, date: $date, dateElement: $dateElement, publisher: $publisher, publisherElement: $publisherElement, contact: $contact, description: $description, descriptionElement: $descriptionElement, comment: $comment, commentElement: $commentElement, useContext: $useContext, jurisdiction: $jurisdiction, purpose: $purpose, purposeElement: $purposeElement, usage: $usage, usageElement: $usageElement, copyright: $copyright, copyrightElement: $copyrightElement, approvalDate: $approvalDate, approvalDateElement: $approvalDateElement, lastReviewDate: $lastReviewDate, lastReviewDateElement: $lastReviewDateElement, effectivePeriod: $effectivePeriod, topic: $topic, author: $author, editor: $editor, reviewer: $reviewer, endorser: $endorser, relatedArtifact: $relatedArtifact, library_: $library_, population: $population, exposure: $exposure, exposureAlternative: $exposureAlternative, outcome: $outcome)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1549,7 +1580,7 @@ class _$ResearchDefinitionImpl extends _ResearchDefinition {
             (identical(other.outcome, outcome) || other.outcome == outcome));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1618,7 +1649,9 @@ class _$ResearchDefinitionImpl extends _ResearchDefinition {
         outcome
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ResearchDefinition
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ResearchDefinitionImplCopyWith<_$ResearchDefinitionImpl> get copyWith =>
@@ -1856,8 +1889,11 @@ abstract class _ResearchDefinition extends ResearchDefinition {
   Reference? get exposureAlternative;
   @override
   Reference? get outcome;
+
+  /// Create a copy of ResearchDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ResearchDefinitionImplCopyWith<_$ResearchDefinitionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

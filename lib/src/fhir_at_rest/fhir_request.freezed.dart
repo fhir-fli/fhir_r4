@@ -858,8 +858,13 @@ mixin _$FhirRequest {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Serializes this FhirRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $FhirRequestCopyWith<FhirRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -893,6 +898,8 @@ class _$FhirRequestCopyWithImpl<$Res, $Val extends FhirRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -983,6 +990,8 @@ class __$$FhirReadRequestImplCopyWithImpl<$Res>
       _$FhirReadRequestImpl _value, $Res Function(_$FhirReadRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1192,7 +1201,7 @@ class _$FhirReadRequestImpl extends FhirReadRequest {
             const DeepCollectionEquality().equals(other._headers, _headers));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1209,7 +1218,9 @@ class _$FhirReadRequestImpl extends FhirReadRequest {
       client,
       const DeepCollectionEquality().hash(_headers));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FhirReadRequestImplCopyWith<_$FhirReadRequestImpl> get copyWith =>
@@ -2038,9 +2049,8 @@ abstract class FhirReadRequest extends FhirRequest {
   factory FhirReadRequest.fromJson(Map<String, dynamic> json) =
       _$FhirReadRequestImpl.fromJson;
 
-  @override
-
   /// [base] - the base URI for the FHIR server
+  @override
   Uri get base;
 
   /// [type] - the type of resource you're looking for
@@ -2048,51 +2058,54 @@ abstract class FhirReadRequest extends FhirRequest {
 
   /// [id] - the id for the resource
   String get id;
-  @override
 
   /// [pretty] - pretty print the json formatting in the response
-  bool? get pretty;
   @override
+  bool? get pretty;
 
   /// [summary] - do you want the result to be a summary
-  Summary get summary;
   @override
+  Summary get summary;
 
   /// [format] - Possible formats are: json, json+fhir or fhir+json
   /// (would not request XML as this library doesn't work with XML)
-  String? get format;
   @override
+  String? get format;
 
   /// [elements] - elements you need to pass in
-  List<String> get elements;
   @override
+  List<String> get elements;
 
   /// [parameters] - any extra parameters
-  List<String> get parameters;
   @override
+  List<String> get parameters;
 
   /// [mimeType] - specify the MimeType in the Header - this should be fhir+json
   ///   but there are some older systems that won't accept that
-  SupportedMimeType? get mimeType;
   @override
+  SupportedMimeType? get mimeType;
 
   /// [accept] - this will default to fhir+json just so it will stop sending
   /// me XML - I hate XML
-  String get accept;
   @override
+  String get accept;
 
   /// [client] - if there's a specific client that you're going to be using
 // ignore: invalid_annotation_target
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   Client? get client;
-  @override
 
   /// [headers] - because there are some times it's easier to incldue the
   /// headers in the object instead of only passing it in with the
   /// request
-  Map<String, String>? get headers;
   @override
-  @JsonKey(ignore: true)
+  Map<String, String>? get headers;
+
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FhirReadRequestImplCopyWith<_$FhirReadRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2129,6 +2142,8 @@ class __$$FhirVReadRequestImplCopyWithImpl<$Res>
       $Res Function(_$FhirVReadRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2347,7 +2362,7 @@ class _$FhirVReadRequestImpl extends FhirVReadRequest {
             const DeepCollectionEquality().equals(other._headers, _headers));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2365,7 +2380,9 @@ class _$FhirVReadRequestImpl extends FhirVReadRequest {
       client,
       const DeepCollectionEquality().hash(_headers));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FhirVReadRequestImplCopyWith<_$FhirVReadRequestImpl> get copyWith =>
@@ -3195,9 +3212,8 @@ abstract class FhirVReadRequest extends FhirRequest {
   factory FhirVReadRequest.fromJson(Map<String, dynamic> json) =
       _$FhirVReadRequestImpl.fromJson;
 
-  @override
-
   /// [base] - the base URI for the FHIR server
+  @override
   Uri get base;
 
   /// [type] - the type of resource you're looking for
@@ -3206,51 +3222,54 @@ abstract class FhirVReadRequest extends FhirRequest {
   /// [id] - the id for the resource
   String get id;
   FhirId get vid;
-  @override
 
   /// [pretty] - pretty print the json formatting in the response
-  bool? get pretty;
   @override
+  bool? get pretty;
 
   /// [summary] - do you want the result to be a summary
-  Summary get summary;
   @override
+  Summary get summary;
 
   /// [format] - Possible formats are: json, json+fhir or fhir+json
   /// (would not request XML as this library doesn't work with XML)
-  String? get format;
   @override
+  String? get format;
 
   /// [elements] - elements you need to pass in
-  List<String> get elements;
   @override
+  List<String> get elements;
 
   /// [parameters] - any extra parameters
-  List<String> get parameters;
   @override
+  List<String> get parameters;
 
   /// [mimeType] - specify the MimeType in the Header - this should be fhir+json
   ///   but there are some older systems that won't accept that
-  SupportedMimeType? get mimeType;
   @override
+  SupportedMimeType? get mimeType;
 
   /// [accept] - this will default to fhir+json just so it will stop sending
   /// me XML - I hate XML
-  String get accept;
   @override
+  String get accept;
 
   /// [client] - if there's a specific client that you're going to be using
 // ignore: invalid_annotation_target
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   Client? get client;
-  @override
 
   /// [headers] - because there are some times it's easier to incldue the
   /// headers in the object instead of only passing it in with the
   /// request
-  Map<String, String>? get headers;
   @override
-  @JsonKey(ignore: true)
+  Map<String, String>? get headers;
+
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FhirVReadRequestImplCopyWith<_$FhirVReadRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3285,6 +3304,8 @@ class __$$FhirUpdateRequestImplCopyWithImpl<$Res>
       $Res Function(_$FhirUpdateRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3482,7 +3503,7 @@ class _$FhirUpdateRequestImpl extends FhirUpdateRequest {
             const DeepCollectionEquality().equals(other._headers, _headers));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3498,7 +3519,9 @@ class _$FhirUpdateRequestImpl extends FhirUpdateRequest {
       client,
       const DeepCollectionEquality().hash(_headers));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FhirUpdateRequestImplCopyWith<_$FhirUpdateRequestImpl> get copyWith =>
@@ -4326,56 +4349,58 @@ abstract class FhirUpdateRequest extends FhirRequest {
   factory FhirUpdateRequest.fromJson(Map<String, dynamic> json) =
       _$FhirUpdateRequestImpl.fromJson;
 
-  @override
-
   /// [base] - the base URI for the FHIR server
+  @override
   Uri get base;
   Resource get resource;
-  @override
 
   /// [pretty] - pretty print the json formatting in the response
-  bool? get pretty;
   @override
+  bool? get pretty;
 
   /// [summary] - do you want the result to be a summary
-  Summary get summary;
   @override
+  Summary get summary;
 
   /// [format] - Possible formats are: json, json+fhir or fhir+json
   /// (would not request XML as this library doesn't work with XML)
-  String? get format;
   @override
+  String? get format;
 
   /// [elements] - elements you need to pass in
-  List<String> get elements;
   @override
+  List<String> get elements;
 
   /// [parameters] - any extra parameters
-  List<String> get parameters;
   @override
+  List<String> get parameters;
 
   /// [mimeType] - specify the MimeType in the Header - this should be fhir+json
   ///   but there are some older systems that won't accept that
-  SupportedMimeType? get mimeType;
   @override
+  SupportedMimeType? get mimeType;
 
   /// [accept] - this will default to fhir+json just so it will stop sending
   /// me XML - I hate XML
-  String get accept;
   @override
+  String get accept;
 
   /// [client] - if there's a specific client that you're going to be using
 // ignore: invalid_annotation_target
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   Client? get client;
-  @override
 
   /// [headers] - because there are some times it's easier to incldue the
   /// headers in the object instead of only passing it in with the
   /// request
-  Map<String, String>? get headers;
   @override
-  @JsonKey(ignore: true)
+  Map<String, String>? get headers;
+
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FhirUpdateRequestImplCopyWith<_$FhirUpdateRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4410,6 +4435,8 @@ class __$$FhirPatchRequestImplCopyWithImpl<$Res>
       $Res Function(_$FhirPatchRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4607,7 +4634,7 @@ class _$FhirPatchRequestImpl extends FhirPatchRequest {
             const DeepCollectionEquality().equals(other._headers, _headers));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -4623,7 +4650,9 @@ class _$FhirPatchRequestImpl extends FhirPatchRequest {
       client,
       const DeepCollectionEquality().hash(_headers));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FhirPatchRequestImplCopyWith<_$FhirPatchRequestImpl> get copyWith =>
@@ -5451,56 +5480,58 @@ abstract class FhirPatchRequest extends FhirRequest {
   factory FhirPatchRequest.fromJson(Map<String, dynamic> json) =
       _$FhirPatchRequestImpl.fromJson;
 
-  @override
-
   /// [base] - the base URI for the FHIR server
+  @override
   Uri get base;
   Resource get resource;
-  @override
 
   /// [pretty] - pretty print the json formatting in the response
-  bool? get pretty;
   @override
+  bool? get pretty;
 
   /// [summary] - do you want the result to be a summary
-  Summary get summary;
   @override
+  Summary get summary;
 
   /// [format] - Possible formats are: json, json+fhir or fhir+json
   /// (would not request XML as this library doesn't work with XML)
-  String? get format;
   @override
+  String? get format;
 
   /// [elements] - elements you need to pass in
-  List<String> get elements;
   @override
+  List<String> get elements;
 
   /// [parameters] - any extra parameters
-  List<String> get parameters;
   @override
+  List<String> get parameters;
 
   /// [mimeType] - specify the MimeType in the Header - this should be fhir+json
   ///   but there are some older systems that won't accept that
-  SupportedMimeType? get mimeType;
   @override
+  SupportedMimeType? get mimeType;
 
   /// [accept] - this will default to fhir+json just so it will stop sending
   /// me XML - I hate XML
-  String get accept;
   @override
+  String get accept;
 
   /// [client] - if there's a specific client that you're going to be using
 // ignore: invalid_annotation_target
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   Client? get client;
-  @override
 
   /// [headers] - because there are some times it's easier to incldue the
   /// headers in the object instead of only passing it in with the
   /// request
-  Map<String, String>? get headers;
   @override
-  @JsonKey(ignore: true)
+  Map<String, String>? get headers;
+
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FhirPatchRequestImplCopyWith<_$FhirPatchRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -5536,6 +5567,8 @@ class __$$FhirDeleteRequestImplCopyWithImpl<$Res>
       $Res Function(_$FhirDeleteRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5745,7 +5778,7 @@ class _$FhirDeleteRequestImpl extends FhirDeleteRequest {
             const DeepCollectionEquality().equals(other._headers, _headers));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -5762,7 +5795,9 @@ class _$FhirDeleteRequestImpl extends FhirDeleteRequest {
       client,
       const DeepCollectionEquality().hash(_headers));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FhirDeleteRequestImplCopyWith<_$FhirDeleteRequestImpl> get copyWith =>
@@ -6591,9 +6626,8 @@ abstract class FhirDeleteRequest extends FhirRequest {
   factory FhirDeleteRequest.fromJson(Map<String, dynamic> json) =
       _$FhirDeleteRequestImpl.fromJson;
 
-  @override
-
   /// [base] - the base URI for the FHIR server
+  @override
   Uri get base;
 
   /// [type] - the type of resource you're looking for
@@ -6601,51 +6635,54 @@ abstract class FhirDeleteRequest extends FhirRequest {
 
   /// [id] - the id for the resource
   String get id;
-  @override
 
   /// [pretty] - pretty print the json formatting in the response
-  bool? get pretty;
   @override
+  bool? get pretty;
 
   /// [summary] - do you want the result to be a summary
-  Summary get summary;
   @override
+  Summary get summary;
 
   /// [format] - Possible formats are: json, json+fhir or fhir+json
   /// (would not request XML as this library doesn't work with XML)
-  String? get format;
   @override
+  String? get format;
 
   /// [elements] - elements you need to pass in
-  List<String> get elements;
   @override
+  List<String> get elements;
 
   /// [parameters] - any extra parameters
-  List<String> get parameters;
   @override
+  List<String> get parameters;
 
   /// [mimeType] - specify the MimeType in the Header - this should be fhir+json
   ///   but there are some older systems that won't accept that
-  SupportedMimeType? get mimeType;
   @override
+  SupportedMimeType? get mimeType;
 
   /// [accept] - this will default to fhir+json just so it will stop sending
   /// me XML - I hate XML
-  String get accept;
   @override
+  String get accept;
 
   /// [client] - if there's a specific client that you're going to be using
 // ignore: invalid_annotation_target
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   Client? get client;
-  @override
 
   /// [headers] - because there are some times it's easier to incldue the
   /// headers in the object instead of only passing it in with the
   /// request
-  Map<String, String>? get headers;
   @override
-  @JsonKey(ignore: true)
+  Map<String, String>? get headers;
+
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FhirDeleteRequestImplCopyWith<_$FhirDeleteRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -6680,6 +6717,8 @@ class __$$FhirCreateRequestImplCopyWithImpl<$Res>
       $Res Function(_$FhirCreateRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -6877,7 +6916,7 @@ class _$FhirCreateRequestImpl extends FhirCreateRequest {
             const DeepCollectionEquality().equals(other._headers, _headers));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -6893,7 +6932,9 @@ class _$FhirCreateRequestImpl extends FhirCreateRequest {
       client,
       const DeepCollectionEquality().hash(_headers));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FhirCreateRequestImplCopyWith<_$FhirCreateRequestImpl> get copyWith =>
@@ -7721,56 +7762,58 @@ abstract class FhirCreateRequest extends FhirRequest {
   factory FhirCreateRequest.fromJson(Map<String, dynamic> json) =
       _$FhirCreateRequestImpl.fromJson;
 
-  @override
-
   /// [base] - the base URI for the FHIR server
+  @override
   Uri get base;
   Resource get resource;
-  @override
 
   /// [pretty] - pretty print the json formatting in the response
-  bool? get pretty;
   @override
+  bool? get pretty;
 
   /// [summary] - do you want the result to be a summary
-  Summary get summary;
   @override
+  Summary get summary;
 
   /// [format] - Possible formats are: json, json+fhir or fhir+json
   /// (would not request XML as this library doesn't work with XML)
-  String? get format;
   @override
+  String? get format;
 
   /// [elements] - elements you need to pass in
-  List<String> get elements;
   @override
+  List<String> get elements;
 
   /// [parameters] - any extra parameters
-  List<String> get parameters;
   @override
+  List<String> get parameters;
 
   /// [mimeType] - specify the MimeType in the Header - this should be fhir+json
   ///   but there are some older systems that won't accept that
-  SupportedMimeType? get mimeType;
   @override
+  SupportedMimeType? get mimeType;
 
   /// [accept] - this will default to fhir+json just so it will stop sending
   /// me XML - I hate XML
-  String get accept;
   @override
+  String get accept;
 
   /// [client] - if there's a specific client that you're going to be using
 // ignore: invalid_annotation_target
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   Client? get client;
-  @override
 
   /// [headers] - because there are some times it's easier to incldue the
   /// headers in the object instead of only passing it in with the
   /// request
-  Map<String, String>? get headers;
   @override
-  @JsonKey(ignore: true)
+  Map<String, String>? get headers;
+
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FhirCreateRequestImplCopyWith<_$FhirCreateRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -7807,6 +7850,8 @@ class __$$FhirSearchRequestImplCopyWithImpl<$Res>
       $Res Function(_$FhirSearchRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -8029,7 +8074,7 @@ class _$FhirSearchRequestImpl extends FhirSearchRequest {
             const DeepCollectionEquality().equals(other._headers, _headers));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -8047,7 +8092,9 @@ class _$FhirSearchRequestImpl extends FhirSearchRequest {
       client,
       const DeepCollectionEquality().hash(_headers));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FhirSearchRequestImplCopyWith<_$FhirSearchRequestImpl> get copyWith =>
@@ -8877,63 +8924,65 @@ abstract class FhirSearchRequest extends FhirRequest {
   factory FhirSearchRequest.fromJson(Map<String, dynamic> json) =
       _$FhirSearchRequestImpl.fromJson;
 
-  @override
-
   /// [base] - the base URI for the FHIR server
+  @override
   Uri get base;
 
   /// [type] - the type of resource you're looking for
   R4ResourceType get type;
-  @override
 
   /// [pretty] - pretty print the json formatting in the response
-  bool? get pretty;
   @override
+  bool? get pretty;
 
   /// [summary] - do you want the result to be a summary
-  Summary get summary;
   @override
+  Summary get summary;
 
   /// [format] - Possible formats are: json, json+fhir or fhir+json
   /// (would not request XML as this library doesn't work with XML)
-  String? get format;
   @override
+  String? get format;
 
   /// [elements] - elements you need to pass in
-  List<String> get elements;
   @override
+  List<String> get elements;
 
   /// [parameters] - any extra parameters
+  @override
   List<String> get parameters;
 
   /// [usePost] - defines if you would prefer to use a post request instead of
   ///   a get request for this search
   bool get usePost;
   RestfulRequest get restfulRequest;
-  @override
 
   /// [mimeType] - specify the MimeType in the Header - this should be fhir+json
   ///   but there are some older systems that won't accept that
-  SupportedMimeType? get mimeType;
   @override
+  SupportedMimeType? get mimeType;
 
   /// [accept] - this will default to fhir+json just so it will stop sending
   /// me XML - I hate XML
-  String get accept;
   @override
+  String get accept;
 
   /// [client] - if there's a specific client that you're going to be using
 // ignore: invalid_annotation_target
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   Client? get client;
-  @override
 
   /// [headers] - because there are some times it's easier to incldue the
   /// headers in the object instead of only passing it in with the
   /// request
-  Map<String, String>? get headers;
   @override
-  @JsonKey(ignore: true)
+  Map<String, String>? get headers;
+
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FhirSearchRequestImplCopyWith<_$FhirSearchRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -8967,6 +9016,8 @@ class __$$FhirSearchAllRequestImplCopyWithImpl<$Res>
       $Res Function(_$FhirSearchAllRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -9154,7 +9205,7 @@ class _$FhirSearchAllRequestImpl extends FhirSearchAllRequest {
             const DeepCollectionEquality().equals(other._headers, _headers));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -9169,7 +9220,9 @@ class _$FhirSearchAllRequestImpl extends FhirSearchAllRequest {
       client,
       const DeepCollectionEquality().hash(_headers));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FhirSearchAllRequestImplCopyWith<_$FhirSearchAllRequestImpl>
@@ -9997,55 +10050,57 @@ abstract class FhirSearchAllRequest extends FhirRequest {
   factory FhirSearchAllRequest.fromJson(Map<String, dynamic> json) =
       _$FhirSearchAllRequestImpl.fromJson;
 
-  @override
-
   /// [base] - the base URI for the FHIR server
-  Uri get base;
   @override
+  Uri get base;
 
   /// [pretty] - pretty print the json formatting in the response
-  bool? get pretty;
   @override
+  bool? get pretty;
 
   /// [summary] - do you want the result to be a summary
-  Summary get summary;
   @override
+  Summary get summary;
 
   /// [format] - Possible formats are: json, json+fhir or fhir+json
   /// (would not request XML as this library doesn't work with XML)
-  String? get format;
   @override
+  String? get format;
 
   /// [elements] - elements you need to pass in
-  List<String> get elements;
   @override
+  List<String> get elements;
 
   /// [parameters] - any extra parameters
-  List<String> get parameters;
   @override
+  List<String> get parameters;
 
   /// [mimeType] - specify the MimeType in the Header - this should be fhir+json
   ///   but there are some older systems that won't accept that
-  SupportedMimeType? get mimeType;
   @override
+  SupportedMimeType? get mimeType;
 
   /// [accept] - this will default to fhir+json just so it will stop sending
   /// me XML - I hate XML
-  String get accept;
   @override
+  String get accept;
 
   /// [client] - if there's a specific client that you're going to be using
 // ignore: invalid_annotation_target
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   Client? get client;
-  @override
 
   /// [headers] - because there are some times it's easier to incldue the
   /// headers in the object instead of only passing it in with the
   /// request
-  Map<String, String>? get headers;
   @override
-  @JsonKey(ignore: true)
+  Map<String, String>? get headers;
+
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FhirSearchAllRequestImplCopyWith<_$FhirSearchAllRequestImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -10082,6 +10137,8 @@ class __$$FhirCapabilitiesRequestImplCopyWithImpl<$Res>
       $Res Function(_$FhirCapabilitiesRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -10281,7 +10338,7 @@ class _$FhirCapabilitiesRequestImpl extends FhirCapabilitiesRequest {
             const DeepCollectionEquality().equals(other._headers, _headers));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -10297,7 +10354,9 @@ class _$FhirCapabilitiesRequestImpl extends FhirCapabilitiesRequest {
       client,
       const DeepCollectionEquality().hash(_headers));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FhirCapabilitiesRequestImplCopyWith<_$FhirCapabilitiesRequestImpl>
@@ -11125,58 +11184,60 @@ abstract class FhirCapabilitiesRequest extends FhirRequest {
   factory FhirCapabilitiesRequest.fromJson(Map<String, dynamic> json) =
       _$FhirCapabilitiesRequestImpl.fromJson;
 
-  @override
-
   /// [base] - the base URI for the FHIR server
-  Uri get base;
   @override
+  Uri get base;
 
   /// [pretty] - pretty print the json formatting in the response
-  bool? get pretty;
   @override
+  bool? get pretty;
 
   /// [summary] - do you want the result to be a summary
-  Summary get summary;
   @override
+  Summary get summary;
 
   /// [format] - Possible formats are: json, json+fhir or fhir+json
   /// (would not request XML as this library doesn't work with XML)
-  String? get format;
   @override
+  String? get format;
 
   /// [elements] - elements you need to pass in
-  List<String> get elements;
   @override
+  List<String> get elements;
 
   /// [parameters] - any extra parameters
+  @override
   List<String> get parameters;
 
   /// [mode] - defines the mode as defined https://www.hl7.org/fhir/http.html#capabilities
   Mode get mode;
-  @override
 
   /// [mimeType] - specify the MimeType in the Header - this should be fhir+json
   ///   but there are some older systems that won't accept that
-  SupportedMimeType? get mimeType;
   @override
+  SupportedMimeType? get mimeType;
 
   /// [accept] - this will default to fhir+json just so it will stop sending
   /// me XML - I hate XML
-  String get accept;
   @override
+  String get accept;
 
   /// [client] - if there's a specific client that you're going to be using
 // ignore: invalid_annotation_target
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   Client? get client;
-  @override
 
   /// [headers] - because there are some times it's easier to incldue the
   /// headers in the object instead of only passing it in with the
   /// request
-  Map<String, String>? get headers;
   @override
-  @JsonKey(ignore: true)
+  Map<String, String>? get headers;
+
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FhirCapabilitiesRequestImplCopyWith<_$FhirCapabilitiesRequestImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -11215,6 +11276,8 @@ class __$$FhirTransactionRequestImplCopyWithImpl<$Res>
       $Res Function(_$FhirTransactionRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -11278,6 +11341,8 @@ class __$$FhirTransactionRequestImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $BundleCopyWith<$Res> get bundle {
@@ -11421,7 +11486,7 @@ class _$FhirTransactionRequestImpl extends FhirTransactionRequest {
             const DeepCollectionEquality().equals(other._headers, _headers));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -11437,7 +11502,9 @@ class _$FhirTransactionRequestImpl extends FhirTransactionRequest {
       client,
       const DeepCollectionEquality().hash(_headers));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FhirTransactionRequestImplCopyWith<_$FhirTransactionRequestImpl>
@@ -12265,58 +12332,60 @@ abstract class FhirTransactionRequest extends FhirRequest {
   factory FhirTransactionRequest.fromJson(Map<String, dynamic> json) =
       _$FhirTransactionRequestImpl.fromJson;
 
-  @override
-
   /// [base] - the base URI for the FHIR server
-  Uri get base;
   @override
+  Uri get base;
 
   /// [pretty] - pretty print the json formatting in the response
-  bool? get pretty;
   @override
+  bool? get pretty;
 
   /// [summary] - do you want the result to be a summary
-  Summary get summary;
   @override
+  Summary get summary;
 
   /// [format] - Possible formats are: json, json+fhir or fhir+json
   /// (would not request XML as this library doesn't work with XML)
-  String? get format;
   @override
+  String? get format;
 
   /// [elements] - elements you need to pass in
-  List<String> get elements;
   @override
+  List<String> get elements;
 
   /// [parameters] - any extra parameters
+  @override
   List<String> get parameters;
 
   /// [bundle] - the bundle to be uploaded
   Bundle get bundle;
-  @override
 
   /// [mimeType] - specify the MimeType in the Header - this should be fhir+json
   ///   but there are some older systems that won't accept that
-  SupportedMimeType? get mimeType;
   @override
+  SupportedMimeType? get mimeType;
 
   /// [accept] - this will default to fhir+json just so it will stop sending
   /// me XML - I hate XML
-  String get accept;
   @override
+  String get accept;
 
   /// [client] - if there's a specific client that you're going to be using
 // ignore: invalid_annotation_target
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   Client? get client;
-  @override
 
   /// [headers] - because there are some times it's easier to incldue the
   /// headers in the object instead of only passing it in with the
   /// request
-  Map<String, String>? get headers;
   @override
-  @JsonKey(ignore: true)
+  Map<String, String>? get headers;
+
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FhirTransactionRequestImplCopyWith<_$FhirTransactionRequestImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -12353,6 +12422,8 @@ class __$$FhirBatchRequestImplCopyWithImpl<$Res>
       $Res Function(_$FhirBatchRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -12416,6 +12487,8 @@ class __$$FhirBatchRequestImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $BundleCopyWith<$Res> get bundle {
@@ -12559,7 +12632,7 @@ class _$FhirBatchRequestImpl extends FhirBatchRequest {
             const DeepCollectionEquality().equals(other._headers, _headers));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -12575,7 +12648,9 @@ class _$FhirBatchRequestImpl extends FhirBatchRequest {
       client,
       const DeepCollectionEquality().hash(_headers));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FhirBatchRequestImplCopyWith<_$FhirBatchRequestImpl> get copyWith =>
@@ -13403,58 +13478,60 @@ abstract class FhirBatchRequest extends FhirRequest {
   factory FhirBatchRequest.fromJson(Map<String, dynamic> json) =
       _$FhirBatchRequestImpl.fromJson;
 
-  @override
-
   /// [base] - the base URI for the FHIR server
-  Uri get base;
   @override
+  Uri get base;
 
   /// [pretty] - pretty print the json formatting in the response
-  bool? get pretty;
   @override
+  bool? get pretty;
 
   /// [summary] - do you want the result to be a summary
-  Summary get summary;
   @override
+  Summary get summary;
 
   /// [format] - Possible formats are: json, json+fhir or fhir+json
   /// (would not request XML as this library doesn't work with XML)
-  String? get format;
   @override
+  String? get format;
 
   /// [elements] - elements you need to pass in
-  List<String> get elements;
   @override
+  List<String> get elements;
 
   /// [parameters] - any extra parameters
+  @override
   List<String> get parameters;
 
   /// [bundle] - the bundle to be uploaded
   Bundle get bundle;
-  @override
 
   /// [mimeType] - specify the MimeType in the Header - this should be fhir+json
   ///   but there are some older systems that won't accept that
-  SupportedMimeType? get mimeType;
   @override
+  SupportedMimeType? get mimeType;
 
   /// [accept] - this will default to fhir+json just so it will stop sending
   /// me XML - I hate XML
-  String get accept;
   @override
+  String get accept;
 
   /// [client] - if there's a specific client that you're going to be using
 // ignore: invalid_annotation_target
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   Client? get client;
-  @override
 
   /// [headers] - because there are some times it's easier to incldue the
   /// headers in the object instead of only passing it in with the
   /// request
-  Map<String, String>? get headers;
   @override
-  @JsonKey(ignore: true)
+  Map<String, String>? get headers;
+
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FhirBatchRequestImplCopyWith<_$FhirBatchRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -13494,6 +13571,8 @@ class __$$FhirHistoryRequestImplCopyWithImpl<$Res>
       $Res Function(_$FhirHistoryRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -13753,7 +13832,7 @@ class _$FhirHistoryRequestImpl extends FhirHistoryRequest {
             const DeepCollectionEquality().equals(other._headers, _headers));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -13774,7 +13853,9 @@ class _$FhirHistoryRequestImpl extends FhirHistoryRequest {
       client,
       const DeepCollectionEquality().hash(_headers));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FhirHistoryRequestImplCopyWith<_$FhirHistoryRequestImpl> get copyWith =>
@@ -14652,9 +14733,8 @@ abstract class FhirHistoryRequest extends FhirRequest {
   factory FhirHistoryRequest.fromJson(Map<String, dynamic> json) =
       _$FhirHistoryRequestImpl.fromJson;
 
-  @override
-
   /// [base] - the base URI for the FHIR server
+  @override
   Uri get base;
 
   /// [type] - the type of resource you're looking for
@@ -14662,26 +14742,26 @@ abstract class FhirHistoryRequest extends FhirRequest {
 
   /// [id] - the id for the resource
   String get id;
-  @override
 
   /// [pretty] - pretty print the json formatting in the response
-  bool? get pretty;
   @override
+  bool? get pretty;
 
   /// [summary] - do you want the result to be a summary
-  Summary get summary;
   @override
+  Summary get summary;
 
   /// [format] - Possible formats are: json, json+fhir or fhir+json
   /// (would not request XML as this library doesn't work with XML)
-  String? get format;
   @override
+  String? get format;
 
   /// [elements] - elements you need to pass in
-  List<String> get elements;
   @override
+  List<String> get elements;
 
   /// [parameters] - any extra parameters
+  @override
   List<String> get parameters;
 
   /// [count] - The maximum number of search results on a page, excluding related
@@ -14700,30 +14780,33 @@ abstract class FhirHistoryRequest extends FhirRequest {
   /// [reference] - Only include resource versions that are referenced in
   ///   the specified list
   String? get reference;
-  @override
 
   /// [mimeType] - specify the MimeType in the Header - this should be fhir+json
   ///   but there are some older systems that won't accept that
-  SupportedMimeType? get mimeType;
   @override
+  SupportedMimeType? get mimeType;
 
   /// [accept] - this will default to fhir+json just so it will stop sending
   /// me XML - I hate XML
-  String get accept;
   @override
+  String get accept;
 
   /// [client] - if there's a specific client that you're going to be using
 // ignore: invalid_annotation_target
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   Client? get client;
-  @override
 
   /// [headers] - because there are some times it's easier to incldue the
   /// headers in the object instead of only passing it in with the
   /// request
-  Map<String, String>? get headers;
   @override
-  @JsonKey(ignore: true)
+  Map<String, String>? get headers;
+
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FhirHistoryRequestImplCopyWith<_$FhirHistoryRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -14764,6 +14847,8 @@ class __$$FhirHistoryTypeRequestImplCopyWithImpl<$Res>
       $Res Function(_$FhirHistoryTypeRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -15012,7 +15097,7 @@ class _$FhirHistoryTypeRequestImpl extends FhirHistoryTypeRequest {
             const DeepCollectionEquality().equals(other._headers, _headers));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -15032,7 +15117,9 @@ class _$FhirHistoryTypeRequestImpl extends FhirHistoryTypeRequest {
       client,
       const DeepCollectionEquality().hash(_headers));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FhirHistoryTypeRequestImplCopyWith<_$FhirHistoryTypeRequestImpl>
@@ -15906,33 +15993,32 @@ abstract class FhirHistoryTypeRequest extends FhirRequest {
   factory FhirHistoryTypeRequest.fromJson(Map<String, dynamic> json) =
       _$FhirHistoryTypeRequestImpl.fromJson;
 
-  @override
-
   /// [base] - the base URI for the FHIR server
+  @override
   Uri get base;
 
   /// [type] - the type of resource you're looking for
   R4ResourceType get type;
-  @override
 
   /// [pretty] - pretty print the json formatting in the response
-  bool? get pretty;
   @override
+  bool? get pretty;
 
   /// [summary] - do you want the result to be a summary
-  Summary get summary;
   @override
+  Summary get summary;
 
   /// [format] - Possible formats are: json, json+fhir or fhir+json
   /// (would not request XML as this library doesn't work with XML)
-  String? get format;
   @override
+  String? get format;
 
   /// [elements] - elements you need to pass in
-  List<String> get elements;
   @override
+  List<String> get elements;
 
   /// [parameters] - any extra parameters
+  @override
   List<String> get parameters;
 
   /// [count] - The maximum number of search results on a page, excluding related
@@ -15951,30 +16037,33 @@ abstract class FhirHistoryTypeRequest extends FhirRequest {
   /// [reference] - Only include resource versions that are referenced in
   ///   the specified list
   String? get reference;
-  @override
 
   /// [mimeType] - specify the MimeType in the Header - this should be fhir+json
   ///   but there are some older systems that won't accept that
-  SupportedMimeType? get mimeType;
   @override
+  SupportedMimeType? get mimeType;
 
   /// [accept] - this will default to fhir+json just so it will stop sending
   /// me XML - I hate XML
-  String get accept;
   @override
+  String get accept;
 
   /// [client] - if there's a specific client that you're going to be using
 // ignore: invalid_annotation_target
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   Client? get client;
-  @override
 
   /// [headers] - because there are some times it's easier to incldue the
   /// headers in the object instead of only passing it in with the
   /// request
-  Map<String, String>? get headers;
   @override
-  @JsonKey(ignore: true)
+  Map<String, String>? get headers;
+
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FhirHistoryTypeRequestImplCopyWith<_$FhirHistoryTypeRequestImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -16013,6 +16102,8 @@ class __$$FhirHistoryAllRequestImplCopyWithImpl<$Res>
       $Res Function(_$FhirHistoryAllRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -16250,7 +16341,7 @@ class _$FhirHistoryAllRequestImpl extends FhirHistoryAllRequest {
             const DeepCollectionEquality().equals(other._headers, _headers));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -16269,7 +16360,9 @@ class _$FhirHistoryAllRequestImpl extends FhirHistoryAllRequest {
       client,
       const DeepCollectionEquality().hash(_headers));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FhirHistoryAllRequestImplCopyWith<_$FhirHistoryAllRequestImpl>
@@ -17100,30 +17193,29 @@ abstract class FhirHistoryAllRequest extends FhirRequest {
   factory FhirHistoryAllRequest.fromJson(Map<String, dynamic> json) =
       _$FhirHistoryAllRequestImpl.fromJson;
 
-  @override
-
   /// [base] - the base URI for the FHIR server
-  Uri get base;
   @override
+  Uri get base;
 
   /// [pretty] - pretty print the json formatting in the response
-  bool? get pretty;
   @override
+  bool? get pretty;
 
   /// [summary] - do you want the result to be a summary
-  Summary get summary;
   @override
+  Summary get summary;
 
   /// [format] - Possible formats are: json, json+fhir or fhir+json
   /// (would not request XML as this library doesn't work with XML)
-  String? get format;
   @override
+  String? get format;
 
   /// [elements] - elements you need to pass in
-  List<String> get elements;
   @override
+  List<String> get elements;
 
   /// [parameters] - any extra parameters
+  @override
   List<String> get parameters;
 
   /// [count] - The maximum number of search results on a page, excluding related
@@ -17142,30 +17234,33 @@ abstract class FhirHistoryAllRequest extends FhirRequest {
   /// [reference] - Only include resource versions that are referenced in
   ///   the specified list
   String? get reference;
-  @override
 
   /// [mimeType] - specify the MimeType in the Header - this should be fhir+json
   ///   but there are some older systems that won't accept that
-  SupportedMimeType? get mimeType;
   @override
+  SupportedMimeType? get mimeType;
 
   /// [accept] - this will default to fhir+json just so it will stop sending
   /// me XML - I hate XML
-  String get accept;
   @override
+  String get accept;
 
   /// [client] - if there's a specific client that you're going to be using
 // ignore: invalid_annotation_target
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   Client? get client;
-  @override
 
   /// [headers] - because there are some times it's easier to incldue the
   /// headers in the object instead of only passing it in with the
   /// request
-  Map<String, String>? get headers;
   @override
-  @JsonKey(ignore: true)
+  Map<String, String>? get headers;
+
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FhirHistoryAllRequestImplCopyWith<_$FhirHistoryAllRequestImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -17207,6 +17302,8 @@ class __$$FhirOperationRequestImplCopyWithImpl<$Res>
       $Res Function(_$FhirOperationRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -17295,6 +17392,8 @@ class __$$FhirOperationRequestImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ParametersCopyWith<$Res>? get fhirParameter {
@@ -17470,7 +17569,7 @@ class _$FhirOperationRequestImpl extends FhirOperationRequest {
             const DeepCollectionEquality().equals(other._headers, _headers));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -17491,7 +17590,9 @@ class _$FhirOperationRequestImpl extends FhirOperationRequest {
       client,
       const DeepCollectionEquality().hash(_headers));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FhirOperationRequestImplCopyWith<_$FhirOperationRequestImpl>
@@ -18370,32 +18471,31 @@ abstract class FhirOperationRequest extends FhirRequest {
   factory FhirOperationRequest.fromJson(Map<String, dynamic> json) =
       _$FhirOperationRequestImpl.fromJson;
 
-  @override
-
   /// [base] - the base URI for the FHIR server
+  @override
   Uri get base;
   R4ResourceType? get type;
   String? get id;
-  @override
 
   /// [pretty] - pretty print the json formatting in the response
-  bool? get pretty;
   @override
+  bool? get pretty;
 
   /// [summary] - do you want the result to be a summary
-  Summary get summary;
   @override
+  Summary get summary;
 
   /// [format] - Possible formats are: json, json+fhir or fhir+json
   /// (would not request XML as this library doesn't work with XML)
-  String? get format;
   @override
+  String? get format;
 
   /// [elements] - elements you need to pass in
-  List<String> get elements;
   @override
+  List<String> get elements;
 
   /// [parameters] - any extra parameters
+  @override
   List<String> get parameters;
 
   /// [fhirParameter] any extra fhirParameters
@@ -18406,30 +18506,33 @@ abstract class FhirOperationRequest extends FhirRequest {
   ///   a get request for this search
   bool get usePost;
   bool get useFormData;
-  @override
 
   /// [mimeType] - specify the MimeType in the Header - this should be fhir+json
   ///   but there are some older systems that won't accept that
-  SupportedMimeType? get mimeType;
   @override
+  SupportedMimeType? get mimeType;
 
   /// [accept] - this will default to fhir+json just so it will stop sending
   /// me XML - I hate XML
-  String get accept;
   @override
+  String get accept;
 
   /// [client] - if there's a specific client that you're going to be using
 // ignore: invalid_annotation_target
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   Client? get client;
-  @override
 
   /// [headers] - because there are some times it's easier to incldue the
   /// headers in the object instead of only passing it in with the
   /// request
-  Map<String, String>? get headers;
   @override
-  @JsonKey(ignore: true)
+  Map<String, String>? get headers;
+
+  /// Create a copy of FhirRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FhirOperationRequestImplCopyWith<_$FhirOperationRequestImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -18445,8 +18548,12 @@ mixin _$FhirHttpRequest {
   Map<String, String> get headers => throw _privateConstructorUsedError;
   Map<String, dynamic>? get body => throw _privateConstructorUsedError;
 
+  /// Serializes this FhirHttpRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of FhirHttpRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $FhirHttpRequestCopyWith<FhirHttpRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -18474,6 +18581,8 @@ class _$FhirHttpRequestCopyWithImpl<$Res, $Val extends FhirHttpRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of FhirHttpRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -18526,6 +18635,8 @@ class __$$FhirHttpRequestImplCopyWithImpl<$Res>
       _$FhirHttpRequestImpl _value, $Res Function(_$FhirHttpRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FhirHttpRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -18608,7 +18719,7 @@ class _$FhirHttpRequestImpl extends _FhirHttpRequest {
             const DeepCollectionEquality().equals(other._body, _body));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -18617,7 +18728,9 @@ class _$FhirHttpRequestImpl extends _FhirHttpRequest {
       const DeepCollectionEquality().hash(_headers),
       const DeepCollectionEquality().hash(_body));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FhirHttpRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FhirHttpRequestImplCopyWith<_$FhirHttpRequestImpl> get copyWith =>
@@ -18651,8 +18764,11 @@ abstract class _FhirHttpRequest extends FhirHttpRequest {
   Map<String, String> get headers;
   @override
   Map<String, dynamic>? get body;
+
+  /// Create a copy of FhirHttpRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FhirHttpRequestImplCopyWith<_$FhirHttpRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

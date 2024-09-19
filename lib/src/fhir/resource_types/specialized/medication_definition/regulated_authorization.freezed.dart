@@ -112,8 +112,12 @@ mixin _$RegulatedAuthorization {
   @JsonKey(name: 'case')
   RegulatedAuthorizationCase? get case_ => throw _privateConstructorUsedError;
 
+  /// Serializes this RegulatedAuthorization to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RegulatedAuthorization
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RegulatedAuthorizationCopyWith<RegulatedAuthorization> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -176,6 +180,8 @@ class _$RegulatedAuthorizationCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RegulatedAuthorization
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -319,6 +325,8 @@ class _$RegulatedAuthorizationCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of RegulatedAuthorization
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -331,6 +339,8 @@ class _$RegulatedAuthorizationCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of RegulatedAuthorization
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -343,6 +353,8 @@ class _$RegulatedAuthorizationCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of RegulatedAuthorization
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get type {
@@ -355,6 +367,8 @@ class _$RegulatedAuthorizationCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of RegulatedAuthorization
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get status {
@@ -367,6 +381,8 @@ class _$RegulatedAuthorizationCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of RegulatedAuthorization
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get validityPeriod {
@@ -379,6 +395,8 @@ class _$RegulatedAuthorizationCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of RegulatedAuthorization
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableReferenceCopyWith<$Res>? get indication {
@@ -391,6 +409,8 @@ class _$RegulatedAuthorizationCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of RegulatedAuthorization
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get intendedUse {
@@ -403,6 +423,8 @@ class _$RegulatedAuthorizationCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of RegulatedAuthorization
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get holder {
@@ -415,6 +437,8 @@ class _$RegulatedAuthorizationCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of RegulatedAuthorization
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get regulator {
@@ -427,6 +451,8 @@ class _$RegulatedAuthorizationCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of RegulatedAuthorization
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RegulatedAuthorizationCaseCopyWith<$Res>? get case_ {
@@ -510,6 +536,8 @@ class __$$RegulatedAuthorizationImplCopyWithImpl<$Res>
       $Res Function(_$RegulatedAuthorizationImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RegulatedAuthorization
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -879,6 +907,11 @@ class _$RegulatedAuthorizationImpl extends _RegulatedAuthorization {
   final RegulatedAuthorizationCase? case_;
 
   @override
+  String toString() {
+    return 'RegulatedAuthorization(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, subject: $subject, type: $type, description: $description, descriptionElement: $descriptionElement, region: $region, status: $status, statusDate: $statusDate, statusDateElement: $statusDateElement, validityPeriod: $validityPeriod, indication: $indication, intendedUse: $intendedUse, basis: $basis, holder: $holder, regulator: $regulator, case_: $case_)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -929,7 +962,7 @@ class _$RegulatedAuthorizationImpl extends _RegulatedAuthorization {
             (identical(other.case_, case_) || other.case_ == case_));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -962,7 +995,9 @@ class _$RegulatedAuthorizationImpl extends _RegulatedAuthorization {
         case_
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RegulatedAuthorization
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RegulatedAuthorizationImplCopyWith<_$RegulatedAuthorizationImpl>
@@ -1013,123 +1048,125 @@ abstract class _RegulatedAuthorization extends RegulatedAuthorization {
   factory _RegulatedAuthorization.fromJson(Map<String, dynamic> json) =
       _$RegulatedAuthorizationImpl.fromJson;
 
-  @override
-
   /// [resourceType] This is a RegulatedAuthorization resource;
-  R4ResourceType get resourceType;
   @override
+  R4ResourceType get resourceType;
 
   /// [id] The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.;
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.;
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.;
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] (_implicitRules): Extensions for implicitRules;
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.;
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] (_language): Extensions for language;
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.;
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, nor can they have their own independent transaction scope.;
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the resource. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.
   /// Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).;
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] Business identifier for the authorization, typically assigned by the authorizing body.;
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [subject] The product type, treatment, facility or activity that is being authorized.;
-  List<Reference>? get subject;
   @override
+  List<Reference>? get subject;
 
   /// [type] Overall type of this authorization, for example drug marketing approval, orphan drug designation.;
-  CodeableConcept? get type;
   @override
+  CodeableConcept? get type;
 
   /// [description] General textual supporting information.;
-  FhirMarkdown? get description;
   @override
+  FhirMarkdown? get description;
 
   /// [descriptionElement] (_description): Extensions for description;
+  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
-  @override
 
   /// [region] The territory (e.g., country, jurisdiction etc.) in which the authorization has been granted.;
-  List<CodeableConcept>? get region;
   @override
+  List<CodeableConcept>? get region;
 
   /// [status] The status that is authorised e.g. approved. Intermediate states and actions can be tracked with cases and applications.;
-  CodeableConcept? get status;
   @override
+  CodeableConcept? get status;
 
   /// [statusDate] The date at which the current status was assigned.;
-  FhirDateTime? get statusDate;
   @override
+  FhirDateTime? get statusDate;
 
   /// [statusDateElement] (_statusDate): Extensions for statusDate;
+  @override
   @JsonKey(name: '_statusDate')
   PrimitiveElement? get statusDateElement;
-  @override
 
   /// [validityPeriod] The time period in which the regulatory approval, clearance or licencing is in effect. As an example, a Marketing Authorization includes the date of authorization and/or an expiration date.;
-  Period? get validityPeriod;
   @override
+  Period? get validityPeriod;
 
   /// [indication] Condition for which the use of the regulated product applies.;
-  CodeableReference? get indication;
   @override
+  CodeableReference? get indication;
 
   /// [intendedUse] The intended use of the product, e.g. prevention, treatment, diagnosis.;
-  CodeableConcept? get intendedUse;
   @override
+  CodeableConcept? get intendedUse;
 
   /// [basis] The legal or regulatory framework against which this authorization is granted, or other reasons for it.;
-  List<CodeableConcept>? get basis;
   @override
+  List<CodeableConcept>? get basis;
 
   /// [holder] The organization that has been granted this authorization, by some authoritative body (the 'regulator').;
-  Reference? get holder;
   @override
+  Reference? get holder;
 
   /// [regulator] The regulatory authority or authorizing body granting the authorization. For example, European Medicines Agency (EMA), Food and Drug Administration (FDA), Health Canada (HC), etc.;
-  Reference? get regulator;
   @override
+  Reference? get regulator;
 
   /// [case_] The case or regulatory procedure for granting or amending a regulated authorization. An authorization is granted in response to submissions/applications by those seeking authorization. A case is the administrative process that deals with the application(s) that relate to this and assesses them. Note: This area is subject to ongoing review and the workgroup is seeking implementer feedback on its use (see link at bottom of page).;
+  @override
   @JsonKey(name: 'case')
   RegulatedAuthorizationCase? get case_;
+
+  /// Create a copy of RegulatedAuthorization
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RegulatedAuthorizationImplCopyWith<_$RegulatedAuthorizationImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1177,8 +1214,12 @@ mixin _$RegulatedAuthorizationCase {
   List<RegulatedAuthorizationCase>? get application =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this RegulatedAuthorizationCase to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RegulatedAuthorizationCase
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RegulatedAuthorizationCaseCopyWith<RegulatedAuthorizationCase>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1219,6 +1260,8 @@ class _$RegulatedAuthorizationCaseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RegulatedAuthorizationCase
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1277,6 +1320,8 @@ class _$RegulatedAuthorizationCaseCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of RegulatedAuthorizationCase
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $IdentifierCopyWith<$Res>? get identifier {
@@ -1289,6 +1334,8 @@ class _$RegulatedAuthorizationCaseCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of RegulatedAuthorizationCase
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get type {
@@ -1301,6 +1348,8 @@ class _$RegulatedAuthorizationCaseCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of RegulatedAuthorizationCase
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get status {
@@ -1313,6 +1362,8 @@ class _$RegulatedAuthorizationCaseCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of RegulatedAuthorizationCase
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get datePeriod {
@@ -1367,6 +1418,8 @@ class __$$RegulatedAuthorizationCaseImplCopyWithImpl<$Res>
       $Res Function(_$RegulatedAuthorizationCaseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RegulatedAuthorizationCase
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1522,6 +1575,11 @@ class _$RegulatedAuthorizationCaseImpl extends _RegulatedAuthorizationCase {
   }
 
   @override
+  String toString() {
+    return 'RegulatedAuthorizationCase(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, type: $type, status: $status, datePeriod: $datePeriod, dateDateTime: $dateDateTime, dateDateTimeElement: $dateDateTimeElement, application: $application)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1545,7 +1603,7 @@ class _$RegulatedAuthorizationCaseImpl extends _RegulatedAuthorizationCase {
                 .equals(other._application, _application));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1560,7 +1618,9 @@ class _$RegulatedAuthorizationCaseImpl extends _RegulatedAuthorizationCase {
       dateDateTimeElement,
       const DeepCollectionEquality().hash(_application));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RegulatedAuthorizationCase
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RegulatedAuthorizationCaseImplCopyWith<_$RegulatedAuthorizationCaseImpl>
@@ -1594,51 +1654,53 @@ abstract class _RegulatedAuthorizationCase extends RegulatedAuthorizationCase {
   factory _RegulatedAuthorizationCase.fromJson(Map<String, dynamic> json) =
       _$RegulatedAuthorizationCaseImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.
   /// Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).;
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] Identifier by which this case can be referenced.;
-  Identifier? get identifier;
   @override
+  Identifier? get identifier;
 
   /// [type] The defining type of case.;
-  CodeableConcept? get type;
   @override
+  CodeableConcept? get type;
 
   /// [status] The status associated with the case.;
-  CodeableConcept? get status;
   @override
+  CodeableConcept? get status;
 
   /// [datePeriod] Relevant date for this case.;
-  Period? get datePeriod;
   @override
+  Period? get datePeriod;
 
   /// [dateDateTime] Relevant date for this case.;
-  FhirDateTime? get dateDateTime;
   @override
+  FhirDateTime? get dateDateTime;
 
   /// [dateDateTimeElement] (_dateDateTime): Extensions for dateDateTime;
+  @override
   @JsonKey(name: '_dateDateTime')
   PrimitiveElement? get dateDateTimeElement;
-  @override
 
   /// [application] A regulatory submission from an organization to a regulator, as part of an assessing case. Multiple applications may occur over time, with more or different information to support or modify the submission or the authorization. The applications can be considered as steps within the longer running case or procedure for this authorization process.;
-  List<RegulatedAuthorizationCase>? get application;
   @override
-  @JsonKey(ignore: true)
+  List<RegulatedAuthorizationCase>? get application;
+
+  /// Create a copy of RegulatedAuthorizationCase
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RegulatedAuthorizationCaseImplCopyWith<_$RegulatedAuthorizationCaseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -77,8 +77,12 @@ mixin _$ClinicalImpression {
   List<Reference>? get supportingInfo => throw _privateConstructorUsedError;
   List<Annotation>? get note => throw _privateConstructorUsedError;
 
+  /// Serializes this ClinicalImpression to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ClinicalImpression
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ClinicalImpressionCopyWith<ClinicalImpression> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -152,6 +156,8 @@ class _$ClinicalImpressionCopyWithImpl<$Res, $Val extends ClinicalImpression>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ClinicalImpression
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -350,6 +356,8 @@ class _$ClinicalImpressionCopyWithImpl<$Res, $Val extends ClinicalImpression>
     ) as $Val);
   }
 
+  /// Create a copy of ClinicalImpression
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -362,6 +370,8 @@ class _$ClinicalImpressionCopyWithImpl<$Res, $Val extends ClinicalImpression>
     });
   }
 
+  /// Create a copy of ClinicalImpression
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -374,6 +384,8 @@ class _$ClinicalImpressionCopyWithImpl<$Res, $Val extends ClinicalImpression>
     });
   }
 
+  /// Create a copy of ClinicalImpression
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get statusReason {
@@ -386,6 +398,8 @@ class _$ClinicalImpressionCopyWithImpl<$Res, $Val extends ClinicalImpression>
     });
   }
 
+  /// Create a copy of ClinicalImpression
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get code {
@@ -398,6 +412,8 @@ class _$ClinicalImpressionCopyWithImpl<$Res, $Val extends ClinicalImpression>
     });
   }
 
+  /// Create a copy of ClinicalImpression
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get subject {
@@ -406,6 +422,8 @@ class _$ClinicalImpressionCopyWithImpl<$Res, $Val extends ClinicalImpression>
     });
   }
 
+  /// Create a copy of ClinicalImpression
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get encounter {
@@ -418,6 +436,8 @@ class _$ClinicalImpressionCopyWithImpl<$Res, $Val extends ClinicalImpression>
     });
   }
 
+  /// Create a copy of ClinicalImpression
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get effectivePeriod {
@@ -430,6 +450,8 @@ class _$ClinicalImpressionCopyWithImpl<$Res, $Val extends ClinicalImpression>
     });
   }
 
+  /// Create a copy of ClinicalImpression
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get assessor {
@@ -442,6 +464,8 @@ class _$ClinicalImpressionCopyWithImpl<$Res, $Val extends ClinicalImpression>
     });
   }
 
+  /// Create a copy of ClinicalImpression
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get previous {
@@ -533,6 +557,8 @@ class __$$ClinicalImpressionImplCopyWithImpl<$Res>
       $Res Function(_$ClinicalImpressionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ClinicalImpression
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -987,6 +1013,11 @@ class _$ClinicalImpressionImpl extends _ClinicalImpression {
   }
 
   @override
+  String toString() {
+    return 'ClinicalImpression(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, status: $status, statusElement: $statusElement, statusReason: $statusReason, code: $code, description: $description, descriptionElement: $descriptionElement, subject: $subject, encounter: $encounter, effectiveDateTime: $effectiveDateTime, effectiveDateTimeElement: $effectiveDateTimeElement, effectivePeriod: $effectivePeriod, date: $date, dateElement: $dateElement, assessor: $assessor, previous: $previous, problem: $problem, investigation: $investigation, protocol: $protocol, protocolElement: $protocolElement, summary: $summary, summaryElement: $summaryElement, finding: $finding, prognosisCodeableConcept: $prognosisCodeableConcept, prognosisReference: $prognosisReference, supportingInfo: $supportingInfo, note: $note)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1058,7 +1089,7 @@ class _$ClinicalImpressionImpl extends _ClinicalImpression {
             const DeepCollectionEquality().equals(other._note, _note));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1102,7 +1133,9 @@ class _$ClinicalImpressionImpl extends _ClinicalImpression {
         const DeepCollectionEquality().hash(_note)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ClinicalImpression
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ClinicalImpressionImplCopyWith<_$ClinicalImpressionImpl> get copyWith =>
@@ -1251,8 +1284,11 @@ abstract class _ClinicalImpression extends ClinicalImpression {
   List<Reference>? get supportingInfo;
   @override
   List<Annotation>? get note;
+
+  /// Create a copy of ClinicalImpression
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ClinicalImpressionImplCopyWith<_$ClinicalImpressionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1272,8 +1308,12 @@ mixin _$ClinicalImpressionInvestigation {
   CodeableConcept get code => throw _privateConstructorUsedError;
   List<Reference>? get item => throw _privateConstructorUsedError;
 
+  /// Serializes this ClinicalImpressionInvestigation to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ClinicalImpressionInvestigation
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ClinicalImpressionInvestigationCopyWith<ClinicalImpressionInvestigation>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1307,6 +1347,8 @@ class _$ClinicalImpressionInvestigationCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ClinicalImpressionInvestigation
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1340,6 +1382,8 @@ class _$ClinicalImpressionInvestigationCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of ClinicalImpressionInvestigation
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get code {
@@ -1379,6 +1423,8 @@ class __$$ClinicalImpressionInvestigationImplCopyWithImpl<$Res>
       $Res Function(_$ClinicalImpressionInvestigationImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ClinicalImpressionInvestigation
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1469,6 +1515,11 @@ class _$ClinicalImpressionInvestigationImpl
   }
 
   @override
+  String toString() {
+    return 'ClinicalImpressionInvestigation(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, item: $item)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1482,7 +1533,7 @@ class _$ClinicalImpressionInvestigationImpl
             const DeepCollectionEquality().equals(other._item, _item));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1492,7 +1543,9 @@ class _$ClinicalImpressionInvestigationImpl
       code,
       const DeepCollectionEquality().hash(_item));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ClinicalImpressionInvestigation
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ClinicalImpressionInvestigationImplCopyWith<
@@ -1532,8 +1585,11 @@ abstract class _ClinicalImpressionInvestigation
   CodeableConcept get code;
   @override
   List<Reference>? get item;
+
+  /// Create a copy of ClinicalImpressionInvestigation
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ClinicalImpressionInvestigationImplCopyWith<
           _$ClinicalImpressionInvestigationImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -1558,8 +1614,12 @@ mixin _$ClinicalImpressionFinding {
   @JsonKey(name: '_basis')
   PrimitiveElement? get basisElement => throw _privateConstructorUsedError;
 
+  /// Serializes this ClinicalImpressionFinding to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ClinicalImpressionFinding
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ClinicalImpressionFindingCopyWith<ClinicalImpressionFinding> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1594,6 +1654,8 @@ class _$ClinicalImpressionFindingCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ClinicalImpressionFinding
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1637,6 +1699,8 @@ class _$ClinicalImpressionFindingCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of ClinicalImpressionFinding
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get itemCodeableConcept {
@@ -1649,6 +1713,8 @@ class _$ClinicalImpressionFindingCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ClinicalImpressionFinding
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get itemReference {
@@ -1696,6 +1762,8 @@ class __$$ClinicalImpressionFindingImplCopyWithImpl<$Res>
       $Res Function(_$ClinicalImpressionFindingImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ClinicalImpressionFinding
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1793,6 +1861,11 @@ class _$ClinicalImpressionFindingImpl extends _ClinicalImpressionFinding {
   final PrimitiveElement? basisElement;
 
   @override
+  String toString() {
+    return 'ClinicalImpressionFinding(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, itemCodeableConcept: $itemCodeableConcept, itemReference: $itemReference, basis: $basis, basisElement: $basisElement)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1811,7 +1884,7 @@ class _$ClinicalImpressionFindingImpl extends _ClinicalImpressionFinding {
                 other.basisElement == basisElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1823,7 +1896,9 @@ class _$ClinicalImpressionFindingImpl extends _ClinicalImpressionFinding {
       basis,
       basisElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ClinicalImpressionFinding
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ClinicalImpressionFindingImplCopyWith<_$ClinicalImpressionFindingImpl>
@@ -1869,8 +1944,11 @@ abstract class _ClinicalImpressionFinding extends ClinicalImpressionFinding {
   @override
   @JsonKey(name: '_basis')
   PrimitiveElement? get basisElement;
+
+  /// Create a copy of ClinicalImpressionFinding
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ClinicalImpressionFindingImplCopyWith<_$ClinicalImpressionFindingImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

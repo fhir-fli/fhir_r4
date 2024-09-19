@@ -205,8 +205,12 @@ mixin _$DeviceDefinition {
   List<DeviceDefinitionMaterial>? get material =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this DeviceDefinition to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DeviceDefinition
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DeviceDefinitionCopyWith<DeviceDefinition> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -281,6 +285,8 @@ class _$DeviceDefinitionCopyWithImpl<$Res, $Val extends DeviceDefinition>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DeviceDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -484,6 +490,8 @@ class _$DeviceDefinitionCopyWithImpl<$Res, $Val extends DeviceDefinition>
     ) as $Val);
   }
 
+  /// Create a copy of DeviceDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -496,6 +504,8 @@ class _$DeviceDefinitionCopyWithImpl<$Res, $Val extends DeviceDefinition>
     });
   }
 
+  /// Create a copy of DeviceDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -508,6 +518,8 @@ class _$DeviceDefinitionCopyWithImpl<$Res, $Val extends DeviceDefinition>
     });
   }
 
+  /// Create a copy of DeviceDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get manufacturerReference {
@@ -520,6 +532,8 @@ class _$DeviceDefinitionCopyWithImpl<$Res, $Val extends DeviceDefinition>
     });
   }
 
+  /// Create a copy of DeviceDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get type {
@@ -532,6 +546,8 @@ class _$DeviceDefinitionCopyWithImpl<$Res, $Val extends DeviceDefinition>
     });
   }
 
+  /// Create a copy of DeviceDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProdCharacteristicCopyWith<$Res>? get physicalCharacteristics {
@@ -545,6 +561,8 @@ class _$DeviceDefinitionCopyWithImpl<$Res, $Val extends DeviceDefinition>
     });
   }
 
+  /// Create a copy of DeviceDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get owner {
@@ -557,6 +575,8 @@ class _$DeviceDefinitionCopyWithImpl<$Res, $Val extends DeviceDefinition>
     });
   }
 
+  /// Create a copy of DeviceDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get quantity {
@@ -569,6 +589,8 @@ class _$DeviceDefinitionCopyWithImpl<$Res, $Val extends DeviceDefinition>
     });
   }
 
+  /// Create a copy of DeviceDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get parentDevice {
@@ -660,6 +682,8 @@ class __$$DeviceDefinitionImplCopyWithImpl<$Res>
       $Res Function(_$DeviceDefinitionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DeviceDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1329,6 +1353,11 @@ class _$DeviceDefinitionImpl extends _DeviceDefinition {
   }
 
   @override
+  String toString() {
+    return 'DeviceDefinition(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, udiDeviceIdentifier: $udiDeviceIdentifier, manufacturerString: $manufacturerString, manufacturerStringElement: $manufacturerStringElement, manufacturerReference: $manufacturerReference, deviceName: $deviceName, modelNumber: $modelNumber, modelNumberElement: $modelNumberElement, type: $type, specialization: $specialization, version: $version, versionElement: $versionElement, safety: $safety, shelfLifeStorage: $shelfLifeStorage, physicalCharacteristics: $physicalCharacteristics, languageCode: $languageCode, capability: $capability, property: $property, owner: $owner, contact: $contact, url: $url, urlElement: $urlElement, onlineInformation: $onlineInformation, onlineInformationElement: $onlineInformationElement, note: $note, quantity: $quantity, parentDevice: $parentDevice, material: $material)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1404,7 +1433,7 @@ class _$DeviceDefinitionImpl extends _DeviceDefinition {
             const DeepCollectionEquality().equals(other._material, _material));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1449,7 +1478,9 @@ class _$DeviceDefinitionImpl extends _DeviceDefinition {
         const DeepCollectionEquality().hash(_material)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DeviceDefinition
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DeviceDefinitionImplCopyWith<_$DeviceDefinitionImpl> get copyWith =>
@@ -1517,39 +1548,38 @@ abstract class _DeviceDefinition extends DeviceDefinition {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.DeviceDefinition)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1557,15 +1587,15 @@ abstract class _DeviceDefinition extends DeviceDefinition {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1573,9 +1603,9 @@ abstract class _DeviceDefinition extends DeviceDefinition {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1590,141 +1620,145 @@ abstract class _DeviceDefinition extends DeviceDefinition {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] Unique instance identifiers assigned to a device by the
   /// software, manufacturers, other organizations or owners. For example:
   ///  handle ID.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [udiDeviceIdentifier] Unique device identifier (UDI) assigned to device
   /// label or package.  Note that the Device may include multiple udiCarriers
   /// as it either may include just the udiCarrier for the jurisdiction it is
   ///  sold, or for multiple jurisdictions it could have been sold.
-  List<DeviceDefinitionUdiDeviceIdentifier>? get udiDeviceIdentifier;
   @override
+  List<DeviceDefinitionUdiDeviceIdentifier>? get udiDeviceIdentifier;
 
   /// [manufacturerString] A name of the manufacturer.
-  String? get manufacturerString;
   @override
+  String? get manufacturerString;
 
   /// [manufacturerStringElement] Extensions for manufacturerString
+  @override
   @JsonKey(name: '_manufacturerString')
   PrimitiveElement? get manufacturerStringElement;
-  @override
 
   /// [manufacturerReference] A name of the manufacturer.
-  Reference? get manufacturerReference;
   @override
+  Reference? get manufacturerReference;
 
   /// [deviceName] A name given to the device to identify it.
-  List<DeviceDefinitionDeviceName>? get deviceName;
   @override
+  List<DeviceDefinitionDeviceName>? get deviceName;
 
   /// [modelNumber] The model number for the device.
-  String? get modelNumber;
   @override
+  String? get modelNumber;
 
   /// [modelNumberElement] Extensions for modelNumber
+  @override
   @JsonKey(name: '_modelNumber')
   PrimitiveElement? get modelNumberElement;
-  @override
 
   /// [type] What kind of device or device system this is.
-  CodeableConcept? get type;
   @override
+  CodeableConcept? get type;
 
   /// [specialization] The capabilities supported on a  device, the standards
   /// to which the device conforms for a particular purpose, and used for the
   ///  communication.
-  List<DeviceDefinitionSpecialization>? get specialization;
   @override
+  List<DeviceDefinitionSpecialization>? get specialization;
 
   /// [version] The available versions of the device, e.g., software versions.
-  List<String>? get version;
   @override
+  List<String>? get version;
 
   /// [versionElement] Extensions for version
+  @override
   @JsonKey(name: '_version')
   List<PrimitiveElement>? get versionElement;
-  @override
 
   /// [safety] Safety characteristics of the device.
-  List<CodeableConcept>? get safety;
   @override
+  List<CodeableConcept>? get safety;
 
   /// [shelfLifeStorage] Shelf Life and storage information.
-  List<ProductShelfLife>? get shelfLifeStorage;
   @override
+  List<ProductShelfLife>? get shelfLifeStorage;
 
   /// [physicalCharacteristics] Dimensions, color etc.
-  ProdCharacteristic? get physicalCharacteristics;
   @override
+  ProdCharacteristic? get physicalCharacteristics;
 
   /// [languageCode] Language code for the human-readable text strings produced
   ///  by the device (all supported).
-  List<CodeableConcept>? get languageCode;
   @override
+  List<CodeableConcept>? get languageCode;
 
   /// [capability] Device capabilities.
-  List<DeviceDefinitionCapability>? get capability;
   @override
+  List<DeviceDefinitionCapability>? get capability;
 
   /// [property] The actual configuration settings of a device as it actually
   ///  operates, e.g., regulation status, time properties.
-  List<DeviceDefinitionProperty>? get property;
   @override
+  List<DeviceDefinitionProperty>? get property;
 
   /// [owner] An organization that is responsible for the provision and ongoing
   ///  maintenance of the device.
-  Reference? get owner;
   @override
+  Reference? get owner;
 
   /// [contact] Contact details for an organization or a particular human that
   ///  is responsible for the device.
-  List<ContactPoint>? get contact;
   @override
+  List<ContactPoint>? get contact;
 
   /// [url] A network address on which the device may be contacted directly.
-  FhirUri? get url;
   @override
+  FhirUri? get url;
 
   /// [urlElement] Extensions for url
+  @override
   @JsonKey(name: '_url')
   PrimitiveElement? get urlElement;
-  @override
 
   /// [onlineInformation] Access to on-line information about the device.
-  FhirUri? get onlineInformation;
   @override
+  FhirUri? get onlineInformation;
 
   /// [onlineInformationElement] Extensions for onlineInformation
+  @override
   @JsonKey(name: '_onlineInformation')
   PrimitiveElement? get onlineInformationElement;
-  @override
 
   /// [note] Descriptive information, usage information or implantation
   ///  information that is not captured in an existing element.
-  List<Annotation>? get note;
   @override
+  List<Annotation>? get note;
 
   /// [quantity] The quantity of the device present in the packaging (e.g. the
   /// number of devices present in a pack, or the number of devices in the same
   ///  package of the medicinal product).
-  Quantity? get quantity;
   @override
+  Quantity? get quantity;
 
   /// [parentDevice] The parent device it can be part of.
-  Reference? get parentDevice;
   @override
+  Reference? get parentDevice;
 
   /// [material] A substance used to create the material(s) of which the device
   ///  is made.
-  List<DeviceDefinitionMaterial>? get material;
   @override
-  @JsonKey(ignore: true)
+  List<DeviceDefinitionMaterial>? get material;
+
+  /// Create a copy of DeviceDefinition
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DeviceDefinitionImplCopyWith<_$DeviceDefinitionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1790,8 +1824,12 @@ mixin _$DeviceDefinitionUdiDeviceIdentifier {
   PrimitiveElement? get jurisdictionElement =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this DeviceDefinitionUdiDeviceIdentifier to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DeviceDefinitionUdiDeviceIdentifier
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DeviceDefinitionUdiDeviceIdentifierCopyWith<
           DeviceDefinitionUdiDeviceIdentifier>
       get copyWith => throw _privateConstructorUsedError;
@@ -1829,6 +1867,8 @@ class _$DeviceDefinitionUdiDeviceIdentifierCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DeviceDefinitionUdiDeviceIdentifier
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1915,6 +1955,8 @@ class __$$DeviceDefinitionUdiDeviceIdentifierImplCopyWithImpl<$Res>
       $Res Function(_$DeviceDefinitionUdiDeviceIdentifierImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DeviceDefinitionUdiDeviceIdentifier
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2088,6 +2130,11 @@ class _$DeviceDefinitionUdiDeviceIdentifierImpl
   final PrimitiveElement? jurisdictionElement;
 
   @override
+  String toString() {
+    return 'DeviceDefinitionUdiDeviceIdentifier(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, deviceIdentifier: $deviceIdentifier, deviceIdentifierElement: $deviceIdentifierElement, issuer: $issuer, issuerElement: $issuerElement, jurisdiction: $jurisdiction, jurisdictionElement: $jurisdictionElement)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2111,7 +2158,7 @@ class _$DeviceDefinitionUdiDeviceIdentifierImpl
                 other.jurisdictionElement == jurisdictionElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2125,7 +2172,9 @@ class _$DeviceDefinitionUdiDeviceIdentifierImpl
       jurisdiction,
       jurisdictionElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DeviceDefinitionUdiDeviceIdentifier
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DeviceDefinitionUdiDeviceIdentifierImplCopyWith<
@@ -2162,12 +2211,10 @@ abstract class _DeviceDefinitionUdiDeviceIdentifier
           Map<String, dynamic> json) =
       _$DeviceDefinitionUdiDeviceIdentifierImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2175,9 +2222,9 @@ abstract class _DeviceDefinitionUdiDeviceIdentifier
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2192,38 +2239,42 @@ abstract class _DeviceDefinitionUdiDeviceIdentifier
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [deviceIdentifier] The identifier that is to be associated with every
   /// Device that references this DeviceDefintiion for the issuer and
   ///  jurisdication porvided in the DeviceDefinition.udiDeviceIdentifier.
-  String? get deviceIdentifier;
   @override
+  String? get deviceIdentifier;
 
   /// [deviceIdentifierElement] Extensions for deviceIdentifier
+  @override
   @JsonKey(name: '_deviceIdentifier')
   PrimitiveElement? get deviceIdentifierElement;
-  @override
 
   /// [issuer] The organization that assigns the identifier algorithm.
-  FhirUri? get issuer;
   @override
+  FhirUri? get issuer;
 
   /// [issuerElement] Extensions for issuer
+  @override
   @JsonKey(name: '_issuer')
   PrimitiveElement? get issuerElement;
-  @override
 
   /// [jurisdiction] The jurisdiction to which the deviceIdentifier applies.
-  FhirUri? get jurisdiction;
   @override
+  FhirUri? get jurisdiction;
 
   /// [jurisdictionElement] Extensions for jurisdiction
+  @override
   @JsonKey(name: '_jurisdiction')
   PrimitiveElement? get jurisdictionElement;
+
+  /// Create a copy of DeviceDefinitionUdiDeviceIdentifier
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DeviceDefinitionUdiDeviceIdentifierImplCopyWith<
           _$DeviceDefinitionUdiDeviceIdentifierImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -2281,8 +2332,12 @@ mixin _$DeviceDefinitionDeviceName {
   @JsonKey(name: '_type')
   PrimitiveElement? get typeElement => throw _privateConstructorUsedError;
 
+  /// Serializes this DeviceDefinitionDeviceName to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DeviceDefinitionDeviceName
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DeviceDefinitionDeviceNameCopyWith<DeviceDefinitionDeviceName>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2315,6 +2370,8 @@ class _$DeviceDefinitionDeviceNameCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DeviceDefinitionDeviceName
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2388,6 +2445,8 @@ class __$$DeviceDefinitionDeviceNameImplCopyWithImpl<$Res>
       $Res Function(_$DeviceDefinitionDeviceNameImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DeviceDefinitionDeviceName
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2539,6 +2598,11 @@ class _$DeviceDefinitionDeviceNameImpl extends _DeviceDefinitionDeviceName {
   final PrimitiveElement? typeElement;
 
   @override
+  String toString() {
+    return 'DeviceDefinitionDeviceName(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, type: $type, typeElement: $typeElement)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2556,7 +2620,7 @@ class _$DeviceDefinitionDeviceNameImpl extends _DeviceDefinitionDeviceName {
                 other.typeElement == typeElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2568,7 +2632,9 @@ class _$DeviceDefinitionDeviceNameImpl extends _DeviceDefinitionDeviceName {
       type,
       typeElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DeviceDefinitionDeviceName
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DeviceDefinitionDeviceNameImplCopyWith<_$DeviceDefinitionDeviceNameImpl>
@@ -2598,12 +2664,10 @@ abstract class _DeviceDefinitionDeviceName extends DeviceDefinitionDeviceName {
   factory _DeviceDefinitionDeviceName.fromJson(Map<String, dynamic> json) =
       _$DeviceDefinitionDeviceNameImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2611,9 +2675,9 @@ abstract class _DeviceDefinitionDeviceName extends DeviceDefinitionDeviceName {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2628,29 +2692,33 @@ abstract class _DeviceDefinitionDeviceName extends DeviceDefinitionDeviceName {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [name] The name of the device.
-  String? get name;
   @override
+  String? get name;
 
   /// [nameElement] Extensions for name
+  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
-  @override
 
   /// [type] The type of deviceName.
   /// UDILabelName | UserFriendlyName | PatientReportedName |
   ///  ManufactureDeviceName | ModelName.
-  FhirCode? get type;
   @override
+  FhirCode? get type;
 
   /// [typeElement] Extensions for type
+  @override
   @JsonKey(name: '_type')
   PrimitiveElement? get typeElement;
+
+  /// Create a copy of DeviceDefinitionDeviceName
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DeviceDefinitionDeviceNameImplCopyWith<_$DeviceDefinitionDeviceNameImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2706,8 +2774,12 @@ mixin _$DeviceDefinitionSpecialization {
   @JsonKey(name: '_version')
   PrimitiveElement? get versionElement => throw _privateConstructorUsedError;
 
+  /// Serializes this DeviceDefinitionSpecialization to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DeviceDefinitionSpecialization
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DeviceDefinitionSpecializationCopyWith<DeviceDefinitionSpecialization>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2741,6 +2813,8 @@ class _$DeviceDefinitionSpecializationCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DeviceDefinitionSpecialization
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2814,6 +2888,8 @@ class __$$DeviceDefinitionSpecializationImplCopyWithImpl<$Res>
       $Res Function(_$DeviceDefinitionSpecializationImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DeviceDefinitionSpecialization
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2965,6 +3041,11 @@ class _$DeviceDefinitionSpecializationImpl
   final PrimitiveElement? versionElement;
 
   @override
+  String toString() {
+    return 'DeviceDefinitionSpecialization(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, systemType: $systemType, systemTypeElement: $systemTypeElement, version: $version, versionElement: $versionElement)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2983,7 +3064,7 @@ class _$DeviceDefinitionSpecializationImpl
                 other.versionElement == versionElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2995,7 +3076,9 @@ class _$DeviceDefinitionSpecializationImpl
       version,
       versionElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DeviceDefinitionSpecialization
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DeviceDefinitionSpecializationImplCopyWith<
@@ -3028,12 +3111,10 @@ abstract class _DeviceDefinitionSpecialization
   factory _DeviceDefinitionSpecialization.fromJson(Map<String, dynamic> json) =
       _$DeviceDefinitionSpecializationImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3041,9 +3122,9 @@ abstract class _DeviceDefinitionSpecialization
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3058,28 +3139,32 @@ abstract class _DeviceDefinitionSpecialization
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [systemType] The standard that is used to operate and communicate.
-  String? get systemType;
   @override
+  String? get systemType;
 
   /// [systemTypeElement] Extensions for systemType
+  @override
   @JsonKey(name: '_systemType')
   PrimitiveElement? get systemTypeElement;
-  @override
 
   /// [version] The version of the standard that is used to operate and
   ///  communicate.
-  String? get version;
   @override
+  String? get version;
 
   /// [versionElement] Extensions for version
+  @override
   @JsonKey(name: '_version')
   PrimitiveElement? get versionElement;
+
+  /// Create a copy of DeviceDefinitionSpecialization
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DeviceDefinitionSpecializationImplCopyWith<
           _$DeviceDefinitionSpecializationImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -3127,8 +3212,12 @@ mixin _$DeviceDefinitionCapability {
   /// [description] Description of capability.
   List<CodeableConcept>? get description => throw _privateConstructorUsedError;
 
+  /// Serializes this DeviceDefinitionCapability to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DeviceDefinitionCapability
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DeviceDefinitionCapabilityCopyWith<DeviceDefinitionCapability>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3161,6 +3250,8 @@ class _$DeviceDefinitionCapabilityCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DeviceDefinitionCapability
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3194,6 +3285,8 @@ class _$DeviceDefinitionCapabilityCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of DeviceDefinitionCapability
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get type {
@@ -3233,6 +3326,8 @@ class __$$DeviceDefinitionCapabilityImplCopyWithImpl<$Res>
       $Res Function(_$DeviceDefinitionCapabilityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DeviceDefinitionCapability
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3370,6 +3465,11 @@ class _$DeviceDefinitionCapabilityImpl extends _DeviceDefinitionCapability {
   }
 
   @override
+  String toString() {
+    return 'DeviceDefinitionCapability(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, description: $description)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -3384,7 +3484,7 @@ class _$DeviceDefinitionCapabilityImpl extends _DeviceDefinitionCapability {
                 .equals(other._description, _description));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3394,7 +3494,9 @@ class _$DeviceDefinitionCapabilityImpl extends _DeviceDefinitionCapability {
       type,
       const DeepCollectionEquality().hash(_description));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DeviceDefinitionCapability
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DeviceDefinitionCapabilityImplCopyWith<_$DeviceDefinitionCapabilityImpl>
@@ -3422,12 +3524,10 @@ abstract class _DeviceDefinitionCapability extends DeviceDefinitionCapability {
   factory _DeviceDefinitionCapability.fromJson(Map<String, dynamic> json) =
       _$DeviceDefinitionCapabilityImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3435,9 +3535,9 @@ abstract class _DeviceDefinitionCapability extends DeviceDefinitionCapability {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3452,17 +3552,21 @@ abstract class _DeviceDefinitionCapability extends DeviceDefinitionCapability {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [type] Type of capability.
-  CodeableConcept get type;
   @override
+  CodeableConcept get type;
 
   /// [description] Description of capability.
-  List<CodeableConcept>? get description;
   @override
-  @JsonKey(ignore: true)
+  List<CodeableConcept>? get description;
+
+  /// Create a copy of DeviceDefinitionCapability
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DeviceDefinitionCapabilityImplCopyWith<_$DeviceDefinitionCapabilityImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3513,8 +3617,12 @@ mixin _$DeviceDefinitionProperty {
   /// [valueCode] Property value as a code, e.g., NTP4 (synced to NTP).
   List<CodeableConcept>? get valueCode => throw _privateConstructorUsedError;
 
+  /// Serializes this DeviceDefinitionProperty to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DeviceDefinitionProperty
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DeviceDefinitionPropertyCopyWith<DeviceDefinitionProperty> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3547,6 +3655,8 @@ class _$DeviceDefinitionPropertyCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DeviceDefinitionProperty
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3585,6 +3695,8 @@ class _$DeviceDefinitionPropertyCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of DeviceDefinitionProperty
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get type {
@@ -3625,6 +3737,8 @@ class __$$DeviceDefinitionPropertyImplCopyWithImpl<$Res>
       $Res Function(_$DeviceDefinitionPropertyImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DeviceDefinitionProperty
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3782,6 +3896,11 @@ class _$DeviceDefinitionPropertyImpl extends _DeviceDefinitionProperty {
   }
 
   @override
+  String toString() {
+    return 'DeviceDefinitionProperty(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, valueQuantity: $valueQuantity, valueCode: $valueCode)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -3798,7 +3917,7 @@ class _$DeviceDefinitionPropertyImpl extends _DeviceDefinitionProperty {
                 .equals(other._valueCode, _valueCode));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3809,7 +3928,9 @@ class _$DeviceDefinitionPropertyImpl extends _DeviceDefinitionProperty {
       const DeepCollectionEquality().hash(_valueQuantity),
       const DeepCollectionEquality().hash(_valueCode));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DeviceDefinitionProperty
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DeviceDefinitionPropertyImplCopyWith<_$DeviceDefinitionPropertyImpl>
@@ -3837,12 +3958,10 @@ abstract class _DeviceDefinitionProperty extends DeviceDefinitionProperty {
   factory _DeviceDefinitionProperty.fromJson(Map<String, dynamic> json) =
       _$DeviceDefinitionPropertyImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3850,9 +3969,9 @@ abstract class _DeviceDefinitionProperty extends DeviceDefinitionProperty {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3867,22 +3986,26 @@ abstract class _DeviceDefinitionProperty extends DeviceDefinitionProperty {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [type] Code that specifies the property DeviceDefinitionPropetyCode
   ///  (Extensible).
-  CodeableConcept get type;
   @override
+  CodeableConcept get type;
 
   /// [valueQuantity] Property value as a quantity.
-  List<Quantity>? get valueQuantity;
   @override
+  List<Quantity>? get valueQuantity;
 
   /// [valueCode] Property value as a code, e.g., NTP4 (synced to NTP).
-  List<CodeableConcept>? get valueCode;
   @override
-  @JsonKey(ignore: true)
+  List<CodeableConcept>? get valueCode;
+
+  /// Create a copy of DeviceDefinitionProperty
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DeviceDefinitionPropertyImplCopyWith<_$DeviceDefinitionPropertyImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3942,8 +4065,12 @@ mixin _$DeviceDefinitionMaterial {
   PrimitiveElement? get allergenicIndicatorElement =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this DeviceDefinitionMaterial to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DeviceDefinitionMaterial
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DeviceDefinitionMaterialCopyWith<DeviceDefinitionMaterial> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3979,6 +4106,8 @@ class _$DeviceDefinitionMaterialCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DeviceDefinitionMaterial
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4027,6 +4156,8 @@ class _$DeviceDefinitionMaterialCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of DeviceDefinitionMaterial
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get substance {
@@ -4070,6 +4201,8 @@ class __$$DeviceDefinitionMaterialImplCopyWithImpl<$Res>
       $Res Function(_$DeviceDefinitionMaterialImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DeviceDefinitionMaterial
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4229,6 +4362,11 @@ class _$DeviceDefinitionMaterialImpl extends _DeviceDefinitionMaterial {
   final PrimitiveElement? allergenicIndicatorElement;
 
   @override
+  String toString() {
+    return 'DeviceDefinitionMaterial(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, substance: $substance, alternate: $alternate, alternateElement: $alternateElement, allergenicIndicator: $allergenicIndicator, allergenicIndicatorElement: $allergenicIndicatorElement)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -4252,7 +4390,7 @@ class _$DeviceDefinitionMaterialImpl extends _DeviceDefinitionMaterial {
                     allergenicIndicatorElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -4265,7 +4403,9 @@ class _$DeviceDefinitionMaterialImpl extends _DeviceDefinitionMaterial {
       allergenicIndicator,
       allergenicIndicatorElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DeviceDefinitionMaterial
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DeviceDefinitionMaterialImplCopyWith<_$DeviceDefinitionMaterialImpl>
@@ -4297,12 +4437,10 @@ abstract class _DeviceDefinitionMaterial extends DeviceDefinitionMaterial {
   factory _DeviceDefinitionMaterial.fromJson(Map<String, dynamic> json) =
       _$DeviceDefinitionMaterialImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -4310,9 +4448,9 @@ abstract class _DeviceDefinitionMaterial extends DeviceDefinitionMaterial {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -4327,32 +4465,36 @@ abstract class _DeviceDefinitionMaterial extends DeviceDefinitionMaterial {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [substance] The substance.
-  CodeableConcept get substance;
   @override
+  CodeableConcept get substance;
 
   /// [alternate] Indicates an alternative material of the device.
-  FhirBoolean? get alternate;
   @override
+  FhirBoolean? get alternate;
 
   /// [alternateElement] Extensions for alternate
+  @override
   @JsonKey(name: '_alternate')
   PrimitiveElement? get alternateElement;
-  @override
 
   /// [allergenicIndicator] Whether the substance is a known or suspected
   ///  allergen.
-  FhirBoolean? get allergenicIndicator;
   @override
+  FhirBoolean? get allergenicIndicator;
 
   /// [allergenicIndicatorElement] Extensions for allergenicIndicator
+  @override
   @JsonKey(name: '_allergenicIndicator')
   PrimitiveElement? get allergenicIndicatorElement;
+
+  /// Create a copy of DeviceDefinitionMaterial
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DeviceDefinitionMaterialImplCopyWith<_$DeviceDefinitionMaterialImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

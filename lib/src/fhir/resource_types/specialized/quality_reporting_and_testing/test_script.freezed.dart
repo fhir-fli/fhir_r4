@@ -247,8 +247,12 @@ mixin _$TestScript {
   ///  tests are executed (successfully or otherwise).
   TestScriptTeardown? get teardown => throw _privateConstructorUsedError;
 
+  /// Serializes this TestScript to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TestScript
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TestScriptCopyWith<TestScript> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -326,6 +330,8 @@ class _$TestScriptCopyWithImpl<$Res, $Val extends TestScript>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TestScript
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -564,6 +570,8 @@ class _$TestScriptCopyWithImpl<$Res, $Val extends TestScript>
     ) as $Val);
   }
 
+  /// Create a copy of TestScript
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -576,6 +584,8 @@ class _$TestScriptCopyWithImpl<$Res, $Val extends TestScript>
     });
   }
 
+  /// Create a copy of TestScript
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -588,6 +598,8 @@ class _$TestScriptCopyWithImpl<$Res, $Val extends TestScript>
     });
   }
 
+  /// Create a copy of TestScript
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $IdentifierCopyWith<$Res>? get identifier {
@@ -600,6 +612,8 @@ class _$TestScriptCopyWithImpl<$Res, $Val extends TestScript>
     });
   }
 
+  /// Create a copy of TestScript
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TestScriptMetadataCopyWith<$Res>? get metadata {
@@ -612,6 +626,8 @@ class _$TestScriptCopyWithImpl<$Res, $Val extends TestScript>
     });
   }
 
+  /// Create a copy of TestScript
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TestScriptSetupCopyWith<$Res>? get setup {
@@ -624,6 +640,8 @@ class _$TestScriptCopyWithImpl<$Res, $Val extends TestScript>
     });
   }
 
+  /// Create a copy of TestScript
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TestScriptTeardownCopyWith<$Res>? get teardown {
@@ -716,6 +734,8 @@ class __$$TestScriptImplCopyWithImpl<$Res>
       _$TestScriptImpl _value, $Res Function(_$TestScriptImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TestScript
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1431,6 +1451,11 @@ class _$TestScriptImpl extends _TestScript {
   final TestScriptTeardown? teardown;
 
   @override
+  String toString() {
+    return 'TestScript(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, identifier: $identifier, version: $version, versionElement: $versionElement, name: $name, nameElement: $nameElement, title: $title, titleElement: $titleElement, status: $status, statusElement: $statusElement, experimental: $experimental, experimentalElement: $experimentalElement, date: $date, dateElement: $dateElement, publisher: $publisher, publisherElement: $publisherElement, contact: $contact, description: $description, descriptionElement: $descriptionElement, useContext: $useContext, jurisdiction: $jurisdiction, purpose: $purpose, purposeElement: $purposeElement, copyright: $copyright, copyrightElement: $copyrightElement, origin: $origin, destination: $destination, metadata: $metadata, fixture: $fixture, profile: $profile, variable: $variable, setup: $setup, test: $test, teardown: $teardown)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1512,7 +1537,7 @@ class _$TestScriptImpl extends _TestScript {
                 other.teardown == teardown));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1564,7 +1589,9 @@ class _$TestScriptImpl extends _TestScript {
         teardown
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TestScript
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TestScriptImplCopyWith<_$TestScriptImpl> get copyWith =>
@@ -1637,39 +1664,38 @@ abstract class _TestScript extends TestScript {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.TestScript)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1677,15 +1703,15 @@ abstract class _TestScript extends TestScript {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1693,9 +1719,9 @@ abstract class _TestScript extends TestScript {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1710,8 +1736,8 @@ abstract class _TestScript extends TestScript {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [url] An absolute URI that is used to identify this test script when it
   /// is referenced in a specification, model, design or an instance; also
@@ -1720,19 +1746,19 @@ abstract class _TestScript extends TestScript {
   /// test script is (or will be) published. This URL can be the target of a
   /// canonical reference. It SHALL remain the same when the test script is
   ///  stored on different servers.
-  FhirUri? get url;
   @override
+  FhirUri? get url;
 
   /// [urlElement] Extensions for url
+  @override
   @JsonKey(name: '_url')
   PrimitiveElement? get urlElement;
-  @override
 
   /// [identifier] A formal identifier that is used to identify this test
   /// script when it is represented in other formats, or referenced in a
   ///  specification, model, design or an instance.
-  Identifier? get identifier;
   @override
+  Identifier? get identifier;
 
   /// [version] The identifier that is used to identify this version of the
   /// test script when it is referenced in a specification, model, design or
@@ -1741,168 +1767,172 @@ abstract class _TestScript extends TestScript {
   /// timestamp (e.g. yyyymmdd) if a managed version is not available. There is
   /// also no expectation that versions can be placed in a lexicographical
   ///  sequence.
-  String? get version;
   @override
+  String? get version;
 
   /// [versionElement] Extensions for version
+  @override
   @JsonKey(name: '_version')
   PrimitiveElement? get versionElement;
-  @override
 
   /// [name] A natural language name identifying the test script. This name
   /// should be usable as an identifier for the module by machine processing
   ///  applications such as code generation.
-  String? get name;
   @override
+  String? get name;
 
   /// [nameElement] Extensions for name
+  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
-  @override
 
   /// [title] A short, descriptive, user-friendly title for the test script.
-  String? get title;
   @override
+  String? get title;
 
   /// [titleElement] Extensions for title
+  @override
   @JsonKey(name: '_title')
   PrimitiveElement? get titleElement;
-  @override
 
   /// [status] The status of this test script. Enables tracking the life-cycle
   ///  of the content.
-  FhirCode? get status;
   @override
+  FhirCode? get status;
 
   /// [statusElement] Extensions for status
+  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
-  @override
 
   /// [experimental] A Boolean value to indicate that this test script is
   /// authored for testing purposes (or education/evaluation/marketing) and is
   ///  not intended to be used for genuine usage.
-  FhirBoolean? get experimental;
   @override
+  FhirBoolean? get experimental;
 
   /// [experimentalElement] Extensions for experimental
+  @override
   @JsonKey(name: '_experimental')
   PrimitiveElement? get experimentalElement;
-  @override
 
   /// [date] The date  (and optionally time) when the test script was
   /// published. The date must change when the business version changes and it
   /// must change if the status code changes. In addition, it should change when
   ///  the substantive content of the test script changes.
-  FhirDateTime? get date;
   @override
+  FhirDateTime? get date;
 
   /// [dateElement] Extensions for date
+  @override
   @JsonKey(name: '_date')
   PrimitiveElement? get dateElement;
-  @override
 
   /// [publisher] The name of the organization or individual that published the
   ///  test script.
-  String? get publisher;
   @override
+  String? get publisher;
 
   /// [publisherElement] Extensions for publisher
+  @override
   @JsonKey(name: '_publisher')
   PrimitiveElement? get publisherElement;
-  @override
 
   /// [contact] Contact details to assist a user in finding and communicating
   ///  with the publisher.
-  List<ContactDetail>? get contact;
   @override
+  List<ContactDetail>? get contact;
 
   /// [description] A free text natural language description of the test script
   ///  from a consumer's perspective.
-  FhirMarkdown? get description;
   @override
+  FhirMarkdown? get description;
 
   /// [descriptionElement] Extensions for description
+  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
-  @override
 
   /// [useContext] The content was developed with a focus and intent of
   /// supporting the contexts that are listed. These contexts may be general
   /// categories (gender, age, ...) or may be references to specific programs
   /// (insurance plans, studies, ...) and may be used to assist with indexing
   ///  and searching for appropriate test script instances.
-  List<UsageContext>? get useContext;
   @override
+  List<UsageContext>? get useContext;
 
   /// [jurisdiction] A legal or geographic region in which the test script is
   ///  intended to be used.
-  List<CodeableConcept>? get jurisdiction;
   @override
+  List<CodeableConcept>? get jurisdiction;
 
   /// [purpose] Explanation of why this test script is needed and why it has
   ///  been designed as it has.
-  FhirMarkdown? get purpose;
   @override
+  FhirMarkdown? get purpose;
 
   /// [purposeElement] Extensions for purpose
+  @override
   @JsonKey(name: '_purpose')
   PrimitiveElement? get purposeElement;
-  @override
 
   /// [copyright] A copyright statement relating to the test script and/or its
   /// contents. Copyright statements are generally legal restrictions on the use
   ///  and publishing of the test script.
-  FhirMarkdown? get copyright;
   @override
+  FhirMarkdown? get copyright;
 
   /// [copyrightElement] Extensions for copyright
+  @override
   @JsonKey(name: '_copyright')
   PrimitiveElement? get copyrightElement;
-  @override
 
   /// [origin] An abstract server used in operations within this test script in
   ///  the origin element.
-  List<TestScriptOrigin>? get origin;
   @override
+  List<TestScriptOrigin>? get origin;
 
   /// [destination] An abstract server used in operations within this test
   ///  script in the destination element.
-  List<TestScriptDestination>? get destination;
   @override
+  List<TestScriptDestination>? get destination;
 
   /// [metadata] The required capability must exist and are assumed to function
   ///  correctly on the FHIR server being tested.
-  TestScriptMetadata? get metadata;
   @override
+  TestScriptMetadata? get metadata;
 
   /// [fixture] Fixture in the test script - by reference (uri). All fixtures
   ///  are required for the test script to execute.
-  List<TestScriptFixture>? get fixture;
   @override
+  List<TestScriptFixture>? get fixture;
 
   /// [profile] Reference to the profile to be used for validation.
-  List<Reference>? get profile;
   @override
+  List<Reference>? get profile;
 
   /// [variable] Variable is set based either on element value in response body
   ///  or on header field value in the response headers.
-  List<TestScriptVariable>? get variable;
   @override
+  List<TestScriptVariable>? get variable;
 
   /// [setup] A series of required setup operations before tests are executed.
-  TestScriptSetup? get setup;
   @override
+  TestScriptSetup? get setup;
 
   /// [test] A test in this script.
-  List<TestScriptTest>? get test;
   @override
+  List<TestScriptTest>? get test;
 
   /// [teardown] A series of operations required to clean up after all the
   ///  tests are executed (successfully or otherwise).
-  TestScriptTeardown? get teardown;
   @override
-  @JsonKey(ignore: true)
+  TestScriptTeardown? get teardown;
+
+  /// Create a copy of TestScript
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TestScriptImplCopyWith<_$TestScriptImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1953,8 +1983,12 @@ mixin _$TestScriptOrigin {
   /// [profile] The type of origin profile the test system supports.
   Coding get profile => throw _privateConstructorUsedError;
 
+  /// Serializes this TestScriptOrigin to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TestScriptOrigin
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TestScriptOriginCopyWith<TestScriptOrigin> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1986,6 +2020,8 @@ class _$TestScriptOriginCopyWithImpl<$Res, $Val extends TestScriptOrigin>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TestScriptOrigin
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2024,6 +2060,8 @@ class _$TestScriptOriginCopyWithImpl<$Res, $Val extends TestScriptOrigin>
     ) as $Val);
   }
 
+  /// Create a copy of TestScriptOrigin
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodingCopyWith<$Res> get profile {
@@ -2061,6 +2099,8 @@ class __$$TestScriptOriginImplCopyWithImpl<$Res>
       $Res Function(_$TestScriptOriginImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TestScriptOrigin
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2199,6 +2239,11 @@ class _$TestScriptOriginImpl extends _TestScriptOrigin {
   final Coding profile;
 
   @override
+  String toString() {
+    return 'TestScriptOrigin(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, index: $index, indexElement: $indexElement, profile: $profile)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2214,7 +2259,7 @@ class _$TestScriptOriginImpl extends _TestScriptOrigin {
             (identical(other.profile, profile) || other.profile == profile));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2225,7 +2270,9 @@ class _$TestScriptOriginImpl extends _TestScriptOrigin {
       indexElement,
       profile);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TestScriptOrigin
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TestScriptOriginImplCopyWith<_$TestScriptOriginImpl> get copyWith =>
@@ -2253,12 +2300,10 @@ abstract class _TestScriptOrigin extends TestScriptOrigin {
   factory _TestScriptOrigin.fromJson(Map<String, dynamic> json) =
       _$TestScriptOriginImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2266,9 +2311,9 @@ abstract class _TestScriptOrigin extends TestScriptOrigin {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2283,23 +2328,27 @@ abstract class _TestScriptOrigin extends TestScriptOrigin {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [index] Abstract name given to an origin server in this test script.  The
   ///  name is provided as a number starting at 1.
-  FhirInteger? get index;
   @override
+  FhirInteger? get index;
 
   /// [indexElement] Extensions for index
+  @override
   @JsonKey(name: '_index')
   PrimitiveElement? get indexElement;
-  @override
 
   /// [profile] The type of origin profile the test system supports.
-  Coding get profile;
   @override
-  @JsonKey(ignore: true)
+  Coding get profile;
+
+  /// Create a copy of TestScriptOrigin
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TestScriptOriginImplCopyWith<_$TestScriptOriginImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2351,8 +2400,12 @@ mixin _$TestScriptDestination {
   /// [profile] The type of destination profile the test system supports.
   Coding get profile => throw _privateConstructorUsedError;
 
+  /// Serializes this TestScriptDestination to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TestScriptDestination
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TestScriptDestinationCopyWith<TestScriptDestination> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2385,6 +2438,8 @@ class _$TestScriptDestinationCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TestScriptDestination
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2423,6 +2478,8 @@ class _$TestScriptDestinationCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of TestScriptDestination
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodingCopyWith<$Res> get profile {
@@ -2462,6 +2519,8 @@ class __$$TestScriptDestinationImplCopyWithImpl<$Res>
       $Res Function(_$TestScriptDestinationImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TestScriptDestination
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2600,6 +2659,11 @@ class _$TestScriptDestinationImpl extends _TestScriptDestination {
   final Coding profile;
 
   @override
+  String toString() {
+    return 'TestScriptDestination(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, index: $index, indexElement: $indexElement, profile: $profile)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2615,7 +2679,7 @@ class _$TestScriptDestinationImpl extends _TestScriptDestination {
             (identical(other.profile, profile) || other.profile == profile));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2626,7 +2690,9 @@ class _$TestScriptDestinationImpl extends _TestScriptDestination {
       indexElement,
       profile);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TestScriptDestination
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TestScriptDestinationImplCopyWith<_$TestScriptDestinationImpl>
@@ -2654,12 +2720,10 @@ abstract class _TestScriptDestination extends TestScriptDestination {
   factory _TestScriptDestination.fromJson(Map<String, dynamic> json) =
       _$TestScriptDestinationImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2667,9 +2731,9 @@ abstract class _TestScriptDestination extends TestScriptDestination {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2684,23 +2748,27 @@ abstract class _TestScriptDestination extends TestScriptDestination {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [index] Abstract name given to a destination server in this test script.
   ///  The name is provided as a number starting at 1.
-  FhirInteger? get index;
   @override
+  FhirInteger? get index;
 
   /// [indexElement] Extensions for index
+  @override
   @JsonKey(name: '_index')
   PrimitiveElement? get indexElement;
-  @override
 
   /// [profile] The type of destination profile the test system supports.
-  Coding get profile;
   @override
-  @JsonKey(ignore: true)
+  Coding get profile;
+
+  /// Create a copy of TestScriptDestination
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TestScriptDestinationImplCopyWith<_$TestScriptDestinationImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2748,8 +2816,12 @@ mixin _$TestScriptMetadata {
   List<TestScriptCapability> get capability =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this TestScriptMetadata to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TestScriptMetadata
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TestScriptMetadataCopyWith<TestScriptMetadata> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2778,6 +2850,8 @@ class _$TestScriptMetadataCopyWithImpl<$Res, $Val extends TestScriptMetadata>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TestScriptMetadata
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2836,6 +2910,8 @@ class __$$TestScriptMetadataImplCopyWithImpl<$Res>
       $Res Function(_$TestScriptMetadataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TestScriptMetadata
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2982,6 +3058,11 @@ class _$TestScriptMetadataImpl extends _TestScriptMetadata {
   }
 
   @override
+  String toString() {
+    return 'TestScriptMetadata(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, link: $link, capability: $capability)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2996,7 +3077,7 @@ class _$TestScriptMetadataImpl extends _TestScriptMetadata {
                 .equals(other._capability, _capability));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3006,7 +3087,9 @@ class _$TestScriptMetadataImpl extends _TestScriptMetadata {
       const DeepCollectionEquality().hash(_link),
       const DeepCollectionEquality().hash(_capability));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TestScriptMetadata
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TestScriptMetadataImplCopyWith<_$TestScriptMetadataImpl> get copyWith =>
@@ -3034,12 +3117,10 @@ abstract class _TestScriptMetadata extends TestScriptMetadata {
   factory _TestScriptMetadata.fromJson(Map<String, dynamic> json) =
       _$TestScriptMetadataImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3047,9 +3128,9 @@ abstract class _TestScriptMetadata extends TestScriptMetadata {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3064,18 +3145,22 @@ abstract class _TestScriptMetadata extends TestScriptMetadata {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [link] A link to the FHIR specification that this test is covering.
-  List<TestScriptLink>? get link;
   @override
+  List<TestScriptLink>? get link;
 
   /// [capability] Capabilities that must exist and are assumed to function
   ///  correctly on the FHIR server being tested.
-  List<TestScriptCapability> get capability;
   @override
-  @JsonKey(ignore: true)
+  List<TestScriptCapability> get capability;
+
+  /// Create a copy of TestScriptMetadata
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TestScriptMetadataImplCopyWith<_$TestScriptMetadataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3131,8 +3216,12 @@ mixin _$TestScriptLink {
   PrimitiveElement? get descriptionElement =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this TestScriptLink to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TestScriptLink
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TestScriptLinkCopyWith<TestScriptLink> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3163,6 +3252,8 @@ class _$TestScriptLinkCopyWithImpl<$Res, $Val extends TestScriptLink>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TestScriptLink
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3233,6 +3324,8 @@ class __$$TestScriptLinkImplCopyWithImpl<$Res>
       _$TestScriptLinkImpl _value, $Res Function(_$TestScriptLinkImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TestScriptLink
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3382,6 +3475,11 @@ class _$TestScriptLinkImpl extends _TestScriptLink {
   final PrimitiveElement? descriptionElement;
 
   @override
+  String toString() {
+    return 'TestScriptLink(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, url: $url, urlElement: $urlElement, description: $description, descriptionElement: $descriptionElement)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -3400,7 +3498,7 @@ class _$TestScriptLinkImpl extends _TestScriptLink {
                 other.descriptionElement == descriptionElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3412,7 +3510,9 @@ class _$TestScriptLinkImpl extends _TestScriptLink {
       description,
       descriptionElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TestScriptLink
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TestScriptLinkImplCopyWith<_$TestScriptLinkImpl> get copyWith =>
@@ -3442,12 +3542,10 @@ abstract class _TestScriptLink extends TestScriptLink {
   factory _TestScriptLink.fromJson(Map<String, dynamic> json) =
       _$TestScriptLinkImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3455,9 +3553,9 @@ abstract class _TestScriptLink extends TestScriptLink {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3472,28 +3570,32 @@ abstract class _TestScriptLink extends TestScriptLink {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [url] URL to a particular requirement or feature within the FHIR
   ///  specification.
-  FhirUri? get url;
   @override
+  FhirUri? get url;
 
   /// [urlElement] Extensions for url
+  @override
   @JsonKey(name: '_url')
   PrimitiveElement? get urlElement;
-  @override
 
   /// [description] Short description of the link.
-  String? get description;
   @override
+  String? get description;
 
   /// [descriptionElement] Extensions for description
+  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
+
+  /// Create a copy of TestScriptLink
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TestScriptLinkImplCopyWith<_$TestScriptLinkImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3589,8 +3691,12 @@ mixin _$TestScriptCapability {
   ///  skipped.
   FhirCanonical get capabilities => throw _privateConstructorUsedError;
 
+  /// Serializes this TestScriptCapability to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TestScriptCapability
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TestScriptCapabilityCopyWith<TestScriptCapability> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3631,6 +3737,8 @@ class _$TestScriptCapabilityCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TestScriptCapability
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3755,6 +3863,8 @@ class __$$TestScriptCapabilityImplCopyWithImpl<$Res>
       $Res Function(_$TestScriptCapabilityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TestScriptCapability
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4046,6 +4156,11 @@ class _$TestScriptCapabilityImpl extends _TestScriptCapability {
   final FhirCanonical capabilities;
 
   @override
+  String toString() {
+    return 'TestScriptCapability(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, required_: $required_, requiredElement: $requiredElement, validated: $validated, validatedElement: $validatedElement, description: $description, descriptionElement: $descriptionElement, origin: $origin, originElement: $originElement, destination: $destination, destinationElement: $destinationElement, link: $link, linkElement: $linkElement, capabilities: $capabilities)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -4081,7 +4196,7 @@ class _$TestScriptCapabilityImpl extends _TestScriptCapability {
                 other.capabilities == capabilities));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -4102,7 +4217,9 @@ class _$TestScriptCapabilityImpl extends _TestScriptCapability {
       const DeepCollectionEquality().hash(_linkElement),
       capabilities);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TestScriptCapability
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TestScriptCapabilityImplCopyWith<_$TestScriptCapabilityImpl>
@@ -4141,12 +4258,10 @@ abstract class _TestScriptCapability extends TestScriptCapability {
   factory _TestScriptCapability.fromJson(Map<String, dynamic> json) =
       _$TestScriptCapabilityImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -4154,9 +4269,9 @@ abstract class _TestScriptCapability extends TestScriptCapability {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -4171,75 +4286,79 @@ abstract class _TestScriptCapability extends TestScriptCapability {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [required] Whether or not the test execution will require the given
   ///  capabilities of the server in order for this test script to execute.
+  @override
   @JsonKey(name: 'required')
   FhirBoolean? get required_;
-  @override
 
   /// [requiredElement] Extensions for required
+  @override
   @JsonKey(name: '_required')
   PrimitiveElement? get requiredElement;
-  @override
 
   /// [validated] Whether or not the test execution will validate the given
   ///  capabilities of the server in order for this test script to execute.
-  FhirBoolean? get validated;
   @override
+  FhirBoolean? get validated;
 
   /// [validatedElement] Extensions for validated
+  @override
   @JsonKey(name: '_validated')
   PrimitiveElement? get validatedElement;
-  @override
 
   /// [description] Description of the capabilities that this test script is
   ///  requiring the server to support.
-  String? get description;
   @override
+  String? get description;
 
   /// [descriptionElement] Extensions for description
+  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
-  @override
 
   /// [origin] Which origin server these requirements apply to.
-  List<FhirInteger>? get origin;
   @override
+  List<FhirInteger>? get origin;
 
   /// [originElement] Extensions for origin
+  @override
   @JsonKey(name: '_origin')
   List<PrimitiveElement>? get originElement;
-  @override
 
   /// [destination] Which server these requirements apply to.
-  FhirInteger? get destination;
   @override
+  FhirInteger? get destination;
 
   /// [destinationElement] Extensions for destination
+  @override
   @JsonKey(name: '_destination')
   PrimitiveElement? get destinationElement;
-  @override
 
   /// [link] Links to the FHIR specification that describes this interaction
   ///  and the resources involved in more detail.
-  List<FhirUri>? get link;
   @override
+  List<FhirUri>? get link;
 
   /// [linkElement] Extensions for link
+  @override
   @JsonKey(name: '_link')
   List<PrimitiveElement>? get linkElement;
-  @override
 
   /// [capabilities] Minimum capabilities required of server for test script to
   /// execute successfully.   If server does not meet at a minimum the
   /// referenced capability statement, then all tests in this script are
   ///  skipped.
-  FhirCanonical get capabilities;
   @override
-  @JsonKey(ignore: true)
+  FhirCanonical get capabilities;
+
+  /// Create a copy of TestScriptCapability
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TestScriptCapabilityImplCopyWith<_$TestScriptCapabilityImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -4303,8 +4422,12 @@ mixin _$TestScriptFixture {
   ///  resource needed for operations).
   Reference? get resource => throw _privateConstructorUsedError;
 
+  /// Serializes this TestScriptFixture to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TestScriptFixture
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TestScriptFixtureCopyWith<TestScriptFixture> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4338,6 +4461,8 @@ class _$TestScriptFixtureCopyWithImpl<$Res, $Val extends TestScriptFixture>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TestScriptFixture
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4386,6 +4511,8 @@ class _$TestScriptFixtureCopyWithImpl<$Res, $Val extends TestScriptFixture>
     ) as $Val);
   }
 
+  /// Create a copy of TestScriptFixture
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get resource {
@@ -4429,6 +4556,8 @@ class __$$TestScriptFixtureImplCopyWithImpl<$Res>
       $Res Function(_$TestScriptFixtureImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TestScriptFixture
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4594,6 +4723,11 @@ class _$TestScriptFixtureImpl extends _TestScriptFixture {
   final Reference? resource;
 
   @override
+  String toString() {
+    return 'TestScriptFixture(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, autocreate: $autocreate, autocreateElement: $autocreateElement, autodelete: $autodelete, autodeleteElement: $autodeleteElement, resource: $resource)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -4615,7 +4749,7 @@ class _$TestScriptFixtureImpl extends _TestScriptFixture {
                 other.resource == resource));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -4628,7 +4762,9 @@ class _$TestScriptFixtureImpl extends _TestScriptFixture {
       autodeleteElement,
       resource);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TestScriptFixture
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TestScriptFixtureImplCopyWith<_$TestScriptFixtureImpl> get copyWith =>
@@ -4658,12 +4794,10 @@ abstract class _TestScriptFixture extends TestScriptFixture {
   factory _TestScriptFixture.fromJson(Map<String, dynamic> json) =
       _$TestScriptFixtureImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -4671,9 +4805,9 @@ abstract class _TestScriptFixture extends TestScriptFixture {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -4688,38 +4822,42 @@ abstract class _TestScriptFixture extends TestScriptFixture {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [autocreate] Whether or not to implicitly create the fixture during
   /// setup. If true, the fixture is automatically created on each server being
   /// tested during setup, therefore no create operation is required for this
   ///  fixture in the TestScript.setup section.
-  FhirBoolean? get autocreate;
   @override
+  FhirBoolean? get autocreate;
 
   /// [autocreateElement] Extensions for autocreate
+  @override
   @JsonKey(name: '_autocreate')
   PrimitiveElement? get autocreateElement;
-  @override
 
   /// [autodelete] Whether or not to implicitly delete the fixture during
   /// teardown. If true, the fixture is automatically deleted on each server
   /// being tested during teardown, therefore no delete operation is required
   ///  for this fixture in the TestScript.teardown section.
-  FhirBoolean? get autodelete;
   @override
+  FhirBoolean? get autodelete;
 
   /// [autodeleteElement] Extensions for autodelete
+  @override
   @JsonKey(name: '_autodelete')
   PrimitiveElement? get autodeleteElement;
-  @override
 
   /// [resource] Reference to the resource (containing the contents of the
   ///  resource needed for operations).
-  Reference? get resource;
   @override
-  @JsonKey(ignore: true)
+  Reference? get resource;
+
+  /// Create a copy of TestScriptFixture
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TestScriptFixtureImplCopyWith<_$TestScriptFixtureImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4827,8 +4965,12 @@ mixin _$TestScriptVariable {
   @JsonKey(name: '_sourceId')
   PrimitiveElement? get sourceIdElement => throw _privateConstructorUsedError;
 
+  /// Serializes this TestScriptVariable to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TestScriptVariable
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TestScriptVariableCopyWith<TestScriptVariable> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4871,6 +5013,8 @@ class _$TestScriptVariableCopyWithImpl<$Res, $Val extends TestScriptVariable>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TestScriptVariable
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5013,6 +5157,8 @@ class __$$TestScriptVariableImplCopyWithImpl<$Res>
       $Res Function(_$TestScriptVariableImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TestScriptVariable
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5296,6 +5442,11 @@ class _$TestScriptVariableImpl extends _TestScriptVariable {
   final PrimitiveElement? sourceIdElement;
 
   @override
+  String toString() {
+    return 'TestScriptVariable(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, defaultValue: $defaultValue, defaultValueElement: $defaultValueElement, description: $description, descriptionElement: $descriptionElement, expression: $expression, expressionElement: $expressionElement, headerField: $headerField, headerFieldElement: $headerFieldElement, hint: $hint, hintElement: $hintElement, path: $path, pathElement: $pathElement, sourceId: $sourceId, sourceIdElement: $sourceIdElement)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -5336,7 +5487,7 @@ class _$TestScriptVariableImpl extends _TestScriptVariable {
                 other.sourceIdElement == sourceIdElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -5361,7 +5512,9 @@ class _$TestScriptVariableImpl extends _TestScriptVariable {
         sourceIdElement
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TestScriptVariable
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TestScriptVariableImplCopyWith<_$TestScriptVariableImpl> get copyWith =>
@@ -5404,12 +5557,10 @@ abstract class _TestScriptVariable extends TestScriptVariable {
   factory _TestScriptVariable.fromJson(Map<String, dynamic> json) =
       _$TestScriptVariableImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -5417,9 +5568,9 @@ abstract class _TestScriptVariable extends TestScriptVariable {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -5434,90 +5585,94 @@ abstract class _TestScriptVariable extends TestScriptVariable {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [name] Descriptive name for this variable.
-  String? get name;
   @override
+  String? get name;
 
   /// [nameElement] Extensions for name
+  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
-  @override
 
   /// [defaultValue] A default, hard-coded, or user-defined value for this
   ///  variable.
-  String? get defaultValue;
   @override
+  String? get defaultValue;
 
   /// [defaultValueElement] Extensions for defaultValue
+  @override
   @JsonKey(name: '_defaultValue')
   PrimitiveElement? get defaultValueElement;
-  @override
 
   /// [description] A free text natural language description of the variable
   ///  and its purpose.
-  String? get description;
   @override
+  String? get description;
 
   /// [descriptionElement] Extensions for description
+  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
-  @override
 
   /// [expression] The FHIRPath expression to evaluate against the fixture
   /// body. When variables are defined, only one of either expression,
   ///  headerField or path must be specified.
-  String? get expression;
   @override
+  String? get expression;
 
   /// [expressionElement] Extensions for expression
+  @override
   @JsonKey(name: '_expression')
   PrimitiveElement? get expressionElement;
-  @override
 
   /// [headerField] Will be used to grab the HTTP header field value from the
   ///  headers that sourceId is pointing to.
-  String? get headerField;
   @override
+  String? get headerField;
 
   /// [headerFieldElement] Extensions for headerField
+  @override
   @JsonKey(name: '_headerField')
   PrimitiveElement? get headerFieldElement;
-  @override
 
   /// [hint] Displayable text string with hint help information to the user
   ///  when entering a default value.
-  String? get hint;
   @override
+  String? get hint;
 
   /// [hintElement] Extensions for hint
+  @override
   @JsonKey(name: '_hint')
   PrimitiveElement? get hintElement;
-  @override
 
   /// [path] XPath or JSONPath to evaluate against the fixture body.  When
   /// variables are defined, only one of either expression, headerField or path
   ///  must be specified.
-  String? get path;
   @override
+  String? get path;
 
   /// [pathElement] Extensions for path
+  @override
   @JsonKey(name: '_path')
   PrimitiveElement? get pathElement;
-  @override
 
   /// [sourceId] Fixture to evaluate the XPath/JSONPath expression or the
   ///  headerField  against within this variable.
-  FhirId? get sourceId;
   @override
+  FhirId? get sourceId;
 
   /// [sourceIdElement] Extensions for sourceId
+  @override
   @JsonKey(name: '_sourceId')
   PrimitiveElement? get sourceIdElement;
+
+  /// Create a copy of TestScriptVariable
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TestScriptVariableImplCopyWith<_$TestScriptVariableImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -5560,8 +5715,12 @@ mixin _$TestScriptSetup {
   /// [action] Action would contain either an operation or an assertion.
   List<TestScriptAction> get action => throw _privateConstructorUsedError;
 
+  /// Serializes this TestScriptSetup to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TestScriptSetup
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TestScriptSetupCopyWith<TestScriptSetup> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -5589,6 +5748,8 @@ class _$TestScriptSetupCopyWithImpl<$Res, $Val extends TestScriptSetup>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TestScriptSetup
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5641,6 +5802,8 @@ class __$$TestScriptSetupImplCopyWithImpl<$Res>
       _$TestScriptSetupImpl _value, $Res Function(_$TestScriptSetupImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TestScriptSetup
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5765,6 +5928,11 @@ class _$TestScriptSetupImpl extends _TestScriptSetup {
   }
 
   @override
+  String toString() {
+    return 'TestScriptSetup(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, action: $action)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -5777,7 +5945,7 @@ class _$TestScriptSetupImpl extends _TestScriptSetup {
             const DeepCollectionEquality().equals(other._action, _action));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -5786,7 +5954,9 @@ class _$TestScriptSetupImpl extends _TestScriptSetup {
       const DeepCollectionEquality().hash(_modifierExtension),
       const DeepCollectionEquality().hash(_action));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TestScriptSetup
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TestScriptSetupImplCopyWith<_$TestScriptSetupImpl> get copyWith =>
@@ -5812,12 +5982,10 @@ abstract class _TestScriptSetup extends TestScriptSetup {
   factory _TestScriptSetup.fromJson(Map<String, dynamic> json) =
       _$TestScriptSetupImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -5825,9 +5993,9 @@ abstract class _TestScriptSetup extends TestScriptSetup {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -5842,13 +6010,17 @@ abstract class _TestScriptSetup extends TestScriptSetup {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [action] Action would contain either an operation or an assertion.
-  List<TestScriptAction> get action;
   @override
-  @JsonKey(ignore: true)
+  List<TestScriptAction> get action;
+
+  /// Create a copy of TestScriptSetup
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TestScriptSetupImplCopyWith<_$TestScriptSetupImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -5896,8 +6068,12 @@ mixin _$TestScriptAction {
   @JsonKey(name: 'assert')
   TestScriptAssert? get assert_ => throw _privateConstructorUsedError;
 
+  /// Serializes this TestScriptAction to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TestScriptAction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TestScriptActionCopyWith<TestScriptAction> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -5929,6 +6105,8 @@ class _$TestScriptActionCopyWithImpl<$Res, $Val extends TestScriptAction>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TestScriptAction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5962,6 +6140,8 @@ class _$TestScriptActionCopyWithImpl<$Res, $Val extends TestScriptAction>
     ) as $Val);
   }
 
+  /// Create a copy of TestScriptAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TestScriptOperationCopyWith<$Res>? get operation {
@@ -5974,6 +6154,8 @@ class _$TestScriptActionCopyWithImpl<$Res, $Val extends TestScriptAction>
     });
   }
 
+  /// Create a copy of TestScriptAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TestScriptAssertCopyWith<$Res>? get assert_ {
@@ -6016,6 +6198,8 @@ class __$$TestScriptActionImplCopyWithImpl<$Res>
       $Res Function(_$TestScriptActionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TestScriptAction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -6144,6 +6328,11 @@ class _$TestScriptActionImpl extends _TestScriptAction {
   final TestScriptAssert? assert_;
 
   @override
+  String toString() {
+    return 'TestScriptAction(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, operation: $operation, assert_: $assert_)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -6158,7 +6347,7 @@ class _$TestScriptActionImpl extends _TestScriptAction {
             (identical(other.assert_, assert_) || other.assert_ == assert_));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -6168,7 +6357,9 @@ class _$TestScriptActionImpl extends _TestScriptAction {
       operation,
       assert_);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TestScriptAction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TestScriptActionImplCopyWith<_$TestScriptActionImpl> get copyWith =>
@@ -6196,12 +6387,10 @@ abstract class _TestScriptAction extends TestScriptAction {
   factory _TestScriptAction.fromJson(Map<String, dynamic> json) =
       _$TestScriptActionImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -6209,9 +6398,9 @@ abstract class _TestScriptAction extends TestScriptAction {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -6226,19 +6415,23 @@ abstract class _TestScriptAction extends TestScriptAction {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [operation] The operation to perform.
-  TestScriptOperation? get operation;
   @override
+  TestScriptOperation? get operation;
 
   /// [assert] Evaluates the results of previous operations to determine if the
   ///  server under test behaves appropriately.
+  @override
   @JsonKey(name: 'assert')
   TestScriptAssert? get assert_;
+
+  /// Create a copy of TestScriptAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TestScriptActionImplCopyWith<_$TestScriptActionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -6408,8 +6601,12 @@ mixin _$TestScriptOperation {
   @JsonKey(name: '_url')
   PrimitiveElement? get urlElement => throw _privateConstructorUsedError;
 
+  /// Serializes this TestScriptOperation to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TestScriptOperation
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TestScriptOperationCopyWith<TestScriptOperation> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -6471,6 +6668,8 @@ class _$TestScriptOperationCopyWithImpl<$Res, $Val extends TestScriptOperation>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TestScriptOperation
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -6654,6 +6853,8 @@ class _$TestScriptOperationCopyWithImpl<$Res, $Val extends TestScriptOperation>
     ) as $Val);
   }
 
+  /// Create a copy of TestScriptOperation
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodingCopyWith<$Res>? get type {
@@ -6725,6 +6926,8 @@ class __$$TestScriptOperationImplCopyWithImpl<$Res>
       $Res Function(_$TestScriptOperationImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TestScriptOperation
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -7190,6 +7393,11 @@ class _$TestScriptOperationImpl extends _TestScriptOperation {
   final PrimitiveElement? urlElement;
 
   @override
+  String toString() {
+    return 'TestScriptOperation(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, resource: $resource, resourceElement: $resourceElement, label: $label, labelElement: $labelElement, description: $description, descriptionElement: $descriptionElement, accept: $accept, acceptElement: $acceptElement, contentType: $contentType, contentTypeElement: $contentTypeElement, destination: $destination, destinationElement: $destinationElement, encodeRequestUrl: $encodeRequestUrl, encodeRequestUrlElement: $encodeRequestUrlElement, method: $method, methodElement: $methodElement, origin: $origin, originElement: $originElement, params: $params, paramsElement: $paramsElement, requestHeader: $requestHeader, requestId: $requestId, requestIdElement: $requestIdElement, responseId: $responseId, responseIdElement: $responseIdElement, sourceId: $sourceId, sourceIdElement: $sourceIdElement, targetId: $targetId, targetIdElement: $targetIdElement, url: $url, urlElement: $urlElement)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -7259,7 +7467,7 @@ class _$TestScriptOperationImpl extends _TestScriptOperation {
                 other.urlElement == urlElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -7300,7 +7508,9 @@ class _$TestScriptOperationImpl extends _TestScriptOperation {
         urlElement
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TestScriptOperation
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TestScriptOperationImplCopyWith<_$TestScriptOperationImpl> get copyWith =>
@@ -7359,12 +7569,10 @@ abstract class _TestScriptOperation extends TestScriptOperation {
   factory _TestScriptOperation.fromJson(Map<String, dynamic> json) =
       _$TestScriptOperationImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -7372,9 +7580,9 @@ abstract class _TestScriptOperation extends TestScriptOperation {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -7389,166 +7597,170 @@ abstract class _TestScriptOperation extends TestScriptOperation {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [type] Server interaction or operation type.
-  Coding? get type;
   @override
+  Coding? get type;
 
   /// [resource] The type of the resource.  See
   ///  http://build.fhir.org/resourcelist.html.
-  FhirCode? get resource;
   @override
+  FhirCode? get resource;
 
   /// [resourceElement] Extensions for resource
+  @override
   @JsonKey(name: '_resource')
   PrimitiveElement? get resourceElement;
-  @override
 
   /// [label] The label would be used for tracking/logging purposes by test
   ///  engines.
-  String? get label;
   @override
+  String? get label;
 
   /// [labelElement] Extensions for label
+  @override
   @JsonKey(name: '_label')
   PrimitiveElement? get labelElement;
-  @override
 
   /// [description] The description would be used by test engines for tracking
   ///  and reporting purposes.
-  String? get description;
   @override
+  String? get description;
 
   /// [descriptionElement] Extensions for description
+  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
-  @override
 
   /// [accept] The mime-type to use for RESTful operation in the 'Accept'
   ///  header.
-  FhirCode? get accept;
   @override
+  FhirCode? get accept;
 
   /// [acceptElement] Extensions for accept
+  @override
   @JsonKey(name: '_accept')
   PrimitiveElement? get acceptElement;
-  @override
 
   /// [contentType] The mime-type to use for RESTful operation in the
   ///  'Content-Type' header.
-  FhirCode? get contentType;
   @override
+  FhirCode? get contentType;
 
   /// [contentTypeElement] Extensions for contentType
+  @override
   @JsonKey(name: '_contentType')
   PrimitiveElement? get contentTypeElement;
-  @override
 
   /// [destination] The server where the request message is destined for.  Must
   ///  be one of the server numbers listed in TestScript.destination section.
-  FhirInteger? get destination;
   @override
+  FhirInteger? get destination;
 
   /// [destinationElement] Extensions for destination
+  @override
   @JsonKey(name: '_destination')
   PrimitiveElement? get destinationElement;
-  @override
 
   /// [encodeRequestUrl] Whether or not to implicitly send the request url in
   /// encoded format. The default is true to match the standard RESTful client
   /// behavior. Set to false when communicating with a server that does not
   ///  support encoded url paths.
-  FhirBoolean? get encodeRequestUrl;
   @override
+  FhirBoolean? get encodeRequestUrl;
 
   /// [encodeRequestUrlElement] Extensions for encodeRequestUrl
+  @override
   @JsonKey(name: '_encodeRequestUrl')
   PrimitiveElement? get encodeRequestUrlElement;
-  @override
 
   /// [method] The HTTP method the test engine MUST use for this operation
   ///  regardless of any other operation details.
-  FhirCode? get method;
   @override
+  FhirCode? get method;
 
   /// [methodElement] Extensions for method
+  @override
   @JsonKey(name: '_method')
   PrimitiveElement? get methodElement;
-  @override
 
   /// [origin] The server where the request message originates from.  Must be
   ///  one of the server numbers listed in TestScript.origin section.
-  FhirInteger? get origin;
   @override
+  FhirInteger? get origin;
 
   /// [originElement] Extensions for origin
+  @override
   @JsonKey(name: '_origin')
   PrimitiveElement? get originElement;
-  @override
 
   /// [params] Path plus parameters after [type].  Used to set parts of the
   ///  request URL explicitly.
-  String? get params;
   @override
+  String? get params;
 
   /// [paramsElement] Extensions for params
+  @override
   @JsonKey(name: '_params')
   PrimitiveElement? get paramsElement;
-  @override
 
   /// [requestHeader] Header elements would be used to set HTTP headers.
-  List<TestScriptRequestHeader>? get requestHeader;
   @override
+  List<TestScriptRequestHeader>? get requestHeader;
 
   /// [requestId] The fixture id (maybe new) to map to the request.
-  FhirId? get requestId;
   @override
+  FhirId? get requestId;
 
   /// [requestIdElement] Extensions for requestId
+  @override
   @JsonKey(name: '_requestId')
   PrimitiveElement? get requestIdElement;
-  @override
 
   /// [responseId] The fixture id (maybe new) to map to the response.
-  FhirId? get responseId;
   @override
+  FhirId? get responseId;
 
   /// [responseIdElement] Extensions for responseId
+  @override
   @JsonKey(name: '_responseId')
   PrimitiveElement? get responseIdElement;
-  @override
 
   /// [sourceId] The id of the fixture used as the body of a PUT or POST
   ///  request.
-  FhirId? get sourceId;
   @override
+  FhirId? get sourceId;
 
   /// [sourceIdElement] Extensions for sourceId
+  @override
   @JsonKey(name: '_sourceId')
   PrimitiveElement? get sourceIdElement;
-  @override
 
   /// [targetId] Id of fixture used for extracting the [id],  [type], and [vid]
   ///  for GET requests.
-  FhirId? get targetId;
   @override
+  FhirId? get targetId;
 
   /// [targetIdElement] Extensions for targetId
+  @override
   @JsonKey(name: '_targetId')
   PrimitiveElement? get targetIdElement;
-  @override
 
   /// [url] Complete request URL.
-  String? get url;
   @override
+  String? get url;
 
   /// [urlElement] Extensions for url
+  @override
   @JsonKey(name: '_url')
   PrimitiveElement? get urlElement;
+
+  /// Create a copy of TestScriptOperation
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TestScriptOperationImplCopyWith<_$TestScriptOperationImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -7603,8 +7815,12 @@ mixin _$TestScriptRequestHeader {
   @JsonKey(name: '_value')
   PrimitiveElement? get valueElement => throw _privateConstructorUsedError;
 
+  /// Serializes this TestScriptRequestHeader to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TestScriptRequestHeader
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TestScriptRequestHeaderCopyWith<TestScriptRequestHeader> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -7636,6 +7852,8 @@ class _$TestScriptRequestHeaderCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TestScriptRequestHeader
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -7709,6 +7927,8 @@ class __$$TestScriptRequestHeaderImplCopyWithImpl<$Res>
       $Res Function(_$TestScriptRequestHeaderImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TestScriptRequestHeader
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -7857,6 +8077,11 @@ class _$TestScriptRequestHeaderImpl extends _TestScriptRequestHeader {
   final PrimitiveElement? valueElement;
 
   @override
+  String toString() {
+    return 'TestScriptRequestHeader(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, field: $field, fieldElement: $fieldElement, value: $value, valueElement: $valueElement)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -7874,7 +8099,7 @@ class _$TestScriptRequestHeaderImpl extends _TestScriptRequestHeader {
                 other.valueElement == valueElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -7886,7 +8111,9 @@ class _$TestScriptRequestHeaderImpl extends _TestScriptRequestHeader {
       value,
       valueElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TestScriptRequestHeader
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TestScriptRequestHeaderImplCopyWith<_$TestScriptRequestHeaderImpl>
@@ -7916,12 +8143,10 @@ abstract class _TestScriptRequestHeader extends TestScriptRequestHeader {
   factory _TestScriptRequestHeader.fromJson(Map<String, dynamic> json) =
       _$TestScriptRequestHeaderImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -7929,9 +8154,9 @@ abstract class _TestScriptRequestHeader extends TestScriptRequestHeader {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -7946,27 +8171,31 @@ abstract class _TestScriptRequestHeader extends TestScriptRequestHeader {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [field] The HTTP header field e.g. "Accept".
-  String? get field;
   @override
+  String? get field;
 
   /// [fieldElement] Extensions for field
+  @override
   @JsonKey(name: '_field')
   PrimitiveElement? get fieldElement;
-  @override
 
   /// [value] The value of the header e.g. "application/fhir+xml".
-  String? get value;
   @override
+  String? get value;
 
   /// [valueElement] Extensions for value
+  @override
   @JsonKey(name: '_value')
   PrimitiveElement? get valueElement;
+
+  /// Create a copy of TestScriptRequestHeader
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TestScriptRequestHeaderImplCopyWith<_$TestScriptRequestHeaderImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -8193,8 +8422,12 @@ mixin _$TestScriptAssert {
   PrimitiveElement? get warningOnlyElement =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this TestScriptAssert to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TestScriptAssert
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TestScriptAssertCopyWith<TestScriptAssert> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -8270,6 +8503,8 @@ class _$TestScriptAssertCopyWithImpl<$Res, $Val extends TestScriptAssert>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TestScriptAssert
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -8586,6 +8821,8 @@ class __$$TestScriptAssertImplCopyWithImpl<$Res>
       $Res Function(_$TestScriptAssertImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TestScriptAssert
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -9178,6 +9415,11 @@ class _$TestScriptAssertImpl extends _TestScriptAssert {
   final PrimitiveElement? warningOnlyElement;
 
   @override
+  String toString() {
+    return 'TestScriptAssert(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, label: $label, labelElement: $labelElement, description: $description, descriptionElement: $descriptionElement, direction: $direction, directionElement: $directionElement, compareToSourceId: $compareToSourceId, compareToSourceIdElement: $compareToSourceIdElement, compareToSourceExpression: $compareToSourceExpression, compareToSourceExpressionElement: $compareToSourceExpressionElement, compareToSourcePath: $compareToSourcePath, compareToSourcePathElement: $compareToSourcePathElement, contentType: $contentType, contentTypeElement: $contentTypeElement, expression: $expression, expressionElement: $expressionElement, headerField: $headerField, headerFieldElement: $headerFieldElement, minimumId: $minimumId, minimumIdElement: $minimumIdElement, navigationLinks: $navigationLinks, navigationLinksElement: $navigationLinksElement, operator_: $operator_, operatorElement: $operatorElement, path: $path, pathElement: $pathElement, requestMethod: $requestMethod, requestMethodElement: $requestMethodElement, requestURL: $requestURL, requestURLElement: $requestURLElement, resource: $resource, resourceElement: $resourceElement, response: $response, responseElement: $responseElement, responseCode: $responseCode, responseCodeElement: $responseCodeElement, sourceId: $sourceId, sourceIdElement: $sourceIdElement, validateProfileId: $validateProfileId, validateProfileIdElement: $validateProfileIdElement, value: $value, valueElement: $valueElement, warningOnly: $warningOnly, warningOnlyElement: $warningOnlyElement)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -9257,7 +9499,7 @@ class _$TestScriptAssertImpl extends _TestScriptAssert {
             (identical(other.warningOnlyElement, warningOnlyElement) || other.warningOnlyElement == warningOnlyElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -9310,7 +9552,9 @@ class _$TestScriptAssertImpl extends _TestScriptAssert {
         warningOnlyElement
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TestScriptAssert
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TestScriptAssertImplCopyWith<_$TestScriptAssertImpl> get copyWith =>
@@ -9387,12 +9631,10 @@ abstract class _TestScriptAssert extends TestScriptAssert {
   factory _TestScriptAssert.fromJson(Map<String, dynamic> json) =
       _$TestScriptAssertImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -9400,9 +9642,9 @@ abstract class _TestScriptAssert extends TestScriptAssert {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -9417,229 +9659,233 @@ abstract class _TestScriptAssert extends TestScriptAssert {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [label] The label would be used for tracking/logging purposes by test
   ///  engines.
-  String? get label;
   @override
+  String? get label;
 
   /// [labelElement] Extensions for label
+  @override
   @JsonKey(name: '_label')
   PrimitiveElement? get labelElement;
-  @override
 
   /// [description] The description would be used by test engines for tracking
   ///  and reporting purposes.
-  String? get description;
   @override
+  String? get description;
 
   /// [descriptionElement] Extensions for description
+  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
-  @override
 
   /// [direction] The direction to use for the assertion.
-  FhirCode? get direction;
   @override
+  FhirCode? get direction;
 
   /// [directionElement] Extensions for direction
+  @override
   @JsonKey(name: '_direction')
   PrimitiveElement? get directionElement;
-  @override
 
   /// [compareToSourceId] Id of the source fixture used as the contents to be
   /// evaluated by either the "source/expression" or "sourceId/path"
   ///  definition.
-  String? get compareToSourceId;
   @override
+  String? get compareToSourceId;
 
   /// [compareToSourceIdElement] Extensions for compareToSourceId
+  @override
   @JsonKey(name: '_compareToSourceId')
   PrimitiveElement? get compareToSourceIdElement;
-  @override
 
   /// [compareToSourceExpression] The FHIRPath expression to evaluate against
   /// the source fixture. When compareToSourceId is defined, either
   /// compareToSourceExpression or compareToSourcePath must be defined, but not
   ///  both.
+  @override
   String? get compareToSourceExpression;
   @override
   @JsonKey(name: '_compareToSourceExpression')
   PrimitiveElement? get compareToSourceExpressionElement;
-  @override
 
   /// [compareToSourcePath] XPath or JSONPath expression to evaluate against
   /// the source fixture. When compareToSourceId is defined, either
   /// compareToSourceExpression or compareToSourcePath must be defined, but not
   ///  both.
-  String? get compareToSourcePath;
   @override
+  String? get compareToSourcePath;
 
   /// [compareToSourcePathElement] Extensions for compareToSourcePath
+  @override
   @JsonKey(name: '_compareToSourcePath')
   PrimitiveElement? get compareToSourcePathElement;
-  @override
 
   /// [contentType] The mime-type contents to compare against the request or
   ///  response message 'Content-Type' header.
-  FhirCode? get contentType;
   @override
+  FhirCode? get contentType;
 
   /// [contentTypeElement] Extensions for contentType
+  @override
   @JsonKey(name: '_contentType')
   PrimitiveElement? get contentTypeElement;
-  @override
 
   /// [expression] The FHIRPath expression to be evaluated against the request
   ///  or response message contents - HTTP headers and payload.
-  String? get expression;
   @override
+  String? get expression;
 
   /// [expressionElement] Extensions for expression
+  @override
   @JsonKey(name: '_expression')
   PrimitiveElement? get expressionElement;
-  @override
 
   /// [headerField] The HTTP header field name e.g. 'Location'.
-  String? get headerField;
   @override
+  String? get headerField;
 
   /// [headerFieldElement] Extensions for headerField
+  @override
   @JsonKey(name: '_headerField')
   PrimitiveElement? get headerFieldElement;
-  @override
 
   /// [minimumId] The ID of a fixture.  Asserts that the response contains at a
   ///  minimum the fixture specified by minimumId.
-  String? get minimumId;
   @override
+  String? get minimumId;
 
   /// [minimumIdElement] Extensions for minimumId
+  @override
   @JsonKey(name: '_minimumId')
   PrimitiveElement? get minimumIdElement;
-  @override
 
   /// [navigationLinks] Whether or not the test execution performs validation
   ///  on the bundle navigation links.
-  FhirBoolean? get navigationLinks;
   @override
+  FhirBoolean? get navigationLinks;
 
   /// [navigationLinksElement] Extensions for navigationLinks
+  @override
   @JsonKey(name: '_navigationLinks')
   PrimitiveElement? get navigationLinksElement;
-  @override
 
   /// [operator] The operator type defines the conditional behavior of the
   ///  assert. If not defined, the default is equals.
+  @override
   @JsonKey(name: 'operator')
   FhirCode? get operator_;
-  @override
 
   /// [operatorElement] Extensions for operator
+  @override
   @JsonKey(name: '_operator')
   PrimitiveElement? get operatorElement;
-  @override
 
   /// [path] The XPath or JSONPath expression to be evaluated against the
   ///  fixture representing the response received from server.
-  String? get path;
   @override
+  String? get path;
 
   /// [pathElement] Extensions for path
+  @override
   @JsonKey(name: '_path')
   PrimitiveElement? get pathElement;
-  @override
 
   /// [requestMethod] The request method or HTTP operation code to compare
   ///  against that used by the client system under test.
-  FhirCode? get requestMethod;
   @override
+  FhirCode? get requestMethod;
 
   /// [requestMethodElement] Extensions for requestMethod
+  @override
   @JsonKey(name: '_requestMethod')
   PrimitiveElement? get requestMethodElement;
-  @override
 
   /// [requestURL] The value to use in a comparison against the request URL
   ///  path string.
-  String? get requestURL;
   @override
+  String? get requestURL;
 
   /// [requestURLElement] Extensions for requestURL
+  @override
   @JsonKey(name: '_requestURL')
   PrimitiveElement? get requestURLElement;
-  @override
 
   /// [resource] The type of the resource.  See
   ///  http://build.fhir.org/resourcelist.html.
-  FhirCode? get resource;
   @override
+  FhirCode? get resource;
 
   /// [resourceElement] Extensions for resource
+  @override
   @JsonKey(name: '_resource')
   PrimitiveElement? get resourceElement;
-  @override
 
   /// [response] okay | created | noContent | notModified | bad | forbidden |
   /// notFound | methodNotAllowed | conflict | gone | preconditionFailed |
   ///  unprocessable.
-  FhirCode? get response;
   @override
+  FhirCode? get response;
 
   /// [responseElement] Extensions for response
+  @override
   @JsonKey(name: '_response')
   PrimitiveElement? get responseElement;
-  @override
 
   /// [responseCode] The value of the HTTP response code to be tested.
-  String? get responseCode;
   @override
+  String? get responseCode;
 
   /// [responseCodeElement] Extensions for responseCode
+  @override
   @JsonKey(name: '_responseCode')
   PrimitiveElement? get responseCodeElement;
-  @override
 
   /// [sourceId] Fixture to evaluate the XPath/JSONPath expression or the
   ///  headerField  against.
-  FhirId? get sourceId;
   @override
+  FhirId? get sourceId;
 
   /// [sourceIdElement] Extensions for sourceId
+  @override
   @JsonKey(name: '_sourceId')
   PrimitiveElement? get sourceIdElement;
-  @override
 
   /// [validateProfileId] The ID of the Profile to validate against.
-  FhirId? get validateProfileId;
   @override
+  FhirId? get validateProfileId;
 
   /// [validateProfileIdElement] Extensions for validateProfileId
+  @override
   @JsonKey(name: '_validateProfileId')
   PrimitiveElement? get validateProfileIdElement;
-  @override
 
   /// [value] The value to compare to.
-  String? get value;
   @override
+  String? get value;
 
   /// [valueElement] Extensions for value
+  @override
   @JsonKey(name: '_value')
   PrimitiveElement? get valueElement;
-  @override
 
   /// [warningOnly] Whether or not the test execution will produce a warning
   ///  only on error for this assert.
-  FhirBoolean? get warningOnly;
   @override
+  FhirBoolean? get warningOnly;
 
   /// [warningOnlyElement] Extensions for warningOnly
+  @override
   @JsonKey(name: '_warningOnly')
   PrimitiveElement? get warningOnlyElement;
+
+  /// Create a copy of TestScriptAssert
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TestScriptAssertImplCopyWith<_$TestScriptAssertImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -9699,8 +9945,12 @@ mixin _$TestScriptTest {
   /// [action] Action would contain either an operation or an assertion.
   List<TestScriptAction1> get action => throw _privateConstructorUsedError;
 
+  /// Serializes this TestScriptTest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TestScriptTest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TestScriptTestCopyWith<TestScriptTest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -9732,6 +9982,8 @@ class _$TestScriptTestCopyWithImpl<$Res, $Val extends TestScriptTest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TestScriptTest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -9808,6 +10060,8 @@ class __$$TestScriptTestImplCopyWithImpl<$Res>
       _$TestScriptTestImpl _value, $Res Function(_$TestScriptTestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TestScriptTest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -9976,6 +10230,11 @@ class _$TestScriptTestImpl extends _TestScriptTest {
   }
 
   @override
+  String toString() {
+    return 'TestScriptTest(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, name: $name, nameElement: $nameElement, description: $description, descriptionElement: $descriptionElement, action: $action)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -9995,7 +10254,7 @@ class _$TestScriptTestImpl extends _TestScriptTest {
             const DeepCollectionEquality().equals(other._action, _action));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -10008,7 +10267,9 @@ class _$TestScriptTestImpl extends _TestScriptTest {
       descriptionElement,
       const DeepCollectionEquality().hash(_action));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TestScriptTest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TestScriptTestImplCopyWith<_$TestScriptTestImpl> get copyWith =>
@@ -10038,12 +10299,10 @@ abstract class _TestScriptTest extends TestScriptTest {
   factory _TestScriptTest.fromJson(Map<String, dynamic> json) =
       _$TestScriptTestImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -10051,9 +10310,9 @@ abstract class _TestScriptTest extends TestScriptTest {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -10068,33 +10327,37 @@ abstract class _TestScriptTest extends TestScriptTest {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [name] The name of this test used for tracking/logging purposes by test
   ///  engines.
-  String? get name;
   @override
+  String? get name;
 
   /// [nameElement] Extensions for name
+  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
-  @override
 
   /// [description] A short description of the test used by test engines for
   ///  tracking and reporting purposes.
-  String? get description;
   @override
+  String? get description;
 
   /// [descriptionElement] Extensions for description
+  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
-  @override
 
   /// [action] Action would contain either an operation or an assertion.
-  List<TestScriptAction1> get action;
   @override
-  @JsonKey(ignore: true)
+  List<TestScriptAction1> get action;
+
+  /// Create a copy of TestScriptTest
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TestScriptTestImplCopyWith<_$TestScriptTestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -10142,8 +10405,12 @@ mixin _$TestScriptAction1 {
   @JsonKey(name: 'assert')
   TestScriptAssert? get assert_ => throw _privateConstructorUsedError;
 
+  /// Serializes this TestScriptAction1 to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TestScriptAction1
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TestScriptAction1CopyWith<TestScriptAction1> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -10175,6 +10442,8 @@ class _$TestScriptAction1CopyWithImpl<$Res, $Val extends TestScriptAction1>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TestScriptAction1
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -10208,6 +10477,8 @@ class _$TestScriptAction1CopyWithImpl<$Res, $Val extends TestScriptAction1>
     ) as $Val);
   }
 
+  /// Create a copy of TestScriptAction1
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TestScriptOperationCopyWith<$Res>? get operation {
@@ -10220,6 +10491,8 @@ class _$TestScriptAction1CopyWithImpl<$Res, $Val extends TestScriptAction1>
     });
   }
 
+  /// Create a copy of TestScriptAction1
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TestScriptAssertCopyWith<$Res>? get assert_ {
@@ -10262,6 +10535,8 @@ class __$$TestScriptAction1ImplCopyWithImpl<$Res>
       $Res Function(_$TestScriptAction1Impl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TestScriptAction1
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -10390,6 +10665,11 @@ class _$TestScriptAction1Impl extends _TestScriptAction1 {
   final TestScriptAssert? assert_;
 
   @override
+  String toString() {
+    return 'TestScriptAction1(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, operation: $operation, assert_: $assert_)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -10404,7 +10684,7 @@ class _$TestScriptAction1Impl extends _TestScriptAction1 {
             (identical(other.assert_, assert_) || other.assert_ == assert_));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -10414,7 +10694,9 @@ class _$TestScriptAction1Impl extends _TestScriptAction1 {
       operation,
       assert_);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TestScriptAction1
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TestScriptAction1ImplCopyWith<_$TestScriptAction1Impl> get copyWith =>
@@ -10442,12 +10724,10 @@ abstract class _TestScriptAction1 extends TestScriptAction1 {
   factory _TestScriptAction1.fromJson(Map<String, dynamic> json) =
       _$TestScriptAction1Impl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -10455,9 +10735,9 @@ abstract class _TestScriptAction1 extends TestScriptAction1 {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -10472,19 +10752,23 @@ abstract class _TestScriptAction1 extends TestScriptAction1 {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [operation] An operation would involve a REST request to a server.
-  TestScriptOperation? get operation;
   @override
+  TestScriptOperation? get operation;
 
   /// [assert] Evaluates the results of previous operations to determine if the
   ///  server under test behaves appropriately.
+  @override
   @JsonKey(name: 'assert')
   TestScriptAssert? get assert_;
+
+  /// Create a copy of TestScriptAction1
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TestScriptAction1ImplCopyWith<_$TestScriptAction1Impl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -10527,8 +10811,12 @@ mixin _$TestScriptTeardown {
   /// [action] The teardown action will only contain an operation.
   List<TestScriptAction2> get action => throw _privateConstructorUsedError;
 
+  /// Serializes this TestScriptTeardown to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TestScriptTeardown
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TestScriptTeardownCopyWith<TestScriptTeardown> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -10556,6 +10844,8 @@ class _$TestScriptTeardownCopyWithImpl<$Res, $Val extends TestScriptTeardown>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TestScriptTeardown
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -10608,6 +10898,8 @@ class __$$TestScriptTeardownImplCopyWithImpl<$Res>
       $Res Function(_$TestScriptTeardownImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TestScriptTeardown
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -10732,6 +11024,11 @@ class _$TestScriptTeardownImpl extends _TestScriptTeardown {
   }
 
   @override
+  String toString() {
+    return 'TestScriptTeardown(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, action: $action)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -10744,7 +11041,7 @@ class _$TestScriptTeardownImpl extends _TestScriptTeardown {
             const DeepCollectionEquality().equals(other._action, _action));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -10753,7 +11050,9 @@ class _$TestScriptTeardownImpl extends _TestScriptTeardown {
       const DeepCollectionEquality().hash(_modifierExtension),
       const DeepCollectionEquality().hash(_action));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TestScriptTeardown
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TestScriptTeardownImplCopyWith<_$TestScriptTeardownImpl> get copyWith =>
@@ -10780,12 +11079,10 @@ abstract class _TestScriptTeardown extends TestScriptTeardown {
   factory _TestScriptTeardown.fromJson(Map<String, dynamic> json) =
       _$TestScriptTeardownImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -10793,9 +11090,9 @@ abstract class _TestScriptTeardown extends TestScriptTeardown {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -10810,13 +11107,17 @@ abstract class _TestScriptTeardown extends TestScriptTeardown {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [action] The teardown action will only contain an operation.
-  List<TestScriptAction2> get action;
   @override
-  @JsonKey(ignore: true)
+  List<TestScriptAction2> get action;
+
+  /// Create a copy of TestScriptTeardown
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TestScriptTeardownImplCopyWith<_$TestScriptTeardownImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -10859,8 +11160,12 @@ mixin _$TestScriptAction2 {
   /// [operation] An operation would involve a REST request to a server.
   TestScriptOperation get operation => throw _privateConstructorUsedError;
 
+  /// Serializes this TestScriptAction2 to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TestScriptAction2
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TestScriptAction2CopyWith<TestScriptAction2> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -10890,6 +11195,8 @@ class _$TestScriptAction2CopyWithImpl<$Res, $Val extends TestScriptAction2>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TestScriptAction2
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -10918,6 +11225,8 @@ class _$TestScriptAction2CopyWithImpl<$Res, $Val extends TestScriptAction2>
     ) as $Val);
   }
 
+  /// Create a copy of TestScriptAction2
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TestScriptOperationCopyWith<$Res> get operation {
@@ -10953,6 +11262,8 @@ class __$$TestScriptAction2ImplCopyWithImpl<$Res>
       $Res Function(_$TestScriptAction2Impl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TestScriptAction2
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -11069,6 +11380,11 @@ class _$TestScriptAction2Impl extends _TestScriptAction2 {
   final TestScriptOperation operation;
 
   @override
+  String toString() {
+    return 'TestScriptAction2(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, operation: $operation)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -11082,7 +11398,7 @@ class _$TestScriptAction2Impl extends _TestScriptAction2 {
                 other.operation == operation));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -11091,7 +11407,9 @@ class _$TestScriptAction2Impl extends _TestScriptAction2 {
       const DeepCollectionEquality().hash(_modifierExtension),
       operation);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TestScriptAction2
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TestScriptAction2ImplCopyWith<_$TestScriptAction2Impl> get copyWith =>
@@ -11117,12 +11435,10 @@ abstract class _TestScriptAction2 extends TestScriptAction2 {
   factory _TestScriptAction2.fromJson(Map<String, dynamic> json) =
       _$TestScriptAction2Impl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -11130,9 +11446,9 @@ abstract class _TestScriptAction2 extends TestScriptAction2 {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -11147,13 +11463,17 @@ abstract class _TestScriptAction2 extends TestScriptAction2 {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [operation] An operation would involve a REST request to a server.
-  TestScriptOperation get operation;
   @override
-  @JsonKey(ignore: true)
+  TestScriptOperation get operation;
+
+  /// Create a copy of TestScriptAction2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TestScriptAction2ImplCopyWith<_$TestScriptAction2Impl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -218,8 +218,12 @@ mixin _$HealthcareService {
   ///  the specific healthcare services defined at this resource.
   List<Reference>? get endpoint => throw _privateConstructorUsedError;
 
+  /// Serializes this HealthcareService to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of HealthcareService
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $HealthcareServiceCopyWith<HealthcareService> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -292,6 +296,8 @@ class _$HealthcareServiceCopyWithImpl<$Res, $Val extends HealthcareService>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of HealthcareService
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -505,6 +511,8 @@ class _$HealthcareServiceCopyWithImpl<$Res, $Val extends HealthcareService>
     ) as $Val);
   }
 
+  /// Create a copy of HealthcareService
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -517,6 +525,8 @@ class _$HealthcareServiceCopyWithImpl<$Res, $Val extends HealthcareService>
     });
   }
 
+  /// Create a copy of HealthcareService
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -529,6 +539,8 @@ class _$HealthcareServiceCopyWithImpl<$Res, $Val extends HealthcareService>
     });
   }
 
+  /// Create a copy of HealthcareService
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get providedBy {
@@ -541,6 +553,8 @@ class _$HealthcareServiceCopyWithImpl<$Res, $Val extends HealthcareService>
     });
   }
 
+  /// Create a copy of HealthcareService
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AttachmentCopyWith<$Res>? get photo {
@@ -626,6 +640,8 @@ class __$$HealthcareServiceImplCopyWithImpl<$Res>
       $Res Function(_$HealthcareServiceImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of HealthcareService
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1343,6 +1359,11 @@ class _$HealthcareServiceImpl extends _HealthcareService {
   }
 
   @override
+  String toString() {
+    return 'HealthcareService(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, active: $active, activeElement: $activeElement, providedBy: $providedBy, category: $category, type: $type, specialty: $specialty, location: $location, name: $name, nameElement: $nameElement, comment: $comment, commentElement: $commentElement, extraDetails: $extraDetails, extraDetailsElement: $extraDetailsElement, photo: $photo, telecom: $telecom, coverageArea: $coverageArea, serviceProvisionCode: $serviceProvisionCode, eligibility: $eligibility, program: $program, characteristic: $characteristic, communication: $communication, referralMethod: $referralMethod, appointmentRequired: $appointmentRequired, appointmentRequiredElement: $appointmentRequiredElement, availableTime: $availableTime, notAvailable: $notAvailable, availabilityExceptions: $availabilityExceptions, availabilityExceptionsElement: $availabilityExceptionsElement, endpoint: $endpoint)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1422,7 +1443,7 @@ class _$HealthcareServiceImpl extends _HealthcareService {
             const DeepCollectionEquality().equals(other._endpoint, _endpoint));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1469,7 +1490,9 @@ class _$HealthcareServiceImpl extends _HealthcareService {
         const DeepCollectionEquality().hash(_endpoint)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of HealthcareService
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$HealthcareServiceImplCopyWith<_$HealthcareServiceImpl> get copyWith =>
@@ -1540,39 +1563,38 @@ abstract class _HealthcareService extends HealthcareService {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.HealthcareService)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1580,15 +1602,15 @@ abstract class _HealthcareService extends HealthcareService {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1596,9 +1618,9 @@ abstract class _HealthcareService extends HealthcareService {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1613,158 +1635,162 @@ abstract class _HealthcareService extends HealthcareService {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] External identifiers for this item.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [active] This flag is used to mark the record to not be used. This is not
   /// used when a center is closed for maintenance, or for holidays, the
   ///  notAvailable period is to be used for this.
-  FhirBoolean? get active;
   @override
+  FhirBoolean? get active;
 
   /// [activeElement] Extensions for active
+  @override
   @JsonKey(name: '_active')
   PrimitiveElement? get activeElement;
-  @override
 
   /// [providedBy] The organization that provides this healthcare service.
-  Reference? get providedBy;
   @override
+  Reference? get providedBy;
 
   /// [category] Identifies the broad category of service being performed or
   ///  delivered.
-  List<CodeableConcept>? get category;
   @override
+  List<CodeableConcept>? get category;
 
   /// [type] The specific type of service that may be delivered or performed.
-  List<CodeableConcept>? get type;
   @override
+  List<CodeableConcept>? get type;
 
   /// [specialty] Collection of specialties handled by the service site. This
   ///  is more of a medical term.
-  List<CodeableConcept>? get specialty;
   @override
+  List<CodeableConcept>? get specialty;
 
   /// [location] The location(s) where this healthcare service may be provided.
-  List<Reference>? get location;
   @override
+  List<Reference>? get location;
 
   /// [name] Further description of the service as it would be presented to a
   ///  consumer while searching.
-  String? get name;
   @override
+  String? get name;
 
   /// [nameElement] Extensions for name
+  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
-  @override
 
   /// [comment] Any additional description of the service and/or any specific
   /// issues not covered by the other attributes, which can be displayed as
   ///  further detail under the serviceName.
-  String? get comment;
   @override
+  String? get comment;
 
   /// [commentElement] Extensions for comment
+  @override
   @JsonKey(name: '_comment')
   PrimitiveElement? get commentElement;
-  @override
 
   /// [extraDetails] Extra details about the service that can't be placed in
   ///  the other fields.
-  FhirMarkdown? get extraDetails;
   @override
+  FhirMarkdown? get extraDetails;
 
   /// [extraDetailsElement] Extensions for extraDetails
+  @override
   @JsonKey(name: '_extraDetails')
   PrimitiveElement? get extraDetailsElement;
-  @override
 
   /// [photo] If there is a photo/symbol associated with this
   /// HealthcareService, it may be included here to facilitate quick
   ///  identification of the service in a list.
-  Attachment? get photo;
   @override
+  Attachment? get photo;
 
   /// [telecom] List of contacts related to this specific healthcare service.
-  List<ContactPoint>? get telecom;
   @override
+  List<ContactPoint>? get telecom;
 
   /// [coverageArea] The location(s) that this service is available to (not
   ///  where the service is provided).
-  List<Reference>? get coverageArea;
   @override
+  List<Reference>? get coverageArea;
 
   /// [serviceProvisionCode] The code(s) that detail the conditions under which
   ///  the healthcare service is available/offered.
-  List<CodeableConcept>? get serviceProvisionCode;
   @override
+  List<CodeableConcept>? get serviceProvisionCode;
 
   /// [eligibility] Does this service have specific eligibility requirements
   ///  that need to be met in order to use the service?
-  List<HealthcareServiceEligibility>? get eligibility;
   @override
+  List<HealthcareServiceEligibility>? get eligibility;
 
   /// [program] Programs that this service is applicable to.
-  List<CodeableConcept>? get program;
   @override
+  List<CodeableConcept>? get program;
 
   /// [characteristic] Collection of characteristics (attributes).
-  List<CodeableConcept>? get characteristic;
   @override
+  List<CodeableConcept>? get characteristic;
 
   /// [communication] Some services are specifically made available in multiple
   /// languages, this property permits a directory to declare the languages this
   /// is offered in. Typically this is only provided where a service operates in
   ///  communities with mixed languages used.
-  List<CodeableConcept>? get communication;
   @override
+  List<CodeableConcept>? get communication;
 
   /// [referralMethod] Ways that the service accepts referrals, if this is not
   ///  provided then it is implied that no referral is required.
-  List<CodeableConcept>? get referralMethod;
   @override
+  List<CodeableConcept>? get referralMethod;
 
   /// [appointmentRequired] Indicates whether or not a prospective consumer
   /// will require an appointment for a particular service at a site to be
   /// provided by the Organization. Indicates if an appointment is required for
   ///  access to this service.
-  FhirBoolean? get appointmentRequired;
   @override
+  FhirBoolean? get appointmentRequired;
 
   /// [appointmentRequiredElement] Extensions for appointmentRequired
+  @override
   @JsonKey(name: '_appointmentRequired')
   PrimitiveElement? get appointmentRequiredElement;
-  @override
 
   /// [availableTime] A collection of times that the Service Site is available.
-  List<HealthcareServiceAvailableTime>? get availableTime;
   @override
+  List<HealthcareServiceAvailableTime>? get availableTime;
 
   /// [notAvailable] The HealthcareService is not available during this period
   ///  of time due to the provided reason.
-  List<HealthcareServiceNotAvailable>? get notAvailable;
   @override
+  List<HealthcareServiceNotAvailable>? get notAvailable;
 
   /// [availabilityExceptions] A description of site availability exceptions,
   /// e.g. public holiday availability. Succinctly describing all possible
   /// exceptions to normal site availability as details in the available Times
   ///  and not available Times.
+  @override
   String? get availabilityExceptions;
   @override
   @JsonKey(name: '_availabilityExceptions')
   PrimitiveElement? get availabilityExceptionsElement;
-  @override
 
   /// [endpoint] Technical endpoints providing access to services operated for
   ///  the specific healthcare services defined at this resource.
-  List<Reference>? get endpoint;
   @override
-  @JsonKey(ignore: true)
+  List<Reference>? get endpoint;
+
+  /// Create a copy of HealthcareService
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HealthcareServiceImplCopyWith<_$HealthcareServiceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1815,8 +1841,12 @@ mixin _$HealthcareServiceEligibility {
   @JsonKey(name: '_comment')
   PrimitiveElement? get commentElement => throw _privateConstructorUsedError;
 
+  /// Serializes this HealthcareServiceEligibility to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of HealthcareServiceEligibility
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $HealthcareServiceEligibilityCopyWith<HealthcareServiceEligibility>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1851,6 +1881,8 @@ class _$HealthcareServiceEligibilityCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of HealthcareServiceEligibility
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1889,6 +1921,8 @@ class _$HealthcareServiceEligibilityCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of HealthcareServiceEligibility
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get code {
@@ -1933,6 +1967,8 @@ class __$$HealthcareServiceEligibilityImplCopyWithImpl<$Res>
       $Res Function(_$HealthcareServiceEligibilityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of HealthcareServiceEligibility
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2071,6 +2107,11 @@ class _$HealthcareServiceEligibilityImpl extends _HealthcareServiceEligibility {
   final PrimitiveElement? commentElement;
 
   @override
+  String toString() {
+    return 'HealthcareServiceEligibility(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, comment: $comment, commentElement: $commentElement)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2086,7 +2127,7 @@ class _$HealthcareServiceEligibilityImpl extends _HealthcareServiceEligibility {
                 other.commentElement == commentElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2097,7 +2138,9 @@ class _$HealthcareServiceEligibilityImpl extends _HealthcareServiceEligibility {
       comment,
       commentElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of HealthcareServiceEligibility
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$HealthcareServiceEligibilityImplCopyWith<
@@ -2128,12 +2171,10 @@ abstract class _HealthcareServiceEligibility
   factory _HealthcareServiceEligibility.fromJson(Map<String, dynamic> json) =
       _$HealthcareServiceEligibilityImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2141,9 +2182,9 @@ abstract class _HealthcareServiceEligibility
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2158,22 +2199,26 @@ abstract class _HealthcareServiceEligibility
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [code] Coded value for the eligibility.
-  CodeableConcept? get code;
   @override
+  CodeableConcept? get code;
 
   /// [comment] Describes the eligibility conditions for the service.
-  FhirMarkdown? get comment;
   @override
+  FhirMarkdown? get comment;
 
   /// [commentElement] Extensions for comment
+  @override
   @JsonKey(name: '_comment')
   PrimitiveElement? get commentElement;
+
+  /// Create a copy of HealthcareServiceEligibility
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HealthcareServiceEligibilityImplCopyWith<
           _$HealthcareServiceEligibilityImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -2251,8 +2296,12 @@ mixin _$HealthcareServiceAvailableTime {
   PrimitiveElement? get availableEndTimeElement =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this HealthcareServiceAvailableTime to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of HealthcareServiceAvailableTime
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $HealthcareServiceAvailableTimeCopyWith<HealthcareServiceAvailableTime>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2292,6 +2341,8 @@ class _$HealthcareServiceAvailableTimeCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of HealthcareServiceAvailableTime
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2391,6 +2442,8 @@ class __$$HealthcareServiceAvailableTimeImplCopyWithImpl<$Res>
       $Res Function(_$HealthcareServiceAvailableTimeImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of HealthcareServiceAvailableTime
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2610,6 +2663,11 @@ class _$HealthcareServiceAvailableTimeImpl
   final PrimitiveElement? availableEndTimeElement;
 
   @override
+  String toString() {
+    return 'HealthcareServiceAvailableTime(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, daysOfWeek: $daysOfWeek, daysOfWeekElement: $daysOfWeekElement, allDay: $allDay, allDayElement: $allDayElement, availableStartTime: $availableStartTime, availableStartTimeElement: $availableStartTimeElement, availableEndTime: $availableEndTime, availableEndTimeElement: $availableEndTimeElement)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2638,7 +2696,7 @@ class _$HealthcareServiceAvailableTimeImpl
                 other.availableEndTimeElement == availableEndTimeElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2654,7 +2712,9 @@ class _$HealthcareServiceAvailableTimeImpl
       availableEndTime,
       availableEndTimeElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of HealthcareServiceAvailableTime
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$HealthcareServiceAvailableTimeImplCopyWith<
@@ -2693,12 +2753,10 @@ abstract class _HealthcareServiceAvailableTime
   factory _HealthcareServiceAvailableTime.fromJson(Map<String, dynamic> json) =
       _$HealthcareServiceAvailableTimeImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2706,9 +2764,9 @@ abstract class _HealthcareServiceAvailableTime
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2723,49 +2781,53 @@ abstract class _HealthcareServiceAvailableTime
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [daysOfWeek] Indicates which days of the week are available between the
   ///  start and end Times.
-  List<HealthcareServiceAvailableTimeDaysOfWeek>? get daysOfWeek;
   @override
+  List<HealthcareServiceAvailableTimeDaysOfWeek>? get daysOfWeek;
 
   /// [daysOfWeekElement] Extensions for daysOfWeek
+  @override
   @JsonKey(name: '_daysOfWeek')
   List<PrimitiveElement>? get daysOfWeekElement;
-  @override
 
   /// [allDay] Is this always available? (hence times are irrelevant) e.g. 24
   ///  hour service.
-  FhirBoolean? get allDay;
   @override
+  FhirBoolean? get allDay;
 
   /// [allDayElement] Extensions for allDay
+  @override
   @JsonKey(name: '_allDay')
   PrimitiveElement? get allDayElement;
-  @override
 
   /// [availableStartTime] The opening time of day. Note: If the AllDay flag is
   ///  set, then this time is ignored.
-  FhirTime? get availableStartTime;
   @override
+  FhirTime? get availableStartTime;
 
   /// [availableStartTimeElement] Extensions for availableStartTime
+  @override
   @JsonKey(name: '_availableStartTime')
   PrimitiveElement? get availableStartTimeElement;
-  @override
 
   /// [availableEndTime] The closing time of day. Note: If the AllDay flag is
   ///  set, then this time is ignored.
-  FhirTime? get availableEndTime;
   @override
+  FhirTime? get availableEndTime;
 
   /// [availableEndTimeElement] Extensions for availableEndTime
+  @override
   @JsonKey(name: '_availableEndTime')
   PrimitiveElement? get availableEndTimeElement;
+
+  /// Create a copy of HealthcareServiceAvailableTime
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HealthcareServiceAvailableTimeImplCopyWith<
           _$HealthcareServiceAvailableTimeImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -2820,8 +2882,12 @@ mixin _$HealthcareServiceNotAvailable {
   ///  from this date.
   Period? get during => throw _privateConstructorUsedError;
 
+  /// Serializes this HealthcareServiceNotAvailable to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of HealthcareServiceNotAvailable
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $HealthcareServiceNotAvailableCopyWith<HealthcareServiceNotAvailable>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2856,6 +2922,8 @@ class _$HealthcareServiceNotAvailableCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of HealthcareServiceNotAvailable
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2894,6 +2962,8 @@ class _$HealthcareServiceNotAvailableCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of HealthcareServiceNotAvailable
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get during {
@@ -2938,6 +3008,8 @@ class __$$HealthcareServiceNotAvailableImplCopyWithImpl<$Res>
       $Res Function(_$HealthcareServiceNotAvailableImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of HealthcareServiceNotAvailable
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3079,6 +3151,11 @@ class _$HealthcareServiceNotAvailableImpl
   final Period? during;
 
   @override
+  String toString() {
+    return 'HealthcareServiceNotAvailable(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, description: $description, descriptionElement: $descriptionElement, during: $during)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -3095,7 +3172,7 @@ class _$HealthcareServiceNotAvailableImpl
             (identical(other.during, during) || other.during == during));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3106,7 +3183,9 @@ class _$HealthcareServiceNotAvailableImpl
       descriptionElement,
       during);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of HealthcareServiceNotAvailable
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$HealthcareServiceNotAvailableImplCopyWith<
@@ -3136,12 +3215,10 @@ abstract class _HealthcareServiceNotAvailable
   factory _HealthcareServiceNotAvailable.fromJson(Map<String, dynamic> json) =
       _$HealthcareServiceNotAvailableImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3149,9 +3226,9 @@ abstract class _HealthcareServiceNotAvailable
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3166,24 +3243,28 @@ abstract class _HealthcareServiceNotAvailable
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [description] The reason that can be presented to the user as to why this
   ///  time is not available.
-  String? get description;
   @override
+  String? get description;
 
   /// [descriptionElement] Extensions for description
+  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
-  @override
 
   /// [during] Service is not available (seasonally or for a public holiday)
   ///  from this date.
-  Period? get during;
   @override
-  @JsonKey(ignore: true)
+  Period? get during;
+
+  /// Create a copy of HealthcareServiceNotAvailable
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HealthcareServiceNotAvailableImplCopyWith<
           _$HealthcareServiceNotAvailableImpl>
       get copyWith => throw _privateConstructorUsedError;

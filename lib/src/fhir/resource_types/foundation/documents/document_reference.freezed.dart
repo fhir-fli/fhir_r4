@@ -178,8 +178,12 @@ mixin _$DocumentReference {
   /// [context] The clinical context in which the document was prepared.
   DocumentReferenceContext? get context => throw _privateConstructorUsedError;
 
+  /// Serializes this DocumentReference to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DocumentReference
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DocumentReferenceCopyWith<DocumentReference> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -244,6 +248,8 @@ class _$DocumentReferenceCopyWithImpl<$Res, $Val extends DocumentReference>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DocumentReference
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -407,6 +413,8 @@ class _$DocumentReferenceCopyWithImpl<$Res, $Val extends DocumentReference>
     ) as $Val);
   }
 
+  /// Create a copy of DocumentReference
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -419,6 +427,8 @@ class _$DocumentReferenceCopyWithImpl<$Res, $Val extends DocumentReference>
     });
   }
 
+  /// Create a copy of DocumentReference
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -431,6 +441,8 @@ class _$DocumentReferenceCopyWithImpl<$Res, $Val extends DocumentReference>
     });
   }
 
+  /// Create a copy of DocumentReference
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $IdentifierCopyWith<$Res>? get masterIdentifier {
@@ -443,6 +455,8 @@ class _$DocumentReferenceCopyWithImpl<$Res, $Val extends DocumentReference>
     });
   }
 
+  /// Create a copy of DocumentReference
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get type {
@@ -455,6 +469,8 @@ class _$DocumentReferenceCopyWithImpl<$Res, $Val extends DocumentReference>
     });
   }
 
+  /// Create a copy of DocumentReference
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get subject {
@@ -467,6 +483,8 @@ class _$DocumentReferenceCopyWithImpl<$Res, $Val extends DocumentReference>
     });
   }
 
+  /// Create a copy of DocumentReference
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get authenticator {
@@ -479,6 +497,8 @@ class _$DocumentReferenceCopyWithImpl<$Res, $Val extends DocumentReference>
     });
   }
 
+  /// Create a copy of DocumentReference
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get custodian {
@@ -491,6 +511,8 @@ class _$DocumentReferenceCopyWithImpl<$Res, $Val extends DocumentReference>
     });
   }
 
+  /// Create a copy of DocumentReference
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $DocumentReferenceContextCopyWith<$Res>? get context {
@@ -572,6 +594,8 @@ class __$$DocumentReferenceImplCopyWithImpl<$Res>
       $Res Function(_$DocumentReferenceImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DocumentReference
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1081,6 +1105,11 @@ class _$DocumentReferenceImpl extends _DocumentReference {
   final DocumentReferenceContext? context;
 
   @override
+  String toString() {
+    return 'DocumentReference(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, masterIdentifier: $masterIdentifier, identifier: $identifier, status: $status, statusElement: $statusElement, docStatus: $docStatus, docStatusElement: $docStatusElement, type: $type, category: $category, subject: $subject, date: $date, dateElement: $dateElement, author: $author, authenticator: $authenticator, custodian: $custodian, relatesTo: $relatesTo, description: $description, descriptionElement: $descriptionElement, securityLabel: $securityLabel, content: $content, context: $context)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1138,7 +1167,7 @@ class _$DocumentReferenceImpl extends _DocumentReference {
             (identical(other.context, context) || other.context == context));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1175,7 +1204,9 @@ class _$DocumentReferenceImpl extends _DocumentReference {
         context
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DocumentReference
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DocumentReferenceImplCopyWith<_$DocumentReferenceImpl> get copyWith =>
@@ -1233,39 +1264,38 @@ abstract class _DocumentReference extends DocumentReference {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.DocumentReference)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1273,15 +1303,15 @@ abstract class _DocumentReference extends DocumentReference {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1289,9 +1319,9 @@ abstract class _DocumentReference extends DocumentReference {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1306,95 +1336,95 @@ abstract class _DocumentReference extends DocumentReference {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [masterIdentifier] Document identifier as assigned by the source of the
   /// document. This identifier is specific to this version of the document.
   /// This unique identifier may be used elsewhere to identify this version of
   ///  the document.
-  Identifier? get masterIdentifier;
   @override
+  Identifier? get masterIdentifier;
 
   /// [identifier] Other identifiers associated with the document, including
   ///  version independent identifiers.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [status] The status of this document reference.
-  FhirCode? get status;
   @override
+  FhirCode? get status;
 
   /// [statusElement] Extensions for status
+  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
-  @override
 
   /// [docStatus] The status of the underlying document.
-  FhirCode? get docStatus;
   @override
+  FhirCode? get docStatus;
 
   /// [docStatusElement] Extensions for docStatus
+  @override
   @JsonKey(name: '_docStatus')
   PrimitiveElement? get docStatusElement;
-  @override
 
   /// [type] Specifies the particular kind of document referenced  (e.g.
   /// History and Physical, Discharge Summary, Progress Note). This usually
   ///  equates to the purpose of making the document referenced.
-  CodeableConcept? get type;
   @override
+  CodeableConcept? get type;
 
   /// [category] A categorization for the type of document referenced - helps
   /// for indexing and searching. This may be implied by or derived from the
   ///  code specified in the DocumentReference.type.
-  List<CodeableConcept>? get category;
   @override
+  List<CodeableConcept>? get category;
 
   /// [subject] Who or what the document is about. The document can be about a
   /// person, (patient or healthcare practitioner), a device (e.g. a machine) or
   /// even a group of subjects (such as a document about a herd of farm animals,
   ///  or a set of patients that share a common exposure).
-  Reference? get subject;
   @override
+  Reference? get subject;
 
   /// [date] When the document reference was created.
-  FhirInstant? get date;
   @override
+  FhirInstant? get date;
 
   /// [dateElement] Extensions for date
+  @override
   @JsonKey(name: '_date')
   PrimitiveElement? get dateElement;
-  @override
 
   /// [author] Identifies who is responsible for adding the information to the
   ///  document.
-  List<Reference>? get author;
   @override
+  List<Reference>? get author;
 
   /// [authenticator] Which person or organization authenticates that this
   ///  document is valid.
-  Reference? get authenticator;
   @override
+  Reference? get authenticator;
 
   /// [custodian] Identifies the organization or group who is responsible for
   ///  ongoing maintenance of and access to the document.
-  Reference? get custodian;
   @override
+  Reference? get custodian;
 
   /// [relatesTo] Relationships that this document has with other document
   ///  references that already exist.
-  List<DocumentReferenceRelatesTo>? get relatesTo;
   @override
+  List<DocumentReferenceRelatesTo>? get relatesTo;
 
   /// [description] Human-readable description of the source document.
-  String? get description;
   @override
+  String? get description;
 
   /// [descriptionElement] Extensions for description
+  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
-  @override
 
   /// [securityLabel] A set of Security-Tag codes specifying the level of
   /// privacy/security of the Document. Note that
@@ -1402,18 +1432,22 @@ abstract class _DocumentReference extends DocumentReference {
   /// "reference" to the document, while DocumentReference.securityLabel
   /// contains a snapshot of the security labels on the document the reference
   ///  refers to.
-  List<CodeableConcept>? get securityLabel;
   @override
+  List<CodeableConcept>? get securityLabel;
 
   /// [content] The document and format referenced. There may be multiple
   ///  content element repetitions, each with a different format.
-  List<DocumentReferenceContent> get content;
   @override
+  List<DocumentReferenceContent> get content;
 
   /// [context] The clinical context in which the document was prepared.
-  DocumentReferenceContext? get context;
   @override
-  @JsonKey(ignore: true)
+  DocumentReferenceContext? get context;
+
+  /// Create a copy of DocumentReference
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DocumentReferenceImplCopyWith<_$DocumentReferenceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1465,8 +1499,12 @@ mixin _$DocumentReferenceRelatesTo {
   /// [target] The target document of this relationship.
   Reference get target => throw _privateConstructorUsedError;
 
+  /// Serializes this DocumentReferenceRelatesTo to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DocumentReferenceRelatesTo
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DocumentReferenceRelatesToCopyWith<DocumentReferenceRelatesTo>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1500,6 +1538,8 @@ class _$DocumentReferenceRelatesToCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DocumentReferenceRelatesTo
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1538,6 +1578,8 @@ class _$DocumentReferenceRelatesToCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of DocumentReferenceRelatesTo
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get target {
@@ -1578,6 +1620,8 @@ class __$$DocumentReferenceRelatesToImplCopyWithImpl<$Res>
       $Res Function(_$DocumentReferenceRelatesToImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DocumentReferenceRelatesTo
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1717,6 +1761,11 @@ class _$DocumentReferenceRelatesToImpl extends _DocumentReferenceRelatesTo {
   final Reference target;
 
   @override
+  String toString() {
+    return 'DocumentReferenceRelatesTo(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, codeElement: $codeElement, target: $target)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1732,7 +1781,7 @@ class _$DocumentReferenceRelatesToImpl extends _DocumentReferenceRelatesTo {
             (identical(other.target, target) || other.target == target));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1743,7 +1792,9 @@ class _$DocumentReferenceRelatesToImpl extends _DocumentReferenceRelatesTo {
       codeElement,
       target);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DocumentReferenceRelatesTo
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DocumentReferenceRelatesToImplCopyWith<_$DocumentReferenceRelatesToImpl>
@@ -1771,12 +1822,10 @@ abstract class _DocumentReferenceRelatesTo extends DocumentReferenceRelatesTo {
   factory _DocumentReferenceRelatesTo.fromJson(Map<String, dynamic> json) =
       _$DocumentReferenceRelatesToImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1784,9 +1833,9 @@ abstract class _DocumentReferenceRelatesTo extends DocumentReferenceRelatesTo {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -1801,23 +1850,27 @@ abstract class _DocumentReferenceRelatesTo extends DocumentReferenceRelatesTo {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [code] The type of relationship that this document has with anther
   ///  document.
-  FhirCode? get code;
   @override
+  FhirCode? get code;
 
   /// [codeElement] Extensions for code
+  @override
   @JsonKey(name: '_code')
   PrimitiveElement? get codeElement;
-  @override
 
   /// [target] The target document of this relationship.
-  Reference get target;
   @override
-  @JsonKey(ignore: true)
+  Reference get target;
+
+  /// Create a copy of DocumentReferenceRelatesTo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DocumentReferenceRelatesToImplCopyWith<_$DocumentReferenceRelatesToImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1867,8 +1920,12 @@ mixin _$DocumentReferenceContent {
   ///  mimeType.
   Coding? get format => throw _privateConstructorUsedError;
 
+  /// Serializes this DocumentReferenceContent to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DocumentReferenceContent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DocumentReferenceContentCopyWith<DocumentReferenceContent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1901,6 +1958,8 @@ class _$DocumentReferenceContentCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DocumentReferenceContent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1934,6 +1993,8 @@ class _$DocumentReferenceContentCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of DocumentReferenceContent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AttachmentCopyWith<$Res> get attachment {
@@ -1942,6 +2003,8 @@ class _$DocumentReferenceContentCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of DocumentReferenceContent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodingCopyWith<$Res>? get format {
@@ -1987,6 +2050,8 @@ class __$$DocumentReferenceContentImplCopyWithImpl<$Res>
       $Res Function(_$DocumentReferenceContentImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DocumentReferenceContent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2116,6 +2181,11 @@ class _$DocumentReferenceContentImpl extends _DocumentReferenceContent {
   final Coding? format;
 
   @override
+  String toString() {
+    return 'DocumentReferenceContent(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, attachment: $attachment, format: $format)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2130,7 +2200,7 @@ class _$DocumentReferenceContentImpl extends _DocumentReferenceContent {
             (identical(other.format, format) || other.format == format));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2140,7 +2210,9 @@ class _$DocumentReferenceContentImpl extends _DocumentReferenceContent {
       attachment,
       format);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DocumentReferenceContent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DocumentReferenceContentImplCopyWith<_$DocumentReferenceContentImpl>
@@ -2167,12 +2239,10 @@ abstract class _DocumentReferenceContent extends DocumentReferenceContent {
   factory _DocumentReferenceContent.fromJson(Map<String, dynamic> json) =
       _$DocumentReferenceContentImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2180,9 +2250,9 @@ abstract class _DocumentReferenceContent extends DocumentReferenceContent {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2197,20 +2267,24 @@ abstract class _DocumentReferenceContent extends DocumentReferenceContent {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [attachment] The document or URL of the document along with critical
   ///  metadata to prove content has integrity.
-  Attachment get attachment;
   @override
+  Attachment get attachment;
 
   /// [format] An identifier of the document encoding, structure, and template
   /// that the document conforms to beyond the base format indicated in the
   ///  mimeType.
-  Coding? get format;
   @override
-  @JsonKey(ignore: true)
+  Coding? get format;
+
+  /// Create a copy of DocumentReferenceContent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DocumentReferenceContentImplCopyWith<_$DocumentReferenceContentImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2282,8 +2356,12 @@ mixin _$DocumentReferenceContext {
   ///  DocumentReference.
   List<Reference>? get related => throw _privateConstructorUsedError;
 
+  /// Serializes this DocumentReferenceContext to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DocumentReferenceContext
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DocumentReferenceContextCopyWith<DocumentReferenceContext> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2323,6 +2401,8 @@ class _$DocumentReferenceContextCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DocumentReferenceContext
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2381,6 +2461,8 @@ class _$DocumentReferenceContextCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of DocumentReferenceContext
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get period {
@@ -2393,6 +2475,8 @@ class _$DocumentReferenceContextCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of DocumentReferenceContext
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get facilityType {
@@ -2405,6 +2489,8 @@ class _$DocumentReferenceContextCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of DocumentReferenceContext
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get practiceSetting {
@@ -2417,6 +2503,8 @@ class _$DocumentReferenceContextCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of DocumentReferenceContext
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get sourcePatientInfo {
@@ -2471,6 +2559,8 @@ class __$$DocumentReferenceContextImplCopyWithImpl<$Res>
       $Res Function(_$DocumentReferenceContextImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DocumentReferenceContext
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2693,6 +2783,11 @@ class _$DocumentReferenceContextImpl extends _DocumentReferenceContext {
   }
 
   @override
+  String toString() {
+    return 'DocumentReferenceContext(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, encounter: $encounter, event: $event, period: $period, facilityType: $facilityType, practiceSetting: $practiceSetting, sourcePatientInfo: $sourcePatientInfo, related: $related)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2715,7 +2810,7 @@ class _$DocumentReferenceContextImpl extends _DocumentReferenceContext {
             const DeepCollectionEquality().equals(other._related, _related));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2730,7 +2825,9 @@ class _$DocumentReferenceContextImpl extends _DocumentReferenceContext {
       sourcePatientInfo,
       const DeepCollectionEquality().hash(_related));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DocumentReferenceContext
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DocumentReferenceContextImplCopyWith<_$DocumentReferenceContextImpl>
@@ -2762,12 +2859,10 @@ abstract class _DocumentReferenceContext extends DocumentReferenceContext {
   factory _DocumentReferenceContext.fromJson(Map<String, dynamic> json) =
       _$DocumentReferenceContextImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2775,9 +2870,9 @@ abstract class _DocumentReferenceContext extends DocumentReferenceContext {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2792,47 +2887,51 @@ abstract class _DocumentReferenceContext extends DocumentReferenceContext {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [encounter] Describes the clinical encounter or type of care that the
   ///  document content is associated with.
-  List<Reference>? get encounter;
   @override
+  List<Reference>? get encounter;
 
   /// [event] This list of codes represents the main clinical acts, such as a
   /// colonoscopy or an appendectomy, being documented. In some cases, the event
   /// is inherent in the type Code, such as a "History and Physical Report" in
   /// which the procedure being documented is necessarily a "History and
   ///  Physical" act.
-  List<CodeableConcept>? get event;
   @override
+  List<CodeableConcept>? get event;
 
   /// [period] The time period over which the service that is described by the
   ///  document was provided.
-  Period? get period;
   @override
+  Period? get period;
 
   /// [facilityType] The kind of facility where the patient was seen.
-  CodeableConcept? get facilityType;
   @override
+  CodeableConcept? get facilityType;
 
   /// [practiceSetting] This property may convey specifics about the practice
   /// setting where the content was created, often reflecting the clinical
   ///  specialty.
-  CodeableConcept? get practiceSetting;
   @override
+  CodeableConcept? get practiceSetting;
 
   /// [sourcePatientInfo] The Patient Information as known when the document
   ///  was published. May be a reference to a version specific, or contained.
-  Reference? get sourcePatientInfo;
   @override
+  Reference? get sourcePatientInfo;
 
   /// [related] Related identifiers or resources associated with the
   ///  DocumentReference.
-  List<Reference>? get related;
   @override
-  @JsonKey(ignore: true)
+  List<Reference>? get related;
+
+  /// Create a copy of DocumentReferenceContext
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DocumentReferenceContextImplCopyWith<_$DocumentReferenceContextImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

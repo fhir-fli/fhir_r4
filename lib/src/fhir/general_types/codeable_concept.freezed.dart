@@ -45,8 +45,12 @@ mixin _$CodeableConcept {
   @JsonKey(name: '_text')
   PrimitiveElement? get textElement => throw _privateConstructorUsedError;
 
+  /// Serializes this CodeableConcept to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CodeableConcept
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CodeableConceptCopyWith<CodeableConcept> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -75,6 +79,8 @@ class _$CodeableConceptCopyWithImpl<$Res, $Val extends CodeableConcept>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CodeableConcept
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -133,6 +139,8 @@ class __$$CodeableConceptImplCopyWithImpl<$Res>
       _$CodeableConceptImpl _value, $Res Function(_$CodeableConceptImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CodeableConcept
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -237,6 +245,11 @@ class _$CodeableConceptImpl extends _CodeableConcept {
   final PrimitiveElement? textElement;
 
   @override
+  String toString() {
+    return 'CodeableConcept(id: $id, extension_: $extension_, coding: $coding, text: $text, textElement: $textElement)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -250,7 +263,7 @@ class _$CodeableConceptImpl extends _CodeableConcept {
                 other.textElement == textElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -260,7 +273,9 @@ class _$CodeableConceptImpl extends _CodeableConcept {
       text,
       textElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CodeableConcept
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CodeableConceptImplCopyWith<_$CodeableConceptImpl> get copyWith =>
@@ -288,12 +303,10 @@ abstract class _CodeableConcept extends CodeableConcept {
   factory _CodeableConcept.fromJson(Map<String, dynamic> json) =
       _$CodeableConceptImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -301,25 +314,29 @@ abstract class _CodeableConcept extends CodeableConcept {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [coding] A reference to a code defined by a terminology system.
-  List<Coding>? get coding;
   @override
+  List<Coding>? get coding;
 
   /// [text] A human language representation of the concept as
   /// seen/selected/uttered by the user who entered the data and/or which
   ///  represents the intended meaning of the user.
-  String? get text;
   @override
+  String? get text;
 
   /// [textElement] Extensions for text
+  @override
   @JsonKey(name: '_text')
   PrimitiveElement? get textElement;
+
+  /// Create a copy of CodeableConcept
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CodeableConceptImplCopyWith<_$CodeableConceptImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

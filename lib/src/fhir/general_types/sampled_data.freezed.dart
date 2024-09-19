@@ -90,8 +90,12 @@ mixin _$SampledData {
   @JsonKey(name: '_data')
   PrimitiveElement? get dataElement => throw _privateConstructorUsedError;
 
+  /// Serializes this SampledData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SampledData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SampledDataCopyWith<SampledData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -132,6 +136,8 @@ class _$SampledDataCopyWithImpl<$Res, $Val extends SampledData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SampledData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -215,6 +221,8 @@ class _$SampledDataCopyWithImpl<$Res, $Val extends SampledData>
     ) as $Val);
   }
 
+  /// Create a copy of SampledData
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res> get origin {
@@ -261,6 +269,8 @@ class __$$SampledDataImplCopyWithImpl<$Res>
       _$SampledDataImpl _value, $Res Function(_$SampledDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SampledData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -470,6 +480,11 @@ class _$SampledDataImpl extends _SampledData {
   final PrimitiveElement? dataElement;
 
   @override
+  String toString() {
+    return 'SampledData(id: $id, extension_: $extension_, origin: $origin, period: $period, periodElement: $periodElement, factor: $factor, factorElement: $factorElement, lowerLimit: $lowerLimit, lowerLimitElement: $lowerLimitElement, upperLimit: $upperLimit, upperLimitElement: $upperLimitElement, dimensions: $dimensions, dimensionsElement: $dimensionsElement, data: $data, dataElement: $dataElement)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -501,7 +516,7 @@ class _$SampledDataImpl extends _SampledData {
                 other.dataElement == dataElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -521,7 +536,9 @@ class _$SampledDataImpl extends _SampledData {
       data,
       dataElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SampledData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SampledDataImplCopyWith<_$SampledDataImpl> get copyWith =>
@@ -558,12 +575,10 @@ abstract class _SampledData extends SampledData {
   factory _SampledData.fromJson(Map<String, dynamic> json) =
       _$SampledDataImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -571,80 +586,84 @@ abstract class _SampledData extends SampledData {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [origin] The base quantity that a measured value of zero represents. In
   ///  addition, this provides the units of the entire measurement series.
-  Quantity get origin;
   @override
+  Quantity get origin;
 
   /// [period] The length of time between sampling times, measured in
   ///  milliseconds.
-  FhirDecimal? get period;
   @override
+  FhirDecimal? get period;
 
   /// [periodElement] Extensions for period
+  @override
   @JsonKey(name: '_period')
   PrimitiveElement? get periodElement;
-  @override
 
   /// [factor] A correction factor that is applied to the sampled data points
   ///  before they are added to the origin.
-  FhirDecimal? get factor;
   @override
+  FhirDecimal? get factor;
 
   /// [factorElement] Extensions for factor
+  @override
   @JsonKey(name: '_factor')
   PrimitiveElement? get factorElement;
-  @override
 
   /// [lowerLimit] The lower limit of detection of the measured points. This is
   /// needed if any of the data points have the value "L" (lower than detection
   ///  limit).
-  FhirDecimal? get lowerLimit;
   @override
+  FhirDecimal? get lowerLimit;
 
   /// [lowerLimitElement] Extensions for lowerLimit
+  @override
   @JsonKey(name: '_lowerLimit')
   PrimitiveElement? get lowerLimitElement;
-  @override
 
   /// [upperLimit] The upper limit of detection of the measured points. This is
   /// needed if any of the data points have the value "U" (higher than detection
   ///  limit).
-  FhirDecimal? get upperLimit;
   @override
+  FhirDecimal? get upperLimit;
 
   /// [upperLimitElement] Extensions for upperLimit
+  @override
   @JsonKey(name: '_upperLimit')
   PrimitiveElement? get upperLimitElement;
-  @override
 
   /// [dimensions] The number of sample points at each time point. If this
   /// value is greater than one, then the dimensions will be interlaced - all
   ///  the sample points for a point in time will be recorded at once.
-  FhirPositiveInt? get dimensions;
   @override
+  FhirPositiveInt? get dimensions;
 
   /// [dimensionsElement] Extensions for dimensions
+  @override
   @JsonKey(name: '_dimensions')
   PrimitiveElement? get dimensionsElement;
-  @override
 
   /// [data] A series of data points which are decimal values separated by a
   /// single space (character u20). The special values "E" (error), "L" (below
   /// detection limit) and "U" (above detection limit) can also be used in place
   ///  of a decimal value.
-  String? get data;
   @override
+  String? get data;
 
   /// [dataElement] Extensions for data
+  @override
   @JsonKey(name: '_data')
   PrimitiveElement? get dataElement;
+
+  /// Create a copy of SampledData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SampledDataImplCopyWith<_$SampledDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -64,8 +64,12 @@ mixin _$DetectedIssue {
   List<DetectedIssueMitigation>? get mitigation =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this DetectedIssue to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DetectedIssue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DetectedIssueCopyWith<DetectedIssue> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -127,6 +131,8 @@ class _$DetectedIssueCopyWithImpl<$Res, $Val extends DetectedIssue>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DetectedIssue
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -280,6 +286,8 @@ class _$DetectedIssueCopyWithImpl<$Res, $Val extends DetectedIssue>
     ) as $Val);
   }
 
+  /// Create a copy of DetectedIssue
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -292,6 +300,8 @@ class _$DetectedIssueCopyWithImpl<$Res, $Val extends DetectedIssue>
     });
   }
 
+  /// Create a copy of DetectedIssue
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -304,6 +314,8 @@ class _$DetectedIssueCopyWithImpl<$Res, $Val extends DetectedIssue>
     });
   }
 
+  /// Create a copy of DetectedIssue
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get code {
@@ -316,6 +328,8 @@ class _$DetectedIssueCopyWithImpl<$Res, $Val extends DetectedIssue>
     });
   }
 
+  /// Create a copy of DetectedIssue
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get patient {
@@ -328,6 +342,8 @@ class _$DetectedIssueCopyWithImpl<$Res, $Val extends DetectedIssue>
     });
   }
 
+  /// Create a copy of DetectedIssue
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get identifiedPeriod {
@@ -340,6 +356,8 @@ class _$DetectedIssueCopyWithImpl<$Res, $Val extends DetectedIssue>
     });
   }
 
+  /// Create a copy of DetectedIssue
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get author {
@@ -416,6 +434,8 @@ class __$$DetectedIssueImplCopyWithImpl<$Res>
       _$DetectedIssueImpl _value, $Res Function(_$DetectedIssueImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DetectedIssue
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -741,6 +761,11 @@ class _$DetectedIssueImpl extends _DetectedIssue {
   }
 
   @override
+  String toString() {
+    return 'DetectedIssue(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, status: $status, statusElement: $statusElement, code: $code, severity: $severity, severityElement: $severityElement, patient: $patient, identifiedDateTime: $identifiedDateTime, identifiedDateTimeElement: $identifiedDateTimeElement, identifiedPeriod: $identifiedPeriod, author: $author, implicated: $implicated, evidence: $evidence, detail: $detail, detailElement: $detailElement, reference: $reference, referenceElement: $referenceElement, mitigation: $mitigation)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -797,7 +822,7 @@ class _$DetectedIssueImpl extends _DetectedIssue {
                 .equals(other._mitigation, _mitigation));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -832,7 +857,9 @@ class _$DetectedIssueImpl extends _DetectedIssue {
         const DeepCollectionEquality().hash(_mitigation)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DetectedIssue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DetectedIssueImplCopyWith<_$DetectedIssueImpl> get copyWith =>
@@ -952,8 +979,11 @@ abstract class _DetectedIssue extends DetectedIssue {
   PrimitiveElement? get referenceElement;
   @override
   List<DetectedIssueMitigation>? get mitigation;
+
+  /// Create a copy of DetectedIssue
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DetectedIssueImplCopyWith<_$DetectedIssueImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -973,8 +1003,12 @@ mixin _$DetectedIssueEvidence {
   List<CodeableConcept>? get code => throw _privateConstructorUsedError;
   List<Reference>? get detail => throw _privateConstructorUsedError;
 
+  /// Serializes this DetectedIssueEvidence to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DetectedIssueEvidence
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DetectedIssueEvidenceCopyWith<DetectedIssueEvidence> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1004,6 +1038,8 @@ class _$DetectedIssueEvidenceCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DetectedIssueEvidence
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1064,6 +1100,8 @@ class __$$DetectedIssueEvidenceImplCopyWithImpl<$Res>
       $Res Function(_$DetectedIssueEvidenceImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DetectedIssueEvidence
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1161,6 +1199,11 @@ class _$DetectedIssueEvidenceImpl extends _DetectedIssueEvidence {
   }
 
   @override
+  String toString() {
+    return 'DetectedIssueEvidence(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, code: $code, detail: $detail)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1174,7 +1217,7 @@ class _$DetectedIssueEvidenceImpl extends _DetectedIssueEvidence {
             const DeepCollectionEquality().equals(other._detail, _detail));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1184,7 +1227,9 @@ class _$DetectedIssueEvidenceImpl extends _DetectedIssueEvidence {
       const DeepCollectionEquality().hash(_code),
       const DeepCollectionEquality().hash(_detail));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DetectedIssueEvidence
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DetectedIssueEvidenceImplCopyWith<_$DetectedIssueEvidenceImpl>
@@ -1222,8 +1267,11 @@ abstract class _DetectedIssueEvidence extends DetectedIssueEvidence {
   List<CodeableConcept>? get code;
   @override
   List<Reference>? get detail;
+
+  /// Create a copy of DetectedIssueEvidence
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DetectedIssueEvidenceImplCopyWith<_$DetectedIssueEvidenceImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1246,8 +1294,12 @@ mixin _$DetectedIssueMitigation {
   PrimitiveElement? get dateElement => throw _privateConstructorUsedError;
   Reference? get author => throw _privateConstructorUsedError;
 
+  /// Serializes this DetectedIssueMitigation to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DetectedIssueMitigation
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DetectedIssueMitigationCopyWith<DetectedIssueMitigation> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1282,6 +1334,8 @@ class _$DetectedIssueMitigationCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DetectedIssueMitigation
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1325,6 +1379,8 @@ class _$DetectedIssueMitigationCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of DetectedIssueMitigation
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get action {
@@ -1333,6 +1389,8 @@ class _$DetectedIssueMitigationCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of DetectedIssueMitigation
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get author {
@@ -1380,6 +1438,8 @@ class __$$DetectedIssueMitigationImplCopyWithImpl<$Res>
       $Res Function(_$DetectedIssueMitigationImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DetectedIssueMitigation
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1477,6 +1537,11 @@ class _$DetectedIssueMitigationImpl extends _DetectedIssueMitigation {
   final Reference? author;
 
   @override
+  String toString() {
+    return 'DetectedIssueMitigation(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, action: $action, date: $date, dateElement: $dateElement, author: $author)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1493,7 +1558,7 @@ class _$DetectedIssueMitigationImpl extends _DetectedIssueMitigation {
             (identical(other.author, author) || other.author == author));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1505,7 +1570,9 @@ class _$DetectedIssueMitigationImpl extends _DetectedIssueMitigation {
       dateElement,
       author);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DetectedIssueMitigation
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DetectedIssueMitigationImplCopyWith<_$DetectedIssueMitigationImpl>
@@ -1550,8 +1617,11 @@ abstract class _DetectedIssueMitigation extends DetectedIssueMitigation {
   PrimitiveElement? get dateElement;
   @override
   Reference? get author;
+
+  /// Create a copy of DetectedIssueMitigation
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DetectedIssueMitigationImplCopyWith<_$DetectedIssueMitigationImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

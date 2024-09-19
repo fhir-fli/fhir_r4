@@ -210,8 +210,12 @@ mixin _$CarePlan {
   /// [note] General notes about the care plan not covered elsewhere.
   List<Annotation>? get note => throw _privateConstructorUsedError;
 
+  /// Serializes this CarePlan to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CarePlan
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CarePlanCopyWith<CarePlan> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -283,6 +287,8 @@ class _$CarePlanCopyWithImpl<$Res, $Val extends CarePlan>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CarePlan
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -491,6 +497,8 @@ class _$CarePlanCopyWithImpl<$Res, $Val extends CarePlan>
     ) as $Val);
   }
 
+  /// Create a copy of CarePlan
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -503,6 +511,8 @@ class _$CarePlanCopyWithImpl<$Res, $Val extends CarePlan>
     });
   }
 
+  /// Create a copy of CarePlan
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -515,6 +525,8 @@ class _$CarePlanCopyWithImpl<$Res, $Val extends CarePlan>
     });
   }
 
+  /// Create a copy of CarePlan
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get subject {
@@ -523,6 +535,8 @@ class _$CarePlanCopyWithImpl<$Res, $Val extends CarePlan>
     });
   }
 
+  /// Create a copy of CarePlan
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get encounter {
@@ -535,6 +549,8 @@ class _$CarePlanCopyWithImpl<$Res, $Val extends CarePlan>
     });
   }
 
+  /// Create a copy of CarePlan
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get period {
@@ -547,6 +563,8 @@ class _$CarePlanCopyWithImpl<$Res, $Val extends CarePlan>
     });
   }
 
+  /// Create a copy of CarePlan
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get author {
@@ -634,6 +652,8 @@ class __$$CarePlanImplCopyWithImpl<$Res>
       _$CarePlanImpl _value, $Res Function(_$CarePlanImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CarePlan
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1341,6 +1361,11 @@ class _$CarePlanImpl extends _CarePlan {
   }
 
   @override
+  String toString() {
+    return 'CarePlan(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, instantiatesCanonical: $instantiatesCanonical, instantiatesUri: $instantiatesUri, instantiatesUriElement: $instantiatesUriElement, basedOn: $basedOn, replaces: $replaces, partOf: $partOf, status: $status, statusElement: $statusElement, intent: $intent, intentElement: $intentElement, category: $category, title: $title, titleElement: $titleElement, description: $description, descriptionElement: $descriptionElement, subject: $subject, encounter: $encounter, period: $period, created: $created, createdElement: $createdElement, author: $author, contributor: $contributor, careTeam: $careTeam, addresses: $addresses, supportingInfo: $supportingInfo, goal: $goal, activity: $activity, note: $note)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1409,7 +1434,7 @@ class _$CarePlanImpl extends _CarePlan {
             const DeepCollectionEquality().equals(other._note, _note));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1455,7 +1480,9 @@ class _$CarePlanImpl extends _CarePlan {
         const DeepCollectionEquality().hash(_note)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CarePlan
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CarePlanImplCopyWith<_$CarePlanImpl> get copyWith =>
@@ -1522,39 +1549,38 @@ abstract class _CarePlan extends CarePlan {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.CarePlan)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1562,15 +1588,15 @@ abstract class _CarePlan extends CarePlan {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1578,9 +1604,9 @@ abstract class _CarePlan extends CarePlan {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1595,156 +1621,160 @@ abstract class _CarePlan extends CarePlan {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] Business identifiers assigned to this care plan by the
   /// performer or other systems which remain constant as the resource is
   ///  updated and propagates from server to server.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [instantiatesCanonical] The URL pointing to a FHIR-defined protocol,
   /// guideline, questionnaire or other definition that is adhered to in whole
   ///  or in part by this CarePlan.
-  List<FhirCanonical>? get instantiatesCanonical;
   @override
+  List<FhirCanonical>? get instantiatesCanonical;
 
   /// [instantiatesUri] The URL pointing to an externally maintained protocol,
   /// guideline, questionnaire or other definition that is adhered to in whole
   ///  or in part by this CarePlan.
-  List<FhirUri>? get instantiatesUri;
   @override
+  List<FhirUri>? get instantiatesUri;
 
   /// [instantiatesUriElement] Extensions for instantiatesUri
+  @override
   @JsonKey(name: '_instantiatesUri')
   List<PrimitiveElement>? get instantiatesUriElement;
-  @override
 
   /// [basedOn] A care plan that is fulfilled in whole or in part by this care
   ///  plan.
-  List<Reference>? get basedOn;
   @override
+  List<Reference>? get basedOn;
 
   /// [replaces] Completed or terminated care plan whose function is taken by
   ///  this new care plan.
-  List<Reference>? get replaces;
   @override
+  List<Reference>? get replaces;
 
   /// [partOf] A larger care plan of which this particular care plan is a
   ///  component or step.
-  List<Reference>? get partOf;
   @override
+  List<Reference>? get partOf;
 
   /// [status] Indicates whether the plan is currently being acted upon,
   ///  represents future intentions or is now a historical record.
-  FhirCode? get status;
   @override
+  FhirCode? get status;
 
   /// [statusElement] Extensions for status
+  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
-  @override
 
   /// [intent] Indicates the level of authority/intentionality associated with
   ///  the care plan and where the care plan fits into the workflow chain.
-  FhirCode? get intent;
   @override
+  FhirCode? get intent;
 
   /// [intentElement] Extensions for intent
+  @override
   @JsonKey(name: '_intent')
   PrimitiveElement? get intentElement;
-  @override
 
   /// [category] Identifies what "kind" of plan this is to support
   /// differentiation between multiple co-existing plans; e.g. "Home health",
   ///  "psychiatric", "asthma", "disease management", "wellness plan", etc.
-  List<CodeableConcept>? get category;
   @override
+  List<CodeableConcept>? get category;
 
   /// [title] Human-friendly name for the care plan.
-  String? get title;
   @override
+  String? get title;
 
   /// [titleElement] Extensions for title
+  @override
   @JsonKey(name: '_title')
   PrimitiveElement? get titleElement;
-  @override
 
   /// [description] A description of the scope and nature of the plan.
-  String? get description;
   @override
+  String? get description;
 
   /// [descriptionElement] Extensions for description
+  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
-  @override
 
   /// [subject] Identifies the patient or group whose intended care is
   ///  described by the plan.
-  Reference get subject;
   @override
+  Reference get subject;
 
   /// [encounter] The Encounter during which this CarePlan was created or to
   ///  which the creation of this record is tightly associated.
-  Reference? get encounter;
   @override
+  Reference? get encounter;
 
   /// [period] Indicates when the plan did (or is intended to) come into effect
   ///  and end.
-  Period? get period;
   @override
+  Period? get period;
 
   /// [created] Represents when this particular CarePlan record was created in
   ///  the system, which is often a system-generated date.
-  FhirDateTime? get created;
   @override
+  FhirDateTime? get created;
 
   /// [createdElement] Extensions for created
+  @override
   @JsonKey(name: '_created')
   PrimitiveElement? get createdElement;
-  @override
 
   /// [author] When populated, the author is responsible for the care plan.
   ///  The care plan is attributed to the author.
-  Reference? get author;
   @override
+  Reference? get author;
 
   /// [contributor] Identifies the individual(s) or organization who provided
   ///  the contents of the care plan.
-  List<Reference>? get contributor;
   @override
+  List<Reference>? get contributor;
 
   /// [careTeam] Identifies all people and organizations who are expected to be
   ///  involved in the care envisioned by this plan.
-  List<Reference>? get careTeam;
   @override
+  List<Reference>? get careTeam;
 
   /// [addresses] Identifies the conditions/problems/concerns/diagnoses/etc.
   ///  whose management and/or mitigation are handled by this plan.
-  List<Reference>? get addresses;
   @override
+  List<Reference>? get addresses;
 
   /// [supportingInfo] Identifies portions of the patient's record that
   /// specifically influenced the formation of the plan.  These might include
   ///  comorbidities, recent procedures, limitations, recent assessments, etc.
-  List<Reference>? get supportingInfo;
   @override
+  List<Reference>? get supportingInfo;
 
   /// [goal] Describes the intended objective(s) of carrying out the care plan.
-  List<Reference>? get goal;
   @override
+  List<Reference>? get goal;
 
   /// [activity] Identifies a planned action to occur as part of the plan.  For
   /// example, a medication to be used, lab tests to perform, self-monitoring,
   ///  education, etc.
-  List<CarePlanActivity>? get activity;
   @override
+  List<CarePlanActivity>? get activity;
 
   /// [note] General notes about the care plan not covered elsewhere.
-  List<Annotation>? get note;
   @override
-  @JsonKey(ignore: true)
+  List<Annotation>? get note;
+
+  /// Create a copy of CarePlan
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CarePlanImplCopyWith<_$CarePlanImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1809,8 +1839,12 @@ mixin _$CarePlanActivity {
   ///  resources such as procedure etc.
   CarePlanDetail? get detail => throw _privateConstructorUsedError;
 
+  /// Serializes this CarePlanActivity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CarePlanActivity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CarePlanActivityCopyWith<CarePlanActivity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1845,6 +1879,8 @@ class _$CarePlanActivityCopyWithImpl<$Res, $Val extends CarePlanActivity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CarePlanActivity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1893,6 +1929,8 @@ class _$CarePlanActivityCopyWithImpl<$Res, $Val extends CarePlanActivity>
     ) as $Val);
   }
 
+  /// Create a copy of CarePlanActivity
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get reference {
@@ -1905,6 +1943,8 @@ class _$CarePlanActivityCopyWithImpl<$Res, $Val extends CarePlanActivity>
     });
   }
 
+  /// Create a copy of CarePlanActivity
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CarePlanDetailCopyWith<$Res>? get detail {
@@ -1950,6 +1990,8 @@ class __$$CarePlanActivityImplCopyWithImpl<$Res>
       $Res Function(_$CarePlanActivityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CarePlanActivity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2153,6 +2195,11 @@ class _$CarePlanActivityImpl extends _CarePlanActivity {
   final CarePlanDetail? detail;
 
   @override
+  String toString() {
+    return 'CarePlanActivity(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, outcomeCodeableConcept: $outcomeCodeableConcept, outcomeReference: $outcomeReference, progress: $progress, reference: $reference, detail: $detail)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2172,7 +2219,7 @@ class _$CarePlanActivityImpl extends _CarePlanActivity {
             (identical(other.detail, detail) || other.detail == detail));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2185,7 +2232,9 @@ class _$CarePlanActivityImpl extends _CarePlanActivity {
       reference,
       detail);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CarePlanActivity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CarePlanActivityImplCopyWith<_$CarePlanActivityImpl> get copyWith =>
@@ -2215,12 +2264,10 @@ abstract class _CarePlanActivity extends CarePlanActivity {
   factory _CarePlanActivity.fromJson(Map<String, dynamic> json) =
       _$CarePlanActivityImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2228,9 +2275,9 @@ abstract class _CarePlanActivity extends CarePlanActivity {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2245,38 +2292,42 @@ abstract class _CarePlanActivity extends CarePlanActivity {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [outcomeCodeableConcept] Identifies the outcome at the point when the
   /// status of the activity is assessed.  For example, the outcome of an
   ///  education activity could be patient understands (or not).
-  List<CodeableConcept>? get outcomeCodeableConcept;
   @override
+  List<CodeableConcept>? get outcomeCodeableConcept;
 
   /// [outcomeReference] Details of the outcome or action resulting from the
   /// activity.  The reference to an "event" resource, such as Procedure or
   /// Encounter or Observation, is the result/outcome of the activity itself.
   /// The activity can be conveyed using CarePlan.activity.detail OR using the
   ///  CarePlan.activity.reference (a reference to a “request” resource).
-  List<Reference>? get outcomeReference;
   @override
+  List<Reference>? get outcomeReference;
 
   /// [progress] Notes about the adherence/status/progress of the activity.
-  List<Annotation>? get progress;
   @override
+  List<Annotation>? get progress;
 
   /// [reference] The details of the proposed activity represented in a
   ///  specific resource.
-  Reference? get reference;
   @override
+  Reference? get reference;
 
   /// [detail] A simple summary of a planned activity suitable for a general
   /// care plan system (e.g. form driven) that doesn't know about specific
   ///  resources such as procedure etc.
-  CarePlanDetail? get detail;
   @override
-  @JsonKey(ignore: true)
+  CarePlanDetail? get detail;
+
+  /// Create a copy of CarePlanActivity
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CarePlanActivityImplCopyWith<_$CarePlanActivityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2437,8 +2488,12 @@ mixin _$CarePlanDetail {
   PrimitiveElement? get descriptionElement =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this CarePlanDetail to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CarePlanDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CarePlanDetailCopyWith<CarePlanDetail> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2503,6 +2558,8 @@ class _$CarePlanDetailCopyWithImpl<$Res, $Val extends CarePlanDetail>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CarePlanDetail
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2656,6 +2713,8 @@ class _$CarePlanDetailCopyWithImpl<$Res, $Val extends CarePlanDetail>
     ) as $Val);
   }
 
+  /// Create a copy of CarePlanDetail
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get code {
@@ -2668,6 +2727,8 @@ class _$CarePlanDetailCopyWithImpl<$Res, $Val extends CarePlanDetail>
     });
   }
 
+  /// Create a copy of CarePlanDetail
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get statusReason {
@@ -2680,6 +2741,8 @@ class _$CarePlanDetailCopyWithImpl<$Res, $Val extends CarePlanDetail>
     });
   }
 
+  /// Create a copy of CarePlanDetail
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TimingCopyWith<$Res>? get scheduledTiming {
@@ -2692,6 +2755,8 @@ class _$CarePlanDetailCopyWithImpl<$Res, $Val extends CarePlanDetail>
     });
   }
 
+  /// Create a copy of CarePlanDetail
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get scheduledPeriod {
@@ -2704,6 +2769,8 @@ class _$CarePlanDetailCopyWithImpl<$Res, $Val extends CarePlanDetail>
     });
   }
 
+  /// Create a copy of CarePlanDetail
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get location {
@@ -2716,6 +2783,8 @@ class _$CarePlanDetailCopyWithImpl<$Res, $Val extends CarePlanDetail>
     });
   }
 
+  /// Create a copy of CarePlanDetail
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get productCodeableConcept {
@@ -2729,6 +2798,8 @@ class _$CarePlanDetailCopyWithImpl<$Res, $Val extends CarePlanDetail>
     });
   }
 
+  /// Create a copy of CarePlanDetail
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get productReference {
@@ -2741,6 +2812,8 @@ class _$CarePlanDetailCopyWithImpl<$Res, $Val extends CarePlanDetail>
     });
   }
 
+  /// Create a copy of CarePlanDetail
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get dailyAmount {
@@ -2753,6 +2826,8 @@ class _$CarePlanDetailCopyWithImpl<$Res, $Val extends CarePlanDetail>
     });
   }
 
+  /// Create a copy of CarePlanDetail
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get quantity {
@@ -2835,6 +2910,8 @@ class __$$CarePlanDetailImplCopyWithImpl<$Res>
       _$CarePlanDetailImpl _value, $Res Function(_$CarePlanDetailImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CarePlanDetail
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3320,6 +3397,11 @@ class _$CarePlanDetailImpl extends _CarePlanDetail {
   final PrimitiveElement? descriptionElement;
 
   @override
+  String toString() {
+    return 'CarePlanDetail(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, kind: $kind, kindElement: $kindElement, instantiatesCanonical: $instantiatesCanonical, instantiatesUri: $instantiatesUri, instantiatesUriElement: $instantiatesUriElement, code: $code, reasonCode: $reasonCode, reasonReference: $reasonReference, goal: $goal, status: $status, statusElement: $statusElement, statusReason: $statusReason, doNotPerform: $doNotPerform, doNotPerformElement: $doNotPerformElement, scheduledTiming: $scheduledTiming, scheduledPeriod: $scheduledPeriod, scheduledString: $scheduledString, scheduledStringElement: $scheduledStringElement, location: $location, performer: $performer, productCodeableConcept: $productCodeableConcept, productReference: $productReference, dailyAmount: $dailyAmount, quantity: $quantity, description: $description, descriptionElement: $descriptionElement)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -3379,7 +3461,7 @@ class _$CarePlanDetailImpl extends _CarePlanDetail {
                 other.descriptionElement == descriptionElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -3414,7 +3496,9 @@ class _$CarePlanDetailImpl extends _CarePlanDetail {
         descriptionElement
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CarePlanDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CarePlanDetailImplCopyWith<_$CarePlanDetailImpl> get copyWith =>
@@ -3469,12 +3553,10 @@ abstract class _CarePlanDetail extends CarePlanDetail {
   factory _CarePlanDetail.fromJson(Map<String, dynamic> json) =
       _$CarePlanDetailImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3482,9 +3564,9 @@ abstract class _CarePlanDetail extends CarePlanDetail {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3499,150 +3581,154 @@ abstract class _CarePlanDetail extends CarePlanDetail {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [kind] A description of the kind of resource the in-line definition of a
   /// care plan activity is representing.  The CarePlan.activity.detail is an
   /// in-line definition when a resource is not referenced using
   /// CarePlan.activity.reference.  For example, a MedicationRequest, a
   ///  ServiceRequest, or a CommunicationRequest.
-  FhirCode? get kind;
   @override
+  FhirCode? get kind;
 
   /// [kindElement] Extensions for kind
+  @override
   @JsonKey(name: '_kind')
   PrimitiveElement? get kindElement;
-  @override
 
   /// [instantiatesCanonical] The URL pointing to a FHIR-defined protocol,
   /// guideline, questionnaire or other definition that is adhered to in whole
   ///  or in part by this CarePlan activity.
-  List<FhirCanonical>? get instantiatesCanonical;
   @override
+  List<FhirCanonical>? get instantiatesCanonical;
 
   /// [instantiatesUri] The URL pointing to an externally maintained protocol,
   /// guideline, questionnaire or other definition that is adhered to in whole
   ///  or in part by this CarePlan activity.
-  List<FhirUri>? get instantiatesUri;
   @override
+  List<FhirUri>? get instantiatesUri;
 
   /// [instantiatesUriElement] Extensions for instantiatesUri
+  @override
   @JsonKey(name: '_instantiatesUri')
   List<PrimitiveElement>? get instantiatesUriElement;
-  @override
 
   /// [code] Detailed description of the type of planned activity; e.g. what
   ///  lab test, what procedure, what kind of encounter.
-  CodeableConcept? get code;
   @override
+  CodeableConcept? get code;
 
   /// [reasonCode] Provides the rationale that drove the inclusion of this
   /// particular activity as part of the plan or the reason why the activity was
   ///  prohibited.
-  List<CodeableConcept>? get reasonCode;
   @override
+  List<CodeableConcept>? get reasonCode;
 
   /// [reasonReference] Indicates another resource, such as the health
   /// condition(s), whose existence justifies this request and drove the
   ///  inclusion of this particular activity as part of the plan.
-  List<Reference>? get reasonReference;
   @override
+  List<Reference>? get reasonReference;
 
   /// [goal] Internal reference that identifies the goals that this activity is
   ///  intended to contribute towards meeting.
-  List<Reference>? get goal;
   @override
+  List<Reference>? get goal;
 
   /// [status] Identifies what progress is being made for the specific
   ///  activity.
-  FhirCode? get status;
   @override
+  FhirCode? get status;
 
   /// [statusElement] Extensions for status
+  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
-  @override
 
   /// [statusReason] Provides reason why the activity isn't yet started, is on
   ///  hold, was cancelled, etc.
-  CodeableConcept? get statusReason;
   @override
+  CodeableConcept? get statusReason;
 
   /// [doNotPerform] If true, indicates that the described activity is one that
   /// must NOT be engaged in when following the plan.  If false, or missing,
   /// indicates that the described activity is one that should be engaged in
   ///  when following the plan.
-  FhirBoolean? get doNotPerform;
   @override
+  FhirBoolean? get doNotPerform;
 
   /// [doNotPerformElement] Extensions for doNotPerform
+  @override
   @JsonKey(name: '_doNotPerform')
   PrimitiveElement? get doNotPerformElement;
-  @override
 
   /// [scheduledTiming] The period, timing or frequency upon which the
   ///  described activity is to occur.
-  Timing? get scheduledTiming;
   @override
+  Timing? get scheduledTiming;
 
   /// [scheduledPeriod] The period, timing or frequency upon which the
   ///  described activity is to occur.
-  Period? get scheduledPeriod;
   @override
+  Period? get scheduledPeriod;
 
   /// [scheduledString] The period, timing or frequency upon which the
   ///  described activity is to occur.
-  String? get scheduledString;
   @override
+  String? get scheduledString;
 
   /// [scheduledStringElement] Extensions for scheduledString
+  @override
   @JsonKey(name: '_scheduledString')
   PrimitiveElement? get scheduledStringElement;
-  @override
 
   /// [location] Identifies the facility where the activity will occur; e.g.
   ///  home, hospital, specific clinic, etc.
-  Reference? get location;
   @override
+  Reference? get location;
 
   /// [performer] Identifies who's expected to be involved in the activity.
-  List<Reference>? get performer;
   @override
+  List<Reference>? get performer;
 
   /// [productCodeableConcept] Identifies the food, drug or other product to be
   ///  consumed or supplied in the activity.
-  CodeableConcept? get productCodeableConcept;
   @override
+  CodeableConcept? get productCodeableConcept;
 
   /// [productReference] Identifies the food, drug or other product to be
   ///  consumed or supplied in the activity.
-  Reference? get productReference;
   @override
+  Reference? get productReference;
 
   /// [dailyAmount] Identifies the quantity expected to be consumed in a given
   ///  day.
-  Quantity? get dailyAmount;
   @override
+  Quantity? get dailyAmount;
 
   /// [quantity] Identifies the quantity expected to be supplied, administered
   ///  or consumed by the subject.
-  Quantity? get quantity;
   @override
+  Quantity? get quantity;
 
   /// [description] This provides a textual description of constraints on the
   /// intended activity occurrence, including relation to other activities.  It
   /// may also include objectives, pre-conditions and end-conditions.  Finally,
   /// it may convey specifics about the activity such as body site, method,
   ///  route, etc.
-  String? get description;
   @override
+  String? get description;
 
   /// [descriptionElement] Extensions for description
+  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
+
+  /// Create a copy of CarePlanDetail
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CarePlanDetailImplCopyWith<_$CarePlanDetailImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -151,8 +151,12 @@ mixin _$PractitionerRole {
   ///  the practitioner with this role.
   List<Reference>? get endpoint => throw _privateConstructorUsedError;
 
+  /// Serializes this PractitionerRole to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PractitionerRole
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PractitionerRoleCopyWith<PractitionerRole> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -211,6 +215,8 @@ class _$PractitionerRoleCopyWithImpl<$Res, $Val extends PractitionerRole>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PractitionerRole
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -354,6 +360,8 @@ class _$PractitionerRoleCopyWithImpl<$Res, $Val extends PractitionerRole>
     ) as $Val);
   }
 
+  /// Create a copy of PractitionerRole
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -366,6 +374,8 @@ class _$PractitionerRoleCopyWithImpl<$Res, $Val extends PractitionerRole>
     });
   }
 
+  /// Create a copy of PractitionerRole
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -378,6 +388,8 @@ class _$PractitionerRoleCopyWithImpl<$Res, $Val extends PractitionerRole>
     });
   }
 
+  /// Create a copy of PractitionerRole
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get period {
@@ -390,6 +402,8 @@ class _$PractitionerRoleCopyWithImpl<$Res, $Val extends PractitionerRole>
     });
   }
 
+  /// Create a copy of PractitionerRole
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get practitioner {
@@ -402,6 +416,8 @@ class _$PractitionerRoleCopyWithImpl<$Res, $Val extends PractitionerRole>
     });
   }
 
+  /// Create a copy of PractitionerRole
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get organization {
@@ -474,6 +490,8 @@ class __$$PractitionerRoleImplCopyWithImpl<$Res>
       $Res Function(_$PractitionerRoleImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PractitionerRole
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -957,6 +975,11 @@ class _$PractitionerRoleImpl extends _PractitionerRole {
   }
 
   @override
+  String toString() {
+    return 'PractitionerRole(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, active: $active, activeElement: $activeElement, period: $period, practitioner: $practitioner, organization: $organization, code: $code, specialty: $specialty, location: $location, healthcareService: $healthcareService, telecom: $telecom, availableTime: $availableTime, notAvailable: $notAvailable, availabilityExceptions: $availabilityExceptions, availabilityExceptionsElement: $availabilityExceptionsElement, endpoint: $endpoint)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1010,7 +1033,7 @@ class _$PractitionerRoleImpl extends _PractitionerRole {
             const DeepCollectionEquality().equals(other._endpoint, _endpoint));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1043,7 +1066,9 @@ class _$PractitionerRoleImpl extends _PractitionerRole {
         const DeepCollectionEquality().hash(_endpoint)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PractitionerRole
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PractitionerRoleImplCopyWith<_$PractitionerRoleImpl> get copyWith =>
@@ -1098,39 +1123,38 @@ abstract class _PractitionerRole extends PractitionerRole {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.PractitionerRole)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1138,15 +1162,15 @@ abstract class _PractitionerRole extends PractitionerRole {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1154,9 +1178,9 @@ abstract class _PractitionerRole extends PractitionerRole {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1171,84 +1195,88 @@ abstract class _PractitionerRole extends PractitionerRole {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] Business Identifiers that are specific to a role/location.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [active] Whether this practitioner role record is in active use.
-  FhirBoolean? get active;
   @override
+  FhirBoolean? get active;
 
   /// [activeElement] Extensions for active
+  @override
   @JsonKey(name: '_active')
   PrimitiveElement? get activeElement;
-  @override
 
   /// [period] The period during which the person is authorized to act as a
   ///  practitioner in these role(s) for the organization.
-  Period? get period;
   @override
+  Period? get period;
 
   /// [practitioner] Practitioner that is able to provide the defined services
   ///  for the organization.
-  Reference? get practitioner;
   @override
+  Reference? get practitioner;
 
   /// [organization] The organization where the Practitioner performs the roles
   ///  associated.
-  Reference? get organization;
   @override
+  Reference? get organization;
 
   /// [code] Roles which this practitioner is authorized to perform for the
   ///  organization.
-  List<CodeableConcept>? get code;
   @override
+  List<CodeableConcept>? get code;
 
   /// [specialty] Specific specialty of the practitioner.
-  List<CodeableConcept>? get specialty;
   @override
+  List<CodeableConcept>? get specialty;
 
   /// [location] The location(s) at which this practitioner provides care.
-  List<Reference>? get location;
   @override
+  List<Reference>? get location;
 
   /// [healthcareService] The list of healthcare services that this worker
   ///  provides for this role's Organization/Location(s).
-  List<Reference>? get healthcareService;
   @override
+  List<Reference>? get healthcareService;
 
   /// [telecom] Contact details that are specific to the role/location/service.
-  List<ContactPoint>? get telecom;
   @override
+  List<ContactPoint>? get telecom;
 
   /// [availableTime] A collection of times the practitioner is available or
   ///  performing this role at the location and/or healthcareservice.
-  List<PractitionerRoleAvailableTime>? get availableTime;
   @override
+  List<PractitionerRoleAvailableTime>? get availableTime;
 
   /// [notAvailable] The practitioner is not available or performing this role
   ///  during this period of time due to the provided reason.
-  List<PractitionerRoleNotAvailable>? get notAvailable;
   @override
+  List<PractitionerRoleNotAvailable>? get notAvailable;
 
   /// [availabilityExceptions] A description of site availability exceptions,
   /// e.g. public holiday availability. Succinctly describing all possible
   /// exceptions to normal site availability as details in the available Times
   ///  and not available Times.
+  @override
   String? get availabilityExceptions;
   @override
   @JsonKey(name: '_availabilityExceptions')
   PrimitiveElement? get availabilityExceptionsElement;
-  @override
 
   /// [endpoint] Technical endpoints providing access to services operated for
   ///  the practitioner with this role.
-  List<Reference>? get endpoint;
   @override
-  @JsonKey(ignore: true)
+  List<Reference>? get endpoint;
+
+  /// Create a copy of PractitionerRole
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PractitionerRoleImplCopyWith<_$PractitionerRoleImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1324,8 +1352,12 @@ mixin _$PractitionerRoleAvailableTime {
   PrimitiveElement? get availableEndTimeElement =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this PractitionerRoleAvailableTime to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PractitionerRoleAvailableTime
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PractitionerRoleAvailableTimeCopyWith<PractitionerRoleAvailableTime>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1365,6 +1397,8 @@ class _$PractitionerRoleAvailableTimeCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PractitionerRoleAvailableTime
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1464,6 +1498,8 @@ class __$$PractitionerRoleAvailableTimeImplCopyWithImpl<$Res>
       $Res Function(_$PractitionerRoleAvailableTimeImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PractitionerRoleAvailableTime
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1683,6 +1719,11 @@ class _$PractitionerRoleAvailableTimeImpl
   final PrimitiveElement? availableEndTimeElement;
 
   @override
+  String toString() {
+    return 'PractitionerRoleAvailableTime(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, daysOfWeek: $daysOfWeek, daysOfWeekElement: $daysOfWeekElement, allDay: $allDay, allDayElement: $allDayElement, availableStartTime: $availableStartTime, availableStartTimeElement: $availableStartTimeElement, availableEndTime: $availableEndTime, availableEndTimeElement: $availableEndTimeElement)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1711,7 +1752,7 @@ class _$PractitionerRoleAvailableTimeImpl
                 other.availableEndTimeElement == availableEndTimeElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1727,7 +1768,9 @@ class _$PractitionerRoleAvailableTimeImpl
       availableEndTime,
       availableEndTimeElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PractitionerRoleAvailableTime
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PractitionerRoleAvailableTimeImplCopyWith<
@@ -1766,12 +1809,10 @@ abstract class _PractitionerRoleAvailableTime
   factory _PractitionerRoleAvailableTime.fromJson(Map<String, dynamic> json) =
       _$PractitionerRoleAvailableTimeImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1779,9 +1820,9 @@ abstract class _PractitionerRoleAvailableTime
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -1796,49 +1837,53 @@ abstract class _PractitionerRoleAvailableTime
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [daysOfWeek] Indicates which days of the week are available between the
   ///  start and end Times.
-  List<FhirCode>? get daysOfWeek;
   @override
+  List<FhirCode>? get daysOfWeek;
 
   /// [daysOfWeekElement] Extensions for daysOfWeek
+  @override
   @JsonKey(name: '_daysOfWeek')
   List<PrimitiveElement>? get daysOfWeekElement;
-  @override
 
   /// [allDay] Is this always available? (hence times are irrelevant) e.g. 24
   ///  hour service.
-  FhirBoolean? get allDay;
   @override
+  FhirBoolean? get allDay;
 
   /// [allDayElement] Extensions for allDay
+  @override
   @JsonKey(name: '_allDay')
   PrimitiveElement? get allDayElement;
-  @override
 
   /// [availableStartTime] The opening time of day. Note: If the AllDay flag is
   ///  set, then this time is ignored.
-  FhirTime? get availableStartTime;
   @override
+  FhirTime? get availableStartTime;
 
   /// [availableStartTimeElement] Extensions for availableStartTime
+  @override
   @JsonKey(name: '_availableStartTime')
   PrimitiveElement? get availableStartTimeElement;
-  @override
 
   /// [availableEndTime] The closing time of day. Note: If the AllDay flag is
   ///  set, then this time is ignored.
-  FhirTime? get availableEndTime;
   @override
+  FhirTime? get availableEndTime;
 
   /// [availableEndTimeElement] Extensions for availableEndTime
+  @override
   @JsonKey(name: '_availableEndTime')
   PrimitiveElement? get availableEndTimeElement;
+
+  /// Create a copy of PractitionerRoleAvailableTime
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PractitionerRoleAvailableTimeImplCopyWith<
           _$PractitionerRoleAvailableTimeImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -1893,8 +1938,12 @@ mixin _$PractitionerRoleNotAvailable {
   ///  from this date.
   Period? get during => throw _privateConstructorUsedError;
 
+  /// Serializes this PractitionerRoleNotAvailable to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PractitionerRoleNotAvailable
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PractitionerRoleNotAvailableCopyWith<PractitionerRoleNotAvailable>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1929,6 +1978,8 @@ class _$PractitionerRoleNotAvailableCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PractitionerRoleNotAvailable
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1967,6 +2018,8 @@ class _$PractitionerRoleNotAvailableCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of PractitionerRoleNotAvailable
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get during {
@@ -2011,6 +2064,8 @@ class __$$PractitionerRoleNotAvailableImplCopyWithImpl<$Res>
       $Res Function(_$PractitionerRoleNotAvailableImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PractitionerRoleNotAvailable
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2151,6 +2206,11 @@ class _$PractitionerRoleNotAvailableImpl extends _PractitionerRoleNotAvailable {
   final Period? during;
 
   @override
+  String toString() {
+    return 'PractitionerRoleNotAvailable(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, description: $description, descriptionElement: $descriptionElement, during: $during)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2167,7 +2227,7 @@ class _$PractitionerRoleNotAvailableImpl extends _PractitionerRoleNotAvailable {
             (identical(other.during, during) || other.during == during));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2178,7 +2238,9 @@ class _$PractitionerRoleNotAvailableImpl extends _PractitionerRoleNotAvailable {
       descriptionElement,
       during);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PractitionerRoleNotAvailable
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PractitionerRoleNotAvailableImplCopyWith<
@@ -2208,12 +2270,10 @@ abstract class _PractitionerRoleNotAvailable
   factory _PractitionerRoleNotAvailable.fromJson(Map<String, dynamic> json) =
       _$PractitionerRoleNotAvailableImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2221,9 +2281,9 @@ abstract class _PractitionerRoleNotAvailable
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2238,24 +2298,28 @@ abstract class _PractitionerRoleNotAvailable
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [description] The reason that can be presented to the user as to why this
   ///  time is not available.
-  String? get description;
   @override
+  String? get description;
 
   /// [descriptionElement] Extensions for description
+  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
-  @override
 
   /// [during] Service is not available (seasonally or for a public holiday)
   ///  from this date.
-  Period? get during;
   @override
-  @JsonKey(ignore: true)
+  Period? get during;
+
+  /// Create a copy of PractitionerRoleNotAvailable
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PractitionerRoleNotAvailableImplCopyWith<
           _$PractitionerRoleNotAvailableImpl>
       get copyWith => throw _privateConstructorUsedError;

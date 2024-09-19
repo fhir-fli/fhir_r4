@@ -142,8 +142,12 @@ mixin _$PaymentNotice {
   ///  cleared.
   CodeableConcept? get paymentStatus => throw _privateConstructorUsedError;
 
+  /// Serializes this PaymentNotice to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PaymentNotice
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PaymentNoticeCopyWith<PaymentNotice> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -205,6 +209,8 @@ class _$PaymentNoticeCopyWithImpl<$Res, $Val extends PaymentNotice>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PaymentNotice
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -343,6 +349,8 @@ class _$PaymentNoticeCopyWithImpl<$Res, $Val extends PaymentNotice>
     ) as $Val);
   }
 
+  /// Create a copy of PaymentNotice
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -355,6 +363,8 @@ class _$PaymentNoticeCopyWithImpl<$Res, $Val extends PaymentNotice>
     });
   }
 
+  /// Create a copy of PaymentNotice
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -367,6 +377,8 @@ class _$PaymentNoticeCopyWithImpl<$Res, $Val extends PaymentNotice>
     });
   }
 
+  /// Create a copy of PaymentNotice
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get request {
@@ -379,6 +391,8 @@ class _$PaymentNoticeCopyWithImpl<$Res, $Val extends PaymentNotice>
     });
   }
 
+  /// Create a copy of PaymentNotice
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get response {
@@ -391,6 +405,8 @@ class _$PaymentNoticeCopyWithImpl<$Res, $Val extends PaymentNotice>
     });
   }
 
+  /// Create a copy of PaymentNotice
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get provider {
@@ -403,6 +419,8 @@ class _$PaymentNoticeCopyWithImpl<$Res, $Val extends PaymentNotice>
     });
   }
 
+  /// Create a copy of PaymentNotice
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get payment {
@@ -411,6 +429,8 @@ class _$PaymentNoticeCopyWithImpl<$Res, $Val extends PaymentNotice>
     });
   }
 
+  /// Create a copy of PaymentNotice
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get payee {
@@ -423,6 +443,8 @@ class _$PaymentNoticeCopyWithImpl<$Res, $Val extends PaymentNotice>
     });
   }
 
+  /// Create a copy of PaymentNotice
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get recipient {
@@ -431,6 +453,8 @@ class _$PaymentNoticeCopyWithImpl<$Res, $Val extends PaymentNotice>
     });
   }
 
+  /// Create a copy of PaymentNotice
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MoneyCopyWith<$Res> get amount {
@@ -439,6 +463,8 @@ class _$PaymentNoticeCopyWithImpl<$Res, $Val extends PaymentNotice>
     });
   }
 
+  /// Create a copy of PaymentNotice
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get paymentStatus {
@@ -519,6 +545,8 @@ class __$$PaymentNoticeImplCopyWithImpl<$Res>
       _$PaymentNoticeImpl _value, $Res Function(_$PaymentNoticeImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PaymentNotice
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -901,6 +929,11 @@ class _$PaymentNoticeImpl extends _PaymentNotice {
   final CodeableConcept? paymentStatus;
 
   @override
+  String toString() {
+    return 'PaymentNotice(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, status: $status, statusElement: $statusElement, request: $request, response: $response, created: $created, createdElement: $createdElement, provider: $provider, payment: $payment, paymentDate: $paymentDate, paymentDateElement: $paymentDateElement, payee: $payee, recipient: $recipient, amount: $amount, paymentStatus: $paymentStatus)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -950,7 +983,7 @@ class _$PaymentNoticeImpl extends _PaymentNotice {
                 other.paymentStatus == paymentStatus));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -982,7 +1015,9 @@ class _$PaymentNoticeImpl extends _PaymentNotice {
         paymentStatus
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PaymentNotice
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PaymentNoticeImplCopyWith<_$PaymentNoticeImpl> get copyWith =>
@@ -1034,39 +1069,38 @@ abstract class _PaymentNotice extends PaymentNotice {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.PaymentNotice)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1074,15 +1108,15 @@ abstract class _PaymentNotice extends PaymentNotice {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1090,9 +1124,9 @@ abstract class _PaymentNotice extends PaymentNotice {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1107,76 +1141,80 @@ abstract class _PaymentNotice extends PaymentNotice {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] A unique identifier assigned to this payment notice.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [status] The status of the resource instance.
-  FhirCode? get status;
   @override
+  FhirCode? get status;
 
   /// [statusElement] Extensions for status
+  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
-  @override
 
   /// [request] Reference of resource for which payment is being made.
-  Reference? get request;
   @override
+  Reference? get request;
 
   /// [response] Reference of response to resource for which payment is being
   ///  made.
-  Reference? get response;
   @override
+  Reference? get response;
 
   /// [created] The date when this resource was created.
-  FhirDateTime? get created;
   @override
+  FhirDateTime? get created;
 
   /// [createdElement] Extensions for created
+  @override
   @JsonKey(name: '_created')
   PrimitiveElement? get createdElement;
-  @override
 
   /// [provider] The practitioner who is responsible for the services rendered
   ///  to the patient.
-  Reference? get provider;
   @override
+  Reference? get provider;
 
   /// [payment] A reference to the payment which is the subject of this notice.
-  Reference get payment;
   @override
+  Reference get payment;
 
   /// [paymentDate] The date when the above payment action occurred.
-  FhirDate? get paymentDate;
   @override
+  FhirDate? get paymentDate;
 
   /// [paymentDateElement] Extensions for paymentDate
+  @override
   @JsonKey(name: '_paymentDate')
   PrimitiveElement? get paymentDateElement;
-  @override
 
   /// [payee] The party who will receive or has received payment that is the
   ///  subject of this notification.
-  Reference? get payee;
   @override
+  Reference? get payee;
 
   /// [recipient] The party who is notified of the payment status.
-  Reference get recipient;
   @override
+  Reference get recipient;
 
   /// [amount] The amount sent to the payee.
-  Money get amount;
   @override
+  Money get amount;
 
   /// [paymentStatus] A code indicating whether payment has been sent or
   ///  cleared.
-  CodeableConcept? get paymentStatus;
   @override
-  @JsonKey(ignore: true)
+  CodeableConcept? get paymentStatus;
+
+  /// Create a copy of PaymentNotice
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PaymentNoticeImplCopyWith<_$PaymentNoticeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

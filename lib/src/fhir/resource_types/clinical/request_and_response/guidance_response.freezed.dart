@@ -194,8 +194,12 @@ mixin _$GuidanceResponse {
   List<DataRequirement>? get dataRequirement =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this GuidanceResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GuidanceResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GuidanceResponseCopyWith<GuidanceResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -264,6 +268,8 @@ class _$GuidanceResponseCopyWithImpl<$Res, $Val extends GuidanceResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GuidanceResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -432,6 +438,8 @@ class _$GuidanceResponseCopyWithImpl<$Res, $Val extends GuidanceResponse>
     ) as $Val);
   }
 
+  /// Create a copy of GuidanceResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -444,6 +452,8 @@ class _$GuidanceResponseCopyWithImpl<$Res, $Val extends GuidanceResponse>
     });
   }
 
+  /// Create a copy of GuidanceResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -456,6 +466,8 @@ class _$GuidanceResponseCopyWithImpl<$Res, $Val extends GuidanceResponse>
     });
   }
 
+  /// Create a copy of GuidanceResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $IdentifierCopyWith<$Res>? get requestIdentifier {
@@ -468,6 +480,8 @@ class _$GuidanceResponseCopyWithImpl<$Res, $Val extends GuidanceResponse>
     });
   }
 
+  /// Create a copy of GuidanceResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get moduleCodeableConcept {
@@ -481,6 +495,8 @@ class _$GuidanceResponseCopyWithImpl<$Res, $Val extends GuidanceResponse>
     });
   }
 
+  /// Create a copy of GuidanceResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get subject {
@@ -493,6 +509,8 @@ class _$GuidanceResponseCopyWithImpl<$Res, $Val extends GuidanceResponse>
     });
   }
 
+  /// Create a copy of GuidanceResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get encounter {
@@ -505,6 +523,8 @@ class _$GuidanceResponseCopyWithImpl<$Res, $Val extends GuidanceResponse>
     });
   }
 
+  /// Create a copy of GuidanceResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get performer {
@@ -517,6 +537,8 @@ class _$GuidanceResponseCopyWithImpl<$Res, $Val extends GuidanceResponse>
     });
   }
 
+  /// Create a copy of GuidanceResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get outputParameters {
@@ -529,6 +551,8 @@ class _$GuidanceResponseCopyWithImpl<$Res, $Val extends GuidanceResponse>
     });
   }
 
+  /// Create a copy of GuidanceResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get result {
@@ -615,6 +639,8 @@ class __$$GuidanceResponseImplCopyWithImpl<$Res>
       $Res Function(_$GuidanceResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GuidanceResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1152,6 +1178,11 @@ class _$GuidanceResponseImpl extends _GuidanceResponse {
   }
 
   @override
+  String toString() {
+    return 'GuidanceResponse(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, requestIdentifier: $requestIdentifier, identifier: $identifier, moduleUri: $moduleUri, moduleUriElement: $moduleUriElement, moduleCanonical: $moduleCanonical, moduleCanonicalElement: $moduleCanonicalElement, moduleCodeableConcept: $moduleCodeableConcept, status: $status, statusElement: $statusElement, subject: $subject, encounter: $encounter, occurrenceDateTime: $occurrenceDateTime, occurrenceDateTimeElement: $occurrenceDateTimeElement, performer: $performer, reasonCode: $reasonCode, reasonReference: $reasonReference, note: $note, evaluationMessage: $evaluationMessage, outputParameters: $outputParameters, result: $result, dataRequirement: $dataRequirement)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1216,7 +1247,7 @@ class _$GuidanceResponseImpl extends _GuidanceResponse {
                 .equals(other._dataRequirement, _dataRequirement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1254,7 +1285,9 @@ class _$GuidanceResponseImpl extends _GuidanceResponse {
         const DeepCollectionEquality().hash(_dataRequirement)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GuidanceResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GuidanceResponseImplCopyWith<_$GuidanceResponseImpl> get copyWith =>
@@ -1315,39 +1348,38 @@ abstract class _GuidanceResponse extends GuidanceResponse {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.GuidanceResponse)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1355,15 +1387,15 @@ abstract class _GuidanceResponse extends GuidanceResponse {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1371,9 +1403,9 @@ abstract class _GuidanceResponse extends GuidanceResponse {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1388,45 +1420,45 @@ abstract class _GuidanceResponse extends GuidanceResponse {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [requestIdentifier] The identifier of the request associated with this
   /// response. If an identifier was given as part of the request, it will be
   /// reproduced here to enable the requester to more easily identify the
   ///  response in a multi-request scenario.
-  Identifier? get requestIdentifier;
   @override
+  Identifier? get requestIdentifier;
 
   /// [identifier] Allows a service to provide  unique, business identifiers
   ///  for the response.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [moduleUri] An identifier, CodeableConcept or canonical reference to the
   ///  guidance that was requested.
-  FhirUri? get moduleUri;
   @override
+  FhirUri? get moduleUri;
 
   /// [moduleUriElement] Extensions for moduleUri
+  @override
   @JsonKey(name: '_moduleUri')
   PrimitiveElement? get moduleUriElement;
-  @override
 
   /// [moduleCanonical] An identifier, CodeableConcept or canonical reference
   ///  to the guidance that was requested.
-  FhirCanonical? get moduleCanonical;
   @override
+  FhirCanonical? get moduleCanonical;
 
   /// [moduleCanonicalElement] Extensions for moduleCanonical
+  @override
   @JsonKey(name: '_moduleCanonical')
   PrimitiveElement? get moduleCanonicalElement;
-  @override
 
   /// [moduleCodeableConcept] An identifier, CodeableConcept or canonical
   ///  reference to the guidance that was requested.
-  CodeableConcept? get moduleCodeableConcept;
   @override
+  CodeableConcept? get moduleCodeableConcept;
 
   /// [status] The status of the response. If the evaluation is completed
   /// successfully, the status will indicate success. However, in order to
@@ -1437,60 +1469,60 @@ abstract class _GuidanceResponse extends GuidanceResponse {
   /// accurate response could be provided if more data was available, the status
   /// will be data-requested, and the response will contain a description of the
   ///  additional requested information.
-  FhirCode? get status;
   @override
+  FhirCode? get status;
 
   /// [statusElement] Extensions for status
+  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
-  @override
 
   /// [subject] The patient for which the request was processed.
-  Reference? get subject;
   @override
+  Reference? get subject;
 
   /// [encounter] The encounter during which this response was created or to
   ///  which the creation of this record is tightly associated.
-  Reference? get encounter;
   @override
+  Reference? get encounter;
 
   /// [occurrenceDateTime] Indicates when the guidance response was processed.
-  FhirDateTime? get occurrenceDateTime;
   @override
+  FhirDateTime? get occurrenceDateTime;
 
   /// [occurrenceDateTimeElement] Extensions for occurrenceDateTime
+  @override
   @JsonKey(name: '_occurrenceDateTime')
   PrimitiveElement? get occurrenceDateTimeElement;
-  @override
 
   /// [performer] Provides a reference to the device that performed the
   ///  guidance.
-  Reference? get performer;
   @override
+  Reference? get performer;
 
   /// [reasonCode] Describes the reason for the guidance response in coded or
   ///  textual form.
-  List<CodeableConcept>? get reasonCode;
   @override
+  List<CodeableConcept>? get reasonCode;
 
   /// [reasonReference] Indicates the reason the request was initiated. This is
   /// typically provided as a parameter to the evaluation and echoed by the
   /// service, although for some use cases, such as subscription- or event-based
   ///  scenarios, it may provide an indication of the cause for the response.
-  List<Reference>? get reasonReference;
   @override
+  List<Reference>? get reasonReference;
 
   /// [note] Provides a mechanism to communicate additional information about
   ///  the response.
-  List<Annotation>? get note;
   @override
+  List<Annotation>? get note;
 
   /// [evaluationMessage] Messages resulting from the evaluation of the
   /// artifact or artifacts. As part of evaluating the request, the engine may
   /// produce informational or warning messages. These messages will be provided
   ///  by this element.
-  List<Reference>? get evaluationMessage;
   @override
+  List<Reference>? get evaluationMessage;
 
   /// [outputParameters] The output parameters of the evaluation, if any. Many
   /// modules will result in the return of specific resources such as procedure
@@ -1498,21 +1530,25 @@ abstract class _GuidanceResponse extends GuidanceResponse {
   /// result. However, modules may define specific outputs that would be
   /// returned as the result of the evaluation, and these would be returned in
   ///  this element.
-  Reference? get outputParameters;
   @override
+  Reference? get outputParameters;
 
   /// [result] The actions, if any, produced by the evaluation of the artifact.
-  Reference? get result;
   @override
+  Reference? get result;
 
   /// [dataRequirement] If the evaluation could not be completed due to lack of
   /// information, or additional information would potentially result in a more
   /// accurate response, this element will a description of the data required in
   /// order to proceed with the evaluation. A subsequent request to the service
   ///  should include this data.
-  List<DataRequirement>? get dataRequirement;
   @override
-  @JsonKey(ignore: true)
+  List<DataRequirement>? get dataRequirement;
+
+  /// Create a copy of GuidanceResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GuidanceResponseImplCopyWith<_$GuidanceResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

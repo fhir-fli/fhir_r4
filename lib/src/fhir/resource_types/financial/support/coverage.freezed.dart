@@ -187,8 +187,12 @@ mixin _$Coverage {
   /// [contract] The policy(s) which constitute this insurance coverage.
   List<Reference>? get contract => throw _privateConstructorUsedError;
 
+  /// Serializes this Coverage to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Coverage
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CoverageCopyWith<Coverage> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -255,6 +259,8 @@ class _$CoverageCopyWithImpl<$Res, $Val extends Coverage>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Coverage
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -433,6 +439,8 @@ class _$CoverageCopyWithImpl<$Res, $Val extends Coverage>
     ) as $Val);
   }
 
+  /// Create a copy of Coverage
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -445,6 +453,8 @@ class _$CoverageCopyWithImpl<$Res, $Val extends Coverage>
     });
   }
 
+  /// Create a copy of Coverage
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -457,6 +467,8 @@ class _$CoverageCopyWithImpl<$Res, $Val extends Coverage>
     });
   }
 
+  /// Create a copy of Coverage
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get type {
@@ -469,6 +481,8 @@ class _$CoverageCopyWithImpl<$Res, $Val extends Coverage>
     });
   }
 
+  /// Create a copy of Coverage
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get policyHolder {
@@ -481,6 +495,8 @@ class _$CoverageCopyWithImpl<$Res, $Val extends Coverage>
     });
   }
 
+  /// Create a copy of Coverage
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get subscriber {
@@ -493,6 +509,8 @@ class _$CoverageCopyWithImpl<$Res, $Val extends Coverage>
     });
   }
 
+  /// Create a copy of Coverage
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get beneficiary {
@@ -501,6 +519,8 @@ class _$CoverageCopyWithImpl<$Res, $Val extends Coverage>
     });
   }
 
+  /// Create a copy of Coverage
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get relationship {
@@ -513,6 +533,8 @@ class _$CoverageCopyWithImpl<$Res, $Val extends Coverage>
     });
   }
 
+  /// Create a copy of Coverage
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get period {
@@ -597,6 +619,8 @@ class __$$CoverageImplCopyWithImpl<$Res>
       _$CoverageImpl _value, $Res Function(_$CoverageImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Coverage
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1120,6 +1144,11 @@ class _$CoverageImpl extends _Coverage {
   }
 
   @override
+  String toString() {
+    return 'Coverage(resourceType: $resourceType, id: $id, meta: $meta, implicitRules: $implicitRules, implicitRulesElement: $implicitRulesElement, language: $language, languageElement: $languageElement, text: $text, contained: $contained, extension_: $extension_, modifierExtension: $modifierExtension, identifier: $identifier, status: $status, statusElement: $statusElement, type: $type, policyHolder: $policyHolder, subscriber: $subscriber, subscriberId: $subscriberId, subscriberIdElement: $subscriberIdElement, beneficiary: $beneficiary, dependent: $dependent, dependentElement: $dependentElement, relationship: $relationship, period: $period, payor: $payor, class_: $class_, order: $order, orderElement: $orderElement, network: $network, networkElement: $networkElement, costToBeneficiary: $costToBeneficiary, subrogation: $subrogation, subrogationElement: $subrogationElement, contract: $contract)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1183,7 +1212,7 @@ class _$CoverageImpl extends _Coverage {
             const DeepCollectionEquality().equals(other._contract, _contract));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1223,7 +1252,9 @@ class _$CoverageImpl extends _Coverage {
         const DeepCollectionEquality().hash(_contract)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Coverage
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CoverageImplCopyWith<_$CoverageImpl> get copyWith =>
@@ -1284,39 +1315,38 @@ abstract class _Coverage extends Coverage {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.Coverage)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1324,15 +1354,15 @@ abstract class _Coverage extends Coverage {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1340,9 +1370,9 @@ abstract class _Coverage extends Coverage {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1357,127 +1387,131 @@ abstract class _Coverage extends Coverage {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] A unique identifier assigned to this coverage.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [status] The status of the resource instance.
-  FhirCode? get status;
   @override
+  FhirCode? get status;
 
   /// [statusElement] Extensions for status
+  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
-  @override
 
   /// [type] The type of coverage: social program, medical plan, accident
   /// coverage (workers compensation, auto), group health or payment by an
   ///  individual or organization.
-  CodeableConcept? get type;
   @override
+  CodeableConcept? get type;
 
   /// [policyHolder] The party who 'owns' the insurance policy.
-  Reference? get policyHolder;
   @override
+  Reference? get policyHolder;
 
   /// [subscriber] The party who has signed-up for or 'owns' the contractual
   /// relationship to the policy or to whom the benefit of the policy for
   ///  services rendered to them or their family is due.
-  Reference? get subscriber;
   @override
+  Reference? get subscriber;
 
   /// [subscriberId] The insurer assigned ID for the Subscriber.
-  String? get subscriberId;
   @override
+  String? get subscriberId;
 
   /// [subscriberIdElement] Extensions for subscriberId
+  @override
   @JsonKey(name: '_subscriberId')
   PrimitiveElement? get subscriberIdElement;
-  @override
 
   /// [beneficiary] The party who benefits from the insurance coverage; the
   ///  patient when products and/or services are provided.
-  Reference get beneficiary;
   @override
+  Reference get beneficiary;
 
   /// [dependent] A unique identifier for a dependent under the coverage.
-  String? get dependent;
   @override
+  String? get dependent;
 
   /// [dependentElement] Extensions for dependent
+  @override
   @JsonKey(name: '_dependent')
   PrimitiveElement? get dependentElement;
-  @override
 
   /// [relationship] The relationship of beneficiary (patient) to the
   ///  subscriber.
-  CodeableConcept? get relationship;
   @override
+  CodeableConcept? get relationship;
 
   /// [period] Time period during which the coverage is in force. A missing
   /// start date indicates the start date isn't known, a missing end date means
   ///  the coverage is continuing to be in force.
-  Period? get period;
   @override
+  Period? get period;
 
   /// [payor] The program or plan underwriter or payor including both insurance
   ///  and non-insurance agreements, such as patient-pay agreements.
-  List<Reference> get payor;
   @override
+  List<Reference> get payor;
 
   /// [class] A suite of underwriter specific classifiers.
+  @override
   @JsonKey(name: 'class')
   List<CoverageClass>? get class_;
-  @override
 
   /// [order] The order of applicability of this coverage relative to other
   /// coverages which are currently in force. Note, there may be gaps in the
   /// numbering and this does not imply primary, secondary etc. as the specific
   ///  positioning of coverages depends upon the episode of care.
-  FhirPositiveInt? get order;
   @override
+  FhirPositiveInt? get order;
 
   /// [orderElement] Extensions for order
+  @override
   @JsonKey(name: '_order')
   PrimitiveElement? get orderElement;
-  @override
 
   /// [network] The insurer-specific identifier for the insurer-defined network
   /// of providers to which the beneficiary may seek treatment which will be
   /// covered at the 'in-network' rate, otherwise 'out of network' terms and
   ///  conditions apply.
-  String? get network;
   @override
+  String? get network;
 
   /// [networkElement] Extensions for network
+  @override
   @JsonKey(name: '_network')
   PrimitiveElement? get networkElement;
-  @override
 
   /// [costToBeneficiary] A suite of codes indicating the cost category and
   /// associated amount which have been detailed in the policy and may have been
   ///   included on the health card.
-  List<CoverageCostToBeneficiary>? get costToBeneficiary;
   @override
+  List<CoverageCostToBeneficiary>? get costToBeneficiary;
 
   /// [subrogation] When 'subrogation=true' this insurance instance has been
   /// included not for adjudication but to provide insurers with the details to
   ///  recover costs.
-  FhirBoolean? get subrogation;
   @override
+  FhirBoolean? get subrogation;
 
   /// [subrogationElement] Extensions for subrogation
+  @override
   @JsonKey(name: '_subrogation')
   PrimitiveElement? get subrogationElement;
-  @override
 
   /// [contract] The policy(s) which constitute this insurance coverage.
-  List<Reference>? get contract;
   @override
-  @JsonKey(ignore: true)
+  List<Reference>? get contract;
+
+  /// Create a copy of Coverage
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CoverageImplCopyWith<_$CoverageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1537,8 +1571,12 @@ mixin _$CoverageClass {
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement => throw _privateConstructorUsedError;
 
+  /// Serializes this CoverageClass to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CoverageClass
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CoverageClassCopyWith<CoverageClass> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1572,6 +1610,8 @@ class _$CoverageClassCopyWithImpl<$Res, $Val extends CoverageClass>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CoverageClass
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1620,6 +1660,8 @@ class _$CoverageClassCopyWithImpl<$Res, $Val extends CoverageClass>
     ) as $Val);
   }
 
+  /// Create a copy of CoverageClass
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get type {
@@ -1659,6 +1701,8 @@ class __$$CoverageClassImplCopyWithImpl<$Res>
       _$CoverageClassImpl _value, $Res Function(_$CoverageClassImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CoverageClass
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1820,6 +1864,11 @@ class _$CoverageClassImpl extends _CoverageClass {
   final PrimitiveElement? nameElement;
 
   @override
+  String toString() {
+    return 'CoverageClass(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, value: $value, valueElement: $valueElement, name: $name, nameElement: $nameElement)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1838,7 +1887,7 @@ class _$CoverageClassImpl extends _CoverageClass {
                 other.nameElement == nameElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1851,7 +1900,9 @@ class _$CoverageClassImpl extends _CoverageClass {
       name,
       nameElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CoverageClass
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CoverageClassImplCopyWith<_$CoverageClassImpl> get copyWith =>
@@ -1881,12 +1932,10 @@ abstract class _CoverageClass extends CoverageClass {
   factory _CoverageClass.fromJson(Map<String, dynamic> json) =
       _$CoverageClassImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1894,9 +1943,9 @@ abstract class _CoverageClass extends CoverageClass {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -1911,34 +1960,38 @@ abstract class _CoverageClass extends CoverageClass {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [type] The type of classification for which an insurer-specific class
   /// label or number and optional name is provided, for example may be used to
   ///  identify a class of coverage or employer group, Policy, Plan.
-  CodeableConcept get type;
   @override
+  CodeableConcept get type;
 
   /// [value] The alphanumeric string value associated with the insurer issued
   ///  label.
-  String? get value;
   @override
+  String? get value;
 
   /// [valueElement] Extensions for value
+  @override
   @JsonKey(name: '_value')
   PrimitiveElement? get valueElement;
-  @override
 
   /// [name] A short description for the class.
-  String? get name;
   @override
+  String? get name;
 
   /// [nameElement] Extensions for name
+  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
+
+  /// Create a copy of CoverageClass
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CoverageClassImplCopyWith<_$CoverageClassImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1992,8 +2045,12 @@ mixin _$CoverageCostToBeneficiary {
   ///  patient costs and their effective periods.
   List<CoverageException>? get exception => throw _privateConstructorUsedError;
 
+  /// Serializes this CoverageCostToBeneficiary to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CoverageCostToBeneficiary
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CoverageCostToBeneficiaryCopyWith<CoverageCostToBeneficiary> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2029,6 +2086,8 @@ class _$CoverageCostToBeneficiaryCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CoverageCostToBeneficiary
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2072,6 +2131,8 @@ class _$CoverageCostToBeneficiaryCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of CoverageCostToBeneficiary
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get type {
@@ -2084,6 +2145,8 @@ class _$CoverageCostToBeneficiaryCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of CoverageCostToBeneficiary
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get valueQuantity {
@@ -2096,6 +2159,8 @@ class _$CoverageCostToBeneficiaryCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of CoverageCostToBeneficiary
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MoneyCopyWith<$Res>? get valueMoney {
@@ -2145,6 +2210,8 @@ class __$$CoverageCostToBeneficiaryImplCopyWithImpl<$Res>
       $Res Function(_$CoverageCostToBeneficiaryImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CoverageCostToBeneficiary
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2303,6 +2370,11 @@ class _$CoverageCostToBeneficiaryImpl extends _CoverageCostToBeneficiary {
   }
 
   @override
+  String toString() {
+    return 'CoverageCostToBeneficiary(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, valueQuantity: $valueQuantity, valueMoney: $valueMoney, exception: $exception)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2321,7 +2393,7 @@ class _$CoverageCostToBeneficiaryImpl extends _CoverageCostToBeneficiary {
                 .equals(other._exception, _exception));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2333,7 +2405,9 @@ class _$CoverageCostToBeneficiaryImpl extends _CoverageCostToBeneficiary {
       valueMoney,
       const DeepCollectionEquality().hash(_exception));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CoverageCostToBeneficiary
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CoverageCostToBeneficiaryImplCopyWith<_$CoverageCostToBeneficiaryImpl>
@@ -2363,12 +2437,10 @@ abstract class _CoverageCostToBeneficiary extends CoverageCostToBeneficiary {
   factory _CoverageCostToBeneficiary.fromJson(Map<String, dynamic> json) =
       _$CoverageCostToBeneficiaryImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2376,9 +2448,9 @@ abstract class _CoverageCostToBeneficiary extends CoverageCostToBeneficiary {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2393,26 +2465,30 @@ abstract class _CoverageCostToBeneficiary extends CoverageCostToBeneficiary {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [type] The category of patient centric costs associated with treatment.
-  CodeableConcept? get type;
   @override
+  CodeableConcept? get type;
 
   /// [valueQuantity] The amount due from the patient for the cost category.
-  Quantity? get valueQuantity;
   @override
+  Quantity? get valueQuantity;
 
   /// [valueMoney] The amount due from the patient for the cost category.
-  Money? get valueMoney;
   @override
+  Money? get valueMoney;
 
   /// [exception] A suite of codes indicating exceptions or reductions to
   ///  patient costs and their effective periods.
-  List<CoverageException>? get exception;
   @override
-  @JsonKey(ignore: true)
+  List<CoverageException>? get exception;
+
+  /// Create a copy of CoverageCostToBeneficiary
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CoverageCostToBeneficiaryImplCopyWith<_$CoverageCostToBeneficiaryImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2458,8 +2534,12 @@ mixin _$CoverageException {
   /// [period] The timeframe during when the exception is in force.
   Period? get period => throw _privateConstructorUsedError;
 
+  /// Serializes this CoverageException to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CoverageException
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CoverageExceptionCopyWith<CoverageException> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2491,6 +2571,8 @@ class _$CoverageExceptionCopyWithImpl<$Res, $Val extends CoverageException>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CoverageException
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2524,6 +2606,8 @@ class _$CoverageExceptionCopyWithImpl<$Res, $Val extends CoverageException>
     ) as $Val);
   }
 
+  /// Create a copy of CoverageException
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get type {
@@ -2532,6 +2616,8 @@ class _$CoverageExceptionCopyWithImpl<$Res, $Val extends CoverageException>
     });
   }
 
+  /// Create a copy of CoverageException
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get period {
@@ -2574,6 +2660,8 @@ class __$$CoverageExceptionImplCopyWithImpl<$Res>
       $Res Function(_$CoverageExceptionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CoverageException
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2700,6 +2788,11 @@ class _$CoverageExceptionImpl extends _CoverageException {
   final Period? period;
 
   @override
+  String toString() {
+    return 'CoverageException(id: $id, extension_: $extension_, modifierExtension: $modifierExtension, type: $type, period: $period)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -2713,7 +2806,7 @@ class _$CoverageExceptionImpl extends _CoverageException {
             (identical(other.period, period) || other.period == period));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2723,7 +2816,9 @@ class _$CoverageExceptionImpl extends _CoverageException {
       type,
       period);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CoverageException
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CoverageExceptionImplCopyWith<_$CoverageExceptionImpl> get copyWith =>
@@ -2750,12 +2845,10 @@ abstract class _CoverageException extends CoverageException {
   factory _CoverageException.fromJson(Map<String, dynamic> json) =
       _$CoverageExceptionImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2763,9 +2856,9 @@ abstract class _CoverageException extends CoverageException {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2780,17 +2873,21 @@ abstract class _CoverageException extends CoverageException {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [type] The code for the specific exception.
-  CodeableConcept get type;
   @override
+  CodeableConcept get type;
 
   /// [period] The timeframe during when the exception is in force.
-  Period? get period;
   @override
-  @JsonKey(ignore: true)
+  Period? get period;
+
+  /// Create a copy of CoverageException
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CoverageExceptionImplCopyWith<_$CoverageExceptionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

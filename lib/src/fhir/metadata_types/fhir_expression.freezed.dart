@@ -71,8 +71,12 @@ mixin _$FhirExpression {
   @JsonKey(name: '_reference')
   PrimitiveElement? get referenceElement => throw _privateConstructorUsedError;
 
+  /// Serializes this FhirExpression to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of FhirExpression
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $FhirExpressionCopyWith<FhirExpression> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -109,6 +113,8 @@ class _$FhirExpressionCopyWithImpl<$Res, $Val extends FhirExpression>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of FhirExpression
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -210,6 +216,8 @@ class __$$FhirExpressionImplCopyWithImpl<$Res>
       _$FhirExpressionImpl _value, $Res Function(_$FhirExpressionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FhirExpression
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -378,6 +386,11 @@ class _$FhirExpressionImpl extends _FhirExpression {
   final PrimitiveElement? referenceElement;
 
   @override
+  String toString() {
+    return 'FhirExpression(id: $id, extension_: $extension_, description: $description, descriptionElement: $descriptionElement, name: $name, nameElement: $nameElement, language: $language, languageElement: $languageElement, expression: $expression, expressionElement: $expressionElement, reference: $reference, referenceElement: $referenceElement)';
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -406,7 +419,7 @@ class _$FhirExpressionImpl extends _FhirExpression {
                 other.referenceElement == referenceElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -423,7 +436,9 @@ class _$FhirExpressionImpl extends _FhirExpression {
       reference,
       referenceElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FhirExpression
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FhirExpressionImplCopyWith<_$FhirExpressionImpl> get copyWith =>
@@ -459,12 +474,10 @@ abstract class _FhirExpression extends FhirExpression {
   factory _FhirExpression.fromJson(Map<String, dynamic> json) =
       _$FhirExpressionImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -472,57 +485,61 @@ abstract class _FhirExpression extends FhirExpression {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [description] A brief, natural language description of the condition that
   ///  effectively communicates the intended semantics.
-  String? get description;
   @override
+  String? get description;
 
   /// [descriptionElement] Extensions for description
+  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
-  @override
 
   /// [name] A short name assigned to the expression to allow for multiple
   ///  reuse of the expression in the context where it is defined.
-  FhirId? get name;
   @override
+  FhirId? get name;
 
   /// [nameElement] Extensions for name
+  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
   @override
   @JsonKey(unknownEnumValue: FhirExpressionLanguage.unknown)
   FhirExpressionLanguage? get language;
-  @override
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [expression] An expression in the specified language that returns a
   ///  value.
-  String? get expression;
   @override
+  String? get expression;
 
   /// [expressionElement] Extensions for expression
+  @override
   @JsonKey(name: '_expression')
   PrimitiveElement? get expressionElement;
-  @override
 
   /// [reference] A URI that defines where the expression is found.
-  FhirUri? get reference;
   @override
+  FhirUri? get reference;
 
   /// [referenceElement] Extensions for reference
+  @override
   @JsonKey(name: '_reference')
   PrimitiveElement? get referenceElement;
+
+  /// Create a copy of FhirExpression
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FhirExpressionImplCopyWith<_$FhirExpressionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
