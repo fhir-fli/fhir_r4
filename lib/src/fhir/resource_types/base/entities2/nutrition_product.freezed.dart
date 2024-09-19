@@ -480,7 +480,7 @@ class __$$NutritionProductImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$NutritionProductImpl extends _NutritionProduct {
-  const _$NutritionProductImpl(
+  _$NutritionProductImpl(
       {this.resourceType = R4ResourceType.NutritionProduct,
       this.id,
       this.meta,
@@ -798,7 +798,7 @@ class _$NutritionProductImpl extends _NutritionProduct {
 }
 
 abstract class _NutritionProduct extends NutritionProduct {
-  const factory _NutritionProduct(
+  factory _NutritionProduct(
       {final R4ResourceType resourceType,
       final String? id,
       final FhirMeta? meta,
@@ -822,7 +822,7 @@ abstract class _NutritionProduct extends NutritionProduct {
       final List<NutritionProductCharacteristic>? productCharacteristic,
       final List<NutritionProductInstance>? instance,
       final List<Annotation>? note}) = _$NutritionProductImpl;
-  const _NutritionProduct._() : super._();
+  _NutritionProduct._() : super._();
 
   factory _NutritionProduct.fromJson(Map<String, dynamic> json) =
       _$NutritionProductImpl.fromJson;
@@ -1101,7 +1101,7 @@ class __$$NutritionProductNutrientImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$NutritionProductNutrientImpl extends _NutritionProductNutrient {
-  const _$NutritionProductNutrientImpl(
+  _$NutritionProductNutrientImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1213,13 +1213,13 @@ class _$NutritionProductNutrientImpl extends _NutritionProductNutrient {
 }
 
 abstract class _NutritionProductNutrient extends NutritionProductNutrient {
-  const factory _NutritionProductNutrient(
+  factory _NutritionProductNutrient(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final CodeableReference? item,
       final List<Ratio>? amount}) = _$NutritionProductNutrientImpl;
-  const _NutritionProductNutrient._() : super._();
+  _NutritionProductNutrient._() : super._();
 
   factory _NutritionProductNutrient.fromJson(Map<String, dynamic> json) =
       _$NutritionProductNutrientImpl.fromJson;
@@ -1432,7 +1432,7 @@ class __$$NutritionProductIngredientImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$NutritionProductIngredientImpl extends _NutritionProductIngredient {
-  const _$NutritionProductIngredientImpl(
+  _$NutritionProductIngredientImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1545,13 +1545,13 @@ class _$NutritionProductIngredientImpl extends _NutritionProductIngredient {
 }
 
 abstract class _NutritionProductIngredient extends NutritionProductIngredient {
-  const factory _NutritionProductIngredient(
+  factory _NutritionProductIngredient(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required final CodeableReference item,
       final List<Ratio>? amount}) = _$NutritionProductIngredientImpl;
-  const _NutritionProductIngredient._() : super._();
+  _NutritionProductIngredient._() : super._();
 
   factory _NutritionProductIngredient.fromJson(Map<String, dynamic> json) =
       _$NutritionProductIngredientImpl.fromJson;
@@ -1946,7 +1946,7 @@ class __$$NutritionProductCharacteristicImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$NutritionProductCharacteristicImpl
     extends _NutritionProductCharacteristic {
-  const _$NutritionProductCharacteristicImpl(
+  _$NutritionProductCharacteristicImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2118,7 +2118,7 @@ class _$NutritionProductCharacteristicImpl
 
 abstract class _NutritionProductCharacteristic
     extends NutritionProductCharacteristic {
-  const factory _NutritionProductCharacteristic(
+  factory _NutritionProductCharacteristic(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2135,7 +2135,7 @@ abstract class _NutritionProductCharacteristic
       @JsonKey(name: '_valueBoolean')
       final PrimitiveElement?
           valueBooleanElement}) = _$NutritionProductCharacteristicImpl;
-  const _NutritionProductCharacteristic._() : super._();
+  _NutritionProductCharacteristic._() : super._();
 
   factory _NutritionProductCharacteristic.fromJson(Map<String, dynamic> json) =
       _$NutritionProductCharacteristicImpl.fromJson;
@@ -2514,7 +2514,7 @@ class __$$NutritionProductInstanceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$NutritionProductInstanceImpl extends _NutritionProductInstance {
-  const _$NutritionProductInstanceImpl(
+  _$NutritionProductInstanceImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2669,7 +2669,7 @@ class _$NutritionProductInstanceImpl extends _NutritionProductInstance {
 }
 
 abstract class _NutritionProductInstance extends NutritionProductInstance {
-  const factory _NutritionProductInstance(
+  factory _NutritionProductInstance(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2684,7 +2684,7 @@ abstract class _NutritionProductInstance extends NutritionProductInstance {
       final FhirDateTime? useBy,
       @JsonKey(name: '_useBy') final PrimitiveElement? useByElement,
       final Identifier? biologicalSource}) = _$NutritionProductInstanceImpl;
-  const _NutritionProductInstance._() : super._();
+  _NutritionProductInstance._() : super._();
 
   factory _NutritionProductInstance.fromJson(Map<String, dynamic> json) =
       _$NutritionProductInstanceImpl.fromJson;

@@ -1803,7 +1803,7 @@ class __$$ActivityDefinitionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ActivityDefinitionImpl extends _ActivityDefinition {
-  const _$ActivityDefinitionImpl(
+  _$ActivityDefinitionImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.ActivityDefinition)
       this.resourceType = R4ResourceType.ActivityDefinition,
       this.id,
@@ -2887,7 +2887,7 @@ class _$ActivityDefinitionImpl extends _ActivityDefinition {
 }
 
 abstract class _ActivityDefinition extends ActivityDefinition {
-  const factory _ActivityDefinition(
+  factory _ActivityDefinition(
       {@JsonKey(unknownEnumValue: R4ResourceType.ActivityDefinition)
       final R4ResourceType resourceType,
       final String? id,
@@ -2983,7 +2983,7 @@ abstract class _ActivityDefinition extends ActivityDefinition {
       final FhirCanonical? transform,
       final List<ActivityDefinitionDynamicValue>?
           dynamicValue}) = _$ActivityDefinitionImpl;
-  const _ActivityDefinition._() : super._();
+  _ActivityDefinition._() : super._();
 
   factory _ActivityDefinition.fromJson(Map<String, dynamic> json) =
       _$ActivityDefinitionImpl.fromJson;
@@ -3698,7 +3698,7 @@ class __$$ActivityDefinitionParticipantImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ActivityDefinitionParticipantImpl
     extends _ActivityDefinitionParticipant {
-  const _$ActivityDefinitionParticipantImpl(
+  _$ActivityDefinitionParticipantImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3846,14 +3846,14 @@ class _$ActivityDefinitionParticipantImpl
 
 abstract class _ActivityDefinitionParticipant
     extends ActivityDefinitionParticipant {
-  const factory _ActivityDefinitionParticipant(
+  factory _ActivityDefinitionParticipant(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirCode? type,
       @JsonKey(name: '_type') final PrimitiveElement? typeElement,
       final CodeableConcept? role}) = _$ActivityDefinitionParticipantImpl;
-  const _ActivityDefinitionParticipant._() : super._();
+  _ActivityDefinitionParticipant._() : super._();
 
   factory _ActivityDefinitionParticipant.fromJson(Map<String, dynamic> json) =
       _$ActivityDefinitionParticipantImpl.fromJson;
@@ -4133,7 +4133,7 @@ class __$$ActivityDefinitionDynamicValueImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ActivityDefinitionDynamicValueImpl
     extends _ActivityDefinitionDynamicValue {
-  const _$ActivityDefinitionDynamicValueImpl(
+  _$ActivityDefinitionDynamicValueImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4289,7 +4289,7 @@ class _$ActivityDefinitionDynamicValueImpl
 
 abstract class _ActivityDefinitionDynamicValue
     extends ActivityDefinitionDynamicValue {
-  const factory _ActivityDefinitionDynamicValue(
+  factory _ActivityDefinitionDynamicValue(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -4297,7 +4297,7 @@ abstract class _ActivityDefinitionDynamicValue
           @JsonKey(name: '_path') final PrimitiveElement? pathElement,
           required final FhirExpression expression}) =
       _$ActivityDefinitionDynamicValueImpl;
-  const _ActivityDefinitionDynamicValue._() : super._();
+  _ActivityDefinitionDynamicValue._() : super._();
 
   factory _ActivityDefinitionDynamicValue.fromJson(Map<String, dynamic> json) =
       _$ActivityDefinitionDynamicValueImpl.fromJson;

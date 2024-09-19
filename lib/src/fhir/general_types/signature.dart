@@ -14,9 +14,9 @@ part 'signature.g.dart';
 
 /// [Signature] A signature along with supporting context. The signature may
 @freezed
-class Signature with _$Signature implements DataType {
+class Signature extends DataType with _$Signature {
   /// [Signature] A signature along with supporting context. The signature may
-  const Signature._();
+  Signature._();
 
   /// [Signature] A signature along with supporting context. The signature may
   /// be a digital signature that is cryptographic in nature, or some other
@@ -65,7 +65,7 @@ class Signature with _$Signature implements DataType {
   ///  not recorded electronically this element would be empty.
   ///
   /// [dataElement] Extensions for data
-  const factory Signature({
+  factory Signature({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -151,6 +151,9 @@ class Signature with _$Signature implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

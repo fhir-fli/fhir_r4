@@ -15,9 +15,9 @@ part 'clinical_impression.g.dart';
 
 /// [ClinicalImpression] A record of a clinical assessment performed to
 @freezed
-class ClinicalImpression with _$ClinicalImpression implements DomainResource {
+class ClinicalImpression extends DomainResource with _$ClinicalImpression {
   /// [ClinicalImpression] A record of a clinical assessment performed to
-  const ClinicalImpression._();
+  ClinicalImpression._();
 
   /// [ClinicalImpression] A record of a clinical assessment performed to
   /// determine what problem(s) may affect the patient and before planning the
@@ -154,7 +154,7 @@ class ClinicalImpression with _$ClinicalImpression implements DomainResource {
   /// [note] Commentary about the impression, typically recorded after the
   /// impression itself was made, though supplemental notes by the original
   ///  author could also appear.
-  const factory ClinicalImpression({
+  factory ClinicalImpression({
     @Default(R4ResourceType.ClinicalImpression)
     @JsonKey(unknownEnumValue: R4ResourceType.ClinicalImpression)
     R4ResourceType resourceType,
@@ -231,6 +231,9 @@ class ClinicalImpression with _$ClinicalImpression implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -253,8 +256,8 @@ class ClinicalImpression with _$ClinicalImpression implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [ClinicalImpressionInvestigation] A record of a clinical assessment
@@ -262,11 +265,10 @@ class ClinicalImpression with _$ClinicalImpression implements DomainResource {
 
 /// [ClinicalImpressionInvestigation] A record of a clinical assessment
 @freezed
-class ClinicalImpressionInvestigation
-    with _$ClinicalImpressionInvestigation
-    implements BackboneElement {
+class ClinicalImpressionInvestigation extends BackboneElement
+    with _$ClinicalImpressionInvestigation {
   /// [ClinicalImpressionInvestigation] A record of a clinical assessment
-  const ClinicalImpressionInvestigation._();
+  ClinicalImpressionInvestigation._();
 
   /// [ClinicalImpressionInvestigation] A record of a clinical assessment
   /// performed to determine what problem(s) may affect the patient and before
@@ -307,7 +309,7 @@ class ClinicalImpressionInvestigation
   ///  (exposure|family|travel|nutritional) history may be used.
   ///
   /// [item] A record of a specific investigation that was undertaken.
-  const factory ClinicalImpressionInvestigation({
+  factory ClinicalImpressionInvestigation({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -347,6 +349,9 @@ class ClinicalImpressionInvestigation
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -358,11 +363,10 @@ class ClinicalImpressionInvestigation
 
 /// [ClinicalImpressionFinding] A record of a clinical assessment performed
 @freezed
-class ClinicalImpressionFinding
-    with _$ClinicalImpressionFinding
-    implements BackboneElement {
+class ClinicalImpressionFinding extends BackboneElement
+    with _$ClinicalImpressionFinding {
   /// [ClinicalImpressionFinding] A record of a clinical assessment performed
-  const ClinicalImpressionFinding._();
+  ClinicalImpressionFinding._();
 
   /// [ClinicalImpressionFinding] A record of a clinical assessment performed
   /// to determine what problem(s) may affect the patient and before planning
@@ -406,7 +410,7 @@ class ClinicalImpressionFinding
   /// [basis] Which investigations support finding or diagnosis.
   ///
   /// [basisElement] Extensions for basis
-  const factory ClinicalImpressionFinding({
+  factory ClinicalImpressionFinding({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -445,6 +449,9 @@ class ClinicalImpressionFinding
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

@@ -9,7 +9,7 @@ import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 import 'package:ucum/ucum.dart';
 
-void main() {
+void testNoArgFxns() {
   group('Functions w/o Arguments: ', () {
     test('empty', () {
       expect(
@@ -1346,7 +1346,7 @@ final resource = Patient(
         use: ContactPointUse.mobile,
         rank: FhirPositiveInt(3)),
   ],
-  address: const [
+  address: [
     Address(
       period: Period(
         extension_: [
@@ -1409,11 +1409,11 @@ final resource = Patient(
     ),
   ],
   deceasedBoolean: FhirBoolean(false),
-  name: const [
+  name: [
     HumanName(
       use: HumanNameUse.official,
       family: 'Faulkenberry',
-      given: [
+      given: const [
         'Jason',
         'Grey',
       ],
@@ -1421,20 +1421,20 @@ final resource = Patient(
     HumanName(
       use: HumanNameUse.official,
       family: 'Faulkenberry',
-      given: [
+      given: const [
         'Jason',
         'Grey',
       ],
     ),
     HumanName(
       family: 'Niel',
-      given: [
+      given: const [
         'Kristin',
       ],
     ),
     HumanName(
       family: 'Smith',
-      given: [
+      given: const [
         'John',
         'Jacob',
         'Jingleheimer',

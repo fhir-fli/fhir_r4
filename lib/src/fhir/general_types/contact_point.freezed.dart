@@ -293,7 +293,7 @@ class __$$ContactPointImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ContactPointImpl extends _ContactPoint {
-  const _$ContactPointImpl(
+  _$ContactPointImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: ContactPointSystem.unknown) this.system,
@@ -445,7 +445,7 @@ class _$ContactPointImpl extends _ContactPoint {
 }
 
 abstract class _ContactPoint extends ContactPoint {
-  const factory _ContactPoint(
+  factory _ContactPoint(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: ContactPointSystem.unknown)
@@ -459,7 +459,7 @@ abstract class _ContactPoint extends ContactPoint {
       final FhirPositiveInt? rank,
       @JsonKey(name: '_rank') final PrimitiveElement? rankElement,
       final Period? period}) = _$ContactPointImpl;
-  const _ContactPoint._() : super._();
+  _ContactPoint._() : super._();
 
   factory _ContactPoint.fromJson(Map<String, dynamic> json) =
       _$ContactPointImpl.fromJson;

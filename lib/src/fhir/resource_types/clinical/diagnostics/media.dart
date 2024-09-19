@@ -15,9 +15,9 @@ part 'media.g.dart';
 
 /// [Media] A photo, video, or audio recording acquired or used in
 @freezed
-class Media with _$Media implements DomainResource {
+class Media extends DomainResource with _$Media {
   /// [Media] A photo, video, or audio recording acquired or used in
-  const Media._();
+  Media._();
 
   /// [Media] A photo, video, or audio recording acquired or used in
   /// healthcare. The actual content may be inline or provided by direct
@@ -156,7 +156,7 @@ class Media with _$Media implements DomainResource {
   ///
   /// [note] Comments made about the media by the performer, subject or other
   ///  participants.
-  const factory Media({
+  factory Media({
     @Default(R4ResourceType.Media)
     @JsonKey(unknownEnumValue: R4ResourceType.Media)
 
@@ -368,6 +368,9 @@ class Media with _$Media implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -390,6 +393,6 @@ class Media with _$Media implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }

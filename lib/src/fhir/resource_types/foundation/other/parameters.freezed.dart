@@ -348,7 +348,7 @@ class __$$ParametersImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ParametersImpl extends _Parameters {
-  const _$ParametersImpl(
+  _$ParametersImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Parameters)
       this.resourceType = R4ResourceType.Parameters,
       this.id,
@@ -577,7 +577,7 @@ class _$ParametersImpl extends _Parameters {
 }
 
 abstract class _Parameters extends Parameters {
-  const factory _Parameters(
+  factory _Parameters(
       {@JsonKey(unknownEnumValue: R4ResourceType.Parameters)
       final R4ResourceType resourceType,
       final String? id,
@@ -592,7 +592,7 @@ abstract class _Parameters extends Parameters {
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final List<ParametersParameter>? parameter}) = _$ParametersImpl;
-  const _Parameters._() : super._();
+  _Parameters._() : super._();
 
   factory _Parameters.fromJson(Map<String, dynamic> json) =
       _$ParametersImpl.fromJson;
@@ -2503,7 +2503,7 @@ class __$$ParametersParameterImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ParametersParameterImpl extends _ParametersParameter {
-  const _$ParametersParameterImpl(
+  _$ParametersParameterImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3198,7 +3198,7 @@ class _$ParametersParameterImpl extends _ParametersParameter {
 }
 
 abstract class _ParametersParameter extends ParametersParameter {
-  const factory _ParametersParameter(
+  factory _ParametersParameter(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3286,7 +3286,7 @@ abstract class _ParametersParameter extends ParametersParameter {
       final Resource? resource,
       @JsonKey(name: 'part')
       final List<ParametersParameter>? part_}) = _$ParametersParameterImpl;
-  const _ParametersParameter._() : super._();
+  _ParametersParameter._() : super._();
 
   factory _ParametersParameter.fromJson(Map<String, dynamic> json) =
       _$ParametersParameterImpl.fromJson;

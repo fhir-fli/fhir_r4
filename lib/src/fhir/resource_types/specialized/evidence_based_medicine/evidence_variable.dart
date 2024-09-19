@@ -15,9 +15,9 @@ part 'evidence_variable.g.dart';
 
 /// [EvidenceVariable] The EvidenceVariable resource describes a "PICO"
 @freezed
-class EvidenceVariable with _$EvidenceVariable implements DomainResource {
+class EvidenceVariable extends DomainResource with _$EvidenceVariable {
   /// [EvidenceVariable] The EvidenceVariable resource describes a "PICO"
-  const EvidenceVariable._();
+  EvidenceVariable._();
 
   /// [EvidenceVariable] The EvidenceVariable resource describes a "PICO"
   ///  element that knowledge (evidence, assertion, recommendation) is about.
@@ -211,7 +211,7 @@ class EvidenceVariable with _$EvidenceVariable implements DomainResource {
   /// [characteristic] A characteristic that defines the members of the
   /// evidence element. Multiple characteristics are applied with "and"
   ///  semantics.
-  const factory EvidenceVariable({
+  factory EvidenceVariable({
     @Default(R4ResourceType.EvidenceVariable)
     @JsonKey(unknownEnumValue: R4ResourceType.EvidenceVariable)
     R4ResourceType resourceType,
@@ -298,6 +298,9 @@ class EvidenceVariable with _$EvidenceVariable implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -320,8 +323,8 @@ class EvidenceVariable with _$EvidenceVariable implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [EvidenceVariableCharacteristic] The EvidenceVariable resource describes
@@ -329,11 +332,10 @@ class EvidenceVariable with _$EvidenceVariable implements DomainResource {
 
 /// [EvidenceVariableCharacteristic] The EvidenceVariable resource describes
 @freezed
-class EvidenceVariableCharacteristic
-    with _$EvidenceVariableCharacteristic
-    implements BackboneElement {
+class EvidenceVariableCharacteristic extends BackboneElement
+    with _$EvidenceVariableCharacteristic {
   /// [EvidenceVariableCharacteristic] The EvidenceVariable resource describes
-  const EvidenceVariableCharacteristic._();
+  EvidenceVariableCharacteristic._();
 
   /// [EvidenceVariableCharacteristic] The EvidenceVariable resource describes
   /// a "PICO" element that knowledge (evidence, assertion, recommendation) is
@@ -429,7 +431,7 @@ class EvidenceVariableCharacteristic
   ///  effective period.
   ///
   /// [groupMeasureElement] Extensions for groupMeasure
-  const factory EvidenceVariableCharacteristic({
+  factory EvidenceVariableCharacteristic({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -480,6 +482,9 @@ class EvidenceVariableCharacteristic
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -491,11 +496,10 @@ class EvidenceVariableCharacteristic
 
 /// [EvidenceVariableTimeFromStart] The EvidenceVariable resource describes
 @freezed
-class EvidenceVariableTimeFromStart
-    with _$EvidenceVariableTimeFromStart
-    implements BackboneElement {
+class EvidenceVariableTimeFromStart extends BackboneElement
+    with _$EvidenceVariableTimeFromStart {
   /// [EvidenceVariableTimeFromStart] The EvidenceVariable resource describes
-  const EvidenceVariableTimeFromStart._();
+  EvidenceVariableTimeFromStart._();
 
   /// [EvidenceVariableTimeFromStart] The EvidenceVariable resource describes
   /// an element that knowledge (Evidence) is about.
@@ -534,7 +538,7 @@ class EvidenceVariableTimeFromStart
   ///
   /// [note] A human-readable string to clarify or explain concepts about the timeFromEvent.;
   ///
-  const factory EvidenceVariableTimeFromStart({
+  factory EvidenceVariableTimeFromStart({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -576,6 +580,9 @@ class EvidenceVariableTimeFromStart
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -587,11 +594,10 @@ class EvidenceVariableTimeFromStart
 
 /// [EvidenceVariableCategory] The EvidenceVariable resource describes an element that knowledge (Evidence) is about.
 @freezed
-class EvidenceVariableCategory
-    with _$EvidenceVariableCategory
-    implements BackboneElement {
+class EvidenceVariableCategory extends BackboneElement
+    with _$EvidenceVariableCategory {
   /// [EvidenceVariableCategory] The EvidenceVariable resource describes an element that knowledge (Evidence) is about.
-  const EvidenceVariableCategory._();
+  EvidenceVariableCategory._();
 
   /// [EvidenceVariableCategory] The EvidenceVariable resource describes an element that knowledge (Evidence) is about.
 
@@ -613,7 +619,7 @@ class EvidenceVariableCategory
   /// [valueQuantity] Definition of the grouping.;
   ///
   /// [valueRange] Definition of the grouping.;
-  const factory EvidenceVariableCategory({
+  factory EvidenceVariableCategory({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -653,6 +659,9 @@ class EvidenceVariableCategory
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

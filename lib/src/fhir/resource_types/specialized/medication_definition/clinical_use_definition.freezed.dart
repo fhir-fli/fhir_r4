@@ -596,7 +596,7 @@ class __$$ClinicalUseDefinitionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ClinicalUseDefinitionImpl extends _ClinicalUseDefinition {
-  const _$ClinicalUseDefinitionImpl(
+  _$ClinicalUseDefinitionImpl(
       {this.resourceType = R4ResourceType.ClinicalUseDefinition,
       this.id,
       this.meta,
@@ -890,7 +890,7 @@ class _$ClinicalUseDefinitionImpl extends _ClinicalUseDefinition {
 }
 
 abstract class _ClinicalUseDefinition extends ClinicalUseDefinition {
-  const factory _ClinicalUseDefinition(
+  factory _ClinicalUseDefinition(
           {final R4ResourceType resourceType,
           final String? id,
           final FhirMeta? meta,
@@ -916,7 +916,7 @@ abstract class _ClinicalUseDefinition extends ClinicalUseDefinition {
           final ClinicalUseDefinitionUndesirableEffect? undesirableEffect,
           final ClinicalUseDefinitionWarning? warning}) =
       _$ClinicalUseDefinitionImpl;
-  const _ClinicalUseDefinition._() : super._();
+  _ClinicalUseDefinition._() : super._();
 
   factory _ClinicalUseDefinition.fromJson(Map<String, dynamic> json) =
       _$ClinicalUseDefinitionImpl.fromJson;
@@ -1275,7 +1275,7 @@ class __$$ClinicalUseDefinitionContraindicationImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ClinicalUseDefinitionContraindicationImpl
     extends _ClinicalUseDefinitionContraindication {
-  const _$ClinicalUseDefinitionContraindicationImpl(
+  _$ClinicalUseDefinitionContraindicationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1435,7 +1435,7 @@ class _$ClinicalUseDefinitionContraindicationImpl
 
 abstract class _ClinicalUseDefinitionContraindication
     extends ClinicalUseDefinitionContraindication {
-  const factory _ClinicalUseDefinitionContraindication(
+  factory _ClinicalUseDefinitionContraindication(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -1445,7 +1445,7 @@ abstract class _ClinicalUseDefinitionContraindication
           final List<Reference>? indication,
           final List<ClinicalUseDefinitionOtherTherapy>? otherTherapy}) =
       _$ClinicalUseDefinitionContraindicationImpl;
-  const _ClinicalUseDefinitionContraindication._() : super._();
+  _ClinicalUseDefinitionContraindication._() : super._();
 
   factory _ClinicalUseDefinitionContraindication.fromJson(
           Map<String, dynamic> json) =
@@ -1685,7 +1685,7 @@ class __$$ClinicalUseDefinitionOtherTherapyImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ClinicalUseDefinitionOtherTherapyImpl
     extends _ClinicalUseDefinitionOtherTherapy {
-  const _$ClinicalUseDefinitionOtherTherapyImpl(
+  _$ClinicalUseDefinitionOtherTherapyImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1789,14 +1789,14 @@ class _$ClinicalUseDefinitionOtherTherapyImpl
 
 abstract class _ClinicalUseDefinitionOtherTherapy
     extends ClinicalUseDefinitionOtherTherapy {
-  const factory _ClinicalUseDefinitionOtherTherapy(
+  factory _ClinicalUseDefinitionOtherTherapy(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           required final CodeableConcept relationshipType,
           required final CodeableReference therapy}) =
       _$ClinicalUseDefinitionOtherTherapyImpl;
-  const _ClinicalUseDefinitionOtherTherapy._() : super._();
+  _ClinicalUseDefinitionOtherTherapy._() : super._();
 
   factory _ClinicalUseDefinitionOtherTherapy.fromJson(
           Map<String, dynamic> json) =
@@ -2177,7 +2177,7 @@ class __$$ClinicalUseDefinitionIndicationImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ClinicalUseDefinitionIndicationImpl
     extends _ClinicalUseDefinitionIndication {
-  const _$ClinicalUseDefinitionIndicationImpl(
+  _$ClinicalUseDefinitionIndicationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2371,7 +2371,7 @@ class _$ClinicalUseDefinitionIndicationImpl
 
 abstract class _ClinicalUseDefinitionIndication
     extends ClinicalUseDefinitionIndication {
-  const factory _ClinicalUseDefinitionIndication(
+  factory _ClinicalUseDefinitionIndication(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2386,7 +2386,7 @@ abstract class _ClinicalUseDefinitionIndication
           final List<Reference>? undesirableEffect,
           final List<ClinicalUseDefinitionOtherTherapy>? otherTherapy}) =
       _$ClinicalUseDefinitionIndicationImpl;
-  const _ClinicalUseDefinitionIndication._() : super._();
+  _ClinicalUseDefinitionIndication._() : super._();
 
   factory _ClinicalUseDefinitionIndication.fromJson(Map<String, dynamic> json) =
       _$ClinicalUseDefinitionIndicationImpl.fromJson;
@@ -2713,7 +2713,7 @@ class __$$ClinicalUseDefinitionInteractionImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ClinicalUseDefinitionInteractionImpl
     extends _ClinicalUseDefinitionInteraction {
-  const _$ClinicalUseDefinitionInteractionImpl(
+  _$ClinicalUseDefinitionInteractionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2860,7 +2860,7 @@ class _$ClinicalUseDefinitionInteractionImpl
 
 abstract class _ClinicalUseDefinitionInteraction
     extends ClinicalUseDefinitionInteraction {
-  const factory _ClinicalUseDefinitionInteraction(
+  factory _ClinicalUseDefinitionInteraction(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2870,7 +2870,7 @@ abstract class _ClinicalUseDefinitionInteraction
           final CodeableConcept? incidence,
           final List<CodeableConcept>? management}) =
       _$ClinicalUseDefinitionInteractionImpl;
-  const _ClinicalUseDefinitionInteraction._() : super._();
+  _ClinicalUseDefinitionInteraction._() : super._();
 
   factory _ClinicalUseDefinitionInteraction.fromJson(
           Map<String, dynamic> json) =
@@ -3119,7 +3119,7 @@ class __$$ClinicalUseDefinitionInteractantImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ClinicalUseDefinitionInteractantImpl
     extends _ClinicalUseDefinitionInteractant {
-  const _$ClinicalUseDefinitionInteractantImpl(
+  _$ClinicalUseDefinitionInteractantImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3224,14 +3224,14 @@ class _$ClinicalUseDefinitionInteractantImpl
 
 abstract class _ClinicalUseDefinitionInteractant
     extends ClinicalUseDefinitionInteractant {
-  const factory _ClinicalUseDefinitionInteractant(
+  factory _ClinicalUseDefinitionInteractant(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final Reference? itemReference,
           final CodeableConcept? itemCodeableConcept}) =
       _$ClinicalUseDefinitionInteractantImpl;
-  const _ClinicalUseDefinitionInteractant._() : super._();
+  _ClinicalUseDefinitionInteractant._() : super._();
 
   factory _ClinicalUseDefinitionInteractant.fromJson(
           Map<String, dynamic> json) =
@@ -3505,7 +3505,7 @@ class __$$ClinicalUseDefinitionUndesirableEffectImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ClinicalUseDefinitionUndesirableEffectImpl
     extends _ClinicalUseDefinitionUndesirableEffect {
-  const _$ClinicalUseDefinitionUndesirableEffectImpl(
+  _$ClinicalUseDefinitionUndesirableEffectImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3619,7 +3619,7 @@ class _$ClinicalUseDefinitionUndesirableEffectImpl
 
 abstract class _ClinicalUseDefinitionUndesirableEffect
     extends ClinicalUseDefinitionUndesirableEffect {
-  const factory _ClinicalUseDefinitionUndesirableEffect(
+  factory _ClinicalUseDefinitionUndesirableEffect(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3627,7 +3627,7 @@ abstract class _ClinicalUseDefinitionUndesirableEffect
           final CodeableConcept? classification,
           final CodeableConcept? frequencyOfOccurrence}) =
       _$ClinicalUseDefinitionUndesirableEffectImpl;
-  const _ClinicalUseDefinitionUndesirableEffect._() : super._();
+  _ClinicalUseDefinitionUndesirableEffect._() : super._();
 
   factory _ClinicalUseDefinitionUndesirableEffect.fromJson(
           Map<String, dynamic> json) =
@@ -3866,7 +3866,7 @@ class __$$ClinicalUseDefinitionWarningImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ClinicalUseDefinitionWarningImpl extends _ClinicalUseDefinitionWarning {
-  const _$ClinicalUseDefinitionWarningImpl(
+  _$ClinicalUseDefinitionWarningImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3979,14 +3979,14 @@ class _$ClinicalUseDefinitionWarningImpl extends _ClinicalUseDefinitionWarning {
 
 abstract class _ClinicalUseDefinitionWarning
     extends ClinicalUseDefinitionWarning {
-  const factory _ClinicalUseDefinitionWarning(
+  factory _ClinicalUseDefinitionWarning(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirMarkdown? description,
       @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       final CodeableConcept? code}) = _$ClinicalUseDefinitionWarningImpl;
-  const _ClinicalUseDefinitionWarning._() : super._();
+  _ClinicalUseDefinitionWarning._() : super._();
 
   factory _ClinicalUseDefinitionWarning.fromJson(Map<String, dynamic> json) =
       _$ClinicalUseDefinitionWarningImpl.fromJson;

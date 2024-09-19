@@ -14,9 +14,9 @@ part 'person.g.dart';
 
 /// [Person] Demographics and administrative information about a person
 @freezed
-class Person with _$Person implements DomainResource {
+class Person extends DomainResource with _$Person {
   /// [Person] Demographics and administrative information about a person
-  const Person._();
+  Person._();
 
   /// [Person] Demographics and administrative information about a person
   ///  independent of a specific health-related context.
@@ -102,7 +102,7 @@ class Person with _$Person implements DomainResource {
   /// [activeElement] Extensions for active
   ///
   /// [link] Link to a resource that concerns the same actual person.
-  const factory Person({
+  factory Person({
     @Default(R4ResourceType.Person)
     @JsonKey(unknownEnumValue: R4ResourceType.Person)
 
@@ -245,6 +245,9 @@ class Person with _$Person implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -267,8 +270,8 @@ class Person with _$Person implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 
   Person updateHumanNameUse(HumanNameUse use, [int index = 0]) {
     if (name == null || name!.isEmpty) {
@@ -589,9 +592,9 @@ class Person with _$Person implements DomainResource {
 
 /// [PersonLink] Demographics and administrative information about a person
 @freezed
-class PersonLink with _$PersonLink implements BackboneElement {
+class PersonLink extends BackboneElement with _$PersonLink {
   /// [PersonLink] Demographics and administrative information about a person
-  const PersonLink._();
+  PersonLink._();
 
   /// [PersonLink] Demographics and administrative information about a person
   ///  independent of a specific health-related context.
@@ -626,7 +629,7 @@ class PersonLink with _$PersonLink implements BackboneElement {
   ///  target resource.
   ///
   /// [assuranceElement] Extensions for assurance
-  const factory PersonLink({
+  factory PersonLink({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -697,6 +700,9 @@ class PersonLink with _$PersonLink implements BackboneElement {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

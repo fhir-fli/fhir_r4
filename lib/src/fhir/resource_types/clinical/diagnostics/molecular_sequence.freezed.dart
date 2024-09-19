@@ -768,7 +768,7 @@ class __$$MolecularSequenceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MolecularSequenceImpl extends _MolecularSequence {
-  const _$MolecularSequenceImpl(
+  _$MolecularSequenceImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.MolecularSequence)
       this.resourceType = R4ResourceType.MolecularSequence,
       this.id,
@@ -1231,7 +1231,7 @@ class _$MolecularSequenceImpl extends _MolecularSequence {
 }
 
 abstract class _MolecularSequence extends MolecularSequence {
-  const factory _MolecularSequence(
+  factory _MolecularSequence(
       {@JsonKey(unknownEnumValue: R4ResourceType.MolecularSequence)
       final R4ResourceType resourceType,
       final String? id,
@@ -1268,7 +1268,7 @@ abstract class _MolecularSequence extends MolecularSequence {
       final List<Reference>? pointer,
       final List<MolecularSequenceStructureVariant>?
           structureVariant}) = _$MolecularSequenceImpl;
-  const _MolecularSequence._() : super._();
+  _MolecularSequence._() : super._();
 
   factory _MolecularSequence.fromJson(Map<String, dynamic> json) =
       _$MolecularSequenceImpl.fromJson;
@@ -1923,7 +1923,7 @@ class __$$MolecularSequenceReferenceSeqImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MolecularSequenceReferenceSeqImpl
     extends _MolecularSequenceReferenceSeq {
-  const _$MolecularSequenceReferenceSeqImpl(
+  _$MolecularSequenceReferenceSeqImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2192,7 +2192,7 @@ class _$MolecularSequenceReferenceSeqImpl
 
 abstract class _MolecularSequenceReferenceSeq
     extends MolecularSequenceReferenceSeq {
-  const factory _MolecularSequenceReferenceSeq(
+  factory _MolecularSequenceReferenceSeq(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2214,7 +2214,7 @@ abstract class _MolecularSequenceReferenceSeq
       @JsonKey(name: '_windowEnd')
       final PrimitiveElement?
           windowEndElement}) = _$MolecularSequenceReferenceSeqImpl;
-  const _MolecularSequenceReferenceSeq._() : super._();
+  _MolecularSequenceReferenceSeq._() : super._();
 
   factory _MolecularSequenceReferenceSeq.fromJson(Map<String, dynamic> json) =
       _$MolecularSequenceReferenceSeqImpl.fromJson;
@@ -2706,7 +2706,7 @@ class __$$MolecularSequenceVariantImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MolecularSequenceVariantImpl extends _MolecularSequenceVariant {
-  const _$MolecularSequenceVariantImpl(
+  _$MolecularSequenceVariantImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2937,7 +2937,7 @@ class _$MolecularSequenceVariantImpl extends _MolecularSequenceVariant {
 }
 
 abstract class _MolecularSequenceVariant extends MolecularSequenceVariant {
-  const factory _MolecularSequenceVariant(
+  factory _MolecularSequenceVariant(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2954,7 +2954,7 @@ abstract class _MolecularSequenceVariant extends MolecularSequenceVariant {
       final String? cigar,
       @JsonKey(name: '_cigar') final PrimitiveElement? cigarElement,
       final Reference? variantPointer}) = _$MolecularSequenceVariantImpl;
-  const _MolecularSequenceVariant._() : super._();
+  _MolecularSequenceVariant._() : super._();
 
   factory _MolecularSequenceVariant.fromJson(Map<String, dynamic> json) =
       _$MolecularSequenceVariantImpl.fromJson;
@@ -3711,7 +3711,7 @@ class __$$MolecularSequenceQualityImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MolecularSequenceQualityImpl extends _MolecularSequenceQuality {
-  const _$MolecularSequenceQualityImpl(
+  _$MolecularSequenceQualityImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4063,7 +4063,7 @@ class _$MolecularSequenceQualityImpl extends _MolecularSequenceQuality {
 }
 
 abstract class _MolecularSequenceQuality extends MolecularSequenceQuality {
-  const factory _MolecularSequenceQuality(
+  factory _MolecularSequenceQuality(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4093,7 +4093,7 @@ abstract class _MolecularSequenceQuality extends MolecularSequenceQuality {
       final FhirDecimal? fScore,
       @JsonKey(name: '_fScore') final PrimitiveElement? fScoreElement,
       final MolecularSequenceRoc? roc}) = _$MolecularSequenceQualityImpl;
-  const _MolecularSequenceQuality._() : super._();
+  _MolecularSequenceQuality._() : super._();
 
   factory _MolecularSequenceQuality.fromJson(Map<String, dynamic> json) =
       _$MolecularSequenceQualityImpl.fromJson;
@@ -4652,7 +4652,7 @@ class __$$MolecularSequenceRocImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MolecularSequenceRocImpl extends _MolecularSequenceRoc {
-  const _$MolecularSequenceRocImpl(
+  _$MolecularSequenceRocImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5047,7 +5047,7 @@ class _$MolecularSequenceRocImpl extends _MolecularSequenceRoc {
 }
 
 abstract class _MolecularSequenceRoc extends MolecularSequenceRoc {
-  const factory _MolecularSequenceRoc(
+  factory _MolecularSequenceRoc(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -5069,7 +5069,7 @@ abstract class _MolecularSequenceRoc extends MolecularSequenceRoc {
           @JsonKey(name: '_fMeasure')
           final List<PrimitiveElement>? fMeasureElement}) =
       _$MolecularSequenceRocImpl;
-  const _MolecularSequenceRoc._() : super._();
+  _MolecularSequenceRoc._() : super._();
 
   factory _MolecularSequenceRoc.fromJson(Map<String, dynamic> json) =
       _$MolecularSequenceRocImpl.fromJson;
@@ -5528,7 +5528,7 @@ class __$$MolecularSequenceRepositoryImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MolecularSequenceRepositoryImpl extends _MolecularSequenceRepository {
-  const _$MolecularSequenceRepositoryImpl(
+  _$MolecularSequenceRepositoryImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5757,7 +5757,7 @@ class _$MolecularSequenceRepositoryImpl extends _MolecularSequenceRepository {
 
 abstract class _MolecularSequenceRepository
     extends MolecularSequenceRepository {
-  const factory _MolecularSequenceRepository(
+  factory _MolecularSequenceRepository(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -5776,7 +5776,7 @@ abstract class _MolecularSequenceRepository
           @JsonKey(name: '_readsetId')
           final PrimitiveElement? readsetIdElement}) =
       _$MolecularSequenceRepositoryImpl;
-  const _MolecularSequenceRepository._() : super._();
+  _MolecularSequenceRepository._() : super._();
 
   factory _MolecularSequenceRepository.fromJson(Map<String, dynamic> json) =
       _$MolecularSequenceRepositoryImpl.fromJson;
@@ -6195,7 +6195,7 @@ class __$$MolecularSequenceStructureVariantImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MolecularSequenceStructureVariantImpl
     extends _MolecularSequenceStructureVariant {
-  const _$MolecularSequenceStructureVariantImpl(
+  _$MolecularSequenceStructureVariantImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -6375,7 +6375,7 @@ class _$MolecularSequenceStructureVariantImpl
 
 abstract class _MolecularSequenceStructureVariant
     extends MolecularSequenceStructureVariant {
-  const factory _MolecularSequenceStructureVariant(
+  factory _MolecularSequenceStructureVariant(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -6387,7 +6387,7 @@ abstract class _MolecularSequenceStructureVariant
           final MolecularSequenceOuter? outer,
           final MolecularSequenceInner? inner}) =
       _$MolecularSequenceStructureVariantImpl;
-  const _MolecularSequenceStructureVariant._() : super._();
+  _MolecularSequenceStructureVariant._() : super._();
 
   factory _MolecularSequenceStructureVariant.fromJson(
           Map<String, dynamic> json) =
@@ -6680,7 +6680,7 @@ class __$$MolecularSequenceOuterImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MolecularSequenceOuterImpl extends _MolecularSequenceOuter {
-  const _$MolecularSequenceOuterImpl(
+  _$MolecularSequenceOuterImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -6837,7 +6837,7 @@ class _$MolecularSequenceOuterImpl extends _MolecularSequenceOuter {
 }
 
 abstract class _MolecularSequenceOuter extends MolecularSequenceOuter {
-  const factory _MolecularSequenceOuter(
+  factory _MolecularSequenceOuter(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -6846,7 +6846,7 @@ abstract class _MolecularSequenceOuter extends MolecularSequenceOuter {
           final FhirInteger? end,
           @JsonKey(name: '_end') final PrimitiveElement? endElement}) =
       _$MolecularSequenceOuterImpl;
-  const _MolecularSequenceOuter._() : super._();
+  _MolecularSequenceOuter._() : super._();
 
   factory _MolecularSequenceOuter.fromJson(Map<String, dynamic> json) =
       _$MolecularSequenceOuterImpl.fromJson;
@@ -7127,7 +7127,7 @@ class __$$MolecularSequenceInnerImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MolecularSequenceInnerImpl extends _MolecularSequenceInner {
-  const _$MolecularSequenceInnerImpl(
+  _$MolecularSequenceInnerImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -7284,7 +7284,7 @@ class _$MolecularSequenceInnerImpl extends _MolecularSequenceInner {
 }
 
 abstract class _MolecularSequenceInner extends MolecularSequenceInner {
-  const factory _MolecularSequenceInner(
+  factory _MolecularSequenceInner(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -7293,7 +7293,7 @@ abstract class _MolecularSequenceInner extends MolecularSequenceInner {
           final FhirInteger? end,
           @JsonKey(name: '_end') final PrimitiveElement? endElement}) =
       _$MolecularSequenceInnerImpl;
-  const _MolecularSequenceInner._() : super._();
+  _MolecularSequenceInner._() : super._();
 
   factory _MolecularSequenceInner.fromJson(Map<String, dynamic> json) =
       _$MolecularSequenceInnerImpl.fromJson;

@@ -859,7 +859,7 @@ class __$$HealthcareServiceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$HealthcareServiceImpl extends _HealthcareService {
-  const _$HealthcareServiceImpl(
+  _$HealthcareServiceImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.HealthcareService)
       this.resourceType = R4ResourceType.HealthcareService,
       this.id,
@@ -1508,7 +1508,7 @@ class _$HealthcareServiceImpl extends _HealthcareService {
 }
 
 abstract class _HealthcareService extends HealthcareService {
-  const factory _HealthcareService(
+  factory _HealthcareService(
       {@JsonKey(unknownEnumValue: R4ResourceType.HealthcareService)
       final R4ResourceType resourceType,
       final String? id,
@@ -1555,7 +1555,7 @@ abstract class _HealthcareService extends HealthcareService {
       @JsonKey(name: '_availabilityExceptions')
       final PrimitiveElement? availabilityExceptionsElement,
       final List<Reference>? endpoint}) = _$HealthcareServiceImpl;
-  const _HealthcareService._() : super._();
+  _HealthcareService._() : super._();
 
   factory _HealthcareService.fromJson(Map<String, dynamic> json) =
       _$HealthcareServiceImpl.fromJson;
@@ -2011,7 +2011,7 @@ class __$$HealthcareServiceEligibilityImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$HealthcareServiceEligibilityImpl extends _HealthcareServiceEligibility {
-  const _$HealthcareServiceEligibilityImpl(
+  _$HealthcareServiceEligibilityImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2158,7 +2158,7 @@ class _$HealthcareServiceEligibilityImpl extends _HealthcareServiceEligibility {
 
 abstract class _HealthcareServiceEligibility
     extends HealthcareServiceEligibility {
-  const factory _HealthcareServiceEligibility(
+  factory _HealthcareServiceEligibility(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2166,7 +2166,7 @@ abstract class _HealthcareServiceEligibility
           final FhirMarkdown? comment,
           @JsonKey(name: '_comment') final PrimitiveElement? commentElement}) =
       _$HealthcareServiceEligibilityImpl;
-  const _HealthcareServiceEligibility._() : super._();
+  _HealthcareServiceEligibility._() : super._();
 
   factory _HealthcareServiceEligibility.fromJson(Map<String, dynamic> json) =
       _$HealthcareServiceEligibilityImpl.fromJson;
@@ -2512,7 +2512,7 @@ class __$$HealthcareServiceAvailableTimeImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$HealthcareServiceAvailableTimeImpl
     extends _HealthcareServiceAvailableTime {
-  const _$HealthcareServiceAvailableTimeImpl(
+  _$HealthcareServiceAvailableTimeImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2732,7 +2732,7 @@ class _$HealthcareServiceAvailableTimeImpl
 
 abstract class _HealthcareServiceAvailableTime
     extends HealthcareServiceAvailableTime {
-  const factory _HealthcareServiceAvailableTime(
+  factory _HealthcareServiceAvailableTime(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2748,7 +2748,7 @@ abstract class _HealthcareServiceAvailableTime
           @JsonKey(name: '_availableEndTime')
           final PrimitiveElement? availableEndTimeElement}) =
       _$HealthcareServiceAvailableTimeImpl;
-  const _HealthcareServiceAvailableTime._() : super._();
+  _HealthcareServiceAvailableTime._() : super._();
 
   factory _HealthcareServiceAvailableTime.fromJson(Map<String, dynamic> json) =
       _$HealthcareServiceAvailableTimeImpl.fromJson;
@@ -3053,7 +3053,7 @@ class __$$HealthcareServiceNotAvailableImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$HealthcareServiceNotAvailableImpl
     extends _HealthcareServiceNotAvailable {
-  const _$HealthcareServiceNotAvailableImpl(
+  _$HealthcareServiceNotAvailableImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3203,14 +3203,14 @@ class _$HealthcareServiceNotAvailableImpl
 
 abstract class _HealthcareServiceNotAvailable
     extends HealthcareServiceNotAvailable {
-  const factory _HealthcareServiceNotAvailable(
+  factory _HealthcareServiceNotAvailable(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final String? description,
       @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       final Period? during}) = _$HealthcareServiceNotAvailableImpl;
-  const _HealthcareServiceNotAvailable._() : super._();
+  _HealthcareServiceNotAvailable._() : super._();
 
   factory _HealthcareServiceNotAvailable.fromJson(Map<String, dynamic> json) =
       _$HealthcareServiceNotAvailableImpl.fromJson;

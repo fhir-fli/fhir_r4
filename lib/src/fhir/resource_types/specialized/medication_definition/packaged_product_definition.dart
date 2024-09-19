@@ -15,11 +15,10 @@ part 'packaged_product_definition.g.dart';
 
 /// [PackagedProductDefinition] A medically related item or items, in a container or package.
 @freezed
-class PackagedProductDefinition
-    with _$PackagedProductDefinition
-    implements DomainResource {
+class PackagedProductDefinition extends DomainResource
+    with _$PackagedProductDefinition {
   /// [PackagedProductDefinition] A medically related item or items, in a container or package.
-  const PackagedProductDefinition._();
+  PackagedProductDefinition._();
 
   /// [PackagedProductDefinition] A medically related item or items, in a container or package.
 
@@ -83,7 +82,7 @@ class PackagedProductDefinition
   /// [manufacturer] Manufacturer of this package type. When there are multiple it means these are all possible manufacturers.;
   ///
   /// [package] A packaging item, as a container for medically related items, possibly with other packaging items within, or a packaging component, such as bottle cap (which is not a device or a medication manufactured item).;
-  const factory PackagedProductDefinition({
+  factory PackagedProductDefinition({
     @Default(R4ResourceType.PackagedProductDefinition)
 
     /// [resourceType] This is a PackagedProductDefinition resource;
@@ -209,6 +208,9 @@ class PackagedProductDefinition
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -231,16 +233,15 @@ class PackagedProductDefinition
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 @freezed
 @freezed
-class PackagedProductDefinitionLegalStatusOfSupply
-    with _$PackagedProductDefinitionLegalStatusOfSupply
-    implements BackboneElement {
-  const PackagedProductDefinitionLegalStatusOfSupply._();
+class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement
+    with _$PackagedProductDefinitionLegalStatusOfSupply {
+  PackagedProductDefinitionLegalStatusOfSupply._();
 
   /// [PackagedProductDefinitionLegalStatusOfSupply] A medically related item or items, in a container or package.
 
@@ -256,7 +257,7 @@ class PackagedProductDefinitionLegalStatusOfSupply
   /// [code] The actual status of supply. Conveys in what situation this package type may be supplied for use.;
   ///
   /// [jurisdiction] The place where the legal status of supply applies. When not specified, this indicates it is unknown in this context.;
-  const factory PackagedProductDefinitionLegalStatusOfSupply({
+  factory PackagedProductDefinitionLegalStatusOfSupply({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -308,6 +309,9 @@ class PackagedProductDefinitionLegalStatusOfSupply
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -319,11 +323,10 @@ class PackagedProductDefinitionLegalStatusOfSupply
 
 /// [PackagedProductDefinitionPackage] A medically related item or items, in a container or package.
 @freezed
-class PackagedProductDefinitionPackage
-    with _$PackagedProductDefinitionPackage
-    implements BackboneElement {
+class PackagedProductDefinitionPackage extends BackboneElement
+    with _$PackagedProductDefinitionPackage {
   /// [PackagedProductDefinitionPackage] A medically related item or items, in a container or package.
-  const PackagedProductDefinitionPackage._();
+  PackagedProductDefinitionPackage._();
 
   /// [PackagedProductDefinitionPackage] A medically related item or items, in a container or package.
 
@@ -357,7 +360,7 @@ class PackagedProductDefinitionPackage
   /// [containedItem] The item(s) within the packaging.;
   ///
   /// [package] Allows containers (and parts of containers) parwithin containers, still a single packaged product.  See also PackagedProductDefinition.package.containedItem.item(PackagedProductDefinition).;
-  const factory PackagedProductDefinitionPackage({
+  factory PackagedProductDefinitionPackage({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -435,6 +438,9 @@ class PackagedProductDefinitionPackage
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -443,10 +449,9 @@ class PackagedProductDefinitionPackage
 
 @freezed
 @freezed
-class PackagedProductDefinitionShelfLifeStorage
-    with _$PackagedProductDefinitionShelfLifeStorage
-    implements BackboneElement {
-  const PackagedProductDefinitionShelfLifeStorage._();
+class PackagedProductDefinitionShelfLifeStorage extends BackboneElement
+    with _$PackagedProductDefinitionShelfLifeStorage {
+  PackagedProductDefinitionShelfLifeStorage._();
 
   /// [PackagedProductDefinitionShelfLifeStorage] The shelf-life and storage information for a medicinal
   ///  product item or container can be described using this class.
@@ -501,7 +506,7 @@ class PackagedProductDefinitionShelfLifeStorage
   /// [specialPrecautionsForStorage] Special precautions for storage, if any,
   /// can be specified using an appropriate controlled vocabulary The controlled
   ///  term and the controlled term identifier shall be specified.
-  const factory PackagedProductDefinitionShelfLifeStorage({
+  factory PackagedProductDefinitionShelfLifeStorage({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -597,6 +602,9 @@ class PackagedProductDefinitionShelfLifeStorage
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -605,10 +613,9 @@ class PackagedProductDefinitionShelfLifeStorage
 
 @freezed
 @freezed
-class PackagedProductDefinitionProperty
-    with _$PackagedProductDefinitionProperty
-    implements BackboneElement {
-  const PackagedProductDefinitionProperty._();
+class PackagedProductDefinitionProperty extends BackboneElement
+    with _$PackagedProductDefinitionProperty {
+  PackagedProductDefinitionProperty._();
 
   /// [PackagedProductDefinitionProperty] A medically related item or items, in a container or package.
 
@@ -636,7 +643,7 @@ class PackagedProductDefinitionProperty
   /// [valueBooleanElement] (_valueBoolean): Extensions for valueBoolean;
   ///
   /// [valueAttachment] A value for the characteristic.;
-  const factory PackagedProductDefinitionProperty({
+  factory PackagedProductDefinitionProperty({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -705,6 +712,9 @@ class PackagedProductDefinitionProperty
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -713,10 +723,9 @@ class PackagedProductDefinitionProperty
 
 @freezed
 @freezed
-class PackagedProductDefinitionContainedItem
-    with _$PackagedProductDefinitionContainedItem
-    implements BackboneElement {
-  const PackagedProductDefinitionContainedItem._();
+class PackagedProductDefinitionContainedItem extends BackboneElement
+    with _$PackagedProductDefinitionContainedItem {
+  PackagedProductDefinitionContainedItem._();
 
   /// [PackagedProductDefinitionContainedItem] A medically related item or items, in a container or package.
 
@@ -732,7 +741,7 @@ class PackagedProductDefinitionContainedItem
   /// [item] The actual item(s) of medication, as manufactured, or a device (typically, but not necessarily, a co-packaged one), or other medically related item (such as food, biologicals, raw materials, medical fluids, gases etc.), as contained in the package. This also allows another whole packaged product to be included, which is solely for the case where a package of other entire packages is wanted - such as a wholesale or distribution pack (for layers within one package, use PackagedProductDefinition.package.package).;
   ///
   /// [amount] The number of this type of item within this packaging.;
-  const factory PackagedProductDefinitionContainedItem({
+  factory PackagedProductDefinitionContainedItem({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -781,6 +790,9 @@ class PackagedProductDefinitionContainedItem
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

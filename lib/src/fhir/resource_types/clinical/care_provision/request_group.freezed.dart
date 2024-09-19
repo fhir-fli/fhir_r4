@@ -803,7 +803,7 @@ class __$$RequestGroupImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RequestGroupImpl extends _RequestGroup {
-  const _$RequestGroupImpl(
+  _$RequestGroupImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.RequestGroup)
       this.resourceType = R4ResourceType.RequestGroup,
       this.id,
@@ -1342,7 +1342,7 @@ class _$RequestGroupImpl extends _RequestGroup {
 }
 
 abstract class _RequestGroup extends RequestGroup {
-  const factory _RequestGroup(
+  factory _RequestGroup(
       {@JsonKey(unknownEnumValue: R4ResourceType.RequestGroup)
       final R4ResourceType resourceType,
       final String? id,
@@ -1382,7 +1382,7 @@ abstract class _RequestGroup extends RequestGroup {
       final List<Reference>? reasonReference,
       final List<Annotation>? note,
       final List<RequestGroupAction>? action}) = _$RequestGroupImpl;
-  const _RequestGroup._() : super._();
+  _RequestGroup._() : super._();
 
   factory _RequestGroup.fromJson(Map<String, dynamic> json) =
       _$RequestGroupImpl.fromJson;
@@ -2434,7 +2434,7 @@ class __$$RequestGroupActionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RequestGroupActionImpl extends _RequestGroupAction {
-  const _$RequestGroupActionImpl(
+  _$RequestGroupActionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2936,7 +2936,7 @@ class _$RequestGroupActionImpl extends _RequestGroupAction {
 }
 
 abstract class _RequestGroupAction extends RequestGroupAction {
-  const factory _RequestGroupAction(
+  factory _RequestGroupAction(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2982,7 +2982,7 @@ abstract class _RequestGroupAction extends RequestGroupAction {
       final PrimitiveElement? cardinalityBehaviorElement,
       final Reference? resource,
       final List<RequestGroupAction>? action}) = _$RequestGroupActionImpl;
-  const _RequestGroupAction._() : super._();
+  _RequestGroupAction._() : super._();
 
   factory _RequestGroupAction.fromJson(Map<String, dynamic> json) =
       _$RequestGroupActionImpl.fromJson;
@@ -3415,7 +3415,7 @@ class __$$RequestGroupConditionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RequestGroupConditionImpl extends _RequestGroupCondition {
-  const _$RequestGroupConditionImpl(
+  _$RequestGroupConditionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3561,14 +3561,14 @@ class _$RequestGroupConditionImpl extends _RequestGroupCondition {
 }
 
 abstract class _RequestGroupCondition extends RequestGroupCondition {
-  const factory _RequestGroupCondition(
+  factory _RequestGroupCondition(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirCode? kind,
       @JsonKey(name: '_kind') final PrimitiveElement? kindElement,
       final FhirExpression? expression}) = _$RequestGroupConditionImpl;
-  const _RequestGroupCondition._() : super._();
+  _RequestGroupCondition._() : super._();
 
   factory _RequestGroupCondition.fromJson(Map<String, dynamic> json) =
       _$RequestGroupConditionImpl.fromJson;
@@ -3906,7 +3906,7 @@ class __$$RequestGroupRelatedActionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RequestGroupRelatedActionImpl extends _RequestGroupRelatedAction {
-  const _$RequestGroupRelatedActionImpl(
+  _$RequestGroupRelatedActionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4079,7 +4079,7 @@ class _$RequestGroupRelatedActionImpl extends _RequestGroupRelatedAction {
 }
 
 abstract class _RequestGroupRelatedAction extends RequestGroupRelatedAction {
-  const factory _RequestGroupRelatedAction(
+  factory _RequestGroupRelatedAction(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4090,7 +4090,7 @@ abstract class _RequestGroupRelatedAction extends RequestGroupRelatedAction {
       final PrimitiveElement? relationshipElement,
       final FhirDuration? offsetDuration,
       final Range? offsetRange}) = _$RequestGroupRelatedActionImpl;
-  const _RequestGroupRelatedAction._() : super._();
+  _RequestGroupRelatedAction._() : super._();
 
   factory _RequestGroupRelatedAction.fromJson(Map<String, dynamic> json) =
       _$RequestGroupRelatedActionImpl.fromJson;

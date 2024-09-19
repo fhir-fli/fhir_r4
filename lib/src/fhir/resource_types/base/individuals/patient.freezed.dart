@@ -770,7 +770,7 @@ class __$$PatientImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PatientImpl extends _Patient {
-  const _$PatientImpl(
+  _$PatientImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Patient)
       this.resourceType = R4ResourceType.Patient,
       this.id,
@@ -1292,7 +1292,7 @@ class _$PatientImpl extends _Patient {
 }
 
 abstract class _Patient extends Patient {
-  const factory _Patient(
+  factory _Patient(
       {@JsonKey(unknownEnumValue: R4ResourceType.Patient)
       final R4ResourceType resourceType,
       final String? id,
@@ -1335,7 +1335,7 @@ abstract class _Patient extends Patient {
       final List<Reference>? generalPractitioner,
       final Reference? managingOrganization,
       final List<PatientLink>? link}) = _$PatientImpl;
-  const _Patient._() : super._();
+  _Patient._() : super._();
 
   factory _Patient.fromJson(Map<String, dynamic> json) = _$PatientImpl.fromJson;
 
@@ -1883,7 +1883,7 @@ class __$$PatientContactImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PatientContactImpl extends _PatientContact {
-  const _$PatientContactImpl(
+  _$PatientContactImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2091,7 +2091,7 @@ class _$PatientContactImpl extends _PatientContact {
 }
 
 abstract class _PatientContact extends PatientContact {
-  const factory _PatientContact(
+  factory _PatientContact(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2103,7 +2103,7 @@ abstract class _PatientContact extends PatientContact {
       @JsonKey(name: '_gender') final PrimitiveElement? genderElement,
       final Reference? organization,
       final Period? period}) = _$PatientContactImpl;
-  const _PatientContact._() : super._();
+  _PatientContact._() : super._();
 
   factory _PatientContact.fromJson(Map<String, dynamic> json) =
       _$PatientContactImpl.fromJson;
@@ -2395,7 +2395,7 @@ class __$$PatientCommunicationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PatientCommunicationImpl extends _PatientCommunication {
-  const _$PatientCommunicationImpl(
+  _$PatientCommunicationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2546,7 +2546,7 @@ class _$PatientCommunicationImpl extends _PatientCommunication {
 }
 
 abstract class _PatientCommunication extends PatientCommunication {
-  const factory _PatientCommunication(
+  factory _PatientCommunication(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2554,7 +2554,7 @@ abstract class _PatientCommunication extends PatientCommunication {
       final FhirBoolean? preferred,
       @JsonKey(name: '_preferred')
       final PrimitiveElement? preferredElement}) = _$PatientCommunicationImpl;
-  const _PatientCommunication._() : super._();
+  _PatientCommunication._() : super._();
 
   factory _PatientCommunication.fromJson(Map<String, dynamic> json) =
       _$PatientCommunicationImpl.fromJson;
@@ -2821,7 +2821,7 @@ class __$$PatientLinkImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PatientLinkImpl extends _PatientLink {
-  const _$PatientLinkImpl(
+  _$PatientLinkImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2965,7 +2965,7 @@ class _$PatientLinkImpl extends _PatientLink {
 }
 
 abstract class _PatientLink extends PatientLink {
-  const factory _PatientLink(
+  factory _PatientLink(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2973,7 +2973,7 @@ abstract class _PatientLink extends PatientLink {
           final FhirCode? type,
           @JsonKey(name: '_type') final PrimitiveElement? typeElement}) =
       _$PatientLinkImpl;
-  const _PatientLink._() : super._();
+  _PatientLink._() : super._();
 
   factory _PatientLink.fromJson(Map<String, dynamic> json) =
       _$PatientLinkImpl.fromJson;

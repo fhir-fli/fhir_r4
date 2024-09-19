@@ -829,7 +829,7 @@ class __$$EvidenceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$EvidenceImpl extends _Evidence {
-  const _$EvidenceImpl(
+  _$EvidenceImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Evidence)
       this.resourceType = R4ResourceType.Evidence,
       this.id,
@@ -1295,7 +1295,7 @@ class _$EvidenceImpl extends _Evidence {
 }
 
 abstract class _Evidence extends Evidence {
-  const factory _Evidence(
+  factory _Evidence(
       {@JsonKey(unknownEnumValue: R4ResourceType.Evidence)
       final R4ResourceType resourceType,
       final String? id,
@@ -1349,7 +1349,7 @@ abstract class _Evidence extends Evidence {
       final CodeableConcept? studyType,
       final List<EvidenceStatistic>? statistic,
       final List<EvidenceCertainty>? certainty}) = _$EvidenceImpl;
-  const _Evidence._() : super._();
+  _Evidence._() : super._();
 
   factory _Evidence.fromJson(Map<String, dynamic> json) =
       _$EvidenceImpl.fromJson;
@@ -1760,7 +1760,7 @@ class __$$EvidenceVariableDefinitionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$EvidenceVariableDefinitionImpl extends _EvidenceVariableDefinition {
-  const _$EvidenceVariableDefinitionImpl(
+  _$EvidenceVariableDefinitionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1891,7 +1891,7 @@ class _$EvidenceVariableDefinitionImpl extends _EvidenceVariableDefinition {
 }
 
 abstract class _EvidenceVariableDefinition extends EvidenceVariableDefinition {
-  const factory _EvidenceVariableDefinition(
+  factory _EvidenceVariableDefinition(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1903,7 +1903,7 @@ abstract class _EvidenceVariableDefinition extends EvidenceVariableDefinition {
       final Reference? intended,
       final CodeableConcept?
           directnessMatch}) = _$EvidenceVariableDefinitionImpl;
-  const _EvidenceVariableDefinition._() : super._();
+  _EvidenceVariableDefinition._() : super._();
 
   factory _EvidenceVariableDefinition.fromJson(Map<String, dynamic> json) =
       _$EvidenceVariableDefinitionImpl.fromJson;
@@ -2307,7 +2307,7 @@ class __$$EvidenceStatisticImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$EvidenceStatisticImpl extends _EvidenceStatistic {
-  const _$EvidenceStatisticImpl(
+  _$EvidenceStatisticImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2494,7 +2494,7 @@ class _$EvidenceStatisticImpl extends _EvidenceStatistic {
 }
 
 abstract class _EvidenceStatistic extends EvidenceStatistic {
-  const factory _EvidenceStatistic(
+  factory _EvidenceStatistic(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2514,7 +2514,7 @@ abstract class _EvidenceStatistic extends EvidenceStatistic {
       final List<EvidenceAttributeEstimate>? attributeEstimate,
       final List<EvidenceModelCharacteristic>?
           modelCharacteristic}) = _$EvidenceStatisticImpl;
-  const _EvidenceStatistic._() : super._();
+  _EvidenceStatistic._() : super._();
 
   factory _EvidenceStatistic.fromJson(Map<String, dynamic> json) =
       _$EvidenceStatisticImpl.fromJson;
@@ -2817,7 +2817,7 @@ class __$$EvidenceSampleSizeImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$EvidenceSampleSizeImpl extends _EvidenceSampleSize {
-  const _$EvidenceSampleSizeImpl(
+  _$EvidenceSampleSizeImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2964,7 +2964,7 @@ class _$EvidenceSampleSizeImpl extends _EvidenceSampleSize {
 }
 
 abstract class _EvidenceSampleSize extends EvidenceSampleSize {
-  const factory _EvidenceSampleSize(
+  factory _EvidenceSampleSize(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2981,7 +2981,7 @@ abstract class _EvidenceSampleSize extends EvidenceSampleSize {
       @JsonKey(name: '_knownDataCount')
       final PrimitiveElement?
           knownDataCountElement}) = _$EvidenceSampleSizeImpl;
-  const _EvidenceSampleSize._() : super._();
+  _EvidenceSampleSize._() : super._();
 
   factory _EvidenceSampleSize.fromJson(Map<String, dynamic> json) =
       _$EvidenceSampleSizeImpl.fromJson;
@@ -3324,7 +3324,7 @@ class __$$EvidenceAttributeEstimateImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$EvidenceAttributeEstimateImpl extends _EvidenceAttributeEstimate {
-  const _$EvidenceAttributeEstimateImpl(
+  _$EvidenceAttributeEstimateImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3473,7 +3473,7 @@ class _$EvidenceAttributeEstimateImpl extends _EvidenceAttributeEstimate {
 }
 
 abstract class _EvidenceAttributeEstimate extends EvidenceAttributeEstimate {
-  const factory _EvidenceAttributeEstimate(
+  factory _EvidenceAttributeEstimate(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3487,7 +3487,7 @@ abstract class _EvidenceAttributeEstimate extends EvidenceAttributeEstimate {
       final Range? range,
       final List<EvidenceAttributeEstimate>?
           attributeEstimate}) = _$EvidenceAttributeEstimateImpl;
-  const _EvidenceAttributeEstimate._() : super._();
+  _EvidenceAttributeEstimate._() : super._();
 
   factory _EvidenceAttributeEstimate.fromJson(Map<String, dynamic> json) =
       _$EvidenceAttributeEstimateImpl.fromJson;
@@ -3741,7 +3741,7 @@ class __$$EvidenceModelCharacteristicImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$EvidenceModelCharacteristicImpl extends _EvidenceModelCharacteristic {
-  const _$EvidenceModelCharacteristicImpl(
+  _$EvidenceModelCharacteristicImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3861,7 +3861,7 @@ class _$EvidenceModelCharacteristicImpl extends _EvidenceModelCharacteristic {
 
 abstract class _EvidenceModelCharacteristic
     extends EvidenceModelCharacteristic {
-  const factory _EvidenceModelCharacteristic(
+  factory _EvidenceModelCharacteristic(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3870,7 +3870,7 @@ abstract class _EvidenceModelCharacteristic
           final List<EvidenceVar>? variable,
           final List<EvidenceAttributeEstimate>? attributeEstimate}) =
       _$EvidenceModelCharacteristicImpl;
-  const _EvidenceModelCharacteristic._() : super._();
+  _EvidenceModelCharacteristic._() : super._();
 
   factory _EvidenceModelCharacteristic.fromJson(Map<String, dynamic> json) =
       _$EvidenceModelCharacteristicImpl.fromJson;
@@ -4115,7 +4115,7 @@ class __$$EvidenceVarImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$EvidenceVarImpl extends _EvidenceVar {
-  const _$EvidenceVarImpl(
+  _$EvidenceVarImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4256,7 +4256,7 @@ class _$EvidenceVarImpl extends _EvidenceVar {
 }
 
 abstract class _EvidenceVar extends EvidenceVar {
-  const factory _EvidenceVar(
+  factory _EvidenceVar(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4266,7 +4266,7 @@ abstract class _EvidenceVar extends EvidenceVar {
       final List<CodeableConcept>? valueCategory,
       final List<Quantity>? valueQuantity,
       final List<Range>? valueRange}) = _$EvidenceVarImpl;
-  const _EvidenceVar._() : super._();
+  _EvidenceVar._() : super._();
 
   factory _EvidenceVar.fromJson(Map<String, dynamic> json) =
       _$EvidenceVarImpl.fromJson;
@@ -4565,7 +4565,7 @@ class __$$EvidenceCertaintyImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$EvidenceCertaintyImpl extends _EvidenceCertainty {
-  const _$EvidenceCertaintyImpl(
+  _$EvidenceCertaintyImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4707,7 +4707,7 @@ class _$EvidenceCertaintyImpl extends _EvidenceCertainty {
 }
 
 abstract class _EvidenceCertainty extends EvidenceCertainty {
-  const factory _EvidenceCertainty(
+  factory _EvidenceCertainty(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4719,7 +4719,7 @@ abstract class _EvidenceCertainty extends EvidenceCertainty {
       final String? rater,
       @JsonKey(name: '_rater') final PrimitiveElement? raterElement,
       final List<EvidenceCertainty>? subcomponent}) = _$EvidenceCertaintyImpl;
-  const _EvidenceCertainty._() : super._();
+  _EvidenceCertainty._() : super._();
 
   factory _EvidenceCertainty.fromJson(Map<String, dynamic> json) =
       _$EvidenceCertaintyImpl.fromJson;

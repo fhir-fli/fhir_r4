@@ -695,7 +695,7 @@ class __$$NamingSystemImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$NamingSystemImpl extends _NamingSystem {
-  const _$NamingSystemImpl(
+  _$NamingSystemImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.NamingSystem)
       this.resourceType = R4ResourceType.NamingSystem,
       this.id,
@@ -1141,7 +1141,7 @@ class _$NamingSystemImpl extends _NamingSystem {
 }
 
 abstract class _NamingSystem extends NamingSystem {
-  const factory _NamingSystem(
+  factory _NamingSystem(
       {@JsonKey(unknownEnumValue: R4ResourceType.NamingSystem)
       final R4ResourceType resourceType,
       final String? id,
@@ -1176,7 +1176,7 @@ abstract class _NamingSystem extends NamingSystem {
       final String? usage,
       @JsonKey(name: '_usage') final PrimitiveElement? usageElement,
       required final List<NamingSystemUniqueId> uniqueId}) = _$NamingSystemImpl;
-  const _NamingSystem._() : super._();
+  _NamingSystem._() : super._();
 
   factory _NamingSystem.fromJson(Map<String, dynamic> json) =
       _$NamingSystemImpl.fromJson;
@@ -1688,7 +1688,7 @@ class __$$NamingSystemUniqueIdImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$NamingSystemUniqueIdImpl extends _NamingSystemUniqueId {
-  const _$NamingSystemUniqueIdImpl(
+  _$NamingSystemUniqueIdImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1887,7 +1887,7 @@ class _$NamingSystemUniqueIdImpl extends _NamingSystemUniqueId {
 }
 
 abstract class _NamingSystemUniqueId extends NamingSystemUniqueId {
-  const factory _NamingSystemUniqueId(
+  factory _NamingSystemUniqueId(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1900,7 +1900,7 @@ abstract class _NamingSystemUniqueId extends NamingSystemUniqueId {
       final String? comment,
       @JsonKey(name: '_comment') final PrimitiveElement? commentElement,
       final Period? period}) = _$NamingSystemUniqueIdImpl;
-  const _NamingSystemUniqueId._() : super._();
+  _NamingSystemUniqueId._() : super._();
 
   factory _NamingSystemUniqueId.fromJson(Map<String, dynamic> json) =
       _$NamingSystemUniqueIdImpl.fromJson;

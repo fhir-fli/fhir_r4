@@ -779,7 +779,7 @@ class __$$DiagnosticReportImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DiagnosticReportImpl extends _DiagnosticReport {
-  const _$DiagnosticReportImpl(
+  _$DiagnosticReportImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.DiagnosticReport)
       this.resourceType = R4ResourceType.DiagnosticReport,
       this.id,
@@ -1330,7 +1330,7 @@ class _$DiagnosticReportImpl extends _DiagnosticReport {
 }
 
 abstract class _DiagnosticReport extends DiagnosticReport {
-  const factory _DiagnosticReport(
+  factory _DiagnosticReport(
       {@JsonKey(unknownEnumValue: R4ResourceType.DiagnosticReport)
       final R4ResourceType resourceType,
       final String? id,
@@ -1368,7 +1368,7 @@ abstract class _DiagnosticReport extends DiagnosticReport {
       @JsonKey(name: '_conclusion') final PrimitiveElement? conclusionElement,
       final List<CodeableConcept>? conclusionCode,
       final List<Attachment>? presentedForm}) = _$DiagnosticReportImpl;
-  const _DiagnosticReport._() : super._();
+  _DiagnosticReport._() : super._();
 
   factory _DiagnosticReport.fromJson(Map<String, dynamic> json) =
       _$DiagnosticReportImpl.fromJson;
@@ -1796,7 +1796,7 @@ class __$$DiagnosticReportMediaImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DiagnosticReportMediaImpl extends _DiagnosticReportMedia {
-  const _$DiagnosticReportMediaImpl(
+  _$DiagnosticReportMediaImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1942,14 +1942,14 @@ class _$DiagnosticReportMediaImpl extends _DiagnosticReportMedia {
 }
 
 abstract class _DiagnosticReportMedia extends DiagnosticReportMedia {
-  const factory _DiagnosticReportMedia(
+  factory _DiagnosticReportMedia(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final String? comment,
       @JsonKey(name: '_comment') final PrimitiveElement? commentElement,
       required final Reference link}) = _$DiagnosticReportMediaImpl;
-  const _DiagnosticReportMedia._() : super._();
+  _DiagnosticReportMedia._() : super._();
 
   factory _DiagnosticReportMedia.fromJson(Map<String, dynamic> json) =
       _$DiagnosticReportMediaImpl.fromJson;

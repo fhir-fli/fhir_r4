@@ -994,7 +994,7 @@ class __$$MessageDefinitionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MessageDefinitionImpl extends _MessageDefinition {
-  const _$MessageDefinitionImpl(
+  _$MessageDefinitionImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.MessageDefinition)
       this.resourceType = R4ResourceType.MessageDefinition,
       this.id,
@@ -1667,7 +1667,7 @@ class _$MessageDefinitionImpl extends _MessageDefinition {
 }
 
 abstract class _MessageDefinition extends MessageDefinition {
-  const factory _MessageDefinition(
+  factory _MessageDefinition(
       {@JsonKey(unknownEnumValue: R4ResourceType.MessageDefinition)
       final R4ResourceType resourceType,
       final String? id,
@@ -1722,7 +1722,7 @@ abstract class _MessageDefinition extends MessageDefinition {
       final PrimitiveElement? responseRequiredElement,
       final List<MessageDefinitionAllowedResponse>? allowedResponse,
       final List<FhirCanonical>? graph}) = _$MessageDefinitionImpl;
-  const _MessageDefinition._() : super._();
+  _MessageDefinition._() : super._();
 
   factory _MessageDefinition.fromJson(Map<String, dynamic> json) =
       _$MessageDefinitionImpl.fromJson;
@@ -2285,7 +2285,7 @@ class __$$MessageDefinitionFocusImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MessageDefinitionFocusImpl extends _MessageDefinitionFocus {
-  const _$MessageDefinitionFocusImpl(
+  _$MessageDefinitionFocusImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2466,7 +2466,7 @@ class _$MessageDefinitionFocusImpl extends _MessageDefinitionFocus {
 }
 
 abstract class _MessageDefinitionFocus extends MessageDefinitionFocus {
-  const factory _MessageDefinitionFocus(
+  factory _MessageDefinitionFocus(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2478,7 +2478,7 @@ abstract class _MessageDefinitionFocus extends MessageDefinitionFocus {
           final String? max,
           @JsonKey(name: '_max') final PrimitiveElement? maxElement}) =
       _$MessageDefinitionFocusImpl;
-  const _MessageDefinitionFocus._() : super._();
+  _MessageDefinitionFocus._() : super._();
 
   factory _MessageDefinitionFocus.fromJson(Map<String, dynamic> json) =
       _$MessageDefinitionFocusImpl.fromJson;
@@ -2758,7 +2758,7 @@ class __$$MessageDefinitionAllowedResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MessageDefinitionAllowedResponseImpl
     extends _MessageDefinitionAllowedResponse {
-  const _$MessageDefinitionAllowedResponseImpl(
+  _$MessageDefinitionAllowedResponseImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2908,7 +2908,7 @@ class _$MessageDefinitionAllowedResponseImpl
 
 abstract class _MessageDefinitionAllowedResponse
     extends MessageDefinitionAllowedResponse {
-  const factory _MessageDefinitionAllowedResponse(
+  factory _MessageDefinitionAllowedResponse(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2917,7 +2917,7 @@ abstract class _MessageDefinitionAllowedResponse
           @JsonKey(name: '_situation')
           final PrimitiveElement? situationElement}) =
       _$MessageDefinitionAllowedResponseImpl;
-  const _MessageDefinitionAllowedResponse._() : super._();
+  _MessageDefinitionAllowedResponse._() : super._();
 
   factory _MessageDefinitionAllowedResponse.fromJson(
           Map<String, dynamic> json) =

@@ -609,7 +609,7 @@ class __$$ProvenanceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ProvenanceImpl extends _Provenance {
-  const _$ProvenanceImpl(
+  _$ProvenanceImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Provenance)
       this.resourceType = R4ResourceType.Provenance,
       this.id,
@@ -1014,7 +1014,7 @@ class _$ProvenanceImpl extends _Provenance {
 }
 
 abstract class _Provenance extends Provenance {
-  const factory _Provenance(
+  factory _Provenance(
       {@JsonKey(unknownEnumValue: R4ResourceType.Provenance)
       final R4ResourceType resourceType,
       final String? id,
@@ -1043,7 +1043,7 @@ abstract class _Provenance extends Provenance {
       required final List<ProvenanceAgent> agent,
       final List<ProvenanceEntity>? entity,
       final List<Signature>? signature}) = _$ProvenanceImpl;
-  const _Provenance._() : super._();
+  _Provenance._() : super._();
 
   factory _Provenance.fromJson(Map<String, dynamic> json) =
       _$ProvenanceImpl.fromJson;
@@ -1458,7 +1458,7 @@ class __$$ProvenanceAgentImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ProvenanceAgentImpl extends _ProvenanceAgent {
-  const _$ProvenanceAgentImpl(
+  _$ProvenanceAgentImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1622,7 +1622,7 @@ class _$ProvenanceAgentImpl extends _ProvenanceAgent {
 }
 
 abstract class _ProvenanceAgent extends ProvenanceAgent {
-  const factory _ProvenanceAgent(
+  factory _ProvenanceAgent(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1630,7 +1630,7 @@ abstract class _ProvenanceAgent extends ProvenanceAgent {
       final List<CodeableConcept>? role,
       required final Reference who,
       final Reference? onBehalfOf}) = _$ProvenanceAgentImpl;
-  const _ProvenanceAgent._() : super._();
+  _ProvenanceAgent._() : super._();
 
   factory _ProvenanceAgent.fromJson(Map<String, dynamic> json) =
       _$ProvenanceAgentImpl.fromJson;
@@ -1917,7 +1917,7 @@ class __$$ProvenanceEntityImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ProvenanceEntityImpl extends _ProvenanceEntity {
-  const _$ProvenanceEntityImpl(
+  _$ProvenanceEntityImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2085,7 +2085,7 @@ class _$ProvenanceEntityImpl extends _ProvenanceEntity {
 }
 
 abstract class _ProvenanceEntity extends ProvenanceEntity {
-  const factory _ProvenanceEntity(
+  factory _ProvenanceEntity(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2093,7 +2093,7 @@ abstract class _ProvenanceEntity extends ProvenanceEntity {
       @JsonKey(name: '_role') final PrimitiveElement? roleElement,
       required final Reference what,
       final List<ProvenanceAgent>? agent}) = _$ProvenanceEntityImpl;
-  const _ProvenanceEntity._() : super._();
+  _ProvenanceEntity._() : super._();
 
   factory _ProvenanceEntity.fromJson(Map<String, dynamic> json) =
       _$ProvenanceEntityImpl.fromJson;

@@ -1064,7 +1064,7 @@ class __$$FhirReadRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FhirReadRequestImpl extends FhirReadRequest {
-  const _$FhirReadRequestImpl(
+  _$FhirReadRequestImpl(
       {required this.base,
       required this.type,
       required this.id,
@@ -2030,7 +2030,7 @@ class _$FhirReadRequestImpl extends FhirReadRequest {
 }
 
 abstract class FhirReadRequest extends FhirRequest {
-  const factory FhirReadRequest(
+  factory FhirReadRequest(
       {required final Uri base,
       required final R4ResourceType type,
       required final String id,
@@ -2044,7 +2044,7 @@ abstract class FhirReadRequest extends FhirRequest {
       @JsonKey(includeFromJson: false, includeToJson: false)
       final Client? client,
       final Map<String, String>? headers}) = _$FhirReadRequestImpl;
-  const FhirReadRequest._() : super._();
+  FhirReadRequest._() : super._();
 
   factory FhirReadRequest.fromJson(Map<String, dynamic> json) =
       _$FhirReadRequestImpl.fromJson;
@@ -2221,7 +2221,7 @@ class __$$FhirVReadRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FhirVReadRequestImpl extends FhirVReadRequest {
-  const _$FhirVReadRequestImpl(
+  _$FhirVReadRequestImpl(
       {required this.base,
       required this.type,
       required this.id,
@@ -3192,7 +3192,7 @@ class _$FhirVReadRequestImpl extends FhirVReadRequest {
 }
 
 abstract class FhirVReadRequest extends FhirRequest {
-  const factory FhirVReadRequest(
+  factory FhirVReadRequest(
       {required final Uri base,
       required final R4ResourceType type,
       required final String id,
@@ -3207,7 +3207,7 @@ abstract class FhirVReadRequest extends FhirRequest {
       @JsonKey(includeFromJson: false, includeToJson: false)
       final Client? client,
       final Map<String, String>? headers}) = _$FhirVReadRequestImpl;
-  const FhirVReadRequest._() : super._();
+  FhirVReadRequest._() : super._();
 
   factory FhirVReadRequest.fromJson(Map<String, dynamic> json) =
       _$FhirVReadRequestImpl.fromJson;
@@ -3373,7 +3373,7 @@ class __$$FhirUpdateRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FhirUpdateRequestImpl extends FhirUpdateRequest {
-  const _$FhirUpdateRequestImpl(
+  _$FhirUpdateRequestImpl(
       {required this.base,
       required this.resource,
       this.pretty,
@@ -4331,7 +4331,7 @@ class _$FhirUpdateRequestImpl extends FhirUpdateRequest {
 }
 
 abstract class FhirUpdateRequest extends FhirRequest {
-  const factory FhirUpdateRequest(
+  factory FhirUpdateRequest(
       {required final Uri base,
       required final Resource resource,
       final bool? pretty,
@@ -4344,7 +4344,7 @@ abstract class FhirUpdateRequest extends FhirRequest {
       @JsonKey(includeFromJson: false, includeToJson: false)
       final Client? client,
       final Map<String, String>? headers}) = _$FhirUpdateRequestImpl;
-  const FhirUpdateRequest._() : super._();
+  FhirUpdateRequest._() : super._();
 
   factory FhirUpdateRequest.fromJson(Map<String, dynamic> json) =
       _$FhirUpdateRequestImpl.fromJson;
@@ -4504,7 +4504,7 @@ class __$$FhirPatchRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FhirPatchRequestImpl extends FhirPatchRequest {
-  const _$FhirPatchRequestImpl(
+  _$FhirPatchRequestImpl(
       {required this.base,
       required this.resource,
       this.pretty,
@@ -5462,7 +5462,7 @@ class _$FhirPatchRequestImpl extends FhirPatchRequest {
 }
 
 abstract class FhirPatchRequest extends FhirRequest {
-  const factory FhirPatchRequest(
+  factory FhirPatchRequest(
       {required final Uri base,
       required final Resource resource,
       final bool? pretty,
@@ -5475,7 +5475,7 @@ abstract class FhirPatchRequest extends FhirRequest {
       @JsonKey(includeFromJson: false, includeToJson: false)
       final Client? client,
       final Map<String, String>? headers}) = _$FhirPatchRequestImpl;
-  const FhirPatchRequest._() : super._();
+  FhirPatchRequest._() : super._();
 
   factory FhirPatchRequest.fromJson(Map<String, dynamic> json) =
       _$FhirPatchRequestImpl.fromJson;
@@ -5641,7 +5641,7 @@ class __$$FhirDeleteRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FhirDeleteRequestImpl extends FhirDeleteRequest {
-  const _$FhirDeleteRequestImpl(
+  _$FhirDeleteRequestImpl(
       {required this.base,
       required this.type,
       required this.id,
@@ -6607,7 +6607,7 @@ class _$FhirDeleteRequestImpl extends FhirDeleteRequest {
 }
 
 abstract class FhirDeleteRequest extends FhirRequest {
-  const factory FhirDeleteRequest(
+  factory FhirDeleteRequest(
       {required final Uri base,
       required final R4ResourceType type,
       required final String id,
@@ -6621,7 +6621,7 @@ abstract class FhirDeleteRequest extends FhirRequest {
       @JsonKey(includeFromJson: false, includeToJson: false)
       final Client? client,
       final Map<String, String>? headers}) = _$FhirDeleteRequestImpl;
-  const FhirDeleteRequest._() : super._();
+  FhirDeleteRequest._() : super._();
 
   factory FhirDeleteRequest.fromJson(Map<String, dynamic> json) =
       _$FhirDeleteRequestImpl.fromJson;
@@ -6786,7 +6786,7 @@ class __$$FhirCreateRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FhirCreateRequestImpl extends FhirCreateRequest {
-  const _$FhirCreateRequestImpl(
+  _$FhirCreateRequestImpl(
       {required this.base,
       required this.resource,
       this.pretty,
@@ -7744,7 +7744,7 @@ class _$FhirCreateRequestImpl extends FhirCreateRequest {
 }
 
 abstract class FhirCreateRequest extends FhirRequest {
-  const factory FhirCreateRequest(
+  factory FhirCreateRequest(
       {required final Uri base,
       required final Resource resource,
       final bool? pretty,
@@ -7757,7 +7757,7 @@ abstract class FhirCreateRequest extends FhirRequest {
       @JsonKey(includeFromJson: false, includeToJson: false)
       final Client? client,
       final Map<String, String>? headers}) = _$FhirCreateRequestImpl;
-  const FhirCreateRequest._() : super._();
+  FhirCreateRequest._() : super._();
 
   factory FhirCreateRequest.fromJson(Map<String, dynamic> json) =
       _$FhirCreateRequestImpl.fromJson;
@@ -7929,7 +7929,7 @@ class __$$FhirSearchRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FhirSearchRequestImpl extends FhirSearchRequest {
-  const _$FhirSearchRequestImpl(
+  _$FhirSearchRequestImpl(
       {required this.base,
       required this.type,
       this.pretty,
@@ -8904,7 +8904,7 @@ class _$FhirSearchRequestImpl extends FhirSearchRequest {
 }
 
 abstract class FhirSearchRequest extends FhirRequest {
-  const factory FhirSearchRequest(
+  factory FhirSearchRequest(
       {required final Uri base,
       required final R4ResourceType type,
       final bool? pretty,
@@ -8919,7 +8919,7 @@ abstract class FhirSearchRequest extends FhirRequest {
       @JsonKey(includeFromJson: false, includeToJson: false)
       final Client? client,
       final Map<String, String>? headers}) = _$FhirSearchRequestImpl;
-  const FhirSearchRequest._() : super._();
+  FhirSearchRequest._() : super._();
 
   factory FhirSearchRequest.fromJson(Map<String, dynamic> json) =
       _$FhirSearchRequestImpl.fromJson;
@@ -9080,7 +9080,7 @@ class __$$FhirSearchAllRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FhirSearchAllRequestImpl extends FhirSearchAllRequest {
-  const _$FhirSearchAllRequestImpl(
+  _$FhirSearchAllRequestImpl(
       {required this.base,
       this.pretty,
       this.summary = Summary.none,
@@ -10033,7 +10033,7 @@ class _$FhirSearchAllRequestImpl extends FhirSearchAllRequest {
 }
 
 abstract class FhirSearchAllRequest extends FhirRequest {
-  const factory FhirSearchAllRequest(
+  factory FhirSearchAllRequest(
       {required final Uri base,
       final bool? pretty,
       final Summary summary,
@@ -10045,7 +10045,7 @@ abstract class FhirSearchAllRequest extends FhirRequest {
       @JsonKey(includeFromJson: false, includeToJson: false)
       final Client? client,
       final Map<String, String>? headers}) = _$FhirSearchAllRequestImpl;
-  const FhirSearchAllRequest._() : super._();
+  FhirSearchAllRequest._() : super._();
 
   factory FhirSearchAllRequest.fromJson(Map<String, dynamic> json) =
       _$FhirSearchAllRequestImpl.fromJson;
@@ -10206,7 +10206,7 @@ class __$$FhirCapabilitiesRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FhirCapabilitiesRequestImpl extends FhirCapabilitiesRequest {
-  const _$FhirCapabilitiesRequestImpl(
+  _$FhirCapabilitiesRequestImpl(
       {required this.base,
       this.pretty,
       this.summary = Summary.none,
@@ -11166,7 +11166,7 @@ class _$FhirCapabilitiesRequestImpl extends FhirCapabilitiesRequest {
 }
 
 abstract class FhirCapabilitiesRequest extends FhirRequest {
-  const factory FhirCapabilitiesRequest(
+  factory FhirCapabilitiesRequest(
       {required final Uri base,
       final bool? pretty,
       final Summary summary,
@@ -11179,7 +11179,7 @@ abstract class FhirCapabilitiesRequest extends FhirRequest {
       @JsonKey(includeFromJson: false, includeToJson: false)
       final Client? client,
       final Map<String, String>? headers}) = _$FhirCapabilitiesRequestImpl;
-  const FhirCapabilitiesRequest._() : super._();
+  FhirCapabilitiesRequest._() : super._();
 
   factory FhirCapabilitiesRequest.fromJson(Map<String, dynamic> json) =
       _$FhirCapabilitiesRequestImpl.fromJson;
@@ -11355,7 +11355,7 @@ class __$$FhirTransactionRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FhirTransactionRequestImpl extends FhirTransactionRequest {
-  const _$FhirTransactionRequestImpl(
+  _$FhirTransactionRequestImpl(
       {required this.base,
       this.pretty,
       this.summary = Summary.none,
@@ -12314,7 +12314,7 @@ class _$FhirTransactionRequestImpl extends FhirTransactionRequest {
 }
 
 abstract class FhirTransactionRequest extends FhirRequest {
-  const factory FhirTransactionRequest(
+  factory FhirTransactionRequest(
       {required final Uri base,
       final bool? pretty,
       final Summary summary,
@@ -12327,7 +12327,7 @@ abstract class FhirTransactionRequest extends FhirRequest {
       @JsonKey(includeFromJson: false, includeToJson: false)
       final Client? client,
       final Map<String, String>? headers}) = _$FhirTransactionRequestImpl;
-  const FhirTransactionRequest._() : super._();
+  FhirTransactionRequest._() : super._();
 
   factory FhirTransactionRequest.fromJson(Map<String, dynamic> json) =
       _$FhirTransactionRequestImpl.fromJson;
@@ -12501,7 +12501,7 @@ class __$$FhirBatchRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FhirBatchRequestImpl extends FhirBatchRequest {
-  const _$FhirBatchRequestImpl(
+  _$FhirBatchRequestImpl(
       {required this.base,
       this.pretty,
       this.summary = Summary.none,
@@ -13460,7 +13460,7 @@ class _$FhirBatchRequestImpl extends FhirBatchRequest {
 }
 
 abstract class FhirBatchRequest extends FhirRequest {
-  const factory FhirBatchRequest(
+  factory FhirBatchRequest(
       {required final Uri base,
       final bool? pretty,
       final Summary summary,
@@ -13473,7 +13473,7 @@ abstract class FhirBatchRequest extends FhirRequest {
       @JsonKey(includeFromJson: false, includeToJson: false)
       final Client? client,
       final Map<String, String>? headers}) = _$FhirBatchRequestImpl;
-  const FhirBatchRequest._() : super._();
+  FhirBatchRequest._() : super._();
 
   factory FhirBatchRequest.fromJson(Map<String, dynamic> json) =
       _$FhirBatchRequestImpl.fromJson;
@@ -13665,7 +13665,7 @@ class __$$FhirHistoryRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FhirHistoryRequestImpl extends FhirHistoryRequest {
-  const _$FhirHistoryRequestImpl(
+  _$FhirHistoryRequestImpl(
       {required this.base,
       required this.type,
       required this.id,
@@ -14710,7 +14710,7 @@ class _$FhirHistoryRequestImpl extends FhirHistoryRequest {
 }
 
 abstract class FhirHistoryRequest extends FhirRequest {
-  const factory FhirHistoryRequest(
+  factory FhirHistoryRequest(
       {required final Uri base,
       required final R4ResourceType type,
       required final String id,
@@ -14728,7 +14728,7 @@ abstract class FhirHistoryRequest extends FhirRequest {
       @JsonKey(includeFromJson: false, includeToJson: false)
       final Client? client,
       final Map<String, String>? headers}) = _$FhirHistoryRequestImpl;
-  const FhirHistoryRequest._() : super._();
+  FhirHistoryRequest._() : super._();
 
   factory FhirHistoryRequest.fromJson(Map<String, dynamic> json) =
       _$FhirHistoryRequestImpl.fromJson;
@@ -14936,7 +14936,7 @@ class __$$FhirHistoryTypeRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FhirHistoryTypeRequestImpl extends FhirHistoryTypeRequest {
-  const _$FhirHistoryTypeRequestImpl(
+  _$FhirHistoryTypeRequestImpl(
       {required this.base,
       required this.type,
       this.pretty,
@@ -15971,7 +15971,7 @@ class _$FhirHistoryTypeRequestImpl extends FhirHistoryTypeRequest {
 }
 
 abstract class FhirHistoryTypeRequest extends FhirRequest {
-  const factory FhirHistoryTypeRequest(
+  factory FhirHistoryTypeRequest(
       {required final Uri base,
       required final R4ResourceType type,
       final bool? pretty,
@@ -15988,7 +15988,7 @@ abstract class FhirHistoryTypeRequest extends FhirRequest {
       @JsonKey(includeFromJson: false, includeToJson: false)
       final Client? client,
       final Map<String, String>? headers}) = _$FhirHistoryTypeRequestImpl;
-  const FhirHistoryTypeRequest._() : super._();
+  FhirHistoryTypeRequest._() : super._();
 
   factory FhirHistoryTypeRequest.fromJson(Map<String, dynamic> json) =
       _$FhirHistoryTypeRequestImpl.fromJson;
@@ -16186,7 +16186,7 @@ class __$$FhirHistoryAllRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FhirHistoryAllRequestImpl extends FhirHistoryAllRequest {
-  const _$FhirHistoryAllRequestImpl(
+  _$FhirHistoryAllRequestImpl(
       {required this.base,
       this.pretty,
       this.summary = Summary.none,
@@ -17172,7 +17172,7 @@ class _$FhirHistoryAllRequestImpl extends FhirHistoryAllRequest {
 }
 
 abstract class FhirHistoryAllRequest extends FhirRequest {
-  const factory FhirHistoryAllRequest(
+  factory FhirHistoryAllRequest(
       {required final Uri base,
       final bool? pretty,
       final Summary summary,
@@ -17188,7 +17188,7 @@ abstract class FhirHistoryAllRequest extends FhirRequest {
       @JsonKey(includeFromJson: false, includeToJson: false)
       final Client? client,
       final Map<String, String>? headers}) = _$FhirHistoryAllRequestImpl;
-  const FhirHistoryAllRequest._() : super._();
+  FhirHistoryAllRequest._() : super._();
 
   factory FhirHistoryAllRequest.fromJson(Map<String, dynamic> json) =
       _$FhirHistoryAllRequestImpl.fromJson;
@@ -17410,7 +17410,7 @@ class __$$FhirOperationRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FhirOperationRequestImpl extends FhirOperationRequest {
-  const _$FhirOperationRequestImpl(
+  _$FhirOperationRequestImpl(
       {required this.base,
       this.type,
       this.id,
@@ -18448,7 +18448,7 @@ class _$FhirOperationRequestImpl extends FhirOperationRequest {
 }
 
 abstract class FhirOperationRequest extends FhirRequest {
-  const factory FhirOperationRequest(
+  factory FhirOperationRequest(
       {required final Uri base,
       final R4ResourceType? type,
       final String? id,
@@ -18466,7 +18466,7 @@ abstract class FhirOperationRequest extends FhirRequest {
       @JsonKey(includeFromJson: false, includeToJson: false)
       final Client? client,
       final Map<String, String>? headers}) = _$FhirOperationRequestImpl;
-  const FhirOperationRequest._() : super._();
+  FhirOperationRequest._() : super._();
 
   factory FhirOperationRequest.fromJson(Map<String, dynamic> json) =
       _$FhirOperationRequestImpl.fromJson;
@@ -18669,7 +18669,7 @@ class __$$FhirHttpRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FhirHttpRequestImpl extends _FhirHttpRequest {
-  const _$FhirHttpRequestImpl(
+  _$FhirHttpRequestImpl(
       {required this.type,
       required this.url,
       required final Map<String, String> headers,
@@ -18746,12 +18746,12 @@ class _$FhirHttpRequestImpl extends _FhirHttpRequest {
 }
 
 abstract class _FhirHttpRequest extends FhirHttpRequest {
-  const factory _FhirHttpRequest(
+  factory _FhirHttpRequest(
       {required final RestfulRequest type,
       required final String url,
       required final Map<String, String> headers,
       final Map<String, dynamic>? body}) = _$FhirHttpRequestImpl;
-  const _FhirHttpRequest._() : super._();
+  _FhirHttpRequest._() : super._();
 
   factory _FhirHttpRequest.fromJson(Map<String, dynamic> json) =
       _$FhirHttpRequestImpl.fromJson;

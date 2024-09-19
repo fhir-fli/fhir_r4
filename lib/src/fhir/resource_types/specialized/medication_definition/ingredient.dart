@@ -15,9 +15,9 @@ part 'ingredient.g.dart';
 
 /// [Ingredient] An ingredient of a manufactured item or pharmaceutical product.
 @freezed
-class Ingredient with _$Ingredient implements DomainResource {
+class Ingredient extends DomainResource with _$Ingredient {
   /// [Ingredient] An ingredient of a manufactured item or pharmaceutical product.
-  const Ingredient._();
+  Ingredient._();
 
   /// [Ingredient] An ingredient of a manufactured item or pharmaceutical product.
 
@@ -67,7 +67,7 @@ class Ingredient with _$Ingredient implements DomainResource {
   /// [manufacturer] The organization(s) that manufacture this ingredient. Can be used to indicate:         1) Organizations we are aware of that manufacture this ingredient         2) Specific Manufacturer(s) currently being used         3) Set of organisations allowed to manufacture this ingredient for this product         Users must be clear on the application of context relevant to their use case.;
   ///
   /// [substance] The substance that comprises this ingredient.;
-  const factory Ingredient({
+  factory Ingredient({
     /// [resourceType] This is a Ingredient resource;
     @Default(R4ResourceType.Ingredient) R4ResourceType resourceType,
 
@@ -170,6 +170,9 @@ class Ingredient with _$Ingredient implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -192,8 +195,8 @@ class Ingredient with _$Ingredient implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [IngredientManufacturer] An ingredient of a manufactured item or pharmaceutical product.
@@ -201,11 +204,10 @@ class Ingredient with _$Ingredient implements DomainResource {
 
 /// [IngredientManufacturer] An ingredient of a manufactured item or pharmaceutical product.
 @freezed
-class IngredientManufacturer
-    with _$IngredientManufacturer
-    implements BackboneElement {
+class IngredientManufacturer extends BackboneElement
+    with _$IngredientManufacturer {
   /// [IngredientManufacturer] An ingredient of a manufactured item or pharmaceutical product.
-  const IngredientManufacturer._();
+  IngredientManufacturer._();
 
   /// [IngredientManufacturer] An ingredient of a manufactured item or pharmaceutical product.
 
@@ -221,7 +223,7 @@ class IngredientManufacturer
   /// [roleElement] (_role): Extensions for role;
   ///
   /// [manufacturer] An organization that manufactures this ingredient.;
-  const factory IngredientManufacturer({
+  factory IngredientManufacturer({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -272,6 +274,9 @@ class IngredientManufacturer
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -283,11 +288,9 @@ class IngredientManufacturer
 
 /// [IngredientSubstance] An ingredient of a manufactured item or pharmaceutical product.
 @freezed
-class IngredientSubstance
-    with _$IngredientSubstance
-    implements BackboneElement {
+class IngredientSubstance extends BackboneElement with _$IngredientSubstance {
   /// [IngredientSubstance] An ingredient of a manufactured item or pharmaceutical product.
-  const IngredientSubstance._();
+  IngredientSubstance._();
 
   /// [IngredientSubstance] An ingredient of a manufactured item or pharmaceutical product.
 
@@ -303,7 +306,7 @@ class IngredientSubstance
   /// [code] A code or full resource that represents the ingredient's substance.;
   ///
   /// [strength] The quantity of substance in the unit of presentation, or in the volume (or mass) of the single pharmaceutical product or manufactured item. The allowed repetitions do not represent different strengths, but are different representations - mathematically equivalent - of a single strength.;
-  const factory IngredientSubstance({
+  factory IngredientSubstance({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -352,6 +355,9 @@ class IngredientSubstance
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -363,9 +369,9 @@ class IngredientSubstance
 
 /// [IngredientStrength] An ingredient of a manufactured item or pharmaceutical product.
 @freezed
-class IngredientStrength with _$IngredientStrength implements BackboneElement {
+class IngredientStrength extends BackboneElement with _$IngredientStrength {
   /// [IngredientStrength] An ingredient of a manufactured item or pharmaceutical product.
-  const IngredientStrength._();
+  IngredientStrength._();
 
   /// [IngredientStrength] An ingredient of a manufactured item or pharmaceutical product.
 
@@ -401,7 +407,7 @@ class IngredientStrength with _$IngredientStrength implements BackboneElement {
   /// [country] The country or countries for which the strength range applies.;
   ///
   /// [referenceStrength] Strength expressed in terms of a reference substance. For when the ingredient strength is additionally expressed as equivalent to the strength of some other closely related substance (e.g. salt vs. base). Reference strength represents the strength (quantitative composition) of the active moiety of the active substance. There are situations when the active substance and active moiety are different, therefore both a strength and a reference strength are needed.;
-  const factory IngredientStrength({
+  factory IngredientStrength({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -483,6 +489,9 @@ class IngredientStrength with _$IngredientStrength implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -494,11 +503,10 @@ class IngredientStrength with _$IngredientStrength implements BackboneElement {
 
 /// [IngredientReferenceStrength] An ingredient of a manufactured item or pharmaceutical product.
 @freezed
-class IngredientReferenceStrength
-    with _$IngredientReferenceStrength
-    implements BackboneElement {
+class IngredientReferenceStrength extends BackboneElement
+    with _$IngredientReferenceStrength {
   /// [IngredientReferenceStrength] An ingredient of a manufactured item or pharmaceutical product.
-  const IngredientReferenceStrength._();
+  IngredientReferenceStrength._();
 
   /// [IngredientReferenceStrength] An ingredient of a manufactured item or pharmaceutical product.
 
@@ -524,7 +532,7 @@ class IngredientReferenceStrength
   /// [measurementPointElement] (_measurementPoint): Extensions for measurementPoint;
   ///
   /// [country] The country or countries for which the strength range applies.;
-  const factory IngredientReferenceStrength({
+  factory IngredientReferenceStrength({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -587,6 +595,9 @@ class IngredientReferenceStrength
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

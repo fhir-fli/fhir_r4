@@ -1081,7 +1081,7 @@ class __$$TerminologyCapabilitiesImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$TerminologyCapabilitiesImpl extends _TerminologyCapabilities {
-  const _$TerminologyCapabilitiesImpl(
+  _$TerminologyCapabilitiesImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.TerminologyCapabilities)
       this.resourceType = R4ResourceType.TerminologyCapabilities,
       this.id,
@@ -1693,7 +1693,7 @@ class _$TerminologyCapabilitiesImpl extends _TerminologyCapabilities {
 }
 
 abstract class _TerminologyCapabilities extends TerminologyCapabilities {
-  const factory _TerminologyCapabilities(
+  factory _TerminologyCapabilities(
       {@JsonKey(unknownEnumValue: R4ResourceType.TerminologyCapabilities)
       final R4ResourceType resourceType,
       final String? id,
@@ -1747,7 +1747,7 @@ abstract class _TerminologyCapabilities extends TerminologyCapabilities {
       final TerminologyCapabilitiesTranslation? translation,
       final TerminologyCapabilitiesClosure?
           closure}) = _$TerminologyCapabilitiesImpl;
-  const _TerminologyCapabilities._() : super._();
+  _TerminologyCapabilities._() : super._();
 
   factory _TerminologyCapabilities.fromJson(Map<String, dynamic> json) =
       _$TerminologyCapabilitiesImpl.fromJson;
@@ -2262,7 +2262,7 @@ class __$$TerminologyCapabilitiesSoftwareImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TerminologyCapabilitiesSoftwareImpl
     extends _TerminologyCapabilitiesSoftware {
-  const _$TerminologyCapabilitiesSoftwareImpl(
+  _$TerminologyCapabilitiesSoftwareImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2419,7 +2419,7 @@ class _$TerminologyCapabilitiesSoftwareImpl
 
 abstract class _TerminologyCapabilitiesSoftware
     extends TerminologyCapabilitiesSoftware {
-  const factory _TerminologyCapabilitiesSoftware(
+  factory _TerminologyCapabilitiesSoftware(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2428,7 +2428,7 @@ abstract class _TerminologyCapabilitiesSoftware
           final String? version,
           @JsonKey(name: '_version') final PrimitiveElement? versionElement}) =
       _$TerminologyCapabilitiesSoftwareImpl;
-  const _TerminologyCapabilitiesSoftware._() : super._();
+  _TerminologyCapabilitiesSoftware._() : super._();
 
   factory _TerminologyCapabilitiesSoftware.fromJson(Map<String, dynamic> json) =
       _$TerminologyCapabilitiesSoftwareImpl.fromJson;
@@ -2709,7 +2709,7 @@ class __$$TerminologyCapabilitiesImplementationImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TerminologyCapabilitiesImplementationImpl
     extends _TerminologyCapabilitiesImplementation {
-  const _$TerminologyCapabilitiesImplementationImpl(
+  _$TerminologyCapabilitiesImplementationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2867,7 +2867,7 @@ class _$TerminologyCapabilitiesImplementationImpl
 
 abstract class _TerminologyCapabilitiesImplementation
     extends TerminologyCapabilitiesImplementation {
-  const factory _TerminologyCapabilitiesImplementation(
+  factory _TerminologyCapabilitiesImplementation(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2877,7 +2877,7 @@ abstract class _TerminologyCapabilitiesImplementation
       @JsonKey(name: '_url')
       final PrimitiveElement?
           urlElement}) = _$TerminologyCapabilitiesImplementationImpl;
-  const _TerminologyCapabilitiesImplementation._() : super._();
+  _TerminologyCapabilitiesImplementation._() : super._();
 
   factory _TerminologyCapabilitiesImplementation.fromJson(
           Map<String, dynamic> json) =
@@ -3159,7 +3159,7 @@ class __$$TerminologyCapabilitiesCodeSystemImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TerminologyCapabilitiesCodeSystemImpl
     extends _TerminologyCapabilitiesCodeSystem {
-  const _$TerminologyCapabilitiesCodeSystemImpl(
+  _$TerminologyCapabilitiesCodeSystemImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3327,7 +3327,7 @@ class _$TerminologyCapabilitiesCodeSystemImpl
 
 abstract class _TerminologyCapabilitiesCodeSystem
     extends TerminologyCapabilitiesCodeSystem {
-  const factory _TerminologyCapabilitiesCodeSystem(
+  factory _TerminologyCapabilitiesCodeSystem(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3337,7 +3337,7 @@ abstract class _TerminologyCapabilitiesCodeSystem
           @JsonKey(name: '_subsumption')
           final PrimitiveElement? subsumptionElement}) =
       _$TerminologyCapabilitiesCodeSystemImpl;
-  const _TerminologyCapabilitiesCodeSystem._() : super._();
+  _TerminologyCapabilitiesCodeSystem._() : super._();
 
   factory _TerminologyCapabilitiesCodeSystem.fromJson(
           Map<String, dynamic> json) =
@@ -3730,7 +3730,7 @@ class __$$TerminologyCapabilitiesVersionImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TerminologyCapabilitiesVersionImpl
     extends _TerminologyCapabilitiesVersion {
-  const _$TerminologyCapabilitiesVersionImpl(
+  _$TerminologyCapabilitiesVersionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3996,7 +3996,7 @@ class _$TerminologyCapabilitiesVersionImpl
 
 abstract class _TerminologyCapabilitiesVersion
     extends TerminologyCapabilitiesVersion {
-  const factory _TerminologyCapabilitiesVersion(
+  factory _TerminologyCapabilitiesVersion(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4014,7 +4014,7 @@ abstract class _TerminologyCapabilitiesVersion
       @JsonKey(name: '_property')
       final List<PrimitiveElement>?
           propertyElement}) = _$TerminologyCapabilitiesVersionImpl;
-  const _TerminologyCapabilitiesVersion._() : super._();
+  _TerminologyCapabilitiesVersion._() : super._();
 
   factory _TerminologyCapabilitiesVersion.fromJson(Map<String, dynamic> json) =
       _$TerminologyCapabilitiesVersionImpl.fromJson;
@@ -4324,7 +4324,7 @@ class __$$TerminologyCapabilitiesFilterImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TerminologyCapabilitiesFilterImpl
     extends _TerminologyCapabilitiesFilter {
-  const _$TerminologyCapabilitiesFilterImpl(
+  _$TerminologyCapabilitiesFilterImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4500,7 +4500,7 @@ class _$TerminologyCapabilitiesFilterImpl
 
 abstract class _TerminologyCapabilitiesFilter
     extends TerminologyCapabilitiesFilter {
-  const factory _TerminologyCapabilitiesFilter(
+  factory _TerminologyCapabilitiesFilter(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -4509,7 +4509,7 @@ abstract class _TerminologyCapabilitiesFilter
           final List<FhirCode>? op,
           @JsonKey(name: '_op') final List<PrimitiveElement>? opElement}) =
       _$TerminologyCapabilitiesFilterImpl;
-  const _TerminologyCapabilitiesFilter._() : super._();
+  _TerminologyCapabilitiesFilter._() : super._();
 
   factory _TerminologyCapabilitiesFilter.fromJson(Map<String, dynamic> json) =
       _$TerminologyCapabilitiesFilterImpl.fromJson;
@@ -4865,7 +4865,7 @@ class __$$TerminologyCapabilitiesExpansionImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TerminologyCapabilitiesExpansionImpl
     extends _TerminologyCapabilitiesExpansion {
-  const _$TerminologyCapabilitiesExpansionImpl(
+  _$TerminologyCapabilitiesExpansionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5074,7 +5074,7 @@ class _$TerminologyCapabilitiesExpansionImpl
 
 abstract class _TerminologyCapabilitiesExpansion
     extends TerminologyCapabilitiesExpansion {
-  const factory _TerminologyCapabilitiesExpansion(
+  factory _TerminologyCapabilitiesExpansion(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5090,7 +5090,7 @@ abstract class _TerminologyCapabilitiesExpansion
       @JsonKey(name: '_textFilter')
       final PrimitiveElement?
           textFilterElement}) = _$TerminologyCapabilitiesExpansionImpl;
-  const _TerminologyCapabilitiesExpansion._() : super._();
+  _TerminologyCapabilitiesExpansion._() : super._();
 
   factory _TerminologyCapabilitiesExpansion.fromJson(
           Map<String, dynamic> json) =
@@ -5391,7 +5391,7 @@ class __$$TerminologyCapabilitiesParameterImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TerminologyCapabilitiesParameterImpl
     extends _TerminologyCapabilitiesParameter {
-  const _$TerminologyCapabilitiesParameterImpl(
+  _$TerminologyCapabilitiesParameterImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5548,7 +5548,7 @@ class _$TerminologyCapabilitiesParameterImpl
 
 abstract class _TerminologyCapabilitiesParameter
     extends TerminologyCapabilitiesParameter {
-  const factory _TerminologyCapabilitiesParameter(
+  factory _TerminologyCapabilitiesParameter(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -5558,7 +5558,7 @@ abstract class _TerminologyCapabilitiesParameter
           @JsonKey(name: '_documentation')
           final PrimitiveElement? documentationElement}) =
       _$TerminologyCapabilitiesParameterImpl;
-  const _TerminologyCapabilitiesParameter._() : super._();
+  _TerminologyCapabilitiesParameter._() : super._();
 
   factory _TerminologyCapabilitiesParameter.fromJson(
           Map<String, dynamic> json) =
@@ -5807,7 +5807,7 @@ class __$$TerminologyCapabilitiesValidateCodeImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TerminologyCapabilitiesValidateCodeImpl
     extends _TerminologyCapabilitiesValidateCode {
-  const _$TerminologyCapabilitiesValidateCodeImpl(
+  _$TerminologyCapabilitiesValidateCodeImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5948,7 +5948,7 @@ class _$TerminologyCapabilitiesValidateCodeImpl
 
 abstract class _TerminologyCapabilitiesValidateCode
     extends TerminologyCapabilitiesValidateCode {
-  const factory _TerminologyCapabilitiesValidateCode(
+  factory _TerminologyCapabilitiesValidateCode(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -5956,7 +5956,7 @@ abstract class _TerminologyCapabilitiesValidateCode
           @JsonKey(name: '_translations')
           final PrimitiveElement? translationsElement}) =
       _$TerminologyCapabilitiesValidateCodeImpl;
-  const _TerminologyCapabilitiesValidateCode._() : super._();
+  _TerminologyCapabilitiesValidateCode._() : super._();
 
   factory _TerminologyCapabilitiesValidateCode.fromJson(
           Map<String, dynamic> json) =
@@ -6195,7 +6195,7 @@ class __$$TerminologyCapabilitiesTranslationImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TerminologyCapabilitiesTranslationImpl
     extends _TerminologyCapabilitiesTranslation {
-  const _$TerminologyCapabilitiesTranslationImpl(
+  _$TerminologyCapabilitiesTranslationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -6336,7 +6336,7 @@ class _$TerminologyCapabilitiesTranslationImpl
 
 abstract class _TerminologyCapabilitiesTranslation
     extends TerminologyCapabilitiesTranslation {
-  const factory _TerminologyCapabilitiesTranslation(
+  factory _TerminologyCapabilitiesTranslation(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -6344,7 +6344,7 @@ abstract class _TerminologyCapabilitiesTranslation
           @JsonKey(name: '_needsMap')
           final PrimitiveElement? needsMapElement}) =
       _$TerminologyCapabilitiesTranslationImpl;
-  const _TerminologyCapabilitiesTranslation._() : super._();
+  _TerminologyCapabilitiesTranslation._() : super._();
 
   factory _TerminologyCapabilitiesTranslation.fromJson(
           Map<String, dynamic> json) =
@@ -6583,7 +6583,7 @@ class __$$TerminologyCapabilitiesClosureImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TerminologyCapabilitiesClosureImpl
     extends _TerminologyCapabilitiesClosure {
-  const _$TerminologyCapabilitiesClosureImpl(
+  _$TerminologyCapabilitiesClosureImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -6724,7 +6724,7 @@ class _$TerminologyCapabilitiesClosureImpl
 
 abstract class _TerminologyCapabilitiesClosure
     extends TerminologyCapabilitiesClosure {
-  const factory _TerminologyCapabilitiesClosure(
+  factory _TerminologyCapabilitiesClosure(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -6732,7 +6732,7 @@ abstract class _TerminologyCapabilitiesClosure
           @JsonKey(name: '_translation')
           final PrimitiveElement? translationElement}) =
       _$TerminologyCapabilitiesClosureImpl;
-  const _TerminologyCapabilitiesClosure._() : super._();
+  _TerminologyCapabilitiesClosure._() : super._();
 
   factory _TerminologyCapabilitiesClosure.fromJson(Map<String, dynamic> json) =
       _$TerminologyCapabilitiesClosureImpl.fromJson;

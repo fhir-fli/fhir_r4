@@ -523,7 +523,7 @@ class __$$BundleImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$BundleImpl extends _Bundle {
-  const _$BundleImpl(
+  _$BundleImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Bundle)
       this.resourceType = R4ResourceType.Bundle,
       this.id,
@@ -842,7 +842,7 @@ class _$BundleImpl extends _Bundle {
 }
 
 abstract class _Bundle extends Bundle {
-  const factory _Bundle(
+  factory _Bundle(
       {@JsonKey(unknownEnumValue: R4ResourceType.Bundle)
       final R4ResourceType resourceType,
       final String? id,
@@ -866,7 +866,7 @@ abstract class _Bundle extends Bundle {
       final List<BundleLink>? link,
       final List<BundleEntry>? entry,
       final Signature? signature}) = _$BundleImpl;
-  const _Bundle._() : super._();
+  _Bundle._() : super._();
 
   factory _Bundle.fromJson(Map<String, dynamic> json) = _$BundleImpl.fromJson;
 
@@ -1213,7 +1213,7 @@ class __$$BundleLinkImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$BundleLinkImpl extends _BundleLink {
-  const _$BundleLinkImpl(
+  _$BundleLinkImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1367,7 +1367,7 @@ class _$BundleLinkImpl extends _BundleLink {
 }
 
 abstract class _BundleLink extends BundleLink {
-  const factory _BundleLink(
+  factory _BundleLink(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -1376,7 +1376,7 @@ abstract class _BundleLink extends BundleLink {
           final FhirUri? url,
           @JsonKey(name: '_url') final PrimitiveElement? urlElement}) =
       _$BundleLinkImpl;
-  const _BundleLink._() : super._();
+  _BundleLink._() : super._();
 
   factory _BundleLink.fromJson(Map<String, dynamic> json) =
       _$BundleLinkImpl.fromJson;
@@ -1755,7 +1755,7 @@ class __$$BundleEntryImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$BundleEntryImpl extends _BundleEntry {
-  const _$BundleEntryImpl(
+  _$BundleEntryImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1951,7 +1951,7 @@ class _$BundleEntryImpl extends _BundleEntry {
 }
 
 abstract class _BundleEntry extends BundleEntry {
-  const factory _BundleEntry(
+  factory _BundleEntry(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1962,7 +1962,7 @@ abstract class _BundleEntry extends BundleEntry {
       final BundleSearch? search,
       final BundleRequest? request,
       final BundleResponse? response}) = _$BundleEntryImpl;
-  const _BundleEntry._() : super._();
+  _BundleEntry._() : super._();
 
   factory _BundleEntry.fromJson(Map<String, dynamic> json) =
       _$BundleEntryImpl.fromJson;
@@ -2256,7 +2256,7 @@ class __$$BundleSearchImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$BundleSearchImpl extends _BundleSearch {
-  const _$BundleSearchImpl(
+  _$BundleSearchImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2410,7 +2410,7 @@ class _$BundleSearchImpl extends _BundleSearch {
 }
 
 abstract class _BundleSearch extends BundleSearch {
-  const factory _BundleSearch(
+  factory _BundleSearch(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2419,7 +2419,7 @@ abstract class _BundleSearch extends BundleSearch {
           final FhirDecimal? score,
           @JsonKey(name: '_score') final PrimitiveElement? scoreElement}) =
       _$BundleSearchImpl;
-  const _BundleSearch._() : super._();
+  _BundleSearch._() : super._();
 
   factory _BundleSearch.fromJson(Map<String, dynamic> json) =
       _$BundleSearchImpl.fromJson;
@@ -2830,7 +2830,7 @@ class __$$BundleRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$BundleRequestImpl extends _BundleRequest {
-  const _$BundleRequestImpl(
+  _$BundleRequestImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3061,7 +3061,7 @@ class _$BundleRequestImpl extends _BundleRequest {
 }
 
 abstract class _BundleRequest extends BundleRequest {
-  const factory _BundleRequest(
+  factory _BundleRequest(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3079,7 +3079,7 @@ abstract class _BundleRequest extends BundleRequest {
       final String? ifNoneExist,
       @JsonKey(name: '_ifNoneExist')
       final PrimitiveElement? ifNoneExistElement}) = _$BundleRequestImpl;
-  const _BundleRequest._() : super._();
+  _BundleRequest._() : super._();
 
   factory _BundleRequest.fromJson(Map<String, dynamic> json) =
       _$BundleRequestImpl.fromJson;
@@ -3481,7 +3481,7 @@ class __$$BundleResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$BundleResponseImpl extends _BundleResponse {
-  const _$BundleResponseImpl(
+  _$BundleResponseImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3683,7 +3683,7 @@ class _$BundleResponseImpl extends _BundleResponse {
 }
 
 abstract class _BundleResponse extends BundleResponse {
-  const factory _BundleResponse(
+  factory _BundleResponse(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3697,7 +3697,7 @@ abstract class _BundleResponse extends BundleResponse {
       @JsonKey(name: '_lastModified')
       final PrimitiveElement? lastModifiedElement,
       final Resource? outcome}) = _$BundleResponseImpl;
-  const _BundleResponse._() : super._();
+  _BundleResponse._() : super._();
 
   factory _BundleResponse.fromJson(Map<String, dynamic> json) =
       _$BundleResponseImpl.fromJson;

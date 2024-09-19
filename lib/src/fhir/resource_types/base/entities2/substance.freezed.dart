@@ -420,7 +420,7 @@ class __$$SubstanceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SubstanceImpl extends _Substance {
-  const _$SubstanceImpl(
+  _$SubstanceImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Substance)
       this.resourceType = R4ResourceType.Substance,
       this.id,
@@ -652,7 +652,7 @@ class _$SubstanceImpl extends _Substance {
 }
 
 abstract class _Substance extends Substance {
-  const factory _Substance(
+  factory _Substance(
       {@JsonKey(unknownEnumValue: R4ResourceType.Substance)
       final R4ResourceType resourceType,
       final String? id,
@@ -675,7 +675,7 @@ abstract class _Substance extends Substance {
       @JsonKey(name: '_description') final PrimitiveElement? descriptionElement,
       final List<SubstanceInstance>? instance,
       final List<SubstanceIngredient>? ingredient}) = _$SubstanceImpl;
-  const _Substance._() : super._();
+  _Substance._() : super._();
 
   factory _Substance.fromJson(Map<String, dynamic> json) =
       _$SubstanceImpl.fromJson;
@@ -951,7 +951,7 @@ class __$$SubstanceInstanceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SubstanceInstanceImpl extends _SubstanceInstance {
-  const _$SubstanceInstanceImpl(
+  _$SubstanceInstanceImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1054,7 +1054,7 @@ class _$SubstanceInstanceImpl extends _SubstanceInstance {
 }
 
 abstract class _SubstanceInstance extends SubstanceInstance {
-  const factory _SubstanceInstance(
+  factory _SubstanceInstance(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1062,7 +1062,7 @@ abstract class _SubstanceInstance extends SubstanceInstance {
       final FhirDateTime? expiry,
       @JsonKey(name: '_expiry') final PrimitiveElement? expiryElement,
       final Quantity? quantity}) = _$SubstanceInstanceImpl;
-  const _SubstanceInstance._() : super._();
+  _SubstanceInstance._() : super._();
 
   factory _SubstanceInstance.fromJson(Map<String, dynamic> json) =
       _$SubstanceInstanceImpl.fromJson;
@@ -1307,7 +1307,7 @@ class __$$SubstanceIngredientImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SubstanceIngredientImpl extends _SubstanceIngredient {
-  const _$SubstanceIngredientImpl(
+  _$SubstanceIngredientImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1405,14 +1405,14 @@ class _$SubstanceIngredientImpl extends _SubstanceIngredient {
 }
 
 abstract class _SubstanceIngredient extends SubstanceIngredient {
-  const factory _SubstanceIngredient(
+  factory _SubstanceIngredient(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final Ratio? quantity,
       final CodeableConcept? substanceCodeableConcept,
       final Reference? substanceReference}) = _$SubstanceIngredientImpl;
-  const _SubstanceIngredient._() : super._();
+  _SubstanceIngredient._() : super._();
 
   factory _SubstanceIngredient.fromJson(Map<String, dynamic> json) =
       _$SubstanceIngredientImpl.fromJson;

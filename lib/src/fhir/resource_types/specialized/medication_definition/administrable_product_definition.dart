@@ -13,10 +13,9 @@ part 'administrable_product_definition.freezed.dart';
 part 'administrable_product_definition.g.dart';
 
 @freezed
-class AdministrableProductDefinition
-    with _$AdministrableProductDefinition
-    implements DomainResource {
-  const AdministrableProductDefinition._();
+class AdministrableProductDefinition extends DomainResource
+    with _$AdministrableProductDefinition {
+  AdministrableProductDefinition._();
 
   ///
   /// [AdministrableProductDefinition] A medicinal product in the final form which is suitable for administering to a patient (after any mixing of multiple components, dissolution etc. has been performed).",
@@ -49,7 +48,7 @@ class AdministrableProductDefinition
   ///
   /// [statusElement] (_status): Extensions for status;
   ///
-  const factory AdministrableProductDefinition({
+  factory AdministrableProductDefinition({
     @Default(R4ResourceType.AdministrableProductDefinition)
 
     /// [resourceType] This is a AdministrableProductDefinition resource",
@@ -136,6 +135,9 @@ class AdministrableProductDefinition
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -158,15 +160,14 @@ class AdministrableProductDefinition
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 @freezed
-class AdministrableProductDefinitionProperty
-    with _$AdministrableProductDefinitionProperty
-    implements BackboneElement {
-  const AdministrableProductDefinitionProperty._();
+class AdministrableProductDefinitionProperty extends BackboneElement
+    with _$AdministrableProductDefinitionProperty {
+  AdministrableProductDefinitionProperty._();
 
   /// [AdministrableProductDefinitionProperty] A medicinal product in the final form which is suitable for administering to a patient (after any mixing of multiple components, dissolution etc. has been performed).
 
@@ -196,7 +197,7 @@ class AdministrableProductDefinitionProperty
   /// [valueAttachment] A value for the characteristic.;
   ///
   /// [status] The status of characteristic e.g. assigned or pending.;
-  const factory AdministrableProductDefinitionProperty({
+  factory AdministrableProductDefinitionProperty({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -268,6 +269,9 @@ class AdministrableProductDefinitionProperty
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -276,9 +280,9 @@ class AdministrableProductDefinitionProperty
 
 @freezed
 class AdministrableProductDefinitionRouteOfAdministration
-    with _$AdministrableProductDefinitionRouteOfAdministration
-    implements BackboneElement {
-  const AdministrableProductDefinitionRouteOfAdministration._();
+    extends BackboneElement
+    with _$AdministrableProductDefinitionRouteOfAdministration {
+  AdministrableProductDefinitionRouteOfAdministration._();
 
   /// [AdministrableProductDefinitionRouteOfAdministration] A medicinal product in the final form which is suitable for administering to a patient (after any mixing of multiple components, dissolution etc. has been performed).
 
@@ -304,7 +308,7 @@ class AdministrableProductDefinitionRouteOfAdministration
   /// [maxTreatmentPeriod] The maximum treatment period during which the product can be administered.;
   ///
   /// [targetSpecies] A species for which this route applies.;
-  const factory AdministrableProductDefinitionRouteOfAdministration({
+  factory AdministrableProductDefinitionRouteOfAdministration({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -373,6 +377,9 @@ class AdministrableProductDefinitionRouteOfAdministration
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -380,10 +387,9 @@ class AdministrableProductDefinitionRouteOfAdministration
 }
 
 @freezed
-class AdministrableProductDefinitionTargetSpecies
-    with _$AdministrableProductDefinitionTargetSpecies
-    implements BackboneElement {
-  const AdministrableProductDefinitionTargetSpecies._();
+class AdministrableProductDefinitionTargetSpecies extends BackboneElement
+    with _$AdministrableProductDefinitionTargetSpecies {
+  AdministrableProductDefinitionTargetSpecies._();
 
   /// [AdministrableProductDefinitionTargetSpecies] A medicinal product in the final form which is suitable for administering to a patient (after any mixing of multiple components, dissolution etc. has been performed).
 
@@ -399,7 +405,7 @@ class AdministrableProductDefinitionTargetSpecies
   /// [code] Coded expression for the species.;
   ///
   /// [withdrawalPeriod] A species specific time during which consumption of animal product is not appropriate.;
-  const factory AdministrableProductDefinitionTargetSpecies({
+  factory AdministrableProductDefinitionTargetSpecies({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -451,6 +457,9 @@ class AdministrableProductDefinitionTargetSpecies
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -458,10 +467,9 @@ class AdministrableProductDefinitionTargetSpecies
 }
 
 @freezed
-class AdministrableProductDefinitionWithdrawalPeriod
-    with _$AdministrableProductDefinitionWithdrawalPeriod
-    implements BackboneElement {
-  const AdministrableProductDefinitionWithdrawalPeriod._();
+class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement
+    with _$AdministrableProductDefinitionWithdrawalPeriod {
+  AdministrableProductDefinitionWithdrawalPeriod._();
 
   /// [AdministrableProductDefinitionWithdrawalPeriod] A medicinal product in the final form which is suitable for administering to a patient (after any mixing of multiple components, dissolution etc. has been performed).
 
@@ -481,7 +489,7 @@ class AdministrableProductDefinitionWithdrawalPeriod
   /// [supportingInformation] Extra information about the withdrawal period.;
   ///
   /// [supportingInformationElement] (_supportingInformation): Extensions for supportingInformation;
-  const factory AdministrableProductDefinitionWithdrawalPeriod({
+  factory AdministrableProductDefinitionWithdrawalPeriod({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -539,6 +547,9 @@ class AdministrableProductDefinitionWithdrawalPeriod
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

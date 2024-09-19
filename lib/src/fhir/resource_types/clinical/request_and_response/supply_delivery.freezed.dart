@@ -691,7 +691,7 @@ class __$$SupplyDeliveryImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SupplyDeliveryImpl extends _SupplyDelivery {
-  const _$SupplyDeliveryImpl(
+  _$SupplyDeliveryImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.SupplyDelivery)
       this.resourceType = R4ResourceType.SupplyDelivery,
       this.id,
@@ -1072,7 +1072,7 @@ class _$SupplyDeliveryImpl extends _SupplyDelivery {
 }
 
 abstract class _SupplyDelivery extends SupplyDelivery {
-  const factory _SupplyDelivery(
+  factory _SupplyDelivery(
       {@JsonKey(unknownEnumValue: R4ResourceType.SupplyDelivery)
       final R4ResourceType resourceType,
       final String? id,
@@ -1102,7 +1102,7 @@ abstract class _SupplyDelivery extends SupplyDelivery {
       final Reference? supplier,
       final Reference? destination,
       final List<Reference>? receiver}) = _$SupplyDeliveryImpl;
-  const _SupplyDelivery._() : super._();
+  _SupplyDelivery._() : super._();
 
   factory _SupplyDelivery.fromJson(Map<String, dynamic> json) =
       _$SupplyDeliveryImpl.fromJson;
@@ -1517,7 +1517,7 @@ class __$$SupplyDeliverySuppliedItemImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SupplyDeliverySuppliedItemImpl extends _SupplyDeliverySuppliedItem {
-  const _$SupplyDeliverySuppliedItemImpl(
+  _$SupplyDeliverySuppliedItemImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1668,14 +1668,14 @@ class _$SupplyDeliverySuppliedItemImpl extends _SupplyDeliverySuppliedItem {
 }
 
 abstract class _SupplyDeliverySuppliedItem extends SupplyDeliverySuppliedItem {
-  const factory _SupplyDeliverySuppliedItem(
+  factory _SupplyDeliverySuppliedItem(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final Quantity? quantity,
       final CodeableConcept? itemCodeableConcept,
       final Reference? itemReference}) = _$SupplyDeliverySuppliedItemImpl;
-  const _SupplyDeliverySuppliedItem._() : super._();
+  _SupplyDeliverySuppliedItem._() : super._();
 
   factory _SupplyDeliverySuppliedItem.fromJson(Map<String, dynamic> json) =
       _$SupplyDeliverySuppliedItemImpl.fromJson;

@@ -15,9 +15,9 @@ part 'test_script.g.dart';
 
 /// [TestScript] A structured set of tests against a FHIR server or client
 @freezed
-class TestScript with _$TestScript implements DomainResource {
+class TestScript extends DomainResource with _$TestScript {
   /// [TestScript] A structured set of tests against a FHIR server or client
-  const TestScript._();
+  TestScript._();
 
   /// [TestScript] A structured set of tests against a FHIR server or client
   ///  implementation to determine compliance against the FHIR specification.
@@ -183,7 +183,7 @@ class TestScript with _$TestScript implements DomainResource {
   ///
   /// [teardown] A series of operations required to clean up after all the
   ///  tests are executed (successfully or otherwise).
-  const factory TestScript({
+  factory TestScript({
     @Default(R4ResourceType.TestScript)
     @JsonKey(unknownEnumValue: R4ResourceType.TestScript)
 
@@ -429,6 +429,9 @@ class TestScript with _$TestScript implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -451,8 +454,8 @@ class TestScript with _$TestScript implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [TestScriptOrigin] A structured set of tests against a FHIR server or
@@ -460,9 +463,9 @@ class TestScript with _$TestScript implements DomainResource {
 
 /// [TestScriptOrigin] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptOrigin with _$TestScriptOrigin implements BackboneElement {
+class TestScriptOrigin extends BackboneElement with _$TestScriptOrigin {
   /// [TestScriptOrigin] A structured set of tests against a FHIR server or
-  const TestScriptOrigin._();
+  TestScriptOrigin._();
 
   /// [TestScriptOrigin] A structured set of tests against a FHIR server or
   /// client implementation to determine compliance against the FHIR
@@ -498,7 +501,7 @@ class TestScriptOrigin with _$TestScriptOrigin implements BackboneElement {
   /// [indexElement] Extensions for index
   ///
   /// [profile] The type of origin profile the test system supports.
-  const factory TestScriptOrigin({
+  factory TestScriptOrigin({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -568,6 +571,9 @@ class TestScriptOrigin with _$TestScriptOrigin implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -579,11 +585,10 @@ class TestScriptOrigin with _$TestScriptOrigin implements BackboneElement {
 
 /// [TestScriptDestination] A structured set of tests against a FHIR server
 @freezed
-class TestScriptDestination
-    with _$TestScriptDestination
-    implements BackboneElement {
+class TestScriptDestination extends BackboneElement
+    with _$TestScriptDestination {
   /// [TestScriptDestination] A structured set of tests against a FHIR server
-  const TestScriptDestination._();
+  TestScriptDestination._();
 
   /// [TestScriptDestination] A structured set of tests against a FHIR server
   /// or client implementation to determine compliance against the FHIR
@@ -619,7 +624,7 @@ class TestScriptDestination
   /// [indexElement] Extensions for index
   ///
   /// [profile] The type of destination profile the test system supports.
-  const factory TestScriptDestination({
+  factory TestScriptDestination({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -689,6 +694,9 @@ class TestScriptDestination
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -700,9 +708,9 @@ class TestScriptDestination
 
 /// [TestScriptMetadata] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptMetadata with _$TestScriptMetadata implements BackboneElement {
+class TestScriptMetadata extends BackboneElement with _$TestScriptMetadata {
   /// [TestScriptMetadata] A structured set of tests against a FHIR server or
-  const TestScriptMetadata._();
+  TestScriptMetadata._();
 
   /// [TestScriptMetadata] A structured set of tests against a FHIR server or
   /// client implementation to determine compliance against the FHIR
@@ -736,7 +744,7 @@ class TestScriptMetadata with _$TestScriptMetadata implements BackboneElement {
   ///
   /// [capability] Capabilities that must exist and are assumed to function
   ///  correctly on the FHIR server being tested.
-  const factory TestScriptMetadata({
+  factory TestScriptMetadata({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -803,6 +811,9 @@ class TestScriptMetadata with _$TestScriptMetadata implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -814,9 +825,9 @@ class TestScriptMetadata with _$TestScriptMetadata implements BackboneElement {
 
 /// [TestScriptLink] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptLink with _$TestScriptLink implements BackboneElement {
+class TestScriptLink extends BackboneElement with _$TestScriptLink {
   /// [TestScriptLink] A structured set of tests against a FHIR server or
-  const TestScriptLink._();
+  TestScriptLink._();
 
   /// [TestScriptLink] A structured set of tests against a FHIR server or
   /// client implementation to determine compliance against the FHIR
@@ -854,7 +865,7 @@ class TestScriptLink with _$TestScriptLink implements BackboneElement {
   /// [description] Short description of the link.
   ///
   /// [descriptionElement] Extensions for description
-  const factory TestScriptLink({
+  factory TestScriptLink({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -927,6 +938,9 @@ class TestScriptLink with _$TestScriptLink implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -938,11 +952,9 @@ class TestScriptLink with _$TestScriptLink implements BackboneElement {
 
 /// [TestScriptCapability] A structured set of tests against a FHIR server
 @freezed
-class TestScriptCapability
-    with _$TestScriptCapability
-    implements BackboneElement {
+class TestScriptCapability extends BackboneElement with _$TestScriptCapability {
   /// [TestScriptCapability] A structured set of tests against a FHIR server
-  const TestScriptCapability._();
+  TestScriptCapability._();
 
   /// [TestScriptCapability] A structured set of tests against a FHIR server
   /// or client implementation to determine compliance against the FHIR
@@ -1004,7 +1016,7 @@ class TestScriptCapability
   /// execute successfully.   If server does not meet at a minimum the
   /// referenced capability statement, then all tests in this script are
   ///  skipped.
-  const factory TestScriptCapability({
+  factory TestScriptCapability({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1110,6 +1122,9 @@ class TestScriptCapability
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1121,9 +1136,9 @@ class TestScriptCapability
 
 /// [TestScriptFixture] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptFixture with _$TestScriptFixture implements BackboneElement {
+class TestScriptFixture extends BackboneElement with _$TestScriptFixture {
   /// [TestScriptFixture] A structured set of tests against a FHIR server or
-  const TestScriptFixture._();
+  TestScriptFixture._();
 
   /// [TestScriptFixture] A structured set of tests against a FHIR server or
   /// client implementation to determine compliance against the FHIR
@@ -1169,7 +1184,7 @@ class TestScriptFixture with _$TestScriptFixture implements BackboneElement {
   ///
   /// [resource] Reference to the resource (containing the contents of the
   ///  resource needed for operations).
-  const factory TestScriptFixture({
+  factory TestScriptFixture({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1251,6 +1266,9 @@ class TestScriptFixture with _$TestScriptFixture implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1262,9 +1280,9 @@ class TestScriptFixture with _$TestScriptFixture implements BackboneElement {
 
 /// [TestScriptVariable] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptVariable with _$TestScriptVariable implements BackboneElement {
+class TestScriptVariable extends BackboneElement with _$TestScriptVariable {
   /// [TestScriptVariable] A structured set of tests against a FHIR server or
-  const TestScriptVariable._();
+  TestScriptVariable._();
 
   /// [TestScriptVariable] A structured set of tests against a FHIR server or
   /// client implementation to determine compliance against the FHIR
@@ -1334,7 +1352,7 @@ class TestScriptVariable with _$TestScriptVariable implements BackboneElement {
   ///  headerField  against within this variable.
   ///
   /// [sourceIdElement] Extensions for sourceId
-  const factory TestScriptVariable({
+  factory TestScriptVariable({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1451,6 +1469,9 @@ class TestScriptVariable with _$TestScriptVariable implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1462,9 +1483,9 @@ class TestScriptVariable with _$TestScriptVariable implements BackboneElement {
 
 /// [TestScriptSetup] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptSetup with _$TestScriptSetup implements BackboneElement {
+class TestScriptSetup extends BackboneElement with _$TestScriptSetup {
   /// [TestScriptSetup] A structured set of tests against a FHIR server or
-  const TestScriptSetup._();
+  TestScriptSetup._();
 
   /// [TestScriptSetup] A structured set of tests against a FHIR server or
   /// client implementation to determine compliance against the FHIR
@@ -1495,7 +1516,7 @@ class TestScriptSetup with _$TestScriptSetup implements BackboneElement {
   ///  modifierExtension itself).
   ///
   /// [action] Action would contain either an operation or an assertion.
-  const factory TestScriptSetup({
+  factory TestScriptSetup({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1558,6 +1579,9 @@ class TestScriptSetup with _$TestScriptSetup implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1569,9 +1593,9 @@ class TestScriptSetup with _$TestScriptSetup implements BackboneElement {
 
 /// [TestScriptAction] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptAction with _$TestScriptAction implements BackboneElement {
+class TestScriptAction extends BackboneElement with _$TestScriptAction {
   /// [TestScriptAction] A structured set of tests against a FHIR server or
-  const TestScriptAction._();
+  TestScriptAction._();
 
   /// [TestScriptAction] A structured set of tests against a FHIR server or
   /// client implementation to determine compliance against the FHIR
@@ -1605,7 +1629,7 @@ class TestScriptAction with _$TestScriptAction implements BackboneElement {
   ///
   /// [assert] Evaluates the results of previous operations to determine if the
   ///  server under test behaves appropriately.
-  const factory TestScriptAction({
+  factory TestScriptAction({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1672,6 +1696,9 @@ class TestScriptAction with _$TestScriptAction implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1683,11 +1710,9 @@ class TestScriptAction with _$TestScriptAction implements BackboneElement {
 
 /// [TestScriptOperation] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptOperation
-    with _$TestScriptOperation
-    implements BackboneElement {
+class TestScriptOperation extends BackboneElement with _$TestScriptOperation {
   /// [TestScriptOperation] A structured set of tests against a FHIR server or
-  const TestScriptOperation._();
+  TestScriptOperation._();
 
   /// [TestScriptOperation] A structured set of tests against a FHIR server or
   /// client implementation to determine compliance against the FHIR
@@ -1794,7 +1819,7 @@ class TestScriptOperation
   /// [url] Complete request URL.
   ///
   /// [urlElement] Extensions for url
-  const factory TestScriptOperation({
+  factory TestScriptOperation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1965,6 +1990,9 @@ class TestScriptOperation
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1976,11 +2004,10 @@ class TestScriptOperation
 
 /// [TestScriptRequestHeader] A structured set of tests against a FHIR
 @freezed
-class TestScriptRequestHeader
-    with _$TestScriptRequestHeader
-    implements BackboneElement {
+class TestScriptRequestHeader extends BackboneElement
+    with _$TestScriptRequestHeader {
   /// [TestScriptRequestHeader] A structured set of tests against a FHIR
-  const TestScriptRequestHeader._();
+  TestScriptRequestHeader._();
 
   /// [TestScriptRequestHeader] A structured set of tests against a FHIR
   /// server or client implementation to determine compliance against the FHIR
@@ -2017,7 +2044,7 @@ class TestScriptRequestHeader
   /// [value] The value of the header e.g. "application/fhir+xml".
   ///
   /// [valueElement] Extensions for value
-  const factory TestScriptRequestHeader({
+  factory TestScriptRequestHeader({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2089,6 +2116,9 @@ class TestScriptRequestHeader
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2100,9 +2130,9 @@ class TestScriptRequestHeader
 
 /// [TestScriptAssert] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptAssert with _$TestScriptAssert implements BackboneElement {
+class TestScriptAssert extends BackboneElement with _$TestScriptAssert {
   /// [TestScriptAssert] A structured set of tests against a FHIR server or
-  const TestScriptAssert._();
+  TestScriptAssert._();
 
   /// [TestScriptAssert] A structured set of tests against a FHIR server or
   /// client implementation to determine compliance against the FHIR
@@ -2242,7 +2272,7 @@ class TestScriptAssert with _$TestScriptAssert implements BackboneElement {
   ///  only on error for this assert.
   ///
   /// [warningOnlyElement] Extensions for warningOnly
-  const factory TestScriptAssert({
+  factory TestScriptAssert({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2461,6 +2491,9 @@ class TestScriptAssert with _$TestScriptAssert implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2472,9 +2505,9 @@ class TestScriptAssert with _$TestScriptAssert implements BackboneElement {
 
 /// [TestScriptTest] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptTest with _$TestScriptTest implements BackboneElement {
+class TestScriptTest extends BackboneElement with _$TestScriptTest {
   /// [TestScriptTest] A structured set of tests against a FHIR server or
-  const TestScriptTest._();
+  TestScriptTest._();
 
   /// [TestScriptTest] A structured set of tests against a FHIR server or
   /// client implementation to determine compliance against the FHIR
@@ -2515,7 +2548,7 @@ class TestScriptTest with _$TestScriptTest implements BackboneElement {
   /// [descriptionElement] Extensions for description
   ///
   /// [action] Action would contain either an operation or an assertion.
-  const factory TestScriptTest({
+  factory TestScriptTest({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2592,6 +2625,9 @@ class TestScriptTest with _$TestScriptTest implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2603,9 +2639,9 @@ class TestScriptTest with _$TestScriptTest implements BackboneElement {
 
 /// [TestScriptAction1] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptAction1 with _$TestScriptAction1 implements BackboneElement {
+class TestScriptAction1 extends BackboneElement with _$TestScriptAction1 {
   /// [TestScriptAction1] A structured set of tests against a FHIR server or
-  const TestScriptAction1._();
+  TestScriptAction1._();
 
   /// [TestScriptAction1] A structured set of tests against a FHIR server or
   /// client implementation to determine compliance against the FHIR
@@ -2639,7 +2675,7 @@ class TestScriptAction1 with _$TestScriptAction1 implements BackboneElement {
   ///
   /// [assert] Evaluates the results of previous operations to determine if the
   ///  server under test behaves appropriately.
-  const factory TestScriptAction1({
+  factory TestScriptAction1({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2706,6 +2742,9 @@ class TestScriptAction1 with _$TestScriptAction1 implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2717,9 +2756,9 @@ class TestScriptAction1 with _$TestScriptAction1 implements BackboneElement {
 
 /// [TestScriptTeardown] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptTeardown with _$TestScriptTeardown implements BackboneElement {
+class TestScriptTeardown extends BackboneElement with _$TestScriptTeardown {
   /// [TestScriptTeardown] A structured set of tests against a FHIR server or
-  const TestScriptTeardown._();
+  TestScriptTeardown._();
 
   /// [TestScriptTeardown] A structured set of tests against a FHIR server or
   /// client implementation to determine compliance against the FHIR
@@ -2750,7 +2789,7 @@ class TestScriptTeardown with _$TestScriptTeardown implements BackboneElement {
   ///  modifierExtension itself).
   ///
   /// [action] The teardown action will only contain an operation.
-  const factory TestScriptTeardown({
+  factory TestScriptTeardown({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2813,6 +2852,9 @@ class TestScriptTeardown with _$TestScriptTeardown implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2824,9 +2866,9 @@ class TestScriptTeardown with _$TestScriptTeardown implements BackboneElement {
 
 /// [TestScriptAction2] A structured set of tests against a FHIR server or
 @freezed
-class TestScriptAction2 with _$TestScriptAction2 implements BackboneElement {
+class TestScriptAction2 extends BackboneElement with _$TestScriptAction2 {
   /// [TestScriptAction2] A structured set of tests against a FHIR server or
-  const TestScriptAction2._();
+  TestScriptAction2._();
 
   /// [TestScriptAction2] A structured set of tests against a FHIR server or
   /// client implementation to determine compliance against the FHIR
@@ -2857,7 +2899,7 @@ class TestScriptAction2 with _$TestScriptAction2 implements BackboneElement {
   ///  modifierExtension itself).
   ///
   /// [operation] An operation would involve a REST request to a server.
-  const factory TestScriptAction2({
+  factory TestScriptAction2({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2918,6 +2960,9 @@ class TestScriptAction2 with _$TestScriptAction2 implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

@@ -412,7 +412,7 @@ class __$$LinkageImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LinkageImpl extends _Linkage {
-  const _$LinkageImpl(
+  _$LinkageImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Linkage)
       this.resourceType = R4ResourceType.Linkage,
       this.id,
@@ -668,7 +668,7 @@ class _$LinkageImpl extends _Linkage {
 }
 
 abstract class _Linkage extends Linkage {
-  const factory _Linkage(
+  factory _Linkage(
       {@JsonKey(unknownEnumValue: R4ResourceType.Linkage)
       final R4ResourceType resourceType,
       final String? id,
@@ -686,7 +686,7 @@ abstract class _Linkage extends Linkage {
       @JsonKey(name: '_active') final PrimitiveElement? activeElement,
       final Reference? author,
       required final List<LinkageItem> item}) = _$LinkageImpl;
-  const _Linkage._() : super._();
+  _Linkage._() : super._();
 
   factory _Linkage.fromJson(Map<String, dynamic> json) = _$LinkageImpl.fromJson;
 
@@ -1004,7 +1004,7 @@ class __$$LinkageItemImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LinkageItemImpl extends _LinkageItem {
-  const _$LinkageItemImpl(
+  _$LinkageItemImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1149,14 +1149,14 @@ class _$LinkageItemImpl extends _LinkageItem {
 }
 
 abstract class _LinkageItem extends LinkageItem {
-  const factory _LinkageItem(
+  factory _LinkageItem(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirCode? type,
       @JsonKey(name: '_type') final PrimitiveElement? typeElement,
       required final Reference resource}) = _$LinkageItemImpl;
-  const _LinkageItem._() : super._();
+  _LinkageItem._() : super._();
 
   factory _LinkageItem.fromJson(Map<String, dynamic> json) =
       _$LinkageItemImpl.fromJson;

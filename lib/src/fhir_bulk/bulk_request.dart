@@ -16,10 +16,10 @@ part 'bulk_request.freezed.dart';
 
 /// Freezed union class for making different types of Bulk Requests
 class BulkRequest with _$BulkRequest {
-  const BulkRequest._();
+  BulkRequest._();
 
   ///  Patient
-  const factory BulkRequest.patient({
+  factory BulkRequest.patient({
     required Uri base,
     FhirDateTime? since,
     List<WhichResource>? types,
@@ -27,7 +27,7 @@ class BulkRequest with _$BulkRequest {
   }) = _BulkPatientRequest;
 
   ///  Group
-  const factory BulkRequest.group({
+  factory BulkRequest.group({
     required Uri base,
     required FhirId id,
     FhirDateTime? since,
@@ -36,7 +36,7 @@ class BulkRequest with _$BulkRequest {
   }) = _BulkGroupRequest;
 
   ///  System
-  const factory BulkRequest.system({
+  factory BulkRequest.system({
     required Uri base,
     FhirDateTime? since,
     List<WhichResource>? types,
@@ -175,8 +175,7 @@ class BulkRequest with _$BulkRequest {
           OperationOutcomeIssue(
             severity: FhirCode('error'),
             code: FhirCode('unknown'),
-            details:
-                const CodeableConcept(text: 'Failed to make restful request'),
+            details: CodeableConcept(text: 'Failed to make restful request'),
             diagnostics: '\nStatus Code: $statusCode -'
                 ' ${_errorCodes[statusCode]}'
                 '\nResult headers: ${result.headers}'

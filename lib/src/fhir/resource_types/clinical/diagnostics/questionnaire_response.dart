@@ -15,11 +15,10 @@ part 'questionnaire_response.g.dart';
 
 /// [QuestionnaireResponse] A structured set of questions and their answers.
 @freezed
-class QuestionnaireResponse
-    with _$QuestionnaireResponse
-    implements DomainResource {
+class QuestionnaireResponse extends DomainResource
+    with _$QuestionnaireResponse {
   /// [QuestionnaireResponse] A structured set of questions and their answers.
-  const QuestionnaireResponse._();
+  QuestionnaireResponse._();
 
   /// [QuestionnaireResponse] A structured set of questions and their answers.
   /// The questions are ordered and grouped into coherent subsets, corresponding
@@ -119,7 +118,7 @@ class QuestionnaireResponse
   ///
   /// [item] A group or question item from the original questionnaire for which
   ///  answers are provided.
-  const factory QuestionnaireResponse({
+  factory QuestionnaireResponse({
     @Default(R4ResourceType.QuestionnaireResponse)
     @JsonKey(unknownEnumValue: R4ResourceType.QuestionnaireResponse)
 
@@ -277,6 +276,9 @@ class QuestionnaireResponse
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -299,8 +301,8 @@ class QuestionnaireResponse
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [QuestionnaireResponseItem] A structured set of questions and their
@@ -308,11 +310,10 @@ class QuestionnaireResponse
 
 /// [QuestionnaireResponseItem] A structured set of questions and their
 @freezed
-class QuestionnaireResponseItem
-    with _$QuestionnaireResponseItem
-    implements BackboneElement {
+class QuestionnaireResponseItem extends BackboneElement
+    with _$QuestionnaireResponseItem {
   /// [QuestionnaireResponseItem] A structured set of questions and their
-  const QuestionnaireResponseItem._();
+  QuestionnaireResponseItem._();
 
   /// [QuestionnaireResponseItem] A structured set of questions and their
   /// answers. The questions are ordered and grouped into coherent subsets,
@@ -361,7 +362,7 @@ class QuestionnaireResponseItem
   /// [answer] The respondent's answer(s) to the question.
   ///
   /// [item] Questions or sub-groups nested beneath a question or group.
-  const factory QuestionnaireResponseItem({
+  factory QuestionnaireResponseItem({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -448,6 +449,9 @@ class QuestionnaireResponseItem
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -459,11 +463,10 @@ class QuestionnaireResponseItem
 
 /// [QuestionnaireResponseAnswer] A structured set of questions and their
 @freezed
-class QuestionnaireResponseAnswer
-    with _$QuestionnaireResponseAnswer
-    implements BackboneElement {
+class QuestionnaireResponseAnswer extends BackboneElement
+    with _$QuestionnaireResponseAnswer {
   /// [QuestionnaireResponseAnswer] A structured set of questions and their
-  const QuestionnaireResponseAnswer._();
+  QuestionnaireResponseAnswer._();
 
   /// [QuestionnaireResponseAnswer] A structured set of questions and their
   /// answers. The questions are ordered and grouped into coherent subsets,
@@ -548,7 +551,7 @@ class QuestionnaireResponseAnswer
   ///
   /// [item] Nested groups and/or questions found within this particular
   ///  answer.
-  const factory QuestionnaireResponseAnswer({
+  factory QuestionnaireResponseAnswer({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -682,6 +685,9 @@ class QuestionnaireResponseAnswer
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

@@ -927,7 +927,7 @@ class __$$ImplementationGuideImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ImplementationGuideImpl extends _ImplementationGuide {
-  const _$ImplementationGuideImpl(
+  _$ImplementationGuideImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.ImplementationGuide)
       this.resourceType = R4ResourceType.ImplementationGuide,
       this.id,
@@ -1537,7 +1537,7 @@ class _$ImplementationGuideImpl extends _ImplementationGuide {
 }
 
 abstract class _ImplementationGuide extends ImplementationGuide {
-  const factory _ImplementationGuide(
+  factory _ImplementationGuide(
       {@JsonKey(unknownEnumValue: R4ResourceType.ImplementationGuide)
       final R4ResourceType resourceType,
       final String? id,
@@ -1586,7 +1586,7 @@ abstract class _ImplementationGuide extends ImplementationGuide {
       final List<ImplementationGuideGlobal>? global,
       final ImplementationGuideDefinition? definition,
       final ImplementationGuideManifest? manifest}) = _$ImplementationGuideImpl;
-  const _ImplementationGuide._() : super._();
+  _ImplementationGuide._() : super._();
 
   factory _ImplementationGuide.fromJson(Map<String, dynamic> json) =
       _$ImplementationGuideImpl.fromJson;
@@ -2097,7 +2097,7 @@ class __$$ImplementationGuideDependsOnImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ImplementationGuideDependsOnImpl extends _ImplementationGuideDependsOn {
-  const _$ImplementationGuideDependsOnImpl(
+  _$ImplementationGuideDependsOnImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2264,7 +2264,7 @@ class _$ImplementationGuideDependsOnImpl extends _ImplementationGuideDependsOn {
 
 abstract class _ImplementationGuideDependsOn
     extends ImplementationGuideDependsOn {
-  const factory _ImplementationGuideDependsOn(
+  factory _ImplementationGuideDependsOn(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2274,7 +2274,7 @@ abstract class _ImplementationGuideDependsOn
           final String? version,
           @JsonKey(name: '_version') final PrimitiveElement? versionElement}) =
       _$ImplementationGuideDependsOnImpl;
-  const _ImplementationGuideDependsOn._() : super._();
+  _ImplementationGuideDependsOn._() : super._();
 
   factory _ImplementationGuideDependsOn.fromJson(Map<String, dynamic> json) =
       _$ImplementationGuideDependsOnImpl.fromJson;
@@ -2539,7 +2539,7 @@ class __$$ImplementationGuideGlobalImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ImplementationGuideGlobalImpl extends _ImplementationGuideGlobal {
-  const _$ImplementationGuideGlobalImpl(
+  _$ImplementationGuideGlobalImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2683,14 +2683,14 @@ class _$ImplementationGuideGlobalImpl extends _ImplementationGuideGlobal {
 }
 
 abstract class _ImplementationGuideGlobal extends ImplementationGuideGlobal {
-  const factory _ImplementationGuideGlobal(
+  factory _ImplementationGuideGlobal(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirCode? type,
       @JsonKey(name: '_type') final PrimitiveElement? typeElement,
       required final FhirCanonical profile}) = _$ImplementationGuideGlobalImpl;
-  const _ImplementationGuideGlobal._() : super._();
+  _ImplementationGuideGlobal._() : super._();
 
   factory _ImplementationGuideGlobal.fromJson(Map<String, dynamic> json) =
       _$ImplementationGuideGlobalImpl.fromJson;
@@ -3002,7 +3002,7 @@ class __$$ImplementationGuideDefinitionImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ImplementationGuideDefinitionImpl
     extends _ImplementationGuideDefinition {
-  const _$ImplementationGuideDefinitionImpl(
+  _$ImplementationGuideDefinitionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3209,7 +3209,7 @@ class _$ImplementationGuideDefinitionImpl
 
 abstract class _ImplementationGuideDefinition
     extends ImplementationGuideDefinition {
-  const factory _ImplementationGuideDefinition(
+  factory _ImplementationGuideDefinition(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3219,7 +3219,7 @@ abstract class _ImplementationGuideDefinition
           final List<ImplementationGuideParameter>? parameter,
           final List<ImplementationGuideTemplate>? template}) =
       _$ImplementationGuideDefinitionImpl;
-  const _ImplementationGuideDefinition._() : super._();
+  _ImplementationGuideDefinition._() : super._();
 
   factory _ImplementationGuideDefinition.fromJson(Map<String, dynamic> json) =
       _$ImplementationGuideDefinitionImpl.fromJson;
@@ -3504,7 +3504,7 @@ class __$$ImplementationGuideGroupingImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ImplementationGuideGroupingImpl extends _ImplementationGuideGrouping {
-  const _$ImplementationGuideGroupingImpl(
+  _$ImplementationGuideGroupingImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3661,7 +3661,7 @@ class _$ImplementationGuideGroupingImpl extends _ImplementationGuideGrouping {
 
 abstract class _ImplementationGuideGrouping
     extends ImplementationGuideGrouping {
-  const factory _ImplementationGuideGrouping(
+  factory _ImplementationGuideGrouping(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3671,7 +3671,7 @@ abstract class _ImplementationGuideGrouping
           @JsonKey(name: '_description')
           final PrimitiveElement? descriptionElement}) =
       _$ImplementationGuideGroupingImpl;
-  const _ImplementationGuideGrouping._() : super._();
+  _ImplementationGuideGrouping._() : super._();
 
   factory _ImplementationGuideGrouping.fromJson(Map<String, dynamic> json) =
       _$ImplementationGuideGroupingImpl.fromJson;
@@ -4117,7 +4117,7 @@ class __$$ImplementationGuideResourceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ImplementationGuideResourceImpl extends _ImplementationGuideResource {
-  const _$ImplementationGuideResourceImpl(
+  _$ImplementationGuideResourceImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4384,7 +4384,7 @@ class _$ImplementationGuideResourceImpl extends _ImplementationGuideResource {
 
 abstract class _ImplementationGuideResource
     extends ImplementationGuideResource {
-  const factory _ImplementationGuideResource(
+  factory _ImplementationGuideResource(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4406,7 +4406,7 @@ abstract class _ImplementationGuideResource
       @JsonKey(name: '_groupingId')
       final PrimitiveElement?
           groupingIdElement}) = _$ImplementationGuideResourceImpl;
-  const _ImplementationGuideResource._() : super._();
+  _ImplementationGuideResource._() : super._();
 
   factory _ImplementationGuideResource.fromJson(Map<String, dynamic> json) =
       _$ImplementationGuideResourceImpl.fromJson;
@@ -4810,7 +4810,7 @@ class __$$ImplementationGuidePageImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ImplementationGuidePageImpl extends _ImplementationGuidePage {
-  const _$ImplementationGuidePageImpl(
+  _$ImplementationGuidePageImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5006,7 +5006,7 @@ class _$ImplementationGuidePageImpl extends _ImplementationGuidePage {
 }
 
 abstract class _ImplementationGuidePage extends ImplementationGuidePage {
-  const factory _ImplementationGuidePage(
+  factory _ImplementationGuidePage(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5019,7 +5019,7 @@ abstract class _ImplementationGuidePage extends ImplementationGuidePage {
       @JsonKey(name: '_generation') final PrimitiveElement? generationElement,
       final List<ImplementationGuidePage>?
           page}) = _$ImplementationGuidePageImpl;
-  const _ImplementationGuidePage._() : super._();
+  _ImplementationGuidePage._() : super._();
 
   factory _ImplementationGuidePage.fromJson(Map<String, dynamic> json) =
       _$ImplementationGuidePageImpl.fromJson;
@@ -5314,7 +5314,7 @@ class __$$ImplementationGuideParameterImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ImplementationGuideParameterImpl extends _ImplementationGuideParameter {
-  const _$ImplementationGuideParameterImpl(
+  _$ImplementationGuideParameterImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5472,7 +5472,7 @@ class _$ImplementationGuideParameterImpl extends _ImplementationGuideParameter {
 
 abstract class _ImplementationGuideParameter
     extends ImplementationGuideParameter {
-  const factory _ImplementationGuideParameter(
+  factory _ImplementationGuideParameter(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -5481,7 +5481,7 @@ abstract class _ImplementationGuideParameter
           final String? value,
           @JsonKey(name: '_value') final PrimitiveElement? valueElement}) =
       _$ImplementationGuideParameterImpl;
-  const _ImplementationGuideParameter._() : super._();
+  _ImplementationGuideParameter._() : super._();
 
   factory _ImplementationGuideParameter.fromJson(Map<String, dynamic> json) =
       _$ImplementationGuideParameterImpl.fromJson;
@@ -5790,7 +5790,7 @@ class __$$ImplementationGuideTemplateImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ImplementationGuideTemplateImpl extends _ImplementationGuideTemplate {
-  const _$ImplementationGuideTemplateImpl(
+  _$ImplementationGuideTemplateImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5961,7 +5961,7 @@ class _$ImplementationGuideTemplateImpl extends _ImplementationGuideTemplate {
 
 abstract class _ImplementationGuideTemplate
     extends ImplementationGuideTemplate {
-  const factory _ImplementationGuideTemplate(
+  factory _ImplementationGuideTemplate(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -5972,7 +5972,7 @@ abstract class _ImplementationGuideTemplate
           final String? scope,
           @JsonKey(name: '_scope') final PrimitiveElement? scopeElement}) =
       _$ImplementationGuideTemplateImpl;
-  const _ImplementationGuideTemplate._() : super._();
+  _ImplementationGuideTemplate._() : super._();
 
   factory _ImplementationGuideTemplate.fromJson(Map<String, dynamic> json) =
       _$ImplementationGuideTemplateImpl.fromJson;
@@ -6327,7 +6327,7 @@ class __$$ImplementationGuideManifestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ImplementationGuideManifestImpl extends _ImplementationGuideManifest {
-  const _$ImplementationGuideManifestImpl(
+  _$ImplementationGuideManifestImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -6582,7 +6582,7 @@ class _$ImplementationGuideManifestImpl extends _ImplementationGuideManifest {
 
 abstract class _ImplementationGuideManifest
     extends ImplementationGuideManifest {
-  const factory _ImplementationGuideManifest(
+  factory _ImplementationGuideManifest(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -6596,7 +6596,7 @@ abstract class _ImplementationGuideManifest
           @JsonKey(name: '_other')
           final List<PrimitiveElement>? otherElement}) =
       _$ImplementationGuideManifestImpl;
-  const _ImplementationGuideManifest._() : super._();
+  _ImplementationGuideManifest._() : super._();
 
   factory _ImplementationGuideManifest.fromJson(Map<String, dynamic> json) =
       _$ImplementationGuideManifestImpl.fromJson;
@@ -6965,7 +6965,7 @@ class __$$ImplementationGuideResource1ImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ImplementationGuideResource1Impl extends _ImplementationGuideResource1 {
-  const _$ImplementationGuideResource1Impl(
+  _$ImplementationGuideResource1Impl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -7154,7 +7154,7 @@ class _$ImplementationGuideResource1Impl extends _ImplementationGuideResource1 {
 
 abstract class _ImplementationGuideResource1
     extends ImplementationGuideResource1 {
-  const factory _ImplementationGuideResource1(
+  factory _ImplementationGuideResource1(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -7169,7 +7169,7 @@ abstract class _ImplementationGuideResource1
           @JsonKey(name: '_relativePath')
           final PrimitiveElement? relativePathElement}) =
       _$ImplementationGuideResource1Impl;
-  const _ImplementationGuideResource1._() : super._();
+  _ImplementationGuideResource1._() : super._();
 
   factory _ImplementationGuideResource1.fromJson(Map<String, dynamic> json) =
       _$ImplementationGuideResource1Impl.fromJson;
@@ -7493,7 +7493,7 @@ class __$$ImplementationGuidePage1ImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ImplementationGuidePage1Impl extends _ImplementationGuidePage1 {
-  const _$ImplementationGuidePage1Impl(
+  _$ImplementationGuidePage1Impl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -7682,7 +7682,7 @@ class _$ImplementationGuidePage1Impl extends _ImplementationGuidePage1 {
 }
 
 abstract class _ImplementationGuidePage1 extends ImplementationGuidePage1 {
-  const factory _ImplementationGuidePage1(
+  factory _ImplementationGuidePage1(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -7694,7 +7694,7 @@ abstract class _ImplementationGuidePage1 extends ImplementationGuidePage1 {
           @JsonKey(name: '_anchor')
           final List<PrimitiveElement>? anchorElement}) =
       _$ImplementationGuidePage1Impl;
-  const _ImplementationGuidePage1._() : super._();
+  _ImplementationGuidePage1._() : super._();
 
   factory _ImplementationGuidePage1.fromJson(Map<String, dynamic> json) =
       _$ImplementationGuidePage1Impl.fromJson;

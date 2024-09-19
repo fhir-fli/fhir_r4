@@ -15,9 +15,9 @@ part 'search_parameter.g.dart';
 
 /// [SearchParameter] A search parameter that defines a named search item
 @freezed
-class SearchParameter with _$SearchParameter implements DomainResource {
+class SearchParameter extends DomainResource with _$SearchParameter {
   /// [SearchParameter] A search parameter that defines a named search item
-  const SearchParameter._();
+  SearchParameter._();
 
   /// [SearchParameter] A search parameter that defines a named search item
   ///  that can be used to search/filter on a resource.
@@ -215,7 +215,7 @@ class SearchParameter with _$SearchParameter implements DomainResource {
   /// [chainElement] Extensions for chain
   ///
   /// [component] Used to define the parts of a composite search parameter.
-  const factory SearchParameter({
+  factory SearchParameter({
     @Default(R4ResourceType.SearchParameter)
     @JsonKey(unknownEnumValue: R4ResourceType.SearchParameter)
 
@@ -505,6 +505,9 @@ class SearchParameter with _$SearchParameter implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -527,8 +530,8 @@ class SearchParameter with _$SearchParameter implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [SearchParameterComponent] A search parameter that defines a named
@@ -536,11 +539,10 @@ class SearchParameter with _$SearchParameter implements DomainResource {
 
 /// [SearchParameterComponent] A search parameter that defines a named
 @freezed
-class SearchParameterComponent
-    with _$SearchParameterComponent
-    implements BackboneElement {
+class SearchParameterComponent extends BackboneElement
+    with _$SearchParameterComponent {
   /// [SearchParameterComponent] A search parameter that defines a named
-  const SearchParameterComponent._();
+  SearchParameterComponent._();
 
   /// [SearchParameterComponent] A search parameter that defines a named
   ///  search item that can be used to search/filter on a resource.
@@ -576,7 +578,7 @@ class SearchParameterComponent
   ///  component from the output of the main SearchParameter.expression.
   ///
   /// [expressionElement] Extensions for expression
-  const factory SearchParameterComponent({
+  factory SearchParameterComponent({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -645,6 +647,9 @@ class SearchParameterComponent
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

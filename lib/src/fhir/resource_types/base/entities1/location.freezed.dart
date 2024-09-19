@@ -808,7 +808,7 @@ class __$$LocationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LocationImpl extends _Location {
-  const _$LocationImpl(
+  _$LocationImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Location)
       this.resourceType = R4ResourceType.Location,
       this.id,
@@ -1298,7 +1298,7 @@ class _$LocationImpl extends _Location {
 }
 
 abstract class _Location extends Location {
-  const factory _Location(
+  factory _Location(
       {@JsonKey(unknownEnumValue: R4ResourceType.Location)
       final R4ResourceType resourceType,
       final String? id,
@@ -1336,7 +1336,7 @@ abstract class _Location extends Location {
       @JsonKey(name: '_availabilityExceptions')
       final PrimitiveElement? availabilityExceptionsElement,
       final List<Reference>? endpoint}) = _$LocationImpl;
-  const _Location._() : super._();
+  _Location._() : super._();
 
   factory _Location.fromJson(Map<String, dynamic> json) =
       _$LocationImpl.fromJson;
@@ -1783,7 +1783,7 @@ class __$$LocationPositionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LocationPositionImpl extends _LocationPosition {
-  const _$LocationPositionImpl(
+  _$LocationPositionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1958,7 +1958,7 @@ class _$LocationPositionImpl extends _LocationPosition {
 }
 
 abstract class _LocationPosition extends LocationPosition {
-  const factory _LocationPosition(
+  factory _LocationPosition(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1969,7 +1969,7 @@ abstract class _LocationPosition extends LocationPosition {
       final FhirDecimal? altitude,
       @JsonKey(name: '_altitude')
       final PrimitiveElement? altitudeElement}) = _$LocationPositionImpl;
-  const _LocationPosition._() : super._();
+  _LocationPosition._() : super._();
 
   factory _LocationPosition.fromJson(Map<String, dynamic> json) =
       _$LocationPositionImpl.fromJson;
@@ -2320,7 +2320,7 @@ class __$$LocationHoursOfOperationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LocationHoursOfOperationImpl extends _LocationHoursOfOperation {
-  const _$LocationHoursOfOperationImpl(
+  _$LocationHoursOfOperationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2532,7 +2532,7 @@ class _$LocationHoursOfOperationImpl extends _LocationHoursOfOperation {
 }
 
 abstract class _LocationHoursOfOperation extends LocationHoursOfOperation {
-  const factory _LocationHoursOfOperation(
+  factory _LocationHoursOfOperation(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2547,7 +2547,7 @@ abstract class _LocationHoursOfOperation extends LocationHoursOfOperation {
       @JsonKey(name: '_closingTime')
       final PrimitiveElement?
           closingTimeElement}) = _$LocationHoursOfOperationImpl;
-  const _LocationHoursOfOperation._() : super._();
+  _LocationHoursOfOperation._() : super._();
 
   factory _LocationHoursOfOperation.fromJson(Map<String, dynamic> json) =
       _$LocationHoursOfOperationImpl.fromJson;

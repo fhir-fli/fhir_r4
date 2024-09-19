@@ -614,7 +614,7 @@ class __$$SlotImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SlotImpl extends _Slot {
-  const _$SlotImpl(
+  _$SlotImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Slot)
       this.resourceType = R4ResourceType.Slot,
       this.id,
@@ -1010,7 +1010,7 @@ class _$SlotImpl extends _Slot {
 }
 
 abstract class _Slot extends Slot {
-  const factory _Slot(
+  factory _Slot(
       {@JsonKey(unknownEnumValue: R4ResourceType.Slot)
       final R4ResourceType resourceType,
       final String? id,
@@ -1041,7 +1041,7 @@ abstract class _Slot extends Slot {
       final String? comment,
       @JsonKey(name: '_comment')
       final PrimitiveElement? commentElement}) = _$SlotImpl;
-  const _Slot._() : super._();
+  _Slot._() : super._();
 
   factory _Slot.fromJson(Map<String, dynamic> json) = _$SlotImpl.fromJson;
 

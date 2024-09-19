@@ -11,7 +11,7 @@ import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 
 /// FHIRPath Test Suite - reference="http://hl7.org/fhirpath|2.0.0"
-void main() {
+void testFpTestSuite() {
   group('testMiscellaneousAccessorTests - Miscellaneous accessor tests', () {
     // <test name="testExtractBirthDate" description="Extract birthDate" inputfile="patient-example.xml" predicate="false">
     // <expression>birthDate</expression>

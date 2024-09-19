@@ -929,7 +929,7 @@ class __$$FamilyMemberHistoryImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FamilyMemberHistoryImpl extends _FamilyMemberHistory {
-  const _$FamilyMemberHistoryImpl(
+  _$FamilyMemberHistoryImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.FamilyMemberHistory)
       this.resourceType = R4ResourceType.FamilyMemberHistory,
       this.id,
@@ -1368,7 +1368,7 @@ class _$FamilyMemberHistoryImpl extends _FamilyMemberHistory {
 }
 
 abstract class _FamilyMemberHistory extends FamilyMemberHistory {
-  const factory _FamilyMemberHistory(
+  factory _FamilyMemberHistory(
       {@JsonKey(unknownEnumValue: R4ResourceType.FamilyMemberHistory)
       final R4ResourceType resourceType,
       final String? id,
@@ -1425,7 +1425,7 @@ abstract class _FamilyMemberHistory extends FamilyMemberHistory {
       final List<Annotation>? note,
       final List<FamilyMemberHistoryCondition>?
           condition}) = _$FamilyMemberHistoryImpl;
-  const _FamilyMemberHistory._() : super._();
+  _FamilyMemberHistory._() : super._();
 
   factory _FamilyMemberHistory.fromJson(Map<String, dynamic> json) =
       _$FamilyMemberHistoryImpl.fromJson;
@@ -1897,7 +1897,7 @@ class __$$FamilyMemberHistoryConditionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FamilyMemberHistoryConditionImpl extends _FamilyMemberHistoryCondition {
-  const _$FamilyMemberHistoryConditionImpl(
+  _$FamilyMemberHistoryConditionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2047,7 +2047,7 @@ class _$FamilyMemberHistoryConditionImpl extends _FamilyMemberHistoryCondition {
 
 abstract class _FamilyMemberHistoryCondition
     extends FamilyMemberHistoryCondition {
-  const factory _FamilyMemberHistoryCondition(
+  factory _FamilyMemberHistoryCondition(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2062,7 +2062,7 @@ abstract class _FamilyMemberHistoryCondition
       final String? onsetString,
       @JsonKey(name: '_onsetString') final PrimitiveElement? onsetStringElement,
       final List<Annotation>? note}) = _$FamilyMemberHistoryConditionImpl;
-  const _FamilyMemberHistoryCondition._() : super._();
+  _FamilyMemberHistoryCondition._() : super._();
 
   factory _FamilyMemberHistoryCondition.fromJson(Map<String, dynamic> json) =
       _$FamilyMemberHistoryConditionImpl.fromJson;

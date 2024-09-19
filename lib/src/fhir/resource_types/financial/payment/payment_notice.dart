@@ -14,9 +14,9 @@ part 'payment_notice.g.dart';
 
 /// [PaymentNotice] This resource provides the status of the payment for
 @freezed
-class PaymentNotice with _$PaymentNotice implements DomainResource {
+class PaymentNotice extends DomainResource with _$PaymentNotice {
   /// [PaymentNotice] This resource provides the status of the payment for
-  const PaymentNotice._();
+  PaymentNotice._();
 
   /// [PaymentNotice] This resource provides the status of the payment for
   /// goods and services rendered, and the request and response resource
@@ -108,7 +108,7 @@ class PaymentNotice with _$PaymentNotice implements DomainResource {
   ///
   /// [paymentStatus] A code indicating whether payment has been sent or
   ///  cleared.
-  const factory PaymentNotice({
+  factory PaymentNotice({
     @Default(R4ResourceType.PaymentNotice)
     @JsonKey(unknownEnumValue: R4ResourceType.PaymentNotice)
 
@@ -259,6 +259,9 @@ class PaymentNotice with _$PaymentNotice implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -281,6 +284,6 @@ class PaymentNotice with _$PaymentNotice implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }

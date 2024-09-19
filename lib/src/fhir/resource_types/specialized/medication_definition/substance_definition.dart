@@ -15,9 +15,9 @@ part 'substance_definition.g.dart';
 
 /// [SubstanceDefinition] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 @freezed
-class SubstanceDefinition with _$SubstanceDefinition implements DomainResource {
+class SubstanceDefinition extends DomainResource with _$SubstanceDefinition {
   /// [SubstanceDefinition] The detailed description of a substance, typically at a level beyond what is used for prescribing.
-  const SubstanceDefinition._();
+  SubstanceDefinition._();
 
   /// [SubstanceDefinition] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 
@@ -87,7 +87,7 @@ class SubstanceDefinition with _$SubstanceDefinition implements DomainResource {
   /// [relationship] A link between this substance and another, with details of the relationship.;
   ///
   /// [sourceMaterial] Material or taxonomic/anatomical source for the substance.;
-  const factory SubstanceDefinition({
+  factory SubstanceDefinition({
     /// [resourceType] This is a SubstanceDefinition resource;
     @Default(R4ResourceType.SubstanceDefinition) R4ResourceType resourceType,
 
@@ -219,6 +219,9 @@ class SubstanceDefinition with _$SubstanceDefinition implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -241,8 +244,8 @@ class SubstanceDefinition with _$SubstanceDefinition implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [SubstanceDefinitionMoiety] The detailed description of a substance, typically at a level beyond what is used for prescribing.
@@ -250,11 +253,10 @@ class SubstanceDefinition with _$SubstanceDefinition implements DomainResource {
 
 /// [SubstanceDefinitionMoiety] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 @freezed
-class SubstanceDefinitionMoiety
-    with _$SubstanceDefinitionMoiety
-    implements BackboneElement {
+class SubstanceDefinitionMoiety extends BackboneElement
+    with _$SubstanceDefinitionMoiety {
   /// [SubstanceDefinitionMoiety] The detailed description of a substance, typically at a level beyond what is used for prescribing.
-  const SubstanceDefinitionMoiety._();
+  SubstanceDefinitionMoiety._();
 
   /// [SubstanceDefinitionMoiety] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 
@@ -290,7 +292,7 @@ class SubstanceDefinitionMoiety
   /// [amountStringElement] (_amountString): Extensions for amountString;
   ///
   /// [measurementType] The measurement type of the quantitative value. In capturing the actual relative amounts of substances or molecular fragments it may be necessary to indicate whether the amount refers to, for example, a mole ratio or weight ratio.;
-  const factory SubstanceDefinitionMoiety({
+  factory SubstanceDefinitionMoiety({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -370,6 +372,9 @@ class SubstanceDefinitionMoiety
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -381,11 +386,10 @@ class SubstanceDefinitionMoiety
 
 /// [SubstanceDefinitionProperty] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 @freezed
-class SubstanceDefinitionProperty
-    with _$SubstanceDefinitionProperty
-    implements BackboneElement {
+class SubstanceDefinitionProperty extends BackboneElement
+    with _$SubstanceDefinitionProperty {
   /// [SubstanceDefinitionProperty] The detailed description of a substance, typically at a level beyond what is used for prescribing.
-  const SubstanceDefinitionProperty._();
+  SubstanceDefinitionProperty._();
 
   /// [SubstanceDefinitionProperty] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 
@@ -413,7 +417,7 @@ class SubstanceDefinitionProperty
   /// [valueBooleanElement] (_valueBoolean): Extensions for valueBoolean;
   ///
   /// [valueAttachment] A value for the property.;
-  const factory SubstanceDefinitionProperty({
+  factory SubstanceDefinitionProperty({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -480,6 +484,9 @@ class SubstanceDefinitionProperty
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -488,10 +495,9 @@ class SubstanceDefinitionProperty
 
 @freezed
 @freezed
-class SubstanceDefinitionMolecularWeight
-    with _$SubstanceDefinitionMolecularWeight
-    implements BackboneElement {
-  const SubstanceDefinitionMolecularWeight._();
+class SubstanceDefinitionMolecularWeight extends BackboneElement
+    with _$SubstanceDefinitionMolecularWeight {
+  SubstanceDefinitionMolecularWeight._();
 
   /// [SubstanceDefinitionMolecularWeight] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 
@@ -509,7 +515,7 @@ class SubstanceDefinitionMolecularWeight
   /// [type] Type of molecular weight such as exact, average (also known as. number average), weight average.;
   ///
   /// [amount] Used to capture quantitative values for a variety of elements. If only limits are given, the arithmetic mean would be the average. If only a single definite value for a given element is given, it would be captured in this field.;
-  const factory SubstanceDefinitionMolecularWeight({
+  factory SubstanceDefinitionMolecularWeight({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -563,6 +569,9 @@ class SubstanceDefinitionMolecularWeight
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -574,11 +583,10 @@ class SubstanceDefinitionMolecularWeight
 
 /// [SubstanceDefinitionStructure] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 @freezed
-class SubstanceDefinitionStructure
-    with _$SubstanceDefinitionStructure
-    implements BackboneElement {
+class SubstanceDefinitionStructure extends BackboneElement
+    with _$SubstanceDefinitionStructure {
   /// [SubstanceDefinitionStructure] The detailed description of a substance, typically at a level beyond what is used for prescribing.
-  const SubstanceDefinitionStructure._();
+  SubstanceDefinitionStructure._();
 
   /// [SubstanceDefinitionStructure] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 
@@ -610,7 +618,7 @@ class SubstanceDefinitionStructure
   /// [sourceDocument] The source of information about the structure.;
   ///
   /// [representation] A depiction of the structure or characterization of the substance.;
-  const factory SubstanceDefinitionStructure({
+  factory SubstanceDefinitionStructure({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -685,6 +693,9 @@ class SubstanceDefinitionStructure
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -693,10 +704,9 @@ class SubstanceDefinitionStructure
 
 @freezed
 @freezed
-class SubstanceDefinitionRepresentation
-    with _$SubstanceDefinitionRepresentation
-    implements BackboneElement {
-  const SubstanceDefinitionRepresentation._();
+class SubstanceDefinitionRepresentation extends BackboneElement
+    with _$SubstanceDefinitionRepresentation {
+  SubstanceDefinitionRepresentation._();
 
   /// [SubstanceDefinitionRepresentation] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 
@@ -718,7 +728,7 @@ class SubstanceDefinitionRepresentation
   /// [format] The format of the representation e.g. InChI, SMILES, MOLFILE, CDX, SDF, PDB, mmCIF. The logical content type rather than the physical file format of a document.;
   ///
   /// [document] An attached file with the structural representation or characterization e.g. a molecular structure graphic of the substance, a JCAMP or AnIML file.;
-  const factory SubstanceDefinitionRepresentation({
+  factory SubstanceDefinitionRepresentation({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -778,6 +788,9 @@ class SubstanceDefinitionRepresentation
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -789,11 +802,10 @@ class SubstanceDefinitionRepresentation
 
 /// [SubstanceDefinitionCode] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 @freezed
-class SubstanceDefinitionCode
-    with _$SubstanceDefinitionCode
-    implements BackboneElement {
+class SubstanceDefinitionCode extends BackboneElement
+    with _$SubstanceDefinitionCode {
   /// [SubstanceDefinitionCode] The detailed description of a substance, typically at a level beyond what is used for prescribing.
-  const SubstanceDefinitionCode._();
+  SubstanceDefinitionCode._();
 
   /// [SubstanceDefinitionCode] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 
@@ -817,7 +829,7 @@ class SubstanceDefinitionCode
   /// [note] Any comment can be provided in this field, if necessary.;
   ///
   /// [source] Supporting literature.;
-  const factory SubstanceDefinitionCode({
+  factory SubstanceDefinitionCode({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -878,6 +890,9 @@ class SubstanceDefinitionCode
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -889,11 +904,10 @@ class SubstanceDefinitionCode
 
 /// [SubstanceDefinitionName] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 @freezed
-class SubstanceDefinitionName
-    with _$SubstanceDefinitionName
-    implements BackboneElement {
+class SubstanceDefinitionName extends BackboneElement
+    with _$SubstanceDefinitionName {
   /// [SubstanceDefinitionName] The detailed description of a substance, typically at a level beyond what is used for prescribing.
-  const SubstanceDefinitionName._();
+  SubstanceDefinitionName._();
 
   /// [SubstanceDefinitionName] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 
@@ -931,7 +945,7 @@ class SubstanceDefinitionName
   /// [official] Details of the official nature of this name.;
   ///
   /// [source] Supporting literature.;
-  const factory SubstanceDefinitionName({
+  factory SubstanceDefinitionName({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -1013,6 +1027,9 @@ class SubstanceDefinitionName
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1024,11 +1041,10 @@ class SubstanceDefinitionName
 
 /// [SubstanceDefinitionOfficial] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 @freezed
-class SubstanceDefinitionOfficial
-    with _$SubstanceDefinitionOfficial
-    implements BackboneElement {
+class SubstanceDefinitionOfficial extends BackboneElement
+    with _$SubstanceDefinitionOfficial {
   /// [SubstanceDefinitionOfficial] The detailed description of a substance, typically at a level beyond what is used for prescribing.
-  const SubstanceDefinitionOfficial._();
+  SubstanceDefinitionOfficial._();
 
   /// [SubstanceDefinitionOfficial] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 
@@ -1048,7 +1064,7 @@ class SubstanceDefinitionOfficial
   /// [date] Date of the official name change.;
   ///
   /// [dateElement] (_date): Extensions for date;
-  const factory SubstanceDefinitionOfficial({
+  factory SubstanceDefinitionOfficial({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -1103,6 +1119,9 @@ class SubstanceDefinitionOfficial
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1114,11 +1133,10 @@ class SubstanceDefinitionOfficial
 
 /// [SubstanceDefinitionRelationship] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 @freezed
-class SubstanceDefinitionRelationship
-    with _$SubstanceDefinitionRelationship
-    implements BackboneElement {
+class SubstanceDefinitionRelationship extends BackboneElement
+    with _$SubstanceDefinitionRelationship {
   /// [SubstanceDefinitionRelationship] The detailed description of a substance, typically at a level beyond what is used for prescribing.
-  const SubstanceDefinitionRelationship._();
+  SubstanceDefinitionRelationship._();
 
   /// [SubstanceDefinitionRelationship] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 
@@ -1154,7 +1172,7 @@ class SubstanceDefinitionRelationship
   /// [comparator] An operator for the amount, for example "average", "approximately", "less than".;
   ///
   /// [source] Supporting literature.;
-  const factory SubstanceDefinitionRelationship({
+  factory SubstanceDefinitionRelationship({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -1234,6 +1252,9 @@ class SubstanceDefinitionRelationship
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1242,10 +1263,9 @@ class SubstanceDefinitionRelationship
 
 @freezed
 @freezed
-class SubstanceDefinitionSourceMaterial
-    with _$SubstanceDefinitionSourceMaterial
-    implements BackboneElement {
-  const SubstanceDefinitionSourceMaterial._();
+class SubstanceDefinitionSourceMaterial extends BackboneElement
+    with _$SubstanceDefinitionSourceMaterial {
+  SubstanceDefinitionSourceMaterial._();
 
   /// [SubstanceDefinitionSourceMaterial] The detailed description of a substance, typically at a level beyond what is used for prescribing.
 
@@ -1267,7 +1287,7 @@ class SubstanceDefinitionSourceMaterial
   /// [part_] An anatomical origin of the source material within an organism.;
   ///
   /// [countryOfOrigin] The country or countries where the material is harvested.;
-  const factory SubstanceDefinitionSourceMaterial({
+  factory SubstanceDefinitionSourceMaterial({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -1325,6 +1345,9 @@ class SubstanceDefinitionSourceMaterial
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

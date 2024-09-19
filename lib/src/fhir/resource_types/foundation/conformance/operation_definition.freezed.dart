@@ -1060,7 +1060,7 @@ class __$$OperationDefinitionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$OperationDefinitionImpl extends _OperationDefinition {
-  const _$OperationDefinitionImpl(
+  _$OperationDefinitionImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.OperationDefinition)
       this.resourceType = R4ResourceType.OperationDefinition,
       this.id,
@@ -1749,7 +1749,7 @@ class _$OperationDefinitionImpl extends _OperationDefinition {
 }
 
 abstract class _OperationDefinition extends OperationDefinition {
-  const factory _OperationDefinition(
+  factory _OperationDefinition(
       {@JsonKey(unknownEnumValue: R4ResourceType.OperationDefinition)
       final R4ResourceType resourceType,
       final String? id,
@@ -1810,7 +1810,7 @@ abstract class _OperationDefinition extends OperationDefinition {
       final List<OperationDefinitionParameter>? parameter,
       final List<OperationDefinitionOverload>?
           overload}) = _$OperationDefinitionImpl;
-  const _OperationDefinition._() : super._();
+  _OperationDefinition._() : super._();
 
   factory _OperationDefinition.fromJson(Map<String, dynamic> json) =
       _$OperationDefinitionImpl.fromJson;
@@ -2603,7 +2603,7 @@ class __$$OperationDefinitionParameterImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$OperationDefinitionParameterImpl extends _OperationDefinitionParameter {
-  const _$OperationDefinitionParameterImpl(
+  _$OperationDefinitionParameterImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2925,7 +2925,7 @@ class _$OperationDefinitionParameterImpl extends _OperationDefinitionParameter {
 
 abstract class _OperationDefinitionParameter
     extends OperationDefinitionParameter {
-  const factory _OperationDefinitionParameter(
+  factory _OperationDefinitionParameter(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2950,7 +2950,7 @@ abstract class _OperationDefinitionParameter
       @JsonKey(name: 'part')
       final List<OperationDefinitionParameter>?
           part_}) = _$OperationDefinitionParameterImpl;
-  const _OperationDefinitionParameter._() : super._();
+  _OperationDefinitionParameter._() : super._();
 
   factory _OperationDefinitionParameter.fromJson(Map<String, dynamic> json) =
       _$OperationDefinitionParameterImpl.fromJson;
@@ -3287,7 +3287,7 @@ class __$$OperationDefinitionBindingImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$OperationDefinitionBindingImpl extends _OperationDefinitionBinding {
-  const _$OperationDefinitionBindingImpl(
+  _$OperationDefinitionBindingImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3437,7 +3437,7 @@ class _$OperationDefinitionBindingImpl extends _OperationDefinitionBinding {
 }
 
 abstract class _OperationDefinitionBinding extends OperationDefinitionBinding {
-  const factory _OperationDefinitionBinding(
+  factory _OperationDefinitionBinding(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3445,7 +3445,7 @@ abstract class _OperationDefinitionBinding extends OperationDefinitionBinding {
           @JsonKey(name: '_strength') final PrimitiveElement? strengthElement,
           required final FhirCanonical valueSet}) =
       _$OperationDefinitionBindingImpl;
-  const _OperationDefinitionBinding._() : super._();
+  _OperationDefinitionBinding._() : super._();
 
   factory _OperationDefinitionBinding.fromJson(Map<String, dynamic> json) =
       _$OperationDefinitionBindingImpl.fromJson;
@@ -3722,7 +3722,7 @@ class __$$OperationDefinitionReferencedFromImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$OperationDefinitionReferencedFromImpl
     extends _OperationDefinitionReferencedFrom {
-  const _$OperationDefinitionReferencedFromImpl(
+  _$OperationDefinitionReferencedFromImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3882,7 +3882,7 @@ class _$OperationDefinitionReferencedFromImpl
 
 abstract class _OperationDefinitionReferencedFrom
     extends OperationDefinitionReferencedFrom {
-  const factory _OperationDefinitionReferencedFrom(
+  factory _OperationDefinitionReferencedFrom(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3892,7 +3892,7 @@ abstract class _OperationDefinitionReferencedFrom
           @JsonKey(name: '_sourceId')
           final PrimitiveElement? sourceIdElement}) =
       _$OperationDefinitionReferencedFromImpl;
-  const _OperationDefinitionReferencedFrom._() : super._();
+  _OperationDefinitionReferencedFrom._() : super._();
 
   factory _OperationDefinitionReferencedFrom.fromJson(
           Map<String, dynamic> json) =
@@ -4175,7 +4175,7 @@ class __$$OperationDefinitionOverloadImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$OperationDefinitionOverloadImpl extends _OperationDefinitionOverload {
-  const _$OperationDefinitionOverloadImpl(
+  _$OperationDefinitionOverloadImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4353,7 +4353,7 @@ class _$OperationDefinitionOverloadImpl extends _OperationDefinitionOverload {
 
 abstract class _OperationDefinitionOverload
     extends OperationDefinitionOverload {
-  const factory _OperationDefinitionOverload(
+  factory _OperationDefinitionOverload(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -4363,7 +4363,7 @@ abstract class _OperationDefinitionOverload
           final String? comment,
           @JsonKey(name: '_comment') final PrimitiveElement? commentElement}) =
       _$OperationDefinitionOverloadImpl;
-  const _OperationDefinitionOverload._() : super._();
+  _OperationDefinitionOverload._() : super._();
 
   factory _OperationDefinitionOverload.fromJson(Map<String, dynamic> json) =
       _$OperationDefinitionOverloadImpl.fromJson;

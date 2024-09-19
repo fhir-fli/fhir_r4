@@ -14,9 +14,9 @@ part 'practitioner_role.g.dart';
 
 /// [PractitionerRole] A specific set of Roles/Locations/specialties/services
 @freezed
-class PractitionerRole with _$PractitionerRole implements DomainResource {
+class PractitionerRole extends DomainResource with _$PractitionerRole {
   /// [PractitionerRole] A specific set of Roles/Locations/specialties/services
-  const PractitionerRole._();
+  PractitionerRole._();
 
   /// [PractitionerRole] A specific set of Roles/Locations/specialties/services
   ///  that a practitioner may perform at an organization for a period of time.
@@ -116,7 +116,7 @@ class PractitionerRole with _$PractitionerRole implements DomainResource {
   ///
   /// [endpoint] Technical endpoints providing access to services operated for
   ///  the practitioner with this role.
-  const factory PractitionerRole({
+  factory PractitionerRole({
     @Default(R4ResourceType.PractitionerRole)
     @JsonKey(unknownEnumValue: R4ResourceType.PractitionerRole)
 
@@ -278,6 +278,9 @@ class PractitionerRole with _$PractitionerRole implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -300,8 +303,8 @@ class PractitionerRole with _$PractitionerRole implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 
   PractitionerRole updateContactPointSystem(ContactPointSystem system,
       [int index = 0]) {
@@ -383,11 +386,10 @@ class PractitionerRole with _$PractitionerRole implements DomainResource {
 
 /// [PractitionerRoleAvailableTime] A specific set of
 @freezed
-class PractitionerRoleAvailableTime
-    with _$PractitionerRoleAvailableTime
-    implements BackboneElement {
+class PractitionerRoleAvailableTime extends BackboneElement
+    with _$PractitionerRoleAvailableTime {
   /// [PractitionerRoleAvailableTime] A specific set of
-  const PractitionerRoleAvailableTime._();
+  PractitionerRoleAvailableTime._();
 
   /// [PractitionerRoleAvailableTime] A specific set of
   /// Roles/Locations/specialties/services that a practitioner may perform at an
@@ -436,7 +438,7 @@ class PractitionerRoleAvailableTime
   ///  set, then this time is ignored.
   ///
   /// [availableEndTimeElement] Extensions for availableEndTime
-  const factory PractitionerRoleAvailableTime({
+  factory PractitionerRoleAvailableTime({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -528,6 +530,9 @@ class PractitionerRoleAvailableTime
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -536,11 +541,10 @@ class PractitionerRoleAvailableTime
 
 /// [PractitionerRoleNotAvailable] A specific set of
 @freezed
-class PractitionerRoleNotAvailable
-    with _$PractitionerRoleNotAvailable
-    implements BackboneElement {
+class PractitionerRoleNotAvailable extends BackboneElement
+    with _$PractitionerRoleNotAvailable {
   /// [PractitionerRoleNotAvailable] A specific set of
-  const PractitionerRoleNotAvailable._();
+  PractitionerRoleNotAvailable._();
 
   /// [PractitionerRoleNotAvailable] A specific set of
   /// Roles/Locations/specialties/services that a practitioner may perform at an
@@ -577,7 +581,7 @@ class PractitionerRoleNotAvailable
   ///
   /// [during] Service is not available (seasonally or for a public holiday)
   ///  from this date.
-  const factory PractitionerRoleNotAvailable({
+  factory PractitionerRoleNotAvailable({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -649,6 +653,9 @@ class PractitionerRoleNotAvailable
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

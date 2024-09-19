@@ -3,11 +3,13 @@
 // ignore_for_file: leading_newlines_in_multiline_strings
 // ignore_for_file: unnecessary_statements, directives_ordering
 // ignore_for_file: always_specify_types, inference_failure_on_collection_literal
+// ignore_for_file: prefer_const_literals_to_create_immutables
+
 // Package imports:
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 
-void main() {
+void testBasicOperators() {
   group('Operators: ', () {
     test('= : ', () {
       expect(
@@ -931,7 +933,7 @@ final resource = Patient(
         rank: FhirPositiveInt(3)),
   ],
   address: [
-    const Address(
+    Address(
       period: Period(
         extension_: [
           FhirExtension(
@@ -943,7 +945,7 @@ final resource = Patient(
         ],
       ),
     ),
-    const Address(
+    Address(
       period: Period(
         extension_: [
           FhirExtension(
@@ -979,7 +981,7 @@ final resource = Patient(
         ],
       ),
     ),
-    const Address(
+    Address(
       period: Period(
         extension_: [
           FhirExtension(
@@ -993,7 +995,7 @@ final resource = Patient(
     ),
   ],
   deceasedBoolean: FhirBoolean(false),
-  name: const [
+  name: [
     HumanName(
       use: HumanNameUse.official,
       family: 'Faulkenberry',

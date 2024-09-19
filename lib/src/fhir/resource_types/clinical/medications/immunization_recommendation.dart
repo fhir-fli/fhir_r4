@@ -15,11 +15,10 @@ part 'immunization_recommendation.g.dart';
 
 /// [ImmunizationRecommendation] A patient's point-in-time set of
 @freezed
-class ImmunizationRecommendation
-    with _$ImmunizationRecommendation
-    implements DomainResource {
+class ImmunizationRecommendation extends DomainResource
+    with _$ImmunizationRecommendation {
   /// [ImmunizationRecommendation] A patient's point-in-time set of
-  const ImmunizationRecommendation._();
+  ImmunizationRecommendation._();
 
   /// [ImmunizationRecommendation] A patient's point-in-time set of
   /// recommendations (i.e. forecasting) according to a published schedule with
@@ -91,7 +90,7 @@ class ImmunizationRecommendation
   ///  ACIP).
   ///
   /// [recommendation] Vaccine administration recommendations.
-  const factory ImmunizationRecommendation({
+  factory ImmunizationRecommendation({
     @Default(R4ResourceType.ImmunizationRecommendation)
     @JsonKey(unknownEnumValue: R4ResourceType.ImmunizationRecommendation)
 
@@ -213,6 +212,9 @@ class ImmunizationRecommendation
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -235,16 +237,15 @@ class ImmunizationRecommendation
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 @freezed
 @freezed
-class ImmunizationRecommendationRecommendation
-    with _$ImmunizationRecommendationRecommendation
-    implements BackboneElement {
-  const ImmunizationRecommendationRecommendation._();
+class ImmunizationRecommendationRecommendation extends BackboneElement
+    with _$ImmunizationRecommendationRecommendation {
+  ImmunizationRecommendationRecommendation._();
 
   /// [ImmunizationRecommendationRecommendation] A patient's point-in-time set
   /// of recommendations (i.e. forecasting) according to a published schedule
@@ -325,7 +326,7 @@ class ImmunizationRecommendationRecommendation
   /// [supportingPatientInformation] Patient Information that supports the
   /// status and recommendation.  This includes patient observations, adverse
   ///  reactions and allergy/intolerance information.
-  const factory ImmunizationRecommendationRecommendation({
+  factory ImmunizationRecommendationRecommendation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -450,6 +451,9 @@ class ImmunizationRecommendationRecommendation
       _$ImmunizationRecommendationRecommendationFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -458,10 +462,9 @@ class ImmunizationRecommendationRecommendation
 
 @freezed
 @freezed
-class ImmunizationRecommendationDateCriterion
-    with _$ImmunizationRecommendationDateCriterion
-    implements BackboneElement {
-  const ImmunizationRecommendationDateCriterion._();
+class ImmunizationRecommendationDateCriterion extends BackboneElement
+    with _$ImmunizationRecommendationDateCriterion {
+  ImmunizationRecommendationDateCriterion._();
 
   /// [ImmunizationRecommendationDateCriterion] A patient's point-in-time set
   /// of recommendations (i.e. forecasting) according to a published schedule
@@ -497,7 +500,7 @@ class ImmunizationRecommendationDateCriterion
   /// [value] The date whose meaning is specified by dateCriterion.code.
   ///
   /// [valueElement] Extensions for value
-  const factory ImmunizationRecommendationDateCriterion({
+  factory ImmunizationRecommendationDateCriterion({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -554,6 +557,9 @@ class ImmunizationRecommendationDateCriterion
   factory ImmunizationRecommendationDateCriterion.fromJson(
           Map<String, dynamic> json) =>
       _$ImmunizationRecommendationDateCriterionFromJson(json);
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

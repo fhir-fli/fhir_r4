@@ -14,9 +14,9 @@ part 'patient.g.dart';
 
 /// [Patient] Demographics and other administrative information about an
 @freezed
-class Patient with _$Patient implements DomainResource {
+class Patient extends DomainResource with _$Patient {
   /// [Patient] Demographics and other administrative information about an
-  const Patient._();
+  Patient._();
 
   /// [Patient] Demographics and other administrative information about an
   ///  individual or animal receiving care or other health-related services.
@@ -138,7 +138,7 @@ class Patient with _$Patient implements DomainResource {
   ///
   /// [link] Link to another patient resource that concerns the same actual
   ///  patient.
-  const factory Patient({
+  factory Patient({
     @Default(R4ResourceType.Patient)
     @JsonKey(unknownEnumValue: R4ResourceType.Patient)
 
@@ -332,6 +332,9 @@ class Patient with _$Patient implements DomainResource {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 
@@ -682,22 +685,15 @@ class Patient with _$Patient implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) {
-    print('updating Patient version for ${toJson()}');
-    print('oldMeta: ${oldMeta?.versionId}, meta: ${meta?.versionId}');
-    final updatedMeta = updateFhirMetaVersion(oldMeta ?? meta);
-    print('updated meta: ${updatedMeta.versionId}');
-    final updatedPatient = copyWith(meta: updatedMeta);
-    print('updated Patient: ${updatedPatient.toJson()}');
-    return updatedPatient;
-  }
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [PatientContact] Demographics and other administrative information about
 @freezed
-class PatientContact with _$PatientContact implements BackboneElement {
+class PatientContact extends BackboneElement with _$PatientContact {
   /// [PatientContact] Demographics and other administrative information about
-  const PatientContact._();
+  PatientContact._();
 
   /// [PatientContact] Demographics and other administrative information about
   ///  an individual or animal receiving care or other health-related services.
@@ -746,7 +742,7 @@ class PatientContact with _$PatientContact implements BackboneElement {
   ///
   /// [period] The period during which this contact person or organization is
   ///  valid to be contacted relating to this patient.
-  const factory PatientContact({
+  factory PatientContact({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -836,6 +832,9 @@ class PatientContact with _$PatientContact implements BackboneElement {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 
@@ -990,11 +989,9 @@ class PatientContact with _$PatientContact implements BackboneElement {
 
 /// [PatientCommunication] Demographics and other administrative information
 @freezed
-class PatientCommunication
-    with _$PatientCommunication
-    implements BackboneElement {
+class PatientCommunication extends BackboneElement with _$PatientCommunication {
   /// [PatientCommunication] Demographics and other administrative information
-  const PatientCommunication._();
+  PatientCommunication._();
 
   /// [PatientCommunication] Demographics and other administrative information
   /// about an individual or animal receiving care or other health-related
@@ -1033,7 +1030,7 @@ class PatientCommunication
   ///  (over other languages he masters up a certain level).
   ///
   /// [preferredElement] Extensions for preferred
-  const factory PatientCommunication({
+  factory PatientCommunication({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1108,6 +1105,9 @@ class PatientCommunication
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1116,9 +1116,9 @@ class PatientCommunication
 
 /// [PatientLink] Demographics and other administrative information about an
 @freezed
-class PatientLink with _$PatientLink implements BackboneElement {
+class PatientLink extends BackboneElement with _$PatientLink {
   /// [PatientLink] Demographics and other administrative information about an
-  const PatientLink._();
+  PatientLink._();
 
   /// [PatientLink] Demographics and other administrative information about an
   ///  individual or animal receiving care or other health-related services.
@@ -1153,7 +1153,7 @@ class PatientLink with _$PatientLink implements BackboneElement {
   ///  resource.
   ///
   /// [typeElement] Extensions for type
-  const factory PatientLink({
+  factory PatientLink({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1224,6 +1224,9 @@ class PatientLink with _$PatientLink implements BackboneElement {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

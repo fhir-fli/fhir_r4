@@ -939,7 +939,7 @@ class __$$ConceptMapImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ConceptMapImpl extends _ConceptMap {
-  const _$ConceptMapImpl(
+  _$ConceptMapImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.ConceptMap)
       this.resourceType = R4ResourceType.ConceptMap,
       this.id,
@@ -1526,7 +1526,7 @@ class _$ConceptMapImpl extends _ConceptMap {
 }
 
 abstract class _ConceptMap extends ConceptMap {
-  const factory _ConceptMap(
+  factory _ConceptMap(
       {@JsonKey(unknownEnumValue: R4ResourceType.ConceptMap)
       final R4ResourceType resourceType,
       final String? id,
@@ -1578,7 +1578,7 @@ abstract class _ConceptMap extends ConceptMap {
       @JsonKey(name: '_targetCanonical')
       final PrimitiveElement? targetCanonicalElement,
       final List<ConceptMapGroup>? group}) = _$ConceptMapImpl;
-  const _ConceptMap._() : super._();
+  _ConceptMap._() : super._();
 
   factory _ConceptMap.fromJson(Map<String, dynamic> json) =
       _$ConceptMapImpl.fromJson;
@@ -2193,7 +2193,7 @@ class __$$ConceptMapGroupImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ConceptMapGroupImpl extends _ConceptMapGroup {
-  const _$ConceptMapGroupImpl(
+  _$ConceptMapGroupImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2412,7 +2412,7 @@ class _$ConceptMapGroupImpl extends _ConceptMapGroup {
 }
 
 abstract class _ConceptMapGroup extends ConceptMapGroup {
-  const factory _ConceptMapGroup(
+  factory _ConceptMapGroup(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2428,7 +2428,7 @@ abstract class _ConceptMapGroup extends ConceptMapGroup {
       final PrimitiveElement? targetVersionElement,
       required final List<ConceptMapElement> element,
       final ConceptMapUnmapped? unmapped}) = _$ConceptMapGroupImpl;
-  const _ConceptMapGroup._() : super._();
+  _ConceptMapGroup._() : super._();
 
   factory _ConceptMapGroup.fromJson(Map<String, dynamic> json) =
       _$ConceptMapGroupImpl.fromJson;
@@ -2746,7 +2746,7 @@ class __$$ConceptMapElementImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ConceptMapElementImpl extends _ConceptMapElement {
-  const _$ConceptMapElementImpl(
+  _$ConceptMapElementImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2917,7 +2917,7 @@ class _$ConceptMapElementImpl extends _ConceptMapElement {
 }
 
 abstract class _ConceptMapElement extends ConceptMapElement {
-  const factory _ConceptMapElement(
+  factory _ConceptMapElement(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2926,7 +2926,7 @@ abstract class _ConceptMapElement extends ConceptMapElement {
       final String? display,
       @JsonKey(name: '_display') final PrimitiveElement? displayElement,
       final List<ConceptMapTarget>? target}) = _$ConceptMapElementImpl;
-  const _ConceptMapElement._() : super._();
+  _ConceptMapElement._() : super._();
 
   factory _ConceptMapElement.fromJson(Map<String, dynamic> json) =
       _$ConceptMapElementImpl.fromJson;
@@ -3304,7 +3304,7 @@ class __$$ConceptMapTargetImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ConceptMapTargetImpl extends _ConceptMapTarget {
-  const _$ConceptMapTargetImpl(
+  _$ConceptMapTargetImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3542,7 +3542,7 @@ class _$ConceptMapTargetImpl extends _ConceptMapTarget {
 }
 
 abstract class _ConceptMapTarget extends ConceptMapTarget {
-  const factory _ConceptMapTarget(
+  factory _ConceptMapTarget(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3556,7 +3556,7 @@ abstract class _ConceptMapTarget extends ConceptMapTarget {
       @JsonKey(name: '_comment') final PrimitiveElement? commentElement,
       final List<ConceptMapDependsOn>? dependsOn,
       final List<ConceptMapDependsOn>? product}) = _$ConceptMapTargetImpl;
-  const _ConceptMapTarget._() : super._();
+  _ConceptMapTarget._() : super._();
 
   factory _ConceptMapTarget.fromJson(Map<String, dynamic> json) =
       _$ConceptMapTargetImpl.fromJson;
@@ -3914,7 +3914,7 @@ class __$$ConceptMapDependsOnImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ConceptMapDependsOnImpl extends _ConceptMapDependsOn {
-  const _$ConceptMapDependsOnImpl(
+  _$ConceptMapDependsOnImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4098,7 +4098,7 @@ class _$ConceptMapDependsOnImpl extends _ConceptMapDependsOn {
 }
 
 abstract class _ConceptMapDependsOn extends ConceptMapDependsOn {
-  const factory _ConceptMapDependsOn(
+  factory _ConceptMapDependsOn(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -4110,7 +4110,7 @@ abstract class _ConceptMapDependsOn extends ConceptMapDependsOn {
           final String? display,
           @JsonKey(name: '_display') final PrimitiveElement? displayElement}) =
       _$ConceptMapDependsOnImpl;
-  const _ConceptMapDependsOn._() : super._();
+  _ConceptMapDependsOn._() : super._();
 
   factory _ConceptMapDependsOn.fromJson(Map<String, dynamic> json) =
       _$ConceptMapDependsOnImpl.fromJson;
@@ -4453,7 +4453,7 @@ class __$$ConceptMapUnmappedImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ConceptMapUnmappedImpl extends _ConceptMapUnmapped {
-  const _$ConceptMapUnmappedImpl(
+  _$ConceptMapUnmappedImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4638,7 +4638,7 @@ class _$ConceptMapUnmappedImpl extends _ConceptMapUnmapped {
 }
 
 abstract class _ConceptMapUnmapped extends ConceptMapUnmapped {
-  const factory _ConceptMapUnmapped(
+  factory _ConceptMapUnmapped(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4649,7 +4649,7 @@ abstract class _ConceptMapUnmapped extends ConceptMapUnmapped {
       final String? display,
       @JsonKey(name: '_display') final PrimitiveElement? displayElement,
       final FhirCanonical? url}) = _$ConceptMapUnmappedImpl;
-  const _ConceptMapUnmapped._() : super._();
+  _ConceptMapUnmapped._() : super._();
 
   factory _ConceptMapUnmapped.fromJson(Map<String, dynamic> json) =
       _$ConceptMapUnmappedImpl.fromJson;

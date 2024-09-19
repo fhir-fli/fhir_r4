@@ -14,9 +14,9 @@ part 'marketing_status.g.dart';
 
 /// [MarketingStatus] The marketing status describes the date when a
 @freezed
-class MarketingStatus with _$MarketingStatus implements Element {
+class MarketingStatus extends Element with _$MarketingStatus {
   /// [MarketingStatus] The marketing status describes the date when a
-  const MarketingStatus._();
+  MarketingStatus._();
 
   /// [MarketingStatus] The marketing status describes the date when a
   /// medicinal product is actually put on the market or the date as of which it
@@ -77,7 +77,7 @@ class MarketingStatus with _$MarketingStatus implements Element {
   ///  chain.
   ///
   /// [restoreDateElement] Extensions for restoreDate
-  const factory MarketingStatus({
+  factory MarketingStatus({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -173,6 +173,9 @@ class MarketingStatus with _$MarketingStatus implements Element {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

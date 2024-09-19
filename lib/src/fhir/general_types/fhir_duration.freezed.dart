@@ -289,7 +289,7 @@ class __$$FhirDurationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FhirDurationImpl extends _FhirDuration {
-  const _$FhirDurationImpl(
+  _$FhirDurationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       this.value,
@@ -449,7 +449,7 @@ class _$FhirDurationImpl extends _FhirDuration {
 }
 
 abstract class _FhirDuration extends FhirDuration {
-  const factory _FhirDuration(
+  factory _FhirDuration(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final FhirDecimal? value,
@@ -464,7 +464,7 @@ abstract class _FhirDuration extends FhirDuration {
       final FhirCode? code,
       @JsonKey(name: '_code')
       final PrimitiveElement? codeElement}) = _$FhirDurationImpl;
-  const _FhirDuration._() : super._();
+  _FhirDuration._() : super._();
 
   factory _FhirDuration.fromJson(Map<String, dynamic> json) =
       _$FhirDurationImpl.fromJson;

@@ -295,7 +295,7 @@ class __$$UsageContextImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$UsageContextImpl extends _UsageContext {
-  const _$UsageContextImpl(
+  _$UsageContextImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       required this.code,
@@ -416,7 +416,7 @@ class _$UsageContextImpl extends _UsageContext {
 }
 
 abstract class _UsageContext extends UsageContext {
-  const factory _UsageContext(
+  factory _UsageContext(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       required final Coding code,
@@ -424,7 +424,7 @@ abstract class _UsageContext extends UsageContext {
       final Quantity? valueQuantity,
       final Range? valueRange,
       final Reference? valueReference}) = _$UsageContextImpl;
-  const _UsageContext._() : super._();
+  _UsageContext._() : super._();
 
   factory _UsageContext.fromJson(Map<String, dynamic> json) =
       _$UsageContextImpl.fromJson;

@@ -14,9 +14,9 @@ part 'coding.g.dart';
 
 /// [Coding] A reference to a code defined by a terminology system.
 @freezed
-class Coding with _$Coding implements DataType {
+class Coding extends DataType with _$Coding {
   /// [Coding] A reference to a code defined by a terminology system.
-  const Coding._();
+  Coding._();
 
   /// [Coding] A reference to a code defined by a terminology system.
   ///
@@ -59,7 +59,7 @@ class Coding with _$Coding implements DataType {
   ///  e.g. off a pick list of available items (codes or displays).
   ///
   /// [userSelectedElement] Extensions for userSelected
-  const factory Coding({
+  factory Coding({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -141,6 +141,9 @@ class Coding with _$Coding implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

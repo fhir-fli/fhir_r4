@@ -640,7 +640,7 @@ class __$$FhirEndpointImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FhirEndpointImpl extends _FhirEndpoint {
-  const _$FhirEndpointImpl(
+  _$FhirEndpointImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Endpoint)
       this.resourceType = R4ResourceType.Endpoint,
       this.id,
@@ -1068,7 +1068,7 @@ class _$FhirEndpointImpl extends _FhirEndpoint {
 }
 
 abstract class _FhirEndpoint extends FhirEndpoint {
-  const factory _FhirEndpoint(
+  factory _FhirEndpoint(
       {@JsonKey(unknownEnumValue: R4ResourceType.Endpoint)
       final R4ResourceType resourceType,
       final String? id,
@@ -1100,7 +1100,7 @@ abstract class _FhirEndpoint extends FhirEndpoint {
       final List<String>? header,
       @JsonKey(name: '_header')
       final List<PrimitiveElement>? headerElement}) = _$FhirEndpointImpl;
-  const _FhirEndpoint._() : super._();
+  _FhirEndpoint._() : super._();
 
   factory _FhirEndpoint.fromJson(Map<String, dynamic> json) =
       _$FhirEndpointImpl.fromJson;

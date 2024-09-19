@@ -180,7 +180,7 @@ class __$$NarrativeImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$NarrativeImpl extends _Narrative {
-  const _$NarrativeImpl(
+  _$NarrativeImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: NarrativeStatus.unknown) this.status,
@@ -283,14 +283,14 @@ class _$NarrativeImpl extends _Narrative {
 }
 
 abstract class _Narrative extends Narrative {
-  const factory _Narrative(
+  factory _Narrative(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: NarrativeStatus.unknown)
       final NarrativeStatus? status,
       @JsonKey(name: '_status') final PrimitiveElement? statusElement,
       required final FhirXhtml div}) = _$NarrativeImpl;
-  const _Narrative._() : super._();
+  _Narrative._() : super._();
 
   factory _Narrative.fromJson(Map<String, dynamic> json) =
       _$NarrativeImpl.fromJson;

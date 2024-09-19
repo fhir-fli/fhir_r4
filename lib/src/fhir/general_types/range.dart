@@ -14,9 +14,9 @@ part 'range.g.dart';
 
 /// [Range] A set of ordered Quantities defined by a low and high limit.
 @freezed
-class Range with _$Range implements DataType {
+class Range extends DataType with _$Range {
   /// [Range] A set of ordered Quantities defined by a low and high limit.
-  const Range._();
+  Range._();
 
   /// [Range] A set of ordered Quantities defined by a low and high limit.
   ///
@@ -33,7 +33,7 @@ class Range with _$Range implements DataType {
   /// [low] The low limit. The boundary is inclusive.
   ///
   /// [high] The high limit. The boundary is inclusive.
-  const factory Range({
+  factory Range({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -80,6 +80,9 @@ class Range with _$Range implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

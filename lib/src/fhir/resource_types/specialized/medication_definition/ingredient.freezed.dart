@@ -532,7 +532,7 @@ class __$$IngredientImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$IngredientImpl extends _Ingredient {
-  const _$IngredientImpl(
+  _$IngredientImpl(
       {this.resourceType = R4ResourceType.Ingredient,
       this.id,
       this.meta,
@@ -813,7 +813,7 @@ class _$IngredientImpl extends _Ingredient {
 }
 
 abstract class _Ingredient extends Ingredient {
-  const factory _Ingredient(
+  factory _Ingredient(
       {final R4ResourceType resourceType,
       final String? id,
       final FhirMeta? meta,
@@ -838,7 +838,7 @@ abstract class _Ingredient extends Ingredient {
       final PrimitiveElement? allergenicIndicatorElement,
       final List<IngredientManufacturer>? manufacturer,
       required final IngredientSubstance substance}) = _$IngredientImpl;
-  const _Ingredient._() : super._();
+  _Ingredient._() : super._();
 
   factory _Ingredient.fromJson(Map<String, dynamic> json) =
       _$IngredientImpl.fromJson;
@@ -1138,7 +1138,7 @@ class __$$IngredientManufacturerImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$IngredientManufacturerImpl extends _IngredientManufacturer {
-  const _$IngredientManufacturerImpl(
+  _$IngredientManufacturerImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1248,14 +1248,14 @@ class _$IngredientManufacturerImpl extends _IngredientManufacturer {
 }
 
 abstract class _IngredientManufacturer extends IngredientManufacturer {
-  const factory _IngredientManufacturer(
+  factory _IngredientManufacturer(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirCode? role,
       @JsonKey(name: '_role') final PrimitiveElement? roleElement,
       required final Reference manufacturer}) = _$IngredientManufacturerImpl;
-  const _IngredientManufacturer._() : super._();
+  _IngredientManufacturer._() : super._();
 
   factory _IngredientManufacturer.fromJson(Map<String, dynamic> json) =
       _$IngredientManufacturerImpl.fromJson;
@@ -1466,7 +1466,7 @@ class __$$IngredientSubstanceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$IngredientSubstanceImpl extends _IngredientSubstance {
-  const _$IngredientSubstanceImpl(
+  _$IngredientSubstanceImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1578,13 +1578,13 @@ class _$IngredientSubstanceImpl extends _IngredientSubstance {
 }
 
 abstract class _IngredientSubstance extends IngredientSubstance {
-  const factory _IngredientSubstance(
+  factory _IngredientSubstance(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required final CodeableReference code,
       final List<IngredientStrength>? strength}) = _$IngredientSubstanceImpl;
-  const _IngredientSubstance._() : super._();
+  _IngredientSubstance._() : super._();
 
   factory _IngredientSubstance.fromJson(Map<String, dynamic> json) =
       _$IngredientSubstanceImpl.fromJson;
@@ -2009,7 +2009,7 @@ class __$$IngredientStrengthImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$IngredientStrengthImpl extends _IngredientStrength {
-  const _$IngredientStrengthImpl(
+  _$IngredientStrengthImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2220,7 +2220,7 @@ class _$IngredientStrengthImpl extends _IngredientStrength {
 }
 
 abstract class _IngredientStrength extends IngredientStrength {
-  const factory _IngredientStrength(
+  factory _IngredientStrength(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2240,7 +2240,7 @@ abstract class _IngredientStrength extends IngredientStrength {
           final List<CodeableConcept>? country,
           final List<IngredientReferenceStrength>? referenceStrength}) =
       _$IngredientStrengthImpl;
-  const _IngredientStrength._() : super._();
+  _IngredientStrength._() : super._();
 
   factory _IngredientStrength.fromJson(Map<String, dynamic> json) =
       _$IngredientStrengthImpl.fromJson;
@@ -2631,7 +2631,7 @@ class __$$IngredientReferenceStrengthImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$IngredientReferenceStrengthImpl extends _IngredientReferenceStrength {
-  const _$IngredientReferenceStrengthImpl(
+  _$IngredientReferenceStrengthImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2788,7 +2788,7 @@ class _$IngredientReferenceStrengthImpl extends _IngredientReferenceStrength {
 
 abstract class _IngredientReferenceStrength
     extends IngredientReferenceStrength {
-  const factory _IngredientReferenceStrength(
+  factory _IngredientReferenceStrength(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2801,7 +2801,7 @@ abstract class _IngredientReferenceStrength
           final PrimitiveElement? measurementPointElement,
           final List<CodeableConcept>? country}) =
       _$IngredientReferenceStrengthImpl;
-  const _IngredientReferenceStrength._() : super._();
+  _IngredientReferenceStrength._() : super._();
 
   factory _IngredientReferenceStrength.fromJson(Map<String, dynamic> json) =
       _$IngredientReferenceStrengthImpl.fromJson;

@@ -14,9 +14,9 @@ part 'device.g.dart';
 
 /// [Device] A type of a manufactured item that is used in the provision of
 @freezed
-class Device with _$Device implements DomainResource {
+class Device extends DomainResource with _$Device {
   /// [Device] A type of a manufactured item that is used in the provision of
-  const Device._();
+  Device._();
 
   /// [Device] A type of a manufactured item that is used in the provision of
   /// healthcare without being substantially changed through that activity. The
@@ -166,7 +166,7 @@ class Device with _$Device implements DomainResource {
   ///  device.  For example devices containing latex.
   ///
   /// [parent] The parent device.
-  const factory Device({
+  factory Device({
     @Default(R4ResourceType.Device)
     @JsonKey(unknownEnumValue: R4ResourceType.Device)
 
@@ -396,6 +396,9 @@ class Device with _$Device implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -418,8 +421,8 @@ class Device with _$Device implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 
   Device updateContactPointSystem(ContactPointSystem system, [int index = 0]) {
     if (contact == null || contact!.isEmpty) {
@@ -499,9 +502,9 @@ class Device with _$Device implements DomainResource {
 
 /// [DeviceUdiCarrier] A type of a manufactured item that is used in the
 @freezed
-class DeviceUdiCarrier with _$DeviceUdiCarrier implements BackboneElement {
+class DeviceUdiCarrier extends BackboneElement with _$DeviceUdiCarrier {
   /// [DeviceUdiCarrier] A type of a manufactured item that is used in the
-  const DeviceUdiCarrier._();
+  DeviceUdiCarrier._();
 
   /// [DeviceUdiCarrier] A type of a manufactured item that is used in the
   /// provision of healthcare without being substantially changed through that
@@ -575,7 +578,7 @@ class DeviceUdiCarrier with _$DeviceUdiCarrier implements BackboneElement {
   /// [entryType] A coded entry to indicate how the data was entered.
   ///
   /// [entryTypeElement] Extensions for entryType
-  const factory DeviceUdiCarrier({
+  factory DeviceUdiCarrier({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -695,6 +698,9 @@ class DeviceUdiCarrier with _$DeviceUdiCarrier implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -703,9 +709,9 @@ class DeviceUdiCarrier with _$DeviceUdiCarrier implements BackboneElement {
 
 /// [DeviceDeviceName] A type of a manufactured item that is used in the
 @freezed
-class DeviceDeviceName with _$DeviceDeviceName implements BackboneElement {
+class DeviceDeviceName extends BackboneElement with _$DeviceDeviceName {
   /// [DeviceDeviceName] A type of a manufactured item that is used in the
-  const DeviceDeviceName._();
+  DeviceDeviceName._();
 
   /// [DeviceDeviceName] A type of a manufactured item that is used in the
   /// provision of healthcare without being substantially changed through that
@@ -744,7 +750,7 @@ class DeviceDeviceName with _$DeviceDeviceName implements BackboneElement {
   ///  ManufactureDeviceName | ModelName.
   ///
   /// [typeElement] Extensions for type
-  const factory DeviceDeviceName({
+  factory DeviceDeviceName({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -820,6 +826,9 @@ class DeviceDeviceName with _$DeviceDeviceName implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -828,11 +837,9 @@ class DeviceDeviceName with _$DeviceDeviceName implements BackboneElement {
 
 /// [DeviceSpecialization] A type of a manufactured item that is used in the
 @freezed
-class DeviceSpecialization
-    with _$DeviceSpecialization
-    implements BackboneElement {
+class DeviceSpecialization extends BackboneElement with _$DeviceSpecialization {
   /// [DeviceSpecialization] A type of a manufactured item that is used in the
-  const DeviceSpecialization._();
+  DeviceSpecialization._();
 
   /// [DeviceSpecialization] A type of a manufactured item that is used in the
   /// provision of healthcare without being substantially changed through that
@@ -868,7 +875,7 @@ class DeviceSpecialization
   ///  communicate.
   ///
   /// [versionElement] Extensions for version
-  const factory DeviceSpecialization({
+  factory DeviceSpecialization({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -940,6 +947,9 @@ class DeviceSpecialization
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -948,9 +958,9 @@ class DeviceSpecialization
 
 /// [DeviceVersion] A type of a manufactured item that is used in the
 @freezed
-class DeviceVersion with _$DeviceVersion implements BackboneElement {
+class DeviceVersion extends BackboneElement with _$DeviceVersion {
   /// [DeviceVersion] A type of a manufactured item that is used in the
-  const DeviceVersion._();
+  DeviceVersion._();
 
   /// [DeviceVersion] A type of a manufactured item that is used in the
   /// provision of healthcare without being substantially changed through that
@@ -987,7 +997,7 @@ class DeviceVersion with _$DeviceVersion implements BackboneElement {
   /// [value] The version text.
   ///
   /// [valueElement] Extensions for value
-  const factory DeviceVersion({
+  factory DeviceVersion({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1061,6 +1071,9 @@ class DeviceVersion with _$DeviceVersion implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1069,9 +1082,9 @@ class DeviceVersion with _$DeviceVersion implements BackboneElement {
 
 /// [DeviceProperty] A type of a manufactured item that is used in the
 @freezed
-class DeviceProperty with _$DeviceProperty implements BackboneElement {
+class DeviceProperty extends BackboneElement with _$DeviceProperty {
   /// [DeviceProperty] A type of a manufactured item that is used in the
-  const DeviceProperty._();
+  DeviceProperty._();
 
   /// [DeviceProperty] A type of a manufactured item that is used in the
   /// provision of healthcare without being substantially changed through that
@@ -1107,7 +1120,7 @@ class DeviceProperty with _$DeviceProperty implements BackboneElement {
   /// [valueQuantity] Property value as a quantity.
   ///
   /// [valueCode] Property value as a code, e.g., NTP4 (synced to NTP).
-  const factory DeviceProperty({
+  factory DeviceProperty({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1178,6 +1191,9 @@ class DeviceProperty with _$DeviceProperty implements BackboneElement {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

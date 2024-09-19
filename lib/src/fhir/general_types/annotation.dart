@@ -14,9 +14,9 @@ part 'annotation.g.dart';
 
 /// [Annotation] A  text note which also  contains information about who made
 @freezed
-class Annotation with _$Annotation implements DataType {
+class Annotation extends DataType with _$Annotation {
   /// [Annotation] A  text note which also  contains information about who made
-  const Annotation._();
+  Annotation._();
 
   /// [Annotation] A  text note which also  contains information about who made
   ///  the statement and when.
@@ -44,7 +44,7 @@ class Annotation with _$Annotation implements DataType {
   /// [text] The text of the annotation in markdown format.
   ///
   /// [textElement] Extensions for text
-  const factory Annotation({
+  factory Annotation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -108,6 +108,9 @@ class Annotation with _$Annotation implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

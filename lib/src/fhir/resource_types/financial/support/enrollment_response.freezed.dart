@@ -570,7 +570,7 @@ class __$$EnrollmentResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$EnrollmentResponseImpl extends _EnrollmentResponse {
-  const _$EnrollmentResponseImpl(
+  _$EnrollmentResponseImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.EnrollmentResponse)
       this.resourceType = R4ResourceType.EnrollmentResponse,
       this.id,
@@ -891,7 +891,7 @@ class _$EnrollmentResponseImpl extends _EnrollmentResponse {
 }
 
 abstract class _EnrollmentResponse extends EnrollmentResponse {
-  const factory _EnrollmentResponse(
+  factory _EnrollmentResponse(
       {@JsonKey(unknownEnumValue: R4ResourceType.EnrollmentResponse)
       final R4ResourceType resourceType,
       final String? id,
@@ -917,7 +917,7 @@ abstract class _EnrollmentResponse extends EnrollmentResponse {
       @JsonKey(name: '_created') final PrimitiveElement? createdElement,
       final Reference? organization,
       final Reference? requestProvider}) = _$EnrollmentResponseImpl;
-  const _EnrollmentResponse._() : super._();
+  _EnrollmentResponse._() : super._();
 
   factory _EnrollmentResponse.fromJson(Map<String, dynamic> json) =
       _$EnrollmentResponseImpl.fromJson;

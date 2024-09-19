@@ -15,9 +15,9 @@ part 'medication_knowledge.g.dart';
 
 /// [MedicationKnowledge] Information about a medication that is used to
 @freezed
-class MedicationKnowledge with _$MedicationKnowledge implements DomainResource {
+class MedicationKnowledge extends DomainResource with _$MedicationKnowledge {
   /// [MedicationKnowledge] Information about a medication that is used to
-  const MedicationKnowledge._();
+  MedicationKnowledge._();
 
   /// [MedicationKnowledge] Information about a medication that is used to
   ///  support knowledge.
@@ -150,7 +150,7 @@ class MedicationKnowledge with _$MedicationKnowledge implements DomainResource {
   ///
   /// [kinetics] The time course of drug absorption, distribution, metabolism
   ///  and excretion of a medication from the body.
-  const factory MedicationKnowledge({
+  factory MedicationKnowledge({
     @Default(R4ResourceType.MedicationKnowledge)
     @JsonKey(unknownEnumValue: R4ResourceType.MedicationKnowledge)
 
@@ -355,6 +355,9 @@ class MedicationKnowledge with _$MedicationKnowledge implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -377,16 +380,15 @@ class MedicationKnowledge with _$MedicationKnowledge implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 @freezed
 @freezed
-class MedicationKnowledgeRelatedMedicationKnowledge
-    with _$MedicationKnowledgeRelatedMedicationKnowledge
-    implements BackboneElement {
-  const MedicationKnowledgeRelatedMedicationKnowledge._();
+class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement
+    with _$MedicationKnowledgeRelatedMedicationKnowledge {
+  MedicationKnowledgeRelatedMedicationKnowledge._();
 
   /// [MedicationKnowledgeRelatedMedicationKnowledge] Information about a
   ///  medication that is used to support knowledge.
@@ -419,7 +421,7 @@ class MedicationKnowledgeRelatedMedicationKnowledge
   ///
   /// [reference] Associated documentation about the associated medication
   ///  knowledge.
-  const factory MedicationKnowledgeRelatedMedicationKnowledge({
+  factory MedicationKnowledgeRelatedMedicationKnowledge({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -476,6 +478,9 @@ class MedicationKnowledgeRelatedMedicationKnowledge
       _$MedicationKnowledgeRelatedMedicationKnowledgeFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -487,11 +492,10 @@ class MedicationKnowledgeRelatedMedicationKnowledge
 
 /// [MedicationKnowledgeMonograph] Information about a medication that is
 @freezed
-class MedicationKnowledgeMonograph
-    with _$MedicationKnowledgeMonograph
-    implements BackboneElement {
+class MedicationKnowledgeMonograph extends BackboneElement
+    with _$MedicationKnowledgeMonograph {
   /// [MedicationKnowledgeMonograph] Information about a medication that is
-  const MedicationKnowledgeMonograph._();
+  MedicationKnowledgeMonograph._();
 
   /// [MedicationKnowledgeMonograph] Information about a medication that is
   ///  used to support knowledge.
@@ -524,7 +528,7 @@ class MedicationKnowledgeMonograph
   ///  professional monograph, patient education monograph).
   ///
   /// [source] Associated documentation about the medication.
-  const factory MedicationKnowledgeMonograph({
+  factory MedicationKnowledgeMonograph({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -591,6 +595,9 @@ class MedicationKnowledgeMonograph
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -602,11 +609,10 @@ class MedicationKnowledgeMonograph
 
 /// [MedicationKnowledgeIngredient] Information about a medication that is
 @freezed
-class MedicationKnowledgeIngredient
-    with _$MedicationKnowledgeIngredient
-    implements BackboneElement {
+class MedicationKnowledgeIngredient extends BackboneElement
+    with _$MedicationKnowledgeIngredient {
   /// [MedicationKnowledgeIngredient] Information about a medication that is
-  const MedicationKnowledgeIngredient._();
+  MedicationKnowledgeIngredient._();
 
   /// [MedicationKnowledgeIngredient] Information about a medication that is
   ///  used to support knowledge.
@@ -649,7 +655,7 @@ class MedicationKnowledgeIngredient
   /// [strength] Specifies how many (or how much) of the items there are in
   /// this Medication.  For example, 250 mg per tablet.  This is expressed as a
   ///  ratio where the numerator is 250mg and the denominator is 1 tablet.
-  const factory MedicationKnowledgeIngredient({
+  factory MedicationKnowledgeIngredient({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -729,6 +735,9 @@ class MedicationKnowledgeIngredient
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -740,11 +749,10 @@ class MedicationKnowledgeIngredient
 
 /// [MedicationKnowledgeCost] Information about a medication that is used to
 @freezed
-class MedicationKnowledgeCost
-    with _$MedicationKnowledgeCost
-    implements BackboneElement {
+class MedicationKnowledgeCost extends BackboneElement
+    with _$MedicationKnowledgeCost {
   /// [MedicationKnowledgeCost] Information about a medication that is used to
-  const MedicationKnowledgeCost._();
+  MedicationKnowledgeCost._();
 
   /// [MedicationKnowledgeCost] Information about a medication that is used to
   ///  support knowledge.
@@ -781,7 +789,7 @@ class MedicationKnowledgeCost
   /// [sourceElement] Extensions for source
   ///
   /// [cost] The price of the medication.
-  const factory MedicationKnowledgeCost({
+  factory MedicationKnowledgeCost({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -854,6 +862,9 @@ class MedicationKnowledgeCost
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -862,10 +873,9 @@ class MedicationKnowledgeCost
 
 @freezed
 @freezed
-class MedicationKnowledgeMonitoringProgram
-    with _$MedicationKnowledgeMonitoringProgram
-    implements BackboneElement {
-  const MedicationKnowledgeMonitoringProgram._();
+class MedicationKnowledgeMonitoringProgram extends BackboneElement
+    with _$MedicationKnowledgeMonitoringProgram {
+  MedicationKnowledgeMonitoringProgram._();
 
   /// [MedicationKnowledgeMonitoringProgram] Information about a medication
   ///  that is used to support knowledge.
@@ -899,7 +909,7 @@ class MedicationKnowledgeMonitoringProgram
   /// [name] Name of the reviewing program.
   ///
   /// [nameElement] Extensions for name
-  const factory MedicationKnowledgeMonitoringProgram({
+  factory MedicationKnowledgeMonitoringProgram({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -957,6 +967,9 @@ class MedicationKnowledgeMonitoringProgram
       _$MedicationKnowledgeMonitoringProgramFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -965,10 +978,9 @@ class MedicationKnowledgeMonitoringProgram
 
 @freezed
 @freezed
-class MedicationKnowledgeAdministrationGuidelines
-    with _$MedicationKnowledgeAdministrationGuidelines
-    implements BackboneElement {
-  const MedicationKnowledgeAdministrationGuidelines._();
+class MedicationKnowledgeAdministrationGuidelines extends BackboneElement
+    with _$MedicationKnowledgeAdministrationGuidelines {
+  MedicationKnowledgeAdministrationGuidelines._();
 
   /// [MedicationKnowledgeAdministrationGuidelines] Information about a
   ///  medication that is used to support knowledge.
@@ -1008,7 +1020,7 @@ class MedicationKnowledgeAdministrationGuidelines
   /// [patientCharacteristics] Characteristics of the patient that are relevant
   /// to the administration guidelines (for example, height, weight, gender,
   ///  etc.).
-  const factory MedicationKnowledgeAdministrationGuidelines({
+  factory MedicationKnowledgeAdministrationGuidelines({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1073,6 +1085,9 @@ class MedicationKnowledgeAdministrationGuidelines
       _$MedicationKnowledgeAdministrationGuidelinesFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1084,11 +1099,10 @@ class MedicationKnowledgeAdministrationGuidelines
 
 /// [MedicationKnowledgeDosage] Information about a medication that is used
 @freezed
-class MedicationKnowledgeDosage
-    with _$MedicationKnowledgeDosage
-    implements BackboneElement {
+class MedicationKnowledgeDosage extends BackboneElement
+    with _$MedicationKnowledgeDosage {
   /// [MedicationKnowledgeDosage] Information about a medication that is used
-  const MedicationKnowledgeDosage._();
+  MedicationKnowledgeDosage._();
 
   /// [MedicationKnowledgeDosage] Information about a medication that is used
   ///  to support knowledge.
@@ -1121,7 +1135,7 @@ class MedicationKnowledgeDosage
   ///  therapeutic, etc.).
   ///
   /// [dosage] Dosage for the medication for the specific guidelines.
-  const factory MedicationKnowledgeDosage({
+  factory MedicationKnowledgeDosage({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1188,6 +1202,9 @@ class MedicationKnowledgeDosage
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1196,10 +1213,9 @@ class MedicationKnowledgeDosage
 
 @freezed
 @freezed
-class MedicationKnowledgePatientCharacteristics
-    with _$MedicationKnowledgePatientCharacteristics
-    implements BackboneElement {
-  const MedicationKnowledgePatientCharacteristics._();
+class MedicationKnowledgePatientCharacteristics extends BackboneElement
+    with _$MedicationKnowledgePatientCharacteristics {
+  MedicationKnowledgePatientCharacteristics._();
 
   /// [MedicationKnowledgePatientCharacteristics] Information about a
   ///  medication that is used to support knowledge.
@@ -1237,7 +1253,7 @@ class MedicationKnowledgePatientCharacteristics
   /// [value] The specific characteristic (e.g. height, weight, gender, etc.).
   ///
   /// [valueElement] Extensions for value
-  const factory MedicationKnowledgePatientCharacteristics({
+  factory MedicationKnowledgePatientCharacteristics({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1300,6 +1316,9 @@ class MedicationKnowledgePatientCharacteristics
       _$MedicationKnowledgePatientCharacteristicsFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1308,10 +1327,9 @@ class MedicationKnowledgePatientCharacteristics
 
 @freezed
 @freezed
-class MedicationKnowledgeMedicineClassification
-    with _$MedicationKnowledgeMedicineClassification
-    implements BackboneElement {
-  const MedicationKnowledgeMedicineClassification._();
+class MedicationKnowledgeMedicineClassification extends BackboneElement
+    with _$MedicationKnowledgeMedicineClassification {
+  MedicationKnowledgeMedicineClassification._();
 
   /// [MedicationKnowledgeMedicineClassification] Information about a
   ///  medication that is used to support knowledge.
@@ -1345,7 +1363,7 @@ class MedicationKnowledgeMedicineClassification
   ///
   /// [classification] Specific category assigned to the medication (e.g.
   ///  anti-infective, anti-hypertensive, antibiotic, etc.).
-  const factory MedicationKnowledgeMedicineClassification({
+  factory MedicationKnowledgeMedicineClassification({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1402,6 +1420,9 @@ class MedicationKnowledgeMedicineClassification
       _$MedicationKnowledgeMedicineClassificationFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1413,11 +1434,10 @@ class MedicationKnowledgeMedicineClassification
 
 /// [MedicationKnowledgePackaging] Information about a medication that is
 @freezed
-class MedicationKnowledgePackaging
-    with _$MedicationKnowledgePackaging
-    implements BackboneElement {
+class MedicationKnowledgePackaging extends BackboneElement
+    with _$MedicationKnowledgePackaging {
   /// [MedicationKnowledgePackaging] Information about a medication that is
-  const MedicationKnowledgePackaging._();
+  MedicationKnowledgePackaging._();
 
   /// [MedicationKnowledgePackaging] Information about a medication that is
   ///  used to support knowledge.
@@ -1451,7 +1471,7 @@ class MedicationKnowledgePackaging
   ///
   /// [quantity] The number of product units the package would contain if fully
   ///  loaded.
-  const factory MedicationKnowledgePackaging({
+  factory MedicationKnowledgePackaging({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1519,6 +1539,9 @@ class MedicationKnowledgePackaging
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1527,10 +1550,9 @@ class MedicationKnowledgePackaging
 
 @freezed
 @freezed
-class MedicationKnowledgeDrugCharacteristic
-    with _$MedicationKnowledgeDrugCharacteristic
-    implements BackboneElement {
-  const MedicationKnowledgeDrugCharacteristic._();
+class MedicationKnowledgeDrugCharacteristic extends BackboneElement
+    with _$MedicationKnowledgeDrugCharacteristic {
+  MedicationKnowledgeDrugCharacteristic._();
 
   /// [MedicationKnowledgeDrugCharacteristic] Information about a medication
   ///  that is used to support knowledge.
@@ -1573,7 +1595,7 @@ class MedicationKnowledgeDrugCharacteristic
   /// [valueBase64Binary] Description of the characteristic.
   ///
   /// [valueBase64BinaryElement] Extensions for valueBase64Binary
-  const factory MedicationKnowledgeDrugCharacteristic({
+  factory MedicationKnowledgeDrugCharacteristic({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1645,6 +1667,9 @@ class MedicationKnowledgeDrugCharacteristic
       _$MedicationKnowledgeDrugCharacteristicFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1656,11 +1681,10 @@ class MedicationKnowledgeDrugCharacteristic
 
 /// [MedicationKnowledgeRegulatory] Information about a medication that is
 @freezed
-class MedicationKnowledgeRegulatory
-    with _$MedicationKnowledgeRegulatory
-    implements BackboneElement {
+class MedicationKnowledgeRegulatory extends BackboneElement
+    with _$MedicationKnowledgeRegulatory {
   /// [MedicationKnowledgeRegulatory] Information about a medication that is
-  const MedicationKnowledgeRegulatory._();
+  MedicationKnowledgeRegulatory._();
 
   /// [MedicationKnowledgeRegulatory] Information about a medication that is
   ///  used to support knowledge.
@@ -1698,7 +1722,7 @@ class MedicationKnowledgeRegulatory
   ///
   /// [maxDispense] The maximum number of units of the medication that can be
   ///  dispensed in a period.
-  const factory MedicationKnowledgeRegulatory({
+  factory MedicationKnowledgeRegulatory({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1772,6 +1796,9 @@ class MedicationKnowledgeRegulatory
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1783,11 +1810,10 @@ class MedicationKnowledgeRegulatory
 
 /// [MedicationKnowledgeSubstitution] Information about a medication that is
 @freezed
-class MedicationKnowledgeSubstitution
-    with _$MedicationKnowledgeSubstitution
-    implements BackboneElement {
+class MedicationKnowledgeSubstitution extends BackboneElement
+    with _$MedicationKnowledgeSubstitution {
   /// [MedicationKnowledgeSubstitution] Information about a medication that is
-  const MedicationKnowledgeSubstitution._();
+  MedicationKnowledgeSubstitution._();
 
   /// [MedicationKnowledgeSubstitution] Information about a medication that is
   ///  used to support knowledge.
@@ -1822,7 +1848,7 @@ class MedicationKnowledgeSubstitution
   ///  when dispensing.
   ///
   /// [allowedElement] Extensions for allowed
-  const factory MedicationKnowledgeSubstitution({
+  factory MedicationKnowledgeSubstitution({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1893,6 +1919,9 @@ class MedicationKnowledgeSubstitution
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1904,11 +1933,10 @@ class MedicationKnowledgeSubstitution
 
 /// [MedicationKnowledgeSchedule] Information about a medication that is
 @freezed
-class MedicationKnowledgeSchedule
-    with _$MedicationKnowledgeSchedule
-    implements BackboneElement {
+class MedicationKnowledgeSchedule extends BackboneElement
+    with _$MedicationKnowledgeSchedule {
   /// [MedicationKnowledgeSchedule] Information about a medication that is
-  const MedicationKnowledgeSchedule._();
+  MedicationKnowledgeSchedule._();
 
   /// [MedicationKnowledgeSchedule] Information about a medication that is
   ///  used to support knowledge.
@@ -1938,7 +1966,7 @@ class MedicationKnowledgeSchedule
   ///  modifierExtension itself).
   ///
   /// [schedule] Specifies the specific drug schedule.
-  const factory MedicationKnowledgeSchedule({
+  factory MedicationKnowledgeSchedule({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2001,6 +2029,9 @@ class MedicationKnowledgeSchedule
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2012,11 +2043,10 @@ class MedicationKnowledgeSchedule
 
 /// [MedicationKnowledgeMaxDispense] Information about a medication that is
 @freezed
-class MedicationKnowledgeMaxDispense
-    with _$MedicationKnowledgeMaxDispense
-    implements BackboneElement {
+class MedicationKnowledgeMaxDispense extends BackboneElement
+    with _$MedicationKnowledgeMaxDispense {
   /// [MedicationKnowledgeMaxDispense] Information about a medication that is
-  const MedicationKnowledgeMaxDispense._();
+  MedicationKnowledgeMaxDispense._();
 
   /// [MedicationKnowledgeMaxDispense] Information about a medication that is
   ///  used to support knowledge.
@@ -2049,7 +2079,7 @@ class MedicationKnowledgeMaxDispense
   ///  dispensed.
   ///
   /// [period] The period that applies to the maximum number of units.
-  const factory MedicationKnowledgeMaxDispense({
+  factory MedicationKnowledgeMaxDispense({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2117,6 +2147,9 @@ class MedicationKnowledgeMaxDispense
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2128,11 +2161,10 @@ class MedicationKnowledgeMaxDispense
 
 /// [MedicationKnowledgeKinetics] Information about a medication that is
 @freezed
-class MedicationKnowledgeKinetics
-    with _$MedicationKnowledgeKinetics
-    implements BackboneElement {
+class MedicationKnowledgeKinetics extends BackboneElement
+    with _$MedicationKnowledgeKinetics {
   /// [MedicationKnowledgeKinetics] Information about a medication that is
-  const MedicationKnowledgeKinetics._();
+  MedicationKnowledgeKinetics._();
 
   /// [MedicationKnowledgeKinetics] Information about a medication that is
   ///  used to support knowledge.
@@ -2168,7 +2200,7 @@ class MedicationKnowledgeKinetics
   ///
   /// [halfLifePeriod] The time required for any specified property (e.g., the
   ///  concentration of a substance in the body) to decrease by half.
-  const factory MedicationKnowledgeKinetics({
+  factory MedicationKnowledgeKinetics({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2237,6 +2269,9 @@ class MedicationKnowledgeKinetics
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

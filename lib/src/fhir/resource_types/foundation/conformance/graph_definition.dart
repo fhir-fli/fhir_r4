@@ -15,9 +15,9 @@ part 'graph_definition.g.dart';
 
 /// [GraphDefinition] A formal computable definition of a graph of resources
 @freezed
-class GraphDefinition with _$GraphDefinition implements DomainResource {
+class GraphDefinition extends DomainResource with _$GraphDefinition {
   /// [GraphDefinition] A formal computable definition of a graph of resources
-  const GraphDefinition._();
+  GraphDefinition._();
 
   /// [GraphDefinition] A formal computable definition of a graph of resources
   /// - that is, a coherent set of resources that form a graph by following
@@ -155,7 +155,7 @@ class GraphDefinition with _$GraphDefinition implements DomainResource {
   /// [profile] The profile that describes the use of the base resource.
   ///
   /// [link] Links this graph makes rules about.
-  const factory GraphDefinition({
+  factory GraphDefinition({
     @Default(R4ResourceType.GraphDefinition)
     @JsonKey(unknownEnumValue: R4ResourceType.GraphDefinition)
 
@@ -361,6 +361,9 @@ class GraphDefinition with _$GraphDefinition implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -383,8 +386,8 @@ class GraphDefinition with _$GraphDefinition implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [GraphDefinitionLink] A formal computable definition of a graph of
@@ -392,11 +395,9 @@ class GraphDefinition with _$GraphDefinition implements DomainResource {
 
 /// [GraphDefinitionLink] A formal computable definition of a graph of
 @freezed
-class GraphDefinitionLink
-    with _$GraphDefinitionLink
-    implements BackboneElement {
+class GraphDefinitionLink extends BackboneElement with _$GraphDefinitionLink {
   /// [GraphDefinitionLink] A formal computable definition of a graph of
-  const GraphDefinitionLink._();
+  GraphDefinitionLink._();
 
   /// [GraphDefinitionLink] A formal computable definition of a graph of
   /// resources - that is, a coherent set of resources that form a graph by
@@ -450,7 +451,7 @@ class GraphDefinitionLink
   /// [descriptionElement] Extensions for description
   ///
   /// [target] Potential target for the link.
-  const factory GraphDefinitionLink({
+  factory GraphDefinitionLink({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -545,6 +546,9 @@ class GraphDefinitionLink
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -556,11 +560,10 @@ class GraphDefinitionLink
 
 /// [GraphDefinitionTarget] A formal computable definition of a graph of
 @freezed
-class GraphDefinitionTarget
-    with _$GraphDefinitionTarget
-    implements BackboneElement {
+class GraphDefinitionTarget extends BackboneElement
+    with _$GraphDefinitionTarget {
   /// [GraphDefinitionTarget] A formal computable definition of a graph of
-  const GraphDefinitionTarget._();
+  GraphDefinitionTarget._();
 
   /// [GraphDefinitionTarget] A formal computable definition of a graph of
   /// resources - that is, a coherent set of resources that form a graph by
@@ -604,7 +607,7 @@ class GraphDefinitionTarget
   /// [compartment] Compartment Consistency Rules.
   ///
   /// [link] Additional links from target resource.
-  const factory GraphDefinitionTarget({
+  factory GraphDefinitionTarget({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -685,6 +688,9 @@ class GraphDefinitionTarget
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -696,11 +702,10 @@ class GraphDefinitionTarget
 
 /// [GraphDefinitionCompartment] A formal computable definition of a graph
 @freezed
-class GraphDefinitionCompartment
-    with _$GraphDefinitionCompartment
-    implements BackboneElement {
+class GraphDefinitionCompartment extends BackboneElement
+    with _$GraphDefinitionCompartment {
   /// [GraphDefinitionCompartment] A formal computable definition of a graph
-  const GraphDefinitionCompartment._();
+  GraphDefinitionCompartment._();
 
   /// [GraphDefinitionCompartment] A formal computable definition of a graph
   /// of resources - that is, a coherent set of resources that form a graph by
@@ -752,7 +757,7 @@ class GraphDefinitionCompartment
   /// [description] Documentation for FHIRPath expression.
   ///
   /// [descriptionElement] Extensions for description
-  const factory GraphDefinitionCompartment({
+  factory GraphDefinitionCompartment({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -842,6 +847,9 @@ class GraphDefinitionCompartment
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

@@ -15,9 +15,9 @@ part 'subscription_topic.g.dart';
 
 /// [SubscriptionTopic] Describes a stream of resource state changes or events and annotated with labels useful to filter projections from this topic.
 @freezed
-class SubscriptionTopic with _$SubscriptionTopic implements DomainResource {
+class SubscriptionTopic extends DomainResource with _$SubscriptionTopic {
   /// [SubscriptionTopic] Describes a stream of resource state changes or events and annotated with labels useful to filter projections from this topic.
-  const SubscriptionTopic._();
+  SubscriptionTopic._();
 
   /// [SubscriptionTopic] Describes a stream of resource state changes or events and annotated with labels useful to filter projections from this topic.
 
@@ -113,7 +113,7 @@ class SubscriptionTopic with _$SubscriptionTopic implements DomainResource {
   /// [canFilterBy] List of properties by which Subscriptions on the SubscriptionTopic can be filtered. May be defined Search Parameters (e.g., Encounter.patient) or parameters defined within this SubscriptionTopic context (e.g., hub.event).;
   ///
   /// [notificationShape] List of properties to describe the shape (e.g., resources) included in notifications from this Subscription Topic.;
-  const factory SubscriptionTopic({
+  factory SubscriptionTopic({
     /// [resourceType] This is a SubscriptionTopic resource;
     @Default(R4ResourceType.SubscriptionTopic) R4ResourceType resourceType,
 
@@ -264,6 +264,9 @@ class SubscriptionTopic with _$SubscriptionTopic implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -286,8 +289,8 @@ class SubscriptionTopic with _$SubscriptionTopic implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [SubscriptionTopicResourceTrigger] Describes a stream of resource state changes or events and annotated with labels useful to filter projections from this topic.
@@ -295,11 +298,10 @@ class SubscriptionTopic with _$SubscriptionTopic implements DomainResource {
 
 /// [SubscriptionTopicResourceTrigger] Describes a stream of resource state changes or events and annotated with labels useful to filter projections from this topic.
 @freezed
-class SubscriptionTopicResourceTrigger
-    with _$SubscriptionTopicResourceTrigger
-    implements BackboneElement {
+class SubscriptionTopicResourceTrigger extends BackboneElement
+    with _$SubscriptionTopicResourceTrigger {
   /// [SubscriptionTopicResourceTrigger] Describes a stream of resource state changes or events and annotated with labels useful to filter projections from this topic.
-  const SubscriptionTopicResourceTrigger._();
+  SubscriptionTopicResourceTrigger._();
 
   /// [SubscriptionTopicResourceTrigger] Describes a stream of resource state changes or events and annotated with labels useful to filter projections from this topic.
 
@@ -329,7 +331,7 @@ class SubscriptionTopicResourceTrigger
   /// [fhirPathCriteria] The FHIRPath based rules that the server should use to determine when to trigger a notification for this topic.;
   ///
   /// [fhirPathCriteriaElement] (_fhirPathCriteria): Extensions for fhirPathCriteria;
-  const factory SubscriptionTopicResourceTrigger({
+  factory SubscriptionTopicResourceTrigger({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -379,6 +381,9 @@ class SubscriptionTopicResourceTrigger
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -390,11 +395,10 @@ class SubscriptionTopicResourceTrigger
 
 /// [SubscriptionTopicQueryCriteria] Describes a stream of resource state changes or events and annotated with labels useful to filter projections from this topic.
 @freezed
-class SubscriptionTopicQueryCriteria
-    with _$SubscriptionTopicQueryCriteria
-    implements BackboneElement {
+class SubscriptionTopicQueryCriteria extends BackboneElement
+    with _$SubscriptionTopicQueryCriteria {
   /// [SubscriptionTopicQueryCriteria] Describes a stream of resource state changes or events and annotated with labels useful to filter projections from this topic.
-  const SubscriptionTopicQueryCriteria._();
+  SubscriptionTopicQueryCriteria._();
 
   /// [SubscriptionTopicQueryCriteria] Describes a stream of resource state changes or events and annotated with labels useful to filter projections from this topic.
 
@@ -426,7 +430,7 @@ class SubscriptionTopicQueryCriteria
   /// [requireBoth] If set to true, both current and previous criteria must evaluate true to  trigger a notification for this topic.  Otherwise a notification for this topic will be triggered if either one evaluates to true.;
   ///
   /// [requireBothElement] (_requireBoth): Extensions for requireBoth;
-  const factory SubscriptionTopicQueryCriteria({
+  factory SubscriptionTopicQueryCriteria({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -474,6 +478,9 @@ class SubscriptionTopicQueryCriteria
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -485,11 +492,10 @@ class SubscriptionTopicQueryCriteria
 
 /// [SubscriptionTopicEventTrigger] Describes a stream of resource state changes or events and annotated with labels useful to filter projections from this topic.
 @freezed
-class SubscriptionTopicEventTrigger
-    with _$SubscriptionTopicEventTrigger
-    implements BackboneElement {
+class SubscriptionTopicEventTrigger extends BackboneElement
+    with _$SubscriptionTopicEventTrigger {
   /// [SubscriptionTopicEventTrigger] Describes a stream of resource state changes or events and annotated with labels useful to filter projections from this topic.
-  const SubscriptionTopicEventTrigger._();
+  SubscriptionTopicEventTrigger._();
 
   /// [SubscriptionTopicEventTrigger] Describes a stream of resource state changes or events and annotated with labels useful to filter projections from this topic.
 
@@ -511,7 +517,7 @@ class SubscriptionTopicEventTrigger
   /// [resource] URL of the Resource that is the focus type used in this event trigger.  Relative URLs are relative to the StructureDefinition root of the implemented FHIR version (e.g., http://hl7.org/fhir/StructureDefinition). For example, "Patient" maps to http://hl7.org/fhir/StructureDefinition/Patient.  For more information, see <a href="elementdefinition-definitions.html#ElementDefinition.type.code">ElementDefinition.type.code</a>.;
   ///
   /// [resourceElement] (_resource): Extensions for resource;
-  const factory SubscriptionTopicEventTrigger({
+  factory SubscriptionTopicEventTrigger({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -553,6 +559,9 @@ class SubscriptionTopicEventTrigger
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -564,11 +573,10 @@ class SubscriptionTopicEventTrigger
 
 /// [SubscriptionTopicCanFilterBy] Describes a stream of resource state changes or events and annotated with labels useful to filter projections from this topic.
 @freezed
-class SubscriptionTopicCanFilterBy
-    with _$SubscriptionTopicCanFilterBy
-    implements BackboneElement {
+class SubscriptionTopicCanFilterBy extends BackboneElement
+    with _$SubscriptionTopicCanFilterBy {
   /// [SubscriptionTopicCanFilterBy] Describes a stream of resource state changes or events and annotated with labels useful to filter projections from this topic.
-  const SubscriptionTopicCanFilterBy._();
+  SubscriptionTopicCanFilterBy._();
 
   /// [SubscriptionTopicCanFilterBy] Describes a stream of resource state changes or events and annotated with labels useful to filter projections from this topic.
 
@@ -600,7 +608,7 @@ class SubscriptionTopicCanFilterBy
   /// [modifier] Allowable operators to apply when determining matches (Search Modifiers).  If the filterParameter is a SearchParameter, this list of modifiers SHALL be a strict subset of the modifiers defined on that SearchParameter.;
   ///
   /// [modifierElement] (_modifier): Extensions for modifier;
-  const factory SubscriptionTopicCanFilterBy({
+  factory SubscriptionTopicCanFilterBy({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -648,6 +656,9 @@ class SubscriptionTopicCanFilterBy
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -656,10 +667,9 @@ class SubscriptionTopicCanFilterBy
 
 @freezed
 @freezed
-class SubscriptionTopicNotificationShape
-    with _$SubscriptionTopicNotificationShape
-    implements BackboneElement {
-  const SubscriptionTopicNotificationShape._();
+class SubscriptionTopicNotificationShape extends BackboneElement
+    with _$SubscriptionTopicNotificationShape {
+  SubscriptionTopicNotificationShape._();
 
   /// [SubscriptionTopicNotificationShape] Describes a stream of resource state changes or events and annotated with labels useful to filter projections from this topic.
 
@@ -683,7 +693,7 @@ class SubscriptionTopicNotificationShape
   /// [revInclude] Search-style _revinclude directives, rooted in the resource for this shape. Servers SHOULD include resources listed here, if they exist and the user is authorized to receive them.  Clients SHOULD be prepared to receive these additional resources, but SHALL function properly without them.;
   ///
   /// [revIncludeElement] (_revInclude): Extensions for revInclude;
-  const factory SubscriptionTopicNotificationShape({
+  factory SubscriptionTopicNotificationShape({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -726,6 +736,9 @@ class SubscriptionTopicNotificationShape
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

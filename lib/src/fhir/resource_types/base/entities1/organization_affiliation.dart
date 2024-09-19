@@ -14,11 +14,10 @@ part 'organization_affiliation.g.dart';
 
 /// [OrganizationAffiliation] Defines an affiliation/assotiation/relationship
 @freezed
-class OrganizationAffiliation
-    with _$OrganizationAffiliation
-    implements DomainResource {
+class OrganizationAffiliation extends DomainResource
+    with _$OrganizationAffiliation {
   /// [OrganizationAffiliation] Defines an affiliation/assotiation/relationship
-  const OrganizationAffiliation._();
+  OrganizationAffiliation._();
 
   /// [OrganizationAffiliation] Defines an affiliation/assotiation/relationship
   /// between 2 distinct oganizations, that is not a part-of
@@ -112,7 +111,7 @@ class OrganizationAffiliation
   ///
   /// [endpoint] Technical endpoints providing access to services operated for
   ///  this role.
-  const factory OrganizationAffiliation({
+  factory OrganizationAffiliation({
     @Default(R4ResourceType.OrganizationAffiliation)
     @JsonKey(unknownEnumValue: R4ResourceType.OrganizationAffiliation)
 
@@ -263,6 +262,9 @@ class OrganizationAffiliation
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -285,8 +287,8 @@ class OrganizationAffiliation
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 
   OrganizationAffiliation updateContactPointSystem(ContactPointSystem system,
       [int index = 0]) {

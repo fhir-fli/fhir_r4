@@ -15,11 +15,10 @@ part 'clinical_use_definition.g.dart';
 
 /// [ClinicalUseDefinition] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 @freezed
-class ClinicalUseDefinition
-    with _$ClinicalUseDefinition
-    implements DomainResource {
+class ClinicalUseDefinition extends DomainResource
+    with _$ClinicalUseDefinition {
   /// [ClinicalUseDefinition] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
-  const ClinicalUseDefinition._();
+  ClinicalUseDefinition._();
 
   /// [ClinicalUseDefinition] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 
@@ -69,7 +68,7 @@ class ClinicalUseDefinition
   /// [undesirableEffect] Describe the possible undesirable effects (negative outcomes) from the use of the medicinal product as treatment.;
   ///
   /// [warning] A critical piece of information about environmental, health or physical risks or hazards that serve as caution to the user. For example 'Do not operate heavy machinery', 'May cause drowsiness', or 'Get medical advice/attention if you feel unwell'.;
-  const factory ClinicalUseDefinition({
+  factory ClinicalUseDefinition({
     /// [resourceType] This is a ClinicalUseDefinition resource;
     @Default(R4ResourceType.ClinicalUseDefinition) R4ResourceType resourceType,
 
@@ -173,6 +172,9 @@ class ClinicalUseDefinition
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -195,16 +197,15 @@ class ClinicalUseDefinition
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 @freezed
 @freezed
-class ClinicalUseDefinitionContraindication
-    with _$ClinicalUseDefinitionContraindication
-    implements BackboneElement {
-  const ClinicalUseDefinitionContraindication._();
+class ClinicalUseDefinitionContraindication extends BackboneElement
+    with _$ClinicalUseDefinitionContraindication {
+  ClinicalUseDefinitionContraindication._();
 
   /// [ClinicalUseDefinitionContraindication] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 
@@ -224,7 +225,7 @@ class ClinicalUseDefinitionContraindication
   /// [indication] The indication which this is a contraidication for.;
   ///
   /// [otherTherapy] Information about the use of the medicinal product in relation to other therapies described as part of the contraindication.;
-  const factory ClinicalUseDefinitionContraindication({
+  factory ClinicalUseDefinitionContraindication({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -283,6 +284,9 @@ class ClinicalUseDefinitionContraindication
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -291,10 +295,9 @@ class ClinicalUseDefinitionContraindication
 
 @freezed
 @freezed
-class ClinicalUseDefinitionOtherTherapy
-    with _$ClinicalUseDefinitionOtherTherapy
-    implements BackboneElement {
-  const ClinicalUseDefinitionOtherTherapy._();
+class ClinicalUseDefinitionOtherTherapy extends BackboneElement
+    with _$ClinicalUseDefinitionOtherTherapy {
+  ClinicalUseDefinitionOtherTherapy._();
 
   /// [ClinicalUseDefinitionOtherTherapy] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 
@@ -308,7 +311,7 @@ class ClinicalUseDefinitionOtherTherapy
   /// [relationshipType] The type of relationship between the medicinal product indication or contraindication and another therapy.;
   ///
   /// [therapy] Reference to a specific medication (active substance, medicinal product or class of products) as part of an indication or contraindication.;
-  const factory ClinicalUseDefinitionOtherTherapy({
+  factory ClinicalUseDefinitionOtherTherapy({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -358,6 +361,9 @@ class ClinicalUseDefinitionOtherTherapy
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -369,11 +375,10 @@ class ClinicalUseDefinitionOtherTherapy
 
 /// [ClinicalUseDefinitionIndication] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 @freezed
-class ClinicalUseDefinitionIndication
-    with _$ClinicalUseDefinitionIndication
-    implements BackboneElement {
+class ClinicalUseDefinitionIndication extends BackboneElement
+    with _$ClinicalUseDefinitionIndication {
   /// [ClinicalUseDefinitionIndication] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
-  const ClinicalUseDefinitionIndication._();
+  ClinicalUseDefinitionIndication._();
 
   /// [ClinicalUseDefinitionIndication] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 
@@ -401,7 +406,7 @@ class ClinicalUseDefinitionIndication
   /// [undesirableEffect] An unwanted side effect or negative outcome that may happen if you use the drug (or other subject of this resource) for this indication.;
   ///
   /// [otherTherapy] Information about the use of the medicinal product in relation to other therapies described as part of the indication.;
-  const factory ClinicalUseDefinitionIndication({
+  factory ClinicalUseDefinitionIndication({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -471,6 +476,9 @@ class ClinicalUseDefinitionIndication
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -482,11 +490,10 @@ class ClinicalUseDefinitionIndication
 
 /// [ClinicalUseDefinitionInteraction] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 @freezed
-class ClinicalUseDefinitionInteraction
-    with _$ClinicalUseDefinitionInteraction
-    implements BackboneElement {
+class ClinicalUseDefinitionInteraction extends BackboneElement
+    with _$ClinicalUseDefinitionInteraction {
   /// [ClinicalUseDefinitionInteraction] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
-  const ClinicalUseDefinitionInteraction._();
+  ClinicalUseDefinitionInteraction._();
 
   /// [ClinicalUseDefinitionInteraction] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 
@@ -506,7 +513,7 @@ class ClinicalUseDefinitionInteraction
   /// [incidence] The incidence of the interaction, e.g. theoretical, observed.;
   ///
   /// [management] Actions for managing the interaction.;
-  const factory ClinicalUseDefinitionInteraction({
+  factory ClinicalUseDefinitionInteraction({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -565,6 +572,9 @@ class ClinicalUseDefinitionInteraction
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -576,11 +586,10 @@ class ClinicalUseDefinitionInteraction
 
 /// [ClinicalUseDefinitionInteractant] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 @freezed
-class ClinicalUseDefinitionInteractant
-    with _$ClinicalUseDefinitionInteractant
-    implements BackboneElement {
+class ClinicalUseDefinitionInteractant extends BackboneElement
+    with _$ClinicalUseDefinitionInteractant {
   /// [ClinicalUseDefinitionInteractant] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
-  const ClinicalUseDefinitionInteractant._();
+  ClinicalUseDefinitionInteractant._();
 
   /// [ClinicalUseDefinitionInteractant] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 
@@ -594,7 +603,7 @@ class ClinicalUseDefinitionInteractant
   /// [itemReference] The specific medication, food or laboratory test that interacts.;
   ///
   /// [itemCodeableConcept] The specific medication, food or laboratory test that interacts.;
-  const factory ClinicalUseDefinitionInteractant({
+  factory ClinicalUseDefinitionInteractant({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -644,6 +653,9 @@ class ClinicalUseDefinitionInteractant
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -652,10 +664,9 @@ class ClinicalUseDefinitionInteractant
 
 @freezed
 @freezed
-class ClinicalUseDefinitionUndesirableEffect
-    with _$ClinicalUseDefinitionUndesirableEffect
-    implements BackboneElement {
-  const ClinicalUseDefinitionUndesirableEffect._();
+class ClinicalUseDefinitionUndesirableEffect extends BackboneElement
+    with _$ClinicalUseDefinitionUndesirableEffect {
+  ClinicalUseDefinitionUndesirableEffect._();
 
   /// [ClinicalUseDefinitionUndesirableEffect] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 
@@ -671,7 +682,7 @@ class ClinicalUseDefinitionUndesirableEffect
   /// [classification] High level classification of the effect.;
   ///
   /// [frequencyOfOccurrence] How often the effect is seen.;
-  const factory ClinicalUseDefinitionUndesirableEffect({
+  factory ClinicalUseDefinitionUndesirableEffect({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -724,6 +735,9 @@ class ClinicalUseDefinitionUndesirableEffect
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -735,11 +749,10 @@ class ClinicalUseDefinitionUndesirableEffect
 
 /// [ClinicalUseDefinitionWarning] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 @freezed
-class ClinicalUseDefinitionWarning
-    with _$ClinicalUseDefinitionWarning
-    implements BackboneElement {
+class ClinicalUseDefinitionWarning extends BackboneElement
+    with _$ClinicalUseDefinitionWarning {
   /// [ClinicalUseDefinitionWarning] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
-  const ClinicalUseDefinitionWarning._();
+  ClinicalUseDefinitionWarning._();
 
   /// [ClinicalUseDefinitionWarning] A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure.
 
@@ -755,7 +768,7 @@ class ClinicalUseDefinitionWarning
   /// [descriptionElement] (_description): Extensions for description;
   ///
   /// [code] A coded or unformatted textual definition of this warning.;
-  const factory ClinicalUseDefinitionWarning({
+  factory ClinicalUseDefinitionWarning({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -804,6 +817,9 @@ class ClinicalUseDefinitionWarning
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

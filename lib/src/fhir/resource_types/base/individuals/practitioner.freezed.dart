@@ -542,7 +542,7 @@ class __$$PractitionerImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PractitionerImpl extends _Practitioner {
-  const _$PractitionerImpl(
+  _$PractitionerImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Practitioner)
       this.resourceType = R4ResourceType.Practitioner,
       this.id,
@@ -944,7 +944,7 @@ class _$PractitionerImpl extends _Practitioner {
 }
 
 abstract class _Practitioner extends Practitioner {
-  const factory _Practitioner(
+  factory _Practitioner(
       {@JsonKey(unknownEnumValue: R4ResourceType.Practitioner)
       final R4ResourceType resourceType,
       final String? id,
@@ -971,7 +971,7 @@ abstract class _Practitioner extends Practitioner {
       final List<Attachment>? photo,
       final List<PractitionerQualification>? qualification,
       final List<CodeableConcept>? communication}) = _$PractitionerImpl;
-  const _Practitioner._() : super._();
+  _Practitioner._() : super._();
 
   factory _Practitioner.fromJson(Map<String, dynamic> json) =
       _$PractitionerImpl.fromJson;
@@ -1386,7 +1386,7 @@ class __$$PractitionerQualificationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PractitionerQualificationImpl extends _PractitionerQualification {
-  const _$PractitionerQualificationImpl(
+  _$PractitionerQualificationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1548,7 +1548,7 @@ class _$PractitionerQualificationImpl extends _PractitionerQualification {
 }
 
 abstract class _PractitionerQualification extends PractitionerQualification {
-  const factory _PractitionerQualification(
+  factory _PractitionerQualification(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1556,7 +1556,7 @@ abstract class _PractitionerQualification extends PractitionerQualification {
       required final CodeableConcept code,
       final Period? period,
       final Reference? issuer}) = _$PractitionerQualificationImpl;
-  const _PractitionerQualification._() : super._();
+  _PractitionerQualification._() : super._();
 
   factory _PractitionerQualification.fromJson(Map<String, dynamic> json) =
       _$PractitionerQualificationImpl.fromJson;

@@ -15,9 +15,9 @@ part 'event_definition.g.dart';
 
 /// [EventDefinition] The EventDefinition resource provides a reusable
 @freezed
-class EventDefinition with _$EventDefinition implements DomainResource {
+class EventDefinition extends DomainResource with _$EventDefinition {
   /// [EventDefinition] The EventDefinition resource provides a reusable
-  const EventDefinition._();
+  EventDefinition._();
 
   /// [EventDefinition] The EventDefinition resource provides a reusable
   ///  description of when a particular event can occur.
@@ -214,7 +214,7 @@ class EventDefinition with _$EventDefinition implements DomainResource {
   /// [trigger] The trigger element defines when the event occurs. If more than
   /// one trigger condition is specified, the event fires whenever any one of
   ///  the trigger conditions is met.
-  const factory EventDefinition({
+  factory EventDefinition({
     @Default(R4ResourceType.EventDefinition)
     @JsonKey(unknownEnumValue: R4ResourceType.EventDefinition)
 
@@ -500,6 +500,9 @@ class EventDefinition with _$EventDefinition implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -522,6 +525,6 @@ class EventDefinition with _$EventDefinition implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }

@@ -374,7 +374,7 @@ class __$$DataRequirementImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DataRequirementImpl extends _DataRequirement {
-  const _$DataRequirementImpl(
+  _$DataRequirementImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       this.type,
@@ -644,7 +644,7 @@ class _$DataRequirementImpl extends _DataRequirement {
 }
 
 abstract class _DataRequirement extends DataRequirement {
-  const factory _DataRequirement(
+  factory _DataRequirement(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final FhirCode? type,
@@ -660,7 +660,7 @@ abstract class _DataRequirement extends DataRequirement {
       final FhirPositiveInt? limit,
       @JsonKey(name: '_limit') final PrimitiveElement? limitElement,
       final List<DataRequirementSort>? sort}) = _$DataRequirementImpl;
-  const _DataRequirement._() : super._();
+  _DataRequirement._() : super._();
 
   factory _DataRequirement.fromJson(Map<String, dynamic> json) =
       _$DataRequirementImpl.fromJson;
@@ -1017,7 +1017,7 @@ class __$$DataRequirementCodeFilterImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DataRequirementCodeFilterImpl extends _DataRequirementCodeFilter {
-  const _$DataRequirementCodeFilterImpl(
+  _$DataRequirementCodeFilterImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1216,7 +1216,7 @@ class _$DataRequirementCodeFilterImpl extends _DataRequirementCodeFilter {
 }
 
 abstract class _DataRequirementCodeFilter extends DataRequirementCodeFilter {
-  const factory _DataRequirementCodeFilter(
+  factory _DataRequirementCodeFilter(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1226,7 +1226,7 @@ abstract class _DataRequirementCodeFilter extends DataRequirementCodeFilter {
       @JsonKey(name: '_searchParam') final PrimitiveElement? searchParamElement,
       final FhirCanonical? valueSet,
       final List<Coding>? code}) = _$DataRequirementCodeFilterImpl;
-  const _DataRequirementCodeFilter._() : super._();
+  _DataRequirementCodeFilter._() : super._();
 
   factory _DataRequirementCodeFilter.fromJson(Map<String, dynamic> json) =
       _$DataRequirementCodeFilterImpl.fromJson;
@@ -1646,7 +1646,7 @@ class __$$DataRequirementDateFilterImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DataRequirementDateFilterImpl extends _DataRequirementDateFilter {
-  const _$DataRequirementDateFilterImpl(
+  _$DataRequirementDateFilterImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1857,7 +1857,7 @@ class _$DataRequirementDateFilterImpl extends _DataRequirementDateFilter {
 }
 
 abstract class _DataRequirementDateFilter extends DataRequirementDateFilter {
-  const factory _DataRequirementDateFilter(
+  factory _DataRequirementDateFilter(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1870,7 +1870,7 @@ abstract class _DataRequirementDateFilter extends DataRequirementDateFilter {
       final PrimitiveElement? valueDateTimeElement,
       final Period? valuePeriod,
       final FhirDuration? valueDuration}) = _$DataRequirementDateFilterImpl;
-  const _DataRequirementDateFilter._() : super._();
+  _DataRequirementDateFilter._() : super._();
 
   factory _DataRequirementDateFilter.fromJson(Map<String, dynamic> json) =
       _$DataRequirementDateFilterImpl.fromJson;
@@ -2185,7 +2185,7 @@ class __$$DataRequirementSortImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DataRequirementSortImpl extends _DataRequirementSort {
-  const _$DataRequirementSortImpl(
+  _$DataRequirementSortImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2343,7 +2343,7 @@ class _$DataRequirementSortImpl extends _DataRequirementSort {
 }
 
 abstract class _DataRequirementSort extends DataRequirementSort {
-  const factory _DataRequirementSort(
+  factory _DataRequirementSort(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2353,7 +2353,7 @@ abstract class _DataRequirementSort extends DataRequirementSort {
       final DataRequirementSortDirection? direction,
       @JsonKey(name: '_direction')
       final PrimitiveElement? directionElement}) = _$DataRequirementSortImpl;
-  const _DataRequirementSort._() : super._();
+  _DataRequirementSort._() : super._();
 
   factory _DataRequirementSort.fromJson(Map<String, dynamic> json) =
       _$DataRequirementSortImpl.fromJson;

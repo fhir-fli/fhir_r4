@@ -761,7 +761,7 @@ class __$$ClinicalImpressionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ClinicalImpressionImpl extends _ClinicalImpression {
-  const _$ClinicalImpressionImpl(
+  _$ClinicalImpressionImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.ClinicalImpression)
       this.resourceType = R4ResourceType.ClinicalImpression,
       this.id,
@@ -1151,7 +1151,7 @@ class _$ClinicalImpressionImpl extends _ClinicalImpression {
 }
 
 abstract class _ClinicalImpression extends ClinicalImpression {
-  const factory _ClinicalImpression(
+  factory _ClinicalImpression(
       {@JsonKey(unknownEnumValue: R4ResourceType.ClinicalImpression)
       final R4ResourceType resourceType,
       final String? id,
@@ -1193,7 +1193,7 @@ abstract class _ClinicalImpression extends ClinicalImpression {
       final List<Reference>? prognosisReference,
       final List<Reference>? supportingInfo,
       final List<Annotation>? note}) = _$ClinicalImpressionImpl;
-  const _ClinicalImpression._() : super._();
+  _ClinicalImpression._() : super._();
 
   factory _ClinicalImpression.fromJson(Map<String, dynamic> json) =
       _$ClinicalImpressionImpl.fromJson;
@@ -1463,7 +1463,7 @@ class __$$ClinicalImpressionInvestigationImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ClinicalImpressionInvestigationImpl
     extends _ClinicalImpressionInvestigation {
-  const _$ClinicalImpressionInvestigationImpl(
+  _$ClinicalImpressionInvestigationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1563,13 +1563,13 @@ class _$ClinicalImpressionInvestigationImpl
 
 abstract class _ClinicalImpressionInvestigation
     extends ClinicalImpressionInvestigation {
-  const factory _ClinicalImpressionInvestigation(
+  factory _ClinicalImpressionInvestigation(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required final CodeableConcept code,
       final List<Reference>? item}) = _$ClinicalImpressionInvestigationImpl;
-  const _ClinicalImpressionInvestigation._() : super._();
+  _ClinicalImpressionInvestigation._() : super._();
 
   factory _ClinicalImpressionInvestigation.fromJson(Map<String, dynamic> json) =
       _$ClinicalImpressionInvestigationImpl.fromJson;
@@ -1811,7 +1811,7 @@ class __$$ClinicalImpressionFindingImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ClinicalImpressionFindingImpl extends _ClinicalImpressionFinding {
-  const _$ClinicalImpressionFindingImpl(
+  _$ClinicalImpressionFindingImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1914,7 +1914,7 @@ class _$ClinicalImpressionFindingImpl extends _ClinicalImpressionFinding {
 }
 
 abstract class _ClinicalImpressionFinding extends ClinicalImpressionFinding {
-  const factory _ClinicalImpressionFinding(
+  factory _ClinicalImpressionFinding(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -1923,7 +1923,7 @@ abstract class _ClinicalImpressionFinding extends ClinicalImpressionFinding {
           final String? basis,
           @JsonKey(name: '_basis') final PrimitiveElement? basisElement}) =
       _$ClinicalImpressionFindingImpl;
-  const _ClinicalImpressionFinding._() : super._();
+  _ClinicalImpressionFinding._() : super._();
 
   factory _ClinicalImpressionFinding.fromJson(Map<String, dynamic> json) =
       _$ClinicalImpressionFindingImpl.fromJson;

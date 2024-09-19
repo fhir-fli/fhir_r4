@@ -325,7 +325,7 @@ class __$$IdentifierImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$IdentifierImpl extends _Identifier {
-  const _$IdentifierImpl(
+  _$IdentifierImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: IdentifierUse.unknown) this.use,
@@ -476,7 +476,7 @@ class _$IdentifierImpl extends _Identifier {
 }
 
 abstract class _Identifier extends Identifier {
-  const factory _Identifier(
+  factory _Identifier(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: IdentifierUse.unknown)
@@ -489,7 +489,7 @@ abstract class _Identifier extends Identifier {
       @JsonKey(name: '_value') final PrimitiveElement? valueElement,
       final Period? period,
       final Reference? assigner}) = _$IdentifierImpl;
-  const _Identifier._() : super._();
+  _Identifier._() : super._();
 
   factory _Identifier.fromJson(Map<String, dynamic> json) =
       _$IdentifierImpl.fromJson;

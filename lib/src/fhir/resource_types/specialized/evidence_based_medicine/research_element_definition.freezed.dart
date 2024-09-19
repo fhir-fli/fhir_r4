@@ -1056,7 +1056,7 @@ class __$$ResearchElementDefinitionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ResearchElementDefinitionImpl extends _ResearchElementDefinition {
-  const _$ResearchElementDefinitionImpl(
+  _$ResearchElementDefinitionImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.ResearchElementDefinition)
       this.resourceType = R4ResourceType.ResearchElementDefinition,
       this.id,
@@ -1639,7 +1639,7 @@ class _$ResearchElementDefinitionImpl extends _ResearchElementDefinition {
 }
 
 abstract class _ResearchElementDefinition extends ResearchElementDefinition {
-  const factory _ResearchElementDefinition(
+  factory _ResearchElementDefinition(
       {@JsonKey(unknownEnumValue: R4ResourceType.ResearchElementDefinition)
       final R4ResourceType resourceType,
       final String? id,
@@ -1711,7 +1711,7 @@ abstract class _ResearchElementDefinition extends ResearchElementDefinition {
       final PrimitiveElement? variableTypeElement,
       required final List<ResearchElementDefinitionCharacteristic>
           characteristic}) = _$ResearchElementDefinitionImpl;
-  const _ResearchElementDefinition._() : super._();
+  _ResearchElementDefinition._() : super._();
 
   factory _ResearchElementDefinition.fromJson(Map<String, dynamic> json) =
       _$ResearchElementDefinitionImpl.fromJson;
@@ -2656,7 +2656,7 @@ class __$$ResearchElementDefinitionCharacteristicImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ResearchElementDefinitionCharacteristicImpl
     extends _ResearchElementDefinitionCharacteristic {
-  const _$ResearchElementDefinitionCharacteristicImpl(
+  _$ResearchElementDefinitionCharacteristicImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2931,7 +2931,7 @@ class _$ResearchElementDefinitionCharacteristicImpl
 
 abstract class _ResearchElementDefinitionCharacteristic
     extends ResearchElementDefinitionCharacteristic {
-  const factory _ResearchElementDefinitionCharacteristic(
+  factory _ResearchElementDefinitionCharacteristic(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2972,7 +2972,7 @@ abstract class _ResearchElementDefinitionCharacteristic
           @JsonKey(name: '_participantEffectiveGroupMeasure')
           final PrimitiveElement? participantEffectiveGroupMeasureElement}) =
       _$ResearchElementDefinitionCharacteristicImpl;
-  const _ResearchElementDefinitionCharacteristic._() : super._();
+  _ResearchElementDefinitionCharacteristic._() : super._();
 
   factory _ResearchElementDefinitionCharacteristic.fromJson(
           Map<String, dynamic> json) =

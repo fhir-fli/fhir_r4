@@ -14,9 +14,9 @@ part 'nutrition_product.g.dart';
 
 /// [NutritionProduct] A food or supplement that is consumed by patients.
 @freezed
-class NutritionProduct with _$NutritionProduct implements DomainResource {
+class NutritionProduct extends DomainResource with _$NutritionProduct {
   /// [NutritionProduct] A food or supplement that is consumed by patients.
-  const NutritionProduct._();
+  NutritionProduct._();
 
   /// [NutritionProduct] A food or supplement that is consumed by patients.
   ///
@@ -62,7 +62,7 @@ class NutritionProduct with _$NutritionProduct implements DomainResource {
   /// [instance] Conveys instance-level information about this product item. One or several physical, countable instances or occurrences of the product.;
   ///
   /// [note] Comments made about the product.;
-  const factory NutritionProduct({
+  factory NutritionProduct({
     /// [resourceType] This is a NutritionProduct resource;
     @Default(R4ResourceType.NutritionProduct) R4ResourceType resourceType,
 
@@ -162,6 +162,9 @@ class NutritionProduct with _$NutritionProduct implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -184,17 +187,16 @@ class NutritionProduct with _$NutritionProduct implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [NutritionProductNutrient] A food or supplement that is consumed by patients.
 @freezed
-class NutritionProductNutrient
-    with _$NutritionProductNutrient
-    implements BackboneElement {
+class NutritionProductNutrient extends BackboneElement
+    with _$NutritionProductNutrient {
   /// [NutritionProductNutrient] A food or supplement that is consumed by patients.
-  const NutritionProductNutrient._();
+  NutritionProductNutrient._();
 
   /// [NutritionProductNutrient] A food or supplement that is consumed by patients.
   ///
@@ -208,7 +210,7 @@ class NutritionProductNutrient
   /// [item] The (relevant) nutrients in the product.;
   ///
   /// [amount] The amount of nutrient expressed in one or more units: X per pack / per serving / per dose.;
-  const factory NutritionProductNutrient({
+  factory NutritionProductNutrient({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
 
     String? id,
@@ -264,6 +266,9 @@ class NutritionProductNutrient
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -272,11 +277,10 @@ class NutritionProductNutrient
 
 /// [NutritionProductIngredient] A food or supplement that is consumed by patients.
 @freezed
-class NutritionProductIngredient
-    with _$NutritionProductIngredient
-    implements BackboneElement {
+class NutritionProductIngredient extends BackboneElement
+    with _$NutritionProductIngredient {
   /// [NutritionProductIngredient] A food or supplement that is consumed by patients.
-  const NutritionProductIngredient._();
+  NutritionProductIngredient._();
 
   /// [NutritionProductIngredient] A food or supplement that is consumed by patients.
   ///
@@ -290,7 +294,7 @@ class NutritionProductIngredient
   /// [item] The ingredient contained in the product.;
   ///
   /// [amount] The amount of ingredient that is in the product.;
-  const factory NutritionProductIngredient({
+  factory NutritionProductIngredient({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
 
     String? id,
@@ -346,6 +350,9 @@ class NutritionProductIngredient
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -354,11 +361,10 @@ class NutritionProductIngredient
 
 /// [NutritionProductCharacteristic] A food or supplement that is consumed by patients.
 @freezed
-class NutritionProductCharacteristic
-    with _$NutritionProductCharacteristic
-    implements BackboneElement {
+class NutritionProductCharacteristic extends BackboneElement
+    with _$NutritionProductCharacteristic {
   /// [NutritionProductCharacteristic] A food or supplement that is consumed by patients.
-  const NutritionProductCharacteristic._();
+  NutritionProductCharacteristic._();
 
   /// [NutritionProductCharacteristic] A food or supplement that is consumed by patients.
   ///
@@ -387,7 +393,7 @@ class NutritionProductCharacteristic
   /// [valueBoolean] The actual characteristic value corresponding to the type.;
   ///
   /// [valueBooleanElement] (_valueBoolean): Extensions for valueBoolean;
-  const factory NutritionProductCharacteristic({
+  factory NutritionProductCharacteristic({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
 
     String? id,
@@ -475,6 +481,9 @@ class NutritionProductCharacteristic
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -483,11 +492,10 @@ class NutritionProductCharacteristic
 
 /// [NutritionProductInstance] A food or supplement that is consumed by patients.
 @freezed
-class NutritionProductInstance
-    with _$NutritionProductInstance
-    implements BackboneElement {
+class NutritionProductInstance extends BackboneElement
+    with _$NutritionProductInstance {
   /// [NutritionProductInstance] A food or supplement that is consumed by patients.
-  const NutritionProductInstance._();
+  NutritionProductInstance._();
 
   /// [NutritionProductInstance] A food or supplement that is consumed by patients.
   ///
@@ -519,7 +527,7 @@ class NutritionProductInstance
   /// [useByElement] (_useBy): Extensions for useBy;
   ///
   /// [biologicalSource] An identifier that supports traceability to the biological entity that is the source of biological material in the product.;
-  const factory NutritionProductInstance({
+  factory NutritionProductInstance({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -568,6 +576,9 @@ class NutritionProductInstance
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

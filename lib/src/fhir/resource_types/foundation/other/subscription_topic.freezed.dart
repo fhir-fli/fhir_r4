@@ -827,7 +827,7 @@ class __$$SubscriptionTopicImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SubscriptionTopicImpl extends _SubscriptionTopic {
-  const _$SubscriptionTopicImpl(
+  _$SubscriptionTopicImpl(
       {this.resourceType = R4ResourceType.SubscriptionTopic,
       this.id,
       this.meta,
@@ -1332,7 +1332,7 @@ class _$SubscriptionTopicImpl extends _SubscriptionTopic {
 }
 
 abstract class _SubscriptionTopic extends SubscriptionTopic {
-  const factory _SubscriptionTopic(
+  factory _SubscriptionTopic(
       {final R4ResourceType resourceType,
       final String? id,
       final FhirMeta? meta,
@@ -1383,7 +1383,7 @@ abstract class _SubscriptionTopic extends SubscriptionTopic {
       final List<SubscriptionTopicCanFilterBy>? canFilterBy,
       final List<SubscriptionTopicNotificationShape>?
           notificationShape}) = _$SubscriptionTopicImpl;
-  const _SubscriptionTopic._() : super._();
+  _SubscriptionTopic._() : super._();
 
   factory _SubscriptionTopic.fromJson(Map<String, dynamic> json) =
       _$SubscriptionTopicImpl.fromJson;
@@ -1851,7 +1851,7 @@ class __$$SubscriptionTopicResourceTriggerImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SubscriptionTopicResourceTriggerImpl
     extends _SubscriptionTopicResourceTrigger {
-  const _$SubscriptionTopicResourceTriggerImpl(
+  _$SubscriptionTopicResourceTriggerImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2014,7 +2014,7 @@ class _$SubscriptionTopicResourceTriggerImpl
 
 abstract class _SubscriptionTopicResourceTrigger
     extends SubscriptionTopicResourceTrigger {
-  const factory _SubscriptionTopicResourceTrigger(
+  factory _SubscriptionTopicResourceTrigger(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2030,7 +2030,7 @@ abstract class _SubscriptionTopicResourceTrigger
       @JsonKey(name: '_fhirPathCriteria')
       final PrimitiveElement?
           fhirPathCriteriaElement}) = _$SubscriptionTopicResourceTriggerImpl;
-  const _SubscriptionTopicResourceTrigger._() : super._();
+  _SubscriptionTopicResourceTrigger._() : super._();
 
   factory _SubscriptionTopicResourceTrigger.fromJson(
           Map<String, dynamic> json) =
@@ -2346,7 +2346,7 @@ class __$$SubscriptionTopicQueryCriteriaImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SubscriptionTopicQueryCriteriaImpl
     extends _SubscriptionTopicQueryCriteria {
-  const _$SubscriptionTopicQueryCriteriaImpl(
+  _$SubscriptionTopicQueryCriteriaImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2492,7 +2492,7 @@ class _$SubscriptionTopicQueryCriteriaImpl
 
 abstract class _SubscriptionTopicQueryCriteria
     extends SubscriptionTopicQueryCriteria {
-  const factory _SubscriptionTopicQueryCriteria(
+  factory _SubscriptionTopicQueryCriteria(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2510,7 +2510,7 @@ abstract class _SubscriptionTopicQueryCriteria
           @JsonKey(name: '_requireBoth')
           final PrimitiveElement? requireBothElement}) =
       _$SubscriptionTopicQueryCriteriaImpl;
-  const _SubscriptionTopicQueryCriteria._() : super._();
+  _SubscriptionTopicQueryCriteria._() : super._();
 
   factory _SubscriptionTopicQueryCriteria.fromJson(Map<String, dynamic> json) =
       _$SubscriptionTopicQueryCriteriaImpl.fromJson;
@@ -2769,7 +2769,7 @@ class __$$SubscriptionTopicEventTriggerImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SubscriptionTopicEventTriggerImpl
     extends _SubscriptionTopicEventTrigger {
-  const _$SubscriptionTopicEventTriggerImpl(
+  _$SubscriptionTopicEventTriggerImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2882,7 +2882,7 @@ class _$SubscriptionTopicEventTriggerImpl
 
 abstract class _SubscriptionTopicEventTrigger
     extends SubscriptionTopicEventTrigger {
-  const factory _SubscriptionTopicEventTrigger(
+  factory _SubscriptionTopicEventTrigger(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2893,7 +2893,7 @@ abstract class _SubscriptionTopicEventTrigger
       @JsonKey(name: '_resource')
       final PrimitiveElement?
           resourceElement}) = _$SubscriptionTopicEventTriggerImpl;
-  const _SubscriptionTopicEventTrigger._() : super._();
+  _SubscriptionTopicEventTrigger._() : super._();
 
   factory _SubscriptionTopicEventTrigger.fromJson(Map<String, dynamic> json) =
       _$SubscriptionTopicEventTriggerImpl.fromJson;
@@ -3198,7 +3198,7 @@ class __$$SubscriptionTopicCanFilterByImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SubscriptionTopicCanFilterByImpl extends _SubscriptionTopicCanFilterBy {
-  const _$SubscriptionTopicCanFilterByImpl(
+  _$SubscriptionTopicCanFilterByImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3363,7 +3363,7 @@ class _$SubscriptionTopicCanFilterByImpl extends _SubscriptionTopicCanFilterBy {
 
 abstract class _SubscriptionTopicCanFilterBy
     extends SubscriptionTopicCanFilterBy {
-  const factory _SubscriptionTopicCanFilterBy(
+  factory _SubscriptionTopicCanFilterBy(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3381,7 +3381,7 @@ abstract class _SubscriptionTopicCanFilterBy
       @JsonKey(name: '_modifier')
       final List<PrimitiveElement>?
           modifierElement}) = _$SubscriptionTopicCanFilterByImpl;
-  const _SubscriptionTopicCanFilterBy._() : super._();
+  _SubscriptionTopicCanFilterBy._() : super._();
 
   factory _SubscriptionTopicCanFilterBy.fromJson(Map<String, dynamic> json) =
       _$SubscriptionTopicCanFilterByImpl.fromJson;
@@ -3641,7 +3641,7 @@ class __$$SubscriptionTopicNotificationShapeImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SubscriptionTopicNotificationShapeImpl
     extends _SubscriptionTopicNotificationShape {
-  const _$SubscriptionTopicNotificationShapeImpl(
+  _$SubscriptionTopicNotificationShapeImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3798,7 +3798,7 @@ class _$SubscriptionTopicNotificationShapeImpl
 
 abstract class _SubscriptionTopicNotificationShape
     extends SubscriptionTopicNotificationShape {
-  const factory _SubscriptionTopicNotificationShape(
+  factory _SubscriptionTopicNotificationShape(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3810,7 +3810,7 @@ abstract class _SubscriptionTopicNotificationShape
       @JsonKey(name: '_revInclude')
       final List<PrimitiveElement>?
           revIncludeElement}) = _$SubscriptionTopicNotificationShapeImpl;
-  const _SubscriptionTopicNotificationShape._() : super._();
+  _SubscriptionTopicNotificationShape._() : super._();
 
   factory _SubscriptionTopicNotificationShape.fromJson(
           Map<String, dynamic> json) =

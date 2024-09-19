@@ -623,7 +623,7 @@ class __$$BiologicallyDerivedProductImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$BiologicallyDerivedProductImpl extends _BiologicallyDerivedProduct {
-  const _$BiologicallyDerivedProductImpl(
+  _$BiologicallyDerivedProductImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.BiologicallyDerivedProduct)
       this.resourceType = R4ResourceType.BiologicallyDerivedProduct,
       this.id,
@@ -1014,7 +1014,7 @@ class _$BiologicallyDerivedProductImpl extends _BiologicallyDerivedProduct {
 }
 
 abstract class _BiologicallyDerivedProduct extends BiologicallyDerivedProduct {
-  const factory _BiologicallyDerivedProduct(
+  factory _BiologicallyDerivedProduct(
           {@JsonKey(unknownEnumValue: R4ResourceType.BiologicallyDerivedProduct)
           final R4ResourceType resourceType,
           final String? id,
@@ -1044,7 +1044,7 @@ abstract class _BiologicallyDerivedProduct extends BiologicallyDerivedProduct {
           final BiologicallyDerivedProductManipulation? manipulation,
           final List<BiologicallyDerivedProductStorage>? storage}) =
       _$BiologicallyDerivedProductImpl;
-  const _BiologicallyDerivedProduct._() : super._();
+  _BiologicallyDerivedProduct._() : super._();
 
   factory _BiologicallyDerivedProduct.fromJson(Map<String, dynamic> json) =
       _$BiologicallyDerivedProductImpl.fromJson;
@@ -1490,7 +1490,7 @@ class __$$BiologicallyDerivedProductCollectionImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BiologicallyDerivedProductCollectionImpl
     extends _BiologicallyDerivedProductCollection {
-  const _$BiologicallyDerivedProductCollectionImpl(
+  _$BiologicallyDerivedProductCollectionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1656,7 +1656,7 @@ class _$BiologicallyDerivedProductCollectionImpl
 
 abstract class _BiologicallyDerivedProductCollection
     extends BiologicallyDerivedProductCollection {
-  const factory _BiologicallyDerivedProductCollection(
+  factory _BiologicallyDerivedProductCollection(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -1667,7 +1667,7 @@ abstract class _BiologicallyDerivedProductCollection
           final PrimitiveElement? collectedDateTimeElement,
           final Period? collectedPeriod}) =
       _$BiologicallyDerivedProductCollectionImpl;
-  const _BiologicallyDerivedProductCollection._() : super._();
+  _BiologicallyDerivedProductCollection._() : super._();
 
   factory _BiologicallyDerivedProductCollection.fromJson(
           Map<String, dynamic> json) =
@@ -2050,7 +2050,7 @@ class __$$BiologicallyDerivedProductProcessingImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BiologicallyDerivedProductProcessingImpl
     extends _BiologicallyDerivedProductProcessing {
-  const _$BiologicallyDerivedProductProcessingImpl(
+  _$BiologicallyDerivedProductProcessingImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2232,7 +2232,7 @@ class _$BiologicallyDerivedProductProcessingImpl
 
 abstract class _BiologicallyDerivedProductProcessing
     extends BiologicallyDerivedProductProcessing {
-  const factory _BiologicallyDerivedProductProcessing(
+  factory _BiologicallyDerivedProductProcessing(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2244,7 +2244,7 @@ abstract class _BiologicallyDerivedProductProcessing
       @JsonKey(name: '_timeDateTime')
       final PrimitiveElement? timeDateTimeElement,
       final Period? timePeriod}) = _$BiologicallyDerivedProductProcessingImpl;
-  const _BiologicallyDerivedProductProcessing._() : super._();
+  _BiologicallyDerivedProductProcessing._() : super._();
 
   factory _BiologicallyDerivedProductProcessing.fromJson(
           Map<String, dynamic> json) =
@@ -2572,7 +2572,7 @@ class __$$BiologicallyDerivedProductManipulationImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BiologicallyDerivedProductManipulationImpl
     extends _BiologicallyDerivedProductManipulation {
-  const _$BiologicallyDerivedProductManipulationImpl(
+  _$BiologicallyDerivedProductManipulationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2739,7 +2739,7 @@ class _$BiologicallyDerivedProductManipulationImpl
 
 abstract class _BiologicallyDerivedProductManipulation
     extends BiologicallyDerivedProductManipulation {
-  const factory _BiologicallyDerivedProductManipulation(
+  factory _BiologicallyDerivedProductManipulation(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2749,7 +2749,7 @@ abstract class _BiologicallyDerivedProductManipulation
       @JsonKey(name: '_timeDateTime')
       final PrimitiveElement? timeDateTimeElement,
       final Period? timePeriod}) = _$BiologicallyDerivedProductManipulationImpl;
-  const _BiologicallyDerivedProductManipulation._() : super._();
+  _BiologicallyDerivedProductManipulation._() : super._();
 
   factory _BiologicallyDerivedProductManipulation.fromJson(
           Map<String, dynamic> json) =
@@ -3099,7 +3099,7 @@ class __$$BiologicallyDerivedProductStorageImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BiologicallyDerivedProductStorageImpl
     extends _BiologicallyDerivedProductStorage {
-  const _$BiologicallyDerivedProductStorageImpl(
+  _$BiologicallyDerivedProductStorageImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3281,7 +3281,7 @@ class _$BiologicallyDerivedProductStorageImpl
 
 abstract class _BiologicallyDerivedProductStorage
     extends BiologicallyDerivedProductStorage {
-  const factory _BiologicallyDerivedProductStorage(
+  factory _BiologicallyDerivedProductStorage(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3292,7 +3292,7 @@ abstract class _BiologicallyDerivedProductStorage
       final BiologicallyDerivedProductStorageScale? scale,
       @JsonKey(name: '_scale') final PrimitiveElement? scaleElement,
       final Period? duration}) = _$BiologicallyDerivedProductStorageImpl;
-  const _BiologicallyDerivedProductStorage._() : super._();
+  _BiologicallyDerivedProductStorage._() : super._();
 
   factory _BiologicallyDerivedProductStorage.fromJson(
           Map<String, dynamic> json) =

@@ -652,7 +652,7 @@ class __$$CatalogEntryImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CatalogEntryImpl extends _CatalogEntry {
-  const _$CatalogEntryImpl(
+  _$CatalogEntryImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.CatalogEntry)
       this.resourceType = R4ResourceType.CatalogEntry,
       this.id,
@@ -1076,7 +1076,7 @@ class _$CatalogEntryImpl extends _CatalogEntry {
 }
 
 abstract class _CatalogEntry extends CatalogEntry {
-  const factory _CatalogEntry(
+  factory _CatalogEntry(
       {@JsonKey(unknownEnumValue: R4ResourceType.CatalogEntry)
       final R4ResourceType resourceType,
       final String? id,
@@ -1107,7 +1107,7 @@ abstract class _CatalogEntry extends CatalogEntry {
       final List<CodeableConcept>? additionalCharacteristic,
       final List<CodeableConcept>? additionalClassification,
       final List<CatalogEntryRelatedEntry>? relatedEntry}) = _$CatalogEntryImpl;
-  const _CatalogEntry._() : super._();
+  _CatalogEntry._() : super._();
 
   factory _CatalogEntry.fromJson(Map<String, dynamic> json) =
       _$CatalogEntryImpl.fromJson;
@@ -1490,7 +1490,7 @@ class __$$CatalogEntryRelatedEntryImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CatalogEntryRelatedEntryImpl extends _CatalogEntryRelatedEntry {
-  const _$CatalogEntryRelatedEntryImpl(
+  _$CatalogEntryRelatedEntryImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1636,7 +1636,7 @@ class _$CatalogEntryRelatedEntryImpl extends _CatalogEntryRelatedEntry {
 }
 
 abstract class _CatalogEntryRelatedEntry extends CatalogEntryRelatedEntry {
-  const factory _CatalogEntryRelatedEntry(
+  factory _CatalogEntryRelatedEntry(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1644,7 +1644,7 @@ abstract class _CatalogEntryRelatedEntry extends CatalogEntryRelatedEntry {
       @JsonKey(name: '_relationtype')
       final PrimitiveElement? relationtypeElement,
       required final Reference item}) = _$CatalogEntryRelatedEntryImpl;
-  const _CatalogEntryRelatedEntry._() : super._();
+  _CatalogEntryRelatedEntry._() : super._();
 
   factory _CatalogEntryRelatedEntry.fromJson(Map<String, dynamic> json) =
       _$CatalogEntryRelatedEntryImpl.fromJson;

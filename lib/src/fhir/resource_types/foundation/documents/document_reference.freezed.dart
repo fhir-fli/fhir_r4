@@ -763,7 +763,7 @@ class __$$DocumentReferenceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DocumentReferenceImpl extends _DocumentReference {
-  const _$DocumentReferenceImpl(
+  _$DocumentReferenceImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.DocumentReference)
       this.resourceType = R4ResourceType.DocumentReference,
       this.id,
@@ -1222,7 +1222,7 @@ class _$DocumentReferenceImpl extends _DocumentReference {
 }
 
 abstract class _DocumentReference extends DocumentReference {
-  const factory _DocumentReference(
+  factory _DocumentReference(
       {@JsonKey(unknownEnumValue: R4ResourceType.DocumentReference)
       final R4ResourceType resourceType,
       final String? id,
@@ -1256,7 +1256,7 @@ abstract class _DocumentReference extends DocumentReference {
       final List<CodeableConcept>? securityLabel,
       required final List<DocumentReferenceContent> content,
       final DocumentReferenceContext? context}) = _$DocumentReferenceImpl;
-  const _DocumentReference._() : super._();
+  _DocumentReference._() : super._();
 
   factory _DocumentReference.fromJson(Map<String, dynamic> json) =
       _$DocumentReferenceImpl.fromJson;
@@ -1664,7 +1664,7 @@ class __$$DocumentReferenceRelatesToImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DocumentReferenceRelatesToImpl extends _DocumentReferenceRelatesTo {
-  const _$DocumentReferenceRelatesToImpl(
+  _$DocumentReferenceRelatesToImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1810,14 +1810,14 @@ class _$DocumentReferenceRelatesToImpl extends _DocumentReferenceRelatesTo {
 }
 
 abstract class _DocumentReferenceRelatesTo extends DocumentReferenceRelatesTo {
-  const factory _DocumentReferenceRelatesTo(
+  factory _DocumentReferenceRelatesTo(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirCode? code,
       @JsonKey(name: '_code') final PrimitiveElement? codeElement,
       required final Reference target}) = _$DocumentReferenceRelatesToImpl;
-  const _DocumentReferenceRelatesTo._() : super._();
+  _DocumentReferenceRelatesTo._() : super._();
 
   factory _DocumentReferenceRelatesTo.fromJson(Map<String, dynamic> json) =
       _$DocumentReferenceRelatesToImpl.fromJson;
@@ -2089,7 +2089,7 @@ class __$$DocumentReferenceContentImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DocumentReferenceContentImpl extends _DocumentReferenceContent {
-  const _$DocumentReferenceContentImpl(
+  _$DocumentReferenceContentImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2228,13 +2228,13 @@ class _$DocumentReferenceContentImpl extends _DocumentReferenceContent {
 }
 
 abstract class _DocumentReferenceContent extends DocumentReferenceContent {
-  const factory _DocumentReferenceContent(
+  factory _DocumentReferenceContent(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required final Attachment attachment,
       final Coding? format}) = _$DocumentReferenceContentImpl;
-  const _DocumentReferenceContent._() : super._();
+  _DocumentReferenceContent._() : super._();
 
   factory _DocumentReferenceContent.fromJson(Map<String, dynamic> json) =
       _$DocumentReferenceContentImpl.fromJson;
@@ -2623,7 +2623,7 @@ class __$$DocumentReferenceContextImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DocumentReferenceContextImpl extends _DocumentReferenceContext {
-  const _$DocumentReferenceContextImpl(
+  _$DocumentReferenceContextImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2843,7 +2843,7 @@ class _$DocumentReferenceContextImpl extends _DocumentReferenceContext {
 }
 
 abstract class _DocumentReferenceContext extends DocumentReferenceContext {
-  const factory _DocumentReferenceContext(
+  factory _DocumentReferenceContext(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2854,7 +2854,7 @@ abstract class _DocumentReferenceContext extends DocumentReferenceContext {
       final CodeableConcept? practiceSetting,
       final Reference? sourcePatientInfo,
       final List<Reference>? related}) = _$DocumentReferenceContextImpl;
-  const _DocumentReferenceContext._() : super._();
+  _DocumentReferenceContext._() : super._();
 
   factory _DocumentReferenceContext.fromJson(Map<String, dynamic> json) =
       _$DocumentReferenceContextImpl.fromJson;

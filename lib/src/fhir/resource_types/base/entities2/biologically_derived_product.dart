@@ -14,11 +14,10 @@ part 'biologically_derived_product.g.dart';
 
 /// [BiologicallyDerivedProduct] A material substance originating from a
 @freezed
-class BiologicallyDerivedProduct
-    with _$BiologicallyDerivedProduct
-    implements DomainResource {
+class BiologicallyDerivedProduct extends DomainResource
+    with _$BiologicallyDerivedProduct {
   /// [BiologicallyDerivedProduct] A material substance originating from a
-  const BiologicallyDerivedProduct._();
+  BiologicallyDerivedProduct._();
 
   /// [BiologicallyDerivedProduct] A material substance originating from a
   ///  biological entity intended to be transplanted or infused
@@ -114,7 +113,7 @@ class BiologicallyDerivedProduct
   ///  infusion.
   ///
   /// [storage] Product storage.
-  const factory BiologicallyDerivedProduct({
+  factory BiologicallyDerivedProduct({
     @Default(R4ResourceType.BiologicallyDerivedProduct)
     @JsonKey(unknownEnumValue: R4ResourceType.BiologicallyDerivedProduct)
 
@@ -268,6 +267,9 @@ class BiologicallyDerivedProduct
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -290,15 +292,14 @@ class BiologicallyDerivedProduct
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 @freezed
-class BiologicallyDerivedProductCollection
-    with _$BiologicallyDerivedProductCollection
-    implements BackboneElement {
-  const BiologicallyDerivedProductCollection._();
+class BiologicallyDerivedProductCollection extends BackboneElement
+    with _$BiologicallyDerivedProductCollection {
+  BiologicallyDerivedProductCollection._();
 
   /// [BiologicallyDerivedProductCollection] A material substance originating
   ///  from a biological entity intended to be transplanted or infused
@@ -338,7 +339,7 @@ class BiologicallyDerivedProductCollection
   /// [collectedDateTimeElement] Extensions for collectedDateTime
   ///
   /// [collectedPeriod] Time of product collection.
-  const factory BiologicallyDerivedProductCollection({
+  factory BiologicallyDerivedProductCollection({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -406,6 +407,9 @@ class BiologicallyDerivedProductCollection
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -413,10 +417,9 @@ class BiologicallyDerivedProductCollection
 }
 
 @freezed
-class BiologicallyDerivedProductProcessing
-    with _$BiologicallyDerivedProductProcessing
-    implements BackboneElement {
-  const BiologicallyDerivedProductProcessing._();
+class BiologicallyDerivedProductProcessing extends BackboneElement
+    with _$BiologicallyDerivedProductProcessing {
+  BiologicallyDerivedProductProcessing._();
 
   /// [BiologicallyDerivedProductProcessing] A material substance originating
   ///  from a biological entity intended to be transplanted or infused
@@ -459,7 +462,7 @@ class BiologicallyDerivedProductProcessing
   /// [timeDateTimeElement] Extensions for timeDateTime
   ///
   /// [timePeriod] Time of processing.
-  const factory BiologicallyDerivedProductProcessing({
+  factory BiologicallyDerivedProductProcessing({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -531,6 +534,9 @@ class BiologicallyDerivedProductProcessing
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -538,10 +544,9 @@ class BiologicallyDerivedProductProcessing
 }
 
 @freezed
-class BiologicallyDerivedProductManipulation
-    with _$BiologicallyDerivedProductManipulation
-    implements BackboneElement {
-  const BiologicallyDerivedProductManipulation._();
+class BiologicallyDerivedProductManipulation extends BackboneElement
+    with _$BiologicallyDerivedProductManipulation {
+  BiologicallyDerivedProductManipulation._();
 
   /// [BiologicallyDerivedProductManipulation] A material substance
   /// originating from a biological entity intended to be transplanted or
@@ -581,7 +586,7 @@ class BiologicallyDerivedProductManipulation
   /// [timeDateTimeElement] Extensions for timeDateTime
   ///
   /// [timePeriod] Time of manipulation.
-  const factory BiologicallyDerivedProductManipulation({
+  factory BiologicallyDerivedProductManipulation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -647,6 +652,9 @@ class BiologicallyDerivedProductManipulation
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -654,10 +662,9 @@ class BiologicallyDerivedProductManipulation
 }
 
 @freezed
-class BiologicallyDerivedProductStorage
-    with _$BiologicallyDerivedProductStorage
-    implements BackboneElement {
-  const BiologicallyDerivedProductStorage._();
+class BiologicallyDerivedProductStorage extends BackboneElement
+    with _$BiologicallyDerivedProductStorage {
+  BiologicallyDerivedProductStorage._();
 
   /// [BiologicallyDerivedProductStorage] A material substance originating
   ///  from a biological entity intended to be transplanted or infused
@@ -700,7 +707,7 @@ class BiologicallyDerivedProductStorage
   /// [scaleElement] Extensions for scale
   ///
   /// [duration] Storage timeperiod.
-  const factory BiologicallyDerivedProductStorage({
+  factory BiologicallyDerivedProductStorage({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -771,6 +778,9 @@ class BiologicallyDerivedProductStorage
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

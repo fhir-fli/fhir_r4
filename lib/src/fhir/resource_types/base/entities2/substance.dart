@@ -14,9 +14,9 @@ part 'substance.g.dart';
 
 /// [Substance] A homogeneous material with a definite composition.
 @freezed
-class Substance with _$Substance implements DomainResource {
+class Substance extends DomainResource with _$Substance {
   /// [Substance] A homogeneous material with a definite composition.
-  const Substance._();
+  Substance._();
 
   /// [Substance] A homogeneous material with a definite composition.
   ///
@@ -93,7 +93,7 @@ class Substance with _$Substance implements DomainResource {
   ///  specific package/container of the substance: an instance.
   ///
   /// [ingredient] A substance can be composed of other substances.
-  const factory Substance({
+  factory Substance({
     @Default(R4ResourceType.Substance)
     @JsonKey(unknownEnumValue: R4ResourceType.Substance)
     R4ResourceType resourceType,
@@ -157,6 +157,9 @@ class Substance with _$Substance implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -179,15 +182,15 @@ class Substance with _$Substance implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [SubstanceInstance] A homogeneous material with a definite composition.
 @freezed
-class SubstanceInstance with _$SubstanceInstance implements BackboneElement {
+class SubstanceInstance extends BackboneElement with _$SubstanceInstance {
   /// [SubstanceInstance] A homogeneous material with a definite composition.
-  const SubstanceInstance._();
+  SubstanceInstance._();
 
   /// [SubstanceInstance] A homogeneous material with a definite composition.
   ///
@@ -224,7 +227,7 @@ class SubstanceInstance with _$SubstanceInstance implements BackboneElement {
   /// [expiryElement] Extensions for expiry
   ///
   /// [quantity] The amount of the substance.
-  const factory SubstanceInstance({
+  factory SubstanceInstance({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -267,6 +270,9 @@ class SubstanceInstance with _$SubstanceInstance implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -275,11 +281,9 @@ class SubstanceInstance with _$SubstanceInstance implements BackboneElement {
 
 /// [SubstanceIngredient] A homogeneous material with a definite
 @freezed
-class SubstanceIngredient
-    with _$SubstanceIngredient
-    implements BackboneElement {
+class SubstanceIngredient extends BackboneElement with _$SubstanceIngredient {
   /// [SubstanceIngredient] A homogeneous material with a definite
-  const SubstanceIngredient._();
+  SubstanceIngredient._();
 
   /// [SubstanceIngredient] A homogeneous material with a definite
   ///  composition.
@@ -316,7 +320,7 @@ class SubstanceIngredient
   ///
   /// [substanceReference] Another substance that is a component of this
   ///  substance.
-  const factory SubstanceIngredient({
+  factory SubstanceIngredient({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -357,6 +361,9 @@ class SubstanceIngredient
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

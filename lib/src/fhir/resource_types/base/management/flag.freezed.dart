@@ -549,7 +549,7 @@ class __$$FlagImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FlagImpl extends _Flag {
-  const _$FlagImpl(
+  _$FlagImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Flag)
       this.resourceType = R4ResourceType.Flag,
       this.id,
@@ -860,7 +860,7 @@ class _$FlagImpl extends _Flag {
 }
 
 abstract class _Flag extends Flag {
-  const factory _Flag(
+  factory _Flag(
       {@JsonKey(unknownEnumValue: R4ResourceType.Flag)
       final R4ResourceType resourceType,
       final String? id,
@@ -883,7 +883,7 @@ abstract class _Flag extends Flag {
       final Period? period,
       final Reference? encounter,
       final Reference? author}) = _$FlagImpl;
-  const _Flag._() : super._();
+  _Flag._() : super._();
 
   factory _Flag.fromJson(Map<String, dynamic> json) = _$FlagImpl.fromJson;
 

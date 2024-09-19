@@ -564,7 +564,7 @@ class __$$PersonImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PersonImpl extends _Person {
-  const _$PersonImpl(
+  _$PersonImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Person)
       this.resourceType = R4ResourceType.Person,
       this.id,
@@ -930,7 +930,7 @@ class _$PersonImpl extends _Person {
 }
 
 abstract class _Person extends Person {
-  const factory _Person(
+  factory _Person(
       {@JsonKey(unknownEnumValue: R4ResourceType.Person)
       final R4ResourceType resourceType,
       final String? id,
@@ -957,7 +957,7 @@ abstract class _Person extends Person {
       final FhirBoolean? active,
       @JsonKey(name: '_active') final PrimitiveElement? activeElement,
       final List<PersonLink>? link}) = _$PersonImpl;
-  const _Person._() : super._();
+  _Person._() : super._();
 
   factory _Person.fromJson(Map<String, dynamic> json) = _$PersonImpl.fromJson;
 
@@ -1311,7 +1311,7 @@ class __$$PersonLinkImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PersonLinkImpl extends _PersonLink {
-  const _$PersonLinkImpl(
+  _$PersonLinkImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1456,7 +1456,7 @@ class _$PersonLinkImpl extends _PersonLink {
 }
 
 abstract class _PersonLink extends PersonLink {
-  const factory _PersonLink(
+  factory _PersonLink(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1464,7 +1464,7 @@ abstract class _PersonLink extends PersonLink {
       final FhirCode? assurance,
       @JsonKey(name: '_assurance')
       final PrimitiveElement? assuranceElement}) = _$PersonLinkImpl;
-  const _PersonLink._() : super._();
+  _PersonLink._() : super._();
 
   factory _PersonLink.fromJson(Map<String, dynamic> json) =
       _$PersonLinkImpl.fromJson;

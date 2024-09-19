@@ -15,9 +15,9 @@ part 'evidence_report.g.dart';
 
 /// [EvidenceReport] The EvidenceReport Resource is a specialized container for a collection of resources and codeable concepts, adapted to support compositions of Evidence, EvidenceVariable, and Citation resources and related concepts.
 @freezed
-class EvidenceReport with _$EvidenceReport implements DomainResource {
+class EvidenceReport extends DomainResource with _$EvidenceReport {
   /// [EvidenceReport] The EvidenceReport Resource is a specialized container for a collection of resources and codeable concepts, adapted to support compositions of Evidence, EvidenceVariable, and Citation resources and related concepts.
-  const EvidenceReport._();
+  EvidenceReport._();
 
   /// [EvidenceReport] The EvidenceReport Resource is a specialized container for a collection of resources and codeable concepts, adapted to support compositions of Evidence, EvidenceVariable, and Citation resources and related concepts.
 
@@ -137,7 +137,7 @@ class EvidenceReport with _$EvidenceReport implements DomainResource {
   /// [relatesTo] Relationships that this composition has with other compositions or documents that already exist.;
   ///
   /// [section] The root of the sections that make up the composition.;
-  const factory EvidenceReport({
+  factory EvidenceReport({
     @Default(R4ResourceType.EvidenceReport) R4ResourceType resourceType,
     String? id,
     FhirMeta? meta,
@@ -207,6 +207,9 @@ class EvidenceReport with _$EvidenceReport implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -229,8 +232,8 @@ class EvidenceReport with _$EvidenceReport implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [EvidenceReportSubject] The EvidenceReport Resource is a specialized container for a collection of resources and codeable concepts, adapted to support compositions of Evidence, EvidenceVariable, and Citation resources and related concepts.
@@ -238,11 +241,10 @@ class EvidenceReport with _$EvidenceReport implements DomainResource {
 
 /// [EvidenceReportSubject] The EvidenceReport Resource is a specialized container for a collection of resources and codeable concepts, adapted to support compositions of Evidence, EvidenceVariable, and Citation resources and related concepts.
 @freezed
-class EvidenceReportSubject
-    with _$EvidenceReportSubject
-    implements BackboneElement {
+class EvidenceReportSubject extends BackboneElement
+    with _$EvidenceReportSubject {
   /// [EvidenceReportSubject] The EvidenceReport Resource is a specialized container for a collection of resources and codeable concepts, adapted to support compositions of Evidence, EvidenceVariable, and Citation resources and related concepts.
-  const EvidenceReportSubject._();
+  EvidenceReportSubject._();
 
   /// [EvidenceReportSubject] The EvidenceReport Resource is a specialized container for a collection of resources and codeable concepts, adapted to support compositions of Evidence, EvidenceVariable, and Citation resources and related concepts.
 
@@ -258,7 +260,7 @@ class EvidenceReportSubject
   /// [characteristic] Characteristic.;
   ///
   /// [note] Used for general notes and annotations not coded elsewhere.;
-  const factory EvidenceReportSubject({
+  factory EvidenceReportSubject({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -297,6 +299,9 @@ class EvidenceReportSubject
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -308,11 +313,10 @@ class EvidenceReportSubject
 
 /// [EvidenceReportCharacteristic] The EvidenceReport Resource is a specialized container for a collection of resources and codeable concepts, adapted to support compositions of Evidence, EvidenceVariable, and Citation resources and related concepts.
 @freezed
-class EvidenceReportCharacteristic
-    with _$EvidenceReportCharacteristic
-    implements BackboneElement {
+class EvidenceReportCharacteristic extends BackboneElement
+    with _$EvidenceReportCharacteristic {
   /// [EvidenceReportCharacteristic] The EvidenceReport Resource is a specialized container for a collection of resources and codeable concepts, adapted to support compositions of Evidence, EvidenceVariable, and Citation resources and related concepts.
-  const EvidenceReportCharacteristic._();
+  EvidenceReportCharacteristic._();
 
   /// [EvidenceReportCharacteristic] The EvidenceReport Resource is a specialized container for a collection of resources and codeable concepts, adapted to support compositions of Evidence, EvidenceVariable, and Citation resources and related concepts.
 
@@ -344,7 +348,7 @@ class EvidenceReportCharacteristic
   /// [excludeElement] (_exclude): Extensions for exclude;
   ///
   /// [period] Timeframe for the characteristic.;
-  const factory EvidenceReportCharacteristic({
+  factory EvidenceReportCharacteristic({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -391,6 +395,9 @@ class EvidenceReportCharacteristic
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -402,11 +409,10 @@ class EvidenceReportCharacteristic
 
 /// [EvidenceReportRelatesTo] The EvidenceReport Resource is a specialized container for a collection of resources and codeable concepts, adapted to support compositions of Evidence, EvidenceVariable, and Citation resources and related concepts.
 @freezed
-class EvidenceReportRelatesTo
-    with _$EvidenceReportRelatesTo
-    implements BackboneElement {
+class EvidenceReportRelatesTo extends BackboneElement
+    with _$EvidenceReportRelatesTo {
   /// [EvidenceReportRelatesTo] The EvidenceReport Resource is a specialized container for a collection of resources and codeable concepts, adapted to support compositions of Evidence, EvidenceVariable, and Citation resources and related concepts.
-  const EvidenceReportRelatesTo._();
+  EvidenceReportRelatesTo._();
 
   /// [EvidenceReportRelatesTo] The EvidenceReport Resource is a specialized container for a collection of resources and codeable concepts, adapted to support compositions of Evidence, EvidenceVariable, and Citation resources and related concepts.
 
@@ -424,7 +430,7 @@ class EvidenceReportRelatesTo
   /// [codeElement] (_code): Extensions for code;
   ///
   /// [target] The target composition/document of this relationship.;
-  const factory EvidenceReportRelatesTo({
+  factory EvidenceReportRelatesTo({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -465,6 +471,9 @@ class EvidenceReportRelatesTo
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -476,11 +485,10 @@ class EvidenceReportRelatesTo
 
 /// [EvidenceReportSection] The EvidenceReport Resource is a specialized container for a collection of resources and codeable concepts, adapted to support compositions of Evidence, EvidenceVariable, and Citation resources and related concepts.
 @freezed
-class EvidenceReportSection
-    with _$EvidenceReportSection
-    implements BackboneElement {
+class EvidenceReportSection extends BackboneElement
+    with _$EvidenceReportSection {
   /// [EvidenceReportSection] The EvidenceReport Resource is a specialized container for a collection of resources and codeable concepts, adapted to support compositions of Evidence, EvidenceVariable, and Citation resources and related concepts.
-  const EvidenceReportSection._();
+  EvidenceReportSection._();
 
   /// [EvidenceReportSection] The EvidenceReport Resource is a specialized container for a collection of resources and codeable concepts, adapted to support compositions of Evidence, EvidenceVariable, and Citation resources and related concepts.
 
@@ -520,7 +528,7 @@ class EvidenceReportSection
   /// [emptyReason] If the section is empty, why the list is empty. An empty section typically has some text explaining the empty reason.;
   ///
   /// [section] A nested sub-section within this section.;
-  const factory EvidenceReportSection({
+  factory EvidenceReportSection({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -569,6 +577,9 @@ class EvidenceReportSection
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

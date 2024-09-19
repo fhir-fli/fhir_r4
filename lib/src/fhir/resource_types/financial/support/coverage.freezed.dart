@@ -803,7 +803,7 @@ class __$$CoverageImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CoverageImpl extends _Coverage {
-  const _$CoverageImpl(
+  _$CoverageImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Coverage)
       this.resourceType = R4ResourceType.Coverage,
       this.id,
@@ -1269,7 +1269,7 @@ class _$CoverageImpl extends _Coverage {
 }
 
 abstract class _Coverage extends Coverage {
-  const factory _Coverage(
+  factory _Coverage(
       {@JsonKey(unknownEnumValue: R4ResourceType.Coverage)
       final R4ResourceType resourceType,
       final String? id,
@@ -1307,7 +1307,7 @@ abstract class _Coverage extends Coverage {
       final FhirBoolean? subrogation,
       @JsonKey(name: '_subrogation') final PrimitiveElement? subrogationElement,
       final List<Reference>? contract}) = _$CoverageImpl;
-  const _Coverage._() : super._();
+  _Coverage._() : super._();
 
   factory _Coverage.fromJson(Map<String, dynamic> json) =
       _$CoverageImpl.fromJson;
@@ -1755,7 +1755,7 @@ class __$$CoverageClassImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CoverageClassImpl extends _CoverageClass {
-  const _$CoverageClassImpl(
+  _$CoverageClassImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1917,7 +1917,7 @@ class _$CoverageClassImpl extends _CoverageClass {
 }
 
 abstract class _CoverageClass extends CoverageClass {
-  const factory _CoverageClass(
+  factory _CoverageClass(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -1927,7 +1927,7 @@ abstract class _CoverageClass extends CoverageClass {
           final String? name,
           @JsonKey(name: '_name') final PrimitiveElement? nameElement}) =
       _$CoverageClassImpl;
-  const _CoverageClass._() : super._();
+  _CoverageClass._() : super._();
 
   factory _CoverageClass.fromJson(Map<String, dynamic> json) =
       _$CoverageClassImpl.fromJson;
@@ -2259,7 +2259,7 @@ class __$$CoverageCostToBeneficiaryImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CoverageCostToBeneficiaryImpl extends _CoverageCostToBeneficiary {
-  const _$CoverageCostToBeneficiaryImpl(
+  _$CoverageCostToBeneficiaryImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2423,7 +2423,7 @@ class _$CoverageCostToBeneficiaryImpl extends _CoverageCostToBeneficiary {
 }
 
 abstract class _CoverageCostToBeneficiary extends CoverageCostToBeneficiary {
-  const factory _CoverageCostToBeneficiary(
+  factory _CoverageCostToBeneficiary(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2432,7 +2432,7 @@ abstract class _CoverageCostToBeneficiary extends CoverageCostToBeneficiary {
           final Money? valueMoney,
           final List<CoverageException>? exception}) =
       _$CoverageCostToBeneficiaryImpl;
-  const _CoverageCostToBeneficiary._() : super._();
+  _CoverageCostToBeneficiary._() : super._();
 
   factory _CoverageCostToBeneficiary.fromJson(Map<String, dynamic> json) =
       _$CoverageCostToBeneficiaryImpl.fromJson;
@@ -2699,7 +2699,7 @@ class __$$CoverageExceptionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CoverageExceptionImpl extends _CoverageException {
-  const _$CoverageExceptionImpl(
+  _$CoverageExceptionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2834,13 +2834,13 @@ class _$CoverageExceptionImpl extends _CoverageException {
 }
 
 abstract class _CoverageException extends CoverageException {
-  const factory _CoverageException(
+  factory _CoverageException(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required final CodeableConcept type,
       final Period? period}) = _$CoverageExceptionImpl;
-  const _CoverageException._() : super._();
+  _CoverageException._() : super._();
 
   factory _CoverageException.fromJson(Map<String, dynamic> json) =
       _$CoverageExceptionImpl.fromJson;

@@ -376,7 +376,7 @@ class __$$TriggerDefinitionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$TriggerDefinitionImpl extends _TriggerDefinition {
-  const _$TriggerDefinitionImpl(
+  _$TriggerDefinitionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: TriggerDefinitionType.unknown) this.type,
@@ -570,7 +570,7 @@ class _$TriggerDefinitionImpl extends _TriggerDefinition {
 }
 
 abstract class _TriggerDefinition extends TriggerDefinition {
-  const factory _TriggerDefinition(
+  factory _TriggerDefinition(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: TriggerDefinitionType.unknown)
@@ -587,7 +587,7 @@ abstract class _TriggerDefinition extends TriggerDefinition {
       final PrimitiveElement? timingDateTimeElement,
       final List<DataRequirement>? data,
       final FhirExpression? condition}) = _$TriggerDefinitionImpl;
-  const _TriggerDefinition._() : super._();
+  _TriggerDefinition._() : super._();
 
   factory _TriggerDefinition.fromJson(Map<String, dynamic> json) =
       _$TriggerDefinitionImpl.fromJson;

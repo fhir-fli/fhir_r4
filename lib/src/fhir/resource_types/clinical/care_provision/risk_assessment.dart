@@ -15,9 +15,9 @@ part 'risk_assessment.g.dart';
 
 /// [RiskAssessment] An assessment of the likely outcome(s) for a patient or
 @freezed
-class RiskAssessment with _$RiskAssessment implements DomainResource {
+class RiskAssessment extends DomainResource with _$RiskAssessment {
   /// [RiskAssessment] An assessment of the likely outcome(s) for a patient or
-  const RiskAssessment._();
+  RiskAssessment._();
 
   /// [RiskAssessment] An assessment of the likely outcome(s) for a patient or
   ///  other subject as well as the likelihood of each outcome.
@@ -126,7 +126,7 @@ class RiskAssessment with _$RiskAssessment implements DomainResource {
   /// [mitigationElement] Extensions for mitigation
   ///
   /// [note] Additional comments about the risk assessment.
-  const factory RiskAssessment({
+  factory RiskAssessment({
     @Default(R4ResourceType.RiskAssessment)
     @JsonKey(unknownEnumValue: R4ResourceType.RiskAssessment)
 
@@ -302,6 +302,9 @@ class RiskAssessment with _$RiskAssessment implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -324,8 +327,8 @@ class RiskAssessment with _$RiskAssessment implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [RiskAssessmentPrediction] An assessment of the likely outcome(s) for a
@@ -333,11 +336,10 @@ class RiskAssessment with _$RiskAssessment implements DomainResource {
 
 /// [RiskAssessmentPrediction] An assessment of the likely outcome(s) for a
 @freezed
-class RiskAssessmentPrediction
-    with _$RiskAssessmentPrediction
-    implements BackboneElement {
+class RiskAssessmentPrediction extends BackboneElement
+    with _$RiskAssessmentPrediction {
   /// [RiskAssessmentPrediction] An assessment of the likely outcome(s) for a
-  const RiskAssessmentPrediction._();
+  RiskAssessmentPrediction._();
 
   /// [RiskAssessmentPrediction] An assessment of the likely outcome(s) for a
   ///  patient or other subject as well as the likelihood of each outcome.
@@ -397,7 +399,7 @@ class RiskAssessmentPrediction
   ///  prediction.
   ///
   /// [rationaleElement] Extensions for rationale
-  const factory RiskAssessmentPrediction({
+  factory RiskAssessmentPrediction({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -499,6 +501,9 @@ class RiskAssessmentPrediction
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

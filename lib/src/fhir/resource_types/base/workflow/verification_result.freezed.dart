@@ -726,7 +726,7 @@ class __$$VerificationResultImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$VerificationResultImpl extends _VerificationResult {
-  const _$VerificationResultImpl(
+  _$VerificationResultImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.VerificationResult)
       this.resourceType = R4ResourceType.VerificationResult,
       this.id,
@@ -1169,7 +1169,7 @@ class _$VerificationResultImpl extends _VerificationResult {
 }
 
 abstract class _VerificationResult extends VerificationResult {
-  const factory _VerificationResult(
+  factory _VerificationResult(
       {@JsonKey(unknownEnumValue: R4ResourceType.VerificationResult)
       final R4ResourceType resourceType,
       final String? id,
@@ -1206,7 +1206,7 @@ abstract class _VerificationResult extends VerificationResult {
       final VerificationResultAttestation? attestation,
       final List<VerificationResultValidator>?
           validator}) = _$VerificationResultImpl;
-  const _VerificationResult._() : super._();
+  _VerificationResult._() : super._();
 
   factory _VerificationResult.fromJson(Map<String, dynamic> json) =
       _$VerificationResultImpl.fromJson;
@@ -1723,7 +1723,7 @@ class __$$VerificationResultPrimarySourceImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$VerificationResultPrimarySourceImpl
     extends _VerificationResultPrimarySource {
-  const _$VerificationResultPrimarySourceImpl(
+  _$VerificationResultPrimarySourceImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1953,7 +1953,7 @@ class _$VerificationResultPrimarySourceImpl
 
 abstract class _VerificationResultPrimarySource
     extends VerificationResultPrimarySource {
-  const factory _VerificationResultPrimarySource(
+  factory _VerificationResultPrimarySource(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -1967,7 +1967,7 @@ abstract class _VerificationResultPrimarySource
           final CodeableConcept? canPushUpdates,
           final List<CodeableConcept>? pushTypeAvailable}) =
       _$VerificationResultPrimarySourceImpl;
-  const _VerificationResultPrimarySource._() : super._();
+  _VerificationResultPrimarySource._() : super._();
 
   factory _VerificationResultPrimarySource.fromJson(Map<String, dynamic> json) =
       _$VerificationResultPrimarySourceImpl.fromJson;
@@ -2474,7 +2474,7 @@ class __$$VerificationResultAttestationImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$VerificationResultAttestationImpl
     extends _VerificationResultAttestation {
-  const _$VerificationResultAttestationImpl(
+  _$VerificationResultAttestationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2699,7 +2699,7 @@ class _$VerificationResultAttestationImpl
 
 abstract class _VerificationResultAttestation
     extends VerificationResultAttestation {
-  const factory _VerificationResultAttestation(
+  factory _VerificationResultAttestation(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2716,7 +2716,7 @@ abstract class _VerificationResultAttestation
       final PrimitiveElement? proxyIdentityCertificateElement,
       final Signature? proxySignature,
       final Signature? sourceSignature}) = _$VerificationResultAttestationImpl;
-  const _VerificationResultAttestation._() : super._();
+  _VerificationResultAttestation._() : super._();
 
   factory _VerificationResultAttestation.fromJson(Map<String, dynamic> json) =
       _$VerificationResultAttestationImpl.fromJson;
@@ -3061,7 +3061,7 @@ class __$$VerificationResultValidatorImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$VerificationResultValidatorImpl extends _VerificationResultValidator {
-  const _$VerificationResultValidatorImpl(
+  _$VerificationResultValidatorImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3221,7 +3221,7 @@ class _$VerificationResultValidatorImpl extends _VerificationResultValidator {
 
 abstract class _VerificationResultValidator
     extends VerificationResultValidator {
-  const factory _VerificationResultValidator(
+  factory _VerificationResultValidator(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3231,7 +3231,7 @@ abstract class _VerificationResultValidator
           final PrimitiveElement? identityCertificateElement,
           final Signature? attestationSignature}) =
       _$VerificationResultValidatorImpl;
-  const _VerificationResultValidator._() : super._();
+  _VerificationResultValidator._() : super._();
 
   factory _VerificationResultValidator.fromJson(Map<String, dynamic> json) =
       _$VerificationResultValidatorImpl.fromJson;

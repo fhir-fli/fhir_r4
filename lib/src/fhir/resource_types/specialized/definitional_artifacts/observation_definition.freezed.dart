@@ -717,7 +717,7 @@ class __$$ObservationDefinitionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ObservationDefinitionImpl extends _ObservationDefinition {
-  const _$ObservationDefinitionImpl(
+  _$ObservationDefinitionImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.ObservationDefinition)
       this.resourceType = R4ResourceType.ObservationDefinition,
       this.id,
@@ -1128,7 +1128,7 @@ class _$ObservationDefinitionImpl extends _ObservationDefinition {
 }
 
 abstract class _ObservationDefinition extends ObservationDefinition {
-  const factory _ObservationDefinition(
+  factory _ObservationDefinition(
       {@JsonKey(unknownEnumValue: R4ResourceType.ObservationDefinition)
       final R4ResourceType resourceType,
       final String? id,
@@ -1161,7 +1161,7 @@ abstract class _ObservationDefinition extends ObservationDefinition {
       final Reference? normalCodedValueSet,
       final Reference? abnormalCodedValueSet,
       final Reference? criticalCodedValueSet}) = _$ObservationDefinitionImpl;
-  const _ObservationDefinition._() : super._();
+  _ObservationDefinition._() : super._();
 
   factory _ObservationDefinition.fromJson(Map<String, dynamic> json) =
       _$ObservationDefinitionImpl.fromJson;
@@ -1620,7 +1620,7 @@ class __$$ObservationDefinitionQuantitativeDetailsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ObservationDefinitionQuantitativeDetailsImpl
     extends _ObservationDefinitionQuantitativeDetails {
-  const _$ObservationDefinitionQuantitativeDetailsImpl(
+  _$ObservationDefinitionQuantitativeDetailsImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1800,7 +1800,7 @@ class _$ObservationDefinitionQuantitativeDetailsImpl
 
 abstract class _ObservationDefinitionQuantitativeDetails
     extends ObservationDefinitionQuantitativeDetails {
-  const factory _ObservationDefinitionQuantitativeDetails(
+  factory _ObservationDefinitionQuantitativeDetails(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -1813,7 +1813,7 @@ abstract class _ObservationDefinitionQuantitativeDetails
           @JsonKey(name: '_decimalPrecision')
           final PrimitiveElement? decimalPrecisionElement}) =
       _$ObservationDefinitionQuantitativeDetailsImpl;
-  const _ObservationDefinitionQuantitativeDetails._() : super._();
+  _ObservationDefinitionQuantitativeDetails._() : super._();
 
   factory _ObservationDefinitionQuantitativeDetails.fromJson(
           Map<String, dynamic> json) =
@@ -2287,7 +2287,7 @@ class __$$ObservationDefinitionQualifiedIntervalImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ObservationDefinitionQualifiedIntervalImpl
     extends _ObservationDefinitionQualifiedInterval {
-  const _$ObservationDefinitionQualifiedIntervalImpl(
+  _$ObservationDefinitionQualifiedIntervalImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2516,7 +2516,7 @@ class _$ObservationDefinitionQualifiedIntervalImpl
 
 abstract class _ObservationDefinitionQualifiedInterval
     extends ObservationDefinitionQualifiedInterval {
-  const factory _ObservationDefinitionQualifiedInterval(
+  factory _ObservationDefinitionQualifiedInterval(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2533,7 +2533,7 @@ abstract class _ObservationDefinitionQualifiedInterval
           @JsonKey(name: '_condition')
           final PrimitiveElement? conditionElement}) =
       _$ObservationDefinitionQualifiedIntervalImpl;
-  const _ObservationDefinitionQualifiedInterval._() : super._();
+  _ObservationDefinitionQualifiedInterval._() : super._();
 
   factory _ObservationDefinitionQualifiedInterval.fromJson(
           Map<String, dynamic> json) =

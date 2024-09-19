@@ -1063,7 +1063,7 @@ class __$$CapabilityStatementImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CapabilityStatementImpl extends _CapabilityStatement {
-  const _$CapabilityStatementImpl(
+  _$CapabilityStatementImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.CapabilityStatement)
       this.resourceType = R4ResourceType.CapabilityStatement,
       this.id,
@@ -1812,7 +1812,7 @@ class _$CapabilityStatementImpl extends _CapabilityStatement {
 }
 
 abstract class _CapabilityStatement extends CapabilityStatement {
-  const factory _CapabilityStatement(
+  factory _CapabilityStatement(
       {@JsonKey(unknownEnumValue: R4ResourceType.CapabilityStatement)
       final R4ResourceType resourceType,
       final String? id,
@@ -1870,7 +1870,7 @@ abstract class _CapabilityStatement extends CapabilityStatement {
       final List<CapabilityStatementMessaging>? messaging,
       final List<CapabilityStatementDocument>?
           document}) = _$CapabilityStatementImpl;
-  const _CapabilityStatement._() : super._();
+  _CapabilityStatement._() : super._();
 
   factory _CapabilityStatement.fromJson(Map<String, dynamic> json) =
       _$CapabilityStatementImpl.fromJson;
@@ -2441,7 +2441,7 @@ class __$$CapabilityStatementSoftwareImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CapabilityStatementSoftwareImpl extends _CapabilityStatementSoftware {
-  const _$CapabilityStatementSoftwareImpl(
+  _$CapabilityStatementSoftwareImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2614,7 +2614,7 @@ class _$CapabilityStatementSoftwareImpl extends _CapabilityStatementSoftware {
 
 abstract class _CapabilityStatementSoftware
     extends CapabilityStatementSoftware {
-  const factory _CapabilityStatementSoftware(
+  factory _CapabilityStatementSoftware(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2626,7 +2626,7 @@ abstract class _CapabilityStatementSoftware
           @JsonKey(name: '_releaseDate')
           final PrimitiveElement? releaseDateElement}) =
       _$CapabilityStatementSoftwareImpl;
-  const _CapabilityStatementSoftware._() : super._();
+  _CapabilityStatementSoftware._() : super._();
 
   factory _CapabilityStatementSoftware.fromJson(Map<String, dynamic> json) =
       _$CapabilityStatementSoftwareImpl.fromJson;
@@ -2950,7 +2950,7 @@ class __$$CapabilityStatementImplementationImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CapabilityStatementImplementationImpl
     extends _CapabilityStatementImplementation {
-  const _$CapabilityStatementImplementationImpl(
+  _$CapabilityStatementImplementationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3118,7 +3118,7 @@ class _$CapabilityStatementImplementationImpl
 
 abstract class _CapabilityStatementImplementation
     extends CapabilityStatementImplementation {
-  const factory _CapabilityStatementImplementation(
+  factory _CapabilityStatementImplementation(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3127,7 +3127,7 @@ abstract class _CapabilityStatementImplementation
       final FhirUrl? url,
       @JsonKey(name: '_url') final PrimitiveElement? urlElement,
       final Reference? custodian}) = _$CapabilityStatementImplementationImpl;
-  const _CapabilityStatementImplementation._() : super._();
+  _CapabilityStatementImplementation._() : super._();
 
   factory _CapabilityStatementImplementation.fromJson(
           Map<String, dynamic> json) =
@@ -3536,7 +3536,7 @@ class __$$CapabilityStatementRestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CapabilityStatementRestImpl extends _CapabilityStatementRest {
-  const _$CapabilityStatementRestImpl(
+  _$CapabilityStatementRestImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3806,7 +3806,7 @@ class _$CapabilityStatementRestImpl extends _CapabilityStatementRest {
 }
 
 abstract class _CapabilityStatementRest extends CapabilityStatementRest {
-  const factory _CapabilityStatementRest(
+  factory _CapabilityStatementRest(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3821,7 +3821,7 @@ abstract class _CapabilityStatementRest extends CapabilityStatementRest {
       final List<CapabilityStatementSearchParam>? searchParam,
       final List<CapabilityStatementOperation>? operation,
       final List<FhirCanonical>? compartment}) = _$CapabilityStatementRestImpl;
-  const _CapabilityStatementRest._() : super._();
+  _CapabilityStatementRest._() : super._();
 
   factory _CapabilityStatementRest.fromJson(Map<String, dynamic> json) =
       _$CapabilityStatementRestImpl.fromJson;
@@ -4149,7 +4149,7 @@ class __$$CapabilityStatementSecurityImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CapabilityStatementSecurityImpl extends _CapabilityStatementSecurity {
-  const _$CapabilityStatementSecurityImpl(
+  _$CapabilityStatementSecurityImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4325,7 +4325,7 @@ class _$CapabilityStatementSecurityImpl extends _CapabilityStatementSecurity {
 
 abstract class _CapabilityStatementSecurity
     extends CapabilityStatementSecurity {
-  const factory _CapabilityStatementSecurity(
+  factory _CapabilityStatementSecurity(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -4336,7 +4336,7 @@ abstract class _CapabilityStatementSecurity
           @JsonKey(name: '_description')
           final PrimitiveElement? descriptionElement}) =
       _$CapabilityStatementSecurityImpl;
-  const _CapabilityStatementSecurity._() : super._();
+  _CapabilityStatementSecurity._() : super._();
 
   factory _CapabilityStatementSecurity.fromJson(Map<String, dynamic> json) =
       _$CapabilityStatementSecurityImpl.fromJson;
@@ -5062,7 +5062,7 @@ class __$$CapabilityStatementResourceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CapabilityStatementResourceImpl extends _CapabilityStatementResource {
-  const _$CapabilityStatementResourceImpl(
+  _$CapabilityStatementResourceImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5585,7 +5585,7 @@ class _$CapabilityStatementResourceImpl extends _CapabilityStatementResource {
 
 abstract class _CapabilityStatementResource
     extends CapabilityStatementResource {
-  const factory _CapabilityStatementResource(
+  factory _CapabilityStatementResource(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5628,7 +5628,7 @@ abstract class _CapabilityStatementResource
       final List<CapabilityStatementSearchParam>? searchParam,
       final List<CapabilityStatementOperation>?
           operation}) = _$CapabilityStatementResourceImpl;
-  const _CapabilityStatementResource._() : super._();
+  _CapabilityStatementResource._() : super._();
 
   factory _CapabilityStatementResource.fromJson(Map<String, dynamic> json) =
       _$CapabilityStatementResourceImpl.fromJson;
@@ -6051,7 +6051,7 @@ class __$$CapabilityStatementInteractionImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CapabilityStatementInteractionImpl
     extends _CapabilityStatementInteraction {
-  const _$CapabilityStatementInteractionImpl(
+  _$CapabilityStatementInteractionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -6212,7 +6212,7 @@ class _$CapabilityStatementInteractionImpl
 
 abstract class _CapabilityStatementInteraction
     extends CapabilityStatementInteraction {
-  const factory _CapabilityStatementInteraction(
+  factory _CapabilityStatementInteraction(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -6222,7 +6222,7 @@ abstract class _CapabilityStatementInteraction
           @JsonKey(name: '_documentation')
           final PrimitiveElement? documentationElement}) =
       _$CapabilityStatementInteractionImpl;
-  const _CapabilityStatementInteraction._() : super._();
+  _CapabilityStatementInteraction._() : super._();
 
   factory _CapabilityStatementInteraction.fromJson(Map<String, dynamic> json) =
       _$CapabilityStatementInteractionImpl.fromJson;
@@ -6554,7 +6554,7 @@ class __$$CapabilityStatementSearchParamImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CapabilityStatementSearchParamImpl
     extends _CapabilityStatementSearchParam {
-  const _$CapabilityStatementSearchParamImpl(
+  _$CapabilityStatementSearchParamImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -6739,7 +6739,7 @@ class _$CapabilityStatementSearchParamImpl
 
 abstract class _CapabilityStatementSearchParam
     extends CapabilityStatementSearchParam {
-  const factory _CapabilityStatementSearchParam(
+  factory _CapabilityStatementSearchParam(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -6752,7 +6752,7 @@ abstract class _CapabilityStatementSearchParam
           @JsonKey(name: '_documentation')
           final PrimitiveElement? documentationElement}) =
       _$CapabilityStatementSearchParamImpl;
-  const _CapabilityStatementSearchParam._() : super._();
+  _CapabilityStatementSearchParam._() : super._();
 
   factory _CapabilityStatementSearchParam.fromJson(Map<String, dynamic> json) =
       _$CapabilityStatementSearchParamImpl.fromJson;
@@ -7073,7 +7073,7 @@ class __$$CapabilityStatementOperationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CapabilityStatementOperationImpl extends _CapabilityStatementOperation {
-  const _$CapabilityStatementOperationImpl(
+  _$CapabilityStatementOperationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -7250,7 +7250,7 @@ class _$CapabilityStatementOperationImpl extends _CapabilityStatementOperation {
 
 abstract class _CapabilityStatementOperation
     extends CapabilityStatementOperation {
-  const factory _CapabilityStatementOperation(
+  factory _CapabilityStatementOperation(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -7261,7 +7261,7 @@ abstract class _CapabilityStatementOperation
           @JsonKey(name: '_documentation')
           final PrimitiveElement? documentationElement}) =
       _$CapabilityStatementOperationImpl;
-  const _CapabilityStatementOperation._() : super._();
+  _CapabilityStatementOperation._() : super._();
 
   factory _CapabilityStatementOperation.fromJson(Map<String, dynamic> json) =
       _$CapabilityStatementOperationImpl.fromJson;
@@ -7557,7 +7557,7 @@ class __$$CapabilityStatementInteraction1ImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CapabilityStatementInteraction1Impl
     extends _CapabilityStatementInteraction1 {
-  const _$CapabilityStatementInteraction1Impl(
+  _$CapabilityStatementInteraction1Impl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -7716,7 +7716,7 @@ class _$CapabilityStatementInteraction1Impl
 
 abstract class _CapabilityStatementInteraction1
     extends CapabilityStatementInteraction1 {
-  const factory _CapabilityStatementInteraction1(
+  factory _CapabilityStatementInteraction1(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -7726,7 +7726,7 @@ abstract class _CapabilityStatementInteraction1
           @JsonKey(name: '_documentation')
           final PrimitiveElement? documentationElement}) =
       _$CapabilityStatementInteraction1Impl;
-  const _CapabilityStatementInteraction1._() : super._();
+  _CapabilityStatementInteraction1._() : super._();
 
   factory _CapabilityStatementInteraction1.fromJson(Map<String, dynamic> json) =
       _$CapabilityStatementInteraction1Impl.fromJson;
@@ -8045,7 +8045,7 @@ class __$$CapabilityStatementMessagingImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CapabilityStatementMessagingImpl extends _CapabilityStatementMessaging {
-  const _$CapabilityStatementMessagingImpl(
+  _$CapabilityStatementMessagingImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -8248,7 +8248,7 @@ class _$CapabilityStatementMessagingImpl extends _CapabilityStatementMessaging {
 
 abstract class _CapabilityStatementMessaging
     extends CapabilityStatementMessaging {
-  const factory _CapabilityStatementMessaging(
+  factory _CapabilityStatementMessaging(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -8261,7 +8261,7 @@ abstract class _CapabilityStatementMessaging
           final PrimitiveElement? documentationElement,
           final List<CapabilityStatementSupportedMessage>? supportedMessage}) =
       _$CapabilityStatementMessagingImpl;
-  const _CapabilityStatementMessaging._() : super._();
+  _CapabilityStatementMessaging._() : super._();
 
   factory _CapabilityStatementMessaging.fromJson(Map<String, dynamic> json) =
       _$CapabilityStatementMessagingImpl.fromJson;
@@ -8553,7 +8553,7 @@ class __$$CapabilityStatementEndpointImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CapabilityStatementEndpointImpl extends _CapabilityStatementEndpoint {
-  const _$CapabilityStatementEndpointImpl(
+  _$CapabilityStatementEndpointImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -8702,7 +8702,7 @@ class _$CapabilityStatementEndpointImpl extends _CapabilityStatementEndpoint {
 
 abstract class _CapabilityStatementEndpoint
     extends CapabilityStatementEndpoint {
-  const factory _CapabilityStatementEndpoint(
+  factory _CapabilityStatementEndpoint(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -8710,7 +8710,7 @@ abstract class _CapabilityStatementEndpoint
           final FhirUrl? address,
           @JsonKey(name: '_address') final PrimitiveElement? addressElement}) =
       _$CapabilityStatementEndpointImpl;
-  const _CapabilityStatementEndpoint._() : super._();
+  _CapabilityStatementEndpoint._() : super._();
 
   factory _CapabilityStatementEndpoint.fromJson(Map<String, dynamic> json) =
       _$CapabilityStatementEndpointImpl.fromJson;
@@ -8970,7 +8970,7 @@ class __$$CapabilityStatementSupportedMessageImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CapabilityStatementSupportedMessageImpl
     extends _CapabilityStatementSupportedMessage {
-  const _$CapabilityStatementSupportedMessageImpl(
+  _$CapabilityStatementSupportedMessageImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -9120,7 +9120,7 @@ class _$CapabilityStatementSupportedMessageImpl
 
 abstract class _CapabilityStatementSupportedMessage
     extends CapabilityStatementSupportedMessage {
-  const factory _CapabilityStatementSupportedMessage(
+  factory _CapabilityStatementSupportedMessage(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -9128,7 +9128,7 @@ abstract class _CapabilityStatementSupportedMessage
           @JsonKey(name: '_mode') final PrimitiveElement? modeElement,
           required final FhirCanonical definition}) =
       _$CapabilityStatementSupportedMessageImpl;
-  const _CapabilityStatementSupportedMessage._() : super._();
+  _CapabilityStatementSupportedMessage._() : super._();
 
   factory _CapabilityStatementSupportedMessage.fromJson(
           Map<String, dynamic> json) =
@@ -9422,7 +9422,7 @@ class __$$CapabilityStatementDocumentImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CapabilityStatementDocumentImpl extends _CapabilityStatementDocument {
-  const _$CapabilityStatementDocumentImpl(
+  _$CapabilityStatementDocumentImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -9589,7 +9589,7 @@ class _$CapabilityStatementDocumentImpl extends _CapabilityStatementDocument {
 
 abstract class _CapabilityStatementDocument
     extends CapabilityStatementDocument {
-  const factory _CapabilityStatementDocument(
+  factory _CapabilityStatementDocument(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -9600,7 +9600,7 @@ abstract class _CapabilityStatementDocument
           final PrimitiveElement? documentationElement,
           required final FhirCanonical profile}) =
       _$CapabilityStatementDocumentImpl;
-  const _CapabilityStatementDocument._() : super._();
+  _CapabilityStatementDocument._() : super._();
 
   factory _CapabilityStatementDocument.fromJson(Map<String, dynamic> json) =
       _$CapabilityStatementDocumentImpl.fromJson;

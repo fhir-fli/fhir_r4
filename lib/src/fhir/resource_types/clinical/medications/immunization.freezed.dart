@@ -1110,7 +1110,7 @@ class __$$ImmunizationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ImmunizationImpl extends _Immunization {
-  const _$ImmunizationImpl(
+  _$ImmunizationImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Immunization)
       this.resourceType = R4ResourceType.Immunization,
       this.id,
@@ -1742,7 +1742,7 @@ class _$ImmunizationImpl extends _Immunization {
 }
 
 abstract class _Immunization extends Immunization {
-  const factory _Immunization(
+  factory _Immunization(
       {@JsonKey(unknownEnumValue: R4ResourceType.Immunization)
       final R4ResourceType resourceType,
       final String? id,
@@ -1798,7 +1798,7 @@ abstract class _Immunization extends Immunization {
       final List<ImmunizationReaction>? reaction,
       final List<ImmunizationProtocolApplied>?
           protocolApplied}) = _$ImmunizationImpl;
-  const _Immunization._() : super._();
+  _Immunization._() : super._();
 
   factory _Immunization.fromJson(Map<String, dynamic> json) =
       _$ImmunizationImpl.fromJson;
@@ -2277,7 +2277,7 @@ class __$$ImmunizationPerformerImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ImmunizationPerformerImpl extends _ImmunizationPerformer {
-  const _$ImmunizationPerformerImpl(
+  _$ImmunizationPerformerImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2414,13 +2414,13 @@ class _$ImmunizationPerformerImpl extends _ImmunizationPerformer {
 }
 
 abstract class _ImmunizationPerformer extends ImmunizationPerformer {
-  const factory _ImmunizationPerformer(
+  factory _ImmunizationPerformer(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final CodeableConcept? function,
       required final Reference actor}) = _$ImmunizationPerformerImpl;
-  const _ImmunizationPerformer._() : super._();
+  _ImmunizationPerformer._() : super._();
 
   factory _ImmunizationPerformer.fromJson(Map<String, dynamic> json) =
       _$ImmunizationPerformerImpl.fromJson;
@@ -2754,7 +2754,7 @@ class __$$ImmunizationEducationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ImmunizationEducationImpl extends _ImmunizationEducation {
-  const _$ImmunizationEducationImpl(
+  _$ImmunizationEducationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2946,7 +2946,7 @@ class _$ImmunizationEducationImpl extends _ImmunizationEducation {
 }
 
 abstract class _ImmunizationEducation extends ImmunizationEducation {
-  const factory _ImmunizationEducation(
+  factory _ImmunizationEducation(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2962,7 +2962,7 @@ abstract class _ImmunizationEducation extends ImmunizationEducation {
           @JsonKey(name: '_presentationDate')
           final PrimitiveElement? presentationDateElement}) =
       _$ImmunizationEducationImpl;
-  const _ImmunizationEducation._() : super._();
+  _ImmunizationEducation._() : super._();
 
   factory _ImmunizationEducation.fromJson(Map<String, dynamic> json) =
       _$ImmunizationEducationImpl.fromJson;
@@ -3285,7 +3285,7 @@ class __$$ImmunizationReactionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ImmunizationReactionImpl extends _ImmunizationReaction {
-  const _$ImmunizationReactionImpl(
+  _$ImmunizationReactionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3447,7 +3447,7 @@ class _$ImmunizationReactionImpl extends _ImmunizationReaction {
 }
 
 abstract class _ImmunizationReaction extends ImmunizationReaction {
-  const factory _ImmunizationReaction(
+  factory _ImmunizationReaction(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3457,7 +3457,7 @@ abstract class _ImmunizationReaction extends ImmunizationReaction {
       final FhirBoolean? reported,
       @JsonKey(name: '_reported')
       final PrimitiveElement? reportedElement}) = _$ImmunizationReactionImpl;
-  const _ImmunizationReaction._() : super._();
+  _ImmunizationReaction._() : super._();
 
   factory _ImmunizationReaction.fromJson(Map<String, dynamic> json) =
       _$ImmunizationReactionImpl.fromJson;
@@ -3893,7 +3893,7 @@ class __$$ImmunizationProtocolAppliedImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ImmunizationProtocolAppliedImpl extends _ImmunizationProtocolApplied {
-  const _$ImmunizationProtocolAppliedImpl(
+  _$ImmunizationProtocolAppliedImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4135,7 +4135,7 @@ class _$ImmunizationProtocolAppliedImpl extends _ImmunizationProtocolApplied {
 
 abstract class _ImmunizationProtocolApplied
     extends ImmunizationProtocolApplied {
-  const factory _ImmunizationProtocolApplied(
+  factory _ImmunizationProtocolApplied(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -4156,7 +4156,7 @@ abstract class _ImmunizationProtocolApplied
           @JsonKey(name: '_seriesDosesString')
           final PrimitiveElement? seriesDosesStringElement}) =
       _$ImmunizationProtocolAppliedImpl;
-  const _ImmunizationProtocolApplied._() : super._();
+  _ImmunizationProtocolApplied._() : super._();
 
   factory _ImmunizationProtocolApplied.fromJson(Map<String, dynamic> json) =
       _$ImmunizationProtocolAppliedImpl.fromJson;

@@ -14,9 +14,9 @@ part 'flag.g.dart';
 
 /// [Flag] Prospective warnings of potential issues when providing care to
 @freezed
-class Flag with _$Flag implements DomainResource {
+class Flag extends DomainResource with _$Flag {
   /// [Flag] Prospective warnings of potential issues when providing care to
-  const Flag._();
+  Flag._();
 
   /// [Flag] Prospective warnings of potential issues when providing care to
   ///  the patient.
@@ -99,7 +99,7 @@ class Flag with _$Flag implements DomainResource {
   /// [encounter] This alert is only relevant during the encounter.
   ///
   /// [author] The person, organization or device that created the flag.
-  const factory Flag({
+  factory Flag({
     @Default(R4ResourceType.Flag)
     @JsonKey(unknownEnumValue: R4ResourceType.Flag)
 
@@ -234,6 +234,9 @@ class Flag with _$Flag implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -256,6 +259,6 @@ class Flag with _$Flag implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }

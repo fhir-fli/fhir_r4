@@ -961,7 +961,7 @@ class __$$ChargeItemDefinitionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ChargeItemDefinitionImpl extends _ChargeItemDefinition {
-  const _$ChargeItemDefinitionImpl(
+  _$ChargeItemDefinitionImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.ChargeItemDefinition)
       this.resourceType = R4ResourceType.ChargeItemDefinition,
       this.id,
@@ -1632,7 +1632,7 @@ class _$ChargeItemDefinitionImpl extends _ChargeItemDefinition {
 }
 
 abstract class _ChargeItemDefinition extends ChargeItemDefinition {
-  const factory _ChargeItemDefinition(
+  factory _ChargeItemDefinition(
       {@JsonKey(unknownEnumValue: R4ResourceType.ChargeItemDefinition)
       final R4ResourceType resourceType,
       final String? id,
@@ -1686,7 +1686,7 @@ abstract class _ChargeItemDefinition extends ChargeItemDefinition {
       final List<ChargeItemDefinitionApplicability>? applicability,
       final List<ChargeItemDefinitionPropertyGroup>?
           propertyGroup}) = _$ChargeItemDefinitionImpl;
-  const _ChargeItemDefinition._() : super._();
+  _ChargeItemDefinition._() : super._();
 
   factory _ChargeItemDefinition.fromJson(Map<String, dynamic> json) =
       _$ChargeItemDefinitionImpl.fromJson;
@@ -2229,7 +2229,7 @@ class __$$ChargeItemDefinitionApplicabilityImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ChargeItemDefinitionApplicabilityImpl
     extends _ChargeItemDefinitionApplicability {
-  const _$ChargeItemDefinitionApplicabilityImpl(
+  _$ChargeItemDefinitionApplicabilityImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2410,7 +2410,7 @@ class _$ChargeItemDefinitionApplicabilityImpl
 
 abstract class _ChargeItemDefinitionApplicability
     extends ChargeItemDefinitionApplicability {
-  const factory _ChargeItemDefinitionApplicability(
+  factory _ChargeItemDefinitionApplicability(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2422,7 +2422,7 @@ abstract class _ChargeItemDefinitionApplicability
       @JsonKey(name: '_expression')
       final PrimitiveElement?
           expressionElement}) = _$ChargeItemDefinitionApplicabilityImpl;
-  const _ChargeItemDefinitionApplicability._() : super._();
+  _ChargeItemDefinitionApplicability._() : super._();
 
   factory _ChargeItemDefinitionApplicability.fromJson(
           Map<String, dynamic> json) =
@@ -2691,7 +2691,7 @@ class __$$ChargeItemDefinitionPropertyGroupImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ChargeItemDefinitionPropertyGroupImpl
     extends _ChargeItemDefinitionPropertyGroup {
-  const _$ChargeItemDefinitionPropertyGroupImpl(
+  _$ChargeItemDefinitionPropertyGroupImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2863,14 +2863,14 @@ class _$ChargeItemDefinitionPropertyGroupImpl
 
 abstract class _ChargeItemDefinitionPropertyGroup
     extends ChargeItemDefinitionPropertyGroup {
-  const factory _ChargeItemDefinitionPropertyGroup(
+  factory _ChargeItemDefinitionPropertyGroup(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final List<ChargeItemDefinitionApplicability>? applicability,
           final List<ChargeItemDefinitionPriceComponent>? priceComponent}) =
       _$ChargeItemDefinitionPropertyGroupImpl;
-  const _ChargeItemDefinitionPropertyGroup._() : super._();
+  _ChargeItemDefinitionPropertyGroup._() : super._();
 
   factory _ChargeItemDefinitionPropertyGroup.fromJson(
           Map<String, dynamic> json) =
@@ -3213,7 +3213,7 @@ class __$$ChargeItemDefinitionPriceComponentImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ChargeItemDefinitionPriceComponentImpl
     extends _ChargeItemDefinitionPriceComponent {
-  const _$ChargeItemDefinitionPriceComponentImpl(
+  _$ChargeItemDefinitionPriceComponentImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3385,7 +3385,7 @@ class _$ChargeItemDefinitionPriceComponentImpl
 
 abstract class _ChargeItemDefinitionPriceComponent
     extends ChargeItemDefinitionPriceComponent {
-  const factory _ChargeItemDefinitionPriceComponent(
+  factory _ChargeItemDefinitionPriceComponent(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3395,7 +3395,7 @@ abstract class _ChargeItemDefinitionPriceComponent
       final FhirDecimal? factor,
       @JsonKey(name: '_factor') final PrimitiveElement? factorElement,
       final Money? amount}) = _$ChargeItemDefinitionPriceComponentImpl;
-  const _ChargeItemDefinitionPriceComponent._() : super._();
+  _ChargeItemDefinitionPriceComponent._() : super._();
 
   factory _ChargeItemDefinitionPriceComponent.fromJson(
           Map<String, dynamic> json) =

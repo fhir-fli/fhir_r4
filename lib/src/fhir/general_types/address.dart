@@ -15,9 +15,9 @@ part 'address.g.dart';
 
 /// [Address] An address expressed using postal conventions (as opposed to
 @freezed
-class Address with _$Address implements DataType {
+class Address extends DataType with _$Address {
   /// [Address] An address expressed using postal conventions (as opposed to
-  const Address._();
+  Address._();
 
   /// [Address] An address expressed using postal conventions (as opposed to
   /// GPS or other location definition formats).  This data type may be used to
@@ -83,7 +83,7 @@ class Address with _$Address implements DataType {
   /// [countryElement] Extensions for country
   ///
   /// [period] Time period when address was/is in use.
-  const factory Address({
+  factory Address({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -194,6 +194,9 @@ class Address with _$Address implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

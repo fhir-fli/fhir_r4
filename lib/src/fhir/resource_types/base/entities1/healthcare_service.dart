@@ -14,9 +14,9 @@ part 'healthcare_service.g.dart';
 
 /// [HealthcareService] The details of a healthcare service available at a
 @freezed
-class HealthcareService with _$HealthcareService implements DomainResource {
+class HealthcareService extends DomainResource with _$HealthcareService {
   /// [HealthcareService] The details of a healthcare service available at a
-  const HealthcareService._();
+  HealthcareService._();
 
   /// [HealthcareService] The details of a healthcare service available at a
   ///  location.
@@ -158,7 +158,7 @@ class HealthcareService with _$HealthcareService implements DomainResource {
   ///
   /// [endpoint] Technical endpoints providing access to services operated for
   ///  the specific healthcare services defined at this resource.
-  const factory HealthcareService({
+  factory HealthcareService({
     @Default(R4ResourceType.HealthcareService)
     @JsonKey(unknownEnumValue: R4ResourceType.HealthcareService)
 
@@ -377,6 +377,9 @@ class HealthcareService with _$HealthcareService implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -399,8 +402,8 @@ class HealthcareService with _$HealthcareService implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 
   HealthcareService updateContactPointSystem(ContactPointSystem system,
       [int index = 0]) {
@@ -483,11 +486,10 @@ class HealthcareService with _$HealthcareService implements DomainResource {
 
 /// [HealthcareServiceEligibility] The details of a healthcare service
 @freezed
-class HealthcareServiceEligibility
-    with _$HealthcareServiceEligibility
-    implements BackboneElement {
+class HealthcareServiceEligibility extends BackboneElement
+    with _$HealthcareServiceEligibility {
   /// [HealthcareServiceEligibility] The details of a healthcare service
-  const HealthcareServiceEligibility._();
+  HealthcareServiceEligibility._();
 
   /// [HealthcareServiceEligibility] The details of a healthcare service
   ///  available at a location.
@@ -521,7 +523,7 @@ class HealthcareServiceEligibility
   /// [comment] Describes the eligibility conditions for the service.
   ///
   /// [commentElement] Extensions for comment
-  const factory HealthcareServiceEligibility({
+  factory HealthcareServiceEligibility({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -590,6 +592,9 @@ class HealthcareServiceEligibility
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -598,11 +603,10 @@ class HealthcareServiceEligibility
 
 /// [HealthcareServiceAvailableTime] The details of a healthcare service
 @freezed
-class HealthcareServiceAvailableTime
-    with _$HealthcareServiceAvailableTime
-    implements BackboneElement {
+class HealthcareServiceAvailableTime extends BackboneElement
+    with _$HealthcareServiceAvailableTime {
   /// [HealthcareServiceAvailableTime] The details of a healthcare service
-  const HealthcareServiceAvailableTime._();
+  HealthcareServiceAvailableTime._();
 
   /// [HealthcareServiceAvailableTime] The details of a healthcare service
   ///  available at a location.
@@ -650,7 +654,7 @@ class HealthcareServiceAvailableTime
   ///  set, then this time is ignored.
   ///
   /// [availableEndTimeElement] Extensions for availableEndTime
-  const factory HealthcareServiceAvailableTime({
+  factory HealthcareServiceAvailableTime({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -741,6 +745,9 @@ class HealthcareServiceAvailableTime
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -749,11 +756,10 @@ class HealthcareServiceAvailableTime
 
 /// [HealthcareServiceNotAvailable] The details of a healthcare service
 @freezed
-class HealthcareServiceNotAvailable
-    with _$HealthcareServiceNotAvailable
-    implements BackboneElement {
+class HealthcareServiceNotAvailable extends BackboneElement
+    with _$HealthcareServiceNotAvailable {
   /// [HealthcareServiceNotAvailable] The details of a healthcare service
-  const HealthcareServiceNotAvailable._();
+  HealthcareServiceNotAvailable._();
 
   /// [HealthcareServiceNotAvailable] The details of a healthcare service
   ///  available at a location.
@@ -789,7 +795,7 @@ class HealthcareServiceNotAvailable
   ///
   /// [during] Service is not available (seasonally or for a public holiday)
   ///  from this date.
-  const factory HealthcareServiceNotAvailable({
+  factory HealthcareServiceNotAvailable({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -858,6 +864,9 @@ class HealthcareServiceNotAvailable
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

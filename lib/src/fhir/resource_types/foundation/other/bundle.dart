@@ -15,9 +15,9 @@ part 'bundle.g.dart';
 
 /// [Bundle] A container for a collection of resources.
 @freezed
-class Bundle with _$Bundle implements DomainResource {
+class Bundle extends DomainResource with _$Bundle {
   /// [Bundle] A container for a collection of resources.
-  const Bundle._();
+  Bundle._();
 
   /// [Bundle] A container for a collection of resources.
   ///
@@ -67,7 +67,7 @@ class Bundle with _$Bundle implements DomainResource {
   ///  information about a resource (transactions and history only).
   ///
   /// [signature] Digital Signature - base64 encoded. XML-DSig or a JWT.
-  const factory Bundle({
+  factory Bundle({
     @Default(R4ResourceType.Bundle)
     @JsonKey(unknownEnumValue: R4ResourceType.Bundle)
 
@@ -205,6 +205,9 @@ class Bundle with _$Bundle implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -227,8 +230,8 @@ class Bundle with _$Bundle implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [BundleLink] A container for a collection of resources.
@@ -236,9 +239,9 @@ class Bundle with _$Bundle implements DomainResource {
 
 /// [BundleLink] A container for a collection of resources.
 @freezed
-class BundleLink with _$BundleLink implements BackboneElement {
+class BundleLink extends BackboneElement with _$BundleLink {
   /// [BundleLink] A container for a collection of resources.
-  const BundleLink._();
+  BundleLink._();
 
   /// [BundleLink] A container for a collection of resources.
   ///
@@ -274,7 +277,7 @@ class BundleLink with _$BundleLink implements BackboneElement {
   /// [url] The reference details for the link.
   ///
   /// [urlElement] Extensions for url
-  const factory BundleLink({
+  factory BundleLink({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -347,6 +350,9 @@ class BundleLink with _$BundleLink implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -358,9 +364,9 @@ class BundleLink with _$BundleLink implements BackboneElement {
 
 /// [BundleEntry] A container for a collection of resources.
 @freezed
-class BundleEntry with _$BundleEntry implements BackboneElement {
+class BundleEntry extends BackboneElement with _$BundleEntry {
   /// [BundleEntry] A container for a collection of resources.
-  const BundleEntry._();
+  BundleEntry._();
 
   /// [BundleEntry] A container for a collection of resources.
   ///
@@ -414,7 +420,7 @@ class BundleEntry with _$BundleEntry implements BackboneElement {
   /// [response] Indicates the results of processing the corresponding
   /// 'request' entry in the batch or transaction being responded to or what the
   ///  results of an operation where when returning history.
-  const factory BundleEntry({
+  factory BundleEntry({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -564,6 +570,9 @@ class BundleEntry with _$BundleEntry implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -575,9 +584,9 @@ class BundleEntry with _$BundleEntry implements BackboneElement {
 
 /// [BundleSearch] A container for a collection of resources.
 @freezed
-class BundleSearch with _$BundleSearch implements BackboneElement {
+class BundleSearch extends BackboneElement with _$BundleSearch {
   /// [BundleSearch] A container for a collection of resources.
-  const BundleSearch._();
+  BundleSearch._();
 
   /// [BundleSearch] A container for a collection of resources.
   ///
@@ -614,7 +623,7 @@ class BundleSearch with _$BundleSearch implements BackboneElement {
   /// [score] When searching, the server's search ranking score for the entry.
   ///
   /// [scoreElement] Extensions for score
-  const factory BundleSearch({
+  factory BundleSearch({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -688,6 +697,9 @@ class BundleSearch with _$BundleSearch implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -699,9 +711,9 @@ class BundleSearch with _$BundleSearch implements BackboneElement {
 
 /// [BundleRequest] A container for a collection of resources.
 @freezed
-class BundleRequest with _$BundleRequest implements BackboneElement {
+class BundleRequest extends BackboneElement with _$BundleRequest {
   /// [BundleRequest] A container for a collection of resources.
-  const BundleRequest._();
+  BundleRequest._();
 
   /// [BundleRequest] A container for a collection of resources.
   ///
@@ -764,7 +776,7 @@ class BundleRequest with _$BundleRequest implements BackboneElement {
   ///  "?").
   ///
   /// [ifNoneExistElement] Extensions for ifNoneExist
-  const factory BundleRequest({
+  factory BundleRequest({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -872,6 +884,9 @@ class BundleRequest with _$BundleRequest implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -883,9 +898,9 @@ class BundleRequest with _$BundleRequest implements BackboneElement {
 
 /// [BundleResponse] A container for a collection of resources.
 @freezed
-class BundleResponse with _$BundleResponse implements BackboneElement {
+class BundleResponse extends BackboneElement with _$BundleResponse {
   /// [BundleResponse] A container for a collection of resources.
-  const BundleResponse._();
+  BundleResponse._();
 
   /// [BundleResponse] A container for a collection of resources.
   ///
@@ -938,7 +953,7 @@ class BundleResponse with _$BundleResponse implements BackboneElement {
   ///
   /// [outcome] An OperationOutcome containing hints and warnings produced as
   ///  part of processing this entry in a batch or transaction.
-  const factory BundleResponse({
+  factory BundleResponse({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1031,6 +1046,9 @@ class BundleResponse with _$BundleResponse implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

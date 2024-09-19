@@ -6,7 +6,7 @@ import '../../../fhir_r4.dart';
 
 /// [BackboneElement] Base definition for the few data types that are allowed to
 /// carry modifier extensions.
-abstract class BackboneElement implements DataType {
+abstract class BackboneElement extends DataType {
   List<FhirExtension>? get modifierExtension;
 
   @override

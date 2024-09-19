@@ -872,7 +872,7 @@ class __$$ResearchStudyImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ResearchStudyImpl extends _ResearchStudy {
-  const _$ResearchStudyImpl(
+  _$ResearchStudyImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.ResearchStudy)
       this.resourceType = R4ResourceType.ResearchStudy,
       this.id,
@@ -1484,7 +1484,7 @@ class _$ResearchStudyImpl extends _ResearchStudy {
 }
 
 abstract class _ResearchStudy extends ResearchStudy {
-  const factory _ResearchStudy(
+  factory _ResearchStudy(
       {@JsonKey(unknownEnumValue: R4ResourceType.ResearchStudy)
       final R4ResourceType resourceType,
       final String? id,
@@ -1525,7 +1525,7 @@ abstract class _ResearchStudy extends ResearchStudy {
       final List<Annotation>? note,
       final List<ResearchStudyArm>? arm,
       final List<ResearchStudyObjective>? objective}) = _$ResearchStudyImpl;
-  const _ResearchStudy._() : super._();
+  _ResearchStudy._() : super._();
 
   factory _ResearchStudy.fromJson(Map<String, dynamic> json) =
       _$ResearchStudyImpl.fromJson;
@@ -1997,7 +1997,7 @@ class __$$ResearchStudyArmImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ResearchStudyArmImpl extends _ResearchStudyArm {
-  const _$ResearchStudyArmImpl(
+  _$ResearchStudyArmImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2160,7 +2160,7 @@ class _$ResearchStudyArmImpl extends _ResearchStudyArm {
 }
 
 abstract class _ResearchStudyArm extends ResearchStudyArm {
-  const factory _ResearchStudyArm(
+  factory _ResearchStudyArm(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2170,7 +2170,7 @@ abstract class _ResearchStudyArm extends ResearchStudyArm {
       final String? description,
       @JsonKey(name: '_description')
       final PrimitiveElement? descriptionElement}) = _$ResearchStudyArmImpl;
-  const _ResearchStudyArm._() : super._();
+  _ResearchStudyArm._() : super._();
 
   factory _ResearchStudyArm.fromJson(Map<String, dynamic> json) =
       _$ResearchStudyArmImpl.fromJson;
@@ -2452,7 +2452,7 @@ class __$$ResearchStudyObjectiveImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ResearchStudyObjectiveImpl extends _ResearchStudyObjective {
-  const _$ResearchStudyObjectiveImpl(
+  _$ResearchStudyObjectiveImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2596,14 +2596,14 @@ class _$ResearchStudyObjectiveImpl extends _ResearchStudyObjective {
 }
 
 abstract class _ResearchStudyObjective extends ResearchStudyObjective {
-  const factory _ResearchStudyObjective(
+  factory _ResearchStudyObjective(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final String? name,
       @JsonKey(name: '_name') final PrimitiveElement? nameElement,
       final CodeableConcept? type}) = _$ResearchStudyObjectiveImpl;
-  const _ResearchStudyObjective._() : super._();
+  _ResearchStudyObjective._() : super._();
 
   factory _ResearchStudyObjective.fromJson(Map<String, dynamic> json) =
       _$ResearchStudyObjectiveImpl.fromJson;

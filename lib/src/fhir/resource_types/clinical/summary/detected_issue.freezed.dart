@@ -593,7 +593,7 @@ class __$$DetectedIssueImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DetectedIssueImpl extends _DetectedIssue {
-  const _$DetectedIssueImpl(
+  _$DetectedIssueImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.DetectedIssue)
       this.resourceType = R4ResourceType.DetectedIssue,
       this.id,
@@ -874,7 +874,7 @@ class _$DetectedIssueImpl extends _DetectedIssue {
 }
 
 abstract class _DetectedIssue extends DetectedIssue {
-  const factory _DetectedIssue(
+  factory _DetectedIssue(
       {@JsonKey(unknownEnumValue: R4ResourceType.DetectedIssue)
       final R4ResourceType resourceType,
       final String? id,
@@ -907,7 +907,7 @@ abstract class _DetectedIssue extends DetectedIssue {
       final FhirUri? reference,
       @JsonKey(name: '_reference') final PrimitiveElement? referenceElement,
       final List<DetectedIssueMitigation>? mitigation}) = _$DetectedIssueImpl;
-  const _DetectedIssue._() : super._();
+  _DetectedIssue._() : super._();
 
   factory _DetectedIssue.fromJson(Map<String, dynamic> json) =
       _$DetectedIssueImpl.fromJson;
@@ -1139,7 +1139,7 @@ class __$$DetectedIssueEvidenceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DetectedIssueEvidenceImpl extends _DetectedIssueEvidence {
-  const _$DetectedIssueEvidenceImpl(
+  _$DetectedIssueEvidenceImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1245,13 +1245,13 @@ class _$DetectedIssueEvidenceImpl extends _DetectedIssueEvidence {
 }
 
 abstract class _DetectedIssueEvidence extends DetectedIssueEvidence {
-  const factory _DetectedIssueEvidence(
+  factory _DetectedIssueEvidence(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final List<CodeableConcept>? code,
       final List<Reference>? detail}) = _$DetectedIssueEvidenceImpl;
-  const _DetectedIssueEvidence._() : super._();
+  _DetectedIssueEvidence._() : super._();
 
   factory _DetectedIssueEvidence.fromJson(Map<String, dynamic> json) =
       _$DetectedIssueEvidenceImpl.fromJson;
@@ -1487,7 +1487,7 @@ class __$$DetectedIssueMitigationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DetectedIssueMitigationImpl extends _DetectedIssueMitigation {
-  const _$DetectedIssueMitigationImpl(
+  _$DetectedIssueMitigationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1588,7 +1588,7 @@ class _$DetectedIssueMitigationImpl extends _DetectedIssueMitigation {
 }
 
 abstract class _DetectedIssueMitigation extends DetectedIssueMitigation {
-  const factory _DetectedIssueMitigation(
+  factory _DetectedIssueMitigation(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1596,7 +1596,7 @@ abstract class _DetectedIssueMitigation extends DetectedIssueMitigation {
       final FhirDateTime? date,
       @JsonKey(name: '_date') final PrimitiveElement? dateElement,
       final Reference? author}) = _$DetectedIssueMitigationImpl;
-  const _DetectedIssueMitigation._() : super._();
+  _DetectedIssueMitigation._() : super._();
 
   factory _DetectedIssueMitigation.fromJson(Map<String, dynamic> json) =
       _$DetectedIssueMitigationImpl.fromJson;

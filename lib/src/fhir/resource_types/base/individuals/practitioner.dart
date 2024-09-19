@@ -14,9 +14,9 @@ part 'practitioner.g.dart';
 
 /// [Practitioner] A person who is directly or indirectly involved in the
 @freezed
-class Practitioner with _$Practitioner implements DomainResource {
+class Practitioner extends DomainResource with _$Practitioner {
   /// [Practitioner] A person who is directly or indirectly involved in the
-  const Practitioner._();
+  Practitioner._();
 
   /// [Practitioner] A person who is directly or indirectly involved in the
   ///  provisioning of healthcare.
@@ -109,7 +109,7 @@ class Practitioner with _$Practitioner implements DomainResource {
   ///
   /// [communication] A language the practitioner can use in patient
   ///  communication.
-  const factory Practitioner({
+  factory Practitioner({
     @Default(R4ResourceType.Practitioner)
     @JsonKey(unknownEnumValue: R4ResourceType.Practitioner)
 
@@ -260,6 +260,9 @@ class Practitioner with _$Practitioner implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -282,8 +285,8 @@ class Practitioner with _$Practitioner implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 
   Practitioner updateHumanNameUse(HumanNameUse use, [int index = 0]) {
     if (name == null || name!.isEmpty) {
@@ -605,11 +608,10 @@ class Practitioner with _$Practitioner implements DomainResource {
 
 /// [PractitionerQualification] A person who is directly or indirectly
 @freezed
-class PractitionerQualification
-    with _$PractitionerQualification
-    implements BackboneElement {
+class PractitionerQualification extends BackboneElement
+    with _$PractitionerQualification {
   /// [PractitionerQualification] A person who is directly or indirectly
-  const PractitionerQualification._();
+  PractitionerQualification._();
 
   /// [PractitionerQualification] A person who is directly or indirectly
   ///  involved in the provisioning of healthcare.
@@ -646,7 +648,7 @@ class PractitionerQualification
   /// [period] Period during which the qualification is valid.
   ///
   /// [issuer] Organization that regulates and issues the qualification.
-  const factory PractitionerQualification({
+  factory PractitionerQualification({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -720,6 +722,9 @@ class PractitionerQualification
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

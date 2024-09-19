@@ -14,9 +14,9 @@ part 'schedule.g.dart';
 
 /// [Schedule] A container for slots of time that may be available for
 @freezed
-class Schedule with _$Schedule implements DomainResource {
+class Schedule extends DomainResource with _$Schedule {
   /// [Schedule] A container for slots of time that may be available for
-  const Schedule._();
+  Schedule._();
 
   /// [Schedule] A container for slots of time that may be available for
   ///  booking appointments.
@@ -104,7 +104,7 @@ class Schedule with _$Schedule implements DomainResource {
   ///  associated.
   ///
   /// [commentElement] Extensions for comment
-  const factory Schedule({
+  factory Schedule({
     @Default(R4ResourceType.Schedule)
     @JsonKey(unknownEnumValue: R4ResourceType.Schedule)
 
@@ -247,6 +247,9 @@ class Schedule with _$Schedule implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -269,6 +272,6 @@ class Schedule with _$Schedule implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }

@@ -15,9 +15,9 @@ part 'activity_definition.g.dart';
 
 /// [ActivityDefinition] This resource allows for the definition of some
 @freezed
-class ActivityDefinition with _$ActivityDefinition implements DomainResource {
+class ActivityDefinition extends DomainResource with _$ActivityDefinition {
   /// [ActivityDefinition] This resource allows for the definition of some
-  const ActivityDefinition._();
+  ActivityDefinition._();
 
   /// [ActivityDefinition] This resource allows for the definition of some
   /// activity to be performed, independent of a particular patient,
@@ -309,7 +309,7 @@ class ActivityDefinition with _$ActivityDefinition implements DomainResource {
   /// medication must be computed based on the patient's weight, a dynamic value
   /// would be used to specify an expression that calculated the weight, and the
   ///  path on the request resource that would contain the result.
-  const factory ActivityDefinition({
+  factory ActivityDefinition({
     @Default(R4ResourceType.ActivityDefinition)
     @JsonKey(unknownEnumValue: R4ResourceType.ActivityDefinition)
 
@@ -721,6 +721,9 @@ class ActivityDefinition with _$ActivityDefinition implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -743,8 +746,8 @@ class ActivityDefinition with _$ActivityDefinition implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [ActivityDefinitionParticipant] This resource allows for the definition
@@ -752,11 +755,10 @@ class ActivityDefinition with _$ActivityDefinition implements DomainResource {
 
 /// [ActivityDefinitionParticipant] This resource allows for the definition
 @freezed
-class ActivityDefinitionParticipant
-    with _$ActivityDefinitionParticipant
-    implements BackboneElement {
+class ActivityDefinitionParticipant extends BackboneElement
+    with _$ActivityDefinitionParticipant {
   /// [ActivityDefinitionParticipant] This resource allows for the definition
-  const ActivityDefinitionParticipant._();
+  ActivityDefinitionParticipant._();
 
   /// [ActivityDefinitionParticipant] This resource allows for the definition
   /// of some activity to be performed, independent of a particular patient,
@@ -792,7 +794,7 @@ class ActivityDefinitionParticipant
   ///
   /// [role] The role the participant should play in performing the described
   ///  action.
-  const factory ActivityDefinitionParticipant({
+  factory ActivityDefinitionParticipant({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -862,6 +864,9 @@ class ActivityDefinitionParticipant
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -873,11 +878,10 @@ class ActivityDefinitionParticipant
 
 /// [ActivityDefinitionDynamicValue] This resource allows for the definition
 @freezed
-class ActivityDefinitionDynamicValue
-    with _$ActivityDefinitionDynamicValue
-    implements BackboneElement {
+class ActivityDefinitionDynamicValue extends BackboneElement
+    with _$ActivityDefinitionDynamicValue {
   /// [ActivityDefinitionDynamicValue] This resource allows for the definition
-  const ActivityDefinitionDynamicValue._();
+  ActivityDefinitionDynamicValue._();
 
   /// [ActivityDefinitionDynamicValue] This resource allows for the definition
   /// of some activity to be performed, independent of a particular patient,
@@ -920,7 +924,7 @@ class ActivityDefinitionDynamicValue
   ///
   /// [expression] An expression specifying the value of the customized
   ///  element.
-  const factory ActivityDefinitionDynamicValue({
+  factory ActivityDefinitionDynamicValue({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -996,6 +1000,9 @@ class ActivityDefinitionDynamicValue
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

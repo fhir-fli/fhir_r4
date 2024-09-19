@@ -258,7 +258,7 @@ class __$$AnnotationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AnnotationImpl extends _Annotation {
-  const _$AnnotationImpl(
+  _$AnnotationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       this.authorReference,
@@ -392,7 +392,7 @@ class _$AnnotationImpl extends _Annotation {
 }
 
 abstract class _Annotation extends Annotation {
-  const factory _Annotation(
+  factory _Annotation(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final Reference? authorReference,
@@ -404,7 +404,7 @@ abstract class _Annotation extends Annotation {
           final FhirMarkdown? text,
           @JsonKey(name: '_text') final PrimitiveElement? textElement}) =
       _$AnnotationImpl;
-  const _Annotation._() : super._();
+  _Annotation._() : super._();
 
   factory _Annotation.fromJson(Map<String, dynamic> json) =
       _$AnnotationImpl.fromJson;

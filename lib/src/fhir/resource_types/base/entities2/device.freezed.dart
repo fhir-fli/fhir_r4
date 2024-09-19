@@ -1012,7 +1012,7 @@ class __$$DeviceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DeviceImpl extends _Device {
-  const _$DeviceImpl(
+  _$DeviceImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Device)
       this.resourceType = R4ResourceType.Device,
       this.id,
@@ -1647,7 +1647,7 @@ class _$DeviceImpl extends _Device {
 }
 
 abstract class _Device extends Device {
-  const factory _Device(
+  factory _Device(
       {@JsonKey(unknownEnumValue: R4ResourceType.Device)
       final R4ResourceType resourceType,
       final String? id,
@@ -1702,7 +1702,7 @@ abstract class _Device extends Device {
       final List<Annotation>? note,
       final List<CodeableConcept>? safety,
       final Reference? parent}) = _$DeviceImpl;
-  const _Device._() : super._();
+  _Device._() : super._();
 
   factory _Device.fromJson(Map<String, dynamic> json) = _$DeviceImpl.fromJson;
 
@@ -2323,7 +2323,7 @@ class __$$DeviceUdiCarrierImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DeviceUdiCarrierImpl extends _DeviceUdiCarrier {
-  const _$DeviceUdiCarrierImpl(
+  _$DeviceUdiCarrierImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2567,7 +2567,7 @@ class _$DeviceUdiCarrierImpl extends _DeviceUdiCarrier {
 }
 
 abstract class _DeviceUdiCarrier extends DeviceUdiCarrier {
-  const factory _DeviceUdiCarrier(
+  factory _DeviceUdiCarrier(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2586,7 +2586,7 @@ abstract class _DeviceUdiCarrier extends DeviceUdiCarrier {
       final DeviceUdiCarrierEntryType? entryType,
       @JsonKey(name: '_entryType')
       final PrimitiveElement? entryTypeElement}) = _$DeviceUdiCarrierImpl;
-  const _DeviceUdiCarrier._() : super._();
+  _DeviceUdiCarrier._() : super._();
 
   factory _DeviceUdiCarrier.fromJson(Map<String, dynamic> json) =
       _$DeviceUdiCarrierImpl.fromJson;
@@ -2913,7 +2913,7 @@ class __$$DeviceDeviceNameImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DeviceDeviceNameImpl extends _DeviceDeviceName {
-  const _$DeviceDeviceNameImpl(
+  _$DeviceDeviceNameImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3068,7 +3068,7 @@ class _$DeviceDeviceNameImpl extends _DeviceDeviceName {
 }
 
 abstract class _DeviceDeviceName extends DeviceDeviceName {
-  const factory _DeviceDeviceName(
+  factory _DeviceDeviceName(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3077,7 +3077,7 @@ abstract class _DeviceDeviceName extends DeviceDeviceName {
           final DeviceDeviceNameType? type,
           @JsonKey(name: '_type') final PrimitiveElement? typeElement}) =
       _$DeviceDeviceNameImpl;
-  const _DeviceDeviceName._() : super._();
+  _DeviceDeviceName._() : super._();
 
   factory _DeviceDeviceName.fromJson(Map<String, dynamic> json) =
       _$DeviceDeviceNameImpl.fromJson;
@@ -3348,7 +3348,7 @@ class __$$DeviceSpecializationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DeviceSpecializationImpl extends _DeviceSpecialization {
-  const _$DeviceSpecializationImpl(
+  _$DeviceSpecializationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3495,7 +3495,7 @@ class _$DeviceSpecializationImpl extends _DeviceSpecialization {
 }
 
 abstract class _DeviceSpecialization extends DeviceSpecialization {
-  const factory _DeviceSpecialization(
+  factory _DeviceSpecialization(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3503,7 +3503,7 @@ abstract class _DeviceSpecialization extends DeviceSpecialization {
           final String? version,
           @JsonKey(name: '_version') final PrimitiveElement? versionElement}) =
       _$DeviceSpecializationImpl;
-  const _DeviceSpecialization._() : super._();
+  _DeviceSpecialization._() : super._();
 
   factory _DeviceSpecialization.fromJson(Map<String, dynamic> json) =
       _$DeviceSpecializationImpl.fromJson;
@@ -3802,7 +3802,7 @@ class __$$DeviceVersionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DeviceVersionImpl extends _DeviceVersion {
-  const _$DeviceVersionImpl(
+  _$DeviceVersionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3953,7 +3953,7 @@ class _$DeviceVersionImpl extends _DeviceVersion {
 }
 
 abstract class _DeviceVersion extends DeviceVersion {
-  const factory _DeviceVersion(
+  factory _DeviceVersion(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3962,7 +3962,7 @@ abstract class _DeviceVersion extends DeviceVersion {
           final String? value,
           @JsonKey(name: '_value') final PrimitiveElement? valueElement}) =
       _$DeviceVersionImpl;
-  const _DeviceVersion._() : super._();
+  _DeviceVersion._() : super._();
 
   factory _DeviceVersion.fromJson(Map<String, dynamic> json) =
       _$DeviceVersionImpl.fromJson;
@@ -4228,7 +4228,7 @@ class __$$DevicePropertyImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DevicePropertyImpl extends _DeviceProperty {
-  const _$DevicePropertyImpl(
+  _$DevicePropertyImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4393,14 +4393,14 @@ class _$DevicePropertyImpl extends _DeviceProperty {
 }
 
 abstract class _DeviceProperty extends DeviceProperty {
-  const factory _DeviceProperty(
+  factory _DeviceProperty(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required final CodeableConcept type,
       final List<Quantity>? valueQuantity,
       final List<CodeableConcept>? valueCode}) = _$DevicePropertyImpl;
-  const _DeviceProperty._() : super._();
+  _DeviceProperty._() : super._();
 
   factory _DeviceProperty.fromJson(Map<String, dynamic> json) =
       _$DevicePropertyImpl.fromJson;

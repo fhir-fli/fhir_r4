@@ -14,9 +14,9 @@ part 'verification_result.g.dart';
 
 /// [VerificationResult] Describes validation requirements, source(s), status
 @freezed
-class VerificationResult with _$VerificationResult implements DomainResource {
+class VerificationResult extends DomainResource with _$VerificationResult {
   /// [VerificationResult] Describes validation requirements, source(s), status
-  const VerificationResult._();
+  VerificationResult._();
 
   /// [VerificationResult] Describes validation requirements, source(s), status
   ///  and dates for one or more elements.
@@ -120,7 +120,7 @@ class VerificationResult with _$VerificationResult implements DomainResource {
   /// [attestation] Information about the entity attesting to information.
   ///
   /// [validator] Information about the entity validating information.
-  const factory VerificationResult({
+  factory VerificationResult({
     @Default(R4ResourceType.VerificationResult)
     @JsonKey(unknownEnumValue: R4ResourceType.VerificationResult)
 
@@ -289,6 +289,9 @@ class VerificationResult with _$VerificationResult implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -311,8 +314,8 @@ class VerificationResult with _$VerificationResult implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [VerificationResultPrimarySource] Describes validation requirements,
@@ -320,11 +323,10 @@ class VerificationResult with _$VerificationResult implements DomainResource {
 
 /// [VerificationResultPrimarySource] Describes validation requirements,
 @freezed
-class VerificationResultPrimarySource
-    with _$VerificationResultPrimarySource
-    implements BackboneElement {
+class VerificationResultPrimarySource extends BackboneElement
+    with _$VerificationResultPrimarySource {
   /// [VerificationResultPrimarySource] Describes validation requirements,
-  const VerificationResultPrimarySource._();
+  VerificationResultPrimarySource._();
 
   /// [VerificationResultPrimarySource] Describes validation requirements,
   ///  source(s), status and dates for one or more elements.
@@ -375,7 +377,7 @@ class VerificationResultPrimarySource
   ///
   /// [pushTypeAvailable] Type of alerts/updates the primary source can send
   ///  (specific requested changes; any changes; as defined by source).
-  const factory VerificationResultPrimarySource({
+  factory VerificationResultPrimarySource({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -469,6 +471,9 @@ class VerificationResultPrimarySource
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -480,11 +485,10 @@ class VerificationResultPrimarySource
 
 /// [VerificationResultAttestation] Describes validation requirements,
 @freezed
-class VerificationResultAttestation
-    with _$VerificationResultAttestation
-    implements BackboneElement {
+class VerificationResultAttestation extends BackboneElement
+    with _$VerificationResultAttestation {
   /// [VerificationResultAttestation] Describes validation requirements,
-  const VerificationResultAttestation._();
+  VerificationResultAttestation._();
 
   /// [VerificationResultAttestation] Describes validation requirements,
   ///  source(s), status and dates for one or more elements.
@@ -542,7 +546,7 @@ class VerificationResultAttestation
   ///
   /// [sourceSignature] Signed assertion by the attestation source that they
   ///  have attested to the information.
-  const factory VerificationResultAttestation({
+  factory VerificationResultAttestation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -647,6 +651,9 @@ class VerificationResultAttestation
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -658,11 +665,10 @@ class VerificationResultAttestation
 
 /// [VerificationResultValidator] Describes validation requirements,
 @freezed
-class VerificationResultValidator
-    with _$VerificationResultValidator
-    implements BackboneElement {
+class VerificationResultValidator extends BackboneElement
+    with _$VerificationResultValidator {
   /// [VerificationResultValidator] Describes validation requirements,
-  const VerificationResultValidator._();
+  VerificationResultValidator._();
 
   /// [VerificationResultValidator] Describes validation requirements,
   ///  source(s), status and dates for one or more elements.
@@ -700,7 +706,7 @@ class VerificationResultValidator
   ///
   /// [attestationSignature] Signed assertion by the validator that they have
   ///  validated the information.
-  const factory VerificationResultValidator({
+  factory VerificationResultValidator({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -776,6 +782,9 @@ class VerificationResultValidator
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

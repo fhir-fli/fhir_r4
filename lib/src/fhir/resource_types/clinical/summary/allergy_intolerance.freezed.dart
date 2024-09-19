@@ -812,7 +812,7 @@ class __$$AllergyIntoleranceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AllergyIntoleranceImpl extends _AllergyIntolerance {
-  const _$AllergyIntoleranceImpl(
+  _$AllergyIntoleranceImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.AllergyIntolerance)
       this.resourceType = R4ResourceType.AllergyIntolerance,
       this.id,
@@ -1158,7 +1158,7 @@ class _$AllergyIntoleranceImpl extends _AllergyIntolerance {
 }
 
 abstract class _AllergyIntolerance extends AllergyIntolerance {
-  const factory _AllergyIntolerance(
+  factory _AllergyIntolerance(
       {@JsonKey(unknownEnumValue: R4ResourceType.AllergyIntolerance)
       final R4ResourceType resourceType,
       final String? id,
@@ -1203,7 +1203,7 @@ abstract class _AllergyIntolerance extends AllergyIntolerance {
       final List<Annotation>? note,
       final List<AllergyIntoleranceReaction>?
           reaction}) = _$AllergyIntoleranceImpl;
-  const _AllergyIntolerance._() : super._();
+  _AllergyIntolerance._() : super._();
 
   factory _AllergyIntolerance.fromJson(Map<String, dynamic> json) =
       _$AllergyIntoleranceImpl.fromJson;
@@ -1601,7 +1601,7 @@ class __$$AllergyIntoleranceReactionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AllergyIntoleranceReactionImpl extends _AllergyIntoleranceReaction {
-  const _$AllergyIntoleranceReactionImpl(
+  _$AllergyIntoleranceReactionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1757,7 +1757,7 @@ class _$AllergyIntoleranceReactionImpl extends _AllergyIntoleranceReaction {
 }
 
 abstract class _AllergyIntoleranceReaction extends AllergyIntoleranceReaction {
-  const factory _AllergyIntoleranceReaction(
+  factory _AllergyIntoleranceReaction(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1771,7 +1771,7 @@ abstract class _AllergyIntoleranceReaction extends AllergyIntoleranceReaction {
       @JsonKey(name: '_severity') final PrimitiveElement? severityElement,
       final CodeableConcept? exposureRoute,
       final List<Annotation>? note}) = _$AllergyIntoleranceReactionImpl;
-  const _AllergyIntoleranceReaction._() : super._();
+  _AllergyIntoleranceReaction._() : super._();
 
   factory _AllergyIntoleranceReaction.fromJson(Map<String, dynamic> json) =
       _$AllergyIntoleranceReactionImpl.fromJson;

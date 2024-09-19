@@ -287,7 +287,7 @@ class __$$AgeImplCopyWithImpl<$Res> extends _$AgeCopyWithImpl<$Res, _$AgeImpl>
 /// @nodoc
 @JsonSerializable()
 class _$AgeImpl extends _Age {
-  const _$AgeImpl(
+  _$AgeImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       this.value,
@@ -452,7 +452,7 @@ class _$AgeImpl extends _Age {
 }
 
 abstract class _Age extends Age {
-  const factory _Age(
+  factory _Age(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final FhirDecimal? value,
@@ -466,7 +466,7 @@ abstract class _Age extends Age {
       @JsonKey(name: '_system') final PrimitiveElement? systemElement,
       final FhirCode? code,
       @JsonKey(name: '_code') final PrimitiveElement? codeElement}) = _$AgeImpl;
-  const _Age._() : super._();
+  _Age._() : super._();
 
   factory _Age.fromJson(Map<String, dynamic> json) = _$AgeImpl.fromJson;
 

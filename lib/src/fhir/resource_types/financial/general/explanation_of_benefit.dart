@@ -14,11 +14,9 @@ part 'explanation_of_benefit.g.dart';
 
 /// [ExplanationOfBenefit] This resource provides: the claim details;
 @freezed
-class ExplanationOfBenefit
-    with _$ExplanationOfBenefit
-    implements DomainResource {
+class ExplanationOfBenefit extends DomainResource with _$ExplanationOfBenefit {
   /// [ExplanationOfBenefit] This resource provides: the claim details;
-  const ExplanationOfBenefit._();
+  ExplanationOfBenefit._();
 
   /// [ExplanationOfBenefit] This resource provides: the claim details;
   /// adjudication details from the processing of a Claim; and optionally
@@ -217,7 +215,7 @@ class ExplanationOfBenefit
   /// [benefitPeriod] The term of the benefits documented in this response.
   ///
   /// [benefitBalance] Balance by Benefit Category.
-  const factory ExplanationOfBenefit({
+  factory ExplanationOfBenefit({
     @Default(R4ResourceType.ExplanationOfBenefit)
     @JsonKey(unknownEnumValue: R4ResourceType.ExplanationOfBenefit)
 
@@ -509,6 +507,9 @@ class ExplanationOfBenefit
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -531,8 +532,8 @@ class ExplanationOfBenefit
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [ExplanationOfBenefitRelated] This resource provides: the claim details;
@@ -540,11 +541,10 @@ class ExplanationOfBenefit
 
 /// [ExplanationOfBenefitRelated] This resource provides: the claim details;
 @freezed
-class ExplanationOfBenefitRelated
-    with _$ExplanationOfBenefitRelated
-    implements BackboneElement {
+class ExplanationOfBenefitRelated extends BackboneElement
+    with _$ExplanationOfBenefitRelated {
   /// [ExplanationOfBenefitRelated] This resource provides: the claim details;
-  const ExplanationOfBenefitRelated._();
+  ExplanationOfBenefitRelated._();
 
   /// [ExplanationOfBenefitRelated] This resource provides: the claim details;
   /// adjudication details from the processing of a Claim; and optionally
@@ -581,7 +581,7 @@ class ExplanationOfBenefitRelated
   ///
   /// [reference] An alternate organizational reference to the case or file to
   ///  which this particular claim pertains.
-  const factory ExplanationOfBenefitRelated({
+  factory ExplanationOfBenefitRelated({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -653,6 +653,9 @@ class ExplanationOfBenefitRelated
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -664,11 +667,10 @@ class ExplanationOfBenefitRelated
 
 /// [ExplanationOfBenefitPayee] This resource provides: the claim details;
 @freezed
-class ExplanationOfBenefitPayee
-    with _$ExplanationOfBenefitPayee
-    implements BackboneElement {
+class ExplanationOfBenefitPayee extends BackboneElement
+    with _$ExplanationOfBenefitPayee {
   /// [ExplanationOfBenefitPayee] This resource provides: the claim details;
-  const ExplanationOfBenefitPayee._();
+  ExplanationOfBenefitPayee._();
 
   /// [ExplanationOfBenefitPayee] This resource provides: the claim details;
   /// adjudication details from the processing of a Claim; and optionally
@@ -703,7 +705,7 @@ class ExplanationOfBenefitPayee
   ///
   /// [party] Reference to the individual or organization to whom any payment
   ///  will be made.
-  const factory ExplanationOfBenefitPayee({
+  factory ExplanationOfBenefitPayee({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -772,6 +774,9 @@ class ExplanationOfBenefitPayee
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -783,11 +788,10 @@ class ExplanationOfBenefitPayee
 
 /// [ExplanationOfBenefitCareTeam] This resource provides: the claim
 @freezed
-class ExplanationOfBenefitCareTeam
-    with _$ExplanationOfBenefitCareTeam
-    implements BackboneElement {
+class ExplanationOfBenefitCareTeam extends BackboneElement
+    with _$ExplanationOfBenefitCareTeam {
   /// [ExplanationOfBenefitCareTeam] This resource provides: the claim
-  const ExplanationOfBenefitCareTeam._();
+  ExplanationOfBenefitCareTeam._();
 
   /// [ExplanationOfBenefitCareTeam] This resource provides: the claim
   /// details; adjudication details from the processing of a Claim; and
@@ -834,7 +838,7 @@ class ExplanationOfBenefitCareTeam
   ///
   /// [qualification] The qualification of the practitioner which is applicable
   ///  for this service.
-  const factory ExplanationOfBenefitCareTeam({
+  factory ExplanationOfBenefitCareTeam({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -920,6 +924,9 @@ class ExplanationOfBenefitCareTeam
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -928,10 +935,9 @@ class ExplanationOfBenefitCareTeam
 
 @freezed
 @freezed
-class ExplanationOfBenefitSupportingInfo
-    with _$ExplanationOfBenefitSupportingInfo
-    implements BackboneElement {
-  const ExplanationOfBenefitSupportingInfo._();
+class ExplanationOfBenefitSupportingInfo extends BackboneElement
+    with _$ExplanationOfBenefitSupportingInfo {
+  ExplanationOfBenefitSupportingInfo._();
 
   /// [ExplanationOfBenefitSupportingInfo] This resource provides: the claim
   /// details; adjudication details from the processing of a Claim; and
@@ -1005,7 +1011,7 @@ class ExplanationOfBenefitSupportingInfo
   ///
   /// [reason] Provides the reason in the situation where a reason code is
   ///  required in addition to the content.
-  const factory ExplanationOfBenefitSupportingInfo({
+  factory ExplanationOfBenefitSupportingInfo({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1115,6 +1121,9 @@ class ExplanationOfBenefitSupportingInfo
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1126,11 +1135,10 @@ class ExplanationOfBenefitSupportingInfo
 
 /// [ExplanationOfBenefitDiagnosis] This resource provides: the claim
 @freezed
-class ExplanationOfBenefitDiagnosis
-    with _$ExplanationOfBenefitDiagnosis
-    implements BackboneElement {
+class ExplanationOfBenefitDiagnosis extends BackboneElement
+    with _$ExplanationOfBenefitDiagnosis {
   /// [ExplanationOfBenefitDiagnosis] This resource provides: the claim
-  const ExplanationOfBenefitDiagnosis._();
+  ExplanationOfBenefitDiagnosis._();
 
   /// [ExplanationOfBenefitDiagnosis] This resource provides: the claim
   /// details; adjudication details from the processing of a Claim; and
@@ -1179,7 +1187,7 @@ class ExplanationOfBenefitDiagnosis
   /// [packageCode] A package billing code or bundle code used to group
   /// products and services to a particular health condition (such as heart
   ///  attack) which is based on a predetermined grouping code system.
-  const factory ExplanationOfBenefitDiagnosis({
+  factory ExplanationOfBenefitDiagnosis({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1267,6 +1275,9 @@ class ExplanationOfBenefitDiagnosis
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1278,11 +1289,10 @@ class ExplanationOfBenefitDiagnosis
 
 /// [ExplanationOfBenefitProcedure] This resource provides: the claim
 @freezed
-class ExplanationOfBenefitProcedure
-    with _$ExplanationOfBenefitProcedure
-    implements BackboneElement {
+class ExplanationOfBenefitProcedure extends BackboneElement
+    with _$ExplanationOfBenefitProcedure {
   /// [ExplanationOfBenefitProcedure] This resource provides: the claim
-  const ExplanationOfBenefitProcedure._();
+  ExplanationOfBenefitProcedure._();
 
   /// [ExplanationOfBenefitProcedure] This resource provides: the claim
   /// details; adjudication details from the processing of a Claim; and
@@ -1330,7 +1340,7 @@ class ExplanationOfBenefitProcedure
   ///  identifies the clinical intervention performed.
   ///
   /// [udi] Unique Device Identifiers associated with this line item.
-  const factory ExplanationOfBenefitProcedure({
+  factory ExplanationOfBenefitProcedure({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1418,6 +1428,9 @@ class ExplanationOfBenefitProcedure
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1429,11 +1442,10 @@ class ExplanationOfBenefitProcedure
 
 /// [ExplanationOfBenefitInsurance] This resource provides: the claim
 @freezed
-class ExplanationOfBenefitInsurance
-    with _$ExplanationOfBenefitInsurance
-    implements BackboneElement {
+class ExplanationOfBenefitInsurance extends BackboneElement
+    with _$ExplanationOfBenefitInsurance {
   /// [ExplanationOfBenefitInsurance] This resource provides: the claim
-  const ExplanationOfBenefitInsurance._();
+  ExplanationOfBenefitInsurance._();
 
   /// [ExplanationOfBenefitInsurance] This resource provides: the claim
   /// details; adjudication details from the processing of a Claim; and
@@ -1479,7 +1491,7 @@ class ExplanationOfBenefitInsurance
   ///  related to the prior authorization.
   ///
   /// [preAuthRefElement] Extensions for preAuthRef
-  const factory ExplanationOfBenefitInsurance({
+  factory ExplanationOfBenefitInsurance({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1562,6 +1574,9 @@ class ExplanationOfBenefitInsurance
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1573,11 +1588,10 @@ class ExplanationOfBenefitInsurance
 
 /// [ExplanationOfBenefitAccident] This resource provides: the claim
 @freezed
-class ExplanationOfBenefitAccident
-    with _$ExplanationOfBenefitAccident
-    implements BackboneElement {
+class ExplanationOfBenefitAccident extends BackboneElement
+    with _$ExplanationOfBenefitAccident {
   /// [ExplanationOfBenefitAccident] This resource provides: the claim
-  const ExplanationOfBenefitAccident._();
+  ExplanationOfBenefitAccident._();
 
   /// [ExplanationOfBenefitAccident] This resource provides: the claim
   /// details; adjudication details from the processing of a Claim; and
@@ -1620,7 +1634,7 @@ class ExplanationOfBenefitAccident
   /// [locationAddress] The physical location of the accident event.
   ///
   /// [locationReference] The physical location of the accident event.
-  const factory ExplanationOfBenefitAccident({
+  factory ExplanationOfBenefitAccident({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1700,6 +1714,9 @@ class ExplanationOfBenefitAccident
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1711,11 +1728,10 @@ class ExplanationOfBenefitAccident
 
 /// [ExplanationOfBenefitItem] This resource provides: the claim details;
 @freezed
-class ExplanationOfBenefitItem
-    with _$ExplanationOfBenefitItem
-    implements BackboneElement {
+class ExplanationOfBenefitItem extends BackboneElement
+    with _$ExplanationOfBenefitItem {
   /// [ExplanationOfBenefitItem] This resource provides: the claim details;
-  const ExplanationOfBenefitItem._();
+  ExplanationOfBenefitItem._();
 
   /// [ExplanationOfBenefitItem] This resource provides: the claim details;
   /// adjudication details from the processing of a Claim; and optionally
@@ -1832,7 +1848,7 @@ class ExplanationOfBenefitItem
   ///  or service then this is the result of the adjudication of this item.
   ///
   /// [detail] Second-tier of goods and services.
-  const factory ExplanationOfBenefitItem({
+  factory ExplanationOfBenefitItem({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2019,6 +2035,9 @@ class ExplanationOfBenefitItem
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2030,11 +2049,10 @@ class ExplanationOfBenefitItem
 
 /// [ExplanationOfBenefitAdjudication] This resource provides: the claim
 @freezed
-class ExplanationOfBenefitAdjudication
-    with _$ExplanationOfBenefitAdjudication
-    implements BackboneElement {
+class ExplanationOfBenefitAdjudication extends BackboneElement
+    with _$ExplanationOfBenefitAdjudication {
   /// [ExplanationOfBenefitAdjudication] This resource provides: the claim
-  const ExplanationOfBenefitAdjudication._();
+  ExplanationOfBenefitAdjudication._();
 
   /// [ExplanationOfBenefitAdjudication] This resource provides: the claim
   /// details; adjudication details from the processing of a Claim; and
@@ -2080,7 +2098,7 @@ class ExplanationOfBenefitAdjudication
   ///  exclusive to the amount element above.
   ///
   /// [valueElement] Extensions for value
-  const factory ExplanationOfBenefitAdjudication({
+  factory ExplanationOfBenefitAdjudication({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2152,6 +2170,9 @@ class ExplanationOfBenefitAdjudication
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2163,11 +2184,10 @@ class ExplanationOfBenefitAdjudication
 
 /// [ExplanationOfBenefitDetail] This resource provides: the claim details;
 @freezed
-class ExplanationOfBenefitDetail
-    with _$ExplanationOfBenefitDetail
-    implements BackboneElement {
+class ExplanationOfBenefitDetail extends BackboneElement
+    with _$ExplanationOfBenefitDetail {
   /// [ExplanationOfBenefitDetail] This resource provides: the claim details;
-  const ExplanationOfBenefitDetail._();
+  ExplanationOfBenefitDetail._();
 
   /// [ExplanationOfBenefitDetail] This resource provides: the claim details;
   /// adjudication details from the processing of a Claim; and optionally
@@ -2244,7 +2264,7 @@ class ExplanationOfBenefitDetail
   /// [adjudication] The adjudication results.
   ///
   /// [subDetail] Third-tier of goods and services.
-  const factory ExplanationOfBenefitDetail({
+  factory ExplanationOfBenefitDetail({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2370,6 +2390,9 @@ class ExplanationOfBenefitDetail
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2381,11 +2404,10 @@ class ExplanationOfBenefitDetail
 
 /// [ExplanationOfBenefitSubDetail] This resource provides: the claim
 @freezed
-class ExplanationOfBenefitSubDetail
-    with _$ExplanationOfBenefitSubDetail
-    implements BackboneElement {
+class ExplanationOfBenefitSubDetail extends BackboneElement
+    with _$ExplanationOfBenefitSubDetail {
   /// [ExplanationOfBenefitSubDetail] This resource provides: the claim
-  const ExplanationOfBenefitSubDetail._();
+  ExplanationOfBenefitSubDetail._();
 
   /// [ExplanationOfBenefitSubDetail] This resource provides: the claim
   /// details; adjudication details from the processing of a Claim; and
@@ -2460,7 +2482,7 @@ class ExplanationOfBenefitSubDetail
   /// [noteNumberElement] Extensions for noteNumber
   ///
   /// [adjudication] The adjudication results.
-  const factory ExplanationOfBenefitSubDetail({
+  factory ExplanationOfBenefitSubDetail({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2583,6 +2605,9 @@ class ExplanationOfBenefitSubDetail
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2594,11 +2619,10 @@ class ExplanationOfBenefitSubDetail
 
 /// [ExplanationOfBenefitAddItem] This resource provides: the claim details;
 @freezed
-class ExplanationOfBenefitAddItem
-    with _$ExplanationOfBenefitAddItem
-    implements BackboneElement {
+class ExplanationOfBenefitAddItem extends BackboneElement
+    with _$ExplanationOfBenefitAddItem {
   /// [ExplanationOfBenefitAddItem] This resource provides: the claim details;
-  const ExplanationOfBenefitAddItem._();
+  ExplanationOfBenefitAddItem._();
 
   /// [ExplanationOfBenefitAddItem] This resource provides: the claim details;
   /// adjudication details from the processing of a Claim; and optionally
@@ -2699,7 +2723,7 @@ class ExplanationOfBenefitAddItem
   /// [adjudication] The adjudication results.
   ///
   /// [detail] The second-tier service adjudications for payor added services.
-  const factory ExplanationOfBenefitAddItem({
+  factory ExplanationOfBenefitAddItem({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -2861,6 +2885,9 @@ class ExplanationOfBenefitAddItem
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2872,11 +2899,10 @@ class ExplanationOfBenefitAddItem
 
 /// [ExplanationOfBenefitDetail1] This resource provides: the claim details;
 @freezed
-class ExplanationOfBenefitDetail1
-    with _$ExplanationOfBenefitDetail1
-    implements BackboneElement {
+class ExplanationOfBenefitDetail1 extends BackboneElement
+    with _$ExplanationOfBenefitDetail1 {
   /// [ExplanationOfBenefitDetail1] This resource provides: the claim details;
-  const ExplanationOfBenefitDetail1._();
+  ExplanationOfBenefitDetail1._();
 
   /// [ExplanationOfBenefitDetail1] This resource provides: the claim details;
   /// adjudication details from the processing of a Claim; and optionally
@@ -2939,7 +2965,7 @@ class ExplanationOfBenefitDetail1
   ///
   /// [subDetail] The third-tier service adjudications for payor added
   ///  services.
-  const factory ExplanationOfBenefitDetail1({
+  factory ExplanationOfBenefitDetail1({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -3045,6 +3071,9 @@ class ExplanationOfBenefitDetail1
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -3056,11 +3085,10 @@ class ExplanationOfBenefitDetail1
 
 /// [ExplanationOfBenefitSubDetail1] This resource provides: the claim
 @freezed
-class ExplanationOfBenefitSubDetail1
-    with _$ExplanationOfBenefitSubDetail1
-    implements BackboneElement {
+class ExplanationOfBenefitSubDetail1 extends BackboneElement
+    with _$ExplanationOfBenefitSubDetail1 {
   /// [ExplanationOfBenefitSubDetail1] This resource provides: the claim
-  const ExplanationOfBenefitSubDetail1._();
+  ExplanationOfBenefitSubDetail1._();
 
   /// [ExplanationOfBenefitSubDetail1] This resource provides: the claim
   /// details; adjudication details from the processing of a Claim; and
@@ -3120,7 +3148,7 @@ class ExplanationOfBenefitSubDetail1
   /// [noteNumberElement] Extensions for noteNumber
   ///
   /// [adjudication] The adjudication results.
-  const factory ExplanationOfBenefitSubDetail1({
+  factory ExplanationOfBenefitSubDetail1({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -3223,6 +3251,9 @@ class ExplanationOfBenefitSubDetail1
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -3234,11 +3265,10 @@ class ExplanationOfBenefitSubDetail1
 
 /// [ExplanationOfBenefitTotal] This resource provides: the claim details;
 @freezed
-class ExplanationOfBenefitTotal
-    with _$ExplanationOfBenefitTotal
-    implements BackboneElement {
+class ExplanationOfBenefitTotal extends BackboneElement
+    with _$ExplanationOfBenefitTotal {
   /// [ExplanationOfBenefitTotal] This resource provides: the claim details;
-  const ExplanationOfBenefitTotal._();
+  ExplanationOfBenefitTotal._();
 
   /// [ExplanationOfBenefitTotal] This resource provides: the claim details;
   /// adjudication details from the processing of a Claim; and optionally
@@ -3276,7 +3306,7 @@ class ExplanationOfBenefitTotal
   ///  by other coverages, and the benefit payable for this item.
   ///
   /// [amount] Monetary total amount associated with the category.
-  const factory ExplanationOfBenefitTotal({
+  factory ExplanationOfBenefitTotal({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -3348,6 +3378,9 @@ class ExplanationOfBenefitTotal
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -3359,11 +3392,10 @@ class ExplanationOfBenefitTotal
 
 /// [ExplanationOfBenefitPayment] This resource provides: the claim details;
 @freezed
-class ExplanationOfBenefitPayment
-    with _$ExplanationOfBenefitPayment
-    implements BackboneElement {
+class ExplanationOfBenefitPayment extends BackboneElement
+    with _$ExplanationOfBenefitPayment {
   /// [ExplanationOfBenefitPayment] This resource provides: the claim details;
-  const ExplanationOfBenefitPayment._();
+  ExplanationOfBenefitPayment._();
 
   /// [ExplanationOfBenefitPayment] This resource provides: the claim details;
   /// adjudication details from the processing of a Claim; and optionally
@@ -3410,7 +3442,7 @@ class ExplanationOfBenefitPayment
   /// [amount] Benefits payable less any payment adjustment.
   ///
   /// [identifier] Issuer's unique identifier for the payment instrument.
-  const factory ExplanationOfBenefitPayment({
+  factory ExplanationOfBenefitPayment({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -3496,6 +3528,9 @@ class ExplanationOfBenefitPayment
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -3507,11 +3542,10 @@ class ExplanationOfBenefitPayment
 
 /// [ExplanationOfBenefitProcessNote] This resource provides: the claim
 @freezed
-class ExplanationOfBenefitProcessNote
-    with _$ExplanationOfBenefitProcessNote
-    implements BackboneElement {
+class ExplanationOfBenefitProcessNote extends BackboneElement
+    with _$ExplanationOfBenefitProcessNote {
   /// [ExplanationOfBenefitProcessNote] This resource provides: the claim
-  const ExplanationOfBenefitProcessNote._();
+  ExplanationOfBenefitProcessNote._();
 
   /// [ExplanationOfBenefitProcessNote] This resource provides: the claim
   /// details; adjudication details from the processing of a Claim; and
@@ -3555,7 +3589,7 @@ class ExplanationOfBenefitProcessNote
   /// [textElement] Extensions for text
   ///
   /// [language] A code to define the language used in the text of the note.
-  const factory ExplanationOfBenefitProcessNote({
+  factory ExplanationOfBenefitProcessNote({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -3639,6 +3673,9 @@ class ExplanationOfBenefitProcessNote
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -3647,10 +3684,9 @@ class ExplanationOfBenefitProcessNote
 
 @freezed
 @freezed
-class ExplanationOfBenefitBenefitBalance
-    with _$ExplanationOfBenefitBenefitBalance
-    implements BackboneElement {
-  const ExplanationOfBenefitBenefitBalance._();
+class ExplanationOfBenefitBenefitBalance extends BackboneElement
+    with _$ExplanationOfBenefitBenefitBalance {
+  ExplanationOfBenefitBenefitBalance._();
 
   /// [ExplanationOfBenefitBenefitBalance] This resource provides: the claim
   /// details; adjudication details from the processing of a Claim; and
@@ -3707,7 +3743,7 @@ class ExplanationOfBenefitBenefitBalance
   ///  benefit' or 'maximum annual visits'.
   ///
   /// [financial] Benefits Used to date.
-  const factory ExplanationOfBenefitBenefitBalance({
+  factory ExplanationOfBenefitBenefitBalance({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -3796,6 +3832,9 @@ class ExplanationOfBenefitBenefitBalance
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -3807,11 +3846,10 @@ class ExplanationOfBenefitBenefitBalance
 
 /// [ExplanationOfBenefitFinancial] This resource provides: the claim
 @freezed
-class ExplanationOfBenefitFinancial
-    with _$ExplanationOfBenefitFinancial
-    implements BackboneElement {
+class ExplanationOfBenefitFinancial extends BackboneElement
+    with _$ExplanationOfBenefitFinancial {
   /// [ExplanationOfBenefitFinancial] This resource provides: the claim
-  const ExplanationOfBenefitFinancial._();
+  ExplanationOfBenefitFinancial._();
 
   /// [ExplanationOfBenefitFinancial] This resource provides: the claim
   /// details; adjudication details from the processing of a Claim; and
@@ -3863,7 +3901,7 @@ class ExplanationOfBenefitFinancial
   /// [usedUnsignedIntElement] Extensions for usedUnsignedInt
   ///
   /// [usedMoney] The quantity of the benefit which have been consumed to date.
-  const factory ExplanationOfBenefitFinancial({
+  factory ExplanationOfBenefitFinancial({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -3956,6 +3994,9 @@ class ExplanationOfBenefitFinancial
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

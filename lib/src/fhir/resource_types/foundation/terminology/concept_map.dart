@@ -15,9 +15,9 @@ part 'concept_map.g.dart';
 
 /// [ConceptMap] A statement of relationships from one set of concepts to one
 @freezed
-class ConceptMap with _$ConceptMap implements DomainResource {
+class ConceptMap extends DomainResource with _$ConceptMap {
   /// [ConceptMap] A statement of relationships from one set of concepts to one
-  const ConceptMap._();
+  ConceptMap._();
 
   /// [ConceptMap] A statement of relationships from one set of concepts to one
   /// or more other concepts - either concepts in code systems, or data
@@ -187,7 +187,7 @@ class ConceptMap with _$ConceptMap implements DomainResource {
   ///
   /// [group] A group of mappings that all have the same source and target
   ///  system.
-  const factory ConceptMap({
+  factory ConceptMap({
     @Default(R4ResourceType.ConceptMap)
     @JsonKey(unknownEnumValue: R4ResourceType.ConceptMap)
 
@@ -436,6 +436,9 @@ class ConceptMap with _$ConceptMap implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -458,8 +461,8 @@ class ConceptMap with _$ConceptMap implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [ConceptMapGroup] A statement of relationships from one set of concepts
@@ -467,9 +470,9 @@ class ConceptMap with _$ConceptMap implements DomainResource {
 
 /// [ConceptMapGroup] A statement of relationships from one set of concepts
 @freezed
-class ConceptMapGroup with _$ConceptMapGroup implements BackboneElement {
+class ConceptMapGroup extends BackboneElement with _$ConceptMapGroup {
   /// [ConceptMapGroup] A statement of relationships from one set of concepts
-  const ConceptMapGroup._();
+  ConceptMapGroup._();
 
   /// [ConceptMapGroup] A statement of relationships from one set of concepts
   /// to one or more other concepts - either concepts in code systems, or data
@@ -526,7 +529,7 @@ class ConceptMapGroup with _$ConceptMapGroup implements BackboneElement {
   /// "Unmapped" does not include codes that are unmatched, and the unmapped
   /// element is ignored in a code is specified to have equivalence =
   ///  unmatched.
-  const factory ConceptMapGroup({
+  factory ConceptMapGroup({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -624,6 +627,9 @@ class ConceptMapGroup with _$ConceptMapGroup implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -635,9 +641,9 @@ class ConceptMapGroup with _$ConceptMapGroup implements BackboneElement {
 
 /// [ConceptMapElement] A statement of relationships from one set of
 @freezed
-class ConceptMapElement with _$ConceptMapElement implements BackboneElement {
+class ConceptMapElement extends BackboneElement with _$ConceptMapElement {
   /// [ConceptMapElement] A statement of relationships from one set of
-  const ConceptMapElement._();
+  ConceptMapElement._();
 
   /// [ConceptMapElement] A statement of relationships from one set of
   /// concepts to one or more other concepts - either concepts in code systems,
@@ -677,7 +683,7 @@ class ConceptMapElement with _$ConceptMapElement implements BackboneElement {
   /// [displayElement] Extensions for display
   ///
   /// [target] A concept from the target value set that this concept maps to.
-  const factory ConceptMapElement({
+  factory ConceptMapElement({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -753,6 +759,9 @@ class ConceptMapElement with _$ConceptMapElement implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -764,9 +773,9 @@ class ConceptMapElement with _$ConceptMapElement implements BackboneElement {
 
 /// [ConceptMapTarget] A statement of relationships from one set of concepts
 @freezed
-class ConceptMapTarget with _$ConceptMapTarget implements BackboneElement {
+class ConceptMapTarget extends BackboneElement with _$ConceptMapTarget {
   /// [ConceptMapTarget] A statement of relationships from one set of concepts
-  const ConceptMapTarget._();
+  ConceptMapTarget._();
 
   /// [ConceptMapTarget] A statement of relationships from one set of concepts
   /// to one or more other concepts - either concepts in code systems, or data
@@ -826,7 +835,7 @@ class ConceptMapTarget with _$ConceptMapTarget implements BackboneElement {
   /// mapped to some data element or source that is in context. The mapping may
   /// still be useful without a place for the additional data elements, but the
   ///  equivalence cannot be relied on.
-  const factory ConceptMapTarget({
+  factory ConceptMapTarget({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -927,6 +936,9 @@ class ConceptMapTarget with _$ConceptMapTarget implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -938,11 +950,9 @@ class ConceptMapTarget with _$ConceptMapTarget implements BackboneElement {
 
 /// [ConceptMapDependsOn] A statement of relationships from one set of
 @freezed
-class ConceptMapDependsOn
-    with _$ConceptMapDependsOn
-    implements BackboneElement {
+class ConceptMapDependsOn extends BackboneElement with _$ConceptMapDependsOn {
   /// [ConceptMapDependsOn] A statement of relationships from one set of
-  const ConceptMapDependsOn._();
+  ConceptMapDependsOn._();
 
   /// [ConceptMapDependsOn] A statement of relationships from one set of
   /// concepts to one or more other concepts - either concepts in code systems,
@@ -992,7 +1002,7 @@ class ConceptMapDependsOn
   ///  editors when editing the concept map.
   ///
   /// [displayElement] Extensions for display
-  const factory ConceptMapDependsOn({
+  factory ConceptMapDependsOn({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1080,6 +1090,9 @@ class ConceptMapDependsOn
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1091,9 +1104,9 @@ class ConceptMapDependsOn
 
 /// [ConceptMapUnmapped] A statement of relationships from one set of
 @freezed
-class ConceptMapUnmapped with _$ConceptMapUnmapped implements BackboneElement {
+class ConceptMapUnmapped extends BackboneElement with _$ConceptMapUnmapped {
   /// [ConceptMapUnmapped] A statement of relationships from one set of
-  const ConceptMapUnmapped._();
+  ConceptMapUnmapped._();
 
   /// [ConceptMapUnmapped] A statement of relationships from one set of
   /// concepts to one or more other concepts - either concepts in code systems,
@@ -1145,7 +1158,7 @@ class ConceptMapUnmapped with _$ConceptMapUnmapped implements BackboneElement {
   /// [url] The canonical reference to an additional ConceptMap resource
   /// instance to use for mapping if this ConceptMap resource contains no
   ///  matching mapping for the source concept.
-  const factory ConceptMapUnmapped({
+  factory ConceptMapUnmapped({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1233,6 +1246,9 @@ class ConceptMapUnmapped with _$ConceptMapUnmapped implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

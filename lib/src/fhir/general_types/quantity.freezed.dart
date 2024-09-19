@@ -288,7 +288,7 @@ class __$$QuantityImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$QuantityImpl extends _Quantity {
-  const _$QuantityImpl(
+  _$QuantityImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       this.value,
@@ -448,7 +448,7 @@ class _$QuantityImpl extends _Quantity {
 }
 
 abstract class _Quantity extends Quantity {
-  const factory _Quantity(
+  factory _Quantity(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final FhirDecimal? value,
@@ -463,7 +463,7 @@ abstract class _Quantity extends Quantity {
       final FhirCode? code,
       @JsonKey(name: '_code')
       final PrimitiveElement? codeElement}) = _$QuantityImpl;
-  const _Quantity._() : super._();
+  _Quantity._() : super._();
 
   factory _Quantity.fromJson(Map<String, dynamic> json) =
       _$QuantityImpl.fromJson;

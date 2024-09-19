@@ -14,9 +14,9 @@ part 'coverage.g.dart';
 
 /// [Coverage] Financial instrument which may be used to reimburse or pay for
 @freezed
-class Coverage with _$Coverage implements DomainResource {
+class Coverage extends DomainResource with _$Coverage {
   /// [Coverage] Financial instrument which may be used to reimburse or pay for
-  const Coverage._();
+  Coverage._();
 
   /// [Coverage] Financial instrument which may be used to reimburse or pay for
   /// health care products and services. Includes both insurance and
@@ -139,7 +139,7 @@ class Coverage with _$Coverage implements DomainResource {
   /// [subrogationElement] Extensions for subrogation
   ///
   /// [contract] The policy(s) which constitute this insurance coverage.
-  const factory Coverage({
+  factory Coverage({
     @Default(R4ResourceType.Coverage)
     @JsonKey(unknownEnumValue: R4ResourceType.Coverage)
 
@@ -329,6 +329,9 @@ class Coverage with _$Coverage implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -351,8 +354,8 @@ class Coverage with _$Coverage implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [CoverageClass] Financial instrument which may be used to reimburse or
@@ -360,9 +363,9 @@ class Coverage with _$Coverage implements DomainResource {
 
 /// [CoverageClass] Financial instrument which may be used to reimburse or
 @freezed
-class CoverageClass with _$CoverageClass implements BackboneElement {
+class CoverageClass extends BackboneElement with _$CoverageClass {
   /// [CoverageClass] Financial instrument which may be used to reimburse or
-  const CoverageClass._();
+  CoverageClass._();
 
   /// [CoverageClass] Financial instrument which may be used to reimburse or
   /// pay for health care products and services. Includes both insurance and
@@ -404,7 +407,7 @@ class CoverageClass with _$CoverageClass implements BackboneElement {
   /// [name] A short description for the class.
   ///
   /// [nameElement] Extensions for name
-  const factory CoverageClass({
+  factory CoverageClass({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -484,6 +487,9 @@ class CoverageClass with _$CoverageClass implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -495,11 +501,10 @@ class CoverageClass with _$CoverageClass implements BackboneElement {
 
 /// [CoverageCostToBeneficiary] Financial instrument which may be used to
 @freezed
-class CoverageCostToBeneficiary
-    with _$CoverageCostToBeneficiary
-    implements BackboneElement {
+class CoverageCostToBeneficiary extends BackboneElement
+    with _$CoverageCostToBeneficiary {
   /// [CoverageCostToBeneficiary] Financial instrument which may be used to
-  const CoverageCostToBeneficiary._();
+  CoverageCostToBeneficiary._();
 
   /// [CoverageCostToBeneficiary] Financial instrument which may be used to
   /// reimburse or pay for health care products and services. Includes both
@@ -537,7 +542,7 @@ class CoverageCostToBeneficiary
   ///
   /// [exception] A suite of codes indicating exceptions or reductions to
   ///  patient costs and their effective periods.
-  const factory CoverageCostToBeneficiary({
+  factory CoverageCostToBeneficiary({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -612,6 +617,9 @@ class CoverageCostToBeneficiary
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -623,9 +631,9 @@ class CoverageCostToBeneficiary
 
 /// [CoverageException] Financial instrument which may be used to reimburse
 @freezed
-class CoverageException with _$CoverageException implements BackboneElement {
+class CoverageException extends BackboneElement with _$CoverageException {
   /// [CoverageException] Financial instrument which may be used to reimburse
-  const CoverageException._();
+  CoverageException._();
 
   /// [CoverageException] Financial instrument which may be used to reimburse
   /// or pay for health care products and services. Includes both insurance and
@@ -658,7 +666,7 @@ class CoverageException with _$CoverageException implements BackboneElement {
   /// [type] The code for the specific exception.
   ///
   /// [period] The timeframe during when the exception is in force.
-  const factory CoverageException({
+  factory CoverageException({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -725,6 +733,9 @@ class CoverageException with _$CoverageException implements BackboneElement {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

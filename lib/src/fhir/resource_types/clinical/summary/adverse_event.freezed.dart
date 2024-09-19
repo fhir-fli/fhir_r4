@@ -749,7 +749,7 @@ class __$$AdverseEventImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AdverseEventImpl extends _AdverseEvent {
-  const _$AdverseEventImpl(
+  _$AdverseEventImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.AdverseEvent)
       this.resourceType = R4ResourceType.AdverseEvent,
       this.id,
@@ -1094,7 +1094,7 @@ class _$AdverseEventImpl extends _AdverseEvent {
 }
 
 abstract class _AdverseEvent extends AdverseEvent {
-  const factory _AdverseEvent(
+  factory _AdverseEvent(
       {@JsonKey(unknownEnumValue: R4ResourceType.AdverseEvent)
       final R4ResourceType resourceType,
       final String? id,
@@ -1133,7 +1133,7 @@ abstract class _AdverseEvent extends AdverseEvent {
       final List<Reference>? subjectMedicalHistory,
       final List<Reference>? referenceDocument,
       final List<Reference>? study}) = _$AdverseEventImpl;
-  const _AdverseEvent._() : super._();
+  _AdverseEvent._() : super._();
 
   factory _AdverseEvent.fromJson(Map<String, dynamic> json) =
       _$AdverseEventImpl.fromJson;
@@ -1393,7 +1393,7 @@ class __$$AdverseEventSuspectEntityImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AdverseEventSuspectEntityImpl extends _AdverseEventSuspectEntity {
-  const _$AdverseEventSuspectEntityImpl(
+  _$AdverseEventSuspectEntityImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1492,14 +1492,14 @@ class _$AdverseEventSuspectEntityImpl extends _AdverseEventSuspectEntity {
 }
 
 abstract class _AdverseEventSuspectEntity extends AdverseEventSuspectEntity {
-  const factory _AdverseEventSuspectEntity(
+  factory _AdverseEventSuspectEntity(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           required final Reference instance,
           final List<AdverseEventCausality>? causality}) =
       _$AdverseEventSuspectEntityImpl;
-  const _AdverseEventSuspectEntity._() : super._();
+  _AdverseEventSuspectEntity._() : super._();
 
   factory _AdverseEventSuspectEntity.fromJson(Map<String, dynamic> json) =
       _$AdverseEventSuspectEntityImpl.fromJson;
@@ -1771,7 +1771,7 @@ class __$$AdverseEventCausalityImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AdverseEventCausalityImpl extends _AdverseEventCausality {
-  const _$AdverseEventCausalityImpl(
+  _$AdverseEventCausalityImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1880,7 +1880,7 @@ class _$AdverseEventCausalityImpl extends _AdverseEventCausality {
 }
 
 abstract class _AdverseEventCausality extends AdverseEventCausality {
-  const factory _AdverseEventCausality(
+  factory _AdverseEventCausality(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1890,7 +1890,7 @@ abstract class _AdverseEventCausality extends AdverseEventCausality {
       final PrimitiveElement? productRelatednessElement,
       final Reference? author,
       final CodeableConcept? method}) = _$AdverseEventCausalityImpl;
-  const _AdverseEventCausality._() : super._();
+  _AdverseEventCausality._() : super._();
 
   factory _AdverseEventCausality.fromJson(Map<String, dynamic> json) =
       _$AdverseEventCausalityImpl.fromJson;

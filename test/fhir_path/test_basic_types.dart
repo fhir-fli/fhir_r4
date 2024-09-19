@@ -7,7 +7,7 @@ import 'package:ucum/ucum.dart';
 
 FhirPathParser parseResult(String arg) => lexer().parse(arg).value;
 
-void main() {
+void testBasicTypes() {
   group('Basic Types', () {
     test('Boolean', () {
       expect((((parseResult('true') as ParserList)).first as ValueParser).value,

@@ -471,7 +471,7 @@ class __$$BasicImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$BasicImpl extends _Basic {
-  const _$BasicImpl(
+  _$BasicImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Basic)
       this.resourceType = R4ResourceType.Basic,
       this.id,
@@ -742,7 +742,7 @@ class _$BasicImpl extends _Basic {
 }
 
 abstract class _Basic extends Basic {
-  const factory _Basic(
+  factory _Basic(
       {@JsonKey(unknownEnumValue: R4ResourceType.Basic)
       final R4ResourceType resourceType,
       final String? id,
@@ -762,7 +762,7 @@ abstract class _Basic extends Basic {
       final FhirDate? created,
       @JsonKey(name: '_created') final PrimitiveElement? createdElement,
       final Reference? author}) = _$BasicImpl;
-  const _Basic._() : super._();
+  _Basic._() : super._();
 
   factory _Basic.fromJson(Map<String, dynamic> json) = _$BasicImpl.fromJson;
 

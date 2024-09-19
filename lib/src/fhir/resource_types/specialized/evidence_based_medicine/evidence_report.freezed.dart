@@ -632,7 +632,7 @@ class __$$EvidenceReportImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$EvidenceReportImpl extends _EvidenceReport {
-  const _$EvidenceReportImpl(
+  _$EvidenceReportImpl(
       {this.resourceType = R4ResourceType.EvidenceReport,
       this.id,
       this.meta,
@@ -1009,7 +1009,7 @@ class _$EvidenceReportImpl extends _EvidenceReport {
 }
 
 abstract class _EvidenceReport extends EvidenceReport {
-  const factory _EvidenceReport(
+  factory _EvidenceReport(
       {final R4ResourceType resourceType,
       final String? id,
       final FhirMeta? meta,
@@ -1046,7 +1046,7 @@ abstract class _EvidenceReport extends EvidenceReport {
       final List<ContactDetail>? endorser,
       final List<EvidenceReportRelatesTo>? relatesTo,
       final List<EvidenceReportSection>? section}) = _$EvidenceReportImpl;
-  const _EvidenceReport._() : super._();
+  _EvidenceReport._() : super._();
 
   factory _EvidenceReport.fromJson(Map<String, dynamic> json) =
       _$EvidenceReportImpl.fromJson;
@@ -1287,7 +1287,7 @@ class __$$EvidenceReportSubjectImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$EvidenceReportSubjectImpl extends _EvidenceReportSubject {
-  const _$EvidenceReportSubjectImpl(
+  _$EvidenceReportSubjectImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1394,13 +1394,13 @@ class _$EvidenceReportSubjectImpl extends _EvidenceReportSubject {
 }
 
 abstract class _EvidenceReportSubject extends EvidenceReportSubject {
-  const factory _EvidenceReportSubject(
+  factory _EvidenceReportSubject(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final List<EvidenceReportCharacteristic>? characteristic,
       final List<Annotation>? note}) = _$EvidenceReportSubjectImpl;
-  const _EvidenceReportSubject._() : super._();
+  _EvidenceReportSubject._() : super._();
 
   factory _EvidenceReportSubject.fromJson(Map<String, dynamic> json) =
       _$EvidenceReportSubjectImpl.fromJson;
@@ -1788,7 +1788,7 @@ class __$$EvidenceReportCharacteristicImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$EvidenceReportCharacteristicImpl extends _EvidenceReportCharacteristic {
-  const _$EvidenceReportCharacteristicImpl(
+  _$EvidenceReportCharacteristicImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1929,7 +1929,7 @@ class _$EvidenceReportCharacteristicImpl extends _EvidenceReportCharacteristic {
 
 abstract class _EvidenceReportCharacteristic
     extends EvidenceReportCharacteristic {
-  const factory _EvidenceReportCharacteristic(
+  factory _EvidenceReportCharacteristic(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1944,7 +1944,7 @@ abstract class _EvidenceReportCharacteristic
       final FhirBoolean? exclude,
       @JsonKey(name: '_exclude') final PrimitiveElement? excludeElement,
       final Period? period}) = _$EvidenceReportCharacteristicImpl;
-  const _EvidenceReportCharacteristic._() : super._();
+  _EvidenceReportCharacteristic._() : super._();
 
   factory _EvidenceReportCharacteristic.fromJson(Map<String, dynamic> json) =
       _$EvidenceReportCharacteristicImpl.fromJson;
@@ -2203,7 +2203,7 @@ class __$$EvidenceReportRelatesToImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$EvidenceReportRelatesToImpl extends _EvidenceReportRelatesTo {
-  const _$EvidenceReportRelatesToImpl(
+  _$EvidenceReportRelatesToImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2306,7 +2306,7 @@ class _$EvidenceReportRelatesToImpl extends _EvidenceReportRelatesTo {
 }
 
 abstract class _EvidenceReportRelatesTo extends EvidenceReportRelatesTo {
-  const factory _EvidenceReportRelatesTo(
+  factory _EvidenceReportRelatesTo(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2314,7 +2314,7 @@ abstract class _EvidenceReportRelatesTo extends EvidenceReportRelatesTo {
       @JsonKey(name: '_code') final PrimitiveElement? codeElement,
       final Identifier? targetIdentifier,
       final Reference? targetReference}) = _$EvidenceReportRelatesToImpl;
-  const _EvidenceReportRelatesTo._() : super._();
+  _EvidenceReportRelatesTo._() : super._();
 
   factory _EvidenceReportRelatesTo.fromJson(Map<String, dynamic> json) =
       _$EvidenceReportRelatesToImpl.fromJson;
@@ -2742,7 +2742,7 @@ class __$$EvidenceReportSectionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$EvidenceReportSectionImpl extends _EvidenceReportSection {
-  const _$EvidenceReportSectionImpl(
+  _$EvidenceReportSectionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2945,7 +2945,7 @@ class _$EvidenceReportSectionImpl extends _EvidenceReportSection {
 }
 
 abstract class _EvidenceReportSection extends EvidenceReportSection {
-  const factory _EvidenceReportSection(
+  factory _EvidenceReportSection(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2964,7 +2964,7 @@ abstract class _EvidenceReportSection extends EvidenceReportSection {
           final CodeableConcept? emptyReason,
           final List<EvidenceReportSection>? section}) =
       _$EvidenceReportSectionImpl;
-  const _EvidenceReportSection._() : super._();
+  _EvidenceReportSection._() : super._();
 
   factory _EvidenceReportSection.fromJson(Map<String, dynamic> json) =
       _$EvidenceReportSectionImpl.fromJson;

@@ -15,9 +15,9 @@ part 'family_member_history.g.dart';
 
 /// [FamilyMemberHistory] Significant health conditions for a person related
 @freezed
-class FamilyMemberHistory with _$FamilyMemberHistory implements DomainResource {
+class FamilyMemberHistory extends DomainResource with _$FamilyMemberHistory {
   /// [FamilyMemberHistory] Significant health conditions for a person related
-  const FamilyMemberHistory._();
+  FamilyMemberHistory._();
 
   /// [FamilyMemberHistory] Significant health conditions for a person related
   ///  to the patient relevant in the context of care for the patient.
@@ -175,7 +175,7 @@ class FamilyMemberHistory with _$FamilyMemberHistory implements DomainResource {
   /// member had. This is a repeating section to allow a system to represent
   /// more than one condition per resource, though there is nothing stopping
   ///  multiple resources - one per condition.
-  const factory FamilyMemberHistory({
+  factory FamilyMemberHistory({
     @Default(R4ResourceType.FamilyMemberHistory)
     @JsonKey(unknownEnumValue: R4ResourceType.FamilyMemberHistory)
     R4ResourceType resourceType,
@@ -262,6 +262,9 @@ class FamilyMemberHistory with _$FamilyMemberHistory implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -284,8 +287,8 @@ class FamilyMemberHistory with _$FamilyMemberHistory implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [FamilyMemberHistoryCondition] Significant health conditions for a
@@ -293,11 +296,10 @@ class FamilyMemberHistory with _$FamilyMemberHistory implements DomainResource {
 
 /// [FamilyMemberHistoryCondition] Significant health conditions for a
 @freezed
-class FamilyMemberHistoryCondition
-    with _$FamilyMemberHistoryCondition
-    implements BackboneElement {
+class FamilyMemberHistoryCondition extends BackboneElement
+    with _$FamilyMemberHistoryCondition {
   /// [FamilyMemberHistoryCondition] Significant health conditions for a
-  const FamilyMemberHistoryCondition._();
+  FamilyMemberHistoryCondition._();
 
   /// [FamilyMemberHistoryCondition] Significant health conditions for a
   /// person related to the patient relevant in the context of care for the
@@ -361,7 +363,7 @@ class FamilyMemberHistoryCondition
   ///
   /// [note] An area where general notes can be placed about this specific
   ///  condition.
-  const factory FamilyMemberHistoryCondition({
+  factory FamilyMemberHistoryCondition({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -407,6 +409,9 @@ class FamilyMemberHistoryCondition
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

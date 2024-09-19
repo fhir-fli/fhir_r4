@@ -1113,7 +1113,7 @@ class __$$SearchParameterImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SearchParameterImpl extends _SearchParameter {
-  const _$SearchParameterImpl(
+  _$SearchParameterImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.SearchParameter)
       this.resourceType = R4ResourceType.SearchParameter,
       this.id,
@@ -1910,7 +1910,7 @@ class _$SearchParameterImpl extends _SearchParameter {
 }
 
 abstract class _SearchParameter extends SearchParameter {
-  const factory _SearchParameter(
+  factory _SearchParameter(
       {@JsonKey(unknownEnumValue: R4ResourceType.SearchParameter)
       final R4ResourceType resourceType,
       final String? id,
@@ -1973,7 +1973,7 @@ abstract class _SearchParameter extends SearchParameter {
       final List<String>? chain,
       @JsonKey(name: '_chain') final List<PrimitiveElement>? chainElement,
       final List<SearchParameterComponent>? component}) = _$SearchParameterImpl;
-  const _SearchParameter._() : super._();
+  _SearchParameter._() : super._();
 
   factory _SearchParameter.fromJson(Map<String, dynamic> json) =
       _$SearchParameterImpl.fromJson;
@@ -2517,7 +2517,7 @@ class __$$SearchParameterComponentImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SearchParameterComponentImpl extends _SearchParameterComponent {
-  const _$SearchParameterComponentImpl(
+  _$SearchParameterComponentImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2665,7 +2665,7 @@ class _$SearchParameterComponentImpl extends _SearchParameterComponent {
 }
 
 abstract class _SearchParameterComponent extends SearchParameterComponent {
-  const factory _SearchParameterComponent(
+  factory _SearchParameterComponent(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2674,7 +2674,7 @@ abstract class _SearchParameterComponent extends SearchParameterComponent {
           @JsonKey(name: '_expression')
           final PrimitiveElement? expressionElement}) =
       _$SearchParameterComponentImpl;
-  const _SearchParameterComponent._() : super._();
+  _SearchParameterComponent._() : super._();
 
   factory _SearchParameterComponent.fromJson(Map<String, dynamic> json) =
       _$SearchParameterComponentImpl.fromJson;

@@ -681,7 +681,7 @@ class __$$MessageHeaderImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MessageHeaderImpl extends _MessageHeader {
-  const _$MessageHeaderImpl(
+  _$MessageHeaderImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.MessageHeader)
       this.resourceType = R4ResourceType.MessageHeader,
       this.id,
@@ -1034,7 +1034,7 @@ class _$MessageHeaderImpl extends _MessageHeader {
 }
 
 abstract class _MessageHeader extends MessageHeader {
-  const factory _MessageHeader(
+  factory _MessageHeader(
       {@JsonKey(unknownEnumValue: R4ResourceType.MessageHeader)
       final R4ResourceType resourceType,
       final String? id,
@@ -1061,7 +1061,7 @@ abstract class _MessageHeader extends MessageHeader {
       final MessageHeaderResponse? response,
       final List<Reference>? focus,
       final FhirCanonical? definition}) = _$MessageHeaderImpl;
-  const _MessageHeader._() : super._();
+  _MessageHeader._() : super._();
 
   factory _MessageHeader.fromJson(Map<String, dynamic> json) =
       _$MessageHeaderImpl.fromJson;
@@ -1505,7 +1505,7 @@ class __$$MessageHeaderDestinationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MessageHeaderDestinationImpl extends _MessageHeaderDestination {
-  const _$MessageHeaderDestinationImpl(
+  _$MessageHeaderDestinationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1677,7 +1677,7 @@ class _$MessageHeaderDestinationImpl extends _MessageHeaderDestination {
 }
 
 abstract class _MessageHeaderDestination extends MessageHeaderDestination {
-  const factory _MessageHeaderDestination(
+  factory _MessageHeaderDestination(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1687,7 +1687,7 @@ abstract class _MessageHeaderDestination extends MessageHeaderDestination {
       final FhirUrl? endpoint,
       @JsonKey(name: '_endpoint') final PrimitiveElement? endpointElement,
       final Reference? receiver}) = _$MessageHeaderDestinationImpl;
-  const _MessageHeaderDestination._() : super._();
+  _MessageHeaderDestination._() : super._();
 
   factory _MessageHeaderDestination.fromJson(Map<String, dynamic> json) =
       _$MessageHeaderDestinationImpl.fromJson;
@@ -2065,7 +2065,7 @@ class __$$MessageHeaderSourceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MessageHeaderSourceImpl extends _MessageHeaderSource {
-  const _$MessageHeaderSourceImpl(
+  _$MessageHeaderSourceImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2262,7 +2262,7 @@ class _$MessageHeaderSourceImpl extends _MessageHeaderSource {
 }
 
 abstract class _MessageHeaderSource extends MessageHeaderSource {
-  const factory _MessageHeaderSource(
+  factory _MessageHeaderSource(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2276,7 +2276,7 @@ abstract class _MessageHeaderSource extends MessageHeaderSource {
       final FhirUrl? endpoint,
       @JsonKey(name: '_endpoint')
       final PrimitiveElement? endpointElement}) = _$MessageHeaderSourceImpl;
-  const _MessageHeaderSource._() : super._();
+  _MessageHeaderSource._() : super._();
 
   factory _MessageHeaderSource.fromJson(Map<String, dynamic> json) =
       _$MessageHeaderSourceImpl.fromJson;
@@ -2609,7 +2609,7 @@ class __$$MessageHeaderResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MessageHeaderResponseImpl extends _MessageHeaderResponse {
-  const _$MessageHeaderResponseImpl(
+  _$MessageHeaderResponseImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2772,7 +2772,7 @@ class _$MessageHeaderResponseImpl extends _MessageHeaderResponse {
 }
 
 abstract class _MessageHeaderResponse extends MessageHeaderResponse {
-  const factory _MessageHeaderResponse(
+  factory _MessageHeaderResponse(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2781,7 +2781,7 @@ abstract class _MessageHeaderResponse extends MessageHeaderResponse {
       final FhirCode? code,
       @JsonKey(name: '_code') final PrimitiveElement? codeElement,
       final Reference? details}) = _$MessageHeaderResponseImpl;
-  const _MessageHeaderResponse._() : super._();
+  _MessageHeaderResponse._() : super._();
 
   factory _MessageHeaderResponse.fromJson(Map<String, dynamic> json) =
       _$MessageHeaderResponseImpl.fromJson;

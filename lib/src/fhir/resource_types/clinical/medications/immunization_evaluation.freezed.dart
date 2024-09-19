@@ -781,7 +781,7 @@ class __$$ImmunizationEvaluationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ImmunizationEvaluationImpl extends _ImmunizationEvaluation {
-  const _$ImmunizationEvaluationImpl(
+  _$ImmunizationEvaluationImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.ImmunizationEvaluation)
       this.resourceType = R4ResourceType.ImmunizationEvaluation,
       this.id,
@@ -1220,7 +1220,7 @@ class _$ImmunizationEvaluationImpl extends _ImmunizationEvaluation {
 }
 
 abstract class _ImmunizationEvaluation extends ImmunizationEvaluation {
-  const factory _ImmunizationEvaluation(
+  factory _ImmunizationEvaluation(
       {@JsonKey(unknownEnumValue: R4ResourceType.ImmunizationEvaluation)
       final R4ResourceType resourceType,
       final String? id,
@@ -1262,7 +1262,7 @@ abstract class _ImmunizationEvaluation extends ImmunizationEvaluation {
       @JsonKey(name: '_seriesDosesString')
       final PrimitiveElement?
           seriesDosesStringElement}) = _$ImmunizationEvaluationImpl;
-  const _ImmunizationEvaluation._() : super._();
+  _ImmunizationEvaluation._() : super._();
 
   factory _ImmunizationEvaluation.fromJson(Map<String, dynamic> json) =
       _$ImmunizationEvaluationImpl.fromJson;

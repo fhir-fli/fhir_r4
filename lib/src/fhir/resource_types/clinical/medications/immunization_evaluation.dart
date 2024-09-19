@@ -15,11 +15,10 @@ part 'immunization_evaluation.g.dart';
 
 /// [ImmunizationEvaluation] Describes a comparison of an immunization event
 @freezed
-class ImmunizationEvaluation
-    with _$ImmunizationEvaluation
-    implements DomainResource {
+class ImmunizationEvaluation extends DomainResource
+    with _$ImmunizationEvaluation {
   /// [ImmunizationEvaluation] Describes a comparison of an immunization event
-  const ImmunizationEvaluation._();
+  ImmunizationEvaluation._();
 
   /// [ImmunizationEvaluation] Describes a comparison of an immunization event
   /// against published recommendations to determine if the administration is
@@ -133,7 +132,7 @@ class ImmunizationEvaluation
   /// [seriesDosesString] The recommended number of doses to achieve immunity.
   ///
   /// [seriesDosesStringElement] Extensions for seriesDosesString
-  const factory ImmunizationEvaluation({
+  factory ImmunizationEvaluation({
     @Default(R4ResourceType.ImmunizationEvaluation)
     @JsonKey(unknownEnumValue: R4ResourceType.ImmunizationEvaluation)
 
@@ -318,6 +317,9 @@ class ImmunizationEvaluation
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -340,6 +342,6 @@ class ImmunizationEvaluation
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }

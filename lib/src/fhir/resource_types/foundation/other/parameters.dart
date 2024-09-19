@@ -15,9 +15,9 @@ part 'parameters.g.dart';
 
 /// [Parameters] This resource is a non-persisted resource used to pass
 @freezed
-class Parameters with _$Parameters implements DomainResource {
+class Parameters extends DomainResource with _$Parameters {
   /// [Parameters] This resource is a non-persisted resource used to pass
-  const Parameters._();
+  Parameters._();
 
   /// [Parameters] This resource is a non-persisted resource used to pass
   /// information into and back from an [operation](operations.html). It has no
@@ -44,7 +44,7 @@ class Parameters with _$Parameters implements DomainResource {
   /// [languageElement] Extensions for language
   ///
   /// [parameter] A parameter passed to or received from the operation.
-  const factory Parameters({
+  factory Parameters({
     @Default(R4ResourceType.Parameters)
     @JsonKey(unknownEnumValue: R4ResourceType.Parameters)
 
@@ -149,6 +149,9 @@ class Parameters with _$Parameters implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -171,8 +174,8 @@ class Parameters with _$Parameters implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [ParametersParameter] This resource is a non-persisted resource used to
@@ -180,11 +183,9 @@ class Parameters with _$Parameters implements DomainResource {
 
 /// [ParametersParameter] This resource is a non-persisted resource used to
 @freezed
-class ParametersParameter
-    with _$ParametersParameter
-    implements BackboneElement {
+class ParametersParameter extends BackboneElement with _$ParametersParameter {
   /// [ParametersParameter] This resource is a non-persisted resource used to
-  const ParametersParameter._();
+  ParametersParameter._();
 
   /// [ParametersParameter] This resource is a non-persisted resource used to
   /// pass information into and back from an [operation](operations.html). It
@@ -359,7 +360,7 @@ class ParametersParameter
   /// [resource] If the parameter is a whole resource.
   ///
   /// [part_] A named part of a multi-part parameter.
-  const factory ParametersParameter({
+  factory ParametersParameter({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -639,6 +640,9 @@ class ParametersParameter
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

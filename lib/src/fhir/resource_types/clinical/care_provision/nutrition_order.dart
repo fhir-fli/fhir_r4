@@ -15,9 +15,9 @@ part 'nutrition_order.g.dart';
 
 /// [NutritionOrder] A request to supply a diet, formula feeding (enteral) or
 @freezed
-class NutritionOrder with _$NutritionOrder implements DomainResource {
+class NutritionOrder extends DomainResource with _$NutritionOrder {
   /// [NutritionOrder] A request to supply a diet, formula feeding (enteral) or
-  const NutritionOrder._();
+  NutritionOrder._();
 
   /// [NutritionOrder] A request to supply a diet, formula feeding (enteral) or
   ///  oral nutritional supplement to a patient/resident.
@@ -149,7 +149,7 @@ class NutritionOrder with _$NutritionOrder implements DomainResource {
   ///
   /// [note] Comments made about the {{title}} by the requester, performer,
   ///  subject or other participants.
-  const factory NutritionOrder({
+  factory NutritionOrder({
     @Default(R4ResourceType.NutritionOrder)
     @JsonKey(unknownEnumValue: R4ResourceType.NutritionOrder)
 
@@ -349,6 +349,9 @@ class NutritionOrder with _$NutritionOrder implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -371,8 +374,8 @@ class NutritionOrder with _$NutritionOrder implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [NutritionOrderOralDiet] A request to supply a diet, formula feeding
@@ -380,11 +383,10 @@ class NutritionOrder with _$NutritionOrder implements DomainResource {
 
 /// [NutritionOrderOralDiet] A request to supply a diet, formula feeding
 @freezed
-class NutritionOrderOralDiet
-    with _$NutritionOrderOralDiet
-    implements BackboneElement {
+class NutritionOrderOralDiet extends BackboneElement
+    with _$NutritionOrderOralDiet {
   /// [NutritionOrderOralDiet] A request to supply a diet, formula feeding
-  const NutritionOrderOralDiet._();
+  NutritionOrderOralDiet._();
 
   /// [NutritionOrderOralDiet] A request to supply a diet, formula feeding
   ///  (enteral) or oral nutritional supplement to a patient/resident.
@@ -435,7 +437,7 @@ class NutritionOrderOralDiet
   ///  pertaining to the oral diet.
   ///
   /// [instructionElement] Extensions for instruction
-  const factory NutritionOrderOralDiet({
+  factory NutritionOrderOralDiet({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -525,6 +527,9 @@ class NutritionOrderOralDiet
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -536,11 +541,10 @@ class NutritionOrderOralDiet
 
 /// [NutritionOrderNutrient] A request to supply a diet, formula feeding
 @freezed
-class NutritionOrderNutrient
-    with _$NutritionOrderNutrient
-    implements BackboneElement {
+class NutritionOrderNutrient extends BackboneElement
+    with _$NutritionOrderNutrient {
   /// [NutritionOrderNutrient] A request to supply a diet, formula feeding
-  const NutritionOrderNutrient._();
+  NutritionOrderNutrient._();
 
   /// [NutritionOrderNutrient] A request to supply a diet, formula feeding
   ///  (enteral) or oral nutritional supplement to a patient/resident.
@@ -573,7 +577,7 @@ class NutritionOrderNutrient
   ///  sodium.
   ///
   /// [amount] The quantity of the specified nutrient to include in diet.
-  const factory NutritionOrderNutrient({
+  factory NutritionOrderNutrient({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -640,6 +644,9 @@ class NutritionOrderNutrient
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -651,11 +658,10 @@ class NutritionOrderNutrient
 
 /// [NutritionOrderTexture] A request to supply a diet, formula feeding
 @freezed
-class NutritionOrderTexture
-    with _$NutritionOrderTexture
-    implements BackboneElement {
+class NutritionOrderTexture extends BackboneElement
+    with _$NutritionOrderTexture {
   /// [NutritionOrderTexture] A request to supply a diet, formula feeding
-  const NutritionOrderTexture._();
+  NutritionOrderTexture._();
 
   /// [NutritionOrderTexture] A request to supply a diet, formula feeding
   ///  (enteral) or oral nutritional supplement to a patient/resident.
@@ -689,7 +695,7 @@ class NutritionOrderTexture
   ///
   /// [foodType] The food type(s) (e.g. meats, all foods)  that the texture
   ///  modification applies to.  This could be all foods types.
-  const factory NutritionOrderTexture({
+  factory NutritionOrderTexture({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -757,6 +763,9 @@ class NutritionOrderTexture
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -768,11 +777,10 @@ class NutritionOrderTexture
 
 /// [NutritionOrderSupplement] A request to supply a diet, formula feeding
 @freezed
-class NutritionOrderSupplement
-    with _$NutritionOrderSupplement
-    implements BackboneElement {
+class NutritionOrderSupplement extends BackboneElement
+    with _$NutritionOrderSupplement {
   /// [NutritionOrderSupplement] A request to supply a diet, formula feeding
-  const NutritionOrderSupplement._();
+  NutritionOrderSupplement._();
 
   /// [NutritionOrderSupplement] A request to supply a diet, formula feeding
   ///  (enteral) or oral nutritional supplement to a patient/resident.
@@ -819,7 +827,7 @@ class NutritionOrderSupplement
   ///  pertaining to the oral supplement.
   ///
   /// [instructionElement] Extensions for instruction
-  const factory NutritionOrderSupplement({
+  factory NutritionOrderSupplement({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -905,6 +913,9 @@ class NutritionOrderSupplement
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -916,11 +927,10 @@ class NutritionOrderSupplement
 
 /// [NutritionOrderEnteralFormula] A request to supply a diet, formula
 @freezed
-class NutritionOrderEnteralFormula
-    with _$NutritionOrderEnteralFormula
-    implements BackboneElement {
+class NutritionOrderEnteralFormula extends BackboneElement
+    with _$NutritionOrderEnteralFormula {
   /// [NutritionOrderEnteralFormula] A request to supply a diet, formula
-  const NutritionOrderEnteralFormula._();
+  NutritionOrderEnteralFormula._();
 
   /// [NutritionOrderEnteralFormula] A request to supply a diet, formula
   ///  feeding (enteral) or oral nutritional supplement to a patient/resident.
@@ -989,7 +999,7 @@ class NutritionOrderEnteralFormula
   ///  instructions or additional instructions or information.
   ///
   /// [administrationInstructionElement] Extensions for administrationInstruction
-  const factory NutritionOrderEnteralFormula({
+  factory NutritionOrderEnteralFormula({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1105,6 +1115,9 @@ class NutritionOrderEnteralFormula
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1116,11 +1129,10 @@ class NutritionOrderEnteralFormula
 
 /// [NutritionOrderAdministration] A request to supply a diet, formula
 @freezed
-class NutritionOrderAdministration
-    with _$NutritionOrderAdministration
-    implements BackboneElement {
+class NutritionOrderAdministration extends BackboneElement
+    with _$NutritionOrderAdministration {
   /// [NutritionOrderAdministration] A request to supply a diet, formula
-  const NutritionOrderAdministration._();
+  NutritionOrderAdministration._();
 
   /// [NutritionOrderAdministration] A request to supply a diet, formula
   ///  feeding (enteral) or oral nutritional supplement to a patient/resident.
@@ -1160,7 +1172,7 @@ class NutritionOrderAdministration
   ///
   /// [rateRatio] The rate of administration of formula via a feeding pump,
   ///  e.g. 60 mL per hour, according to the specified schedule.
-  const factory NutritionOrderAdministration({
+  factory NutritionOrderAdministration({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1234,6 +1246,9 @@ class NutritionOrderAdministration
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

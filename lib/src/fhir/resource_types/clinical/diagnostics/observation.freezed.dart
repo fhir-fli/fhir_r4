@@ -1378,7 +1378,7 @@ class __$$ObservationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ObservationImpl extends _Observation {
-  const _$ObservationImpl(
+  _$ObservationImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Observation)
       this.resourceType = R4ResourceType.Observation,
       this.id,
@@ -2155,7 +2155,7 @@ class _$ObservationImpl extends _Observation {
 }
 
 abstract class _Observation extends Observation {
-  const factory _Observation(
+  factory _Observation(
       {@JsonKey(unknownEnumValue: R4ResourceType.Observation)
       final R4ResourceType resourceType,
       final String? id,
@@ -2220,7 +2220,7 @@ abstract class _Observation extends Observation {
       final List<Reference>? hasMember,
       final List<Reference>? derivedFrom,
       final List<ObservationComponent>? component}) = _$ObservationImpl;
-  const _Observation._() : super._();
+  _Observation._() : super._();
 
   factory _Observation.fromJson(Map<String, dynamic> json) =
       _$ObservationImpl.fromJson;
@@ -2909,7 +2909,7 @@ class __$$ObservationReferenceRangeImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ObservationReferenceRangeImpl extends _ObservationReferenceRange {
-  const _$ObservationReferenceRangeImpl(
+  _$ObservationReferenceRangeImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3113,7 +3113,7 @@ class _$ObservationReferenceRangeImpl extends _ObservationReferenceRange {
 }
 
 abstract class _ObservationReferenceRange extends ObservationReferenceRange {
-  const factory _ObservationReferenceRange(
+  factory _ObservationReferenceRange(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3125,7 +3125,7 @@ abstract class _ObservationReferenceRange extends ObservationReferenceRange {
           final String? text,
           @JsonKey(name: '_text') final PrimitiveElement? textElement}) =
       _$ObservationReferenceRangeImpl;
-  const _ObservationReferenceRange._() : super._();
+  _ObservationReferenceRange._() : super._();
 
   factory _ObservationReferenceRange.fromJson(Map<String, dynamic> json) =
       _$ObservationReferenceRangeImpl.fromJson;
@@ -3821,7 +3821,7 @@ class __$$ObservationComponentImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ObservationComponentImpl extends _ObservationComponent {
-  const _$ObservationComponentImpl(
+  _$ObservationComponentImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4145,7 +4145,7 @@ class _$ObservationComponentImpl extends _ObservationComponent {
 }
 
 abstract class _ObservationComponent extends ObservationComponent {
-  const factory _ObservationComponent(
+  factory _ObservationComponent(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4173,7 +4173,7 @@ abstract class _ObservationComponent extends ObservationComponent {
       final List<CodeableConcept>? interpretation,
       final List<ObservationReferenceRange>?
           referenceRange}) = _$ObservationComponentImpl;
-  const _ObservationComponent._() : super._();
+  _ObservationComponent._() : super._();
 
   factory _ObservationComponent.fromJson(Map<String, dynamic> json) =
       _$ObservationComponentImpl.fromJson;

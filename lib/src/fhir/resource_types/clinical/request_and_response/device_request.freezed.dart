@@ -1036,7 +1036,7 @@ class __$$DeviceRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DeviceRequestImpl extends _DeviceRequest {
-  const _$DeviceRequestImpl(
+  _$DeviceRequestImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.DeviceRequest)
       this.resourceType = R4ResourceType.DeviceRequest,
       this.id,
@@ -1689,7 +1689,7 @@ class _$DeviceRequestImpl extends _DeviceRequest {
 }
 
 abstract class _DeviceRequest extends DeviceRequest {
-  const factory _DeviceRequest(
+  factory _DeviceRequest(
       {@JsonKey(unknownEnumValue: R4ResourceType.DeviceRequest)
       final R4ResourceType resourceType,
       final String? id,
@@ -1738,7 +1738,7 @@ abstract class _DeviceRequest extends DeviceRequest {
       final List<Reference>? supportingInfo,
       final List<Annotation>? note,
       final List<Reference>? relevantHistory}) = _$DeviceRequestImpl;
-  const _DeviceRequest._() : super._();
+  _DeviceRequest._() : super._();
 
   factory _DeviceRequest.fromJson(Map<String, dynamic> json) =
       _$DeviceRequestImpl.fromJson;
@@ -2308,7 +2308,7 @@ class __$$DeviceRequestParameterImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DeviceRequestParameterImpl extends _DeviceRequestParameter {
-  const _$DeviceRequestParameterImpl(
+  _$DeviceRequestParameterImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2477,7 +2477,7 @@ class _$DeviceRequestParameterImpl extends _DeviceRequestParameter {
 }
 
 abstract class _DeviceRequestParameter extends DeviceRequestParameter {
-  const factory _DeviceRequestParameter(
+  factory _DeviceRequestParameter(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2489,7 +2489,7 @@ abstract class _DeviceRequestParameter extends DeviceRequestParameter {
           @JsonKey(name: '_valueBoolean')
           final PrimitiveElement? valueBooleanElement}) =
       _$DeviceRequestParameterImpl;
-  const _DeviceRequestParameter._() : super._();
+  _DeviceRequestParameter._() : super._();
 
   factory _DeviceRequestParameter.fromJson(Map<String, dynamic> json) =
       _$DeviceRequestParameterImpl.fromJson;

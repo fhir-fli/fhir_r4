@@ -15,9 +15,9 @@ part 'molecular_sequence.g.dart';
 
 /// [MolecularSequence] Raw data describing a biological sequence.
 @freezed
-class MolecularSequence with _$MolecularSequence implements DomainResource {
+class MolecularSequence extends DomainResource with _$MolecularSequence {
   /// [MolecularSequence] Raw data describing a biological sequence.
-  const MolecularSequence._();
+  MolecularSequence._();
 
   /// [MolecularSequence] Raw data describing a biological sequence.
   ///
@@ -132,7 +132,7 @@ class MolecularSequence with _$MolecularSequence implements DomainResource {
   ///  variant.
   ///
   /// [structureVariant] Information about chromosome structure variation.
-  const factory MolecularSequence({
+  factory MolecularSequence({
     @Default(R4ResourceType.MolecularSequence)
     @JsonKey(unknownEnumValue: R4ResourceType.MolecularSequence)
 
@@ -314,6 +314,9 @@ class MolecularSequence with _$MolecularSequence implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -336,8 +339,8 @@ class MolecularSequence with _$MolecularSequence implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [MolecularSequenceReferenceSeq] Raw data describing a biological
@@ -345,11 +348,10 @@ class MolecularSequence with _$MolecularSequence implements DomainResource {
 
 /// [MolecularSequenceReferenceSeq] Raw data describing a biological
 @freezed
-class MolecularSequenceReferenceSeq
-    with _$MolecularSequenceReferenceSeq
-    implements BackboneElement {
+class MolecularSequenceReferenceSeq extends BackboneElement
+    with _$MolecularSequenceReferenceSeq {
   /// [MolecularSequenceReferenceSeq] Raw data describing a biological
-  const MolecularSequenceReferenceSeq._();
+  MolecularSequenceReferenceSeq._();
 
   /// [MolecularSequenceReferenceSeq] Raw data describing a biological
   ///  sequence.
@@ -426,7 +428,7 @@ class MolecularSequenceReferenceSeq
   ///  inclusive and includes the last position.
   ///
   /// [windowEndElement] Extensions for windowEnd
-  const factory MolecularSequenceReferenceSeq({
+  factory MolecularSequenceReferenceSeq({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -551,6 +553,9 @@ class MolecularSequenceReferenceSeq
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -562,11 +567,10 @@ class MolecularSequenceReferenceSeq
 
 /// [MolecularSequenceVariant] Raw data describing a biological sequence.
 @freezed
-class MolecularSequenceVariant
-    with _$MolecularSequenceVariant
-    implements BackboneElement {
+class MolecularSequenceVariant extends BackboneElement
+    with _$MolecularSequenceVariant {
   /// [MolecularSequenceVariant] Raw data describing a biological sequence.
-  const MolecularSequenceVariant._();
+  MolecularSequenceVariant._();
 
   /// [MolecularSequenceVariant] Raw data describing a biological sequence.
   ///
@@ -635,7 +639,7 @@ class MolecularSequenceVariant
   ///
   /// [variantPointer] A pointer to an Observation containing variant
   ///  information.
-  const factory MolecularSequenceVariant({
+  factory MolecularSequenceVariant({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -748,6 +752,9 @@ class MolecularSequenceVariant
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -759,11 +766,10 @@ class MolecularSequenceVariant
 
 /// [MolecularSequenceQuality] Raw data describing a biological sequence.
 @freezed
-class MolecularSequenceQuality
-    with _$MolecularSequenceQuality
-    implements BackboneElement {
+class MolecularSequenceQuality extends BackboneElement
+    with _$MolecularSequenceQuality {
   /// [MolecularSequenceQuality] Raw data describing a biological sequence.
-  const MolecularSequenceQuality._();
+  MolecularSequenceQuality._();
 
   /// [MolecularSequenceQuality] Raw data describing a biological sequence.
   ///
@@ -866,7 +872,7 @@ class MolecularSequenceQuality
   ///
   /// [roc] Receiver Operator Characteristic (ROC) Curve  to give
   ///  sensitivity/specificity tradeoff.
-  const factory MolecularSequenceQuality({
+  factory MolecularSequenceQuality({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1028,6 +1034,9 @@ class MolecularSequenceQuality
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1039,11 +1048,9 @@ class MolecularSequenceQuality
 
 /// [MolecularSequenceRoc] Raw data describing a biological sequence.
 @freezed
-class MolecularSequenceRoc
-    with _$MolecularSequenceRoc
-    implements BackboneElement {
+class MolecularSequenceRoc extends BackboneElement with _$MolecularSequenceRoc {
   /// [MolecularSequenceRoc] Raw data describing a biological sequence.
-  const MolecularSequenceRoc._();
+  MolecularSequenceRoc._();
 
   /// [MolecularSequenceRoc] Raw data describing a biological sequence.
   ///
@@ -1105,7 +1112,7 @@ class MolecularSequenceRoc
   ///  field value.
   ///
   /// [fMeasureElement] Extensions for fMeasure
-  const factory MolecularSequenceRoc({
+  factory MolecularSequenceRoc({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1214,6 +1221,9 @@ class MolecularSequenceRoc
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1225,11 +1235,10 @@ class MolecularSequenceRoc
 
 /// [MolecularSequenceRepository] Raw data describing a biological sequence.
 @freezed
-class MolecularSequenceRepository
-    with _$MolecularSequenceRepository
-    implements BackboneElement {
+class MolecularSequenceRepository extends BackboneElement
+    with _$MolecularSequenceRepository {
   /// [MolecularSequenceRepository] Raw data describing a biological sequence.
-  const MolecularSequenceRepository._();
+  MolecularSequenceRepository._();
 
   /// [MolecularSequenceRepository] Raw data describing a biological sequence.
   ///
@@ -1287,7 +1296,7 @@ class MolecularSequenceRepository
   /// [readsetId] Id of the read in this external repository.
   ///
   /// [readsetIdElement] Extensions for readsetId
-  const factory MolecularSequenceRepository({
+  factory MolecularSequenceRepository({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1390,6 +1399,9 @@ class MolecularSequenceRepository
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1398,10 +1410,9 @@ class MolecularSequenceRepository
 
 @freezed
 @freezed
-class MolecularSequenceStructureVariant
-    with _$MolecularSequenceStructureVariant
-    implements BackboneElement {
-  const MolecularSequenceStructureVariant._();
+class MolecularSequenceStructureVariant extends BackboneElement
+    with _$MolecularSequenceStructureVariant {
+  MolecularSequenceStructureVariant._();
 
   /// [MolecularSequenceStructureVariant] Raw data describing a biological
   ///  sequence.
@@ -1445,7 +1456,7 @@ class MolecularSequenceStructureVariant
   /// [outer] Structural variant outer.
   ///
   /// [inner] Structural variant inner.
-  const factory MolecularSequenceStructureVariant({
+  factory MolecularSequenceStructureVariant({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1517,6 +1528,9 @@ class MolecularSequenceStructureVariant
       _$MolecularSequenceStructureVariantFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1528,11 +1542,10 @@ class MolecularSequenceStructureVariant
 
 /// [MolecularSequenceOuter] Raw data describing a biological sequence.
 @freezed
-class MolecularSequenceOuter
-    with _$MolecularSequenceOuter
-    implements BackboneElement {
+class MolecularSequenceOuter extends BackboneElement
+    with _$MolecularSequenceOuter {
   /// [MolecularSequenceOuter] Raw data describing a biological sequence.
-  const MolecularSequenceOuter._();
+  MolecularSequenceOuter._();
 
   /// [MolecularSequenceOuter] Raw data describing a biological sequence.
   ///
@@ -1571,7 +1584,7 @@ class MolecularSequenceOuter
   ///  position.
   ///
   /// [endElement] Extensions for end
-  const factory MolecularSequenceOuter({
+  factory MolecularSequenceOuter({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1647,6 +1660,9 @@ class MolecularSequenceOuter
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1658,11 +1674,10 @@ class MolecularSequenceOuter
 
 /// [MolecularSequenceInner] Raw data describing a biological sequence.
 @freezed
-class MolecularSequenceInner
-    with _$MolecularSequenceInner
-    implements BackboneElement {
+class MolecularSequenceInner extends BackboneElement
+    with _$MolecularSequenceInner {
   /// [MolecularSequenceInner] Raw data describing a biological sequence.
-  const MolecularSequenceInner._();
+  MolecularSequenceInner._();
 
   /// [MolecularSequenceInner] Raw data describing a biological sequence.
   ///
@@ -1701,7 +1716,7 @@ class MolecularSequenceInner
   ///  position.
   ///
   /// [endElement] Extensions for end
-  const factory MolecularSequenceInner({
+  factory MolecularSequenceInner({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1775,6 +1790,9 @@ class MolecularSequenceInner
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

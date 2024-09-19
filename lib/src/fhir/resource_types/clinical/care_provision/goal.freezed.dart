@@ -760,7 +760,7 @@ class __$$GoalImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$GoalImpl extends _Goal {
-  const _$GoalImpl(
+  _$GoalImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Goal)
       this.resourceType = R4ResourceType.Goal,
       this.id,
@@ -1228,7 +1228,7 @@ class _$GoalImpl extends _Goal {
 }
 
 abstract class _Goal extends Goal {
-  const factory _Goal(
+  factory _Goal(
       {@JsonKey(unknownEnumValue: R4ResourceType.Goal)
       final R4ResourceType resourceType,
       final String? id,
@@ -1265,7 +1265,7 @@ abstract class _Goal extends Goal {
       final List<Annotation>? note,
       final List<CodeableConcept>? outcomeCode,
       final List<Reference>? outcomeReference}) = _$GoalImpl;
-  const _Goal._() : super._();
+  _Goal._() : super._();
 
   factory _Goal.fromJson(Map<String, dynamic> json) = _$GoalImpl.fromJson;
 
@@ -1962,7 +1962,7 @@ class __$$GoalTargetImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$GoalTargetImpl extends _GoalTarget {
-  const _$GoalTargetImpl(
+  _$GoalTargetImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2235,7 +2235,7 @@ class _$GoalTargetImpl extends _GoalTarget {
 }
 
 abstract class _GoalTarget extends GoalTarget {
-  const factory _GoalTarget(
+  factory _GoalTarget(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2256,7 +2256,7 @@ abstract class _GoalTarget extends GoalTarget {
       final FhirDate? dueDate,
       @JsonKey(name: '_dueDate') final PrimitiveElement? dueDateElement,
       final FhirDuration? dueDuration}) = _$GoalTargetImpl;
-  const _GoalTarget._() : super._();
+  _GoalTarget._() : super._();
 
   factory _GoalTarget.fromJson(Map<String, dynamic> json) =
       _$GoalTargetImpl.fromJson;

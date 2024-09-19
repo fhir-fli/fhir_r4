@@ -14,9 +14,9 @@ part 'element_definition.g.dart';
 
 /// [ElementDefinition] Captures constraints on each element within the
 @freezed
-class ElementDefinition with _$ElementDefinition implements BackboneType {
+class ElementDefinition extends BackboneType with _$ElementDefinition {
   /// [ElementDefinition] Captures constraints on each element within the
-  const ElementDefinition._();
+  ElementDefinition._();
 
   /// [ElementDefinition] Captures constraints on each element within the
   ///  resource, profile, or extension.
@@ -1666,7 +1666,7 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
   ///
   /// [mapping] Identifies a concept from an external specification that
   ///  roughly corresponds to this element.
-  const factory ElementDefinition({
+  factory ElementDefinition({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1707,7 +1707,8 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
     List<ElementDefinitionRepresentation>? representation,
 
     /// [representationElement] Extensions for representation
-    @JsonKey(name: '_representation') List<PrimitiveElement>? representationElement,
+    @JsonKey(name: '_representation')
+    List<PrimitiveElement>? representationElement,
 
     /// [sliceName] The name of this element definition slice, when slicing is
     /// working. The name must be a token with no dots or spaces. This is a unique
@@ -3674,6 +3675,9 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -3682,11 +3686,9 @@ class ElementDefinition with _$ElementDefinition implements BackboneType {
 
 /// [ElementDefinitionSlicing] Captures constraints on each element within
 @freezed
-class ElementDefinitionSlicing
-    with _$ElementDefinitionSlicing
-    implements Element {
+class ElementDefinitionSlicing extends Element with _$ElementDefinitionSlicing {
   /// [ElementDefinitionSlicing] Captures constraints on each element within
-  const ElementDefinitionSlicing._();
+  ElementDefinitionSlicing._();
 
   /// [ElementDefinitionSlicing] Captures constraints on each element within
   ///  the resource, profile, or extension.
@@ -3739,7 +3741,7 @@ class ElementDefinitionSlicing
   ///  allowed at the end.
   ///
   /// [rulesElement] Extensions for rules
-  const factory ElementDefinitionSlicing({
+  factory ElementDefinitionSlicing({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -3832,6 +3834,9 @@ class ElementDefinitionSlicing
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -3840,11 +3845,10 @@ class ElementDefinitionSlicing
 
 /// [ElementDefinitionDiscriminator] Captures constraints on each element
 @freezed
-class ElementDefinitionDiscriminator
-    with _$ElementDefinitionDiscriminator
-    implements Element {
+class ElementDefinitionDiscriminator extends Element
+    with _$ElementDefinitionDiscriminator {
   /// [ElementDefinitionDiscriminator] Captures constraints on each element
-  const ElementDefinitionDiscriminator._();
+  ElementDefinitionDiscriminator._();
 
   /// [ElementDefinitionDiscriminator] Captures constraints on each element
   ///  within the resource, profile, or extension.
@@ -3883,7 +3887,7 @@ class ElementDefinitionDiscriminator
   ///  which discrimination is based.
   ///
   /// [pathElement] Extensions for path
-  const factory ElementDefinitionDiscriminator({
+  factory ElementDefinitionDiscriminator({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -3960,6 +3964,9 @@ class ElementDefinitionDiscriminator
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -3968,9 +3975,9 @@ class ElementDefinitionDiscriminator
 
 /// [ElementDefinitionBase] Captures constraints on each element within the
 @freezed
-class ElementDefinitionBase with _$ElementDefinitionBase implements Element {
+class ElementDefinitionBase extends Element with _$ElementDefinitionBase {
   /// [ElementDefinitionBase] Captures constraints on each element within the
-  const ElementDefinitionBase._();
+  ElementDefinitionBase._();
 
   /// [ElementDefinitionBase] Captures constraints on each element within the
   ///  resource, profile, or extension.
@@ -4013,7 +4020,7 @@ class ElementDefinitionBase with _$ElementDefinitionBase implements Element {
   /// [max] Maximum cardinality of the base element identified by the path.
   ///
   /// [maxElement] Extensions for max
-  const factory ElementDefinitionBase({
+  factory ElementDefinitionBase({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -4094,6 +4101,9 @@ class ElementDefinitionBase with _$ElementDefinitionBase implements Element {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -4102,9 +4112,9 @@ class ElementDefinitionBase with _$ElementDefinitionBase implements Element {
 
 /// [ElementDefinitionType] Captures constraints on each element within the
 @freezed
-class ElementDefinitionType with _$ElementDefinitionType implements Element {
+class ElementDefinitionType extends Element with _$ElementDefinitionType {
   /// [ElementDefinitionType] Captures constraints on each element within the
-  const ElementDefinitionType._();
+  ElementDefinitionType._();
 
   /// [ElementDefinitionType] Captures constraints on each element within the
   ///  resource, profile, or extension.
@@ -4169,7 +4179,7 @@ class ElementDefinitionType with _$ElementDefinitionType implements Element {
   ///  version independent, or whether either can be used.
   ///
   /// [versioningElement] Extensions for versioning
-  const factory ElementDefinitionType({
+  factory ElementDefinitionType({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -4276,6 +4286,9 @@ class ElementDefinitionType with _$ElementDefinitionType implements Element {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -4284,11 +4297,9 @@ class ElementDefinitionType with _$ElementDefinitionType implements Element {
 
 /// [ElementDefinitionExample] Captures constraints on each element within
 @freezed
-class ElementDefinitionExample
-    with _$ElementDefinitionExample
-    implements Element {
+class ElementDefinitionExample extends Element with _$ElementDefinitionExample {
   /// [ElementDefinitionExample] Captures constraints on each element within
-  const ElementDefinitionExample._();
+  ElementDefinitionExample._();
 
   /// [ElementDefinitionExample] Captures constraints on each element within
   ///  the resource, profile, or extension.
@@ -4508,7 +4519,7 @@ class ElementDefinitionExample
   ///
   /// [valueMeta] The actual value for the element, which must be one of the
   ///  types allowed for this element.
-  const factory ElementDefinitionExample({
+  factory ElementDefinitionExample({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -4836,6 +4847,9 @@ class ElementDefinitionExample
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -4844,11 +4858,10 @@ class ElementDefinitionExample
 
 /// [ElementDefinitionConstraint] Captures constraints on each element
 @freezed
-class ElementDefinitionConstraint
-    with _$ElementDefinitionConstraint
-    implements Element {
+class ElementDefinitionConstraint extends Element
+    with _$ElementDefinitionConstraint {
   /// [ElementDefinitionConstraint] Captures constraints on each element
-  const ElementDefinitionConstraint._();
+  ElementDefinitionConstraint._();
 
   /// [ElementDefinitionConstraint] Captures constraints on each element
   ///  within the resource, profile, or extension.
@@ -4910,7 +4923,7 @@ class ElementDefinitionConstraint
   ///
   /// [source] A reference to the original source of the constraint, for
   ///  traceability purposes.
-  const factory ElementDefinitionConstraint({
+  factory ElementDefinitionConstraint({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -5018,6 +5031,9 @@ class ElementDefinitionConstraint
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -5026,11 +5042,9 @@ class ElementDefinitionConstraint
 
 /// [ElementDefinitionBinding] Captures constraints on each element within
 @freezed
-class ElementDefinitionBinding
-    with _$ElementDefinitionBinding
-    implements Element {
+class ElementDefinitionBinding extends Element with _$ElementDefinitionBinding {
   /// [ElementDefinitionBinding] Captures constraints on each element within
-  const ElementDefinitionBinding._();
+  ElementDefinitionBinding._();
 
   /// [ElementDefinitionBinding] Captures constraints on each element within
   ///  the resource, profile, or extension.
@@ -5071,7 +5085,7 @@ class ElementDefinitionBinding
   ///
   /// [valueSet] Refers to the value set that identifies the set of codes the
   ///  binding refers to.
-  const factory ElementDefinitionBinding({
+  factory ElementDefinitionBinding({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -5150,6 +5164,9 @@ class ElementDefinitionBinding
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -5158,11 +5175,9 @@ class ElementDefinitionBinding
 
 /// [ElementDefinitionMapping] Captures constraints on each element within
 @freezed
-class ElementDefinitionMapping
-    with _$ElementDefinitionMapping
-    implements Element {
+class ElementDefinitionMapping extends Element with _$ElementDefinitionMapping {
   /// [ElementDefinitionMapping] Captures constraints on each element within
-  const ElementDefinitionMapping._();
+  ElementDefinitionMapping._();
 
   /// [ElementDefinitionMapping] Captures constraints on each element within
   ///  the resource, profile, or extension.
@@ -5208,7 +5223,7 @@ class ElementDefinitionMapping
   /// [comment] Comments that provide information about the mapping or its use.
   ///
   /// [commentElement] Extensions for comment
-  const factory ElementDefinitionMapping({
+  factory ElementDefinitionMapping({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -5292,6 +5307,9 @@ class ElementDefinitionMapping
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

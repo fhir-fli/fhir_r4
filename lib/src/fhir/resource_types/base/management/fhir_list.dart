@@ -14,9 +14,9 @@ part 'fhir_list.g.dart';
 
 /// [FhirList] A list is a curated collection of resources.
 @freezed
-class FhirList with _$FhirList implements DomainResource {
+class FhirList extends DomainResource with _$FhirList {
   /// [FhirList] A list is a curated collection of resources.
-  const FhirList._();
+  FhirList._();
 
   /// [FhirList] A list is a curated collection of resources.
   ///
@@ -114,7 +114,7 @@ class FhirList with _$FhirList implements DomainResource {
   /// [entry] Entries in this list.
   ///
   /// [emptyReason] If the list is empty, why the list is empty.
-  const factory FhirList({
+  factory FhirList({
     @Default(R4ResourceType.FhirList)
     @JsonKey(unknownEnumValue: R4ResourceType.FhirList)
 
@@ -275,6 +275,9 @@ class FhirList with _$FhirList implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -297,8 +300,8 @@ class FhirList with _$FhirList implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [FhirListEntry] A list is a curated collection of resources.
@@ -306,9 +309,9 @@ class FhirList with _$FhirList implements DomainResource {
 
 /// [FhirListEntry] A list is a curated collection of resources.
 @freezed
-class FhirListEntry with _$FhirListEntry implements BackboneElement {
+class FhirListEntry extends BackboneElement with _$FhirListEntry {
   /// [FhirListEntry] A list is a curated collection of resources.
-  const FhirListEntry._();
+  FhirListEntry._();
 
   /// [FhirListEntry] A list is a curated collection of resources.
   ///
@@ -348,7 +351,7 @@ class FhirListEntry with _$FhirListEntry implements BackboneElement {
   /// [dateElement] Extensions for date
   ///
   /// [item] A reference to the actual resource from which data was derived.
-  const factory FhirListEntry({
+  factory FhirListEntry({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -428,6 +431,9 @@ class FhirListEntry with _$FhirListEntry implements BackboneElement {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

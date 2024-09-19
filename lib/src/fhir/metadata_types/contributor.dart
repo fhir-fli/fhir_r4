@@ -14,9 +14,9 @@ part 'contributor.g.dart';
 
 /// [Contributor] A contributor to the content of a knowledge asset,
 @freezed
-class Contributor with _$Contributor implements DataType {
+class Contributor extends DataType with _$Contributor {
   /// [Contributor] A contributor to the content of a knowledge asset,
-  const Contributor._();
+  Contributor._();
 
   /// [Contributor] A contributor to the content of a knowledge asset,
   ///  including authors, editors, reviewers, and endorsers.
@@ -42,7 +42,7 @@ class Contributor with _$Contributor implements DataType {
   ///
   /// [contact] Contact details to assist a user in finding and communicating
   ///  with the contributor.
-  const factory Contributor({
+  factory Contributor({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -102,6 +102,9 @@ class Contributor with _$Contributor implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

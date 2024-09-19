@@ -14,11 +14,10 @@ part 'coverage_eligibility_request.g.dart';
 
 /// [CoverageEligibilityRequest] The CoverageEligibilityRequest provides
 @freezed
-class CoverageEligibilityRequest
-    with _$CoverageEligibilityRequest
-    implements DomainResource {
+class CoverageEligibilityRequest extends DomainResource
+    with _$CoverageEligibilityRequest {
   /// [CoverageEligibilityRequest] The CoverageEligibilityRequest provides
-  const CoverageEligibilityRequest._();
+  CoverageEligibilityRequest._();
 
   /// [CoverageEligibilityRequest] The CoverageEligibilityRequest provides
   /// patient and insurance coverage information to an insurer for them to
@@ -131,7 +130,7 @@ class CoverageEligibilityRequest
   /// [item] Service categories or billable services for which benefit details
   /// and/or an authorization prior to service delivery may be required by the
   ///  payor.
-  const factory CoverageEligibilityRequest({
+  factory CoverageEligibilityRequest({
     @Default(R4ResourceType.CoverageEligibilityRequest)
     @JsonKey(unknownEnumValue: R4ResourceType.CoverageEligibilityRequest)
 
@@ -305,6 +304,9 @@ class CoverageEligibilityRequest
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -327,16 +329,15 @@ class CoverageEligibilityRequest
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 @freezed
 @freezed
-class CoverageEligibilityRequestSupportingInfo
-    with _$CoverageEligibilityRequestSupportingInfo
-    implements BackboneElement {
-  const CoverageEligibilityRequestSupportingInfo._();
+class CoverageEligibilityRequestSupportingInfo extends BackboneElement
+    with _$CoverageEligibilityRequestSupportingInfo {
+  CoverageEligibilityRequestSupportingInfo._();
 
   /// [CoverageEligibilityRequestSupportingInfo] The
   /// CoverageEligibilityRequest provides patient and insurance coverage
@@ -381,7 +382,7 @@ class CoverageEligibilityRequestSupportingInfo
   ///  items, product/servce categories and specific billing codes.
   ///
   /// [appliesToAllElement] Extensions for appliesToAll
-  const factory CoverageEligibilityRequestSupportingInfo({
+  factory CoverageEligibilityRequestSupportingInfo({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -450,6 +451,9 @@ class CoverageEligibilityRequestSupportingInfo
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -458,10 +462,9 @@ class CoverageEligibilityRequestSupportingInfo
 
 @freezed
 @freezed
-class CoverageEligibilityRequestInsurance
-    with _$CoverageEligibilityRequestInsurance
-    implements BackboneElement {
-  const CoverageEligibilityRequestInsurance._();
+class CoverageEligibilityRequestInsurance extends BackboneElement
+    with _$CoverageEligibilityRequestInsurance {
+  CoverageEligibilityRequestInsurance._();
 
   /// [CoverageEligibilityRequestInsurance] The CoverageEligibilityRequest
   /// provides patient and insurance coverage information to an insurer for them
@@ -507,7 +510,7 @@ class CoverageEligibilityRequestInsurance
   ///  provider and the insurer for special business processing purposes.
   ///
   /// [businessArrangementElement] Extensions for businessArrangement
-  const factory CoverageEligibilityRequestInsurance({
+  factory CoverageEligibilityRequestInsurance({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -579,6 +582,9 @@ class CoverageEligibilityRequestInsurance
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -590,11 +596,10 @@ class CoverageEligibilityRequestInsurance
 
 /// [CoverageEligibilityRequestItem] The CoverageEligibilityRequest provides
 @freezed
-class CoverageEligibilityRequestItem
-    with _$CoverageEligibilityRequestItem
-    implements BackboneElement {
+class CoverageEligibilityRequestItem extends BackboneElement
+    with _$CoverageEligibilityRequestItem {
   /// [CoverageEligibilityRequestItem] The CoverageEligibilityRequest provides
-  const CoverageEligibilityRequestItem._();
+  CoverageEligibilityRequestItem._();
 
   /// [CoverageEligibilityRequestItem] The CoverageEligibilityRequest provides
   /// patient and insurance coverage information to an insurer for them to
@@ -654,7 +659,7 @@ class CoverageEligibilityRequestItem
   ///
   /// [detail] The plan/proposal/order describing the proposed service in
   ///  detail.
-  const factory CoverageEligibilityRequestItem({
+  factory CoverageEligibilityRequestItem({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -758,6 +763,9 @@ class CoverageEligibilityRequestItem
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -766,10 +774,9 @@ class CoverageEligibilityRequestItem
 
 @freezed
 @freezed
-class CoverageEligibilityRequestDiagnosis
-    with _$CoverageEligibilityRequestDiagnosis
-    implements BackboneElement {
-  const CoverageEligibilityRequestDiagnosis._();
+class CoverageEligibilityRequestDiagnosis extends BackboneElement
+    with _$CoverageEligibilityRequestDiagnosis {
+  CoverageEligibilityRequestDiagnosis._();
 
   /// [CoverageEligibilityRequestDiagnosis] The CoverageEligibilityRequest
   /// provides patient and insurance coverage information to an insurer for them
@@ -806,7 +813,7 @@ class CoverageEligibilityRequestDiagnosis
   ///
   /// [diagnosisReference] The nature of illness or problem in a coded form or
   ///  as a reference to an external defined Condition.
-  const factory CoverageEligibilityRequestDiagnosis({
+  factory CoverageEligibilityRequestDiagnosis({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -864,6 +871,9 @@ class CoverageEligibilityRequestDiagnosis
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

@@ -639,7 +639,7 @@ class __$$PackagedProductDefinitionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PackagedProductDefinitionImpl extends _PackagedProductDefinition {
-  const _$PackagedProductDefinitionImpl(
+  _$PackagedProductDefinitionImpl(
       {this.resourceType = R4ResourceType.PackagedProductDefinition,
       this.id,
       this.meta,
@@ -1022,7 +1022,7 @@ class _$PackagedProductDefinitionImpl extends _PackagedProductDefinition {
 }
 
 abstract class _PackagedProductDefinition extends PackagedProductDefinition {
-  const factory _PackagedProductDefinition(
+  factory _PackagedProductDefinition(
       {final R4ResourceType resourceType,
       final String? id,
       final FhirMeta? meta,
@@ -1056,7 +1056,7 @@ abstract class _PackagedProductDefinition extends PackagedProductDefinition {
       final List<Reference>? manufacturer,
       final PackagedProductDefinitionPackage?
           package}) = _$PackagedProductDefinitionImpl;
-  const _PackagedProductDefinition._() : super._();
+  _PackagedProductDefinition._() : super._();
 
   factory _PackagedProductDefinition.fromJson(Map<String, dynamic> json) =
       _$PackagedProductDefinitionImpl.fromJson;
@@ -1398,7 +1398,7 @@ class __$$PackagedProductDefinitionLegalStatusOfSupplyImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PackagedProductDefinitionLegalStatusOfSupplyImpl
     extends _PackagedProductDefinitionLegalStatusOfSupply {
-  const _$PackagedProductDefinitionLegalStatusOfSupplyImpl(
+  _$PackagedProductDefinitionLegalStatusOfSupplyImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1506,14 +1506,14 @@ class _$PackagedProductDefinitionLegalStatusOfSupplyImpl
 
 abstract class _PackagedProductDefinitionLegalStatusOfSupply
     extends PackagedProductDefinitionLegalStatusOfSupply {
-  const factory _PackagedProductDefinitionLegalStatusOfSupply(
+  factory _PackagedProductDefinitionLegalStatusOfSupply(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final CodeableConcept? code,
           final CodeableConcept? jurisdiction}) =
       _$PackagedProductDefinitionLegalStatusOfSupplyImpl;
-  const _PackagedProductDefinitionLegalStatusOfSupply._() : super._();
+  _PackagedProductDefinitionLegalStatusOfSupply._() : super._();
 
   factory _PackagedProductDefinitionLegalStatusOfSupply.fromJson(
           Map<String, dynamic> json) =
@@ -1875,7 +1875,7 @@ class __$$PackagedProductDefinitionPackageImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PackagedProductDefinitionPackageImpl
     extends _PackagedProductDefinitionPackage {
-  const _$PackagedProductDefinitionPackageImpl(
+  _$PackagedProductDefinitionPackageImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2133,7 +2133,7 @@ class _$PackagedProductDefinitionPackageImpl
 
 abstract class _PackagedProductDefinitionPackage
     extends PackagedProductDefinitionPackage {
-  const factory _PackagedProductDefinitionPackage(
+  factory _PackagedProductDefinitionPackage(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2149,7 +2149,7 @@ abstract class _PackagedProductDefinitionPackage
       final List<PackagedProductDefinitionContainedItem>? containedItem,
       final List<PackagedProductDefinitionPackage>?
           package}) = _$PackagedProductDefinitionPackageImpl;
-  const _PackagedProductDefinitionPackage._() : super._();
+  _PackagedProductDefinitionPackage._() : super._();
 
   factory _PackagedProductDefinitionPackage.fromJson(
           Map<String, dynamic> json) =
@@ -2535,7 +2535,7 @@ class __$$PackagedProductDefinitionShelfLifeStorageImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PackagedProductDefinitionShelfLifeStorageImpl
     extends _PackagedProductDefinitionShelfLifeStorage {
-  const _$PackagedProductDefinitionShelfLifeStorageImpl(
+  _$PackagedProductDefinitionShelfLifeStorageImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2738,7 +2738,7 @@ class _$PackagedProductDefinitionShelfLifeStorageImpl
 
 abstract class _PackagedProductDefinitionShelfLifeStorage
     extends PackagedProductDefinitionShelfLifeStorage {
-  const factory _PackagedProductDefinitionShelfLifeStorage(
+  factory _PackagedProductDefinitionShelfLifeStorage(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2750,7 +2750,7 @@ abstract class _PackagedProductDefinitionShelfLifeStorage
           final PrimitiveElement? periodStringElement,
           final List<CodeableConcept>? specialPrecautionsForStorage}) =
       _$PackagedProductDefinitionShelfLifeStorageImpl;
-  const _PackagedProductDefinitionShelfLifeStorage._() : super._();
+  _PackagedProductDefinitionShelfLifeStorage._() : super._();
 
   factory _PackagedProductDefinitionShelfLifeStorage.fromJson(
           Map<String, dynamic> json) =
@@ -3162,7 +3162,7 @@ class __$$PackagedProductDefinitionPropertyImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PackagedProductDefinitionPropertyImpl
     extends _PackagedProductDefinitionProperty {
-  const _$PackagedProductDefinitionPropertyImpl(
+  _$PackagedProductDefinitionPropertyImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3318,7 +3318,7 @@ class _$PackagedProductDefinitionPropertyImpl
 
 abstract class _PackagedProductDefinitionProperty
     extends PackagedProductDefinitionProperty {
-  const factory _PackagedProductDefinitionProperty(
+  factory _PackagedProductDefinitionProperty(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3332,7 +3332,7 @@ abstract class _PackagedProductDefinitionProperty
           final PrimitiveElement? valueBooleanElement,
           final Attachment? valueAttachment}) =
       _$PackagedProductDefinitionPropertyImpl;
-  const _PackagedProductDefinitionProperty._() : super._();
+  _PackagedProductDefinitionProperty._() : super._();
 
   factory _PackagedProductDefinitionProperty.fromJson(
           Map<String, dynamic> json) =
@@ -3594,7 +3594,7 @@ class __$$PackagedProductDefinitionContainedItemImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PackagedProductDefinitionContainedItemImpl
     extends _PackagedProductDefinitionContainedItem {
-  const _$PackagedProductDefinitionContainedItemImpl(
+  _$PackagedProductDefinitionContainedItemImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3700,13 +3700,13 @@ class _$PackagedProductDefinitionContainedItemImpl
 
 abstract class _PackagedProductDefinitionContainedItem
     extends PackagedProductDefinitionContainedItem {
-  const factory _PackagedProductDefinitionContainedItem(
+  factory _PackagedProductDefinitionContainedItem(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required final CodeableReference item,
       final Quantity? amount}) = _$PackagedProductDefinitionContainedItemImpl;
-  const _PackagedProductDefinitionContainedItem._() : super._();
+  _PackagedProductDefinitionContainedItem._() : super._();
 
   factory _PackagedProductDefinitionContainedItem.fromJson(
           Map<String, dynamic> json) =

@@ -21,7 +21,7 @@ Future<void> main() async {
   const String password1 = 'password1';
   const String password2 = 'password2';
   await fhirDb.init(path: directory, pw: password1);
-  const Patient patient1 = Patient(id: '1');
+  final Patient patient1 = Patient(id: '1');
   final Resource saved1 = await fhirDb.save(resource: patient1, pw: password1);
   group('', () {
     test('Saved A Patient, Found A Patient', () async {
@@ -53,9 +53,9 @@ Future<void> main() async {
   const String id = '12345';
   group('Saving Things:', () {
     test('Save Patient', () async {
-      const HumanName humanName =
-          HumanName(family: 'Atreides', given: <String>['Duke']);
-      const Patient patient = Patient(id: id, name: <HumanName>[humanName]);
+      final HumanName humanName =
+          HumanName(family: 'Atreides', given: const <String>['Duke']);
+      final Patient patient = Patient(id: id, name: <HumanName>[humanName]);
       final Resource saved = await fhirDb.save(resource: patient);
 
       expect(saved.id, id);
@@ -63,7 +63,7 @@ Future<void> main() async {
     });
 
     test('Save Organization', () async {
-      const Organization organization = Organization(id: id, name: 'FhirFli');
+      final Organization organization = Organization(id: id, name: 'FhirFli');
       final Resource saved = await fhirDb.save(resource: organization);
 
       expect(saved.id, id);
@@ -74,7 +74,7 @@ Future<void> main() async {
     test('Save Observation1', () async {
       final Observation observation1 = Observation(
         id: 'obs1',
-        code: const CodeableConcept(text: 'Observation #1'),
+        code: CodeableConcept(text: 'Observation #1'),
         effectiveDateTime: FhirDateTime(DateTime(1981, 09, 18)),
       );
       final Resource saved = await fhirDb.save(resource: observation1);
@@ -85,7 +85,7 @@ Future<void> main() async {
     });
 
     test('Save Observation1 Again', () async {
-      const Observation observation1 = Observation(
+      final Observation observation1 = Observation(
           id: 'obs1', code: CodeableConcept(text: 'Observation #1 - Updated'));
       final Resource saved = await fhirDb.save(resource: observation1);
 
@@ -99,7 +99,7 @@ Future<void> main() async {
     test('Save Observation2', () async {
       final Observation observation2 = Observation(
         id: 'obs2',
-        code: const CodeableConcept(text: 'Observation #2'),
+        code: CodeableConcept(text: 'Observation #2'),
         effectiveDateTime: FhirDateTime(DateTime(1981, 09, 18)),
       );
       final Resource saved = await fhirDb.save(resource: observation2);
@@ -112,7 +112,7 @@ Future<void> main() async {
     test('Save Observation3', () async {
       final Observation observation3 = Observation(
         id: 'obs3',
-        code: const CodeableConcept(text: 'Observation #3'),
+        code: CodeableConcept(text: 'Observation #3'),
         effectiveDateTime: FhirDateTime(DateTime(1981, 09, 18)),
       );
       final Resource saved = await fhirDb.save(resource: observation3);
@@ -127,8 +127,8 @@ Future<void> main() async {
     test('Find 1st Patient', () async {
       final List<Resource> search =
           await fhirDb.find(resourceType: R4ResourceType.Patient, id: id);
-      const HumanName humanName =
-          HumanName(family: 'Atreides', given: <String>['Duke']);
+      final HumanName humanName =
+          HumanName(family: 'Atreides', given: const <String>['Duke']);
 
       expect(search.length, 1);
 
@@ -241,9 +241,9 @@ Future<void> main() async {
   group('Password - Saving Things:', () {
     test('Save Patient', () async {
       await fhirDb.updatePw(newPw: password2);
-      const HumanName humanName =
-          HumanName(family: 'Atreides', given: <String>['Duke']);
-      const Patient patient = Patient(id: id, name: <HumanName>[humanName]);
+      final HumanName humanName =
+          HumanName(family: 'Atreides', given: const <String>['Duke']);
+      final Patient patient = Patient(id: id, name: <HumanName>[humanName]);
       final Resource saved =
           await fhirDb.save(resource: patient, pw: password2);
 
@@ -253,7 +253,7 @@ Future<void> main() async {
     });
 
     test('Save Organization', () async {
-      const Organization organization = Organization(id: id, name: 'FhirFli');
+      final Organization organization = Organization(id: id, name: 'FhirFli');
       final Resource saved =
           await fhirDb.save(resource: organization, pw: password2);
 
@@ -265,7 +265,7 @@ Future<void> main() async {
     test('Save Observation1', () async {
       final Observation observation1 = Observation(
         id: 'obs1',
-        code: const CodeableConcept(text: 'Observation #1'),
+        code: CodeableConcept(text: 'Observation #1'),
         effectiveDateTime: FhirDateTime(DateTime(1981, 09, 18)),
       );
       final Resource saved =
@@ -277,7 +277,7 @@ Future<void> main() async {
     });
 
     test('Save Observation1 Again', () async {
-      const Observation observation1 = Observation(
+      final Observation observation1 = Observation(
           id: 'obs1', code: CodeableConcept(text: 'Observation #1 - Updated'));
       final Resource saved =
           await fhirDb.save(resource: observation1, pw: password2);
@@ -292,7 +292,7 @@ Future<void> main() async {
     test('Save Observation2', () async {
       final Observation observation2 = Observation(
         id: 'obs2',
-        code: const CodeableConcept(text: 'Observation #2'),
+        code: CodeableConcept(text: 'Observation #2'),
         effectiveDateTime: FhirDateTime(DateTime(1981, 09, 18)),
       );
       final Resource saved =
@@ -306,7 +306,7 @@ Future<void> main() async {
     test('Save Observation3', () async {
       final Observation observation3 = Observation(
         id: 'obs3',
-        code: const CodeableConcept(text: 'Observation #3'),
+        code: CodeableConcept(text: 'Observation #3'),
         effectiveDateTime: FhirDateTime(DateTime(1981, 09, 18)),
       );
       final Resource saved =
@@ -322,8 +322,8 @@ Future<void> main() async {
     test('Find 1st Patient', () async {
       final List<Resource> search = await fhirDb.find(
           resourceType: R4ResourceType.Patient, id: id, pw: password2);
-      const HumanName humanName =
-          HumanName(family: 'Atreides', given: <String>['Duke']);
+      final HumanName humanName =
+          HumanName(family: 'Atreides', given: const <String>['Duke']);
 
       expect(search.length, 1);
 

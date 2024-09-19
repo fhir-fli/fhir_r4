@@ -14,9 +14,9 @@ part 'task.g.dart';
 
 /// [Task] A task to be performed.
 @freezed
-class Task with _$Task implements DomainResource {
+class Task extends DomainResource with _$Task {
   /// [Task] A task to be performed.
-  const Task._();
+  Task._();
 
   /// [Task] A task to be performed.
   ///
@@ -180,7 +180,7 @@ class Task with _$Task implements DomainResource {
   ///  task.
   ///
   /// [output] Outputs produced by the Task.
-  const factory Task({
+  factory Task({
     @Default(R4ResourceType.Task)
     @JsonKey(unknownEnumValue: R4ResourceType.Task)
 
@@ -426,6 +426,9 @@ class Task with _$Task implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -448,8 +451,8 @@ class Task with _$Task implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [TaskRestriction] A task to be performed.
@@ -457,9 +460,9 @@ class Task with _$Task implements DomainResource {
 
 /// [TaskRestriction] A task to be performed.
 @freezed
-class TaskRestriction with _$TaskRestriction implements BackboneElement {
+class TaskRestriction extends BackboneElement with _$TaskRestriction {
   /// [TaskRestriction] A task to be performed.
-  const TaskRestriction._();
+  TaskRestriction._();
 
   /// [TaskRestriction] A task to be performed.
   ///
@@ -496,7 +499,7 @@ class TaskRestriction with _$TaskRestriction implements BackboneElement {
   ///
   /// [recipient] For requests that are targeted to more than on potential
   ///  recipient/target, for whom is fulfillment sought?
-  const factory TaskRestriction({
+  factory TaskRestriction({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -572,6 +575,9 @@ class TaskRestriction with _$TaskRestriction implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -583,9 +589,9 @@ class TaskRestriction with _$TaskRestriction implements BackboneElement {
 
 /// [TaskInput] A task to be performed.
 @freezed
-class TaskInput with _$TaskInput implements BackboneElement {
+class TaskInput extends BackboneElement with _$TaskInput {
   /// [TaskInput] A task to be performed.
-  const TaskInput._();
+  TaskInput._();
 
   /// [TaskInput] A task to be performed.
   ///
@@ -755,7 +761,7 @@ class TaskInput with _$TaskInput implements BackboneElement {
   /// [valueDosage] The value of the input parameter as a basic type.
   ///
   /// [valueMeta] The value of the input parameter as a basic type.
-  const factory TaskInput({
+  factory TaskInput({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1033,6 +1039,9 @@ class TaskInput with _$TaskInput implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1044,9 +1053,9 @@ class TaskInput with _$TaskInput implements BackboneElement {
 
 /// [TaskOutput] A task to be performed.
 @freezed
-class TaskOutput with _$TaskOutput implements BackboneElement {
+class TaskOutput extends BackboneElement with _$TaskOutput {
   /// [TaskOutput] A task to be performed.
-  const TaskOutput._();
+  TaskOutput._();
 
   /// [TaskOutput] A task to be performed.
   ///
@@ -1215,7 +1224,7 @@ class TaskOutput with _$TaskOutput implements BackboneElement {
   /// [valueDosage] The value of the Output parameter as a basic type.
   ///
   /// [valueMeta] The value of the Output parameter as a basic type.
-  const factory TaskOutput({
+  factory TaskOutput({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1491,6 +1500,9 @@ class TaskOutput with _$TaskOutput implements BackboneElement {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

@@ -281,7 +281,7 @@ class __$$FhirMetaImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FhirMetaImpl extends _FhirMeta {
-  const _$FhirMetaImpl(
+  _$FhirMetaImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       this.versionId,
@@ -478,7 +478,7 @@ class _$FhirMetaImpl extends _FhirMeta {
 }
 
 abstract class _FhirMeta extends FhirMeta {
-  const factory _FhirMeta(
+  factory _FhirMeta(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final FhirId? versionId,
@@ -490,7 +490,7 @@ abstract class _FhirMeta extends FhirMeta {
       final List<FhirCanonical>? profile,
       final List<Coding>? security,
       final List<Coding>? tag}) = _$FhirMetaImpl;
-  const _FhirMeta._() : super._();
+  _FhirMeta._() : super._();
 
   factory _FhirMeta.fromJson(Map<String, dynamic> json) =
       _$FhirMetaImpl.fromJson;

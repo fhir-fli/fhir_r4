@@ -14,9 +14,9 @@ part 'usage_context.g.dart';
 
 /// [UsageContext] Specifies clinical/business/etc. metadata that can be used
 @freezed
-class UsageContext with _$UsageContext implements DataType {
+class UsageContext extends DataType with _$UsageContext {
   /// [UsageContext] Specifies clinical/business/etc. metadata that can be used
-  const UsageContext._();
+  UsageContext._();
 
   /// [UsageContext] Specifies clinical/business/etc. metadata that can be used
   /// to retrieve, index and/or categorize an artifact. This metadata can either
@@ -47,7 +47,7 @@ class UsageContext with _$UsageContext implements DataType {
   ///
   /// [valueReference] A value that defines the context specified in this
   ///  context of use. The interpretation of the value is defined by the code.
-  const factory UsageContext({
+  factory UsageContext({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -110,6 +110,9 @@ class UsageContext with _$UsageContext implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

@@ -15,9 +15,9 @@ part 'composition.g.dart';
 
 /// [Composition] A set of healthcare-related information that is assembled
 @freezed
-class Composition with _$Composition implements DomainResource {
+class Composition extends DomainResource with _$Composition {
   /// [Composition] A set of healthcare-related information that is assembled
-  const Composition._();
+  Composition._();
 
   /// [Composition] A set of healthcare-related information that is assembled
   /// together into a single logical package that provides a single coherent
@@ -138,7 +138,7 @@ class Composition with _$Composition implements DomainResource {
   ///  being documented.
   ///
   /// [section] The root of the sections that make up the composition.
-  const factory Composition({
+  factory Composition({
     @Default(R4ResourceType.Composition)
     @JsonKey(unknownEnumValue: R4ResourceType.Composition)
 
@@ -315,6 +315,9 @@ class Composition with _$Composition implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -337,8 +340,8 @@ class Composition with _$Composition implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [CompositionAttester] A set of healthcare-related information that is
@@ -346,11 +349,9 @@ class Composition with _$Composition implements DomainResource {
 
 /// [CompositionAttester] A set of healthcare-related information that is
 @freezed
-class CompositionAttester
-    with _$CompositionAttester
-    implements BackboneElement {
+class CompositionAttester extends BackboneElement with _$CompositionAttester {
   /// [CompositionAttester] A set of healthcare-related information that is
-  const CompositionAttester._();
+  CompositionAttester._();
 
   /// [CompositionAttester] A set of healthcare-related information that is
   /// assembled together into a single logical package that provides a single
@@ -396,7 +397,7 @@ class CompositionAttester
   /// [timeElement] Extensions for time
   ///
   /// [party] Who attested the composition in the specified way.
-  const factory CompositionAttester({
+  factory CompositionAttester({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -471,6 +472,9 @@ class CompositionAttester
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -482,11 +486,9 @@ class CompositionAttester
 
 /// [CompositionRelatesTo] A set of healthcare-related information that is
 @freezed
-class CompositionRelatesTo
-    with _$CompositionRelatesTo
-    implements BackboneElement {
+class CompositionRelatesTo extends BackboneElement with _$CompositionRelatesTo {
   /// [CompositionRelatesTo] A set of healthcare-related information that is
-  const CompositionRelatesTo._();
+  CompositionRelatesTo._();
 
   /// [CompositionRelatesTo] A set of healthcare-related information that is
   /// assembled together into a single logical package that provides a single
@@ -531,7 +533,7 @@ class CompositionRelatesTo
   /// [targetIdentifier] The target composition/document of this relationship.
   ///
   /// [targetReference] The target composition/document of this relationship.
-  const factory CompositionRelatesTo({
+  factory CompositionRelatesTo({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -604,6 +606,9 @@ class CompositionRelatesTo
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -615,9 +620,9 @@ class CompositionRelatesTo
 
 /// [CompositionEvent] A set of healthcare-related information that is
 @freezed
-class CompositionEvent with _$CompositionEvent implements BackboneElement {
+class CompositionEvent extends BackboneElement with _$CompositionEvent {
   /// [CompositionEvent] A set of healthcare-related information that is
-  const CompositionEvent._();
+  CompositionEvent._();
 
   /// [CompositionEvent] A set of healthcare-related information that is
   /// assembled together into a single logical package that provides a single
@@ -667,7 +672,7 @@ class CompositionEvent with _$CompositionEvent implements BackboneElement {
   /// [detail] The description and/or reference of the event(s) being
   /// documented. For example, this could be used to document such a colonoscopy
   ///  or an appendectomy.
-  const factory CompositionEvent({
+  factory CompositionEvent({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -744,6 +749,9 @@ class CompositionEvent with _$CompositionEvent implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -755,9 +763,9 @@ class CompositionEvent with _$CompositionEvent implements BackboneElement {
 
 /// [CompositionSection] A set of healthcare-related information that is
 @freezed
-class CompositionSection with _$CompositionSection implements BackboneElement {
+class CompositionSection extends BackboneElement with _$CompositionSection {
   /// [CompositionSection] A set of healthcare-related information that is
-  const CompositionSection._();
+  CompositionSection._();
 
   /// [CompositionSection] A set of healthcare-related information that is
   /// assembled together into a single logical package that provides a single
@@ -839,7 +847,7 @@ class CompositionSection with _$CompositionSection implements BackboneElement {
   ///  section typically has some text explaining the empty reason.
   ///
   /// [section] A nested sub-section within this section.
-  const factory CompositionSection({
+  factory CompositionSection({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -955,6 +963,9 @@ class CompositionSection with _$CompositionSection implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

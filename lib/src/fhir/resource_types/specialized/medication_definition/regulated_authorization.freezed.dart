@@ -685,7 +685,7 @@ class __$$RegulatedAuthorizationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RegulatedAuthorizationImpl extends _RegulatedAuthorization {
-  const _$RegulatedAuthorizationImpl(
+  _$RegulatedAuthorizationImpl(
       {this.resourceType = R4ResourceType.RegulatedAuthorization,
       this.id,
       this.meta,
@@ -1013,7 +1013,7 @@ class _$RegulatedAuthorizationImpl extends _RegulatedAuthorization {
 }
 
 abstract class _RegulatedAuthorization extends RegulatedAuthorization {
-  const factory _RegulatedAuthorization(
+  factory _RegulatedAuthorization(
       {final R4ResourceType resourceType,
       final String? id,
       final FhirMeta? meta,
@@ -1043,7 +1043,7 @@ abstract class _RegulatedAuthorization extends RegulatedAuthorization {
       final Reference? regulator,
       @JsonKey(name: 'case')
       final RegulatedAuthorizationCase? case_}) = _$RegulatedAuthorizationImpl;
-  const _RegulatedAuthorization._() : super._();
+  _RegulatedAuthorization._() : super._();
 
   factory _RegulatedAuthorization.fromJson(Map<String, dynamic> json) =
       _$RegulatedAuthorizationImpl.fromJson;
@@ -1482,7 +1482,7 @@ class __$$RegulatedAuthorizationCaseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RegulatedAuthorizationCaseImpl extends _RegulatedAuthorizationCase {
-  const _$RegulatedAuthorizationCaseImpl(
+  _$RegulatedAuthorizationCaseImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1636,7 +1636,7 @@ class _$RegulatedAuthorizationCaseImpl extends _RegulatedAuthorizationCase {
 }
 
 abstract class _RegulatedAuthorizationCase extends RegulatedAuthorizationCase {
-  const factory _RegulatedAuthorizationCase(
+  factory _RegulatedAuthorizationCase(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -1649,7 +1649,7 @@ abstract class _RegulatedAuthorizationCase extends RegulatedAuthorizationCase {
           final PrimitiveElement? dateDateTimeElement,
           final List<RegulatedAuthorizationCase>? application}) =
       _$RegulatedAuthorizationCaseImpl;
-  const _RegulatedAuthorizationCase._() : super._();
+  _RegulatedAuthorizationCase._() : super._();
 
   factory _RegulatedAuthorizationCase.fromJson(Map<String, dynamic> json) =
       _$RegulatedAuthorizationCaseImpl.fromJson;

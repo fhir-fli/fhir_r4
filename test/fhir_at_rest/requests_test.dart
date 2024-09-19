@@ -21,7 +21,7 @@ Future<void> main() async {
       final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
       // Prepare a mocked response
-      const OperationOutcome mockedOutcome = OperationOutcome(
+      final OperationOutcome mockedOutcome = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             details: CodeableConcept(
@@ -52,7 +52,7 @@ Future<void> main() async {
     test('get patient with pretty', () async {
       // Setup mock for the specific scenario
       final MockFhirRequest mockFhirRequest = MockFhirRequest();
-      const OperationOutcome mockedOutcomePretty = OperationOutcome(
+      final OperationOutcome mockedOutcomePretty = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             details: CodeableConcept(
@@ -84,7 +84,7 @@ Future<void> main() async {
       final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
       // Prepare a mocked response for the specific test case
-      const OperationOutcome mockedOutcomePrettyAndSummaryTrue =
+      final OperationOutcome mockedOutcomePrettyAndSummaryTrue =
           OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
@@ -118,7 +118,7 @@ Future<void> main() async {
       final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
       // Prepare the mocked OperationOutcome for this specific scenario
-      const OperationOutcome mockedOutcomeSummaryCount = OperationOutcome(
+      final OperationOutcome mockedOutcomeSummaryCount = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             details: CodeableConcept(
@@ -151,7 +151,7 @@ Future<void> main() async {
       final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
       // Prepare the mocked OperationOutcome for this specific scenario
-      const OperationOutcome mockedOutcomePrettyWithNameOnly = OperationOutcome(
+      final OperationOutcome mockedOutcomePrettyWithNameOnly = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             details: CodeableConcept(
@@ -185,7 +185,7 @@ Future<void> main() async {
       final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
       // Prepare the mocked OperationOutcome for this specific scenario
-      const OperationOutcome mockedOutcomePrettyWithNameAndGender =
+      final OperationOutcome mockedOutcomePrettyWithNameAndGender =
           OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
@@ -218,7 +218,7 @@ Future<void> main() async {
       test('get patient version', () async {
         final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-        const OperationOutcome mockedOutcome = OperationOutcome(
+        final OperationOutcome mockedOutcome = OperationOutcome(
           issue: <OperationOutcomeIssue>[
             OperationOutcomeIssue(
               details: CodeableConcept(
@@ -244,7 +244,7 @@ Future<void> main() async {
       test('get patient version with pretty', () async {
         final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-        const OperationOutcome mockedOutcome = OperationOutcome(
+        final OperationOutcome mockedOutcome = OperationOutcome(
           issue: <OperationOutcomeIssue>[
             OperationOutcomeIssue(
               details: CodeableConcept(
@@ -270,7 +270,7 @@ Future<void> main() async {
       test('get patient version with pretty and summary true', () async {
         final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-        const OperationOutcome mockedOutcome = OperationOutcome(
+        final OperationOutcome mockedOutcome = OperationOutcome(
           issue: <OperationOutcomeIssue>[
             OperationOutcomeIssue(
               details: CodeableConcept(
@@ -296,7 +296,7 @@ Future<void> main() async {
       test('get patient version with summary count', () async {
         final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-        const OperationOutcome mockedOutcome = OperationOutcome(
+        final OperationOutcome mockedOutcome = OperationOutcome(
           issue: <OperationOutcomeIssue>[
             OperationOutcomeIssue(
               details: CodeableConcept(
@@ -324,7 +324,7 @@ Future<void> main() async {
       test('transaction/batch', () async {
         final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-        const OperationOutcome mockedOutcome = OperationOutcome(
+        final OperationOutcome mockedOutcome = OperationOutcome(
           issue: <OperationOutcomeIssue>[
             OperationOutcomeIssue(
               details: CodeableConcept(
@@ -366,7 +366,7 @@ Future<void> main() async {
       test('observation history by type and id', () async {
         final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-        const OperationOutcome mockedOutcome = OperationOutcome(
+        final OperationOutcome mockedOutcome = OperationOutcome(
           issue: <OperationOutcomeIssue>[
             OperationOutcomeIssue(
               details: CodeableConcept(
@@ -392,7 +392,7 @@ Future<void> main() async {
       test('observation history by type', () async {
         final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-        const OperationOutcome mockedOutcome = OperationOutcome(
+        final OperationOutcome mockedOutcome = OperationOutcome(
           issue: <OperationOutcomeIssue>[
             OperationOutcomeIssue(
               details: CodeableConcept(
@@ -418,7 +418,7 @@ Future<void> main() async {
       test('history for everything', () async {
         final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-        const OperationOutcome mockedOutcome = OperationOutcome(
+        final OperationOutcome mockedOutcome = OperationOutcome(
           issue: <OperationOutcomeIssue>[
             OperationOutcomeIssue(
               details: CodeableConcept(
@@ -446,7 +446,7 @@ Future<void> main() async {
           () async {
         final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-        const OperationOutcome mockedOutcome = OperationOutcome(
+        final OperationOutcome mockedOutcome = OperationOutcome(
           issue: <OperationOutcomeIssue>[
             OperationOutcomeIssue(
               details: CodeableConcept(
@@ -474,7 +474,7 @@ Future<void> main() async {
           () async {
         final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-        const OperationOutcome mockedOutcome = OperationOutcome(
+        final OperationOutcome mockedOutcome = OperationOutcome(
           issue: <OperationOutcomeIssue>[
             OperationOutcomeIssue(
               details: CodeableConcept(
@@ -506,7 +506,7 @@ Future<void> main() async {
       test('update patient by id', () async {
         final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-        const OperationOutcome mockedOutcome = OperationOutcome(
+        final OperationOutcome mockedOutcome = OperationOutcome(
           issue: <OperationOutcomeIssue>[
             OperationOutcomeIssue(
               details: CodeableConcept(
@@ -532,7 +532,7 @@ Future<void> main() async {
       test('update patient by id with pretty', () async {
         final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-        const OperationOutcome mockedOutcome = OperationOutcome(
+        final OperationOutcome mockedOutcome = OperationOutcome(
           issue: <OperationOutcomeIssue>[
             OperationOutcomeIssue(
               details: CodeableConcept(
@@ -560,7 +560,7 @@ Future<void> main() async {
       test('patch patient by id', () async {
         final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-        const OperationOutcome mockedOutcome = OperationOutcome(
+        final OperationOutcome mockedOutcome = OperationOutcome(
           issue: <OperationOutcomeIssue>[
             OperationOutcomeIssue(
               details: CodeableConcept(
@@ -588,7 +588,7 @@ Future<void> main() async {
       test('delete patient', () async {
         final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-        const OperationOutcome mockedOutcome = OperationOutcome(
+        final OperationOutcome mockedOutcome = OperationOutcome(
           issue: <OperationOutcomeIssue>[
             OperationOutcomeIssue(
               details: CodeableConcept(
@@ -616,7 +616,7 @@ Future<void> main() async {
       test('create patient', () async {
         final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-        const OperationOutcome mockedOutcome = OperationOutcome(
+        final OperationOutcome mockedOutcome = OperationOutcome(
           issue: <OperationOutcomeIssue>[
             OperationOutcomeIssue(
               details: CodeableConcept(
@@ -644,7 +644,7 @@ Future<void> main() async {
       test('capabilities with mode default', () async {
         final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-        const OperationOutcome mockedOutcome = OperationOutcome(
+        final OperationOutcome mockedOutcome = OperationOutcome(
           issue: <OperationOutcomeIssue>[
             OperationOutcomeIssue(
               details: CodeableConcept(
@@ -672,7 +672,7 @@ Future<void> main() async {
       test('everything operation', () async {
         final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-        const OperationOutcome mockedOutcome = OperationOutcome(
+        final OperationOutcome mockedOutcome = OperationOutcome(
           issue: <OperationOutcomeIssue>[
             OperationOutcomeIssue(
               details: CodeableConcept(
@@ -698,7 +698,7 @@ Future<void> main() async {
       test('everything operation for Patient 744742', () async {
         final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-        const OperationOutcome mockedOutcome = OperationOutcome(
+        final OperationOutcome mockedOutcome = OperationOutcome(
           issue: <OperationOutcomeIssue>[
             OperationOutcomeIssue(
               details: CodeableConcept(
@@ -727,7 +727,7 @@ Future<void> main() async {
     test('patient id search', () async {
       final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-      const OperationOutcome mockedOutcome = OperationOutcome(
+      final OperationOutcome mockedOutcome = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             details: CodeableConcept(
@@ -753,7 +753,7 @@ Future<void> main() async {
     test('patient id search using post', () async {
       final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-      const OperationOutcome mockedOutcome = OperationOutcome(
+      final OperationOutcome mockedOutcome = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             details: CodeableConcept(
@@ -779,7 +779,7 @@ Future<void> main() async {
     test('observation time search', () async {
       final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-      const OperationOutcome mockedOutcome = OperationOutcome(
+      final OperationOutcome mockedOutcome = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             details: CodeableConcept(
@@ -805,7 +805,7 @@ Future<void> main() async {
     test('condition search, code parameter (_tag)', () async {
       final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-      const OperationOutcome mockedOutcome = OperationOutcome(
+      final OperationOutcome mockedOutcome = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             details: CodeableConcept(
@@ -831,7 +831,7 @@ Future<void> main() async {
     test('diagnostic report rearch, uri parameter (_profile)', () async {
       final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-      const OperationOutcome mockedOutcome = OperationOutcome(
+      final OperationOutcome mockedOutcome = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             details: CodeableConcept(
@@ -857,7 +857,7 @@ Future<void> main() async {
     test('patient search if gender present', () async {
       final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-      const OperationOutcome mockedOutcome = OperationOutcome(
+      final OperationOutcome mockedOutcome = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             details: CodeableConcept(
@@ -883,7 +883,7 @@ Future<void> main() async {
     test('patient search if gender present', () async {
       final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-      const OperationOutcome mockedOutcome = OperationOutcome(
+      final OperationOutcome mockedOutcome = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             details: CodeableConcept(
@@ -909,7 +909,7 @@ Future<void> main() async {
     test('patient search for exact text match', () async {
       final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-      const OperationOutcome mockedOutcome = OperationOutcome(
+      final OperationOutcome mockedOutcome = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             details: CodeableConcept(
@@ -935,7 +935,7 @@ Future<void> main() async {
     test('patient search for text contains', () async {
       final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-      const OperationOutcome mockedOutcome = OperationOutcome(
+      final OperationOutcome mockedOutcome = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             details: CodeableConcept(
@@ -961,7 +961,7 @@ Future<void> main() async {
     test('patient search for text contains and exact match', () async {
       final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-      const OperationOutcome mockedOutcome = OperationOutcome(
+      final OperationOutcome mockedOutcome = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             details: CodeableConcept(
@@ -987,7 +987,7 @@ Future<void> main() async {
     test('patient search for birthday between two dates', () async {
       final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-      const OperationOutcome mockedOutcome = OperationOutcome(
+      final OperationOutcome mockedOutcome = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             details: CodeableConcept(
@@ -1013,7 +1013,7 @@ Future<void> main() async {
     test('patient search for given name with parameters', () async {
       final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-      const OperationOutcome mockedOutcome = OperationOutcome(
+      final OperationOutcome mockedOutcome = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             details: CodeableConcept(
@@ -1039,7 +1039,7 @@ Future<void> main() async {
     test('patient search with identifier', () async {
       final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-      const OperationOutcome mockedOutcome = OperationOutcome(
+      final OperationOutcome mockedOutcome = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             details: CodeableConcept(
@@ -1065,7 +1065,7 @@ Future<void> main() async {
     test('composition search section code', () async {
       final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-      const OperationOutcome mockedOutcome = OperationOutcome(
+      final OperationOutcome mockedOutcome = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             details: CodeableConcept(
@@ -1091,7 +1091,7 @@ Future<void> main() async {
     test('condition search via snomed code', () async {
       final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-      const OperationOutcome mockedOutcome = OperationOutcome(
+      final OperationOutcome mockedOutcome = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             details: CodeableConcept(
@@ -1118,7 +1118,7 @@ Future<void> main() async {
         () async {
       final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-      const OperationOutcome mockedOutcome = OperationOutcome(
+      final OperationOutcome mockedOutcome = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             details: CodeableConcept(
@@ -1144,7 +1144,7 @@ Future<void> main() async {
     test('patient search by mr code', () async {
       final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-      const OperationOutcome mockedOutcome = OperationOutcome(
+      final OperationOutcome mockedOutcome = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             details: CodeableConcept(
@@ -1170,7 +1170,7 @@ Future<void> main() async {
     test('observation search by quantity, with prefix', () async {
       final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-      const OperationOutcome mockedOutcome = OperationOutcome(
+      final OperationOutcome mockedOutcome = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             details: CodeableConcept(
@@ -1196,7 +1196,7 @@ Future<void> main() async {
     test('observation search by quantity, without prefix', () async {
       final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-      const OperationOutcome mockedOutcome = OperationOutcome(
+      final OperationOutcome mockedOutcome = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             details: CodeableConcept(
@@ -1222,7 +1222,7 @@ Future<void> main() async {
     test('observation search by quantity, testing number parsing', () async {
       final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-      const OperationOutcome mockedOutcome = OperationOutcome(
+      final OperationOutcome mockedOutcome = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             details: CodeableConcept(
@@ -1248,7 +1248,7 @@ Future<void> main() async {
     test('observation search by reference, using url', () async {
       final MockFhirRequest mockFhirRequest = MockFhirRequest();
 
-      const OperationOutcome mockedOutcome = OperationOutcome(
+      final OperationOutcome mockedOutcome = OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
             details: CodeableConcept(

@@ -511,7 +511,7 @@ class __$$AdministrableProductDefinitionImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AdministrableProductDefinitionImpl
     extends _AdministrableProductDefinition {
-  const _$AdministrableProductDefinitionImpl(
+  _$AdministrableProductDefinitionImpl(
       {this.resourceType = R4ResourceType.AdministrableProductDefinition,
       this.id,
       this.meta,
@@ -798,7 +798,7 @@ class _$AdministrableProductDefinitionImpl
 
 abstract class _AdministrableProductDefinition
     extends AdministrableProductDefinition {
-  const factory _AdministrableProductDefinition(
+  factory _AdministrableProductDefinition(
       {final R4ResourceType resourceType,
       final String? id,
       final FhirMeta? meta,
@@ -823,7 +823,7 @@ abstract class _AdministrableProductDefinition
       final List<AdministrableProductDefinitionProperty>? property,
       required final List<AdministrableProductDefinitionRouteOfAdministration>
           routeOfAdministration}) = _$AdministrableProductDefinitionImpl;
-  const _AdministrableProductDefinition._() : super._();
+  _AdministrableProductDefinition._() : super._();
 
   factory _AdministrableProductDefinition.fromJson(Map<String, dynamic> json) =
       _$AdministrableProductDefinitionImpl.fromJson;
@@ -1271,7 +1271,7 @@ class __$$AdministrableProductDefinitionPropertyImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AdministrableProductDefinitionPropertyImpl
     extends _AdministrableProductDefinitionProperty {
-  const _$AdministrableProductDefinitionPropertyImpl(
+  _$AdministrableProductDefinitionPropertyImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1435,7 +1435,7 @@ class _$AdministrableProductDefinitionPropertyImpl
 
 abstract class _AdministrableProductDefinitionProperty
     extends AdministrableProductDefinitionProperty {
-  const factory _AdministrableProductDefinitionProperty(
+  factory _AdministrableProductDefinitionProperty(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -1450,7 +1450,7 @@ abstract class _AdministrableProductDefinitionProperty
           final Attachment? valueAttachment,
           final CodeableConcept? status}) =
       _$AdministrableProductDefinitionPropertyImpl;
-  const _AdministrableProductDefinitionProperty._() : super._();
+  _AdministrableProductDefinitionProperty._() : super._();
 
   factory _AdministrableProductDefinitionProperty.fromJson(
           Map<String, dynamic> json) =
@@ -1873,7 +1873,7 @@ class __$$AdministrableProductDefinitionRouteOfAdministrationImplCopyWithImpl<
 @JsonSerializable()
 class _$AdministrableProductDefinitionRouteOfAdministrationImpl
     extends _AdministrableProductDefinitionRouteOfAdministration {
-  const _$AdministrableProductDefinitionRouteOfAdministrationImpl(
+  _$AdministrableProductDefinitionRouteOfAdministrationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2033,7 +2033,7 @@ class _$AdministrableProductDefinitionRouteOfAdministrationImpl
 
 abstract class _AdministrableProductDefinitionRouteOfAdministration
     extends AdministrableProductDefinitionRouteOfAdministration {
-  const factory _AdministrableProductDefinitionRouteOfAdministration(
+  factory _AdministrableProductDefinitionRouteOfAdministration(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2046,7 +2046,7 @@ abstract class _AdministrableProductDefinitionRouteOfAdministration
           final List<AdministrableProductDefinitionTargetSpecies>?
               targetSpecies}) =
       _$AdministrableProductDefinitionRouteOfAdministrationImpl;
-  const _AdministrableProductDefinitionRouteOfAdministration._() : super._();
+  _AdministrableProductDefinitionRouteOfAdministration._() : super._();
 
   factory _AdministrableProductDefinitionRouteOfAdministration.fromJson(
           Map<String, dynamic> json) =
@@ -2289,7 +2289,7 @@ class __$$AdministrableProductDefinitionTargetSpeciesImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AdministrableProductDefinitionTargetSpeciesImpl
     extends _AdministrableProductDefinitionTargetSpecies {
-  const _$AdministrableProductDefinitionTargetSpeciesImpl(
+  _$AdministrableProductDefinitionTargetSpeciesImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2409,7 +2409,7 @@ class _$AdministrableProductDefinitionTargetSpeciesImpl
 
 abstract class _AdministrableProductDefinitionTargetSpecies
     extends AdministrableProductDefinitionTargetSpecies {
-  const factory _AdministrableProductDefinitionTargetSpecies(
+  factory _AdministrableProductDefinitionTargetSpecies(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2417,7 +2417,7 @@ abstract class _AdministrableProductDefinitionTargetSpecies
           final List<AdministrableProductDefinitionWithdrawalPeriod>?
               withdrawalPeriod}) =
       _$AdministrableProductDefinitionTargetSpeciesImpl;
-  const _AdministrableProductDefinitionTargetSpecies._() : super._();
+  _AdministrableProductDefinitionTargetSpecies._() : super._();
 
   factory _AdministrableProductDefinitionTargetSpecies.fromJson(
           Map<String, dynamic> json) =
@@ -2685,7 +2685,7 @@ class __$$AdministrableProductDefinitionWithdrawalPeriodImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AdministrableProductDefinitionWithdrawalPeriodImpl
     extends _AdministrableProductDefinitionWithdrawalPeriod {
-  const _$AdministrableProductDefinitionWithdrawalPeriodImpl(
+  _$AdministrableProductDefinitionWithdrawalPeriodImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2810,7 +2810,7 @@ class _$AdministrableProductDefinitionWithdrawalPeriodImpl
 
 abstract class _AdministrableProductDefinitionWithdrawalPeriod
     extends AdministrableProductDefinitionWithdrawalPeriod {
-  const factory _AdministrableProductDefinitionWithdrawalPeriod(
+  factory _AdministrableProductDefinitionWithdrawalPeriod(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2820,7 +2820,7 @@ abstract class _AdministrableProductDefinitionWithdrawalPeriod
           @JsonKey(name: '_supportingInformation')
           final PrimitiveElement? supportingInformationElement}) =
       _$AdministrableProductDefinitionWithdrawalPeriodImpl;
-  const _AdministrableProductDefinitionWithdrawalPeriod._() : super._();
+  _AdministrableProductDefinitionWithdrawalPeriod._() : super._();
 
   factory _AdministrableProductDefinitionWithdrawalPeriod.fromJson(
           Map<String, dynamic> json) =

@@ -551,7 +551,7 @@ class __$$OrganizationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$OrganizationImpl extends _Organization {
-  const _$OrganizationImpl(
+  _$OrganizationImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Organization)
       this.resourceType = R4ResourceType.Organization,
       this.id,
@@ -947,7 +947,7 @@ class _$OrganizationImpl extends _Organization {
 }
 
 abstract class _Organization extends Organization {
-  const factory _Organization(
+  factory _Organization(
       {@JsonKey(unknownEnumValue: R4ResourceType.Organization)
       final R4ResourceType resourceType,
       final String? id,
@@ -974,7 +974,7 @@ abstract class _Organization extends Organization {
       final Reference? partOf,
       final List<OrganizationContact>? contact,
       final List<Reference>? endpoint}) = _$OrganizationImpl;
-  const _Organization._() : super._();
+  _Organization._() : super._();
 
   factory _Organization.fromJson(Map<String, dynamic> json) =
       _$OrganizationImpl.fromJson;
@@ -1381,7 +1381,7 @@ class __$$OrganizationContactImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$OrganizationContactImpl extends _OrganizationContact {
-  const _$OrganizationContactImpl(
+  _$OrganizationContactImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1542,7 +1542,7 @@ class _$OrganizationContactImpl extends _OrganizationContact {
 }
 
 abstract class _OrganizationContact extends OrganizationContact {
-  const factory _OrganizationContact(
+  factory _OrganizationContact(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1550,7 +1550,7 @@ abstract class _OrganizationContact extends OrganizationContact {
       final HumanName? name,
       final List<ContactPoint>? telecom,
       final Address? address}) = _$OrganizationContactImpl;
-  const _OrganizationContact._() : super._();
+  _OrganizationContact._() : super._();
 
   factory _OrganizationContact.fromJson(Map<String, dynamic> json) =
       _$OrganizationContactImpl.fromJson;

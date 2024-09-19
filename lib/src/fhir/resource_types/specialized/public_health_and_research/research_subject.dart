@@ -15,9 +15,9 @@ part 'research_subject.g.dart';
 
 /// [ResearchSubject] A physical entity which is the primary unit of
 @freezed
-class ResearchSubject with _$ResearchSubject implements DomainResource {
+class ResearchSubject extends DomainResource with _$ResearchSubject {
   /// [ResearchSubject] A physical entity which is the primary unit of
-  const ResearchSubject._();
+  ResearchSubject._();
 
   /// [ResearchSubject] A physical entity which is the primary unit of
   ///  operational and/or administrative interest in a study.
@@ -101,7 +101,7 @@ class ResearchSubject with _$ResearchSubject implements DomainResource {
   ///
   /// [consent] A record of the patient's informed agreement to participate in
   ///  the study.
-  const factory ResearchSubject({
+  factory ResearchSubject({
     @Default(R4ResourceType.ResearchSubject)
     @JsonKey(unknownEnumValue: R4ResourceType.ResearchSubject)
 
@@ -241,6 +241,9 @@ class ResearchSubject with _$ResearchSubject implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -263,6 +266,6 @@ class ResearchSubject with _$ResearchSubject implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }

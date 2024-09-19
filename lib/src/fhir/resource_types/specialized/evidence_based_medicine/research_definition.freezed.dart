@@ -1098,7 +1098,7 @@ class __$$ResearchDefinitionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ResearchDefinitionImpl extends _ResearchDefinition {
-  const _$ResearchDefinitionImpl(
+  _$ResearchDefinitionImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.ResearchDefinition)
       this.resourceType = R4ResourceType.ResearchDefinition,
       this.id,
@@ -1667,7 +1667,7 @@ class _$ResearchDefinitionImpl extends _ResearchDefinition {
 }
 
 abstract class _ResearchDefinition extends ResearchDefinition {
-  const factory _ResearchDefinition(
+  factory _ResearchDefinition(
       {@JsonKey(unknownEnumValue: R4ResourceType.ResearchDefinition)
       final R4ResourceType resourceType,
       final String? id,
@@ -1736,7 +1736,7 @@ abstract class _ResearchDefinition extends ResearchDefinition {
       final Reference? exposure,
       final Reference? exposureAlternative,
       final Reference? outcome}) = _$ResearchDefinitionImpl;
-  const _ResearchDefinition._() : super._();
+  _ResearchDefinition._() : super._();
 
   factory _ResearchDefinition.fromJson(Map<String, dynamic> json) =
       _$ResearchDefinitionImpl.fromJson;

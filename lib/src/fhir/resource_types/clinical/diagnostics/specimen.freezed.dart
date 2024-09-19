@@ -639,7 +639,7 @@ class __$$SpecimenImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SpecimenImpl extends _Specimen {
-  const _$SpecimenImpl(
+  _$SpecimenImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Specimen)
       this.resourceType = R4ResourceType.Specimen,
       this.id,
@@ -1055,7 +1055,7 @@ class _$SpecimenImpl extends _Specimen {
 }
 
 abstract class _Specimen extends Specimen {
-  const factory _Specimen(
+  factory _Specimen(
       {@JsonKey(unknownEnumValue: R4ResourceType.Specimen)
       final R4ResourceType resourceType,
       final String? id,
@@ -1085,7 +1085,7 @@ abstract class _Specimen extends Specimen {
       final List<SpecimenContainer>? container,
       final List<CodeableConcept>? condition,
       final List<Annotation>? note}) = _$SpecimenImpl;
-  const _Specimen._() : super._();
+  _Specimen._() : super._();
 
   factory _Specimen.fromJson(Map<String, dynamic> json) =
       _$SpecimenImpl.fromJson;
@@ -1698,7 +1698,7 @@ class __$$SpecimenCollectionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SpecimenCollectionImpl extends _SpecimenCollection {
-  const _$SpecimenCollectionImpl(
+  _$SpecimenCollectionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1912,7 +1912,7 @@ class _$SpecimenCollectionImpl extends _SpecimenCollection {
 }
 
 abstract class _SpecimenCollection extends SpecimenCollection {
-  const factory _SpecimenCollection(
+  factory _SpecimenCollection(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1927,7 +1927,7 @@ abstract class _SpecimenCollection extends SpecimenCollection {
       final CodeableConcept? bodySite,
       final CodeableConcept? fastingStatusCodeableConcept,
       final FhirDuration? fastingStatusDuration}) = _$SpecimenCollectionImpl;
-  const _SpecimenCollection._() : super._();
+  _SpecimenCollection._() : super._();
 
   factory _SpecimenCollection.fromJson(Map<String, dynamic> json) =
       _$SpecimenCollectionImpl.fromJson;
@@ -2316,7 +2316,7 @@ class __$$SpecimenProcessingImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SpecimenProcessingImpl extends _SpecimenProcessing {
-  const _$SpecimenProcessingImpl(
+  _$SpecimenProcessingImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2509,7 +2509,7 @@ class _$SpecimenProcessingImpl extends _SpecimenProcessing {
 }
 
 abstract class _SpecimenProcessing extends SpecimenProcessing {
-  const factory _SpecimenProcessing(
+  factory _SpecimenProcessing(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2521,7 +2521,7 @@ abstract class _SpecimenProcessing extends SpecimenProcessing {
       @JsonKey(name: '_timeDateTime')
       final PrimitiveElement? timeDateTimeElement,
       final Period? timePeriod}) = _$SpecimenProcessingImpl;
-  const _SpecimenProcessing._() : super._();
+  _SpecimenProcessing._() : super._();
 
   factory _SpecimenProcessing.fromJson(Map<String, dynamic> json) =
       _$SpecimenProcessingImpl.fromJson;
@@ -2963,7 +2963,7 @@ class __$$SpecimenContainerImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SpecimenContainerImpl extends _SpecimenContainer {
-  const _$SpecimenContainerImpl(
+  _$SpecimenContainerImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3169,7 +3169,7 @@ class _$SpecimenContainerImpl extends _SpecimenContainer {
 }
 
 abstract class _SpecimenContainer extends SpecimenContainer {
-  const factory _SpecimenContainer(
+  factory _SpecimenContainer(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3181,7 +3181,7 @@ abstract class _SpecimenContainer extends SpecimenContainer {
       final Quantity? specimenQuantity,
       final CodeableConcept? additiveCodeableConcept,
       final Reference? additiveReference}) = _$SpecimenContainerImpl;
-  const _SpecimenContainer._() : super._();
+  _SpecimenContainer._() : super._();
 
   factory _SpecimenContainer.fromJson(Map<String, dynamic> json) =
       _$SpecimenContainerImpl.fromJson;

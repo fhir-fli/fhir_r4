@@ -817,7 +817,7 @@ class __$$MedicationStatementImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MedicationStatementImpl extends _MedicationStatement {
-  const _$MedicationStatementImpl(
+  _$MedicationStatementImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.MedicationStatement)
       this.resourceType = R4ResourceType.MedicationStatement,
       this.id,
@@ -1338,7 +1338,7 @@ class _$MedicationStatementImpl extends _MedicationStatement {
 }
 
 abstract class _MedicationStatement extends MedicationStatement {
-  const factory _MedicationStatement(
+  factory _MedicationStatement(
       {@JsonKey(unknownEnumValue: R4ResourceType.MedicationStatement)
       final R4ResourceType resourceType,
       final String? id,
@@ -1376,7 +1376,7 @@ abstract class _MedicationStatement extends MedicationStatement {
       final List<Reference>? reasonReference,
       final List<Annotation>? note,
       final List<Dosage>? dosage}) = _$MedicationStatementImpl;
-  const _MedicationStatement._() : super._();
+  _MedicationStatement._() : super._();
 
   factory _MedicationStatement.fromJson(Map<String, dynamic> json) =
       _$MedicationStatementImpl.fromJson;

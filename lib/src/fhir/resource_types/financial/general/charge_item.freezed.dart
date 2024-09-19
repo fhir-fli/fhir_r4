@@ -1109,7 +1109,7 @@ class __$$ChargeItemImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ChargeItemImpl extends _ChargeItem {
-  const _$ChargeItemImpl(
+  _$ChargeItemImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.ChargeItem)
       this.resourceType = R4ResourceType.ChargeItem,
       this.id,
@@ -1747,7 +1747,7 @@ class _$ChargeItemImpl extends _ChargeItem {
 }
 
 abstract class _ChargeItem extends ChargeItem {
-  const factory _ChargeItem(
+  factory _ChargeItem(
       {@JsonKey(unknownEnumValue: R4ResourceType.ChargeItem)
       final R4ResourceType resourceType,
       final String? id,
@@ -1800,7 +1800,7 @@ abstract class _ChargeItem extends ChargeItem {
       final List<Reference>? account,
       final List<Annotation>? note,
       final List<Reference>? supportingInformation}) = _$ChargeItemImpl;
-  const _ChargeItem._() : super._();
+  _ChargeItem._() : super._();
 
   factory _ChargeItem.fromJson(Map<String, dynamic> json) =
       _$ChargeItemImpl.fromJson;
@@ -2264,7 +2264,7 @@ class __$$ChargeItemPerformerImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ChargeItemPerformerImpl extends _ChargeItemPerformer {
-  const _$ChargeItemPerformerImpl(
+  _$ChargeItemPerformerImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2402,13 +2402,13 @@ class _$ChargeItemPerformerImpl extends _ChargeItemPerformer {
 }
 
 abstract class _ChargeItemPerformer extends ChargeItemPerformer {
-  const factory _ChargeItemPerformer(
+  factory _ChargeItemPerformer(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final CodeableConcept? function,
       required final Reference actor}) = _$ChargeItemPerformerImpl;
-  const _ChargeItemPerformer._() : super._();
+  _ChargeItemPerformer._() : super._();
 
   factory _ChargeItemPerformer.fromJson(Map<String, dynamic> json) =
       _$ChargeItemPerformerImpl.fromJson;

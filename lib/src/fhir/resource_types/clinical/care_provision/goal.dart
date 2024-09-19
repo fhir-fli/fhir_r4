@@ -15,9 +15,9 @@ part 'goal.g.dart';
 
 /// [Goal] Describes the intended objective(s) for a patient, group or
 @freezed
-class Goal with _$Goal implements DomainResource {
+class Goal extends DomainResource with _$Goal {
   /// [Goal] Describes the intended objective(s) for a patient, group or
-  const Goal._();
+  Goal._();
 
   /// [Goal] Describes the intended objective(s) for a patient, group or
   /// organization care, for example, weight loss, restoring an activity of
@@ -131,7 +131,7 @@ class Goal with _$Goal implements DomainResource {
   ///  the status of the goal is assessed.
   ///
   /// [outcomeReference] Details of what's changed (or not changed).
-  const factory Goal({
+  factory Goal({
     @Default(R4ResourceType.Goal)
     @JsonKey(unknownEnumValue: R4ResourceType.Goal)
 
@@ -307,6 +307,9 @@ class Goal with _$Goal implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -329,8 +332,8 @@ class Goal with _$Goal implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [GoalTarget] Describes the intended objective(s) for a patient, group or
@@ -338,9 +341,9 @@ class Goal with _$Goal implements DomainResource {
 
 /// [GoalTarget] Describes the intended objective(s) for a patient, group or
 @freezed
-class GoalTarget with _$GoalTarget implements BackboneElement {
+class GoalTarget extends BackboneElement with _$GoalTarget {
   /// [GoalTarget] Describes the intended objective(s) for a patient, group or
-  const GoalTarget._();
+  GoalTarget._();
 
   /// [GoalTarget] Describes the intended objective(s) for a patient, group or
   /// organization care, for example, weight loss, restoring an activity of
@@ -437,7 +440,7 @@ class GoalTarget with _$GoalTarget implements BackboneElement {
   ///
   /// [dueDuration] Indicates either the date or the duration after start by
   ///  which the goal should be met.
-  const factory GoalTarget({
+  factory GoalTarget({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -576,6 +579,9 @@ class GoalTarget with _$GoalTarget implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

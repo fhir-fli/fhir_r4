@@ -14,9 +14,9 @@ part 'identifier.g.dart';
 
 /// [Identifier] An identifier - identifies some entity uniquely and
 @freezed
-class Identifier with _$Identifier implements DataType {
+class Identifier extends DataType with _$Identifier {
   /// [Identifier] An identifier - identifies some entity uniquely and
-  const Identifier._();
+  Identifier._();
 
   /// [Identifier] An identifier - identifies some entity uniquely and
   ///  unambiguously. Typically this is used for business identifiers.
@@ -51,7 +51,7 @@ class Identifier with _$Identifier implements DataType {
   /// [period] Time period during which identifier is/was valid for use.
   ///
   /// [assigner] Organization that issued/manages the identifier.
-  const factory Identifier({
+  factory Identifier({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -124,6 +124,9 @@ class Identifier with _$Identifier implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

@@ -605,7 +605,7 @@ class __$$FhirGroupImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FhirGroupImpl extends _FhirGroup {
-  const _$FhirGroupImpl(
+  _$FhirGroupImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Group)
       this.resourceType = R4ResourceType.Group,
       this.id,
@@ -976,7 +976,7 @@ class _$FhirGroupImpl extends _FhirGroup {
 }
 
 abstract class _FhirGroup extends FhirGroup {
-  const factory _FhirGroup(
+  factory _FhirGroup(
       {@JsonKey(unknownEnumValue: R4ResourceType.Group)
       final R4ResourceType resourceType,
       final String? id,
@@ -1005,7 +1005,7 @@ abstract class _FhirGroup extends FhirGroup {
       final Reference? managingEntity,
       final List<GroupCharacteristic>? characteristic,
       final List<GroupMember>? member}) = _$FhirGroupImpl;
-  const _FhirGroup._() : super._();
+  _FhirGroup._() : super._();
 
   factory _FhirGroup.fromJson(Map<String, dynamic> json) =
       _$FhirGroupImpl.fromJson;
@@ -1576,7 +1576,7 @@ class __$$GroupCharacteristicImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$GroupCharacteristicImpl extends _GroupCharacteristic {
-  const _$GroupCharacteristicImpl(
+  _$GroupCharacteristicImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1783,7 +1783,7 @@ class _$GroupCharacteristicImpl extends _GroupCharacteristic {
 }
 
 abstract class _GroupCharacteristic extends GroupCharacteristic {
-  const factory _GroupCharacteristic(
+  factory _GroupCharacteristic(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1798,7 +1798,7 @@ abstract class _GroupCharacteristic extends GroupCharacteristic {
       final FhirBoolean? exclude,
       @JsonKey(name: '_exclude') final PrimitiveElement? excludeElement,
       final Period? period}) = _$GroupCharacteristicImpl;
-  const _GroupCharacteristic._() : super._();
+  _GroupCharacteristic._() : super._();
 
   factory _GroupCharacteristic.fromJson(Map<String, dynamic> json) =
       _$GroupCharacteristicImpl.fromJson;
@@ -2131,7 +2131,7 @@ class __$$GroupMemberImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$GroupMemberImpl extends _GroupMember {
-  const _$GroupMemberImpl(
+  _$GroupMemberImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2285,7 +2285,7 @@ class _$GroupMemberImpl extends _GroupMember {
 }
 
 abstract class _GroupMember extends GroupMember {
-  const factory _GroupMember(
+  factory _GroupMember(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2294,7 +2294,7 @@ abstract class _GroupMember extends GroupMember {
       final FhirBoolean? inactive,
       @JsonKey(name: '_inactive')
       final PrimitiveElement? inactiveElement}) = _$GroupMemberImpl;
-  const _GroupMember._() : super._();
+  _GroupMember._() : super._();
 
   factory _GroupMember.fromJson(Map<String, dynamic> json) =
       _$GroupMemberImpl.fromJson;

@@ -15,9 +15,9 @@ part 'citation.g.dart';
 
 /// [Citation] The Citation Resource enables reference to any knowledge
 @freezed
-class Citation with _$Citation implements DomainResource {
+class Citation extends DomainResource with _$Citation {
   /// [Citation] The Citation Resource enables reference to any knowledge
-  const Citation._();
+  Citation._();
 
   /// [Citation] The Citation Resource enables reference to any knowledge
   /// artifact for purposes of identification and attribution. The Citation Resource
@@ -194,7 +194,7 @@ class Citation with _$Citation implements DomainResource {
   /// [relatesTo] Artifact related to the Citation Resource.
   ///
   /// [citedArtifact] The article or artifact being described.
-  const factory Citation({
+  factory Citation({
     @Default(R4ResourceType.Citation) R4ResourceType resourceType,
     String? id,
     FhirMeta? meta,
@@ -285,6 +285,9 @@ class Citation with _$Citation implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -307,8 +310,8 @@ class Citation with _$Citation implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [CitationSummary] The Citation Resource enables reference to any
@@ -316,9 +319,9 @@ class Citation with _$Citation implements DomainResource {
 
 /// [CitationSummary] The Citation Resource enables reference to any
 @freezed
-class CitationSummary with _$CitationSummary implements BackboneElement {
+class CitationSummary extends BackboneElement with _$CitationSummary {
   /// [CitationSummary] The Citation Resource enables reference to any
-  const CitationSummary._();
+  CitationSummary._();
 
   /// [CitationSummary] The Citation Resource enables reference to any
   /// knowledge artifact for purposes of identification and attribution. The Citation
@@ -354,7 +357,7 @@ class CitationSummary with _$CitationSummary implements BackboneElement {
   /// [text] The human-readable display of the citation.
   ///
   /// [textElement] _(_text) Extensions for text
-  const factory CitationSummary({
+  factory CitationSummary({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -394,6 +397,9 @@ class CitationSummary with _$CitationSummary implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -405,11 +411,10 @@ class CitationSummary with _$CitationSummary implements BackboneElement {
 
 /// [CitationClassification] The Citation Resource enables reference to any
 @freezed
-class CitationClassification
-    with _$CitationClassification
-    implements BackboneElement {
+class CitationClassification extends BackboneElement
+    with _$CitationClassification {
   /// [CitationClassification] The Citation Resource enables reference to any
-  const CitationClassification._();
+  CitationClassification._();
 
   /// [CitationClassification] The Citation Resource enables reference to any
   /// knowledge artifact for purposes of identification and attribution. The Citation
@@ -443,7 +448,7 @@ class CitationClassification
   /// [type] The kind of classifier (e.g. publication type, keyword).
   ///
   /// [classifier] The specific classification value.
-  const factory CitationClassification({
+  factory CitationClassification({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -482,6 +487,9 @@ class CitationClassification
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -493,9 +501,9 @@ class CitationClassification
 
 /// [CitationStatusDate] The Citation Resource enables reference to any
 @freezed
-class CitationStatusDate with _$CitationStatusDate implements BackboneElement {
+class CitationStatusDate extends BackboneElement with _$CitationStatusDate {
   /// [CitationStatusDate] The Citation Resource enables reference to any
-  const CitationStatusDate._();
+  CitationStatusDate._();
 
   /// [CitationStatusDate] The Citation Resource enables reference to any
   /// knowledge artifact for purposes of identification and attribution. The Citation
@@ -533,7 +541,7 @@ class CitationStatusDate with _$CitationStatusDate implements BackboneElement {
   /// [actualElement] _(_actual) Extensions for actual
   ///
   /// [period] When the status started and/or ended.
-  const factory CitationStatusDate({
+  factory CitationStatusDate({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -574,6 +582,9 @@ class CitationStatusDate with _$CitationStatusDate implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -585,9 +596,9 @@ class CitationStatusDate with _$CitationStatusDate implements BackboneElement {
 
 /// [CitationRelatesTo] The Citation Resource enables reference to any
 @freezed
-class CitationRelatesTo with _$CitationRelatesTo implements BackboneElement {
+class CitationRelatesTo extends BackboneElement with _$CitationRelatesTo {
   /// [CitationRelatesTo] The Citation Resource enables reference to any
-  const CitationRelatesTo._();
+  CitationRelatesTo._();
 
   /// [CitationRelatesTo] The Citation Resource enables reference to any
   /// knowledge artifact for purposes of identification and attribution. The Citation
@@ -635,7 +646,7 @@ class CitationRelatesTo with _$CitationRelatesTo implements BackboneElement {
   ///
   /// [targetAttachment] The article or artifact that the Citation Resource is
   /// related to.
-  const factory CitationRelatesTo({
+  factory CitationRelatesTo({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -679,6 +690,9 @@ class CitationRelatesTo with _$CitationRelatesTo implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -690,11 +704,10 @@ class CitationRelatesTo with _$CitationRelatesTo implements BackboneElement {
 
 /// [CitationCitedArtifact] The Citation Resource enables reference to any
 @freezed
-class CitationCitedArtifact
-    with _$CitationCitedArtifact
-    implements BackboneElement {
+class CitationCitedArtifact extends BackboneElement
+    with _$CitationCitedArtifact {
   /// [CitationCitedArtifact] The Citation Resource enables reference to any
-  const CitationCitedArtifact._();
+  CitationCitedArtifact._();
 
   /// [CitationCitedArtifact] The Citation Resource enables reference to any
   /// knowledge artifact for purposes of identification and attribution. The Citation
@@ -762,7 +775,7 @@ class CitationCitedArtifact
   /// statements.
   ///
   /// [note] Any additional information or content for the article or artifact.
-  const factory CitationCitedArtifact({
+  factory CitationCitedArtifact({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -815,6 +828,9 @@ class CitationCitedArtifact
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -826,9 +842,9 @@ class CitationCitedArtifact
 
 /// [CitationVersion] The Citation Resource enables reference to any
 @freezed
-class CitationVersion with _$CitationVersion implements BackboneElement {
+class CitationVersion extends BackboneElement with _$CitationVersion {
   /// [CitationVersion] The Citation Resource enables reference to any
-  const CitationVersion._();
+  CitationVersion._();
 
   /// [CitationVersion] The Citation Resource enables reference to any
   /// knowledge artifact for purposes of identification and attribution. The Citation
@@ -864,7 +880,7 @@ class CitationVersion with _$CitationVersion implements BackboneElement {
   /// [valueElement] _(_value) Extensions for value
   ///
   /// [baseCitation] Citation for the main version of the cited artifact.
-  const factory CitationVersion({
+  factory CitationVersion({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -904,6 +920,9 @@ class CitationVersion with _$CitationVersion implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -915,11 +934,9 @@ class CitationVersion with _$CitationVersion implements BackboneElement {
 
 /// [CitationStatusDate1] The Citation Resource enables reference to any
 @freezed
-class CitationStatusDate1
-    with _$CitationStatusDate1
-    implements BackboneElement {
+class CitationStatusDate1 extends BackboneElement with _$CitationStatusDate1 {
   /// [CitationStatusDate1] The Citation Resource enables reference to any
-  const CitationStatusDate1._();
+  CitationStatusDate1._();
 
   /// [CitationStatusDate1] The Citation Resource enables reference to any
   /// knowledge artifact for purposes of identification and attribution. The Citation
@@ -957,7 +974,7 @@ class CitationStatusDate1
   /// [actualElement] _(_actual) Extensions for actual
   ///
   /// [period] When the status started and/or ended.
-  const factory CitationStatusDate1({
+  factory CitationStatusDate1({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -998,6 +1015,9 @@ class CitationStatusDate1
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1009,9 +1029,9 @@ class CitationStatusDate1
 
 /// [CitationTitle] The Citation Resource enables reference to any knowledge
 @freezed
-class CitationTitle with _$CitationTitle implements BackboneElement {
+class CitationTitle extends BackboneElement with _$CitationTitle {
   /// [CitationTitle] The Citation Resource enables reference to any knowledge
-  const CitationTitle._();
+  CitationTitle._();
 
   /// [CitationTitle] The Citation Resource enables reference to any knowledge
   /// artifact for purposes of identification and attribution. The Citation Resource
@@ -1049,7 +1069,7 @@ class CitationTitle with _$CitationTitle implements BackboneElement {
   /// [text] The title of the article or artifact.
   ///
   /// [textElement] _(_text) Extensions for text
-  const factory CitationTitle({
+  factory CitationTitle({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -1090,6 +1110,9 @@ class CitationTitle with _$CitationTitle implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1101,9 +1124,9 @@ class CitationTitle with _$CitationTitle implements BackboneElement {
 
 /// [CitationAbstract] The Citation Resource enables reference to any
 @freezed
-class CitationAbstract with _$CitationAbstract implements BackboneElement {
+class CitationAbstract extends BackboneElement with _$CitationAbstract {
   /// [CitationAbstract] The Citation Resource enables reference to any
-  const CitationAbstract._();
+  CitationAbstract._();
 
   /// [CitationAbstract] The Citation Resource enables reference to any
   /// knowledge artifact for purposes of identification and attribution. The Citation
@@ -1145,7 +1168,7 @@ class CitationAbstract with _$CitationAbstract implements BackboneElement {
   /// [copyright] Copyright notice for the abstract.
   ///
   /// [copyrightElement] _(_copyright) Extensions for copyright
-  const factory CitationAbstract({
+  factory CitationAbstract({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -1188,6 +1211,9 @@ class CitationAbstract with _$CitationAbstract implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1199,9 +1225,9 @@ class CitationAbstract with _$CitationAbstract implements BackboneElement {
 
 /// [CitationPart] The Citation Resource enables reference to any knowledge
 @freezed
-class CitationPart with _$CitationPart implements BackboneElement {
+class CitationPart extends BackboneElement with _$CitationPart {
   /// [CitationPart] The Citation Resource enables reference to any knowledge
-  const CitationPart._();
+  CitationPart._();
 
   /// [CitationPart] The Citation Resource enables reference to any knowledge
   /// artifact for purposes of identification and attribution. The Citation Resource
@@ -1239,7 +1265,7 @@ class CitationPart with _$CitationPart implements BackboneElement {
   /// [valueElement] _(_value) Extensions for value
   ///
   /// [baseCitation] The citation for the full article or artifact.
-  const factory CitationPart({
+  factory CitationPart({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -1280,6 +1306,9 @@ class CitationPart with _$CitationPart implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1291,9 +1320,9 @@ class CitationPart with _$CitationPart implements BackboneElement {
 
 /// [CitationRelatesTo1] The Citation Resource enables reference to any
 @freezed
-class CitationRelatesTo1 with _$CitationRelatesTo1 implements BackboneElement {
+class CitationRelatesTo1 extends BackboneElement with _$CitationRelatesTo1 {
   /// [CitationRelatesTo1] The Citation Resource enables reference to any
-  const CitationRelatesTo1._();
+  CitationRelatesTo1._();
 
   /// [CitationRelatesTo1] The Citation Resource enables reference to any
   /// knowledge artifact for purposes of identification and attribution. The Citation
@@ -1340,7 +1369,7 @@ class CitationRelatesTo1 with _$CitationRelatesTo1 implements BackboneElement {
   ///
   /// [targetAttachment] The article or artifact that the cited artifact is
   /// related to.
-  const factory CitationRelatesTo1({
+  factory CitationRelatesTo1({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -1384,6 +1413,9 @@ class CitationRelatesTo1 with _$CitationRelatesTo1 implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1395,11 +1427,10 @@ class CitationRelatesTo1 with _$CitationRelatesTo1 implements BackboneElement {
 
 /// [CitationPublicationForm] The Citation Resource enables reference to any
 @freezed
-class CitationPublicationForm
-    with _$CitationPublicationForm
-    implements BackboneElement {
+class CitationPublicationForm extends BackboneElement
+    with _$CitationPublicationForm {
   /// [CitationPublicationForm] The Citation Resource enables reference to any
-  const CitationPublicationForm._();
+  CitationPublicationForm._();
 
   /// [CitationPublicationForm] The Citation Resource enables reference to any
   /// knowledge artifact for purposes of identification and attribution. The Citation
@@ -1471,7 +1502,7 @@ class CitationPublicationForm
   /// [copyright] Copyright notice for the full article or artifact.
   ///
   /// [copyrightElement] _(_copyright) Extensions for copyright
-  const factory CitationPublicationForm({
+  factory CitationPublicationForm({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -1528,6 +1559,9 @@ class CitationPublicationForm
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1539,11 +1573,9 @@ class CitationPublicationForm
 
 /// [CitationPublishedIn] The Citation Resource enables reference to any
 @freezed
-class CitationPublishedIn
-    with _$CitationPublishedIn
-    implements BackboneElement {
+class CitationPublishedIn extends BackboneElement with _$CitationPublishedIn {
   /// [CitationPublishedIn] The Citation Resource enables reference to any
-  const CitationPublishedIn._();
+  CitationPublishedIn._();
 
   /// [CitationPublishedIn] The Citation Resource enables reference to any
   /// knowledge artifact for purposes of identification and attribution. The Citation
@@ -1589,7 +1621,7 @@ class CitationPublishedIn
   ///
   /// [publisherLocationElement] _(_publisherLocation) Extensions for
   /// publisherLocation
-  const factory CitationPublishedIn({
+  factory CitationPublishedIn({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -1634,6 +1666,9 @@ class CitationPublishedIn
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1645,11 +1680,10 @@ class CitationPublishedIn
 
 /// [CitationPeriodicRelease] The Citation Resource enables reference to any
 @freezed
-class CitationPeriodicRelease
-    with _$CitationPeriodicRelease
-    implements BackboneElement {
+class CitationPeriodicRelease extends BackboneElement
+    with _$CitationPeriodicRelease {
   /// [CitationPeriodicRelease] The Citation Resource enables reference to any
-  const CitationPeriodicRelease._();
+  CitationPeriodicRelease._();
 
   /// [CitationPeriodicRelease] The Citation Resource enables reference to any
   /// knowledge artifact for purposes of identification and attribution. The Citation
@@ -1694,7 +1728,7 @@ class CitationPeriodicRelease
   ///
   /// [dateOfPublication] Defining the date on which the issue of the journal was
   /// published.
-  const factory CitationPeriodicRelease({
+  factory CitationPeriodicRelease({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -1737,6 +1771,9 @@ class CitationPeriodicRelease
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1748,11 +1785,10 @@ class CitationPeriodicRelease
 
 /// [CitationDateOfPublication] The Citation Resource enables reference to
 @freezed
-class CitationDateOfPublication
-    with _$CitationDateOfPublication
-    implements BackboneElement {
+class CitationDateOfPublication extends BackboneElement
+    with _$CitationDateOfPublication {
   /// [CitationDateOfPublication] The Citation Resource enables reference to
-  const CitationDateOfPublication._();
+  CitationDateOfPublication._();
 
   /// [CitationDateOfPublication] The Citation Resource enables reference to
   /// any knowledge artifact for purposes of identification and attribution. The
@@ -1807,7 +1843,7 @@ class CitationDateOfPublication
   /// was published.
   ///
   /// [textElement] _(_text) Extensions for text
-  const factory CitationDateOfPublication({
+  factory CitationDateOfPublication({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -1856,6 +1892,9 @@ class CitationDateOfPublication
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1867,11 +1906,9 @@ class CitationDateOfPublication
 
 /// [CitationWebLocation] The Citation Resource enables reference to any
 @freezed
-class CitationWebLocation
-    with _$CitationWebLocation
-    implements BackboneElement {
+class CitationWebLocation extends BackboneElement with _$CitationWebLocation {
   /// [CitationWebLocation] The Citation Resource enables reference to any
-  const CitationWebLocation._();
+  CitationWebLocation._();
 
   /// [CitationWebLocation] The Citation Resource enables reference to any
   /// knowledge artifact for purposes of identification and attribution. The Citation
@@ -1907,7 +1944,7 @@ class CitationWebLocation
   /// [url] The specific URL.
   ///
   /// [urlElement] _(_url) Extensions for url
-  const factory CitationWebLocation({
+  factory CitationWebLocation({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -1947,6 +1984,9 @@ class CitationWebLocation
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1958,11 +1998,10 @@ class CitationWebLocation
 
 /// [CitationClassification1] The Citation Resource enables reference to any
 @freezed
-class CitationClassification1
-    with _$CitationClassification1
-    implements BackboneElement {
+class CitationClassification1 extends BackboneElement
+    with _$CitationClassification1 {
   /// [CitationClassification1] The Citation Resource enables reference to any
-  const CitationClassification1._();
+  CitationClassification1._();
 
   /// [CitationClassification1] The Citation Resource enables reference to any
   /// knowledge artifact for purposes of identification and attribution. The Citation
@@ -1998,7 +2037,7 @@ class CitationClassification1
   /// [classifier] The specific classification value.
   ///
   /// [whoClassified] Provenance and copyright of classification.
-  const factory CitationClassification1({
+  factory CitationClassification1({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -2039,6 +2078,9 @@ class CitationClassification1
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2050,11 +2092,10 @@ class CitationClassification1
 
 /// [CitationWhoClassified] The Citation Resource enables reference to any
 @freezed
-class CitationWhoClassified
-    with _$CitationWhoClassified
-    implements BackboneElement {
+class CitationWhoClassified extends BackboneElement
+    with _$CitationWhoClassified {
   /// [CitationWhoClassified] The Citation Resource enables reference to any
-  const CitationWhoClassified._();
+  CitationWhoClassified._();
 
   /// [CitationWhoClassified] The Citation Resource enables reference to any
   /// knowledge artifact for purposes of identification and attribution. The Citation
@@ -2100,7 +2141,7 @@ class CitationWhoClassified
   /// [freeToShare] Acceptable to re-use the classification.
   ///
   /// [freeToShareElement] _(_freeToShare) Extensions for freeToShare
-  const factory CitationWhoClassified({
+  factory CitationWhoClassified({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -2145,6 +2186,9 @@ class CitationWhoClassified
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2156,11 +2200,10 @@ class CitationWhoClassified
 
 /// [CitationContributorship] The Citation Resource enables reference to any
 @freezed
-class CitationContributorship
-    with _$CitationContributorship
-    implements BackboneElement {
+class CitationContributorship extends BackboneElement
+    with _$CitationContributorship {
   /// [CitationContributorship] The Citation Resource enables reference to any
-  const CitationContributorship._();
+  CitationContributorship._();
 
   /// [CitationContributorship] The Citation Resource enables reference to any
   /// knowledge artifact for purposes of identification and attribution. The Citation
@@ -2199,7 +2242,7 @@ class CitationContributorship
   ///
   /// [summary] Used to record a display of the author/contributor list without
   /// separate coding for each list member.
-  const factory CitationContributorship({
+  factory CitationContributorship({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -2240,6 +2283,9 @@ class CitationContributorship
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2251,9 +2297,9 @@ class CitationContributorship
 
 /// [CitationEntry] The Citation Resource enables reference to any knowledge
 @freezed
-class CitationEntry with _$CitationEntry implements BackboneElement {
+class CitationEntry extends BackboneElement with _$CitationEntry {
   /// [CitationEntry] The Citation Resource enables reference to any knowledge
-  const CitationEntry._();
+  CitationEntry._();
 
   /// [CitationEntry] The Citation Resource enables reference to any knowledge
   /// artifact for purposes of identification and attribution. The Citation Resource
@@ -2318,7 +2364,7 @@ class CitationEntry with _$CitationEntry implements BackboneElement {
   /// [listOrder] Used to code order of authors.
   ///
   /// [listOrderElement] _(_listOrder) Extensions for listOrder
-  const factory CitationEntry({
+  factory CitationEntry({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -2370,6 +2416,9 @@ class CitationEntry with _$CitationEntry implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());
@@ -2631,11 +2680,10 @@ class CitationEntry with _$CitationEntry implements BackboneElement {
 
 /// [CitationAffiliationInfo] The Citation Resource enables reference to any
 @freezed
-class CitationAffiliationInfo
-    with _$CitationAffiliationInfo
-    implements BackboneElement {
+class CitationAffiliationInfo extends BackboneElement
+    with _$CitationAffiliationInfo {
   /// [CitationAffiliationInfo] The Citation Resource enables reference to any
-  const CitationAffiliationInfo._();
+  CitationAffiliationInfo._();
 
   /// [CitationAffiliationInfo] The Citation Resource enables reference to any
   /// knowledge artifact for purposes of identification and attribution. The Citation
@@ -2675,7 +2723,7 @@ class CitationAffiliationInfo
   /// [roleElement] _(_role) Extensions for role
   ///
   /// [identifier] Identifier for the organization.
-  const factory CitationAffiliationInfo({
+  factory CitationAffiliationInfo({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -2717,6 +2765,9 @@ class CitationAffiliationInfo
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2728,11 +2779,10 @@ class CitationAffiliationInfo
 
 /// [CitationContributionInstance] The Citation Resource enables reference to
 @freezed
-class CitationContributionInstance
-    with _$CitationContributionInstance
-    implements BackboneElement {
+class CitationContributionInstance extends BackboneElement
+    with _$CitationContributionInstance {
   /// [CitationContributionInstance] The Citation Resource enables reference to
-  const CitationContributionInstance._();
+  CitationContributionInstance._();
 
   /// [CitationContributionInstance] The Citation Resource enables reference to
   /// any knowledge artifact for purposes of identification and attribution. The
@@ -2768,7 +2818,7 @@ class CitationContributionInstance
   /// [time] The time that the contribution was made.
   ///
   /// [timeElement] _(_time) Extensions for time
-  const factory CitationContributionInstance({
+  factory CitationContributionInstance({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -2808,6 +2858,9 @@ class CitationContributionInstance
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -2819,9 +2872,9 @@ class CitationContributionInstance
 
 /// [CitationSummary1] The Citation Resource enables reference to any
 @freezed
-class CitationSummary1 with _$CitationSummary1 implements BackboneElement {
+class CitationSummary1 extends BackboneElement with _$CitationSummary1 {
   /// [CitationSummary1] The Citation Resource enables reference to any
-  const CitationSummary1._();
+  CitationSummary1._();
 
   /// [CitationSummary1] The Citation Resource enables reference to any
   /// knowledge artifact for purposes of identification and attribution. The Citation
@@ -2863,7 +2916,7 @@ class CitationSummary1 with _$CitationSummary1 implements BackboneElement {
   /// contributorship statement.
   ///
   /// [valueElement] _(_value) Extensions for value
-  const factory CitationSummary1({
+  factory CitationSummary1({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -2903,6 +2956,9 @@ class CitationSummary1 with _$CitationSummary1 implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

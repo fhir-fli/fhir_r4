@@ -14,9 +14,9 @@ part 'product_shelf_life.g.dart';
 
 /// [ProductShelfLife] The shelf-life and storage information for a medicinal product item or container can be described using this class.
 @freezed
-class ProductShelfLife with _$ProductShelfLife implements Element {
+class ProductShelfLife extends Element with _$ProductShelfLife {
   /// [ProductShelfLife] The shelf-life and storage information for a medicinal product item or container can be described using this class.
-  const ProductShelfLife._();
+  ProductShelfLife._();
 
   /// [ProductShelfLife] The shelf-life and storage information for a medicinal product item or container can be described using this class.
   ///
@@ -30,7 +30,7 @@ class ProductShelfLife with _$ProductShelfLife implements Element {
   /// [type] This describes the shelf life, taking into account various scenarios such as shelf life of the packaged Medicinal Product itself, shelf life after transformation where necessary and shelf life after the first opening of a bottle, etc. The shelf life type shall be specified using an appropriate controlled vocabulary The controlled term and the controlled term identifier shall be specified.;
   ///
   /// [specialPrecautionsForStorage] Special precautions for storage, if any, can be specified using an appropriate controlled vocabulary The controlled term and the controlled term identifier shall be specified.;
-  const factory ProductShelfLife({
+  factory ProductShelfLife({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -79,6 +79,9 @@ class ProductShelfLife with _$ProductShelfLife implements Element {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

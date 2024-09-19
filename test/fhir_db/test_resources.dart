@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_single_quotes, always_specify_types, avoid_escaping_inner_quotes
+// ignore_for_file: prefer_single_quotes, always_specify_types, avoid_escaping_inner_quotes, prefer_const_literals_to_create_immutables
 
 import 'package:fhir_r4/fhir_r4.dart';
 

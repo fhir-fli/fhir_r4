@@ -471,7 +471,7 @@ class __$$SubscriptionStatusImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SubscriptionStatusImpl extends _SubscriptionStatus {
-  const _$SubscriptionStatusImpl(
+  _$SubscriptionStatusImpl(
       {this.resourceType = R4ResourceType.SubscriptionStatus,
       this.id,
       this.meta,
@@ -738,7 +738,7 @@ class _$SubscriptionStatusImpl extends _SubscriptionStatus {
 }
 
 abstract class _SubscriptionStatus extends SubscriptionStatus {
-  const factory _SubscriptionStatus(
+  factory _SubscriptionStatus(
       {final R4ResourceType resourceType,
       final String? id,
       final FhirMeta? meta,
@@ -762,7 +762,7 @@ abstract class _SubscriptionStatus extends SubscriptionStatus {
       required final Reference subscription,
       final FhirCanonical? topic,
       final List<CodeableConcept>? error}) = _$SubscriptionStatusImpl;
-  const _SubscriptionStatus._() : super._();
+  _SubscriptionStatus._() : super._();
 
   factory _SubscriptionStatus.fromJson(Map<String, dynamic> json) =
       _$SubscriptionStatusImpl.fromJson;
@@ -1111,7 +1111,7 @@ class __$$SubscriptionStatusNotificationEventImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SubscriptionStatusNotificationEventImpl
     extends _SubscriptionStatusNotificationEvent {
-  const _$SubscriptionStatusNotificationEventImpl(
+  _$SubscriptionStatusNotificationEventImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1260,7 +1260,7 @@ class _$SubscriptionStatusNotificationEventImpl
 
 abstract class _SubscriptionStatusNotificationEvent
     extends SubscriptionStatusNotificationEvent {
-  const factory _SubscriptionStatusNotificationEvent(
+  factory _SubscriptionStatusNotificationEvent(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1271,7 +1271,7 @@ abstract class _SubscriptionStatusNotificationEvent
       final Reference? focus,
       final List<Reference>?
           additionalContext}) = _$SubscriptionStatusNotificationEventImpl;
-  const _SubscriptionStatusNotificationEvent._() : super._();
+  _SubscriptionStatusNotificationEvent._() : super._();
 
   factory _SubscriptionStatusNotificationEvent.fromJson(
           Map<String, dynamic> json) =

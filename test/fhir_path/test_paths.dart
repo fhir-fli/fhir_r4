@@ -1,4 +1,5 @@
 // ignore_for_file: depend_on_referenced_packages, prefer_single_quotes, no_adjacent_strings_in_list, avoid_escaping_inner_quotes, always_specify_types
+// ignore_for_file: prefer_const_literals_to_create_immutables
 
 // Package imports:
 import 'package:fhir_r4/fhir_r4.dart';
@@ -7,7 +8,7 @@ import 'package:test/test.dart';
 dynamic walkPath(String arg) =>
     walkFhirPath(context: resource.toJson(), pathExpression: arg).toString();
 
-void main() {
+void testPaths() {
   group('Path Test', () {
     test('Patient Name', () {
       expect(
@@ -228,7 +229,7 @@ final patient = Patient.fromJson({
 });
 
 final resource = Patient(
-  address: const [
+  address: [
     Address(
       period: Period(
         extension_: [
@@ -267,7 +268,7 @@ final resource = Patient(
     ),
   ],
   deceasedBoolean: FhirBoolean(false),
-  name: const [
+  name: [
     HumanName(
       family: 'Faulkenberry',
       given: [

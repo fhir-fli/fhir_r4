@@ -927,7 +927,7 @@ class __$$MedicinalProductDefinitionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MedicinalProductDefinitionImpl extends _MedicinalProductDefinition {
-  const _$MedicinalProductDefinitionImpl(
+  _$MedicinalProductDefinitionImpl(
       {this.resourceType = R4ResourceType.MedicinalProductDefinition,
       this.id,
       this.meta,
@@ -1514,7 +1514,7 @@ class _$MedicinalProductDefinitionImpl extends _MedicinalProductDefinition {
 }
 
 abstract class _MedicinalProductDefinition extends MedicinalProductDefinition {
-  const factory _MedicinalProductDefinition(
+  factory _MedicinalProductDefinition(
       {final R4ResourceType resourceType,
       final String? id,
       final FhirMeta? meta,
@@ -1560,7 +1560,7 @@ abstract class _MedicinalProductDefinition extends MedicinalProductDefinition {
       final List<MedicinalProductDefinitionOperation>? operation,
       final List<MedicinalProductDefinitionCharacteristic>?
           characteristic}) = _$MedicinalProductDefinitionImpl;
-  const _MedicinalProductDefinition._() : super._();
+  _MedicinalProductDefinition._() : super._();
 
   factory _MedicinalProductDefinition.fromJson(Map<String, dynamic> json) =
       _$MedicinalProductDefinitionImpl.fromJson;
@@ -1949,7 +1949,7 @@ class __$$MedicinalProductDefinitionContactImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MedicinalProductDefinitionContactImpl
     extends _MedicinalProductDefinitionContact {
-  const _$MedicinalProductDefinitionContactImpl(
+  _$MedicinalProductDefinitionContactImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2054,14 +2054,14 @@ class _$MedicinalProductDefinitionContactImpl
 
 abstract class _MedicinalProductDefinitionContact
     extends MedicinalProductDefinitionContact {
-  const factory _MedicinalProductDefinitionContact(
+  factory _MedicinalProductDefinitionContact(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           final CodeableConcept? type,
           required final Reference contact}) =
       _$MedicinalProductDefinitionContactImpl;
-  const _MedicinalProductDefinitionContact._() : super._();
+  _MedicinalProductDefinitionContact._() : super._();
 
   factory _MedicinalProductDefinitionContact.fromJson(
           Map<String, dynamic> json) =
@@ -2331,7 +2331,7 @@ class __$$MedicinalProductDefinitionNameImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MedicinalProductDefinitionNameImpl
     extends _MedicinalProductDefinitionName {
-  const _$MedicinalProductDefinitionNameImpl(
+  _$MedicinalProductDefinitionNameImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2481,7 +2481,7 @@ class _$MedicinalProductDefinitionNameImpl
 
 abstract class _MedicinalProductDefinitionName
     extends MedicinalProductDefinitionName {
-  const factory _MedicinalProductDefinitionName(
+  factory _MedicinalProductDefinitionName(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2491,7 +2491,7 @@ abstract class _MedicinalProductDefinitionName
       final List<MedicinalProductDefinitionNamePart>? namePart,
       final List<MedicinalProductDefinitionCountryLanguage>?
           countryLanguage}) = _$MedicinalProductDefinitionNameImpl;
-  const _MedicinalProductDefinitionName._() : super._();
+  _MedicinalProductDefinitionName._() : super._();
 
   factory _MedicinalProductDefinitionName.fromJson(Map<String, dynamic> json) =
       _$MedicinalProductDefinitionNameImpl.fromJson;
@@ -2738,7 +2738,7 @@ class __$$MedicinalProductDefinitionNamePartImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MedicinalProductDefinitionNamePartImpl
     extends _MedicinalProductDefinitionNamePart {
-  const _$MedicinalProductDefinitionNamePartImpl(
+  _$MedicinalProductDefinitionNamePartImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2853,7 +2853,7 @@ class _$MedicinalProductDefinitionNamePartImpl
 
 abstract class _MedicinalProductDefinitionNamePart
     extends MedicinalProductDefinitionNamePart {
-  const factory _MedicinalProductDefinitionNamePart(
+  factory _MedicinalProductDefinitionNamePart(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2861,7 +2861,7 @@ abstract class _MedicinalProductDefinitionNamePart
           @JsonKey(name: '_part') final PrimitiveElement? partElement,
           required final CodeableConcept type}) =
       _$MedicinalProductDefinitionNamePartImpl;
-  const _MedicinalProductDefinitionNamePart._() : super._();
+  _MedicinalProductDefinitionNamePart._() : super._();
 
   factory _MedicinalProductDefinitionNamePart.fromJson(
           Map<String, dynamic> json) =
@@ -3132,7 +3132,7 @@ class __$$MedicinalProductDefinitionCountryLanguageImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MedicinalProductDefinitionCountryLanguageImpl
     extends _MedicinalProductDefinitionCountryLanguage {
-  const _$MedicinalProductDefinitionCountryLanguageImpl(
+  _$MedicinalProductDefinitionCountryLanguageImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3248,7 +3248,7 @@ class _$MedicinalProductDefinitionCountryLanguageImpl
 
 abstract class _MedicinalProductDefinitionCountryLanguage
     extends MedicinalProductDefinitionCountryLanguage {
-  const factory _MedicinalProductDefinitionCountryLanguage(
+  factory _MedicinalProductDefinitionCountryLanguage(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3256,7 +3256,7 @@ abstract class _MedicinalProductDefinitionCountryLanguage
           final CodeableConcept? jurisdiction,
           required final CodeableConcept language}) =
       _$MedicinalProductDefinitionCountryLanguageImpl;
-  const _MedicinalProductDefinitionCountryLanguage._() : super._();
+  _MedicinalProductDefinitionCountryLanguage._() : super._();
 
   factory _MedicinalProductDefinitionCountryLanguage.fromJson(
           Map<String, dynamic> json) =
@@ -3497,7 +3497,7 @@ class __$$MedicinalProductDefinitionCrossReferenceImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MedicinalProductDefinitionCrossReferenceImpl
     extends _MedicinalProductDefinitionCrossReference {
-  const _$MedicinalProductDefinitionCrossReferenceImpl(
+  _$MedicinalProductDefinitionCrossReferenceImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3603,14 +3603,14 @@ class _$MedicinalProductDefinitionCrossReferenceImpl
 
 abstract class _MedicinalProductDefinitionCrossReference
     extends MedicinalProductDefinitionCrossReference {
-  const factory _MedicinalProductDefinitionCrossReference(
+  factory _MedicinalProductDefinitionCrossReference(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           required final CodeableReference product,
           final CodeableConcept? type}) =
       _$MedicinalProductDefinitionCrossReferenceImpl;
-  const _MedicinalProductDefinitionCrossReference._() : super._();
+  _MedicinalProductDefinitionCrossReference._() : super._();
 
   factory _MedicinalProductDefinitionCrossReference.fromJson(
           Map<String, dynamic> json) =
@@ -3898,7 +3898,7 @@ class __$$MedicinalProductDefinitionOperationImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MedicinalProductDefinitionOperationImpl
     extends _MedicinalProductDefinitionOperation {
-  const _$MedicinalProductDefinitionOperationImpl(
+  _$MedicinalProductDefinitionOperationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4031,7 +4031,7 @@ class _$MedicinalProductDefinitionOperationImpl
 
 abstract class _MedicinalProductDefinitionOperation
     extends MedicinalProductDefinitionOperation {
-  const factory _MedicinalProductDefinitionOperation(
+  factory _MedicinalProductDefinitionOperation(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -4040,7 +4040,7 @@ abstract class _MedicinalProductDefinitionOperation
           final List<Reference>? organization,
           final CodeableConcept? confidentialityIndicator}) =
       _$MedicinalProductDefinitionOperationImpl;
-  const _MedicinalProductDefinitionOperation._() : super._();
+  _MedicinalProductDefinitionOperation._() : super._();
 
   factory _MedicinalProductDefinitionOperation.fromJson(
           Map<String, dynamic> json) =
@@ -4414,7 +4414,7 @@ class __$$MedicinalProductDefinitionCharacteristicImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MedicinalProductDefinitionCharacteristicImpl
     extends _MedicinalProductDefinitionCharacteristic {
-  const _$MedicinalProductDefinitionCharacteristicImpl(
+  _$MedicinalProductDefinitionCharacteristicImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4571,7 +4571,7 @@ class _$MedicinalProductDefinitionCharacteristicImpl
 
 abstract class _MedicinalProductDefinitionCharacteristic
     extends MedicinalProductDefinitionCharacteristic {
-  const factory _MedicinalProductDefinitionCharacteristic(
+  factory _MedicinalProductDefinitionCharacteristic(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -4585,7 +4585,7 @@ abstract class _MedicinalProductDefinitionCharacteristic
           final PrimitiveElement? valueBooleanElement,
           final Attachment? valueAttachment}) =
       _$MedicinalProductDefinitionCharacteristicImpl;
-  const _MedicinalProductDefinitionCharacteristic._() : super._();
+  _MedicinalProductDefinitionCharacteristic._() : super._();
 
   factory _MedicinalProductDefinitionCharacteristic.fromJson(
           Map<String, dynamic> json) =

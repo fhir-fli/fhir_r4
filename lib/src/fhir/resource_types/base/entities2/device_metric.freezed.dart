@@ -642,7 +642,7 @@ class __$$DeviceMetricImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DeviceMetricImpl extends _DeviceMetric {
-  const _$DeviceMetricImpl(
+  _$DeviceMetricImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.DeviceMetric)
       this.resourceType = R4ResourceType.DeviceMetric,
       this.id,
@@ -1006,7 +1006,7 @@ class _$DeviceMetricImpl extends _DeviceMetric {
 }
 
 abstract class _DeviceMetric extends DeviceMetric {
-  const factory _DeviceMetric(
+  factory _DeviceMetric(
       {@JsonKey(unknownEnumValue: R4ResourceType.DeviceMetric)
       final R4ResourceType resourceType,
       final String? id,
@@ -1034,7 +1034,7 @@ abstract class _DeviceMetric extends DeviceMetric {
       @JsonKey(name: '_category') final PrimitiveElement? categoryElement,
       final Timing? measurementPeriod,
       final List<DeviceMetricCalibration>? calibration}) = _$DeviceMetricImpl;
-  const _DeviceMetric._() : super._();
+  _DeviceMetric._() : super._();
 
   factory _DeviceMetric.fromJson(Map<String, dynamic> json) =
       _$DeviceMetricImpl.fromJson;
@@ -1448,7 +1448,7 @@ class __$$DeviceMetricCalibrationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DeviceMetricCalibrationImpl extends _DeviceMetricCalibration {
-  const _$DeviceMetricCalibrationImpl(
+  _$DeviceMetricCalibrationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1617,7 +1617,7 @@ class _$DeviceMetricCalibrationImpl extends _DeviceMetricCalibration {
 }
 
 abstract class _DeviceMetricCalibration extends DeviceMetricCalibration {
-  const factory _DeviceMetricCalibration(
+  factory _DeviceMetricCalibration(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -1628,7 +1628,7 @@ abstract class _DeviceMetricCalibration extends DeviceMetricCalibration {
           final FhirInstant? time,
           @JsonKey(name: '_time') final PrimitiveElement? timeElement}) =
       _$DeviceMetricCalibrationImpl;
-  const _DeviceMetricCalibration._() : super._();
+  _DeviceMetricCalibration._() : super._();
 
   factory _DeviceMetricCalibration.fromJson(Map<String, dynamic> json) =
       _$DeviceMetricCalibrationImpl.fromJson;

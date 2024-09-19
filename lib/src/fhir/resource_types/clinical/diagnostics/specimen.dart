@@ -15,9 +15,9 @@ part 'specimen.g.dart';
 
 /// [Specimen] A sample to be used for analysis.
 @freezed
-class Specimen with _$Specimen implements DomainResource {
+class Specimen extends DomainResource with _$Specimen {
   /// [Specimen] A sample to be used for analysis.
-  const Specimen._();
+  Specimen._();
 
   /// [Specimen] A sample to be used for analysis.
   ///
@@ -114,7 +114,7 @@ class Specimen with _$Specimen implements DomainResource {
   /// [note] To communicate any details or issues about the specimen or during
   /// the specimen collection. (for example: broken vial, sent with patient,
   ///  frozen).
-  const factory Specimen({
+  factory Specimen({
     @Default(R4ResourceType.Specimen)
     @JsonKey(unknownEnumValue: R4ResourceType.Specimen)
 
@@ -272,6 +272,9 @@ class Specimen with _$Specimen implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -294,8 +297,8 @@ class Specimen with _$Specimen implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [SpecimenCollection] A sample to be used for analysis.
@@ -303,9 +306,9 @@ class Specimen with _$Specimen implements DomainResource {
 
 /// [SpecimenCollection] A sample to be used for analysis.
 @freezed
-class SpecimenCollection with _$SpecimenCollection implements BackboneElement {
+class SpecimenCollection extends BackboneElement with _$SpecimenCollection {
   /// [SpecimenCollection] A sample to be used for analysis.
-  const SpecimenCollection._();
+  SpecimenCollection._();
 
   /// [SpecimenCollection] A sample to be used for analysis.
   ///
@@ -362,7 +365,7 @@ class SpecimenCollection with _$SpecimenCollection implements BackboneElement {
   ///
   /// [fastingStatusDuration] Abstinence or reduction from some or all food,
   ///  drink, or both, for a period of time prior to sample collection.
-  const factory SpecimenCollection({
+  factory SpecimenCollection({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -463,6 +466,9 @@ class SpecimenCollection with _$SpecimenCollection implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -474,9 +480,9 @@ class SpecimenCollection with _$SpecimenCollection implements BackboneElement {
 
 /// [SpecimenProcessing] A sample to be used for analysis.
 @freezed
-class SpecimenProcessing with _$SpecimenProcessing implements BackboneElement {
+class SpecimenProcessing extends BackboneElement with _$SpecimenProcessing {
   /// [SpecimenProcessing] A sample to be used for analysis.
-  const SpecimenProcessing._();
+  SpecimenProcessing._();
 
   /// [SpecimenProcessing] A sample to be used for analysis.
   ///
@@ -522,7 +528,7 @@ class SpecimenProcessing with _$SpecimenProcessing implements BackboneElement {
   /// [timePeriod] A record of the time or period when the specimen processing
   /// occurred.  For example the time of sample fixation or the period of time
   ///  the sample was in formalin.
-  const factory SpecimenProcessing({
+  factory SpecimenProcessing({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -608,6 +614,9 @@ class SpecimenProcessing with _$SpecimenProcessing implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -619,9 +628,9 @@ class SpecimenProcessing with _$SpecimenProcessing implements BackboneElement {
 
 /// [SpecimenContainer] A sample to be used for analysis.
 @freezed
-class SpecimenContainer with _$SpecimenContainer implements BackboneElement {
+class SpecimenContainer extends BackboneElement with _$SpecimenContainer {
   /// [SpecimenContainer] A sample to be used for analysis.
-  const SpecimenContainer._();
+  SpecimenContainer._();
 
   /// [SpecimenContainer] A sample to be used for analysis.
   ///
@@ -672,7 +681,7 @@ class SpecimenContainer with _$SpecimenContainer implements BackboneElement {
   ///
   /// [additiveReference] Introduced substance to preserve, maintain or enhance
   ///  the specimen. Examples: Formalin, Citrate, EDTA.
-  const factory SpecimenContainer({
+  factory SpecimenContainer({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -762,6 +771,9 @@ class SpecimenContainer with _$SpecimenContainer implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

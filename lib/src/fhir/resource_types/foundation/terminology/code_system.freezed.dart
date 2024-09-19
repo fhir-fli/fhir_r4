@@ -1050,7 +1050,7 @@ class __$$CodeSystemImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CodeSystemImpl extends _CodeSystem {
-  const _$CodeSystemImpl(
+  _$CodeSystemImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.CodeSystem)
       this.resourceType = R4ResourceType.CodeSystem,
       this.id,
@@ -1741,7 +1741,7 @@ class _$CodeSystemImpl extends _CodeSystem {
 }
 
 abstract class _CodeSystem extends CodeSystem {
-  const factory _CodeSystem(
+  factory _CodeSystem(
       {@JsonKey(unknownEnumValue: R4ResourceType.CodeSystem)
       final R4ResourceType resourceType,
       final String? id,
@@ -1803,7 +1803,7 @@ abstract class _CodeSystem extends CodeSystem {
       final List<CodeSystemFilter>? filter,
       final List<CodeSystemProperty>? property,
       final List<CodeSystemConcept>? concept}) = _$CodeSystemImpl;
-  const _CodeSystem._() : super._();
+  _CodeSystem._() : super._();
 
   factory _CodeSystem.fromJson(Map<String, dynamic> json) =
       _$CodeSystemImpl.fromJson;
@@ -2403,7 +2403,7 @@ class __$$CodeSystemFilterImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CodeSystemFilterImpl extends _CodeSystemFilter {
-  const _$CodeSystemFilterImpl(
+  _$CodeSystemFilterImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2612,7 +2612,7 @@ class _$CodeSystemFilterImpl extends _CodeSystemFilter {
 }
 
 abstract class _CodeSystemFilter extends CodeSystemFilter {
-  const factory _CodeSystemFilter(
+  factory _CodeSystemFilter(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2625,7 +2625,7 @@ abstract class _CodeSystemFilter extends CodeSystemFilter {
       final String? value,
       @JsonKey(name: '_value')
       final PrimitiveElement? valueElement}) = _$CodeSystemFilterImpl;
-  const _CodeSystemFilter._() : super._();
+  _CodeSystemFilter._() : super._();
 
   factory _CodeSystemFilter.fromJson(Map<String, dynamic> json) =
       _$CodeSystemFilterImpl.fromJson;
@@ -2983,7 +2983,7 @@ class __$$CodeSystemPropertyImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CodeSystemPropertyImpl extends _CodeSystemProperty {
-  const _$CodeSystemPropertyImpl(
+  _$CodeSystemPropertyImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3176,7 +3176,7 @@ class _$CodeSystemPropertyImpl extends _CodeSystemProperty {
 }
 
 abstract class _CodeSystemProperty extends CodeSystemProperty {
-  const factory _CodeSystemProperty(
+  factory _CodeSystemProperty(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3189,7 +3189,7 @@ abstract class _CodeSystemProperty extends CodeSystemProperty {
       final FhirCode? type,
       @JsonKey(name: '_type')
       final PrimitiveElement? typeElement}) = _$CodeSystemPropertyImpl;
-  const _CodeSystemProperty._() : super._();
+  _CodeSystemProperty._() : super._();
 
   factory _CodeSystemProperty.fromJson(Map<String, dynamic> json) =
       _$CodeSystemPropertyImpl.fromJson;
@@ -3568,7 +3568,7 @@ class __$$CodeSystemConceptImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CodeSystemConceptImpl extends _CodeSystemConcept {
-  const _$CodeSystemConceptImpl(
+  _$CodeSystemConceptImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3803,7 +3803,7 @@ class _$CodeSystemConceptImpl extends _CodeSystemConcept {
 }
 
 abstract class _CodeSystemConcept extends CodeSystemConcept {
-  const factory _CodeSystemConcept(
+  factory _CodeSystemConcept(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3816,7 +3816,7 @@ abstract class _CodeSystemConcept extends CodeSystemConcept {
       final List<CodeSystemDesignation>? designation,
       final List<CodeSystemProperty1>? property,
       final List<CodeSystemConcept>? concept}) = _$CodeSystemConceptImpl;
-  const _CodeSystemConcept._() : super._();
+  _CodeSystemConcept._() : super._();
 
   factory _CodeSystemConcept.fromJson(Map<String, dynamic> json) =
       _$CodeSystemConceptImpl.fromJson;
@@ -4152,7 +4152,7 @@ class __$$CodeSystemDesignationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CodeSystemDesignationImpl extends _CodeSystemDesignation {
-  const _$CodeSystemDesignationImpl(
+  _$CodeSystemDesignationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4313,7 +4313,7 @@ class _$CodeSystemDesignationImpl extends _CodeSystemDesignation {
 }
 
 abstract class _CodeSystemDesignation extends CodeSystemDesignation {
-  const factory _CodeSystemDesignation(
+  factory _CodeSystemDesignation(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -4323,7 +4323,7 @@ abstract class _CodeSystemDesignation extends CodeSystemDesignation {
           final String? value,
           @JsonKey(name: '_value') final PrimitiveElement? valueElement}) =
       _$CodeSystemDesignationImpl;
-  const _CodeSystemDesignation._() : super._();
+  _CodeSystemDesignation._() : super._();
 
   factory _CodeSystemDesignation.fromJson(Map<String, dynamic> json) =
       _$CodeSystemDesignationImpl.fromJson;
@@ -4789,7 +4789,7 @@ class __$$CodeSystemProperty1ImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CodeSystemProperty1Impl extends _CodeSystemProperty1 {
-  const _$CodeSystemProperty1Impl(
+  _$CodeSystemProperty1Impl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5036,7 +5036,7 @@ class _$CodeSystemProperty1Impl extends _CodeSystemProperty1 {
 }
 
 abstract class _CodeSystemProperty1 extends CodeSystemProperty1 {
-  const factory _CodeSystemProperty1(
+  factory _CodeSystemProperty1(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5059,7 +5059,7 @@ abstract class _CodeSystemProperty1 extends CodeSystemProperty1 {
       final FhirDecimal? valueDecimal,
       @JsonKey(name: '_valueDecimal')
       final PrimitiveElement? valueDecimalElement}) = _$CodeSystemProperty1Impl;
-  const _CodeSystemProperty1._() : super._();
+  _CodeSystemProperty1._() : super._();
 
   factory _CodeSystemProperty1.fromJson(Map<String, dynamic> json) =
       _$CodeSystemProperty1Impl.fromJson;
