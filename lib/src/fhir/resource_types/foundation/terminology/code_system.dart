@@ -15,9 +15,9 @@ part 'code_system.g.dart';
 
 /// [CodeSystem] The CodeSystem resource is used to declare the existence of
 @freezed
-class CodeSystem with _$CodeSystem implements DomainResource {
+class CodeSystem extends DomainResource with _$CodeSystem {
   /// [CodeSystem] The CodeSystem resource is used to declare the existence of
-  const CodeSystem._();
+  CodeSystem._();
 
   /// [CodeSystem] The CodeSystem resource is used to declare the existence of
   /// and describe a code system or code system supplement and its key
@@ -209,7 +209,7 @@ class CodeSystem with _$CodeSystem implements DomainResource {
   /// [concept] Concepts that are in the code system. The concept definitions
   /// are inherently hierarchical, but the definitions must be consulted to
   ///  determine what the meanings of the hierarchical relationships are.
-  const factory CodeSystem({
+  factory CodeSystem({
     @Default(R4ResourceType.CodeSystem)
     @JsonKey(unknownEnumValue: R4ResourceType.CodeSystem)
 
@@ -489,6 +489,9 @@ class CodeSystem with _$CodeSystem implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -511,8 +514,8 @@ class CodeSystem with _$CodeSystem implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [CodeSystemFilter] The CodeSystem resource is used to declare the
@@ -520,9 +523,9 @@ class CodeSystem with _$CodeSystem implements DomainResource {
 
 /// [CodeSystemFilter] The CodeSystem resource is used to declare the
 @freezed
-class CodeSystemFilter with _$CodeSystemFilter implements BackboneElement {
+class CodeSystemFilter extends BackboneElement with _$CodeSystemFilter {
   /// [CodeSystemFilter] The CodeSystem resource is used to declare the
-  const CodeSystemFilter._();
+  CodeSystemFilter._();
 
   /// [CodeSystemFilter] The CodeSystem resource is used to declare the
   /// existence of and describe a code system or code system supplement and its
@@ -568,7 +571,7 @@ class CodeSystemFilter with _$CodeSystemFilter implements BackboneElement {
   /// [value] A description of what the value for the filter should be.
   ///
   /// [valueElement] Extensions for value
-  const factory CodeSystemFilter({
+  factory CodeSystemFilter({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -653,6 +656,9 @@ class CodeSystemFilter with _$CodeSystemFilter implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -664,9 +670,9 @@ class CodeSystemFilter with _$CodeSystemFilter implements BackboneElement {
 
 /// [CodeSystemProperty] The CodeSystem resource is used to declare the
 @freezed
-class CodeSystemProperty with _$CodeSystemProperty implements BackboneElement {
+class CodeSystemProperty extends BackboneElement with _$CodeSystemProperty {
   /// [CodeSystemProperty] The CodeSystem resource is used to declare the
-  const CodeSystemProperty._();
+  CodeSystemProperty._();
 
   /// [CodeSystemProperty] The CodeSystem resource is used to declare the
   /// existence of and describe a code system or code system supplement and its
@@ -718,7 +724,7 @@ class CodeSystemProperty with _$CodeSystemProperty implements BackboneElement {
   ///  concept).
   ///
   /// [typeElement] Extensions for type
-  const factory CodeSystemProperty({
+  factory CodeSystemProperty({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -809,6 +815,9 @@ class CodeSystemProperty with _$CodeSystemProperty implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -820,9 +829,9 @@ class CodeSystemProperty with _$CodeSystemProperty implements BackboneElement {
 
 /// [CodeSystemConcept] The CodeSystem resource is used to declare the
 @freezed
-class CodeSystemConcept with _$CodeSystemConcept implements BackboneElement {
+class CodeSystemConcept extends BackboneElement with _$CodeSystemConcept {
   /// [CodeSystemConcept] The CodeSystem resource is used to declare the
-  const CodeSystemConcept._();
+  CodeSystemConcept._();
 
   /// [CodeSystemConcept] The CodeSystem resource is used to declare the
   /// existence of and describe a code system or code system supplement and its
@@ -878,7 +887,7 @@ class CodeSystemConcept with _$CodeSystemConcept implements BackboneElement {
   /// [concept] Defines children of a concept to produce a hierarchy of
   /// concepts. The nature of the relationships is variable
   ///  (is-a/contains/categorizes) - see hierarchyMeaning.
-  const factory CodeSystemConcept({
+  factory CodeSystemConcept({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -974,6 +983,9 @@ class CodeSystemConcept with _$CodeSystemConcept implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -985,11 +997,10 @@ class CodeSystemConcept with _$CodeSystemConcept implements BackboneElement {
 
 /// [CodeSystemDesignation] The CodeSystem resource is used to declare the
 @freezed
-class CodeSystemDesignation
-    with _$CodeSystemDesignation
-    implements BackboneElement {
+class CodeSystemDesignation extends BackboneElement
+    with _$CodeSystemDesignation {
   /// [CodeSystemDesignation] The CodeSystem resource is used to declare the
-  const CodeSystemDesignation._();
+  CodeSystemDesignation._();
 
   /// [CodeSystemDesignation] The CodeSystem resource is used to declare the
   /// existence of and describe a code system or code system supplement and its
@@ -1028,7 +1039,7 @@ class CodeSystemDesignation
   /// [value] The text value for this designation.
   ///
   /// [valueElement] Extensions for value
-  const factory CodeSystemDesignation({
+  factory CodeSystemDesignation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1103,6 +1114,9 @@ class CodeSystemDesignation
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1114,11 +1128,9 @@ class CodeSystemDesignation
 
 /// [CodeSystemProperty1] The CodeSystem resource is used to declare the
 @freezed
-class CodeSystemProperty1
-    with _$CodeSystemProperty1
-    implements BackboneElement {
+class CodeSystemProperty1 extends BackboneElement with _$CodeSystemProperty1 {
   /// [CodeSystemProperty1] The CodeSystem resource is used to declare the
-  const CodeSystemProperty1._();
+  CodeSystemProperty1._();
 
   /// [CodeSystemProperty1] The CodeSystem resource is used to declare the
   /// existence of and describe a code system or code system supplement and its
@@ -1177,7 +1189,7 @@ class CodeSystemProperty1
   /// [valueDecimal] The value of this property.
   ///
   /// [valueDecimalElement] Extensions for valueDecimal
-  const factory CodeSystemProperty1({
+  factory CodeSystemProperty1({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1280,6 +1292,9 @@ class CodeSystemProperty1
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

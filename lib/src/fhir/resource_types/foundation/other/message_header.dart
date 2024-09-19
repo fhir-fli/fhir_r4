@@ -15,9 +15,9 @@ part 'message_header.g.dart';
 
 /// [MessageHeader] The header for a message exchange that is either
 @freezed
-class MessageHeader with _$MessageHeader implements DomainResource {
+class MessageHeader extends DomainResource with _$MessageHeader {
   /// [MessageHeader] The header for a message exchange that is either
-  const MessageHeader._();
+  MessageHeader._();
 
   /// [MessageHeader] The header for a message exchange that is either
   /// requesting or responding to an action.  The reference(s) that are the
@@ -123,7 +123,7 @@ class MessageHeader with _$MessageHeader implements DomainResource {
   ///  class of the event.
   ///
   /// [definition] Permanent link to the MessageDefinition for this message.
-  const factory MessageHeader({
+  factory MessageHeader({
     @Default(R4ResourceType.MessageHeader)
     @JsonKey(unknownEnumValue: R4ResourceType.MessageHeader)
 
@@ -284,6 +284,9 @@ class MessageHeader with _$MessageHeader implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -306,8 +309,8 @@ class MessageHeader with _$MessageHeader implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [MessageHeaderDestination] The header for a message exchange that is
@@ -315,11 +318,10 @@ class MessageHeader with _$MessageHeader implements DomainResource {
 
 /// [MessageHeaderDestination] The header for a message exchange that is
 @freezed
-class MessageHeaderDestination
-    with _$MessageHeaderDestination
-    implements BackboneElement {
+class MessageHeaderDestination extends BackboneElement
+    with _$MessageHeaderDestination {
   /// [MessageHeaderDestination] The header for a message exchange that is
-  const MessageHeaderDestination._();
+  MessageHeaderDestination._();
 
   /// [MessageHeaderDestination] The header for a message exchange that is
   /// either requesting or responding to an action.  The reference(s) that are
@@ -365,7 +367,7 @@ class MessageHeaderDestination
   /// [receiver] Allows data conveyed by a message to be addressed to a
   /// particular person or department when routing to a specific application
   ///  isn't sufficient.
-  const factory MessageHeaderDestination({
+  factory MessageHeaderDestination({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -446,6 +448,9 @@ class MessageHeaderDestination
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -457,11 +462,9 @@ class MessageHeaderDestination
 
 /// [MessageHeaderSource] The header for a message exchange that is either
 @freezed
-class MessageHeaderSource
-    with _$MessageHeaderSource
-    implements BackboneElement {
+class MessageHeaderSource extends BackboneElement with _$MessageHeaderSource {
   /// [MessageHeaderSource] The header for a message exchange that is either
-  const MessageHeaderSource._();
+  MessageHeaderSource._();
 
   /// [MessageHeaderSource] The header for a message exchange that is either
   /// requesting or responding to an action.  The reference(s) that are the
@@ -513,7 +516,7 @@ class MessageHeaderSource
   /// [endpoint] Identifies the routing target to send acknowledgements to.
   ///
   /// [endpointElement] Extensions for endpoint
-  const factory MessageHeaderSource({
+  factory MessageHeaderSource({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -603,6 +606,9 @@ class MessageHeaderSource
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -649,11 +655,10 @@ class MessageHeaderSource
 
 /// [MessageHeaderResponse] The header for a message exchange that is either
 @freezed
-class MessageHeaderResponse
-    with _$MessageHeaderResponse
-    implements BackboneElement {
+class MessageHeaderResponse extends BackboneElement
+    with _$MessageHeaderResponse {
   /// [MessageHeaderResponse] The header for a message exchange that is either
-  const MessageHeaderResponse._();
+  MessageHeaderResponse._();
 
   /// [MessageHeaderResponse] The header for a message exchange that is either
   /// requesting or responding to an action.  The reference(s) that are the
@@ -696,7 +701,7 @@ class MessageHeaderResponse
   /// [codeElement] Extensions for code
   ///
   /// [details] Full details of any issues found in the message.
-  const factory MessageHeaderResponse({
+  factory MessageHeaderResponse({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -771,6 +776,9 @@ class MessageHeaderResponse
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

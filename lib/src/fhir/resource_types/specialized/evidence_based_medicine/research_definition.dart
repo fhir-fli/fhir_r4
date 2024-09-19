@@ -15,9 +15,9 @@ part 'research_definition.g.dart';
 
 /// [ResearchDefinition] The ResearchDefinition resource describes the
 @freezed
-class ResearchDefinition with _$ResearchDefinition implements DomainResource {
+class ResearchDefinition extends DomainResource with _$ResearchDefinition {
   /// [ResearchDefinition] The ResearchDefinition resource describes the
-  const ResearchDefinition._();
+  ResearchDefinition._();
 
   /// [ResearchDefinition] The ResearchDefinition resource describes the
   /// conditional state (population and any exposures being compared within the
@@ -245,7 +245,7 @@ class ResearchDefinition with _$ResearchDefinition implements DomainResource {
   ///
   /// [outcome] A reference to a ResearchElementDefinition resomece that
   ///  defines the outcome for the research.
-  const factory ResearchDefinition({
+  factory ResearchDefinition({
     @Default(R4ResourceType.ResearchDefinition)
     @JsonKey(unknownEnumValue: R4ResourceType.ResearchDefinition)
     R4ResourceType resourceType,
@@ -346,6 +346,9 @@ class ResearchDefinition with _$ResearchDefinition implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -368,6 +371,6 @@ class ResearchDefinition with _$ResearchDefinition implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }

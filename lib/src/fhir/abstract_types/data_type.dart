@@ -6,7 +6,7 @@ import '../../../fhir_r4.dart';
 
 /// [DataType] Base definition for the few data types that are allowed to
 /// carry modifier extensions.
-abstract class DataType implements Element {
+abstract class DataType extends Element {
   /// [DataType] Base definition for the few data types that are allowed to
   /// carry modifier extensions.
 
@@ -42,6 +42,7 @@ abstract class DataType implements Element {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
 
   @override
   String toJsonString() => jsonEncode(toJson());

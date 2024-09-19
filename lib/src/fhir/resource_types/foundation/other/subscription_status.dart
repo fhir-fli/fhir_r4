@@ -15,9 +15,9 @@ part 'subscription_status.g.dart';
 
 /// [SubscriptionStatus] The SubscriptionStatus resource describes the state of a Subscription during notifications.
 @freezed
-class SubscriptionStatus with _$SubscriptionStatus implements DomainResource {
+class SubscriptionStatus extends DomainResource with _$SubscriptionStatus {
   /// [SubscriptionStatus] The SubscriptionStatus resource describes the state of a Subscription during notifications.
-  const SubscriptionStatus._();
+  SubscriptionStatus._();
 
   /// [SubscriptionStatus] The SubscriptionStatus resource describes the state of a Subscription during notifications.
 
@@ -65,7 +65,7 @@ class SubscriptionStatus with _$SubscriptionStatus implements DomainResource {
   /// [topic] The reference to the SubscriptionTopic for the Subscription which generated this notification.;
   ///
   /// [error] A record of errors that occurred when the server processed a notification.;
-  const factory SubscriptionStatus({
+  factory SubscriptionStatus({
     /// [resourceType] This is a SubscriptionStatus resource;
     @Default(R4ResourceType.SubscriptionStatus) R4ResourceType resourceType,
 
@@ -165,6 +165,9 @@ class SubscriptionStatus with _$SubscriptionStatus implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -187,16 +190,15 @@ class SubscriptionStatus with _$SubscriptionStatus implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 @freezed
 @freezed
-class SubscriptionStatusNotificationEvent
-    with _$SubscriptionStatusNotificationEvent
-    implements BackboneElement {
-  const SubscriptionStatusNotificationEvent._();
+class SubscriptionStatusNotificationEvent extends BackboneElement
+    with _$SubscriptionStatusNotificationEvent {
+  SubscriptionStatusNotificationEvent._();
 
   /// [SubscriptionStatusNotificationEvent] The SubscriptionStatus resource describes the state of a Subscription during notifications.
 
@@ -218,7 +220,7 @@ class SubscriptionStatusNotificationEvent
   /// [focus] The focus of this event. While this will usually be a reference to the focus resource of the event, it MAY contain a reference to a non-FHIR object.;
   ///
   /// [additionalContext] Additional context information for this event. Generally, this will contain references to additional resources included with the event (e.g., the Patient relevant to an Encounter), however it MAY refer to non-FHIR objects.;
-  const factory SubscriptionStatusNotificationEvent({
+  factory SubscriptionStatusNotificationEvent({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -278,6 +280,9 @@ class SubscriptionStatusNotificationEvent
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

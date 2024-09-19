@@ -14,9 +14,9 @@ part 'location.g.dart';
 
 /// [Location] Details and position information for a physical place where
 @freezed
-class Location with _$Location implements DomainResource {
+class Location extends DomainResource with _$Location {
   /// [Location] Details and position information for a physical place where
-  const Location._();
+  Location._();
 
   /// [Location] Details and position information for a physical place where
   /// services are provided and resources and participants may be stored, found,
@@ -140,7 +140,7 @@ class Location with _$Location implements DomainResource {
   ///
   /// [endpoint] Technical endpoints providing access to services operated for
   ///  the location.
-  const factory Location({
+  factory Location({
     @Default(R4ResourceType.Location)
     @JsonKey(unknownEnumValue: R4ResourceType.Location)
 
@@ -332,6 +332,9 @@ class Location with _$Location implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   Location updateContactPointSystem(ContactPointSystem system,
@@ -470,15 +473,15 @@ class Location with _$Location implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [LocationPosition] Details and position information for a physical place
 @freezed
-class LocationPosition with _$LocationPosition implements BackboneElement {
+class LocationPosition extends BackboneElement with _$LocationPosition {
   /// [LocationPosition] Details and position information for a physical place
-  const LocationPosition._();
+  LocationPosition._();
 
   /// [LocationPosition] Details and position information for a physical place
   /// where services are provided and resources and participants may be stored,
@@ -522,7 +525,7 @@ class LocationPosition with _$LocationPosition implements BackboneElement {
   ///  as for the text of the altitude element in KML (see notes below).
   ///
   /// [altitudeElement] Extensions for altitude
-  const factory LocationPosition({
+  factory LocationPosition({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -603,6 +606,9 @@ class LocationPosition with _$LocationPosition implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -611,11 +617,10 @@ class LocationPosition with _$LocationPosition implements BackboneElement {
 
 /// [LocationHoursOfOperation] Details and position information for a
 @freezed
-class LocationHoursOfOperation
-    with _$LocationHoursOfOperation
-    implements BackboneElement {
+class LocationHoursOfOperation extends BackboneElement
+    with _$LocationHoursOfOperation {
   /// [LocationHoursOfOperation] Details and position information for a
-  const LocationHoursOfOperation._();
+  LocationHoursOfOperation._();
 
   /// [LocationHoursOfOperation] Details and position information for a
   /// physical place where services are provided and resources and participants
@@ -661,7 +666,7 @@ class LocationHoursOfOperation
   /// [closingTime] Time that the Location closes.
   ///
   /// [closingTimeElement] Extensions for closingTime
-  const factory LocationHoursOfOperation({
+  factory LocationHoursOfOperation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -744,6 +749,9 @@ class LocationHoursOfOperation
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

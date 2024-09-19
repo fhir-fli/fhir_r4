@@ -15,9 +15,9 @@ part 'medication.g.dart';
 
 /// [Medication] This resource is primarily used for the identification and
 @freezed
-class Medication with _$Medication implements DomainResource {
+class Medication extends DomainResource with _$Medication {
   /// [Medication] This resource is primarily used for the identification and
-  const Medication._();
+  Medication._();
 
   /// [Medication] This resource is primarily used for the identification and
   /// definition of a medication for the purposes of prescribing, dispensing,
@@ -105,7 +105,7 @@ class Medication with _$Medication implements DomainResource {
   ///  product.
   ///
   /// [batch] Information that only applies to packages (not products).
-  const factory Medication({
+  factory Medication({
     @Default(R4ResourceType.Medication)
     @JsonKey(unknownEnumValue: R4ResourceType.Medication)
 
@@ -245,6 +245,9 @@ class Medication with _$Medication implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -267,8 +270,8 @@ class Medication with _$Medication implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [MedicationIngredient] This resource is primarily used for the
@@ -276,11 +279,9 @@ class Medication with _$Medication implements DomainResource {
 
 /// [MedicationIngredient] This resource is primarily used for the
 @freezed
-class MedicationIngredient
-    with _$MedicationIngredient
-    implements BackboneElement {
+class MedicationIngredient extends BackboneElement with _$MedicationIngredient {
   /// [MedicationIngredient] This resource is primarily used for the
-  const MedicationIngredient._();
+  MedicationIngredient._();
 
   /// [MedicationIngredient] This resource is primarily used for the
   /// identification and definition of a medication for the purposes of
@@ -325,7 +326,7 @@ class MedicationIngredient
   /// [strength] Specifies how many (or how much) of the items there are in
   /// this Medication.  For example, 250 mg per tablet.  This is expressed as a
   ///  ratio where the numerator is 250mg and the denominator is 1 tablet.
-  const factory MedicationIngredient({
+  factory MedicationIngredient({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -405,6 +406,9 @@ class MedicationIngredient
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -416,9 +420,9 @@ class MedicationIngredient
 
 /// [MedicationBatch] This resource is primarily used for the identification
 @freezed
-class MedicationBatch with _$MedicationBatch implements BackboneElement {
+class MedicationBatch extends BackboneElement with _$MedicationBatch {
   /// [MedicationBatch] This resource is primarily used for the identification
-  const MedicationBatch._();
+  MedicationBatch._();
 
   /// [MedicationBatch] This resource is primarily used for the identification
   /// and definition of a medication for the purposes of prescribing,
@@ -456,7 +460,7 @@ class MedicationBatch with _$MedicationBatch implements BackboneElement {
   /// [expirationDate] When this specific batch of product will expire.
   ///
   /// [expirationDateElement] Extensions for expirationDate
-  const factory MedicationBatch({
+  factory MedicationBatch({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -526,6 +530,9 @@ class MedicationBatch with _$MedicationBatch implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

@@ -15,9 +15,9 @@ part 'detected_issue.g.dart';
 
 /// [DetectedIssue] Indicates an actual or potential clinical issue with or
 @freezed
-class DetectedIssue with _$DetectedIssue implements DomainResource {
+class DetectedIssue extends DomainResource with _$DetectedIssue {
   /// [DetectedIssue] Indicates an actual or potential clinical issue with or
-  const DetectedIssue._();
+  DetectedIssue._();
 
   /// [DetectedIssue] Indicates an actual or potential clinical issue with or
   /// between one or more active or proposed clinical actions for a patient;
@@ -126,7 +126,7 @@ class DetectedIssue with _$DetectedIssue implements DomainResource {
   /// reduce or eliminate the likelihood of the risk identified by the detected
   /// issue from manifesting.  Can also reflect an observation of known
   ///  mitigating factors that may reduce/eliminate the need for any action.
-  const factory DetectedIssue({
+  factory DetectedIssue({
     @Default(R4ResourceType.DetectedIssue)
     @JsonKey(unknownEnumValue: R4ResourceType.DetectedIssue)
     R4ResourceType resourceType,
@@ -194,6 +194,9 @@ class DetectedIssue with _$DetectedIssue implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -216,8 +219,8 @@ class DetectedIssue with _$DetectedIssue implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [DetectedIssueEvidence] Indicates an actual or potential clinical issue
@@ -225,11 +228,10 @@ class DetectedIssue with _$DetectedIssue implements DomainResource {
 
 /// [DetectedIssueEvidence] Indicates an actual or potential clinical issue
 @freezed
-class DetectedIssueEvidence
-    with _$DetectedIssueEvidence
-    implements BackboneElement {
+class DetectedIssueEvidence extends BackboneElement
+    with _$DetectedIssueEvidence {
   /// [DetectedIssueEvidence] Indicates an actual or potential clinical issue
-  const DetectedIssueEvidence._();
+  DetectedIssueEvidence._();
 
   /// [DetectedIssueEvidence] Indicates an actual or potential clinical issue
   /// with or between one or more active or proposed clinical actions for a
@@ -264,7 +266,7 @@ class DetectedIssueEvidence
   ///
   /// [detail] Links to resources that constitute evidence for the detected
   ///  issue such as a GuidanceResponse or MeasureReport.
-  const factory DetectedIssueEvidence({
+  factory DetectedIssueEvidence({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -303,6 +305,9 @@ class DetectedIssueEvidence
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -314,11 +319,10 @@ class DetectedIssueEvidence
 
 /// [DetectedIssueMitigation] Indicates an actual or potential clinical
 @freezed
-class DetectedIssueMitigation
-    with _$DetectedIssueMitigation
-    implements BackboneElement {
+class DetectedIssueMitigation extends BackboneElement
+    with _$DetectedIssueMitigation {
   /// [DetectedIssueMitigation] Indicates an actual or potential clinical
-  const DetectedIssueMitigation._();
+  DetectedIssueMitigation._();
 
   /// [DetectedIssueMitigation] Indicates an actual or potential clinical
   /// issue with or between one or more active or proposed clinical actions for
@@ -359,7 +363,7 @@ class DetectedIssueMitigation
   ///
   /// [author] Identifies the practitioner who determined the mitigation and
   ///  takes responsibility for the mitigation step occurring.
-  const factory DetectedIssueMitigation({
+  factory DetectedIssueMitigation({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -398,6 +402,9 @@ class DetectedIssueMitigation
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

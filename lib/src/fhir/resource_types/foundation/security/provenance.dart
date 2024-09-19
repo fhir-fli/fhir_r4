@@ -15,9 +15,9 @@ part 'provenance.g.dart';
 
 /// [Provenance] Provenance of a resource is a record that describes entities
 @freezed
-class Provenance with _$Provenance implements DomainResource {
+class Provenance extends DomainResource with _$Provenance {
   /// [Provenance] Provenance of a resource is a record that describes entities
-  const Provenance._();
+  Provenance._();
 
   /// [Provenance] Provenance of a resource is a record that describes entities
   /// and processes involved in producing and delivering or otherwise
@@ -119,7 +119,7 @@ class Provenance with _$Provenance implements DomainResource {
   /// [signature] A digital signature on the target Reference(s). The signer
   /// should match a Provenance.agent. The purpose of the signature is
   ///  indicated.
-  const factory Provenance({
+  factory Provenance({
     @Default(R4ResourceType.Provenance)
     @JsonKey(unknownEnumValue: R4ResourceType.Provenance)
 
@@ -273,6 +273,9 @@ class Provenance with _$Provenance implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -295,8 +298,8 @@ class Provenance with _$Provenance implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [ProvenanceAgent] Provenance of a resource is a record that describes
@@ -304,9 +307,9 @@ class Provenance with _$Provenance implements DomainResource {
 
 /// [ProvenanceAgent] Provenance of a resource is a record that describes
 @freezed
-class ProvenanceAgent with _$ProvenanceAgent implements BackboneElement {
+class ProvenanceAgent extends BackboneElement with _$ProvenanceAgent {
   /// [ProvenanceAgent] Provenance of a resource is a record that describes
-  const ProvenanceAgent._();
+  ProvenanceAgent._();
 
   /// [ProvenanceAgent] Provenance of a resource is a record that describes
   /// entities and processes involved in producing and delivering or otherwise
@@ -353,7 +356,7 @@ class ProvenanceAgent with _$ProvenanceAgent implements BackboneElement {
   ///
   /// [onBehalfOf] The individual, device, or organization for whom the change
   ///  was made.
-  const factory ProvenanceAgent({
+  factory ProvenanceAgent({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -428,6 +431,9 @@ class ProvenanceAgent with _$ProvenanceAgent implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -439,9 +445,9 @@ class ProvenanceAgent with _$ProvenanceAgent implements BackboneElement {
 
 /// [ProvenanceEntity] Provenance of a resource is a record that describes
 @freezed
-class ProvenanceEntity with _$ProvenanceEntity implements BackboneElement {
+class ProvenanceEntity extends BackboneElement with _$ProvenanceEntity {
   /// [ProvenanceEntity] Provenance of a resource is a record that describes
-  const ProvenanceEntity._();
+  ProvenanceEntity._();
 
   /// [ProvenanceEntity] Provenance of a resource is a record that describes
   /// entities and processes involved in producing and delivering or otherwise
@@ -489,7 +495,7 @@ class ProvenanceEntity with _$ProvenanceEntity implements BackboneElement {
   /// responsibility for that entity, possibly along with other agents. This
   /// description can be understood as shorthand for saying that the agent was
   ///  responsible for the activity which generated the entity.
-  const factory ProvenanceEntity({
+  factory ProvenanceEntity({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -563,6 +569,9 @@ class ProvenanceEntity with _$ProvenanceEntity implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

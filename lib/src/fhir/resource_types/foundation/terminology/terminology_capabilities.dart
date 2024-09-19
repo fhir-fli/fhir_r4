@@ -15,11 +15,10 @@ part 'terminology_capabilities.g.dart';
 
 /// [TerminologyCapabilities] A TerminologyCapabilities resource documents a
 @freezed
-class TerminologyCapabilities
-    with _$TerminologyCapabilities
-    implements DomainResource {
+class TerminologyCapabilities extends DomainResource
+    with _$TerminologyCapabilities {
   /// [TerminologyCapabilities] A TerminologyCapabilities resource documents a
-  const TerminologyCapabilities._();
+  TerminologyCapabilities._();
 
   /// [TerminologyCapabilities] A TerminologyCapabilities resource documents a
   /// set of capabilities (behaviors) of a FHIR Terminology Server that may be
@@ -197,7 +196,7 @@ class TerminologyCapabilities
   /// [codeSearchElement] Extensions for codeSearch
   ///
   /// [validateCode] Information about the
-  const factory TerminologyCapabilities({
+  factory TerminologyCapabilities({
     @Default(R4ResourceType.TerminologyCapabilities)
     @JsonKey(unknownEnumValue: R4ResourceType.TerminologyCapabilities)
 
@@ -456,6 +455,9 @@ class TerminologyCapabilities
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -478,8 +480,8 @@ class TerminologyCapabilities
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [TerminologyCapabilitiesSoftware] A TerminologyCapabilities resource
@@ -487,11 +489,10 @@ class TerminologyCapabilities
 
 /// [TerminologyCapabilitiesSoftware] A TerminologyCapabilities resource
 @freezed
-class TerminologyCapabilitiesSoftware
-    with _$TerminologyCapabilitiesSoftware
-    implements BackboneElement {
+class TerminologyCapabilitiesSoftware extends BackboneElement
+    with _$TerminologyCapabilitiesSoftware {
   /// [TerminologyCapabilitiesSoftware] A TerminologyCapabilities resource
-  const TerminologyCapabilitiesSoftware._();
+  TerminologyCapabilitiesSoftware._();
 
   /// [TerminologyCapabilitiesSoftware] A TerminologyCapabilities resource
   /// documents a set of capabilities (behaviors) of a FHIR Terminology Server
@@ -531,7 +532,7 @@ class TerminologyCapabilitiesSoftware
   ///
   /// [versionElement] Extensions for version
   ///
-  const factory TerminologyCapabilitiesSoftware({
+  factory TerminologyCapabilitiesSoftware({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -605,6 +606,9 @@ class TerminologyCapabilitiesSoftware
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -613,10 +617,9 @@ class TerminologyCapabilitiesSoftware
 
 @freezed
 @freezed
-class TerminologyCapabilitiesImplementation
-    with _$TerminologyCapabilitiesImplementation
-    implements BackboneElement {
-  const TerminologyCapabilitiesImplementation._();
+class TerminologyCapabilitiesImplementation extends BackboneElement
+    with _$TerminologyCapabilitiesImplementation {
+  TerminologyCapabilitiesImplementation._();
 
   /// [TerminologyCapabilitiesImplementation] A TerminologyCapabilities
   /// resource documents a set of capabilities (behaviors) of a FHIR Terminology
@@ -655,7 +658,7 @@ class TerminologyCapabilitiesImplementation
   /// [url] An absolute base URL for the implementation.
   ///
   /// [urlElement] Extensions for url
-  const factory TerminologyCapabilitiesImplementation({
+  factory TerminologyCapabilitiesImplementation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -717,6 +720,9 @@ class TerminologyCapabilitiesImplementation
       _$TerminologyCapabilitiesImplementationFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -725,10 +731,9 @@ class TerminologyCapabilitiesImplementation
 
 @freezed
 @freezed
-class TerminologyCapabilitiesCodeSystem
-    with _$TerminologyCapabilitiesCodeSystem
-    implements BackboneElement {
-  const TerminologyCapabilitiesCodeSystem._();
+class TerminologyCapabilitiesCodeSystem extends BackboneElement
+    with _$TerminologyCapabilitiesCodeSystem {
+  TerminologyCapabilitiesCodeSystem._();
 
   /// [TerminologyCapabilitiesCodeSystem] A TerminologyCapabilities resource
   /// documents a set of capabilities (behaviors) of a FHIR Terminology Server
@@ -768,7 +773,7 @@ class TerminologyCapabilitiesCodeSystem
   ///  code system.
   ///
   /// [subsumptionElement] Extensions for subsumption
-  const factory TerminologyCapabilitiesCodeSystem({
+  factory TerminologyCapabilitiesCodeSystem({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -831,6 +836,9 @@ class TerminologyCapabilitiesCodeSystem
       _$TerminologyCapabilitiesCodeSystemFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -842,11 +850,10 @@ class TerminologyCapabilitiesCodeSystem
 
 /// [TerminologyCapabilitiesVersion] A TerminologyCapabilities resource
 @freezed
-class TerminologyCapabilitiesVersion
-    with _$TerminologyCapabilitiesVersion
-    implements BackboneElement {
+class TerminologyCapabilitiesVersion extends BackboneElement
+    with _$TerminologyCapabilitiesVersion {
   /// [TerminologyCapabilitiesVersion] A TerminologyCapabilities resource
-  const TerminologyCapabilitiesVersion._();
+  TerminologyCapabilitiesVersion._();
 
   /// [TerminologyCapabilitiesVersion] A TerminologyCapabilities resource
   /// documents a set of capabilities (behaviors) of a FHIR Terminology Server
@@ -900,7 +907,7 @@ class TerminologyCapabilitiesVersion
   /// [property] Properties supported for $lookup.
   ///
   /// [propertyElement] Extensions for property
-  const factory TerminologyCapabilitiesVersion({
+  factory TerminologyCapabilitiesVersion({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -996,6 +1003,9 @@ class TerminologyCapabilitiesVersion
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1007,11 +1017,10 @@ class TerminologyCapabilitiesVersion
 
 /// [TerminologyCapabilitiesFilter] A TerminologyCapabilities resource
 @freezed
-class TerminologyCapabilitiesFilter
-    with _$TerminologyCapabilitiesFilter
-    implements BackboneElement {
+class TerminologyCapabilitiesFilter extends BackboneElement
+    with _$TerminologyCapabilitiesFilter {
   /// [TerminologyCapabilitiesFilter] A TerminologyCapabilities resource
-  const TerminologyCapabilitiesFilter._();
+  TerminologyCapabilitiesFilter._();
 
   /// [TerminologyCapabilitiesFilter] A TerminologyCapabilities resource
   /// documents a set of capabilities (behaviors) of a FHIR Terminology Server
@@ -1049,7 +1058,7 @@ class TerminologyCapabilitiesFilter
   /// [op] Operations supported for the property.
   ///
   /// [opElement] Extensions for op
-  const factory TerminologyCapabilitiesFilter({
+  factory TerminologyCapabilitiesFilter({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1121,6 +1130,9 @@ class TerminologyCapabilitiesFilter
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1132,11 +1144,10 @@ class TerminologyCapabilitiesFilter
 
 /// [TerminologyCapabilitiesExpansion] A TerminologyCapabilities resource
 @freezed
-class TerminologyCapabilitiesExpansion
-    with _$TerminologyCapabilitiesExpansion
-    implements BackboneElement {
+class TerminologyCapabilitiesExpansion extends BackboneElement
+    with _$TerminologyCapabilitiesExpansion {
   /// [TerminologyCapabilitiesExpansion] A TerminologyCapabilities resource
-  const TerminologyCapabilitiesExpansion._();
+  TerminologyCapabilitiesExpansion._();
 
   /// [TerminologyCapabilitiesExpansion] A TerminologyCapabilities resource
   /// documents a set of capabilities (behaviors) of a FHIR Terminology Server
@@ -1184,7 +1195,7 @@ class TerminologyCapabilitiesExpansion
   /// [textFilter] Documentation about text searching works.
   ///
   /// [textFilterElement] Extensions for textFilter
-  const factory TerminologyCapabilitiesExpansion({
+  factory TerminologyCapabilitiesExpansion({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1260,6 +1271,9 @@ class TerminologyCapabilitiesExpansion
       _$TerminologyCapabilitiesExpansionFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1271,11 +1285,10 @@ class TerminologyCapabilitiesExpansion
 
 /// [TerminologyCapabilitiesParameter] A TerminologyCapabilities resource
 @freezed
-class TerminologyCapabilitiesParameter
-    with _$TerminologyCapabilitiesParameter
-    implements BackboneElement {
+class TerminologyCapabilitiesParameter extends BackboneElement
+    with _$TerminologyCapabilitiesParameter {
   /// [TerminologyCapabilitiesParameter] A TerminologyCapabilities resource
-  const TerminologyCapabilitiesParameter._();
+  TerminologyCapabilitiesParameter._();
 
   /// [TerminologyCapabilitiesParameter] A TerminologyCapabilities resource
   /// documents a set of capabilities (behaviors) of a FHIR Terminology Server
@@ -1313,7 +1326,7 @@ class TerminologyCapabilitiesParameter
   /// [documentation] Description of support for parameter.
   ///
   /// [documentationElement] Extensions for documentation
-  const factory TerminologyCapabilitiesParameter({
+  factory TerminologyCapabilitiesParameter({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1374,6 +1387,9 @@ class TerminologyCapabilitiesParameter
       _$TerminologyCapabilitiesParameterFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1382,10 +1398,9 @@ class TerminologyCapabilitiesParameter
 
 @freezed
 @freezed
-class TerminologyCapabilitiesValidateCode
-    with _$TerminologyCapabilitiesValidateCode
-    implements BackboneElement {
-  const TerminologyCapabilitiesValidateCode._();
+class TerminologyCapabilitiesValidateCode extends BackboneElement
+    with _$TerminologyCapabilitiesValidateCode {
+  TerminologyCapabilitiesValidateCode._();
 
   /// [TerminologyCapabilitiesValidateCode] A TerminologyCapabilities resource
   /// documents a set of capabilities (behaviors) of a FHIR Terminology Server
@@ -1419,7 +1434,7 @@ class TerminologyCapabilitiesValidateCode
   /// [translations] Whether translations are validated.
   ///
   /// [translationsElement] Extensions for translations
-  const factory TerminologyCapabilitiesValidateCode({
+  factory TerminologyCapabilitiesValidateCode({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1474,6 +1489,9 @@ class TerminologyCapabilitiesValidateCode
       _$TerminologyCapabilitiesValidateCodeFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1482,10 +1500,9 @@ class TerminologyCapabilitiesValidateCode
 
 @freezed
 @freezed
-class TerminologyCapabilitiesTranslation
-    with _$TerminologyCapabilitiesTranslation
-    implements BackboneElement {
-  const TerminologyCapabilitiesTranslation._();
+class TerminologyCapabilitiesTranslation extends BackboneElement
+    with _$TerminologyCapabilitiesTranslation {
+  TerminologyCapabilitiesTranslation._();
 
   /// [TerminologyCapabilitiesTranslation] A TerminologyCapabilities resource
   /// documents a set of capabilities (behaviors) of a FHIR Terminology Server
@@ -1519,7 +1536,7 @@ class TerminologyCapabilitiesTranslation
   /// [needsMap] Whether the client must identify the map.
   ///
   /// [needsMapElement] Extensions for needsMap
-  const factory TerminologyCapabilitiesTranslation({
+  factory TerminologyCapabilitiesTranslation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1574,6 +1591,9 @@ class TerminologyCapabilitiesTranslation
       _$TerminologyCapabilitiesTranslationFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1585,11 +1605,10 @@ class TerminologyCapabilitiesTranslation
 
 /// [TerminologyCapabilitiesClosure] A TerminologyCapabilities resource
 @freezed
-class TerminologyCapabilitiesClosure
-    with _$TerminologyCapabilitiesClosure
-    implements BackboneElement {
+class TerminologyCapabilitiesClosure extends BackboneElement
+    with _$TerminologyCapabilitiesClosure {
   /// [TerminologyCapabilitiesClosure] A TerminologyCapabilities resource
-  const TerminologyCapabilitiesClosure._();
+  TerminologyCapabilitiesClosure._();
 
   /// [TerminologyCapabilitiesClosure] A TerminologyCapabilities resource
   /// documents a set of capabilities (behaviors) of a FHIR Terminology Server
@@ -1623,7 +1642,7 @@ class TerminologyCapabilitiesClosure
   /// [translation] If cross-system closure is supported.
   ///
   /// [translationElement] Extensions for translation
-  const factory TerminologyCapabilitiesClosure({
+  factory TerminologyCapabilitiesClosure({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1688,6 +1707,9 @@ class TerminologyCapabilitiesClosure
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

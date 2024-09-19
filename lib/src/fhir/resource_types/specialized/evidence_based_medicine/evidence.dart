@@ -15,9 +15,9 @@ part 'evidence.g.dart';
 
 /// [Evidence] The Evidence resource describes the conditional state
 @freezed
-class Evidence with _$Evidence implements DomainResource {
+class Evidence extends DomainResource with _$Evidence {
   /// [Evidence] The Evidence resource describes the conditional state
-  const Evidence._();
+  Evidence._();
 
   /// [Evidence] The Evidence resource describes the conditional state
   /// (population and any exposures being compared within the population) and
@@ -211,7 +211,7 @@ class Evidence with _$Evidence implements DomainResource {
   ///
   /// [outcome] A reference to a EvidenceVariable resomece that defines the
   ///  outcome for the research.
-  const factory Evidence({
+  factory Evidence({
     @Default(R4ResourceType.Evidence)
     @JsonKey(unknownEnumValue: R4ResourceType.Evidence)
     R4ResourceType resourceType,
@@ -297,6 +297,9 @@ class Evidence with _$Evidence implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -319,8 +322,8 @@ class Evidence with _$Evidence implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [EvidenceVariableDefinition] The Evidence Resource provides a machine-interpretable expression of an evidence concept including the evidence variables (e.g., population, exposures/interventions, comparators, outcomes, measured variables, confounding variables), the statistics, and the certainty of this evidence.
@@ -328,11 +331,10 @@ class Evidence with _$Evidence implements DomainResource {
 
 /// [EvidenceVariableDefinition] The Evidence Resource provides a machine-interpretable expression of an evidence concept including the evidence variables (e.g., population, exposures/interventions, comparators, outcomes, measured variables, confounding variables), the statistics, and the certainty of this evidence.
 @freezed
-class EvidenceVariableDefinition
-    with _$EvidenceVariableDefinition
-    implements BackboneElement {
+class EvidenceVariableDefinition extends BackboneElement
+    with _$EvidenceVariableDefinition {
   /// [EvidenceVariableDefinition] The Evidence Resource provides a machine-interpretable expression of an evidence concept including the evidence variables (e.g., population, exposures/interventions, comparators, outcomes, measured variables, confounding variables), the statistics, and the certainty of this evidence.
-  const EvidenceVariableDefinition._();
+  EvidenceVariableDefinition._();
 
   /// [EvidenceVariableDefinition] The Evidence Resource provides a machine-interpretable expression of an evidence concept including the evidence variables (e.g., population, exposures/interventions, comparators, outcomes, measured variables, confounding variables), the statistics, and the certainty of this evidence.
 
@@ -358,7 +360,7 @@ class EvidenceVariableDefinition
   /// [intended] Definition of the intended variable related to the Evidence.;
   ///
   /// [directnessMatch] Indication of quality of match between intended variable to actual variable.;
-  const factory EvidenceVariableDefinition({
+  factory EvidenceVariableDefinition({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -402,6 +404,9 @@ class EvidenceVariableDefinition
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -413,9 +418,9 @@ class EvidenceVariableDefinition
 
 /// [EvidenceStatistic] The Evidence Resource provides a machine-interpretable expression of an evidence concept including the evidence variables (e.g., population, exposures/interventions, comparators, outcomes, measured variables, confounding variables), the statistics, and the certainty of this evidence.
 @freezed
-class EvidenceStatistic with _$EvidenceStatistic implements BackboneElement {
+class EvidenceStatistic extends BackboneElement with _$EvidenceStatistic {
   /// [EvidenceStatistic] The Evidence Resource provides a machine-interpretable expression of an evidence concept including the evidence variables (e.g., population, exposures/interventions, comparators, outcomes, measured variables, confounding variables), the statistics, and the certainty of this evidence.
-  const EvidenceStatistic._();
+  EvidenceStatistic._();
 
   /// [EvidenceStatistic] The Evidence Resource provides a machine-interpretable expression of an evidence concept including the evidence variables (e.g., population, exposures/interventions, comparators, outcomes, measured variables, confounding variables), the statistics, and the certainty of this evidence.
 
@@ -451,7 +456,7 @@ class EvidenceStatistic with _$EvidenceStatistic implements BackboneElement {
   /// [attributeEstimate] A statistical attribute of the statistic such as a measure of heterogeneity.;
   ///
   /// [modelCharacteristic] A component of the method to generate the statistic.;
-  const factory EvidenceStatistic({
+  factory EvidenceStatistic({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -501,6 +506,9 @@ class EvidenceStatistic with _$EvidenceStatistic implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -512,9 +520,9 @@ class EvidenceStatistic with _$EvidenceStatistic implements BackboneElement {
 
 /// [EvidenceSampleSize] The Evidence Resource provides a machine-interpretable expression of an evidence concept including the evidence variables (e.g., population, exposures/interventions, comparators, outcomes, measured variables, confounding variables), the statistics, and the certainty of this evidence.
 @freezed
-class EvidenceSampleSize with _$EvidenceSampleSize implements BackboneElement {
+class EvidenceSampleSize extends BackboneElement with _$EvidenceSampleSize {
   /// [EvidenceSampleSize] The Evidence Resource provides a machine-interpretable expression of an evidence concept including the evidence variables (e.g., population, exposures/interventions, comparators, outcomes, measured variables, confounding variables), the statistics, and the certainty of this evidence.
-  const EvidenceSampleSize._();
+  EvidenceSampleSize._();
 
   /// [EvidenceSampleSize] The Evidence Resource provides a machine-interpretable expression of an evidence concept including the evidence variables (e.g., population, exposures/interventions, comparators, outcomes, measured variables, confounding variables), the statistics, and the certainty of this evidence.
 
@@ -542,7 +550,7 @@ class EvidenceSampleSize with _$EvidenceSampleSize implements BackboneElement {
   /// [knownDataCount] Number of participants with known results for measured variables.;
   ///
   /// [knownDataCountElement] (_knownDataCount): Extensions for knownDataCount;
-  const factory EvidenceSampleSize({
+  factory EvidenceSampleSize({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -589,6 +597,9 @@ class EvidenceSampleSize with _$EvidenceSampleSize implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -600,11 +611,10 @@ class EvidenceSampleSize with _$EvidenceSampleSize implements BackboneElement {
 
 /// [EvidenceAttributeEstimate] The Evidence Resource provides a machine-interpretable expression of an evidence concept including the evidence variables (e.g., population, exposures/interventions, comparators, outcomes, measured variables, confounding variables), the statistics, and the certainty of this evidence.
 @freezed
-class EvidenceAttributeEstimate
-    with _$EvidenceAttributeEstimate
-    implements BackboneElement {
+class EvidenceAttributeEstimate extends BackboneElement
+    with _$EvidenceAttributeEstimate {
   /// [EvidenceAttributeEstimate] The Evidence Resource provides a machine-interpretable expression of an evidence concept including the evidence variables (e.g., population, exposures/interventions, comparators, outcomes, measured variables, confounding variables), the statistics, and the certainty of this evidence.
-  const EvidenceAttributeEstimate._();
+  EvidenceAttributeEstimate._();
 
   /// [EvidenceAttributeEstimate] The Evidence Resource provides a machine-interpretable expression of an evidence concept including the evidence variables (e.g., population, exposures/interventions, comparators, outcomes, measured variables, confounding variables), the statistics, and the certainty of this evidence.
 
@@ -632,7 +642,7 @@ class EvidenceAttributeEstimate
   /// [range] Lower bound of confidence interval.;
   ///
   /// [attributeEstimate] A nested attribute estimate; which is the attribute estimate of an attribute estimate.;
-  const factory EvidenceAttributeEstimate({
+  factory EvidenceAttributeEstimate({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -678,6 +688,9 @@ class EvidenceAttributeEstimate
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -689,11 +702,10 @@ class EvidenceAttributeEstimate
 
 /// [EvidenceModelCharacteristic] The Evidence Resource provides a machine-interpretable expression of an evidence concept including the evidence variables (e.g., population, exposures/interventions, comparators, outcomes, measured variables, confounding variables), the statistics, and the certainty of this evidence.
 @freezed
-class EvidenceModelCharacteristic
-    with _$EvidenceModelCharacteristic
-    implements BackboneElement {
+class EvidenceModelCharacteristic extends BackboneElement
+    with _$EvidenceModelCharacteristic {
   /// [EvidenceModelCharacteristic] The Evidence Resource provides a machine-interpretable expression of an evidence concept including the evidence variables (e.g., population, exposures/interventions, comparators, outcomes, measured variables, confounding variables), the statistics, and the certainty of this evidence.
-  const EvidenceModelCharacteristic._();
+  EvidenceModelCharacteristic._();
 
   /// [EvidenceModelCharacteristic] The Evidence Resource provides a machine-interpretable expression of an evidence concept including the evidence variables (e.g., population, exposures/interventions, comparators, outcomes, measured variables, confounding variables), the statistics, and the certainty of this evidence.
 
@@ -711,7 +723,7 @@ class EvidenceModelCharacteristic
   /// [variable] A variable adjusted for in the adjusted analysis.;
   ///
   /// [attributeEstimate] An attribute of the statistic used as a model characteristic.;
-  const factory EvidenceModelCharacteristic({
+  factory EvidenceModelCharacteristic({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -752,6 +764,9 @@ class EvidenceModelCharacteristic
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -763,9 +778,9 @@ class EvidenceModelCharacteristic
 
 /// [EvidenceVar] The Evidence Resource provides a machine-interpretable
 @freezed
-class EvidenceVar with _$EvidenceVar implements BackboneElement {
+class EvidenceVar extends BackboneElement with _$EvidenceVar {
   /// [EvidenceVar] The Evidence Resource provides a machine-interpretable
-  const EvidenceVar._();
+  EvidenceVar._();
 
   /// [EvidenceVar] The Evidence Resource provides a machine-interpretable
   /// expression of an evidence concept including the evidence variables
@@ -795,7 +810,7 @@ class EvidenceVar with _$EvidenceVar implements BackboneElement {
   /// [modifierExtension] May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.
 
   /// Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).;
-  const factory EvidenceVar({
+  factory EvidenceVar({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -838,6 +853,9 @@ class EvidenceVar with _$EvidenceVar implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -849,9 +867,9 @@ class EvidenceVar with _$EvidenceVar implements BackboneElement {
 
 /// [EvidenceCertainty] The Evidence Resource provides a machine-interpretable expression of an evidence concept including the evidence variables (e.g., population, exposures/interventions, comparators, outcomes, measured variables, confounding variables), the statistics, and the certainty of this evidence.
 @freezed
-class EvidenceCertainty with _$EvidenceCertainty implements BackboneElement {
+class EvidenceCertainty extends BackboneElement with _$EvidenceCertainty {
   /// [EvidenceCertainty] The Evidence Resource provides a machine-interpretable expression of an evidence concept including the evidence variables (e.g., population, exposures/interventions, comparators, outcomes, measured variables, confounding variables), the statistics, and the certainty of this evidence.
-  const EvidenceCertainty._();
+  EvidenceCertainty._();
 
   /// [EvidenceCertainty] The Evidence Resource provides a machine-interpretable expression of an evidence concept including the evidence variables (e.g., population, exposures/interventions, comparators, outcomes, measured variables, confounding variables), the statistics, and the certainty of this evidence.
 
@@ -879,7 +897,7 @@ class EvidenceCertainty with _$EvidenceCertainty implements BackboneElement {
   /// [raterElement] (_rater): Extensions for rater;
   ///
   /// [subcomponent] A domain or subdomain of certainty.;
-  const factory EvidenceCertainty({
+  factory EvidenceCertainty({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -922,6 +940,9 @@ class EvidenceCertainty with _$EvidenceCertainty implements BackboneElement {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

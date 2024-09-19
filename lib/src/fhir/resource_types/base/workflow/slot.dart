@@ -14,9 +14,9 @@ part 'slot.g.dart';
 
 /// [Slot] A slot of time on a schedule that may be available for booking
 @freezed
-class Slot with _$Slot implements DomainResource {
+class Slot extends DomainResource with _$Slot {
   /// [Slot] A slot of time on a schedule that may be available for booking
-  const Slot._();
+  Slot._();
 
   /// [Slot] A slot of time on a schedule that may be available for booking
   ///  appointments.
@@ -115,7 +115,7 @@ class Slot with _$Slot implements DomainResource {
   ///  as custom constraints on the slot.
   ///
   /// [commentElement] Extensions for comment
-  const factory Slot({
+  factory Slot({
     @Default(R4ResourceType.Slot)
     @JsonKey(unknownEnumValue: R4ResourceType.Slot)
 
@@ -273,6 +273,9 @@ class Slot with _$Slot implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -295,6 +298,6 @@ class Slot with _$Slot implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }

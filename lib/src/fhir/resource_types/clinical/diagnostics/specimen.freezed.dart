@@ -149,8 +149,12 @@ mixin _$Specimen {
   ///  frozen).
   List<Annotation>? get note => throw _privateConstructorUsedError;
 
+  /// Serializes this Specimen to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Specimen
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SpecimenCopyWith<Specimen> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -207,6 +211,8 @@ class _$SpecimenCopyWithImpl<$Res, $Val extends Specimen>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Specimen
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -345,6 +351,8 @@ class _$SpecimenCopyWithImpl<$Res, $Val extends Specimen>
     ) as $Val);
   }
 
+  /// Create a copy of Specimen
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -357,6 +365,8 @@ class _$SpecimenCopyWithImpl<$Res, $Val extends Specimen>
     });
   }
 
+  /// Create a copy of Specimen
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -369,6 +379,8 @@ class _$SpecimenCopyWithImpl<$Res, $Val extends Specimen>
     });
   }
 
+  /// Create a copy of Specimen
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $IdentifierCopyWith<$Res>? get accessionIdentifier {
@@ -381,6 +393,8 @@ class _$SpecimenCopyWithImpl<$Res, $Val extends Specimen>
     });
   }
 
+  /// Create a copy of Specimen
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get type {
@@ -393,6 +407,8 @@ class _$SpecimenCopyWithImpl<$Res, $Val extends Specimen>
     });
   }
 
+  /// Create a copy of Specimen
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get subject {
@@ -405,6 +421,8 @@ class _$SpecimenCopyWithImpl<$Res, $Val extends Specimen>
     });
   }
 
+  /// Create a copy of Specimen
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SpecimenCollectionCopyWith<$Res>? get collection {
@@ -477,6 +495,8 @@ class __$$SpecimenImplCopyWithImpl<$Res>
       _$SpecimenImpl _value, $Res Function(_$SpecimenImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Specimen
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -619,7 +639,7 @@ class __$$SpecimenImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SpecimenImpl extends _Specimen {
-  const _$SpecimenImpl(
+  _$SpecimenImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Specimen)
       this.resourceType = R4ResourceType.Specimen,
       this.id,
@@ -986,7 +1006,7 @@ class _$SpecimenImpl extends _Specimen {
             const DeepCollectionEquality().equals(other._note, _note));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1018,7 +1038,9 @@ class _$SpecimenImpl extends _Specimen {
         const DeepCollectionEquality().hash(_note)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Specimen
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SpecimenImplCopyWith<_$SpecimenImpl> get copyWith =>
@@ -1033,7 +1055,7 @@ class _$SpecimenImpl extends _Specimen {
 }
 
 abstract class _Specimen extends Specimen {
-  const factory _Specimen(
+  factory _Specimen(
       {@JsonKey(unknownEnumValue: R4ResourceType.Specimen)
       final R4ResourceType resourceType,
       final String? id,
@@ -1063,7 +1085,7 @@ abstract class _Specimen extends Specimen {
       final List<SpecimenContainer>? container,
       final List<CodeableConcept>? condition,
       final List<Annotation>? note}) = _$SpecimenImpl;
-  const _Specimen._() : super._();
+  _Specimen._() : super._();
 
   factory _Specimen.fromJson(Map<String, dynamic> json) =
       _$SpecimenImpl.fromJson;
@@ -1071,39 +1093,38 @@ abstract class _Specimen extends Specimen {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.Specimen)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1111,15 +1132,15 @@ abstract class _Specimen extends Specimen {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1127,9 +1148,9 @@ abstract class _Specimen extends Specimen {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1144,82 +1165,86 @@ abstract class _Specimen extends Specimen {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] Id for specimen.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [accessionIdentifier] The identifier assigned by the lab when
   /// accessioning specimen(s). This is not necessarily the same as the specimen
   ///  identifier, depending on local lab procedures.
-  Identifier? get accessionIdentifier;
   @override
+  Identifier? get accessionIdentifier;
 
   /// [status] The availability of the specimen.
-  FhirCode? get status;
   @override
+  FhirCode? get status;
 
   /// [statusElement] Extensions for status
+  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
-  @override
 
   /// [type] The kind of material that forms the specimen.
-  CodeableConcept? get type;
   @override
+  CodeableConcept? get type;
 
   /// [subject] Where the specimen came from. This may be from patient(s), from
   /// a location (e.g., the source of an environmental sample), or a sampling of
   ///  a substance or a device.
-  Reference? get subject;
   @override
+  Reference? get subject;
 
   /// [receivedTime] Time when specimen was received for processing or testing.
-  FhirDateTime? get receivedTime;
   @override
+  FhirDateTime? get receivedTime;
 
   /// [receivedTimeElement] Extensions for receivedTime
+  @override
   @JsonKey(name: '_receivedTime')
   PrimitiveElement? get receivedTimeElement;
-  @override
 
   /// [parent] Reference to the parent (source) specimen which is used when the
   ///  specimen was either derived from or a component of another specimen.
-  List<Reference>? get parent;
   @override
+  List<Reference>? get parent;
 
   /// [request] Details concerning a service request that required a specimen
   ///  to be collected.
-  List<Reference>? get request;
   @override
+  List<Reference>? get request;
 
   /// [collection] Details concerning the specimen collection.
-  SpecimenCollection? get collection;
   @override
+  SpecimenCollection? get collection;
 
   /// [processing] Details concerning processing and processing steps for the
   ///  specimen.
-  List<SpecimenProcessing>? get processing;
   @override
+  List<SpecimenProcessing>? get processing;
 
   /// [container] The container holding the specimen.  The recursive nature of
   ///  containers; i.e. blood in tube in tray in rack is not addressed here.
-  List<SpecimenContainer>? get container;
   @override
+  List<SpecimenContainer>? get container;
 
   /// [condition] A mode or state of being that describes the nature of the
   ///  specimen.
-  List<CodeableConcept>? get condition;
   @override
+  List<CodeableConcept>? get condition;
 
   /// [note] To communicate any details or issues about the specimen or during
   /// the specimen collection. (for example: broken vial, sent with patient,
   ///  frozen).
-  List<Annotation>? get note;
   @override
-  @JsonKey(ignore: true)
+  List<Annotation>? get note;
+
+  /// Create a copy of Specimen
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SpecimenImplCopyWith<_$SpecimenImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1302,8 +1327,12 @@ mixin _$SpecimenCollection {
   ///  drink, or both, for a period of time prior to sample collection.
   FhirDuration? get fastingStatusDuration => throw _privateConstructorUsedError;
 
+  /// Serializes this SpecimenCollection to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SpecimenCollection
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SpecimenCollectionCopyWith<SpecimenCollection> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1350,6 +1379,8 @@ class _$SpecimenCollectionCopyWithImpl<$Res, $Val extends SpecimenCollection>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SpecimenCollection
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1423,6 +1454,8 @@ class _$SpecimenCollectionCopyWithImpl<$Res, $Val extends SpecimenCollection>
     ) as $Val);
   }
 
+  /// Create a copy of SpecimenCollection
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get collector {
@@ -1435,6 +1468,8 @@ class _$SpecimenCollectionCopyWithImpl<$Res, $Val extends SpecimenCollection>
     });
   }
 
+  /// Create a copy of SpecimenCollection
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get collectedPeriod {
@@ -1447,6 +1482,8 @@ class _$SpecimenCollectionCopyWithImpl<$Res, $Val extends SpecimenCollection>
     });
   }
 
+  /// Create a copy of SpecimenCollection
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirDurationCopyWith<$Res>? get duration {
@@ -1459,6 +1496,8 @@ class _$SpecimenCollectionCopyWithImpl<$Res, $Val extends SpecimenCollection>
     });
   }
 
+  /// Create a copy of SpecimenCollection
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get quantity {
@@ -1471,6 +1510,8 @@ class _$SpecimenCollectionCopyWithImpl<$Res, $Val extends SpecimenCollection>
     });
   }
 
+  /// Create a copy of SpecimenCollection
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get method {
@@ -1483,6 +1524,8 @@ class _$SpecimenCollectionCopyWithImpl<$Res, $Val extends SpecimenCollection>
     });
   }
 
+  /// Create a copy of SpecimenCollection
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get bodySite {
@@ -1495,6 +1538,8 @@ class _$SpecimenCollectionCopyWithImpl<$Res, $Val extends SpecimenCollection>
     });
   }
 
+  /// Create a copy of SpecimenCollection
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get fastingStatusCodeableConcept {
@@ -1509,6 +1554,8 @@ class _$SpecimenCollectionCopyWithImpl<$Res, $Val extends SpecimenCollection>
     });
   }
 
+  /// Create a copy of SpecimenCollection
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirDurationCopyWith<$Res>? get fastingStatusDuration {
@@ -1572,6 +1619,8 @@ class __$$SpecimenCollectionImplCopyWithImpl<$Res>
       $Res Function(_$SpecimenCollectionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SpecimenCollection
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1649,7 +1698,7 @@ class __$$SpecimenCollectionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SpecimenCollectionImpl extends _SpecimenCollection {
-  const _$SpecimenCollectionImpl(
+  _$SpecimenCollectionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1827,7 +1876,7 @@ class _$SpecimenCollectionImpl extends _SpecimenCollection {
                 other.fastingStatusDuration == fastingStatusDuration));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1845,7 +1894,9 @@ class _$SpecimenCollectionImpl extends _SpecimenCollection {
       fastingStatusCodeableConcept,
       fastingStatusDuration);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SpecimenCollection
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SpecimenCollectionImplCopyWith<_$SpecimenCollectionImpl> get copyWith =>
@@ -1861,7 +1912,7 @@ class _$SpecimenCollectionImpl extends _SpecimenCollection {
 }
 
 abstract class _SpecimenCollection extends SpecimenCollection {
-  const factory _SpecimenCollection(
+  factory _SpecimenCollection(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1876,17 +1927,15 @@ abstract class _SpecimenCollection extends SpecimenCollection {
       final CodeableConcept? bodySite,
       final CodeableConcept? fastingStatusCodeableConcept,
       final FhirDuration? fastingStatusDuration}) = _$SpecimenCollectionImpl;
-  const _SpecimenCollection._() : super._();
+  _SpecimenCollection._() : super._();
 
   factory _SpecimenCollection.fromJson(Map<String, dynamic> json) =
       _$SpecimenCollectionImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1894,9 +1943,9 @@ abstract class _SpecimenCollection extends SpecimenCollection {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -1911,60 +1960,64 @@ abstract class _SpecimenCollection extends SpecimenCollection {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [collector] Person who collected the specimen.
-  Reference? get collector;
   @override
+  Reference? get collector;
 
   /// [collectedDateTime] Time when specimen was collected from subject - the
   ///  physiologically relevant time.
-  FhirDateTime? get collectedDateTime;
   @override
+  FhirDateTime? get collectedDateTime;
 
   /// [collectedDateTimeElement] Extensions for collectedDateTime
+  @override
   @JsonKey(name: '_collectedDateTime')
   PrimitiveElement? get collectedDateTimeElement;
-  @override
 
   /// [collectedPeriod] Time when specimen was collected from subject - the
   ///  physiologically relevant time.
-  Period? get collectedPeriod;
   @override
+  Period? get collectedPeriod;
 
   /// [duration] The span of time over which the collection of a specimen
   ///  occurred.
-  FhirDuration? get duration;
   @override
+  FhirDuration? get duration;
 
   /// [quantity] The quantity of specimen collected; for instance the volume of
   /// a blood sample, or the physical measurement of an anatomic pathology
   ///  sample.
-  Quantity? get quantity;
   @override
+  Quantity? get quantity;
 
   /// [method] A coded value specifying the technique that is used to perform
   ///  the procedure.
-  CodeableConcept? get method;
   @override
+  CodeableConcept? get method;
 
   /// [bodySite] Anatomical location from which the specimen was collected (if
   /// subject is a patient). This is the target site.  This element is not used
   ///  for environmental specimens.
-  CodeableConcept? get bodySite;
   @override
+  CodeableConcept? get bodySite;
 
   /// [fastingStatusCodeableConcept] Abstinence or reduction from some or all
   ///  food, drink, or both, for a period of time prior to sample collection.
-  CodeableConcept? get fastingStatusCodeableConcept;
   @override
+  CodeableConcept? get fastingStatusCodeableConcept;
 
   /// [fastingStatusDuration] Abstinence or reduction from some or all food,
   ///  drink, or both, for a period of time prior to sample collection.
-  FhirDuration? get fastingStatusDuration;
   @override
-  @JsonKey(ignore: true)
+  FhirDuration? get fastingStatusDuration;
+
+  /// Create a copy of SpecimenCollection
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SpecimenCollectionImplCopyWith<_$SpecimenCollectionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2034,8 +2087,12 @@ mixin _$SpecimenProcessing {
   ///  the sample was in formalin.
   Period? get timePeriod => throw _privateConstructorUsedError;
 
+  /// Serializes this SpecimenProcessing to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SpecimenProcessing
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SpecimenProcessingCopyWith<SpecimenProcessing> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2072,6 +2129,8 @@ class _$SpecimenProcessingCopyWithImpl<$Res, $Val extends SpecimenProcessing>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SpecimenProcessing
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2130,6 +2189,8 @@ class _$SpecimenProcessingCopyWithImpl<$Res, $Val extends SpecimenProcessing>
     ) as $Val);
   }
 
+  /// Create a copy of SpecimenProcessing
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get procedure {
@@ -2142,6 +2203,8 @@ class _$SpecimenProcessingCopyWithImpl<$Res, $Val extends SpecimenProcessing>
     });
   }
 
+  /// Create a copy of SpecimenProcessing
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get timePeriod {
@@ -2189,6 +2252,8 @@ class __$$SpecimenProcessingImplCopyWithImpl<$Res>
       $Res Function(_$SpecimenProcessingImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SpecimenProcessing
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2251,7 +2316,7 @@ class __$$SpecimenProcessingImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SpecimenProcessingImpl extends _SpecimenProcessing {
-  const _$SpecimenProcessingImpl(
+  _$SpecimenProcessingImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2411,7 +2476,7 @@ class _$SpecimenProcessingImpl extends _SpecimenProcessing {
                 other.timePeriod == timePeriod));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2426,7 +2491,9 @@ class _$SpecimenProcessingImpl extends _SpecimenProcessing {
       timeDateTimeElement,
       timePeriod);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SpecimenProcessing
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SpecimenProcessingImplCopyWith<_$SpecimenProcessingImpl> get copyWith =>
@@ -2442,7 +2509,7 @@ class _$SpecimenProcessingImpl extends _SpecimenProcessing {
 }
 
 abstract class _SpecimenProcessing extends SpecimenProcessing {
-  const factory _SpecimenProcessing(
+  factory _SpecimenProcessing(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2454,17 +2521,15 @@ abstract class _SpecimenProcessing extends SpecimenProcessing {
       @JsonKey(name: '_timeDateTime')
       final PrimitiveElement? timeDateTimeElement,
       final Period? timePeriod}) = _$SpecimenProcessingImpl;
-  const _SpecimenProcessing._() : super._();
+  _SpecimenProcessing._() : super._();
 
   factory _SpecimenProcessing.fromJson(Map<String, dynamic> json) =
       _$SpecimenProcessingImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2472,9 +2537,9 @@ abstract class _SpecimenProcessing extends SpecimenProcessing {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2489,44 +2554,48 @@ abstract class _SpecimenProcessing extends SpecimenProcessing {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [description] Textual description of procedure.
-  String? get description;
   @override
+  String? get description;
 
   /// [descriptionElement] Extensions for description
+  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
-  @override
 
   /// [procedure] A coded value specifying the procedure used to process the
   ///  specimen.
-  CodeableConcept? get procedure;
   @override
+  CodeableConcept? get procedure;
 
   /// [additive] Material used in the processing step.
-  List<Reference>? get additive;
   @override
+  List<Reference>? get additive;
 
   /// [timeDateTime] A record of the time or period when the specimen
   /// processing occurred.  For example the time of sample fixation or the
   ///  period of time the sample was in formalin.
-  FhirDateTime? get timeDateTime;
   @override
+  FhirDateTime? get timeDateTime;
 
   /// [timeDateTimeElement] Extensions for timeDateTime
+  @override
   @JsonKey(name: '_timeDateTime')
   PrimitiveElement? get timeDateTimeElement;
-  @override
 
   /// [timePeriod] A record of the time or period when the specimen processing
   /// occurred.  For example the time of sample fixation or the period of time
   ///  the sample was in formalin.
-  Period? get timePeriod;
   @override
-  @JsonKey(ignore: true)
+  Period? get timePeriod;
+
+  /// Create a copy of SpecimenProcessing
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SpecimenProcessingImplCopyWith<_$SpecimenProcessingImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2601,8 +2670,12 @@ mixin _$SpecimenContainer {
   ///  the specimen. Examples: Formalin, Citrate, EDTA.
   Reference? get additiveReference => throw _privateConstructorUsedError;
 
+  /// Serializes this SpecimenContainer to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SpecimenContainer
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SpecimenContainerCopyWith<SpecimenContainer> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2643,6 +2716,8 @@ class _$SpecimenContainerCopyWithImpl<$Res, $Val extends SpecimenContainer>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SpecimenContainer
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2706,6 +2781,8 @@ class _$SpecimenContainerCopyWithImpl<$Res, $Val extends SpecimenContainer>
     ) as $Val);
   }
 
+  /// Create a copy of SpecimenContainer
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get type {
@@ -2718,6 +2795,8 @@ class _$SpecimenContainerCopyWithImpl<$Res, $Val extends SpecimenContainer>
     });
   }
 
+  /// Create a copy of SpecimenContainer
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get capacity {
@@ -2730,6 +2809,8 @@ class _$SpecimenContainerCopyWithImpl<$Res, $Val extends SpecimenContainer>
     });
   }
 
+  /// Create a copy of SpecimenContainer
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get specimenQuantity {
@@ -2742,6 +2823,8 @@ class _$SpecimenContainerCopyWithImpl<$Res, $Val extends SpecimenContainer>
     });
   }
 
+  /// Create a copy of SpecimenContainer
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get additiveCodeableConcept {
@@ -2755,6 +2838,8 @@ class _$SpecimenContainerCopyWithImpl<$Res, $Val extends SpecimenContainer>
     });
   }
 
+  /// Create a copy of SpecimenContainer
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get additiveReference {
@@ -2809,6 +2894,8 @@ class __$$SpecimenContainerImplCopyWithImpl<$Res>
       $Res Function(_$SpecimenContainerImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SpecimenContainer
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2876,7 +2963,7 @@ class __$$SpecimenContainerImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SpecimenContainerImpl extends _SpecimenContainer {
-  const _$SpecimenContainerImpl(
+  _$SpecimenContainerImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3048,7 +3135,7 @@ class _$SpecimenContainerImpl extends _SpecimenContainer {
                 other.additiveReference == additiveReference));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3064,7 +3151,9 @@ class _$SpecimenContainerImpl extends _SpecimenContainer {
       additiveCodeableConcept,
       additiveReference);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SpecimenContainer
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SpecimenContainerImplCopyWith<_$SpecimenContainerImpl> get copyWith =>
@@ -3080,7 +3169,7 @@ class _$SpecimenContainerImpl extends _SpecimenContainer {
 }
 
 abstract class _SpecimenContainer extends SpecimenContainer {
-  const factory _SpecimenContainer(
+  factory _SpecimenContainer(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3092,17 +3181,15 @@ abstract class _SpecimenContainer extends SpecimenContainer {
       final Quantity? specimenQuantity,
       final CodeableConcept? additiveCodeableConcept,
       final Reference? additiveReference}) = _$SpecimenContainerImpl;
-  const _SpecimenContainer._() : super._();
+  _SpecimenContainer._() : super._();
 
   factory _SpecimenContainer.fromJson(Map<String, dynamic> json) =
       _$SpecimenContainerImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3110,9 +3197,9 @@ abstract class _SpecimenContainer extends SpecimenContainer {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3127,50 +3214,54 @@ abstract class _SpecimenContainer extends SpecimenContainer {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] Id for container. There may be multiple; a manufacturer's
   /// bar code, lab assigned identifier, etc. The container ID may differ from
   ///  the specimen id in some circumstances.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [description] Textual description of the container.
-  String? get description;
   @override
+  String? get description;
 
   /// [descriptionElement] Extensions for description
+  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
-  @override
 
   /// [type] The type of container associated with the specimen (e.g. slide,
   ///  aliquot, etc.).
-  CodeableConcept? get type;
   @override
+  CodeableConcept? get type;
 
   /// [capacity] The capacity (volume or other measure) the container may
   ///  contain.
-  Quantity? get capacity;
   @override
+  Quantity? get capacity;
 
   /// [specimenQuantity] The quantity of specimen in the container; may be
   /// volume, dimensions, or other appropriate measurements, depending on the
   ///  specimen type.
-  Quantity? get specimenQuantity;
   @override
+  Quantity? get specimenQuantity;
 
   /// [additiveCodeableConcept] Introduced substance to preserve, maintain or
   ///  enhance the specimen. Examples: Formalin, Citrate, EDTA.
-  CodeableConcept? get additiveCodeableConcept;
   @override
+  CodeableConcept? get additiveCodeableConcept;
 
   /// [additiveReference] Introduced substance to preserve, maintain or enhance
   ///  the specimen. Examples: Formalin, Citrate, EDTA.
-  Reference? get additiveReference;
   @override
-  @JsonKey(ignore: true)
+  Reference? get additiveReference;
+
+  /// Create a copy of SpecimenContainer
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SpecimenContainerImplCopyWith<_$SpecimenContainerImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

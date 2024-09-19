@@ -258,8 +258,12 @@ mixin _$Questionnaire {
   ///  part of the questionnaire.
   List<QuestionnaireItem>? get item => throw _privateConstructorUsedError;
 
+  /// Serializes this Questionnaire to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Questionnaire
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $QuestionnaireCopyWith<Questionnaire> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -335,6 +339,8 @@ class _$QuestionnaireCopyWithImpl<$Res, $Val extends Questionnaire>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Questionnaire
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -578,6 +584,8 @@ class _$QuestionnaireCopyWithImpl<$Res, $Val extends Questionnaire>
     ) as $Val);
   }
 
+  /// Create a copy of Questionnaire
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -590,6 +598,8 @@ class _$QuestionnaireCopyWithImpl<$Res, $Val extends Questionnaire>
     });
   }
 
+  /// Create a copy of Questionnaire
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -602,6 +612,8 @@ class _$QuestionnaireCopyWithImpl<$Res, $Val extends Questionnaire>
     });
   }
 
+  /// Create a copy of Questionnaire
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get effectivePeriod {
@@ -689,6 +701,8 @@ class __$$QuestionnaireImplCopyWithImpl<$Res>
       _$QuestionnaireImpl _value, $Res Function(_$QuestionnaireImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Questionnaire
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -936,7 +950,7 @@ class __$$QuestionnaireImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$QuestionnaireImpl extends _Questionnaire {
-  const _$QuestionnaireImpl(
+  _$QuestionnaireImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Questionnaire)
       this.resourceType = R4ResourceType.Questionnaire,
       this.id,
@@ -1516,7 +1530,7 @@ class _$QuestionnaireImpl extends _Questionnaire {
             const DeepCollectionEquality().equals(other._item, _item));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1569,7 +1583,9 @@ class _$QuestionnaireImpl extends _Questionnaire {
         const DeepCollectionEquality().hash(_item)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Questionnaire
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$QuestionnaireImplCopyWith<_$QuestionnaireImpl> get copyWith =>
@@ -1584,7 +1600,7 @@ class _$QuestionnaireImpl extends _Questionnaire {
 }
 
 abstract class _Questionnaire extends Questionnaire {
-  const factory _Questionnaire(
+  factory _Questionnaire(
       {@JsonKey(unknownEnumValue: R4ResourceType.Questionnaire)
       final R4ResourceType resourceType,
       final String? id,
@@ -1638,7 +1654,7 @@ abstract class _Questionnaire extends Questionnaire {
       final Period? effectivePeriod,
       final List<Coding>? code,
       final List<QuestionnaireItem>? item}) = _$QuestionnaireImpl;
-  const _Questionnaire._() : super._();
+  _Questionnaire._() : super._();
 
   factory _Questionnaire.fromJson(Map<String, dynamic> json) =
       _$QuestionnaireImpl.fromJson;
@@ -1646,39 +1662,38 @@ abstract class _Questionnaire extends Questionnaire {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.Questionnaire)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1686,15 +1701,15 @@ abstract class _Questionnaire extends Questionnaire {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1702,9 +1717,9 @@ abstract class _Questionnaire extends Questionnaire {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1719,8 +1734,8 @@ abstract class _Questionnaire extends Questionnaire {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [url] An absolute URI that is used to identify this questionnaire when it
   /// is referenced in a specification, model, design or an instance; also
@@ -1729,19 +1744,19 @@ abstract class _Questionnaire extends Questionnaire {
   /// questionnaire is (or will be) published. This URL can be the target of a
   /// canonical reference. It SHALL remain the same when the questionnaire is
   ///  stored on different servers.
-  FhirUri? get url;
   @override
+  FhirUri? get url;
 
   /// [urlElement] Extensions for url
+  @override
   @JsonKey(name: '_url')
   PrimitiveElement? get urlElement;
-  @override
 
   /// [identifier] A formal identifier that is used to identify this
   /// questionnaire when it is represented in other formats, or referenced in a
   ///  specification, model, design or an instance.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [version] The identifier that is used to identify this version of the
   /// questionnaire when it is referenced in a specification, model, design or
@@ -1750,178 +1765,182 @@ abstract class _Questionnaire extends Questionnaire {
   /// timestamp (e.g. yyyymmdd) if a managed version is not available. There is
   /// also no expectation that versions can be placed in a lexicographical
   ///  sequence.
-  String? get version;
   @override
+  String? get version;
 
   /// [versionElement] Extensions for version
+  @override
   @JsonKey(name: '_version')
   PrimitiveElement? get versionElement;
-  @override
 
   /// [name] A natural language name identifying the questionnaire. This name
   /// should be usable as an identifier for the module by machine processing
   ///  applications such as code generation.
-  String? get name;
   @override
+  String? get name;
 
   /// [nameElement] Extensions for name
+  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
-  @override
 
   /// [title] A short, descriptive, user-friendly title for the questionnaire.
-  String? get title;
   @override
+  String? get title;
 
   /// [titleElement] Extensions for title
+  @override
   @JsonKey(name: '_title')
   PrimitiveElement? get titleElement;
-  @override
 
   /// [derivedFrom] The URL of a Questionnaire that this Questionnaire is based
   ///  on.
-  List<FhirCanonical>? get derivedFrom;
   @override
+  List<FhirCanonical>? get derivedFrom;
 
   /// [status] The status of this questionnaire. Enables tracking the
   ///  life-cycle of the content.
-  FhirCode? get status;
   @override
+  FhirCode? get status;
 
   /// [statusElement] Extensions for status
+  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
-  @override
 
   /// [experimental] A Boolean value to indicate that this questionnaire is
   /// authored for testing purposes (or education/evaluation/marketing) and is
   ///  not intended to be used for genuine usage.
-  FhirBoolean? get experimental;
   @override
+  FhirBoolean? get experimental;
 
   /// [experimentalElement] Extensions for experimental
+  @override
   @JsonKey(name: '_experimental')
   PrimitiveElement? get experimentalElement;
-  @override
 
   /// [subjectType] The types of subjects that can be the subject of responses
   ///  created for the questionnaire.
-  List<FhirCode>? get subjectType;
   @override
+  List<FhirCode>? get subjectType;
 
   /// [subjectTypeElement] Extensions for subjectType
+  @override
   @JsonKey(name: '_subjectType')
   List<PrimitiveElement>? get subjectTypeElement;
-  @override
 
   /// [date] The date  (and optionally time) when the questionnaire was
   /// published. The date must change when the business version changes and it
   /// must change if the status code changes. In addition, it should change when
   ///  the substantive content of the questionnaire changes.
-  FhirDateTime? get date;
   @override
+  FhirDateTime? get date;
 
   /// [dateElement] Extensions for date
+  @override
   @JsonKey(name: '_date')
   PrimitiveElement? get dateElement;
-  @override
 
   /// [publisher] The name of the organization or individual that published the
   ///  questionnaire.
-  String? get publisher;
   @override
+  String? get publisher;
 
   /// [publisherElement] Extensions for publisher
+  @override
   @JsonKey(name: '_publisher')
   PrimitiveElement? get publisherElement;
-  @override
 
   /// [contact] Contact details to assist a user in finding and communicating
   ///  with the publisher.
-  List<ContactDetail>? get contact;
   @override
+  List<ContactDetail>? get contact;
 
   /// [description] A free text natural language description of the
   ///  questionnaire from a consumer's perspective.
-  FhirMarkdown? get description;
   @override
+  FhirMarkdown? get description;
 
   /// [descriptionElement] Extensions for description
+  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
-  @override
 
   /// [useContext] The content was developed with a focus and intent of
   /// supporting the contexts that are listed. These contexts may be general
   /// categories (gender, age, ...) or may be references to specific programs
   /// (insurance plans, studies, ...) and may be used to assist with indexing
   ///  and searching for appropriate questionnaire instances.
-  List<UsageContext>? get useContext;
   @override
+  List<UsageContext>? get useContext;
 
   /// [jurisdiction] A legal or geographic region in which the questionnaire is
   ///  intended to be used.
-  List<CodeableConcept>? get jurisdiction;
   @override
+  List<CodeableConcept>? get jurisdiction;
 
   /// [purpose] Explanation of why this questionnaire is needed and why it has
   ///  been designed as it has.
-  FhirMarkdown? get purpose;
   @override
+  FhirMarkdown? get purpose;
 
   /// [purposeElement] Extensions for purpose
+  @override
   @JsonKey(name: '_purpose')
   PrimitiveElement? get purposeElement;
-  @override
 
   /// [copyright] A copyright statement relating to the questionnaire and/or
   /// its contents. Copyright statements are generally legal restrictions on the
   ///  use and publishing of the questionnaire.
-  FhirMarkdown? get copyright;
   @override
+  FhirMarkdown? get copyright;
 
   /// [copyrightElement] Extensions for copyright
+  @override
   @JsonKey(name: '_copyright')
   PrimitiveElement? get copyrightElement;
-  @override
 
   /// [approvalDate] The date on which the resource content was approved by the
   /// publisher. Approval happens once when the content is officially approved
   ///  for usage.
-  FhirDate? get approvalDate;
   @override
+  FhirDate? get approvalDate;
 
   /// [approvalDateElement] Extensions for approvalDate
+  @override
   @JsonKey(name: '_approvalDate')
   PrimitiveElement? get approvalDateElement;
-  @override
 
   /// [lastReviewDate] The date on which the resource content was last
   /// reviewed. Review happens periodically after approval but does not change
   ///  the original approval date.
-  FhirDate? get lastReviewDate;
   @override
+  FhirDate? get lastReviewDate;
 
   /// [lastReviewDateElement] Extensions for lastReviewDate
+  @override
   @JsonKey(name: '_lastReviewDate')
   PrimitiveElement? get lastReviewDateElement;
-  @override
 
   /// [effectivePeriod] The period during which the questionnaire content was
   ///  or is planned to be in active use.
-  Period? get effectivePeriod;
   @override
+  Period? get effectivePeriod;
 
   /// [code] An identifier for this question or group of questions in a
   ///  particular terminology such as LOINC.
-  List<Coding>? get code;
   @override
+  List<Coding>? get code;
 
   /// [item] A particular question, question grouping or display text that is
   ///  part of the questionnaire.
-  List<QuestionnaireItem>? get item;
   @override
-  @JsonKey(ignore: true)
+  List<QuestionnaireItem>? get item;
+
+  /// Create a copy of Questionnaire
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$QuestionnaireImplCopyWith<_$QuestionnaireImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2073,8 +2092,12 @@ mixin _$QuestionnaireItem {
   ///  or group.
   List<QuestionnaireItem>? get item => throw _privateConstructorUsedError;
 
+  /// Serializes this QuestionnaireItem to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of QuestionnaireItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $QuestionnaireItemCopyWith<QuestionnaireItem> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2127,6 +2150,8 @@ class _$QuestionnaireItemCopyWithImpl<$Res, $Val extends QuestionnaireItem>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of QuestionnaireItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2329,6 +2354,8 @@ class __$$QuestionnaireItemImplCopyWithImpl<$Res>
       $Res Function(_$QuestionnaireItemImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of QuestionnaireItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2486,7 +2513,7 @@ class __$$QuestionnaireItemImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$QuestionnaireItemImpl extends _QuestionnaireItem {
-  const _$QuestionnaireItemImpl(
+  _$QuestionnaireItemImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2842,7 +2869,7 @@ class _$QuestionnaireItemImpl extends _QuestionnaireItem {
             const DeepCollectionEquality().equals(other._item, _item));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -2877,7 +2904,9 @@ class _$QuestionnaireItemImpl extends _QuestionnaireItem {
         const DeepCollectionEquality().hash(_item)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of QuestionnaireItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$QuestionnaireItemImplCopyWith<_$QuestionnaireItemImpl> get copyWith =>
@@ -2893,7 +2922,7 @@ class _$QuestionnaireItemImpl extends _QuestionnaireItem {
 }
 
 abstract class _QuestionnaireItem extends QuestionnaireItem {
-  const factory _QuestionnaireItem(
+  factory _QuestionnaireItem(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2924,17 +2953,15 @@ abstract class _QuestionnaireItem extends QuestionnaireItem {
       final List<QuestionnaireAnswerOption>? answerOption,
       final List<QuestionnaireInitial>? initial,
       final List<QuestionnaireItem>? item}) = _$QuestionnaireItemImpl;
-  const _QuestionnaireItem._() : super._();
+  _QuestionnaireItem._() : super._();
 
   factory _QuestionnaireItem.fromJson(Map<String, dynamic> json) =
       _$QuestionnaireItemImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2942,9 +2969,9 @@ abstract class _QuestionnaireItem extends QuestionnaireItem {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2959,144 +2986,148 @@ abstract class _QuestionnaireItem extends QuestionnaireItem {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [linkId] An identifier that is unique within the Questionnaire allowing
   ///  linkage to the equivalent item in a QuestionnaireResponse resource.
-  String get linkId;
   @override
+  String get linkId;
 
   /// [linkIdElement] Extensions for linkId
+  @override
   @JsonKey(name: '_linkId')
   PrimitiveElement? get linkIdElement;
-  @override
 
   /// [definition] This element is a URI that refers to an
-  FhirUri? get definition;
   @override
+  FhirUri? get definition;
 
   /// [definitionElement] Extensions for definition
+  @override
   @JsonKey(name: '_definition')
   PrimitiveElement? get definitionElement;
-  @override
 
   /// [code] A terminology code that corresponds to this group or question
   ///  (e.g. a code from LOINC, which defines many questions and answers).
-  List<Coding>? get code;
   @override
+  List<Coding>? get code;
 
   /// [prefix] A short label for a particular group, question or set of display
   /// text within the questionnaire used for reference by the individual
   ///  completing the questionnaire.
-  String? get prefix;
   @override
+  String? get prefix;
 
   /// [prefixElement] Extensions for prefix
+  @override
   @JsonKey(name: '_prefix')
   PrimitiveElement? get prefixElement;
-  @override
 
   /// [text] The name of a section, the text of a question or text content for
   ///  a display item.
-  String? get text;
   @override
+  String? get text;
 
   /// [textElement] Extensions for text
+  @override
   @JsonKey(name: '_text')
   PrimitiveElement? get textElement;
-  @override
 
   /// [type] The type of questionnaire item this is - whether text for display,
   /// a grouping of other items or a particular type of data to be captured
   ///  (string, integer, coded choice, etc.).
-  FhirCode get type;
   @override
+  FhirCode get type;
 
   /// [typeElement] Extensions for type
+  @override
   @JsonKey(name: '_type')
   PrimitiveElement? get typeElement;
-  @override
 
   /// [enableWhen] A constraint indicating that this item should only be
   /// enabled (displayed/allow answers to be captured) when the specified
   ///  condition is true.
-  List<QuestionnaireEnableWhen>? get enableWhen;
   @override
+  List<QuestionnaireEnableWhen>? get enableWhen;
 
   /// [enableBehavior] Controls how multiple enableWhen values are interpreted
   ///  -  whether all or any must be true.
-  FhirCode? get enableBehavior;
   @override
+  FhirCode? get enableBehavior;
 
   /// [enableBehaviorElement] Extensions for enableBehavior
+  @override
   @JsonKey(name: '_enableBehavior')
   PrimitiveElement? get enableBehaviorElement;
-  @override
 
   /// [required] An indication, if true, that the item must be present in a
   /// "completed" QuestionnaireResponse.  If false, the item may be skipped when
   ///  answering the questionnaire.
+  @override
   @JsonKey(name: 'required')
   FhirBoolean? get required_;
-  @override
 
   /// [requiredElement] Extensions for required
+  @override
   @JsonKey(name: '_required')
   PrimitiveElement? get requiredElement;
-  @override
 
   /// [repeats] An indication, if true, that the item may occur multiple times
   /// in the response, collecting multiple answers for questions or multiple
   ///  sets of answers for groups.
-  FhirBoolean? get repeats;
   @override
+  FhirBoolean? get repeats;
 
   /// [repeatsElement] Extensions for repeats
+  @override
   @JsonKey(name: '_repeats')
   PrimitiveElement? get repeatsElement;
-  @override
 
   /// [readOnly] An indication, when true, that the value cannot be changed by
   ///  a human respondent to the Questionnaire.
-  FhirBoolean? get readOnly;
   @override
+  FhirBoolean? get readOnly;
 
   /// [readOnlyElement] Extensions for readOnly
+  @override
   @JsonKey(name: '_readOnly')
   PrimitiveElement? get readOnlyElement;
-  @override
 
   /// [maxLength] The maximum number of characters that are permitted in the
   ///  answer to be considered a "valid" QuestionnaireResponse.
-  FhirInteger? get maxLength;
   @override
+  FhirInteger? get maxLength;
 
   /// [maxLengthElement] Extensions for maxLength
+  @override
   @JsonKey(name: '_maxLength')
   PrimitiveElement? get maxLengthElement;
-  @override
 
   /// [answerValueSet] A reference to a value set containing a list of codes
   ///  representing permitted answers for a "choice" or "open-choice" question.
-  FhirCanonical? get answerValueSet;
   @override
+  FhirCanonical? get answerValueSet;
 
   /// [answerOption] One of the permitted answers for a "choice" or
   ///  "open-choice" question.
-  List<QuestionnaireAnswerOption>? get answerOption;
   @override
+  List<QuestionnaireAnswerOption>? get answerOption;
 
   /// [initial] One or more values that should be pre-populated in the answer
   ///  when initially rendering the questionnaire for user input.
-  List<QuestionnaireInitial>? get initial;
   @override
+  List<QuestionnaireInitial>? get initial;
 
   /// [item] Text, questions and other groups to be nested beneath a question
   ///  or group.
-  List<QuestionnaireItem>? get item;
   @override
-  @JsonKey(ignore: true)
+  List<QuestionnaireItem>? get item;
+
+  /// Create a copy of QuestionnaireItem
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$QuestionnaireItemImplCopyWith<_$QuestionnaireItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3226,8 +3257,12 @@ mixin _$QuestionnaireEnableWhen {
   ///  the specified operator in order for the item to be enabled.
   Reference? get answerReference => throw _privateConstructorUsedError;
 
+  /// Serializes this QuestionnaireEnableWhen to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of QuestionnaireEnableWhen
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $QuestionnaireEnableWhenCopyWith<QuestionnaireEnableWhen> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3280,6 +3315,8 @@ class _$QuestionnaireEnableWhenCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of QuestionnaireEnableWhen
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3408,6 +3445,8 @@ class _$QuestionnaireEnableWhenCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of QuestionnaireEnableWhen
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodingCopyWith<$Res>? get answerCoding {
@@ -3420,6 +3459,8 @@ class _$QuestionnaireEnableWhenCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of QuestionnaireEnableWhen
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get answerQuantity {
@@ -3432,6 +3473,8 @@ class _$QuestionnaireEnableWhenCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of QuestionnaireEnableWhen
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get answerReference {
@@ -3498,6 +3541,8 @@ class __$$QuestionnaireEnableWhenImplCopyWithImpl<$Res>
       $Res Function(_$QuestionnaireEnableWhenImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of QuestionnaireEnableWhen
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3630,7 +3675,7 @@ class __$$QuestionnaireEnableWhenImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$QuestionnaireEnableWhenImpl extends _QuestionnaireEnableWhen {
-  const _$QuestionnaireEnableWhenImpl(
+  _$QuestionnaireEnableWhenImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3893,7 +3938,7 @@ class _$QuestionnaireEnableWhenImpl extends _QuestionnaireEnableWhen {
                 other.answerReference == answerReference));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -3923,7 +3968,9 @@ class _$QuestionnaireEnableWhenImpl extends _QuestionnaireEnableWhen {
         answerReference
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of QuestionnaireEnableWhen
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$QuestionnaireEnableWhenImplCopyWith<_$QuestionnaireEnableWhenImpl>
@@ -3939,7 +3986,7 @@ class _$QuestionnaireEnableWhenImpl extends _QuestionnaireEnableWhen {
 }
 
 abstract class _QuestionnaireEnableWhen extends QuestionnaireEnableWhen {
-  const factory _QuestionnaireEnableWhen(
+  factory _QuestionnaireEnableWhen(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3969,17 +4016,15 @@ abstract class _QuestionnaireEnableWhen extends QuestionnaireEnableWhen {
       final Coding? answerCoding,
       final Quantity? answerQuantity,
       final Reference? answerReference}) = _$QuestionnaireEnableWhenImpl;
-  const _QuestionnaireEnableWhen._() : super._();
+  _QuestionnaireEnableWhen._() : super._();
 
   factory _QuestionnaireEnableWhen.fromJson(Map<String, dynamic> json) =
       _$QuestionnaireEnableWhenImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3987,9 +4032,9 @@ abstract class _QuestionnaireEnableWhen extends QuestionnaireEnableWhen {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -4004,114 +4049,118 @@ abstract class _QuestionnaireEnableWhen extends QuestionnaireEnableWhen {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [question] The linkId for the question whose answer (or lack of answer)
   ///  governs whether this item is enabled.
-  String? get question;
   @override
+  String? get question;
 
   /// [questionElement] Extensions for question
+  @override
   @JsonKey(name: '_question')
   PrimitiveElement? get questionElement;
-  @override
 
   /// [operator] Specifies the criteria by which the question is enabled.
+  @override
   @JsonKey(name: 'operator')
   FhirCode? get operator_;
-  @override
 
   /// [operatorElement] Extensions for operator
+  @override
   @JsonKey(name: '_operator')
   PrimitiveElement? get operatorElement;
-  @override
 
   /// [answerBoolean] A value that the referenced question is tested using the
   ///  specified operator in order for the item to be enabled.
-  FhirBoolean? get answerBoolean;
   @override
+  FhirBoolean? get answerBoolean;
 
   /// [answerBooleanElement] Extensions for answerBoolean
+  @override
   @JsonKey(name: '_answerBoolean')
   PrimitiveElement? get answerBooleanElement;
-  @override
 
   /// [answerDecimal] A value that the referenced question is tested using the
   ///  specified operator in order for the item to be enabled.
-  FhirDecimal? get answerDecimal;
   @override
+  FhirDecimal? get answerDecimal;
 
   /// [answerDecimalElement] Extensions for answerDecimal
+  @override
   @JsonKey(name: '_answerDecimal')
   PrimitiveElement? get answerDecimalElement;
-  @override
 
   /// [answerInteger] A value that the referenced question is tested using the
   ///  specified operator in order for the item to be enabled.
-  FhirInteger? get answerInteger;
   @override
+  FhirInteger? get answerInteger;
 
   /// [answerIntegerElement] Extensions for answerInteger
+  @override
   @JsonKey(name: '_answerInteger')
   PrimitiveElement? get answerIntegerElement;
-  @override
 
   /// [answerDate] A value that the referenced question is tested using the
   ///  specified operator in order for the item to be enabled.
-  FhirDate? get answerDate;
   @override
+  FhirDate? get answerDate;
 
   /// [answerDateElement] Extensions for answerDate
+  @override
   @JsonKey(name: '_answerDate')
   PrimitiveElement? get answerDateElement;
-  @override
 
   /// [answerDateTime] A value that the referenced question is tested using the
   ///  specified operator in order for the item to be enabled.
-  FhirDateTime? get answerDateTime;
   @override
+  FhirDateTime? get answerDateTime;
 
   /// [answerDateTimeElement] Extensions for answerDateTime
+  @override
   @JsonKey(name: '_answerDateTime')
   PrimitiveElement? get answerDateTimeElement;
-  @override
 
   /// [answerTime] A value that the referenced question is tested using the
   ///  specified operator in order for the item to be enabled.
-  FhirTime? get answerTime;
   @override
+  FhirTime? get answerTime;
 
   /// [answerTimeElement] Extensions for answerTime
+  @override
   @JsonKey(name: '_answerTime')
   PrimitiveElement? get answerTimeElement;
-  @override
 
   /// [answerString] A value that the referenced question is tested using the
   ///  specified operator in order for the item to be enabled.
-  String? get answerString;
   @override
+  String? get answerString;
 
   /// [answerStringElement] Extensions for answerString
+  @override
   @JsonKey(name: '_answerString')
   PrimitiveElement? get answerStringElement;
-  @override
 
   /// [answerCoding] A value that the referenced question is tested using the
   ///  specified operator in order for the item to be enabled.
-  Coding? get answerCoding;
   @override
+  Coding? get answerCoding;
 
   /// [answerQuantity] A value that the referenced question is tested using the
   ///  specified operator in order for the item to be enabled.
-  Quantity? get answerQuantity;
   @override
+  Quantity? get answerQuantity;
 
   /// [answerReference] A value that the referenced question is tested using
   ///  the specified operator in order for the item to be enabled.
-  Reference? get answerReference;
   @override
-  @JsonKey(ignore: true)
+  Reference? get answerReference;
+
+  /// Create a copy of QuestionnaireEnableWhen
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$QuestionnaireEnableWhenImplCopyWith<_$QuestionnaireEnableWhenImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -4203,8 +4252,12 @@ mixin _$QuestionnaireAnswerOption {
   PrimitiveElement? get initialSelectedElement =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this QuestionnaireAnswerOption to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of QuestionnaireAnswerOption
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $QuestionnaireAnswerOptionCopyWith<QuestionnaireAnswerOption> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4248,6 +4301,8 @@ class _$QuestionnaireAnswerOptionCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of QuestionnaireAnswerOption
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4331,6 +4386,8 @@ class _$QuestionnaireAnswerOptionCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of QuestionnaireAnswerOption
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodingCopyWith<$Res>? get valueCoding {
@@ -4343,6 +4400,8 @@ class _$QuestionnaireAnswerOptionCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of QuestionnaireAnswerOption
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get valueReference {
@@ -4399,6 +4458,8 @@ class __$$QuestionnaireAnswerOptionImplCopyWithImpl<$Res>
       $Res Function(_$QuestionnaireAnswerOptionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of QuestionnaireAnswerOption
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4486,7 +4547,7 @@ class __$$QuestionnaireAnswerOptionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$QuestionnaireAnswerOptionImpl extends _QuestionnaireAnswerOption {
-  const _$QuestionnaireAnswerOptionImpl(
+  _$QuestionnaireAnswerOptionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4677,7 +4738,7 @@ class _$QuestionnaireAnswerOptionImpl extends _QuestionnaireAnswerOption {
                 other.initialSelectedElement == initialSelectedElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -4697,7 +4758,9 @@ class _$QuestionnaireAnswerOptionImpl extends _QuestionnaireAnswerOption {
       initialSelected,
       initialSelectedElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of QuestionnaireAnswerOption
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$QuestionnaireAnswerOptionImplCopyWith<_$QuestionnaireAnswerOptionImpl>
@@ -4713,7 +4776,7 @@ class _$QuestionnaireAnswerOptionImpl extends _QuestionnaireAnswerOption {
 }
 
 abstract class _QuestionnaireAnswerOption extends QuestionnaireAnswerOption {
-  const factory _QuestionnaireAnswerOption(
+  factory _QuestionnaireAnswerOption(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4732,17 +4795,15 @@ abstract class _QuestionnaireAnswerOption extends QuestionnaireAnswerOption {
       @JsonKey(name: '_initialSelected')
       final PrimitiveElement?
           initialSelectedElement}) = _$QuestionnaireAnswerOptionImpl;
-  const _QuestionnaireAnswerOption._() : super._();
+  _QuestionnaireAnswerOption._() : super._();
 
   factory _QuestionnaireAnswerOption.fromJson(Map<String, dynamic> json) =
       _$QuestionnaireAnswerOptionImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -4750,9 +4811,9 @@ abstract class _QuestionnaireAnswerOption extends QuestionnaireAnswerOption {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -4767,69 +4828,73 @@ abstract class _QuestionnaireAnswerOption extends QuestionnaireAnswerOption {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [valueInteger] A potential answer that's allowed as the answer to this
   ///  question.
-  FhirInteger? get valueInteger;
   @override
+  FhirInteger? get valueInteger;
 
   /// [valueIntegerElement] Extensions for valueInteger
+  @override
   @JsonKey(name: '_valueInteger')
   PrimitiveElement? get valueIntegerElement;
-  @override
 
   /// [valueDate] A potential answer that's allowed as the answer to this
   ///  question.
-  FhirDate? get valueDate;
   @override
+  FhirDate? get valueDate;
 
   /// [valueDateElement] Extensions for valueDate
+  @override
   @JsonKey(name: '_valueDate')
   PrimitiveElement? get valueDateElement;
-  @override
 
   /// [valueTime] A potential answer that's allowed as the answer to this
   ///  question.
-  FhirTime? get valueTime;
   @override
+  FhirTime? get valueTime;
 
   /// [valueTimeElement] Extensions for valueTime
+  @override
   @JsonKey(name: '_valueTime')
   PrimitiveElement? get valueTimeElement;
-  @override
 
   /// [valueString] A potential answer that's allowed as the answer to this
   ///  question.
-  String? get valueString;
   @override
+  String? get valueString;
 
   /// [valueStringElement] Extensions for valueString
+  @override
   @JsonKey(name: '_valueString')
   PrimitiveElement? get valueStringElement;
-  @override
 
   /// [valueCoding] A potential answer that's allowed as the answer to this
   ///  question.
-  Coding? get valueCoding;
   @override
+  Coding? get valueCoding;
 
   /// [valueReference] A potential answer that's allowed as the answer to this
   ///  question.
-  Reference? get valueReference;
   @override
+  Reference? get valueReference;
 
   /// [initialSelected] Indicates whether the answer value is selected when the
   ///  list of possible answers is initially shown.
-  FhirBoolean? get initialSelected;
   @override
+  FhirBoolean? get initialSelected;
 
   /// [initialSelectedElement] Extensions for initialSelected
+  @override
   @JsonKey(name: '_initialSelected')
   PrimitiveElement? get initialSelectedElement;
+
+  /// Create a copy of QuestionnaireAnswerOption
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$QuestionnaireAnswerOptionImplCopyWith<_$QuestionnaireAnswerOptionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -4942,8 +5007,12 @@ mixin _$QuestionnaireInitial {
   /// [valueReference] The actual value to for an initial answer.
   Reference? get valueReference => throw _privateConstructorUsedError;
 
+  /// Serializes this QuestionnaireInitial to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of QuestionnaireInitial
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $QuestionnaireInitialCopyWith<QuestionnaireInitial> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4996,6 +5065,8 @@ class _$QuestionnaireInitialCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of QuestionnaireInitial
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5119,6 +5190,8 @@ class _$QuestionnaireInitialCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of QuestionnaireInitial
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AttachmentCopyWith<$Res>? get valueAttachment {
@@ -5131,6 +5204,8 @@ class _$QuestionnaireInitialCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of QuestionnaireInitial
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodingCopyWith<$Res>? get valueCoding {
@@ -5143,6 +5218,8 @@ class _$QuestionnaireInitialCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of QuestionnaireInitial
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get valueQuantity {
@@ -5155,6 +5232,8 @@ class _$QuestionnaireInitialCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of QuestionnaireInitial
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get valueReference {
@@ -5219,6 +5298,8 @@ class __$$QuestionnaireInitialImplCopyWithImpl<$Res>
       $Res Function(_$QuestionnaireInitialImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of QuestionnaireInitial
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5346,7 +5427,7 @@ class __$$QuestionnaireInitialImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$QuestionnaireInitialImpl extends _QuestionnaireInitial {
-  const _$QuestionnaireInitialImpl(
+  _$QuestionnaireInitialImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5589,7 +5670,7 @@ class _$QuestionnaireInitialImpl extends _QuestionnaireInitial {
                 other.valueReference == valueReference));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -5618,7 +5699,9 @@ class _$QuestionnaireInitialImpl extends _QuestionnaireInitial {
         valueReference
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of QuestionnaireInitial
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$QuestionnaireInitialImplCopyWith<_$QuestionnaireInitialImpl>
@@ -5635,7 +5718,7 @@ class _$QuestionnaireInitialImpl extends _QuestionnaireInitial {
 }
 
 abstract class _QuestionnaireInitial extends QuestionnaireInitial {
-  const factory _QuestionnaireInitial(
+  factory _QuestionnaireInitial(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5663,17 +5746,15 @@ abstract class _QuestionnaireInitial extends QuestionnaireInitial {
       final Coding? valueCoding,
       final Quantity? valueQuantity,
       final Reference? valueReference}) = _$QuestionnaireInitialImpl;
-  const _QuestionnaireInitial._() : super._();
+  _QuestionnaireInitial._() : super._();
 
   factory _QuestionnaireInitial.fromJson(Map<String, dynamic> json) =
       _$QuestionnaireInitialImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -5681,9 +5762,9 @@ abstract class _QuestionnaireInitial extends QuestionnaireInitial {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -5698,97 +5779,101 @@ abstract class _QuestionnaireInitial extends QuestionnaireInitial {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [valueBoolean] The actual value to for an initial answer.
-  FhirBoolean? get valueBoolean;
   @override
+  FhirBoolean? get valueBoolean;
 
   /// [valueBooleanElement] Extensions for valueBoolean
+  @override
   @JsonKey(name: '_valueBoolean')
   PrimitiveElement? get valueBooleanElement;
-  @override
 
   /// [valueDecimal] The actual value to for an initial answer.
-  FhirDecimal? get valueDecimal;
   @override
+  FhirDecimal? get valueDecimal;
 
   /// [valueDecimalElement] Extensions for valueDecimal
+  @override
   @JsonKey(name: '_valueDecimal')
   PrimitiveElement? get valueDecimalElement;
-  @override
 
   /// [valueInteger] The actual value to for an initial answer.
-  FhirInteger? get valueInteger;
   @override
+  FhirInteger? get valueInteger;
 
   /// [valueIntegerElement] Extensions for valueInteger
+  @override
   @JsonKey(name: '_valueInteger')
   PrimitiveElement? get valueIntegerElement;
-  @override
 
   /// [valueDate] The actual value to for an initial answer.
-  FhirDate? get valueDate;
   @override
+  FhirDate? get valueDate;
 
   /// [valueDateElement] Extensions for valueDate
+  @override
   @JsonKey(name: '_valueDate')
   PrimitiveElement? get valueDateElement;
-  @override
 
   /// [valueDateTime] The actual value to for an initial answer.
-  FhirDateTime? get valueDateTime;
   @override
+  FhirDateTime? get valueDateTime;
 
   /// [valueDateTimeElement] Extensions for valueDateTime
+  @override
   @JsonKey(name: '_valueDateTime')
   PrimitiveElement? get valueDateTimeElement;
-  @override
 
   /// [valueTime] The actual value to for an initial answer.
-  FhirTime? get valueTime;
   @override
+  FhirTime? get valueTime;
 
   /// [valueTimeElement] Extensions for valueTime
+  @override
   @JsonKey(name: '_valueTime')
   PrimitiveElement? get valueTimeElement;
-  @override
 
   /// [valueString] The actual value to for an initial answer.
-  String? get valueString;
   @override
+  String? get valueString;
 
   /// [valueStringElement] Extensions for valueString
+  @override
   @JsonKey(name: '_valueString')
   PrimitiveElement? get valueStringElement;
-  @override
 
   /// [valueUri] The actual value to for an initial answer.
-  FhirUri? get valueUri;
   @override
+  FhirUri? get valueUri;
 
   /// [valueUriElement] Extensions for valueUri
+  @override
   @JsonKey(name: '_valueUri')
   PrimitiveElement? get valueUriElement;
-  @override
 
   /// [valueAttachment] The actual value to for an initial answer.
-  Attachment? get valueAttachment;
   @override
+  Attachment? get valueAttachment;
 
   /// [valueCoding] The actual value to for an initial answer.
-  Coding? get valueCoding;
   @override
+  Coding? get valueCoding;
 
   /// [valueQuantity] The actual value to for an initial answer.
-  Quantity? get valueQuantity;
   @override
+  Quantity? get valueQuantity;
 
   /// [valueReference] The actual value to for an initial answer.
-  Reference? get valueReference;
   @override
-  @JsonKey(ignore: true)
+  Reference? get valueReference;
+
+  /// Create a copy of QuestionnaireInitial
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$QuestionnaireInitialImplCopyWith<_$QuestionnaireInitialImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

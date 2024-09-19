@@ -15,9 +15,9 @@ part 'observation.g.dart';
 
 /// [Observation] Measurements and simple assertions made about a patient,
 @freezed
-class Observation with _$Observation implements DomainResource {
+class Observation extends DomainResource with _$Observation {
   /// [Observation] Measurements and simple assertions made about a patient,
-  const Observation._();
+  Observation._();
 
   /// [Observation] Measurements and simple assertions made about a patient,
   ///  device or other subject.
@@ -230,7 +230,7 @@ class Observation with _$Observation implements DomainResource {
   /// that share the same attributes.  Examples include systolic and diastolic
   /// component observations for blood pressure measurement and multiple
   ///  component observations for genetics observations.
-  const factory Observation({
+  factory Observation({
     @Default(R4ResourceType.Observation)
     @JsonKey(unknownEnumValue: R4ResourceType.Observation)
 
@@ -536,6 +536,9 @@ class Observation with _$Observation implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -558,8 +561,8 @@ class Observation with _$Observation implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [ObservationReferenceRange] Measurements and simple assertions made
@@ -567,11 +570,10 @@ class Observation with _$Observation implements DomainResource {
 
 /// [ObservationReferenceRange] Measurements and simple assertions made
 @freezed
-class ObservationReferenceRange
-    with _$ObservationReferenceRange
-    implements BackboneElement {
+class ObservationReferenceRange extends BackboneElement
+    with _$ObservationReferenceRange {
   /// [ObservationReferenceRange] Measurements and simple assertions made
-  const ObservationReferenceRange._();
+  ObservationReferenceRange._();
 
   /// [ObservationReferenceRange] Measurements and simple assertions made
   ///  about a patient, device or other subject.
@@ -629,7 +631,7 @@ class ObservationReferenceRange
   ///  "normals".
   ///
   /// [textElement] Extensions for text
-  const factory ObservationReferenceRange({
+  factory ObservationReferenceRange({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -726,6 +728,9 @@ class ObservationReferenceRange
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -737,11 +742,9 @@ class ObservationReferenceRange
 
 /// [ObservationComponent] Measurements and simple assertions made about a
 @freezed
-class ObservationComponent
-    with _$ObservationComponent
-    implements BackboneElement {
+class ObservationComponent extends BackboneElement with _$ObservationComponent {
   /// [ObservationComponent] Measurements and simple assertions made about a
-  const ObservationComponent._();
+  ObservationComponent._();
 
   /// [ObservationComponent] Measurements and simple assertions made about a
   ///  patient, device or other subject.
@@ -824,7 +827,7 @@ class ObservationComponent
   ///
   /// [referenceRange] Guidance on how to interpret the value by comparison to
   ///  a normal or recommended range.
-  const factory ObservationComponent({
+  factory ObservationComponent({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -957,6 +960,9 @@ class ObservationComponent
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

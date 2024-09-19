@@ -15,9 +15,9 @@ part 'supply_delivery.g.dart';
 
 /// [SupplyDelivery] Record of delivery of what is supplied.
 @freezed
-class SupplyDelivery with _$SupplyDelivery implements DomainResource {
+class SupplyDelivery extends DomainResource with _$SupplyDelivery {
   /// [SupplyDelivery] Record of delivery of what is supplied.
-  const SupplyDelivery._();
+  SupplyDelivery._();
 
   /// [SupplyDelivery] Record of delivery of what is supplied.
   ///
@@ -111,7 +111,7 @@ class SupplyDelivery with _$SupplyDelivery implements DomainResource {
   ///  was shipped to, as part of the dispense event.
   ///
   /// [receiver] Identifies the person who picked up the Supply.
-  const factory SupplyDelivery({
+  factory SupplyDelivery({
     @Default(R4ResourceType.SupplyDelivery)
     @JsonKey(unknownEnumValue: R4ResourceType.SupplyDelivery)
 
@@ -267,6 +267,9 @@ class SupplyDelivery with _$SupplyDelivery implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -289,8 +292,8 @@ class SupplyDelivery with _$SupplyDelivery implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [SupplyDeliverySuppliedItem] Record of delivery of what is supplied.
@@ -298,11 +301,10 @@ class SupplyDelivery with _$SupplyDelivery implements DomainResource {
 
 /// [SupplyDeliverySuppliedItem] Record of delivery of what is supplied.
 @freezed
-class SupplyDeliverySuppliedItem
-    with _$SupplyDeliverySuppliedItem
-    implements BackboneElement {
+class SupplyDeliverySuppliedItem extends BackboneElement
+    with _$SupplyDeliverySuppliedItem {
   /// [SupplyDeliverySuppliedItem] Record of delivery of what is supplied.
-  const SupplyDeliverySuppliedItem._();
+  SupplyDeliverySuppliedItem._();
 
   /// [SupplyDeliverySuppliedItem] Record of delivery of what is supplied.
   ///
@@ -340,7 +342,7 @@ class SupplyDeliverySuppliedItem
   /// [itemReference] Identifies the medication, substance or device being
   /// dispensed. This is either a link to a resource representing the details of
   ///  the item or a code that identifies the item from a known list.
-  const factory SupplyDeliverySuppliedItem({
+  factory SupplyDeliverySuppliedItem({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -412,6 +414,9 @@ class SupplyDeliverySuppliedItem
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

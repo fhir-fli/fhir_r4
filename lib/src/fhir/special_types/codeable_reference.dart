@@ -16,11 +16,11 @@ part 'codeable_reference.g.dart';
 /// reference to a concept defined in a terminology or ontology (by class).
 
 @freezed
-class CodeableReference with _$CodeableReference implements DataType {
+class CodeableReference extends DataType with _$CodeableReference {
   /// [CodeableReference] A reference to a resource (by instance), or instead, a
   /// reference to a concept defined in a terminology or ontology (by class).
 
-  const CodeableReference._();
+  CodeableReference._();
 
   /// [CodeableReference] A reference to a resource (by instance), or instead, a
   /// reference to a concept defined in a terminology or ontology (by class).
@@ -40,7 +40,7 @@ class CodeableReference with _$CodeableReference implements DataType {
   ///
   /// [reference] A reference to a resource the provides exact details about the
   /// information being referenced.
-  const factory CodeableReference({
+  factory CodeableReference({
     /// [id] Unique id for the element within a resource (for internal references).
     /// This may be any string value that does not contain spaces.",
     String? id,
@@ -91,6 +91,9 @@ class CodeableReference with _$CodeableReference implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

@@ -15,9 +15,9 @@ part 'vision_prescription.g.dart';
 
 /// [VisionPrescription] An authorization for the provision of glasses and/or
 @freezed
-class VisionPrescription with _$VisionPrescription implements DomainResource {
+class VisionPrescription extends DomainResource with _$VisionPrescription {
   /// [VisionPrescription] An authorization for the provision of glasses and/or
-  const VisionPrescription._();
+  VisionPrescription._();
 
   /// [VisionPrescription] An authorization for the provision of glasses and/or
   ///  contact lenses to a patient.
@@ -103,7 +103,7 @@ class VisionPrescription with _$VisionPrescription implements DomainResource {
   /// [lensSpecification] Contain the details of  the individual lens
   /// specifications and serves as the authorization for the fullfillment by
   ///  certified professionals.
-  const factory VisionPrescription({
+  factory VisionPrescription({
     @Default(R4ResourceType.VisionPrescription)
     @JsonKey(unknownEnumValue: R4ResourceType.VisionPrescription)
 
@@ -245,6 +245,9 @@ class VisionPrescription with _$VisionPrescription implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -267,16 +270,15 @@ class VisionPrescription with _$VisionPrescription implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 @freezed
 @freezed
-class VisionPrescriptionLensSpecification
-    with _$VisionPrescriptionLensSpecification
-    implements BackboneElement {
-  const VisionPrescriptionLensSpecification._();
+class VisionPrescriptionLensSpecification extends BackboneElement
+    with _$VisionPrescriptionLensSpecification {
+  VisionPrescriptionLensSpecification._();
 
   /// [VisionPrescriptionLensSpecification] An authorization for the provision
   ///  of glasses and/or contact lenses to a patient.
@@ -356,7 +358,7 @@ class VisionPrescriptionLensSpecification
   ///
   /// [note] Notes for special requirements such as coatings and lens
   ///  materials.
-  const factory VisionPrescriptionLensSpecification({
+  factory VisionPrescriptionLensSpecification({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -481,6 +483,9 @@ class VisionPrescriptionLensSpecification
       _$VisionPrescriptionLensSpecificationFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -492,11 +497,10 @@ class VisionPrescriptionLensSpecification
 
 /// [VisionPrescriptionPrism] An authorization for the provision of glasses
 @freezed
-class VisionPrescriptionPrism
-    with _$VisionPrescriptionPrism
-    implements BackboneElement {
+class VisionPrescriptionPrism extends BackboneElement
+    with _$VisionPrescriptionPrism {
   /// [VisionPrescriptionPrism] An authorization for the provision of glasses
-  const VisionPrescriptionPrism._();
+  VisionPrescriptionPrism._();
 
   /// [VisionPrescriptionPrism] An authorization for the provision of glasses
   ///  and/or contact lenses to a patient.
@@ -533,7 +537,7 @@ class VisionPrescriptionPrism
   /// [base] The relative base, or reference lens edge, for the prism.
   ///
   /// [baseElement] Extensions for base
-  const factory VisionPrescriptionPrism({
+  factory VisionPrescriptionPrism({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -604,6 +608,9 @@ class VisionPrescriptionPrism
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

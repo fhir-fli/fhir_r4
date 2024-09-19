@@ -57,7 +57,9 @@ mixin _$Scopes {
   String? get intent => throw _privateConstructorUsedError;
   List<String>? get additional => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Scopes
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ScopesCopyWith<Scopes> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -92,6 +94,8 @@ class _$ScopesCopyWithImpl<$Res, $Val extends Scopes>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Scopes
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -197,6 +201,8 @@ class __$$ScopesImplCopyWithImpl<$Res>
       _$ScopesImpl _value, $Res Function(_$ScopesImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Scopes
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -274,7 +280,7 @@ class __$$ScopesImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ScopesImpl extends _Scopes {
-  const _$ScopesImpl(
+  _$ScopesImpl(
       {final List<ClinicalScope>? clinicalScopes,
       this.openid,
       this.fhirUser,
@@ -414,7 +420,9 @@ class _$ScopesImpl extends _Scopes {
       intent,
       const DeepCollectionEquality().hash(_additional));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Scopes
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ScopesImplCopyWith<_$ScopesImpl> get copyWith =>
@@ -422,7 +430,7 @@ class _$ScopesImpl extends _Scopes {
 }
 
 abstract class _Scopes extends Scopes {
-  const factory _Scopes(
+  factory _Scopes(
       {final List<ClinicalScope>? clinicalScopes,
       final bool? openid,
       final bool? fhirUser,
@@ -436,64 +444,66 @@ abstract class _Scopes extends Scopes {
       final bool? smartOrchestrateLaunch,
       final String? intent,
       final List<String>? additional}) = _$ScopesImpl;
-  const _Scopes._() : super._();
-
-  @override
+  _Scopes._() : super._();
 
   /// see the clinical scopes class for details
-  List<ClinicalScope>? get clinicalScopes;
   @override
+  List<ClinicalScope>? get clinicalScopes;
 
   /// permission to retrieve information about the current logged-in user
   /// almost always coupled with fhirUser
-  bool? get openid;
   @override
+  bool? get openid;
 
   /// permission to retrieve information about the current logged-in user
   /// almost always coupled with openid
-  bool? get fhirUser;
   @override
+  bool? get fhirUser;
 
   /// this is being deprecated but still commonly required
-  bool? get profile;
   @override
+  bool? get profile;
 
   /// will this app require offline access? specifies the kind of token that
   /// will be returned
-  bool? get offlineAccess;
   @override
+  bool? get offlineAccess;
 
   /// will this app require online access? specifies the kind of token that
   /// will be returned
-  bool? get onlineAccess;
   @override
+  bool? get onlineAccess;
 
   ///if this app is going to be launched from within an EHR
-  bool? get ehrLaunch;
   @override
+  bool? get ehrLaunch;
 
   /// if the context of this app is about a specific patient
-  bool? get patientLaunch;
   @override
+  bool? get patientLaunch;
 
   /// if the context of this app is in regards to a specific encounter
-  bool? get encounterLaunch;
   @override
+  bool? get encounterLaunch;
 
   /// does this request need a patient banner
-  bool? get needPatientBanner;
   @override
+  bool? get needPatientBanner;
 
   /// I'm not actually sure what this does
-  bool? get smartOrchestrateLaunch;
   @override
+  bool? get smartOrchestrateLaunch;
 
   /// String value describing the intent of the application launch
+  @override
   String? get intent;
   @override
   List<String>? get additional;
+
+  /// Create a copy of Scopes
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ScopesImplCopyWith<_$ScopesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

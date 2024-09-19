@@ -255,8 +255,12 @@ mixin _$ConceptMap {
   ///  system.
   List<ConceptMapGroup>? get group => throw _privateConstructorUsedError;
 
+  /// Serializes this ConceptMap to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ConceptMap
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ConceptMapCopyWith<ConceptMap> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -333,6 +337,8 @@ class _$ConceptMapCopyWithImpl<$Res, $Val extends ConceptMap>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ConceptMap
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -571,6 +577,8 @@ class _$ConceptMapCopyWithImpl<$Res, $Val extends ConceptMap>
     ) as $Val);
   }
 
+  /// Create a copy of ConceptMap
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -583,6 +591,8 @@ class _$ConceptMapCopyWithImpl<$Res, $Val extends ConceptMap>
     });
   }
 
+  /// Create a copy of ConceptMap
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -595,6 +605,8 @@ class _$ConceptMapCopyWithImpl<$Res, $Val extends ConceptMap>
     });
   }
 
+  /// Create a copy of ConceptMap
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $IdentifierCopyWith<$Res>? get identifier {
@@ -683,6 +695,8 @@ class __$$ConceptMapImplCopyWithImpl<$Res>
       _$ConceptMapImpl _value, $Res Function(_$ConceptMapImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ConceptMap
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -925,7 +939,7 @@ class __$$ConceptMapImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ConceptMapImpl extends _ConceptMap {
-  const _$ConceptMapImpl(
+  _$ConceptMapImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.ConceptMap)
       this.resourceType = R4ResourceType.ConceptMap,
       this.id,
@@ -1443,7 +1457,7 @@ class _$ConceptMapImpl extends _ConceptMap {
             const DeepCollectionEquality().equals(other._group, _group));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1495,7 +1509,9 @@ class _$ConceptMapImpl extends _ConceptMap {
         const DeepCollectionEquality().hash(_group)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ConceptMap
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ConceptMapImplCopyWith<_$ConceptMapImpl> get copyWith =>
@@ -1510,7 +1526,7 @@ class _$ConceptMapImpl extends _ConceptMap {
 }
 
 abstract class _ConceptMap extends ConceptMap {
-  const factory _ConceptMap(
+  factory _ConceptMap(
       {@JsonKey(unknownEnumValue: R4ResourceType.ConceptMap)
       final R4ResourceType resourceType,
       final String? id,
@@ -1562,7 +1578,7 @@ abstract class _ConceptMap extends ConceptMap {
       @JsonKey(name: '_targetCanonical')
       final PrimitiveElement? targetCanonicalElement,
       final List<ConceptMapGroup>? group}) = _$ConceptMapImpl;
-  const _ConceptMap._() : super._();
+  _ConceptMap._() : super._();
 
   factory _ConceptMap.fromJson(Map<String, dynamic> json) =
       _$ConceptMapImpl.fromJson;
@@ -1570,39 +1586,38 @@ abstract class _ConceptMap extends ConceptMap {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.ConceptMap)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1610,15 +1625,15 @@ abstract class _ConceptMap extends ConceptMap {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1626,9 +1641,9 @@ abstract class _ConceptMap extends ConceptMap {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1643,8 +1658,8 @@ abstract class _ConceptMap extends ConceptMap {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [url] An absolute URI that is used to identify this concept map when it
   /// is referenced in a specification, model, design or an instance; also
@@ -1653,19 +1668,19 @@ abstract class _ConceptMap extends ConceptMap {
   /// concept map is (or will be) published. This URL can be the target of a
   /// canonical reference. It SHALL remain the same when the concept map is
   ///  stored on different servers.
-  FhirUri? get url;
   @override
+  FhirUri? get url;
 
   /// [urlElement] Extensions for url
+  @override
   @JsonKey(name: '_url')
   PrimitiveElement? get urlElement;
-  @override
 
   /// [identifier] A formal identifier that is used to identify this concept
   /// map when it is represented in other formats, or referenced in a
   ///  specification, model, design or an instance.
-  Identifier? get identifier;
   @override
+  Identifier? get identifier;
 
   /// [version] The identifier that is used to identify this version of the
   /// concept map when it is referenced in a specification, model, design or
@@ -1674,175 +1689,179 @@ abstract class _ConceptMap extends ConceptMap {
   /// timestamp (e.g. yyyymmdd) if a managed version is not available. There is
   /// also no expectation that versions can be placed in a lexicographical
   ///  sequence.
-  String? get version;
   @override
+  String? get version;
 
   /// [versionElement] Extensions for version
+  @override
   @JsonKey(name: '_version')
   PrimitiveElement? get versionElement;
-  @override
 
   /// [name] A natural language name identifying the concept map. This name
   /// should be usable as an identifier for the module by machine processing
   ///  applications such as code generation.
-  String? get name;
   @override
+  String? get name;
 
   /// [nameElement] Extensions for name
+  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
-  @override
 
   /// [title] A short, descriptive, user-friendly title for the concept map.
-  String? get title;
   @override
+  String? get title;
 
   /// [titleElement] Extensions for title
+  @override
   @JsonKey(name: '_title')
   PrimitiveElement? get titleElement;
-  @override
 
   /// [status] The status of this concept map. Enables tracking the life-cycle
   ///  of the content.
-  FhirCode? get status;
   @override
+  FhirCode? get status;
 
   /// [statusElement] Extensions for status
+  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
-  @override
 
   /// [experimental] A Boolean value to indicate that this concept map is
   /// authored for testing purposes (or education/evaluation/marketing) and is
   ///  not intended to be used for genuine usage.
-  FhirBoolean? get experimental;
   @override
+  FhirBoolean? get experimental;
 
   /// [experimentalElement] Extensions for experimental
+  @override
   @JsonKey(name: '_experimental')
   PrimitiveElement? get experimentalElement;
-  @override
 
   /// [date] The date  (and optionally time) when the concept map was
   /// published. The date must change when the business version changes and it
   /// must change if the status code changes. In addition, it should change when
   ///  the substantive content of the concept map changes.
-  FhirDateTime? get date;
   @override
+  FhirDateTime? get date;
 
   /// [dateElement] Extensions for date
+  @override
   @JsonKey(name: '_date')
   PrimitiveElement? get dateElement;
-  @override
 
   /// [publisher] The name of the organization or individual that published the
   ///  concept map.
-  String? get publisher;
   @override
+  String? get publisher;
 
   /// [publisherElement] Extensions for publisher
+  @override
   @JsonKey(name: '_publisher')
   PrimitiveElement? get publisherElement;
-  @override
 
   /// [contact] Contact details to assist a user in finding and communicating
   ///  with the publisher.
-  List<ContactDetail>? get contact;
   @override
+  List<ContactDetail>? get contact;
 
   /// [description] A free text natural language description of the concept map
   ///  from a consumer's perspective.
-  FhirMarkdown? get description;
   @override
+  FhirMarkdown? get description;
 
   /// [descriptionElement] Extensions for description
+  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
-  @override
 
   /// [useContext] The content was developed with a focus and intent of
   /// supporting the contexts that are listed. These contexts may be general
   /// categories (gender, age, ...) or may be references to specific programs
   /// (insurance plans, studies, ...) and may be used to assist with indexing
   ///  and searching for appropriate concept map instances.
-  List<UsageContext>? get useContext;
   @override
+  List<UsageContext>? get useContext;
 
   /// [jurisdiction] A legal or geographic region in which the concept map is
   ///  intended to be used.
-  List<CodeableConcept>? get jurisdiction;
   @override
+  List<CodeableConcept>? get jurisdiction;
 
   /// [purpose] Explanation of why this concept map is needed and why it has
   ///  been designed as it has.
-  FhirMarkdown? get purpose;
   @override
+  FhirMarkdown? get purpose;
 
   /// [purposeElement] Extensions for purpose
+  @override
   @JsonKey(name: '_purpose')
   PrimitiveElement? get purposeElement;
-  @override
 
   /// [copyright] A copyright statement relating to the concept map and/or its
   /// contents. Copyright statements are generally legal restrictions on the use
   ///  and publishing of the concept map.
-  FhirMarkdown? get copyright;
   @override
+  FhirMarkdown? get copyright;
 
   /// [copyrightElement] Extensions for copyright
+  @override
   @JsonKey(name: '_copyright')
   PrimitiveElement? get copyrightElement;
-  @override
 
   /// [sourceUri] Identifier for the source value set that contains the
   ///  concepts that are being mapped and provides context for the mappings.
-  FhirUri? get sourceUri;
   @override
+  FhirUri? get sourceUri;
 
   /// [sourceUriElement] Extensions for sourceUri
+  @override
   @JsonKey(name: '_sourceUri')
   PrimitiveElement? get sourceUriElement;
-  @override
 
   /// [sourceCanonical] Identifier for the source value set that contains the
   ///  concepts that are being mapped and provides context for the mappings.
-  FhirCanonical? get sourceCanonical;
   @override
+  FhirCanonical? get sourceCanonical;
 
   /// [sourceCanonicalElement] Extensions for sourceCanonical
+  @override
   @JsonKey(name: '_sourceCanonical')
   PrimitiveElement? get sourceCanonicalElement;
-  @override
 
   /// [targetUri] The target value set provides context for the mappings. Note
   /// that the mapping is made between concepts, not between value sets, but the
   /// value set provides important context about how the concept mapping choices
   ///  are made.
-  FhirUri? get targetUri;
   @override
+  FhirUri? get targetUri;
 
   /// [targetUriElement] Extensions for targetUri
+  @override
   @JsonKey(name: '_targetUri')
   PrimitiveElement? get targetUriElement;
-  @override
 
   /// [targetCanonical] The target value set provides context for the mappings.
   /// Note that the mapping is made between concepts, not between value sets,
   /// but the value set provides important context about how the concept mapping
   ///  choices are made.
-  FhirCanonical? get targetCanonical;
   @override
+  FhirCanonical? get targetCanonical;
 
   /// [targetCanonicalElement] Extensions for targetCanonical
+  @override
   @JsonKey(name: '_targetCanonical')
   PrimitiveElement? get targetCanonicalElement;
-  @override
 
   /// [group] A group of mappings that all have the same source and target
   ///  system.
-  List<ConceptMapGroup>? get group;
   @override
-  @JsonKey(ignore: true)
+  List<ConceptMapGroup>? get group;
+
+  /// Create a copy of ConceptMap
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ConceptMapImplCopyWith<_$ConceptMapImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1926,8 +1945,12 @@ mixin _$ConceptMapGroup {
   ///  unmatched.
   ConceptMapUnmapped? get unmapped => throw _privateConstructorUsedError;
 
+  /// Serializes this ConceptMapGroup to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ConceptMapGroup
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ConceptMapGroupCopyWith<ConceptMapGroup> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1966,6 +1989,8 @@ class _$ConceptMapGroupCopyWithImpl<$Res, $Val extends ConceptMapGroup>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ConceptMapGroup
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2039,6 +2064,8 @@ class _$ConceptMapGroupCopyWithImpl<$Res, $Val extends ConceptMapGroup>
     ) as $Val);
   }
 
+  /// Create a copy of ConceptMapGroup
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ConceptMapUnmappedCopyWith<$Res>? get unmapped {
@@ -2087,6 +2114,8 @@ class __$$ConceptMapGroupImplCopyWithImpl<$Res>
       _$ConceptMapGroupImpl _value, $Res Function(_$ConceptMapGroupImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ConceptMapGroup
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2164,7 +2193,7 @@ class __$$ConceptMapGroupImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ConceptMapGroupImpl extends _ConceptMapGroup {
-  const _$ConceptMapGroupImpl(
+  _$ConceptMapGroupImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2347,7 +2376,7 @@ class _$ConceptMapGroupImpl extends _ConceptMapGroup {
                 other.unmapped == unmapped));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2365,7 +2394,9 @@ class _$ConceptMapGroupImpl extends _ConceptMapGroup {
       const DeepCollectionEquality().hash(_element),
       unmapped);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ConceptMapGroup
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ConceptMapGroupImplCopyWith<_$ConceptMapGroupImpl> get copyWith =>
@@ -2381,7 +2412,7 @@ class _$ConceptMapGroupImpl extends _ConceptMapGroup {
 }
 
 abstract class _ConceptMapGroup extends ConceptMapGroup {
-  const factory _ConceptMapGroup(
+  factory _ConceptMapGroup(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2397,17 +2428,15 @@ abstract class _ConceptMapGroup extends ConceptMapGroup {
       final PrimitiveElement? targetVersionElement,
       required final List<ConceptMapElement> element,
       final ConceptMapUnmapped? unmapped}) = _$ConceptMapGroupImpl;
-  const _ConceptMapGroup._() : super._();
+  _ConceptMapGroup._() : super._();
 
   factory _ConceptMapGroup.fromJson(Map<String, dynamic> json) =
       _$ConceptMapGroupImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2415,9 +2444,9 @@ abstract class _ConceptMapGroup extends ConceptMapGroup {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2432,61 +2461,65 @@ abstract class _ConceptMapGroup extends ConceptMapGroup {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [source] An absolute URI that identifies the source system where the
   ///  concepts to be mapped are defined.
-  FhirUri? get source;
   @override
+  FhirUri? get source;
 
   /// [sourceElement] Extensions for source
+  @override
   @JsonKey(name: '_source')
   PrimitiveElement? get sourceElement;
-  @override
 
   /// [sourceVersion] The specific version of the code system, as determined by
   ///  the code system authority.
-  String? get sourceVersion;
   @override
+  String? get sourceVersion;
 
   /// [sourceVersionElement] Extensions for sourceVersion
+  @override
   @JsonKey(name: '_sourceVersion')
   PrimitiveElement? get sourceVersionElement;
-  @override
 
   /// [target] An absolute URI that identifies the target system that the
   ///  concepts will be mapped to.
-  FhirUri? get target;
   @override
+  FhirUri? get target;
 
   /// [targetElement] Extensions for target
+  @override
   @JsonKey(name: '_target')
   PrimitiveElement? get targetElement;
-  @override
 
   /// [targetVersion] The specific version of the code system, as determined by
   ///  the code system authority.
-  String? get targetVersion;
   @override
+  String? get targetVersion;
 
   /// [targetVersionElement] Extensions for targetVersion
+  @override
   @JsonKey(name: '_targetVersion')
   PrimitiveElement? get targetVersionElement;
-  @override
 
   /// [element] Mappings for an individual concept in the source to one or more
   ///  concepts in the target.
-  List<ConceptMapElement> get element;
   @override
+  List<ConceptMapElement> get element;
 
   /// [unmapped] What to do when there is no mapping for the source concept.
   /// "Unmapped" does not include codes that are unmatched, and the unmapped
   /// element is ignored in a code is specified to have equivalence =
   ///  unmatched.
-  ConceptMapUnmapped? get unmapped;
   @override
-  @JsonKey(ignore: true)
+  ConceptMapUnmapped? get unmapped;
+
+  /// Create a copy of ConceptMapGroup
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ConceptMapGroupImplCopyWith<_$ConceptMapGroupImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2544,8 +2577,12 @@ mixin _$ConceptMapElement {
   /// [target] A concept from the target value set that this concept maps to.
   List<ConceptMapTarget>? get target => throw _privateConstructorUsedError;
 
+  /// Serializes this ConceptMapElement to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ConceptMapElement
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ConceptMapElementCopyWith<ConceptMapElement> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2577,6 +2614,8 @@ class _$ConceptMapElementCopyWithImpl<$Res, $Val extends ConceptMapElement>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ConceptMapElement
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2653,6 +2692,8 @@ class __$$ConceptMapElementImplCopyWithImpl<$Res>
       $Res Function(_$ConceptMapElementImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ConceptMapElement
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2705,7 +2746,7 @@ class __$$ConceptMapElementImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ConceptMapElementImpl extends _ConceptMapElement {
-  const _$ConceptMapElementImpl(
+  _$ConceptMapElementImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2845,7 +2886,7 @@ class _$ConceptMapElementImpl extends _ConceptMapElement {
             const DeepCollectionEquality().equals(other._target, _target));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2858,7 +2899,9 @@ class _$ConceptMapElementImpl extends _ConceptMapElement {
       displayElement,
       const DeepCollectionEquality().hash(_target));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ConceptMapElement
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ConceptMapElementImplCopyWith<_$ConceptMapElementImpl> get copyWith =>
@@ -2874,7 +2917,7 @@ class _$ConceptMapElementImpl extends _ConceptMapElement {
 }
 
 abstract class _ConceptMapElement extends ConceptMapElement {
-  const factory _ConceptMapElement(
+  factory _ConceptMapElement(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2883,17 +2926,15 @@ abstract class _ConceptMapElement extends ConceptMapElement {
       final String? display,
       @JsonKey(name: '_display') final PrimitiveElement? displayElement,
       final List<ConceptMapTarget>? target}) = _$ConceptMapElementImpl;
-  const _ConceptMapElement._() : super._();
+  _ConceptMapElement._() : super._();
 
   factory _ConceptMapElement.fromJson(Map<String, dynamic> json) =
       _$ConceptMapElementImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2901,9 +2942,9 @@ abstract class _ConceptMapElement extends ConceptMapElement {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2918,32 +2959,36 @@ abstract class _ConceptMapElement extends ConceptMapElement {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [code] Identity (code or path) or the element/item being mapped.
-  FhirCode? get code;
   @override
+  FhirCode? get code;
 
   /// [codeElement] Extensions for code
+  @override
   @JsonKey(name: '_code')
   PrimitiveElement? get codeElement;
-  @override
 
   /// [display] The display for the code. The display is only provided to help
   ///  editors when editing the concept map.
-  String? get display;
   @override
+  String? get display;
 
   /// [displayElement] Extensions for display
+  @override
   @JsonKey(name: '_display')
   PrimitiveElement? get displayElement;
-  @override
 
   /// [target] A concept from the target value set that this concept maps to.
-  List<ConceptMapTarget>? get target;
   @override
-  @JsonKey(ignore: true)
+  List<ConceptMapTarget>? get target;
+
+  /// Create a copy of ConceptMapElement
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ConceptMapElementImplCopyWith<_$ConceptMapElementImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3030,8 +3075,12 @@ mixin _$ConceptMapTarget {
   ///  equivalence cannot be relied on.
   List<ConceptMapDependsOn>? get product => throw _privateConstructorUsedError;
 
+  /// Serializes this ConceptMapTarget to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ConceptMapTarget
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ConceptMapTargetCopyWith<ConceptMapTarget> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3068,6 +3117,8 @@ class _$ConceptMapTargetCopyWithImpl<$Res, $Val extends ConceptMapTarget>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ConceptMapTarget
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3174,6 +3225,8 @@ class __$$ConceptMapTargetImplCopyWithImpl<$Res>
       $Res Function(_$ConceptMapTargetImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ConceptMapTarget
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3251,7 +3304,7 @@ class __$$ConceptMapTargetImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ConceptMapTargetImpl extends _ConceptMapTarget {
-  const _$ConceptMapTargetImpl(
+  _$ConceptMapTargetImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3453,7 +3506,7 @@ class _$ConceptMapTargetImpl extends _ConceptMapTarget {
             const DeepCollectionEquality().equals(other._product, _product));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3471,7 +3524,9 @@ class _$ConceptMapTargetImpl extends _ConceptMapTarget {
       const DeepCollectionEquality().hash(_dependsOn),
       const DeepCollectionEquality().hash(_product));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ConceptMapTarget
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ConceptMapTargetImplCopyWith<_$ConceptMapTargetImpl> get copyWith =>
@@ -3487,7 +3542,7 @@ class _$ConceptMapTargetImpl extends _ConceptMapTarget {
 }
 
 abstract class _ConceptMapTarget extends ConceptMapTarget {
-  const factory _ConceptMapTarget(
+  factory _ConceptMapTarget(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3501,17 +3556,15 @@ abstract class _ConceptMapTarget extends ConceptMapTarget {
       @JsonKey(name: '_comment') final PrimitiveElement? commentElement,
       final List<ConceptMapDependsOn>? dependsOn,
       final List<ConceptMapDependsOn>? product}) = _$ConceptMapTargetImpl;
-  const _ConceptMapTarget._() : super._();
+  _ConceptMapTarget._() : super._();
 
   factory _ConceptMapTarget.fromJson(Map<String, dynamic> json) =
       _$ConceptMapTargetImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3519,9 +3572,9 @@ abstract class _ConceptMapTarget extends ConceptMapTarget {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3536,64 +3589,68 @@ abstract class _ConceptMapTarget extends ConceptMapTarget {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [code] Identity (code or path) or the element/item that the map refers
   ///  to.
-  FhirCode? get code;
   @override
+  FhirCode? get code;
 
   /// [codeElement] Extensions for code
+  @override
   @JsonKey(name: '_code')
   PrimitiveElement? get codeElement;
-  @override
 
   /// [display] The display for the code. The display is only provided to help
   ///  editors when editing the concept map.
-  String? get display;
   @override
+  String? get display;
 
   /// [displayElement] Extensions for display
+  @override
   @JsonKey(name: '_display')
   PrimitiveElement? get displayElement;
-  @override
 
   /// [equivalence] The equivalence between the source and target concepts
   /// (counting for the dependencies and products). The equivalence is read from
   ///  target to source (e.g. the target is 'wider' than the source).
-  FhirCode? get equivalence;
   @override
+  FhirCode? get equivalence;
 
   /// [equivalenceElement] Extensions for equivalence
+  @override
   @JsonKey(name: '_equivalence')
   PrimitiveElement? get equivalenceElement;
-  @override
 
   /// [comment] A description of status/issues in mapping that conveys
   ///  additional information not represented in  the structured data.
-  String? get comment;
   @override
+  String? get comment;
 
   /// [commentElement] Extensions for comment
+  @override
   @JsonKey(name: '_comment')
   PrimitiveElement? get commentElement;
-  @override
 
   /// [dependsOn] A set of additional dependencies for this mapping to hold.
   /// This mapping is only applicable if the specified element can be resolved,
   ///  and it has the specified value.
-  List<ConceptMapDependsOn>? get dependsOn;
   @override
+  List<ConceptMapDependsOn>? get dependsOn;
 
   /// [product] A set of additional outcomes from this mapping to other
   /// elements. To properly execute this mapping, the specified element must be
   /// mapped to some data element or source that is in context. The mapping may
   /// still be useful without a place for the additional data elements, but the
   ///  equivalence cannot be relied on.
-  List<ConceptMapDependsOn>? get product;
   @override
-  @JsonKey(ignore: true)
+  List<ConceptMapDependsOn>? get product;
+
+  /// Create a copy of ConceptMapTarget
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ConceptMapTargetImplCopyWith<_$ConceptMapTargetImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3664,8 +3721,12 @@ mixin _$ConceptMapDependsOn {
   @JsonKey(name: '_display')
   PrimitiveElement? get displayElement => throw _privateConstructorUsedError;
 
+  /// Serializes this ConceptMapDependsOn to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ConceptMapDependsOn
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ConceptMapDependsOnCopyWith<ConceptMapDependsOn> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3699,6 +3760,8 @@ class _$ConceptMapDependsOnCopyWithImpl<$Res, $Val extends ConceptMapDependsOn>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ConceptMapDependsOn
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3787,6 +3850,8 @@ class __$$ConceptMapDependsOnImplCopyWithImpl<$Res>
       $Res Function(_$ConceptMapDependsOnImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ConceptMapDependsOn
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3849,7 +3914,7 @@ class __$$ConceptMapDependsOnImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ConceptMapDependsOnImpl extends _ConceptMapDependsOn {
-  const _$ConceptMapDependsOnImpl(
+  _$ConceptMapDependsOnImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4000,7 +4065,7 @@ class _$ConceptMapDependsOnImpl extends _ConceptMapDependsOn {
                 other.displayElement == displayElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -4015,7 +4080,9 @@ class _$ConceptMapDependsOnImpl extends _ConceptMapDependsOn {
       display,
       displayElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ConceptMapDependsOn
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ConceptMapDependsOnImplCopyWith<_$ConceptMapDependsOnImpl> get copyWith =>
@@ -4031,7 +4098,7 @@ class _$ConceptMapDependsOnImpl extends _ConceptMapDependsOn {
 }
 
 abstract class _ConceptMapDependsOn extends ConceptMapDependsOn {
-  const factory _ConceptMapDependsOn(
+  factory _ConceptMapDependsOn(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -4043,17 +4110,15 @@ abstract class _ConceptMapDependsOn extends ConceptMapDependsOn {
           final String? display,
           @JsonKey(name: '_display') final PrimitiveElement? displayElement}) =
       _$ConceptMapDependsOnImpl;
-  const _ConceptMapDependsOn._() : super._();
+  _ConceptMapDependsOn._() : super._();
 
   factory _ConceptMapDependsOn.fromJson(Map<String, dynamic> json) =
       _$ConceptMapDependsOnImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -4061,9 +4126,9 @@ abstract class _ConceptMapDependsOn extends ConceptMapDependsOn {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -4078,47 +4143,51 @@ abstract class _ConceptMapDependsOn extends ConceptMapDependsOn {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [property] A reference to an element that holds a coded value that
   /// corresponds to a code system property. The idea is that the information
   /// model carries an element somewhere that is labeled to correspond with a
   ///  code system property.
-  FhirUri? get property;
   @override
+  FhirUri? get property;
 
   /// [propertyElement] Extensions for property
+  @override
   @JsonKey(name: '_property')
   PrimitiveElement? get propertyElement;
-  @override
 
   /// [system] An absolute URI that identifies the code system of the
   /// dependency code (if the source/dependency is a value set that crosses code
   ///  systems).
-  FhirCanonical? get system;
   @override
+  FhirCanonical? get system;
 
   /// [value] Identity (code or path) or the element/item/ValueSet/text that
   ///  the map depends on / refers to.
-  String? get value;
   @override
+  String? get value;
 
   /// [valueElement] Extensions for value
+  @override
   @JsonKey(name: '_value')
   PrimitiveElement? get valueElement;
-  @override
 
   /// [display] The display for the code. The display is only provided to help
   ///  editors when editing the concept map.
-  String? get display;
   @override
+  String? get display;
 
   /// [displayElement] Extensions for display
+  @override
   @JsonKey(name: '_display')
   PrimitiveElement? get displayElement;
+
+  /// Create a copy of ConceptMapDependsOn
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ConceptMapDependsOnImplCopyWith<_$ConceptMapDependsOnImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4191,8 +4260,12 @@ mixin _$ConceptMapUnmapped {
   ///  matching mapping for the source concept.
   FhirCanonical? get url => throw _privateConstructorUsedError;
 
+  /// Serializes this ConceptMapUnmapped to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ConceptMapUnmapped
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ConceptMapUnmappedCopyWith<ConceptMapUnmapped> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4226,6 +4299,8 @@ class _$ConceptMapUnmappedCopyWithImpl<$Res, $Val extends ConceptMapUnmapped>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ConceptMapUnmapped
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4314,6 +4389,8 @@ class __$$ConceptMapUnmappedImplCopyWithImpl<$Res>
       $Res Function(_$ConceptMapUnmappedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ConceptMapUnmapped
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4376,7 +4453,7 @@ class __$$ConceptMapUnmappedImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ConceptMapUnmappedImpl extends _ConceptMapUnmapped {
-  const _$ConceptMapUnmappedImpl(
+  _$ConceptMapUnmappedImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4528,7 +4605,7 @@ class _$ConceptMapUnmappedImpl extends _ConceptMapUnmapped {
             (identical(other.url, url) || other.url == url));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -4543,7 +4620,9 @@ class _$ConceptMapUnmappedImpl extends _ConceptMapUnmapped {
       displayElement,
       url);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ConceptMapUnmapped
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ConceptMapUnmappedImplCopyWith<_$ConceptMapUnmappedImpl> get copyWith =>
@@ -4559,7 +4638,7 @@ class _$ConceptMapUnmappedImpl extends _ConceptMapUnmapped {
 }
 
 abstract class _ConceptMapUnmapped extends ConceptMapUnmapped {
-  const factory _ConceptMapUnmapped(
+  factory _ConceptMapUnmapped(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4570,17 +4649,15 @@ abstract class _ConceptMapUnmapped extends ConceptMapUnmapped {
       final String? display,
       @JsonKey(name: '_display') final PrimitiveElement? displayElement,
       final FhirCanonical? url}) = _$ConceptMapUnmappedImpl;
-  const _ConceptMapUnmapped._() : super._();
+  _ConceptMapUnmapped._() : super._();
 
   factory _ConceptMapUnmapped.fromJson(Map<String, dynamic> json) =
       _$ConceptMapUnmappedImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -4588,9 +4665,9 @@ abstract class _ConceptMapUnmapped extends ConceptMapUnmapped {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -4605,8 +4682,8 @@ abstract class _ConceptMapUnmapped extends ConceptMapUnmapped {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [mode] Defines which action to take if there is no match for the source
   /// concept in the target system designated for the group. One of 3 actions
@@ -4614,40 +4691,44 @@ abstract class _ConceptMapUnmapped extends ConceptMapUnmapped {
   /// between versions, and only a few codes have changed), use a fixed code (a
   /// default code), or alternatively, a reference to a different concept map
   ///  can be provided (by canonical URL).
-  FhirCode? get mode;
   @override
+  FhirCode? get mode;
 
   /// [modeElement] Extensions for mode
+  @override
   @JsonKey(name: '_mode')
   PrimitiveElement? get modeElement;
-  @override
 
   /// [code] The fixed code to use when the mode = 'fixed'  - all unmapped
   ///  codes are mapped to a single fixed code.
-  FhirCode? get code;
   @override
+  FhirCode? get code;
 
   /// [codeElement] Extensions for code
+  @override
   @JsonKey(name: '_code')
   PrimitiveElement? get codeElement;
-  @override
 
   /// [display] The display for the code. The display is only provided to help
   ///  editors when editing the concept map.
-  String? get display;
   @override
+  String? get display;
 
   /// [displayElement] Extensions for display
+  @override
   @JsonKey(name: '_display')
   PrimitiveElement? get displayElement;
-  @override
 
   /// [url] The canonical reference to an additional ConceptMap resource
   /// instance to use for mapping if this ConceptMap resource contains no
   ///  matching mapping for the source concept.
-  FhirCanonical? get url;
   @override
-  @JsonKey(ignore: true)
+  FhirCanonical? get url;
+
+  /// Create a copy of ConceptMapUnmapped
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ConceptMapUnmappedImplCopyWith<_$ConceptMapUnmappedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

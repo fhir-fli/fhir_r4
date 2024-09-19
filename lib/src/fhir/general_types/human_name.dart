@@ -14,9 +14,9 @@ part 'human_name.g.dart';
 
 /// [HumanName] A human's name with the ability to identify parts and usage.
 @freezed
-class HumanName with _$HumanName implements DataType {
+class HumanName extends DataType with _$HumanName {
   /// [HumanName] A human's name with the ability to identify parts and usage.
-  const HumanName._();
+  HumanName._();
 
   /// [HumanName] A human's name with the ability to identify parts and usage.
   ///
@@ -63,7 +63,7 @@ class HumanName with _$HumanName implements DataType {
   ///
   /// [period] Indicates the period of time when this name was valid for the
   ///  named person.
-  const factory HumanName({
+  factory HumanName({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -153,6 +153,9 @@ class HumanName with _$HumanName implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

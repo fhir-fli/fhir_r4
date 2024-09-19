@@ -15,11 +15,10 @@ part 'regulated_authorization.g.dart';
 
 /// [RegulatedAuthorization] Regulatory approval, clearance or licencing related to a regulated product, treatment, facility or activity that is cited in a guidance, regulation, rule or legislative act. An example is Market Authorization relating to a Medicinal Product.
 @freezed
-class RegulatedAuthorization
-    with _$RegulatedAuthorization
-    implements DomainResource {
+class RegulatedAuthorization extends DomainResource
+    with _$RegulatedAuthorization {
   /// [RegulatedAuthorization] Regulatory approval, clearance or licencing related to a regulated product, treatment, facility or activity that is cited in a guidance, regulation, rule or legislative act. An example is Market Authorization relating to a Medicinal Product.
-  const RegulatedAuthorization._();
+  RegulatedAuthorization._();
 
   /// [RegulatedAuthorization] Regulatory approval, clearance or licencing related to a regulated product, treatment, facility or activity that is cited in a guidance, regulation, rule or legislative act. An example is Market Authorization relating to a Medicinal Product.
 
@@ -79,7 +78,7 @@ class RegulatedAuthorization
   /// [regulator] The regulatory authority or authorizing body granting the authorization. For example, European Medicines Agency (EMA), Food and Drug Administration (FDA), Health Canada (HC), etc.;
   ///
   /// [case_] The case or regulatory procedure for granting or amending a regulated authorization. An authorization is granted in response to submissions/applications by those seeking authorization. A case is the administrative process that deals with the application(s) that relate to this and assesses them. Note: This area is subject to ongoing review and the workgroup is seeking implementer feedback on its use (see link at bottom of page).;
-  const factory RegulatedAuthorization({
+  factory RegulatedAuthorization({
     /// [resourceType] This is a RegulatedAuthorization resource;
     @Default(R4ResourceType.RegulatedAuthorization) R4ResourceType resourceType,
 
@@ -196,6 +195,9 @@ class RegulatedAuthorization
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -218,8 +220,8 @@ class RegulatedAuthorization
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [RegulatedAuthorizationCase] Regulatory approval, clearance or licencing related to a regulated product, treatment, facility or activity that is cited in a guidance, regulation, rule or legislative act. An example is Market Authorization relating to a Medicinal Product.
@@ -227,11 +229,10 @@ class RegulatedAuthorization
 
 /// [RegulatedAuthorizationCase] Regulatory approval, clearance or licencing related to a regulated product, treatment, facility or activity that is cited in a guidance, regulation, rule or legislative act. An example is Market Authorization relating to a Medicinal Product.
 @freezed
-class RegulatedAuthorizationCase
-    with _$RegulatedAuthorizationCase
-    implements BackboneElement {
+class RegulatedAuthorizationCase extends BackboneElement
+    with _$RegulatedAuthorizationCase {
   /// [RegulatedAuthorizationCase] Regulatory approval, clearance or licencing related to a regulated product, treatment, facility or activity that is cited in a guidance, regulation, rule or legislative act. An example is Market Authorization relating to a Medicinal Product.
-  const RegulatedAuthorizationCase._();
+  RegulatedAuthorizationCase._();
 
   /// [RegulatedAuthorizationCase] Regulatory approval, clearance or licencing related to a regulated product, treatment, facility or activity that is cited in a guidance, regulation, rule or legislative act. An example is Market Authorization relating to a Medicinal Product.
 
@@ -257,7 +258,7 @@ class RegulatedAuthorizationCase
   /// [dateDateTimeElement] (_dateDateTime): Extensions for dateDateTime;
   ///
   /// [application] A regulatory submission from an organization to a regulator, as part of an assessing case. Multiple applications may occur over time, with more or different information to support or modify the submission or the authorization. The applications can be considered as steps within the longer running case or procedure for this authorization process.;
-  const factory RegulatedAuthorizationCase({
+  factory RegulatedAuthorizationCase({
     /// [id] Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.;
     String? id,
 
@@ -319,6 +320,9 @@ class RegulatedAuthorizationCase
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

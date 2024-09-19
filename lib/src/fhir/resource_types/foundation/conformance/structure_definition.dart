@@ -15,9 +15,9 @@ part 'structure_definition.g.dart';
 
 /// [StructureDefinition] A definition of a FHIR structure. This resource is
 @freezed
-class StructureDefinition with _$StructureDefinition implements DomainResource {
+class StructureDefinition extends DomainResource with _$StructureDefinition {
   /// [StructureDefinition] A definition of a FHIR structure. This resource is
-  const StructureDefinition._();
+  StructureDefinition._();
 
   /// [StructureDefinition] A definition of a FHIR structure. This resource is
   /// used to describe the underlying resources, data types defined in FHIR, and
@@ -221,7 +221,7 @@ class StructureDefinition with _$StructureDefinition implements DomainResource {
   ///
   /// [differential] A differential view is expressed relative to the base
   ///  StructureDefinition - a statement of differences that it applies.
-  const factory StructureDefinition({
+  factory StructureDefinition({
     @Default(R4ResourceType.StructureDefinition)
     @JsonKey(unknownEnumValue: R4ResourceType.StructureDefinition)
 
@@ -514,6 +514,9 @@ class StructureDefinition with _$StructureDefinition implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -536,8 +539,8 @@ class StructureDefinition with _$StructureDefinition implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [StructureDefinitionMapping] A definition of a FHIR structure. This
@@ -545,11 +548,10 @@ class StructureDefinition with _$StructureDefinition implements DomainResource {
 
 /// [StructureDefinitionMapping] A definition of a FHIR structure. This
 @freezed
-class StructureDefinitionMapping
-    with _$StructureDefinitionMapping
-    implements BackboneElement {
+class StructureDefinitionMapping extends BackboneElement
+    with _$StructureDefinitionMapping {
   /// [StructureDefinitionMapping] A definition of a FHIR structure. This
-  const StructureDefinitionMapping._();
+  StructureDefinitionMapping._();
 
   /// [StructureDefinitionMapping] A definition of a FHIR structure. This
   /// resource is used to describe the underlying resources, data types defined
@@ -598,7 +600,7 @@ class StructureDefinitionMapping
   ///  scope limitations, and other important notes for usage.
   ///
   /// [commentElement] Extensions for comment
-  const factory StructureDefinitionMapping({
+  factory StructureDefinitionMapping({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -685,6 +687,9 @@ class StructureDefinitionMapping
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -696,11 +701,10 @@ class StructureDefinitionMapping
 
 /// [StructureDefinitionContext] A definition of a FHIR structure. This
 @freezed
-class StructureDefinitionContext
-    with _$StructureDefinitionContext
-    implements BackboneElement {
+class StructureDefinitionContext extends BackboneElement
+    with _$StructureDefinitionContext {
   /// [StructureDefinitionContext] A definition of a FHIR structure. This
-  const StructureDefinitionContext._();
+  StructureDefinitionContext._();
 
   /// [StructureDefinitionContext] A definition of a FHIR structure. This
   /// resource is used to describe the underlying resources, data types defined
@@ -740,7 +744,7 @@ class StructureDefinitionContext
   ///  resources.
   ///
   /// [expressionElement] Extensions for expression
-  const factory StructureDefinitionContext({
+  factory StructureDefinitionContext({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -814,6 +818,9 @@ class StructureDefinitionContext
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -825,11 +832,10 @@ class StructureDefinitionContext
 
 /// [StructureDefinitionSnapshot] A definition of a FHIR structure. This
 @freezed
-class StructureDefinitionSnapshot
-    with _$StructureDefinitionSnapshot
-    implements BackboneElement {
+class StructureDefinitionSnapshot extends BackboneElement
+    with _$StructureDefinitionSnapshot {
   /// [StructureDefinitionSnapshot] A definition of a FHIR structure. This
-  const StructureDefinitionSnapshot._();
+  StructureDefinitionSnapshot._();
 
   /// [StructureDefinitionSnapshot] A definition of a FHIR structure. This
   /// resource is used to describe the underlying resources, data types defined
@@ -861,7 +867,7 @@ class StructureDefinitionSnapshot
   ///  modifierExtension itself).
   ///
   /// [element] Captures constraints on each element within the resource.
-  const factory StructureDefinitionSnapshot({
+  factory StructureDefinitionSnapshot({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -924,6 +930,9 @@ class StructureDefinitionSnapshot
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -935,11 +944,10 @@ class StructureDefinitionSnapshot
 
 /// [StructureDefinitionDifferential] A definition of a FHIR structure. This
 @freezed
-class StructureDefinitionDifferential
-    with _$StructureDefinitionDifferential
-    implements BackboneElement {
+class StructureDefinitionDifferential extends BackboneElement
+    with _$StructureDefinitionDifferential {
   /// [StructureDefinitionDifferential] A definition of a FHIR structure. This
-  const StructureDefinitionDifferential._();
+  StructureDefinitionDifferential._();
 
   /// [StructureDefinitionDifferential] A definition of a FHIR structure. This
   /// resource is used to describe the underlying resources, data types defined
@@ -971,7 +979,7 @@ class StructureDefinitionDifferential
   ///  modifierExtension itself).
   ///
   /// [element] Captures constraints on each element within the resource.
-  const factory StructureDefinitionDifferential({
+  factory StructureDefinitionDifferential({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1033,6 +1041,9 @@ class StructureDefinitionDifferential
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

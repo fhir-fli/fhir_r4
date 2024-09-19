@@ -157,8 +157,12 @@ mixin _$DeviceUseStatement {
   ///  with the statement.
   List<Annotation>? get note => throw _privateConstructorUsedError;
 
+  /// Serializes this DeviceUseStatement to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DeviceUseStatement
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DeviceUseStatementCopyWith<DeviceUseStatement> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -221,6 +225,8 @@ class _$DeviceUseStatementCopyWithImpl<$Res, $Val extends DeviceUseStatement>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DeviceUseStatement
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -374,6 +380,8 @@ class _$DeviceUseStatementCopyWithImpl<$Res, $Val extends DeviceUseStatement>
     ) as $Val);
   }
 
+  /// Create a copy of DeviceUseStatement
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -386,6 +394,8 @@ class _$DeviceUseStatementCopyWithImpl<$Res, $Val extends DeviceUseStatement>
     });
   }
 
+  /// Create a copy of DeviceUseStatement
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -398,6 +408,8 @@ class _$DeviceUseStatementCopyWithImpl<$Res, $Val extends DeviceUseStatement>
     });
   }
 
+  /// Create a copy of DeviceUseStatement
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get subject {
@@ -406,6 +418,8 @@ class _$DeviceUseStatementCopyWithImpl<$Res, $Val extends DeviceUseStatement>
     });
   }
 
+  /// Create a copy of DeviceUseStatement
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TimingCopyWith<$Res>? get timingTiming {
@@ -418,6 +432,8 @@ class _$DeviceUseStatementCopyWithImpl<$Res, $Val extends DeviceUseStatement>
     });
   }
 
+  /// Create a copy of DeviceUseStatement
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get timingPeriod {
@@ -430,6 +446,8 @@ class _$DeviceUseStatementCopyWithImpl<$Res, $Val extends DeviceUseStatement>
     });
   }
 
+  /// Create a copy of DeviceUseStatement
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get source {
@@ -442,6 +460,8 @@ class _$DeviceUseStatementCopyWithImpl<$Res, $Val extends DeviceUseStatement>
     });
   }
 
+  /// Create a copy of DeviceUseStatement
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get device {
@@ -450,6 +470,8 @@ class _$DeviceUseStatementCopyWithImpl<$Res, $Val extends DeviceUseStatement>
     });
   }
 
+  /// Create a copy of DeviceUseStatement
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get bodySite {
@@ -529,6 +551,8 @@ class __$$DeviceUseStatementImplCopyWithImpl<$Res>
       $Res Function(_$DeviceUseStatementImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DeviceUseStatement
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -686,7 +710,7 @@ class __$$DeviceUseStatementImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DeviceUseStatementImpl extends _DeviceUseStatement {
-  const _$DeviceUseStatementImpl(
+  _$DeviceUseStatementImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.DeviceUseStatement)
       this.resourceType = R4ResourceType.DeviceUseStatement,
       this.id,
@@ -1064,7 +1088,7 @@ class _$DeviceUseStatementImpl extends _DeviceUseStatement {
             const DeepCollectionEquality().equals(other._note, _note));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1099,7 +1123,9 @@ class _$DeviceUseStatementImpl extends _DeviceUseStatement {
         const DeepCollectionEquality().hash(_note)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DeviceUseStatement
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DeviceUseStatementImplCopyWith<_$DeviceUseStatementImpl> get copyWith =>
@@ -1115,7 +1141,7 @@ class _$DeviceUseStatementImpl extends _DeviceUseStatement {
 }
 
 abstract class _DeviceUseStatement extends DeviceUseStatement {
-  const factory _DeviceUseStatement(
+  factory _DeviceUseStatement(
       {@JsonKey(unknownEnumValue: R4ResourceType.DeviceUseStatement)
       final R4ResourceType resourceType,
       final String? id,
@@ -1148,7 +1174,7 @@ abstract class _DeviceUseStatement extends DeviceUseStatement {
       final List<Reference>? reasonReference,
       final CodeableConcept? bodySite,
       final List<Annotation>? note}) = _$DeviceUseStatementImpl;
-  const _DeviceUseStatement._() : super._();
+  _DeviceUseStatement._() : super._();
 
   factory _DeviceUseStatement.fromJson(Map<String, dynamic> json) =
       _$DeviceUseStatementImpl.fromJson;
@@ -1156,39 +1182,38 @@ abstract class _DeviceUseStatement extends DeviceUseStatement {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.DeviceUseStatement)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1196,15 +1221,15 @@ abstract class _DeviceUseStatement extends DeviceUseStatement {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1212,9 +1237,9 @@ abstract class _DeviceUseStatement extends DeviceUseStatement {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1229,94 +1254,98 @@ abstract class _DeviceUseStatement extends DeviceUseStatement {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] An external identifier for this statement such as an IRI.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [basedOn] A plan, proposal or order that is fulfilled in whole or in part
   ///  by this DeviceUseStatement.
-  List<Reference>? get basedOn;
   @override
+  List<Reference>? get basedOn;
 
   /// [status] A code representing the patient or other source's judgment about
   /// the state of the device used that this statement is about.  Generally this
   ///  will be active or completed.
-  FhirCode? get status;
   @override
+  FhirCode? get status;
 
   /// [statusElement] Extensions for status
+  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
-  @override
 
   /// [subject] The patient who used the device.
-  Reference get subject;
   @override
+  Reference get subject;
 
   /// [derivedFrom] Allows linking the DeviceUseStatement to the underlying
   /// Request, or to other information that supports or is used to derive the
   ///  DeviceUseStatement.
-  List<Reference>? get derivedFrom;
   @override
+  List<Reference>? get derivedFrom;
 
   /// [timingTiming] How often the device was used.
-  Timing? get timingTiming;
   @override
+  Timing? get timingTiming;
 
   /// [timingPeriod] How often the device was used.
-  Period? get timingPeriod;
   @override
+  Period? get timingPeriod;
 
   /// [timingDateTime] How often the device was used.
-  FhirDateTime? get timingDateTime;
   @override
+  FhirDateTime? get timingDateTime;
 
   /// [timingDateTimeElement] Extensions for timingDateTime
+  @override
   @JsonKey(name: '_timingDateTime')
   PrimitiveElement? get timingDateTimeElement;
-  @override
 
   /// [recordedOn] The time at which the statement was made/recorded.
-  FhirDateTime? get recordedOn;
   @override
+  FhirDateTime? get recordedOn;
 
   /// [recordedOnElement] Extensions for recordedOn
+  @override
   @JsonKey(name: '_recordedOn')
   PrimitiveElement? get recordedOnElement;
-  @override
 
   /// [source] Who reported the device was being used by the patient.
-  Reference? get source;
   @override
+  Reference? get source;
 
   /// [device] The details of the device used.
-  Reference get device;
   @override
+  Reference get device;
 
   /// [reasonCode] Reason or justification for the use of the device.
-  List<CodeableConcept>? get reasonCode;
   @override
+  List<CodeableConcept>? get reasonCode;
 
   /// [reasonReference] Indicates another resource whose existence justifies
   ///  this DeviceUseStatement.
-  List<Reference>? get reasonReference;
   @override
+  List<Reference>? get reasonReference;
 
   /// [bodySite] Indicates the anotomic location on the subject's body where
   ///  the device was used ( i.e. the target).
-  CodeableConcept? get bodySite;
   @override
+  CodeableConcept? get bodySite;
 
   /// [note] Details about the device statement that were not represented at
   /// all or sufficiently in one of the attributes provided in a class. These
   /// may include for example a comment, an instruction, or a note associated
   ///  with the statement.
-  List<Annotation>? get note;
   @override
-  @JsonKey(ignore: true)
+  List<Annotation>? get note;
+
+  /// Create a copy of DeviceUseStatement
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DeviceUseStatementImplCopyWith<_$DeviceUseStatementImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

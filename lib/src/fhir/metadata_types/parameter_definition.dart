@@ -14,9 +14,9 @@ part 'parameter_definition.g.dart';
 
 /// [ParameterDefinition] The parameters to the module. This collection
 @freezed
-class ParameterDefinition with _$ParameterDefinition implements DataType {
+class ParameterDefinition extends DataType with _$ParameterDefinition {
   /// [ParameterDefinition] The parameters to the module. This collection
-  const ParameterDefinition._();
+  ParameterDefinition._();
 
   /// [ParameterDefinition] The parameters to the module. This collection
   /// specifies both the input and output parameters. Input parameters are
@@ -63,7 +63,7 @@ class ParameterDefinition with _$ParameterDefinition implements DataType {
   ///
   /// [profile] If specified, this indicates a profile that the input data must
   ///  conform to, or that the output data will conform to.
-  const factory ParameterDefinition({
+  factory ParameterDefinition({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -150,6 +150,9 @@ class ParameterDefinition with _$ParameterDefinition implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

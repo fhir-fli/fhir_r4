@@ -14,9 +14,9 @@ part 'quantity.g.dart';
 
 /// [Quantity] A measured amount (or an amount that can potentially be
 @freezed
-class Quantity with _$Quantity implements DataType {
+class Quantity extends DataType with _$Quantity {
   /// [Quantity] A measured amount (or an amount that can potentially be
-  const Quantity._();
+  Quantity._();
 
   /// [Quantity] A measured amount (or an amount that can potentially be
   /// measured). Note that measured amounts include amounts that are not
@@ -58,7 +58,7 @@ class Quantity with _$Quantity implements DataType {
   ///  representation system.
   ///
   /// [codeElement] Extensions for code
-  const factory Quantity({
+  factory Quantity({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -138,6 +138,9 @@ class Quantity with _$Quantity implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

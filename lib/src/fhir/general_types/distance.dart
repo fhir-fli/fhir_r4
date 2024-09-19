@@ -14,9 +14,9 @@ part 'distance.g.dart';
 
 /// [Distance] A length - a value with a unit that is a physical distance.
 @freezed
-class Distance with _$Distance implements DataType {
+class Distance extends DataType with _$Distance {
   /// [Distance] A length - a value with a unit that is a physical distance.
-  const Distance._();
+  Distance._();
 
   /// [Distance] A length - a value with a unit that is a physical distance.
   ///
@@ -55,7 +55,7 @@ class Distance with _$Distance implements DataType {
   ///  representation system.
   ///
   /// [codeElement] Extensions for code
-  const factory Distance({
+  factory Distance({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -135,6 +135,9 @@ class Distance with _$Distance implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

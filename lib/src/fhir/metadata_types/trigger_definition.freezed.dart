@@ -80,8 +80,12 @@ mixin _$TriggerDefinition {
   ///  trigger fires.
   FhirExpression? get condition => throw _privateConstructorUsedError;
 
+  /// Serializes this TriggerDefinition to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TriggerDefinition
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TriggerDefinitionCopyWith<TriggerDefinition> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -124,6 +128,8 @@ class _$TriggerDefinitionCopyWithImpl<$Res, $Val extends TriggerDefinition>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TriggerDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -202,6 +208,8 @@ class _$TriggerDefinitionCopyWithImpl<$Res, $Val extends TriggerDefinition>
     ) as $Val);
   }
 
+  /// Create a copy of TriggerDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TimingCopyWith<$Res>? get timingTiming {
@@ -214,6 +222,8 @@ class _$TriggerDefinitionCopyWithImpl<$Res, $Val extends TriggerDefinition>
     });
   }
 
+  /// Create a copy of TriggerDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get timingReference {
@@ -226,6 +236,8 @@ class _$TriggerDefinitionCopyWithImpl<$Res, $Val extends TriggerDefinition>
     });
   }
 
+  /// Create a copy of TriggerDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirExpressionCopyWith<$Res>? get condition {
@@ -280,6 +292,8 @@ class __$$TriggerDefinitionImplCopyWithImpl<$Res>
       $Res Function(_$TriggerDefinitionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TriggerDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -362,7 +376,7 @@ class __$$TriggerDefinitionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$TriggerDefinitionImpl extends _TriggerDefinition {
-  const _$TriggerDefinitionImpl(
+  _$TriggerDefinitionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: TriggerDefinitionType.unknown) this.type,
@@ -519,7 +533,7 @@ class _$TriggerDefinitionImpl extends _TriggerDefinition {
                 other.condition == condition));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -538,7 +552,9 @@ class _$TriggerDefinitionImpl extends _TriggerDefinition {
       const DeepCollectionEquality().hash(_data),
       condition);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TriggerDefinition
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TriggerDefinitionImplCopyWith<_$TriggerDefinitionImpl> get copyWith =>
@@ -554,7 +570,7 @@ class _$TriggerDefinitionImpl extends _TriggerDefinition {
 }
 
 abstract class _TriggerDefinition extends TriggerDefinition {
-  const factory _TriggerDefinition(
+  factory _TriggerDefinition(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: TriggerDefinitionType.unknown)
@@ -571,17 +587,15 @@ abstract class _TriggerDefinition extends TriggerDefinition {
       final PrimitiveElement? timingDateTimeElement,
       final List<DataRequirement>? data,
       final FhirExpression? condition}) = _$TriggerDefinitionImpl;
-  const _TriggerDefinition._() : super._();
+  _TriggerDefinition._() : super._();
 
   factory _TriggerDefinition.fromJson(Map<String, dynamic> json) =
       _$TriggerDefinitionImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -589,68 +603,72 @@ abstract class _TriggerDefinition extends TriggerDefinition {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
   @override
   @JsonKey(unknownEnumValue: TriggerDefinitionType.unknown)
   TriggerDefinitionType? get type;
-  @override
 
   /// [typeElement] Extensions for type
+  @override
   @JsonKey(name: '_type')
   PrimitiveElement? get typeElement;
-  @override
 
   /// [name] A formal name for the event. This may be an absolute URI that
   /// identifies the event formally (e.g. from a trigger registry), or a simple
   ///  relative URI that identifies the event in a local context.
-  String? get name;
   @override
+  String? get name;
 
   /// [nameElement] Extensions for name
+  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
-  @override
 
   /// [timingTiming] The timing of the event (if this is a periodic trigger).
-  Timing? get timingTiming;
   @override
+  Timing? get timingTiming;
 
   /// [timingReference] The timing of the event (if this is a periodic
   ///  trigger).
-  Reference? get timingReference;
   @override
+  Reference? get timingReference;
 
   /// [timingDate] The timing of the event (if this is a periodic trigger).
-  FhirDate? get timingDate;
   @override
+  FhirDate? get timingDate;
 
   /// [timingDateElement] Extensions for timingDate
+  @override
   @JsonKey(name: '_timingDate')
   PrimitiveElement? get timingDateElement;
-  @override
 
   /// [timingDateTime] The timing of the event (if this is a periodic trigger).
-  FhirDateTime? get timingDateTime;
   @override
+  FhirDateTime? get timingDateTime;
 
   /// [timingDateTimeElement] Extensions for timingDateTime
+  @override
   @JsonKey(name: '_timingDateTime')
   PrimitiveElement? get timingDateTimeElement;
-  @override
 
   /// [data] The triggering data of the event (if this is a data trigger). If
   /// more than one data is requirement is specified, then all the data
   ///  requirements must be true.
-  List<DataRequirement>? get data;
   @override
+  List<DataRequirement>? get data;
 
   /// [condition] A boolean-valued expression that is evaluated in the context
   /// of the container of the trigger definition and returns whether or not the
   ///  trigger fires.
-  FhirExpression? get condition;
   @override
-  @JsonKey(ignore: true)
+  FhirExpression? get condition;
+
+  /// Create a copy of TriggerDefinition
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TriggerDefinitionImplCopyWith<_$TriggerDefinitionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -14,9 +14,9 @@ part 'period.g.dart';
 
 /// [Period] A time period defined by a start and end date and optionally
 @freezed
-class Period with _$Period implements DataType {
+class Period extends DataType with _$Period {
   /// [Period] A time period defined by a start and end date and optionally
-  const Period._();
+  Period._();
 
   /// [Period] A time period defined by a start and end date and optionally
   ///  time.
@@ -41,7 +41,7 @@ class Period with _$Period implements DataType {
   ///  that period is expected/planned to end at that time.
   ///
   /// [endElement] Extensions for end
-  const factory Period({
+  factory Period({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -98,6 +98,9 @@ class Period with _$Period implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

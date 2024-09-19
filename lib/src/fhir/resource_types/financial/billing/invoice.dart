@@ -14,9 +14,9 @@ part 'invoice.g.dart';
 
 /// [Invoice] Invoice containing collected ChargeItems from an Account with
 @freezed
-class Invoice with _$Invoice implements DomainResource {
+class Invoice extends DomainResource with _$Invoice {
   /// [Invoice] Invoice containing collected ChargeItems from an Account with
-  const Invoice._();
+  Invoice._();
 
   /// [Invoice] Invoice containing collected ChargeItems from an Account with
   ///  calculated individual and total price for Billing purpose.
@@ -127,7 +127,7 @@ class Invoice with _$Invoice implements DomainResource {
   ///
   /// [note] Comments made about the invoice by the issuer, subject, or other
   ///  participants.
-  const factory Invoice({
+  factory Invoice({
     @Default(R4ResourceType.Invoice)
     @JsonKey(unknownEnumValue: R4ResourceType.Invoice)
 
@@ -303,6 +303,9 @@ class Invoice with _$Invoice implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -325,8 +328,8 @@ class Invoice with _$Invoice implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [InvoiceParticipant] Invoice containing collected ChargeItems from an
@@ -334,9 +337,9 @@ class Invoice with _$Invoice implements DomainResource {
 
 /// [InvoiceParticipant] Invoice containing collected ChargeItems from an
 @freezed
-class InvoiceParticipant with _$InvoiceParticipant implements BackboneElement {
+class InvoiceParticipant extends BackboneElement with _$InvoiceParticipant {
   /// [InvoiceParticipant] Invoice containing collected ChargeItems from an
-  const InvoiceParticipant._();
+  InvoiceParticipant._();
 
   /// [InvoiceParticipant] Invoice containing collected ChargeItems from an
   ///  Account with calculated individual and total price for Billing purpose.
@@ -371,7 +374,7 @@ class InvoiceParticipant with _$InvoiceParticipant implements BackboneElement {
   ///
   /// [actor] The device, practitioner, etc. who performed or participated in
   ///  the service.
-  const factory InvoiceParticipant({
+  factory InvoiceParticipant({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -442,6 +445,9 @@ class InvoiceParticipant with _$InvoiceParticipant implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -453,9 +459,9 @@ class InvoiceParticipant with _$InvoiceParticipant implements BackboneElement {
 
 /// [InvoiceLineItem] Invoice containing collected ChargeItems from an
 @freezed
-class InvoiceLineItem with _$InvoiceLineItem implements BackboneElement {
+class InvoiceLineItem extends BackboneElement with _$InvoiceLineItem {
   /// [InvoiceLineItem] Invoice containing collected ChargeItems from an
-  const InvoiceLineItem._();
+  InvoiceLineItem._();
 
   /// [InvoiceLineItem] Invoice containing collected ChargeItems from an
   ///  Account with calculated individual and total price for Billing purpose.
@@ -504,7 +510,7 @@ class InvoiceLineItem with _$InvoiceLineItem implements BackboneElement {
   /// conditions that apply to a billing code is currently under development.
   /// The priceComponent element can be used to offer transparency to the
   ///  recipient of the Invoice as to how the prices have been calculated.
-  const factory InvoiceLineItem({
+  factory InvoiceLineItem({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -592,6 +598,9 @@ class InvoiceLineItem with _$InvoiceLineItem implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -603,11 +612,10 @@ class InvoiceLineItem with _$InvoiceLineItem implements BackboneElement {
 
 /// [InvoicePriceComponent] Invoice containing collected ChargeItems from an
 @freezed
-class InvoicePriceComponent
-    with _$InvoicePriceComponent
-    implements BackboneElement {
+class InvoicePriceComponent extends BackboneElement
+    with _$InvoicePriceComponent {
   /// [InvoicePriceComponent] Invoice containing collected ChargeItems from an
-  const InvoicePriceComponent._();
+  InvoicePriceComponent._();
 
   /// [InvoicePriceComponent] Invoice containing collected ChargeItems from an
   ///  Account with calculated individual and total price for Billing purpose.
@@ -649,7 +657,7 @@ class InvoicePriceComponent
   /// [factorElement] Extensions for factor
   ///
   /// [amount] The amount calculated for this component.
-  const factory InvoicePriceComponent({
+  factory InvoicePriceComponent({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -730,6 +738,9 @@ class InvoicePriceComponent
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

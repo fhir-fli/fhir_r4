@@ -14,9 +14,9 @@ part 'trigger_definition.g.dart';
 
 /// [TriggerDefinition] A description of a triggering event. Triggering
 @freezed
-class TriggerDefinition with _$TriggerDefinition implements DataType {
+class TriggerDefinition extends DataType with _$TriggerDefinition {
   /// [TriggerDefinition] A description of a triggering event. Triggering
-  const TriggerDefinition._();
+  TriggerDefinition._();
 
   /// [TriggerDefinition] A description of a triggering event. Triggering
   /// events can be named events, data events, or periodic, as determined by the
@@ -62,7 +62,7 @@ class TriggerDefinition with _$TriggerDefinition implements DataType {
   /// [condition] A boolean-valued expression that is evaluated in the context
   /// of the container of the trigger definition and returns whether or not the
   ///  trigger fires.
-  const factory TriggerDefinition({
+  factory TriggerDefinition({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -149,6 +149,9 @@ class TriggerDefinition with _$TriggerDefinition implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

@@ -203,8 +203,12 @@ mixin _$ResearchStudy {
   List<ResearchStudyObjective>? get objective =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this ResearchStudy to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ResearchStudy
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ResearchStudyCopyWith<ResearchStudy> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -276,6 +280,8 @@ class _$ResearchStudyCopyWithImpl<$Res, $Val extends ResearchStudy>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ResearchStudy
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -474,6 +480,8 @@ class _$ResearchStudyCopyWithImpl<$Res, $Val extends ResearchStudy>
     ) as $Val);
   }
 
+  /// Create a copy of ResearchStudy
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -486,6 +494,8 @@ class _$ResearchStudyCopyWithImpl<$Res, $Val extends ResearchStudy>
     });
   }
 
+  /// Create a copy of ResearchStudy
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -498,6 +508,8 @@ class _$ResearchStudyCopyWithImpl<$Res, $Val extends ResearchStudy>
     });
   }
 
+  /// Create a copy of ResearchStudy
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get primaryPurposeType {
@@ -510,6 +522,8 @@ class _$ResearchStudyCopyWithImpl<$Res, $Val extends ResearchStudy>
     });
   }
 
+  /// Create a copy of ResearchStudy
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get phase {
@@ -522,6 +536,8 @@ class _$ResearchStudyCopyWithImpl<$Res, $Val extends ResearchStudy>
     });
   }
 
+  /// Create a copy of ResearchStudy
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get period {
@@ -534,6 +550,8 @@ class _$ResearchStudyCopyWithImpl<$Res, $Val extends ResearchStudy>
     });
   }
 
+  /// Create a copy of ResearchStudy
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get sponsor {
@@ -546,6 +564,8 @@ class _$ResearchStudyCopyWithImpl<$Res, $Val extends ResearchStudy>
     });
   }
 
+  /// Create a copy of ResearchStudy
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get principalInvestigator {
@@ -558,6 +578,8 @@ class _$ResearchStudyCopyWithImpl<$Res, $Val extends ResearchStudy>
     });
   }
 
+  /// Create a copy of ResearchStudy
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get reasonStopped {
@@ -646,6 +668,8 @@ class __$$ResearchStudyImplCopyWithImpl<$Res>
       _$ResearchStudyImpl _value, $Res Function(_$ResearchStudyImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ResearchStudy
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -848,7 +872,7 @@ class __$$ResearchStudyImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ResearchStudyImpl extends _ResearchStudy {
-  const _$ResearchStudyImpl(
+  _$ResearchStudyImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.ResearchStudy)
       this.resourceType = R4ResourceType.ResearchStudy,
       this.id,
@@ -1399,7 +1423,7 @@ class _$ResearchStudyImpl extends _ResearchStudy {
                 .equals(other._objective, _objective));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1443,7 +1467,9 @@ class _$ResearchStudyImpl extends _ResearchStudy {
         const DeepCollectionEquality().hash(_objective)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ResearchStudy
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ResearchStudyImplCopyWith<_$ResearchStudyImpl> get copyWith =>
@@ -1458,7 +1484,7 @@ class _$ResearchStudyImpl extends _ResearchStudy {
 }
 
 abstract class _ResearchStudy extends ResearchStudy {
-  const factory _ResearchStudy(
+  factory _ResearchStudy(
       {@JsonKey(unknownEnumValue: R4ResourceType.ResearchStudy)
       final R4ResourceType resourceType,
       final String? id,
@@ -1499,7 +1525,7 @@ abstract class _ResearchStudy extends ResearchStudy {
       final List<Annotation>? note,
       final List<ResearchStudyArm>? arm,
       final List<ResearchStudyObjective>? objective}) = _$ResearchStudyImpl;
-  const _ResearchStudy._() : super._();
+  _ResearchStudy._() : super._();
 
   factory _ResearchStudy.fromJson(Map<String, dynamic> json) =
       _$ResearchStudyImpl.fromJson;
@@ -1507,39 +1533,38 @@ abstract class _ResearchStudy extends ResearchStudy {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.ResearchStudy)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1547,15 +1572,15 @@ abstract class _ResearchStudy extends ResearchStudy {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1563,9 +1588,9 @@ abstract class _ResearchStudy extends ResearchStudy {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1580,147 +1605,151 @@ abstract class _ResearchStudy extends ResearchStudy {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] Identifiers assigned to this research study by the sponsor
   ///  or other systems.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [title] A short, descriptive user-friendly label for the study.
-  String? get title;
   @override
+  String? get title;
 
   /// [titleElement] Extensions for title
+  @override
   @JsonKey(name: '_title')
   PrimitiveElement? get titleElement;
-  @override
 
   /// [protocol] The set of steps expected to be performed as part of the
   ///  execution of the study.
-  List<Reference>? get protocol;
   @override
+  List<Reference>? get protocol;
 
   /// [partOf] A larger research study of which this particular study is a
   ///  component or step.
-  List<Reference>? get partOf;
   @override
+  List<Reference>? get partOf;
 
   /// [status] The current state of the study.
-  FhirCode? get status;
   @override
+  FhirCode? get status;
 
   /// [statusElement] Extensions for status
+  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
-  @override
 
   /// [primaryPurposeType] The type of study based upon the intent of the
   ///  study's activities. A classification of the intent of the study.
-  CodeableConcept? get primaryPurposeType;
   @override
+  CodeableConcept? get primaryPurposeType;
 
   /// [phase] The stage in the progression of a therapy from initial
   ///  experimental use in humans in clinical trials to post-market evaluation.
-  CodeableConcept? get phase;
   @override
+  CodeableConcept? get phase;
 
   /// [category] Codes categorizing the type of study such as investigational
   /// vs. observational, type of blinding, type of randomization, safety vs.
   ///  efficacy, etc.
-  List<CodeableConcept>? get category;
   @override
+  List<CodeableConcept>? get category;
 
   /// [focus] The medication(s), food(s), therapy(ies), device(s) or other
   /// concerns or interventions that the study is seeking to gain more
   ///  information about.
-  List<CodeableConcept>? get focus;
   @override
+  List<CodeableConcept>? get focus;
 
   /// [condition] The condition that is the focus of the study.  For example,
   /// In a study to examine risk factors for Lupus, might have as an inclusion
   /// criterion "healthy volunteer", but the target condition code would be a
   ///  Lupus SNOMED code.
-  List<CodeableConcept>? get condition;
   @override
+  List<CodeableConcept>? get condition;
 
   /// [contact] Contact details to assist a user in learning more about or
   ///  engaging with the study.
-  List<ContactDetail>? get contact;
   @override
+  List<ContactDetail>? get contact;
 
   /// [relatedArtifact] Citations, references and other related documents.
-  List<RelatedArtifact>? get relatedArtifact;
   @override
+  List<RelatedArtifact>? get relatedArtifact;
 
   /// [keyword] Key terms to aid in searching for or filtering the study.
-  List<CodeableConcept>? get keyword;
   @override
+  List<CodeableConcept>? get keyword;
 
   /// [location] Indicates a country, state or other region where the study is
   ///  taking place.
-  List<CodeableConcept>? get location;
   @override
+  List<CodeableConcept>? get location;
 
   /// [description] A full description of how the study is being conducted.
-  FhirMarkdown? get description;
   @override
+  FhirMarkdown? get description;
 
   /// [descriptionElement] Extensions for description
+  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
-  @override
 
   /// [enrollment] Reference to a Group that defines the criteria for and
   /// quantity of subjects participating in the study.  E.g. " 200 female
   ///  Europeans between the ages of 20 and 45 with early onset diabetes".
-  List<Reference>? get enrollment;
   @override
+  List<Reference>? get enrollment;
 
   /// [period] Identifies the start date and the expected (or actual, depending
   ///  on status) end date for the study.
-  Period? get period;
   @override
+  Period? get period;
 
   /// [sponsor] An organization that initiates the investigation and is legally
   ///  responsible for the study.
-  Reference? get sponsor;
   @override
+  Reference? get sponsor;
 
   /// [principalInvestigator] A researcher in a study who oversees multiple
   /// aspects of the study, such as concept development, protocol writing,
   /// protocol submission for IRB approval, participant recruitment, informed
   ///  consent, data collection, analysis, interpretation and presentation.
-  Reference? get principalInvestigator;
   @override
+  Reference? get principalInvestigator;
 
   /// [site] A facility in which study activities are conducted.
-  List<Reference>? get site;
   @override
+  List<Reference>? get site;
 
   /// [reasonStopped] A description and/or code explaining the premature
   ///  termination of the study.
-  CodeableConcept? get reasonStopped;
   @override
+  CodeableConcept? get reasonStopped;
 
   /// [note] Comments made about the study by the performer, subject or other
   ///  participants.
-  List<Annotation>? get note;
   @override
+  List<Annotation>? get note;
 
   /// [arm] Describes an expected sequence of events for one of the
   /// participants of a study.  E.g. Exposure to drug A, wash-out, exposure to
   ///  drug B, wash-out, follow-up.
-  List<ResearchStudyArm>? get arm;
   @override
+  List<ResearchStudyArm>? get arm;
 
   /// [objective] A goal that the study is aiming to achieve in terms of a
   /// scientific question to be answered by the analysis of data collected
   ///  during the study.
-  List<ResearchStudyObjective>? get objective;
   @override
-  @JsonKey(ignore: true)
+  List<ResearchStudyObjective>? get objective;
+
+  /// Create a copy of ResearchStudy
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ResearchStudyImplCopyWith<_$ResearchStudyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1780,8 +1809,12 @@ mixin _$ResearchStudyArm {
   PrimitiveElement? get descriptionElement =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this ResearchStudyArm to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ResearchStudyArm
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ResearchStudyArmCopyWith<ResearchStudyArm> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1815,6 +1848,8 @@ class _$ResearchStudyArmCopyWithImpl<$Res, $Val extends ResearchStudyArm>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ResearchStudyArm
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1863,6 +1898,8 @@ class _$ResearchStudyArmCopyWithImpl<$Res, $Val extends ResearchStudyArm>
     ) as $Val);
   }
 
+  /// Create a copy of ResearchStudyArm
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get type {
@@ -1906,6 +1943,8 @@ class __$$ResearchStudyArmImplCopyWithImpl<$Res>
       $Res Function(_$ResearchStudyArmImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ResearchStudyArm
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1958,7 +1997,7 @@ class __$$ResearchStudyArmImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ResearchStudyArmImpl extends _ResearchStudyArm {
-  const _$ResearchStudyArmImpl(
+  _$ResearchStudyArmImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2090,7 +2129,7 @@ class _$ResearchStudyArmImpl extends _ResearchStudyArm {
                 other.descriptionElement == descriptionElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2103,7 +2142,9 @@ class _$ResearchStudyArmImpl extends _ResearchStudyArm {
       description,
       descriptionElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ResearchStudyArm
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ResearchStudyArmImplCopyWith<_$ResearchStudyArmImpl> get copyWith =>
@@ -2119,7 +2160,7 @@ class _$ResearchStudyArmImpl extends _ResearchStudyArm {
 }
 
 abstract class _ResearchStudyArm extends ResearchStudyArm {
-  const factory _ResearchStudyArm(
+  factory _ResearchStudyArm(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2129,17 +2170,15 @@ abstract class _ResearchStudyArm extends ResearchStudyArm {
       final String? description,
       @JsonKey(name: '_description')
       final PrimitiveElement? descriptionElement}) = _$ResearchStudyArmImpl;
-  const _ResearchStudyArm._() : super._();
+  _ResearchStudyArm._() : super._();
 
   factory _ResearchStudyArm.fromJson(Map<String, dynamic> json) =
       _$ResearchStudyArmImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2147,9 +2186,9 @@ abstract class _ResearchStudyArm extends ResearchStudyArm {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2164,33 +2203,37 @@ abstract class _ResearchStudyArm extends ResearchStudyArm {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [name] Unique, human-readable label for this arm of the study.
-  String? get name;
   @override
+  String? get name;
 
   /// [nameElement] Extensions for name
+  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
-  @override
 
   /// [type] Categorization of study arm, e.g. experimental, active comparator,
   ///  placebo comparater.
-  CodeableConcept? get type;
   @override
+  CodeableConcept? get type;
 
   /// [description] A succinct description of the path through the study that
   ///  would be followed by a subject adhering to this arm.
-  String? get description;
   @override
+  String? get description;
 
   /// [descriptionElement] Extensions for description
+  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
+
+  /// Create a copy of ResearchStudyArm
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ResearchStudyArmImplCopyWith<_$ResearchStudyArmImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2241,8 +2284,12 @@ mixin _$ResearchStudyObjective {
   /// [type] The kind of study objective.
   CodeableConcept? get type => throw _privateConstructorUsedError;
 
+  /// Serializes this ResearchStudyObjective to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ResearchStudyObjective
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ResearchStudyObjectiveCopyWith<ResearchStudyObjective> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2275,6 +2322,8 @@ class _$ResearchStudyObjectiveCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ResearchStudyObjective
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2313,6 +2362,8 @@ class _$ResearchStudyObjectiveCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of ResearchStudyObjective
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get type {
@@ -2357,6 +2408,8 @@ class __$$ResearchStudyObjectiveImplCopyWithImpl<$Res>
       $Res Function(_$ResearchStudyObjectiveImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ResearchStudyObjective
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2399,7 +2452,7 @@ class __$$ResearchStudyObjectiveImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ResearchStudyObjectiveImpl extends _ResearchStudyObjective {
-  const _$ResearchStudyObjectiveImpl(
+  _$ResearchStudyObjectiveImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2514,7 +2567,7 @@ class _$ResearchStudyObjectiveImpl extends _ResearchStudyObjective {
             (identical(other.type, type) || other.type == type));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2525,7 +2578,9 @@ class _$ResearchStudyObjectiveImpl extends _ResearchStudyObjective {
       nameElement,
       type);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ResearchStudyObjective
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ResearchStudyObjectiveImplCopyWith<_$ResearchStudyObjectiveImpl>
@@ -2541,24 +2596,22 @@ class _$ResearchStudyObjectiveImpl extends _ResearchStudyObjective {
 }
 
 abstract class _ResearchStudyObjective extends ResearchStudyObjective {
-  const factory _ResearchStudyObjective(
+  factory _ResearchStudyObjective(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final String? name,
       @JsonKey(name: '_name') final PrimitiveElement? nameElement,
       final CodeableConcept? type}) = _$ResearchStudyObjectiveImpl;
-  const _ResearchStudyObjective._() : super._();
+  _ResearchStudyObjective._() : super._();
 
   factory _ResearchStudyObjective.fromJson(Map<String, dynamic> json) =
       _$ResearchStudyObjectiveImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2566,9 +2619,9 @@ abstract class _ResearchStudyObjective extends ResearchStudyObjective {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2583,22 +2636,26 @@ abstract class _ResearchStudyObjective extends ResearchStudyObjective {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [name] Unique, human-readable label for this objective of the study.
-  String? get name;
   @override
+  String? get name;
 
   /// [nameElement] Extensions for name
+  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
-  @override
 
   /// [type] The kind of study objective.
-  CodeableConcept? get type;
   @override
-  @JsonKey(ignore: true)
+  CodeableConcept? get type;
+
+  /// Create a copy of ResearchStudyObjective
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ResearchStudyObjectiveImplCopyWith<_$ResearchStudyObjectiveImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

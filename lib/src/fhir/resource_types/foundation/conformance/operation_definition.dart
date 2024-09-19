@@ -15,9 +15,9 @@ part 'operation_definition.g.dart';
 
 /// [OperationDefinition] A formal computable definition of an operation (on
 @freezed
-class OperationDefinition with _$OperationDefinition implements DomainResource {
+class OperationDefinition extends DomainResource with _$OperationDefinition {
   /// [OperationDefinition] A formal computable definition of an operation (on
-  const OperationDefinition._();
+  OperationDefinition._();
 
   /// [OperationDefinition] A formal computable definition of an operation (on
   ///  the RESTful interface) or a named query (using the search interaction).
@@ -206,7 +206,7 @@ class OperationDefinition with _$OperationDefinition implements DomainResource {
   /// [overload] Defines an appropriate combination of parameters to use when
   /// invoking this operation, to help code generators when generating
   ///  overloaded parameter sets for this operation.
-  const factory OperationDefinition({
+  factory OperationDefinition({
     @Default(R4ResourceType.OperationDefinition)
     @JsonKey(unknownEnumValue: R4ResourceType.OperationDefinition)
 
@@ -484,6 +484,9 @@ class OperationDefinition with _$OperationDefinition implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -506,8 +509,8 @@ class OperationDefinition with _$OperationDefinition implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [OperationDefinitionParameter] A formal computable definition of an
@@ -515,11 +518,10 @@ class OperationDefinition with _$OperationDefinition implements DomainResource {
 
 /// [OperationDefinitionParameter] A formal computable definition of an
 @freezed
-class OperationDefinitionParameter
-    with _$OperationDefinitionParameter
-    implements BackboneElement {
+class OperationDefinitionParameter extends BackboneElement
+    with _$OperationDefinitionParameter {
   /// [OperationDefinitionParameter] A formal computable definition of an
-  const OperationDefinitionParameter._();
+  OperationDefinitionParameter._();
 
   /// [OperationDefinitionParameter] A formal computable definition of an
   /// operation (on the RESTful interface) or a named query (using the search
@@ -597,7 +599,7 @@ class OperationDefinitionParameter
   ///  operation invocation that are expected to resolve to this resource.
   ///
   /// [part] The parts of a nested Parameter.
-  const factory OperationDefinitionParameter({
+  factory OperationDefinitionParameter({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -724,6 +726,9 @@ class OperationDefinitionParameter
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -735,11 +740,10 @@ class OperationDefinitionParameter
 
 /// [OperationDefinitionBinding] A formal computable definition of an
 @freezed
-class OperationDefinitionBinding
-    with _$OperationDefinitionBinding
-    implements BackboneElement {
+class OperationDefinitionBinding extends BackboneElement
+    with _$OperationDefinitionBinding {
   /// [OperationDefinitionBinding] A formal computable definition of an
-  const OperationDefinitionBinding._();
+  OperationDefinitionBinding._();
 
   /// [OperationDefinitionBinding] A formal computable definition of an
   /// operation (on the RESTful interface) or a named query (using the search
@@ -777,7 +781,7 @@ class OperationDefinitionBinding
   ///
   /// [valueSet] Points to the value set or external definition (e.g. implicit
   ///  value set) that identifies the set of codes to be used.
-  const factory OperationDefinitionBinding({
+  factory OperationDefinitionBinding({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -849,6 +853,9 @@ class OperationDefinitionBinding
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -857,10 +864,9 @@ class OperationDefinitionBinding
 
 @freezed
 @freezed
-class OperationDefinitionReferencedFrom
-    with _$OperationDefinitionReferencedFrom
-    implements BackboneElement {
-  const OperationDefinitionReferencedFrom._();
+class OperationDefinitionReferencedFrom extends BackboneElement
+    with _$OperationDefinitionReferencedFrom {
+  OperationDefinitionReferencedFrom._();
 
   /// [OperationDefinitionReferencedFrom] A formal computable definition of an
   /// operation (on the RESTful interface) or a named query (using the search
@@ -900,7 +906,7 @@ class OperationDefinitionReferencedFrom
   ///  expected to resolve to this resource.
   ///
   /// [sourceIdElement] Extensions for sourceId
-  const factory OperationDefinitionReferencedFrom({
+  factory OperationDefinitionReferencedFrom({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -964,6 +970,9 @@ class OperationDefinitionReferencedFrom
       _$OperationDefinitionReferencedFromFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -975,11 +984,10 @@ class OperationDefinitionReferencedFrom
 
 /// [OperationDefinitionOverload] A formal computable definition of an
 @freezed
-class OperationDefinitionOverload
-    with _$OperationDefinitionOverload
-    implements BackboneElement {
+class OperationDefinitionOverload extends BackboneElement
+    with _$OperationDefinitionOverload {
   /// [OperationDefinitionOverload] A formal computable definition of an
-  const OperationDefinitionOverload._();
+  OperationDefinitionOverload._();
 
   /// [OperationDefinitionOverload] A formal computable definition of an
   /// operation (on the RESTful interface) or a named query (using the search
@@ -1016,7 +1024,7 @@ class OperationDefinitionOverload
   /// [comment] Comments to go on overload.
   ///
   /// [commentElement] Extensions for comment
-  const factory OperationDefinitionOverload({
+  factory OperationDefinitionOverload({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1087,6 +1095,9 @@ class OperationDefinitionOverload
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

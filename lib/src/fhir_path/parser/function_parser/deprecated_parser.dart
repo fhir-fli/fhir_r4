@@ -1,7 +1,7 @@
 // ignore_for_file: annotate_overrides, overridden_fields
 
 // Project imports:
-import '../../r4.dart';
+import '../../../../fhir_r4.dart';
 
 /// DEPRECATED
 /// The as() function is defined for backwards compatibility with previous implementations
@@ -85,4 +85,49 @@ class IsFunctionParser extends FunctionParser {
   String prettyPrint([int indent = 2]) =>
       '.is(Deprecated)(\n${"  " * indent}${value.prettyPrint(indent + 1)}\n'
       '${indent <= 0 ? "" : "  " * (indent - 1)})';
+}
+
+/// DEPRECATED
+/// The as() function is defined for backwards compatibility with previous implementations
+/// of FHIRPath. However, we have chosen not to support it.
+/// DEPRECATED
+class IsIntegerParser extends FhirPathParser {
+  IsIntegerParser();
+
+  /// The iterable, nested function that evaluates the entire FHIRPath
+  /// expression one object at a time
+  @override
+  List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
+    return results.isEmpty || results.length != 1
+        ? throw FhirPathEvaluationException(
+            'the "isInteger" operation requires one operands, this was '
+            'passed the following\n'
+            'Operand1: $results\n',
+            collection: results)
+        : <dynamic>[
+            (results.first is int || results.first is FhirInteger) &&
+
+                /// This is because of transpilation to javascript
+                !results.first.toString().contains('.')
+          ];
+  }
+
+  /// To print the entire parsed FHIRPath expression, this includes ALL
+  /// of the Parsers that are used in this package by the names used in
+  /// this package. These are not always synonymous with the FHIRPath
+  /// specification (although they usually are), and include some parser
+  /// classes that were created for ease of evaluation but are not included
+  /// at all as objects in the official spec. I'm generally going to recommend
+  /// that you use [prettyPrint] instead
+  @override
+  String verbosePrint(int indent) =>
+      '${"  " * indent}IsIntegerParser (Deprecated)\n';
+
+  /// Uses a rough approximation of reverse polish notation to render the
+  /// parsed value of a FHIRPath in a more human readable way than
+  /// [verbosePrint], while still demonstrating how the expression was parsed
+  /// and nested according to this package
+  @override
+  String prettyPrint([int indent = 2]) =>
+      '${"  " * indent}IsIntegerParser (Deprecated)\n';
 }

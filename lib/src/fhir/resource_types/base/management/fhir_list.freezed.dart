@@ -152,8 +152,12 @@ mixin _$FhirList {
   /// [emptyReason] If the list is empty, why the list is empty.
   CodeableConcept? get emptyReason => throw _privateConstructorUsedError;
 
+  /// Serializes this FhirList to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of FhirList
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $FhirListCopyWith<FhirList> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -214,6 +218,8 @@ class _$FhirListCopyWithImpl<$Res, $Val extends FhirList>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of FhirList
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -362,6 +368,8 @@ class _$FhirListCopyWithImpl<$Res, $Val extends FhirList>
     ) as $Val);
   }
 
+  /// Create a copy of FhirList
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -374,6 +382,8 @@ class _$FhirListCopyWithImpl<$Res, $Val extends FhirList>
     });
   }
 
+  /// Create a copy of FhirList
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -386,6 +396,8 @@ class _$FhirListCopyWithImpl<$Res, $Val extends FhirList>
     });
   }
 
+  /// Create a copy of FhirList
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get code {
@@ -398,6 +410,8 @@ class _$FhirListCopyWithImpl<$Res, $Val extends FhirList>
     });
   }
 
+  /// Create a copy of FhirList
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get subject {
@@ -410,6 +424,8 @@ class _$FhirListCopyWithImpl<$Res, $Val extends FhirList>
     });
   }
 
+  /// Create a copy of FhirList
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get encounter {
@@ -422,6 +438,8 @@ class _$FhirListCopyWithImpl<$Res, $Val extends FhirList>
     });
   }
 
+  /// Create a copy of FhirList
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get source {
@@ -434,6 +452,8 @@ class _$FhirListCopyWithImpl<$Res, $Val extends FhirList>
     });
   }
 
+  /// Create a copy of FhirList
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get orderedBy {
@@ -446,6 +466,8 @@ class _$FhirListCopyWithImpl<$Res, $Val extends FhirList>
     });
   }
 
+  /// Create a copy of FhirList
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get emptyReason {
@@ -524,6 +546,8 @@ class __$$FhirListImplCopyWithImpl<$Res>
       _$FhirListImpl _value, $Res Function(_$FhirListImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FhirList
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -676,7 +700,7 @@ class __$$FhirListImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FhirListImpl extends _FhirList {
-  const _$FhirListImpl(
+  _$FhirListImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.FhirList)
       this.resourceType = R4ResourceType.FhirList,
       this.id,
@@ -1007,7 +1031,7 @@ class _$FhirListImpl extends _FhirList {
                 other.emptyReason == emptyReason));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1041,7 +1065,9 @@ class _$FhirListImpl extends _FhirList {
         emptyReason
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FhirList
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FhirListImplCopyWith<_$FhirListImpl> get copyWith =>
@@ -1056,7 +1082,7 @@ class _$FhirListImpl extends _FhirList {
 }
 
 abstract class _FhirList extends FhirList {
-  const factory _FhirList(
+  factory _FhirList(
       {@JsonKey(unknownEnumValue: R4ResourceType.FhirList)
       final R4ResourceType resourceType,
       final String? id,
@@ -1087,7 +1113,7 @@ abstract class _FhirList extends FhirList {
       final List<Annotation>? note,
       final List<FhirListEntry>? entry,
       final CodeableConcept? emptyReason}) = _$FhirListImpl;
-  const _FhirList._() : super._();
+  _FhirList._() : super._();
 
   factory _FhirList.fromJson(Map<String, dynamic> json) =
       _$FhirListImpl.fromJson;
@@ -1095,39 +1121,38 @@ abstract class _FhirList extends FhirList {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.FhirList)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1135,15 +1160,15 @@ abstract class _FhirList extends FhirList {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1151,9 +1176,9 @@ abstract class _FhirList extends FhirList {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1168,89 +1193,93 @@ abstract class _FhirList extends FhirList {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] Identifier for the List assigned for business purposes
   ///  outside the context of FHIR.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [status] Indicates the current state of this list.
-  FhirCode? get status;
   @override
+  FhirCode? get status;
 
   /// [statusElement] Extensions for status
+  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
-  @override
 
   /// [mode] How this list was prepared - whether it is a working list that is
   /// suitable for being maintained on an ongoing basis, or if it represents a
   /// snapshot of a list of items from another source, or whether it is a
   ///  prepared list where items may be marked as added, modified or deleted.
-  FhirCode? get mode;
   @override
+  FhirCode? get mode;
 
   /// [modeElement] Extensions for mode
+  @override
   @JsonKey(name: '_mode')
   PrimitiveElement? get modeElement;
-  @override
 
   /// [title] A label for the list assigned by the author.
-  String? get title;
   @override
+  String? get title;
 
   /// [titleElement] Extensions for title
+  @override
   @JsonKey(name: '_title')
   PrimitiveElement? get titleElement;
-  @override
 
   /// [code] This code defines the purpose of the list - why it was created.
-  CodeableConcept? get code;
   @override
+  CodeableConcept? get code;
 
   /// [subject] The common subject (or patient) of the resources that are in
   ///  the list if there is one.
-  Reference? get subject;
   @override
+  Reference? get subject;
 
   /// [encounter] The encounter that is the context in which this list was
   ///  created.
-  Reference? get encounter;
   @override
+  Reference? get encounter;
 
   /// [date] The date that the list was prepared.
-  FhirDateTime? get date;
   @override
+  FhirDateTime? get date;
 
   /// [dateElement] Extensions for date
+  @override
   @JsonKey(name: '_date')
   PrimitiveElement? get dateElement;
-  @override
 
   /// [source] The entity responsible for deciding what the contents of the
   /// list were. Where the list was created by a human, this is the same as the
   ///  author of the list.
-  Reference? get source;
   @override
+  Reference? get source;
 
   /// [orderedBy] What order applies to the items in the list.
-  CodeableConcept? get orderedBy;
   @override
+  CodeableConcept? get orderedBy;
 
   /// [note] Comments that apply to the overall list.
-  List<Annotation>? get note;
   @override
+  List<Annotation>? get note;
 
   /// [entry] Entries in this list.
-  List<FhirListEntry>? get entry;
   @override
+  List<FhirListEntry>? get entry;
 
   /// [emptyReason] If the list is empty, why the list is empty.
-  CodeableConcept? get emptyReason;
   @override
-  @JsonKey(ignore: true)
+  CodeableConcept? get emptyReason;
+
+  /// Create a copy of FhirList
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FhirListImplCopyWith<_$FhirListImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1311,8 +1340,12 @@ mixin _$FhirListEntry {
   /// [item] A reference to the actual resource from which data was derived.
   Reference get item => throw _privateConstructorUsedError;
 
+  /// Serializes this FhirListEntry to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of FhirListEntry
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $FhirListEntryCopyWith<FhirListEntry> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1348,6 +1381,8 @@ class _$FhirListEntryCopyWithImpl<$Res, $Val extends FhirListEntry>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of FhirListEntry
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1401,6 +1436,8 @@ class _$FhirListEntryCopyWithImpl<$Res, $Val extends FhirListEntry>
     ) as $Val);
   }
 
+  /// Create a copy of FhirListEntry
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get flag {
@@ -1413,6 +1450,8 @@ class _$FhirListEntryCopyWithImpl<$Res, $Val extends FhirListEntry>
     });
   }
 
+  /// Create a copy of FhirListEntry
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get item {
@@ -1455,6 +1494,8 @@ class __$$FhirListEntryImplCopyWithImpl<$Res>
       _$FhirListEntryImpl _value, $Res Function(_$FhirListEntryImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FhirListEntry
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1512,7 +1553,7 @@ class __$$FhirListEntryImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FhirListEntryImpl extends _FhirListEntry {
-  const _$FhirListEntryImpl(
+  _$FhirListEntryImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1648,7 +1689,7 @@ class _$FhirListEntryImpl extends _FhirListEntry {
             (identical(other.item, item) || other.item == item));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1662,7 +1703,9 @@ class _$FhirListEntryImpl extends _FhirListEntry {
       dateElement,
       item);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FhirListEntry
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FhirListEntryImplCopyWith<_$FhirListEntryImpl> get copyWith =>
@@ -1677,7 +1720,7 @@ class _$FhirListEntryImpl extends _FhirListEntry {
 }
 
 abstract class _FhirListEntry extends FhirListEntry {
-  const factory _FhirListEntry(
+  factory _FhirListEntry(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1687,17 +1730,15 @@ abstract class _FhirListEntry extends FhirListEntry {
       final FhirDateTime? date,
       @JsonKey(name: '_date') final PrimitiveElement? dateElement,
       required final Reference item}) = _$FhirListEntryImpl;
-  const _FhirListEntry._() : super._();
+  _FhirListEntry._() : super._();
 
   factory _FhirListEntry.fromJson(Map<String, dynamic> json) =
       _$FhirListEntryImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1705,9 +1746,9 @@ abstract class _FhirListEntry extends FhirListEntry {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -1722,36 +1763,40 @@ abstract class _FhirListEntry extends FhirListEntry {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [flag] The flag allows the system constructing the list to indicate the
   ///  role and significance of the item in the list.
-  CodeableConcept? get flag;
   @override
+  CodeableConcept? get flag;
 
   /// [deleted] True if this item is marked as deleted in the list.
-  FhirBoolean? get deleted;
   @override
+  FhirBoolean? get deleted;
 
   /// [deletedElement] Extensions for deleted
+  @override
   @JsonKey(name: '_deleted')
   PrimitiveElement? get deletedElement;
-  @override
 
   /// [date] When this item was added to the list.
-  FhirDateTime? get date;
   @override
+  FhirDateTime? get date;
 
   /// [dateElement] Extensions for date
+  @override
   @JsonKey(name: '_date')
   PrimitiveElement? get dateElement;
-  @override
 
   /// [item] A reference to the actual resource from which data was derived.
-  Reference get item;
   @override
-  @JsonKey(ignore: true)
+  Reference get item;
+
+  /// Create a copy of FhirListEntry
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FhirListEntryImplCopyWith<_$FhirListEntryImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -21,6 +21,8 @@ class FhirDb {
   bool _initialized = false;
   Completer<void>? _initCompleter;
   Set<R4ResourceType> _types = <R4ResourceType>{};
+  bool storeForSync = false;
+  bool versionIdAsTime = false;
 
   /// Initializes the database, configures its path, and returns it.
   /// Throws an exception if initialization fails.
@@ -44,6 +46,8 @@ class FhirDb {
               ?.map((String e) => Resource.resourceTypeFromString(e)!)
               .toSet() ??
           <R4ResourceType>{};
+      await Hive.openBox<Map<dynamic, dynamic>>('sync',
+          encryptionCipher: cipher);
       _initialized =
           true; // Set initialized to true only after all operations are successful.
     } catch (e) {
@@ -90,7 +94,7 @@ class FhirDb {
 
       final List<String> types = typesBox.get('types') ?? <String>[];
       try {
-        for (final String type in types) {
+        for (final String type in [...types, 'sync', 'history']) {
           final Box<Map<dynamic, dynamic>> oldBox =
               await Hive.openBox<Map<dynamic, dynamic>>(type,
                   encryptionCipher: cipherFromKey(key: oldPw));
@@ -99,8 +103,8 @@ class FhirDb {
                   encryptionCipher: cipherFromKey(key: newPw));
 
           try {
-            for (final Map<dynamic, dynamic> value in oldBox.values) {
-              await tempBox.put(value['id'], value);
+            for (final dynamic key in oldBox.keys.toList()) {
+              await tempBox.put(key, oldBox.get(key)!);
             }
           } finally {
             await oldBox.deleteFromDisk();
@@ -242,13 +246,16 @@ class FhirDb {
     Resource resource,
     String? pw,
   ) async {
-    final Resource newResource =
-        resource.newIdIfNoId().updateVersion(oldMeta: resource.meta);
+    final Resource newResource = resource.newIdIfNoId().updateVersion(
+        oldMeta: resource.meta, versionIdAsTime: versionIdAsTime);
     await _saveToDb(
       resourceType: newResource.resourceType!,
       resource: newResource.toJson(),
       pw: pw,
     );
+    if (storeForSync) {
+      await _saveToSync(resource: newResource.toJson(), pw: pw);
+    }
     return newResource;
   }
 
@@ -270,12 +277,16 @@ class FhirDb {
           pw: pw,
         );
         final FhirMeta? oldMeta = oldResource.meta;
-        final Resource newResource = resource.updateVersion(oldMeta: oldMeta);
+        final Resource newResource = resource.updateVersion(
+            oldMeta: oldMeta, versionIdAsTime: versionIdAsTime);
         await _saveToDb(
           resourceType: newResource.resourceType!,
           resource: newResource.toJson(),
           pw: pw,
         );
+        if (storeForSync) {
+          await _saveToSync(resource: newResource.toJson(), pw: pw);
+        }
         return newResource;
       } else {
         return _insert(resource, pw);
@@ -658,6 +669,99 @@ class FhirDb {
             jsonDecode(jsonEncode(e)) as Map<String, dynamic>)
         .map((Map<String, dynamic> e) => Resource.fromJson(e))
         .toList();
+  }
+
+  /// ************************************************************************
+  /// Next section still deals with FHIR resources, but in this case its
+  /// going to be used to make local first applications with sync
+  /// ************************************************************************
+
+  Future<void> _saveToSync({
+    required Map<String, dynamic> resource,
+    String? pw,
+  }) async {
+    await _ensureInit(pw: pw);
+    final HiveAesCipher? cipher = cipherFromKey(key: pw);
+    try {
+      final Box<Object> box;
+      if (!Hive.isBoxOpen('sync')) {
+        box = await Hive.openBox('sync', encryptionCipher: cipher);
+      } else {
+        box = Hive.box('sync');
+      }
+      final String key =
+          '${resource['resourceType']}/${resource['id']}/${resource['meta']['versionId']}';
+      await box.put(key, resource);
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  Future<List<Resource>?> getSync({
+    String? pw,
+  }) async {
+    await _ensureInit(pw: pw);
+    final HiveAesCipher? cipher = cipherFromKey(key: pw);
+    final Box<Map<dynamic, dynamic>> box;
+    if (!Hive.isBoxOpen('sync')) {
+      box = await Hive.openBox('sync', encryptionCipher: cipher);
+    } else {
+      box = Hive.box('sync');
+    }
+    return box.values
+        .map((Map<dynamic, dynamic> e) =>
+            jsonDecode(jsonEncode(e)) as Map<String, dynamic>)
+        .map((Map<String, dynamic> e) => Resource.fromJson(e))
+        .toList();
+  }
+
+  Future<bool> clearSync({
+    String? pw,
+  }) async {
+    await _ensureInit(pw: pw);
+    final HiveAesCipher? cipher = cipherFromKey(key: pw);
+    try {
+      final Box<Object> box;
+      if (!Hive.isBoxOpen('sync')) {
+        box = await Hive.openBox('sync', encryptionCipher: cipher);
+      } else {
+        box = Hive.box('sync');
+      }
+      await box.clear();
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  BehaviorSubject<Resource?> listenSync({
+    String? pw,
+  }) {
+    final BehaviorSubject<Resource?> subject = BehaviorSubject<Resource?>();
+    final Box<Object> box = Hive.box('sync');
+
+    final Stream<BoxEvent> stream = box.watch();
+    final StreamSubscription<BoxEvent> subscription = stream.listen(
+      (event) {
+        if (!event.deleted) {
+          subject.add(Resource.fromJson(event.value as Map<String, dynamic>));
+        } else {
+          subject.add(null); // Emit null to indicate deletion.
+        }
+      },
+      onError: (Object e) {
+        subject.addError(e); // Propagate errors.
+      },
+      onDone: () =>
+          subject.close(), // Close the BehaviorSubject on stream completion.
+    );
+
+    // Ensure the subscription is cancelled when the BehaviorSubject is closed.
+    subject.onCancel = () {
+      subscription.cancel();
+    };
+
+    return subject;
   }
 
   /// ************************************************************************

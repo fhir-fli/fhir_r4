@@ -64,8 +64,12 @@ mixin _$DetectedIssue {
   List<DetectedIssueMitigation>? get mitigation =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this DetectedIssue to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DetectedIssue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DetectedIssueCopyWith<DetectedIssue> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -127,6 +131,8 @@ class _$DetectedIssueCopyWithImpl<$Res, $Val extends DetectedIssue>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DetectedIssue
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -280,6 +286,8 @@ class _$DetectedIssueCopyWithImpl<$Res, $Val extends DetectedIssue>
     ) as $Val);
   }
 
+  /// Create a copy of DetectedIssue
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -292,6 +300,8 @@ class _$DetectedIssueCopyWithImpl<$Res, $Val extends DetectedIssue>
     });
   }
 
+  /// Create a copy of DetectedIssue
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -304,6 +314,8 @@ class _$DetectedIssueCopyWithImpl<$Res, $Val extends DetectedIssue>
     });
   }
 
+  /// Create a copy of DetectedIssue
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get code {
@@ -316,6 +328,8 @@ class _$DetectedIssueCopyWithImpl<$Res, $Val extends DetectedIssue>
     });
   }
 
+  /// Create a copy of DetectedIssue
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get patient {
@@ -328,6 +342,8 @@ class _$DetectedIssueCopyWithImpl<$Res, $Val extends DetectedIssue>
     });
   }
 
+  /// Create a copy of DetectedIssue
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get identifiedPeriod {
@@ -340,6 +356,8 @@ class _$DetectedIssueCopyWithImpl<$Res, $Val extends DetectedIssue>
     });
   }
 
+  /// Create a copy of DetectedIssue
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get author {
@@ -416,6 +434,8 @@ class __$$DetectedIssueImplCopyWithImpl<$Res>
       _$DetectedIssueImpl _value, $Res Function(_$DetectedIssueImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DetectedIssue
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -573,7 +593,7 @@ class __$$DetectedIssueImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DetectedIssueImpl extends _DetectedIssue {
-  const _$DetectedIssueImpl(
+  _$DetectedIssueImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.DetectedIssue)
       this.resourceType = R4ResourceType.DetectedIssue,
       this.id,
@@ -802,7 +822,7 @@ class _$DetectedIssueImpl extends _DetectedIssue {
                 .equals(other._mitigation, _mitigation));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -837,7 +857,9 @@ class _$DetectedIssueImpl extends _DetectedIssue {
         const DeepCollectionEquality().hash(_mitigation)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DetectedIssue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DetectedIssueImplCopyWith<_$DetectedIssueImpl> get copyWith =>
@@ -852,7 +874,7 @@ class _$DetectedIssueImpl extends _DetectedIssue {
 }
 
 abstract class _DetectedIssue extends DetectedIssue {
-  const factory _DetectedIssue(
+  factory _DetectedIssue(
       {@JsonKey(unknownEnumValue: R4ResourceType.DetectedIssue)
       final R4ResourceType resourceType,
       final String? id,
@@ -885,7 +907,7 @@ abstract class _DetectedIssue extends DetectedIssue {
       final FhirUri? reference,
       @JsonKey(name: '_reference') final PrimitiveElement? referenceElement,
       final List<DetectedIssueMitigation>? mitigation}) = _$DetectedIssueImpl;
-  const _DetectedIssue._() : super._();
+  _DetectedIssue._() : super._();
 
   factory _DetectedIssue.fromJson(Map<String, dynamic> json) =
       _$DetectedIssueImpl.fromJson;
@@ -957,8 +979,11 @@ abstract class _DetectedIssue extends DetectedIssue {
   PrimitiveElement? get referenceElement;
   @override
   List<DetectedIssueMitigation>? get mitigation;
+
+  /// Create a copy of DetectedIssue
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DetectedIssueImplCopyWith<_$DetectedIssueImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -978,8 +1003,12 @@ mixin _$DetectedIssueEvidence {
   List<CodeableConcept>? get code => throw _privateConstructorUsedError;
   List<Reference>? get detail => throw _privateConstructorUsedError;
 
+  /// Serializes this DetectedIssueEvidence to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DetectedIssueEvidence
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DetectedIssueEvidenceCopyWith<DetectedIssueEvidence> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1009,6 +1038,8 @@ class _$DetectedIssueEvidenceCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DetectedIssueEvidence
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1069,6 +1100,8 @@ class __$$DetectedIssueEvidenceImplCopyWithImpl<$Res>
       $Res Function(_$DetectedIssueEvidenceImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DetectedIssueEvidence
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1106,7 +1139,7 @@ class __$$DetectedIssueEvidenceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DetectedIssueEvidenceImpl extends _DetectedIssueEvidence {
-  const _$DetectedIssueEvidenceImpl(
+  _$DetectedIssueEvidenceImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1184,7 +1217,7 @@ class _$DetectedIssueEvidenceImpl extends _DetectedIssueEvidence {
             const DeepCollectionEquality().equals(other._detail, _detail));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1194,7 +1227,9 @@ class _$DetectedIssueEvidenceImpl extends _DetectedIssueEvidence {
       const DeepCollectionEquality().hash(_code),
       const DeepCollectionEquality().hash(_detail));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DetectedIssueEvidence
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DetectedIssueEvidenceImplCopyWith<_$DetectedIssueEvidenceImpl>
@@ -1210,13 +1245,13 @@ class _$DetectedIssueEvidenceImpl extends _DetectedIssueEvidence {
 }
 
 abstract class _DetectedIssueEvidence extends DetectedIssueEvidence {
-  const factory _DetectedIssueEvidence(
+  factory _DetectedIssueEvidence(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final List<CodeableConcept>? code,
       final List<Reference>? detail}) = _$DetectedIssueEvidenceImpl;
-  const _DetectedIssueEvidence._() : super._();
+  _DetectedIssueEvidence._() : super._();
 
   factory _DetectedIssueEvidence.fromJson(Map<String, dynamic> json) =
       _$DetectedIssueEvidenceImpl.fromJson;
@@ -1232,8 +1267,11 @@ abstract class _DetectedIssueEvidence extends DetectedIssueEvidence {
   List<CodeableConcept>? get code;
   @override
   List<Reference>? get detail;
+
+  /// Create a copy of DetectedIssueEvidence
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DetectedIssueEvidenceImplCopyWith<_$DetectedIssueEvidenceImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1256,8 +1294,12 @@ mixin _$DetectedIssueMitigation {
   PrimitiveElement? get dateElement => throw _privateConstructorUsedError;
   Reference? get author => throw _privateConstructorUsedError;
 
+  /// Serializes this DetectedIssueMitigation to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DetectedIssueMitigation
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DetectedIssueMitigationCopyWith<DetectedIssueMitigation> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1292,6 +1334,8 @@ class _$DetectedIssueMitigationCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DetectedIssueMitigation
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1335,6 +1379,8 @@ class _$DetectedIssueMitigationCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of DetectedIssueMitigation
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get action {
@@ -1343,6 +1389,8 @@ class _$DetectedIssueMitigationCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of DetectedIssueMitigation
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get author {
@@ -1390,6 +1438,8 @@ class __$$DetectedIssueMitigationImplCopyWithImpl<$Res>
       $Res Function(_$DetectedIssueMitigationImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DetectedIssueMitigation
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1437,7 +1487,7 @@ class __$$DetectedIssueMitigationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DetectedIssueMitigationImpl extends _DetectedIssueMitigation {
-  const _$DetectedIssueMitigationImpl(
+  _$DetectedIssueMitigationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1508,7 +1558,7 @@ class _$DetectedIssueMitigationImpl extends _DetectedIssueMitigation {
             (identical(other.author, author) || other.author == author));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1520,7 +1570,9 @@ class _$DetectedIssueMitigationImpl extends _DetectedIssueMitigation {
       dateElement,
       author);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DetectedIssueMitigation
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DetectedIssueMitigationImplCopyWith<_$DetectedIssueMitigationImpl>
@@ -1536,7 +1588,7 @@ class _$DetectedIssueMitigationImpl extends _DetectedIssueMitigation {
 }
 
 abstract class _DetectedIssueMitigation extends DetectedIssueMitigation {
-  const factory _DetectedIssueMitigation(
+  factory _DetectedIssueMitigation(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1544,7 +1596,7 @@ abstract class _DetectedIssueMitigation extends DetectedIssueMitigation {
       final FhirDateTime? date,
       @JsonKey(name: '_date') final PrimitiveElement? dateElement,
       final Reference? author}) = _$DetectedIssueMitigationImpl;
-  const _DetectedIssueMitigation._() : super._();
+  _DetectedIssueMitigation._() : super._();
 
   factory _DetectedIssueMitigation.fromJson(Map<String, dynamic> json) =
       _$DetectedIssueMitigationImpl.fromJson;
@@ -1565,8 +1617,11 @@ abstract class _DetectedIssueMitigation extends DetectedIssueMitigation {
   PrimitiveElement? get dateElement;
   @override
   Reference? get author;
+
+  /// Create a copy of DetectedIssueMitigation
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DetectedIssueMitigationImplCopyWith<_$DetectedIssueMitigationImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

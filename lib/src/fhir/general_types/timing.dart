@@ -14,9 +14,9 @@ part 'timing.g.dart';
 
 /// [Timing] Specifies an event that may occur multiple times. Timing
 @freezed
-class Timing with _$Timing implements BackboneType {
+class Timing extends BackboneType with _$Timing {
   /// [Timing] Specifies an event that may occur multiple times. Timing
-  const Timing._();
+  Timing._();
 
   /// [Timing] Specifies an event that may occur multiple times. Timing
   /// schedules are used to record when things are planned, expected or
@@ -62,7 +62,7 @@ class Timing with _$Timing implements BackboneType {
   /// and either the code or the data may be used to interpret the Timing, with
   /// the exception that .repeat.bounds still applies over the code (and is not
   ///  contained in the code).
-  const factory Timing({
+  factory Timing({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -139,6 +139,9 @@ class Timing with _$Timing implements BackboneType {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -147,9 +150,9 @@ class Timing with _$Timing implements BackboneType {
 
 /// [TimingRepeat] Specifies an event that may occur multiple times. Timing
 @freezed
-class TimingRepeat with _$TimingRepeat implements Element {
+class TimingRepeat extends Element with _$TimingRepeat {
   /// [TimingRepeat] Specifies an event that may occur multiple times. Timing
-  const TimingRepeat._();
+  TimingRepeat._();
 
   /// [TimingRepeat] Specifies an event that may occur multiple times. Timing
   /// schedules are used to record when things are planned, expected or
@@ -268,7 +271,7 @@ class TimingRepeat with _$TimingRepeat implements Element {
   ///  is assumed to be after the event.
   ///
   /// [offsetElement] Extensions for offset
-  const factory TimingRepeat({
+  factory TimingRepeat({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -446,6 +449,9 @@ class TimingRepeat with _$TimingRepeat implements Element {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

@@ -161,8 +161,12 @@ mixin _$SubscriptionTopic {
   List<SubscriptionTopicNotificationShape>? get notificationShape =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this SubscriptionTopic to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SubscriptionTopic
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SubscriptionTopicCopyWith<SubscriptionTopic> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -235,6 +239,8 @@ class _$SubscriptionTopicCopyWithImpl<$Res, $Val extends SubscriptionTopic>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SubscriptionTopic
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -468,6 +474,8 @@ class _$SubscriptionTopicCopyWithImpl<$Res, $Val extends SubscriptionTopic>
     ) as $Val);
   }
 
+  /// Create a copy of SubscriptionTopic
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -480,6 +488,8 @@ class _$SubscriptionTopicCopyWithImpl<$Res, $Val extends SubscriptionTopic>
     });
   }
 
+  /// Create a copy of SubscriptionTopic
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -492,6 +502,8 @@ class _$SubscriptionTopicCopyWithImpl<$Res, $Val extends SubscriptionTopic>
     });
   }
 
+  /// Create a copy of SubscriptionTopic
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get effectivePeriod {
@@ -576,6 +588,8 @@ class __$$SubscriptionTopicImplCopyWithImpl<$Res>
       $Res Function(_$SubscriptionTopicImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SubscriptionTopic
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -813,7 +827,7 @@ class __$$SubscriptionTopicImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SubscriptionTopicImpl extends _SubscriptionTopic {
-  const _$SubscriptionTopicImpl(
+  _$SubscriptionTopicImpl(
       {this.resourceType = R4ResourceType.SubscriptionTopic,
       this.id,
       this.meta,
@@ -1249,7 +1263,7 @@ class _$SubscriptionTopicImpl extends _SubscriptionTopic {
                 .equals(other._notificationShape, _notificationShape));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1300,7 +1314,9 @@ class _$SubscriptionTopicImpl extends _SubscriptionTopic {
         const DeepCollectionEquality().hash(_notificationShape)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SubscriptionTopic
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SubscriptionTopicImplCopyWith<_$SubscriptionTopicImpl> get copyWith =>
@@ -1316,7 +1332,7 @@ class _$SubscriptionTopicImpl extends _SubscriptionTopic {
 }
 
 abstract class _SubscriptionTopic extends SubscriptionTopic {
-  const factory _SubscriptionTopic(
+  factory _SubscriptionTopic(
       {final R4ResourceType resourceType,
       final String? id,
       final FhirMeta? meta,
@@ -1367,165 +1383,164 @@ abstract class _SubscriptionTopic extends SubscriptionTopic {
       final List<SubscriptionTopicCanFilterBy>? canFilterBy,
       final List<SubscriptionTopicNotificationShape>?
           notificationShape}) = _$SubscriptionTopicImpl;
-  const _SubscriptionTopic._() : super._();
+  _SubscriptionTopic._() : super._();
 
   factory _SubscriptionTopic.fromJson(Map<String, dynamic> json) =
       _$SubscriptionTopicImpl.fromJson;
 
-  @override
-
   /// [resourceType] This is a SubscriptionTopic resource;
-  R4ResourceType get resourceType;
   @override
+  R4ResourceType get resourceType;
 
   /// [id] The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.;
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.;
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.;
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] (_implicitRules): Extensions for implicitRules;
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.;
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] (_language): Extensions for language;
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.;
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, nor can they have their own independent transaction scope.;
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not part of the basic definition of the resource. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.;
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.
   /// Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).;
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [url] An absolute URI that is used to identify this subscription topic when it is referenced in a specification, model, design or an instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a literal address at which at which an authoritative instance of this subscription topic is (or will be) published. This URL can be the target of a canonical reference. It SHALL remain the same when the subscription topic is stored on different servers.;
-  FhirUri? get url;
   @override
+  FhirUri? get url;
 
   /// [urlElement] (_url): Extensions for url;
+  @override
   @JsonKey(name: '_url')
   PrimitiveElement? get urlElement;
-  @override
 
   /// [identifier] Business identifiers assigned to this subscription topic by the performer and/or other systems.  These identifiers remain constant as the resource is updated and propagates from server to server.;
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [version] The identifier that is used to identify this version of the subscription topic when it is referenced in a specification, model, design or instance. This is an arbitrary value managed by the Topic author and is not expected to be globally unique. For example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not available. There is also no expectation that versions are orderable.;
-  String? get version;
   @override
+  String? get version;
 
   /// [versionElement] (_version): Extensions for version;
+  @override
   @JsonKey(name: '_version')
   PrimitiveElement? get versionElement;
-  @override
 
   /// [title] A short, descriptive, user-friendly title for the SubscriptionTopic, for example, "admission".;
-  String? get title;
   @override
+  String? get title;
 
   /// [titleElement] (_title): Extensions for title;
+  @override
   @JsonKey(name: '_title')
   PrimitiveElement? get titleElement;
   @override
   List<FhirCanonical>? get derivedFrom;
-  @override
 
   /// [status] The current state of the SubscriptionTopic.;
-  FhirCode? get status;
   @override
+  FhirCode? get status;
 
   /// [statusElement] (_status): Extensions for status;
+  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
-  @override
 
   /// [experimental] A flag to indicate that this TopSubscriptionTopicic is authored for testing purposes (or education/evaluation/marketing), and is not intended to be used for genuine usage.;
-  FhirBoolean? get experimental;
   @override
+  FhirBoolean? get experimental;
 
   /// [experimentalElement] (_experimental): Extensions for experimental;
+  @override
   @JsonKey(name: '_experimental')
   PrimitiveElement? get experimentalElement;
-  @override
 
   /// [date] For draft definitions, indicates the date of initial creation.  For active definitions, represents the date of activation.  For withdrawn definitions, indicates the date of withdrawal.;
-  FhirDateTime? get date;
   @override
+  FhirDateTime? get date;
 
   /// [dateElement] (_date): Extensions for date;
+  @override
   @JsonKey(name: '_date')
   PrimitiveElement? get dateElement;
-  @override
 
   /// [publisher] Helps establish the "authority/credibility" of the SubscriptionTopic.  May also allow for contact.;
-  String? get publisher;
   @override
+  String? get publisher;
 
   /// [publisherElement] (_publisher): Extensions for publisher;
+  @override
   @JsonKey(name: '_publisher')
   PrimitiveElement? get publisherElement;
-  @override
 
   /// [contact] Contact details to assist a user in finding and communicating with the publisher.;
-  List<ContactDetail>? get contact;
   @override
+  List<ContactDetail>? get contact;
 
   /// [description] A free text natural language description of the Topic from the consumer's perspective.;
-  FhirMarkdown? get description;
   @override
+  FhirMarkdown? get description;
 
   /// [descriptionElement] (_description): Extensions for description;
+  @override
   @JsonKey(name: '_description')
   PrimitiveElement? get descriptionElement;
-  @override
 
   /// [useContext] The content was developed with a focus and intent of supporting the contexts that are listed. These terms may be used to assist with indexing and searching of code system definitions.;
-  List<UsageContext>? get useContext;
   @override
+  List<UsageContext>? get useContext;
 
   /// [jurisdiction] A jurisdiction in which the Topic is intended to be used.;
-  List<CodeableConcept>? get jurisdiction;
   @override
+  List<CodeableConcept>? get jurisdiction;
 
   /// [purpose] Explains why this Topic is needed and why it has been designed as it has.;
-  FhirMarkdown? get purpose;
   @override
+  FhirMarkdown? get purpose;
 
   /// [purposeElement] (_purpose): Extensions for purpose;
+  @override
   @JsonKey(name: '_purpose')
   PrimitiveElement? get purposeElement;
-  @override
 
   /// [copyright] A copyright statement relating to the SubscriptionTopic and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the SubscriptionTopic.;
-  FhirMarkdown? get copyright;
   @override
+  FhirMarkdown? get copyright;
 
   /// [copyrightElement] (_copyright): Extensions for copyright;
+  @override
   @JsonKey(name: '_copyright')
   PrimitiveElement? get copyrightElement;
   @override
@@ -1548,8 +1563,11 @@ abstract class _SubscriptionTopic extends SubscriptionTopic {
   List<SubscriptionTopicCanFilterBy>? get canFilterBy;
   @override
   List<SubscriptionTopicNotificationShape>? get notificationShape;
+
+  /// Create a copy of SubscriptionTopic
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SubscriptionTopicImplCopyWith<_$SubscriptionTopicImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1585,8 +1603,12 @@ mixin _$SubscriptionTopicResourceTrigger {
   PrimitiveElement? get fhirPathCriteriaElement =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this SubscriptionTopicResourceTrigger to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SubscriptionTopicResourceTrigger
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SubscriptionTopicResourceTriggerCopyWith<SubscriptionTopicResourceTrigger>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1629,6 +1651,8 @@ class _$SubscriptionTopicResourceTriggerCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SubscriptionTopicResourceTrigger
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1697,6 +1721,8 @@ class _$SubscriptionTopicResourceTriggerCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of SubscriptionTopicResourceTrigger
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SubscriptionTopicQueryCriteriaCopyWith<$Res>? get queryCriteria {
@@ -1750,6 +1776,8 @@ class __$$SubscriptionTopicResourceTriggerImplCopyWithImpl<$Res>
       $Res Function(_$SubscriptionTopicResourceTriggerImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SubscriptionTopicResourceTrigger
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1823,7 +1851,7 @@ class __$$SubscriptionTopicResourceTriggerImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SubscriptionTopicResourceTriggerImpl
     extends _SubscriptionTopicResourceTrigger {
-  const _$SubscriptionTopicResourceTriggerImpl(
+  _$SubscriptionTopicResourceTriggerImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1949,7 +1977,7 @@ class _$SubscriptionTopicResourceTriggerImpl
                 other.fhirPathCriteriaElement == fhirPathCriteriaElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1966,7 +1994,9 @@ class _$SubscriptionTopicResourceTriggerImpl
       fhirPathCriteria,
       fhirPathCriteriaElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SubscriptionTopicResourceTrigger
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SubscriptionTopicResourceTriggerImplCopyWith<
@@ -1984,7 +2014,7 @@ class _$SubscriptionTopicResourceTriggerImpl
 
 abstract class _SubscriptionTopicResourceTrigger
     extends SubscriptionTopicResourceTrigger {
-  const factory _SubscriptionTopicResourceTrigger(
+  factory _SubscriptionTopicResourceTrigger(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2000,7 +2030,7 @@ abstract class _SubscriptionTopicResourceTrigger
       @JsonKey(name: '_fhirPathCriteria')
       final PrimitiveElement?
           fhirPathCriteriaElement}) = _$SubscriptionTopicResourceTriggerImpl;
-  const _SubscriptionTopicResourceTrigger._() : super._();
+  _SubscriptionTopicResourceTrigger._() : super._();
 
   factory _SubscriptionTopicResourceTrigger.fromJson(
           Map<String, dynamic> json) =
@@ -2035,8 +2065,11 @@ abstract class _SubscriptionTopicResourceTrigger
   @override
   @JsonKey(name: '_fhirPathCriteria')
   PrimitiveElement? get fhirPathCriteriaElement;
+
+  /// Create a copy of SubscriptionTopicResourceTrigger
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SubscriptionTopicResourceTriggerImplCopyWith<
           _$SubscriptionTopicResourceTriggerImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -2073,8 +2106,12 @@ mixin _$SubscriptionTopicQueryCriteria {
   PrimitiveElement? get requireBothElement =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this SubscriptionTopicQueryCriteria to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SubscriptionTopicQueryCriteria
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SubscriptionTopicQueryCriteriaCopyWith<SubscriptionTopicQueryCriteria>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2116,6 +2153,8 @@ class _$SubscriptionTopicQueryCriteriaCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SubscriptionTopicQueryCriteria
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2227,6 +2266,8 @@ class __$$SubscriptionTopicQueryCriteriaImplCopyWithImpl<$Res>
       $Res Function(_$SubscriptionTopicQueryCriteriaImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SubscriptionTopicQueryCriteria
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2305,7 +2346,7 @@ class __$$SubscriptionTopicQueryCriteriaImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SubscriptionTopicQueryCriteriaImpl
     extends _SubscriptionTopicQueryCriteria {
-  const _$SubscriptionTopicQueryCriteriaImpl(
+  _$SubscriptionTopicQueryCriteriaImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2413,7 +2454,7 @@ class _$SubscriptionTopicQueryCriteriaImpl
                 other.requireBothElement == requireBothElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2431,7 +2472,9 @@ class _$SubscriptionTopicQueryCriteriaImpl
       requireBoth,
       requireBothElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SubscriptionTopicQueryCriteria
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SubscriptionTopicQueryCriteriaImplCopyWith<
@@ -2449,7 +2492,7 @@ class _$SubscriptionTopicQueryCriteriaImpl
 
 abstract class _SubscriptionTopicQueryCriteria
     extends SubscriptionTopicQueryCriteria {
-  const factory _SubscriptionTopicQueryCriteria(
+  factory _SubscriptionTopicQueryCriteria(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2467,7 +2510,7 @@ abstract class _SubscriptionTopicQueryCriteria
           @JsonKey(name: '_requireBoth')
           final PrimitiveElement? requireBothElement}) =
       _$SubscriptionTopicQueryCriteriaImpl;
-  const _SubscriptionTopicQueryCriteria._() : super._();
+  _SubscriptionTopicQueryCriteria._() : super._();
 
   factory _SubscriptionTopicQueryCriteria.fromJson(Map<String, dynamic> json) =
       _$SubscriptionTopicQueryCriteriaImpl.fromJson;
@@ -2504,8 +2547,11 @@ abstract class _SubscriptionTopicQueryCriteria
   @override
   @JsonKey(name: '_requireBoth')
   PrimitiveElement? get requireBothElement;
+
+  /// Create a copy of SubscriptionTopicQueryCriteria
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SubscriptionTopicQueryCriteriaImplCopyWith<
           _$SubscriptionTopicQueryCriteriaImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -2532,8 +2578,12 @@ mixin _$SubscriptionTopicEventTrigger {
   @JsonKey(name: '_resource')
   PrimitiveElement? get resourceElement => throw _privateConstructorUsedError;
 
+  /// Serializes this SubscriptionTopicEventTrigger to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SubscriptionTopicEventTrigger
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SubscriptionTopicEventTriggerCopyWith<SubscriptionTopicEventTrigger>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2570,6 +2620,8 @@ class _$SubscriptionTopicEventTriggerCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SubscriptionTopicEventTrigger
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2618,6 +2670,8 @@ class _$SubscriptionTopicEventTriggerCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of SubscriptionTopicEventTrigger
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get event {
@@ -2660,6 +2714,8 @@ class __$$SubscriptionTopicEventTriggerImplCopyWithImpl<$Res>
       $Res Function(_$SubscriptionTopicEventTriggerImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SubscriptionTopicEventTrigger
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2713,7 +2769,7 @@ class __$$SubscriptionTopicEventTriggerImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SubscriptionTopicEventTriggerImpl
     extends _SubscriptionTopicEventTrigger {
-  const _$SubscriptionTopicEventTriggerImpl(
+  _$SubscriptionTopicEventTriggerImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2793,7 +2849,7 @@ class _$SubscriptionTopicEventTriggerImpl
                 other.resourceElement == resourceElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2806,7 +2862,9 @@ class _$SubscriptionTopicEventTriggerImpl
       resource,
       resourceElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SubscriptionTopicEventTrigger
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SubscriptionTopicEventTriggerImplCopyWith<
@@ -2824,7 +2882,7 @@ class _$SubscriptionTopicEventTriggerImpl
 
 abstract class _SubscriptionTopicEventTrigger
     extends SubscriptionTopicEventTrigger {
-  const factory _SubscriptionTopicEventTrigger(
+  factory _SubscriptionTopicEventTrigger(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2835,7 +2893,7 @@ abstract class _SubscriptionTopicEventTrigger
       @JsonKey(name: '_resource')
       final PrimitiveElement?
           resourceElement}) = _$SubscriptionTopicEventTriggerImpl;
-  const _SubscriptionTopicEventTrigger._() : super._();
+  _SubscriptionTopicEventTrigger._() : super._();
 
   factory _SubscriptionTopicEventTrigger.fromJson(Map<String, dynamic> json) =
       _$SubscriptionTopicEventTriggerImpl.fromJson;
@@ -2859,8 +2917,11 @@ abstract class _SubscriptionTopicEventTrigger
   @override
   @JsonKey(name: '_resource')
   PrimitiveElement? get resourceElement;
+
+  /// Create a copy of SubscriptionTopicEventTrigger
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SubscriptionTopicEventTriggerImplCopyWith<
           _$SubscriptionTopicEventTriggerImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -2898,8 +2959,12 @@ mixin _$SubscriptionTopicCanFilterBy {
   List<PrimitiveElement>? get modifierElement =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this SubscriptionTopicCanFilterBy to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SubscriptionTopicCanFilterBy
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SubscriptionTopicCanFilterByCopyWith<SubscriptionTopicCanFilterBy>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2941,6 +3006,8 @@ class _$SubscriptionTopicCanFilterByCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SubscriptionTopicCanFilterBy
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3052,6 +3119,8 @@ class __$$SubscriptionTopicCanFilterByImplCopyWithImpl<$Res>
       $Res Function(_$SubscriptionTopicCanFilterByImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SubscriptionTopicCanFilterBy
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3129,7 +3198,7 @@ class __$$SubscriptionTopicCanFilterByImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SubscriptionTopicCanFilterByImpl extends _SubscriptionTopicCanFilterBy {
-  const _$SubscriptionTopicCanFilterByImpl(
+  _$SubscriptionTopicCanFilterByImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3256,7 +3325,7 @@ class _$SubscriptionTopicCanFilterByImpl extends _SubscriptionTopicCanFilterBy {
                 .equals(other._modifierElement, _modifierElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3274,7 +3343,9 @@ class _$SubscriptionTopicCanFilterByImpl extends _SubscriptionTopicCanFilterBy {
       const DeepCollectionEquality().hash(_modifier),
       const DeepCollectionEquality().hash(_modifierElement));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SubscriptionTopicCanFilterBy
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SubscriptionTopicCanFilterByImplCopyWith<
@@ -3292,7 +3363,7 @@ class _$SubscriptionTopicCanFilterByImpl extends _SubscriptionTopicCanFilterBy {
 
 abstract class _SubscriptionTopicCanFilterBy
     extends SubscriptionTopicCanFilterBy {
-  const factory _SubscriptionTopicCanFilterBy(
+  factory _SubscriptionTopicCanFilterBy(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3310,7 +3381,7 @@ abstract class _SubscriptionTopicCanFilterBy
       @JsonKey(name: '_modifier')
       final List<PrimitiveElement>?
           modifierElement}) = _$SubscriptionTopicCanFilterByImpl;
-  const _SubscriptionTopicCanFilterBy._() : super._();
+  _SubscriptionTopicCanFilterBy._() : super._();
 
   factory _SubscriptionTopicCanFilterBy.fromJson(Map<String, dynamic> json) =
       _$SubscriptionTopicCanFilterByImpl.fromJson;
@@ -3347,8 +3418,11 @@ abstract class _SubscriptionTopicCanFilterBy
   @override
   @JsonKey(name: '_modifier')
   List<PrimitiveElement>? get modifierElement;
+
+  /// Create a copy of SubscriptionTopicCanFilterBy
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SubscriptionTopicCanFilterByImplCopyWith<
           _$SubscriptionTopicCanFilterByImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -3378,8 +3452,12 @@ mixin _$SubscriptionTopicNotificationShape {
   List<PrimitiveElement>? get revIncludeElement =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this SubscriptionTopicNotificationShape to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SubscriptionTopicNotificationShape
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SubscriptionTopicNotificationShapeCopyWith<
           SubscriptionTopicNotificationShape>
       get copyWith => throw _privateConstructorUsedError;
@@ -3416,6 +3494,8 @@ class _$SubscriptionTopicNotificationShapeCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SubscriptionTopicNotificationShape
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3501,6 +3581,8 @@ class __$$SubscriptionTopicNotificationShapeImplCopyWithImpl<$Res>
       $Res Function(_$SubscriptionTopicNotificationShapeImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SubscriptionTopicNotificationShape
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3559,7 +3641,7 @@ class __$$SubscriptionTopicNotificationShapeImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SubscriptionTopicNotificationShapeImpl
     extends _SubscriptionTopicNotificationShape {
-  const _$SubscriptionTopicNotificationShapeImpl(
+  _$SubscriptionTopicNotificationShapeImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3682,7 +3764,7 @@ class _$SubscriptionTopicNotificationShapeImpl
                 .equals(other._revIncludeElement, _revIncludeElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3696,7 +3778,9 @@ class _$SubscriptionTopicNotificationShapeImpl
       const DeepCollectionEquality().hash(_revInclude),
       const DeepCollectionEquality().hash(_revIncludeElement));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SubscriptionTopicNotificationShape
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SubscriptionTopicNotificationShapeImplCopyWith<
@@ -3714,7 +3798,7 @@ class _$SubscriptionTopicNotificationShapeImpl
 
 abstract class _SubscriptionTopicNotificationShape
     extends SubscriptionTopicNotificationShape {
-  const factory _SubscriptionTopicNotificationShape(
+  factory _SubscriptionTopicNotificationShape(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3726,7 +3810,7 @@ abstract class _SubscriptionTopicNotificationShape
       @JsonKey(name: '_revInclude')
       final List<PrimitiveElement>?
           revIncludeElement}) = _$SubscriptionTopicNotificationShapeImpl;
-  const _SubscriptionTopicNotificationShape._() : super._();
+  _SubscriptionTopicNotificationShape._() : super._();
 
   factory _SubscriptionTopicNotificationShape.fromJson(
           Map<String, dynamic> json) =
@@ -3754,8 +3838,11 @@ abstract class _SubscriptionTopicNotificationShape
   @override
   @JsonKey(name: '_revInclude')
   List<PrimitiveElement>? get revIncludeElement;
+
+  /// Create a copy of SubscriptionTopicNotificationShape
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SubscriptionTopicNotificationShapeImplCopyWith<
           _$SubscriptionTopicNotificationShapeImpl>
       get copyWith => throw _privateConstructorUsedError;

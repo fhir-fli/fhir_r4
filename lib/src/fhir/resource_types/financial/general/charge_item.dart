@@ -14,9 +14,9 @@ part 'charge_item.g.dart';
 
 /// [ChargeItem] The resource ChargeItem describes the provision of
 @freezed
-class ChargeItem with _$ChargeItem implements DomainResource {
+class ChargeItem extends DomainResource with _$ChargeItem {
   /// [ChargeItem] The resource ChargeItem describes the provision of
-  const ChargeItem._();
+  ChargeItem._();
 
   /// [ChargeItem] The resource ChargeItem describes the provision of
   /// healthcare provider products for a certain patient, therefore referring
@@ -166,7 +166,7 @@ class ChargeItem with _$ChargeItem implements DomainResource {
   ///  participants.
   ///
   /// [supportingInformation] Further information supporting this charge.
-  const factory ChargeItem({
+  factory ChargeItem({
     @Default(R4ResourceType.ChargeItem)
     @JsonKey(unknownEnumValue: R4ResourceType.ChargeItem)
 
@@ -394,6 +394,9 @@ class ChargeItem with _$ChargeItem implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -416,8 +419,8 @@ class ChargeItem with _$ChargeItem implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [ChargeItemPerformer] The resource ChargeItem describes the provision of
@@ -425,11 +428,9 @@ class ChargeItem with _$ChargeItem implements DomainResource {
 
 /// [ChargeItemPerformer] The resource ChargeItem describes the provision of
 @freezed
-class ChargeItemPerformer
-    with _$ChargeItemPerformer
-    implements BackboneElement {
+class ChargeItemPerformer extends BackboneElement with _$ChargeItemPerformer {
   /// [ChargeItemPerformer] The resource ChargeItem describes the provision of
-  const ChargeItemPerformer._();
+  ChargeItemPerformer._();
 
   /// [ChargeItemPerformer] The resource ChargeItem describes the provision of
   /// healthcare provider products for a certain patient, therefore referring
@@ -467,7 +468,7 @@ class ChargeItemPerformer
   ///
   /// [actor] The device, practitioner, etc. who performed or participated in
   ///  the service.
-  const factory ChargeItemPerformer({
+  factory ChargeItemPerformer({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -536,6 +537,9 @@ class ChargeItemPerformer
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

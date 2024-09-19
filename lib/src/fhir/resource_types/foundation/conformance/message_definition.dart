@@ -15,9 +15,9 @@ part 'message_definition.g.dart';
 
 /// [MessageDefinition] Defines the characteristics of a message that can be
 @freezed
-class MessageDefinition with _$MessageDefinition implements DomainResource {
+class MessageDefinition extends DomainResource with _$MessageDefinition {
   /// [MessageDefinition] Defines the characteristics of a message that can be
-  const MessageDefinition._();
+  MessageDefinition._();
 
   /// [MessageDefinition] Defines the characteristics of a message that can be
   /// shared between systems, including the type of event that initiates the
@@ -194,7 +194,7 @@ class MessageDefinition with _$MessageDefinition implements DomainResource {
   /// what resources are to be added to the bundle when building the document.
   /// The GraphDefinition can also specify profiles that apply to the various
   ///  resources.
-  const factory MessageDefinition({
+  factory MessageDefinition({
     @Default(R4ResourceType.MessageDefinition)
     @JsonKey(unknownEnumValue: R4ResourceType.MessageDefinition)
 
@@ -454,6 +454,9 @@ class MessageDefinition with _$MessageDefinition implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -476,8 +479,8 @@ class MessageDefinition with _$MessageDefinition implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [MessageDefinitionFocus] Defines the characteristics of a message that
@@ -485,11 +488,10 @@ class MessageDefinition with _$MessageDefinition implements DomainResource {
 
 /// [MessageDefinitionFocus] Defines the characteristics of a message that
 @freezed
-class MessageDefinitionFocus
-    with _$MessageDefinitionFocus
-    implements BackboneElement {
+class MessageDefinitionFocus extends BackboneElement
+    with _$MessageDefinitionFocus {
   /// [MessageDefinitionFocus] Defines the characteristics of a message that
-  const MessageDefinitionFocus._();
+  MessageDefinitionFocus._();
 
   /// [MessageDefinitionFocus] Defines the characteristics of a message that
   /// can be shared between systems, including the type of event that initiates
@@ -538,7 +540,7 @@ class MessageDefinitionFocus
   ///  MessageDefinition.
   ///
   /// [maxElement] Extensions for max
-  const factory MessageDefinitionFocus({
+  factory MessageDefinitionFocus({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -624,6 +626,9 @@ class MessageDefinitionFocus
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -635,11 +640,10 @@ class MessageDefinitionFocus
 
 /// [MessageDefinitionAllowedResponse] Defines the characteristics of a
 @freezed
-class MessageDefinitionAllowedResponse
-    with _$MessageDefinitionAllowedResponse
-    implements BackboneElement {
+class MessageDefinitionAllowedResponse extends BackboneElement
+    with _$MessageDefinitionAllowedResponse {
   /// [MessageDefinitionAllowedResponse] Defines the characteristics of a
-  const MessageDefinitionAllowedResponse._();
+  MessageDefinitionAllowedResponse._();
 
   /// [MessageDefinitionAllowedResponse] Defines the characteristics of a
   /// message that can be shared between systems, including the type of event
@@ -677,7 +681,7 @@ class MessageDefinitionAllowedResponse
   ///  response should be used (as opposed to one of the alternative responses).
   ///
   /// [situationElement] Extensions for situation
-  const factory MessageDefinitionAllowedResponse({
+  factory MessageDefinitionAllowedResponse({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -735,6 +739,9 @@ class MessageDefinitionAllowedResponse
   factory MessageDefinitionAllowedResponse.fromJson(
           Map<String, dynamic> json) =>
       _$MessageDefinitionAllowedResponseFromJson(json);
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

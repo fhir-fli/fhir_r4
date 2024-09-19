@@ -14,9 +14,9 @@ part 'library.g.dart';
 
 /// [Library] The Library resource is a general-purpose container for
 @freezed
-class Library with _$Library implements DomainResource {
+class Library extends DomainResource with _$Library {
   /// [Library] The Library resource is a general-purpose container for
-  const Library._();
+  Library._();
 
   /// [Library] The Library resource is a general-purpose container for
   /// knowledge asset definitions. It can be used to describe and expose
@@ -230,7 +230,7 @@ class Library with _$Library implements DomainResource {
   /// a reference to a url, or may be directly embedded as a base-64 string.
   /// Either way, the contentType of the attachment determines how to interpret
   ///  the content.
-  const factory Library({
+  factory Library({
     @Default(R4ResourceType.Library)
     @JsonKey(unknownEnumValue: R4ResourceType.Library)
 
@@ -534,6 +534,9 @@ class Library with _$Library implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -556,6 +559,6 @@ class Library with _$Library implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }

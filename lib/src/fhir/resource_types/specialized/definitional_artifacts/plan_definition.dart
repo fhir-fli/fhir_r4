@@ -15,9 +15,9 @@ part 'plan_definition.g.dart';
 
 /// [PlanDefinition] This resource allows for the definition of various types
 @freezed
-class PlanDefinition with _$PlanDefinition implements DomainResource {
+class PlanDefinition extends DomainResource with _$PlanDefinition {
   /// [PlanDefinition] This resource allows for the definition of various types
-  const PlanDefinition._();
+  PlanDefinition._();
 
   /// [PlanDefinition] This resource allows for the definition of various types
   /// of plans as a sharable, consumable, and executable artifact. The resource
@@ -230,7 +230,7 @@ class PlanDefinition with _$PlanDefinition implements DomainResource {
   ///  improvement objective, etc.
   ///
   /// [action] An action or group of actions to be taken as part of the plan.
-  const factory PlanDefinition({
+  factory PlanDefinition({
     @Default(R4ResourceType.PlanDefinition)
     @JsonKey(unknownEnumValue: R4ResourceType.PlanDefinition)
 
@@ -535,6 +535,9 @@ class PlanDefinition with _$PlanDefinition implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -557,8 +560,8 @@ class PlanDefinition with _$PlanDefinition implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [PlanDefinitionGoal] This resource allows for the definition of various
@@ -566,9 +569,9 @@ class PlanDefinition with _$PlanDefinition implements DomainResource {
 
 /// [PlanDefinitionGoal] This resource allows for the definition of various
 @freezed
-class PlanDefinitionGoal with _$PlanDefinitionGoal implements BackboneElement {
+class PlanDefinitionGoal extends BackboneElement with _$PlanDefinitionGoal {
   /// [PlanDefinitionGoal] This resource allows for the definition of various
-  const PlanDefinitionGoal._();
+  PlanDefinitionGoal._();
 
   /// [PlanDefinitionGoal] This resource allows for the definition of various
   /// types of plans as a sharable, consumable, and executable artifact. The
@@ -620,7 +623,7 @@ class PlanDefinitionGoal with _$PlanDefinitionGoal implements BackboneElement {
   ///  resources.
   ///
   /// [target] Indicates what should be done and within what timeframe.
-  const factory PlanDefinitionGoal({
+  factory PlanDefinitionGoal({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -708,6 +711,9 @@ class PlanDefinitionGoal with _$PlanDefinitionGoal implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -719,11 +725,9 @@ class PlanDefinitionGoal with _$PlanDefinitionGoal implements BackboneElement {
 
 /// [PlanDefinitionTarget] This resource allows for the definition of
 @freezed
-class PlanDefinitionTarget
-    with _$PlanDefinitionTarget
-    implements BackboneElement {
+class PlanDefinitionTarget extends BackboneElement with _$PlanDefinitionTarget {
   /// [PlanDefinitionTarget] This resource allows for the definition of
-  const PlanDefinitionTarget._();
+  PlanDefinitionTarget._();
 
   /// [PlanDefinitionTarget] This resource allows for the definition of
   /// various types of plans as a sharable, consumable, and executable artifact.
@@ -781,7 +785,7 @@ class PlanDefinitionTarget
   ///
   /// [due] Indicates the timeframe after the start of the goal in which the
   ///  goal should be met.
-  const factory PlanDefinitionTarget({
+  factory PlanDefinitionTarget({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -873,6 +877,9 @@ class PlanDefinitionTarget
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -884,11 +891,9 @@ class PlanDefinitionTarget
 
 /// [PlanDefinitionAction] This resource allows for the definition of
 @freezed
-class PlanDefinitionAction
-    with _$PlanDefinitionAction
-    implements BackboneElement {
+class PlanDefinitionAction extends BackboneElement with _$PlanDefinitionAction {
   /// [PlanDefinitionAction] This resource allows for the definition of
-  const PlanDefinitionAction._();
+  PlanDefinitionAction._();
 
   /// [PlanDefinitionAction] This resource allows for the definition of
   /// various types of plans as a sharable, consumable, and executable artifact.
@@ -1054,7 +1059,7 @@ class PlanDefinitionAction
   /// example, a selection behavior of at-most-one indicates that of the
   /// sub-actions, at most one may be chosen as part of realizing the action
   ///  definition.
-  const factory PlanDefinitionAction({
+  factory PlanDefinitionAction({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1306,6 +1311,9 @@ class PlanDefinitionAction
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1317,11 +1325,10 @@ class PlanDefinitionAction
 
 /// [PlanDefinitionCondition] This resource allows for the definition of
 @freezed
-class PlanDefinitionCondition
-    with _$PlanDefinitionCondition
-    implements BackboneElement {
+class PlanDefinitionCondition extends BackboneElement
+    with _$PlanDefinitionCondition {
   /// [PlanDefinitionCondition] This resource allows for the definition of
-  const PlanDefinitionCondition._();
+  PlanDefinitionCondition._();
 
   /// [PlanDefinitionCondition] This resource allows for the definition of
   /// various types of plans as a sharable, consumable, and executable artifact.
@@ -1359,7 +1366,7 @@ class PlanDefinitionCondition
   ///
   /// [expression] An expression that returns true or false, indicating whether
   ///  the condition is satisfied.
-  const factory PlanDefinitionCondition({
+  factory PlanDefinitionCondition({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1429,6 +1436,9 @@ class PlanDefinitionCondition
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1440,11 +1450,10 @@ class PlanDefinitionCondition
 
 /// [PlanDefinitionRelatedAction] This resource allows for the definition of
 @freezed
-class PlanDefinitionRelatedAction
-    with _$PlanDefinitionRelatedAction
-    implements BackboneElement {
+class PlanDefinitionRelatedAction extends BackboneElement
+    with _$PlanDefinitionRelatedAction {
   /// [PlanDefinitionRelatedAction] This resource allows for the definition of
-  const PlanDefinitionRelatedAction._();
+  PlanDefinitionRelatedAction._();
 
   /// [PlanDefinitionRelatedAction] This resource allows for the definition of
   /// various types of plans as a sharable, consumable, and executable artifact.
@@ -1489,7 +1498,7 @@ class PlanDefinitionRelatedAction
   ///
   /// [offsetRange] A duration or range of durations to apply to the
   ///  relationship. For example, 30-60 minutes before.
-  const factory PlanDefinitionRelatedAction({
+  factory PlanDefinitionRelatedAction({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1569,6 +1578,9 @@ class PlanDefinitionRelatedAction
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1580,11 +1592,10 @@ class PlanDefinitionRelatedAction
 
 /// [PlanDefinitionParticipant] This resource allows for the definition of
 @freezed
-class PlanDefinitionParticipant
-    with _$PlanDefinitionParticipant
-    implements BackboneElement {
+class PlanDefinitionParticipant extends BackboneElement
+    with _$PlanDefinitionParticipant {
   /// [PlanDefinitionParticipant] This resource allows for the definition of
-  const PlanDefinitionParticipant._();
+  PlanDefinitionParticipant._();
 
   /// [PlanDefinitionParticipant] This resource allows for the definition of
   /// various types of plans as a sharable, consumable, and executable artifact.
@@ -1622,7 +1633,7 @@ class PlanDefinitionParticipant
   ///
   /// [role] The role the participant should play in performing the described
   ///  action.
-  const factory PlanDefinitionParticipant({
+  factory PlanDefinitionParticipant({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1692,6 +1703,9 @@ class PlanDefinitionParticipant
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1703,11 +1717,10 @@ class PlanDefinitionParticipant
 
 /// [PlanDefinitionDynamicValue] This resource allows for the definition of
 @freezed
-class PlanDefinitionDynamicValue
-    with _$PlanDefinitionDynamicValue
-    implements BackboneElement {
+class PlanDefinitionDynamicValue extends BackboneElement
+    with _$PlanDefinitionDynamicValue {
   /// [PlanDefinitionDynamicValue] This resource allows for the definition of
-  const PlanDefinitionDynamicValue._();
+  PlanDefinitionDynamicValue._();
 
   /// [PlanDefinitionDynamicValue] This resource allows for the definition of
   /// various types of plans as a sharable, consumable, and executable artifact.
@@ -1752,7 +1765,7 @@ class PlanDefinitionDynamicValue
   ///
   /// [expression] An expression specifying the value of the customized
   ///  element.
-  const factory PlanDefinitionDynamicValue({
+  factory PlanDefinitionDynamicValue({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1827,6 +1840,9 @@ class PlanDefinitionDynamicValue
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

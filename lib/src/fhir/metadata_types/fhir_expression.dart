@@ -14,9 +14,9 @@ part 'fhir_expression.g.dart';
 
 /// [FhirExpression] A expression that is evaluated in a specified context and
 @freezed
-class FhirExpression with _$FhirExpression implements DataType {
+class FhirExpression extends DataType with _$FhirExpression {
   /// [FhirExpression] A expression that is evaluated in a specified context and
-  const FhirExpression._();
+  FhirExpression._();
 
   /// [FhirExpression] A expression that is evaluated in a specified context and
   /// returns a value. The context of use of the expression must specify the
@@ -55,7 +55,7 @@ class FhirExpression with _$FhirExpression implements DataType {
   /// [reference] A URI that defines where the expression is found.
   ///
   /// [referenceElement] Extensions for reference
-  const factory FhirExpression({
+  factory FhirExpression({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -132,6 +132,9 @@ class FhirExpression with _$FhirExpression implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

@@ -15,9 +15,9 @@ part 'document_reference.g.dart';
 
 /// [DocumentReference] A reference to a document of any kind for any
 @freezed
-class DocumentReference with _$DocumentReference implements DomainResource {
+class DocumentReference extends DomainResource with _$DocumentReference {
   /// [DocumentReference] A reference to a document of any kind for any
-  const DocumentReference._();
+  DocumentReference._();
 
   /// [DocumentReference] A reference to a document of any kind for any
   /// purpose. Provides metadata about the document so that the document can be
@@ -139,7 +139,7 @@ class DocumentReference with _$DocumentReference implements DomainResource {
   ///  content element repetitions, each with a different format.
   ///
   /// [context] The clinical context in which the document was prepared.
-  const factory DocumentReference({
+  factory DocumentReference({
     @Default(R4ResourceType.DocumentReference)
     @JsonKey(unknownEnumValue: R4ResourceType.DocumentReference)
 
@@ -322,6 +322,9 @@ class DocumentReference with _$DocumentReference implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -344,8 +347,8 @@ class DocumentReference with _$DocumentReference implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [DocumentReferenceRelatesTo] A reference to a document of any kind for
@@ -353,11 +356,10 @@ class DocumentReference with _$DocumentReference implements DomainResource {
 
 /// [DocumentReferenceRelatesTo] A reference to a document of any kind for
 @freezed
-class DocumentReferenceRelatesTo
-    with _$DocumentReferenceRelatesTo
-    implements BackboneElement {
+class DocumentReferenceRelatesTo extends BackboneElement
+    with _$DocumentReferenceRelatesTo {
   /// [DocumentReferenceRelatesTo] A reference to a document of any kind for
-  const DocumentReferenceRelatesTo._();
+  DocumentReferenceRelatesTo._();
 
   /// [DocumentReferenceRelatesTo] A reference to a document of any kind for
   /// any purpose. Provides metadata about the document so that the document can
@@ -396,7 +398,7 @@ class DocumentReferenceRelatesTo
   /// [codeElement] Extensions for code
   ///
   /// [target] The target document of this relationship.
-  const factory DocumentReferenceRelatesTo({
+  factory DocumentReferenceRelatesTo({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -466,6 +468,9 @@ class DocumentReferenceRelatesTo
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -477,11 +482,10 @@ class DocumentReferenceRelatesTo
 
 /// [DocumentReferenceContent] A reference to a document of any kind for any
 @freezed
-class DocumentReferenceContent
-    with _$DocumentReferenceContent
-    implements BackboneElement {
+class DocumentReferenceContent extends BackboneElement
+    with _$DocumentReferenceContent {
   /// [DocumentReferenceContent] A reference to a document of any kind for any
-  const DocumentReferenceContent._();
+  DocumentReferenceContent._();
 
   /// [DocumentReferenceContent] A reference to a document of any kind for any
   /// purpose. Provides metadata about the document so that the document can be
@@ -520,7 +524,7 @@ class DocumentReferenceContent
   /// [format] An identifier of the document encoding, structure, and template
   /// that the document conforms to beyond the base format indicated in the
   ///  mimeType.
-  const factory DocumentReferenceContent({
+  factory DocumentReferenceContent({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -589,6 +593,9 @@ class DocumentReferenceContent
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -600,11 +607,10 @@ class DocumentReferenceContent
 
 /// [DocumentReferenceContext] A reference to a document of any kind for any
 @freezed
-class DocumentReferenceContext
-    with _$DocumentReferenceContext
-    implements BackboneElement {
+class DocumentReferenceContext extends BackboneElement
+    with _$DocumentReferenceContext {
   /// [DocumentReferenceContext] A reference to a document of any kind for any
-  const DocumentReferenceContext._();
+  DocumentReferenceContext._();
 
   /// [DocumentReferenceContext] A reference to a document of any kind for any
   /// purpose. Provides metadata about the document so that the document can be
@@ -660,7 +666,7 @@ class DocumentReferenceContext
   ///
   /// [related] Related identifiers or resources associated with the
   ///  DocumentReference.
-  const factory DocumentReferenceContext({
+  factory DocumentReferenceContext({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -749,6 +755,9 @@ class DocumentReferenceContext
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

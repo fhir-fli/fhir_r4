@@ -14,9 +14,9 @@ part 'encounter.g.dart';
 
 /// [Encounter] An interaction between a patient and healthcare provider(s)
 @freezed
-class Encounter with _$Encounter implements DomainResource {
+class Encounter extends DomainResource with _$Encounter {
   /// [Encounter] An interaction between a patient and healthcare provider(s)
-  const Encounter._();
+  Encounter._();
 
   /// [Encounter] An interaction between a patient and healthcare provider(s)
   /// for the purpose of providing healthcare service(s) or assessing the health
@@ -154,7 +154,7 @@ class Encounter with _$Encounter implements DomainResource {
   ///
   /// [partOf] Another Encounter of which this encounter is a part of
   ///  (administratively or in time).
-  const factory Encounter({
+  factory Encounter({
     @Default(R4ResourceType.Encounter)
     @JsonKey(unknownEnumValue: R4ResourceType.Encounter)
 
@@ -360,6 +360,9 @@ class Encounter with _$Encounter implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -382,8 +385,8 @@ class Encounter with _$Encounter implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [EncounterStatusHistory] An interaction between a patient and healthcare
@@ -391,11 +394,10 @@ class Encounter with _$Encounter implements DomainResource {
 
 /// [EncounterStatusHistory] An interaction between a patient and healthcare
 @freezed
-class EncounterStatusHistory
-    with _$EncounterStatusHistory
-    implements BackboneElement {
+class EncounterStatusHistory extends BackboneElement
+    with _$EncounterStatusHistory {
   /// [EncounterStatusHistory] An interaction between a patient and healthcare
-  const EncounterStatusHistory._();
+  EncounterStatusHistory._();
 
   /// [EncounterStatusHistory] An interaction between a patient and healthcare
   /// provider(s) for the purpose of providing healthcare service(s) or
@@ -431,7 +433,7 @@ class EncounterStatusHistory
   /// [statusElement] Extensions for status
   ///
   /// [period] The time that the episode was in the specified status.
-  const factory EncounterStatusHistory({
+  factory EncounterStatusHistory({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -503,6 +505,9 @@ class EncounterStatusHistory
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -514,11 +519,10 @@ class EncounterStatusHistory
 
 /// [EncounterClassHistory] An interaction between a patient and healthcare
 @freezed
-class EncounterClassHistory
-    with _$EncounterClassHistory
-    implements BackboneElement {
+class EncounterClassHistory extends BackboneElement
+    with _$EncounterClassHistory {
   /// [EncounterClassHistory] An interaction between a patient and healthcare
-  const EncounterClassHistory._();
+  EncounterClassHistory._();
 
   /// [EncounterClassHistory] An interaction between a patient and healthcare
   /// provider(s) for the purpose of providing healthcare service(s) or
@@ -551,7 +555,7 @@ class EncounterClassHistory
   /// [class] inpatient | outpatient | ambulatory | emergency +.
   ///
   /// [period] The time that the episode was in the specified class.
-  const factory EncounterClassHistory({
+  factory EncounterClassHistory({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -619,6 +623,9 @@ class EncounterClassHistory
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -630,11 +637,9 @@ class EncounterClassHistory
 
 /// [EncounterParticipant] An interaction between a patient and healthcare
 @freezed
-class EncounterParticipant
-    with _$EncounterParticipant
-    implements BackboneElement {
+class EncounterParticipant extends BackboneElement with _$EncounterParticipant {
   /// [EncounterParticipant] An interaction between a patient and healthcare
-  const EncounterParticipant._();
+  EncounterParticipant._();
 
   /// [EncounterParticipant] An interaction between a patient and healthcare
   /// provider(s) for the purpose of providing healthcare service(s) or
@@ -671,7 +676,7 @@ class EncounterParticipant
   ///  encounter's period.
   ///
   /// [individual] Persons involved in the encounter other than the patient.
-  const factory EncounterParticipant({
+  factory EncounterParticipant({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -744,6 +749,9 @@ class EncounterParticipant
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -755,9 +763,9 @@ class EncounterParticipant
 
 /// [EncounterDiagnosis] An interaction between a patient and healthcare
 @freezed
-class EncounterDiagnosis with _$EncounterDiagnosis implements BackboneElement {
+class EncounterDiagnosis extends BackboneElement with _$EncounterDiagnosis {
   /// [EncounterDiagnosis] An interaction between a patient and healthcare
-  const EncounterDiagnosis._();
+  EncounterDiagnosis._();
 
   /// [EncounterDiagnosis] An interaction between a patient and healthcare
   /// provider(s) for the purpose of providing healthcare service(s) or
@@ -798,7 +806,7 @@ class EncounterDiagnosis with _$EncounterDiagnosis implements BackboneElement {
   /// [rank] Ranking of the diagnosis (for each role type).
   ///
   /// [rankElement] Extensions for rank
-  const factory EncounterDiagnosis({
+  factory EncounterDiagnosis({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -876,6 +884,9 @@ class EncounterDiagnosis with _$EncounterDiagnosis implements BackboneElement {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -887,11 +898,10 @@ class EncounterDiagnosis with _$EncounterDiagnosis implements BackboneElement {
 
 /// [EncounterHospitalization] An interaction between a patient and
 @freezed
-class EncounterHospitalization
-    with _$EncounterHospitalization
-    implements BackboneElement {
+class EncounterHospitalization extends BackboneElement
+    with _$EncounterHospitalization {
   /// [EncounterHospitalization] An interaction between a patient and
-  const EncounterHospitalization._();
+  EncounterHospitalization._();
 
   /// [EncounterHospitalization] An interaction between a patient and
   /// healthcare provider(s) for the purpose of providing healthcare service(s)
@@ -943,7 +953,7 @@ class EncounterHospitalization
   /// [destination] Location/organization to which the patient is discharged.
   ///
   /// [dischargeDisposition] Category or kind of location after discharge.
-  const factory EncounterHospitalization({
+  factory EncounterHospitalization({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1037,6 +1047,9 @@ class EncounterHospitalization
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1048,9 +1061,9 @@ class EncounterHospitalization
 
 /// [EncounterLocation] An interaction between a patient and healthcare
 @freezed
-class EncounterLocation with _$EncounterLocation implements BackboneElement {
+class EncounterLocation extends BackboneElement with _$EncounterLocation {
   /// [EncounterLocation] An interaction between a patient and healthcare
-  const EncounterLocation._();
+  EncounterLocation._();
 
   /// [EncounterLocation] An interaction between a patient and healthcare
   /// provider(s) for the purpose of providing healthcare service(s) or
@@ -1094,7 +1107,7 @@ class EncounterLocation with _$EncounterLocation implements BackboneElement {
   ///
   /// [period] Time period during which the patient was present at the
   ///  location.
-  const factory EncounterLocation({
+  factory EncounterLocation({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1175,6 +1188,9 @@ class EncounterLocation with _$EncounterLocation implements BackboneElement {
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

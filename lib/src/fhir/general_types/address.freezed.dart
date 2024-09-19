@@ -112,8 +112,12 @@ mixin _$Address {
   /// [period] Time period when address was/is in use.
   Period? get period => throw _privateConstructorUsedError;
 
+  /// Serializes this Address to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Address
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AddressCopyWith<Address> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -158,6 +162,8 @@ class _$AddressCopyWithImpl<$Res, $Val extends Address>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Address
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -271,6 +277,8 @@ class _$AddressCopyWithImpl<$Res, $Val extends Address>
     ) as $Val);
   }
 
+  /// Create a copy of Address
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get period {
@@ -326,6 +334,8 @@ class __$$AddressImplCopyWithImpl<$Res>
       _$AddressImpl _value, $Res Function(_$AddressImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Address
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -443,7 +453,7 @@ class __$$AddressImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AddressImpl extends _Address {
-  const _$AddressImpl(
+  _$AddressImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: AddressUse.unknown) this.use,
@@ -665,7 +675,7 @@ class _$AddressImpl extends _Address {
             (identical(other.period, period) || other.period == period));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -692,7 +702,9 @@ class _$AddressImpl extends _Address {
         period
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Address
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AddressImplCopyWith<_$AddressImpl> get copyWith =>
@@ -707,7 +719,7 @@ class _$AddressImpl extends _Address {
 }
 
 abstract class _Address extends Address {
-  const factory _Address(
+  factory _Address(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       @JsonKey(unknownEnumValue: AddressUse.unknown) final AddressUse? use,
@@ -729,16 +741,14 @@ abstract class _Address extends Address {
       final String? country,
       @JsonKey(name: '_country') final PrimitiveElement? countryElement,
       final Period? period}) = _$AddressImpl;
-  const _Address._() : super._();
+  _Address._() : super._();
 
   factory _Address.fromJson(Map<String, dynamic> json) = _$AddressImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -746,108 +756,112 @@ abstract class _Address extends Address {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [use] The purpose of this address.
+  @override
   @JsonKey(unknownEnumValue: AddressUse.unknown)
   AddressUse? get use;
-  @override
 
   /// [useElement] Extensions for use
+  @override
   @JsonKey(name: '_use')
   PrimitiveElement? get useElement;
-  @override
 
   /// [type] Distinguishes between physical addresses (those you can visit) and
   /// mailing addresses (e.g. PO Boxes and care-of addresses). Most addresses
   ///  are both.
+  @override
   @JsonKey(unknownEnumValue: AddressType.unknown)
   AddressType? get type;
-  @override
 
   /// [typeElement] Extensions for type
+  @override
   @JsonKey(name: '_type')
   PrimitiveElement? get typeElement;
-  @override
 
   /// [text] Specifies the entire address as it should be displayed e.g. on a
   /// postal label. This may be provided instead of or as well as the specific
   ///  parts.
-  String? get text;
   @override
+  String? get text;
 
   /// [textElement] Extensions for text
+  @override
   @JsonKey(name: '_text')
   PrimitiveElement? get textElement;
-  @override
 
   /// [line] This component contains the house number, apartment number, street
   /// name, street direction,  P.O. Box number, delivery hints, and similar
   ///  address information.
-  List<String>? get line;
   @override
+  List<String>? get line;
 
   /// [lineElement] Extensions for line
+  @override
   @JsonKey(name: '_line')
   List<PrimitiveElement>? get lineElement;
-  @override
 
   /// [city] The name of the city, town, suburb, village or other community or
   ///  delivery center.
-  String? get city;
   @override
+  String? get city;
 
   /// [cityElement] Extensions for city
+  @override
   @JsonKey(name: '_city')
   PrimitiveElement? get cityElement;
-  @override
 
   /// [district] The name of the administrative area (county).
-  String? get district;
   @override
+  String? get district;
 
   /// [districtElement] Extensions for district
+  @override
   @JsonKey(name: '_district')
   PrimitiveElement? get districtElement;
-  @override
 
   /// [state] Sub-unit of a country with limited sovereignty in a federally
   /// organized country. A code may be used if codes are in common use (e.g. US
   ///  2 letter state codes).
-  String? get state;
   @override
+  String? get state;
 
   /// [stateElement] Extensions for state
+  @override
   @JsonKey(name: '_state')
   PrimitiveElement? get stateElement;
-  @override
 
   /// [postalCode] A postal code designating a region defined by the postal
   ///  service.
-  String? get postalCode;
   @override
+  String? get postalCode;
 
   /// [postalCodeElement] Extensions for postalCode
+  @override
   @JsonKey(name: '_postalCode')
   PrimitiveElement? get postalCodeElement;
-  @override
 
   /// [country] Country - a nation as commonly understood or generally
   ///  accepted.
-  String? get country;
   @override
+  String? get country;
 
   /// [countryElement] Extensions for country
+  @override
   @JsonKey(name: '_country')
   PrimitiveElement? get countryElement;
-  @override
 
   /// [period] Time period when address was/is in use.
-  Period? get period;
   @override
-  @JsonKey(ignore: true)
+  Period? get period;
+
+  /// Create a copy of Address
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AddressImplCopyWith<_$AddressImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

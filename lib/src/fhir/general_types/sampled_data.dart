@@ -14,9 +14,9 @@ part 'sampled_data.g.dart';
 
 /// [SampledData] A series of measurements taken by a device, with upper and
 @freezed
-class SampledData with _$SampledData implements DataType {
+class SampledData extends DataType with _$SampledData {
   /// [SampledData] A series of measurements taken by a device, with upper and
-  const SampledData._();
+  SampledData._();
 
   /// [SampledData] A series of measurements taken by a device, with upper and
   ///  lower limits. There may be more than one dimension in the data.
@@ -68,7 +68,7 @@ class SampledData with _$SampledData implements DataType {
   ///  of a decimal value.
   ///
   /// [dataElement] Extensions for data
-  const factory SampledData({
+  factory SampledData({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -162,6 +162,9 @@ class SampledData with _$SampledData implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

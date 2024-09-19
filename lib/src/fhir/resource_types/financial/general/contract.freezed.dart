@@ -299,8 +299,12 @@ mixin _$Contract {
   ///  related to enforcement of this Contract.
   Reference? get legallyBindingReference => throw _privateConstructorUsedError;
 
+  /// Serializes this Contract to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Contract
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ContractCopyWith<Contract> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -396,6 +400,8 @@ class _$ContractCopyWithImpl<$Res, $Val extends Contract>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Contract
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -679,6 +685,8 @@ class _$ContractCopyWithImpl<$Res, $Val extends Contract>
     ) as $Val);
   }
 
+  /// Create a copy of Contract
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -691,6 +699,8 @@ class _$ContractCopyWithImpl<$Res, $Val extends Contract>
     });
   }
 
+  /// Create a copy of Contract
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -703,6 +713,8 @@ class _$ContractCopyWithImpl<$Res, $Val extends Contract>
     });
   }
 
+  /// Create a copy of Contract
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get legalState {
@@ -715,6 +727,8 @@ class _$ContractCopyWithImpl<$Res, $Val extends Contract>
     });
   }
 
+  /// Create a copy of Contract
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get instantiatesCanonical {
@@ -727,6 +741,8 @@ class _$ContractCopyWithImpl<$Res, $Val extends Contract>
     });
   }
 
+  /// Create a copy of Contract
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get contentDerivative {
@@ -739,6 +755,8 @@ class _$ContractCopyWithImpl<$Res, $Val extends Contract>
     });
   }
 
+  /// Create a copy of Contract
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get applies {
@@ -751,6 +769,8 @@ class _$ContractCopyWithImpl<$Res, $Val extends Contract>
     });
   }
 
+  /// Create a copy of Contract
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get expirationType {
@@ -763,6 +783,8 @@ class _$ContractCopyWithImpl<$Res, $Val extends Contract>
     });
   }
 
+  /// Create a copy of Contract
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get author {
@@ -775,6 +797,8 @@ class _$ContractCopyWithImpl<$Res, $Val extends Contract>
     });
   }
 
+  /// Create a copy of Contract
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get scope {
@@ -787,6 +811,8 @@ class _$ContractCopyWithImpl<$Res, $Val extends Contract>
     });
   }
 
+  /// Create a copy of Contract
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get topicCodeableConcept {
@@ -800,6 +826,8 @@ class _$ContractCopyWithImpl<$Res, $Val extends Contract>
     });
   }
 
+  /// Create a copy of Contract
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get topicReference {
@@ -812,6 +840,8 @@ class _$ContractCopyWithImpl<$Res, $Val extends Contract>
     });
   }
 
+  /// Create a copy of Contract
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get type {
@@ -824,6 +854,8 @@ class _$ContractCopyWithImpl<$Res, $Val extends Contract>
     });
   }
 
+  /// Create a copy of Contract
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ContractContentDefinitionCopyWith<$Res>? get contentDefinition {
@@ -837,6 +869,8 @@ class _$ContractCopyWithImpl<$Res, $Val extends Contract>
     });
   }
 
+  /// Create a copy of Contract
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AttachmentCopyWith<$Res>? get legallyBindingAttachment {
@@ -849,6 +883,8 @@ class _$ContractCopyWithImpl<$Res, $Val extends Contract>
     });
   }
 
+  /// Create a copy of Contract
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get legallyBindingReference {
@@ -969,6 +1005,8 @@ class __$$ContractImplCopyWithImpl<$Res>
       _$ContractImpl _value, $Res Function(_$ContractImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Contract
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1256,7 +1294,7 @@ class __$$ContractImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ContractImpl extends _Contract {
-  const _$ContractImpl(
+  _$ContractImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Contract)
       this.resourceType = R4ResourceType.Contract,
       this.id,
@@ -1977,7 +2015,7 @@ class _$ContractImpl extends _Contract {
                 other.legallyBindingReference == legallyBindingReference));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -2038,7 +2076,9 @@ class _$ContractImpl extends _Contract {
         legallyBindingReference
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Contract
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ContractImplCopyWith<_$ContractImpl> get copyWith =>
@@ -2053,7 +2093,7 @@ class _$ContractImpl extends _Contract {
 }
 
 abstract class _Contract extends Contract {
-  const factory _Contract(
+  factory _Contract(
       {@JsonKey(unknownEnumValue: R4ResourceType.Contract)
       final R4ResourceType resourceType,
       final String? id,
@@ -2112,7 +2152,7 @@ abstract class _Contract extends Contract {
       final List<ContractRule>? rule,
       final Attachment? legallyBindingAttachment,
       final Reference? legallyBindingReference}) = _$ContractImpl;
-  const _Contract._() : super._();
+  _Contract._() : super._();
 
   factory _Contract.fromJson(Map<String, dynamic> json) =
       _$ContractImpl.fromJson;
@@ -2120,39 +2160,38 @@ abstract class _Contract extends Contract {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.Contract)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -2160,15 +2199,15 @@ abstract class _Contract extends Contract {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -2176,9 +2215,9 @@ abstract class _Contract extends Contract {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -2193,208 +2232,208 @@ abstract class _Contract extends Contract {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] Unique identifier for this Contract or a derivative that
   ///  references a Source Contract.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [url] Canonical identifier for this contract, represented as a URI
   ///  (globally unique).
-  FhirUri? get url;
   @override
+  FhirUri? get url;
 
   /// [urlElement] Extensions for url
+  @override
   @JsonKey(name: '_url')
   PrimitiveElement? get urlElement;
-  @override
 
   /// [version] An edition identifier used for business purposes to label
   ///  business significant variants.
-  String? get version;
   @override
+  String? get version;
 
   /// [versionElement] Extensions for version
+  @override
   @JsonKey(name: '_version')
   PrimitiveElement? get versionElement;
-  @override
 
   /// [status] The status of the resource instance.
-  FhirCode? get status;
   @override
+  FhirCode? get status;
 
   /// [statusElement] Extensions for status
+  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
-  @override
 
   /// [legalState] Legal states of the formation of a legal instrument, which
   /// is a formally executed written document that can be formally attributed to
   /// its author, records and formally expresses a legally enforceable act,
   /// process, or contractual duty, obligation, or right, and therefore
   ///  evidences that act, process, or agreement.
-  CodeableConcept? get legalState;
   @override
+  CodeableConcept? get legalState;
 
   /// [instantiatesCanonical] The URL pointing to a FHIR-defined Contract
   ///  Definition that is adhered to in whole or part by this Contract.
-  Reference? get instantiatesCanonical;
   @override
+  Reference? get instantiatesCanonical;
 
   /// [instantiatesUri] The URL pointing to an externally maintained definition
   ///  that is adhered to in whole or in part by this Contract.
-  FhirUri? get instantiatesUri;
   @override
+  FhirUri? get instantiatesUri;
 
   /// [instantiatesUriElement] Extensions for instantiatesUri
+  @override
   @JsonKey(name: '_instantiatesUri')
   PrimitiveElement? get instantiatesUriElement;
-  @override
 
   /// [contentDerivative] The minimal content derived from the basal
   ///  information source at a specific stage in its lifecycle.
-  CodeableConcept? get contentDerivative;
   @override
+  CodeableConcept? get contentDerivative;
 
   /// [issued] When this  Contract was issued.
-  FhirDateTime? get issued;
   @override
+  FhirDateTime? get issued;
 
   /// [issuedElement] Extensions for issued
+  @override
   @JsonKey(name: '_issued')
   PrimitiveElement? get issuedElement;
-  @override
 
   /// [applies] Relevant time or time-period when this Contract is applicable.
-  Period? get applies;
   @override
+  Period? get applies;
 
   /// [expirationType] Event resulting in discontinuation or termination of
   ///  this Contract instance by one or more parties to the contract.
-  CodeableConcept? get expirationType;
   @override
+  CodeableConcept? get expirationType;
 
   /// [subject] The target entity impacted by or of interest to parties to the
   ///  agreement.
-  List<Reference>? get subject;
   @override
+  List<Reference>? get subject;
 
   /// [authority] A formally or informally recognized grouping of people,
   /// principals, organizations, or jurisdictions formed for the purpose of
   /// achieving some form of collective action such as the promulgation,
   ///  administration and enforcement of contracts and policies.
-  List<Reference>? get authority;
   @override
+  List<Reference>? get authority;
 
   /// [domain] Recognized governance framework or system operating with a
   /// circumscribed scope in accordance with specified principles, policies,
   /// processes or procedures for managing rights, actions, or behaviors of
   ///  parties or principals relative to resources.
-  List<Reference>? get domain;
   @override
+  List<Reference>? get domain;
 
   /// [site] Sites in which the contract is complied with,  exercised, or in
   ///  force.
-  List<Reference>? get site;
   @override
+  List<Reference>? get site;
 
   /// [name] A natural language name identifying this Contract definition,
   /// derivative, or instance in any legal state. Provides additional
   /// information about its content. This name should be usable as an identifier
   /// for the module by machine processing applications such as code
   ///  generation.
-  String? get name;
   @override
+  String? get name;
 
   /// [nameElement] Extensions for name
+  @override
   @JsonKey(name: '_name')
   PrimitiveElement? get nameElement;
-  @override
 
   /// [title] A short, descriptive, user-friendly title for this Contract
   /// definition, derivative, or instance in any legal state.t giving additional
   ///  information about its content.
-  String? get title;
   @override
+  String? get title;
 
   /// [titleElement] Extensions for title
+  @override
   @JsonKey(name: '_title')
   PrimitiveElement? get titleElement;
-  @override
 
   /// [subtitle] An explanatory or alternate user-friendly title for this
   /// Contract definition, derivative, or instance in any legal state.t giving
   ///  additional information about its content.
-  String? get subtitle;
   @override
+  String? get subtitle;
 
   /// [subtitleElement] Extensions for subtitle
+  @override
   @JsonKey(name: '_subtitle')
   PrimitiveElement? get subtitleElement;
-  @override
 
   /// [alias] Alternative representation of the title for this Contract
   /// definition, derivative, or instance in any legal state., e.g., a domain
   ///  specific contract number related to legislation.
-  List<String>? get alias;
   @override
+  List<String>? get alias;
 
   /// [aliasElement] Extensions for alias
+  @override
   @JsonKey(name: '_alias')
   List<PrimitiveElement>? get aliasElement;
-  @override
 
   /// [author] The individual or organization that authored the Contract
   ///  definition, derivative, or instance in any legal state.
-  Reference? get author;
   @override
+  Reference? get author;
 
   /// [scope] A selector of legal concerns for this Contract definition,
   ///  derivative, or instance in any legal state.
-  CodeableConcept? get scope;
   @override
+  CodeableConcept? get scope;
 
   /// [topicCodeableConcept] Narrows the range of legal concerns to focus on
   ///  the achievement of specific contractual objectives.
-  CodeableConcept? get topicCodeableConcept;
   @override
+  CodeableConcept? get topicCodeableConcept;
 
   /// [topicReference] Narrows the range of legal concerns to focus on the
   ///  achievement of specific contractual objectives.
-  Reference? get topicReference;
   @override
+  Reference? get topicReference;
 
   /// [type] A high-level category for the legal instrument, whether
   /// constructed as a Contract definition, derivative, or instance in any legal
   /// state.  Provides additional information about its content within the
   /// context of the Contract's scope to distinguish the kinds of systems that
   ///  would be interested in the contract.
-  CodeableConcept? get type;
   @override
+  CodeableConcept? get type;
 
   /// [subType] Sub-category for the Contract that distinguishes the kinds of
   /// systems that would be interested in the Contract within the context of the
   ///  Contract's scope.
-  List<CodeableConcept>? get subType;
   @override
+  List<CodeableConcept>? get subType;
 
   /// [contentDefinition] Precusory content developed with a focus and intent
   /// of supporting the formation a Contract instance, which may be associated
   ///  with and transformable into a Contract.
-  ContractContentDefinition? get contentDefinition;
   @override
+  ContractContentDefinition? get contentDefinition;
 
   /// [term] One or more Contract Provisions, which may be related and conveyed
   ///  as a group, and may contain nested groups.
-  List<ContractTerm>? get term;
   @override
+  List<ContractTerm>? get term;
 
   /// [supportingInfo] Information that may be needed by/relevant to the
   ///  performer in their execution of this term action.
-  List<Reference>? get supportingInfo;
   @override
+  List<Reference>? get supportingInfo;
 
   /// [relevantHistory] Links to Provenance records for past versions of this
   /// Contract definition, derivative, or instance, which identify key state
@@ -2402,15 +2441,15 @@ abstract class _Contract extends Contract {
   /// the current version of the Contract.  The Provence.entity indicates the
   /// target that was changed in the update.
   ///  http://build.fhir.org/provenance-definitions.html#Provenance.entity.
-  List<Reference>? get relevantHistory;
   @override
+  List<Reference>? get relevantHistory;
 
   /// [signer] Parties with legal standing in the Contract, including the
   /// principal parties, the grantor(s) and grantee(s), which are any person or
   /// organization bound by the contract, and any ancillary parties, which
   ///  facilitate the execution of the contract such as a notary or witness.
-  List<ContractSigner>? get signer;
   @override
+  List<ContractSigner>? get signer;
 
   /// [friendly] The "patient friendly language" versionof the Contract in
   /// whole or in parts. "Patient friendly language" means the representation of
@@ -2419,32 +2458,36 @@ abstract class _Contract extends Contract {
   /// practices for communication styles that ensure that those agreeing to or
   /// signing the Contract understand the roles, actions, obligations,
   ///  responsibilities, and implication of the agreement.
-  List<ContractFriendly>? get friendly;
   @override
+  List<ContractFriendly>? get friendly;
 
   /// [legal] List of Legal expressions or representations of this Contract.
-  List<ContractLegal>? get legal;
   @override
+  List<ContractLegal>? get legal;
 
   /// [rule] List of Computable Policy Rule Language Representations of this
   ///  Contract.
-  List<ContractRule>? get rule;
   @override
+  List<ContractRule>? get rule;
 
   /// [legallyBindingAttachment] Legally binding Contract: This is the signed
   /// and legally recognized representation of the Contract, which is considered
   /// the "source of truth" and which would be the basis for legal action
   ///  related to enforcement of this Contract.
-  Attachment? get legallyBindingAttachment;
   @override
+  Attachment? get legallyBindingAttachment;
 
   /// [legallyBindingReference] Legally binding Contract: This is the signed
   /// and legally recognized representation of the Contract, which is considered
   /// the "source of truth" and which would be the basis for legal action
   ///  related to enforcement of this Contract.
-  Reference? get legallyBindingReference;
   @override
-  @JsonKey(ignore: true)
+  Reference? get legallyBindingReference;
+
+  /// Create a copy of Contract
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ContractImplCopyWith<_$ContractImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2527,8 +2570,12 @@ mixin _$ContractContentDefinition {
   @JsonKey(name: '_copyright')
   PrimitiveElement? get copyrightElement => throw _privateConstructorUsedError;
 
+  /// Serializes this ContractContentDefinition to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ContractContentDefinition
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ContractContentDefinitionCopyWith<ContractContentDefinition> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2571,6 +2618,8 @@ class _$ContractContentDefinitionCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ContractContentDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2639,6 +2688,8 @@ class _$ContractContentDefinitionCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of ContractContentDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get type {
@@ -2647,6 +2698,8 @@ class _$ContractContentDefinitionCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ContractContentDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get subType {
@@ -2659,6 +2712,8 @@ class _$ContractContentDefinitionCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ContractContentDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get publisher {
@@ -2715,6 +2770,8 @@ class __$$ContractContentDefinitionImplCopyWithImpl<$Res>
       $Res Function(_$ContractContentDefinitionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ContractContentDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2787,7 +2844,7 @@ class __$$ContractContentDefinitionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ContractContentDefinitionImpl extends _ContractContentDefinition {
-  const _$ContractContentDefinitionImpl(
+  _$ContractContentDefinitionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2957,7 +3014,7 @@ class _$ContractContentDefinitionImpl extends _ContractContentDefinition {
                 other.copyrightElement == copyrightElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2974,7 +3031,9 @@ class _$ContractContentDefinitionImpl extends _ContractContentDefinition {
       copyright,
       copyrightElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ContractContentDefinition
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ContractContentDefinitionImplCopyWith<_$ContractContentDefinitionImpl>
@@ -2990,7 +3049,7 @@ class _$ContractContentDefinitionImpl extends _ContractContentDefinition {
 }
 
 abstract class _ContractContentDefinition extends ContractContentDefinition {
-  const factory _ContractContentDefinition(
+  factory _ContractContentDefinition(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -3007,17 +3066,15 @@ abstract class _ContractContentDefinition extends ContractContentDefinition {
           @JsonKey(name: '_copyright')
           final PrimitiveElement? copyrightElement}) =
       _$ContractContentDefinitionImpl;
-  const _ContractContentDefinition._() : super._();
+  _ContractContentDefinition._() : super._();
 
   factory _ContractContentDefinition.fromJson(Map<String, dynamic> json) =
       _$ContractContentDefinitionImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3025,9 +3082,9 @@ abstract class _ContractContentDefinition extends ContractContentDefinition {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3042,58 +3099,62 @@ abstract class _ContractContentDefinition extends ContractContentDefinition {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [type] Precusory content structure and use, i.e., a boilerplate,
   /// template, application for a contract such as an insurance policy or
   ///  benefits under a program, e.g., workers compensation.
-  CodeableConcept get type;
   @override
+  CodeableConcept get type;
 
   /// [subType] Detailed Precusory content type.
-  CodeableConcept? get subType;
   @override
+  CodeableConcept? get subType;
 
   /// [publisher] The  individual or organization that published the Contract
   ///  precursor content.
-  Reference? get publisher;
   @override
+  Reference? get publisher;
 
   /// [publicationDate] The date (and optionally time) when the contract was
   /// published. The date must change when the business version changes and it
   /// must change if the status code changes. In addition, it should change when
   ///  the substantive content of the contract changes.
-  FhirDateTime? get publicationDate;
   @override
+  FhirDateTime? get publicationDate;
 
   /// [publicationDateElement] Extensions for publicationDate
+  @override
   @JsonKey(name: '_publicationDate')
   PrimitiveElement? get publicationDateElement;
-  @override
 
   /// [publicationStatus] amended | appended | cancelled | disputed |
   /// entered-in-error | executable | executed | negotiable | offered | policy |
   ///  rejected | renewed | revoked | resolved | terminated.
-  FhirCode? get publicationStatus;
   @override
+  FhirCode? get publicationStatus;
 
   /// [publicationStatusElement] Extensions for publicationStatus
+  @override
   @JsonKey(name: '_publicationStatus')
   PrimitiveElement? get publicationStatusElement;
-  @override
 
   /// [copyright] A copyright statement relating to Contract precursor content.
   /// Copyright statements are generally legal restrictions on the use and
   ///  publishing of the Contract precursor content.
-  FhirMarkdown? get copyright;
   @override
+  FhirMarkdown? get copyright;
 
   /// [copyrightElement] Extensions for copyright
+  @override
   @JsonKey(name: '_copyright')
   PrimitiveElement? get copyrightElement;
+
+  /// Create a copy of ContractContentDefinition
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ContractContentDefinitionImplCopyWith<_$ContractContentDefinitionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3190,8 +3251,12 @@ mixin _$ContractTerm {
   /// [group] Nested group of Contract Provisions.
   List<ContractTerm>? get group => throw _privateConstructorUsedError;
 
+  /// Serializes this ContractTerm to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ContractTerm
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ContractTermCopyWith<ContractTerm> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3241,6 +3306,8 @@ class _$ContractTermCopyWithImpl<$Res, $Val extends ContractTerm>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ContractTerm
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3339,6 +3406,8 @@ class _$ContractTermCopyWithImpl<$Res, $Val extends ContractTerm>
     ) as $Val);
   }
 
+  /// Create a copy of ContractTerm
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $IdentifierCopyWith<$Res>? get identifier {
@@ -3351,6 +3420,8 @@ class _$ContractTermCopyWithImpl<$Res, $Val extends ContractTerm>
     });
   }
 
+  /// Create a copy of ContractTerm
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get applies {
@@ -3363,6 +3434,8 @@ class _$ContractTermCopyWithImpl<$Res, $Val extends ContractTerm>
     });
   }
 
+  /// Create a copy of ContractTerm
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get topicCodeableConcept {
@@ -3376,6 +3449,8 @@ class _$ContractTermCopyWithImpl<$Res, $Val extends ContractTerm>
     });
   }
 
+  /// Create a copy of ContractTerm
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get topicReference {
@@ -3388,6 +3463,8 @@ class _$ContractTermCopyWithImpl<$Res, $Val extends ContractTerm>
     });
   }
 
+  /// Create a copy of ContractTerm
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get type {
@@ -3400,6 +3477,8 @@ class _$ContractTermCopyWithImpl<$Res, $Val extends ContractTerm>
     });
   }
 
+  /// Create a copy of ContractTerm
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get subType {
@@ -3412,6 +3491,8 @@ class _$ContractTermCopyWithImpl<$Res, $Val extends ContractTerm>
     });
   }
 
+  /// Create a copy of ContractTerm
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ContractOfferCopyWith<$Res> get offer {
@@ -3473,6 +3554,8 @@ class __$$ContractTermImplCopyWithImpl<$Res>
       _$ContractTermImpl _value, $Res Function(_$ContractTermImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ContractTerm
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3575,7 +3658,7 @@ class __$$ContractTermImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ContractTermImpl extends _ContractTerm {
-  const _$ContractTermImpl(
+  _$ContractTermImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3818,7 +3901,7 @@ class _$ContractTermImpl extends _ContractTerm {
             const DeepCollectionEquality().equals(other._group, _group));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3841,7 +3924,9 @@ class _$ContractTermImpl extends _ContractTerm {
       const DeepCollectionEquality().hash(_action),
       const DeepCollectionEquality().hash(_group));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ContractTerm
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ContractTermImplCopyWith<_$ContractTermImpl> get copyWith =>
@@ -3856,7 +3941,7 @@ class _$ContractTermImpl extends _ContractTerm {
 }
 
 abstract class _ContractTerm extends ContractTerm {
-  const factory _ContractTerm(
+  factory _ContractTerm(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3875,17 +3960,15 @@ abstract class _ContractTerm extends ContractTerm {
       final List<ContractAsset>? asset,
       final List<ContractAction>? action,
       final List<ContractTerm>? group}) = _$ContractTermImpl;
-  const _ContractTerm._() : super._();
+  _ContractTerm._() : super._();
 
   factory _ContractTerm.fromJson(Map<String, dynamic> json) =
       _$ContractTermImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3893,9 +3976,9 @@ abstract class _ContractTerm extends ContractTerm {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3910,79 +3993,83 @@ abstract class _ContractTerm extends ContractTerm {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] Unique identifier for this particular Contract Provision.
-  Identifier? get identifier;
   @override
+  Identifier? get identifier;
 
   /// [issued] When this Contract Provision was issued.
-  FhirDateTime? get issued;
   @override
+  FhirDateTime? get issued;
 
   /// [issuedElement] Extensions for issued
+  @override
   @JsonKey(name: '_issued')
   PrimitiveElement? get issuedElement;
-  @override
 
   /// [applies] Relevant time or time-period when this Contract Provision is
   ///  applicable.
-  Period? get applies;
   @override
+  Period? get applies;
 
   /// [topicCodeableConcept] The entity that the term applies to.
-  CodeableConcept? get topicCodeableConcept;
   @override
+  CodeableConcept? get topicCodeableConcept;
 
   /// [topicReference] The entity that the term applies to.
-  Reference? get topicReference;
   @override
+  Reference? get topicReference;
 
   /// [type] A legal clause or condition contained within a contract that
   /// requires one or both parties to perform a particular requirement by some
   /// specified time or prevents one or both parties from performing a
   ///  particular requirement by some specified time.
-  CodeableConcept? get type;
   @override
+  CodeableConcept? get type;
 
   /// [subType] A specialized legal clause or condition based on overarching
   ///  contract type.
-  CodeableConcept? get subType;
   @override
+  CodeableConcept? get subType;
 
   /// [text] Statement of a provision in a policy or a contract.
-  String? get text;
   @override
+  String? get text;
 
   /// [textElement] Extensions for text
+  @override
   @JsonKey(name: '_text')
   PrimitiveElement? get textElement;
-  @override
 
   /// [securityLabel] Security labels that protect the handling of information
   ///  about the term and its elements, which may be specifically identified..
-  List<ContractSecurityLabel>? get securityLabel;
   @override
+  List<ContractSecurityLabel>? get securityLabel;
 
   /// [offer] The matter of concern in the context of this provision of the
   ///  agrement.
-  ContractOffer get offer;
   @override
+  ContractOffer get offer;
 
   /// [asset] Contract Term Asset List.
-  List<ContractAsset>? get asset;
   @override
+  List<ContractAsset>? get asset;
 
   /// [action] An actor taking a role in an activity for which it can be
   ///  assigned some degree of responsibility for the activity taking place.
-  List<ContractAction>? get action;
   @override
+  List<ContractAction>? get action;
 
   /// [group] Nested group of Contract Provisions.
-  List<ContractTerm>? get group;
   @override
-  @JsonKey(ignore: true)
+  List<ContractTerm>? get group;
+
+  /// Create a copy of ContractTerm
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ContractTermImplCopyWith<_$ContractTermImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4044,8 +4131,12 @@ mixin _$ContractSecurityLabel {
   ///  term and/or term elements are to be protected.
   List<Coding>? get control => throw _privateConstructorUsedError;
 
+  /// Serializes this ContractSecurityLabel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ContractSecurityLabel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ContractSecurityLabelCopyWith<ContractSecurityLabel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4080,6 +4171,8 @@ class _$ContractSecurityLabelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ContractSecurityLabel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4128,6 +4221,8 @@ class _$ContractSecurityLabelCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of ContractSecurityLabel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodingCopyWith<$Res> get classification {
@@ -4169,6 +4264,8 @@ class __$$ContractSecurityLabelImplCopyWithImpl<$Res>
       $Res Function(_$ContractSecurityLabelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ContractSecurityLabel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4221,7 +4318,7 @@ class __$$ContractSecurityLabelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ContractSecurityLabelImpl extends _ContractSecurityLabel {
-  const _$ContractSecurityLabelImpl(
+  _$ContractSecurityLabelImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4396,7 +4493,7 @@ class _$ContractSecurityLabelImpl extends _ContractSecurityLabel {
             const DeepCollectionEquality().equals(other._control, _control));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -4409,7 +4506,9 @@ class _$ContractSecurityLabelImpl extends _ContractSecurityLabel {
       const DeepCollectionEquality().hash(_category),
       const DeepCollectionEquality().hash(_control));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ContractSecurityLabel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ContractSecurityLabelImplCopyWith<_$ContractSecurityLabelImpl>
@@ -4425,7 +4524,7 @@ class _$ContractSecurityLabelImpl extends _ContractSecurityLabel {
 }
 
 abstract class _ContractSecurityLabel extends ContractSecurityLabel {
-  const factory _ContractSecurityLabel(
+  factory _ContractSecurityLabel(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -4434,17 +4533,15 @@ abstract class _ContractSecurityLabel extends ContractSecurityLabel {
       required final Coding classification,
       final List<Coding>? category,
       final List<Coding>? control}) = _$ContractSecurityLabelImpl;
-  const _ContractSecurityLabel._() : super._();
+  _ContractSecurityLabel._() : super._();
 
   factory _ContractSecurityLabel.fromJson(Map<String, dynamic> json) =
       _$ContractSecurityLabelImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -4452,9 +4549,9 @@ abstract class _ContractSecurityLabel extends ContractSecurityLabel {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -4469,34 +4566,38 @@ abstract class _ContractSecurityLabel extends ContractSecurityLabel {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [number] Number used to link this term or term element to the applicable
   ///  Security Label.
-  List<FhirUnsignedInt>? get number;
   @override
+  List<FhirUnsignedInt>? get number;
 
   /// [numberElement] Extensions for number
+  @override
   @JsonKey(name: '_number')
   List<PrimitiveElement>? get numberElement;
-  @override
 
   /// [classification] Security label privacy tag that species the level of
   ///  confidentiality protection required for this term and/or term elements.
-  Coding get classification;
   @override
+  Coding get classification;
 
   /// [category] Security label privacy tag that species the applicable privacy
   ///  and security policies governing this term and/or term elements.
-  List<Coding>? get category;
   @override
+  List<Coding>? get category;
 
   /// [control] Security label privacy tag that species the manner in which
   ///  term and/or term elements are to be protected.
-  List<Coding>? get control;
   @override
-  @JsonKey(ignore: true)
+  List<Coding>? get control;
+
+  /// Create a copy of ContractSecurityLabel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ContractSecurityLabelImplCopyWith<_$ContractSecurityLabelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -4584,8 +4685,12 @@ mixin _$ContractOffer {
   List<PrimitiveElement>? get securityLabelNumberElement =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this ContractOffer to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ContractOffer
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ContractOfferCopyWith<ContractOffer> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4630,6 +4735,8 @@ class _$ContractOfferCopyWithImpl<$Res, $Val extends ContractOffer>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ContractOffer
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4718,6 +4825,8 @@ class _$ContractOfferCopyWithImpl<$Res, $Val extends ContractOffer>
     ) as $Val);
   }
 
+  /// Create a copy of ContractOffer
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get topic {
@@ -4730,6 +4839,8 @@ class _$ContractOfferCopyWithImpl<$Res, $Val extends ContractOffer>
     });
   }
 
+  /// Create a copy of ContractOffer
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get type {
@@ -4742,6 +4853,8 @@ class _$ContractOfferCopyWithImpl<$Res, $Val extends ContractOffer>
     });
   }
 
+  /// Create a copy of ContractOffer
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get decision {
@@ -4798,6 +4911,8 @@ class __$$ContractOfferImplCopyWithImpl<$Res>
       _$ContractOfferImpl _value, $Res Function(_$ContractOfferImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ContractOffer
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4890,7 +5005,7 @@ class __$$ContractOfferImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ContractOfferImpl extends _ContractOffer {
-  const _$ContractOfferImpl(
+  _$ContractOfferImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5160,7 +5275,7 @@ class _$ContractOfferImpl extends _ContractOffer {
                 _securityLabelNumberElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -5181,7 +5296,9 @@ class _$ContractOfferImpl extends _ContractOffer {
       const DeepCollectionEquality().hash(_securityLabelNumber),
       const DeepCollectionEquality().hash(_securityLabelNumberElement));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ContractOffer
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ContractOfferImplCopyWith<_$ContractOfferImpl> get copyWith =>
@@ -5196,7 +5313,7 @@ class _$ContractOfferImpl extends _ContractOffer {
 }
 
 abstract class _ContractOffer extends ContractOffer {
-  const factory _ContractOffer(
+  factory _ContractOffer(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -5215,17 +5332,15 @@ abstract class _ContractOffer extends ContractOffer {
           @JsonKey(name: '_securityLabelNumber')
           final List<PrimitiveElement>? securityLabelNumberElement}) =
       _$ContractOfferImpl;
-  const _ContractOffer._() : super._();
+  _ContractOffer._() : super._();
 
   factory _ContractOffer.fromJson(Map<String, dynamic> json) =
       _$ContractOfferImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -5233,9 +5348,9 @@ abstract class _ContractOffer extends ContractOffer {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -5250,67 +5365,71 @@ abstract class _ContractOffer extends ContractOffer {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] Unique identifier for this particular Contract Provision.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [party] Offer Recipient.
-  List<ContractParty>? get party;
   @override
+  List<ContractParty>? get party;
 
   /// [topic] The owner of an asset has the residual control rights over the
   /// asset: the right to decide all usages of the asset in any way not
   ///  inconsistent with a prior contract, custom, or law (Hart, 1995, p. 30).
-  Reference? get topic;
   @override
+  Reference? get topic;
 
   /// [type] Type of Contract Provision such as specific requirements, purposes
   ///  for actions, obligations, prohibitions, e.g. life time maximum benefit.
-  CodeableConcept? get type;
   @override
+  CodeableConcept? get type;
 
   /// [decision] Type of choice made by accepting party with respect to an
   ///  offer made by an offeror/ grantee.
-  CodeableConcept? get decision;
   @override
+  CodeableConcept? get decision;
 
   /// [decisionMode] How the decision about a Contract was conveyed.
-  List<CodeableConcept>? get decisionMode;
   @override
+  List<CodeableConcept>? get decisionMode;
 
   /// [answer] Response to offer text.
-  List<ContractAnswer>? get answer;
   @override
+  List<ContractAnswer>? get answer;
 
   /// [text] Human readable form of this Contract Offer.
-  String? get text;
   @override
+  String? get text;
 
   /// [textElement] Extensions for text
+  @override
   @JsonKey(name: '_text')
   PrimitiveElement? get textElement;
-  @override
 
   /// [linkId] The id of the clause or question text of the offer in the
   ///  referenced questionnaire/response.
-  List<String>? get linkId;
   @override
+  List<String>? get linkId;
 
   /// [linkIdElement] Extensions for linkId
+  @override
   @JsonKey(name: '_linkId')
   List<PrimitiveElement>? get linkIdElement;
-  @override
 
   /// [securityLabelNumber] Security labels that protects the offer.
+  @override
   List<FhirUnsignedInt>? get securityLabelNumber;
   @override
   @JsonKey(name: '_securityLabelNumber')
   List<PrimitiveElement>? get securityLabelNumberElement;
+
+  /// Create a copy of ContractOffer
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ContractOfferImplCopyWith<_$ContractOfferImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -5356,8 +5475,12 @@ mixin _$ContractParty {
   /// [role] How the party participates in the offer.
   CodeableConcept get role => throw _privateConstructorUsedError;
 
+  /// Serializes this ContractParty to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ContractParty
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ContractPartyCopyWith<ContractParty> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -5388,6 +5511,8 @@ class _$ContractPartyCopyWithImpl<$Res, $Val extends ContractParty>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ContractParty
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5421,6 +5546,8 @@ class _$ContractPartyCopyWithImpl<$Res, $Val extends ContractParty>
     ) as $Val);
   }
 
+  /// Create a copy of ContractParty
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get role {
@@ -5457,6 +5584,8 @@ class __$$ContractPartyImplCopyWithImpl<$Res>
       _$ContractPartyImpl _value, $Res Function(_$ContractPartyImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ContractParty
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5494,7 +5623,7 @@ class __$$ContractPartyImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ContractPartyImpl extends _ContractParty {
-  const _$ContractPartyImpl(
+  _$ContractPartyImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -5610,7 +5739,7 @@ class _$ContractPartyImpl extends _ContractParty {
             (identical(other.role, role) || other.role == role));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -5620,7 +5749,9 @@ class _$ContractPartyImpl extends _ContractParty {
       const DeepCollectionEquality().hash(_reference),
       role);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ContractParty
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ContractPartyImplCopyWith<_$ContractPartyImpl> get copyWith =>
@@ -5635,23 +5766,21 @@ class _$ContractPartyImpl extends _ContractParty {
 }
 
 abstract class _ContractParty extends ContractParty {
-  const factory _ContractParty(
+  factory _ContractParty(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required final List<Reference> reference,
       required final CodeableConcept role}) = _$ContractPartyImpl;
-  const _ContractParty._() : super._();
+  _ContractParty._() : super._();
 
   factory _ContractParty.fromJson(Map<String, dynamic> json) =
       _$ContractPartyImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -5659,9 +5788,9 @@ abstract class _ContractParty extends ContractParty {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -5676,17 +5805,21 @@ abstract class _ContractParty extends ContractParty {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [reference] Participant in the offer.
-  List<Reference> get reference;
   @override
+  List<Reference> get reference;
 
   /// [role] How the party participates in the offer.
-  CodeableConcept get role;
   @override
-  @JsonKey(ignore: true)
+  CodeableConcept get role;
+
+  /// Create a copy of ContractParty
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ContractPartyImplCopyWith<_$ContractPartyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -5835,8 +5968,12 @@ mixin _$ContractAnswer {
   ///  whether biospecimen may be used for further research.
   Reference? get valueReference => throw _privateConstructorUsedError;
 
+  /// Serializes this ContractAnswer to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ContractAnswer
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ContractAnswerCopyWith<ContractAnswer> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -5888,6 +6025,8 @@ class _$ContractAnswerCopyWithImpl<$Res, $Val extends ContractAnswer>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ContractAnswer
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -6011,6 +6150,8 @@ class _$ContractAnswerCopyWithImpl<$Res, $Val extends ContractAnswer>
     ) as $Val);
   }
 
+  /// Create a copy of ContractAnswer
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AttachmentCopyWith<$Res>? get valueAttachment {
@@ -6023,6 +6164,8 @@ class _$ContractAnswerCopyWithImpl<$Res, $Val extends ContractAnswer>
     });
   }
 
+  /// Create a copy of ContractAnswer
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodingCopyWith<$Res>? get valueCoding {
@@ -6035,6 +6178,8 @@ class _$ContractAnswerCopyWithImpl<$Res, $Val extends ContractAnswer>
     });
   }
 
+  /// Create a copy of ContractAnswer
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get valueQuantity {
@@ -6047,6 +6192,8 @@ class _$ContractAnswerCopyWithImpl<$Res, $Val extends ContractAnswer>
     });
   }
 
+  /// Create a copy of ContractAnswer
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get valueReference {
@@ -6111,6 +6258,8 @@ class __$$ContractAnswerImplCopyWithImpl<$Res>
       _$ContractAnswerImpl _value, $Res Function(_$ContractAnswerImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ContractAnswer
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -6238,7 +6387,7 @@ class __$$ContractAnswerImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ContractAnswerImpl extends _ContractAnswer {
-  const _$ContractAnswerImpl(
+  _$ContractAnswerImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -6517,7 +6666,7 @@ class _$ContractAnswerImpl extends _ContractAnswer {
                 other.valueReference == valueReference));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -6546,7 +6695,9 @@ class _$ContractAnswerImpl extends _ContractAnswer {
         valueReference
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ContractAnswer
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ContractAnswerImplCopyWith<_$ContractAnswerImpl> get copyWith =>
@@ -6562,7 +6713,7 @@ class _$ContractAnswerImpl extends _ContractAnswer {
 }
 
 abstract class _ContractAnswer extends ContractAnswer {
-  const factory _ContractAnswer(
+  factory _ContractAnswer(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -6590,17 +6741,15 @@ abstract class _ContractAnswer extends ContractAnswer {
       final Coding? valueCoding,
       final Quantity? valueQuantity,
       final Reference? valueReference}) = _$ContractAnswerImpl;
-  const _ContractAnswer._() : super._();
+  _ContractAnswer._() : super._();
 
   factory _ContractAnswer.fromJson(Map<String, dynamic> json) =
       _$ContractAnswerImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -6608,9 +6757,9 @@ abstract class _ContractAnswer extends ContractAnswer {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -6625,133 +6774,137 @@ abstract class _ContractAnswer extends ContractAnswer {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [valueBoolean] Response to an offer clause or question text,  which
   /// enables selection of values to be agreed to, e.g., the period of
   /// participation, the date of occupancy of a rental, warrently duration, or
   ///  whether biospecimen may be used for further research.
-  FhirBoolean? get valueBoolean;
   @override
+  FhirBoolean? get valueBoolean;
 
   /// [valueBooleanElement] Extensions for valueBoolean
+  @override
   @JsonKey(name: '_valueBoolean')
   PrimitiveElement? get valueBooleanElement;
-  @override
 
   /// [valueDecimal] Response to an offer clause or question text,  which
   /// enables selection of values to be agreed to, e.g., the period of
   /// participation, the date of occupancy of a rental, warrently duration, or
   ///  whether biospecimen may be used for further research.
-  FhirDecimal? get valueDecimal;
   @override
+  FhirDecimal? get valueDecimal;
 
   /// [valueDecimalElement] Extensions for valueDecimal
+  @override
   @JsonKey(name: '_valueDecimal')
   PrimitiveElement? get valueDecimalElement;
-  @override
 
   /// [valueInteger] Response to an offer clause or question text,  which
   /// enables selection of values to be agreed to, e.g., the period of
   /// participation, the date of occupancy of a rental, warrently duration, or
   ///  whether biospecimen may be used for further research.
-  FhirInteger? get valueInteger;
   @override
+  FhirInteger? get valueInteger;
 
   /// [valueIntegerElement] Extensions for valueInteger
+  @override
   @JsonKey(name: '_valueInteger')
   PrimitiveElement? get valueIntegerElement;
-  @override
 
   /// [valueDate] Response to an offer clause or question text,  which enables
   /// selection of values to be agreed to, e.g., the period of participation,
   /// the date of occupancy of a rental, warrently duration, or whether
   ///  biospecimen may be used for further research.
-  FhirDate? get valueDate;
   @override
+  FhirDate? get valueDate;
 
   /// [valueDateElement] Extensions for valueDate
+  @override
   @JsonKey(name: '_valueDate')
   PrimitiveElement? get valueDateElement;
-  @override
 
   /// [valueDateTime] Response to an offer clause or question text,  which
   /// enables selection of values to be agreed to, e.g., the period of
   /// participation, the date of occupancy of a rental, warrently duration, or
   ///  whether biospecimen may be used for further research.
-  FhirDateTime? get valueDateTime;
   @override
+  FhirDateTime? get valueDateTime;
 
   /// [valueDateTimeElement] Extensions for valueDateTime
+  @override
   @JsonKey(name: '_valueDateTime')
   PrimitiveElement? get valueDateTimeElement;
-  @override
 
   /// [valueTime] Response to an offer clause or question text,  which enables
   /// selection of values to be agreed to, e.g., the period of participation,
   /// the date of occupancy of a rental, warrently duration, or whether
   ///  biospecimen may be used for further research.
-  FhirTime? get valueTime;
   @override
+  FhirTime? get valueTime;
 
   /// [valueTimeElement] Extensions for valueTime
+  @override
   @JsonKey(name: '_valueTime')
   PrimitiveElement? get valueTimeElement;
-  @override
 
   /// [valueString] Response to an offer clause or question text,  which
   /// enables selection of values to be agreed to, e.g., the period of
   /// participation, the date of occupancy of a rental, warrently duration, or
   ///  whether biospecimen may be used for further research.
-  String? get valueString;
   @override
+  String? get valueString;
 
   /// [valueStringElement] Extensions for valueString
+  @override
   @JsonKey(name: '_valueString')
   PrimitiveElement? get valueStringElement;
-  @override
 
   /// [valueUri] Response to an offer clause or question text,  which enables
   /// selection of values to be agreed to, e.g., the period of participation,
   /// the date of occupancy of a rental, warrently duration, or whether
   ///  biospecimen may be used for further research.
-  FhirUri? get valueUri;
   @override
+  FhirUri? get valueUri;
 
   /// [valueUriElement] Extensions for valueUri
+  @override
   @JsonKey(name: '_valueUri')
   PrimitiveElement? get valueUriElement;
-  @override
 
   /// [valueAttachment] Response to an offer clause or question text,  which
   /// enables selection of values to be agreed to, e.g., the period of
   /// participation, the date of occupancy of a rental, warrently duration, or
   ///  whether biospecimen may be used for further research.
-  Attachment? get valueAttachment;
   @override
+  Attachment? get valueAttachment;
 
   /// [valueCoding] Response to an offer clause or question text,  which
   /// enables selection of values to be agreed to, e.g., the period of
   /// participation, the date of occupancy of a rental, warrently duration, or
   ///  whether biospecimen may be used for further research.
-  Coding? get valueCoding;
   @override
+  Coding? get valueCoding;
 
   /// [valueQuantity] Response to an offer clause or question text,  which
   /// enables selection of values to be agreed to, e.g., the period of
   /// participation, the date of occupancy of a rental, warrently duration, or
   ///  whether biospecimen may be used for further research.
-  Quantity? get valueQuantity;
   @override
+  Quantity? get valueQuantity;
 
   /// [valueReference] Response to an offer clause or question text,  which
   /// enables selection of values to be agreed to, e.g., the period of
   /// participation, the date of occupancy of a rental, warrently duration, or
   ///  whether biospecimen may be used for further research.
-  Reference? get valueReference;
   @override
-  @JsonKey(ignore: true)
+  Reference? get valueReference;
+
+  /// Create a copy of ContractAnswer
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ContractAnswerImplCopyWith<_$ContractAnswerImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -6860,8 +7013,12 @@ mixin _$ContractAsset {
   List<ContractValuedItem>? get valuedItem =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this ContractAsset to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ContractAsset
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ContractAssetCopyWith<ContractAsset> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -6911,6 +7068,8 @@ class _$ContractAssetCopyWithImpl<$Res, $Val extends ContractAsset>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ContractAsset
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -7029,6 +7188,8 @@ class _$ContractAssetCopyWithImpl<$Res, $Val extends ContractAsset>
     ) as $Val);
   }
 
+  /// Create a copy of ContractAsset
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get scope {
@@ -7041,6 +7202,8 @@ class _$ContractAssetCopyWithImpl<$Res, $Val extends ContractAsset>
     });
   }
 
+  /// Create a copy of ContractAsset
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodingCopyWith<$Res>? get relationship {
@@ -7101,6 +7264,8 @@ class __$$ContractAssetImplCopyWithImpl<$Res>
       _$ContractAssetImpl _value, $Res Function(_$ContractAssetImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ContractAsset
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -7223,7 +7388,7 @@ class __$$ContractAssetImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ContractAssetImpl extends _ContractAsset {
-  const _$ContractAssetImpl(
+  _$ContractAssetImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -7585,7 +7750,7 @@ class _$ContractAssetImpl extends _ContractAsset {
                 .equals(other._valuedItem, _valuedItem));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -7613,7 +7778,9 @@ class _$ContractAssetImpl extends _ContractAsset {
         const DeepCollectionEquality().hash(_valuedItem)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ContractAsset
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ContractAssetImplCopyWith<_$ContractAssetImpl> get copyWith =>
@@ -7628,7 +7795,7 @@ class _$ContractAssetImpl extends _ContractAsset {
 }
 
 abstract class _ContractAsset extends ContractAsset {
-  const factory _ContractAsset(
+  factory _ContractAsset(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -7652,17 +7819,15 @@ abstract class _ContractAsset extends ContractAsset {
       @JsonKey(name: '_securityLabelNumber')
       final List<PrimitiveElement>? securityLabelNumberElement,
       final List<ContractValuedItem>? valuedItem}) = _$ContractAssetImpl;
-  const _ContractAsset._() : super._();
+  _ContractAsset._() : super._();
 
   factory _ContractAsset.fromJson(Map<String, dynamic> json) =
       _$ContractAssetImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -7670,9 +7835,9 @@ abstract class _ContractAsset extends ContractAsset {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -7687,93 +7852,97 @@ abstract class _ContractAsset extends ContractAsset {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [scope] Differentiates the kind of the asset .
-  CodeableConcept? get scope;
   @override
+  CodeableConcept? get scope;
 
   /// [type] Target entity type about which the term may be concerned.
-  List<CodeableConcept>? get type;
   @override
+  List<CodeableConcept>? get type;
 
   /// [typeReference] Associated entities.
-  List<Reference>? get typeReference;
   @override
+  List<Reference>? get typeReference;
 
   /// [subtype] May be a subtype or part of an offered asset.
-  List<CodeableConcept>? get subtype;
   @override
+  List<CodeableConcept>? get subtype;
 
   /// [relationship] Specifies the applicability of the term to an asset
   /// resource instance, and instances it refers to orinstances that refer to
   ///  it, and/or are owned by the offeree.
-  Coding? get relationship;
   @override
+  Coding? get relationship;
 
   /// [context] Circumstance of the asset.
-  List<ContractContext>? get context;
   @override
+  List<ContractContext>? get context;
 
   /// [condition] Description of the quality and completeness of the asset that
   ///  imay be a factor in its valuation.
-  String? get condition;
   @override
+  String? get condition;
 
   /// [conditionElement] Extensions for condition
+  @override
   @JsonKey(name: '_condition')
   PrimitiveElement? get conditionElement;
-  @override
 
   /// [periodType] Type of Asset availability for use or ownership.
-  List<CodeableConcept>? get periodType;
   @override
+  List<CodeableConcept>? get periodType;
 
   /// [period] Asset relevant contractual time period.
-  List<Period>? get period;
   @override
+  List<Period>? get period;
 
   /// [usePeriod] Time period of asset use.
-  List<Period>? get usePeriod;
   @override
+  List<Period>? get usePeriod;
 
   /// [text] Clause or question text (Prose Object) concerning the asset in a
   /// linked form, such as a QuestionnaireResponse used in the formation of the
   ///  contract.
-  String? get text;
   @override
+  String? get text;
 
   /// [textElement] Extensions for text
+  @override
   @JsonKey(name: '_text')
   PrimitiveElement? get textElement;
-  @override
 
   /// [linkId] Id [Identifier]?? of the clause or question text about the asset
   ///  in the referenced form or QuestionnaireResponse.
-  List<String>? get linkId;
   @override
+  List<String>? get linkId;
 
   /// [linkIdElement] Extensions for linkId
+  @override
   @JsonKey(name: '_linkId')
   List<PrimitiveElement>? get linkIdElement;
-  @override
 
   /// [answer] Response to assets.
-  List<ContractAnswer>? get answer;
   @override
+  List<ContractAnswer>? get answer;
 
   /// [securityLabelNumber] Security labels that protects the asset.
+  @override
   List<FhirUnsignedInt>? get securityLabelNumber;
   @override
   @JsonKey(name: '_securityLabelNumber')
   List<PrimitiveElement>? get securityLabelNumberElement;
-  @override
 
   /// [valuedItem] Contract Valued Item List.
-  List<ContractValuedItem>? get valuedItem;
   @override
-  @JsonKey(ignore: true)
+  List<ContractValuedItem>? get valuedItem;
+
+  /// Create a copy of ContractAsset
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ContractAssetImplCopyWith<_$ContractAssetImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -7829,8 +7998,12 @@ mixin _$ContractContext {
   @JsonKey(name: '_text')
   PrimitiveElement? get textElement => throw _privateConstructorUsedError;
 
+  /// Serializes this ContractContext to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ContractContext
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ContractContextCopyWith<ContractContext> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -7863,6 +8036,8 @@ class _$ContractContextCopyWithImpl<$Res, $Val extends ContractContext>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ContractContext
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -7906,6 +8081,8 @@ class _$ContractContextCopyWithImpl<$Res, $Val extends ContractContext>
     ) as $Val);
   }
 
+  /// Create a copy of ContractContext
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get reference {
@@ -7948,6 +8125,8 @@ class __$$ContractContextImplCopyWithImpl<$Res>
       _$ContractContextImpl _value, $Res Function(_$ContractContextImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ContractContext
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -7995,7 +8174,7 @@ class __$$ContractContextImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ContractContextImpl extends _ContractContext {
-  const _$ContractContextImpl(
+  _$ContractContextImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -8131,7 +8310,7 @@ class _$ContractContextImpl extends _ContractContext {
                 other.textElement == textElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -8143,7 +8322,9 @@ class _$ContractContextImpl extends _ContractContext {
       text,
       textElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ContractContext
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ContractContextImplCopyWith<_$ContractContextImpl> get copyWith =>
@@ -8159,7 +8340,7 @@ class _$ContractContextImpl extends _ContractContext {
 }
 
 abstract class _ContractContext extends ContractContext {
-  const factory _ContractContext(
+  factory _ContractContext(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -8168,17 +8349,15 @@ abstract class _ContractContext extends ContractContext {
           final String? text,
           @JsonKey(name: '_text') final PrimitiveElement? textElement}) =
       _$ContractContextImpl;
-  const _ContractContext._() : super._();
+  _ContractContext._() : super._();
 
   factory _ContractContext.fromJson(Map<String, dynamic> json) =
       _$ContractContextImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -8186,9 +8365,9 @@ abstract class _ContractContext extends ContractContext {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -8203,29 +8382,33 @@ abstract class _ContractContext extends ContractContext {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [reference] Asset context reference may include the creator, custodian,
   /// or owning Person or Organization (e.g., bank, repository),  location held,
   ///  e.g., building,  jurisdiction.
-  Reference? get reference;
   @override
+  Reference? get reference;
 
   /// [code] Coded representation of the context generally or of the Referenced
   ///  entity, such as the asset holder type or location.
-  List<CodeableConcept>? get code;
   @override
+  List<CodeableConcept>? get code;
 
   /// [text] Context description.
-  String? get text;
   @override
+  String? get text;
 
   /// [textElement] Extensions for text
+  @override
   @JsonKey(name: '_text')
   PrimitiveElement? get textElement;
+
+  /// Create a copy of ContractContext
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ContractContextImplCopyWith<_$ContractContextImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -8359,8 +8542,12 @@ mixin _$ContractValuedItem {
   List<PrimitiveElement>? get securityLabelNumberElement =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this ContractValuedItem to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ContractValuedItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ContractValuedItemCopyWith<ContractValuedItem> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -8419,6 +8606,8 @@ class _$ContractValuedItemCopyWithImpl<$Res, $Val extends ContractValuedItem>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ContractValuedItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -8552,6 +8741,8 @@ class _$ContractValuedItemCopyWithImpl<$Res, $Val extends ContractValuedItem>
     ) as $Val);
   }
 
+  /// Create a copy of ContractValuedItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get entityCodeableConcept {
@@ -8565,6 +8756,8 @@ class _$ContractValuedItemCopyWithImpl<$Res, $Val extends ContractValuedItem>
     });
   }
 
+  /// Create a copy of ContractValuedItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get entityReference {
@@ -8577,6 +8770,8 @@ class _$ContractValuedItemCopyWithImpl<$Res, $Val extends ContractValuedItem>
     });
   }
 
+  /// Create a copy of ContractValuedItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $IdentifierCopyWith<$Res>? get identifier {
@@ -8589,6 +8784,8 @@ class _$ContractValuedItemCopyWithImpl<$Res, $Val extends ContractValuedItem>
     });
   }
 
+  /// Create a copy of ContractValuedItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get quantity {
@@ -8601,6 +8798,8 @@ class _$ContractValuedItemCopyWithImpl<$Res, $Val extends ContractValuedItem>
     });
   }
 
+  /// Create a copy of ContractValuedItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MoneyCopyWith<$Res>? get unitPrice {
@@ -8613,6 +8812,8 @@ class _$ContractValuedItemCopyWithImpl<$Res, $Val extends ContractValuedItem>
     });
   }
 
+  /// Create a copy of ContractValuedItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MoneyCopyWith<$Res>? get net {
@@ -8625,6 +8826,8 @@ class _$ContractValuedItemCopyWithImpl<$Res, $Val extends ContractValuedItem>
     });
   }
 
+  /// Create a copy of ContractValuedItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get responsible {
@@ -8637,6 +8840,8 @@ class _$ContractValuedItemCopyWithImpl<$Res, $Val extends ContractValuedItem>
     });
   }
 
+  /// Create a copy of ContractValuedItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get recipient {
@@ -8712,6 +8917,8 @@ class __$$ContractValuedItemImplCopyWithImpl<$Res>
       $Res Function(_$ContractValuedItemImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ContractValuedItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -8849,7 +9056,7 @@ class __$$ContractValuedItemImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ContractValuedItemImpl extends _ContractValuedItem {
-  const _$ContractValuedItemImpl(
+  _$ContractValuedItemImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -9160,7 +9367,7 @@ class _$ContractValuedItemImpl extends _ContractValuedItem {
                 _securityLabelNumberElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -9191,7 +9398,9 @@ class _$ContractValuedItemImpl extends _ContractValuedItem {
         const DeepCollectionEquality().hash(_securityLabelNumberElement)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ContractValuedItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ContractValuedItemImplCopyWith<_$ContractValuedItemImpl> get copyWith =>
@@ -9207,7 +9416,7 @@ class _$ContractValuedItemImpl extends _ContractValuedItem {
 }
 
 abstract class _ContractValuedItem extends ContractValuedItem {
-  const factory _ContractValuedItem(
+  factory _ContractValuedItem(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -9236,17 +9445,15 @@ abstract class _ContractValuedItem extends ContractValuedItem {
       @JsonKey(name: '_securityLabelNumber')
       final List<PrimitiveElement>?
           securityLabelNumberElement}) = _$ContractValuedItemImpl;
-  const _ContractValuedItem._() : super._();
+  _ContractValuedItem._() : super._();
 
   factory _ContractValuedItem.fromJson(Map<String, dynamic> json) =
       _$ContractValuedItemImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -9254,9 +9461,9 @@ abstract class _ContractValuedItem extends ContractValuedItem {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -9271,119 +9478,123 @@ abstract class _ContractValuedItem extends ContractValuedItem {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [entityCodeableConcept] Specific type of Contract Valued Item that may be
   ///  priced.
-  CodeableConcept? get entityCodeableConcept;
   @override
+  CodeableConcept? get entityCodeableConcept;
 
   /// [entityReference] Specific type of Contract Valued Item that may be
   ///  priced.
-  Reference? get entityReference;
   @override
+  Reference? get entityReference;
 
   /// [identifier] Identifies a Contract Valued Item instance.
-  Identifier? get identifier;
   @override
+  Identifier? get identifier;
 
   /// [effectiveTime] Indicates the time during which this Contract ValuedItem
   ///  information is effective.
-  FhirDateTime? get effectiveTime;
   @override
+  FhirDateTime? get effectiveTime;
 
   /// [effectiveTimeElement] Extensions for effectiveTime
+  @override
   @JsonKey(name: '_effectiveTime')
   PrimitiveElement? get effectiveTimeElement;
-  @override
 
   /// [quantity] Specifies the units by which the Contract Valued Item is
   /// measured or counted, and quantifies the countable or measurable Contract
   ///  Valued Item instances.
-  Quantity? get quantity;
   @override
+  Quantity? get quantity;
 
   /// [unitPrice] A Contract Valued Item unit valuation measure.
-  Money? get unitPrice;
   @override
+  Money? get unitPrice;
 
   /// [factor] A real number that represents a multiplier used in determining
   /// the overall value of the Contract Valued Item delivered. The concept of a
   /// Factor allows for a discount or surcharge multiplier to be applied to a
   ///  monetary amount.
-  FhirDecimal? get factor;
   @override
+  FhirDecimal? get factor;
 
   /// [factorElement] Extensions for factor
+  @override
   @JsonKey(name: '_factor')
   PrimitiveElement? get factorElement;
-  @override
 
   /// [points] An amount that expresses the weighting (based on difficulty,
   /// cost and/or resource intensiveness) associated with the Contract Valued
   /// Item delivered. The concept of Points allows for assignment of point
   /// values for a Contract Valued Item, such that a monetary amount can be
   ///  assigned to each point.
-  FhirDecimal? get points;
   @override
+  FhirDecimal? get points;
 
   /// [pointsElement] Extensions for points
+  @override
   @JsonKey(name: '_points')
   PrimitiveElement? get pointsElement;
-  @override
 
   /// [net] Expresses the product of the Contract Valued Item unitQuantity and
   /// the unitPriceAmt. For example, the formula: unit Quantity * unit Price
   /// (Cost per Point) * factor Number  * points = net Amount. Quantity, factor
   ///  and points are assumed to be 1 if not supplied.
-  Money? get net;
   @override
+  Money? get net;
 
   /// [payment] Terms of valuation.
-  String? get payment;
   @override
+  String? get payment;
 
   /// [paymentElement] Extensions for payment
+  @override
   @JsonKey(name: '_payment')
   PrimitiveElement? get paymentElement;
-  @override
 
   /// [paymentDate] When payment is due.
-  FhirDateTime? get paymentDate;
   @override
+  FhirDateTime? get paymentDate;
 
   /// [paymentDateElement] Extensions for paymentDate
+  @override
   @JsonKey(name: '_paymentDate')
   PrimitiveElement? get paymentDateElement;
-  @override
 
   /// [responsible] Who will make payment.
-  Reference? get responsible;
   @override
+  Reference? get responsible;
 
   /// [recipient] Who will receive payment.
-  Reference? get recipient;
   @override
+  Reference? get recipient;
 
   /// [linkId] Id  of the clause or question text related to the context of
   ///  this valuedItem in the referenced form or QuestionnaireResponse.
-  List<String>? get linkId;
   @override
+  List<String>? get linkId;
 
   /// [linkIdElement] Extensions for linkId
+  @override
   @JsonKey(name: '_linkId')
   List<PrimitiveElement>? get linkIdElement;
-  @override
 
   /// [securityLabelNumber] A set of security labels that define which terms
   ///  are controlled by this condition.
+  @override
   List<FhirUnsignedInt>? get securityLabelNumber;
   @override
   @JsonKey(name: '_securityLabelNumber')
   List<PrimitiveElement>? get securityLabelNumberElement;
+
+  /// Create a copy of ContractValuedItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ContractValuedItemImplCopyWith<_$ContractValuedItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -9557,8 +9768,12 @@ mixin _$ContractAction {
   List<PrimitiveElement>? get securityLabelNumberElement =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this ContractAction to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ContractAction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ContractActionCopyWith<ContractAction> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -9632,6 +9847,8 @@ class _$ContractActionCopyWithImpl<$Res, $Val extends ContractAction>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ContractAction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -9815,6 +10032,8 @@ class _$ContractActionCopyWithImpl<$Res, $Val extends ContractAction>
     ) as $Val);
   }
 
+  /// Create a copy of ContractAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get type {
@@ -9823,6 +10042,8 @@ class _$ContractActionCopyWithImpl<$Res, $Val extends ContractAction>
     });
   }
 
+  /// Create a copy of ContractAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get intent {
@@ -9831,6 +10052,8 @@ class _$ContractActionCopyWithImpl<$Res, $Val extends ContractAction>
     });
   }
 
+  /// Create a copy of ContractAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get status {
@@ -9839,6 +10062,8 @@ class _$ContractActionCopyWithImpl<$Res, $Val extends ContractAction>
     });
   }
 
+  /// Create a copy of ContractAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get context {
@@ -9851,6 +10076,8 @@ class _$ContractActionCopyWithImpl<$Res, $Val extends ContractAction>
     });
   }
 
+  /// Create a copy of ContractAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get occurrencePeriod {
@@ -9863,6 +10090,8 @@ class _$ContractActionCopyWithImpl<$Res, $Val extends ContractAction>
     });
   }
 
+  /// Create a copy of ContractAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TimingCopyWith<$Res>? get occurrenceTiming {
@@ -9875,6 +10104,8 @@ class _$ContractActionCopyWithImpl<$Res, $Val extends ContractAction>
     });
   }
 
+  /// Create a copy of ContractAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get performerRole {
@@ -9887,6 +10118,8 @@ class _$ContractActionCopyWithImpl<$Res, $Val extends ContractAction>
     });
   }
 
+  /// Create a copy of ContractAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get performer {
@@ -9977,6 +10210,8 @@ class __$$ContractActionImplCopyWithImpl<$Res>
       _$ContractActionImpl _value, $Res Function(_$ContractActionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ContractAction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -10164,7 +10399,7 @@ class __$$ContractActionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ContractActionImpl extends _ContractAction {
-  const _$ContractActionImpl(
+  _$ContractActionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -10729,7 +10964,7 @@ class _$ContractActionImpl extends _ContractAction {
                 _securityLabelNumberElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -10770,7 +11005,9 @@ class _$ContractActionImpl extends _ContractAction {
         const DeepCollectionEquality().hash(_securityLabelNumberElement)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ContractAction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ContractActionImplCopyWith<_$ContractActionImpl> get copyWith =>
@@ -10786,7 +11023,7 @@ class _$ContractActionImpl extends _ContractAction {
 }
 
 abstract class _ContractAction extends ContractAction {
-  const factory _ContractAction(
+  factory _ContractAction(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -10830,17 +11067,15 @@ abstract class _ContractAction extends ContractAction {
           @JsonKey(name: '_securityLabelNumber')
           final List<PrimitiveElement>? securityLabelNumberElement}) =
       _$ContractActionImpl;
-  const _ContractAction._() : super._();
+  _ContractAction._() : super._();
 
   factory _ContractAction.fromJson(Map<String, dynamic> json) =
       _$ContractActionImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -10848,9 +11083,9 @@ abstract class _ContractAction extends ContractAction {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -10865,164 +11100,168 @@ abstract class _ContractAction extends ContractAction {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [doNotPerform] True if the term prohibits the  action.
-  FhirBoolean? get doNotPerform;
   @override
+  FhirBoolean? get doNotPerform;
 
   /// [doNotPerformElement] Extensions for doNotPerform
+  @override
   @JsonKey(name: '_doNotPerform')
   PrimitiveElement? get doNotPerformElement;
-  @override
 
   /// [type] Activity or service obligation to be done or not done, performed
   ///  or not performed, effectuated or not by this Contract term.
-  CodeableConcept get type;
   @override
+  CodeableConcept get type;
 
   /// [subject] Entity of the action.
-  List<ContractSubject>? get subject;
   @override
+  List<ContractSubject>? get subject;
 
   /// [intent] Reason or purpose for the action stipulated by this Contract
   ///  Provision.
-  CodeableConcept get intent;
   @override
+  CodeableConcept get intent;
 
   /// [linkId] Id [Identifier]?? of the clause or question text related to this
   ///  action in the referenced form or QuestionnaireResponse.
-  List<String>? get linkId;
   @override
+  List<String>? get linkId;
 
   /// [linkIdElement] Extensions for linkId
+  @override
   @JsonKey(name: '_linkId')
   List<PrimitiveElement>? get linkIdElement;
-  @override
 
   /// [status] Current state of the term action.
-  CodeableConcept get status;
   @override
+  CodeableConcept get status;
 
   /// [context] Encounter or Episode with primary association to specified term
   ///  activity.
-  Reference? get context;
   @override
+  Reference? get context;
 
   /// [contextLinkId] Id [Identifier]?? of the clause or question text related
   /// to the requester of this action in the referenced form or
   ///  QuestionnaireResponse.
-  List<String>? get contextLinkId;
   @override
+  List<String>? get contextLinkId;
 
   /// [contextLinkIdElement] Extensions for contextLinkId
+  @override
   @JsonKey(name: '_contextLinkId')
   List<PrimitiveElement>? get contextLinkIdElement;
-  @override
 
   /// [occurrenceDateTime] When action happens.
-  FhirDateTime? get occurrenceDateTime;
   @override
+  FhirDateTime? get occurrenceDateTime;
 
   /// [occurrenceDateTimeElement] Extensions for occurrenceDateTime
+  @override
   @JsonKey(name: '_occurrenceDateTime')
   PrimitiveElement? get occurrenceDateTimeElement;
-  @override
 
   /// [occurrencePeriod] When action happens.
-  Period? get occurrencePeriod;
   @override
+  Period? get occurrencePeriod;
 
   /// [occurrenceTiming] When action happens.
-  Timing? get occurrenceTiming;
   @override
+  Timing? get occurrenceTiming;
 
   /// [requester] Who or what initiated the action and has responsibility for
   ///  its activation.
-  List<Reference>? get requester;
   @override
+  List<Reference>? get requester;
 
   /// [requesterLinkId] Id [Identifier]?? of the clause or question text
   /// related to the requester of this action in the referenced form or
   ///  QuestionnaireResponse.
-  List<String>? get requesterLinkId;
   @override
+  List<String>? get requesterLinkId;
 
   /// [requesterLinkIdElement] Extensions for requesterLinkId
+  @override
   @JsonKey(name: '_requesterLinkId')
   List<PrimitiveElement>? get requesterLinkIdElement;
-  @override
 
   /// [performerType] The type of individual that is desired or required to
   ///  perform or not perform the action.
-  List<CodeableConcept>? get performerType;
   @override
+  List<CodeableConcept>? get performerType;
 
   /// [performerRole] The type of role or competency of an individual desired
   ///  or required to perform or not perform the action.
-  CodeableConcept? get performerRole;
   @override
+  CodeableConcept? get performerRole;
 
   /// [performer] Indicates who or what is being asked to perform (or not
   ///  perform) the ction.
-  Reference? get performer;
   @override
+  Reference? get performer;
 
   /// [performerLinkId] Id [Identifier]?? of the clause or question text
   /// related to the reason type or reference of this  action in the referenced
   ///  form or QuestionnaireResponse.
-  List<String>? get performerLinkId;
   @override
+  List<String>? get performerLinkId;
 
   /// [performerLinkIdElement] Extensions for performerLinkId
+  @override
   @JsonKey(name: '_performerLinkId')
   List<PrimitiveElement>? get performerLinkIdElement;
-  @override
 
   /// [reasonCode] Rationale for the action to be performed or not performed.
   ///  Describes why the action is permitted or prohibited.
-  List<CodeableConcept>? get reasonCode;
   @override
+  List<CodeableConcept>? get reasonCode;
 
   /// [reasonReference] Indicates another resource whose existence justifies
   ///  permitting or not permitting this action.
-  List<Reference>? get reasonReference;
   @override
+  List<Reference>? get reasonReference;
 
   /// [reason] Describes why the action is to be performed or not performed in
   ///  textual form.
-  List<String>? get reason;
   @override
+  List<String>? get reason;
 
   /// [reasonElement] Extensions for reason
+  @override
   @JsonKey(name: '_reason')
   List<PrimitiveElement>? get reasonElement;
-  @override
 
   /// [reasonLinkId] Id [Identifier]?? of the clause or question text related
   /// to the reason type or reference of this  action in the referenced form or
   ///  QuestionnaireResponse.
-  List<String>? get reasonLinkId;
   @override
+  List<String>? get reasonLinkId;
 
   /// [reasonLinkIdElement] Extensions for reasonLinkId
+  @override
   @JsonKey(name: '_reasonLinkId')
   List<PrimitiveElement>? get reasonLinkIdElement;
-  @override
 
   /// [note] Comments made about the term action made by the requester,
   ///  performer, subject or other participants.
-  List<Annotation>? get note;
   @override
+  List<Annotation>? get note;
 
   /// [securityLabelNumber] Security labels that protects the action.
+  @override
   List<FhirUnsignedInt>? get securityLabelNumber;
   @override
   @JsonKey(name: '_securityLabelNumber')
   List<PrimitiveElement>? get securityLabelNumberElement;
+
+  /// Create a copy of ContractAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ContractActionImplCopyWith<_$ContractActionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -11069,8 +11308,12 @@ mixin _$ContractSubject {
   /// [role] Role type of agent assigned roles in this Contract.
   CodeableConcept? get role => throw _privateConstructorUsedError;
 
+  /// Serializes this ContractSubject to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ContractSubject
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ContractSubjectCopyWith<ContractSubject> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -11101,6 +11344,8 @@ class _$ContractSubjectCopyWithImpl<$Res, $Val extends ContractSubject>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ContractSubject
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -11134,6 +11379,8 @@ class _$ContractSubjectCopyWithImpl<$Res, $Val extends ContractSubject>
     ) as $Val);
   }
 
+  /// Create a copy of ContractSubject
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get role {
@@ -11174,6 +11421,8 @@ class __$$ContractSubjectImplCopyWithImpl<$Res>
       _$ContractSubjectImpl _value, $Res Function(_$ContractSubjectImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ContractSubject
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -11211,7 +11460,7 @@ class __$$ContractSubjectImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ContractSubjectImpl extends _ContractSubject {
-  const _$ContractSubjectImpl(
+  _$ContractSubjectImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -11329,7 +11578,7 @@ class _$ContractSubjectImpl extends _ContractSubject {
             (identical(other.role, role) || other.role == role));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -11339,7 +11588,9 @@ class _$ContractSubjectImpl extends _ContractSubject {
       const DeepCollectionEquality().hash(_reference),
       role);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ContractSubject
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ContractSubjectImplCopyWith<_$ContractSubjectImpl> get copyWith =>
@@ -11355,23 +11606,21 @@ class _$ContractSubjectImpl extends _ContractSubject {
 }
 
 abstract class _ContractSubject extends ContractSubject {
-  const factory _ContractSubject(
+  factory _ContractSubject(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required final List<Reference> reference,
       final CodeableConcept? role}) = _$ContractSubjectImpl;
-  const _ContractSubject._() : super._();
+  _ContractSubject._() : super._();
 
   factory _ContractSubject.fromJson(Map<String, dynamic> json) =
       _$ContractSubjectImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -11379,9 +11628,9 @@ abstract class _ContractSubject extends ContractSubject {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -11396,18 +11645,22 @@ abstract class _ContractSubject extends ContractSubject {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [reference] The entity the action is performed or not performed on or
   ///  for.
-  List<Reference> get reference;
   @override
+  List<Reference> get reference;
 
   /// [role] Role type of agent assigned roles in this Contract.
-  CodeableConcept? get role;
   @override
-  @JsonKey(ignore: true)
+  CodeableConcept? get role;
+
+  /// Create a copy of ContractSubject
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ContractSubjectImplCopyWith<_$ContractSubjectImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -11456,8 +11709,12 @@ mixin _$ContractSigner {
   /// [signature] Legally binding Contract DSIG signature contents in Base64.
   List<Signature> get signature => throw _privateConstructorUsedError;
 
+  /// Serializes this ContractSigner to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ContractSigner
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ContractSignerCopyWith<ContractSigner> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -11490,6 +11747,8 @@ class _$ContractSignerCopyWithImpl<$Res, $Val extends ContractSigner>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ContractSigner
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -11528,6 +11787,8 @@ class _$ContractSignerCopyWithImpl<$Res, $Val extends ContractSigner>
     ) as $Val);
   }
 
+  /// Create a copy of ContractSigner
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodingCopyWith<$Res> get type {
@@ -11536,6 +11797,8 @@ class _$ContractSignerCopyWithImpl<$Res, $Val extends ContractSigner>
     });
   }
 
+  /// Create a copy of ContractSigner
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get party {
@@ -11575,6 +11838,8 @@ class __$$ContractSignerImplCopyWithImpl<$Res>
       _$ContractSignerImpl _value, $Res Function(_$ContractSignerImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ContractSigner
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -11617,7 +11882,7 @@ class __$$ContractSignerImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ContractSignerImpl extends _ContractSigner {
-  const _$ContractSignerImpl(
+  _$ContractSignerImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -11739,7 +12004,7 @@ class _$ContractSignerImpl extends _ContractSigner {
                 .equals(other._signature, _signature));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -11750,7 +12015,9 @@ class _$ContractSignerImpl extends _ContractSigner {
       party,
       const DeepCollectionEquality().hash(_signature));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ContractSigner
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ContractSignerImplCopyWith<_$ContractSignerImpl> get copyWith =>
@@ -11766,24 +12033,22 @@ class _$ContractSignerImpl extends _ContractSigner {
 }
 
 abstract class _ContractSigner extends ContractSigner {
-  const factory _ContractSigner(
+  factory _ContractSigner(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required final Coding type,
       required final Reference party,
       required final List<Signature> signature}) = _$ContractSignerImpl;
-  const _ContractSigner._() : super._();
+  _ContractSigner._() : super._();
 
   factory _ContractSigner.fromJson(Map<String, dynamic> json) =
       _$ContractSignerImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -11791,9 +12056,9 @@ abstract class _ContractSigner extends ContractSigner {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -11808,21 +12073,25 @@ abstract class _ContractSigner extends ContractSigner {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [type] Role of this Contract signer, e.g. notary, grantee.
-  Coding get type;
   @override
+  Coding get type;
 
   /// [party] Party which is a signator to this Contract.
-  Reference get party;
   @override
+  Reference get party;
 
   /// [signature] Legally binding Contract DSIG signature contents in Base64.
-  List<Signature> get signature;
   @override
-  @JsonKey(ignore: true)
+  List<Signature> get signature;
+
+  /// Create a copy of ContractSigner
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ContractSignerImplCopyWith<_$ContractSignerImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -11872,8 +12141,12 @@ mixin _$ContractFriendly {
   ///  understandability.
   Reference? get contentReference => throw _privateConstructorUsedError;
 
+  /// Serializes this ContractFriendly to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ContractFriendly
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ContractFriendlyCopyWith<ContractFriendly> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -11905,6 +12178,8 @@ class _$ContractFriendlyCopyWithImpl<$Res, $Val extends ContractFriendly>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ContractFriendly
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -11938,6 +12213,8 @@ class _$ContractFriendlyCopyWithImpl<$Res, $Val extends ContractFriendly>
     ) as $Val);
   }
 
+  /// Create a copy of ContractFriendly
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AttachmentCopyWith<$Res>? get contentAttachment {
@@ -11950,6 +12227,8 @@ class _$ContractFriendlyCopyWithImpl<$Res, $Val extends ContractFriendly>
     });
   }
 
+  /// Create a copy of ContractFriendly
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get contentReference {
@@ -11992,6 +12271,8 @@ class __$$ContractFriendlyImplCopyWithImpl<$Res>
       $Res Function(_$ContractFriendlyImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ContractFriendly
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -12029,7 +12310,7 @@ class __$$ContractFriendlyImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ContractFriendlyImpl extends _ContractFriendly {
-  const _$ContractFriendlyImpl(
+  _$ContractFriendlyImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -12142,7 +12423,7 @@ class _$ContractFriendlyImpl extends _ContractFriendly {
                 other.contentReference == contentReference));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -12152,7 +12433,9 @@ class _$ContractFriendlyImpl extends _ContractFriendly {
       contentAttachment,
       contentReference);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ContractFriendly
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ContractFriendlyImplCopyWith<_$ContractFriendlyImpl> get copyWith =>
@@ -12168,23 +12451,21 @@ class _$ContractFriendlyImpl extends _ContractFriendly {
 }
 
 abstract class _ContractFriendly extends ContractFriendly {
-  const factory _ContractFriendly(
+  factory _ContractFriendly(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final Attachment? contentAttachment,
       final Reference? contentReference}) = _$ContractFriendlyImpl;
-  const _ContractFriendly._() : super._();
+  _ContractFriendly._() : super._();
 
   factory _ContractFriendly.fromJson(Map<String, dynamic> json) =
       _$ContractFriendlyImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -12192,9 +12473,9 @@ abstract class _ContractFriendly extends ContractFriendly {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -12209,21 +12490,25 @@ abstract class _ContractFriendly extends ContractFriendly {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [contentAttachment] Human readable rendering of this Contract in a format
   /// and representation intended to enhance comprehension and ensure
   ///  understandability.
-  Attachment? get contentAttachment;
   @override
+  Attachment? get contentAttachment;
 
   /// [contentReference] Human readable rendering of this Contract in a format
   /// and representation intended to enhance comprehension and ensure
   ///  understandability.
-  Reference? get contentReference;
   @override
-  @JsonKey(ignore: true)
+  Reference? get contentReference;
+
+  /// Create a copy of ContractFriendly
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ContractFriendlyImplCopyWith<_$ContractFriendlyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -12269,8 +12554,12 @@ mixin _$ContractLegal {
   /// [contentReference] Contract legal text in human renderable form.
   Reference? get contentReference => throw _privateConstructorUsedError;
 
+  /// Serializes this ContractLegal to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ContractLegal
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ContractLegalCopyWith<ContractLegal> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -12302,6 +12591,8 @@ class _$ContractLegalCopyWithImpl<$Res, $Val extends ContractLegal>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ContractLegal
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -12335,6 +12626,8 @@ class _$ContractLegalCopyWithImpl<$Res, $Val extends ContractLegal>
     ) as $Val);
   }
 
+  /// Create a copy of ContractLegal
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AttachmentCopyWith<$Res>? get contentAttachment {
@@ -12347,6 +12640,8 @@ class _$ContractLegalCopyWithImpl<$Res, $Val extends ContractLegal>
     });
   }
 
+  /// Create a copy of ContractLegal
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get contentReference {
@@ -12389,6 +12684,8 @@ class __$$ContractLegalImplCopyWithImpl<$Res>
       _$ContractLegalImpl _value, $Res Function(_$ContractLegalImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ContractLegal
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -12426,7 +12723,7 @@ class __$$ContractLegalImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ContractLegalImpl extends _ContractLegal {
-  const _$ContractLegalImpl(
+  _$ContractLegalImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -12535,7 +12832,7 @@ class _$ContractLegalImpl extends _ContractLegal {
                 other.contentReference == contentReference));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -12545,7 +12842,9 @@ class _$ContractLegalImpl extends _ContractLegal {
       contentAttachment,
       contentReference);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ContractLegal
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ContractLegalImplCopyWith<_$ContractLegalImpl> get copyWith =>
@@ -12560,23 +12859,21 @@ class _$ContractLegalImpl extends _ContractLegal {
 }
 
 abstract class _ContractLegal extends ContractLegal {
-  const factory _ContractLegal(
+  factory _ContractLegal(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final Attachment? contentAttachment,
       final Reference? contentReference}) = _$ContractLegalImpl;
-  const _ContractLegal._() : super._();
+  _ContractLegal._() : super._();
 
   factory _ContractLegal.fromJson(Map<String, dynamic> json) =
       _$ContractLegalImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -12584,9 +12881,9 @@ abstract class _ContractLegal extends ContractLegal {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -12601,17 +12898,21 @@ abstract class _ContractLegal extends ContractLegal {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [contentAttachment] Contract legal text in human renderable form.
-  Attachment? get contentAttachment;
   @override
+  Attachment? get contentAttachment;
 
   /// [contentReference] Contract legal text in human renderable form.
-  Reference? get contentReference;
   @override
-  @JsonKey(ignore: true)
+  Reference? get contentReference;
+
+  /// Create a copy of ContractLegal
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ContractLegalImplCopyWith<_$ContractLegalImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -12659,8 +12960,12 @@ mixin _$ContractRule {
   ///  language (e.g. XACML, DKAL, SecPal).
   Reference? get contentReference => throw _privateConstructorUsedError;
 
+  /// Serializes this ContractRule to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ContractRule
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ContractRuleCopyWith<ContractRule> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -12692,6 +12997,8 @@ class _$ContractRuleCopyWithImpl<$Res, $Val extends ContractRule>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ContractRule
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -12725,6 +13032,8 @@ class _$ContractRuleCopyWithImpl<$Res, $Val extends ContractRule>
     ) as $Val);
   }
 
+  /// Create a copy of ContractRule
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AttachmentCopyWith<$Res>? get contentAttachment {
@@ -12737,6 +13046,8 @@ class _$ContractRuleCopyWithImpl<$Res, $Val extends ContractRule>
     });
   }
 
+  /// Create a copy of ContractRule
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get contentReference {
@@ -12779,6 +13090,8 @@ class __$$ContractRuleImplCopyWithImpl<$Res>
       _$ContractRuleImpl _value, $Res Function(_$ContractRuleImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ContractRule
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -12816,7 +13129,7 @@ class __$$ContractRuleImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ContractRuleImpl extends _ContractRule {
-  const _$ContractRuleImpl(
+  _$ContractRuleImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -12927,7 +13240,7 @@ class _$ContractRuleImpl extends _ContractRule {
                 other.contentReference == contentReference));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -12937,7 +13250,9 @@ class _$ContractRuleImpl extends _ContractRule {
       contentAttachment,
       contentReference);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ContractRule
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ContractRuleImplCopyWith<_$ContractRuleImpl> get copyWith =>
@@ -12952,23 +13267,21 @@ class _$ContractRuleImpl extends _ContractRule {
 }
 
 abstract class _ContractRule extends ContractRule {
-  const factory _ContractRule(
+  factory _ContractRule(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final Attachment? contentAttachment,
       final Reference? contentReference}) = _$ContractRuleImpl;
-  const _ContractRule._() : super._();
+  _ContractRule._() : super._();
 
   factory _ContractRule.fromJson(Map<String, dynamic> json) =
       _$ContractRuleImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -12976,9 +13289,9 @@ abstract class _ContractRule extends ContractRule {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -12993,19 +13306,23 @@ abstract class _ContractRule extends ContractRule {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [contentAttachment] Computable Contract conveyed using a policy rule
   ///  language (e.g. XACML, DKAL, SecPal).
-  Attachment? get contentAttachment;
   @override
+  Attachment? get contentAttachment;
 
   /// [contentReference] Computable Contract conveyed using a policy rule
   ///  language (e.g. XACML, DKAL, SecPal).
-  Reference? get contentReference;
   @override
-  @JsonKey(ignore: true)
+  Reference? get contentReference;
+
+  /// Create a copy of ContractRule
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ContractRuleImplCopyWith<_$ContractRuleImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

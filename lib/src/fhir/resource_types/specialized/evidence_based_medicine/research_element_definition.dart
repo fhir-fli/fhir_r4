@@ -15,11 +15,10 @@ part 'research_element_definition.g.dart';
 
 /// [ResearchElementDefinition] The ResearchElementDefinition resource
 @freezed
-class ResearchElementDefinition
-    with _$ResearchElementDefinition
-    implements DomainResource {
+class ResearchElementDefinition extends DomainResource
+    with _$ResearchElementDefinition {
   /// [ResearchElementDefinition] The ResearchElementDefinition resource
-  const ResearchElementDefinition._();
+  ResearchElementDefinition._();
 
   /// [ResearchElementDefinition] The ResearchElementDefinition resource
   /// describes a "PICO" element that knowledge (evidence, assertion,
@@ -254,7 +253,7 @@ class ResearchElementDefinition
   /// [characteristic] A characteristic that defines the members of the
   /// research element. Multiple characteristics are applied with "and"
   ///  semantics.
-  const factory ResearchElementDefinition({
+  factory ResearchElementDefinition({
     @Default(R4ResourceType.ResearchElementDefinition)
     @JsonKey(unknownEnumValue: R4ResourceType.ResearchElementDefinition)
     R4ResourceType resourceType,
@@ -356,6 +355,9 @@ class ResearchElementDefinition
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -378,16 +380,15 @@ class ResearchElementDefinition
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 @freezed
 @freezed
-class ResearchElementDefinitionCharacteristic
-    with _$ResearchElementDefinitionCharacteristic
-    implements BackboneElement {
-  const ResearchElementDefinitionCharacteristic._();
+class ResearchElementDefinitionCharacteristic extends BackboneElement
+    with _$ResearchElementDefinitionCharacteristic {
+  ResearchElementDefinitionCharacteristic._();
 
   /// [ResearchElementDefinitionCharacteristic] The ResearchElementDefinition
   /// resource describes a "PICO" element that knowledge (evidence, assertion,
@@ -503,7 +504,7 @@ class ResearchElementDefinitionCharacteristic
   ///
   /// [participantEffectiveGroupMeasureElement] Extensions for
   ///  participantEffectiveGroupMeasure
-  const factory ResearchElementDefinitionCharacteristic({
+  factory ResearchElementDefinitionCharacteristic({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -563,6 +564,9 @@ class ResearchElementDefinitionCharacteristic
   factory ResearchElementDefinitionCharacteristic.fromJson(
           Map<String, dynamic> json) =>
       _$ResearchElementDefinitionCharacteristicFromJson(json);
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

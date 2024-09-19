@@ -194,8 +194,12 @@ mixin _$DiagnosticReport {
   ///  semantically equivalent.
   List<Attachment>? get presentedForm => throw _privateConstructorUsedError;
 
+  /// Serializes this DiagnosticReport to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DiagnosticReport
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DiagnosticReportCopyWith<DiagnosticReport> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -262,6 +266,8 @@ class _$DiagnosticReportCopyWithImpl<$Res, $Val extends DiagnosticReport>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DiagnosticReport
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -440,6 +446,8 @@ class _$DiagnosticReportCopyWithImpl<$Res, $Val extends DiagnosticReport>
     ) as $Val);
   }
 
+  /// Create a copy of DiagnosticReport
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -452,6 +460,8 @@ class _$DiagnosticReportCopyWithImpl<$Res, $Val extends DiagnosticReport>
     });
   }
 
+  /// Create a copy of DiagnosticReport
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -464,6 +474,8 @@ class _$DiagnosticReportCopyWithImpl<$Res, $Val extends DiagnosticReport>
     });
   }
 
+  /// Create a copy of DiagnosticReport
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get code {
@@ -472,6 +484,8 @@ class _$DiagnosticReportCopyWithImpl<$Res, $Val extends DiagnosticReport>
     });
   }
 
+  /// Create a copy of DiagnosticReport
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get subject {
@@ -484,6 +498,8 @@ class _$DiagnosticReportCopyWithImpl<$Res, $Val extends DiagnosticReport>
     });
   }
 
+  /// Create a copy of DiagnosticReport
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get encounter {
@@ -496,6 +512,8 @@ class _$DiagnosticReportCopyWithImpl<$Res, $Val extends DiagnosticReport>
     });
   }
 
+  /// Create a copy of DiagnosticReport
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get effectivePeriod {
@@ -577,6 +595,8 @@ class __$$DiagnosticReportImplCopyWithImpl<$Res>
       $Res Function(_$DiagnosticReportImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DiagnosticReport
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -759,7 +779,7 @@ class __$$DiagnosticReportImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DiagnosticReportImpl extends _DiagnosticReport {
-  const _$DiagnosticReportImpl(
+  _$DiagnosticReportImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.DiagnosticReport)
       this.resourceType = R4ResourceType.DiagnosticReport,
       this.id,
@@ -1252,7 +1272,7 @@ class _$DiagnosticReportImpl extends _DiagnosticReport {
                 .equals(other._presentedForm, _presentedForm));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1292,7 +1312,9 @@ class _$DiagnosticReportImpl extends _DiagnosticReport {
         const DeepCollectionEquality().hash(_presentedForm)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DiagnosticReport
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DiagnosticReportImplCopyWith<_$DiagnosticReportImpl> get copyWith =>
@@ -1308,7 +1330,7 @@ class _$DiagnosticReportImpl extends _DiagnosticReport {
 }
 
 abstract class _DiagnosticReport extends DiagnosticReport {
-  const factory _DiagnosticReport(
+  factory _DiagnosticReport(
       {@JsonKey(unknownEnumValue: R4ResourceType.DiagnosticReport)
       final R4ResourceType resourceType,
       final String? id,
@@ -1346,7 +1368,7 @@ abstract class _DiagnosticReport extends DiagnosticReport {
       @JsonKey(name: '_conclusion') final PrimitiveElement? conclusionElement,
       final List<CodeableConcept>? conclusionCode,
       final List<Attachment>? presentedForm}) = _$DiagnosticReportImpl;
-  const _DiagnosticReport._() : super._();
+  _DiagnosticReport._() : super._();
 
   factory _DiagnosticReport.fromJson(Map<String, dynamic> json) =
       _$DiagnosticReportImpl.fromJson;
@@ -1354,39 +1376,38 @@ abstract class _DiagnosticReport extends DiagnosticReport {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.DiagnosticReport)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1394,15 +1415,15 @@ abstract class _DiagnosticReport extends DiagnosticReport {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1410,9 +1431,9 @@ abstract class _DiagnosticReport extends DiagnosticReport {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1427,135 +1448,139 @@ abstract class _DiagnosticReport extends DiagnosticReport {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] Identifiers assigned to this report by the performer or
   ///  other systems.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [basedOn] Details concerning a service requested.
-  List<Reference>? get basedOn;
   @override
+  List<Reference>? get basedOn;
 
   /// [status] The status of the diagnostic report.
-  FhirCode? get status;
   @override
+  FhirCode? get status;
 
   /// [statusElement] Extensions for status
+  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
-  @override
 
   /// [category] A code that classifies the clinical discipline, department or
   /// diagnostic service that created the report (e.g. cardiology, biochemistry,
   /// hematology, MRI). This is used for searching, sorting and display
   ///  purposes.
-  List<CodeableConcept>? get category;
   @override
+  List<CodeableConcept>? get category;
 
   /// [code] A code or name that describes this diagnostic report.
-  CodeableConcept get code;
   @override
+  CodeableConcept get code;
 
   /// [subject] The subject of the report. Usually, but not always, this is a
   /// patient. However, diagnostic services also perform analyses on specimens
   ///  collected from a variety of other sources.
-  Reference? get subject;
   @override
+  Reference? get subject;
 
   /// [encounter] The healthcare event  (e.g. a patient and healthcare provider
   ///  interaction) which this DiagnosticReport is about.
-  Reference? get encounter;
   @override
+  Reference? get encounter;
 
   /// [effectiveDateTime] The time or time-period the observed values are
   /// related to. When the subject of the report is a patient, this is usually
   /// either the time of the procedure or of specimen collection(s), but very
   /// often the source of the date/time is not known, only the date/time
   ///  itself.
-  FhirDateTime? get effectiveDateTime;
   @override
+  FhirDateTime? get effectiveDateTime;
 
   /// [effectiveDateTimeElement] Extensions for effectiveDateTime
+  @override
   @JsonKey(name: '_effectiveDateTime')
   PrimitiveElement? get effectiveDateTimeElement;
-  @override
 
   /// [effectivePeriod] The time or time-period the observed values are related
   /// to. When the subject of the report is a patient, this is usually either
   /// the time of the procedure or of specimen collection(s), but very often the
   ///  source of the date/time is not known, only the date/time itself.
-  Period? get effectivePeriod;
   @override
+  Period? get effectivePeriod;
 
   /// [issued] The date and time that this version of the report was made
   /// available to providers, typically after the report was reviewed and
   ///  verified.
-  FhirInstant? get issued;
   @override
+  FhirInstant? get issued;
 
   /// [issuedElement] Extensions for issued
+  @override
   @JsonKey(name: '_issued')
   PrimitiveElement? get issuedElement;
-  @override
 
   /// [performer] The diagnostic service that is responsible for issuing the
   ///  report.
-  List<Reference>? get performer;
   @override
+  List<Reference>? get performer;
 
   /// [resultsInterpreter] The practitioner or organization that is responsible
   ///  for the report's conclusions and interpretations.
-  List<Reference>? get resultsInterpreter;
   @override
+  List<Reference>? get resultsInterpreter;
 
   /// [specimen] Details about the specimens on which this diagnostic report is
   ///  based.
-  List<Reference>? get specimen;
   @override
+  List<Reference>? get specimen;
 
   /// [result] [Observations](observation.html)  that are part of this
   ///  diagnostic report.
-  List<Reference>? get result;
   @override
+  List<Reference>? get result;
 
   /// [imagingStudy] One or more links to full details of any imaging performed
   /// during the diagnostic investigation. Typically, this is imaging performed
   /// by DICOM enabled modalities, but this is not required. A fully enabled
   /// PACS viewer can use this information to provide views of the source
   ///  images.
-  List<Reference>? get imagingStudy;
   @override
+  List<Reference>? get imagingStudy;
 
   /// [media] A list of key images associated with this report. The images are
   /// generally created during the diagnostic process, and may be directly of
   ///  the patient, or of treated specimens (i.e. slides of interest).
-  List<DiagnosticReportMedia>? get media;
   @override
+  List<DiagnosticReportMedia>? get media;
 
   /// [conclusion] Concise and clinically contextualized summary conclusion
   ///  (interpretation/impression) of the diagnostic report.
-  String? get conclusion;
   @override
+  String? get conclusion;
 
   /// [conclusionElement] Extensions for conclusion
+  @override
   @JsonKey(name: '_conclusion')
   PrimitiveElement? get conclusionElement;
-  @override
 
   /// [conclusionCode] One or more codes that represent the summary conclusion
   ///  (interpretation/impression) of the diagnostic report.
-  List<CodeableConcept>? get conclusionCode;
   @override
+  List<CodeableConcept>? get conclusionCode;
 
   /// [presentedForm] Rich text representation of the entire result as issued
   /// by the diagnostic service. Multiple formats are allowed but they SHALL be
   ///  semantically equivalent.
-  List<Attachment>? get presentedForm;
   @override
-  @JsonKey(ignore: true)
+  List<Attachment>? get presentedForm;
+
+  /// Create a copy of DiagnosticReport
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DiagnosticReportImplCopyWith<_$DiagnosticReportImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1608,8 +1633,12 @@ mixin _$DiagnosticReportMedia {
   /// [link] Reference to the image source.
   Reference get link => throw _privateConstructorUsedError;
 
+  /// Serializes this DiagnosticReportMedia to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DiagnosticReportMedia
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DiagnosticReportMediaCopyWith<DiagnosticReportMedia> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1642,6 +1671,8 @@ class _$DiagnosticReportMediaCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DiagnosticReportMedia
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1680,6 +1711,8 @@ class _$DiagnosticReportMediaCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of DiagnosticReportMedia
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get link {
@@ -1719,6 +1752,8 @@ class __$$DiagnosticReportMediaImplCopyWithImpl<$Res>
       $Res Function(_$DiagnosticReportMediaImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DiagnosticReportMedia
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1761,7 +1796,7 @@ class __$$DiagnosticReportMediaImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DiagnosticReportMediaImpl extends _DiagnosticReportMedia {
-  const _$DiagnosticReportMediaImpl(
+  _$DiagnosticReportMediaImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1878,7 +1913,7 @@ class _$DiagnosticReportMediaImpl extends _DiagnosticReportMedia {
             (identical(other.link, link) || other.link == link));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1889,7 +1924,9 @@ class _$DiagnosticReportMediaImpl extends _DiagnosticReportMedia {
       commentElement,
       link);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DiagnosticReportMedia
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DiagnosticReportMediaImplCopyWith<_$DiagnosticReportMediaImpl>
@@ -1905,24 +1942,22 @@ class _$DiagnosticReportMediaImpl extends _DiagnosticReportMedia {
 }
 
 abstract class _DiagnosticReportMedia extends DiagnosticReportMedia {
-  const factory _DiagnosticReportMedia(
+  factory _DiagnosticReportMedia(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final String? comment,
       @JsonKey(name: '_comment') final PrimitiveElement? commentElement,
       required final Reference link}) = _$DiagnosticReportMediaImpl;
-  const _DiagnosticReportMedia._() : super._();
+  _DiagnosticReportMedia._() : super._();
 
   factory _DiagnosticReportMedia.fromJson(Map<String, dynamic> json) =
       _$DiagnosticReportMediaImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1930,9 +1965,9 @@ abstract class _DiagnosticReportMedia extends DiagnosticReportMedia {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -1947,24 +1982,28 @@ abstract class _DiagnosticReportMedia extends DiagnosticReportMedia {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [comment] A comment about the image. Typically, this is used to provide
   /// an explanation for why the image is included, or to draw the viewer's
   ///  attention to important features.
-  String? get comment;
   @override
+  String? get comment;
 
   /// [commentElement] Extensions for comment
+  @override
   @JsonKey(name: '_comment')
   PrimitiveElement? get commentElement;
-  @override
 
   /// [link] Reference to the image source.
-  Reference get link;
   @override
-  @JsonKey(ignore: true)
+  Reference get link;
+
+  /// Create a copy of DiagnosticReportMedia
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DiagnosticReportMediaImplCopyWith<_$DiagnosticReportMediaImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

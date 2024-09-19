@@ -96,8 +96,12 @@ mixin _$Attachment {
   @JsonKey(name: '_creation')
   PrimitiveElement? get creationElement => throw _privateConstructorUsedError;
 
+  /// Serializes this Attachment to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Attachment
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AttachmentCopyWith<Attachment> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -139,6 +143,8 @@ class _$AttachmentCopyWithImpl<$Res, $Val extends Attachment>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Attachment
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -275,6 +281,8 @@ class __$$AttachmentImplCopyWithImpl<$Res>
       _$AttachmentImpl _value, $Res Function(_$AttachmentImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Attachment
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -377,7 +385,7 @@ class __$$AttachmentImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AttachmentImpl extends _Attachment {
-  const _$AttachmentImpl(
+  _$AttachmentImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       this.contentType,
@@ -551,7 +559,7 @@ class _$AttachmentImpl extends _Attachment {
                 other.creationElement == creationElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -574,7 +582,9 @@ class _$AttachmentImpl extends _Attachment {
       creation,
       creationElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Attachment
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AttachmentImplCopyWith<_$AttachmentImpl> get copyWith =>
@@ -589,7 +599,7 @@ class _$AttachmentImpl extends _Attachment {
 }
 
 abstract class _Attachment extends Attachment {
-  const factory _Attachment(
+  factory _Attachment(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final FhirCode? contentType,
@@ -609,17 +619,15 @@ abstract class _Attachment extends Attachment {
       final FhirDateTime? creation,
       @JsonKey(name: '_creation')
       final PrimitiveElement? creationElement}) = _$AttachmentImpl;
-  const _Attachment._() : super._();
+  _Attachment._() : super._();
 
   factory _Attachment.fromJson(Map<String, dynamic> json) =
       _$AttachmentImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -627,88 +635,92 @@ abstract class _Attachment extends Attachment {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [contentType] Identifies the type of the data in the attachment and
   /// allows a method to be chosen to interpret or render the data. Includes
   ///  mime type parameters such as charset where appropriate.
-  FhirCode? get contentType;
   @override
+  FhirCode? get contentType;
 
   /// [contentTypeElement] Extensions for contentType
+  @override
   @JsonKey(name: '_contentType')
   PrimitiveElement? get contentTypeElement;
-  @override
 
   /// [language] The human language of the content. The value can be any valid
   ///  value according to BCP 47.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [data] The actual data of the attachment - a sequence of bytes, base64
   ///  encoded.
-  FhirBase64Binary? get data;
   @override
+  FhirBase64Binary? get data;
 
   /// [dataElement] Extensions for data
+  @override
   @JsonKey(name: '_data')
   PrimitiveElement? get dataElement;
-  @override
 
   /// [url] A location where the data can be accessed.
-  FhirUrl? get url;
   @override
+  FhirUrl? get url;
 
   /// [urlElement] Extensions for url
+  @override
   @JsonKey(name: '_url')
   PrimitiveElement? get urlElement;
-  @override
 
   /// [size] The number of bytes of data that make up this attachment (before
   ///  base64 encoding, if that is done).
-  FhirUnsignedInt? get size;
   @override
+  FhirUnsignedInt? get size;
 
   /// [sizeElement] Extensions for size
+  @override
   @JsonKey(name: '_size')
   PrimitiveElement? get sizeElement;
-  @override
 
   /// [hash] The calculated hash of the data using SHA-1. Represented using
   ///  base64.
-  FhirBase64Binary? get hash;
   @override
+  FhirBase64Binary? get hash;
 
   /// [hashElement] Extensions for hash
+  @override
   @JsonKey(name: '_hash')
   PrimitiveElement? get hashElement;
-  @override
 
   /// [title] A label or set of text to display in place of the data.
-  String? get title;
   @override
+  String? get title;
 
   /// [titleElement] Extensions for title
+  @override
   @JsonKey(name: '_title')
   PrimitiveElement? get titleElement;
-  @override
 
   /// [creation] The date that the attachment was first created.
-  FhirDateTime? get creation;
   @override
+  FhirDateTime? get creation;
 
   /// [creationElement] Extensions for creation
+  @override
   @JsonKey(name: '_creation')
   PrimitiveElement? get creationElement;
+
+  /// Create a copy of Attachment
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AttachmentImplCopyWith<_$AttachmentImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -15,9 +15,9 @@ part 'diagnostic_report.g.dart';
 
 /// [DiagnosticReport] The findings and interpretation of diagnostic  tests
 @freezed
-class DiagnosticReport with _$DiagnosticReport implements DomainResource {
+class DiagnosticReport extends DomainResource with _$DiagnosticReport {
   /// [DiagnosticReport] The findings and interpretation of diagnostic  tests
-  const DiagnosticReport._();
+  DiagnosticReport._();
 
   /// [DiagnosticReport] The findings and interpretation of diagnostic  tests
   /// performed on patients, groups of patients, devices, and locations, and/or
@@ -154,7 +154,7 @@ class DiagnosticReport with _$DiagnosticReport implements DomainResource {
   /// [presentedForm] Rich text representation of the entire result as issued
   /// by the diagnostic service. Multiple formats are allowed but they SHALL be
   ///  semantically equivalent.
-  const factory DiagnosticReport({
+  factory DiagnosticReport({
     @Default(R4ResourceType.DiagnosticReport)
     @JsonKey(unknownEnumValue: R4ResourceType.DiagnosticReport)
 
@@ -356,6 +356,9 @@ class DiagnosticReport with _$DiagnosticReport implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -378,8 +381,8 @@ class DiagnosticReport with _$DiagnosticReport implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [DiagnosticReportMedia] The findings and interpretation of diagnostic
@@ -387,11 +390,10 @@ class DiagnosticReport with _$DiagnosticReport implements DomainResource {
 
 /// [DiagnosticReportMedia] The findings and interpretation of diagnostic
 @freezed
-class DiagnosticReportMedia
-    with _$DiagnosticReportMedia
-    implements BackboneElement {
+class DiagnosticReportMedia extends BackboneElement
+    with _$DiagnosticReportMedia {
   /// [DiagnosticReportMedia] The findings and interpretation of diagnostic
-  const DiagnosticReportMedia._();
+  DiagnosticReportMedia._();
 
   /// [DiagnosticReportMedia] The findings and interpretation of diagnostic
   /// tests performed on patients, groups of patients, devices, and locations,
@@ -431,7 +433,7 @@ class DiagnosticReportMedia
   /// [commentElement] Extensions for comment
   ///
   /// [link] Reference to the image source.
-  const factory DiagnosticReportMedia({
+  factory DiagnosticReportMedia({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -500,6 +502,9 @@ class DiagnosticReportMedia
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

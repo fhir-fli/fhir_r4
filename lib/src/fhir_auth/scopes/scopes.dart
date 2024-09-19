@@ -12,9 +12,9 @@ part 'scopes.freezed.dart';
 /// from HL7 http://www.hl7.org/fhir/smart-app-launch/scopes-and-launch-context/
 @freezed
 class Scopes with _$Scopes {
-  const Scopes._();
+  Scopes._();
 
-  const factory Scopes({
+  factory Scopes({
     /// see the clinical scopes class for details
     List<ClinicalScope>? clinicalScopes,
 

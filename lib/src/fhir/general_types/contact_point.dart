@@ -14,9 +14,9 @@ part 'contact_point.g.dart';
 
 /// [ContactPoint] Details for all kinds of technology mediated contact
 @freezed
-class ContactPoint with _$ContactPoint implements DataType {
+class ContactPoint extends DataType with _$ContactPoint {
   /// [ContactPoint] Details for all kinds of technology mediated contact
-  const ContactPoint._();
+  ContactPoint._();
 
   /// [ContactPoint] Details for all kinds of technology mediated contact
   ///  points for a person or organization, including telephone, email, etc.
@@ -52,7 +52,7 @@ class ContactPoint with _$ContactPoint implements DataType {
   /// [rankElement] Extensions for rank
   ///
   /// [period] Time period when the contact point was/is in use.
-  const factory ContactPoint({
+  factory ContactPoint({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -127,6 +127,9 @@ class ContactPoint with _$ContactPoint implements DataType {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

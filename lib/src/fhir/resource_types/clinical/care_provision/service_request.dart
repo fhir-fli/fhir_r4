@@ -15,9 +15,9 @@ part 'service_request.g.dart';
 
 /// [ServiceRequest] A record of a request for service such as diagnostic
 @freezed
-class ServiceRequest with _$ServiceRequest implements DomainResource {
+class ServiceRequest extends DomainResource with _$ServiceRequest {
   /// [ServiceRequest] A record of a request for service such as diagnostic
-  const ServiceRequest._();
+  ServiceRequest._();
 
   /// [ServiceRequest] A record of a request for service such as diagnostic
   ///  investigations, treatments, or operations to be performed.
@@ -226,7 +226,7 @@ class ServiceRequest with _$ServiceRequest implements DomainResource {
   /// [patientInstructionElement] Extensions for patientInstruction
   ///
   /// [relevantHistory] Key events in the history of the request.
-  const factory ServiceRequest({
+  factory ServiceRequest({
     @Default(R4ResourceType.ServiceRequest)
     @JsonKey(unknownEnumValue: R4ResourceType.ServiceRequest)
 
@@ -530,6 +530,9 @@ class ServiceRequest with _$ServiceRequest implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -552,6 +555,6 @@ class ServiceRequest with _$ServiceRequest implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }

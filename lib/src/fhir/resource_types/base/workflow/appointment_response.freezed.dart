@@ -142,8 +142,12 @@ mixin _$AppointmentResponse {
   @JsonKey(name: '_comment')
   PrimitiveElement? get commentElement => throw _privateConstructorUsedError;
 
+  /// Serializes this AppointmentResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AppointmentResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AppointmentResponseCopyWith<AppointmentResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -197,6 +201,8 @@ class _$AppointmentResponseCopyWithImpl<$Res, $Val extends AppointmentResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AppointmentResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -320,6 +326,8 @@ class _$AppointmentResponseCopyWithImpl<$Res, $Val extends AppointmentResponse>
     ) as $Val);
   }
 
+  /// Create a copy of AppointmentResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -332,6 +340,8 @@ class _$AppointmentResponseCopyWithImpl<$Res, $Val extends AppointmentResponse>
     });
   }
 
+  /// Create a copy of AppointmentResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -344,6 +354,8 @@ class _$AppointmentResponseCopyWithImpl<$Res, $Val extends AppointmentResponse>
     });
   }
 
+  /// Create a copy of AppointmentResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get appointment {
@@ -352,6 +364,8 @@ class _$AppointmentResponseCopyWithImpl<$Res, $Val extends AppointmentResponse>
     });
   }
 
+  /// Create a copy of AppointmentResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get actor {
@@ -418,6 +432,8 @@ class __$$AppointmentResponseImplCopyWithImpl<$Res>
       $Res Function(_$AppointmentResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AppointmentResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -545,7 +561,7 @@ class __$$AppointmentResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AppointmentResponseImpl extends _AppointmentResponse {
-  const _$AppointmentResponseImpl(
+  _$AppointmentResponseImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.AppointmentResponse)
       this.resourceType = R4ResourceType.AppointmentResponse,
       this.id,
@@ -842,7 +858,7 @@ class _$AppointmentResponseImpl extends _AppointmentResponse {
                 other.commentElement == commentElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -871,7 +887,9 @@ class _$AppointmentResponseImpl extends _AppointmentResponse {
         commentElement
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AppointmentResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AppointmentResponseImplCopyWith<_$AppointmentResponseImpl> get copyWith =>
@@ -887,7 +905,7 @@ class _$AppointmentResponseImpl extends _AppointmentResponse {
 }
 
 abstract class _AppointmentResponse extends AppointmentResponse {
-  const factory _AppointmentResponse(
+  factory _AppointmentResponse(
           {@JsonKey(unknownEnumValue: R4ResourceType.AppointmentResponse)
           final R4ResourceType resourceType,
           final String? id,
@@ -915,7 +933,7 @@ abstract class _AppointmentResponse extends AppointmentResponse {
           final String? comment,
           @JsonKey(name: '_comment') final PrimitiveElement? commentElement}) =
       _$AppointmentResponseImpl;
-  const _AppointmentResponse._() : super._();
+  _AppointmentResponse._() : super._();
 
   factory _AppointmentResponse.fromJson(Map<String, dynamic> json) =
       _$AppointmentResponseImpl.fromJson;
@@ -923,39 +941,38 @@ abstract class _AppointmentResponse extends AppointmentResponse {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.AppointmentResponse)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -963,15 +980,15 @@ abstract class _AppointmentResponse extends AppointmentResponse {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -979,9 +996,9 @@ abstract class _AppointmentResponse extends AppointmentResponse {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -996,72 +1013,76 @@ abstract class _AppointmentResponse extends AppointmentResponse {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] This records identifiers associated with this appointment
   /// response concern that are defined by business processes and/ or used to
   /// refer to it when a direct URL reference to the resource itself is not
   ///  appropriate.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [appointment] Appointment that this response is replying to.
-  Reference get appointment;
   @override
+  Reference get appointment;
 
   /// [start] Date/Time that the appointment is to take place, or requested new
   ///  start time.
-  FhirInstant? get start;
   @override
+  FhirInstant? get start;
 
   /// [startElement] Extensions for start
+  @override
   @JsonKey(name: '_start')
   PrimitiveElement? get startElement;
-  @override
 
   /// [end] This may be either the same as the appointment request to confirm
   /// the details of the appointment, or alternately a new time to request a
   ///  re-negotiation of the end time.
-  FhirInstant? get end;
   @override
+  FhirInstant? get end;
 
   /// [endElement] Extensions for end
+  @override
   @JsonKey(name: '_end')
   PrimitiveElement? get endElement;
-  @override
 
   /// [participantType] Role of participant in the appointment.
-  List<CodeableConcept>? get participantType;
   @override
+  List<CodeableConcept>? get participantType;
 
   /// [actor] A Person, Location, HealthcareService, or Device that is
   ///  participating in the appointment.
-  Reference? get actor;
   @override
+  Reference? get actor;
 
   /// [participantStatus] Participation status of the participant. When the
   /// status is declined or tentative if the start/end times are different to
   /// the appointment, then these times should be interpreted as a requested
   /// time change. When the status is accepted, the times can either be the time
   ///  of the appointment (as a confirmation of the time) or can be empty.
-  FhirCode? get participantStatus;
   @override
+  FhirCode? get participantStatus;
 
   /// [participantStatusElement] Extensions for participantStatus
+  @override
   @JsonKey(name: '_participantStatus')
   PrimitiveElement? get participantStatusElement;
-  @override
 
   /// [comment] Additional comments about the appointment.
-  String? get comment;
   @override
+  String? get comment;
 
   /// [commentElement] Extensions for comment
+  @override
   @JsonKey(name: '_comment')
   PrimitiveElement? get commentElement;
+
+  /// Create a copy of AppointmentResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AppointmentResponseImplCopyWith<_$AppointmentResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

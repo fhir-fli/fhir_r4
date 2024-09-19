@@ -15,9 +15,9 @@ part 'document_manifest.g.dart';
 
 /// [DocumentManifest] A collection of documents compiled for a purpose
 @freezed
-class DocumentManifest with _$DocumentManifest implements DomainResource {
+class DocumentManifest extends DomainResource with _$DocumentManifest {
   /// [DocumentManifest] A collection of documents compiled for a purpose
-  const DocumentManifest._();
+  DocumentManifest._();
 
   /// [DocumentManifest] A collection of documents compiled for a purpose
   ///  together with metadata that applies to the collection.
@@ -122,7 +122,7 @@ class DocumentManifest with _$DocumentManifest implements DomainResource {
   ///
   /// [related] Related identifiers or resources associated with the
   ///  DocumentManifest.
-  const factory DocumentManifest({
+  factory DocumentManifest({
     @Default(R4ResourceType.DocumentManifest)
     @JsonKey(unknownEnumValue: R4ResourceType.DocumentManifest)
 
@@ -288,6 +288,9 @@ class DocumentManifest with _$DocumentManifest implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -310,8 +313,8 @@ class DocumentManifest with _$DocumentManifest implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [DocumentManifestRelated] A collection of documents compiled for a
@@ -319,11 +322,10 @@ class DocumentManifest with _$DocumentManifest implements DomainResource {
 
 /// [DocumentManifestRelated] A collection of documents compiled for a
 @freezed
-class DocumentManifestRelated
-    with _$DocumentManifestRelated
-    implements BackboneElement {
+class DocumentManifestRelated extends BackboneElement
+    with _$DocumentManifestRelated {
   /// [DocumentManifestRelated] A collection of documents compiled for a
-  const DocumentManifestRelated._();
+  DocumentManifestRelated._();
 
   /// [DocumentManifestRelated] A collection of documents compiled for a
   ///  purpose together with metadata that applies to the collection.
@@ -357,7 +359,7 @@ class DocumentManifestRelated
   ///
   /// [ref] Related Resource to this DocumentManifest. For example, Order,
   ///  ServiceRequest,  Procedure, EligibilityRequest, etc.
-  const factory DocumentManifestRelated({
+  factory DocumentManifestRelated({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -423,6 +425,9 @@ class DocumentManifestRelated
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

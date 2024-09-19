@@ -141,8 +141,12 @@ mixin _$OrganizationAffiliation {
   ///  this role.
   List<Reference>? get endpoint => throw _privateConstructorUsedError;
 
+  /// Serializes this OrganizationAffiliation to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of OrganizationAffiliation
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $OrganizationAffiliationCopyWith<OrganizationAffiliation> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -198,6 +202,8 @@ class _$OrganizationAffiliationCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of OrganizationAffiliation
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -326,6 +332,8 @@ class _$OrganizationAffiliationCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of OrganizationAffiliation
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -338,6 +346,8 @@ class _$OrganizationAffiliationCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of OrganizationAffiliation
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -350,6 +360,8 @@ class _$OrganizationAffiliationCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of OrganizationAffiliation
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get period {
@@ -362,6 +374,8 @@ class _$OrganizationAffiliationCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of OrganizationAffiliation
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get organization {
@@ -374,6 +388,8 @@ class _$OrganizationAffiliationCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of OrganizationAffiliation
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get participatingOrganization {
@@ -445,6 +461,8 @@ class __$$OrganizationAffiliationImplCopyWithImpl<$Res>
       $Res Function(_$OrganizationAffiliationImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of OrganizationAffiliation
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -577,7 +595,7 @@ class __$$OrganizationAffiliationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$OrganizationAffiliationImpl extends _OrganizationAffiliation {
-  const _$OrganizationAffiliationImpl(
+  _$OrganizationAffiliationImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.OrganizationAffiliation)
       this.resourceType = R4ResourceType.OrganizationAffiliation,
       this.id,
@@ -938,7 +956,7 @@ class _$OrganizationAffiliationImpl extends _OrganizationAffiliation {
             const DeepCollectionEquality().equals(other._endpoint, _endpoint));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -968,7 +986,9 @@ class _$OrganizationAffiliationImpl extends _OrganizationAffiliation {
         const DeepCollectionEquality().hash(_endpoint)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of OrganizationAffiliation
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$OrganizationAffiliationImplCopyWith<_$OrganizationAffiliationImpl>
@@ -984,7 +1004,7 @@ class _$OrganizationAffiliationImpl extends _OrganizationAffiliation {
 }
 
 abstract class _OrganizationAffiliation extends OrganizationAffiliation {
-  const factory _OrganizationAffiliation(
+  factory _OrganizationAffiliation(
       {@JsonKey(unknownEnumValue: R4ResourceType.OrganizationAffiliation)
       final R4ResourceType resourceType,
       final String? id,
@@ -1011,7 +1031,7 @@ abstract class _OrganizationAffiliation extends OrganizationAffiliation {
       final List<Reference>? healthcareService,
       final List<ContactPoint>? telecom,
       final List<Reference>? endpoint}) = _$OrganizationAffiliationImpl;
-  const _OrganizationAffiliation._() : super._();
+  _OrganizationAffiliation._() : super._();
 
   factory _OrganizationAffiliation.fromJson(Map<String, dynamic> json) =
       _$OrganizationAffiliationImpl.fromJson;
@@ -1019,39 +1039,38 @@ abstract class _OrganizationAffiliation extends OrganizationAffiliation {
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.OrganizationAffiliation)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1059,15 +1078,15 @@ abstract class _OrganizationAffiliation extends OrganizationAffiliation {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1075,9 +1094,9 @@ abstract class _OrganizationAffiliation extends OrganizationAffiliation {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1092,72 +1111,76 @@ abstract class _OrganizationAffiliation extends OrganizationAffiliation {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] Business identifiers that are specific to this role.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [active] Whether this organization affiliation record is in active use.
-  FhirBoolean? get active;
   @override
+  FhirBoolean? get active;
 
   /// [activeElement] Extensions for active
+  @override
   @JsonKey(name: '_active')
   PrimitiveElement? get activeElement;
-  @override
 
   /// [period] The period during which the participatingOrganization is
   ///  affiliated with the primary organization.
-  Period? get period;
   @override
+  Period? get period;
 
   /// [organization] Organization where the role is available (primary
   ///  organization/has members).
-  Reference? get organization;
   @override
+  Reference? get organization;
 
   /// [participatingOrganization] The Participating Organization
   /// provides/performs the role(s) defined by the code to the Primary
   ///  Organization (e.g. providing services or is a member of).
-  Reference? get participatingOrganization;
   @override
+  Reference? get participatingOrganization;
 
   /// [network] Health insurance provider network in which the
   /// participatingOrganization provides the role's services (if defined) at the
   ///  indicated locations (if defined).
-  List<Reference>? get network;
   @override
+  List<Reference>? get network;
 
   /// [code] Definition of the role the participatingOrganization plays in the
   ///  association.
-  List<CodeableConcept>? get code;
   @override
+  List<CodeableConcept>? get code;
 
   /// [specialty] Specific specialty of the participatingOrganization in the
   ///  context of the role.
-  List<CodeableConcept>? get specialty;
   @override
+  List<CodeableConcept>? get specialty;
 
   /// [location] The location(s) at which the role occurs.
-  List<Reference>? get location;
   @override
+  List<Reference>? get location;
 
   /// [healthcareService] Healthcare services provided through the role.
-  List<Reference>? get healthcareService;
   @override
+  List<Reference>? get healthcareService;
 
   /// [telecom] Contact details at the participatingOrganization relevant to
   ///  this Affiliation.
-  List<ContactPoint>? get telecom;
   @override
+  List<ContactPoint>? get telecom;
 
   /// [endpoint] Technical endpoints providing access to services operated for
   ///  this role.
-  List<Reference>? get endpoint;
   @override
-  @JsonKey(ignore: true)
+  List<Reference>? get endpoint;
+
+  /// Create a copy of OrganizationAffiliation
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OrganizationAffiliationImplCopyWith<_$OrganizationAffiliationImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

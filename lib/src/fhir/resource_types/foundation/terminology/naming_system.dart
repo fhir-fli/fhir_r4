@@ -15,9 +15,9 @@ part 'naming_system.g.dart';
 
 /// [NamingSystem] A curated namespace that issues unique symbols within that
 @freezed
-class NamingSystem with _$NamingSystem implements DomainResource {
+class NamingSystem extends DomainResource with _$NamingSystem {
   /// [NamingSystem] A curated namespace that issues unique symbols within that
-  const NamingSystem._();
+  NamingSystem._();
 
   /// [NamingSystem] A curated namespace that issues unique symbols within that
   /// namespace for the identification of concepts, people, devices, etc.
@@ -138,7 +138,7 @@ class NamingSystem with _$NamingSystem implements DomainResource {
   ///
   /// [uniqueId] Indicates how the system may be identified when referenced in
   ///  electronic exchange.
-  const factory NamingSystem({
+  factory NamingSystem({
     @Default(R4ResourceType.NamingSystem)
     @JsonKey(unknownEnumValue: R4ResourceType.NamingSystem)
 
@@ -324,6 +324,9 @@ class NamingSystem with _$NamingSystem implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -346,8 +349,8 @@ class NamingSystem with _$NamingSystem implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [NamingSystemUniqueId] A curated namespace that issues unique symbols
@@ -355,11 +358,9 @@ class NamingSystem with _$NamingSystem implements DomainResource {
 
 /// [NamingSystemUniqueId] A curated namespace that issues unique symbols
 @freezed
-class NamingSystemUniqueId
-    with _$NamingSystemUniqueId
-    implements BackboneElement {
+class NamingSystemUniqueId extends BackboneElement with _$NamingSystemUniqueId {
   /// [NamingSystemUniqueId] A curated namespace that issues unique symbols
-  const NamingSystemUniqueId._();
+  NamingSystemUniqueId._();
 
   /// [NamingSystemUniqueId] A curated namespace that issues unique symbols
   /// within that namespace for the identification of concepts, people, devices,
@@ -412,7 +413,7 @@ class NamingSystemUniqueId
   /// [period] Identifies the period of time over which this identifier is
   /// considered appropriate to refer to the naming system.  Outside of this
   ///  window, the identifier might be non-deterministic.
-  const factory NamingSystemUniqueId({
+  factory NamingSystemUniqueId({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -502,6 +503,9 @@ class NamingSystemUniqueId
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

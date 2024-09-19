@@ -80,8 +80,12 @@ mixin _$Reference {
   @JsonKey(name: '_display')
   PrimitiveElement? get displayElement => throw _privateConstructorUsedError;
 
+  /// Serializes this Reference to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Reference
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ReferenceCopyWith<Reference> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -115,6 +119,8 @@ class _$ReferenceCopyWithImpl<$Res, $Val extends Reference>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Reference
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -168,6 +174,8 @@ class _$ReferenceCopyWithImpl<$Res, $Val extends Reference>
     ) as $Val);
   }
 
+  /// Create a copy of Reference
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $IdentifierCopyWith<$Res>? get identifier {
@@ -212,6 +220,8 @@ class __$$ReferenceImplCopyWithImpl<$Res>
       _$ReferenceImpl _value, $Res Function(_$ReferenceImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Reference
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -269,7 +279,7 @@ class __$$ReferenceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ReferenceImpl extends _Reference {
-  const _$ReferenceImpl(
+  _$ReferenceImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       this.reference,
@@ -395,7 +405,7 @@ class _$ReferenceImpl extends _Reference {
                 other.displayElement == displayElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -409,7 +419,9 @@ class _$ReferenceImpl extends _Reference {
       display,
       displayElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Reference
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ReferenceImplCopyWith<_$ReferenceImpl> get copyWith =>
@@ -424,7 +436,7 @@ class _$ReferenceImpl extends _Reference {
 }
 
 abstract class _Reference extends Reference {
-  const factory _Reference(
+  factory _Reference(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final String? reference,
@@ -435,17 +447,15 @@ abstract class _Reference extends Reference {
           final String? display,
           @JsonKey(name: '_display') final PrimitiveElement? displayElement}) =
       _$ReferenceImpl;
-  const _Reference._() : super._();
+  _Reference._() : super._();
 
   factory _Reference.fromJson(Map<String, dynamic> json) =
       _$ReferenceImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -453,9 +463,9 @@ abstract class _Reference extends Reference {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [reference] A reference to a location at which the other resource is
   /// found. The reference may be a relative reference, in which case it is
@@ -464,13 +474,13 @@ abstract class _Reference extends Reference {
   /// specific or not. If the reference is not to a FHIR RESTful server, then it
   /// should be assumed to be version specific. Internal fragment references
   ///  (start with '#') refer to contained resources.
-  String? get reference;
   @override
+  String? get reference;
 
   /// [referenceElement] Extensions for reference
+  @override
   @JsonKey(name: '_reference')
   PrimitiveElement? get referenceElement;
-  @override
 
   /// [type] The expected type of the target of the reference. If both
   /// Reference.type and Reference.reference are populated and
@@ -481,13 +491,13 @@ abstract class _Reference extends Reference {
   /// http://hl7.org/fhir/StructureDefinition/Patient. Absolute URLs are only
   /// allowed for logical models (and can only be used in references in logical
   ///  models, not resources).
-  FhirUri? get type;
   @override
+  FhirUri? get type;
 
   /// [typeElement] Extensions for type
+  @override
   @JsonKey(name: '_type')
   PrimitiveElement? get typeElement;
-  @override
 
   /// [identifier] An identifier for the target resource. This is used when
   /// there is no way to reference the other resource directly, either because
@@ -498,19 +508,23 @@ abstract class _Reference extends Reference {
   /// instance, but it SHALL point to a business concept that would be expected
   /// to be exposed as a FHIR instance, and that instance would need to be of a
   ///  FHIR resource type allowed by the reference.
-  Identifier? get identifier;
   @override
+  Identifier? get identifier;
 
   /// [display] Plain text narrative that identifies the resource in addition
   ///  to the resource reference.
-  String? get display;
   @override
+  String? get display;
 
   /// [displayElement] Extensions for display
+  @override
   @JsonKey(name: '_display')
   PrimitiveElement? get displayElement;
+
+  /// Create a copy of Reference
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ReferenceImplCopyWith<_$ReferenceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

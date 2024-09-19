@@ -15,9 +15,9 @@ part 'subscription.g.dart';
 
 /// [Subscription] The subscription resource is used to define a push-based
 @freezed
-class Subscription with _$Subscription implements DomainResource {
+class Subscription extends DomainResource with _$Subscription {
   /// [Subscription] The subscription resource is used to define a push-based
-  const Subscription._();
+  Subscription._();
 
   /// [Subscription] The subscription resource is used to define a push-based
   /// subscription from a server to another system. Once a subscription is
@@ -107,7 +107,7 @@ class Subscription with _$Subscription implements DomainResource {
   ///
   /// [channel] Details where to send notifications when resources are received
   ///  that meet the criteria.
-  const factory Subscription({
+  factory Subscription({
     @Default(R4ResourceType.Subscription)
     @JsonKey(unknownEnumValue: R4ResourceType.Subscription)
 
@@ -250,6 +250,9 @@ class Subscription with _$Subscription implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -272,8 +275,8 @@ class Subscription with _$Subscription implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 
   Subscription updateContactPointSystem(ContactPointSystem system,
       [int index = 0]) {
@@ -357,11 +360,9 @@ class Subscription with _$Subscription implements DomainResource {
 
 /// [SubscriptionChannel] The subscription resource is used to define a
 @freezed
-class SubscriptionChannel
-    with _$SubscriptionChannel
-    implements BackboneElement {
+class SubscriptionChannel extends BackboneElement with _$SubscriptionChannel {
   /// [SubscriptionChannel] The subscription resource is used to define a
-  const SubscriptionChannel._();
+  SubscriptionChannel._();
 
   /// [SubscriptionChannel] The subscription resource is used to define a
   /// push-based subscription from a server to another system. Once a
@@ -415,7 +416,7 @@ class SubscriptionChannel
   ///  notification.
   ///
   /// [headerElement] Extensions for header
-  const factory SubscriptionChannel({
+  factory SubscriptionChannel({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -503,6 +504,9 @@ class SubscriptionChannel
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

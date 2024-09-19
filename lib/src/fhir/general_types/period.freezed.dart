@@ -50,8 +50,12 @@ mixin _$Period {
   @JsonKey(name: '_end')
   PrimitiveElement? get endElement => throw _privateConstructorUsedError;
 
+  /// Serializes this Period to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Period
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PeriodCopyWith<Period> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -79,6 +83,8 @@ class _$PeriodCopyWithImpl<$Res, $Val extends Period>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Period
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -142,6 +148,8 @@ class __$$PeriodImplCopyWithImpl<$Res>
       _$PeriodImpl _value, $Res Function(_$PeriodImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Period
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -184,7 +192,7 @@ class __$$PeriodImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PeriodImpl extends _Period {
-  const _$PeriodImpl(
+  _$PeriodImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       this.start,
@@ -268,7 +276,7 @@ class _$PeriodImpl extends _Period {
                 other.endElement == endElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -279,7 +287,9 @@ class _$PeriodImpl extends _Period {
       end,
       endElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Period
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PeriodImplCopyWith<_$PeriodImpl> get copyWith =>
@@ -294,7 +304,7 @@ class _$PeriodImpl extends _Period {
 }
 
 abstract class _Period extends Period {
-  const factory _Period(
+  factory _Period(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final FhirDateTime? start,
@@ -302,16 +312,14 @@ abstract class _Period extends Period {
           final FhirDateTime? end,
           @JsonKey(name: '_end') final PrimitiveElement? endElement}) =
       _$PeriodImpl;
-  const _Period._() : super._();
+  _Period._() : super._();
 
   factory _Period.fromJson(Map<String, dynamic> json) = _$PeriodImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -319,31 +327,35 @@ abstract class _Period extends Period {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [start] The start of the period. The boundary is inclusive.
-  FhirDateTime? get start;
   @override
+  FhirDateTime? get start;
 
   /// [startElement] Extensions for start
+  @override
   @JsonKey(name: '_start')
   PrimitiveElement? get startElement;
-  @override
 
   /// [end] The end of the period. If the end of the period is missing, it
   /// means no end was known or planned at the time the instance was created.
   /// The start may be in the past, and the end date in the future, which means
   ///  that period is expected/planned to end at that time.
-  FhirDateTime? get end;
   @override
+  FhirDateTime? get end;
 
   /// [endElement] Extensions for end
+  @override
   @JsonKey(name: '_end')
   PrimitiveElement? get endElement;
+
+  /// Create a copy of Period
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PeriodImplCopyWith<_$PeriodImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

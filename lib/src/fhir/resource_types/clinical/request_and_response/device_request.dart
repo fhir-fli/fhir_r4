@@ -15,9 +15,9 @@ part 'device_request.g.dart';
 
 /// [DeviceRequest] Represents a request for a patient to employ a medical
 @freezed
-class DeviceRequest with _$DeviceRequest implements DomainResource {
+class DeviceRequest extends DomainResource with _$DeviceRequest {
   /// [DeviceRequest] Represents a request for a patient to employ a medical
-  const DeviceRequest._();
+  DeviceRequest._();
 
   /// [DeviceRequest] Represents a request for a patient to employ a medical
   /// device. The device may be an implantable device, or an external assistive
@@ -169,7 +169,7 @@ class DeviceRequest with _$DeviceRequest implements DomainResource {
   ///  the statement.
   ///
   /// [relevantHistory] Key events in the history of the request.
-  const factory DeviceRequest({
+  factory DeviceRequest({
     @Default(R4ResourceType.DeviceRequest)
     @JsonKey(unknownEnumValue: R4ResourceType.DeviceRequest)
 
@@ -400,6 +400,9 @@ class DeviceRequest with _$DeviceRequest implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -422,8 +425,8 @@ class DeviceRequest with _$DeviceRequest implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [DeviceRequestParameter] Represents a request for a patient to employ a
@@ -431,11 +434,10 @@ class DeviceRequest with _$DeviceRequest implements DomainResource {
 
 /// [DeviceRequestParameter] Represents a request for a patient to employ a
 @freezed
-class DeviceRequestParameter
-    with _$DeviceRequestParameter
-    implements BackboneElement {
+class DeviceRequestParameter extends BackboneElement
+    with _$DeviceRequestParameter {
   /// [DeviceRequestParameter] Represents a request for a patient to employ a
-  const DeviceRequestParameter._();
+  DeviceRequestParameter._();
 
   /// [DeviceRequestParameter] Represents a request for a patient to employ a
   /// medical device. The device may be an implantable device, or an external
@@ -476,7 +478,7 @@ class DeviceRequestParameter
   /// [valueBoolean] The value of the device detail.
   ///
   /// [valueBooleanElement] Extensions for valueBoolean
-  const factory DeviceRequestParameter({
+  factory DeviceRequestParameter({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -552,6 +554,9 @@ class DeviceRequestParameter
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

@@ -15,9 +15,9 @@ part 'procedure.g.dart';
 
 /// [Procedure] An action that is or was performed on or for a patient. This
 @freezed
-class Procedure with _$Procedure implements DomainResource {
+class Procedure extends DomainResource with _$Procedure {
   /// [Procedure] An action that is or was performed on or for a patient. This
-  const Procedure._();
+  Procedure._();
 
   /// [Procedure] An action that is or was performed on or for a patient. This
   /// can be a physical intervention like an operation, or less invasive like
@@ -195,7 +195,7 @@ class Procedure with _$Procedure implements DomainResource {
   ///
   /// [usedCode] Identifies coded items that were used as part of the
   ///  procedure.
-  const factory Procedure({
+  factory Procedure({
     @Default(R4ResourceType.Procedure)
     @JsonKey(unknownEnumValue: R4ResourceType.Procedure)
     R4ResourceType resourceType,
@@ -282,6 +282,9 @@ class Procedure with _$Procedure implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -304,8 +307,8 @@ class Procedure with _$Procedure implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [ProcedurePerformer] An action that is or was performed on or for a
@@ -313,9 +316,9 @@ class Procedure with _$Procedure implements DomainResource {
 
 /// [ProcedurePerformer] An action that is or was performed on or for a
 @freezed
-class ProcedurePerformer with _$ProcedurePerformer implements BackboneElement {
+class ProcedurePerformer extends BackboneElement with _$ProcedurePerformer {
   /// [ProcedurePerformer] An action that is or was performed on or for a
-  const ProcedurePerformer._();
+  ProcedurePerformer._();
 
   /// [ProcedurePerformer] An action that is or was performed on or for a
   /// patient. This can be a physical intervention like an operation, or less
@@ -352,7 +355,7 @@ class ProcedurePerformer with _$ProcedurePerformer implements BackboneElement {
   ///
   /// [onBehalfOf] The organization the device or practitioner was acting on
   ///  behalf of.
-  const factory ProcedurePerformer({
+  factory ProcedurePerformer({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -392,6 +395,9 @@ class ProcedurePerformer with _$ProcedurePerformer implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -403,11 +409,9 @@ class ProcedurePerformer with _$ProcedurePerformer implements BackboneElement {
 
 /// [ProcedureFocalDevice] An action that is or was performed on or for a
 @freezed
-class ProcedureFocalDevice
-    with _$ProcedureFocalDevice
-    implements BackboneElement {
+class ProcedureFocalDevice extends BackboneElement with _$ProcedureFocalDevice {
   /// [ProcedureFocalDevice] An action that is or was performed on or for a
-  const ProcedureFocalDevice._();
+  ProcedureFocalDevice._();
 
   /// [ProcedureFocalDevice] An action that is or was performed on or for a
   /// patient. This can be a physical intervention like an operation, or less
@@ -442,7 +446,7 @@ class ProcedureFocalDevice
   ///
   /// [manipulated] The device that was manipulated (changed) during the
   ///  procedure.
-  const factory ProcedureFocalDevice({
+  factory ProcedureFocalDevice({
     String? id,
     @JsonKey(name: 'extension') List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -479,6 +483,9 @@ class ProcedureFocalDevice
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

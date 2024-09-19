@@ -134,8 +134,12 @@ mixin _$Person {
   /// [link] Link to a resource that concerns the same actual person.
   List<PersonLink>? get link => throw _privateConstructorUsedError;
 
+  /// Serializes this Person to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Person
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PersonCopyWith<Person> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -187,6 +191,8 @@ class _$PersonCopyWithImpl<$Res, $Val extends Person>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Person
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -315,6 +321,8 @@ class _$PersonCopyWithImpl<$Res, $Val extends Person>
     ) as $Val);
   }
 
+  /// Create a copy of Person
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -327,6 +335,8 @@ class _$PersonCopyWithImpl<$Res, $Val extends Person>
     });
   }
 
+  /// Create a copy of Person
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -339,6 +349,8 @@ class _$PersonCopyWithImpl<$Res, $Val extends Person>
     });
   }
 
+  /// Create a copy of Person
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AttachmentCopyWith<$Res>? get photo {
@@ -351,6 +363,8 @@ class _$PersonCopyWithImpl<$Res, $Val extends Person>
     });
   }
 
+  /// Create a copy of Person
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get managingOrganization {
@@ -416,6 +430,8 @@ class __$$PersonImplCopyWithImpl<$Res>
       _$PersonImpl _value, $Res Function(_$PersonImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Person
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -548,7 +564,7 @@ class __$$PersonImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PersonImpl extends _Person {
-  const _$PersonImpl(
+  _$PersonImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Person)
       this.resourceType = R4ResourceType.Person,
       this.id,
@@ -867,7 +883,7 @@ class _$PersonImpl extends _Person {
             const DeepCollectionEquality().equals(other._link, _link));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -897,7 +913,9 @@ class _$PersonImpl extends _Person {
         const DeepCollectionEquality().hash(_link)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Person
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PersonImplCopyWith<_$PersonImpl> get copyWith =>
@@ -912,7 +930,7 @@ class _$PersonImpl extends _Person {
 }
 
 abstract class _Person extends Person {
-  const factory _Person(
+  factory _Person(
       {@JsonKey(unknownEnumValue: R4ResourceType.Person)
       final R4ResourceType resourceType,
       final String? id,
@@ -939,46 +957,45 @@ abstract class _Person extends Person {
       final FhirBoolean? active,
       @JsonKey(name: '_active') final PrimitiveElement? activeElement,
       final List<PersonLink>? link}) = _$PersonImpl;
-  const _Person._() : super._();
+  _Person._() : super._();
 
   factory _Person.fromJson(Map<String, dynamic> json) = _$PersonImpl.fromJson;
 
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.Person)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -986,15 +1003,15 @@ abstract class _Person extends Person {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1002,9 +1019,9 @@ abstract class _Person extends Person {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1019,67 +1036,71 @@ abstract class _Person extends Person {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] Identifier for a person within a particular scope.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [name] A name associated with the person.
-  List<HumanName>? get name;
   @override
+  List<HumanName>? get name;
 
   /// [telecom] A contact detail for the person, e.g. a telephone number or an
   ///  email address.
-  List<ContactPoint>? get telecom;
   @override
+  List<ContactPoint>? get telecom;
 
   /// [gender] Administrative Gender.
-  FhirCode? get gender;
   @override
+  FhirCode? get gender;
 
   /// [genderElement] Extensions for gender
+  @override
   @JsonKey(name: '_gender')
   PrimitiveElement? get genderElement;
-  @override
 
   /// [birthDate] The birth date for the person.
-  FhirDate? get birthDate;
   @override
+  FhirDate? get birthDate;
 
   /// [birthDateElement] Extensions for birthDate
+  @override
   @JsonKey(name: '_birthDate')
   PrimitiveElement? get birthDateElement;
-  @override
 
   /// [address] One or more addresses for the person.
-  List<Address>? get address;
   @override
+  List<Address>? get address;
 
   /// [photo] An image that can be displayed as a thumbnail of the person to
   ///  enhance the identification of the individual.
-  Attachment? get photo;
   @override
+  Attachment? get photo;
 
   /// [managingOrganization] The organization that is the custodian of the
   ///  person record.
-  Reference? get managingOrganization;
   @override
+  Reference? get managingOrganization;
 
   /// [active] Whether this person's record is in active use.
-  FhirBoolean? get active;
   @override
+  FhirBoolean? get active;
 
   /// [activeElement] Extensions for active
+  @override
   @JsonKey(name: '_active')
   PrimitiveElement? get activeElement;
-  @override
 
   /// [link] Link to a resource that concerns the same actual person.
-  List<PersonLink>? get link;
   @override
-  @JsonKey(ignore: true)
+  List<PersonLink>? get link;
+
+  /// Create a copy of Person
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PersonImplCopyWith<_$PersonImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1130,8 +1151,12 @@ mixin _$PersonLink {
   @JsonKey(name: '_assurance')
   PrimitiveElement? get assuranceElement => throw _privateConstructorUsedError;
 
+  /// Serializes this PersonLink to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PersonLink
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PersonLinkCopyWith<PersonLink> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1163,6 +1188,8 @@ class _$PersonLinkCopyWithImpl<$Res, $Val extends PersonLink>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PersonLink
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1201,6 +1228,8 @@ class _$PersonLinkCopyWithImpl<$Res, $Val extends PersonLink>
     ) as $Val);
   }
 
+  /// Create a copy of PersonLink
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get target {
@@ -1238,6 +1267,8 @@ class __$$PersonLinkImplCopyWithImpl<$Res>
       _$PersonLinkImpl _value, $Res Function(_$PersonLinkImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PersonLink
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1280,7 +1311,7 @@ class __$$PersonLinkImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PersonLinkImpl extends _PersonLink {
-  const _$PersonLinkImpl(
+  _$PersonLinkImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1397,7 +1428,7 @@ class _$PersonLinkImpl extends _PersonLink {
                 other.assuranceElement == assuranceElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1408,7 +1439,9 @@ class _$PersonLinkImpl extends _PersonLink {
       assurance,
       assuranceElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PersonLink
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PersonLinkImplCopyWith<_$PersonLinkImpl> get copyWith =>
@@ -1423,7 +1456,7 @@ class _$PersonLinkImpl extends _PersonLink {
 }
 
 abstract class _PersonLink extends PersonLink {
-  const factory _PersonLink(
+  factory _PersonLink(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1431,17 +1464,15 @@ abstract class _PersonLink extends PersonLink {
       final FhirCode? assurance,
       @JsonKey(name: '_assurance')
       final PrimitiveElement? assuranceElement}) = _$PersonLinkImpl;
-  const _PersonLink._() : super._();
+  _PersonLink._() : super._();
 
   factory _PersonLink.fromJson(Map<String, dynamic> json) =
       _$PersonLinkImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1449,9 +1480,9 @@ abstract class _PersonLink extends PersonLink {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -1466,23 +1497,27 @@ abstract class _PersonLink extends PersonLink {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [target] The resource to which this actual person is associated.
-  Reference get target;
   @override
+  Reference get target;
 
   /// [assurance] Level of assurance that this link is associated with the
   ///  target resource.
-  FhirCode? get assurance;
   @override
+  FhirCode? get assurance;
 
   /// [assuranceElement] Extensions for assurance
+  @override
   @JsonKey(name: '_assurance')
   PrimitiveElement? get assuranceElement;
+
+  /// Create a copy of PersonLink
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PersonLinkImplCopyWith<_$PersonLinkImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

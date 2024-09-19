@@ -69,8 +69,12 @@ mixin _$AdverseEvent {
   List<Reference>? get referenceDocument => throw _privateConstructorUsedError;
   List<Reference>? get study => throw _privateConstructorUsedError;
 
+  /// Serializes this AdverseEvent to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AdverseEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AdverseEventCopyWith<AdverseEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -142,6 +146,8 @@ class _$AdverseEventCopyWithImpl<$Res, $Val extends AdverseEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AdverseEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -325,6 +331,8 @@ class _$AdverseEventCopyWithImpl<$Res, $Val extends AdverseEvent>
     ) as $Val);
   }
 
+  /// Create a copy of AdverseEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -337,6 +345,8 @@ class _$AdverseEventCopyWithImpl<$Res, $Val extends AdverseEvent>
     });
   }
 
+  /// Create a copy of AdverseEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -349,6 +359,8 @@ class _$AdverseEventCopyWithImpl<$Res, $Val extends AdverseEvent>
     });
   }
 
+  /// Create a copy of AdverseEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $IdentifierCopyWith<$Res>? get identifier {
@@ -361,6 +373,8 @@ class _$AdverseEventCopyWithImpl<$Res, $Val extends AdverseEvent>
     });
   }
 
+  /// Create a copy of AdverseEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get event {
@@ -373,6 +387,8 @@ class _$AdverseEventCopyWithImpl<$Res, $Val extends AdverseEvent>
     });
   }
 
+  /// Create a copy of AdverseEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get subject {
@@ -381,6 +397,8 @@ class _$AdverseEventCopyWithImpl<$Res, $Val extends AdverseEvent>
     });
   }
 
+  /// Create a copy of AdverseEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get encounter {
@@ -393,6 +411,8 @@ class _$AdverseEventCopyWithImpl<$Res, $Val extends AdverseEvent>
     });
   }
 
+  /// Create a copy of AdverseEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get location {
@@ -405,6 +425,8 @@ class _$AdverseEventCopyWithImpl<$Res, $Val extends AdverseEvent>
     });
   }
 
+  /// Create a copy of AdverseEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get seriousness {
@@ -417,6 +439,8 @@ class _$AdverseEventCopyWithImpl<$Res, $Val extends AdverseEvent>
     });
   }
 
+  /// Create a copy of AdverseEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get severity {
@@ -429,6 +453,8 @@ class _$AdverseEventCopyWithImpl<$Res, $Val extends AdverseEvent>
     });
   }
 
+  /// Create a copy of AdverseEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get outcome {
@@ -441,6 +467,8 @@ class _$AdverseEventCopyWithImpl<$Res, $Val extends AdverseEvent>
     });
   }
 
+  /// Create a copy of AdverseEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get recorder {
@@ -532,6 +560,8 @@ class __$$AdverseEventImplCopyWithImpl<$Res>
       _$AdverseEventImpl _value, $Res Function(_$AdverseEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AdverseEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -719,7 +749,7 @@ class __$$AdverseEventImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AdverseEventImpl extends _AdverseEvent {
-  const _$AdverseEventImpl(
+  _$AdverseEventImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.AdverseEvent)
       this.resourceType = R4ResourceType.AdverseEvent,
       this.id,
@@ -1006,7 +1036,7 @@ class _$AdverseEventImpl extends _AdverseEvent {
             const DeepCollectionEquality().equals(other._study, _study));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1047,7 +1077,9 @@ class _$AdverseEventImpl extends _AdverseEvent {
         const DeepCollectionEquality().hash(_study)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AdverseEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AdverseEventImplCopyWith<_$AdverseEventImpl> get copyWith =>
@@ -1062,7 +1094,7 @@ class _$AdverseEventImpl extends _AdverseEvent {
 }
 
 abstract class _AdverseEvent extends AdverseEvent {
-  const factory _AdverseEvent(
+  factory _AdverseEvent(
       {@JsonKey(unknownEnumValue: R4ResourceType.AdverseEvent)
       final R4ResourceType resourceType,
       final String? id,
@@ -1101,7 +1133,7 @@ abstract class _AdverseEvent extends AdverseEvent {
       final List<Reference>? subjectMedicalHistory,
       final List<Reference>? referenceDocument,
       final List<Reference>? study}) = _$AdverseEventImpl;
-  const _AdverseEvent._() : super._();
+  _AdverseEvent._() : super._();
 
   factory _AdverseEvent.fromJson(Map<String, dynamic> json) =
       _$AdverseEventImpl.fromJson;
@@ -1184,8 +1216,11 @@ abstract class _AdverseEvent extends AdverseEvent {
   List<Reference>? get referenceDocument;
   @override
   List<Reference>? get study;
+
+  /// Create a copy of AdverseEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AdverseEventImplCopyWith<_$AdverseEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1206,8 +1241,12 @@ mixin _$AdverseEventSuspectEntity {
   List<AdverseEventCausality>? get causality =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this AdverseEventSuspectEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AdverseEventSuspectEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AdverseEventSuspectEntityCopyWith<AdverseEventSuspectEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1239,6 +1278,8 @@ class _$AdverseEventSuspectEntityCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AdverseEventSuspectEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1272,6 +1313,8 @@ class _$AdverseEventSuspectEntityCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of AdverseEventSuspectEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get instance {
@@ -1311,6 +1354,8 @@ class __$$AdverseEventSuspectEntityImplCopyWithImpl<$Res>
       $Res Function(_$AdverseEventSuspectEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AdverseEventSuspectEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1348,7 +1393,7 @@ class __$$AdverseEventSuspectEntityImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AdverseEventSuspectEntityImpl extends _AdverseEventSuspectEntity {
-  const _$AdverseEventSuspectEntityImpl(
+  _$AdverseEventSuspectEntityImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1419,7 +1464,7 @@ class _$AdverseEventSuspectEntityImpl extends _AdverseEventSuspectEntity {
                 .equals(other._causality, _causality));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1429,7 +1474,9 @@ class _$AdverseEventSuspectEntityImpl extends _AdverseEventSuspectEntity {
       instance,
       const DeepCollectionEquality().hash(_causality));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AdverseEventSuspectEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AdverseEventSuspectEntityImplCopyWith<_$AdverseEventSuspectEntityImpl>
@@ -1445,14 +1492,14 @@ class _$AdverseEventSuspectEntityImpl extends _AdverseEventSuspectEntity {
 }
 
 abstract class _AdverseEventSuspectEntity extends AdverseEventSuspectEntity {
-  const factory _AdverseEventSuspectEntity(
+  factory _AdverseEventSuspectEntity(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
           required final Reference instance,
           final List<AdverseEventCausality>? causality}) =
       _$AdverseEventSuspectEntityImpl;
-  const _AdverseEventSuspectEntity._() : super._();
+  _AdverseEventSuspectEntity._() : super._();
 
   factory _AdverseEventSuspectEntity.fromJson(Map<String, dynamic> json) =
       _$AdverseEventSuspectEntityImpl.fromJson;
@@ -1468,8 +1515,11 @@ abstract class _AdverseEventSuspectEntity extends AdverseEventSuspectEntity {
   Reference get instance;
   @override
   List<AdverseEventCausality>? get causality;
+
+  /// Create a copy of AdverseEventSuspectEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AdverseEventSuspectEntityImplCopyWith<_$AdverseEventSuspectEntityImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1494,8 +1544,12 @@ mixin _$AdverseEventCausality {
   Reference? get author => throw _privateConstructorUsedError;
   CodeableConcept? get method => throw _privateConstructorUsedError;
 
+  /// Serializes this AdverseEventCausality to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AdverseEventCausality
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AdverseEventCausalityCopyWith<AdverseEventCausality> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1533,6 +1587,8 @@ class _$AdverseEventCausalityCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AdverseEventCausality
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1581,6 +1637,8 @@ class _$AdverseEventCausalityCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of AdverseEventCausality
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get assessment {
@@ -1593,6 +1651,8 @@ class _$AdverseEventCausalityCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of AdverseEventCausality
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get author {
@@ -1605,6 +1665,8 @@ class _$AdverseEventCausalityCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of AdverseEventCausality
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get method {
@@ -1655,6 +1717,8 @@ class __$$AdverseEventCausalityImplCopyWithImpl<$Res>
       $Res Function(_$AdverseEventCausalityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AdverseEventCausality
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1707,7 +1771,7 @@ class __$$AdverseEventCausalityImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AdverseEventCausalityImpl extends _AdverseEventCausality {
-  const _$AdverseEventCausalityImpl(
+  _$AdverseEventCausalityImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1785,7 +1849,7 @@ class _$AdverseEventCausalityImpl extends _AdverseEventCausality {
             (identical(other.method, method) || other.method == method));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1798,7 +1862,9 @@ class _$AdverseEventCausalityImpl extends _AdverseEventCausality {
       author,
       method);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AdverseEventCausality
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AdverseEventCausalityImplCopyWith<_$AdverseEventCausalityImpl>
@@ -1814,7 +1880,7 @@ class _$AdverseEventCausalityImpl extends _AdverseEventCausality {
 }
 
 abstract class _AdverseEventCausality extends AdverseEventCausality {
-  const factory _AdverseEventCausality(
+  factory _AdverseEventCausality(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1824,7 +1890,7 @@ abstract class _AdverseEventCausality extends AdverseEventCausality {
       final PrimitiveElement? productRelatednessElement,
       final Reference? author,
       final CodeableConcept? method}) = _$AdverseEventCausalityImpl;
-  const _AdverseEventCausality._() : super._();
+  _AdverseEventCausality._() : super._();
 
   factory _AdverseEventCausality.fromJson(Map<String, dynamic> json) =
       _$AdverseEventCausalityImpl.fromJson;
@@ -1847,8 +1913,11 @@ abstract class _AdverseEventCausality extends AdverseEventCausality {
   Reference? get author;
   @override
   CodeableConcept? get method;
+
+  /// Create a copy of AdverseEventCausality
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AdverseEventCausalityImplCopyWith<_$AdverseEventCausalityImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

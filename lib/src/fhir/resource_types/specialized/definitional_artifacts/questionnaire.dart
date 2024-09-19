@@ -15,9 +15,9 @@ part 'questionnaire.g.dart';
 
 /// [Questionnaire] A structured set of questions intended to guide the
 @freezed
-class Questionnaire with _$Questionnaire implements DomainResource {
+class Questionnaire extends DomainResource with _$Questionnaire {
   /// [Questionnaire] A structured set of questions intended to guide the
-  const Questionnaire._();
+  Questionnaire._();
 
   /// [Questionnaire] A structured set of questions intended to guide the
   /// collection of answers from end-users. Questionnaires provide detailed
@@ -190,7 +190,7 @@ class Questionnaire with _$Questionnaire implements DomainResource {
   ///
   /// [item] A particular question, question grouping or display text that is
   ///  part of the questionnaire.
-  const factory Questionnaire({
+  factory Questionnaire({
     @Default(R4ResourceType.Questionnaire)
     @JsonKey(unknownEnumValue: R4ResourceType.Questionnaire)
 
@@ -442,6 +442,9 @@ class Questionnaire with _$Questionnaire implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -464,8 +467,8 @@ class Questionnaire with _$Questionnaire implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [QuestionnaireItem] A structured set of questions intended to guide the
@@ -473,9 +476,9 @@ class Questionnaire with _$Questionnaire implements DomainResource {
 
 /// [QuestionnaireItem] A structured set of questions intended to guide the
 @freezed
-class QuestionnaireItem with _$QuestionnaireItem implements BackboneElement {
+class QuestionnaireItem extends BackboneElement with _$QuestionnaireItem {
   /// [QuestionnaireItem] A structured set of questions intended to guide the
-  const QuestionnaireItem._();
+  QuestionnaireItem._();
 
   /// [QuestionnaireItem] A structured set of questions intended to guide the
   /// collection of answers from end-users. Questionnaires provide detailed
@@ -592,7 +595,7 @@ class QuestionnaireItem with _$QuestionnaireItem implements BackboneElement {
   ///
   /// [item] Text, questions and other groups to be nested beneath a question
   ///  or group.
-  const factory QuestionnaireItem({
+  factory QuestionnaireItem({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -750,6 +753,9 @@ class QuestionnaireItem with _$QuestionnaireItem implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -761,11 +767,10 @@ class QuestionnaireItem with _$QuestionnaireItem implements BackboneElement {
 
 /// [QuestionnaireEnableWhen] A structured set of questions intended to
 @freezed
-class QuestionnaireEnableWhen
-    with _$QuestionnaireEnableWhen
-    implements BackboneElement {
+class QuestionnaireEnableWhen extends BackboneElement
+    with _$QuestionnaireEnableWhen {
   /// [QuestionnaireEnableWhen] A structured set of questions intended to
-  const QuestionnaireEnableWhen._();
+  QuestionnaireEnableWhen._();
 
   /// [QuestionnaireEnableWhen] A structured set of questions intended to
   /// guide the collection of answers from end-users. Questionnaires provide
@@ -848,7 +853,7 @@ class QuestionnaireEnableWhen
   ///
   /// [answerReference] A value that the referenced question is tested using
   ///  the specified operator in order for the item to be enabled.
-  const factory QuestionnaireEnableWhen({
+  factory QuestionnaireEnableWhen({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -982,6 +987,9 @@ class QuestionnaireEnableWhen
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -993,11 +1001,10 @@ class QuestionnaireEnableWhen
 
 /// [QuestionnaireAnswerOption] A structured set of questions intended to
 @freezed
-class QuestionnaireAnswerOption
-    with _$QuestionnaireAnswerOption
-    implements BackboneElement {
+class QuestionnaireAnswerOption extends BackboneElement
+    with _$QuestionnaireAnswerOption {
   /// [QuestionnaireAnswerOption] A structured set of questions intended to
-  const QuestionnaireAnswerOption._();
+  QuestionnaireAnswerOption._();
 
   /// [QuestionnaireAnswerOption] A structured set of questions intended to
   /// guide the collection of answers from end-users. Questionnaires provide
@@ -1058,7 +1065,7 @@ class QuestionnaireAnswerOption
   ///  list of possible answers is initially shown.
   ///
   /// [initialSelectedElement] Extensions for initialSelected
-  const factory QuestionnaireAnswerOption({
+  factory QuestionnaireAnswerOption({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1161,6 +1168,9 @@ class QuestionnaireAnswerOption
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -1172,11 +1182,9 @@ class QuestionnaireAnswerOption
 
 /// [QuestionnaireInitial] A structured set of questions intended to guide
 @freezed
-class QuestionnaireInitial
-    with _$QuestionnaireInitial
-    implements BackboneElement {
+class QuestionnaireInitial extends BackboneElement with _$QuestionnaireInitial {
   /// [QuestionnaireInitial] A structured set of questions intended to guide
-  const QuestionnaireInitial._();
+  QuestionnaireInitial._();
 
   /// [QuestionnaireInitial] A structured set of questions intended to guide
   /// the collection of answers from end-users. Questionnaires provide detailed
@@ -1246,7 +1254,7 @@ class QuestionnaireInitial
   /// [valueQuantity] The actual value to for an initial answer.
   ///
   /// [valueReference] The actual value to for an initial answer.
-  const factory QuestionnaireInitial({
+  factory QuestionnaireInitial({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -1364,6 +1372,9 @@ class QuestionnaireInitial
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

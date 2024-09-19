@@ -69,8 +69,12 @@ mixin _$Timing {
   ///  contained in the code).
   CodeableConcept? get code => throw _privateConstructorUsedError;
 
+  /// Serializes this Timing to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Timing
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TimingCopyWith<Timing> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -102,6 +106,8 @@ class _$TimingCopyWithImpl<$Res, $Val extends Timing>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Timing
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -145,6 +151,8 @@ class _$TimingCopyWithImpl<$Res, $Val extends Timing>
     ) as $Val);
   }
 
+  /// Create a copy of Timing
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TimingRepeatCopyWith<$Res>? get repeat {
@@ -157,6 +165,8 @@ class _$TimingCopyWithImpl<$Res, $Val extends Timing>
     });
   }
 
+  /// Create a copy of Timing
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get code {
@@ -200,6 +210,8 @@ class __$$TimingImplCopyWithImpl<$Res>
       _$TimingImpl _value, $Res Function(_$TimingImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Timing
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -247,7 +259,7 @@ class __$$TimingImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$TimingImpl extends _Timing {
-  const _$TimingImpl(
+  _$TimingImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -394,7 +406,7 @@ class _$TimingImpl extends _Timing {
             (identical(other.code, code) || other.code == code));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -406,7 +418,9 @@ class _$TimingImpl extends _Timing {
       repeat,
       code);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Timing
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TimingImplCopyWith<_$TimingImpl> get copyWith =>
@@ -421,7 +435,7 @@ class _$TimingImpl extends _Timing {
 }
 
 abstract class _Timing extends Timing {
-  const factory _Timing(
+  factory _Timing(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -429,16 +443,14 @@ abstract class _Timing extends Timing {
       @JsonKey(name: '_event') final List<PrimitiveElement>? eventElement,
       final TimingRepeat? repeat,
       final CodeableConcept? code}) = _$TimingImpl;
-  const _Timing._() : super._();
+  _Timing._() : super._();
 
   factory _Timing.fromJson(Map<String, dynamic> json) = _$TimingImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -446,9 +458,9 @@ abstract class _Timing extends Timing {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -463,21 +475,21 @@ abstract class _Timing extends Timing {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [event] Identifies specific times when the event occurs.
-  List<FhirDateTime>? get event;
   @override
+  List<FhirDateTime>? get event;
 
   /// [eventElement] Extensions for event
+  @override
   @JsonKey(name: '_event')
   List<PrimitiveElement>? get eventElement;
-  @override
 
   /// [repeat] A set of rules that describe when the event is scheduled.
-  TimingRepeat? get repeat;
   @override
+  TimingRepeat? get repeat;
 
   /// [code] A code for the timing schedule (or just text in code.text). Some
   /// codes such as BID are ubiquitous, but many institutions define their own
@@ -486,9 +498,13 @@ abstract class _Timing extends Timing {
   /// and either the code or the data may be used to interpret the Timing, with
   /// the exception that .repeat.bounds still applies over the code (and is not
   ///  contained in the code).
-  CodeableConcept? get code;
   @override
-  @JsonKey(ignore: true)
+  CodeableConcept? get code;
+
+  /// Create a copy of Timing
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TimingImplCopyWith<_$TimingImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -664,8 +680,12 @@ mixin _$TimingRepeat {
   @JsonKey(name: '_offset')
   PrimitiveElement? get offsetElement => throw _privateConstructorUsedError;
 
+  /// Serializes this TimingRepeat to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TimingRepeat
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TimingRepeatCopyWith<TimingRepeat> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -729,6 +749,8 @@ class _$TimingRepeatCopyWithImpl<$Res, $Val extends TimingRepeat>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TimingRepeat
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -907,6 +929,8 @@ class _$TimingRepeatCopyWithImpl<$Res, $Val extends TimingRepeat>
     ) as $Val);
   }
 
+  /// Create a copy of TimingRepeat
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirDurationCopyWith<$Res>? get boundsDuration {
@@ -919,6 +943,8 @@ class _$TimingRepeatCopyWithImpl<$Res, $Val extends TimingRepeat>
     });
   }
 
+  /// Create a copy of TimingRepeat
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get boundsRange {
@@ -931,6 +957,8 @@ class _$TimingRepeatCopyWithImpl<$Res, $Val extends TimingRepeat>
     });
   }
 
+  /// Create a copy of TimingRepeat
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get boundsPeriod {
@@ -1006,6 +1034,8 @@ class __$$TimingRepeatImplCopyWithImpl<$Res>
       _$TimingRepeatImpl _value, $Res Function(_$TimingRepeatImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TimingRepeat
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1188,7 +1218,7 @@ class __$$TimingRepeatImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$TimingRepeatImpl extends _TimingRepeat {
-  const _$TimingRepeatImpl(
+  _$TimingRepeatImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1601,7 +1631,7 @@ class _$TimingRepeatImpl extends _TimingRepeat {
                 other.offsetElement == offsetElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1641,7 +1671,9 @@ class _$TimingRepeatImpl extends _TimingRepeat {
         offsetElement
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TimingRepeat
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TimingRepeatImplCopyWith<_$TimingRepeatImpl> get copyWith =>
@@ -1656,7 +1688,7 @@ class _$TimingRepeatImpl extends _TimingRepeat {
 }
 
 abstract class _TimingRepeat extends TimingRepeat {
-  const factory _TimingRepeat(
+  factory _TimingRepeat(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1698,17 +1730,15 @@ abstract class _TimingRepeat extends TimingRepeat {
       final FhirUnsignedInt? offset,
       @JsonKey(name: '_offset')
       final PrimitiveElement? offsetElement}) = _$TimingRepeatImpl;
-  const _TimingRepeat._() : super._();
+  _TimingRepeat._() : super._();
 
   factory _TimingRepeat.fromJson(Map<String, dynamic> json) =
       _$TimingRepeatImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1716,9 +1746,9 @@ abstract class _TimingRepeat extends TimingRepeat {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -1733,170 +1763,174 @@ abstract class _TimingRepeat extends TimingRepeat {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [boundsDuration] Either a duration for the length of the timing schedule,
   /// a range of possible length, or outer bounds for start and/or end limits of
   ///  the timing schedule.
-  FhirDuration? get boundsDuration;
   @override
+  FhirDuration? get boundsDuration;
 
   /// [boundsRange] Either a duration for the length of the timing schedule, a
   /// range of possible length, or outer bounds for start and/or end limits of
   ///  the timing schedule.
-  Range? get boundsRange;
   @override
+  Range? get boundsRange;
 
   /// [boundsPeriod] Either a duration for the length of the timing schedule, a
   /// range of possible length, or outer bounds for start and/or end limits of
   ///  the timing schedule.
-  Period? get boundsPeriod;
   @override
+  Period? get boundsPeriod;
 
   /// [count] A total count of the desired number of repetitions across the
   /// duration of the entire timing specification. If countMax is present, this
   ///  element indicates the lower bound of the allowed range of count values.
-  FhirPositiveInt? get count;
   @override
+  FhirPositiveInt? get count;
 
   /// [countElement] Extensions for count
+  @override
   @JsonKey(name: '_count')
   PrimitiveElement? get countElement;
-  @override
 
   /// [countMax] If present, indicates that the count is a range - so to
   ///  perform the action between [count] and [countMax] times.
-  FhirPositiveInt? get countMax;
   @override
+  FhirPositiveInt? get countMax;
 
   /// [countMaxElement] Extensions for countMax
+  @override
   @JsonKey(name: '_countMax')
   PrimitiveElement? get countMaxElement;
-  @override
 
   /// [duration] How long this thing happens for when it happens. If
   /// durationMax is present, this element indicates the lower bound of the
   ///  allowed range of the duration.
-  FhirDecimal? get duration;
   @override
+  FhirDecimal? get duration;
 
   /// [durationElement] Extensions for duration
+  @override
   @JsonKey(name: '_duration')
   PrimitiveElement? get durationElement;
-  @override
 
   /// [durationMax] If present, indicates that the duration is a range - so to
   ///  perform the action between [duration] and [durationMax] time length.
-  FhirDecimal? get durationMax;
   @override
+  FhirDecimal? get durationMax;
 
   /// [durationMaxElement] Extensions for durationMax
+  @override
   @JsonKey(name: '_durationMax')
   PrimitiveElement? get durationMaxElement;
   @override
   @JsonKey(unknownEnumValue: TimingRepeatDurationUnit.unknown)
   TimingRepeatDurationUnit? get durationUnit;
-  @override
 
   /// [durationUnitElement] Extensions for durationUnit
+  @override
   @JsonKey(name: '_durationUnit')
   PrimitiveElement? get durationUnitElement;
-  @override
 
   /// [frequency] The number of times to repeat the action within the specified
   /// period. If frequencyMax is present, this element indicates the lower bound
   ///  of the allowed range of the frequency.
-  FhirPositiveInt? get frequency;
   @override
+  FhirPositiveInt? get frequency;
 
   /// [frequencyElement] Extensions for frequency
+  @override
   @JsonKey(name: '_frequency')
   PrimitiveElement? get frequencyElement;
-  @override
 
   /// [frequencyMax] If present, indicates that the frequency is a range - so
   /// to repeat between [frequency] and [frequencyMax] times within the period
   ///  or period range.
-  FhirPositiveInt? get frequencyMax;
   @override
+  FhirPositiveInt? get frequencyMax;
 
   /// [frequencyMaxElement] Extensions for frequencyMax
+  @override
   @JsonKey(name: '_frequencyMax')
   PrimitiveElement? get frequencyMaxElement;
-  @override
 
   /// [period] Indicates the duration of time over which repetitions are to
   /// occur; e.g. to express "3 times per day", 3 would be the frequency and "1
   /// day" would be the period. If periodMax is present, this element indicates
   ///  the lower bound of the allowed range of the period length.
-  FhirDecimal? get period;
   @override
+  FhirDecimal? get period;
 
   /// [periodElement] Extensions for period
+  @override
   @JsonKey(name: '_period')
   PrimitiveElement? get periodElement;
-  @override
 
   /// [periodMax] If present, indicates that the period is a range from [period]
   /// to [periodMax], allowing expressing concepts such as "do this once every
   /// 3-5 days.
-  FhirDecimal? get periodMax;
   @override
+  FhirDecimal? get periodMax;
 
   /// [periodMaxElement] Extensions for periodMax
+  @override
   @JsonKey(name: '_periodMax')
   PrimitiveElement? get periodMaxElement;
   @override
   @JsonKey(unknownEnumValue: TimingRepeatPeriodUnit.unknown)
   TimingRepeatPeriodUnit? get periodUnit;
-  @override
 
   /// [periodUnitElement] Extensions for periodUnit
+  @override
   @JsonKey(name: '_periodUnit')
   PrimitiveElement? get periodUnitElement;
-  @override
 
   /// [dayOfWeek] If one or more days of week is provided, then the action
   ///  happens only on the specified day(s).
-  List<FhirCode>? get dayOfWeek;
   @override
+  List<FhirCode>? get dayOfWeek;
 
   /// [dayOfWeekElement] Extensions for dayOfWeek
+  @override
   @JsonKey(name: '_dayOfWeek')
   List<PrimitiveElement>? get dayOfWeekElement;
-  @override
 
   /// [timeOfDay] Specified time of day for action to take place.
-  List<FhirTime>? get timeOfDay;
   @override
+  List<FhirTime>? get timeOfDay;
 
   /// [timeOfDayElement] Extensions for timeOfDay
+  @override
   @JsonKey(name: '_timeOfDay')
   List<PrimitiveElement>? get timeOfDayElement;
-  @override
 
   /// [when] An approximate time period during the day, potentially linked to
   ///  an event of daily living that indicates when the action should occur.
-  List<TimingRepeatWhen>? get when;
   @override
+  List<TimingRepeatWhen>? get when;
 
   /// [whenElement] Extensions for when
+  @override
   @JsonKey(name: '_when')
   List<PrimitiveElement>? get whenElement;
-  @override
 
   /// [offset] The number of minutes from the event. If the event code does not
   /// indicate whether the minutes is before or after the event, then the offset
   ///  is assumed to be after the event.
-  FhirUnsignedInt? get offset;
   @override
+  FhirUnsignedInt? get offset;
 
   /// [offsetElement] Extensions for offset
+  @override
   @JsonKey(name: '_offset')
   PrimitiveElement? get offsetElement;
+
+  /// Create a copy of TimingRepeat
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TimingRepeatImplCopyWith<_$TimingRepeatImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

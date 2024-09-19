@@ -15,11 +15,10 @@ part 'observation_definition.g.dart';
 
 /// [ObservationDefinition] Set of definitional characteristics for a kind of
 @freezed
-class ObservationDefinition
-    with _$ObservationDefinition
-    implements DomainResource {
+class ObservationDefinition extends DomainResource
+    with _$ObservationDefinition {
   /// [ObservationDefinition] Set of definitional characteristics for a kind of
-  const ObservationDefinition._();
+  ObservationDefinition._();
 
   /// [ObservationDefinition] Set of definitional characteristics for a kind of
   /// observation or measurement produced or consumed by an orderable health
@@ -121,7 +120,7 @@ class ObservationDefinition
   ///
   /// [criticalCodedValueSet] The set of critical coded results for the
   ///  observation conforming to this ObservationDefinition.
-  const factory ObservationDefinition({
+  factory ObservationDefinition({
     @Default(R4ResourceType.ObservationDefinition)
     @JsonKey(unknownEnumValue: R4ResourceType.ObservationDefinition)
 
@@ -286,6 +285,9 @@ class ObservationDefinition
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -308,16 +310,15 @@ class ObservationDefinition
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 @freezed
 @freezed
-class ObservationDefinitionQuantitativeDetails
-    with _$ObservationDefinitionQuantitativeDetails
-    implements BackboneElement {
-  const ObservationDefinitionQuantitativeDetails._();
+class ObservationDefinitionQuantitativeDetails extends BackboneElement
+    with _$ObservationDefinitionQuantitativeDetails {
+  ObservationDefinitionQuantitativeDetails._();
 
   /// [ObservationDefinitionQuantitativeDetails] Set of definitional
   /// characteristics for a kind of observation or measurement produced or
@@ -362,7 +363,7 @@ class ObservationDefinitionQuantitativeDetails
   ///  results of such observations are of type Quantity.
   ///
   /// [decimalPrecisionElement] Extensions for decimalPrecision
-  const factory ObservationDefinitionQuantitativeDetails({
+  factory ObservationDefinitionQuantitativeDetails({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -435,6 +436,9 @@ class ObservationDefinitionQuantitativeDetails
       _$ObservationDefinitionQuantitativeDetailsFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -443,10 +447,9 @@ class ObservationDefinitionQuantitativeDetails
 
 @freezed
 @freezed
-class ObservationDefinitionQualifiedInterval
-    with _$ObservationDefinitionQualifiedInterval
-    implements BackboneElement {
-  const ObservationDefinitionQualifiedInterval._();
+class ObservationDefinitionQualifiedInterval extends BackboneElement
+    with _$ObservationDefinitionQualifiedInterval {
+  ObservationDefinitionQualifiedInterval._();
 
   /// [ObservationDefinitionQualifiedInterval] Set of definitional
   /// characteristics for a kind of observation or measurement produced or
@@ -503,7 +506,7 @@ class ObservationDefinitionQualifiedInterval
   /// [condition] Text based condition for which the reference range is valid.
   ///
   /// [conditionElement] Extensions for condition
-  const factory ObservationDefinitionQualifiedInterval({
+  factory ObservationDefinitionQualifiedInterval({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -589,6 +592,9 @@ class ObservationDefinitionQualifiedInterval
   factory ObservationDefinitionQualifiedInterval.fromJson(
           Map<String, dynamic> json) =>
       _$ObservationDefinitionQualifiedIntervalFromJson(json);
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

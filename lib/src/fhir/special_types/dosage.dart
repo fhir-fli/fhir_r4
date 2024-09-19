@@ -14,9 +14,9 @@ part 'dosage.g.dart';
 
 /// [Dosage] Indicates how the medication is/was taken or should be taken by
 @freezed
-class Dosage with _$Dosage implements BackboneType {
+class Dosage extends BackboneType with _$Dosage {
   /// [Dosage] Indicates how the medication is/was taken or should be taken by
-  const Dosage._();
+  Dosage._();
 
   /// [Dosage] Indicates how the medication is/was taken or should be taken by
   ///  the patient.
@@ -90,7 +90,7 @@ class Dosage with _$Dosage implements BackboneType {
   ///
   /// [maxDosePerLifetime] Upper limit on medication per lifetime of the
   ///  patient.
-  const factory Dosage({
+  factory Dosage({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -214,6 +214,9 @@ class Dosage with _$Dosage implements BackboneType {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -222,9 +225,9 @@ class Dosage with _$Dosage implements BackboneType {
 
 /// [DosageDoseAndRate] Indicates how the medication is/was taken or should
 @freezed
-class DosageDoseAndRate with _$DosageDoseAndRate implements Element {
+class DosageDoseAndRate extends Element with _$DosageDoseAndRate {
   /// [DosageDoseAndRate] Indicates how the medication is/was taken or should
-  const DosageDoseAndRate._();
+  DosageDoseAndRate._();
 
   /// [DosageDoseAndRate] Indicates how the medication is/was taken or should
   ///  be taken by the patient.
@@ -265,7 +268,7 @@ class DosageDoseAndRate with _$DosageDoseAndRate implements Element {
   /// [rateRange] Amount of medication per unit of time.
   ///
   /// [rateQuantity] Amount of medication per unit of time.
-  const factory DosageDoseAndRate({
+  factory DosageDoseAndRate({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -342,6 +345,9 @@ class DosageDoseAndRate with _$DosageDoseAndRate implements Element {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

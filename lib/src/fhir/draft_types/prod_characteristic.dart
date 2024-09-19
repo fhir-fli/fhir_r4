@@ -14,9 +14,9 @@ part 'prod_characteristic.g.dart';
 
 /// [ProdCharacteristic] The marketing status describes the date when a
 @freezed
-class ProdCharacteristic with _$ProdCharacteristic implements Element {
+class ProdCharacteristic extends Element with _$ProdCharacteristic {
   /// [ProdCharacteristic] The marketing status describes the date when a
-  const ProdCharacteristic._();
+  ProdCharacteristic._();
 
   /// [ProdCharacteristic] The marketing status describes the date when a
   /// medicinal product is actually put on the market or the date as of which it
@@ -98,7 +98,7 @@ class ProdCharacteristic with _$ProdCharacteristic implements Element {
   /// [scoring] Where applicable, the scoring can be specified An appropriate
   /// controlled vocabulary shall be used The term and the term identifier shall
   ///  be used.
-  const factory ProdCharacteristic({
+  factory ProdCharacteristic({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -223,6 +223,9 @@ class ProdCharacteristic with _$ProdCharacteristic implements Element {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

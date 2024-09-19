@@ -5,7 +5,7 @@ import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
 /// [Element] Base definition for all FHIR elements.
-abstract class Element implements FhirBase {
+abstract class Element extends FhirBase {
   String? get id;
   List<FhirExtension>? get extension_;
 

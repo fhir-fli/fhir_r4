@@ -15,9 +15,9 @@ part 'research_study.g.dart';
 
 /// [ResearchStudy] A process where a researcher or organization plans and
 @freezed
-class ResearchStudy with _$ResearchStudy implements DomainResource {
+class ResearchStudy extends DomainResource with _$ResearchStudy {
   /// [ResearchStudy] A process where a researcher or organization plans and
-  const ResearchStudy._();
+  ResearchStudy._();
 
   /// [ResearchStudy] A process where a researcher or organization plans and
   /// then executes a series of steps intended to increase the field of
@@ -160,7 +160,7 @@ class ResearchStudy with _$ResearchStudy implements DomainResource {
   /// [objective] A goal that the study is aiming to achieve in terms of a
   /// scientific question to be answered by the analysis of data collected
   ///  during the study.
-  const factory ResearchStudy({
+  factory ResearchStudy({
     @Default(R4ResourceType.ResearchStudy)
     @JsonKey(unknownEnumValue: R4ResourceType.ResearchStudy)
 
@@ -370,6 +370,9 @@ class ResearchStudy with _$ResearchStudy implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -392,8 +395,8 @@ class ResearchStudy with _$ResearchStudy implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [ResearchStudyArm] A process where a researcher or organization plans
@@ -401,9 +404,9 @@ class ResearchStudy with _$ResearchStudy implements DomainResource {
 
 /// [ResearchStudyArm] A process where a researcher or organization plans
 @freezed
-class ResearchStudyArm with _$ResearchStudyArm implements BackboneElement {
+class ResearchStudyArm extends BackboneElement with _$ResearchStudyArm {
   /// [ResearchStudyArm] A process where a researcher or organization plans
-  const ResearchStudyArm._();
+  ResearchStudyArm._();
 
   /// [ResearchStudyArm] A process where a researcher or organization plans
   /// and then executes a series of steps intended to increase the field of
@@ -448,7 +451,7 @@ class ResearchStudyArm with _$ResearchStudyArm implements BackboneElement {
   ///  would be followed by a subject adhering to this arm.
   ///
   /// [descriptionElement] Extensions for description
-  const factory ResearchStudyArm({
+  factory ResearchStudyArm({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -525,6 +528,9 @@ class ResearchStudyArm with _$ResearchStudyArm implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -536,11 +542,10 @@ class ResearchStudyArm with _$ResearchStudyArm implements BackboneElement {
 
 /// [ResearchStudyObjective] A process where a researcher or organization
 @freezed
-class ResearchStudyObjective
-    with _$ResearchStudyObjective
-    implements BackboneElement {
+class ResearchStudyObjective extends BackboneElement
+    with _$ResearchStudyObjective {
   /// [ResearchStudyObjective] A process where a researcher or organization
-  const ResearchStudyObjective._();
+  ResearchStudyObjective._();
 
   /// [ResearchStudyObjective] A process where a researcher or organization
   /// plans and then executes a series of steps intended to increase the field
@@ -579,7 +584,7 @@ class ResearchStudyObjective
   /// [nameElement] Extensions for name
   ///
   /// [type] The kind of study objective.
-  const factory ResearchStudyObjective({
+  factory ResearchStudyObjective({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -646,6 +651,9 @@ class ResearchStudyObjective
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

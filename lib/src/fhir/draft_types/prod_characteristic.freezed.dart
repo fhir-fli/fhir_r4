@@ -121,8 +121,12 @@ mixin _$ProdCharacteristic {
   ///  be used.
   CodeableConcept? get scoring => throw _privateConstructorUsedError;
 
+  /// Serializes this ProdCharacteristic to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProdCharacteristic
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ProdCharacteristicCopyWith<ProdCharacteristic> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -171,6 +175,8 @@ class _$ProdCharacteristicCopyWithImpl<$Res, $Val extends ProdCharacteristic>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ProdCharacteristic
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -264,6 +270,8 @@ class _$ProdCharacteristicCopyWithImpl<$Res, $Val extends ProdCharacteristic>
     ) as $Val);
   }
 
+  /// Create a copy of ProdCharacteristic
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get height {
@@ -276,6 +284,8 @@ class _$ProdCharacteristicCopyWithImpl<$Res, $Val extends ProdCharacteristic>
     });
   }
 
+  /// Create a copy of ProdCharacteristic
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get width {
@@ -288,6 +298,8 @@ class _$ProdCharacteristicCopyWithImpl<$Res, $Val extends ProdCharacteristic>
     });
   }
 
+  /// Create a copy of ProdCharacteristic
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get depth {
@@ -300,6 +312,8 @@ class _$ProdCharacteristicCopyWithImpl<$Res, $Val extends ProdCharacteristic>
     });
   }
 
+  /// Create a copy of ProdCharacteristic
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get weight {
@@ -312,6 +326,8 @@ class _$ProdCharacteristicCopyWithImpl<$Res, $Val extends ProdCharacteristic>
     });
   }
 
+  /// Create a copy of ProdCharacteristic
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get nominalVolume {
@@ -324,6 +340,8 @@ class _$ProdCharacteristicCopyWithImpl<$Res, $Val extends ProdCharacteristic>
     });
   }
 
+  /// Create a copy of ProdCharacteristic
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get externalDiameter {
@@ -336,6 +354,8 @@ class _$ProdCharacteristicCopyWithImpl<$Res, $Val extends ProdCharacteristic>
     });
   }
 
+  /// Create a copy of ProdCharacteristic
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get scoring {
@@ -400,6 +420,8 @@ class __$$ProdCharacteristicImplCopyWithImpl<$Res>
       $Res Function(_$ProdCharacteristicImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProdCharacteristic
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -497,7 +519,7 @@ class __$$ProdCharacteristicImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ProdCharacteristicImpl extends _ProdCharacteristic {
-  const _$ProdCharacteristicImpl(
+  _$ProdCharacteristicImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -762,7 +784,7 @@ class _$ProdCharacteristicImpl extends _ProdCharacteristic {
             (identical(other.scoring, scoring) || other.scoring == scoring));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -784,7 +806,9 @@ class _$ProdCharacteristicImpl extends _ProdCharacteristic {
       const DeepCollectionEquality().hash(_image),
       scoring);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProdCharacteristic
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProdCharacteristicImplCopyWith<_$ProdCharacteristicImpl> get copyWith =>
@@ -800,7 +824,7 @@ class _$ProdCharacteristicImpl extends _ProdCharacteristic {
 }
 
 abstract class _ProdCharacteristic extends ProdCharacteristic {
-  const factory _ProdCharacteristic(
+  factory _ProdCharacteristic(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -818,17 +842,15 @@ abstract class _ProdCharacteristic extends ProdCharacteristic {
       @JsonKey(name: '_imprint') final List<PrimitiveElement>? imprintElement,
       final List<Attachment>? image,
       final CodeableConcept? scoring}) = _$ProdCharacteristicImpl;
-  const _ProdCharacteristic._() : super._();
+  _ProdCharacteristic._() : super._();
 
   factory _ProdCharacteristic.fromJson(Map<String, dynamic> json) =
       _$ProdCharacteristicImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -836,9 +858,9 @@ abstract class _ProdCharacteristic extends ProdCharacteristic {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -853,93 +875,97 @@ abstract class _ProdCharacteristic extends ProdCharacteristic {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [height] Where applicable, the height can be specified using a numerical
   /// value and its unit of measurement The unit of measurement shall be
   /// specified in accordance with ISO 11240 and the resulting terminology The
   ///  symbol and the symbol identifier shall be used.
-  Quantity? get height;
   @override
+  Quantity? get height;
 
   /// [width] Where applicable, the width can be specified using a numerical
   /// value and its unit of measurement The unit of measurement shall be
   /// specified in accordance with ISO 11240 and the resulting terminology The
   ///  symbol and the symbol identifier shall be used.
-  Quantity? get width;
   @override
+  Quantity? get width;
 
   /// [depth] Where applicable, the depth can be specified using a numerical
   /// value and its unit of measurement The unit of measurement shall be
   /// specified in accordance with ISO 11240 and the resulting terminology The
   ///  symbol and the symbol identifier shall be used.
-  Quantity? get depth;
   @override
+  Quantity? get depth;
 
   /// [weight] Where applicable, the weight can be specified using a numerical
   /// value and its unit of measurement The unit of measurement shall be
   /// specified in accordance with ISO 11240 and the resulting terminology The
   ///  symbol and the symbol identifier shall be used.
-  Quantity? get weight;
   @override
+  Quantity? get weight;
 
   /// [nominalVolume] Where applicable, the nominal volume can be specified
   /// using a numerical value and its unit of measurement The unit of
   /// measurement shall be specified in accordance with ISO 11240 and the
   ///  resulting terminology The symbol and the symbol identifier shall be used.
-  Quantity? get nominalVolume;
   @override
+  Quantity? get nominalVolume;
 
   /// [externalDiameter] Where applicable, the external diameter can be
   /// specified using a numerical value and its unit of measurement The unit of
   /// measurement shall be specified in accordance with ISO 11240 and the
   ///  resulting terminology The symbol and the symbol identifier shall be used.
-  Quantity? get externalDiameter;
   @override
+  Quantity? get externalDiameter;
 
   /// [shape] Where applicable, the shape can be specified An appropriate
   /// controlled vocabulary shall be used The term and the term identifier shall
   ///  be used.
-  String? get shape;
   @override
+  String? get shape;
 
   /// [shapeElement] Extensions for shape
+  @override
   @JsonKey(name: '_shape')
   PrimitiveElement? get shapeElement;
-  @override
 
   /// [color] Where applicable, the color can be specified An appropriate
   /// controlled vocabulary shall be used The term and the term identifier shall
   ///  be used.
-  List<String>? get color;
   @override
+  List<String>? get color;
 
   /// [colorElement] Extensions for color
+  @override
   @JsonKey(name: '_color')
   List<PrimitiveElement>? get colorElement;
-  @override
 
   /// [imprint] Where applicable, the imprint can be specified as text.
-  List<String>? get imprint;
   @override
+  List<String>? get imprint;
 
   /// [imprintElement] Extensions for imprint
+  @override
   @JsonKey(name: '_imprint')
   List<PrimitiveElement>? get imprintElement;
-  @override
 
   /// [image] Where applicable, the image can be provided The format of the
   ///  image attachment shall be specified by regional implementations.
-  List<Attachment>? get image;
   @override
+  List<Attachment>? get image;
 
   /// [scoring] Where applicable, the scoring can be specified An appropriate
   /// controlled vocabulary shall be used The term and the term identifier shall
   ///  be used.
-  CodeableConcept? get scoring;
   @override
-  @JsonKey(ignore: true)
+  CodeableConcept? get scoring;
+
+  /// Create a copy of ProdCharacteristic
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProdCharacteristicImplCopyWith<_$ProdCharacteristicImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -160,8 +160,12 @@ mixin _$Consent {
   ///  can be an addition or removal of access permissions.
   ConsentProvision? get provision => throw _privateConstructorUsedError;
 
+  /// Serializes this Consent to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Consent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ConsentCopyWith<Consent> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -220,6 +224,8 @@ class _$ConsentCopyWithImpl<$Res, $Val extends Consent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Consent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -363,6 +369,8 @@ class _$ConsentCopyWithImpl<$Res, $Val extends Consent>
     ) as $Val);
   }
 
+  /// Create a copy of Consent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -375,6 +383,8 @@ class _$ConsentCopyWithImpl<$Res, $Val extends Consent>
     });
   }
 
+  /// Create a copy of Consent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -387,6 +397,8 @@ class _$ConsentCopyWithImpl<$Res, $Val extends Consent>
     });
   }
 
+  /// Create a copy of Consent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get scope {
@@ -395,6 +407,8 @@ class _$ConsentCopyWithImpl<$Res, $Val extends Consent>
     });
   }
 
+  /// Create a copy of Consent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get patient {
@@ -407,6 +421,8 @@ class _$ConsentCopyWithImpl<$Res, $Val extends Consent>
     });
   }
 
+  /// Create a copy of Consent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AttachmentCopyWith<$Res>? get sourceAttachment {
@@ -419,6 +435,8 @@ class _$ConsentCopyWithImpl<$Res, $Val extends Consent>
     });
   }
 
+  /// Create a copy of Consent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get sourceReference {
@@ -431,6 +449,8 @@ class _$ConsentCopyWithImpl<$Res, $Val extends Consent>
     });
   }
 
+  /// Create a copy of Consent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get policyRule {
@@ -443,6 +463,8 @@ class _$ConsentCopyWithImpl<$Res, $Val extends Consent>
     });
   }
 
+  /// Create a copy of Consent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ConsentProvisionCopyWith<$Res>? get provision {
@@ -519,6 +541,8 @@ class __$$ConsentImplCopyWithImpl<$Res>
       _$ConsentImpl _value, $Res Function(_$ConsentImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Consent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -666,7 +690,7 @@ class __$$ConsentImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ConsentImpl extends _Consent {
-  const _$ConsentImpl(
+  _$ConsentImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Consent)
       this.resourceType = R4ResourceType.Consent,
       this.id,
@@ -1042,7 +1066,7 @@ class _$ConsentImpl extends _Consent {
                 other.provision == provision));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1075,7 +1099,9 @@ class _$ConsentImpl extends _Consent {
         provision
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Consent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ConsentImplCopyWith<_$ConsentImpl> get copyWith =>
@@ -1090,7 +1116,7 @@ class _$ConsentImpl extends _Consent {
 }
 
 abstract class _Consent extends Consent {
-  const factory _Consent(
+  factory _Consent(
       {@JsonKey(unknownEnumValue: R4ResourceType.Consent)
       final R4ResourceType resourceType,
       final String? id,
@@ -1120,46 +1146,45 @@ abstract class _Consent extends Consent {
       final CodeableConcept? policyRule,
       final List<ConsentVerification>? verification,
       final ConsentProvision? provision}) = _$ConsentImpl;
-  const _Consent._() : super._();
+  _Consent._() : super._();
 
   factory _Consent.fromJson(Map<String, dynamic> json) = _$ConsentImpl.fromJson;
 
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.Consent)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1167,15 +1192,15 @@ abstract class _Consent extends Consent {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1183,9 +1208,9 @@ abstract class _Consent extends Consent {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1200,95 +1225,99 @@ abstract class _Consent extends Consent {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] Unique identifier for this copy of the Consent Statement.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [status] Indicates the current state of this consent.
-  FhirCode? get status;
   @override
+  FhirCode? get status;
 
   /// [statusElement] Extensions for status
+  @override
   @JsonKey(name: '_status')
   PrimitiveElement? get statusElement;
-  @override
 
   /// [scope] A selector of the type of consent being presented: ADR, Privacy,
   ///  Treatment, Research.  This list is now extensible.
-  CodeableConcept get scope;
   @override
+  CodeableConcept get scope;
 
   /// [category] A classification of the type of consents found in the
   /// statement. This element supports indexing and retrieval of consent
   ///  statements.
-  List<CodeableConcept> get category;
   @override
+  List<CodeableConcept> get category;
 
   /// [patient] The patient/healthcare consumer to whom this consent applies.
-  Reference? get patient;
   @override
+  Reference? get patient;
 
   /// [dateTime] When this  Consent was issued / created / indexed.
-  FhirDateTime? get dateTime;
   @override
+  FhirDateTime? get dateTime;
 
   /// [dateTimeElement] Extensions for dateTime
+  @override
   @JsonKey(name: '_dateTime')
   PrimitiveElement? get dateTimeElement;
-  @override
 
   /// [performer] Either the Grantor, which is the entity responsible for
   /// granting the rights listed in a Consent Directive or the Grantee, which is
   /// the entity responsible for complying with the Consent Directive, including
   /// any obligations or limitations on authorizations and enforcement of
   ///  prohibitions.
-  List<Reference>? get performer;
   @override
+  List<Reference>? get performer;
 
   /// [organization] The organization that manages the consent, and the
   ///  framework within which it is executed.
-  List<Reference>? get organization;
   @override
+  List<Reference>? get organization;
 
   /// [sourceAttachment] The source on which this consent statement is based.
   /// The source might be a scanned original paper form, or a reference to a
   /// consent that links back to such a source, a reference to a document
   ///  repository (e.g. XDS) that stores the original consent document.
-  Attachment? get sourceAttachment;
   @override
+  Attachment? get sourceAttachment;
 
   /// [sourceReference] The source on which this consent statement is based.
   /// The source might be a scanned original paper form, or a reference to a
   /// consent that links back to such a source, a reference to a document
   ///  repository (e.g. XDS) that stores the original consent document.
-  Reference? get sourceReference;
   @override
+  Reference? get sourceReference;
 
   /// [policy] The references to the policies that are included in this consent
   /// scope. Policies may be organizational, but are often defined
   ///  jurisdictionally, or in law.
-  List<ConsentPolicy>? get policy;
   @override
+  List<ConsentPolicy>? get policy;
 
   /// [policyRule] A reference to the specific base computable regulation or
   ///  policy.
-  CodeableConcept? get policyRule;
   @override
+  CodeableConcept? get policyRule;
 
   /// [verification] Whether a treatment instruction (e.g. artificial
   /// respiration yes or no) was verified with the patient, his/her family or
   ///  another authorized person.
-  List<ConsentVerification>? get verification;
   @override
+  List<ConsentVerification>? get verification;
 
   /// [provision] An exception to the base policy of this consent. An exception
   ///  can be an addition or removal of access permissions.
-  ConsentProvision? get provision;
   @override
-  @JsonKey(ignore: true)
+  ConsentProvision? get provision;
+
+  /// Create a copy of Consent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ConsentImplCopyWith<_$ConsentImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1345,8 +1374,12 @@ mixin _$ConsentPolicy {
   @JsonKey(name: '_uri')
   PrimitiveElement? get uriElement => throw _privateConstructorUsedError;
 
+  /// Serializes this ConsentPolicy to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ConsentPolicy
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ConsentPolicyCopyWith<ConsentPolicy> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1377,6 +1410,8 @@ class _$ConsentPolicyCopyWithImpl<$Res, $Val extends ConsentPolicy>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ConsentPolicy
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1447,6 +1482,8 @@ class __$$ConsentPolicyImplCopyWithImpl<$Res>
       _$ConsentPolicyImpl _value, $Res Function(_$ConsentPolicyImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ConsentPolicy
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1494,7 +1531,7 @@ class __$$ConsentPolicyImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ConsentPolicyImpl extends _ConsentPolicy {
-  const _$ConsentPolicyImpl(
+  _$ConsentPolicyImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1621,7 +1658,7 @@ class _$ConsentPolicyImpl extends _ConsentPolicy {
                 other.uriElement == uriElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1633,7 +1670,9 @@ class _$ConsentPolicyImpl extends _ConsentPolicy {
       uri,
       uriElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ConsentPolicy
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ConsentPolicyImplCopyWith<_$ConsentPolicyImpl> get copyWith =>
@@ -1648,7 +1687,7 @@ class _$ConsentPolicyImpl extends _ConsentPolicy {
 }
 
 abstract class _ConsentPolicy extends ConsentPolicy {
-  const factory _ConsentPolicy(
+  factory _ConsentPolicy(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -1657,17 +1696,15 @@ abstract class _ConsentPolicy extends ConsentPolicy {
           final FhirUri? uri,
           @JsonKey(name: '_uri') final PrimitiveElement? uriElement}) =
       _$ConsentPolicyImpl;
-  const _ConsentPolicy._() : super._();
+  _ConsentPolicy._() : super._();
 
   factory _ConsentPolicy.fromJson(Map<String, dynamic> json) =
       _$ConsentPolicyImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1675,9 +1712,9 @@ abstract class _ConsentPolicy extends ConsentPolicy {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -1692,30 +1729,34 @@ abstract class _ConsentPolicy extends ConsentPolicy {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [authority] Entity or Organization having regulatory jurisdiction or
   ///  accountability for  enforcing policies pertaining to Consent Directives.
-  FhirUri? get authority;
   @override
+  FhirUri? get authority;
 
   /// [authorityElement] Extensions for authority
+  @override
   @JsonKey(name: '_authority')
   PrimitiveElement? get authorityElement;
-  @override
 
   /// [uri] The references to the policies that are included in this consent
   /// scope. Policies may be organizational, but are often defined
   ///  jurisdictionally, or in law.
-  FhirUri? get uri;
   @override
+  FhirUri? get uri;
 
   /// [uriElement] Extensions for uri
+  @override
   @JsonKey(name: '_uri')
   PrimitiveElement? get uriElement;
+
+  /// Create a copy of ConsentPolicy
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ConsentPolicyImplCopyWith<_$ConsentPolicyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1774,8 +1815,12 @@ mixin _$ConsentVerification {
   PrimitiveElement? get verificationDateElement =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this ConsentVerification to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ConsentVerification
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ConsentVerificationCopyWith<ConsentVerification> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1810,6 +1855,8 @@ class _$ConsentVerificationCopyWithImpl<$Res, $Val extends ConsentVerification>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ConsentVerification
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1858,6 +1905,8 @@ class _$ConsentVerificationCopyWithImpl<$Res, $Val extends ConsentVerification>
     ) as $Val);
   }
 
+  /// Create a copy of ConsentVerification
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get verifiedWith {
@@ -1902,6 +1951,8 @@ class __$$ConsentVerificationImplCopyWithImpl<$Res>
       $Res Function(_$ConsentVerificationImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ConsentVerification
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1954,7 +2005,7 @@ class __$$ConsentVerificationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ConsentVerificationImpl extends _ConsentVerification {
-  const _$ConsentVerificationImpl(
+  _$ConsentVerificationImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2088,7 +2139,7 @@ class _$ConsentVerificationImpl extends _ConsentVerification {
                 other.verificationDateElement == verificationDateElement));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2101,7 +2152,9 @@ class _$ConsentVerificationImpl extends _ConsentVerification {
       verificationDate,
       verificationDateElement);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ConsentVerification
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ConsentVerificationImplCopyWith<_$ConsentVerificationImpl> get copyWith =>
@@ -2117,7 +2170,7 @@ class _$ConsentVerificationImpl extends _ConsentVerification {
 }
 
 abstract class _ConsentVerification extends ConsentVerification {
-  const factory _ConsentVerification(
+  factory _ConsentVerification(
           {final String? id,
           @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
           final List<FhirExtension>? modifierExtension,
@@ -2128,17 +2181,15 @@ abstract class _ConsentVerification extends ConsentVerification {
           @JsonKey(name: '_verificationDate')
           final PrimitiveElement? verificationDateElement}) =
       _$ConsentVerificationImpl;
-  const _ConsentVerification._() : super._();
+  _ConsentVerification._() : super._();
 
   factory _ConsentVerification.fromJson(Map<String, dynamic> json) =
       _$ConsentVerificationImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2146,9 +2197,9 @@ abstract class _ConsentVerification extends ConsentVerification {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2163,32 +2214,36 @@ abstract class _ConsentVerification extends ConsentVerification {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [verified] Has the instruction been verified.
-  FhirBoolean? get verified;
   @override
+  FhirBoolean? get verified;
 
   /// [verifiedElement] Extensions for verified
+  @override
   @JsonKey(name: '_verified')
   PrimitiveElement? get verifiedElement;
-  @override
 
   /// [verifiedWith] Who verified the instruction (Patient, Relative or other
   ///  Authorized Person).
-  Reference? get verifiedWith;
   @override
+  Reference? get verifiedWith;
 
   /// [verificationDate] Date verification was collected.
-  FhirDateTime? get verificationDate;
   @override
+  FhirDateTime? get verificationDate;
 
   /// [verificationDateElement] Extensions for verificationDate
+  @override
   @JsonKey(name: '_verificationDate')
   PrimitiveElement? get verificationDateElement;
+
+  /// Create a copy of ConsentVerification
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ConsentVerificationImplCopyWith<_$ConsentVerificationImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2275,8 +2330,12 @@ mixin _$ConsentProvision {
   /// [provision] Rules which provide exceptions to the base rule or subrules.
   List<ConsentProvision>? get provision => throw _privateConstructorUsedError;
 
+  /// Serializes this ConsentProvision to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ConsentProvision
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ConsentProvisionCopyWith<ConsentProvision> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2318,6 +2377,8 @@ class _$ConsentProvisionCopyWithImpl<$Res, $Val extends ConsentProvision>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ConsentProvision
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2401,6 +2462,8 @@ class _$ConsentProvisionCopyWithImpl<$Res, $Val extends ConsentProvision>
     ) as $Val);
   }
 
+  /// Create a copy of ConsentProvision
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get period {
@@ -2413,6 +2476,8 @@ class _$ConsentProvisionCopyWithImpl<$Res, $Val extends ConsentProvision>
     });
   }
 
+  /// Create a copy of ConsentProvision
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get dataPeriod {
@@ -2465,6 +2530,8 @@ class __$$ConsentProvisionImplCopyWithImpl<$Res>
       $Res Function(_$ConsentProvisionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ConsentProvision
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2552,7 +2619,7 @@ class __$$ConsentProvisionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ConsentProvisionImpl extends _ConsentProvision {
-  const _$ConsentProvisionImpl(
+  _$ConsentProvisionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2821,7 +2888,7 @@ class _$ConsentProvisionImpl extends _ConsentProvision {
                 .equals(other._provision, _provision));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2841,7 +2908,9 @@ class _$ConsentProvisionImpl extends _ConsentProvision {
       const DeepCollectionEquality().hash(_data),
       const DeepCollectionEquality().hash(_provision));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ConsentProvision
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ConsentProvisionImplCopyWith<_$ConsentProvisionImpl> get copyWith =>
@@ -2857,7 +2926,7 @@ class _$ConsentProvisionImpl extends _ConsentProvision {
 }
 
 abstract class _ConsentProvision extends ConsentProvision {
-  const factory _ConsentProvision(
+  factory _ConsentProvision(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2873,17 +2942,15 @@ abstract class _ConsentProvision extends ConsentProvision {
       final Period? dataPeriod,
       final List<ConsentData>? data,
       final List<ConsentProvision>? provision}) = _$ConsentProvisionImpl;
-  const _ConsentProvision._() : super._();
+  _ConsentProvision._() : super._();
 
   factory _ConsentProvision.fromJson(Map<String, dynamic> json) =
       _$ConsentProvisionImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2891,9 +2958,9 @@ abstract class _ConsentProvision extends ConsentProvision {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2908,68 +2975,72 @@ abstract class _ConsentProvision extends ConsentProvision {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [type] Action  to take - permit or deny - when the rule conditions are
   ///  met.  Not permitted in root rule, required in all nested rules.
-  FhirCode? get type;
   @override
+  FhirCode? get type;
 
   /// [typeElement] Extensions for type
+  @override
   @JsonKey(name: '_type')
   PrimitiveElement? get typeElement;
-  @override
 
   /// [period] The timeframe in this rule is valid.
-  Period? get period;
   @override
+  Period? get period;
 
   /// [actor] Who or what is controlled by this rule. Use group to identify a
   ///  set of actors by some property they share (e.g. 'admitting officers').
-  List<ConsentActor>? get actor;
   @override
+  List<ConsentActor>? get actor;
 
   /// [action] Actions controlled by this Rule.
-  List<CodeableConcept>? get action;
   @override
+  List<CodeableConcept>? get action;
 
   /// [securityLabel] A security label, comprised of 0..* security label fields
   /// (Privacy tags), which define which resources are controlled by this
   ///  exception.
-  List<Coding>? get securityLabel;
   @override
+  List<Coding>? get securityLabel;
 
   /// [purpose] The context of the activities a user is taking - why the user
   ///  is accessing the data - that are controlled by this rule.
-  List<Coding>? get purpose;
   @override
+  List<Coding>? get purpose;
 
   /// [class] The class of information covered by this rule. The type can be a
   /// FHIR resource type, a profile on a type, or a CDA document, or some other
   ///  type that indicates what sort of information the consent relates to.
+  @override
   @JsonKey(name: 'class')
   List<Coding>? get class_;
-  @override
 
   /// [code] If this code is found in an instance, then the rule applies.
-  List<CodeableConcept>? get code;
   @override
+  List<CodeableConcept>? get code;
 
   /// [dataPeriod] Clinical or Operational Relevant period of time that bounds
   ///  the data controlled by this rule.
-  Period? get dataPeriod;
   @override
+  Period? get dataPeriod;
 
   /// [data] The resources controlled by this rule if specific resources are
   ///  referenced.
-  List<ConsentData>? get data;
   @override
+  List<ConsentData>? get data;
 
   /// [provision] Rules which provide exceptions to the base rule or subrules.
-  List<ConsentProvision>? get provision;
   @override
-  @JsonKey(ignore: true)
+  List<ConsentProvision>? get provision;
+
+  /// Create a copy of ConsentProvision
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ConsentProvisionImplCopyWith<_$ConsentProvisionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3018,8 +3089,12 @@ mixin _$ConsentActor {
   ///  (e.g. 'admitting officers').
   Reference get reference => throw _privateConstructorUsedError;
 
+  /// Serializes this ConsentActor to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ConsentActor
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ConsentActorCopyWith<ConsentActor> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3051,6 +3126,8 @@ class _$ConsentActorCopyWithImpl<$Res, $Val extends ConsentActor>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ConsentActor
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3084,6 +3161,8 @@ class _$ConsentActorCopyWithImpl<$Res, $Val extends ConsentActor>
     ) as $Val);
   }
 
+  /// Create a copy of ConsentActor
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get role {
@@ -3092,6 +3171,8 @@ class _$ConsentActorCopyWithImpl<$Res, $Val extends ConsentActor>
     });
   }
 
+  /// Create a copy of ConsentActor
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get reference {
@@ -3130,6 +3211,8 @@ class __$$ConsentActorImplCopyWithImpl<$Res>
       _$ConsentActorImpl _value, $Res Function(_$ConsentActorImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ConsentActor
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3167,7 +3250,7 @@ class __$$ConsentActorImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ConsentActorImpl extends _ConsentActor {
-  const _$ConsentActorImpl(
+  _$ConsentActorImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3278,7 +3361,7 @@ class _$ConsentActorImpl extends _ConsentActor {
                 other.reference == reference));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3288,7 +3371,9 @@ class _$ConsentActorImpl extends _ConsentActor {
       role,
       reference);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ConsentActor
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ConsentActorImplCopyWith<_$ConsentActorImpl> get copyWith =>
@@ -3303,23 +3388,21 @@ class _$ConsentActorImpl extends _ConsentActor {
 }
 
 abstract class _ConsentActor extends ConsentActor {
-  const factory _ConsentActor(
+  factory _ConsentActor(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       required final CodeableConcept role,
       required final Reference reference}) = _$ConsentActorImpl;
-  const _ConsentActor._() : super._();
+  _ConsentActor._() : super._();
 
   factory _ConsentActor.fromJson(Map<String, dynamic> json) =
       _$ConsentActorImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3327,9 +3410,9 @@ abstract class _ConsentActor extends ConsentActor {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3344,20 +3427,24 @@ abstract class _ConsentActor extends ConsentActor {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [role] How the individual is involved in the resources content that is
   ///  described in the exception.
-  CodeableConcept get role;
   @override
+  CodeableConcept get role;
 
   /// [reference] The resource that identifies the actor. To identify actors by
   /// type, use group to identify a set of actors by some property they share
   ///  (e.g. 'admitting officers').
-  Reference get reference;
   @override
-  @JsonKey(ignore: true)
+  Reference get reference;
+
+  /// Create a copy of ConsentActor
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ConsentActorImplCopyWith<_$ConsentActorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3409,8 +3496,12 @@ mixin _$ConsentData {
   ///  resources are covered by this consent.
   Reference get reference => throw _privateConstructorUsedError;
 
+  /// Serializes this ConsentData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ConsentData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ConsentDataCopyWith<ConsentData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3442,6 +3533,8 @@ class _$ConsentDataCopyWithImpl<$Res, $Val extends ConsentData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ConsentData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3480,6 +3573,8 @@ class _$ConsentDataCopyWithImpl<$Res, $Val extends ConsentData>
     ) as $Val);
   }
 
+  /// Create a copy of ConsentData
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get reference {
@@ -3517,6 +3612,8 @@ class __$$ConsentDataImplCopyWithImpl<$Res>
       _$ConsentDataImpl _value, $Res Function(_$ConsentDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ConsentData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3559,7 +3656,7 @@ class __$$ConsentDataImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ConsentDataImpl extends _ConsentData {
-  const _$ConsentDataImpl(
+  _$ConsentDataImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -3677,7 +3774,7 @@ class _$ConsentDataImpl extends _ConsentData {
                 other.reference == reference));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3688,7 +3785,9 @@ class _$ConsentDataImpl extends _ConsentData {
       meaningElement,
       reference);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ConsentData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ConsentDataImplCopyWith<_$ConsentDataImpl> get copyWith =>
@@ -3703,24 +3802,22 @@ class _$ConsentDataImpl extends _ConsentData {
 }
 
 abstract class _ConsentData extends ConsentData {
-  const factory _ConsentData(
+  factory _ConsentData(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
       final FhirCode? meaning,
       @JsonKey(name: '_meaning') final PrimitiveElement? meaningElement,
       required final Reference reference}) = _$ConsentDataImpl;
-  const _ConsentData._() : super._();
+  _ConsentData._() : super._();
 
   factory _ConsentData.fromJson(Map<String, dynamic> json) =
       _$ConsentDataImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -3728,9 +3825,9 @@ abstract class _ConsentData extends ConsentData {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -3745,24 +3842,28 @@ abstract class _ConsentData extends ConsentData {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [meaning] How the resource reference is interpreted when testing consent
   ///  restrictions.
-  FhirCode? get meaning;
   @override
+  FhirCode? get meaning;
 
   /// [meaningElement] Extensions for meaning
+  @override
   @JsonKey(name: '_meaning')
   PrimitiveElement? get meaningElement;
-  @override
 
   /// [reference] A reference to a specific resource that defines which
   ///  resources are covered by this consent.
-  Reference get reference;
   @override
-  @JsonKey(ignore: true)
+  Reference get reference;
+
+  /// Create a copy of ConsentData
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ConsentDataImplCopyWith<_$ConsentDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

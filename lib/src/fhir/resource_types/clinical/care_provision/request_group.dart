@@ -15,9 +15,9 @@ part 'request_group.g.dart';
 
 /// [RequestGroup] A group of related requests that can be used to capture
 @freezed
-class RequestGroup with _$RequestGroup implements DomainResource {
+class RequestGroup extends DomainResource with _$RequestGroup {
   /// [RequestGroup] A group of related requests that can be used to capture
-  const RequestGroup._();
+  RequestGroup._();
 
   /// [RequestGroup] A group of related requests that can be used to capture
   /// intended activities that have inter-dependencies such as "give this
@@ -138,7 +138,7 @@ class RequestGroup with _$RequestGroup implements DomainResource {
   ///  the response.
   ///
   /// [action] The actions, if any, produced by the evaluation of the artifact.
-  const factory RequestGroup({
+  factory RequestGroup({
     @Default(R4ResourceType.RequestGroup)
     @JsonKey(unknownEnumValue: R4ResourceType.RequestGroup)
 
@@ -329,6 +329,9 @@ class RequestGroup with _$RequestGroup implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -351,8 +354,8 @@ class RequestGroup with _$RequestGroup implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [RequestGroupAction] A group of related requests that can be used to
@@ -360,9 +363,9 @@ class RequestGroup with _$RequestGroup implements DomainResource {
 
 /// [RequestGroupAction] A group of related requests that can be used to
 @freezed
-class RequestGroupAction with _$RequestGroupAction implements BackboneElement {
+class RequestGroupAction extends BackboneElement with _$RequestGroupAction {
   /// [RequestGroupAction] A group of related requests that can be used to
-  const RequestGroupAction._();
+  RequestGroupAction._();
 
   /// [RequestGroupAction] A group of related requests that can be used to
   /// capture intended activities that have inter-dependencies such as "give
@@ -485,7 +488,7 @@ class RequestGroupAction with _$RequestGroupAction implements BackboneElement {
   ///  CommunicationRequest).
   ///
   /// [action] Sub actions.
-  const factory RequestGroupAction({
+  factory RequestGroupAction({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -679,6 +682,9 @@ class RequestGroupAction with _$RequestGroupAction implements BackboneElement {
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -690,11 +696,10 @@ class RequestGroupAction with _$RequestGroupAction implements BackboneElement {
 
 /// [RequestGroupCondition] A group of related requests that can be used to
 @freezed
-class RequestGroupCondition
-    with _$RequestGroupCondition
-    implements BackboneElement {
+class RequestGroupCondition extends BackboneElement
+    with _$RequestGroupCondition {
   /// [RequestGroupCondition] A group of related requests that can be used to
-  const RequestGroupCondition._();
+  RequestGroupCondition._();
 
   /// [RequestGroupCondition] A group of related requests that can be used to
   /// capture intended activities that have inter-dependencies such as "give
@@ -730,7 +735,7 @@ class RequestGroupCondition
   ///
   /// [expression] An expression that returns true or false, indicating whether
   ///  or not the condition is satisfied.
-  const factory RequestGroupCondition({
+  factory RequestGroupCondition({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -800,6 +805,9 @@ class RequestGroupCondition
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -811,11 +819,10 @@ class RequestGroupCondition
 
 /// [RequestGroupRelatedAction] A group of related requests that can be used
 @freezed
-class RequestGroupRelatedAction
-    with _$RequestGroupRelatedAction
-    implements BackboneElement {
+class RequestGroupRelatedAction extends BackboneElement
+    with _$RequestGroupRelatedAction {
   /// [RequestGroupRelatedAction] A group of related requests that can be used
-  const RequestGroupRelatedAction._();
+  RequestGroupRelatedAction._();
 
   /// [RequestGroupRelatedAction] A group of related requests that can be used
   /// to capture intended activities that have inter-dependencies such as "give
@@ -858,7 +865,7 @@ class RequestGroupRelatedAction
   ///
   /// [offsetRange] A duration or range of durations to apply to the
   ///  relationship. For example, 30-60 minutes before.
-  const factory RequestGroupRelatedAction({
+  factory RequestGroupRelatedAction({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -936,6 +943,9 @@ class RequestGroupRelatedAction
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

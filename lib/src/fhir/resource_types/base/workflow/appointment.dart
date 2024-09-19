@@ -14,9 +14,9 @@ part 'appointment.g.dart';
 
 /// [Appointment] A booking of a healthcare event among patient(s),
 @freezed
-class Appointment with _$Appointment implements DomainResource {
+class Appointment extends DomainResource with _$Appointment {
   /// [Appointment] A booking of a healthcare event among patient(s),
-  const Appointment._();
+  Appointment._();
 
   /// [Appointment] A booking of a healthcare event among patient(s),
   /// practitioner(s), related person(s) and/or device(s) for a specific
@@ -176,7 +176,7 @@ class Appointment with _$Appointment implements DomainResource {
   /// length of the appointment to fill and populate the start/end times for the
   /// actual allocated time. However, in other situations the duration may be
   ///  calculated by the scheduling system.
-  const factory Appointment({
+  factory Appointment({
     @Default(R4ResourceType.Appointment)
     @JsonKey(unknownEnumValue: R4ResourceType.Appointment)
 
@@ -412,6 +412,9 @@ class Appointment with _$Appointment implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -434,8 +437,8 @@ class Appointment with _$Appointment implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [AppointmentParticipant] A booking of a healthcare event among
@@ -443,11 +446,10 @@ class Appointment with _$Appointment implements DomainResource {
 
 /// [AppointmentParticipant] A booking of a healthcare event among
 @freezed
-class AppointmentParticipant
-    with _$AppointmentParticipant
-    implements BackboneElement {
+class AppointmentParticipant extends BackboneElement
+    with _$AppointmentParticipant {
   /// [AppointmentParticipant] A booking of a healthcare event among
-  const AppointmentParticipant._();
+  AppointmentParticipant._();
 
   /// [AppointmentParticipant] A booking of a healthcare event among
   /// patient(s), practitioner(s), related person(s) and/or device(s) for a
@@ -494,7 +496,7 @@ class AppointmentParticipant
   /// [statusElement] Extensions for status
   ///
   /// [period] Participation period of the actor.
-  const factory AppointmentParticipant({
+  factory AppointmentParticipant({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -580,6 +582,9 @@ class AppointmentParticipant
 
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
+  @override
+  FhirBase clone() => copyWith();
+
   @override
   String toJsonString() => jsonEncode(toJson());
 

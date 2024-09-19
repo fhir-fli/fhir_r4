@@ -14,9 +14,9 @@ part 'appointment_response.g.dart';
 
 /// [AppointmentResponse] A reply to an appointment request for a patient
 @freezed
-class AppointmentResponse with _$AppointmentResponse implements DomainResource {
+class AppointmentResponse extends DomainResource with _$AppointmentResponse {
   /// [AppointmentResponse] A reply to an appointment request for a patient
-  const AppointmentResponse._();
+  AppointmentResponse._();
 
   /// [AppointmentResponse] A reply to an appointment request for a patient
   ///  and/or practitioner(s), such as a confirmation or rejection.
@@ -108,7 +108,7 @@ class AppointmentResponse with _$AppointmentResponse implements DomainResource {
   /// [comment] Additional comments about the appointment.
   ///
   /// [commentElement] Extensions for comment
-  const factory AppointmentResponse({
+  factory AppointmentResponse({
     @Default(R4ResourceType.AppointmentResponse)
     @JsonKey(unknownEnumValue: R4ResourceType.AppointmentResponse)
 
@@ -258,6 +258,9 @@ class AppointmentResponse with _$AppointmentResponse implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -280,6 +283,6 @@ class AppointmentResponse with _$AppointmentResponse implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }

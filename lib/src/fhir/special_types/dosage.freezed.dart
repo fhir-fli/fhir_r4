@@ -122,8 +122,12 @@ mixin _$Dosage {
   ///  patient.
   Quantity? get maxDosePerLifetime => throw _privateConstructorUsedError;
 
+  /// Serializes this Dosage to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Dosage
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DosageCopyWith<Dosage> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -177,6 +181,8 @@ class _$DosageCopyWithImpl<$Res, $Val extends Dosage>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Dosage
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -290,6 +296,8 @@ class _$DosageCopyWithImpl<$Res, $Val extends Dosage>
     ) as $Val);
   }
 
+  /// Create a copy of Dosage
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TimingCopyWith<$Res>? get timing {
@@ -302,6 +310,8 @@ class _$DosageCopyWithImpl<$Res, $Val extends Dosage>
     });
   }
 
+  /// Create a copy of Dosage
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get asNeededCodeableConcept {
@@ -315,6 +325,8 @@ class _$DosageCopyWithImpl<$Res, $Val extends Dosage>
     });
   }
 
+  /// Create a copy of Dosage
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get site {
@@ -327,6 +339,8 @@ class _$DosageCopyWithImpl<$Res, $Val extends Dosage>
     });
   }
 
+  /// Create a copy of Dosage
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get route {
@@ -339,6 +353,8 @@ class _$DosageCopyWithImpl<$Res, $Val extends Dosage>
     });
   }
 
+  /// Create a copy of Dosage
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get method {
@@ -351,6 +367,8 @@ class _$DosageCopyWithImpl<$Res, $Val extends Dosage>
     });
   }
 
+  /// Create a copy of Dosage
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RatioCopyWith<$Res>? get maxDosePerPeriod {
@@ -363,6 +381,8 @@ class _$DosageCopyWithImpl<$Res, $Val extends Dosage>
     });
   }
 
+  /// Create a copy of Dosage
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get maxDosePerAdministration {
@@ -375,6 +395,8 @@ class _$DosageCopyWithImpl<$Res, $Val extends Dosage>
     });
   }
 
+  /// Create a copy of Dosage
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get maxDosePerLifetime {
@@ -446,6 +468,8 @@ class __$$DosageImplCopyWithImpl<$Res>
       _$DosageImpl _value, $Res Function(_$DosageImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Dosage
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -563,7 +587,7 @@ class __$$DosageImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DosageImpl extends _Dosage {
-  const _$DosageImpl(
+  _$DosageImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -820,7 +844,7 @@ class _$DosageImpl extends _Dosage {
                 other.maxDosePerLifetime == maxDosePerLifetime));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -847,7 +871,9 @@ class _$DosageImpl extends _Dosage {
         maxDosePerLifetime
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Dosage
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DosageImplCopyWith<_$DosageImpl> get copyWith =>
@@ -862,7 +888,7 @@ class _$DosageImpl extends _Dosage {
 }
 
 abstract class _Dosage extends Dosage {
-  const factory _Dosage(
+  factory _Dosage(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -886,16 +912,14 @@ abstract class _Dosage extends Dosage {
       final Ratio? maxDosePerPeriod,
       final Quantity? maxDosePerAdministration,
       final Quantity? maxDosePerLifetime}) = _$DosageImpl;
-  const _Dosage._() : super._();
+  _Dosage._() : super._();
 
   factory _Dosage.fromJson(Map<String, dynamic> json) = _$DosageImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -903,9 +927,9 @@ abstract class _Dosage extends Dosage {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -920,95 +944,99 @@ abstract class _Dosage extends Dosage {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [sequence] Indicates the order in which the dosage instructions should be
   ///  applied or interpreted.
-  FhirInteger? get sequence;
   @override
+  FhirInteger? get sequence;
 
   /// [sequenceElement] Extensions for sequence
+  @override
   @JsonKey(name: '_sequence')
   PrimitiveElement? get sequenceElement;
-  @override
 
   /// [text] Free text dosage instructions e.g. SIG.
-  String? get text;
   @override
+  String? get text;
 
   /// [textElement] Extensions for text
+  @override
   @JsonKey(name: '_text')
   PrimitiveElement? get textElement;
-  @override
 
   /// [additionalInstruction] Supplemental instructions to the patient on how
   /// to take the medication  (e.g. "with meals" or"take half to one hour before
   /// food") or warnings for the patient about the medication (e.g. "may cause
   ///  drowsiness" or "avoid exposure of skin to direct sunlight or sunlamps").
-  List<CodeableConcept>? get additionalInstruction;
   @override
+  List<CodeableConcept>? get additionalInstruction;
 
   /// [patientInstruction] Instructions in terms that are understood by the
   ///  patient or consumer.
-  String? get patientInstruction;
   @override
+  String? get patientInstruction;
 
   /// [patientInstructionElement] Extensions for patientInstruction
+  @override
   @JsonKey(name: '_patientInstruction')
   PrimitiveElement? get patientInstructionElement;
-  @override
 
   /// [timing] When medication should be administered.
-  Timing? get timing;
   @override
+  Timing? get timing;
 
   /// [asNeededBoolean] Indicates whether the Medication is only taken when
   /// needed within a specific dosing schedule (Boolean option), or it indicates
   ///  the precondition for taking the Medication (CodeableConcept).
-  FhirBoolean? get asNeededBoolean;
   @override
+  FhirBoolean? get asNeededBoolean;
 
   /// [asNeededBooleanElement] Extensions for asNeededBoolean
+  @override
   @JsonKey(name: '_asNeededBoolean')
   PrimitiveElement? get asNeededBooleanElement;
-  @override
 
   /// [asNeededCodeableConcept] Indicates whether the Medication is only taken
   /// when needed within a specific dosing schedule (Boolean option), or it
   ///  indicates the precondition for taking the Medication (CodeableConcept).
-  CodeableConcept? get asNeededCodeableConcept;
   @override
+  CodeableConcept? get asNeededCodeableConcept;
 
   /// [site] Body site to administer to.
-  CodeableConcept? get site;
   @override
+  CodeableConcept? get site;
 
   /// [route] How drug should enter body.
-  CodeableConcept? get route;
   @override
+  CodeableConcept? get route;
 
   /// [method] Technique for administering medication.
-  CodeableConcept? get method;
   @override
+  CodeableConcept? get method;
 
   /// [doseAndRate] The amount of medication administered.
-  List<DosageDoseAndRate>? get doseAndRate;
   @override
+  List<DosageDoseAndRate>? get doseAndRate;
 
   /// [maxDosePerPeriod] Upper limit on medication per unit of time.
-  Ratio? get maxDosePerPeriod;
   @override
+  Ratio? get maxDosePerPeriod;
 
   /// [maxDosePerAdministration] Upper limit on medication per administration.
-  Quantity? get maxDosePerAdministration;
   @override
+  Quantity? get maxDosePerAdministration;
 
   /// [maxDosePerLifetime] Upper limit on medication per lifetime of the
   ///  patient.
-  Quantity? get maxDosePerLifetime;
   @override
-  @JsonKey(ignore: true)
+  Quantity? get maxDosePerLifetime;
+
+  /// Create a copy of Dosage
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DosageImplCopyWith<_$DosageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1067,8 +1095,12 @@ mixin _$DosageDoseAndRate {
   /// [rateQuantity] Amount of medication per unit of time.
   Quantity? get rateQuantity => throw _privateConstructorUsedError;
 
+  /// Serializes this DosageDoseAndRate to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DosageDoseAndRate
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DosageDoseAndRateCopyWith<DosageDoseAndRate> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1108,6 +1140,8 @@ class _$DosageDoseAndRateCopyWithImpl<$Res, $Val extends DosageDoseAndRate>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DosageDoseAndRate
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1161,6 +1195,8 @@ class _$DosageDoseAndRateCopyWithImpl<$Res, $Val extends DosageDoseAndRate>
     ) as $Val);
   }
 
+  /// Create a copy of DosageDoseAndRate
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get type {
@@ -1173,6 +1209,8 @@ class _$DosageDoseAndRateCopyWithImpl<$Res, $Val extends DosageDoseAndRate>
     });
   }
 
+  /// Create a copy of DosageDoseAndRate
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get doseRange {
@@ -1185,6 +1223,8 @@ class _$DosageDoseAndRateCopyWithImpl<$Res, $Val extends DosageDoseAndRate>
     });
   }
 
+  /// Create a copy of DosageDoseAndRate
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get doseQuantity {
@@ -1197,6 +1237,8 @@ class _$DosageDoseAndRateCopyWithImpl<$Res, $Val extends DosageDoseAndRate>
     });
   }
 
+  /// Create a copy of DosageDoseAndRate
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RatioCopyWith<$Res>? get rateRatio {
@@ -1209,6 +1251,8 @@ class _$DosageDoseAndRateCopyWithImpl<$Res, $Val extends DosageDoseAndRate>
     });
   }
 
+  /// Create a copy of DosageDoseAndRate
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get rateRange {
@@ -1221,6 +1265,8 @@ class _$DosageDoseAndRateCopyWithImpl<$Res, $Val extends DosageDoseAndRate>
     });
   }
 
+  /// Create a copy of DosageDoseAndRate
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get rateQuantity {
@@ -1275,6 +1321,8 @@ class __$$DosageDoseAndRateImplCopyWithImpl<$Res>
       $Res Function(_$DosageDoseAndRateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DosageDoseAndRate
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1332,7 +1380,7 @@ class __$$DosageDoseAndRateImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DosageDoseAndRateImpl extends _DosageDoseAndRate {
-  const _$DosageDoseAndRateImpl(
+  _$DosageDoseAndRateImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1469,7 +1517,7 @@ class _$DosageDoseAndRateImpl extends _DosageDoseAndRate {
                 other.rateQuantity == rateQuantity));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1483,7 +1531,9 @@ class _$DosageDoseAndRateImpl extends _DosageDoseAndRate {
       rateRange,
       rateQuantity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DosageDoseAndRate
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DosageDoseAndRateImplCopyWith<_$DosageDoseAndRateImpl> get copyWith =>
@@ -1499,7 +1549,7 @@ class _$DosageDoseAndRateImpl extends _DosageDoseAndRate {
 }
 
 abstract class _DosageDoseAndRate extends DosageDoseAndRate {
-  const factory _DosageDoseAndRate(
+  factory _DosageDoseAndRate(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1509,17 +1559,15 @@ abstract class _DosageDoseAndRate extends DosageDoseAndRate {
       final Ratio? rateRatio,
       final Range? rateRange,
       final Quantity? rateQuantity}) = _$DosageDoseAndRateImpl;
-  const _DosageDoseAndRate._() : super._();
+  _DosageDoseAndRate._() : super._();
 
   factory _DosageDoseAndRate.fromJson(Map<String, dynamic> json) =
       _$DosageDoseAndRateImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -1527,9 +1575,9 @@ abstract class _DosageDoseAndRate extends DosageDoseAndRate {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -1544,34 +1592,38 @@ abstract class _DosageDoseAndRate extends DosageDoseAndRate {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [type] The kind of dose or rate specified, for example, ordered or
   ///  calculated.
-  CodeableConcept? get type;
   @override
+  CodeableConcept? get type;
 
   /// [doseRange] Amount of medication per dose.
-  Range? get doseRange;
   @override
+  Range? get doseRange;
 
   /// [doseQuantity] Amount of medication per dose.
-  Quantity? get doseQuantity;
   @override
+  Quantity? get doseQuantity;
 
   /// [rateRatio] Amount of medication per unit of time.
-  Ratio? get rateRatio;
   @override
+  Ratio? get rateRatio;
 
   /// [rateRange] Amount of medication per unit of time.
-  Range? get rateRange;
   @override
+  Range? get rateRange;
 
   /// [rateQuantity] Amount of medication per unit of time.
-  Quantity? get rateQuantity;
   @override
-  @JsonKey(ignore: true)
+  Quantity? get rateQuantity;
+
+  /// Create a copy of DosageDoseAndRate
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DosageDoseAndRateImplCopyWith<_$DosageDoseAndRateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -79,8 +79,12 @@ mixin _$AllergyIntolerance {
   List<AllergyIntoleranceReaction>? get reaction =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this AllergyIntolerance to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AllergyIntolerance
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AllergyIntoleranceCopyWith<AllergyIntolerance> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -156,6 +160,8 @@ class _$AllergyIntoleranceCopyWithImpl<$Res, $Val extends AllergyIntolerance>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AllergyIntolerance
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -354,6 +360,8 @@ class _$AllergyIntoleranceCopyWithImpl<$Res, $Val extends AllergyIntolerance>
     ) as $Val);
   }
 
+  /// Create a copy of AllergyIntolerance
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -366,6 +374,8 @@ class _$AllergyIntoleranceCopyWithImpl<$Res, $Val extends AllergyIntolerance>
     });
   }
 
+  /// Create a copy of AllergyIntolerance
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -378,6 +388,8 @@ class _$AllergyIntoleranceCopyWithImpl<$Res, $Val extends AllergyIntolerance>
     });
   }
 
+  /// Create a copy of AllergyIntolerance
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get clinicalStatus {
@@ -390,6 +402,8 @@ class _$AllergyIntoleranceCopyWithImpl<$Res, $Val extends AllergyIntolerance>
     });
   }
 
+  /// Create a copy of AllergyIntolerance
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get verificationStatus {
@@ -402,6 +416,8 @@ class _$AllergyIntoleranceCopyWithImpl<$Res, $Val extends AllergyIntolerance>
     });
   }
 
+  /// Create a copy of AllergyIntolerance
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get code {
@@ -414,6 +430,8 @@ class _$AllergyIntoleranceCopyWithImpl<$Res, $Val extends AllergyIntolerance>
     });
   }
 
+  /// Create a copy of AllergyIntolerance
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get patient {
@@ -422,6 +440,8 @@ class _$AllergyIntoleranceCopyWithImpl<$Res, $Val extends AllergyIntolerance>
     });
   }
 
+  /// Create a copy of AllergyIntolerance
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get encounter {
@@ -434,6 +454,8 @@ class _$AllergyIntoleranceCopyWithImpl<$Res, $Val extends AllergyIntolerance>
     });
   }
 
+  /// Create a copy of AllergyIntolerance
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AgeCopyWith<$Res>? get onsetAge {
@@ -446,6 +468,8 @@ class _$AllergyIntoleranceCopyWithImpl<$Res, $Val extends AllergyIntolerance>
     });
   }
 
+  /// Create a copy of AllergyIntolerance
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PeriodCopyWith<$Res>? get onsetPeriod {
@@ -458,6 +482,8 @@ class _$AllergyIntoleranceCopyWithImpl<$Res, $Val extends AllergyIntolerance>
     });
   }
 
+  /// Create a copy of AllergyIntolerance
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get onsetRange {
@@ -470,6 +496,8 @@ class _$AllergyIntoleranceCopyWithImpl<$Res, $Val extends AllergyIntolerance>
     });
   }
 
+  /// Create a copy of AllergyIntolerance
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get recorder {
@@ -482,6 +510,8 @@ class _$AllergyIntoleranceCopyWithImpl<$Res, $Val extends AllergyIntolerance>
     });
   }
 
+  /// Create a copy of AllergyIntolerance
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get asserter {
@@ -578,6 +608,8 @@ class __$$AllergyIntoleranceImplCopyWithImpl<$Res>
       $Res Function(_$AllergyIntoleranceImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AllergyIntolerance
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -780,7 +812,7 @@ class __$$AllergyIntoleranceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AllergyIntoleranceImpl extends _AllergyIntolerance {
-  const _$AllergyIntoleranceImpl(
+  _$AllergyIntoleranceImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.AllergyIntolerance)
       this.resourceType = R4ResourceType.AllergyIntolerance,
       this.id,
@@ -1064,7 +1096,7 @@ class _$AllergyIntoleranceImpl extends _AllergyIntolerance {
             const DeepCollectionEquality().equals(other._reaction, _reaction));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1108,7 +1140,9 @@ class _$AllergyIntoleranceImpl extends _AllergyIntolerance {
         const DeepCollectionEquality().hash(_reaction)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AllergyIntolerance
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AllergyIntoleranceImplCopyWith<_$AllergyIntoleranceImpl> get copyWith =>
@@ -1124,7 +1158,7 @@ class _$AllergyIntoleranceImpl extends _AllergyIntolerance {
 }
 
 abstract class _AllergyIntolerance extends AllergyIntolerance {
-  const factory _AllergyIntolerance(
+  factory _AllergyIntolerance(
       {@JsonKey(unknownEnumValue: R4ResourceType.AllergyIntolerance)
       final R4ResourceType resourceType,
       final String? id,
@@ -1169,7 +1203,7 @@ abstract class _AllergyIntolerance extends AllergyIntolerance {
       final List<Annotation>? note,
       final List<AllergyIntoleranceReaction>?
           reaction}) = _$AllergyIntoleranceImpl;
-  const _AllergyIntolerance._() : super._();
+  _AllergyIntolerance._() : super._();
 
   factory _AllergyIntolerance.fromJson(Map<String, dynamic> json) =
       _$AllergyIntoleranceImpl.fromJson;
@@ -1261,8 +1295,11 @@ abstract class _AllergyIntolerance extends AllergyIntolerance {
   List<Annotation>? get note;
   @override
   List<AllergyIntoleranceReaction>? get reaction;
+
+  /// Create a copy of AllergyIntolerance
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AllergyIntoleranceImplCopyWith<_$AllergyIntoleranceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1294,8 +1331,12 @@ mixin _$AllergyIntoleranceReaction {
   CodeableConcept? get exposureRoute => throw _privateConstructorUsedError;
   List<Annotation>? get note => throw _privateConstructorUsedError;
 
+  /// Serializes this AllergyIntoleranceReaction to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AllergyIntoleranceReaction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AllergyIntoleranceReactionCopyWith<AllergyIntoleranceReaction>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1337,6 +1378,8 @@ class _$AllergyIntoleranceReactionCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AllergyIntoleranceReaction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1410,6 +1453,8 @@ class _$AllergyIntoleranceReactionCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of AllergyIntoleranceReaction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get substance {
@@ -1422,6 +1467,8 @@ class _$AllergyIntoleranceReactionCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of AllergyIntoleranceReaction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get exposureRoute {
@@ -1475,6 +1522,8 @@ class __$$AllergyIntoleranceReactionImplCopyWithImpl<$Res>
       $Res Function(_$AllergyIntoleranceReactionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AllergyIntoleranceReaction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1552,7 +1601,7 @@ class __$$AllergyIntoleranceReactionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AllergyIntoleranceReactionImpl extends _AllergyIntoleranceReaction {
-  const _$AllergyIntoleranceReactionImpl(
+  _$AllergyIntoleranceReactionImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1672,7 +1721,7 @@ class _$AllergyIntoleranceReactionImpl extends _AllergyIntoleranceReaction {
             const DeepCollectionEquality().equals(other._note, _note));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1690,7 +1739,9 @@ class _$AllergyIntoleranceReactionImpl extends _AllergyIntoleranceReaction {
       exposureRoute,
       const DeepCollectionEquality().hash(_note));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AllergyIntoleranceReaction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AllergyIntoleranceReactionImplCopyWith<_$AllergyIntoleranceReactionImpl>
@@ -1706,7 +1757,7 @@ class _$AllergyIntoleranceReactionImpl extends _AllergyIntoleranceReaction {
 }
 
 abstract class _AllergyIntoleranceReaction extends AllergyIntoleranceReaction {
-  const factory _AllergyIntoleranceReaction(
+  factory _AllergyIntoleranceReaction(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -1720,7 +1771,7 @@ abstract class _AllergyIntoleranceReaction extends AllergyIntoleranceReaction {
       @JsonKey(name: '_severity') final PrimitiveElement? severityElement,
       final CodeableConcept? exposureRoute,
       final List<Annotation>? note}) = _$AllergyIntoleranceReactionImpl;
-  const _AllergyIntoleranceReaction._() : super._();
+  _AllergyIntoleranceReaction._() : super._();
 
   factory _AllergyIntoleranceReaction.fromJson(Map<String, dynamic> json) =
       _$AllergyIntoleranceReactionImpl.fromJson;
@@ -1755,8 +1806,11 @@ abstract class _AllergyIntoleranceReaction extends AllergyIntoleranceReaction {
   CodeableConcept? get exposureRoute;
   @override
   List<Annotation>? get note;
+
+  /// Create a copy of AllergyIntoleranceReaction
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AllergyIntoleranceReactionImplCopyWith<_$AllergyIntoleranceReactionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

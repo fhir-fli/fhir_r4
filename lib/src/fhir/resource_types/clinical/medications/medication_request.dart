@@ -15,9 +15,9 @@ part 'medication_request.g.dart';
 
 /// [MedicationRequest] An order or request for both supply of the medication
 @freezed
-class MedicationRequest with _$MedicationRequest implements DomainResource {
+class MedicationRequest extends DomainResource with _$MedicationRequest {
   /// [MedicationRequest] An order or request for both supply of the medication
-  const MedicationRequest._();
+  MedicationRequest._();
 
   /// [MedicationRequest] An order or request for both supply of the medication
   /// and the instructions for administration of the medication to a patient.
@@ -219,7 +219,7 @@ class MedicationRequest with _$MedicationRequest implements DomainResource {
   /// resource or fulfilling request or event resources that identify key state
   /// transitions or updates that are likely to be relevant to a user looking at
   ///  the current version of the resource.
-  const factory MedicationRequest({
+  factory MedicationRequest({
     @Default(R4ResourceType.MedicationRequest)
     @JsonKey(unknownEnumValue: R4ResourceType.MedicationRequest)
 
@@ -506,6 +506,9 @@ class MedicationRequest with _$MedicationRequest implements DomainResource {
   /// Another convenience method because more and more I'm transmitting FHIR
   /// data as a String and not a Map
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -528,8 +531,8 @@ class MedicationRequest with _$MedicationRequest implements DomainResource {
   String toYaml() => json2yaml(toJson());
 
   @override
-  Resource updateVersion({FhirMeta? oldMeta}) =>
-      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta));
+  Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
+      copyWith(meta: updateFhirMetaVersion(oldMeta ?? meta, versionIdAsTime));
 }
 
 /// [MedicationRequestDispenseRequest] An order or request for both supply
@@ -537,11 +540,10 @@ class MedicationRequest with _$MedicationRequest implements DomainResource {
 
 /// [MedicationRequestDispenseRequest] An order or request for both supply
 @freezed
-class MedicationRequestDispenseRequest
-    with _$MedicationRequestDispenseRequest
-    implements BackboneElement {
+class MedicationRequestDispenseRequest extends BackboneElement
+    with _$MedicationRequestDispenseRequest {
   /// [MedicationRequestDispenseRequest] An order or request for both supply
-  const MedicationRequestDispenseRequest._();
+  MedicationRequestDispenseRequest._();
 
   /// [MedicationRequestDispenseRequest] An order or request for both supply
   /// of the medication and the instructions for administration of the
@@ -602,7 +604,7 @@ class MedicationRequestDispenseRequest
   ///
   /// [performer] Indicates the intended dispensing Organization specified by
   ///  the prescriber.
-  const factory MedicationRequestDispenseRequest({
+  factory MedicationRequestDispenseRequest({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -689,6 +691,9 @@ class MedicationRequestDispenseRequest
       _$MedicationRequestDispenseRequestFromJson(json);
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -700,11 +705,10 @@ class MedicationRequestDispenseRequest
 
 /// [MedicationRequestInitialFill] An order or request for both supply of
 @freezed
-class MedicationRequestInitialFill
-    with _$MedicationRequestInitialFill
-    implements BackboneElement {
+class MedicationRequestInitialFill extends BackboneElement
+    with _$MedicationRequestInitialFill {
   /// [MedicationRequestInitialFill] An order or request for both supply of
-  const MedicationRequestInitialFill._();
+  MedicationRequestInitialFill._();
 
   /// [MedicationRequestInitialFill] An order or request for both supply of
   /// the medication and the instructions for administration of the medication
@@ -742,7 +746,7 @@ class MedicationRequestInitialFill
   ///
   /// [duration] The length of time that the first dispense is expected to
   ///  last.
-  const factory MedicationRequestInitialFill({
+  factory MedicationRequestInitialFill({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -810,6 +814,9 @@ class MedicationRequestInitialFill
   }
 
   @override
+  FhirBase clone() => copyWith();
+
+  @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
@@ -821,11 +828,10 @@ class MedicationRequestInitialFill
 
 /// [MedicationRequestSubstitution] An order or request for both supply of
 @freezed
-class MedicationRequestSubstitution
-    with _$MedicationRequestSubstitution
-    implements BackboneElement {
+class MedicationRequestSubstitution extends BackboneElement
+    with _$MedicationRequestSubstitution {
   /// [MedicationRequestSubstitution] An order or request for both supply of
-  const MedicationRequestSubstitution._();
+  MedicationRequestSubstitution._();
 
   /// [MedicationRequestSubstitution] An order or request for both supply of
   /// the medication and the instructions for administration of the medication
@@ -868,7 +874,7 @@ class MedicationRequestSubstitution
   ///
   /// [reason] Indicates the reason for the substitution, or why substitution
   ///  must or must not be performed.
-  const factory MedicationRequestSubstitution({
+  factory MedicationRequestSubstitution({
     /// [id] Unique id for the element within a resource (for internal
     ///  references). This may be any string value that does not contain spaces.
     String? id,
@@ -941,6 +947,9 @@ class MedicationRequestSubstitution
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  @override
+  FhirBase clone() => copyWith();
 
   @override
   String toJsonString() => jsonEncode(toJson());

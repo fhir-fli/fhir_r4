@@ -172,8 +172,12 @@ mixin _$Goal {
   /// [outcomeReference] Details of what's changed (or not changed).
   List<Reference>? get outcomeReference => throw _privateConstructorUsedError;
 
+  /// Serializes this Goal to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Goal
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GoalCopyWith<Goal> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -238,6 +242,8 @@ class _$GoalCopyWithImpl<$Res, $Val extends Goal>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Goal
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -406,6 +412,8 @@ class _$GoalCopyWithImpl<$Res, $Val extends Goal>
     ) as $Val);
   }
 
+  /// Create a copy of Goal
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirMetaCopyWith<$Res>? get meta {
@@ -418,6 +426,8 @@ class _$GoalCopyWithImpl<$Res, $Val extends Goal>
     });
   }
 
+  /// Create a copy of Goal
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NarrativeCopyWith<$Res>? get text {
@@ -430,6 +440,8 @@ class _$GoalCopyWithImpl<$Res, $Val extends Goal>
     });
   }
 
+  /// Create a copy of Goal
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get achievementStatus {
@@ -442,6 +454,8 @@ class _$GoalCopyWithImpl<$Res, $Val extends Goal>
     });
   }
 
+  /// Create a copy of Goal
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get priority {
@@ -454,6 +468,8 @@ class _$GoalCopyWithImpl<$Res, $Val extends Goal>
     });
   }
 
+  /// Create a copy of Goal
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res> get description {
@@ -462,6 +478,8 @@ class _$GoalCopyWithImpl<$Res, $Val extends Goal>
     });
   }
 
+  /// Create a copy of Goal
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res> get subject {
@@ -470,6 +488,8 @@ class _$GoalCopyWithImpl<$Res, $Val extends Goal>
     });
   }
 
+  /// Create a copy of Goal
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get startCodeableConcept {
@@ -483,6 +503,8 @@ class _$GoalCopyWithImpl<$Res, $Val extends Goal>
     });
   }
 
+  /// Create a copy of Goal
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ReferenceCopyWith<$Res>? get expressedBy {
@@ -564,6 +586,8 @@ class __$$GoalImplCopyWithImpl<$Res>
   __$$GoalImplCopyWithImpl(_$GoalImpl _value, $Res Function(_$GoalImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Goal
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -736,7 +760,7 @@ class __$$GoalImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$GoalImpl extends _Goal {
-  const _$GoalImpl(
+  _$GoalImpl(
       {@JsonKey(unknownEnumValue: R4ResourceType.Goal)
       this.resourceType = R4ResourceType.Goal,
       this.id,
@@ -1149,7 +1173,7 @@ class _$GoalImpl extends _Goal {
                 .equals(other._outcomeReference, _outcomeReference));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1187,7 +1211,9 @@ class _$GoalImpl extends _Goal {
         const DeepCollectionEquality().hash(_outcomeReference)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Goal
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GoalImplCopyWith<_$GoalImpl> get copyWith =>
@@ -1202,7 +1228,7 @@ class _$GoalImpl extends _Goal {
 }
 
 abstract class _Goal extends Goal {
-  const factory _Goal(
+  factory _Goal(
       {@JsonKey(unknownEnumValue: R4ResourceType.Goal)
       final R4ResourceType resourceType,
       final String? id,
@@ -1239,46 +1265,45 @@ abstract class _Goal extends Goal {
       final List<Annotation>? note,
       final List<CodeableConcept>? outcomeCode,
       final List<Reference>? outcomeReference}) = _$GoalImpl;
-  const _Goal._() : super._();
+  _Goal._() : super._();
 
   factory _Goal.fromJson(Map<String, dynamic> json) = _$GoalImpl.fromJson;
 
   @override
   @JsonKey(unknownEnumValue: R4ResourceType.Goal)
   R4ResourceType get resourceType;
-  @override
 
   /// [id] The logical id of the resource, as used in the URL for the resource.
   ///  Once assigned, this value never changes.
-  String? get id;
   @override
+  String? get id;
 
   /// [meta] The metadata about the resource. This is content that is
   /// maintained by the infrastructure. Changes to the content might not always
   ///  be associated with version changes to the resource.
-  FhirMeta? get meta;
   @override
+  FhirMeta? get meta;
 
   /// [implicitRules] A reference to a set of rules that were followed when the
   /// resource was constructed, and which must be understood when processing the
   /// content. Often, this is a reference to an implementation guide that
   ///  defines the special rules along with other profiles etc.
-  FhirUri? get implicitRules;
   @override
+  FhirUri? get implicitRules;
 
   /// [implicitRulesElement] Extensions for implicitRules
+  @override
   @JsonKey(name: '_implicitRules')
   PrimitiveElement? get implicitRulesElement;
-  @override
 
   /// [language] The base language in which the resource is written.
-  FhirCode? get language;
   @override
+  FhirCode? get language;
 
   /// [languageElement] Extensions for language
+  @override
   @JsonKey(name: '_language')
   PrimitiveElement? get languageElement;
-  @override
 
   /// [text] A human-readable narrative that contains a summary of the resource
   /// and can be used to represent the content of the resource to a human. The
@@ -1286,15 +1311,15 @@ abstract class _Goal extends Goal {
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative. Resource definitions may define what content should be
   ///  represented in the narrative to ensure clinical safety.
-  Narrative? get text;
   @override
+  Narrative? get text;
 
   /// [contained] These resources do not have an independent existence apart
   /// from the resource that contains them - they cannot be identified
   /// independently, and nor can they have their own independent transaction
   ///  scope.
-  List<Resource>? get contained;
   @override
+  List<Resource>? get contained;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the resource. To make the use of
@@ -1302,9 +1327,9 @@ abstract class _Goal extends Goal {
   /// applied to the definition and use of extensions. Though any implementer
   /// can define an extension, there is a set of requirements that SHALL be met
   ///  as part of the definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the resource and that modifies the
@@ -1319,110 +1344,114 @@ abstract class _Goal extends Goal {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [identifier] Business identifiers assigned to this goal by the performer
   /// or other systems which remain constant as the resource is updated and
   ///  propagates from server to server.
-  List<Identifier>? get identifier;
   @override
+  List<Identifier>? get identifier;
 
   /// [lifecycleStatus] The state of the goal throughout its lifecycle.
-  FhirCode? get lifecycleStatus;
   @override
+  FhirCode? get lifecycleStatus;
 
   /// [lifecycleStatusElement] Extensions for lifecycleStatus
+  @override
   @JsonKey(name: '_lifecycleStatus')
   PrimitiveElement? get lifecycleStatusElement;
-  @override
 
   /// [achievementStatus] Describes the progression, or lack thereof, towards
   ///  the goal against the target.
-  CodeableConcept? get achievementStatus;
   @override
+  CodeableConcept? get achievementStatus;
 
   /// [category] Indicates a category the goal falls within.
-  List<CodeableConcept>? get category;
   @override
+  List<CodeableConcept>? get category;
 
   /// [priority] Identifies the mutually agreed level of importance associated
   ///  with reaching/sustaining the goal.
-  CodeableConcept? get priority;
   @override
+  CodeableConcept? get priority;
 
   /// [description] Human-readable and/or coded description of a specific
   /// desired objective of care, such as "control blood pressure" or "negotiate
   ///  an obstacle course" or "dance with child at wedding".
-  CodeableConcept get description;
   @override
+  CodeableConcept get description;
 
   /// [subject] Identifies the patient, group or organization for whom the goal
   ///  is being established.
-  Reference get subject;
   @override
+  Reference get subject;
 
   /// [startDate] The date or event after which the goal should begin being
   ///  pursued.
-  FhirDate? get startDate;
   @override
+  FhirDate? get startDate;
 
   /// [startDateElement] Extensions for startDate
+  @override
   @JsonKey(name: '_startDate')
   PrimitiveElement? get startDateElement;
-  @override
 
   /// [startCodeableConcept] The date or event after which the goal should
   ///  begin being pursued.
-  CodeableConcept? get startCodeableConcept;
   @override
+  CodeableConcept? get startCodeableConcept;
 
   /// [target] Indicates what should be done by when.
-  List<GoalTarget>? get target;
   @override
+  List<GoalTarget>? get target;
 
   /// [statusDate] Identifies when the current status.  I.e. When initially
   ///  created, when achieved, when cancelled, etc.
-  FhirDate? get statusDate;
   @override
+  FhirDate? get statusDate;
 
   /// [statusDateElement] Extensions for statusDate
+  @override
   @JsonKey(name: '_statusDate')
   PrimitiveElement? get statusDateElement;
-  @override
 
   /// [statusReason] Captures the reason for the current status.
-  String? get statusReason;
   @override
+  String? get statusReason;
 
   /// [statusReasonElement] Extensions for statusReason
+  @override
   @JsonKey(name: '_statusReason')
   PrimitiveElement? get statusReasonElement;
-  @override
 
   /// [expressedBy] Indicates whose goal this is - patient goal, practitioner
   ///  goal, etc.
-  Reference? get expressedBy;
   @override
+  Reference? get expressedBy;
 
   /// [addresses] The identified conditions and other health record elements
   ///  that are intended to be addressed by the goal.
-  List<Reference>? get addresses;
   @override
+  List<Reference>? get addresses;
 
   /// [note] Any comments related to the goal.
-  List<Annotation>? get note;
   @override
+  List<Annotation>? get note;
 
   /// [outcomeCode] Identifies the change (or lack of change) at the point when
   ///  the status of the goal is assessed.
-  List<CodeableConcept>? get outcomeCode;
   @override
+  List<CodeableConcept>? get outcomeCode;
 
   /// [outcomeReference] Details of what's changed (or not changed).
-  List<Reference>? get outcomeReference;
   @override
-  @JsonKey(ignore: true)
+  List<Reference>? get outcomeReference;
+
+  /// Create a copy of Goal
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GoalImplCopyWith<_$GoalImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1551,8 +1580,12 @@ mixin _$GoalTarget {
   ///  which the goal should be met.
   FhirDuration? get dueDuration => throw _privateConstructorUsedError;
 
+  /// Serializes this GoalTarget to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GoalTarget
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GoalTargetCopyWith<GoalTarget> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1600,6 +1633,8 @@ class _$GoalTargetCopyWithImpl<$Res, $Val extends GoalTarget>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GoalTarget
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1693,6 +1728,8 @@ class _$GoalTargetCopyWithImpl<$Res, $Val extends GoalTarget>
     ) as $Val);
   }
 
+  /// Create a copy of GoalTarget
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get measure {
@@ -1705,6 +1742,8 @@ class _$GoalTargetCopyWithImpl<$Res, $Val extends GoalTarget>
     });
   }
 
+  /// Create a copy of GoalTarget
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $QuantityCopyWith<$Res>? get detailQuantity {
@@ -1717,6 +1756,8 @@ class _$GoalTargetCopyWithImpl<$Res, $Val extends GoalTarget>
     });
   }
 
+  /// Create a copy of GoalTarget
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RangeCopyWith<$Res>? get detailRange {
@@ -1729,6 +1770,8 @@ class _$GoalTargetCopyWithImpl<$Res, $Val extends GoalTarget>
     });
   }
 
+  /// Create a copy of GoalTarget
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CodeableConceptCopyWith<$Res>? get detailCodeableConcept {
@@ -1742,6 +1785,8 @@ class _$GoalTargetCopyWithImpl<$Res, $Val extends GoalTarget>
     });
   }
 
+  /// Create a copy of GoalTarget
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RatioCopyWith<$Res>? get detailRatio {
@@ -1754,6 +1799,8 @@ class _$GoalTargetCopyWithImpl<$Res, $Val extends GoalTarget>
     });
   }
 
+  /// Create a copy of GoalTarget
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FhirDurationCopyWith<$Res>? get dueDuration {
@@ -1816,6 +1863,8 @@ class __$$GoalTargetImplCopyWithImpl<$Res>
       _$GoalTargetImpl _value, $Res Function(_$GoalTargetImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GoalTarget
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1913,7 +1962,7 @@ class __$$GoalTargetImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$GoalTargetImpl extends _GoalTarget {
-  const _$GoalTargetImpl(
+  _$GoalTargetImpl(
       {this.id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2147,7 +2196,7 @@ class _$GoalTargetImpl extends _GoalTarget {
                 other.dueDuration == dueDuration));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2169,7 +2218,9 @@ class _$GoalTargetImpl extends _GoalTarget {
       dueDateElement,
       dueDuration);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GoalTarget
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GoalTargetImplCopyWith<_$GoalTargetImpl> get copyWith =>
@@ -2184,7 +2235,7 @@ class _$GoalTargetImpl extends _GoalTarget {
 }
 
 abstract class _GoalTarget extends GoalTarget {
-  const factory _GoalTarget(
+  factory _GoalTarget(
       {final String? id,
       @JsonKey(name: 'extension') final List<FhirExtension>? extension_,
       final List<FhirExtension>? modifierExtension,
@@ -2205,17 +2256,15 @@ abstract class _GoalTarget extends GoalTarget {
       final FhirDate? dueDate,
       @JsonKey(name: '_dueDate') final PrimitiveElement? dueDateElement,
       final FhirDuration? dueDuration}) = _$GoalTargetImpl;
-  const _GoalTarget._() : super._();
+  _GoalTarget._() : super._();
 
   factory _GoalTarget.fromJson(Map<String, dynamic> json) =
       _$GoalTargetImpl.fromJson;
 
-  @override
-
   /// [id] Unique id for the element within a resource (for internal
   ///  references). This may be any string value that does not contain spaces.
-  String? get id;
   @override
+  String? get id;
 
   /// [extension_] May be used to represent additional information that is not
   /// part of the basic definition of the element. To make the use of extensions
@@ -2223,9 +2272,9 @@ abstract class _GoalTarget extends GoalTarget {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of the
   ///  definition of the extension.
+  @override
   @JsonKey(name: 'extension')
   List<FhirExtension>? get extension_;
-  @override
 
   /// [modifierExtension] May be used to represent additional information that
   /// is not part of the basic definition of the element and that modifies the
@@ -2240,13 +2289,13 @@ abstract class _GoalTarget extends GoalTarget {
   /// Modifier extensions SHALL NOT change the meaning of any elements on
   /// Resource or DomainResource (including cannot change the meaning of
   ///  modifierExtension itself).
-  List<FhirExtension>? get modifierExtension;
   @override
+  List<FhirExtension>? get modifierExtension;
 
   /// [measure] The parameter whose value is being tracked, e.g. body weight,
   ///  blood pressure, or hemoglobin A1c level.
-  CodeableConcept? get measure;
   @override
+  CodeableConcept? get measure;
 
   /// [detailQuantity] The target value of the focus to be achieved to signify
   /// the fulfillment of the goal, e.g. 150 pounds, 7.0%. Either the high or low
@@ -2254,8 +2303,8 @@ abstract class _GoalTarget extends GoalTarget {
   /// it indicates that the goal is achieved at any focus value at or below the
   /// high value. Similarly, if the high value is missing, it indicates that the
   ///  goal is achieved at any focus value at or above the low value.
-  Quantity? get detailQuantity;
   @override
+  Quantity? get detailQuantity;
 
   /// [detailRange] The target value of the focus to be achieved to signify the
   /// fulfillment of the goal, e.g. 150 pounds, 7.0%. Either the high or low or
@@ -2263,8 +2312,8 @@ abstract class _GoalTarget extends GoalTarget {
   /// indicates that the goal is achieved at any focus value at or below the
   /// high value. Similarly, if the high value is missing, it indicates that the
   ///  goal is achieved at any focus value at or above the low value.
-  Range? get detailRange;
   @override
+  Range? get detailRange;
 
   /// [detailCodeableConcept] The target value of the focus to be achieved to
   /// signify the fulfillment of the goal, e.g. 150 pounds, 7.0%. Either the
@@ -2273,8 +2322,8 @@ abstract class _GoalTarget extends GoalTarget {
   /// or below the high value. Similarly, if the high value is missing, it
   /// indicates that the goal is achieved at any focus value at or above the low
   ///  value.
-  CodeableConcept? get detailCodeableConcept;
   @override
+  CodeableConcept? get detailCodeableConcept;
 
   /// [detailString] The target value of the focus to be achieved to signify
   /// the fulfillment of the goal, e.g. 150 pounds, 7.0%. Either the high or low
@@ -2282,13 +2331,13 @@ abstract class _GoalTarget extends GoalTarget {
   /// it indicates that the goal is achieved at any focus value at or below the
   /// high value. Similarly, if the high value is missing, it indicates that the
   ///  goal is achieved at any focus value at or above the low value.
-  String? get detailString;
   @override
+  String? get detailString;
 
   /// [detailStringElement] Extensions for detailString
+  @override
   @JsonKey(name: '_detailString')
   PrimitiveElement? get detailStringElement;
-  @override
 
   /// [detailBoolean] The target value of the focus to be achieved to signify
   /// the fulfillment of the goal, e.g. 150 pounds, 7.0%. Either the high or low
@@ -2296,13 +2345,13 @@ abstract class _GoalTarget extends GoalTarget {
   /// it indicates that the goal is achieved at any focus value at or below the
   /// high value. Similarly, if the high value is missing, it indicates that the
   ///  goal is achieved at any focus value at or above the low value.
-  FhirBoolean? get detailBoolean;
   @override
+  FhirBoolean? get detailBoolean;
 
   /// [detailBooleanElement] Extensions for detailBoolean
+  @override
   @JsonKey(name: '_detailBoolean')
   PrimitiveElement? get detailBooleanElement;
-  @override
 
   /// [detailInteger] The target value of the focus to be achieved to signify
   /// the fulfillment of the goal, e.g. 150 pounds, 7.0%. Either the high or low
@@ -2310,13 +2359,13 @@ abstract class _GoalTarget extends GoalTarget {
   /// it indicates that the goal is achieved at any focus value at or below the
   /// high value. Similarly, if the high value is missing, it indicates that the
   ///  goal is achieved at any focus value at or above the low value.
-  FhirInteger? get detailInteger;
   @override
+  FhirInteger? get detailInteger;
 
   /// [detailIntegerElement] Extensions for detailInteger
+  @override
   @JsonKey(name: '_detailInteger')
   PrimitiveElement? get detailIntegerElement;
-  @override
 
   /// [detailRatio] The target value of the focus to be achieved to signify the
   /// fulfillment of the goal, e.g. 150 pounds, 7.0%. Either the high or low or
@@ -2324,24 +2373,28 @@ abstract class _GoalTarget extends GoalTarget {
   /// indicates that the goal is achieved at any focus value at or below the
   /// high value. Similarly, if the high value is missing, it indicates that the
   ///  goal is achieved at any focus value at or above the low value.
-  Ratio? get detailRatio;
   @override
+  Ratio? get detailRatio;
 
   /// [dueDate] Indicates either the date or the duration after start by which
   ///  the goal should be met.
-  FhirDate? get dueDate;
   @override
+  FhirDate? get dueDate;
 
   /// [dueDateElement] Extensions for dueDate
+  @override
   @JsonKey(name: '_dueDate')
   PrimitiveElement? get dueDateElement;
-  @override
 
   /// [dueDuration] Indicates either the date or the duration after start by
   ///  which the goal should be met.
-  FhirDuration? get dueDuration;
   @override
-  @JsonKey(ignore: true)
+  FhirDuration? get dueDuration;
+
+  /// Create a copy of GoalTarget
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GoalTargetImplCopyWith<_$GoalTargetImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
