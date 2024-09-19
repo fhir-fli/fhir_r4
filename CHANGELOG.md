@@ -1,5 +1,11 @@
 # fhir_r4
 
+## [0.2.0]
+
+* Getting ready for FlutterCon!
+* Updated dependencies
+* Added documentation
+
 ## [0.1.0+2]
 
 * Added ability to store versionIds as DataTimes instead of just integers (useful for syncing)
