@@ -14,7 +14,7 @@ import 'package:test/test.dart';
 
 dynamic walkPath(dynamic arg) => arg;
 
-void main() {
+void testArgFxns() {
   group('Functions with Arguments: ', () {
     test('%variables', () {
       expect(

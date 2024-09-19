@@ -9,7 +9,7 @@ import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 import 'package:ucum/ucum.dart';
 
-void main() {
+void testNoArgFxns() {
   group('Functions w/o Arguments: ', () {
     test('empty', () {
       expect(
