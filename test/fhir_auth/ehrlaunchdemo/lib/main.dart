@@ -47,7 +47,7 @@ class DemoPage extends StatelessWidget {
           scopes: scopes.scopesList(),
         );
       }
-      final result = request(client);
+      final Future<Resource?> result = request(client);
 
       return MaterialApp(
         home: Scaffold(
@@ -62,14 +62,14 @@ class DemoPage extends StatelessWidget {
                   children = <Widget>[
                     const Text('Request was successful'),
                     Text(
-                        'Last Name: ${(snapshot.data as Patient).name?[0].family}'),
+                        'Last Name: ${(snapshot.data! as Patient).name?[0].family}'),
                     Text(
-                        'Given Names: ${(snapshot.data as Patient).name?[0].given?.join(" ")}'),
-                    Text('ID: ${(snapshot.data as Patient).id}'),
+                        'Given Names: ${(snapshot.data! as Patient).name?[0].given?.join(" ")}'),
+                    Text('ID: ${(snapshot.data! as Patient).id}'),
                     Text('ISS: ${client?.fhirUri}'),
                   ];
                 } else {
-                  children = [
+                  children = <Widget>[
                     const Center(
                       child: Text(
                         'App Has Not Yet Launched',
@@ -79,7 +79,7 @@ class DemoPage extends StatelessWidget {
                     ),
                     const Center(
                       child: Text(
-                        'While you wait, here\'s a picture of a tree',
+                        "While you wait, here's a picture of a tree",
                         textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 36),
                       ),
@@ -92,7 +92,6 @@ class DemoPage extends StatelessWidget {
                 return Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: children,
                   ),
                 );
@@ -109,12 +108,11 @@ class DemoPage extends StatelessWidget {
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
+                children: <Widget>[
                   Center(
                     child: Text(
                       'App Has Not Yet Launched\n'
-                      'While you wait, here\'s a picture of a tree',
+                      "While you wait, here's a picture of a tree",
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 36),
                     ),

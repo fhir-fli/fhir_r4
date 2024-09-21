@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:fhir_r4/fhir_r4.dart';
 
 import 'create_new_patient.dart';
@@ -23,7 +25,7 @@ Future<dynamic> gcsRequest() async {
     try {
       final Resource response =
           await request1.request(headers: <String, String>{});
-      newId = response.id == null ? null : FhirId(response.id!);
+      newId = response.id == null ? null : FhirId(response.id);
       print('Response from upload: ${response.toJson()}');
     } catch (e) {
       print(e);

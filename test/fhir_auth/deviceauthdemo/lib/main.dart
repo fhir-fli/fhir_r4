@@ -4,7 +4,7 @@ import 'gcs_request.dart';
 import 'hapi_request.dart';
 import 'meld_request.dart';
 
-Future main() async {
+Future<dynamic> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
@@ -28,29 +28,26 @@ class MyApp extends StatelessWidget {
                       style: ButtonStyle(
                         backgroundColor:
                             MaterialStateProperty.all(Colors.white),
-                        side: MaterialStateProperty.all(
-                            const BorderSide()),
+                        side: MaterialStateProperty.all(const BorderSide()),
                       ),
                       child: Image.asset('assets/hapi.png'),
-                      onPressed: () async => await hapiRequest()),
+                      onPressed: () async => hapiRequest()),
                   ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor:
                             MaterialStateProperty.all(Colors.white),
-                        side: MaterialStateProperty.all(
-                            const BorderSide()),
+                        side: MaterialStateProperty.all(const BorderSide()),
                       ),
                       child: Image.asset('assets/meld.png'),
-                      onPressed: () async => await meldRequest()),
+                      onPressed: () async => meldRequest()),
                   ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor:
                             MaterialStateProperty.all(Colors.white),
-                        side: MaterialStateProperty.all(
-                            const BorderSide()),
+                        side: MaterialStateProperty.all(const BorderSide()),
                       ),
                       child: Image.asset('assets/gcp.png'),
-                      onPressed: () async => await gcsRequest()),
+                      onPressed: () async => gcsRequest()),
                 ],
               ),
             ),

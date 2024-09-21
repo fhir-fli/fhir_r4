@@ -282,6 +282,7 @@ class HtmlCheckerParser extends FhirPathParser {
 
       return _validateElement(rootElement, isRoot: true);
     } catch (e) {
+      // ignore: avoid_print
       print('Error parsing XHTML: $e');
       return false;
     }

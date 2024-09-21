@@ -1,10 +1,12 @@
+// ignore_for_file: avoid_print
+
 import 'package:fhir_r4/fhir_r4.dart';
 
 import 'create_new_patient.dart';
 import 'ids.dart';
 import 'scopes.dart';
 
-Future meldRequest() async {
+Future<dynamic> meldRequest() async {
   final SmartFhirClient client = SmartFhirClient(
     fhirUri: FhirUri(Uri.encodeFull(Api.meldUrl)),
     clientId: Api.meldClientId,
@@ -28,7 +30,7 @@ Future meldRequest() async {
       final Resource response =
           await request1.request(headers: <String, String>{});
       print('Response from upload:\n${response.toJson()}');
-      newId = response.id == null ? null : FhirId(response.id!);
+      newId = response.id == null ? null : FhirId(response.id);
     } catch (e) {
       print(e);
     }

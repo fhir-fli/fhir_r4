@@ -3,13 +3,13 @@ import 'dart:math';
 import 'package:fhir_r4/fhir_r4.dart';
 
 Patient createNewPatient() {
-  final endDigits = digits(6).toString();
-  final zNum = digits(4).toString();
+  final String endDigits = digits(6);
+  final String zNum = digits(4);
   return Patient(
-    identifier: [
+    identifier: <Identifier>[
       Identifier(
         type: CodeableConcept(
-          coding: [
+          coding: <Coding>[
             Coding(
               system: FhirUri('http://hl7.org/fhir/sid/us-ssn'),
               code: FhirCode('SB'),
@@ -17,7 +17,7 @@ Patient createNewPatient() {
           ],
         ),
         system: FhirUri('urn:oid:2.16.840.1.113883.4.1'),
-        value: digits(9).toString(),
+        value: digits(9),
       ),
       // Identifier.fromJson({
       //   "use": "usual",
@@ -26,30 +26,30 @@ Patient createNewPatient() {
       //   "value": "${digits(3)}",
       // }),
       Identifier.fromJson(
-        {
-          "use": "usual",
-          "type": {"text": "EXTERNAL"},
-          "system": "urn:oid: 1.2.840.114350.1.13.0.1.7.2.$endDigits",
-          "value": "Z$zNum"
+        <String, Object>{
+          'use': 'usual',
+          'type': const <String, String>{'text': 'EXTERNAL'},
+          'system': 'urn:oid: 1.2.840.114350.1.13.0.1.7.2.$endDigits',
+          'value': 'Z$zNum'
         },
       ),
       Identifier.fromJson(
-        {
-          "use": "usual",
-          "type": {"text": "INTERNAL"},
-          "system": "urn:oid: 1.2.840.114350.1.13.0.1.7.2.$endDigits",
-          "value": "Z$zNum"
+        <String, Object>{
+          'use': 'usual',
+          'type': const <String, String>{'text': 'INTERNAL'},
+          'system': 'urn:oid: 1.2.840.114350.1.13.0.1.7.2.$endDigits',
+          'value': 'Z$zNum'
         },
       ),
     ],
     active: FhirBoolean(true),
-    name: [
+    name: <HumanName>[
       HumanName(
         family: lastNames[random(50)],
-        given: [firstNames[random(200)]],
+        given: <String>[firstNames[random(200)]],
       ),
     ],
-    address: [Address(postalCode: zipCode())],
+    address: <Address>[Address(postalCode: zipCode())],
     gender: random(10) < 5 ? FhirCode('male') : FhirCode('female'),
     birthDate: FhirDate(
         '${1900 + random(120)}-0${random(8) + 1}-${(random(27) + 1).toString().padLeft(2, '0')}'),
@@ -57,20 +57,20 @@ Patient createNewPatient() {
 }
 
 int random(int numb) {
-  final rand = Random();
+  final Random rand = Random();
   return rand.nextInt(numb);
 }
 
 String zipCode() => digits(5);
 
 String digits(int digit) {
-  const chars = '1234567890';
-  final rnd = Random();
-  return String.fromCharCodes(Iterable.generate(
+  const String chars = '1234567890';
+  final Random rnd = Random();
+  return String.fromCharCodes(Iterable<int>.generate(
       digit, (_) => chars.codeUnitAt(rnd.nextInt(chars.length))));
 }
 
-const lastNames = [
+const List<String> lastNames = <String>[
   'Smith',
   'Johnson',
   'Williams',
@@ -122,7 +122,7 @@ const lastNames = [
   'Carter',
   'Roberts',
 ];
-const firstNames = [
+const List<String> firstNames = <String>[
   'Mary',
   'Patricia',
   'Jennifer',

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
@@ -6,7 +8,7 @@ import 'ids.dart';
 import 'scopes.dart';
 
 Future<void> epicPatientRequest(Uri fhirCallback) async {
-  final client = EpicFhirClient(
+  final EpicFhirClient client = EpicFhirClient(
     fhirUri: FhirUri(Api.epicUrl),
     clientId: Api.epicPatientClientId,
     redirectUri: FhirUri(fhirCallback),
@@ -20,14 +22,14 @@ Future<void> epicPatientRequest(Uri fhirCallback) async {
   print('logged in');
 
   if (client.fhirUri.value != null && client.patientId != null) {
-    final request = FhirRequest.read(
+    final FhirRequest request = FhirRequest.read(
       base: client.fhirUri.value ?? Uri.parse('127.0.0.1'),
       type: R4ResourceType.Patient,
       id: client.patientId!.toString(),
       client: client,
     );
     try {
-      final response = await request.request();
+      final Resource response = await request.request();
       print(jsonEncode(response.toJson()));
       print('Response from read:\n${response.toJson()}');
     } catch (e) {

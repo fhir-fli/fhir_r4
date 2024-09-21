@@ -26,7 +26,7 @@ String zipCode() => digits(5);
 String digits(int digit) {
   const String chars = '1234567890';
   final Random rnd = Random();
-  return String.fromCharCodes(Iterable.generate(
+  return String.fromCharCodes(Iterable<int>.generate(
       digit, (_) => chars.codeUnitAt(rnd.nextInt(chars.length))));
 }
 

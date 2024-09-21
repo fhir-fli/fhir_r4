@@ -1,8 +1,8 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// FHIR Scopes
-final scopes = Scopes(
-  clinicalScopes: [
+final Scopes scopes = Scopes(
+  clinicalScopes: <ClinicalScope>[
     ClinicalScope(
       role: Role.user,
       resourceType: R4ResourceType.Patient,
@@ -15,8 +15,8 @@ final scopes = Scopes(
   ehrLaunch: true,
 );
 
-final cernerPatientScopes = Scopes(
-  clinicalScopes: [
+final Scopes cernerPatientScopes = Scopes(
+  clinicalScopes: <ClinicalScope>[
     ClinicalScope(
       role: Role.patient,
       resourceType: R4ResourceType.Patient,
@@ -29,8 +29,8 @@ final cernerPatientScopes = Scopes(
   fhirUser: true,
 );
 
-final cernerUserScopes = Scopes(
-  clinicalScopes: [
+final Scopes cernerUserScopes = Scopes(
+  clinicalScopes: <ClinicalScope>[
     ClinicalScope(
       role: Role.user,
       resourceType: R4ResourceType.Patient,
@@ -48,8 +48,8 @@ final cernerUserScopes = Scopes(
   ehrLaunch: true,
 );
 
-final epicUserScopes = Scopes(
-  clinicalScopes: [
+final Scopes epicUserScopes = Scopes(
+  clinicalScopes: <ClinicalScope>[
     ClinicalScope(
       role: Role.user,
       resourceType: R4ResourceType.Patient,
@@ -63,8 +63,8 @@ final epicUserScopes = Scopes(
   ehrLaunch: true,
 );
 
-final epicPatientScopes = Scopes(
-  clinicalScopes: [
+final Scopes epicPatientScopes = Scopes(
+  clinicalScopes: <ClinicalScope>[
     ClinicalScope(
       role: Role.patient,
       resourceType: R4ResourceType.Patient,

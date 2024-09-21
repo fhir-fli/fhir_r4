@@ -1,10 +1,12 @@
+// ignore_for_file: avoid_print
+
 import 'package:fhir_r4/fhir_r4.dart';
 
 import 'create_new_patient.dart';
 import 'ids.dart';
 import 'scopes.dart';
 
-Future hapiRequest() async {
+Future<dynamic> hapiRequest() async {
   final FhirClient client = FhirClient(
     fhirUri: FhirUri(Uri.encodeFull(Api.hapiUrl)),
     scopes: scopes.scopesList(),
@@ -26,7 +28,7 @@ Future hapiRequest() async {
         final Resource response =
             await request1.request(headers: <String, String>{});
         print('Response from upload:\n${response.toJson()}');
-        newId = response.id == null ? null : FhirId(response.id!);
+        newId = response.id == null ? null : FhirId(response.id);
       } catch (e) {
         print(e);
       }

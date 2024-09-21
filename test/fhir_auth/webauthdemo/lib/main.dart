@@ -27,8 +27,8 @@ class DemoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentUri = Uri.base;
-    final fhirCallback = Uri(
+    final Uri currentUri = Uri.base;
+    final Uri fhirCallback = Uri(
       host: currentUri.host,
       scheme: currentUri.scheme,
       port: currentUri.port,
@@ -41,28 +41,25 @@ class DemoPage extends StatelessWidget {
           child: GridView.count(
             childAspectRatio: 1.5,
             crossAxisCount: 3,
-            children: [
+            children: <Widget>[
               ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor: WidgetStateProperty.all(Colors.white),
-                    side: WidgetStateProperty.all(
-                        const BorderSide(color: Colors.black)),
+                    side: WidgetStateProperty.all(const BorderSide()),
                   ),
                   child: Image.asset('assets/hapi.png'),
-                  onPressed: () async => await hapiRequest()),
+                  onPressed: () async => hapiRequest()),
               ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor: WidgetStateProperty.all(Colors.white),
-                    side: WidgetStateProperty.all(
-                        const BorderSide(color: Colors.black)),
+                    side: WidgetStateProperty.all(const BorderSide()),
                   ),
                   child: Image.asset('assets/meld.png'),
-                  onPressed: () async => await meldRequest(fhirCallback)),
+                  onPressed: () async => meldRequest(fhirCallback)),
               ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor: WidgetStateProperty.all(Colors.white),
-                    side: WidgetStateProperty.all(
-                        const BorderSide(color: Colors.black)),
+                    side: WidgetStateProperty.all(const BorderSide()),
                   ),
                   child: const Text(
                     'Epic Patient',
@@ -72,13 +69,11 @@ class DemoPage extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  onPressed: () async =>
-                      await epicPatientRequest(fhirCallback)),
+                  onPressed: () async => epicPatientRequest(fhirCallback)),
               ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor: WidgetStateProperty.all(Colors.white),
-                    side: WidgetStateProperty.all(
-                        const BorderSide(color: Colors.black)),
+                    side: WidgetStateProperty.all(const BorderSide()),
                   ),
                   child: const Text(
                     'Epic Clinician',
@@ -88,16 +83,14 @@ class DemoPage extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  onPressed: () async =>
-                      await epicClinicianRequest(fhirCallback)),
+                  onPressed: () async => epicClinicianRequest(fhirCallback)),
               ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor: WidgetStateProperty.all(Colors.white),
-                    side: WidgetStateProperty.all(
-                        const BorderSide(color: Colors.black)),
+                    side: WidgetStateProperty.all(const BorderSide()),
                   ),
                   child: Column(
-                    children: [
+                    children: <Widget>[
                       Image.asset('assets/cerner.png'),
                       const Text(
                         'Patient',
@@ -109,16 +102,14 @@ class DemoPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  onPressed: () async =>
-                      await cernerPatientRequest(fhirCallback)),
+                  onPressed: () async => cernerPatientRequest(fhirCallback)),
               ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor: WidgetStateProperty.all(Colors.white),
-                    side: WidgetStateProperty.all(
-                        const BorderSide(color: Colors.black)),
+                    side: WidgetStateProperty.all(const BorderSide()),
                   ),
                   child: Image.asset('assets/gcp.png'),
-                  onPressed: () async => await gcsRequest(fhirCallback)),
+                  onPressed: () async => gcsRequest(fhirCallback)),
             ],
           ),
         ),
