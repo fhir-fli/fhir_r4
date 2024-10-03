@@ -8,9 +8,15 @@ class PrimitiveElementEntity {
   int dbId = 0;
 
   /// [id] Unique id for the element within a resource (for internal references).
-  String? id;
 
   /// [extension] May be used to represent additional information that is not part of the basic definition of the element.
   @ToMany()
-  List<FhirExtensionEntity> extension_;
+final String? id;
+final List<FhirExtensionEntity> extension_;
+  const PrimitiveElementEntity({
+    this.id,
+    this.extension_,
+  });
+
 }
+
