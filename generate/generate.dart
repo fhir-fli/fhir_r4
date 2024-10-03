@@ -25,7 +25,8 @@ Future<void> moveNdJsonExamples() async {
         if (line.isNotEmpty) {
           final String partialPath = file.path
               .replaceAll('examples-ndjson', '../test/fhir/examples')
-              .replaceAll(titleString, '$titleString$i.json');
+              .replaceAll('.ndjson', '.json')
+              .replaceAll(titleString, '$titleString$i');
           final File newFile = File(partialPath);
           newFile.writeAsStringSync(line);
         }
