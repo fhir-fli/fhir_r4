@@ -144,9 +144,12 @@ class LessEqualParser extends OperatorParser {
 List<dynamic> executeComparisons(List<dynamic> results, ParserList before,
     ParserList after, Map<String, dynamic> passed, Comparator comparator,
     {bool where = false}) {
-  // TODO(Dokotela): Currently, this is going to assume that if a String is being compared
-  // with a Date, DateTime, or Time, and the String is a valid format of a Time
-  // or DateTime, then they should still be compared
+  print('results: $results');
+  print('before: $before');
+  print('after: $after');
+  // TODO(Dokotela): Currently, this is going to assume that if a String is
+  // being compared with a Date, DateTime, or Time, and the String is a valid
+  // format of a Time or DateTime, then they should still be compared
   // another type, for instance:
   // Patient.birthDate = "1981-09-18"
   // today() = Date("2022-04-15")
@@ -313,6 +316,10 @@ List<dynamic> executeComparisons(List<dynamic> results, ParserList before,
       operation: comparator.toString(),
       collection: results);
 
+  print('lhs: $lhs');
+  print('rhs: $rhs');
+  print('lhs.first.runtimeType: ${lhs.first.runtimeType}');
+  print('rhs.first.runtimeType: ${rhs.first.runtimeType}');
   if (lhs.isEmpty || rhs.isEmpty) {
     return <dynamic>[];
   } else if (lhs.length != 1 || rhs.length != 1) {
