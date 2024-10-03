@@ -63,7 +63,10 @@
       }
     ]
   },
-  "timingTiming": { 
+  "timingTiming": {
+    "event": [
+      null
+    ],
     "_event": [
       {
         "extension": [

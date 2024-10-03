@@ -30,7 +30,10 @@
   "code": {
     "text": "Serum Zika and Dengue Virus IgM"
   },
-  "timingTiming": { 
+  "timingTiming": {
+    "event": [
+      null
+    ],
     "_event": [
       {
         "extension": [

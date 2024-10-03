@@ -27,7 +27,10 @@
       "status": "draft",
       "description": "Consider other consult modalities which might be available (e.g., e-consult or other rapidly iterative consult method. A simple consult is included here as the overarching clinical intent.",
       "kind": "ServiceRequest",
-      "timingTiming": { 
+      "timingTiming": {
+        "event": [
+          null
+        ],
         "_event": [
           {
             "extension": [
