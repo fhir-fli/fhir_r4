@@ -1,0 +1,9 @@
+export 'immunization_entity.dart';
+export 'immunization_evaluation_entity.dart';
+export 'immunization_recommendation_entity.dart';
+export 'medication_entity.dart';
+export 'medication_administration_entity.dart';
+export 'medication_dispense_entity.dart';
+export 'medication_knowledge_entity.dart';
+export 'medication_request_entity.dart';
+export 'medication_statement_entity.dart';

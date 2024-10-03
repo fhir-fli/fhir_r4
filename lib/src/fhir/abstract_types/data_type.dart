@@ -43,7 +43,6 @@ abstract class DataType extends Element {
     }
   }
 
-
   @override
   String toJsonString() => jsonEncode(toJson());
 }
