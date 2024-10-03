@@ -20,7 +20,8 @@ TempClass _$TempClassFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TempClass {
-  int? get id => throw _privateConstructorUsedError;
+  @Id(assignable: true)
+  int get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
 
   /// Serializes this TempClass to a JSON map.
@@ -38,7 +39,7 @@ abstract class $TempClassCopyWith<$Res> {
   factory $TempClassCopyWith(TempClass value, $Res Function(TempClass) then) =
       _$TempClassCopyWithImpl<$Res, TempClass>;
   @useResult
-  $Res call({int? id, String? name});
+  $Res call({@Id(assignable: true) int id, String? name});
 }
 
 /// @nodoc
@@ -56,14 +57,14 @@ class _$TempClassCopyWithImpl<$Res, $Val extends TempClass>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? id = null,
     Object? name = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -80,7 +81,7 @@ abstract class _$$TempClassImplCopyWith<$Res>
       __$$TempClassImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, String? name});
+  $Res call({@Id(assignable: true) int id, String? name});
 }
 
 /// @nodoc
@@ -96,14 +97,14 @@ class __$$TempClassImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? id = null,
     Object? name = freezed,
   }) {
     return _then(_$TempClassImpl(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -114,14 +115,17 @@ class __$$TempClassImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
+@Entity()
 class _$TempClassImpl extends _TempClass {
-  _$TempClassImpl({this.id, this.name}) : super._();
+  _$TempClassImpl({@Id(assignable: true) required this.id, this.name})
+      : super._();
 
   factory _$TempClassImpl.fromJson(Map<String, dynamic> json) =>
       _$$TempClassImplFromJson(json);
 
   @override
-  final int? id;
+  @Id(assignable: true)
+  final int id;
   @override
   final String? name;
 
@@ -160,14 +164,17 @@ class _$TempClassImpl extends _TempClass {
 }
 
 abstract class _TempClass extends TempClass {
-  factory _TempClass({final int? id, final String? name}) = _$TempClassImpl;
+  factory _TempClass(
+      {@Id(assignable: true) required final int id,
+      final String? name}) = _$TempClassImpl;
   _TempClass._() : super._();
 
   factory _TempClass.fromJson(Map<String, dynamic> json) =
       _$TempClassImpl.fromJson;
 
   @override
-  int? get id;
+  @Id(assignable: true)
+  int get id;
   @override
   String? get name;
 

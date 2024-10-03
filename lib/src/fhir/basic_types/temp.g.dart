@@ -8,12 +8,14 @@ part of 'temp.dart';
 
 _$TempClassImpl _$$TempClassImplFromJson(Map<String, dynamic> json) =>
     _$TempClassImpl(
-      id: (json['id'] as num?)?.toInt(),
+      id: (json['id'] as num).toInt(),
       name: json['name'] as String?,
     );
 
 Map<String, dynamic> _$$TempClassImplToJson(_$TempClassImpl instance) {
-  final val = <String, dynamic>{};
+  final val = <String, dynamic>{
+    'id': instance.id,
+  };
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -21,7 +23,6 @@ Map<String, dynamic> _$$TempClassImplToJson(_$TempClassImpl instance) {
     }
   }
 
-  writeNotNull('id', instance.id);
   writeNotNull('name', instance.name);
   return val;
 }

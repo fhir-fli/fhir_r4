@@ -7,13 +7,12 @@ part 'temp.freezed.dart';
 part 'temp.g.dart';
 
 @freezed
-@Entity()
 class TempClass with _$TempClass {
-  @Entity()
   TempClass._();
 
+  @Entity()
   factory TempClass({
-    int? id,
+    @Id(assignable: true) required int id,
     String? name,
   }) = _TempClass;
 
