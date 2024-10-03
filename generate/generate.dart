@@ -37,7 +37,7 @@ Future<void> actualFHIRClasses() async {
 
     // Write the Dart class to a file
     final String outputPath =
-        'lib/fhir/$key.dart'; // Organize paths based on categories
+        '../lib/src/fhir/generated/$key.dart'; // Organize paths based on categories
     await File(outputPath).writeAsString(dartClass);
   }
 }
@@ -56,9 +56,9 @@ String generateDartClass(
   buffer.writeln('class $className extends Equatable {');
 
   // Fields
-  final Map<String, dynamic> properties =
-      classDefinition['properties'] as Map<String, dynamic>;
-  properties.forEach((String field, dynamic details) {
+  final Map<String, dynamic>? properties =
+      classDefinition['properties'] as Map<String, dynamic>?;
+  properties?.forEach((String field, dynamic details) {
     final String type = details['type'] as String? ?? 'dynamic';
     final bool isRequired =
         (classDefinition['required'] as List<dynamic>?)?.contains(field) ??
@@ -68,7 +68,7 @@ String generateDartClass(
 
   // Constructor
   buffer.writeln('  const $className({');
-  properties.forEach((String field, dynamic details) {
+  properties?.forEach((String field, dynamic details) {
     final bool isRequired =
         (classDefinition['required'] as List<dynamic>?)?.contains(field) ??
             false;
@@ -85,7 +85,7 @@ String generateDartClass(
   // Add Equatable properties (for equality and hashCode)
   buffer.writeln('@override');
   buffer.writeln('List<Object?> get props => [');
-  properties.forEach((String field, _) {
+  properties?.forEach((String field, _) {
     buffer.writeln('    $field,');
   });
   buffer.writeln('  ];');
