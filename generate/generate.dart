@@ -10,10 +10,6 @@ Future<void> main() async {
   await moveJsonExamples();
   await moveNdJsonExamples();
   await actualFHIRClasses();
-
-  // File('definitions.json.zip').deleteSync();
-  // File('examples-json.zip').deleteSync();
-  // File('examples-ndjson.zip').deleteSync();
 }
 
 Future<void> actualFHIRClasses() async {
@@ -37,9 +33,17 @@ Future<void> actualFHIRClasses() async {
 
     // Write the Dart class to a file
     final String outputPath =
-        '../lib/src/fhir/generated/$key.dart'; // Organize paths based on categories
+        '../lib/src/fhir/generated/${toUpperCamelCase(key)}.dart'; // Organize paths based on categories
     await File(outputPath).writeAsString(dartClass);
   }
+}
+
+// Helper function to convert snake_case to UpperCamelCase
+String toUpperCamelCase(String text) {
+  return text
+      .split('_')
+      .map((String str) => str[0].toUpperCase() + str.substring(1))
+      .join();
 }
 
 // Function to generate Dart class from schema definition
@@ -47,23 +51,38 @@ String generateDartClass(
     String className, Map<String, dynamic> classDefinition) {
   final StringBuffer buffer = StringBuffer();
 
+  // Convert className to UpperCamelCase
+  className = toUpperCamelCase(className);
+
   // Add imports
+  buffer.writeln("import 'package:meta/meta.dart';");
   buffer.writeln("import 'package:json_annotation/json_annotation.dart';");
-  buffer.writeln("import 'package:equatable/equatable.dart';");
 
-  // Class declaration
-  buffer.writeln('@JsonSerializable()');
-  buffer.writeln('class $className extends Equatable {');
+  // Class declaration with @Data() and @JsonCodable() annotations
+  buffer.writeln('@Data()');
+  buffer.writeln('@JsonCodable()');
+  buffer.writeln('class $className {');
 
-  // Fields
+// Fields
   final Map<String, dynamic>? properties =
       classDefinition['properties'] as Map<String, dynamic>?;
   properties?.forEach((String field, dynamic details) {
-    final String type = details['type'] as String? ?? 'dynamic';
-    final bool isRequired =
-        (classDefinition['required'] as List<dynamic>?)?.contains(field) ??
-            false;
-    buffer.writeln('  final ${isRequired ? '' : ''}$type $field;');
+    // Check if details is a Map<String, dynamic>
+    if (details is Map<String, dynamic>) {
+      // Handle array type as List<T> and map other types properly
+      final String type = mapType(details);
+      final bool isRequired =
+          (classDefinition['required'] as List<dynamic>?)?.contains(field) ??
+              false;
+
+      // Convert field name to camelCase and make fields final
+      final String camelCaseField = toCamelCase(field);
+      buffer.writeln('  final ${isRequired ? '' : ''}$type $camelCaseField;');
+    } else {
+      // If details is not a map, default to dynamic or handle accordingly
+      final String camelCaseField = toCamelCase(field);
+      buffer.writeln('  final dynamic $camelCaseField;');
+    }
   });
 
   // Constructor
@@ -72,28 +91,54 @@ String generateDartClass(
     final bool isRequired =
         (classDefinition['required'] as List<dynamic>?)?.contains(field) ??
             false;
-    buffer.writeln('    ${isRequired ? 'required this.' : 'this.'}$field,');
+
+    final String camelCaseField = toCamelCase(field);
+    buffer.writeln(
+        '    ${isRequired ? 'required this.' : 'this.'}$camelCaseField,');
   });
   buffer.writeln('  });');
-
-  // Add toJson/fromJson methods
-  buffer.writeln(
-      'factory $className.fromJson(Map<String, dynamic> json) => _\$${className}FromJson(json);');
-  buffer
-      .writeln('Map<String, dynamic> toJson() => _\$${className}ToJson(this);');
-
-  // Add Equatable properties (for equality and hashCode)
-  buffer.writeln('@override');
-  buffer.writeln('List<Object?> get props => [');
-  properties?.forEach((String field, _) {
-    buffer.writeln('    $field,');
-  });
-  buffer.writeln('  ];');
 
   // Close class
   buffer.writeln('}');
 
   return buffer.toString();
+}
+
+// Function to convert snake_case to camelCase for fields
+String toCamelCase(String text) {
+  final List<String> words = text.split('_');
+  return words.first +
+      words
+          .skip(1)
+          .map((String word) => word[0].toUpperCase() + word.substring(1))
+          .join();
+}
+
+// Function to map the JSON schema type to Dart types
+String mapType(Map<String, dynamic> details) {
+  final String? jsonType = details['type'] as String?;
+  if (jsonType == 'array') {
+    // Get the item type inside the array and map it
+    final Map<String, dynamic> items = details['items'] as Map<String, dynamic>;
+    final String itemType = mapType(items);
+    return 'List<$itemType>';
+  }
+
+  // Handle other types or fall back to dynamic if type not found
+  switch (jsonType) {
+    case 'string':
+      return 'String';
+    case 'integer':
+      return 'int';
+    case 'boolean':
+      return 'bool';
+    case 'number':
+      return 'double';
+    case 'object':
+      return 'Map<String, dynamic>';
+    default:
+      return 'dynamic';
+  }
 }
 
 Future<void> moveNdJsonExamples() async {
@@ -137,4 +182,11 @@ Future<void> extractFilesToDisk() async {
   await extractFileToDisk('examples-json.zip', '.');
   await extractFileToDisk('examples-ndjson.zip', '.');
   Directory('./__MACOSX').deleteSync(recursive: true);
+}
+
+// Extracts files from a zip archive
+Future<void> extractFileToDisk(String path, String destination) async {
+  final InputFileStream inputStream = InputFileStream(path);
+  final Archive archive = ZipDecoder().decodeBuffer(inputStream);
+  extractArchiveToDisk(archive, destination);
 }
