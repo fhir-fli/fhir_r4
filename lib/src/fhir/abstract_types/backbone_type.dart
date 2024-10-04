@@ -1,18 +1,64 @@
 import 'dart:convert';
-
 import 'package:yaml/yaml.dart';
-
 import '../../../fhir_r4.dart';
 
-/// [BackboneType] Base definition for the few data types that are allowed to
-/// carry modifier extensions.
+/// Base class for the few data types that are allowed to carry modifier extensions.
 abstract class BackboneType extends DataType {
-  List<FhirExtension>? get modifierExtension;
+  /// Constructor for BackboneType
+  BackboneType({
+    super.id,
+    super.extension_ = const <FhirExtension>[],
+    this.modifierExtension = const <FhirExtension>[],
+    super.fhirType = 'BackboneType',
+  });
+
+  /// List of modifier extensions for additional, non-core information
+  final List<FhirExtension> modifierExtension;
+
+  /// Method to check if there are any modifier extensions
+  bool hasModifierExtension() => modifierExtension.isNotEmpty;
+
+  /// Gets the first repetition of modifier extensions
+  FhirExtension getModifierExtensionFirstRep() {
+    return modifierExtension.isEmpty
+        ? FhirExtension()
+        : modifierExtension.first;
+  }
+
+  /// Retrieves all modifier extensions by URL
+  List<FhirExtension> getModifierExtensionsByUrl(String url) {
+    return modifierExtension
+        .where((FhirExtension ext) => ext.url == url)
+        .toList();
+  }
+
+  /// Adds a modifier extension
+  void addModifierExtension(FhirExtension ext) {
+    modifierExtension.add(ext);
+  }
+
+  /// Removes modifier extensions by URL
+  void removeModifierExtension(String url) {
+    modifierExtension.removeWhere((FhirExtension ext) => ext.url == url);
+  }
+
+  @override
+  bool equalsDeep(FhirBase? other) {
+    if (other == null || other is! BackboneType) {
+      return false;
+    }
+    return super.equalsDeep(other) &&
+        compareDeepLists(modifierExtension, other.modifierExtension);
+  }
+
+  @override
+  bool isEmpty() {
+    return super.isEmpty() && modifierExtension.isEmpty;
+  }
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'id': id,
-        'extension': extension_,
+        ...super.toJson(),
         'modifierExtension': modifierExtension,
       };
 
