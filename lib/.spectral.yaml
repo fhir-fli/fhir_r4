@@ -1,0 +1,11 @@
+extends: "spectral:oas"
+
+rules:
+  # Check that all schema properties have a 'type' field
+  schema-type-check:
+    description: "Schemas must have a `type` field."
+    message: "The schema property is missing the `type` field."
+    given: "$..[?(@.schema && !@.type)]"  # Finds schema objects that lack a `type` field
+    then:
+      field: "type"
+      function: truthy
