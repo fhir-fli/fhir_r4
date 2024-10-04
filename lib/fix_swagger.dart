@@ -2,6 +2,7 @@
 
 import 'dart:io';
 import 'package:yaml/yaml.dart';
+import 'package:yaml_writer/yaml_writer.dart';
 
 void main() async {
   final File file = File('api-docs.r4.openapi.yaml');
@@ -19,28 +20,67 @@ void main() async {
 
   // Ensure it's a YamlMap to avoid issues with dynamic typing
   if (yamlDoc is YamlMap) {
-    // Traverse through the paths to check and fix missing types in schemas
-    fixReferences(yamlDoc);
+    // Convert the immutable YamlMap to a modifiable Map
+    final Map<String, dynamic> modifiableMap = deepCopyMap(yamlDoc);
+
+    // Traverse through the paths to check and fix XML schema references
+    fixXmlReferences(modifiableMap);
+
+    // Convert back to YAML and write to the file
+    final YamlWriter yamlWriter = YamlWriter();
+    final String updatedYaml = yamlWriter.write(modifiableMap);
+    await file.writeAsString(updatedYaml);
+
+    print('File updated with corrected XML schema references.');
   } else {
     print('The root of the YAML document is not a map.');
   }
 }
 
-void fixReferences(YamlMap yamlMap, {String parentKey = ''}) {
+Map<String, dynamic> deepCopyMap(YamlMap yamlMap) {
+  final Map<String, dynamic> result = <String, dynamic>{};
   yamlMap.forEach((dynamic key, dynamic value) {
+    final String keyStr = key.toString(); // Cast the key to String explicitly
     if (value is YamlMap) {
+      result[keyStr] = deepCopyMap(value);
+    } else if (value is YamlList) {
+      result[keyStr] = deepCopyList(value);
+    } else {
+      result[keyStr] = value;
+    }
+  });
+  return result;
+}
+
+List<dynamic> deepCopyList(YamlList yamlList) {
+  final List<dynamic> result = <dynamic>[];
+  for (final dynamic value in yamlList) {
+    if (value is YamlMap) {
+      result.add(deepCopyMap(value));
+    } else if (value is YamlList) {
+      result.add(deepCopyList(value));
+    } else {
+      result.add(value);
+    }
+  }
+  return result;
+}
+
+void fixXmlReferences(Map<String, dynamic> map, {String parentKey = ''}) {
+  map.forEach((dynamic key, dynamic value) {
+    final String keyStr = key.toString(); // Cast the key to String explicitly
+    if (value is Map<String, dynamic>) {
       if (value.containsKey('schema')) {
-        final YamlMap schema = value['schema'] as YamlMap;
-        // Check if there is a $ref key pointing to a generic schema
+        final Map<String, dynamic> schema =
+            value['schema'] as Map<String, dynamic>;
+        // Check if there is a $ref key pointing to the FHIR-XML-RESOURCE schema
         if (schema.containsKey(r'$ref') &&
-            (schema[r'$ref'] == '#/components/schemas/FHIR-JSON-RESOURCE' ||
-                schema[r'$ref'] == '#/components/schemas/FHIR-XML-RESOURCE')) {
+            schema[r'$ref'] == '#/components/schemas/FHIR-XML-RESOURCE') {
           // Extract the resource type from the path
           final String resourceType = extractResourceTypeFromPath(parentKey);
           if (resourceType.isNotEmpty) {
-            final String correctedRef =
-                './fhir.schema.json#/definitions/$resourceType';
-            print('Correcting reference in schema at $parentKey$key:');
+            final String correctedRef = './lib/fhir-all-xsd/$resourceType.xsd';
+            print('Correcting reference in schema at $parentKey$keyStr:');
             print('Old: ${schema[r'$ref']}');
             print('New: $correctedRef');
             schema[r'$ref'] =
@@ -48,12 +88,13 @@ void fixReferences(YamlMap yamlMap, {String parentKey = ''}) {
           }
         }
       }
-      fixReferences(value, parentKey: '$parentKey$key.');
-    } else if (value is YamlList) {
+      fixXmlReferences(value, parentKey: '$parentKey$keyStr.');
+    } else if (value is List) {
       // If there is a list, traverse through the list
       for (int i = 0; i < value.length; i++) {
-        if (value[i] is YamlMap) {
-          fixReferences(value[i] as YamlMap, parentKey: '$parentKey$key[$i].');
+        if (value[i] is Map<String, dynamic>) {
+          fixXmlReferences(value[i] as Map<String, dynamic>,
+              parentKey: '$parentKey$keyStr[$i].');
         }
       }
     }
