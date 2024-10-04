@@ -21,9 +21,6 @@ dependencies:
   collection: ^1.18.0
   crypto: ^3.0.5
   data_class: ^0.1.0
-  fhir_primitives: ^0.1.3
-  # fhir_primitives:
-  #   path: ../fhir_primitives
   flutter:
     sdk: flutter
   flutter_web_plugins:
