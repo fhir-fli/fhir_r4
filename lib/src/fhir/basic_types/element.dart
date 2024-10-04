@@ -4,7 +4,7 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-abstract class Element extends FhirBase {
+class Element extends FhirBase {
   // Constructor for Element with optional id and extension_s
   Element({
     this.id,
@@ -17,6 +17,17 @@ abstract class Element extends FhirBase {
 
   // List of extensions for additional information
   final List<FhirExtension> extension_;
+
+  // Method to copy the current Element with modifications
+  Element copyWith({
+    String? id,
+    List<FhirExtension>? extension_,
+  }) {
+    return Element(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+    );
+  }
 
   // Getter for checking if the element has an id
   bool get hasId => id != null && id!.isNotEmpty;
@@ -44,6 +55,72 @@ abstract class Element extends FhirBase {
     extension_.removeWhere((FhirExtension ext) => ext.url == url);
   }
 
+  // Implementing the getProperty method
+  dynamic getProperty(String name) {
+    switch (name) {
+      case 'id':
+        return id;
+      case 'extension':
+        return extension_;
+      default:
+        throw ArgumentError('Unknown property name: $name');
+    }
+  }
+
+  // Optionally, if we want to use hashes like in Java:
+  dynamic getPropertyByHash(int hash) {
+    switch (hash) {
+      case 3355: // hash for 'id'
+        return id;
+      case -612557761: // hash for 'extension'
+        return extension_;
+      default:
+        throw ArgumentError('Unknown property hash: $hash');
+    }
+  }
+
+  // Implementing the setProperty method
+  Element setProperty(String name, dynamic value) {
+    switch (name) {
+      case 'id':
+        if (value is String) {
+          return Element(id: value, extension_: extension_);
+        } else {
+          throw ArgumentError('Invalid type for id. Expected String.');
+        }
+      case 'extension':
+        if (value is List<FhirExtension>) {
+          return Element(id: id, extension_: value);
+        } else {
+          throw ArgumentError(
+              'Invalid type for extension. Expected List<FhirExtension>.');
+        }
+      default:
+        throw ArgumentError('Unknown property name: $name');
+    }
+  }
+
+  // Optionally, if we want to use hashes like in Java:
+  Element setPropertyByHash(int hash, dynamic value) {
+    switch (hash) {
+      case 3355: // hash for 'id'
+        if (value is String) {
+          return Element(id: value, extension_: extension_);
+        } else {
+          throw ArgumentError('Invalid type for id. Expected String.');
+        }
+      case -612557761: // hash for 'extension'
+        if (value is List<FhirExtension>) {
+          return Element(id: id, extension_: value);
+        } else {
+          throw ArgumentError(
+              'Invalid type for extension. Expected List<FhirExtension>.');
+        }
+      default:
+        throw ArgumentError('Unknown property hash: $hash');
+    }
+  }
+
   @override
   bool equalsDeep(FhirBase? other) {
     if (other == null || other is! Element) {
@@ -61,6 +138,16 @@ abstract class Element extends FhirBase {
   @override
   bool isEmpty() {
     return super.isEmpty() && extension_.isEmpty;
+  }
+
+  // Method to copy the current element
+  Element copy() {
+    final Element copiedElement = Element(
+      id: id,
+      extension_: List<FhirExtension>.from(
+          extension_.map((FhirExtension ext) => ext.copy())),
+    );
+    return copiedElement;
   }
 
   @override
@@ -98,4 +185,7 @@ abstract class Element extends FhirBase {
 
   @override
   String toJsonString() => jsonEncode(toJson());
+
+  @override
+  FhirBase clone() => copy();
 }
