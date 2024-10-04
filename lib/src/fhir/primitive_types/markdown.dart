@@ -1,18 +1,16 @@
 import 'dart:convert';
-
-import 'package:meta/meta.dart';
 import 'package:yaml/yaml.dart';
+import '../../../fhir_r4.dart';
 
-import '../fhir_primitives.dart';
+class FhirMarkdown extends PrimitiveType<String> {
+  FhirMarkdown._(this._valueString, this._valueMarkdown, this._isValid,
+      [Element? element])
+      : super(fhirType: 'markdown', element: element);
 
-@immutable
-class FhirMarkdown extends PrimitiveType {
-  FhirMarkdown._(this._valueString, this._valueMarkdown, this._isValid);
-
-  factory FhirMarkdown(dynamic inValue) =>
+  factory FhirMarkdown(dynamic inValue, [Element? element]) =>
       inValue is String && RegExp(r'[ \r\n\t\S]+').hasMatch(inValue)
-          ? FhirMarkdown._(inValue, inValue, true)
-          : FhirMarkdown._(inValue.toString(), null, false);
+          ? FhirMarkdown._(inValue, inValue, true, element)
+          : FhirMarkdown._(inValue.toString(), null, false, element);
 
   factory FhirMarkdown.fromJson(dynamic json) => FhirMarkdown(json);
 
@@ -23,17 +21,12 @@ class FhirMarkdown extends PrimitiveType {
           : throw YamlFormatException<FhirMarkdown>(
               'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
 
-  @override
-  String get fhirType => 'markdown';
-
   final String _valueString;
   final String? _valueMarkdown;
   final bool _isValid;
 
   @override
   bool get isValid => _isValid;
-  @override
-  int get hashCode => _valueString.hashCode;
   @override
   String? get value => _valueMarkdown;
 
@@ -47,11 +40,21 @@ class FhirMarkdown extends PrimitiveType {
   String toJsonString() => jsonEncode(toJson());
 
   @override
-  bool operator ==(Object other) =>
+  bool equals(Object other) =>
       identical(this, other) ||
       (other is FhirMarkdown && other.value == _valueMarkdown) ||
       (other is String && other == _valueString);
 
   @override
-  FhirMarkdown clone() => FhirMarkdown.fromJson(toJson());
+  FhirMarkdown clone() => FhirMarkdown._(
+        _valueString,
+        _valueMarkdown,
+        _isValid,
+        element?.clone() as Element?,
+      );
+
+  @override
+  FhirMarkdown setElement(String name, dynamic value) {
+    return FhirMarkdown(value, element?.setProperty(name, value));
+  }
 }

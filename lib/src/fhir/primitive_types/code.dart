@@ -1,24 +1,16 @@
 import 'dart:convert';
-
-import 'package:meta/meta.dart';
 import 'package:yaml/yaml.dart';
+import '../../../fhir_r4.dart';
 
-import '../fhir_primitives.dart';
+class FhirCode extends PrimitiveType<String> {
+  FhirCode._(this._valueString, this._valueCode, this._isValid,
+      [Element? element])
+      : super(fhirType: 'code', element: element);
 
-@immutable
-class FhirCode extends PrimitiveType {
-  FhirCode._(this._valueString, this._valueCode, this._isValid);
-
-  /// Construct a [FhirCode] constant at compile time
-  FhirCode.asConst(String code)
-      : _valueString = code,
-        _valueCode = code,
-        _isValid = true;
-
-  factory FhirCode(dynamic inValue) =>
+  factory FhirCode(dynamic inValue, [Element? element]) =>
       inValue is String && RegExp(r'^[^\s]+(\s[^\s]+)*$').hasMatch(inValue)
-          ? FhirCode._(inValue, inValue, true)
-          : FhirCode._(inValue.toString(), null, false);
+          ? FhirCode._(inValue, inValue, true, element)
+          : FhirCode._(inValue.toString(), null, false, element);
 
   factory FhirCode.fromJson(dynamic json) => FhirCode(json);
 
@@ -29,17 +21,12 @@ class FhirCode extends PrimitiveType {
           : throw YamlFormatException<FhirCode>(
               'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
 
-  @override
-  String get fhirType => 'code';
-
   final String _valueString;
   final String? _valueCode;
   final bool _isValid;
 
   @override
   bool get isValid => _isValid;
-  @override
-  int get hashCode => _valueString.hashCode;
   @override
   String? get value => _valueCode;
 
@@ -53,11 +40,21 @@ class FhirCode extends PrimitiveType {
   String toJsonString() => jsonEncode(toJson());
 
   @override
-  bool operator ==(Object other) =>
+  bool equals(Object other) =>
       identical(this, other) ||
       (other is FhirCode && other.value == _valueCode) ||
       (other is String && other == _valueString);
 
   @override
-  FhirCode clone() => FhirCode.fromJson(toJson());
+  FhirCode clone() => FhirCode._(
+        _valueString,
+        _valueCode,
+        _isValid,
+        element?.clone() as Element?,
+      );
+
+  @override
+  FhirCode setElement(String name, dynamic value) {
+    return FhirCode(value, element?.setProperty(name, value));
+  }
 }

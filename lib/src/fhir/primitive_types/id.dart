@@ -1,24 +1,15 @@
 import 'dart:convert';
-
-import 'package:meta/meta.dart';
-import 'package:uuid/uuid.dart' as uuid;
 import 'package:yaml/yaml.dart';
+import '../../../fhir_r4.dart';
 
-import '../fhir_primitives.dart';
+class FhirId extends PrimitiveType<String> {
+  FhirId._(this._valueString, this._valueId, this._isValid, [Element? element])
+      : super(fhirType: 'id', element: element);
 
-/// returns the same resource with a new ID (even if there is already an ID present)
-FhirId generateNewUUidFhirId() => FhirId(const uuid.Uuid().v4());
-
-String generateNewUuidString() => const uuid.Uuid().v4();
-
-@immutable
-class FhirId extends PrimitiveType {
-  FhirId._(this._valueString, this._valueId, this._isValid);
-
-  factory FhirId(dynamic inValue) =>
+  factory FhirId(dynamic inValue, [Element? element]) =>
       inValue is String && RegExp(r'^[A-Za-z0-9\-\.]{1,64}$').hasMatch(inValue)
-          ? FhirId._(inValue, inValue, true)
-          : FhirId._(inValue.toString(), null, false);
+          ? FhirId._(inValue, inValue, true, element)
+          : FhirId._(inValue.toString(), null, false, element);
 
   factory FhirId.fromJson(dynamic json) => FhirId(json);
 
@@ -29,17 +20,12 @@ class FhirId extends PrimitiveType {
           : throw YamlFormatException<FhirId>(
               'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
 
-  @override
-  String get fhirType => 'id';
-
   final String _valueString;
   final String? _valueId;
   final bool _isValid;
 
   @override
   bool get isValid => _isValid;
-  @override
-  int get hashCode => _valueString.hashCode;
   @override
   String? get value => _valueId;
 
@@ -53,11 +39,21 @@ class FhirId extends PrimitiveType {
   String toJsonString() => jsonEncode(toJson());
 
   @override
-  bool operator ==(Object other) =>
+  bool equals(Object other) =>
       identical(this, other) ||
       (other is FhirId && other.value == _valueId) ||
       (other is String && other == _valueString);
 
   @override
-  FhirId clone() => FhirId.fromJson(toJson());
+  FhirId clone() => FhirId._(
+        _valueString,
+        _valueId,
+        _isValid,
+        element?.clone() as Element?,
+      );
+
+  @override
+  FhirId setElement(String name, dynamic value) {
+    return FhirId(value, element?.setProperty(name, value));
+  }
 }

@@ -21,13 +21,6 @@ dependencies:
   collection: ^1.18.0
   crypto: ^3.0.5
   data_class: ^0.1.0
-  flutter:
-    sdk: flutter
-  flutter_web_plugins:
-    sdk: flutter
-  flutter_web_auth_2: ^3.1.2
-  freezed_annotation: ^2.4.4
-  google_sign_in: ^6.2.1
   hive: ^2.2.3
   http: ^1.2.2
   http_parser: ^4.0.2
@@ -48,7 +41,6 @@ dependencies:
 
 dev_dependencies:
   build_runner: ^2.4.12
-  freezed: ^2.5.7
   json_serializable: ^6.8.0
   test: ^1.25.8
   mockito: ^5.4.4

@@ -1,22 +1,20 @@
 import 'dart:convert';
-
-import 'package:meta/meta.dart';
 import 'package:yaml/yaml.dart';
+import '../../../fhir_r4.dart';
 
-import '../fhir_primitives.dart';
-
-@immutable
-class FhirBoolean extends PrimitiveType {
+class FhirBoolean extends PrimitiveType<bool> {
   FhirBoolean._(this._valueString, this._valueBoolean, this._isValid,
-      this._isTrueBoolean);
+      [Element? element])
+      : super(fhirType: 'boolean', element: element);
 
-  factory FhirBoolean(dynamic inValue) {
+  factory FhirBoolean(dynamic inValue, [Element? element]) {
     if (inValue is bool) {
-      return FhirBoolean._(inValue.toString(), inValue, true, true);
+      return FhirBoolean._(inValue.toString(), inValue, true, element);
     } else if (inValue is String) {
-      return <String>['true', 'false'].contains(inValue.toLowerCase())
-          ? FhirBoolean._(inValue, inValue.toLowerCase() == 'true', true, false)
-          : FhirBoolean._(inValue, null, false, false);
+      final String lowerValue = inValue.toLowerCase();
+      return <String>['true', 'false'].contains(lowerValue)
+          ? FhirBoolean._(inValue, lowerValue == 'true', true, element)
+          : FhirBoolean._(inValue, null, false, element);
     } else {
       throw CannotBeConstructed<FhirBoolean>(
           'Boolean cannot be constructed from $inValue of type '
@@ -33,37 +31,81 @@ class FhirBoolean extends PrimitiveType {
           : throw YamlFormatException<FhirBoolean>(
               'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
 
-  @override
-  String get fhirType => 'boolean';
-
   final String _valueString;
   final bool? _valueBoolean;
   final bool _isValid;
-  final bool _isTrueBoolean;
 
   @override
   bool get isValid => _isValid;
-  @override
-  int get hashCode => _valueString.hashCode;
   @override
   bool? get value => _valueBoolean;
 
   @override
   String toString() => _valueString;
+
   @override
-  dynamic toJson() => _isTrueBoolean ? _valueBoolean : _valueString;
+  dynamic toJson() => _valueBoolean ?? _valueString;
+
   @override
-  dynamic toYaml() => _isTrueBoolean ? _valueBoolean : _valueString;
+  dynamic toYaml() => _valueBoolean ?? _valueString;
+
   @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
-  bool operator ==(Object other) =>
+  bool equals(Object other) =>
       identical(this, other) ||
       (other is FhirBoolean && other.value == _valueBoolean) ||
       (other is bool && other == _valueBoolean) ||
       (other is String && other == _valueString);
 
   @override
-  FhirBoolean clone() => FhirBoolean.fromJson(toJson());
+  FhirBoolean clone() => FhirBoolean._(
+        _valueString,
+        _valueBoolean,
+        _isValid,
+        element?.clone() as Element?,
+      );
+
+  /// Sets a property value and returns a new `FhirBoolean` instance.
+  @override
+  FhirBoolean setElement(String name, dynamic value) {
+    return FhirBoolean(value, element?.setProperty(name, value));
+  }
+
+  /// Returns `true` if this `FhirBoolean` is `true`, and `false` otherwise.
+  /// If either value is an invalid `FhirBoolean`, it returns false.
+  bool operator &(dynamic other) {
+    if (value == null) {
+      return false;
+    } else if (other is bool) {
+      return other && value!;
+    } else if (other is FhirBoolean) {
+      return other.value! && value!;
+    }
+    return false;
+  }
+
+  bool operator |(dynamic other) {
+    if (value == null) {
+      return false;
+    } else if (other is bool) {
+      return other || value!;
+    } else if (other is FhirBoolean) {
+      return other.value! || value!;
+    }
+
+    return false;
+  }
+
+  bool operator ^(dynamic other) {
+    if (value == null) {
+      return false;
+    } else if (other is bool) {
+      return other ^ value!;
+    } else if (other is FhirBoolean) {
+      return other.value! ^ value!;
+    }
+    return false;
+  }
 }

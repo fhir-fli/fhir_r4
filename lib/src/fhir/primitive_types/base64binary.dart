@@ -28,9 +28,6 @@ class FhirBase64Binary extends PrimitiveType<String> {
           : throw YamlFormatException<FhirBase64Binary>(
               'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
 
-  @override
-  String get fhirType => 'base64Binary';
-
   final String _valueString;
   final String? _valueBase64Binary;
   final bool _isValid;

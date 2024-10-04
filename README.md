@@ -1,6 +1,11 @@
 # fhir_r4
 R4b Version of the FHIR Specification
 
+## Big Update, Breaking changes for 0.3.0-1
+- So I'm going to start using Macros for this version. This requires a higher dart version ```sdk: ">=3.5.0-152 <4.0.0"```
+- I'm including all of the Primitives back in this package
+- I'm going to include a FhirString, for standardization and because it's helpful in some other packages like fhir-mapping. I'm going to try and include almost all of the usual string functions so you should be able to work with it almost like you would a normal String in dart. 
+
 ## Updated Package
 - This was originally multiple different packages, and each package supported all FHIR versions. This became too big and broke [pub.dev](pub.dev). I have therefore grouped them together by FHIR version instead of by functionality.
 - This library now contains

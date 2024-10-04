@@ -1,23 +1,20 @@
 import 'dart:convert';
-
-import 'package:meta/meta.dart';
 import 'package:yaml/yaml.dart';
+import '../../../fhir_r4.dart';
 
-import '../fhir_primitives.dart';
+class FhirUrl extends PrimitiveType<Uri> {
+  FhirUrl._(this._valueString, this._valueUri, this._isValid,
+      [Element? element])
+      : super(fhirType: 'url', element: element);
 
-@immutable
-class FhirUrl extends PrimitiveType {
-  FhirUrl._(this._valueString, this._valueUri, this._isValid);
-
-  factory FhirUrl(dynamic inValue) {
+  factory FhirUrl(dynamic inValue, [Element? element]) {
     if (inValue is Uri) {
-      return FhirUrl._(inValue.toString(), inValue, true);
+      return FhirUrl._(inValue.toString(), inValue, true, element);
     } else if (inValue is String) {
       final Uri? tempUri = Uri.tryParse(inValue);
-      return FhirUrl._(inValue, tempUri, tempUri != null);
+      return FhirUrl._(inValue, tempUri, tempUri != null, element);
     }
-    throw CannotBeConstructed<FhirUrl>(
-        'FhirUrl cannot be constructed from $inValue.');
+    return FhirUrl._(inValue.toString(), null, false, element);
   }
 
   factory FhirUrl.fromJson(dynamic json) => FhirUrl(json);
@@ -39,8 +36,6 @@ class FhirUrl extends PrimitiveType {
   @override
   bool get isValid => _isValid;
   @override
-  int get hashCode => _valueString.hashCode;
-  @override
   Uri? get value => _valueUri;
 
   @override
@@ -53,12 +48,56 @@ class FhirUrl extends PrimitiveType {
   String toJsonString() => jsonEncode(toJson());
 
   @override
-  bool operator ==(Object other) =>
+  bool equals(Object other) =>
       identical(this, other) ||
       (other is FhirUrl && other.value == _valueUri) ||
-      (other is Uri && other == _valueUri) ||
       (other is String && other == _valueString);
 
   @override
-  FhirUrl clone() => FhirUrl.fromJson(toJson());
+  FhirUrl clone() => FhirUrl._(
+        _valueString,
+        _valueUri,
+        _isValid,
+        element?.clone() as Element?,
+      );
+
+  /// Path-related methods
+  List<String>? get pathSegments => _valueUri?.pathSegments;
+
+  String toFilePath({bool? windows}) {
+    if (_valueUri != null) {
+      return _valueUri.toFilePath(windows: windows);
+    }
+    throw UnsupportedError('No Uri to extract file path from.');
+  }
+
+  /// Authority-related methods
+  String? get host => _valueUri?.host;
+  String? get userInfo => _valueUri?.userInfo;
+  int? get port => _valueUri?.port;
+
+  /// Query-related methods
+  String? get query => _valueUri?.query;
+
+  Map<String, String> splitQueryStringAll(String query,
+      {Encoding encoding = utf8}) {
+    return Uri.splitQueryString(query, encoding: encoding);
+  }
+
+  /// Encoding/decoding
+  static String uriEncode(List<int> canonicalTable, String text,
+      Encoding encoding, bool spaceToPlus) {
+    return Uri.encodeComponent(text);
+  }
+
+  static String uriDecode(
+      String text, int start, int end, Encoding encoding, bool plusToSpace) {
+    final String decoded = Uri.decodeComponent(text.substring(start, end));
+    return plusToSpace ? decoded.replaceAll('+', ' ') : decoded;
+  }
+
+  @override
+  FhirUrl setElement(String name, dynamic value) {
+    return FhirUrl(value, element?.setProperty(name, value));
+  }
 }
